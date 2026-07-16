@@ -22,6 +22,8 @@ const pdfs = eingabe.pdfs
 const KONVENTIONEN = 'ressources/klausur-konventionen.md'
 const B2_REGEL = `Sprache: Deutsch, Niveau B2. Fachbegriffe (medizinische/pflegerische Termini) IMMER verwenden,
 aber beim ersten Auftreten kurz in Klammern einfach erklären. Sätze klar und nicht zu verschachtelt.`
+const NOTENSCHLUESSEL = `Notenschlüssel Nordrhein-Westfalen (NRW): 1 = 100–90 %, 2 = 89–75 %,
+3 = 74–60 %, 4 = 59–50 %, 5 = 49–35 %, 6 = 34–0 %. Bestehensgrenze 50 %.`
 
 // ---- Schemas ---------------------------------------------------------------
 const EXTRAKT_SCHEMA = {
@@ -129,8 +131,8 @@ generalistische Pflegeausbildung, Muttersprache Französisch). ${B2_REGEL}
 
 Kategorie: "${k.name}" — Unterthemen: ${(k.unterthemen || []).join(', ')}
 Wissensbasis (ZUERST vollständig lesen): ${k.wissensdateien.join(', ')}
-Klausur-Konventionen (ZUERST lesen): ${KONVENTIONEN} — halte dich an Operatoren, AFB-Verteilung,
-Fallbeispiel-Struktur und Notenschlüssel aus dieser Datei.
+Klausur-Konventionen (ZUERST lesen): ${KONVENTIONEN} — halte dich an Operatoren, AFB-Verteilung
+und Fallbeispiel-Struktur. ${NOTENSCHLUESSEL}
 
 Erstelle im Ordner "Lernmaterial/${k.ordner}/" vier Dateien:
 
@@ -189,8 +191,9 @@ ${material.map(m => `- ${m.kategorie.name} (Wissensbasis: ${m.kategorie.wissensd
 
 Lies zuerst ${KONVENTIONEN} und die Wissensdateien. ${B2_REGEL}
 
+${NOTENSCHLUESSEL}
 Schreibe nach "Lernmaterial/00-probeklausur.md":
-- Deckblatt: Fach, Zeit 90 Min, 100 Punkte, Notenschlüssel, Hilfsmittel
+- Deckblatt: Fach, Zeit 90 Min, 100 Punkte, Notenschlüssel (NRW), Hilfsmittel
 - Teil A: 10 Multiple-Choice-Fragen (20 P) über alle Themen
 - Teil B: Wissensfragen mit Operatoren, AFB I-II (40 P)
 - Teil C: Ein großes Fallbeispiel, das MEHRERE Themen verbindet, mit 6 Aufgaben AFB II-III (40 P)
