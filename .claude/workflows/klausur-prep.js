@@ -12,10 +12,13 @@ export const meta = {
 }
 
 // ---- Eingaben prüfen -------------------------------------------------------
-if (!args || !Array.isArray(args.pdfs) || args.pdfs.length === 0) {
+let eingabe = args
+if (typeof eingabe === 'string') { try { eingabe = JSON.parse(eingabe) } catch (e) { /* bleibt String */ } }
+if (Array.isArray(eingabe)) eingabe = { pdfs: eingabe }
+if (!eingabe || !Array.isArray(eingabe.pdfs) || eingabe.pdfs.length === 0) {
   throw new Error('args.pdfs fehlt: Liste der PDF-Pfade übergeben, z.B. { "pdfs": ["PDFs/diabetes.pdf"] }')
 }
-const pdfs = args.pdfs
+const pdfs = eingabe.pdfs
 const KONVENTIONEN = 'ressources/klausur-konventionen.md'
 const B2_REGEL = `Sprache: Deutsch, Niveau B2. Fachbegriffe (medizinische/pflegerische Termini) IMMER verwenden,
 aber beim ersten Auftreten kurz in Klammern einfach erklären. Sätze klar und nicht zu verschachtelt.`
