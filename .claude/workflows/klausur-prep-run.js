@@ -79,11 +79,10 @@ Gib das strukturierte Objekt zurück (wissensdatei = tatsächlich geschriebener 
 if (extrakte.length === 0) throw new Error('Kein Dokument konnte gelesen werden.')
 log(`${extrakte.length}/${pdfs.length} Dokumente gelesen. Kategorisierung startet…`)
 
-// ---- Phase 2: Kategorisieren -----------------------------------------------
+// ---- Phase 2: Kategorisieren (mit Wiederholung) ----------------------------
 phase('Kategorisieren')
-const { kategorien } = await agent(
-  `Hier sind die Extrakte von ${extrakte.length} Kurs-Dokumenten einer Pflegeauszubildenden
-(2. Lehrjahr, generalistische Ausbildung, NRW):
+const KAT_PROMPT = `Hier sind die Extrakte von ${extrakte.length} Kurs-Dokumenten einer Pflege-
+auszubildenden (2. Lehrjahr, generalistische Ausbildung, NRW):
 
 ${JSON.stringify(extrakte.map(e => ({ datei: e.datei, titel: e.titel, themen: e.themen, typ: e.dokumenttyp, wissensdatei: e.wissensdatei })), null, 2)}
 
@@ -97,9 +96,18 @@ Dubletten (z. B. mehrere Dateien zu Intertrigo/IAD/Juckreiz) in EINER Kategorie 
 Dokument darf zu mehreren Kategorien gehören. Assessments/Skalen der passenden Fachkategorie zuordnen.
 
 Schreibe eine Themenkarte nach "Wissen/00-themenkarte.md" (Überblick, Unterthemen, zugehörige
-Dateien, Zusammenhänge; ein Mermaid-Diagramm ist erlaubt). Gib die Kategorienliste zurück.`,
-  { label: 'themenkarte', schema: KATEGORIEN_SCHEMA }
-)
+Dateien, Zusammenhänge; ein Mermaid-Diagramm ist erlaubt). Gib die Kategorienliste zurück.`
+
+let katResult = null
+for (let versuch = 1; versuch <= 3 && !katResult; versuch++) {
+  katResult = await agent(KAT_PROMPT, { label: `themenkarte#${versuch}`, schema: KATEGORIEN_SCHEMA })
+  if (!katResult) log(`Kategorisierung Versuch ${versuch} fehlgeschlagen…`)
+}
+if (!katResult || !Array.isArray(katResult.kategorien) || katResult.kategorien.length === 0) {
+  throw new Error('Kategorisierung nach 3 Versuchen fehlgeschlagen (vermutlich Session-Limit). ' +
+    'Später erneut resümieren: Wissen/-Extrakte sind gespeichert.')
+}
+const kategorien = katResult.kategorien
 log(`${kategorien.length} Kategorien: ${kategorien.map(k => k.name).join(' · ')}`)
 
 // ---- Phase 3+4: Erstellen + Prüfen (pipeline) ------------------------------
