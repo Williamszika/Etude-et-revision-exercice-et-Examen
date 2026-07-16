@@ -1,0 +1,357 @@
+<title>Pflege Lern-Studio — Beispiel: Diabetes mellitus</title>
+<style>
+  :root {
+    --bg: #F6FAF9; --surface: #FFFFFF; --ink: #1C2B33; --muted: #5A6E75;
+    --accent: #0E7A70; --accent-ink: #0A5A53; --accent-soft: #E1F0ED;
+    --amber: #9A6A1B; --amber-soft: #F6EDDC;
+    --line: #D9E4E2; --ok: #2E7D46; --ok-soft: #E3F1E7; --err: #B3423A; --err-soft: #F7E6E4;
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0F1B1E; --surface: #17262B; --ink: #E5EEF0; --muted: #92A7AD;
+      --accent: #56BCB1; --accent-ink: #7ED0C6; --accent-soft: #133430;
+      --amber: #D9A84E; --amber-soft: #33290F;
+      --line: #24383E; --ok: #6FCF8F; --ok-soft: #12301C; --err: #E58A82; --err-soft: #3A1B18;
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #F6FAF9; --surface: #FFFFFF; --ink: #1C2B33; --muted: #5A6E75;
+    --accent: #0E7A70; --accent-ink: #0A5A53; --accent-soft: #E1F0ED;
+    --amber: #9A6A1B; --amber-soft: #F6EDDC;
+    --line: #D9E4E2; --ok: #2E7D46; --ok-soft: #E3F1E7; --err: #B3423A; --err-soft: #F7E6E4;
+  }
+  :root[data-theme="dark"] {
+    --bg: #0F1B1E; --surface: #17262B; --ink: #E5EEF0; --muted: #92A7AD;
+    --accent: #56BCB1; --accent-ink: #7ED0C6; --accent-soft: #133430;
+    --amber: #D9A84E; --amber-soft: #33290F;
+    --line: #24383E; --ok: #6FCF8F; --ok-soft: #12301C; --err: #E58A82; --err-soft: #3A1B18;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.6 "Seravek", "Segoe UI", "Trebuchet MS", -apple-system, "Noto Sans", sans-serif;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 32px 20px 80px; }
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+  h1 { font-size: clamp(26px, 4.5vw, 36px); line-height: 1.15; margin: 6px 0 4px; text-wrap: balance; }
+  .subtitle { color: var(--muted); margin: 0 0 6px; }
+  .demo-note {
+    margin: 16px 0 0; padding: 10px 14px; border: 1px dashed var(--amber);
+    background: var(--amber-soft); color: var(--ink); border-radius: var(--radius); font-size: 14px;
+  }
+  nav { display: flex; flex-wrap: wrap; gap: 8px; margin: 26px 0 8px; }
+  nav button {
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink);
+    padding: 8px 14px; border-radius: 999px; cursor: pointer; font: inherit; font-size: 14px;
+    display: flex; flex-direction: column; align-items: flex-start; line-height: 1.25;
+  }
+  nav button small { color: var(--muted); font-size: 11px; }
+  nav button.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  nav button.active small { color: rgba(255,255,255,.75); }
+  nav button:focus-visible, .btn:focus-visible, .mc-opt:focus-visible, .chip:focus-visible, .step:focus-visible {
+    outline: 2px solid var(--accent); outline-offset: 2px;
+  }
+  section.tab { display: none; }
+  section.tab.active { display: block; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 22px; margin: 16px 0; }
+  h2 { font-size: 20px; margin: 0 0 10px; }
+  h3 { font-size: 16px; margin: 18px 0 8px; }
+  .pill { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+          padding: 2px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-ink); margin-right: 6px; }
+  .pill.afb2 { background: var(--amber-soft); color: var(--amber); }
+  .pill.afb3 { background: var(--err-soft); color: var(--err); }
+  .pts { float: right; color: var(--muted); font-size: 13px; font-variant-numeric: tabular-nums; }
+  ul { padding-left: 22px; } li { margin: 3px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  .tablewrap { overflow-x: auto; }
+  th, td { border: 1px solid var(--line); padding: 7px 10px; text-align: left; vertical-align: top; }
+  th { background: var(--accent-soft); color: var(--accent-ink); }
+  .glossar { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .glossar span { background: var(--accent-soft); color: var(--accent-ink); border-radius: 6px; padding: 4px 10px; font-size: 13px; }
+  .glossar b { color: inherit; }
+  .btn { border: 1px solid var(--accent); background: transparent; color: var(--accent-ink);
+         padding: 7px 14px; border-radius: 8px; cursor: pointer; font: inherit; font-size: 14px; margin-top: 10px; }
+  .btn:hover { background: var(--accent-soft); }
+  .loesung { display: none; margin-top: 10px; padding: 12px 14px; border-left: 3px solid var(--ok);
+             background: var(--ok-soft); border-radius: 0 8px 8px 0; font-size: 15px; }
+  .loesung.show { display: block; }
+  /* Multiple choice */
+  .mc-opt { display: block; width: 100%; text-align: left; border: 1px solid var(--line); background: var(--bg);
+            color: var(--ink); border-radius: 8px; padding: 9px 12px; margin: 6px 0; cursor: pointer; font: inherit; font-size: 15px; }
+  .mc-opt:hover { border-color: var(--accent); }
+  .mc-opt.right { background: var(--ok-soft); border-color: var(--ok); }
+  .mc-opt.wrong { background: var(--err-soft); border-color: var(--err); }
+  .mc-opt:disabled { cursor: default; }
+  .feedback { font-size: 14px; margin-top: 6px; min-height: 20px; }
+  .feedback.good { color: var(--ok); } .feedback.bad { color: var(--err); }
+  /* Zuordnung */
+  .match-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  @media (max-width: 560px) { .match-cols { grid-template-columns: 1fr; } }
+  .chip { border: 1px solid var(--line); background: var(--bg); color: var(--ink); border-radius: 8px;
+          padding: 8px 11px; cursor: pointer; font: inherit; font-size: 14px; text-align: left; width: 100%; margin: 5px 0; }
+  .chip.sel { border-color: var(--accent); background: var(--accent-soft); }
+  .chip.done { background: var(--ok-soft); border-color: var(--ok); cursor: default; }
+  .chip.shake { background: var(--err-soft); border-color: var(--err); }
+  /* Lückentext */
+  select { font: inherit; font-size: 14px; padding: 3px 6px; border-radius: 6px; border: 1px solid var(--line);
+           background: var(--surface); color: var(--ink); }
+  select.right { border-color: var(--ok); background: var(--ok-soft); }
+  select.wrong { border-color: var(--err); background: var(--err-soft); }
+  /* Reihenfolge */
+  .step { display: block; width: 100%; text-align: left; border: 1px solid var(--line); background: var(--bg);
+          color: var(--ink); border-radius: 8px; padding: 9px 12px; margin: 6px 0; cursor: pointer; font: inherit; font-size: 15px; }
+  .step.picked { background: var(--accent-soft); border-color: var(--accent); cursor: default; }
+  .step.err { background: var(--err-soft); border-color: var(--err); }
+  .ordnum { display: inline-block; min-width: 22px; font-weight: 700; color: var(--accent-ink); }
+  .score { position: sticky; top: 0; z-index: 5; background: var(--surface); border: 1px solid var(--line);
+           border-radius: var(--radius); padding: 8px 16px; margin: 14px 0 4px; font-size: 14px; color: var(--muted);
+           display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .score b { color: var(--ink); font-variant-numeric: tabular-nums; }
+  .fall { border-left: 4px solid var(--accent); padding: 14px 16px; background: var(--accent-soft); border-radius: 0 var(--radius) var(--radius) 0; }
+  footer { margin-top: 40px; color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 14px; }
+  @media (prefers-reduced-motion: no-preference) {
+    .chip.shake { animation: shake .3s; }
+    @keyframes shake { 25% { transform: translateX(-4px);} 75% { transform: translateX(4px);} }
+  }
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Pflegeausbildung · 2. Lehrjahr · Beispiel-Ausgabe</div>
+  <h1>Lern-Studio: Diabetes mellitus</h1>
+  <p class="subtitle">Zusammenfassung · interaktive Übungen · Fallbeispiel · Klausur — Deutsch B2</p>
+  <div class="demo-note">🔎 <b>Démo :</b> Ceci est un <b>exemple</b> du matériel que les agents génèrent. Dès que tu fournis tes PDFs,
+    chaque thème de tes cours reçoit une page comme celle-ci — basée sur <i>ton</i> contenu.</div>
+
+  <nav id="nav">
+    <button data-tab="t1" class="active">Zusammenfassung <small>résumé</small></button>
+    <button data-tab="t2">Übungen <small>exercices interactifs</small></button>
+    <button data-tab="t3">Fallbeispiel <small>cas clinique</small></button>
+    <button data-tab="t4">Klausur <small>examen blanc</small></button>
+    <button data-tab="t5">Operatoren <small>verbes de consigne</small></button>
+  </nav>
+
+  <!-- ================= ZUSAMMENFASSUNG ================= -->
+  <section class="tab active" id="t1">
+    <div class="card">
+      <h2>Was ist Diabetes mellitus?</h2>
+      <p>Diabetes mellitus ist eine chronische Stoffwechselerkrankung. Der Blutzucker (Glukose im Blut) ist dauerhaft
+      erhöht, weil das Hormon <b>Insulin</b> fehlt oder nicht richtig wirkt. Insulin wird in der Bauchspeicheldrüse
+      (Pankreas) gebildet und „öffnet" die Körperzellen für Glukose.</p>
+      <h3>Typ 1 und Typ 2 im Vergleich</h3>
+      <div class="tablewrap"><table>
+        <tr><th></th><th>Typ 1</th><th>Typ 2</th></tr>
+        <tr><td><b>Ursache</b></td><td>Autoimmunreaktion zerstört die insulinproduzierenden Zellen → <b>absoluter</b> Insulinmangel</td>
+            <td><b>Insulinresistenz</b> (die Zellen reagieren schlecht auf Insulin) + später relativer Insulinmangel</td></tr>
+        <tr><td><b>Beginn</b></td><td>meist jung, schnell</td><td>meist älter, schleichend</td></tr>
+        <tr><td><b>Therapie</b></td><td>immer Insulin</td><td>Lebensstil (Bewegung, Ernährung), Tabletten (z. B. Metformin), evtl. Insulin</td></tr>
+      </table></div>
+      <h3>Wichtige Werte</h3>
+      <ul>
+        <li>Nüchternblutzucker normal: ca. <b>70–100 mg/dl</b> — Diabetes ab <b>≥ 126 mg/dl</b> (nüchtern)</li>
+        <li><b>HbA1c</b> („Blutzucker-Langzeitgedächtnis", ca. 8–12 Wochen): Diabetes ab <b>≥ 6,5 %</b></li>
+        <li><b>Hypoglykämie</b> (Unterzuckerung): unter ca. <b>50 mg/dl</b> — Notfall!</li>
+      </ul>
+      <h3>Symptome</h3>
+      <ul>
+        <li><b>Hyperglykämie</b> (zu hoch): Polyurie (viel Wasserlassen), Polydipsie (starker Durst), Müdigkeit, schlechte Wundheilung</li>
+        <li><b>Hypoglykämie</b> (zu niedrig): Zittern, Schwitzen, Heißhunger, Herzrasen, Verwirrtheit → bis zur Bewusstlosigkeit</li>
+      </ul>
+      <h3>Folgeerkrankungen (bei schlechter Einstellung)</h3>
+      <ul>
+        <li>Diabetische <b>Retinopathie</b> (Augen), <b>Nephropathie</b> (Nieren), <b>Neuropathie</b> (Nerven)</li>
+        <li><b>Diabetisches Fußsyndrom</b> — deshalb: tägliche Fußinspektion!</li>
+        <li>Makroangiopathie: Herzinfarkt, Schlaganfall, pAVK</li>
+      </ul>
+      <h3>Pflegeschwerpunkte</h3>
+      <ul>
+        <li>Blutzucker messen und dokumentieren; Insulin s.c. verabreichen, <b>Spritzstellen wechseln</b> (sonst Lipodystrophie)</li>
+        <li>Hypoglykämie-Zeichen früh erkennen; Traubenzucker griffbereit</li>
+        <li>Haut- und Fußpflege, passendes Schuhwerk, Beratung zu Ernährung und Bewegung</li>
+      </ul>
+      <h3>Glossar</h3>
+      <div class="glossar">
+        <span><b>Pankreas</b> = Bauchspeicheldrüse</span>
+        <span><b>Polyurie</b> = vermehrtes Wasserlassen</span>
+        <span><b>Polydipsie</b> = krankhaft starker Durst</span>
+        <span><b>s.c.</b> = subkutan (unter die Haut)</span>
+        <span><b>Lipodystrophie</b> = Gewebeveränderung an Spritzstellen</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ÜBUNGEN ================= -->
+  <section class="tab" id="t2">
+    <div class="score"><span>Dein Punktestand · <i>ton score</i></span><span><b id="scoreNow">0</b> / <b id="scoreMax">10</b> richtig</span></div>
+
+    <div class="card">
+      <h2><span class="pill">AFB I</span>Multiple Choice</h2>
+      <div class="mc" data-q="1">
+        <p><b>1.</b> Frau K. hat einen Blutzuckerwert von <b>45 mg/dl</b> und zittert. Was liegt vor?</p>
+        <button class="mc-opt">Hyperglykämie</button>
+        <button class="mc-opt" data-right="1">Hypoglykämie</button>
+        <button class="mc-opt">Normaler Blutzuckerwert</button>
+        <div class="feedback"></div>
+      </div>
+      <div class="mc" data-q="2">
+        <p><b>2.</b> Welche Aussage zu <b>Diabetes Typ 1</b> ist richtig?</p>
+        <button class="mc-opt">Er entsteht vor allem durch Übergewicht und Bewegungsmangel.</button>
+        <button class="mc-opt">Er wird zuerst nur mit Tabletten behandelt.</button>
+        <button class="mc-opt" data-right="1">Es besteht ein absoluter Insulinmangel — Insulin ist immer nötig.</button>
+        <div class="feedback"></div>
+      </div>
+      <div class="mc" data-q="3">
+        <p><b>3.</b> Ein wacher Bewohner zeigt Zeichen einer Hypoglykämie. Erste Maßnahme?</p>
+        <button class="mc-opt" data-right="1">Schnell wirkende Kohlenhydrate geben (Traubenzucker, Saft)</button>
+        <button class="mc-opt">Insulin spritzen</button>
+        <button class="mc-opt">Abwarten und in 1 Stunde erneut messen</button>
+        <div class="feedback"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2><span class="pill afb2">AFB II</span>Zuordnung — Begriff ↔ Bedeutung</h2>
+      <p class="subtitle">Klicke links einen Begriff, dann rechts die passende Bedeutung. <i>(Clique un terme, puis sa définition.)</i></p>
+      <div class="match-cols">
+        <div id="matchL"></div>
+        <div id="matchR"></div>
+      </div>
+      <div class="feedback" id="matchFb"></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="pill afb2">AFB II</span>Lückentext</h2>
+      <p>Insulin wird in der
+        <select data-ans="Bauchspeicheldrüse"><option value="">…</option><option>Leber</option><option>Bauchspeicheldrüse</option><option>Schilddrüse</option></select>
+        gebildet. Es senkt den Blutzucker, indem es die Zellen für
+        <select data-ans="Glukose"><option value="">…</option><option>Sauerstoff</option><option>Glukose</option><option>Eiweiß</option></select>
+        öffnet. Der Langzeitwert
+        <select data-ans="HbA1c"><option value="">…</option><option>CRP</option><option>HbA1c</option><option>INR</option></select>
+        zeigt den durchschnittlichen Blutzucker der letzten 8–12 Wochen.
+      </p>
+      <button class="btn" id="lueckCheck">Prüfen · vérifier</button>
+      <div class="feedback" id="lueckFb"></div>
+    </div>
+
+    <div class="card">
+      <h2><span class="pill afb2">AFB II</span>Reihenfolge — Hypoglykämie beim wachen Patienten</h2>
+      <p class="subtitle">Klicke die Maßnahmen in der richtigen Reihenfolge an. <i>(Clique les étapes dans le bon ordre.)</i></p>
+      <div id="ordnung"></div>
+      <div class="feedback" id="ordFb"></div>
+      <button class="btn" id="ordReset">Zurücksetzen · recommencer</button>
+    </div>
+
+    <div class="card">
+      <h2>Offene Fragen mit Operatoren</h2>
+      <div>
+        <p><span class="pill">AFB I · Nennen</span><span class="pts">4 P.</span>
+        <b>Nennen Sie</b> vier typische Symptome einer Hyperglykämie.</p>
+        <button class="btn" data-reveal>Musterlösung anzeigen</button>
+        <div class="loesung">Polyurie (vermehrtes Wasserlassen), Polydipsie (starker Durst), Müdigkeit/Leistungsschwäche, schlechte Wundheilung. <i>(Beim Operator „Nennen" reichen Stichwörter — keine Erklärung nötig.)</i></div>
+      </div>
+      <div>
+        <p><span class="pill afb2">AFB II · Erklären</span><span class="pts">6 P.</span>
+        <b>Erklären Sie</b> den Unterschied zwischen Diabetes Typ 1 und Typ 2 in Bezug auf die Ursache.</p>
+        <button class="btn" data-reveal>Musterlösung anzeigen</button>
+        <div class="loesung">Beim Typ 1 zerstört eine Autoimmunreaktion die insulinproduzierenden Beta-Zellen der Bauchspeicheldrüse.
+        Dadurch entsteht ein <b>absoluter</b> Insulinmangel: Der Körper kann gar kein Insulin mehr herstellen.
+        Beim Typ 2 ist zunächst genug Insulin vorhanden, aber die Körperzellen reagieren schlecht darauf
+        (<b>Insulinresistenz</b>). Die Bauchspeicheldrüse muss immer mehr produzieren und erschöpft mit der Zeit —
+        es entsteht ein <b>relativer</b> Insulinmangel. <i>(Beim Operator „Erklären" müssen Zusammenhänge mit Begründung dargestellt werden — ganze Sätze!)</i></div>
+      </div>
+      <div>
+        <p><span class="pill afb3">AFB III · Begründen</span><span class="pts">6 P.</span>
+        <b>Begründen Sie</b>, warum die tägliche Fußinspektion bei Menschen mit Diabetes eine wichtige pflegerische Aufgabe ist.</p>
+        <button class="btn" data-reveal>Musterlösung anzeigen</button>
+        <div class="loesung">Ein dauerhaft erhöhter Blutzucker schädigt Nerven (Polyneuropathie) und Gefäße (Angiopathie).
+        Wegen der Nervenschädigung spüren Betroffene kleine Wunden oder Druckstellen am Fuß oft nicht;
+        wegen der Durchblutungsstörung heilen Wunden schlecht. Kleine Verletzungen können sich deshalb unbemerkt
+        zu einem diabetischen Fußsyndrom bis hin zur Amputation entwickeln. Die tägliche Inspektion erkennt
+        Veränderungen früh und verhindert schwere Folgen — sie ist also eine zentrale <b>Prophylaxe</b>.
+        <i>(Beim Operator „Begründen" zählt die Ursache-Wirkungs-Kette, nicht nur die Aufzählung.)</i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FALLBEISPIEL ================= -->
+  <section class="tab" id="t3">
+    <div class="card">
+      <h2>Fallbeispiel: Herr Weber</h2>
+      <div class="fall">
+        <p><b>Situation:</b> Herr Weber (68 Jahre) lebt seit drei Monaten im Seniorenzentrum „Am Park".
+        Er hat einen <b>Diabetes mellitus Typ 2</b>, seit zwei Jahren insulinpflichtig, außerdem eine arterielle Hypertonie.
+        Heute Morgen hat er kaum gefrühstückt, weil er sich „nicht wohl" fühlte. Gegen 10 Uhr finden Sie ihn
+        blass und schwitzend im Sessel. Er zittert, wirkt verwirrt und antwortet verlangsamt.
+        Das Insulin wurde um 7:30 Uhr wie verordnet gespritzt.</p>
+      </div>
+
+      <h3>Aufgaben</h3>
+      <div>
+        <p><span class="pill">AFB I · Nennen</span><span class="pts">3 P.</span>
+        <b>1. Nennen Sie</b> drei Symptome aus der Situationsbeschreibung, die auf eine Hypoglykämie hinweisen.</p>
+        <button class="btn" data-reveal>Erwartungshorizont</button>
+        <div class="loesung">Blässe, Schwitzen, Zittern, Verwirrtheit / verlangsamte Reaktion (drei davon, je 1 P.).</div>
+      </div>
+      <div>
+        <p><span class="pill afb2">AFB II · Erklären</span><span class="pts">4 P.</span>
+        <b>2. Erklären Sie</b>, wie es bei Herrn Weber zu dieser Situation kommen konnte.</p>
+        <button class="btn" data-reveal>Erwartungshorizont</button>
+        <div class="loesung">Herr Weber hat sein Insulin in voller Dosis erhalten (2 P.), aber kaum Kohlenhydrate
+        gegessen (2 P.). Das Insulin senkt den Blutzucker weiter ab, ohne dass Glukose aus der Nahrung nachkommt —
+        es entsteht eine Unterzuckerung.</div>
+      </div>
+      <div>
+        <p><span class="pill afb2">AFB II · Beschreiben</span><span class="pts">6 P.</span>
+        <b>3. Beschreiben Sie</b> Ihr pflegerisches Vorgehen in dieser Situation Schritt für Schritt.</p>
+        <button class="btn" data-reveal>Erwartungshorizont</button>
+        <div class="loesung">Beim wachen Patienten bleiben, beruhigen (1 P.) → sofort Blutzucker messen (1 P.) →
+        schnell wirkende Kohlenhydrate geben: Traubenzucker oder gezuckerten Saft (2 P.) → danach langsame
+        Kohlenhydrate (z. B. Brot), damit der Blutzucker stabil bleibt (1 P.) → nach 15 Minuten erneut messen,
+        beobachten, dokumentieren und die Pflegefachperson/den Arzt informieren (1 P.).
+        <b>Wichtig:</b> Bei Bewusstlosigkeit nichts einflößen (Aspirationsgefahr!) — stabile Seitenlage, Notruf.</div>
+      </div>
+      <div>
+        <p><span class="pill afb3">AFB III · Beurteilen</span><span class="pts">5 P.</span>
+        <b>4. Beurteilen Sie</b>, welche Maßnahmen im Wohnbereich sinnvoll sind, damit so eine Situation seltener vorkommt.</p>
+        <button class="btn" data-reveal>Erwartungshorizont</button>
+        <div class="loesung">Mögliche Punkte: Insulingabe an die tatsächliche Nahrungsaufnahme koppeln
+        (erst prüfen, ob gegessen wird / Rücksprache bei Appetitlosigkeit), Frühstück beobachten und dokumentieren,
+        Blutzuckerkontrollen anpassen, Team und Herrn Weber über Warnzeichen schulen, Traubenzucker im Zimmer
+        bereithalten. Bewertung: Eine eigene, begründete Stellungnahme wird erwartet — mit Abwägung, welche
+        Maßnahme am wirksamsten ist (z. B. die Kopplung Insulin ↔ Essen, weil sie die Ursache direkt behebt).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= KLAUSUR ================= -->
+  <section class="tab" id="t4">
+    <div class="card">
+      <h2>So sieht deine generierte Klausur aus</h2>
+      <p>Für jedes Thema aus deinen PDFs erstellen die Agenten eine <b>Themen-Klausur</b> (45 Min) und am Ende
+      eine große <b>Probeklausur</b> (90 Min, 100 Punkte) über alle Themen — mit vollständigem
+      Erwartungshorizont (corrigé) und Punkteverteilung.</p>
+      <h3>Aufbau der Probeklausur</h3>
+      <div class="tablewrap"><table>
+        <tr><th>Teil</th><th>Inhalt</th><th>Punkte</th></tr>
+        <tr><td>A</td><td>10 Multiple-Choice-Fragen über alle Themen</td><td>20</td></tr>
+        <tr><td>B</td><td>Wissensfragen mit Operatoren (Nennen, Beschreiben, Erklären …) — AFB I–II</td><td>40</td></tr>
+        <tr><td>C</td><td>Großes Fallbeispiel, das mehrere Themen verbindet — AFB II–III</td><td>40</td></tr>
+      </table></div>
+      <h3>Notenschlüssel (üblich an Pflegeschulen)</h3>
+      <div class="tablewrap"><table>
+        <tr><th>Prozent</th><td>100–92</td><td>&lt;92–81</td><td>&lt;81–67</td><td>&lt;67–50</td><td>&lt;50–30</td><td>&lt;30</td></tr>
+        <tr><th>Note</th><td>1 sehr gut</td><td>2 gut</td><td>3 befriedigend</td><td>4 ausreichend</td><td>5 mangelhaft</td><td>6 ungenügend</td></tr>
+      </table></div>
+      <p class="subtitle">Der genaue Schlüssel wird an die Konventionen deiner Pflegeschule angepasst
+      (Datei <code>ressources/klausur-konventionen.md</code>).</p>
+    </div>
+  </section>
+
+  <!-- ================= OPERATOREN ================= -->
+  <section class="tab" id="t5">
+    <div class="card">
+      <h2>Operatoren verstehen — der Schlüssel zur Klausur</h2>
+      <p>Operatoren sind die „Arbeitsverben" der Aufgaben. Sie sagen dir genau, <b>wie viel</b> und <b>wie tief</b>
+      du antworten musst. Wer den Operator falsch liest, verliert Punkte — auch mit richtigem Wissen!</p>
+      <div class="tablewrap"><table>
+        <tr>

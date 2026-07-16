@@ -1,0 +1,440 @@
+<title>Diabetes mellitus — Lernkarte (Beispiel)</title>
+<style>
+  :root {
+    --paper: #f6f4ef;
+    --paper-2: #efece4;
+    --card: #fffdf9;
+    --ink: #1a2321;
+    --ink-soft: #4a5551;
+    --line: #ddd8cd;
+    --accent: #0d6b6e;
+    --accent-deep: #094c4e;
+    --accent-soft: #d6e8e6;
+    --afb1: #2f7d54;
+    --afb1-bg: #e3f0e7;
+    --afb2: #b5731a;
+    --afb2-bg: #f6ebd8;
+    --afb3: #bb4d3f;
+    --afb3-bg: #f6e2dd;
+    --good: #2f7d54;
+    --bad: #bb4d3f;
+    --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --mono: "SFMono-Regular", "JetBrains Mono", "Consolas", "Menlo", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #131817; --paper-2: #0e1211; --card: #1b2220; --ink: #eef2f0;
+      --ink-soft: #a6b2ae; --line: #2c3532; --accent: #4fb3b3; --accent-deep: #7fcccc;
+      --accent-soft: #16302f; --afb1: #6fc292; --afb1-bg: #14281c;
+      --afb2: #d9a559; --afb2-bg: #2c2312; --afb3: #e08a7c; --afb3-bg: #2e1a16;
+      --good: #6fc292; --bad: #e08a7c;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #131817; --paper-2: #0e1211; --card: #1b2220; --ink: #eef2f0;
+    --ink-soft: #a6b2ae; --line: #2c3532; --accent: #4fb3b3; --accent-deep: #7fcccc;
+    --accent-soft: #16302f; --afb1: #6fc292; --afb1-bg: #14281c; --afb2: #d9a559;
+    --afb2-bg: #2c2312; --afb3: #e08a7c; --afb3-bg: #2e1a16; --good: #6fc292; --bad: #e08a7c;
+  }
+  :root[data-theme="light"] {
+    --paper: #f6f4ef; --paper-2: #efece4; --card: #fffdf9; --ink: #1a2321;
+    --ink-soft: #4a5551; --line: #ddd8cd; --accent: #0d6b6e; --accent-deep: #094c4e;
+    --accent-soft: #d6e8e6; --afb1: #2f7d54; --afb1-bg: #e3f0e7; --afb2: #b5731a;
+    --afb2-bg: #f6ebd8; --afb3: #bb4d3f; --afb3-bg: #f6e2dd; --good: #2f7d54; --bad: #bb4d3f;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--paper); color: var(--ink);
+    font-family: var(--sans); line-height: 1.6; font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 0 20px 80px; }
+
+  /* Header */
+  header.hero {
+    padding: 56px 20px 40px; text-align: center; border-bottom: 1px solid var(--line);
+    background:
+      radial-gradient(120% 90% at 50% -20%, var(--accent-soft) 0%, transparent 60%);
+  }
+  .eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--accent); margin: 0 0 14px;
+  }
+  header.hero h1 {
+    font-family: var(--serif); font-weight: 600; font-size: clamp(2rem, 6vw, 3.1rem);
+    margin: 0 0 12px; line-height: 1.08; text-wrap: balance; letter-spacing: -.01em;
+  }
+  header.hero p { max-width: 52ch; margin: 0 auto; color: var(--ink-soft); }
+  .demo-note {
+    display: inline-block; margin-top: 22px; font-size: 13.5px; color: var(--ink-soft);
+    background: var(--card); border: 1px solid var(--line); border-radius: 999px;
+    padding: 7px 16px;
+  }
+
+  /* Sticky nav */
+  nav.toc {
+    position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+    display: flex; gap: 6px; overflow-x: auto; padding: 10px 20px; margin-bottom: 12px;
+  }
+  nav.toc a {
+    flex: 0 0 auto; text-decoration: none; color: var(--ink-soft); font-size: 14px;
+    padding: 6px 12px; border-radius: 8px; white-space: nowrap;
+  }
+  nav.toc a:hover { background: var(--paper-2); color: var(--ink); }
+
+  section { margin-top: 46px; scroll-margin-top: 64px; }
+  h2 {
+    font-family: var(--serif); font-weight: 600; font-size: 1.7rem; margin: 0 0 4px;
+    display: flex; align-items: baseline; gap: 12px;
+  }
+  h2 .num { font-family: var(--mono); font-size: .85rem; color: var(--accent); }
+  .lead { color: var(--ink-soft); margin: 0 0 22px; }
+  h3 { font-family: var(--serif); font-weight: 600; font-size: 1.2rem; margin: 26px 0 10px; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 24px; margin: 14px 0;
+  }
+  .card p:first-child { margin-top: 0; }
+  .card p:last-child { margin-bottom: 0; }
+
+  .def { border-left: 3px solid var(--accent); }
+  .def strong { color: var(--accent-deep); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 15.5px; }
+  .scroll-x { overflow-x: auto; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-family: var(--mono); font-size: 12px; letter-spacing: .04em; text-transform: uppercase; color: var(--ink-soft); }
+  tbody tr:last-child td { border-bottom: none; }
+
+  ul.clean { list-style: none; padding: 0; margin: 12px 0; }
+  ul.clean li { padding: 7px 0 7px 26px; position: relative; border-bottom: 1px dashed var(--line); }
+  ul.clean li:last-child { border-bottom: none; }
+  ul.clean li::before {
+    content: "→"; position: absolute; left: 4px; color: var(--accent); font-weight: 700;
+  }
+
+  /* AFB badges */
+  .afb { font-family: var(--mono); font-size: 11px; font-weight: 600; letter-spacing: .05em;
+    padding: 2px 8px; border-radius: 6px; vertical-align: middle; }
+  .afb-1 { color: var(--afb1); background: var(--afb1-bg); }
+  .afb-2 { color: var(--afb2); background: var(--afb2-bg); }
+  .afb-3 { color: var(--afb3); background: var(--afb3-bg); }
+
+  /* Flip cards */
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .flip { perspective: 1000px; height: 150px; cursor: pointer; }
+  .flip-inner { position: relative; width: 100%; height: 100%; transition: transform .5s; transform-style: preserve-3d; }
+  .flip.on .flip-inner { transform: rotateY(180deg); }
+  .flip-face {
+    position: absolute; inset: 0; backface-visibility: hidden; border-radius: 12px;
+    border: 1px solid var(--line); padding: 16px; display: flex; flex-direction: column;
+    justify-content: center; text-align: center;
+  }
+  .flip-front { background: var(--card); }
+  .flip-front .term { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; }
+  .flip-front .hint { font-family: var(--mono); font-size: 11px; color: var(--ink-soft); margin-top: 10px; letter-spacing:.05em; }
+  .flip-back { background: var(--accent); color: #fff; transform: rotateY(180deg); font-size: 14.5px; line-height: 1.45; }
+  @media (prefers-color-scheme: dark) { .flip-back { color: #06201f; } }
+  :root[data-theme="dark"] .flip-back { color: #06201f; }
+  :root[data-theme="light"] .flip-back { color: #fff; }
+
+  /* Quiz */
+  .quiz-q { margin: 18px 0; }
+  .quiz-q .qtext { font-weight: 600; margin-bottom: 10px; }
+  .opt {
+    display: block; width: 100%; text-align: left; font: inherit; color: var(--ink);
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 11px 14px; margin: 7px 0; cursor: pointer; transition: border-color .15s, background .15s;
+  }
+  .opt:hover { border-color: var(--accent); }
+  .opt:disabled { cursor: default; }
+  .opt.correct { border-color: var(--good); background: color-mix(in srgb, var(--good) 14%, var(--card)); }
+  .opt.wrong { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 12%, var(--card)); }
+  .opt .mark { float: right; font-weight: 700; }
+  .opt.correct .mark::after { content: "✓"; color: var(--good); }
+  .opt.wrong .mark::after { content: "✗"; color: var(--bad); }
+  .explain {
+    font-size: 14.5px; color: var(--ink-soft); margin: 4px 2px 0; padding-left: 12px;
+    border-left: 2px solid var(--accent); display: none;
+  }
+  .explain.show { display: block; }
+  .score {
+    font-family: var(--mono); font-size: 14px; color: var(--accent-deep); margin-top: 16px;
+    padding: 10px 14px; background: var(--accent-soft); border-radius: 10px; display: inline-block;
+  }
+
+  /* Reveal answer (Fallbeispiel / Operatoren) */
+  details.reveal {
+    border: 1px solid var(--line); border-radius: 10px; background: var(--card);
+    padding: 0 16px; margin: 10px 0;
+  }
+  details.reveal > summary {
+    cursor: pointer; padding: 13px 0; font-weight: 600; list-style: none;
+    display: flex; align-items: center; gap: 10px;
+  }
+  details.reveal > summary::-webkit-details-marker { display: none; }
+  details.reveal > summary::before {
+    content: "＋"; font-family: var(--mono); color: var(--accent); font-weight: 700;
+  }
+  details.reveal[open] > summary::before { content: "－"; }
+  details.reveal .answer { padding: 0 0 16px 26px; color: var(--ink-soft); }
+  details.reveal .answer p:first-child { margin-top: 0; }
+  .pts { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); margin-left: auto; }
+
+  .case-box { background: var(--paper-2); border: 1px solid var(--line); border-radius: 14px; padding: 22px 24px; }
+  .case-box .patient { font-family: var(--mono); font-size: 13px; color: var(--accent-deep); letter-spacing: .03em; }
+
+  footer { margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line); color: var(--ink-soft); font-size: 14px; text-align: center; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .flip-inner { transition: none; }
+    * { scroll-behavior: auto; }
+  }
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Pflegeausbildung · 2. Lehrjahr · Niveau B2</p>
+  <h1>Diabetes mellitus</h1>
+  <p>Beispiel einer interaktiven Lernkarte, wie die Agenten sie aus deinen PDFs erstellen: Zusammenfassung, Karteikarten, Quiz, Fallbeispiel und Klausur-Aufgaben mit Operatoren.</p>
+  <span class="demo-note">🧪 Demo-Inhalt — deine echten Karten entstehen aus deinen hochgeladenen PDFs</span>
+</header>
+
+<nav class="toc">
+  <a href="#zusammenfassung">Zusammenfassung</a>
+  <a href="#begriffe">Karteikarten</a>
+  <a href="#quiz">Quiz</a>
+  <a href="#operatoren">Operatoren</a>
+  <a href="#fall">Fallbeispiel</a>
+  <a href="#klausur">Klausur-Aufgaben</a>
+</nav>
+
+<div class="wrap">
+
+  <section id="zusammenfassung">
+    <h2><span class="num">01</span> Zusammenfassung</h2>
+    <p class="lead">Das Wichtigste kompakt — so, wie die Zusammenfassungs-Datei pro Thema aufgebaut ist.</p>
+
+    <div class="card def">
+      <p><strong>Definition:</strong> Diabetes mellitus ist eine chronische Stoffwechselerkrankung (Erkrankung des Zucker-Stoffwechsels), bei der der Blutzuckerspiegel dauerhaft erhöht ist (Hyperglykämie). Ursache ist ein <strong>absoluter</strong> oder <strong>relativer Insulinmangel</strong>.</p>
+    </div>
+
+    <h3>Die zwei Haupttypen</h3>
+    <div class="scroll-x card">
+      <table>
+        <thead><tr><th>Merkmal</th><th>Typ 1</th><th>Typ 2</th></tr></thead>
+        <tbody>
+          <tr><td>Ursache</td><td>Autoimmun: Zerstörung der β-Zellen → absoluter Insulinmangel</td><td>Insulinresistenz + relativer Mangel</td></tr>
+          <tr><td>Beginn</td><td>meist Kindheit/Jugend, plötzlich</td><td>meist Erwachsene, schleichend</td></tr>
+          <tr><td>Therapie</td><td>Insulin (lebenslang)</td><td>Ernährung, Bewegung, orale Antidiabetika, ggf. Insulin</td></tr>
+          <tr><td>Körperbau</td><td>oft normalgewichtig</td><td>oft Übergewicht (metabolisches Syndrom)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Leitsymptome</h3>
+    <ul class="clean">
+      <li><strong>Polyurie</strong> — vermehrtes Wasserlassen (Zucker zieht Wasser mit)</li>
+      <li><strong>Polydipsie</strong> — starker Durst</li>
+      <li>Müdigkeit, Leistungsabfall, Gewichtsverlust (v. a. Typ 1)</li>
+      <li>schlecht heilende Wunden, Infektanfälligkeit, Juckreiz</li>
+    </ul>
+
+    <h3>Pflegeschwerpunkte</h3>
+    <ul class="clean">
+      <li>Blutzucker messen und dokumentieren, Werte einordnen</li>
+      <li>Insulininjektion s.c. (subkutan), Spritzstellen wechseln (Lipodystrophie vermeiden)</li>
+      <li>Fußinspektion & Fußpflege (diabetisches Fußsyndrom vorbeugen)</li>
+      <li>Beratung zu Ernährung, Bewegung und Hypoglykämie-Anzeichen</li>
+      <li>Notfälle erkennen: Hypo- vs. Hyperglykämie</li>
+    </ul>
+
+    <div class="card" style="border-left:3px solid var(--afb2)">
+      <strong>⚡ Merksatz Hypoglykämie</strong> (Unterzucker, &lt; 70 mg/dl): <em>„Zittern, Schwitzen, Heißhunger, Verwirrtheit"</em> — schneller Beginn, lebensbedrohlich → sofort schnelle Kohlenhydrate (Traubenzucker).<br>
+      <strong>Hyperglykämie</strong> (Überzucker) kommt langsam: Durst, trockene Haut, Azetongeruch (Typ 1).
+    </div>
+  </section>
+
+  <section id="begriffe">
+    <h2><span class="num">02</span> Karteikarten (Fachbegriffe)</h2>
+    <p class="lead">Klicke eine Karte an, um die Erklärung zu sehen. Aktives Abrufen festigt das Gedächtnis.</p>
+    <div class="cards-grid" id="flipcards">
+      <div class="flip"><div class="flip-inner">
+        <div class="flip-face flip-front"><span class="term">Hyperglykämie</span><span class="hint">Karte drehen</span></div>
+        <div class="flip-face flip-back">Zu hoher Blutzucker (&gt; 126 mg/dl nüchtern). Entwickelt sich langsam.</div>
+      </div></div>
+      <div class="flip"><div class="flip-inner">
+        <div class="flip-face flip-front"><span class="term">Hypoglykämie</span><span class="hint">Karte drehen</span></div>
+        <div class="flip-face flip-back">Unterzucker &lt; 70 mg/dl. Notfall! Zittern, Schwitzen, Verwirrtheit → Traubenzucker.</div>
+      </div></div>
+      <div class="flip"><div class="flip-inner">
+        <div class="flip-face flip-front"><span class="term">HbA1c</span><span class="hint">Karte drehen</span></div>
+        <div class="flip-face flip-back">Langzeit-Blutzuckerwert der letzten 8–12 Wochen. Ziel meist &lt; 7 %.</div>
+      </div></div>
+      <div class="flip"><div class="flip-inner">
+        <div class="flip-face flip-front"><span class="term">Polyurie</span><span class="hint">Karte drehen</span></div>
+        <div class="flip-face flip-back">Vermehrtes Wasserlassen — ein Leitsymptom bei erhöhtem Blutzucker.</div>
+      </div></div>
+      <div class="flip"><div class="flip-inner">
+        <div class="flip-face flip-front"><span class="term">Diabet. Fußsyndrom</span><span class="hint">Karte drehen</span></div>
+        <div class="flip-face flip-back">Folgeschaden an den Füßen durch Nerven- und Gefäßschäden. Prophylaxe: tägliche Fußinspektion.</div>
+      </div></div>
+      <div class="flip"><div class="flip-inner">
+        <div class="flip-face flip-front"><span class="term">s.c. Injektion</span><span class="hint">Karte drehen</span></div>
+        <div class="flip-face flip-back">Subkutane Injektion (in die Unterhaut), z. B. Insulin. Bauch, Oberschenkel; Stellen wechseln.</div>
+      </div></div>
+    </div>
+  </section>
+
+  <section id="quiz">
+    <h2><span class="num">03</span> Quiz — Multiple Choice</h2>
+    <p class="lead">Wähle je eine Antwort. Du bekommst sofort Rückmeldung und eine kurze Erklärung.</p>
+    <div id="quiz"></div>
+    <div class="score" id="score" hidden></div>
+  </section>
+
+  <section id="operatoren">
+    <h2><span class="num">04</span> Operatoren üben</h2>
+    <p class="lead">In Klausuren steuern <em>Operatoren</em> (Aufgabenverben), was du tun sollst. Öffne die Musterlösung zum Vergleich.</p>
+
+    <details class="reveal">
+      <summary><span class="afb afb-1">AFB I · Nennen</span> Nennen Sie die zwei Haupttypen des Diabetes mellitus. <span class="pts">2 P</span></summary>
+      <div class="answer"><p>Typ-1-Diabetes (absoluter Insulinmangel) und Typ-2-Diabetes (Insulinresistenz / relativer Mangel).</p></div>
+    </details>
+
+    <details class="reveal">
+      <summary><span class="afb afb-1">AFB I · Beschreiben</span> Beschreiben Sie die vier Leitsymptome. <span class="pts">4 P</span></summary>
+      <div class="answer"><p>Polyurie (vermehrtes Wasserlassen), Polydipsie (starker Durst), Müdigkeit/Leistungsabfall und Gewichtsverlust. Dazu häufig schlecht heilende Wunden.</p></div>
+    </details>
+
+    <details class="reveal">
+      <summary><span class="afb afb-2">AFB II · Erklären</span> Erklären Sie, warum bei Diabetes eine Polyurie entsteht. <span class="pts">4 P</span></summary>
+      <div class="answer"><p>Der überschüssige Blutzucker wird über die Niere ausgeschieden. Zucker im Urin bindet osmotisch Wasser, dadurch wird mehr Harn produziert (Polyurie). Der Flüssigkeitsverlust löst wiederum starken Durst (Polydipsie) aus.</p></div>
+    </details>
+
+    <details class="reveal">
+      <summary><span class="afb afb-3">AFB III · Begründen</span> Ein Patient mit Typ-1-Diabetes ist zittrig, schwitzt und wirkt verwirrt. Begründen Sie Ihre erste Pflegemaßnahme. <span class="pts">6 P</span></summary>
+      <div class="answer"><p>Die Symptome sprechen für eine <strong>Hypoglykämie</strong> (Unterzucker). Weil ein Unterzucker schnell lebensbedrohlich wird (Bewusstlosigkeit, Krampfanfall), gebe ich – solange der Patient noch schlucken kann und bei Bewusstsein ist – sofort schnelle Kohlenhydrate (z. B. Traubenzucker, Saft). Begründung: schnelle Anhebung des Blutzuckers hat Vorrang, weil das Gehirn dringend Glukose braucht. Anschließend Blutzucker messen und Arzt informieren.</p></div>
+    </details>
+  </section>
+
+  <section id="fall">
+    <h2><span class="num">05</span> Fallbeispiel</h2>
+    <p class="lead">So sind Klausur-Fallbeispiele aufgebaut: Situation → Patientendaten → Aufgaben mit Operatoren.</p>
+
+    <div class="case-box">
+      <p class="patient">Frau Kowalski, 68 Jahre · Pflegeheim · Typ-2-Diabetes seit 12 Jahren</p>
+      <p>Frau Kowalski lebt seit zwei Jahren im Pflegeheim. Sie hat einen Typ-2-Diabetes und spritzt morgens Insulin. Heute Morgen hat sie kaum gefrühstückt, weil ihr übel war, das Insulin wurde aber wie gewohnt gespritzt. Gegen 11 Uhr ruft sie nach Ihnen: Sie zittert, ist blass, schwitzt stark und antwortet nur verlangsamt auf Ihre Fragen.</p>
+    </div>
+
+    <details class="reveal">
+      <summary><span class="afb afb-2">AFB II · Deuten</span> Deuten Sie die Situation: Welche Komplikation liegt vermutlich vor? <span class="pts">3 P</span></summary>
+      <div class="answer"><p>Eine <strong>Hypoglykämie</strong>. Grund: Insulin wurde gespritzt, aber kaum Nahrung aufgenommen — dadurch sinkt der Blutzucker. Zittern, Blässe, Schwitzen und verlangsamte Reaktion sind typische Anzeichen.</p></div>
+    </details>
+    <details class="reveal">
+      <summary><span class="afb afb-2">AFB II · Beschreiben</span> Beschreiben Sie Ihre Sofortmaßnahmen in der richtigen Reihenfolge. <span class="pts">5 P</span></summary>
+      <div class="answer"><p>1. Bei der Patientin bleiben, beruhigen. 2. Prüfen, ob sie schlucken kann und bei Bewusstsein ist. 3. Schnelle Kohlenhydrate geben (Traubenzucker, Saft). 4. Blutzucker messen und dokumentieren. 5. Pflegefachkraft/Arzt informieren, Wirkung kontrollieren.</p></div>
+    </details>
+    <details class="reveal">
+      <summary><span class="afb afb-3">AFB III · Entwickeln</span> Entwickeln Sie zwei Maßnahmen, die eine solche Situation künftig verhindern. <span class="pts">4 P</span></summary>
+      <div class="answer"><p>Z. B.: Insulingabe an die tatsächliche Nahrungsaufnahme koppeln (bei Appetitlosigkeit Rücksprache/BZ-Kontrolle vor der Injektion); regelmäßige Blutzuckerkontrollen und geschultes Personal; Traubenzucker griffbereit; Beobachtung nach der Injektion.</p></div>
+    </details>
+  </section>
+
+  <section id="klausur">
+    <h2><span class="num">06</span> Klausur-Aufgaben</h2>
+    <p class="lead">Ein Auszug im echten Klausur-Format — mit Punkten, Notenschlüssel und Erwartungshorizont in der vollständigen Datei.</p>
+    <div class="card">
+      <p style="margin-top:0"><strong>Aufgabe 1</strong> <span class="afb afb-1">AFB I</span> <span class="pts" style="float:right">6 P</span></p>
+      <p>Nennen Sie drei Pflegeschwerpunkte bei einem Menschen mit Diabetes mellitus und erklären Sie <em>einen</em> davon genauer.</p>
+      <hr style="border:none;border-top:1px dashed var(--line);margin:16px 0">
+      <p><strong>Aufgabe 2</strong> <span class="afb afb-2">AFB II</span> <span class="pts" style="float:right">8 P</span></p>
+      <p>Vergleichen Sie Hypo- und Hyperglykämie in Bezug auf Ursache, Beginn und Sofortmaßnahme (Tabelle erlaubt).</p>
+    </div>
+    <p style="color:var(--ink-soft);font-size:14.5px">Die generierte Datei <code>klausur.md</code> enthält zusätzlich das Deckblatt, den <strong>Notenschlüssel</strong> (100–92 % = Note 1 …) und den vollständigen <strong>Erwartungshorizont</strong> mit Punkteverteilung.</p>
+  </section>
+
+  <footer>
+    Beispiel-Lernkarte · erstellt vom Workflow <code>klausur-prep</code> · Inhalte auf B2-Niveau ·
+    deine echten Karten entstehen aus deinen PDFs.
+  </footer>
+</div>
+
+<script>
+  // Flip cards
+  document.querySelectorAll('.flip').forEach(function (c) {
+    c.addEventListener('click', function () { c.classList.toggle('on'); });
+  });
+
+  // Quiz
+  var QUIZ = [
+    {
+      q: 'Ab welchem Wert spricht man (kapillär, im Alltag) von einer Hypoglykämie?',
+      opts: ['< 70 mg/dl', '< 126 mg/dl', '> 200 mg/dl', '> 300 mg/dl'],
+      correct: 0,
+      why: 'Unter etwa 70 mg/dl beginnt der Unterzucker — ein Notfall mit schnellem Beginn.'
+    },
+    {
+      q: 'Welche Aussage passt zum Typ-1-Diabetes?',
+      opts: ['Insulinresistenz bei Übergewicht', 'Absoluter Insulinmangel durch Zerstörung der β-Zellen', 'Wird meist mit Tabletten behandelt', 'Beginnt schleichend im Alter'],
+      correct: 1,
+      why: 'Beim Typ 1 zerstört das Immunsystem die β-Zellen der Bauchspeicheldrüse → absoluter Insulinmangel, Insulin ist lebensnotwendig.'
+    },
+    {
+      q: 'Welche Sofortmaßnahme ist bei einer Hypoglykämie (Patient bei Bewusstsein) richtig?',
+      opts: ['Insulin spritzen', 'Viel Wasser trinken lassen', 'Schnelle Kohlenhydrate geben (Traubenzucker)', 'Abwarten und später messen'],
+      correct: 2,
+      why: 'Bei Unterzucker fehlt Glukose — schnelle Kohlenhydrate heben den Blutzucker zügig an. Insulin würde ihn weiter senken (gefährlich!).'
+    },
+    {
+      q: 'Was beschreibt der HbA1c-Wert?',
+      opts: ['Den aktuellen Blutzucker', 'Den Langzeitblutzucker der letzten 8–12 Wochen', 'Die Insulinmenge im Blut', 'Den Zuckergehalt im Urin'],
+      correct: 1,
+      why: 'Der HbA1c ist der „Langzeitzucker" und zeigt, wie gut der Blutzucker über Wochen eingestellt war (Ziel meist < 7 %).'
+    }
+  ];
+
+  var answered = 0, right = 0;
+  var quizEl = document.getElementById('quiz');
+  var scoreEl = document.getElementById('score');
+
+  QUIZ.forEach(function (item, qi) {
+    var block = document.createElement('div');
+    block.className = 'quiz-q';
+    var h = document.createElement('div');
+    h.className = 'qtext';
+    h.textContent = (qi + 1) + '. ' + item.q;
+    block.appendChild(h);
+
+    var expl = document.createElement('div');
+    expl.className = 'explain';
+    expl.textContent = item.why;
+
+    item.opts.forEach(function (txt, oi) {
+      var b = document.createElement('button');
+      b.className = 'opt';
+      b.innerHTML = '<span class="lbl"></span><span class="mark"></span>';
+      b.querySelector('.lbl').textContent = txt;
+      b.addEventListener('click', function () {
+        if (block.dataset.done) return;
+        block.dataset.done = '1';
+        answered++;
+        var buttons = block.querySelectorAll('.opt');
+        buttons.forEach(function (bb) { bb.disabled = true; });
+        buttons[item.correct].classList.add('correct');
+        if (oi === item.correct) { right++; }
+        else { b.classList.add('wrong'); }
+        expl.classList.add('show');
+        if (answered === QUIZ.length) {
+          scoreEl.hidden = false;
+          scoreEl.textContent = 'Ergebnis: ' + right + ' / ' + QUIZ.length + ' richtig';
+        }
+      });
+      block.appendChild(b);
+    });
+    block.appendChild(expl);
+    quizEl.appendChild(block);
+  });
+</script>
