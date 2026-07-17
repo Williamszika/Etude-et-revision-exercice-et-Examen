@@ -53,7 +53,8 @@ Pflegedokumentations-Formular / Erhebungsbogen (Assessment-Formular) zur struktu
 - **Atemnot:** nein, Angst, Schwitzen, Beklemmung, motorische Unruhe; Selbstversorgungsdefizit der Atemwege.
 - **Puls / Min.:** Tachykardie, Bradykardie, Arrhythmie; hoch, tief, flach.
 - **Blutdruck:** Hypertonie, Hypotonie, herabgesetzt, normal, erhöht.
-- **Atemskala / Körpertemperatur / Veränderungsgefahr / Sauerstoffversorgung.**
+- **Wärmebedürfnis:** normal / erhöht.
+- **Atemskala / Körpertemperatur (rektal, zerebral) / Veränderungsgefahr / Sauerstoffversorgung / Selbstreinigungsfunktion der Atemwege.**
 - **Pflegediagnosen:** Beeinträchtigte Atmung, Verminderte Herzleistung; Durchblutungsgefahr gastrointestinal / kardiopulmonal / peripher.
 - **Hautfarbe:** normal trocken, abnorm trocken, feucht, gerötet, blass, gelb-braun, blau-grau, bläulich-rot; Pigmentmangel, Pigmentierung.
 - **Hautbeschaffenheit:** normal, elastisch, glatt, schuppig, faltig; Effloreszenzen, Hämatome, Ulcera, Ödeme, Warzen.

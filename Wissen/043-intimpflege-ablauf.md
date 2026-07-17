@@ -21,7 +21,7 @@ Das Dokument stellt in einer Tabelle den Ablauf der Intimpflege beim **Mann** (l
 4. Harnröhreneingang + Penisschaft + Hoden waschen (immer von *Symphyse* = Schambein zum *Anus*)
 5. Abtrocknen
 6. Vorhaut wieder vorschieben
-7. Waschlappen auswechseln
+7. Waschlappen auswaschen
 8. Leisten in Richtung Anus waschen
 9. Abtrocknen
 10. Intimbereich mit Handtuch abdecken
@@ -39,7 +39,7 @@ Das Dokument stellt in einer Tabelle den Ablauf der Intimpflege beim **Mann** (l
 4. Harnröhreneingang, Vaginaleingang, innere Schamlippen waschen (immer von *Symphyse* = Schambein zum *Anus*)
 5. Äußere Schamlippen von Symphyse Richtung Anus waschen
 6. Harnröhreneingang, Vaginaleingang, innere Schamlippen + äußere Schamlippen abtrocknen
-7. Waschlappen auswechseln
+7. Waschlappen auswaschen
 8. Leisten in Richtung Anus waschen
 9. Abtrocknen
 10. Intimbereich mit Handtuch abdecken

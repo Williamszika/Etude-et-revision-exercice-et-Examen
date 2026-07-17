@@ -3,99 +3,122 @@
 ## Quelle: PDFs/61-ebomo-bewegung.pdf
 
 ## Dokumenttyp
-Assessment-Instrument / standardisierter Erfassungsbogen (Formular/Skala) zur Beurteilung der Mobilität von Bewohnern in der stationären Pflege. Es handelt sich um ein einseitiges, in Tabellenform aufgebautes Dokument. Version 1.6, genehmigt von A. Zegelin / S. Reuther.
+Assessment-Instrument / standardisiertes Erfassungs- und Bewertungsformular (Skala) zur Einschätzung der Mobilität von Bewohnern in der (stationären) Pflege. Version 1.6, genehmigt von A. Zegelin / S. Reuther. Es handelt sich um einen einseitigen, ausfüllbaren Bewertungsbogen.
 
 ## Inhalt (nach Abschnitten)
 
-### Kopfbereich / Formularkopf
-Der Erfassungsbogen trägt den Titel „Erfassungsbogen ‚Mobilität' (EBoMo)". Im Kopfbereich sind folgende auszufüllende Felder vorhanden:
-- Name des Bewohners: ______________________________
-- WG (Wohngruppe): ________________
-- Datum: ________________________
-- Handzeichen: ______________________________
+### Kopfbereich (Formularkopf)
+- Titelblock (links, grau hinterlegt): **Erfassungsbogen „Mobilität" (EBoMo)**
+- Auszufüllende Kopfdaten:
+  - **Name des Bewohners:** ___________________________
+  - **WG:** ________________ (Wohngruppe)
+  - **Datum:** ___________________________
+  - **Handzeichen:** ___________________________ (Kürzel der ausführenden Pflegekraft)
 
-### Bewertungssystematik (Spaltenüberschriften der Bewertungstabelle)
-Jede einzelne Fähigkeit/Aufgabe wird nach dem Grad der Selbstständigkeit bewertet. Die Bewertungsskala ist vierstufig und mit absteigenden Punktwerten hinterlegt:
-- **selbständig = 4 Punkte**
-- **mit Hilfsmittel = 3 Punkte**
-- **mit Personenhilfe = 2 Punkte**
-- **komplett unselbständig = 1 Punkt**
-- Zusätzliche Spalte: **Handlungsbedarf** (Ankreuz-/Markierungsspalte zur Kennzeichnung von Interventionsbedarf)
+### Bewertungslogik / Skala
+Jedes Bewegungs-Item wird mit einem Punktwert von 4 bis 1 nach dem Grad der Selbstständigkeit bewertet. Die Spaltenüberschriften (senkrecht geschrieben) lauten:
+- **selbstständig** = 4 Punkte
+- **mit Hilfsmittel** = 3 Punkte
+- **mit Personenhilfe** = 2 Punkte
+- **komplett unselbstständig** = 1 Punkt
+- **Handlungsbedarf** (letzte, grau hinterlegte Spalte – Ankreuzfeld/Markierung, ob pflegerischer Handlungsbedarf besteht)
 
-Höhere Punktzahl = höhere Selbstständigkeit. Für jeden Themenblock (A1–A5) werden die Einzelwerte zu einer „GESAMT"-Zeile summiert, am Ende erfolgt eine Gesamtauswertung „GESAMTPUNKTE A1 – A5".
+Höherer Punktwert = größere Selbstständigkeit. Für jeden Themenblock (A1–A5) gibt es eine **GESAMT**-Zeile zur Summierung, am Ende eine Zeile **GESAMTPUNKTE A1 – A5** für den Gesamtscore über alle Bereiche.
 
-Am oberen Rand der Tabelle befindet sich ein großes freies Feld „Bemerkungen:" für Anmerkungen.
+### Bemerkungen
+Oben rechts über der Item-Tabelle befindet sich ein großes Freitextfeld **„Bemerkungen:"** für ergänzende Notizen.
 
 ### A1: POSITIONSWECHSEL IM BETT
-- A1.1 Dreht sich im Bett von einer Seite zur anderen — Bewertung 4 / 3 / 2 / 1
-- A1.2 Stellt die Beine auf — Bewertung 4 / 3 / 2 / 1
-- GESAMT A1.1–A1.2 (Summenzeile)
+- **A1.1** Dreht sich im Bett von einer Seite zur anderen — Bewertung 4/3/2/1
+- **A1.2** Stellt die Beine auf — Bewertung 4/3/2/1
+- **GESAMT A1.1–A1.2** (Summenfeld)
 
 ### A2: TRANSFER
-- A2.1 Begibt sich von der Rückenlage im Bett in die Sitzposition — Bewertung 4 / 3 / 2 / 1
-- A2.2 Verlagert in der sitzenden Position das Gleichgewicht zum Stehen — Bewertung 4 / 3 / 2 / 1
-- A2.3 Richtet den Oberkörper auf — Bewertung 4 / 3 / 2 / 1
-- GESAMT A2.1–A2.3 (Summenzeile)
+- **A2.1** Begibt sich von der Rückenlage im Bett in die Sitzposition — 4/3/2/1
+- **A2.2** Verlagert in der sitzenden Position das Gleichgewicht zum Stehen — 4/3/2/1
+- **A2.3** Richtet den Oberkörper auf — 4/3/2/1
+- **GESAMT A2.1–A2.3** (Summenfeld)
 
 ### A3: SITZEN IM STUHL
-- A3.1 Sitzt frei (Rumpfkontrolle) — Bewertung 4 / 3 / 2 / 1
-- A3.2 Sitzt frei (Rumpfkontrolle) für _____ Minuten (falls nicht möglich 0 eintragen) — Bewertung 4 / 3 / 2 / 1
-- GESAMT A3.1–A3.2 (Summenzeile)
+- **A3.1** Sitzt frei (Rumpfkontrolle) — 4/3/2/1
+- **A3.2** Sitzt frei (Rumpfkontrolle) für _____ Minuten (falls nicht möglich 0 eintragen) — 4/3/2/1
+- **GESAMT A3.1–A3.2** (Summenfeld)
 
 ### A4: STEHEN / GEHEN / TREPPEN STEIGEN
-- A4.1 Hält beim Stehen das Gleichgewicht — Bewertung 4 / 3 / 2 / 1
-- A4.2 Steht _____ Sekunden (falls nicht möglich 0 eintragen) — Bewertung 4 / 3 / 2 / 1
-- A4.3 Hält beim Gehen das Gleichgewicht — Bewertung 4 / 3 / 2 / 1
-- A4.4 Geht auf der Ebene ___ m (falls nicht möglich 0 eintragen) — Bewertung 4 / 3 / 2 / 1
-- A4.5 Steigt Treppen — Bewertung 4 / 3 / 2 / 1
-- GESAMT A4.1–A4.5 (Summenzeile)
+- **A4.1** Hält beim Stehen das Gleichgewicht — 4/3/2/1
+- **A4.2** Steht _____ Sekunden (falls nicht möglich 0 eintragen) — 4/3/2/1
+- **A4.3** Hält beim Gehen das Gleichgewicht — 4/3/2/1
+- **A4.4** Geht auf der Ebene _____ m (falls nicht möglich 0 eintragen) — 4/3/2/1
+- **A4.5** Steigt Treppen — 4/3/2/1
+- **GESAMT A4.1–A4.5** (Summenfeld)
 
-### A5: BEWEGUNG INNERHALB / AUSSERHALB DER EINRICHTUNG
-- A5.1 Bewegt sich innerhalb der Einrichtung — Bewertung 4 / 3 / 2 / 1
-- A5.2 Bewegt sich außerhalb der Einrichtung — Bewertung 4 / 3 / 2 / 1
-- GESAMT A5.1–A5.2 (Summenzeile)
+### A5: BEWEGUNG INNERHALB / AUßERHALB DER EINRICHTUNG
+- **A5.1** Bewegt sich innerhalb der Einrichtung — 4/3/2/1
+- **A5.2** Bewegt sich außerhalb der Einrichtung — 4/3/2/1
+- **GESAMT A5.1–A5.2** (Summenfeld)
 
-### Gesamtauswertung
-- GESAMTPUNKTE A1 – A5 (Endsumme aller Bereiche)
+### GESAMTPUNKTE A1 – A5
+Abschlusszeile zur Bildung der Gesamtsumme aller Bereiche.
 
-### Fußzeile
-- Version 1.6
-- Genehmigung A. Zegelin / S. Reuther
+### Fußbereich
+- **Version 1.6**
+- **Genehmigung A. Zegelin / S. Reuther**
 
 ## Abbildungen & Tabellen
 
-### Tabelle 1: Vollständige EBoMo-Bewertungstabelle (einzige Abbildung des Dokuments)
-Das gesamte Dokument besteht aus einer großen strukturierten Tabelle mit einem darübergesetzten Formularkopf.
+### Tabelle: EBoMo-Bewertungsbogen (Hauptelement, ganzseitig)
+Eine strukturierte Tabelle mit Zeilen (Items A1.1 bis A5.2, Gesamt-Zeilen, Gesamtpunkte-Zeile) und Bewertungsspalten. Aufbau:
 
-**Aufbau der Tabelle:**
-- Linke Spalte (breit): Bezeichnung der Bewegungsaufgaben, gegliedert in fett hervorgehobene, grau hinterlegte Themenüberschriften (A1–A5) sowie darunter die jeweiligen Einzel-Items und die grau hinterlegten „GESAMT"-Summenzeilen.
-- Fünf schmale rechte Spalten mit vertikal (hochkant) geschriebenen Kopfzeilen: „selbständig", „mit Hilfsmittel", „mit Personenhilfe", „komplett unselbständig", „Handlungsbedarf".
-- In den Wertungsspalten der Einzel-Items stehen die vorgedruckten Zahlen 4, 3, 2, 1 (von links nach rechts), die anzukreuzen/einzukreisen sind. Die letzte Spalte „Handlungsbedarf" ist grau/leer zum Markieren.
-- Die „GESAMT"-Zeilen und die Gesamtpunktzeile besitzen leere weiße bzw. grau hinterlegte Felder zum Eintragen der Summen.
+| Bereich / Item | selbstständig | mit Hilfsmittel | mit Personenhilfe | komplett unselbstständig | Handlungsbedarf |
+|---|---|---|---|---|---|
+| **A1: POSITIONSWECHSEL IM BETT** | | | | | |
+| A1.1 Dreht sich im Bett von einer Seite zur anderen | 4 | 3 | 2 | 1 | |
+| A1.2 Stellt die Beine auf | 4 | 3 | 2 | 1 | |
+| GESAMT A1.1-A1.2 | | | | | (grau) |
+| **A2: TRANSFER** | | | | | |
+| A2.1 Begibt sich von der Rückenlage im Bett in die Sitzposition | 4 | 3 | 2 | 1 | |
+| A2.2 Verlagert in der sitzenden Position das Gleichgewicht zum Stehen | 4 | 3 | 2 | 1 | |
+| A2.3 Richtet den Oberkörper auf | 4 | 3 | 2 | 1 | |
+| GESAMT A2.1-A2.3 | | | | | (grau) |
+| **A3: SITZEN IM STUHL** | | | | | |
+| A3.1 Sitzt frei (Rumpfkontrolle) | 4 | 3 | 2 | 1 | |
+| A3.2 Sitzt frei (Rumpfkontrolle) für ___ Minuten (falls nicht möglich 0 eintragen) | 4 | 3 | 2 | 1 | |
+| GESAMT A3.1-A3.2 | | | | | (grau) |
+| **A4: STEHEN/ GEHEN/ TREPPEN STEIGEN** | | | | | |
+| A4.1 Hält beim Stehen das Gleichgewicht | 4 | 3 | 2 | 1 | |
+| A4.2 Steht ___ Sekunden (falls nicht möglich 0 eintragen) | 4 | 3 | 2 | 1 | |
+| A4.3 Hält beim Gehen das Gleichgewicht | 4 | 3 | 2 | 1 | |
+| A4.4 Geht auf der Ebene ___ m (falls nicht möglich 0 eintragen) | 4 | 3 | 2 | 1 | |
+| A4.5 Steigt Treppen | 4 | 3 | 2 | 1 | |
+| GESAMT A4.1-A4.5 | | | | | (grau) |
+| **A5: BEWEGUNG INNERHALB/ AUßERHALB DER EINRICHTUNG** | | | | | |
+| A5.1 Bewegt sich innerhalb der Einrichtung | 4 | 3 | 2 | 1 | |
+| A5.2 Bewegt sich außerhalb der Einrichtung | 4 | 3 | 2 | 1 | |
+| GESAMT A5.1-A5.2 | | | | | (grau) |
+| **GESAMTPUNKTE A1 – A5** | | | | | (grau) |
 
-**Pflegerische/medizinische Bedeutung:**
-Der EBoMo ist ein Assessment zur systematischen, abgestuften Erfassung der Mobilität. Er bildet den Bewegungsablauf logisch vom Liegen bis zur Fortbewegung außerhalb der Einrichtung ab (Bettmobilität → Transfer → Sitzen → Stehen/Gehen/Treppen → Bewegung innerhalb/außerhalb). Ziel ist es, Ressourcen und Einschränkungen der Mobilität zu identifizieren, den Grad der Selbstständigkeit zu quantifizieren, Handlungsbedarf zu erkennen und die Wirksamkeit von bewegungsfördernden Maßnahmen im Verlauf messbar zu machen. Das Instrument ist eng mit dem Expertenstandard „Erhaltung und Förderung der Mobilität in der Pflege" verbunden (Angela Zegelin und Sabine Reuther sind im Kontext dieses Expertenstandards bekannt).
-
-Es enthält keine anatomischen Abbildungen, Fotos oder Schemata — nur die beschriebene Formular-/Bewertungstabelle.
+**Pflegerische/medizinische Bedeutung:** Der EBoMo dient der systematischen, standardisierten Einschätzung der körperlichen Mobilität eines Bewohners entlang einer nachvollziehbaren Bewegungshierarchie (vom Positionswechsel im Bett über Transfer, Sitzen, Stehen/Gehen bis zur Fortbewegung innerhalb/außerhalb der Einrichtung). Er erfasst den Grad der Selbstständigkeit je Teilbewegung (4 = selbstständig bis 1 = komplett unselbstständig) und macht so Ressourcen und Defizite sichtbar. Die Ergebnisse dienen der Pflegeplanung, der Erkennung von Mobilitätseinschränkungen und damit indirekt der Sturzprophylaxe, Kontrakturprophylaxe und Förderung der Mobilität (Expertenstandard „Erhaltung und Förderung der Mobilität"). Die Spalte „Handlungsbedarf" markiert Items, bei denen konkrete pflegerische Maßnahmen erforderlich sind. Der Gesamtscore erlaubt Verlaufsbeobachtung (z. B. Verbesserung/Verschlechterung im zeitlichen Verlauf).
 
 ## Transkribierte Fototexte
-Das Dokument enthält keine Fotos, keine handschriftlichen Notizen und kein Tafelbild. Der gesamte gedruckte Text wurde bereits vollständig oben unter „Inhalt" sowie in der Tabellenbeschreibung wiedergegeben.
-
-Vollständig transkribierte Fußzeile:
-> Version 1.6
-> Genehmigung A. Zegelin / S. Reuther
+Es gibt keine Fotos, handschriftlichen Notizen oder Tafelbilder. Der gesamte gedruckte Formulartext ist bereits vollständig oben unter „Inhalt" und in der Tabelle transkribiert. Weitere gedruckte Textelemente (Kopf- und Fußzeile) im Original:
+- „Erfassungsbogen „Mobilität" (EBoMo)"
+- „Name des Bewohners:" / „WG:" / „Datum:" / „Handzeichen:"
+- „Bemerkungen:"
+- „Version 1.6"
+- „Genehmigung A. Zegelin/ S. Reuther"
 
 ## Kernbegriffe (Glossar)
-- **EBoMo**: Erfassungsbogen „Mobilität"; standardisiertes Assessment-Instrument zur abgestuften Beurteilung der Mobilität von Pflegebedürftigen.
-- **Mobilität**: Fähigkeit, sich fortzubewegen und Positionen zu wechseln; im EBoMo unterteilt in Bettmobilität, Transfer, Sitzen, Stehen/Gehen/Treppen und Bewegung innerhalb/außerhalb der Einrichtung.
-- **selbständig (4 Punkte)**: Höchste Bewertungsstufe; die Aufgabe wird ohne jegliche Hilfe ausgeführt.
-- **mit Hilfsmittel (3 Punkte)**: Ausführung gelingt selbstständig unter Verwendung eines Hilfsmittels (z. B. Rollator, Haltegriff).
-- **mit Personenhilfe (2 Punkte)**: Ausführung nur mit Unterstützung durch eine Pflegeperson möglich.
-- **komplett unselbständig (1 Punkt)**: Niedrigste Bewertungsstufe; die Aufgabe kann nicht selbst ausgeführt werden.
-- **Handlungsbedarf**: Markierungsspalte zur Kennzeichnung, dass für ein Item eine pflegerische Intervention/Förderung erforderlich ist.
-- **Positionswechsel im Bett**: Bettmobilität — Drehen, Beine aufstellen (A1).
-- **Transfer**: Lagewechsel vom Liegen ins Sitzen/Stehen, Aufrichten des Oberkörpers (A2).
-- **Rumpfkontrolle**: Fähigkeit, den Oberkörper/Rumpf beim freien Sitzen selbstständig zu stabilisieren (A3).
-- **Gleichgewicht (Balance)**: Fähigkeit, im Stehen und Gehen die Balance zu halten (A4) — wichtiger Faktor der Sturzprophylaxe.
-- **Gehstrecke / Standdauer**: Objektiv messbare Parameter (Meter auf der Ebene, Sekunden Stehen), die im EBoMo quantitativ erfasst werden.
-- **A. Zegelin / S. Reuther**: Autorinnen/genehmigende Personen; im Kontext des Expertenstandards Mobilität in der Pflege.
+- **EBoMo** — Erfassungsbogen Mobilität; standardisiertes Assessment-Instrument zur Einschätzung der Mobilität in der Pflege.
+- **Mobilität** — Fähigkeit, sich selbstständig zu bewegen und die Körperposition zu verändern; zentrales Pflegethema (Expertenstandard Mobilität).
+- **Positionswechsel im Bett** — Fähigkeit, sich im Bett zu drehen und die Beine aufzustellen (Mikro-/Makrobewegungen im Liegen).
+- **Transfer** — Wechsel von einer Position/Fläche in eine andere, z. B. vom Liegen in den Sitz bzw. Richtung Stehen.
+- **Rumpfkontrolle** — Fähigkeit, den Oberkörper/Rumpf frei und stabil aufrecht zu halten (freies Sitzen).
+- **Gleichgewicht (Balance)** — Fähigkeit, im Stehen und Gehen die Körperstabilität zu halten; wichtig für Sturzprophylaxe.
+- **selbstständig (4 Punkte)** — Bewegung wird ohne fremde Hilfe und ohne Hilfsmittel ausgeführt.
+- **mit Hilfsmittel (3 Punkte)** — Bewegung gelingt unter Verwendung von Hilfsmitteln (z. B. Gehhilfe, Haltegriff).
+- **mit Personenhilfe (2 Punkte)** — Bewegung gelingt nur mit Unterstützung durch eine Person.
+- **komplett unselbstständig (1 Punkt)** — Bewegung kann nicht selbst ausgeführt werden; vollständige Übernahme durch Pflegekraft.
+- **Handlungsbedarf** — Markierungsspalte für Items, bei denen pflegerische Maßnahmen/Interventionen nötig sind.
+- **Handzeichen** — Namenskürzel/Signatur der ausführenden Pflegekraft zur Dokumentationsverantwortung.
+- **WG** — Wohngruppe (organisatorische Einheit in der Einrichtung).
+- **Gesamtpunkte** — Summe der vergebenen Punktwerte über alle Bereiche A1–A5 zur Gesamtbeurteilung der Mobilität.

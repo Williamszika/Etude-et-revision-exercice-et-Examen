@@ -3,102 +3,81 @@
 ## Quelle: PDFs/45-intramuskulaere-injektion.pdf
 
 ## Dokumenttyp
-
-Arbeitsauftrag / Arbeitsblatt (Aufgabenblatt für den Unterricht). Kopfzeile aller Seiten: "CE02 UE02". Es handelt sich um ein Aufgabenblatt mit vier Aufgaben und mehreren zu ergänzenden Tabellen (Antwortfelder sind im Original leer). Als Informationsgrundlage wird das Lehrbuch "Pflege Heute", 8. Auflage, Kapitel 43 genannt.
+Arbeitsauftrag / Aufgabenblatt (Übungsblatt) für den Pflegeunterricht. Kopfzeile auf allen Seiten: "CE02 UE02". Das Dokument enthält vier Aufgaben (Aufgabe 1–4) mit teils vorgegebenen Tabellen und leeren Antwortfeldern, die von den Lernenden auszufüllen sind. Als Informationsgrundlage wird das Lehrbuch "Pflege Heute", 8. Auflage, Kapitel 43 genannt.
 
 ## Inhalt (nach Abschnitten)
 
-### Einleitung / Anschreiben (Seite 1)
+### Einleitung (Seite 1)
+Titel: **Intramuskuläre Injektion**
 
-Überschrift: **Intramuskuläre Injektion**
+Anschreiben an den Kurs:
+"Lieber Kurs, bitte bearbeiten Sie die folgenden Aufgaben. Als Informationsgrundlage nutzen Sie bitte das Pflege Heute in der 8. Auflage. Im Kapitel 43 finden Sie die relevanten Informationen. Die Besprechung des Auftrags findet im Plenum statt."
 
-> Lieber Kurs,
->
-> bitte bearbeiten Sie die folgenden Aufgaben. Als Informationsgrundlage nutzen Sie bitte das Pflege Heute in der 8. Auflage. Im Kapitel 43 finden Sie die relevanten Informationen. Die Besprechung des Auftrags findet im Plenum statt.
+### Aufgabe 1 (Seite 2–3)
+Aufgabenstellung: "Die Tabelle beinhaltet notwendige Mittel für die Durchführung einer intramuskulären Injektion. Ergänzen Sie die rechte Spalte, in dem Sie Begründungen oder Erläuterungen zu den jeweiligen Materialien nennen."
 
-### Aufgabe 1 (Seite 2 - 3)
-
-Aufgabenstellung:
-> **Aufgabe 1:** Die Tabelle beinhaltet notwendige Mittel für die Durchführung einer intramuskulären Injektion. Ergänzen Sie die rechte Spalte, in dem Sie Begründungen oder Erläuterungen zu den jeweiligen Materialien nennen.
-
-Es folgt eine zweispaltige Tabelle (linke Spalte "Material" ist vorgegeben, rechte Spalte "Begründungen / Beachtungspunkte" ist von den Lernenden auszufüllen; in einigen Zeilen stehen bereits Leitfragen als Hilfestellung). Details siehe Abschnitt "Abbildungen & Tabellen".
+Es handelt sich um eine Materialliste (linke Spalte vorgegeben), zu der Begründungen / Beachtungspunkte (rechte Spalte) ergänzt werden sollen. Die rechte Spalte ist überwiegend leer; bei einigen Zeilen sind Leitfragen vorgegeben.
 
 ### Aufgabe 2 (Seite 3)
-
-Aufgabenstellung:
-> **Aufgabe 2:** Nennen Sie die einzelnen Schritte der Durchführung der intramuskulären Injektion.
-
-Darunter eine leere Tabelle mit 11 leeren Zeilen zum Eintragen der einzelnen Durchführungsschritte.
+Aufgabenstellung: "Nennen Sie die einzelnen Schritte der Durchführung der intramuskulären Injektion."
+Darunter eine leere Tabelle mit 11 Zeilen (Antwortfelder für die einzelnen Durchführungsschritte).
 
 ### Aufgabe 3 (Seite 4)
-
-Aufgabenstellung:
-> **Aufgabe 3:** Nennen Sie drei Anforderungen, die eine Pflegefachperson in Bezug auf die intramuskuläre Injektion erfüllen sollte.
-
-Darunter eine leere Tabelle mit 3 leeren Zeilen (für die drei Anforderungen).
+Aufgabenstellung: "Nennen Sie drei Anforderungen, die eine Pflegefachperson in Bezug auf die intramuskuläre Injektion erfüllen sollte."
+Darunter eine leere Tabelle mit 3 Zeilen (für die drei Anforderungen).
 
 ### Aufgabe 4 (Seite 4)
-
-Aufgabenstellung:
-> **Aufgabe 4:** Nennen Sie drei Kontraindikationen die speziell gegen eine intramuskuläre Injektion sprechen. Begründen Sie Ihre Aussagen.
-
-Darunter eine leere zweispaltige Tabelle mit 3 Zeilen (linke Spalte vermutlich Kontraindikation, rechte Spalte Begründung).
+Aufgabenstellung: "Nennen Sie drei Kontraindikationen die speziell gegen eine intramuskuläre Injektion sprechen. Begründen Sie Ihre Aussagen."
+Darunter eine leere zweispaltige Tabelle mit 3 Zeilen (linke Spalte: Kontraindikation, rechte Spalte: Begründung).
 
 ## Abbildungen & Tabellen
 
-Das Dokument enthält keine Fotos, keine anatomischen Abbildungen und keine Schemazeichnungen. Es besteht ausschließlich aus Text und leeren bzw. teilweise vorbelegten Ausfülltabellen.
+### Tabelle 1 – Materialliste zur i.m.-Injektion (Aufgabe 1, Seite 2–3)
+Zweispaltige Tabelle. Kopfzeile: **Material** | **Begründungen / Beachtungspunkte**
 
-### Tabelle Aufgabe 1 — "Material" / "Begründungen / Beachtungspunkte"
+Linke Spalte (Material, vorgegeben), rechte Spalte (auszufüllen; vorgegebene Leitfragen in Klammern angegeben):
 
-Spaltenüberschriften: **Material** (links) | **Begründungen / Beachtungspunkte** (rechts, auszufüllen).
+| Material | Begründungen / Beachtungspunkte (vorgegebene Leitfragen) |
+|---|---|
+| Tablett | (leer) |
+| Arzneimittel | (leer) |
+| ggf. keimarme Tupfer (Zellstoff) | (leer) |
+| ggf. Aufziehkanüle / Mehrfachentnahmekanüle (z.B. Mini-Spike®) bei Durchstechflasche | (leer) |
+| ggf. Überleitungs- / Überlaufkanüle, wenn Medikamente aufgelöst werden müssen | (leer) |
+| passende, sterile Injektionskanüle: i.m.-Injektion in Gesäß oder Oberschenkel / passende, sterile Injektionskanüle: i.m.-Injektion in Oberarm | (Welche Kanülengröße wird benötigt?) |
+| passende sterile Einmalspritze | (Gibt es eine Alternative?) |
+| kleines Pflaster / keimarme Tupfer | (leer) |
+| Abwürfe / Kanülensicherheitsbox | (Welche Abwürfe werden benötigt?) |
+| Desinfektionsmittel | (Welche Desinfektionsmittel werden benötigt? Einwirkzeit?) |
+| ggf. Bettschutz | (leer) |
+| keimarme Handschuhe | (leer) |
 
-Vorgegebene Zeilen der Spalte "Material" (in Reihenfolge):
+Pflegerische/medizinische Bedeutung: Die Tabelle listet die vollständige Materialvorbereitung ("Richten") für eine intramuskuläre Injektion. Wesentliche Beachtungspunkte, die die Lernenden erarbeiten sollen: Auswahl der passenden Kanülengröße/-länge je nach Injektionsort (Gesäß/Oberschenkel benötigen längere Kanülen als der Oberarm, da mehr Fett-/Muskelgewebe zu durchdringen ist), sichere Entsorgung spitzer/scharfer Gegenstände in Kanülensicherheitsbox (Stichverletzungsprophylaxe), korrekte Hautdesinfektion mit ausreichender Einwirkzeit, sowie hygienische Aspekte (keimarme Handschuhe, Bettschutz).
 
-1. Tablett
-2. Arzneimittel
-3. ggf. keimarme Tuper (Zellstoff)  [im Original so geschrieben; gemeint: Tupfer]
-4. ggf. Aufziehkanüle / Mehrfachentnahmekanüle (z.B. Mini-Spike®) bei Durchstechflasche
-5. ggf. Überleitungs- / Überlaufkanüle, wenn Medikamente aufgelöst werden müssen
-6. passende, sterile Injektionskanüle: i.m.-Injektion in Gesäß oder Oberschenkel / passende, sterile Injektionskanüle: i.m.-Injektion in Oberarm — Leitfrage in rechter Spalte: **(Welche Kanülengröße wird benötigt?)**
-7. passende sterile Einmalspritze — Leitfrage in rechter Spalte: **(Gibt es eine Alternative?)**
-8. kleines Pflaster / keimarme Tupfer
-9. Abwürfe / Kanülensicherheitsbox — Leitfrage in rechter Spalte: **(Welche Abwürfe werden benötigt?)**
-10. Desinfektionsmittel — Leitfrage in rechter Spalte: **(Welche Desinfektionsmittel werden benötigt? Einwirkzeit?)**
-11. ggf. Bettschutz
-12. keimarme Handschuhe (auf Seite 3 fortgesetzt)
+### Tabelle 2 – Durchführungsschritte (Aufgabe 2, Seite 3)
+Leere Tabelle mit 11 Zeilen, keine Beschriftung. Bestimmt für die schrittweise Beschreibung des Ablaufs der i.m.-Injektion durch die Lernenden.
 
-Pflegerische/medizinische Bedeutung: Die Tabelle listet die vollständige Materialvorbereitung ("Vorbereitung der Materialien") für eine intramuskuläre Injektion nach dem Grundsatz der hygienischen und sicheren Vorbereitung. Die Leitfragen lenken auf die zentralen Sicherheitsaspekte: Wahl der richtigen Kanülengröße je nach Injektionsort und Patientenkonstitution, sichere Entsorgung scharfer/spitzer Gegenstände (Kanülensicherheitsbox, Stichverletzungsprophylaxe), korrektes Desinfektionsmittel mit Einwirkzeit (Hautdesinfektion) sowie mögliche Alternativen (z.B. Fertigspritze).
-
-### Tabelle Aufgabe 2 — Durchführungsschritte
-
-Leere Tabelle mit 11 Zeilen zum chronologischen Eintragen der Durchführungsschritte der i.m.-Injektion. Keine Vorbelegung.
-
-### Tabelle Aufgabe 3 — Anforderungen an die Pflegefachperson
-
+### Tabelle 3 – Anforderungen an die Pflegefachperson (Aufgabe 3, Seite 4)
 Leere Tabelle mit 3 Zeilen.
 
-### Tabelle Aufgabe 4 — Kontraindikationen mit Begründung
+### Tabelle 4 – Kontraindikationen mit Begründung (Aufgabe 4, Seite 4)
+Leere zweispaltige Tabelle mit 3 Zeilen (Kontraindikation / Begründung).
 
-Leere zweispaltige Tabelle mit 3 Zeilen (Kontraindikation | Begründung).
+Hinweis: Das Dokument enthält keine anatomischen Abbildungen, Fotos, Schemata oder Grafiken. Es besteht ausschließlich aus Text und leeren bzw. teilweise vorbefüllten Antworttabellen.
 
 ## Transkribierte Fototexte
-
-Es sind keine Fotos, Tafelbilder oder handschriftlichen Notizen im Dokument enthalten. Der gesamte gedruckte Text ist bereits im Abschnitt "Inhalt" und "Abbildungen & Tabellen" vollständig transkribiert.
+Es sind keine Fotos, Tafelbilder oder handschriftlichen Notizen enthalten. Der gesamte gedruckte Text ist bereits in den Abschnitten oben vollständig transkribiert.
 
 ## Kernbegriffe (Glossar)
-
-- **Intramuskuläre Injektion (i.m.-Injektion):** Verabreichung eines Arzneimittels direkt in den Muskel; ein Applikationsweg für Medikamente.
-- **Injektionsorte:** Gesäß (glutealer Bereich), Oberschenkel und Oberarm (Deltamuskel) werden im Dokument als mögliche i.m.-Injektionsorte genannt.
-- **Injektionskanüle:** sterile Hohlnadel zur Injektion; die passende Kanülengröße richtet sich nach Injektionsort und Patient.
-- **Aufziehkanüle:** Kanüle zum Aufziehen des Medikaments in die Spritze.
-- **Mehrfachentnahmekanüle / Mini-Spike®:** Entnahmesystem für die mehrfache Entnahme aus einer Durchstechflasche.
-- **Durchstechflasche:** Medikamentenflasche mit durchstechbarer Gummimembran.
-- **Überleitungs- / Überlaufkanüle:** Kanüle zum Auflösen/Überleiten von Medikamenten, die vor Gabe rekonstituiert werden müssen.
-- **Einmalspritze:** sterile Spritze zum Einmalgebrauch.
-- **Kanülensicherheitsbox / Abwurf:** durchstichsicherer Behälter zur sicheren Entsorgung von Kanülen (Stichverletzungsprophylaxe).
-- **Desinfektionsmittel / Einwirkzeit:** Mittel zur Hautdesinfektion vor der Injektion; die Einwirkzeit muss eingehalten werden.
-- **Keimarme Tupfer / keimarme Handschuhe:** hygienische Hilfsmittel bei der Durchführung.
-- **Bettschutz:** Unterlage zum Schutz des Bettes.
-- **Kontraindikation:** Gegenanzeige; Umstand, der gegen die Durchführung einer i.m.-Injektion spricht.
-- **Pflege Heute (8. Auflage, Kapitel 43):** genannte Lehrbuch-Informationsgrundlage zum Thema.
-- **CE02 UE02:** Kurs-/Kurseinheit-Kennung (Kopfzeile des Arbeitsblatts).
+- **Intramuskuläre Injektion (i.m.-Injektion):** Injektion eines Arzneimittels direkt in einen Muskel; ermöglicht eine schnellere Resorption als subkutane Gabe. Häufige Injektionsorte: Gesäß (ventrogluteal), Oberschenkel, Oberarm (M. deltoideus).
+- **Injektionskanüle:** Sterile Hohlnadel zur Injektion; Größe/Länge richtet sich nach Injektionsort und Gewebedicke.
+- **Aufziehkanüle:** Kanüle zum Aufziehen des Medikaments aus der Ampulle/Flasche; wird vor der Injektion gegen eine Injektionskanüle getauscht.
+- **Mehrfachentnahmekanüle (z.B. Mini-Spike®):** Aufsatz für Durchstechflaschen zur wiederholten, keimarmen Entnahme.
+- **Überleitungs-/Überlaufkanüle:** Hilfsmittel zum Auflösen und Überführen von Trockensubstanzen (Lyophilisaten).
+- **Durchstechflasche:** Mehrdosenbehältnis mit durchstechbarem Gummiseptum.
+- **Kanülensicherheitsbox:** Stichfester Abwurfbehälter für gebrauchte Kanülen (Verletzungs- und Infektionsschutz).
+- **Einwirkzeit (Desinfektion):** Zeitspanne, in der das Hautdesinfektionsmittel wirken muss, bevor injiziert wird.
+- **Bettschutz:** Unterlage zum Schutz von Bett/Kleidung.
+- **Keimarme Handschuhe / keimarme Tupfer:** Nicht-sterile, aber keimreduzierte Materialien für die hygienische Durchführung.
+- **Kontraindikation:** Umstand, der gegen die Durchführung einer i.m.-Injektion spricht (z.B. Gerinnungsstörung/Antikoagulation, Marcumar-Therapie, Muskelatrophie, Schock/Minderdurchblutung).
+- **Pflege Heute (8. Auflage), Kapitel 43:** Angegebene Lehrbuch-Informationsgrundlage zum Thema.
