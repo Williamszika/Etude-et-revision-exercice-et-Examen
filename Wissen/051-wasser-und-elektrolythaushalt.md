@@ -1,16 +1,19 @@
-# Wasser- und Elektrolythaushalt
+# Wasser- und Elektrolythaushalt – anatomische und physiologische Grundlagen
 
 ## Quelle: PDFs/52-grundlagen-wasserhaushalt.pdf
 
+Foliensatz der Christlichen Bildungsakademie für Gesundheitsberufe, Curriculare Einheit CE 05 UE 00 – anatomische physiologische Grundlagen, Dozent: Herr Noll. Datum in der Fußzeile: 21.04.2026. 39 Folien.
+
 ## Dokumenttyp
-Foliensatz / Unterrichtspräsentation (PowerPoint-Export als PDF, 39 Folien). Christliche Bildungsakademie für Gesundheitsberufe. Dozent: Herr Noll. Curriculare Einheit CE 05 UE 00 – anatomische physiologische Grundlagen. Datum in der Fußzeile: 21.04.2026.
+
+Unterrichts-Präsentation (PowerPoint-Foliensatz) für die Pflegeausbildung. Enthält Informationstexte, Schemata, Fotos, eine Formel, mehrere Tabellen und ein Formular (Bilanzierungsprotokoll).
 
 ## Inhalt (nach Abschnitten)
 
-### Titel (Folie 1)
-Wasser- und Elektrolythaushalt. CE 05 UE 00 – anatomische physiologische Grundlagen. Dozent: Herr Noll. Logo der Christlichen Bildungsakademie für Gesundheitsberufe.
+### Folie 1 – Titel
+Wasser- und Elektrolythaushalt. CE 05 UE 00 – anatomische physiologische Grundlagen. Herr Noll.
 
-### Inhalte / Gliederung (Folie 2)
+### Folie 2 – Inhalte (Gliederung)
 - Wasser im menschlichen Körper
 - Elektrolyte allgemein
 - Diffusion und Osmose
@@ -19,43 +22,43 @@ Wasser- und Elektrolythaushalt. CE 05 UE 00 – anatomische physiologische Grund
 - Dehydratation und Dehydratationsprophylaxe
 - Hyperhydratation
 
-### Wasser- und Elektrolythaushalt – Definition (Folie 3)
+### Folie 3 – Wasser- und Elektrolythaushalt (Definitionen)
 - Wasserhaushalt = Regulation der Flüssigkeitsmenge im Körper
 - Elektrolythaushalt = Gleichgewicht der Ionen
 - Beide Systeme sind voneinander abhängig und verbunden
 
-### Wasser als Lebensgrundlage (Folie 4)
+### Folie 4 – Wasser als Lebensgrundlage
 - Lösung und Transport von Stoffen (u.a. als Bestandteil des Bluts)
 - Temperaturregulation
 - Reaktionsmedium für Stoffwechselprozesse
 - Blutdruck
 
-### Eigenschaften von Wasser (Folie 5)
+### Folie 5 – Eigenschaften von Wasser
 - H₂O
 - Universelles Lösungsmittel
-- Hat über Wasserstoffionenbrücken besonders hohe Wärmekapazität
+- Hat über Wasserstoffionenbrücken (Wasserstoffbrücken) besonders hohe Wärmekapazität
 - Hohe Verdunstungskühlung möglich
 
-### Wasseranteil des Körpers im Laufe des Lebens (Folie 6)
+### Folie 6 – Wasseranteil des Körpers im Laufe des Lebens
 - Säuglinge bestehen zu 75 % aus Wasser
 - Erwachsene zwischen 55 und 60 % aus Wasser (Frauen etwas weniger als Männer)
 - Adipöse Menschen haben ein geringeres Flüssigkeitsvolumen
 - Muskulöse Menschen haben einen höheren Wasseranteil
 - Kachektische Menschen haben einen größeren Flüssigkeitsanteil
 
-### Flüssigkeitsräume – die Kompartimente (Folie 7)
+### Folie 7 – Flüssigkeitsräume – die Kompartimente
 - Intrazellulärer Raum
-- Extrazellulärer Raum: Interstitiell und Intravasal
+- Extrazellulärer Raum: interstitiell und intravasal
 - Flüssigkeit ist dabei in permanenter Bewegung und Austausch
-(Zugehörige Abbildung siehe unten.)
+(Abbildung siehe unten)
 
-### Elektrolyte (Folie 8)
+### Folie 8 – Elektrolyte
 - Primär Salze, aber auch Basen und Säuren
 - Positiv (Kationen) und negativ (Anionen) geladen
 - In Summe immer ausgeglichen
 - Im menschlichen Körper ca. 300 mmol/l
 
-### Funktionen der Elektrolyte beim Menschen (Folie 9)
+### Folie 9 – Funktionen der Elektrolyte beim Menschen
 - pH-Wert, insbesondere im Blut
 - Neuronale Leitung
 - Muskelfunktion
@@ -63,92 +66,93 @@ Wasser- und Elektrolythaushalt. CE 05 UE 00 – anatomische physiologische Grund
 - Regulierung der Wasserverteilung
 - Enzymaktivitäten
 
-### Osmolarität (Folie 10)
+### Folie 10 – Osmolarität
 - = Molekülkonzentration in einer Flüssigkeit (meist je Liter)
-- Setzt sich aus Kationen, Anionen und Neutronen zusammen
+- Setzt sich aus Kationen, Anionen und Neutronen (gemeint: neutrale Teilchen/Moleküle) zusammen
 - Alle Teilchen üben einen Druck aus → osmotischer Druck
 - Osmotischer Druck sorgt für Verschiebungen von Flüssigkeit
 
-### Homöostase (Folie 11)
+### Folie 11 – Homöostase (Kurzdefinition)
 - Aufrechterhaltung von Flüssigkeitsvolumen, Osmolarität und Elektrolytzusammensetzung
 - Permanentes Fließgleichgewicht
 
-### Diffusion (Folie 12)
+### Folie 12 – Diffusion (Einführung)
 - Ein oder mehrere Stoffe vereinen sich zu einer neuen ausgewogen konzentrierten Lösung
-(Illustration siehe unten.)
+(Comic-Bild siehe unten)
 
-### Diffusion (Folie 13)
+### Folie 13 – Diffusion (Schema)
 - Konzentrationsausgleich von Stoffen in einer Lösung
 - Führt zur vollständigen Durchmischung
 - Zufällige, ungerichtete, energielose Bewegung (Brown'sche Molekularbewegung)
-(Schema siehe unten.)
+(Schema siehe unten)
 
-### Osmose (Folie 14)
+### Folie 14 – Osmose
 - Bewegung des Lösungsmittels durch osmotischen Druck
 - Durch eine semipermeable Membran
-- Vom Ort niedriger Konzentration zum Ort höherer Konzentration an gelösten Stoffen (Unterstreichung "niedriger" und "höherer" im Original)
+- Vom Ort niedriger Konzentration zum Ort höherer Konzentration an gelösten Stoffen (unterstrichen: „niedriger" und „höherer")
 - Ziel: Konzentrationsausgleich
-(Abbildung siehe unten.)
+(U-Rohr-Abbildung siehe unten)
 
-### Alltagsbeispiel Osmose (Folie 15)
-Osmose-Beispiel: Aufplatzen von Kirschen (Abbildung siehe unten).
+### Folie 15 – Alltagsbeispiel Osmose
+Osmose-Beispiel: Aufplatzen von Kirschen (Abbildung siehe unten)
 
-### Semipermeable Membran (Folie 16)
+### Folie 16 – Semipermeable Membran
 - Lässt Wasser hindurch
 - Lässt bestimmte Moleküle hindurch
 - Lässt andere Moleküle nicht hindurch
 - Trennt z.B. intra- und extrazellulären Raum
 
-### Osmotischer Druck (Folie 17)
-- Jedes Molekül besitzt eine bestimmte Fähigkeit Wasser „zu ziehen"
+### Folie 17 – Osmotischer Druck
+- Jedes Molekül besitzt eine bestimmte Fähigkeit, Wasser „zu ziehen"
 - Bei zwei Räumen ist die Summe aller osmotisch wirksamen Teilchen je Raum zu addieren – aus der Differenz ergibt sich der osmotische Druck
 - Synonym: osmotischer Gradientenunterschied
 
-### Wasserhaushalt des Menschen (Folie 18)
-Bilanz von Aufnahme und Ausscheidung (Werte siehe Tabelle unten). Ein-/Ausfuhr jeweils ca. 2400 ml.
+### Folie 18 – Wasserhaushalt des Menschen (Bilanz)
+Zwei-Spalten-Aufstellung (siehe Tabelle unten): Wasseraufnahme gesamt 2400 ml, Wasserausscheidung gesamt 2400 ml.
 
-### Flüssigkeitsbedarf (Folie 19)
+### Folie 19 – Flüssigkeitsbedarf
 - Individuelle Berechnung über die Formel der Deutschen Gesellschaft für Ernährung (DGE)
 - 18 bis 64 Jahre: 35 ml/kgKG/Tag
 - Ab 65 Jahre: 30 ml/kgKG/Tag
 - Flüssigkeitsmanagement: Bilanzierung als wichtigstes Werkzeug
 
-### Steuerung des Wasser- und Elektrolythaushaltes (Folie 20)
+### Folie 20 – Steuerung des Wasser- und Elektrolythaushaltes
 - Vielzahl an Rezeptoren zur Rückkopplung, Hypothalamus beteiligt
 - Enge Verbindung zu Nieren, Nebennieren, Darm und Lunge
 - Vorwiegend hormonelle Steuerung
 
-### Steuerung – Renin-Angiotensin-Aldosteron-System (Folie 21)
-- Renin-Angiotensin-Aldosteron-System (RAAS) als eines der Steuerungselemente des Körpers
-(Flussdiagramm siehe unten.)
+### Folie 21 – Steuerung des Wasser- und Elektrolythaushaltes (RAAS)
+- Renin-Angiotensin-Aldosteron-System als eines der Steuerungselemente des Körpers
+(Schema siehe unten)
 
-### Homöostase (Folie 22)
+### Folie 22 – Homöostase (ausführlich)
 - Fähigkeit des Körpers, die inneren Verhältnisse trotz äußerer Veränderungen konstant zu halten
 - Ziel: physiologische Funktionsfähigkeit erhalten
 - Beispiel: Sauna → Schwitzen zum Erhalt der Körperkerntemperatur
 - Störungen können schwerwiegende gesundheitliche Folgen bedeuten (z.B. Dehydratation)
 - Pflegepersonen müssen daher frühzeitig erkennen und reagieren können
 
-### Rezeptoren des Körpers im Wasserhaushalt (Folie 23)
+### Folie 23 – Rezeptoren des Körpers im Wasserhaushalt
 - Osmorezeptoren im Hypothalamus messen die Salzkonzentration
 - Barorezeptoren messen den Blutdruck (z.B. A. carotis)
 - pH-Rezeptoren
 - Regulation der Salz- und Flüssigkeitsausscheidung nach Messergebnissen
 - Ergebnis sind Durst und eine verminderte Diurese
 
-### Teilbereiche der Homöostase (Folie 24)
+### Folie 24 – Teilbereiche der Homöostase
 - Isovolämie = Flüssigkeitsvolumen im Gleichgewicht
 - Isotonie = Konstanthaltung des osmotischen Drucks
 - Isoionie = physiologische Verteilung der Elektrolyte
 
-### Dehydratation (Folie 25)
+### Folie 25 – Dehydratation
 - Flüssigkeitsverlust im extrazellulären Bereich, ggf. verbunden mit Volumenveränderung des Intravasal- und Intrazellulärraums
-(Tabelle der Formen siehe unten. Normwerte: Serum-Na⁺ 135–145 mmol/l; Serum-Osmolalität 280–296 mosmol/kg.)
+- Tabelle der Formen (siehe unten)
+- Normwerte: Serum-Na⁺ (135–145 mmol/l) und Serum-Osmolalität (280–296 mosmol/kg)
 
-### Symptome der Dehydratation – Bildtafel (Folie 26)
-Fotos: eingesunkene Fontanelle bei Säugling, konzentrierter (dunkler) vs. heller Urin, trockene rissige Lippen, trockene belegte Zunge (Abbildungen siehe unten).
+### Folie 26 – Symptome der Dehydratation (Fotos)
+Vier Fotos (siehe unten): eingesunkene Fontanelle bei Säugling, konzentrierter vs. heller Urin, trockene/rissige Lippen, trockene belegte Zunge.
 
-### Symptome der Dehydratation (1/2) (Folie 27)
+### Folie 27 – Symptome der Dehydratation (1/2)
 - Durst
 - Mundschleimhäute trocken, Schleimhautläsionen
 - Trockene Zunge (Risse, Beläge)
@@ -158,7 +162,7 @@ Fotos: eingesunkene Fontanelle bei Säugling, konzentrierter (dunkler) vs. helle
 - Hustenreiz
 - Fehlender Achsel-/Fußschweiß
 
-### Symptome der Dehydratation (2/2) (Folie 28)
+### Folie 28 – Symptome der Dehydratation (2/2)
 - Verringerte Urinausscheidung, konzentrierter Urin
 - Gewichtsverlust
 - Obstipation
@@ -167,13 +171,13 @@ Fotos: eingesunkene Fontanelle bei Säugling, konzentrierter (dunkler) vs. helle
 - Fieber (Durstfieber, v.a. bei Säuglingen und Kleinkindern)
 - Eingesunkene Fontanelle (Neugeborene und Säuglinge)
 
-### Die stehende Hautfalte (Folie 29)
+### Folie 29 – Die stehende Hautfalte
 - Bei erwachsenen Menschen KEIN Symptom der Dehydratation
 - Ältere Menschen neigen auch ohne Dehydratation zu stehenden Hautfalten
 - Adipöse Menschen neigen selten zu Hautfalten
 - Bei Säuglingen wird es als Symptom gewertet
 
-### Risikofaktoren für eine Dehydratation (1/2) (Folie 30)
+### Folie 30 – Risikofaktoren für eine Dehydratation (1/2)
 - Verringertes Durstempfinden (Alterungsprozess oder pathologisch)
 - Immobilität (z.B. nicht selbst an das Getränk kommen)
 - Dysphagie (Schluckstörungen)
@@ -182,7 +186,7 @@ Fotos: eingesunkene Fontanelle bei Säugling, konzentrierter (dunkler) vs. helle
 - Psychische Störungen (z.B. Vergiftungsängste)
 - Trinkmengenlimitierung im Rahmen einer ärztlichen Therapie
 
-### Risikofaktoren für eine Dehydratation (2/2) (Folie 31)
+### Folie 31 – Risikofaktoren für eine Dehydratation (2/2)
 - Starkes Schwitzen
 - Stark fieberhafte Infekte
 - Bewusstseinsstörungen, Apathie, Desorientiertheit, Delir
@@ -191,14 +195,14 @@ Fotos: eingesunkene Fontanelle bei Säugling, konzentrierter (dunkler) vs. helle
 - Schmerzen (insbesondere beim Trinken)
 - Relativ große Körperoberfläche bei Säuglingen potenziert einige Risiken, wie Schwitzen
 
-### Therapie der Dehydratation (Folie 32)
+### Folie 32 – Therapie der Dehydratation
 - Leichte bis mittelschwere Dehydratation: Flüssigkeitszufuhr über Getränke
 - Schwere Dehydratation: Infusionstherapie
 - Getränkewahl nach Dehydratationsform
 - Ambulanter Bereich: subcutane Infusionen
-- Bilanzierung/Trinkprotokoll und engmaschige VZ-Überwachung, Gefahr der Überkompensation
+- Bilanzierung/Trinkprotokoll und engmaschige VZ-Überwachung (Vitalzeichen), Gefahr der Überkompensation
 
-### Dehydratationsprophylaxe (Folie 33)
+### Folie 33 – Dehydratationsprophylaxe
 - Lieblingsgetränk erfragen
 - Getränke in passendes Gefäß füllen und griffbereit stellen
   - Individuelle Hilfsmittel wie „Schnabelbecher", Trinkhalme, Tassen/Becher mit Griffen
@@ -207,164 +211,195 @@ Fotos: eingesunkene Fontanelle bei Säugling, konzentrierter (dunkler) vs. helle
 - „Flaschenbatterien" vermeiden (wirkt anstrengend und nicht schaffbar)
 - Regelmäßig Getränke anbieten und Zeit lassen
 
-### Trinkhilfen (Folie 34)
-Bildtafel mit Hilfsmitteln (siehe unten).
+### Folie 34 – Trinkhilfen (Fotos)
+Vier Fotos von Trinkhilfen (siehe unten).
 
-### Bilanzierung (Folie 35)
+### Folie 35 – Bilanzierung (Formular)
 Abbildung eines Miktionsprotokoll-/Bilanzierungsformulars (siehe unten).
 
-### Dehydratationsprophylaxe DNQP (Folie 36)
-- DNQP = Deutsches Netzwerk für Qualitätsentwicklung in der Pflege
-- Expertenstandard *Ernährungsmanagement zur Sicherung und Förderung der oralen Ernährung in der Pflege*
+### Folie 36 – Dehydratationsprophylaxe DNQP
+- Deutsches Netzwerk für Qualitätsentwicklung in der Pflege
+- Expertenstandard „Ernährungsmanagement zur Sicherung und Förderung der oralen Ernährung in der Pflege"
 - Enthält Maßnahmen zur Dehydratationsprophylaxe
 
-### Hyperhydratation (Folie 37)
+### Folie 37 – Hyperhydratation
 - Vermehrung des Wassers im extrazellulären Bereich, ggf. verbunden mit einer Volumenveränderung im Intravasal- und Intrazellulärraum
-(Tabelle der Formen siehe unten.)
+- Tabelle der Formen (siehe unten)
 
-### Symptome der Hyperhydratation (Folie 38)
-Fotos: eindrückbare Beinödeme (Fingerdruck hinterlässt Delle), gestaute Halsvenen bei Patient mit Sauerstoffbrille (siehe unten).
+### Folie 38 – Symptome der Hyperhydratation (Fotos)
+Zwei Fotos (siehe unten): Beinödem mit Fingerdruck (Dellenbildung), Halsvenenstauung.
 
-### Literaturverzeichnis (Folie 39)
-- Schewior-Popp, S., Sitzmann, F., Ullrich, L. (2017). *Thiemes Pflege*. 13. Auflage. Georg Thieme Verlag. ISBN 978-3-13-243148-5. DOI 10.1055/b-004-140 670.
-- Schraut, V. (2020). *Pflege Heute Geriatrische Pflege*. 1. Auflage. Elsevier. ISBN 978-3437267017.
-- Menche, N. (2023). *Pflege Heute*. 8. Auflage. Elsevier. ISBN 978-3437267796.
-- Menche, N. (2017). *PFLEGEN Biologie Anatomie Physiologie*. 2. Auflage. Elsevier. ISBN 978-3437254031.
-- Larsen, R. (2016). *Anästhesie und Intensivmedizin für die Fachpflege*. 9. Auflage. Springer Verlag. ISBN 978-3-662-50443-7. DOI 10.1007/978-3-662-50444-4.
+### Folie 39 – Literaturverzeichnis
+- Schewior-Popp, S., Sitzmann, F., Ullrich, L. (2017). Thiemes Pflege. 13. Auflage. Georg Thieme Verlag. ISBN 978-3-13-243148-5. DOI 10.1055/b-004-140670.
+- Schraut, V. (2020). Pflege Heute Geriatrische Pflege. 1. Auflage. Elsevier. ISBN 978-3437267017.
+- Menche, N. (2023). Pflege Heute. 8. Auflage. Elsevier. ISBN 978-3437267796.
+- Menche, N. (2017). PFLEGEN Biologie Anatomie Physiologie. 2. Auflage. Elsevier. ISBN 978-3437254031.
+- Larsen, R. (2016). Anästhesie und Intensivmedizin für die Fachpflege. 9. Auflage. Springer Verlag. ISBN 978-3-662-50443-7. DOI 10.1007/978-3-662-50444-4.
 
 ## Abbildungen & Tabellen
 
-### Abbildung Folie 7 – Flüssigkeitsräume/Kompartimente
-Schematische Körperfigur (Mann, stehend) mit farbig markierten Flüssigkeitsanteilen, links prozentuale Aufteilung, rechts zwei Säulen (Intrazellulärraum / Extrazellulärraum) mit gelben Beschriftungskästen.
-- Linke Beschriftung an der Figur:
-  - ca. 41,5 % feste Stoffe
+### Folie 7 – Schema Flüssigkeitsräume/Kompartimente
+Grafik mit Körperfigur (stehender Mann, Beine blau eingefärbt) links, daneben Balkengrafiken und Beschriftungen. Aufteilung des Körpergewichts:
+- ca. 41,5 % feste Stoffe
+- ca. 58,5 % Flüssigkeiten, davon:
   - Blutflüssigkeit 4,5 %
   - interstitielle Flüssigkeit 19 %
   - intrazelluläre Flüssigkeit 35 %
-  - ca. 58,5 % Flüssigkeiten (Gesamtanteil)
-- Säule Intrazellulärraum: 60 % in den Zellen
-- Säule Extrazellulärraum: 40 % extrazelluläres Wasser, untergliedert in intravasaler Raum und interstitieller Raum
-- Gelbe Kästen (rechts): Lymphflüssigkeit; Plasma; andere Körperflüssigkeiten z.B.: Hirn-/Rückenmarksflüssigkeit, Nierengänge, Harngänge, Verdauungstrakt; Gewebeflüssigkeit
-- Pflegerische Bedeutung: veranschaulicht Verteilung des Körperwassers auf Intra- und Extrazellulärraum; Grundlage zum Verständnis von Dehydratation (v.a. extrazellulärer Verlust) und Ödembildung (interstitielle Einlagerung).
 
-### Abbildung Folie 12 – Diffusion (Illustration)
-Cartoon-/Anime-Bild zweier gegensätzlicher Figuren, die sich per Faust berühren (Fusion-Metapher). Dient als bildhafte Merkhilfe für "Vereinigung zu einer neuen ausgewogenen Lösung". Kein Fachinhalt.
+Rechte Spalten teilen die Flüssigkeit in zwei Räume:
+- Intrazellularraum: 60 % in den Zellen
+- Extrazellularraum: 40 % extrazelluläres Wasser, gegliedert in:
+  - Plasma
+  - intravasaler Raum
+  - interstitieller Raum
+- Zugeordnete Körperflüssigkeiten (gelb): Lymphflüssigkeit, Plasma, andere Körperflüssigkeiten z.B. Hirn-/Rückenmarksflüssigkeit, Nierengänge, Harngänge, Verdauungstrakt, Gewebeflüssigkeit.
 
-### Schema Folie 13 – Diffusion (3-stufig)
-Drei übereinander angeordnete Rechteck-Behälter mit Punktwolken:
-- (1) Links helle/graue Punkte in kleinem Feld, rechts dichte schwarze Punkte – zwei getrennte Konzentrationen, durch Trennlinie geteilt.
-- (2) Rote Zickzack-/Pfeillinie zeigt zufällige Teilchenbewegung; Durchmischung beginnt.
-- (3) Gleichmäßige Durchmischung grauer und schwarzer Punkte über den gesamten Behälter (Konzentrationsausgleich erreicht).
-- Bedeutung: visualisiert Brown'sche Molekularbewegung und den Weg zur vollständigen Durchmischung.
+Pflegerische Bedeutung: veranschaulicht, dass der Großteil der Körperflüssigkeit intrazellulär liegt (35 % Körpergewicht / 60 % des Wassers) und der intravasale (Blut-)Anteil mit 4,5 % vergleichsweise klein ist – relevant für das Verständnis von Flüssigkeitsverschiebungen und Volumenmangel.
 
-### Abbildung Folie 14 – Osmose (U-Rohr)
-U-förmiges Gefäß, durch eine gestrichelte rote Linie am Boden (semipermeable Membran) getrennt. Linke Seite reines Lösungsmittel (hellblau, niedriger Füllstand), rechte Seite Lösung mit gelösten Teilchen (dunkler gepunktet, höherer Füllstand). Vertikaler Doppelpfeil zwischen den Füllständen beschriftet "osmotischer Druck"; Beschriftung "semipermeable Membran" am Boden.
-- Bedeutung: Wasser wandert zur höher konzentrierten Seite, Niveauunterschied entspricht dem osmotischen Druck.
+### Folie 12 – Comic-Bild Diffusion
+Anime-/Comic-Ausschnitt (zwei Dragon-Ball-Figuren, die mit den Fäusten aneinanderstoßen bzw. verschmelzen). Dient als bildliche Metapher/Merkbild für „Verschmelzen zu einer neuen ausgewogenen Lösung". Keine fachliche Beschriftung.
 
-### Abbildung Folie 15 – Alltagsbeispiel Osmose (Kirschen)
-Blaue Infografik, Titel "Osmose-Beispiel: Aufplatzen von Kirschen". Zwei Felder:
-- "Vor dem Regen": rote Kirsche mit intakter Außenhaut; darunter Zelle mit Zuckermolekülen (rote Punkte), Beschriftungen "Außenhaut der Kirsche" und "Zucker".
-- "Während des Regens": Regentropfen dringen ein; Zelle nimmt Wasser auf und schwillt; rechte Kirsche mit "Aufgeplatzte Außenhaut", Beschriftung "Regen".
-- Bedeutung: anschauliches Osmose-Beispiel – Wasser strömt in die zuckerreiche (hyperosmolare) Zelle, bis die Haut platzt.
+### Folie 13 – Schema Diffusion (3 Stufen)
+Drei übereinander gestellte rechteckige Kästen zeigen den zeitlichen Ablauf des Konzentrationsausgleichs:
+- (1) Ausgangszustand: linke Hälfte mit grauen Punkten (Stoff A) gering, rechte Hälfte mit schwarzen Punkten (Stoff B) durch eine Trennlinie getrennt – ungemischt.
+- (2) Zwischenzustand: Trennung aufgehoben, Punkte beginnen sich zu vermischen; rote Zickzack-Pfeile symbolisieren die zufällige, ungerichtete Molekularbewegung (Brown'sche Molekularbewegung).
+- (3) Endzustand: graue und schwarze Punkte vollständig gleichmäßig durchmischt (Konzentrationsausgleich).
 
-### Flussdiagramm Folie 21 – Renin-Angiotensin-Aldosteron-System (RAAS)
-Drei blaue Auslöser-Kästen oben:
-- Stimulation der sympathischen Nierennerven
-- Blutdruckabfall, niedriger Blutdruck
-- niedrige Na⁺-Konz. im Blut, niedriges Blutvolumen
-→ führen zur Freisetzung von **Renin** (rosa Oval, neben Nieren-Symbol).
-Kaskade:
-- Angiotensinogen → (durch Renin) → **Angiotensin I**
-- Angiotensin I → durch **Angiotensin-Converting-Enzym (ACE)** (gelbes Oval) → **Angiotensin II**
-Wirkungen von Angiotensin II (vier Symbole):
-- Vasokonstriktion (verengtes Blutgefäß) → **Blutdruck steigt**
-- Durst (Wasserglas) → **Blut: Na⁺-Konz. ↑, K⁺-Konz. ↓**
-- ADH (Adiuretin) ↑ (Hypophyse-Symbol) → siehe Blutwerte
-- Aldosteron ↑ (Nebennieren-Symbol) → **Blutvolumen steigt**
-- Bedeutung: zentrales hormonelles Steuerungssystem für Blutdruck, Natrium und Blutvolumen; erklärt Wirkung von ACE-Hemmern und Grundlage der Volumenregulation.
+### Folie 14 – Abbildung Osmose (U-Rohr)
+U-förmiges Rohr, unten durch eine gestrichelte rote Linie = semipermeable Membran getrennt. Linker Schenkel: hellblaue Flüssigkeit (reines Lösungsmittel), niedriger Pegel. Rechter Schenkel: blaue Flüssigkeit mit vielen Punkten (höhere Konzentration gelöster Stoffe), höherer Pegel. Ein Doppelpfeil zwischen den Pegelständen ist mit „osmotischer Druck" beschriftet, die Membran unten mit „semipermeable Membran". Zeigt: Lösungsmittel wandert auf die Seite höherer Konzentration, Pegel steigt; die Höhendifferenz entspricht dem osmotischen Druck.
 
-### Tabelle Folie 18 – Wasserhaushalt (Aufnahme/Ausscheidung)
+### Folie 15 – Abbildung Alltagsbeispiel Osmose (Kirschen)
+Blaue Infografik mit Titel „Osmose-Beispiel: Aufplatzen von Kirschen", zwei Panels:
+- „Vor dem Regen": rote Kirsche mit „Außenhaut der Kirsche"; darunter Zellschema mit roten Punkten „Zucker" innen.
+- „Während des Regens": Regentropfen fallen auf die Kirsche; Wasser dringt ein (blaue Pfeile in das Zellschema); rechts „Aufgeplatzte Außenhaut" – die Zelle/Kirsche platzt durch eindringendes Wasser.
+Pflegerische Bedeutung: anschauliches Beispiel dafür, dass Wasser osmotisch in Richtung höherer Zuckerkonzentration einströmt und die Zelle zum Platzen bringen kann (analog zum Verhalten von Körperzellen bei osmotischen Verschiebungen).
+
+### Folie 18 – Tabelle/Zwei-Spalten-Aufstellung Wasserhaushalt
 | Wasseraufnahme | Menge | Wasserausscheidung | Menge |
-|----------------|-------|--------------------|-------|
+|---|---|---|---|
 | Getränke | 1300 ml | Urin | 1500 ml |
 | Nahrungsmittel | 800 ml | Stuhl | 100 ml |
 | Oxidationswasser | 300 ml | Haut | 300 ml |
 | | | Respiration | 500 ml |
-(Summe Aufnahme = Summe Ausscheidung = ca. 2400 ml/Tag.)
+| Summe | 2400 ml | Summe | 2400 ml |
 
-### Tabelle Folie 25 – Formen der Dehydratation
+Pflegerische Bedeutung: Grundlage für Bilanzierung; zeigt, dass Aufnahme und Ausscheidung im Gleichgewicht stehen (je 2400 ml) und dass neben Getränken auch Nahrung und Oxidationswasser zur Aufnahme sowie Haut und Atmung („Perspiratio insensibilis") zur Ausscheidung beitragen.
+
+### Folie 19 – Formel Flüssigkeitsbedarf (DGE)
+- 18 bis 64 Jahre: 35 ml/kgKG/Tag
+- Ab 65 Jahre: 30 ml/kgKG/Tag
+
+### Folie 21 – Schema Renin-Angiotensin-Aldosteron-System (RAAS)
+Flussdiagramm der hormonellen Blutdruck-/Volumenregulation:
+- Drei Auslöser oben (blaue Kästen): „Stimulation der sympathischen Nierennerven", „Blutdruckabfall, niedriger Blutdruck", „niedrige Na⁺-Konz. im Blut, niedriges Blutvolumen".
+- Diese führen zur Ausschüttung von Renin (rosa Oval, mit Nieren-Symbol).
+- Renin wandelt Angiotensinogen → Angiotensin I (rosa Kästen).
+- Angiotensin-Converting-Enzym (ACE) (gelbes Oval) wandelt Angiotensin I → Angiotensin II.
+- Angiotensin II hat vier Wirkungen (Symbole mit Beschriftung):
+  - Vasokonstriktion (verengte Gefäße)
+  - Durst (Trinkglas)
+  - ADH (Adiuretin) ↑
+  - Aldosteron ↑
+- Ergebnisse unten (grüne Kästen): „Blutdruck steigt", „Blut: Na⁺-Konz. ↑, K⁺-Konz. ↓", „Blutvolumen steigt".
+
+Pflegerische/medizinische Bedeutung: erklärt, wie der Körper bei Volumen-/Blutdruckabfall über Hormone gegensteuert – zentral für das Verständnis von Blutdruckregulation, Ödembildung und Wirkung von ACE-Hemmern/Diuretika.
+
+### Folie 25 – Tabelle Dehydratationsformen
 | Form | Wasser und Serum-Na⁺ |
-|------|----------------------|
+|---|---|
 | Isoton | Verlust von Wasser und Na⁺ in gleichem Maße |
 | Hypoton | Verlust von Wasser, Na⁺ zu niedrig |
 | Hyperton | Verlust von Wasser, Na⁺ zu hoch |
-Normwerte (Fußnote): Serum-Na⁺ 135–145 mmol/l; Serum-Osmolalität 280–296 mosmol/kg.
 
-### Bildtafel Folie 26 – Symptome der Dehydratation (Fotos)
-- Foto oben links: Säuglingskopf mit eingesunkener (eingedellter) Fontanelle.
-- Foto Mitte oben: zwei Urinröhrchen – links dunkel/bernsteinfarben (stark konzentriert = Exsikkose-Hinweis), rechts hellgelb (normal hydriert).
-- Foto Mitte unten: trockene, rissige, schuppige Lippen.
-- Foto rechts: geöffneter Mund mit trockener, belegter, rissiger Zunge.
-- Bedeutung: klinische Beobachtungszeichen zur Einschätzung des Hydratationszustands.
+Zusatz: Normwerte Serum-Na⁺ 135–145 mmol/l, Serum-Osmolalität 280–296 mosmol/kg.
 
-### Bildtafel Folie 34 – Trinkhilfen (Fotos)
-- Bündel bunter Trinkhalme.
-- Weiße Tasse mit Kunststoff-Trinkaufsatz/Ausgusshilfe.
-- Roter Schnabelbecher mit Deckel und Ausguss.
-- Rotes Trinkgefäß mit zwei schwarzen Griffen (Zwei-Henkel-Becher).
-- Bedeutung: Hilfsmittel zur Förderung selbstständigen Trinkens im Rahmen der Dehydratationsprophylaxe.
+### Folie 26 – Fotos Symptome der Dehydratation
+Vier klinische Fotos:
+1. Kopf eines Säuglings von oben – zeigt eingesunkene Fontanelle (Zeichen der Dehydratation bei Säuglingen).
+2. Zwei Reagenzgläser mit Urin: links dunkel-bernsteinfarben (konzentriert = Dehydratation), rechts hellgelb (normal hydriert). Vergleichsbild zur Urinfarbe.
+3. Nahaufnahme des Mundes mit trockenen, rissigen/eingerissenen Lippen (Rhagaden).
+4. Weit geöffneter Mund mit herausgestreckter Zunge: trockene, borkig belegte Zunge mit Rissen (Zeichen der Exsikkose).
 
-### Abbildung Folie 35 – Bilanzierungsformular
-Scan/Foto eines Formulars "Miktionsprotokoll/Bilanzierung" (in Anlehnung an den Expertenstandard Förderung der Harnkontinenz – empfohlener Ausfüllzeitraum 3–5 Tage). Kopfzeile mit Feldern Name, Jahr, Nr. Legende: Vorlage (VN = Vorlage nass, VF = Vorlage feucht, VT = Vorlage trocken); Toilettengang (M = hat sich gemeldet, A = wurde aufgefordert); Ergebnis (W = Wasser gelassen, WW = kein Wasser gelassen); Harndrang (J = Ja, N = Nein); Menge Urin in ml; Hilfsmittel (TS = Toilettenstuhl, UR = Urinflasche). Tabellenraster mit Spalten Einfuhr (Uhrzeit, Flüssigkeit/Art, ml, Hilfsmittel/Hilfe) und Ausfuhr (Uhrzeit, Vorlage, Toilettengang, Ergebnis, Harndrang, Menge, Hilfsmittel/Hilfe); Zeilen für Summe und Bilanz.
-- Bedeutung: praktisches Werkzeug des Flüssigkeitsmanagements zur Ein-/Ausfuhr-Bilanzierung.
+### Folie 34 – Fotos Trinkhilfen
+Vier Fotos von Hilfsmitteln zur Trinkförderung:
+1. Bündel bunter Trinkhalme.
+2. Weiße Tasse mit spezieller ausklappbarer/gebogener Halterung bzw. Henkel.
+3. Roter Schnabelbecher mit Deckel und Trinktülle.
+4. Roter Becher mit zwei großen schwarzen Griffen (beidhändig greifbar) – ergonomische Trinkhilfe.
 
-### Tabelle Folie 37 – Formen der Hyperhydratation
+### Folie 35 – Formular Miktionsprotokoll/Bilanzierung
+Vordruck/Formular „Miktionsprotokoll/Bilanzierung – In Anlehnung an den Expertenstandard Förderung der Harnkontinenz – Empfohlener Ausfüllzeitraum 3–5 Tage". Kopf mit Feldern Name, Jahr, Nr. Ankreuzfelder „Miktionsprotokoll" / „Bilanzierungsprotokoll". Legende erläutert Abkürzungen (Vorlage: VN = Vorlage nass, VF = Vorlage feucht, VT = Vorlage trocken; Toilettengang: M = hat sich gemeldet, A = wurde aufgefordert; Ergebnis: W = Wasser gelassen, KW = kein Wasser gelassen; Handzeichen: J = Ja, N = Nein; Menge Urin in ml; Hilfsmittel: TS = Toilettenstuhl, UF = Urinflasche). Tabellenraster mit Spalten Einfuhr (Uhrzeit, Flüssigkeitsart, ml, Hdz) und Ausfuhr (Uhrzeit, Vorlage, Toilettengang, Ergebnis, Handzeichen, Menge, Hilfsmittel, Hdz), je Datum, mit Zeilen für Summe und Bilanz. Herausgeber-Hinweis: STANDARD SYSTEME GmbH.
+Pflegerische Bedeutung: praktisches Dokumentationswerkzeug zur Erfassung von Ein- und Ausfuhr (Bilanzierung), zentral für Flüssigkeitsmanagement und Erkennung von Dehydratation/Hyperhydratation.
+
+### Folie 37 – Tabelle Hyperhydratationsformen
 | Form | Wasser und Serum-Na⁺ |
-|------|----------------------|
+|---|---|
 | Isoton | Überschuss von Wasser und Na⁺ in gleichem Maße |
 | Hypoton | Überschuss von Wasser; Na⁺ zu niedrig |
 | Hyperton | Überschuss von Wasser, Na⁺ zu hoch |
 
-### Bildtafel Folie 38 – Symptome der Hyperhydratation (Fotos)
-- Foto links: beide Unterschenkel/Füße mit deutlichen Ödemen; ein Finger drückt in das Gewebe und hinterlässt eine bleibende Delle (Dellen-/Eindrückbarkeitsödem, "pitting edema").
-- Foto rechts: Hals eines älteren Patienten mit gestauten/hervortretenden Halsvenen (obere Einflussstauung), Nasenbrille (Sauerstoff) sichtbar.
-- Bedeutung: klinische Zeichen der Überwässerung; wichtig bei Herz-/Niereninsuffizienz und Überinfusion.
+### Folie 38 – Fotos Symptome der Hyperhydratation
+Zwei klinische Fotos:
+1. Beide Unterschenkel/Füße mit deutlichem Ödem; ein Finger drückt in das Schienbein und hinterlässt eine bleibende Delle (Dellenödem / eindrückbares Ödem als Zeichen der Wassereinlagerung).
+2. Hals einer älteren Person mit gestauten, hervortretenden Halsvenen (Halsvenenstauung); im Bild verläuft ein Schlauch (z.B. Sauerstoffbrille/Sonde). Zeichen der Volumenüberladung/Rechtsherzbelastung.
 
 ## Transkribierte Fototexte
-- Folie 15 (Kirschen-Infografik): „Osmose-Beispiel: Aufplatzen von Kirschen" · „Vor dem Regen" · „Außenhaut der Kirsche" · „Zucker" · „Während des Regens" · „Regen" · „Aufgeplatzte Außenhaut".
-- Folie 14 (U-Rohr): „osmotischer Druck" · „semipermeable Membran".
-- Folie 7 (Kompartimente): „Intrazellularraum" · „Extrazellularraum" · „ca. 41,5 % feste Stoffe" · „Blutflüssigkeit 4,5 %" · „interstitielle Flüssigkeit 19 %" · „intrazelluläre Flüssigkeit 35 %" · „ca. 58,5 % Flüssigkeiten" · „60 % in den Zellen" · „40 % extrazelluläres Wasser" · „intravasaler Raum" · „interstitieller Raum" · „Lymphflüssigkeit" · „Plasma" · „andere Körperflüssigkeiten z.B.: Hirn-/Rückenmarksflüssigkeit, Nierengänge, Harngänge, Verdauungstrakt" · „Gewebeflüssigkeit".
-- Folie 21 (RAAS-Diagramm): „Stimulation der sympathischen Nierennerven" · „Blutdruckabfall, niedriger Blutdruck" · „niedrige Na⁺-Konz. im Blut, niedriges Blutvolumen" · „Renin" · „Angiotensinogen" · „Angiotensin I" · „Angiotensin-Converting-Enzym (ACE)" · „Angiotensin II" · „Vasokonstriktion" · „Durst" · „ADH (Adiuretin) ↑" · „Aldosteron ↑" · „Blutdruck steigt" · „Blut: Na⁺-Konz. ↑, K⁺-Konz. ↓" · „Blutvolumen steigt".
-- Folie 35 (Bilanzierungsformular): „Miktionsprotokoll/Bilanzierung" · „In Anlehnung an den Expertenstandard Förderung der Harnkontinenz – Empfohlener Ausfüllzeitraum 3–5 Tage" · „Name:" · „Jahr:" · „Nr.:" · Legende: „VN = Vorlage nass, VF = Vorlage feucht, VT = Vorlage trocken; M = hat sich gemeldet, A = wurde aufgefordert; W = Wasser gelassen, WW = kein Wasser gelassen; J = Ja, N = Nein; TS = Toilettenstuhl, UR = Urinflasche" · Spalten: „Einfuhr / Uhrzeit / Flüssigkeit ml / Hilfsmittel", „Ausfuhr / Vorlage / Toilettengang / Ergebnis / Harndrang / Menge / Hilfsmittel" · „Summe" · „Bilanz".
+
+- Folie 15 (Infografik): „Osmose-Beispiel: Aufplatzen von Kirschen" – „Vor dem Regen" – „Außenhaut der Kirsche" – „Zucker" – „Während des Regens" – „Regen" – „Aufgeplatzte Außenhaut".
+- Folie 21 (Schema RAAS): „Stimulation der sympathischen Nierennerven" – „Blutdruckabfall, niedriger Blutdruck" – „niedrige Na⁺-Konz. im Blut, niedriges Blutvolumen" – „Renin" – „Angiotensinogen" – „Angiotensin I" – „Angiotensin-Converting-Enzym (ACE)" – „Angiotensin II" – „Vasokonstriktion" – „Durst" – „ADH (Adiuretin) ↑" – „Aldosteron ↑" – „Blutdruck steigt" – „Blut: Na⁺-Konz. ↑, K⁺-Konz. ↓" – „Blutvolumen steigt".
+- Folie 14 (Abbildung): „osmotischer Druck" – „semipermeable Membran".
+- Folie 7 (Schema): „Intrazellularraum" – „Extrazellularraum" – „ca. 41,5 % feste Stoffe" – „ca. 58,5 % Flüssigkeiten" – „Blutflüssigkeit 4,5 %" – „interstitielle Flüssigkeit 19 %" – „intrazelluläre Flüssigkeit 35 %" – „60 % in den Zellen" – „40 % extrazelluläres Wasser" – „Lymphflüssigkeit" – „Plasma" – „intravasaler Raum" – „interstitieller Raum" – „andere Körperflüssigkeiten z.B.: Hirn-/Rückenmarksflüssigkeit, Nierengänge, Harngänge, Verdauungstrakt" – „Gewebeflüssigkeit".
+- Folie 35 (Formular): „Miktionsprotokoll/Bilanzierung" – „Empfohlener Ausfüllzeitraum 3–5 Tage" – „Name" – „Jahr" – „Nr." – „Einfuhr" – „Ausfuhr" – „Summe" – „Bilanz" – Legendenkürzel VN/VF/VT, M/A, W/KW, J/N, TS/UF.
+- Fußzeile aller Inhaltsfolien: „21.04.2026 – Herr Noll - Grundlagen Wasser- und Elektrolythaushalt".
+- Logo: „Christliche Bildungsakademie für Gesundheitsberufe".
 
 ## Kernbegriffe (Glossar)
-- **Wasserhaushalt**: Regulation der Flüssigkeitsmenge im Körper.
-- **Elektrolythaushalt**: Gleichgewicht der Ionen; hängt eng mit dem Wasserhaushalt zusammen.
-- **Elektrolyte**: gelöste geladene Teilchen (primär Salze, auch Säuren/Basen); Kationen (+) und Anionen (−), in Summe ausgeglichen, ca. 300 mmol/l.
-- **Kationen / Anionen**: positiv bzw. negativ geladene Ionen.
-- **Osmolarität**: Molekülkonzentration in einer Flüssigkeit (je Liter), Summe aus Kationen, Anionen und neutralen Teilchen.
-- **Osmotischer Druck (osmotischer Gradientenunterschied)**: aus der Differenz osmotisch wirksamer Teilchen zweier Räume entstehender Druck, der Flüssigkeit verschiebt.
-- **Diffusion**: energieloser Konzentrationsausgleich gelöster Stoffe durch Brown'sche Molekularbewegung bis zur vollständigen Durchmischung.
-- **Osmose**: Bewegung des Lösungsmittels (Wasser) durch eine semipermeable Membran vom Ort niedriger zum Ort höherer Konzentration gelöster Stoffe.
-- **Semipermeable Membran**: lässt Wasser und bestimmte Moleküle durch, andere nicht; trennt z.B. Intra- und Extrazellulärraum.
-- **Kompartimente / Flüssigkeitsräume**: Intrazellulärraum (~60 % des Körperwassers) und Extrazellulärraum (~40 %; intravasal + interstitiell).
-- **Intravasal / interstitiell / intrazellulär**: in den Gefäßen / im Zellzwischenraum / in den Zellen.
-- **Oxidationswasser**: im Stoffwechsel gebildetes Wasser (ca. 300 ml/Tag).
-- **Perspiratio (Haut/Respiration)**: Wasserverlust über Haut (300 ml) und Atmung (500 ml).
-- **Homöostase**: Aufrechterhaltung konstanter innerer Verhältnisse (Fließgleichgewicht) trotz äußerer Veränderungen.
-- **Isovolämie / Isotonie / Isoionie**: Gleichgewicht von Flüssigkeitsvolumen / osmotischem Druck / Elektrolytverteilung.
-- **RAAS (Renin-Angiotensin-Aldosteron-System)**: hormonelle Kaskade (Renin → Angiotensin I → ACE → Angiotensin II → Vasokonstriktion, Durst, ADH, Aldosteron) zur Steuerung von Blutdruck und Volumen.
-- **ADH (Adiuretin/Vasopressin)**: Hormon zur Wasserrückresorption in der Niere, senkt Diurese.
-- **Aldosteron**: Nebennierenhormon, fördert Natrium- und Wasserrückhalt, steigert Blutvolumen.
-- **Osmorezeptoren / Barorezeptoren / pH-Rezeptoren**: messen Salzkonzentration (Hypothalamus) / Blutdruck (z.B. A. carotis) / pH.
-- **Diurese**: Harnausscheidung; verminderte Diurese als Kompensationsmechanismus.
-- **Flüssigkeitsbedarf (DGE)**: 18–64 J.: 35 ml/kgKG/Tag; ab 65 J.: 30 ml/kgKG/Tag.
-- **Bilanzierung / Trinkprotokoll**: Erfassung von Ein- und Ausfuhr als wichtigstes Werkzeug des Flüssigkeitsmanagements.
-- **Dehydratation (Exsikkose)**: Flüssigkeitsverlust im extrazellulären Bereich; Formen isoton, hypoton, hyperton (nach Na⁺).
-- **Stehende Hautfalte**: bei Erwachsenen KEIN sicheres Dehydratationszeichen (bei Alten/Adipösen irreführend), bei Säuglingen als Symptom gewertet.
-- **Hyperhydratation (Überwässerung)**: Wasserüberschuss im extrazellulären Bereich; Formen isoton, hypoton, hyperton; Zeichen: Ödeme, gestaute Halsvenen.
-- **Pitting Edema (Dellenödem)**: eindrückbares Ödem mit bleibender Delle.
-- **DNQP**: Deutsches Netzwerk für Qualitätsentwicklung in der Pflege; Expertenstandard Ernährungsmanagement mit Maßnahmen zur Dehydratationsprophylaxe.
-- **Trinkhilfen**: Schnabelbecher, Trinkhalme, Zwei-Henkel-Becher, Tassen mit Griffen zur Förderung des selbstständigen Trinkens.
-- **Subcutane Infusion (Hypodermoklyse)**: Flüssigkeitsgabe unter die Haut, v.a. im ambulanten Bereich.
-- **Serum-Normwerte**: Serum-Na⁺ 135–145 mmol/l; Serum-Osmolalität 280–296 mosmol/kg.
+
+- **Wasserhaushalt:** Regulation der Flüssigkeitsmenge im Körper.
+- **Elektrolythaushalt:** Gleichgewicht der Ionen (Kationen/Anionen), in Summe immer ausgeglichen, ca. 300 mmol/l im Körper.
+- **Elektrolyte:** Primär Salze, auch Basen und Säuren; positiv geladene Kationen und negativ geladene Anionen.
+- **Kation / Anion:** positiv bzw. negativ geladenes Ion.
+- **Osmolarität:** Molekülkonzentration in einer Flüssigkeit (meist je Liter); Summe aus Kationen, Anionen und neutralen Teilchen.
+- **Osmotischer Druck (osmotischer Gradientenunterschied):** Druck, der aus der Differenz der osmotisch wirksamen Teilchen zweier Räume resultiert; „Fähigkeit, Wasser zu ziehen"; verursacht Flüssigkeitsverschiebungen.
+- **Diffusion:** zufällige, ungerichtete, energielose (Brown'sche) Molekularbewegung, die zum Konzentrationsausgleich und zur vollständigen Durchmischung führt.
+- **Brown'sche Molekularbewegung:** zufällige Eigenbewegung von Teilchen in Flüssigkeiten/Gasen.
+- **Osmose:** Bewegung des Lösungsmittels (Wasser) durch eine semipermeable Membran vom Ort niedriger zum Ort höherer Konzentration gelöster Stoffe, Ziel Konzentrationsausgleich.
+- **Semipermeable Membran:** halbdurchlässige Membran; lässt Wasser und bestimmte Moleküle hindurch, andere nicht; trennt z.B. intra- und extrazellulären Raum.
+- **Kompartimente / Flüssigkeitsräume:** Intrazellularraum (60 % des Wassers) und Extrazellularraum (40 %), letzterer unterteilt in interstitiell und intravasal.
+- **Intrazellulärraum:** Flüssigkeit innerhalb der Zellen (ca. 35 % Körpergewicht).
+- **Extrazellulärraum:** Flüssigkeit außerhalb der Zellen (interstitiell + intravasal).
+- **Interstitiell:** Flüssigkeit im Zwischenzellraum/Gewebe (ca. 19 %).
+- **Intravasal:** Flüssigkeit in den Gefäßen/Blut (Blutflüssigkeit ca. 4,5 %).
+- **Oxidationswasser:** im Stoffwechsel entstehendes Wasser (ca. 300 ml/Tag Aufnahmeanteil).
+- **Perspiratio (Haut/Respiration):** unmerklicher Wasserverlust über Haut (300 ml) und Atmung (500 ml).
+- **Flüssigkeitsbedarf (DGE):** 18–64 J.: 35 ml/kgKG/Tag; ab 65 J.: 30 ml/kgKG/Tag.
+- **Bilanzierung:** Erfassung von Ein- und Ausfuhr; wichtigstes Werkzeug des Flüssigkeitsmanagements.
+- **Homöostase:** Aufrechterhaltung konstanter innerer Verhältnisse (Volumen, Osmolarität, Elektrolyte) trotz äußerer Veränderungen; permanentes Fließgleichgewicht.
+- **Isovolämie:** Flüssigkeitsvolumen im Gleichgewicht.
+- **Isotonie:** Konstanthaltung des osmotischen Drucks.
+- **Isoionie:** physiologische Verteilung der Elektrolyte.
+- **Osmorezeptoren:** im Hypothalamus, messen die Salzkonzentration.
+- **Barorezeptoren:** messen den Blutdruck (z.B. A. carotis).
+- **Renin-Angiotensin-Aldosteron-System (RAAS):** hormonelles Steuerungssystem für Blutdruck und Volumen (Renin → Angiotensin I → über ACE → Angiotensin II → Vasokonstriktion, Durst, ADH↑, Aldosteron↑).
+- **ADH (Adiuretin):** antidiuretisches Hormon, fördert Wasserrückresorption in der Niere.
+- **Aldosteron:** Hormon der Nebennierenrinde, fördert Na⁺-Rückresorption und K⁺-Ausscheidung.
+- **ACE (Angiotensin-Converting-Enzym):** wandelt Angiotensin I in Angiotensin II um.
+- **Diurese:** Harnausscheidung; verminderte Diurese als Reaktion auf Flüssigkeitsmangel.
+- **Dehydratation (Exsikkose):** Flüssigkeitsverlust im extrazellulären Bereich; Formen isoton, hypoton, hyperton (nach Serum-Na⁺).
+- **Isotone/hypotone/hypertone Dehydratation:** Verlust von Wasser mit gleichem/zu niedrigem/zu hohem Na⁺-Anteil.
+- **Stehende Hautfalte:** bei Säuglingen Dehydratationszeichen, bei Erwachsenen (v.a. älteren) KEIN sicheres Zeichen.
+- **Eingesunkene Fontanelle:** Dehydratationszeichen bei Neugeborenen/Säuglingen.
+- **Durstfieber:** Fieber durch Flüssigkeitsmangel, v.a. bei Säuglingen/Kleinkindern.
+- **Dysphagie:** Schluckstörung (Symptom und Risikofaktor).
+- **Speichelsee:** Speichelansammlung unter dem Zungengrund; Fehlen als Dehydratationszeichen.
+- **Hyperhydratation:** Vermehrung des Wassers im extrazellulären Bereich; Formen isoton, hypoton, hyperton.
+- **Ödem (Dellenödem):** Wassereinlagerung im Gewebe, eindrückbar; Zeichen der Hyperhydratation.
+- **Halsvenenstauung:** gestaute Halsvenen als Zeichen der Volumenüberladung.
+- **Subcutane Infusion:** Flüssigkeitsgabe ins Unterhautfettgewebe, im ambulanten Bereich.
+- **DNQP:** Deutsches Netzwerk für Qualitätsentwicklung in der Pflege; Herausgeber der Expertenstandards.
+- **Expertenstandard Ernährungsmanagement:** DNQP-Standard „zur Sicherung und Förderung der oralen Ernährung in der Pflege", enthält Maßnahmen zur Dehydratationsprophylaxe.
+- **DGE:** Deutsche Gesellschaft für Ernährung; liefert Formel zum Flüssigkeitsbedarf.
+- **Trinkhilfen:** Hilfsmittel wie Schnabelbecher, Trinkhalme, Becher mit Griffen zur Trinkförderung.
+- **„Flaschenbatterien":** viele bereitgestellte Flaschen auf einmal – zu vermeiden, da überfordernd.
+- **Kachexie (kachektisch):** starke Auszehrung/Abmagerung; größerer relativer Flüssigkeitsanteil.
+- **Adipositas (adipös):** Fettleibigkeit; geringeres relatives Flüssigkeitsvolumen.

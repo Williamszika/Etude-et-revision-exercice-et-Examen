@@ -2,16 +2,16 @@
 
 ## Quelle: PDFs/46-hautbeobachtung.pdf
 
-Foliensatz zur Unterrichtseinheit "CE 02 / UE 01 – Bei der Körperpflege unterstützen". 23 Folien.
+CE 02 / UE 01 "Bei der Körperpflege unterstützen"
 
 ## Dokumenttyp
 
-Unterrichts-Präsentation (PowerPoint-Foliensatz) für die Pflegeausbildung mit Fotos, Kontrastlisten (physiologisch/pathophysiologisch), Merksätzen und einem Arbeitsauftrag.
+Unterrichtspräsentation (PowerPoint-Foliensatz, 23 Folien) für die Pflegeausbildung. Enthält Fachtext (Stichpunkte), zahlreiche Fotos von Hautbefunden, ein Foto eines Fotoapparats/Wundmesslineals, einen Arbeitsauftrag und ein Literaturverzeichnis.
 
 ## Inhalt (nach Abschnitten)
 
 ### Folie 1 – Titel
-**Hautbeobachtung** – CE 02 / UE 01 Bei der Körperpflege unterstützen.
+Hautbeobachtung. CE 02 / UE 01 "Bei der Körperpflege unterstützen".
 
 ### Folie 2 – Ziele der Hautpflege
 - Förderung Wohlbefinden
@@ -28,14 +28,14 @@ Unterrichts-Präsentation (PowerPoint-Foliensatz) für die Pflegeausbildung mit 
 - pH-Wert von 5,5 (leicht sauer)
 - Aus Talgdrüsen stammen Fette (sorgen für Wasserabweisung, Geschmeidigkeit)
 
-### Folie 4 – Hautbeobachtung (die 5 Kriterien)
+### Folie 4 – Hautbeobachtung (5 Kriterien)
 1. Hauttyp
 2. Hautfarbe
 3. Hautoberfläche
 4. Hauttemperatur
 5. Hautspannung (Hautturgor)
 
-Merkfrage (hervorgehobenes Kästchen): "Wann muss die Hautbeobachtung pflegerisch durchgeführt werden?"
+Leitfrage (blaues Kästchen): "Wann muss die Hautbeobachtung pflegerisch durchgeführt werden?"
 
 ### Folie 5 – Datenerhebung
 - Möglichkeit bei jedem Kontakt nutzen
@@ -43,15 +43,16 @@ Merkfrage (hervorgehobenes Kästchen): "Wann muss die Hautbeobachtung pflegerisc
 - Bei Körperpflege Beachtung z.B. Hautfalten, Genitalbereich
 - Bei pflegerischen Interventionen, z.B. Verbandswechsel, Anziehen von Kompressionsstrümpfen
 - Veränderungen regelmäßig erfragen
-- (Pfeil-Hervorhebung): Dokumentation der Veränderungen & evtl. Fotodokumentation ergänzend
+
+→ Dokumentation der Veränderungen & evtl. Fotodokumentation ergänzend
 
 ### Folie 6 – Fotodokumentation
 - Aufklärung & Information über die Erstellung der Fotos
 - Einholung Zustimmung Pflegeempfänger/in / ggf. Betreuer/in
 - zusätzlich immer schriftliche Wundeinschätzung
 
-### Folie 7 – Fotodokumentation (Bildbeispiel)
-Foto einer Wunde mit Messlineal zur Größenbestimmung.
+### Folie 7 – Fotodokumentation (Bildfolie)
+Zeigt Wundfotografie mit Messlineal an einer Wunde sowie ein Einmal-Wundmesslineal der "Initiative Chronische Wunden e.V.".
 
 ### Folie 8 – Hauttyp
 - **Normale Haut** = weder zu viel noch zu wenig Fett, kaum Hautunreinheiten oder andere Hautprobleme
@@ -118,7 +119,7 @@ Foto einer Wunde mit Messlineal zur Größenbestimmung.
 - Hämolyse (Zerstörung Erythrozyten)
 
 ### Folie 14 – Licht- und Phototherapie bei Neugeborenenikterus
-Bildfolie: Neugeborenes unter blauem Phototherapie-Licht.
+Bildfolie: Neugeborenes unter blauer Phototherapielampe im Inkubator (Blaulichttherapie zur Behandlung des Neugeborenenikterus).
 
 ### Folie 15 – Hautturgor = Hautspannung
 **Pathophysiologisch herabgesetzt:**
@@ -151,10 +152,10 @@ Physiologisch 28–33 °C:
 - Herzinsuffizienz
 - Kreislaufbelastung
 
-### Folie 18 – Hautoberfläche
-Merkkästchen: "Abhängig vom Alter und der Talg- und Schweißproduktion, sie zeigt **individuelle** Besonderheiten wie Muttermale, Behaarung oder Narben (verheilte Wunden). Sie ist frei von Hautdefekten."
+### Folie 18 – Hautoberfläche / Effloreszenzen
+Info (blaues Kästchen): Abhängig vom Alter und der Talg- und Schweißproduktion, sie zeigt **individuelle** Besonderheiten wie Muttermale, Behaarung oder Narben (verheilte Wunden). Sie ist frei von Hautdefekten.
 
-Definition: **Effloreszenz** = Pathologische Hautveränderung
+**Effloreszenz** = Pathologische Hautveränderung
 
 **Primäre Effloreszenzen:**
 - Folge einer Erkrankung
@@ -172,27 +173,25 @@ Definition: **Effloreszenz** = Pathologische Hautveränderung
 - Geschwür
 - Narbe
 
-### Folie 19 – Primäreffloreszenz (Bildbeispiele)
-Vier Fotos mit Beschriftung:
+### Folie 19 – Primäreffloreszenz (Bildfolie mit 4 Fotos)
 - Bläschen / Blase z.B. nach Verbrennungen, Herpes
 - Quaddel z.B. bei Neurodermitis / Allergie
 - Fleck, z.B. Pigmenteinlagerung
 - Papel, z.B. Insektenstichreaktion
 
-### Folie 20 – Sekundäreffloreszenz (Bildbeispiele)
-Fünf Fotos mit Beschriftung:
+### Folie 20 – Sekundäreffloreszenz (Bildfolie mit 5 Fotos)
 - Kruste
 - Erosion, z.B. nach Platzen Blase
 - Schuppe, z.B. bei Schuppenflechte
 - Lichenifikation (Vertiefung Hautfalten) nach chronischer mechanischer Reizung
 - Atrophie (Gewebeschwund)
 
-### Folie 21 – Hautoberfläche (weitere Veränderungen)
-- Verletzungen
-- OP-Wunden
-- Hämatome
-- Hauttumore
-- Parasiten (z.B. Läuse)
+### Folie 21 – Hautoberfläche (weitere Befunde)
+- + Verletzungen
+- + OP-Wunden
+- + Hämatome
+- + Hauttumore
+- + Parasiten (z.B. Läuse)
 
 ### Folie 22 – Auftrag
 - Lesen Sie in Einzelarbeit das "Fallbeispiel Frau Schwarz" (Datei ILIAS).
@@ -206,59 +205,53 @@ Fünf Fotos mit Beschriftung:
 
 ## Abbildungen & Tabellen
 
-- **Folie 6:** Foto einer silbernen Sony-Kompaktdigitalkamera (mit ZEISS-Objektiv, 8x optischer Zoom, 20,1 Megapixel). Illustriert die Fotodokumentation.
-- **Folie 7:** Nahaufnahme einer offenen, roten Wunde an einer alten, faltigen Haut (Extremität). Eine behandschuhte Hand hält ein cm-Lineal daneben zur Größenmessung. Rechts abgebildet: ein Messlineal der "Initiative Chronische Wunden e.V." (Pölle 27/28, 06484 Quedlinburg, Fon +49 6455 7593965, www.icwunden.de) mit Feldern für Name und Datum. Pflegerische Bedeutung: standardisierte Wunddokumentation mit Größenreferenz.
-- **Folie 8:** Zwei Fotos. Oben: extreme Nahaufnahme trockener, schuppiger, rissiger Haut. Unten: Gesicht/Wange einer jungen Person mit Akne (Pickel, Mitesser). Illustrieren die Hauttypen (trockene Haut, fettige/unreine Haut).
-- **Folie 10:** Drei Fotos zur Rötung. Oben Mitte: gerötetes rundes Areal auf Haut (Entzündung/Reaktion). Rechts oben: geröteter, gekratzter Unterarm (Juckreiz/Entzündung). Rechts unten: fiebriges Kind mit kühlem Waschlappen auf der Stirn und Fieberthermometer im Bett. Illustration physiologische vs. pathophysiologische Rötung.
-- **Folie 12:** Zwei Fotos zur Blaufärbung. Links: Hand einer älteren Person mit deutlich blau/livide verfärbtem Fingernagel/Finger (Akrozyanose). Rechts: geteiltes Bild (Alamy-Wasserzeichen) von blau-violetten Lippen und blau-violett verfärbter Zunge – zentrale Zyanose. Bedeutung: Zeichen für Sauerstoffmangel.
-- **Folie 13:** Zwei Fotos zur Gelbfärbung. Oben: schlafendes Neugeborenes mit gelblicher Hautfärbung (Neugeborenenikterus), Hände der Eltern daneben. Rechts: Gesicht eines Mannes, der sein Unterlid herunterzieht, um die deutlich gelb verfärbte Augenbindehaut (Sklerenikterus) zu zeigen. Bedeutung: Zeichen für Leber-/Gallenwegs-/Pankreaserkrankungen.
-- **Folie 14:** Foto eines Neugeborenen in einem Inkubator/Bettchen unter einer blau leuchtenden LED-Phototherapie-Lampe (Augen abgedeckt). Illustriert die Behandlung des Neugeborenenikterus.
-- **Folie 15:** Zwei Fotos zum Hautturgor. Links unten: Hand einer Pflegekraft, die eine stehende Hautfalte am Handrücken einer alten Person anhebt (stehende Hautfalte = herabgesetzter Turgor bei Dehydratation). Rechts unten: geschwollener Unterschenkel/Fuß, in den ein Finger drückt und eine Delle hinterlässt (Ödem, "Dellen-/Eindruckbildung" = erhöhter Turgor / Flüssigkeitseinlagerung).
-- **Folie 19 (Primäreffloreszenz):** Vier klinische Nahaufnahmen. 1) Gruppierte gelblich-pralle Bläschen/Blasen auf geröteter Haut (z.B. Verbrennung, Herpes). 2) Erhabene, blasse Quaddeln auf leicht geröteter Haut (Neurodermitis/Allergie). 3) Bräunlich abgegrenzter Fleck (Pigmenteinlagerung). 4) Gerötete erhabene Papel (Insektenstichreaktion).
-- **Folie 20 (Sekundäreffloreszenz):** Fünf klinische Nahaufnahmen mit Pfeilbeschriftung: Kruste (verkrustete Wunde); Erosion (nach Platzen einer Blase, nässendes rotes Areal); Schuppe (weißliche Schuppung, z.B. Schuppenflechte/Psoriasis); Lichenifikation (vergröberte, vertiefte Hautfalten am Handgelenk); Atrophie (dünne, verschmächtigte Haut am Handrücken = Gewebeschwund).
-- **Folie 21:** Zwei Fotos. Oben: mit Metallklammern/Nähten verschlossene OP-Wunde (Naht). Unten: großflächiges, violett-grünliches Hämatom (Bluterguss) am Oberschenkel/Knie. Illustrieren OP-Wunden und Hämatome.
+- **Folie 1 (Deckblatt):** Dekoratives türkisfarbenes geometrisches Kreismuster. Keine fachliche Bedeutung.
+- **Folie 6:** Foto einer silbernen Kompaktkamera (Sony mit ZEISS-Objektiv, 8x Zoom, 20,1 Megapixel). Illustriert das Werkzeug der pflegerischen Fotodokumentation.
+- **Folie 7:** Zwei Bilder. Links: Nahaufnahme einer runden, roten, offenen Wunde auf faltiger (älterer) Haut; eine behandschuhte Hand hält ein Messlineal (cm-Skala 0–9) zur Größenbestimmung an die Wunde. Rechts: Ein steriles Einmal-Wundmesslineal (Skala 0–15 cm) der "Initiative Chronische Wunden e.V., Pölle 27/28, 06484 Quedlinburg" mit Feldern für Name und Datum. Pflegerische Bedeutung: standardisierte, maßstabsgetreue Wunddokumentation.
+- **Folie 8 (Hauttyp):** Zwei Fotos. Oben: extrem trockene, schuppige, rissige Hautoberfläche (trockene Haut). Unten: Gesicht/Wange in Profil mit Pickeln und Mitessern/Akne (fettige Haut / Hautunreinheiten).
+- **Folie 10 (Rötung):** Drei Fotos. Oben Mitte: geröteter, rundlicher Hautfleck (Entzündung/Rötung). Rechts oben: geröteter Unterarm, der von einer Hand gekratzt wird (juckende Hautrötung, z.B. allergische Reaktion). Rechts unten: fieberndes Kind mit gerötetem Gesicht, kühlem Waschlappen auf der Stirn und Fieberthermometer (Fieber).
+- **Folie 12 (Blaufärbung):** Zwei Fotos. Links: Hand einer Person mit bläulich verfärbten Fingerkuppen/Nägeln (Akrozyanose). Rechts: zwei übereinander angeordnete Nahaufnahmen von bläulich-violetten Lippen und blau-violett verfärbter Zunge (zentrale Zyanose bei Sauerstoffmangel). Alamy-Wasserzeichen sichtbar.
+- **Folie 13 (Gelbfärbung):** Zwei Fotos. Oben: schlafendes Neugeborenes mit gelblicher Hautfärbung, gehalten von Erwachsenenhänden (Neugeborenenikterus/Gelbsucht). Rechts: Gesicht eines Mannes, der mit dem Finger das Unterlid herunterzieht und die deutlich gelb verfärbte Augenbindehaut (Sklerenikterus) zeigt.
+- **Folie 14 (Phototherapie):** Foto eines Neugeborenen mit Augenschutz im Inkubator unter einer blau leuchtenden LED-Phototherapielampe. Bedeutung: Behandlung des Neugeborenenikterus mittels Blaulicht, das das Bilirubin in der Haut abbaut.
+- **Folie 15 (Hautturgor):** Zwei Fotos. Links unten: behandschuhte Hand hebt eine Hautfalte am Handrücken einer älteren Person an, die Falte bleibt stehen (herabgesetzter Turgor = "stehende Hautfalte" bei Dehydratation). Rechts unten: Fuß/Unterschenkel mit deutlichem Ödem; eine Fingerspitze drückt eine bleibende Delle ins Gewebe (Dellenödem, erhöhter Turgor / Wassereinlagerung).
+- **Folie 19 (Primäreffloreszenzen):** Vier Detailfotos von Hautbefunden in einer Reihe – (1) mehrere pralle, honig-/gelblich gefüllte Blasen auf gerötetem Grund (Bläschen/Blase, z.B. Verbrennung/Herpes); (2) leicht erhabene, blasse Quaddeln (Nesselsucht/Neurodermitis/Allergie); (3) bräunlich pigmentierter, unregelmäßiger Fleck (Pigmenteinlagerung); (4) rötliche, erhabene Papeln (Insektenstichreaktion).
+- **Folie 20 (Sekundäreffloreszenzen):** Fünf Detailfotos mit Pfeilbeschriftungen – (1) linear gelblich-braune Verkrustung entlang einer abheilenden Wunde (Kruste); (2) nässende, gerötete offene Stelle nach geplatzter Blase (Erosion); (3) silbrig-weiße schuppende Plaques (Schuppe, z.B. Schuppenflechte/Psoriasis); (4) verdickte, vergröberte Haut mit vertieften Hautfurchen am Handgelenk (Lichenifikation nach chronischer Reizung); (5) dünne, faltige, atrophe Haut am Handrücken (Atrophie/Gewebeschwund).
+- **Folie 21 (Hautoberfläche):** Zwei Fotos. Oben: frisch geklammerte (mit Metallklammern verschlossene) OP-Wunde. Unten: großes flächiges Hämatom (Bluterguss, blau-violett-grünlich) an einem Oberschenkel/Knie.
 
 ## Transkribierte Fototexte
 
-- **Folie 4 (Kästchen):** "Wann muss die Hautbeobachtung pflegerisch durchgeführt werden?"
+- **Folie 4 (blaues Kästchen):** "Wann muss die Hautbeobachtung pflegerisch durchgeführt werden?"
 - **Folie 5 (Pfeil):** "Dokumentation der Veränderungen & evtl. Fotodokumentation ergänzend"
-- **Folie 6 (Kamera-Aufdruck):** "SONY", "ZEISS", "8x OPTICAL ZOOM", "20.1 MEGAPIXELS".
-- **Folie 7 (Messlineal-Aufdruck):** "Initiative Chronische Wunden e.V. | Pölle 27/28 | 06484 Quedlinburg | Fon +49 6455 7593965 | www.icwunden.de", Felder "Name" und "Datum", cm-Skala 0–15.
-- **Folie 18 (Kästchen):** "Abhängig vom Alter und der Talg- und Schweißproduktion, sie zeigt individuelle Besonderheiten wie Muttermale, Behaarung oder Narben (verheilte Wunden). Sie ist frei von Hautdefekten."
-- **Folie 20 (Bildbeschriftungen):** "Kruste", "Erosion, z.B. nach Platzen Blase", "Schuppe, z.B. bei Schuppenflechte", "Lichenifikation (Vertiefung Hautfalten) nach chronischer mechanischer Reizung", "Atrophie (Gewebeschwund)".
+- **Folie 7 (Wundmesslineal):** "Initiative Chronische Wunden e.V. | Pölle 27/28 | 06484 Quedlinburg | Fon +49 6455 7593965 | www.icwunden.de", Felder "Name", "Datum", Skala 0–15 cm.
+- **Folie 7 (Kamera-Lineal):** cm-Skala 1–9.
+- **Folie 18 (blaues Kästchen):** "Abhängig vom Alter und der Talg- und Schweißproduktion, sie zeigt individuelle Besonderheiten wie Muttermale, Behaarung oder Narben (verheilte Wunden). Sie ist frei von Hautdefekten."
+- **Folie 19 (Bildunterschriften):** "Bläschen/ Blase z.B. nach Verbrennungen, Herpes" – "Quaddel z.B. bei Neurodermitis/ Allergie" – "Fleck, z.B. Pigmenteinlagerung" – "Papel, z.B. Insektenstichreaktion"
+- **Folie 20 (Bildunterschriften/Pfeile):** "Kruste" – "Erosion, z.B. nach Platzen Blase" – "Schuppe, z.B. bei Schuppenflechte" – "Lichenifikation (Vertiefung Hautfalten) nach chronischer mechanischer Reizung" – "Atrophie (Gewebeschwund)"
 
 ## Kernbegriffe (Glossar)
 
-- **Hydrolipidfilm / Säureschutzmantel:** dünner Fett-Wasser-Film auf der Haut, gebildet von Schweiß- und Talgdrüsen; pH ~5,5 (leicht sauer); schützt vor Austrocknung und Mikroorganismen.
-- **pH-Wert 5,5:** leicht saurer Normalwert der gesunden Hautoberfläche.
-- **Talgdrüsen:** produzieren Fette (Talg) → Wasserabweisung und Geschmeidigkeit der Haut.
-- **Schweißdrüsen:** beteiligt an Bildung des Säureschutzmantels und an Wärmeregulation (Verdunstungskälte).
-- **Hautturgor (Hautspannung):** Elastizität/Spannungszustand der Haut; Prüfung durch Anheben einer Hautfalte. Herabgesetzt bei Dehydratation/Kachexie (stehende Hautfalte), erhöht bei Ödemen.
-- **Dehydratation:** Austrocknung / Flüssigkeitsmangel des Körpers.
-- **Ödem:** Flüssigkeitsansammlung im Gewebe (z.B. bei Herz-/Nierenerkrankungen, Lymphstau).
-- **Kachexie:** krankhafte Abmagerung mit Schwund von Unterhautfettgewebe.
-- **Zyanose:** Blaufärbung der Haut/Schleimhäute durch Sauerstoffmangel; typisch an Akren (Finger, Nasenspitze, Lippen).
-- **Akren:** Körperspitzen/-enden (Finger, Zehen, Nase, Ohren, Lippen).
-- **Ikterus:** Gelbfärbung von Haut und Schleimhäuten (v.a. Augenbindehaut) durch Bilirubin; Zeichen für Leber-, Gallenwegs- oder Pankreaserkrankungen; Volksmund "Gelbsucht".
-- **Neugeborenenikterus:** physiologische Gelbsucht des Neugeborenen durch vermehrten Hämoglobinabbau bei noch unreifer Leberfunktion; Behandlung ggf. mit Phototherapie (blaues Licht).
-- **Hämolyse:** Zerstörung/Abbau von Erythrozyten (roten Blutkörperchen), kann zu Ikterus führen.
-- **Anämie:** Blutarmut → Blässe.
+- **Hydrolipidfilm / Säureschutzmantel:** Aus Schweiß und Talg gebildeter Schutzfilm der Haut, pH ca. 5,5; schützt vor Austrocknung und Mikroorganismen.
+- **pH-Wert 5,5:** Leicht saurer Normalwert der gesunden Hautoberfläche.
+- **Hauttyp:** Klassifikation der Haut nach Talgproduktion – normal, fettig, trocken, Mischhaut.
+- **Hautturgor:** Hautspannung; herabgesetzt bei Dehydratation/Kachexie ("stehende Hautfalte"), erhöht bei Ödemen.
+- **Zyanose:** Blaufärbung von Haut/Schleimhäuten durch Sauerstoffmangel, v.a. an Akren (Finger, Nasenspitze, Lippen).
+- **Akren:** Körperendpunkte (Finger, Zehen, Nasenspitze, Ohren, Lippen).
+- **Ikterus:** Gelbfärbung von Haut und Schleimhäuten (v.a. Augenbindehaut) durch erhöhtes Bilirubin; Zeichen für Leber-, Gallenwegs- oder Pankreaserkrankungen.
+- **Neugeborenenikterus:** Gelbsucht des Neugeborenen durch vermehrten Hämoglobinabbau bei noch unreifer Leberfunktion; ggf. Phototherapie (Blaulicht).
+- **Hämolyse:** Zerstörung/Auflösung von Erythrozyten (roten Blutkörperchen).
+- **paVk:** Periphere arterielle Verschlusskrankheit; Durchblutungsstörung, führt zu Blässe und Kälte der Haut.
+- **Anämie:** Blutarmut; führt zu Blässe.
 - **Hypertonie / Hypotonie:** Bluthochdruck / niedriger Blutdruck.
-- **paVk (periphere arterielle Verschlusskrankheit):** Durchblutungsstörung der Extremitätenarterien → Blässe, kühle Haut.
-- **Herzinsuffizienz:** Herzmuskelschwäche; Ursache u.a. für Zyanose.
-- **Respiratorische Insuffizienz:** Störung des Gasaustauschs in der Lunge → Sauerstoffmangel/Zyanose.
-- **Dekubitus:** Druckgeschwür (Wunde durch anhaltenden Druck), erste Zeichen u.a. Rötung.
-- **Effloreszenz:** pathologische (krankhafte) Hautveränderung; Grundelement der Dermatologie.
-- **Primäreffloreszenz:** unmittelbar krankheitsbedingte Erst-Hautveränderung (z.B. Fleck/Makula, Knötchen/Papel, Bläschen, Quaddel/Urtica, Erosion).
-- **Sekundäreffloreszenz:** aus einer Primäreffloreszenz entstandene Folgeveränderung (z.B. Kruste, Schuppe, Geschwür/Ulkus, Narbe, Abszess, Lichenifikation, Atrophie).
-- **Fleck (Makula):** Farbveränderung im Hautniveau, z.B. Pigmenteinlagerung.
-- **Papel/Knötchen:** kleine erhabene, tastbare Hautveränderung, z.B. Insektenstichreaktion.
-- **Quaddel (Urtica):** flüchtige erhabene Schwellung, z.B. bei Allergie/Neurodermitis.
-- **Bläschen/Blase:** flüssigkeitsgefüllter Hohlraum, z.B. bei Verbrennung, Herpes.
-- **Erosion:** oberflächlicher Hautdefekt (z.B. nach Platzen einer Blase), heilt narbenlos.
-- **Kruste:** eingetrocknetes Sekret/Blut auf einer Wunde.
-- **Schuppe:** abgelöste Hornhautschichten, z.B. bei Schuppenflechte (Psoriasis).
-- **Lichenifikation:** Vergröberung/Vertiefung der Hautfelderung nach chronischer mechanischer Reizung.
-- **Atrophie:** Gewebeschwund, Verdünnung der Haut.
-- **Hauttypen:** normale Haut, fettige Haut, trockene Haut, Mischhaut.
-- **Fotodokumentation:** fotografische Wund-/Hautdokumentation; erfordert Aufklärung und Zustimmung, immer ergänzt durch schriftliche Wundeinschätzung; Messlineal für Größenreferenz.
+- **Herzinsuffizienz:** Herzmuskelschwäche.
+- **Respiratorische Insuffizienz:** Störung des Gasaustauschs in der Lunge.
+- **Ödem:** Flüssigkeitsansammlung im Gewebe (z.B. bei Herz-/Nierenerkrankungen, Lymphstau); Dellenödem eindrückbar.
+- **Kachexie:** Starke Abmagerung / Mangelernährung mit wenig Unterhautfettgewebe.
+- **Dekubitus:** Druckgeschwür.
+- **Effloreszenz:** Pathologische (krankhafte) Hautveränderung.
+- **Primäreffloreszenz:** Erste, direkt aus der Erkrankung entstehende Hautveränderung (Fleck, Knötchen/Papel, Bläschen, Quaddel, Erosion).
+- **Sekundäreffloreszenz:** Aus einer Primäreffloreszenz entstehende Folgeveränderung (Kruste, Schuppe, Geschwür, Narbe, Abszess, Lichenifikation, Atrophie).
+- **Quaddel:** Flüchtige, erhabene Hautschwellung, z.B. bei Allergie/Nesselsucht.
+- **Papel:** Kleines, festes, erhabenes Knötchen der Haut.
+- **Lichenifikation:** Vergröberung der Haut mit vertieften Hautfalten nach chronischer mechanischer Reizung.
+- **Atrophie:** Gewebeschwund; dünne, faltige Haut.
+- **Fotodokumentation:** Fotografische Wunddokumentation; erfordert Aufklärung und Zustimmung, immer ergänzt durch schriftliche Wundeinschätzung, standardisiert mit Wundmesslineal.
