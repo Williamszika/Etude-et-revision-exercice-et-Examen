@@ -1,0 +1,254 @@
+<title>Lern-Hub — Pflegeausbildung 2. Lehrjahr</title>
+<style>
+  :root {
+    --paper:#f6f4ef; --paper-2:#efece4; --card:#fffdf9; --ink:#1a2321; --ink-soft:#4a5551;
+    --line:#ddd8cd; --accent:#0d6b6e; --accent-deep:#094c4e; --accent-soft:#d6e8e6;
+    --afb1:#2f7d54; --afb2:#b5731a; --afb3:#bb4d3f; --good:#2f7d54; --bad:#bb4d3f;
+    --sol-bg:#eef6f0; --sol-line:#2f7d54;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#131817;--paper-2:#0e1211;--card:#1b2220;--ink:#eef2f0;--ink-soft:#a6b2ae;
+    --line:#2c3532;--accent:#4fb3b3;--accent-deep:#7fcccc;--accent-soft:#16302f;
+    --afb1:#6fc292;--afb2:#d9a559;--afb3:#e08a7c;--good:#6fc292;--bad:#e08a7c;
+    --sol-bg:#14281c;--sol-line:#6fc292;}}
+  :root[data-theme="dark"]{--paper:#131817;--paper-2:#0e1211;--card:#1b2220;--ink:#eef2f0;--ink-soft:#a6b2ae;
+    --line:#2c3532;--accent:#4fb3b3;--accent-deep:#7fcccc;--accent-soft:#16302f;
+    --afb1:#6fc292;--afb2:#d9a559;--afb3:#e08a7c;--good:#6fc292;--bad:#e08a7c;--sol-bg:#14281c;--sol-line:#6fc292;}
+  :root[data-theme="light"]{--paper:#f6f4ef;--paper-2:#efece4;--card:#fffdf9;--ink:#1a2321;--ink-soft:#4a5551;
+    --line:#ddd8cd;--accent:#0d6b6e;--accent-deep:#094c4e;--accent-soft:#d6e8e6;
+    --afb1:#2f7d54;--afb2:#b5731a;--afb3:#bb4d3f;--good:#2f7d54;--bad:#bb4d3f;--sol-bg:#eef6f0;--sol-line:#2f7d54;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-deep);}
+  header.hero{padding:34px 20px 22px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -30%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,5vw,2.6rem);margin:0 0 8px;line-height:1.1;text-wrap:balance;}
+  header.hero p{max-width:56ch;margin:0 auto;color:var(--ink-soft);font-size:15px;}
+  .layout{display:flex;gap:0;max-width:1180px;margin:0 auto;align-items:flex-start;}
+  /* Sidebar */
+  nav.themes{position:sticky;top:0;align-self:flex-start;flex:0 0 260px;max-height:100vh;overflow-y:auto;
+    padding:18px 12px 40px;border-right:1px solid var(--line);}
+  nav.themes h2{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin:8px 10px;}
+  nav.themes button{display:flex;gap:10px;align-items:baseline;width:100%;text-align:left;font:inherit;color:var(--ink);
+    background:none;border:none;border-radius:9px;padding:9px 11px;cursor:pointer;line-height:1.3;}
+  nav.themes button:hover{background:var(--paper-2);}
+  nav.themes button.active{background:var(--accent);color:#fff;}
+  @media (prefers-color-scheme:dark){nav.themes button.active{color:#06201f;}}
+  :root[data-theme="dark"] nav.themes button.active{color:#06201f;}
+  :root[data-theme="light"] nav.themes button.active{color:#fff;}
+  nav.themes button .tnum{font-family:var(--mono);font-size:12px;opacity:.7;flex:0 0 auto;}
+  nav.themes button.active .tnum{opacity:.9;}
+  .partial-dot{font-size:10px;color:var(--afb2);margin-left:auto;flex:0 0 auto;align-self:center;}
+  /* Main */
+  main{flex:1 1 auto;min-width:0;padding:22px 26px 90px;}
+  .toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;position:sticky;top:0;z-index:10;
+    background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);padding:10px 0;margin-bottom:8px;border-bottom:1px solid var(--line);}
+  .tabs{display:flex;gap:4px;flex-wrap:wrap;}
+  .tab{font:inherit;font-size:14.5px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);
+    border-radius:8px;padding:7px 13px;cursor:pointer;}
+  .tab:hover{border-color:var(--accent);}
+  .tab.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+  @media (prefers-color-scheme:dark){.tab.active{color:#06201f;}}
+  :root[data-theme="dark"] .tab.active{color:#06201f;} :root[data-theme="light"] .tab.active{color:#fff;}
+  .spacer{flex:1 1 auto;}
+  .sol-toggle{font:inherit;font-size:13.5px;color:var(--accent-deep);background:var(--accent-soft);
+    border:1px solid var(--line);border-radius:8px;padding:7px 13px;cursor:pointer;white-space:nowrap;}
+  h1.themetitle{font-family:var(--serif);font-weight:600;font-size:1.7rem;margin:14px 0 2px;text-wrap:balance;}
+  .themetitle-sub{color:var(--ink-soft);font-size:14px;margin:0 0 16px;font-family:var(--mono);}
+  /* Rendered markdown */
+  .doc{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px 30px;}
+  .doc h1{font-family:var(--serif);font-size:1.5rem;font-weight:600;margin:.2em 0 .5em;}
+  .doc h2{font-family:var(--serif);font-size:1.25rem;font-weight:600;margin:1.4em 0 .4em;padding-bottom:.2em;border-bottom:1px solid var(--line);}
+  .doc h3{font-size:1.05rem;font-weight:700;margin:1.2em 0 .3em;color:var(--accent-deep);}
+  .doc h4{font-size:.95rem;font-weight:700;margin:1em 0 .2em;}
+  .doc p{margin:.6em 0;}
+  .doc ul,.doc ol{margin:.5em 0;padding-left:1.4em;}
+  .doc li{margin:.28em 0;}
+  .doc code{font-family:var(--mono);font-size:.86em;background:var(--paper-2);padding:1px 5px;border-radius:5px;}
+  .doc hr{border:none;border-top:1px solid var(--line);margin:1.4em 0;}
+  .doc blockquote{margin:.7em 0;padding:.4em 1em;border-left:3px solid var(--accent);background:var(--paper-2);border-radius:0 8px 8px 0;color:var(--ink-soft);}
+  .doc strong{color:var(--ink);}
+  .scroll-x{overflow-x:auto;margin:.8em 0;}
+  .doc table{border-collapse:collapse;width:100%;font-size:14.5px;}
+  .doc th,.doc td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top;}
+  .doc thead th{background:var(--paper-2);font-family:var(--mono);font-size:12px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-soft);}
+  /* Solutions hidden by default */
+  .loesung{background:var(--sol-bg);border-left:3px solid var(--sol-line);border-radius:0 8px 8px 0;padding:.4em .9em;margin:.5em 0;}
+  body:not(.show-sol) .loesung{display:none;}
+  body:not(.show-sol) .loesung-ph{display:block;}
+  .loesung-ph{display:none;font-size:13.5px;color:var(--ink-soft);font-style:italic;margin:.4em 0;}
+  .afb{font-family:var(--mono);font-size:11px;font-weight:600;padding:2px 7px;border-radius:6px;}
+  .afb1{color:var(--afb1);} .afb2{color:var(--afb2);} .afb3{color:var(--afb3);}
+  footer{max-width:1180px;margin:0 auto;padding:20px 26px 60px;color:var(--ink-soft);font-size:13.5px;border-top:1px solid var(--line);}
+  .missing{background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:24px;color:var(--ink-soft);text-align:center;}
+  @media (max-width:820px){
+    .layout{flex-direction:column;}
+    nav.themes{position:static;flex:1 1 auto;max-height:none;border-right:none;border-bottom:1px solid var(--line);
+      display:flex;flex-wrap:wrap;gap:4px;padding:12px;}
+    nav.themes h2{width:100%;}
+    nav.themes button{width:auto;}
+    main{padding:18px 16px 80px;}
+    .doc{padding:20px 16px;}
+  }
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Pflegeausbildung · 2. Lehrjahr · Niveau B2 · Notenschlüssel NRW</p>
+  <h1>Lern-Hub</h1>
+  <p>Deine Zusammenfassungen, Übungen, Fallbeispiele und Klausuren — aus deinen eigenen Unterlagen erstellt. Wähle links ein Thema, oben eine Rubrik. Lösungen sind versteckt: erst selbst versuchen, dann „Lösungen zeigen".</p>
+</header>
+
+<div class="layout">
+  <nav class="themes" id="themenav" aria-label="Themen"></nav>
+  <main>
+    <div class="toolbar">
+      <div class="tabs" id="tabs"></div>
+      <span class="spacer"></span>
+      <button class="sol-toggle" id="soltoggle">🙈 Lösungen zeigen</button>
+    </div>
+    <h1 class="themetitle" id="themetitle"></h1>
+    <p class="themetitle-sub" id="themesub"></p>
+    <div id="content"></div>
+  </main>
+</div>
+<footer>
+  Lern-Hub · automatisch erstellt vom Workflow <code>klausur-prep</code> aus deinen Unterlagen ·
+  Inhalte auf B2-Niveau · bei medizinischen Details immer auch die aktuellen Expertenstandards und deine Schulunterlagen prüfen.
+</footer>
+
+<script>
+const DATA = __DATA__;
+const RUBRIKEN = [
+  {key:'zusammenfassung', label:'📘 Zusammenfassung'},
+  {key:'uebungen',        label:'✍️ Übungen'},
+  {key:'fallbeispiel',    label:'🏥 Fallbeispiel'},
+  {key:'klausur',         label:'📝 Klausur'},
+];
+
+/* ---------- Minimal Markdown -> HTML ---------- */
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function inline(s){
+  s=esc(s);
+  s=s.replace(/`([^`]+)`/g,'<code>$1</code>');
+  s=s.replace(/\*\*([^*]+)\*\*/g,'<strong>$1</strong>');
+  s=s.replace(/(^|[^*])\*([^*\n]+)\*/g,'$1<em>$2</em>');
+  s=s.replace(/\[([^\]]+)\]\(([^)]+)\)/g,'<a href="$2" target="_blank" rel="noopener">$1</a>');
+  // AFB-Badges hübsch machen
+  s=s.replace(/\bAFB\s*III\b/g,'<span class="afb afb3">AFB III</span>');
+  s=s.replace(/\bAFB\s*II\b/g,'<span class="afb afb2">AFB II</span>');
+  s=s.replace(/\bAFB\s*I\b/g,'<span class="afb afb1">AFB I</span>');
+  return s;
+}
+function isSolutionLine(t){
+  return /^\s*(\*\*)?\s*(Lösung|Musterlösung|Erwartungshorizont|Lösungshinweise?)\b/i.test(t);
+}
+function renderMarkdown(md){
+  const lines=md.replace(/\r/g,'').split('\n');
+  let html='', i=0, inSol=false, solDepthH=0;
+  function openSol(){if(!inSol){html+='<div class="loesung">';html+='<div class="loesung-ph">🔒 Lösung versteckt — oben „Lösungen zeigen".</div>';inSol=true;}}
+  function closeSol(){if(inSol){html+='</div>';inSol=false;}}
+  while(i<lines.length){
+    let line=lines[i];
+    // fenced code
+    if(/^```/.test(line)){let buf=[];i++;while(i<lines.length&&!/^```/.test(lines[i])){buf.push(lines[i]);i++;}i++;html+='<pre><code>'+esc(buf.join('\n'))+'</code></pre>';continue;}
+    // table
+    if(/^\s*\|.*\|\s*$/.test(line)&&i+1<lines.length&&/^\s*\|?[\s:|-]+\|?\s*$/.test(lines[i+1])&&lines[i+1].includes('-')){
+      const head=line.trim().replace(/^\||\|$/g,'').split('|').map(c=>c.trim());
+      i+=2; const rows=[];
+      while(i<lines.length&&/^\s*\|.*\|\s*$/.test(lines[i])){rows.push(lines[i].trim().replace(/^\||\|$/g,'').split('|').map(c=>c.trim()));i++;}
+      let t='<div class="scroll-x"><table><thead><tr>'+head.map(h=>'<th>'+inline(h)+'</th>').join('')+'</tr></thead><tbody>';
+      for(const r of rows){t+='<tr>'+r.map(c=>'<td>'+inline(c)+'</td>').join('')+'</tr>';}
+      t+='</tbody></table></div>';
+      (inSol?html+=t:html+=t);continue;
+    }
+    // headings
+    let m=line.match(/^(#{1,6})\s+(.*)$/);
+    if(m){
+      const level=m[1].length, txt=m[2].trim();
+      if(isSolutionLine(txt)){closeSol();openSol();solDepthH=level;html+='<h'+Math.min(level+0,6)+'>'+inline(txt)+'</h'+Math.min(level,6)+'>';i++;continue;}
+      if(inSol && level<=solDepthH){closeSol();}
+      html+='<h'+level+'>'+inline(txt)+'</h'+level+'>';i++;continue;
+    }
+    // hr
+    if(/^\s*([-*_])\1\1+\s*$/.test(line)){if(inSol)closeSol();html+='<hr>';i++;continue;}
+    // blockquote
+    if(/^\s*>\s?/.test(line)){let buf=[];while(i<lines.length&&/^\s*>\s?/.test(lines[i])){buf.push(lines[i].replace(/^\s*>\s?/,''));i++;}html+='<blockquote>'+inline(buf.join(' '))+'</blockquote>';continue;}
+    // lists
+    if(/^\s*([-*+]|\d+\.)\s+/.test(line)){
+      const ordered=/^\s*\d+\.\s+/.test(line);
+      let buf=[];
+      while(i<lines.length&&/^\s*([-*+]|\d+\.)\s+/.test(lines[i])){
+        const item=lines[i].replace(/^\s*([-*+]|\d+\.)\s+/,'');
+        if(isSolutionLine(item)){openSol();}
+        buf.push('<li>'+inline(item)+'</li>');i++;
+      }
+      html+=(ordered?'<ol>':'<ul>')+buf.join('')+(ordered?'</ol>':'</ul>');continue;
+    }
+    // blank
+    if(/^\s*$/.test(line)){i++;continue;}
+    // paragraph
+    let buf=[line];i++;
+    while(i<lines.length&&!/^\s*$/.test(lines[i])&&!/^(#{1,6}\s|\s*[-*+]\s|\s*\d+\.\s|```|\s*>|\s*\|)/.test(lines[i])){buf.push(lines[i]);i++;}
+    const para=buf.join(' ');
+    if(isSolutionLine(para)){openSol();html+='<p>'+inline(para)+'</p>';}
+    else{html+='<p>'+inline(para)+'</p>';}
+  }
+  closeSol();
+  return html;
+}
+
+/* ---------- App ---------- */
+let curTheme=0, curRubrik='zusammenfassung';
+const navEl=document.getElementById('themenav');
+const tabsEl=document.getElementById('tabs');
+const contentEl=document.getElementById('content');
+const titleEl=document.getElementById('themetitle');
+const subEl=document.getElementById('themesub');
+const solBtn=document.getElementById('soltoggle');
+
+function buildNav(){
+  let h='<h2>Themen ('+DATA.length+')</h2>';
+  navEl.innerHTML=h;
+  DATA.forEach((t,idx)=>{
+    const b=document.createElement('button');
+    b.innerHTML='<span class="tnum">'+String(idx+1).padStart(2,'0')+'</span><span>'+t.title+'</span>'+(t.partial?'<span class="partial-dot">● unvollständig</span>':'');
+    b.onclick=()=>{curTheme=idx;render();};
+    b.dataset.idx=idx;
+    navEl.appendChild(b);
+  });
+}
+function buildTabs(){
+  tabsEl.innerHTML='';
+  RUBRIKEN.forEach(r=>{
+    const has=DATA[curTheme].files[r.key];
+    const b=document.createElement('button');
+    b.className='tab'+(r.key===curRubrik?' active':'');
+    b.textContent=r.label; b.disabled=!has;
+    if(!has){b.style.opacity=.4;b.title='noch nicht erstellt';}
+    b.onclick=()=>{curRubrik=r.key;render();};
+    tabsEl.appendChild(b);
+  });
+}
+function render(){
+  const t=DATA[curTheme];
+  if(!t.files[curRubrik]) curRubrik='zusammenfassung';
+  [...navEl.querySelectorAll('button')].forEach(b=>b.classList.toggle('active',+b.dataset.idx===curTheme));
+  buildTabs();
+  titleEl.textContent=t.title;
+  subEl.textContent='Thema '+String(curTheme+1).padStart(2,'0')+(t.partial?' · (Teile folgen noch)':'')+' · '+RUBRIKEN.find(r=>r.key===curRubrik).label.replace(/^[^ ]+ /,'');
+  const md=t.files[curRubrik];
+  contentEl.innerHTML=md?('<div class="doc">'+renderMarkdown(md)+'</div>'):'<div class="missing">Diese Rubrik wird für dieses Thema noch erstellt.</div>';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+solBtn.onclick=()=>{
+  document.body.classList.toggle('show-sol');
+  const on=document.body.classList.contains('show-sol');
+  solBtn.textContent=on?'🙉 Lösungen verbergen':'🙈 Lösungen zeigen';
+};
+buildNav();render();
+</script>
