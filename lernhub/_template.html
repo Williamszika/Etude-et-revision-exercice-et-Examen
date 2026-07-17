@@ -85,6 +85,33 @@
   .afb1{color:var(--afb1);} .afb2{color:var(--afb2);} .afb3{color:var(--afb3);}
   footer{max-width:1180px;margin:0 auto;padding:20px 26px 60px;color:var(--ink-soft);font-size:13.5px;border-top:1px solid var(--line);}
   .missing{background:var(--card);border:1px dashed var(--line);border-radius:12px;padding:24px;color:var(--ink-soft);text-align:center;}
+  /* Quiz */
+  .quizwrap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 26px;}
+  .quizbar{display:flex;align-items:center;gap:14px;flex-wrap:wrap;position:sticky;top:56px;z-index:5;
+    background:var(--card);padding:10px 0 12px;margin:-4px 0 10px;border-bottom:1px solid var(--line);}
+  .quizbar .prog{flex:1 1 160px;height:8px;background:var(--paper-2);border-radius:99px;overflow:hidden;min-width:120px;}
+  .quizbar .prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s;}
+  .quizbar .scorepill{font-family:var(--mono);font-size:13px;color:var(--accent-deep);background:var(--accent-soft);
+    border-radius:99px;padding:5px 12px;white-space:nowrap;}
+  .quizbar .restart{font:inherit;font-size:13px;color:var(--ink-soft);background:none;border:1px solid var(--line);
+    border-radius:8px;padding:5px 11px;cursor:pointer;}
+  .qcard{border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;background:var(--paper);}
+  .qcard .qnr{font-family:var(--mono);font-size:12px;color:var(--accent);}
+  .qcard .qtext{font-weight:600;margin:4px 0 12px;}
+  .opt{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:10px;padding:11px 14px;margin:7px 0;cursor:pointer;transition:border-color .12s,background .12s;}
+  .opt:hover:not(:disabled){border-color:var(--accent);}
+  .opt:disabled{cursor:default;}
+  .opt.correct{border-color:var(--good);background:color-mix(in srgb,var(--good) 15%,var(--card));}
+  .opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 13%,var(--card));}
+  .opt .mk{float:right;font-weight:700;}
+  .opt.correct .mk::after{content:"✓";color:var(--good);}
+  .opt.wrong .mk::after{content:"✗";color:var(--bad);}
+  .qwhy{font-size:14px;color:var(--ink-soft);margin:8px 2px 0;padding-left:12px;border-left:2px solid var(--accent);display:none;}
+  .qwhy.show{display:block;}
+  .quizdone{margin-top:18px;padding:18px;border-radius:12px;background:var(--accent-soft);text-align:center;}
+  .quizdone .big{font-family:var(--serif);font-size:1.6rem;font-weight:600;color:var(--accent-deep);}
+  .quizdone .note{color:var(--ink-soft);font-size:14px;margin-top:6px;}
   @media (max-width:820px){
     .layout{flex-direction:column;}
     nav.themes{position:static;flex:1 1 auto;max-height:none;border-right:none;border-bottom:1px solid var(--line);
@@ -125,10 +152,12 @@
 const DATA = __DATA__;
 const RUBRIKEN = [
   {key:'zusammenfassung', label:'📘 Zusammenfassung'},
+  {key:'quiz',            label:'🧩 Quiz'},
   {key:'uebungen',        label:'✍️ Übungen'},
   {key:'fallbeispiel',    label:'🏥 Fallbeispiel'},
   {key:'klausur',         label:'📝 Klausur'},
 ];
+function hasRubrik(t,key){ return key==='quiz' ? (Array.isArray(t.quiz)&&t.quiz.length>0) : !!t.files[key]; }
 
 /* ---------- Minimal Markdown -> HTML ---------- */
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
@@ -228,7 +257,7 @@ function buildNav(){
 function buildTabs(){
   tabsEl.innerHTML='';
   RUBRIKEN.forEach(r=>{
-    const has=DATA[curTheme].files[r.key];
+    const has=hasRubrik(DATA[curTheme],r.key);
     const b=document.createElement('button');
     b.className='tab'+(r.key===curRubrik?' active':'');
     b.textContent=r.label; b.disabled=!has;
@@ -239,14 +268,61 @@ function buildTabs(){
 }
 function render(){
   const t=DATA[curTheme];
-  if(!t.files[curRubrik]){const avail=RUBRIKEN.map(r=>r.key).find(k=>t.files[k]);curRubrik=avail||'zusammenfassung';}
+  if(!hasRubrik(t,curRubrik)){const avail=RUBRIKEN.map(r=>r.key).find(k=>hasRubrik(t,k));curRubrik=avail||'zusammenfassung';}
   [...navEl.querySelectorAll('button')].forEach(b=>b.classList.toggle('active',+b.dataset.idx===curTheme));
   buildTabs();
   titleEl.textContent=t.title;
-  subEl.textContent='Thema '+String(curTheme+1).padStart(2,'0')+(t.partial?' · (Teile folgen noch)':'')+' · '+RUBRIKEN.find(r=>r.key===curRubrik).label.replace(/^[^ ]+ /,'');
-  const md=t.files[curRubrik];
-  contentEl.innerHTML=md?('<div class="doc">'+renderMarkdown(md)+'</div>'):'<div class="missing">Diese Rubrik wird für dieses Thema noch erstellt.</div>';
+  const rubLabel=RUBRIKEN.find(r=>r.key===curRubrik).label.replace(/^[^ ]+ /,'');
+  subEl.textContent=(t.special?'':'Thema '+String(curTheme+1).padStart(2,'0'))+(t.partial?' · (Teile folgen noch)':'')+' · '+rubLabel;
+  solBtn.style.display=(curRubrik==='quiz')?'none':'';
+  if(curRubrik==='quiz'){renderQuiz(t.quiz);}
+  else{
+    const md=t.files[curRubrik];
+    contentEl.innerHTML=md?('<div class="doc">'+renderMarkdown(md)+'</div>'):'<div class="missing">Diese Rubrik wird für dieses Thema noch erstellt.</div>';
+  }
   window.scrollTo({top:0,behavior:'smooth'});
+}
+/* ---------- Interaktives Quiz ---------- */
+function renderQuiz(questions){
+  let answered=0, right=0;
+  const total=questions.length;
+  const wrap=document.createElement('div');wrap.className='quizwrap';
+  const bar=document.createElement('div');bar.className='quizbar';
+  bar.innerHTML='<div class="prog"><i></i></div><span class="scorepill">0 / '+total+' richtig</span><button class="restart">↻ Neu starten</button>';
+  wrap.appendChild(bar);
+  const prog=bar.querySelector('.prog i'), pill=bar.querySelector('.scorepill');
+  bar.querySelector('.restart').onclick=()=>renderQuiz(questions);
+  questions.forEach((item,qi)=>{
+    const card=document.createElement('div');card.className='qcard';
+    const h=document.createElement('div');h.className='qtext';
+    const nr=document.createElement('div');nr.className='qnr';nr.textContent='Frage '+(qi+1)+' / '+total;
+    h.textContent=item.q; card.appendChild(nr); card.appendChild(h);
+    const why=document.createElement('div');why.className='qwhy';why.textContent=item.why||'';
+    item.opts.forEach((txt,oi)=>{
+      const b=document.createElement('button');b.className='opt';
+      b.innerHTML='<span class="lbl"></span><span class="mk"></span>';
+      b.querySelector('.lbl').textContent=txt;
+      b.onclick=()=>{
+        if(card.dataset.done)return; card.dataset.done='1'; answered++;
+        const btns=card.querySelectorAll('.opt'); btns.forEach(x=>x.disabled=true);
+        btns[item.correct]&&btns[item.correct].classList.add('correct');
+        if(oi===item.correct)right++; else b.classList.add('wrong');
+        why.classList.add('show');
+        pill.textContent=right+' / '+total+' richtig';
+        prog.style.width=Math.round(answered/total*100)+'%';
+        if(answered===total){
+          const pct=Math.round(right/total*100);
+          const done=document.createElement('div');done.className='quizdone';
+          let note = pct>=90?'Sehr gut! 🎉' : pct>=75?'Gut gemacht! 👍' : pct>=50?'Bestanden — dranbleiben! 💪' : 'Weiter üben — schau nochmal in die Zusammenfassung. 📘';
+          done.innerHTML='<div class="big">'+right+' / '+total+' ('+pct+' %)</div><div class="note">'+note+'</div>';
+          wrap.appendChild(done); done.scrollIntoView({behavior:'smooth',block:'center'});
+        }
+      };
+      card.appendChild(b);
+    });
+    card.appendChild(why); wrap.appendChild(card);
+  });
+  contentEl.innerHTML=''; contentEl.appendChild(wrap);
 }
 solBtn.onclick=()=>{
   document.body.classList.toggle('show-sol');
