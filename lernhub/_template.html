@@ -214,9 +214,12 @@ const solBtn=document.getElementById('soltoggle');
 function buildNav(){
   let h='<h2>Themen ('+DATA.length+')</h2>';
   navEl.innerHTML=h;
+  let lastSpecial=false;
   DATA.forEach((t,idx)=>{
+    if(t.special&&!lastSpecial){const h2=document.createElement('h2');h2.textContent='Prüfung & Plan';navEl.appendChild(h2);lastSpecial=true;}
     const b=document.createElement('button');
-    b.innerHTML='<span class="tnum">'+String(idx+1).padStart(2,'0')+'</span><span>'+t.title+'</span>'+(t.partial?'<span class="partial-dot">● unvollständig</span>':'');
+    const marker=t.special?'★':String(idx+1).padStart(2,'0');
+    b.innerHTML='<span class="tnum">'+marker+'</span><span>'+t.title+'</span>'+(t.partial?'<span class="partial-dot">● unvollständig</span>':'');
     b.onclick=()=>{curTheme=idx;render();};
     b.dataset.idx=idx;
     navEl.appendChild(b);
@@ -236,7 +239,7 @@ function buildTabs(){
 }
 function render(){
   const t=DATA[curTheme];
-  if(!t.files[curRubrik]) curRubrik='zusammenfassung';
+  if(!t.files[curRubrik]){const avail=RUBRIKEN.map(r=>r.key).find(k=>t.files[k]);curRubrik=avail||'zusammenfassung';}
   [...navEl.querySelectorAll('button')].forEach(b=>b.classList.toggle('active',+b.dataset.idx===curTheme));
   buildTabs();
   titleEl.textContent=t.title;
