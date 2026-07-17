@@ -2,297 +2,270 @@
 
 ## Quelle: PDFs/24-puls-und-blutdruck.pdf
 
-Kurs-/Einheitskennung: CE 02 UE 05
-Herausgeber: Christliche Bildungsakademie für Gesundheitsberufe
+Christliche Bildungsakademie für Gesundheitsberufe — CE 02 UE 05 (Kompetenzeinheit 02, Unterrichtseinheit 05). Foliensatz mit 59 Seiten.
 
 ## Dokumenttyp
 
-Unterrichts-Präsentation (Foliensatz, 59 Folien) für die Pflegeausbildung. Die Präsentation ist als Lückentext/Arbeitsvorlage gestaltet: An vielen Stellen befinden sich Leerstriche (Lücken) zum Ausfüllen durch die Lernenden. Das Dokument gliedert sich in drei große Themenblöcke: Puls, Blutdruck und Steuerung des Blutdrucks. Enthalten sind Anatomie-Abbildungen, Fotos, Schemazeichnungen, Tabellen und beschriftete Gerätedarstellungen.
+Unterrichtspräsentation (PowerPoint-Folien) für die Pflegeausbildung. Viele Folien sind als Lückentext/Arbeitsblatt gestaltet (Leerstriche „________", die im Unterricht gemeinsam ausgefüllt werden). Enthält Anatomie-Abbildungen (Herz, Arteriensystem), Schemata (Pulswelle, Windkessel, Korotkow-Geräusche), Fotos (Messtechniken, Geräte, Krankheitsbilder), Tabellen (Normwerte, Fachbegriffe) und historische Porträts. Die Präsentation gliedert sich in drei große Blöcke: Puls, Blutdruck und Steuerung des Blutdrucks.
 
 ## Inhalt (nach Abschnitten)
 
 ### Titelfolie
-- Titel: "Blutdruck und Puls"
+- Titel: „Blutdruck und Puls"
 - CE 02 UE 05
-- Logo Christliche Bildungsakademie für Gesundheitsberufe
 
 ### Technik Pulsmessung
 - Fingerkuppen mit leichtem Druck auflegen
-- Handgelenk locker halten, am besten mit Auflage, z.B. auf dem Oberschenkel
-- (Foto: Pflegekraft tastet Radialispuls am Handgelenk eines Patienten)
+- Handgelenk locker halten, am besten mit Auflage, z. B. auf dem Oberschenkel
 
 ### Das Herz
 - Aufgabe: Pumpt Blut im Kreislauf durch den Körper
 - Hohlmuskel
-- Versorgt so den Körper mit ________ [Lücke: Sauerstoff] und Nährstoffen
-- ________ [Lücke: Systole] = Anspannungsphase
-- ________ [Lücke: Diastole] = Erschlaffungsphase
-- (Anatomie-Abbildung des Herzens, siehe Abschnitt Abbildungen)
+- Versorgt so den Körper mit ________________ [Sauerstoff] und Nährstoffen
+- ____________ [Systole] = Anspannungsphase
+- ____________ [Diastole] = Erschlaffungsphase
 
-### Puls (Titelfolie)
-- Kapitelüberschrift "Puls"
+(Lösungshinweis aus dem Kontext: Sauerstoff; Systole = Anspannungsphase; Diastole = Erschlaffungsphase)
 
-### Puls (Definition)
-- Von lat. pulsus – Stoß
-- Ausstoß von Blut der linken Herzkammer (Systole), tastbar an oberflächlich verlaufenden ________ [Lücke: Arterien]
+### Abschnitt PULS
+
+#### Puls (Definition)
+- Von lat. *pulsus* – Stoß
+- Ausstoß von Blut der linken Herzkammer (Systole), tastbar an oberflächlich verlaufenden ____________ [Arterien]
 - Wichtiges Kriterium zur Beurteilung der Herz- und Kreislauffunktion (Vitalzeichen)
 
-### Pulswelle
-- entsteht durch Herzschläge, die rhythmisch in die ________ [Lücke: Aorta] und Körperkreislauf gestoßen werden
-- gegen eine harte Struktur gedrückt tastbar (Muskel oder Knochen)
-- Je Herzschlag wird ca. 70 ml Blut in die Aorta ausgeworfen (Schlagvolumen)
-- In einer Minute ca. 5 L Blut werden vom Herzen zirkuliert (________ [Lücke: Herzminutenvolumen / HMV])
+#### Pulswelle
+- Entsteht durch Herzschläge, die rhythmisch in die ____________ [Aorta] und Körperkreislauf gestoßen werden
+- Gegen eine harte Struktur gedrückt tastbar (Muskel oder Knochen)
+- Je Herzschlag wird ca. 70 ml Blut in die Aorta ausgeworfen (= Schlagvolumen)
+- In einer Minute ca. 5 L Blut werden vom Herzen zirkuliert (________________ [Herzminutenvolumen / HMV])
 - Erlaubt Rückschlüsse auf die Kreislaufsituation und die Herzaktivität ohne technische Geräte
 
-### Fortsetzung der Pulswelle
-- (Schemazeichnung: Ausbreitung der Pulswelle in einem Gefäß in drei Phasen)
+#### Fortsetzung der Pulswelle
+- (Schema, siehe Abbildungen) — Ausbreitung der Pulswelle entlang eines Gefäßes
 
-### Messorte
-Wichtigste Messstellen:
-- A. ________ [Lücke: radialis]
+#### Messorte — Wichtigste Messstellen
+- A. ____________ [radialis] (übliche Standardmessstelle)
 - A. femoralis (Notfall)
 - A. carotis communis (Notfall)
 - A. dorsalis pedis (Durchblutungsstörungen)
-- (Anatomie-Abbildung: arterielles Gefäßsystem mit Messstellen, siehe Abschnitt Abbildungen)
+- (Ganzkörper-Abbildung mit weiteren Arterien, siehe Abbildungen)
 
-### Exkurs Fachbegriffe (Tabelle, teils Lücken)
-Zuordnung lateinischer Fachbegriffe zum Deutschen (die deutsche Spalte ist im Original leer zum Ausfüllen):
-- Radius → [Speiche]
-- Ulna → [Elle]
-- Dorsal → [rückenwärts / zum Rücken hin]
-- Anterior → [vorne / vorderer]
-- Posterior → [hinten / hinterer]
-- Cranial → [zum Kopf hin / kopfwärts]
-- Sinister → [links]
-- Dexter → [rechts]
+#### Exkurs Fachbegriffe (Tabelle)
+Lateinische/Fachbegriffe mit deutscher Übersetzung (Spalte „Deutsch" im Original leer = auszufüllen):
+- Radius → Speiche
+- Ulna → Elle
+- Dorsal → rückenseitig / zum Rücken hin
+- Anterior → vorne / vorderseitig
+- Posterior → hinten / hinterseitig
+- Cranial → kopfwärts / zum Kopf hin
+- Sinister → links
+- Dexter → rechts
 
-### Peripherer Puls
-- vom Herzen ________ [Lücke: weit entfernte / entfernte] Messstellen
-- z.B. a. dorsalis pedis oder a. radialis
-- Übliche Messstellen ________ [Lücke: a. radialis]
-- Bei Herzrhythmusstörungen, Hypotonie oder arteriellen Verschlüssen teilweise nicht ________ [Lücke: tastbar]
+#### Peripherer Puls
+- Vom Herzen ____________ [entfernte / weit entfernte] Messstellen
+- z. B. A. dorsalis pedis oder A. radialis
+- Übliche Messstellen ____________ [A. radialis]
+- Bei Herzrhythmusstörungen, Hypotonie oder arteriellen Verschlüssen teilweise nicht ____________ [tastbar]
 
-### Zentraler Puls
+#### Zentraler Puls
 - An großen herznahen Arterien gemessen
-- a. carotis, a. femoralis
-- CAVE: a. carotis nur ________ [Lücke: einseitig] mit leichtem Druck messen!
-  - Kollapsgefahr
+- A. carotis, A. femoralis
+- CAVE: A. carotis nur ____________ [einseitig] mit leichtem Druck messen! → Kollapsgefahr
 - Relativ genau, auch bei Herzrhythmusstörungen
 - Gibt nahezu die Herzfrequenz an
-- Messung vor allem in ________ [Lücke: Notfallsituationen]
-- Kann auch ________ [Lücke: auskultiert] werden
+- Messung vor allem in ________________ [Notfallsituationen]
+- Kann auch ________________ [auskultiert] werden
 
-### Messkriterien
-Drei Beurteilungskriterien des Pulses (im Original als Lücken):
-- Puls________ [Lücke: frequenz]
-- Puls________ [Lücke: rhythmus]
-- Puls________ [Lücke: qualität]
+#### Messkriterien
+Drei Beurteilungskriterien des Pulses:
+- Puls____________ [frequenz]
+- Puls____________ [rhythmus]
+- Puls____________ [qualität]
 
-### Pulsfrequenz
+#### Pulsfrequenz
 - Anzahl der Pulswellen pro Minute
-- "Schläge" pro Minute
+- „Schläge" pro Minute
 
-### Normwerte Pulsfrequenz (Tabelle)
+#### Normwerte Pulsfrequenz (Tabelle)
 | Gruppe | Normale Pulsfrequenz (Ruhe)/min |
 |---|---|
-| Erwachsene | [Lücke, Richtwert ca. 60–80] |
+| Erwachsene | (Feld leer im Original) [ca. 60–80] |
 | Kinder (10–14 Jahre) | 80–90 |
 | Kleinkinder (2 Jahre) | 100–120 |
 | Neugeborene | 130–150 |
 
-- Pulsfrequenz variiert nach Alter, Aktivität, ________ [Lücke: Geschlecht], Ernährungszustand und möglichen Erkrankungen
+Pulsfrequenz variiert nach Alter, Aktivität, ________________ [Geschlecht], Ernährungszustand und möglichen Erkrankungen.
 
-### Abweichungen Pulsfrequenz
-- zu schneller Puls = ________ [Lücke: Tachykardie]
-- zu langsamer Puls = ________ [Lücke: Bradykardie]
+#### Abweichungen Pulsfrequenz
+- Zu schneller Puls = ________________ [Tachykardie]
+- Zu langsamer Puls = ________________ [Bradykardie]
 
 | Tachykardie | Bradykardie |
 |---|---|
 | > 100 Schläge/Minute | < 50 Schläge/Minute |
+
 (Beim Erwachsenen)
+- Eine Abweichung hat **nicht** immer einen Krankheitswert!
 
-- Eine Abweichung hat NICHT immer einen Krankheitswert!
+#### Abweichungen Pulsfrequenz — Gründe (leere Tabelle, im Unterricht auszufüllen)
+Zwei Spalten: Tachykardie | Bradykardie (Inhalt leer)
+Typische auszufüllende Gründe:
+- Tachykardie: körperliche Anstrengung, Fieber, Aufregung/Angst, Flüssigkeitsmangel/Blutverlust, Herzerkrankungen
+- Bradykardie: Schlaf/Ruhe, Sportlerherz, Medikamente (z. B. Betablocker), Herzerkrankungen, Hypothyreose
 
-### Abweichungen Pulsfrequenz – Gründe (leere Tabelle zum Ausfüllen)
-| Tachykardie | Bradykardie |
-|---|---|
-| [leer] | [leer] |
-(Beispielhafte Gründe: Tachykardie – Fieber, Anstrengung, Aufregung/Stress, Schock, Blutverlust, Schmerzen; Bradykardie – Sport/trainiertes Herz, Schlaf, Hypothermie, Medikamente wie Betablocker, erhöhter Hirndruck)
-
-### Herzfrequenz und Pulsfrequenz
-- Herzfrequenz = Zahl der ________ [Lücke: Herzschläge/Herzaktionen] pro Minute
-- Pulsfrequenz = Zahl der ________ [Lücke: Pulswellen] pro Minute
+#### Herzfrequenz und Pulsfrequenz
+- Herzfrequenz = Zahl der ________________ [Herzschläge] pro Minute
+- Pulsfrequenz = Zahl der ________________ [Pulswellen] pro Minute
 - Physiologisch sind die Frequenzen gleich
 - Puls beinhaltet weitere Messparameter
-- Herzfrequenz und Pulsfrequenz können ________ [Lücke: abweichen/auseinanderfallen]
-  - Pulsdefizit (im Original "Pulsdifferenz")
+- Herzfrequenz und Pulsfrequenz können ________________ [abweichen / auseinanderfallen]
+  - Pulsdefizit / Pulsdifferenz
   - Mit Hilfe eines EKGs diagnostizierbar
 
-### Pulsrhythmus
+#### Pulsrhythmus
 - Regelmäßigkeit bzw. Unregelmäßigkeit der Pulswellen
 - Beobachtung der Abstände – sind diese gleich?
 - Auch in Verbindung mit der Pulsqualität wichtig
 
-### Normwerte Pulsrhythmus
-- Im Normalfall immer ________ [Lücke: gleiche Abstände] zwischen den Pulswellen
+#### Normwerte Pulsrhythmus
+- Im Normalfall immer ________________ [gleiche/gleichmäßige Abstände] zwischen den Pulswellen
 
 Regelmäßige und unregelmäßige Abweichungen:
-- ________ [Lücke: Asystolie] – keine Herzaktion – Notfall!
+- ________________ [Asystolie] – keine Herzaktion – Notfall!
 - Extrasystole – zusätzliche Herzaktion außerhalb des Grundrhythmus
 - Bigeminus – doppelter Puls, auch Zwillingspuls
-- ________ [Lücke: Arrhythmie] = Abweichende Rhythmik
+- ________________ [Arrhythmie] = Abweichende Rhythmik
 
-### Pulsqualität
+#### Pulsqualität
 - Bewertung der Beschaffenheit der Pulswellen (Spannung/Füllung)
 - Hart oder weich (wie leicht ist der Puls zu unterdrücken?)
 - Stark oder schwach (wie kräftig ist die Pulswelle?)
 - Anstieg (schnell oder langsam auf maximalem Druck?)
 - Kontrolle mehrerer Pulswellen – variiert die Qualität?
 
-### Normwerte Pulsqualität
+#### Normwerte Pulsqualität
 - Weich und gut gefüllt, gut tastbar
 
 Pulsqualität hängt ab von:
-- ________ [Lücke: Spannung/Wandspannung] der Blutgefäße
-- zirkulierender ________ [Lücke: Blutmenge/Blutvolumen]
+- ________________ [Elastizität] der Blutgefäße
+- Zirkulierender ________________ [Blutmenge / Blutvolumen]
 - Schlagvolumen des Herzens, Elastizität der Arterien
 
-### Indikationen – Einfache Kontrolle
-- ________ [Lücke: Routinekontrolle/Neuaufnahme] von zu pflegenden Menschen
-- Kontrolle min. 1x täglich (im Krankenhaus)
-- Nach ________ [Lücke: Belastung/Mobilisation]
+#### Indikationen — Einfache Kontrolle (Puls)
+- ________________ [Neuaufnahme] von zu pflegenden Menschen
+- Kontrolle min. 1× täglich (im Krankenhaus)
+- Nach ________________ [ärztlicher Anordnung]
 - Verschlechterter Allgemeinzustand
 - Veränderung anderer Vitalzeichen (Blutdruck, Atmung, Temperatur, Bewusstsein)
 - Mobilisation von kreislaufinstabilen Menschen
 
-### Indikation – Häufige oder dauerhafte Kontrolle
+#### Indikation — Häufige oder dauerhafte Kontrolle (Puls)
 - Messung nicht im Normbereich
-- Therapie mit vasoaktiven Substanzen (z.B. Adrenalin)
+- Therapie mit vasoaktiven Substanzen (z. B. Adrenalin)
 - Prä-/Peri-/Post-operativ
 - Überwachung nach:
-  - ________ [Lücke: Unfällen/Verletzungen]
-  - ________ [Lücke: Blutung/Flüssigkeitsverlust]
-  - ________ [Lücke: Schock]
-  - ________ [Lücke: Vergiftung]
+  - ________________ [Unfällen/schweren Verletzungen]
+  - ________________ [Blutung/großen Flüssigkeitsverlusten]
+  - ________________ [Schock]
+  - ________________ [Vergiftung]
 
-### Ablauf der Pulsmessung
+#### Ablauf der Pulsmessung
 - Patient befindet sich in Ruhe
 - Zunächst die Rhythmik feststellen
-- Schlag "0" als Startsignal
+- Schlag „0" als Startsignal
   - Bei rhythmischem Puls 15 Sekunden zählen und mit 4 multiplizieren
   - Bei arrhythmischem oder bradykardem Puls eine Minute komplett zählen
 
-### Ablauf Pulsmessung (Fortsetzung)
+#### Ablauf Pulsmessung (Fortsetzung)
 - Auf die Pulsqualität wird während des Zählens geachtet
 - Bei Neuaufnahmen oder peripheren Durchblutungsstörungen beide Seiten messen
 
-### Fehler bei der Pulsmessung
-- ________ [Lücke: Daumen] zur Messung nehmen – eigener Puls
+#### Fehler bei der Pulsmessung
+- ________________ [Daumen] zur Messung nehmen – eigener Puls (Fehlerquelle: eigener Daumenpuls wird mitgezählt)
 - Zu leichter Druck – nicht alle Schläge werden bemerkt
-- Zu starker Druck – ________ [Lücke: Abdrücken/Unterdrücken der] Pulswellen
+- Zu starker Druck – ________________ [Abdrücken / Unterdrücken der] Pulswellen
 - Kinder – häufig viel Bewegung, schneller und schwach tastbarer Puls
-  - Hier besser ________ [Lücke: auskultieren/zentral messen]
+  - Hier besser ________________ [auskultieren / zentral messen]
 - Zu kurz gemessen, besonders bei unregelmäßigem Puls
 
-### Pulsmessung bei Neugeborenen
-- (Zwei Fotos: Auskultation bzw. Monitor-Überwachung eines Neugeborenen, siehe Abschnitt Abbildungen)
+#### Pulsmessung bei Neugeborenen
+- (Fotos, siehe Abbildungen) — Auskultation und Monitor-/Pulsoximetermessung
 
-### Technische Hilfe – Pulsoximeter
-- Messung von Puls und O2-Sättigung
+#### Technische Hilfe – Pulsoximeter
+- Messung von Puls und O₂-Sättigung
 - Schnelle, konstante Überwachung
-- Muss geeicht und ________ [Lücke: kalibriert/geprüft] sein!
-- (Fotos: professionelles Pulsoximeter mit Sensor; ein einfaches Finger-Clip-Pulsoximeter ist rot durchgestrichen dargestellt)
+- Muss geeicht und ________________ [kalibriert / gewartet] sein!
 
-### Blutdruck (Titelfolie)
-- Kapitelüberschrift "Blutdruck"
+### Abschnitt BLUTDRUCK
 
-### Historie
+#### Historie
 - 1733 erste invasive Blutdruckmessung durch Stephen Hales (1677–1761)
 - Einsatz in der Veterinärmedizin
-- (Historische Abbildung und Porträt Stephen Hales)
-
-### Historie (Stethoskop)
 - 1816 Entwicklung des Stethoskops durch René Théophile Hyacinthe Laennec
-- (Foto eines historischen Holz-Stethoskops mit handschriftlicher Beschriftung; Porträt Laennec)
-
-### Historie (Riva-Rocci)
 - Scipione Riva-Rocci (1863–1937)
 - 1896 erste Beschreibung der Messung mit einer Armmanschette und einem Quecksilberröhrchen
 - RR – Riva-Rocci
-- Heute noch gängige Abkürzung für ________ [Lücke: Blutdruck (RR)]
-- Angabe in Millimeter Quecksilbersäule (________ [Lücke: mmHg])
-- (Porträt Riva-Rocci; historisches Foto einer Blutdruckmessung)
+- Heute noch gängige Abkürzung für ________________ [Blutdruck (RR)]
+- Angabe in Millimeter Quecksilbersäule (________________ [mmHg])
 
-### Definition Blutdruck
-- Druck der auf Arterien und Venen im Körper wirkt
+#### Definition Blutdruck
+- Druck, der auf Arterien und Venen im Körper wirkt
 - Im klinischen Alltag = arterieller Blutdruck
 - Als Zahlenpaar:
-  - ________ [Lücke: Systolischer] Druck
+  - ________________ [Systolischer] Druck
   - Diastolischer Druck
 
-### DEN Blutdruck gibt es eigentlich gar nicht…
-- (Diagramm Blutdruckwerte in den einzelnen Kreislaufabschnitten, siehe Abschnitt Abbildungen)
+#### DEN Blutdruck gibt es eigentlich gar nicht…
+- Blutdruck ist in jedem Kreislaufabschnitt unterschiedlich (siehe Abb. 9.1)
 
-### Blutdruck – keine unabhängige Größe
-Abhängig von vielen Faktoren, u.a.:
+#### Blutdruck – keine unabhängige Größe
+Abhängig von vielen Faktoren, u. a.:
 - Gefäßwiderstand
-- Herzschlagkraft (cardiale ________ [Lücke: Kontraktilität])
+- Herzschlagkraft (cardiale ________________ [Auswurfleistung / Kontraktilität])
 - Blut-/Flüssigkeitsvolumen im Körper
-- Körperliche/________ [Lücke: psychische/seelische] Arbeit, Krankheit
+- Körperliche/________________ [psychische] Arbeit, Krankheit
 
-### Grundbegriffe
-- Systolischer Blutdruck: ________ [Lücke: höchster Druck während der Auswurfphase / Systole des Herzens]
-- Diastolischer Blutdruck: ________ [Lücke: niedrigster Druck während der Erschlaffungsphase / Diastole]
-- Mittlerer arterieller Druck: ________ [Lücke: mittlerer Druck über den Herzzyklus, MAP/MAD]
-- Blutdruckamplitude: ________ [Lücke: Differenz zwischen systolischem und diastolischem Druck]
-- (Kleines Foto: Monitor-Anzeige "120/70 (91)")
+#### Grundbegriffe
+- Systolischer Blutdruck: ________________ [Druck während der Auswurfphase des Herzens (Systole); höherer Wert; ~120 mmHg]
+- Diastolischer Blutdruck: ________________ [Druck während der Erschlaffungsphase (Diastole); niedrigerer Wert; ~80 mmHg]
+- Mittlerer arterieller Druck: ________________ [MAD/MAP; durchschnittlicher Druck über den Herzzyklus; im Beispiel 91]
+- Blutdruckamplitude: ________________ [Differenz zwischen systolischem und diastolischem Wert]
 
-### Windkesselfunktion – Warum immer Druck im System ist
+#### Windkesselfunktion – Warum immer Druck im System ist
 - Neben anderen Faktoren (dazu später mehr)
-- ________ [Lücke: Elastizität/Dehnbarkeit] der Aorta
+- ________________ [Elastizität] der Aorta
 - Blut wird während der Systole in die Aorta gepumpt
 - In der Zwischenzeit schließt die Aortenklappe
-- Der Druck verteilt sich dem geringsten Widerstand entlang in den ________ [Lücke: Körperkreislauf/nachfolgenden Arterien]
-- Bevor der Druck richtig abfallen kann erfolgt bereits die nächste Systole
-- (Anatomie-Abbildung Herz + Detaildarstellung Taschenklappen geschlossen/geöffnet)
+- Der Druck verteilt sich dem geringsten Widerstand entlang in den ________________ [Körperkreislauf / die peripheren Gefäße]
+- Bevor der Druck richtig abfallen kann, erfolgt bereits die nächste Systole
 
-### Windkesselfunktion (Fortsetzung)
-- (Schemazeichnung: Ausbreitung der Druckwelle im Gefäß in drei Phasen)
-
-### Direkte Blutdruckmessung
+#### Direkte Blutdruckmessung
 - Per Zugang in einem Gefäß
 - OP, Intensiv- und Überwachungsstationen
-- ________ [Lücke: Kontinuierliche] Überwachung
+- ________________ [kontinuierliche] Überwachung
 - Invasive Methode:
   - A. radialis
   - A. brachialis
   - A. femoralis
-- (Fotos: arterieller Zugang an der Hand; Messaufbau mit Druckbeutel und Transducer)
 
-### Indirekte Blutdruckmessung – Auskultatorische Methode
+#### Indirekte Blutdruckmessung — Auskultatorische Methode
 - Einfaches, nicht-invasives Verfahren
-- Nutzt die ________ [Lücke: Korotkow]-Geräusche zur Bestimmung des Blutdrucks
+- Nutzt die ________________ [Korotkow]-Geräusche zur Bestimmung des Blutdrucks
 - Schnell durchführbar
-- (Foto: Blutdruckmessung am Oberarm mit Manschette und Stethoskop)
 
-### Materialien
+#### Materialien
 - Blutdruck-Manschette
 - Stethoskop
-- (Beschriftete Abbildung eines Blutdruckmessgeräts, siehe Abschnitt Abbildungen)
+- (Abbildung mit Beschriftung, siehe Abbildungen)
 
-### Stethoskop (beschriftete Abbildung)
-- (Bauteile beschriftet, siehe Abschnitt Abbildungen)
-
-### Die Blutdruckmanschette
-- (Foto: Manometer und mehrere Manschettengrößen)
-
-### Durchführung der Blutdruckmessung
+#### Durchführung der Blutdruckmessung
 - Patienten wie beschrieben vorbereiten
 - Manschette luftleer, eng und faltenfrei an den Oberarm anlegen
 - 2–3 cm oberhalb der Ellenbeuge
 - Schläuche nicht direkt in der Ellenbeuge (Störgeräusche)
 
-### Messbedingungen
+#### Messbedingungen
 - In Ruhe
 - Am entkleideten Arm
 - Immer am gleichen Arm
@@ -302,25 +275,21 @@ Abhängig von vielen Faktoren, u.a.:
 - Messinstrumente nach Gebrauch desinfizieren
 - Zur gleichen Tageszeit, Tabletteneinnahme beachten
 
-### Korotkow-Geräusche
+#### Korotkow-Geräusche
 - Strömungsgeräusche, die auskultatorisch wahrgenommen werden können
 - Entsteht durch Fließen des Blutstroms gegen den Widerstand (Verwirbelung)
 - Entsteht durch das Abdrücken mit der Manschette
-- (Schemazeichnung: Manschette, Stethoskop, Manometer 140/80 mmHg, siehe Abschnitt Abbildungen)
+- (Benannt nach Nikolai Korotkow; Schema siehe Abbildungen)
 
-### Korotkow-Geräusche (Diagramm)
-- (Porträt Nikolai Korotkow; Diagramm zum Zusammenhang Manschettendruck/Korotkow-Geräusche, siehe Abschnitt Abbildungen)
+#### Fehlerquellen bei der Blutdruckmessung (Thermometer-Schema)
+- Zahlreiche systolische und diastolische Fehlerquellen mit mmHg-Abweichung (siehe vollständige Transkription unten)
 
-### Fehlerquellen (Thermometer-Schema)
-- (Grafik in Thermometerform mit systolischen und diastolischen Messfehlern, siehe Abschnitt Abbildungen)
-
-### Weitere Messmöglichkeiten
+#### Weitere Messmöglichkeiten
 - Palpatorisch – durch Ausschläge am Manometer
 - Oszilloskopisch – durch Schwingungen der Gefäßwände
 - Langzeitmessungen über 24 Stunden
-- (Fotos: aneroides Manometer/Manschette; Handgelenk-Messgerät; automatisches Standgerät (Dinamap); 24-h-Langzeitmessgerät)
 
-### Indikationen – Einfache Kontrolle (Blutdruck)
+#### Indikationen — Einfache Kontrolle (Blutdruck)
 - Bei Neuaufnahme
 - In der Regel einmal täglich im Verlauf
 - Zusammen mit Pulskontrolle
@@ -328,7 +297,7 @@ Abhängig von vielen Faktoren, u.a.:
 - Hyper- und Hypotonie
 - Patienten mit Herz-Kreislauf-Erkrankungen
 
-### Indikationen – Häufige oder dauerhafte Kontrolle (Blutdruck)
+#### Indikationen — Häufige oder dauerhafte Kontrolle (Blutdruck)
 - Starke Blutdruckschwankungen
 - Medikamente, die den Blutdruck beeinflussen
   - Diuretika, Anti-Hypertensiva, Glucokortikoide, Kontrazeptiva usw.
@@ -340,22 +309,22 @@ Abhängig von vielen Faktoren, u.a.:
   - Vergiftung
 - Während invasiver Untersuchungen, Analgosedierung, Beatmung
 
-### Kontraindikationen
+#### Kontraindikationen (Blutdruckmessung / Stauen am betroffenen Arm)
 - Shunt-Arm
 - Ödeme/Lymphödeme (insbesondere nach Mamma-Ca)
 - Paresen, Plegien
 - Peripherer venöser Zugang, arterieller Zugang und ähnliches
 - Verbrennungen oder ähnliche Hautveränderungen
 - Frakturen, Gips
-- NIEMALS MESSEN/STAUEN!
+- **NIEMALS MESSEN/STAUEN!**
 
-### Shunt
-- (Fotos zweier Dialyse-Shunts am Unterarm; Schemazeichnung der Shuntmöglichkeiten, siehe Abschnitt Abbildungen)
+#### Shunt
+- (Fotos und Schema, siehe Abbildungen) — arteriovenöse Fistel für Dialyse
 
-### Lymphödem
-- (Foto: ausgeprägtes Lymphödem des rechten Arms)
+#### Lymphödem
+- (Foto, siehe Abbildungen) — deutlich geschwollener Arm
 
-### Normwerte (Blutdruck) (Tabelle)
+#### Normwerte (Blutdruck, Tabelle)
 | Gruppe | Normwerte |
 |---|---|
 | Erwachsene | 120/80 mmHg |
@@ -366,240 +335,222 @@ Abhängig von vielen Faktoren, u.a.:
 - Normwerte sind immer in Abhängigkeit zum klinischen Zustand, Vorerkrankungen, Lebensstil usw. zu sehen
 - Nicht immer ist ein Normwert realistisch erreichbar oder erstrebenswert
 
-### Abweichungen vom Normwert – Pathologische Werte
-- ________ [Lücke: Hypertonie]: Abweichungen > 140/90 mmHg bei Erwachsenen
-- ________ [Lücke: Hypotonie]: Abweichungen < 105/60 mmHg bei Erwachsenen
+#### Abweichungen vom Normwert — Pathologische Werte
+- ________________ [Hypertonie]: Abweichungen > 140/90 mmHg bei Erwachsenen
+- ________________ [Hypotonie]: Abweichungen < 105/60 mmHg bei Erwachsenen
 - Im Alltag ist meist der systolische Wert entscheidend!
 
-### Steuerung des Blutdrucks (Titelfolie)
-- Kapitelüberschrift "Steuerung des Blutdrucks"
+### Abschnitt STEUERUNG DES BLUTDRUCKS
 
-### Steuerungsmechanismen des Körpers
+#### Steuerungsmechanismen des Körpers
 Hormonell:
-- Hormone der Niere und ________ [Lücke: Nebenniere]
-- Noradrenalin, ________ [Lücke: Adrenalin], Dopamin, Angiotensin II
+- Hormone der Niere und ________________ [Nebenniere]
+- Noradrenalin, ________________ [Adrenalin], Dopamin, Angiotensin II
+
 Nerval:
 - Nerven des Hirnstamms
 - Sympathikus/Parasympathikus
+
 - Gemessen wird dies über Chemo-, Presso- und Volumenrezeptoren im ganzen Körper
 
-### Total periphere resistance (TPR)
+#### Total periphere resistance (TPR)
 - Gefäßwiderstand (Strömungswiderstand)
 - Summe der einzelnen Gefäßwiderstände (insbesondere der Kapillaren)
-- gesteuert über hormonelle und nervale Systeme
-- Vasokonstriktion: Gefäßverengung
-- Vasodilatation: Gefäßweitung
+- Gesteuert über hormonelle und nervale Systeme
+- **Vasokonstriktion**: Gefäßverengung
+- **Vasodilatation**: Gefäßweitung
 
 ## Abbildungen & Tabellen
 
-### Abb. 1 – Foto Pulsmessung (Folie "Technik Pulsmessung")
-Foto einer Pflegekraft in blauem Kasack, die mit zwei Fingerkuppen (Zeige- und Mittelfinger) den Radialispuls am Handgelenk eines liegenden Patienten tastet. Das Handgelenk des Patienten ist locker abgelegt. Pflegerische Bedeutung: Demonstriert die korrekte Tasttechnik (Fingerkuppen, kein Daumen, leichter Druck, aufgelegtes Handgelenk).
+1. **Titelfolie** — Dunkelblauer Hintergrund, Logo „Christliche Bildungsakademie für Gesundheitsberufe" (stilisierte Köpfe mit grünem Kreis und weißem Kreuz). Text „Blutdruck und Puls / CE 02 UE 05".
 
-### Abb. 2 – Anatomie Herz (Folie "Das Herz")
-Farbige anatomische Schnittdarstellung des Herzens mit angrenzenden großen Gefäßen. Beschriftete Strukturen (links und rechts):
-- Kopf- und Halsarterien
-- V. cava superior (obere Hohlvene)
-- rechte Lungenarterien
-- rechte Lungenvenen
-- Pulmonalklappe
-- rechter Vorhof
-- Trikuspidalklappe
-- V. cava inferior (untere Hohlvene)
-- Truncus pulmonalis (Stamm der Lungenschlagadern)
-- linke Lungenarterien
-- linke Lungenvenen
-- linker Vorhof
-- Mitralklappe
-- linke Kammer
-- rechte Kammer
-Legende/Pfeile: roter Pfeil = sauerstoffreiches Blut; blauer Pfeil = sauerstoffarmes Blut.
-Bedeutung: Grundlage zum Verständnis von Systole/Diastole, Herz als Hohlmuskel und Pumpfunktion.
+2. **Foto Technik Pulsmessung** — Nahaufnahme: Pflegekraft (blaue Berufskleidung) tastet mit zwei Fingerkuppen (Zeige- und Mittelfinger) den Radialispuls am Handgelenk eines auf weißem Tuch liegenden Patienten. Pflegerische Bedeutung: korrekte Fingerhaltung, nicht der Daumen; Handgelenk gestützt.
 
-### Abb. 3 – Schema Pulswelle (Folie "Fortsetzung der Pulswelle")
-Schemazeichnung eines Blutgefäßes (rosa/rot) in drei aufeinanderfolgenden Phasen. Pfeile zeigen die Ausdehnung der Gefäßwand und die Fortleitung der Druck-/Pulswelle entlang des Gefäßes von unten nach oben. Kleine Vibrationsstriche an der Gefäßwand deuten die Dehnung an. Bedeutung: Veranschaulicht, wie sich die Pulswelle durch elastische Gefäße fortpflanzt.
+3. **Anatomie-Abbildung Das Herz** (Frontalschnitt, farbig; rot = sauerstoffreich, blau = sauerstoffarm). Beschriftete Strukturen:
+   - Kopf- und Halsarterien
+   - V. cava superior (obere Hohlvene)
+   - rechte Lungenarterien
+   - rechte Lungenvenen
+   - Pulmonalklappe
+   - rechter Vorhof
+   - Trikuspidalklappe
+   - V. cava inferior (untere Hohlvene)
+   - Truncus pulmonalis (Stamm der Lungenschlagadern)
+   - linke Lungenarterien
+   - linke Lungenvenen
+   - linker Vorhof
+   - Mitralklappe
+   - linke Kammer
+   - rechte Kammer
+   - Legende: roter Pfeil = sauerstoffreiches Blut, blauer Pfeil = sauerstoffarmes Blut. Bedeutung: Verständnis des Blutflusses und der Herzklappen als Grundlage für Puls/Systole/Diastole.
 
-### Abb. 4 – Anatomie arterielles Gefäßsystem / Messorte (Folie "Messorte")
-Ganzkörper-Schemazeichnung eines Menschen mit rot dargestelltem arteriellem Gefäßsystem; blaue Punkte markieren die Tast-/Messstellen. Beschriftete Arterien (lateinisch + deutsch):
-- A. temporalis (Oberflächliche Schläfenschlagader)
-- A. carotis communis (Halsschlagader)
-- A. axillaris (Achselschlagader)
-- A. brachialis (Armschlagader)
-- A. radialis (Speichenschlagader)
-- A. ulnaris (Ellenschlagader)
-- A. femoralis (Oberschenkelschlagader)
-- A. poplitea (Kniekehlenschlagader)
-- A. tibialis posterior (Hintere Schienbeinschlagader)
-- A. dorsalis pedis (Fußrückenschlagader)
-Bedeutung: Übersicht der peripheren und zentralen Puls-Tastpunkte.
+4. **Abschnittstrenner „Puls"** — dunkelblaue Folie mit Logo.
 
-### Tabelle 1 – Exkurs Fachbegriffe
-Zweispaltig (Fachbegriff | Deutsch), deutsche Spalte im Original leer (Arbeitsauftrag). Begriffe: Radius, Ulna, Dorsal, Anterior, Posterior, Cranial, Sinister, Dexter.
+5. **Schema Fortsetzung der Pulswelle** — Drei rote Gefäßabschnitte nebeneinander, die zeigen, wie sich die Pulswelle (Dehnung der Gefäßwand mit Pfeilen nach außen) entlang einer Arterie fortpflanzt; gestrichelte Konturen und rote Pfeilspitzen deuten die weiterlaufende Welle an. Bedeutung: erklärt, warum der Puls peripher zeitversetzt tastbar ist (Windkessel/Elastizität).
 
-### Tabelle 2 – Normwerte Pulsfrequenz
-Spalten: Gruppe | Normale Pulsfrequenz (Ruhe)/min. Zeilen: Erwachsene (Wert Lücke), Kinder 10–14 J. (80–90), Kleinkinder 2 J. (100–120), Neugeborene (130–150).
+6. **Anatomie-Abbildung Messorte** — Ganzkörper-Schema (Arteriensystem rot) mit Punktmarkierungen und lateinischen + deutschen Bezeichnungen der tastbaren Pulsstellen:
+   - A. temporalis (Oberflächliche Schläfenschlagader)
+   - A. carotis communis (Halsschlagader)
+   - A. axillaris (Achselschlagader)
+   - A. brachialis (Armschlagader)
+   - A. radialis (Speichenschlagader)
+   - A. ulnaris (Ellenschlagader)
+   - A. femoralis (Oberschenkelschlagader)
+   - A. poplitea (Kniekehlenschlagader)
+   - A. tibialis posterior (Hintere Schienbeinschlagader)
+   - A. dorsalis pedis (Fußrückenschlagader)
 
-### Tabelle 3 – Tachykardie/Bradykardie
-Spalten: Tachykardie (> 100 Schläge/Minute) | Bradykardie (< 50 Schläge/Minute), beim Erwachsenen.
+7. **Tabelle Exkurs Fachbegriffe** — Zwei Spalten (Fachbegriff | Deutsch), grüne Zeilen. Inhalt: Radius, Ulna, Dorsal, Anterior, Posterior, Cranial, Sinister, Dexter (deutsche Übersetzungen im Original leer/auszufüllen).
 
-### Tabelle 4 – Abweichungen Pulsfrequenz Gründe (leer)
-Zweispaltig Tachykardie | Bradykardie, Zellen leer (Arbeitsauftrag zum Ausfüllen).
+8. **Tabelle Normwerte Pulsfrequenz** — Gruppe | Normale Pulsfrequenz (Ruhe)/min. Zeilen: Erwachsene (Wert leer), Kinder 10–14 J. (80–90), Kleinkinder 2 J. (100–120), Neugeborene (130–150).
 
-### Abb. 5 – Fotos Pulsmessung bei Neugeborenen
-Zwei Fotos: (links) ein Neugeborenes wird mit einem Stethoskop an der Brust auskultiert; (rechts) ein Neugeborenes am Überwachungsmonitor (Anzeige u.a. "97", Herzfrequenz "133", weitere Werte), mit Fußsensor. Bedeutung: Bei Neugeborenen wird der Puls bevorzugt auskultiert oder apparativ überwacht (schneller, schwer tastbarer Puls).
+9. **Tabelle Abweichungen Pulsfrequenz** — Tachykardie (> 100 Schläge/Minute) | Bradykardie (< 50 Schläge/Minute), beim Erwachsenen.
 
-### Abb. 6 – Fotos Pulsoximeter
-(links unten) einfaches blaues Finger-Clip-Pulsoximeter, rot durchgekreuzt (= im klinischen Kontext hier nicht geeignet/nicht empfohlen); (rechts) professionelles Pulsoximeter (rot-weißes Gerät, Marke Masimo Rad-57) mit Sensorkabel. Bedeutung: misst Puls + O2-Sättigung; muss geeicht/kalibriert sein.
+10. **Leere Tabelle Abweichungen Pulsfrequenz Gründe** — zwei Spalten (Tachykardie | Bradykardie), Zeilen leer (Arbeitsauftrag).
 
-### Abb. 7 – Historische Abbildung Stephen Hales
-Historische Strichzeichnung: Mann steht auf einem Podest an einem Baum und misst mit einer langen senkrechten Glasröhre den Blutdruck an einem liegenden Tier (Pferd) – Darstellung der ersten invasiven Blutdruckmessung 1733. Daneben Porträt (Kupferstich) von Stephen Hales mit Perücke und Geistlichenkragen.
+11. **Fotos Pulsmessung bei Neugeborenen** — Links: Säugling wird mit Stethoskop am Brustkorb auskultiert. Rechts: Neugeborenes an Monitor/Pulsoximeter (Display zeigt „97" SpO₂ und „133", „31"); Elektroden am Thorax, Sensor am Fuß. Bedeutung: bei Säuglingen zentrale Auskultation statt peripheres Tasten.
 
-### Abb. 8 – Foto historisches Stethoskop + Porträt Laennec
-Foto eines zylindrischen Holz-Stethoskops (Monaural) mit handschriftlicher Beschriftung auf der Oberfläche. Daneben Porträt-Lithografie von René Laennec mit Signatur.
+12. **Foto Pulsoximeter** — Rot-weißes Handmessgerät (Rad-57-artig) mit Kabel und Fingersensor. Zusätzlich ein durchgestrichenes Foto eines einfachen Finger-Clip-Pulsoximeters (rotes X). Bedeutung: professionelles, geeichtes Gerät statt Consumer-Clip.
 
-### Abb. 9 – Porträt Riva-Rocci + historisches Messfoto
-Porträt (Schwarz-Weiß) von Scipione Riva-Rocci. Kleines historisches Foto: zwei Männer, einer legt dem anderen eine Armmanschette an und misst den Blutdruck mit einem Quecksilbermanometer.
+13. **Abschnittstrenner „Blutdruck"** — dunkelblaue Folie mit Logo.
 
-### Abb. 10 – Diagramm "Abb. 9.1 Blutdruckwerte in den einzelnen Kreislaufabschnitten (nach Pschyrembel)"
-Liniendiagramm; y-Achse mmHg (0–140), x-Achse Zeit. Rosa Kurve zeigt Druckverlauf mit hohen Amplituden links, dann steilem Abfall und niedrigen Werten rechts. Nummerierte Abschnitte:
-1 = Linker Ventrikel, 2 = Aorta, 3 = periphere Arterie, 4 = Arteriole, 5 = Kapillare, 6 = große Hohlvene, 7 = zentralvenöser Druck (rechter Vorhof), 8 = rechter Ventrikel, 9 = Lungenarterie, 10 = linker Vorhof.
-Bedeutung: Der Druck ist in verschiedenen Kreislaufabschnitten sehr unterschiedlich – "den" einen Blutdruck gibt es nicht.
+14. **Historie-Bilder Stephen Hales** — Porträt (Perücke, Geistlicher-Kragen) und historischer Kupferstich der ersten invasiven Blutdruckmessung an einem Pferd (steigende Blutsäule in einer Glasröhre am Baum).
 
-### Abb. 11 – Kleines Foto Monitoranzeige
-Rote Monitoranzeige mit Blutdruckkurve und Wert "120/70 (91)" – systolisch/diastolisch (mittlerer arterieller Druck in Klammern). Auf Folie "Grundbegriffe".
+15. **Historie-Bilder Laennec** — Foto eines originalen hölzernen Stethoskops mit handschriftlicher Notiz (siehe Transkription) und Porträtlithografie von R. T. H. Laennec mit Signatur.
 
-### Abb. 12 – Anatomie Herz + Taschenklappen (Folie "Windkesselfunktion")
-Gleiche Herz-Schnittdarstellung wie Abb. 2 (hier ohne vollständige Beschriftung), plus Detaildarstellung der Taschenklappen (halbmondförmige Endotheltasche) in zwei Zuständen: "geschlossen" und "geöffnet". Bedeutung: Aortenklappe/Taschenklappen und Windkesselfunktion der elastischen Aorta.
+16. **Historie-Bild Riva-Rocci** — Porträtfoto (Brille, Schnurrbart) und historisches Foto einer Blutdruckmessung mit Oberarmmanschette und Quecksilbermanometer.
 
-### Abb. 13 – Schema Druckwelle (Folie "Windkesselfunktion Fortsetzung")
-Identische dreiphasige Gefäß-Schemazeichnung wie Abb. 3; hier zur Illustration der Windkesselfunktion/Druckfortleitung.
+17. **Kurven-Abbildung „Abb. 9.1 Blutdruckwerte in den einzelnen Kreislaufabschnitten"** (nach Pschyrembel). Y-Achse mmHg (0–140), X-Achse Zeit; rote Druckkurve mit nummerierten Punkten 1–10. Legende: 1 = Linker Ventrikel, 2 = Aorta, 3 = periphere Arterie, 4 = Arteriole, 5 = Kapillare, 6 = große Hohlvene, 7 = zentralvenöser Druck (rechter Vorhof), 8 = rechter Ventrikel, 9 = Lungenarterie, 10 = linker Vorhof. Bedeutung: zeigt, dass der Druck im Kreislauf stark variiert (arteriell ~120, fast 0 venös).
 
-### Abb. 14 – Fotos direkte (invasive) Blutdruckmessung
-(links) Foto einer Hand mit arteriellem Zugang (Katheter) an der A. radialis, mit Pflaster fixiert und rotem Verschluss. (rechts) Foto des Messaufbaus: Infusions-/Spülbeutel unter Druck, Manometer, Druckwandler-System am Arm. Bedeutung: kontinuierliche invasive Blutdrucküberwachung auf Intensiv/OP.
+18. **Foto/Monitor Grundbegriffe** — kleiner Monitorausschnitt mit roter Druckkurve und Anzeige „120/70 (91)" (systolisch/diastolisch (Mitteldruck)).
 
-### Abb. 15 – Foto indirekte Messung
-Foto einer Blutdruckmessung am Oberarm: graue Manschette angelegt, Stethoskopkopf in der Ellenbeuge, Hand hält Manometer. Auskultatorische Methode.
+19. **Anatomie-Abbildung Windkesselfunktion** — Herz-Frontalschnitt (wie Abb. 3) plus rechts Detailschema der halbmondförmigen Taschenklappen (Endotheltaschen) im Zustand „geschlossen" und „geöffnet" mit rotem Blutfluss-Pfeil. Bedeutung: Aortenklappe/Windkessel erklärt den kontinuierlichen Druck.
 
-### Abb. 16 – Beschriftetes Blutdruckmessgerät (Folie "Materialien")
-Foto eines aneroiden Blutdruckmessgeräts mit Beschriftungen:
-- Manschette mit Klettverschluss
-- Manometer zum Ablesen des Blutdrucks in mmHg
-- Drehventil zum Ablassen des Drucks in der Manschette
-- Ballon zum Aufpumpen der Manschette
-- Schlauch vom Ballon zur Manschette
-Zusätzlich links ein Foto eines Stethoskops.
+20. **Schema Windkesselfunktion** — dieselben drei roten Gefäßabschnitte wie Abb. 5 (Pulswellen-/Windkessel-Ausbreitung).
 
-### Abb. 17 – Beschriftetes Stethoskop
-Foto eines roten Stethoskops mit beschrifteten Bauteilen:
-- Ohroliven
-- Doppelblattfeder
-- Ohrbügel
-- Schlauch
-- Schlauchanschluss
-- Dual Frequency Membrane (Doppelfrequenz-Membran)
+21. **Fotos Direkte Blutdruckmessung** — Foto eines arteriellen Zugangs (Kanüle) am Handgelenk (fixiert mit Pflaster, rote Verschlusskappe) sowie Foto eines Druckmess-/Spülsystems (Beutel, Manometer, Leitungen) am Arm. Bedeutung: invasive kontinuierliche Messung auf Intensiv/OP.
 
-### Abb. 18 – Foto Blutdruckmanschette + Manometer
-Foto eines aneroiden Manometers mit Ballon (Beschriftung "Manometer") und mehrerer Manschetten in verschiedenen Größen (Beschriftung "Manschetten"), u.a. Marken Dura-Cuf, WelchAllyn Large Adult. Bedeutung: passende Manschettengröße wählen.
+22. **Foto Indirekte Blutdruckmessung** — Oberarm mit angelegter grauer Manschette, Stethoskopmembran in der Ellenbeuge, Manometer in der Hand. Auskultatorische Methode.
 
-### Abb. 19 – Schema Korotkow-Messung
-Farbige Schemazeichnung eines Arms mit angelegter Blutdruckmanschette (2,5 cm oberhalb der Ellenbeuge), aufgesetztem Stethoskop, Schlauchverbindung zum Blutdruckmessgerät. Kleine Manometer-Darstellung mit rot markiertem Bereich und Anzeige "Blutdruck 140/80 mmHg", Beschriftung "Korotkow-Töne hörbarer Bereich". Bedeutung: Ort/Aufbau der auskultatorischen Messung.
+23. **Beschriftetes Foto Materialien / Blutdruckmanschette** — Aneroid-Manschette mit Beschriftungen: „Manschette mit Klettverschluss", „Manometer zum Ablesen des Blutdrucks in mmHg", „Drehventil zum Ablassen des Drucks in der Manschette", „Ballon zum Aufpumpen der Manschette", „Schlauch vom Ballon zur Manschette". Zusätzlich Foto eines Stethoskops.
 
-### Abb. 20 – Porträt Korotkow + Korotkow-Diagramm
-(links) historisches Schwarz-Weiß-Porträt von Nikolai Korotkow (in Uniform, mit Stethoskop). (rechts) Diagramm: y-Achse Druck [mmHg] (40–160), fallende Linie = allmählich fallender Manschettendruck. Kurvenreihen zeigen Pulswellen; rosa hinterlegter Bereich = Bereich hörbarer Korotkow-Geräusche. Markierungen: systolischer Blutdruck 120 mmHg (Beginn der Geräusche), diastolischer Blutdruck 80 mmHg (Ende der Geräusche), arterieller Druck (gelbe Wellen rechts). Unten Achsenbeschriftung "Arterie im Manschettenbereich: ständig zu / intermittierend zu und offen / ständig offen"; Balken "Korotkow-Geräusche über der A. brachialis". Quelle: G. Raichle, Ulm/© Elsevier GmbH, München 2016. Bedeutung: erklärt, warum systolischer Wert beim ersten Geräusch und diastolischer beim Verschwinden abgelesen wird.
+24. **Beschriftetes Foto Stethoskop** — Rotes Stethoskop mit Beschriftungen: Ohroliven, Doppelblattfeder, Ohrbügel, Schlauch, Schlauchanschluss, „Dual Fequency Membrane" [sic] (Doppelfrequenzmembran).
 
-### Abb. 21 – Thermometer-Grafik Messfehler
-Grafik in Form eines Thermometers, links "Systolisch", rechts "Diastolisch", mit Skalen der Fehlerabweichung in mmHg (von +50 bis −20 systolisch, +20 bis −10 diastolisch). Zuordnung typischer Fehlerquellen zu Über-/Unterschätzung des Wertes, u.a.:
-Systolisch (Überschätzung): Manschette über Kleidung (+50), wiederholtes Aufpumpen, Harn-/Stuhldrang, Angst und Schmerz (+20), Sprechen (+10), Rauchen/Kaffee/Kälte/Alkohol (+5); Messtechnik-Fehler (schmale, nicht zentrierte Manschette, liegend messen, Parese) (+2); Unterschätzung: Beine überkreuzt, Leck im Ablassventil, Zeitdruck, lose anliegende Manschette, Arteriosklerose, Hörfehler (−5 bis −10), postprandiale Messung/Manschette zu groß, Manschette zu schmal/Arm oberhalb Herzhöhe (−20), nach Sport, wiederholtes Aufpumpen.
-Diastolisch analog: Harn-/Stuhldrang, wiederholtes Aufpumpen (+20), Sprechen, Manschette zu schmal (+10), Patient sitzt nicht angelehnt, Ableseungenauigkeit (+8), Rauchen/Kaffee/Kälte/Alkohol (+5), Angst/Schmerz, Beine überkreuzt, Leck, Zeitdruck, lose Manschette, Arteriosklerose, Hörfehler (+2/variabel); postprandial, Messung im Liegen (−5), nach Sport, Arm oberhalb Herzhöhe, wiederholtes Aufpumpen (−10).
-Quelle: Georg Thieme Verlag, Stuttgart. Thiemes Pflege, 11. Auflage 2009.
+25. **Foto Die Blutdruckmanschette** — Aneroid-Manometer (Skala bis ~300) und mehrere Manschetten unterschiedlicher Größe (u. a. „WelchAllyn Large Adult", „DURA-CUF Adult"). Bedeutung: passende Manschettengröße wählen.
 
-### Abb. 22 – Fotos weitere Messmöglichkeiten
-Vier Fotos: aneroides Manometer mit Manschette (palpatorisch); Handgelenk-Messgerät (oszilloskopisch); großes automatisches Standgerät (Dinamap-Monitor auf Rollstativ); tragbares 24-h-Langzeitmessgerät (blaue Manschette + Aufnahmegerät in Tasche).
+26. **Anatomie/Schema Korotkow-Geräusche** — Farbiges Schema: Oberarm mit Blutdruckmanschette 2,5 cm oberhalb, Stethoskop, Manometer (Anzeige „Blutdruck 140/80 mmHg", markierter „hörbarer Bereich" 80–140). Bedeutung: Zusammenhang Manschettendruck und Korotkow-Töne.
 
-### Abb. 23 – Fotos + Schema Shunt (Dialyse)
-Zwei Fotos von Unterarmen mit angelegtem Dialyse-Shunt (sichtbare Gefäßerweiterung/Narben). Schemazeichnung "Shuntmöglichkeiten (eigene Gefäße)": zwei Varianten am Unterarm mit beschrifteten Gefäßen:
-- V. cephalica, A. radialis, A/V Fistel oder Cimino Shunt (handgelenksnah)
-- V. cephalica, A. brachialis, A/V Fistel oder Kaufmann Shunt (ellenbogennah)
-Bedeutung: Am Shunt-Arm niemals Blutdruck messen/stauen.
+27. **Diagramm + Porträt Korotkow-Geräusche** — Links Porträt (junger Mann in Uniform, Nikolai Korotkow). Rechts Diagramm (G. Raichle, Ulm / © Elsevier 2016): Y-Achse Druck mmHg (40–160), fallende Manschettendruck-Gerade, Pulskurven; rosa Bereich markiert „systolischer Blutdruck 120 mmHg" (Beginn) bis „diastolischer Blutdruck 80 mmHg" (Ende), darunter Balken „Korotkow-Geräusche über der A. brachialis"; Zustände der Arterie im Manschettenbereich: „ständig zu" | „intermittierend zu und offen" | „ständig offen". Pflegerische Bedeutung: erstes Geräusch = systolisch, Verschwinden = diastolisch.
 
-### Abb. 24 – Foto Lymphödem
-Foto eines Mannes von der Seite mit deutlich verdicktem, geschwollenem rechtem Arm (Lymphödem). Bedeutung: Kontraindikation für Blutdruckmessung/Stauung an der betroffenen Extremität.
+28. **Thermometer-Schema Fehlerquellen der Blutdruckmessung** (Georg Thieme Verlag, Thiemes Pflege, 11. Aufl. 2009). Zwei Spalten Systolisch | Diastolisch mit mmHg-Abweichungen entlang einer Thermometerskala. Siehe vollständige Transkription unten.
 
-### Tabelle 5 – Normwerte Blutdruck
-Spalten: Gruppe | Normwerte. Erwachsene 120/80 mmHg; Menschen ab 60+ 140/90 mmHg; Kinder 4–12 Jahre 100/60 mmHg; Säuglinge 80/60 mmHg.
+29. **Fotos Weitere Messmöglichkeiten** — Palpatorisch (Aneroid-Manschette), Oszilloskopisch (Handgelenk-Digitalgerät), automatisches Standgerät (Dinamap), Langzeitmessgerät 24 h (blaue Manschette + tragbares Kastengerät).
+
+30. **Fotos + Schema Shunt** — Zwei Fotos von Unterarmen mit sichtbaren, geschlängelten/erweiterten Shunt-Gefäßen (Dialyse-Shunt); Schema mit A/V-Fistel (Cimino-Shunt: V. cephalica + A. radialis; Kaufmann-Shunt: V. cephalica + A. brachialis), „Shuntmöglichkeiten (eigene Gefäße)". Bedeutung: am Shunt-Arm niemals Blutdruck messen.
+
+31. **Foto Lymphödem** — Oberkörper einer Person mit stark geschwollenem Arm (Lymphödem, z. B. nach Mamma-Ca). Bedeutung: Kontraindikation für Messung/Stauung.
+
+32. **Tabelle Normwerte Blutdruck** — Gruppe | Normwerte: Erwachsene 120/80, Menschen ab 60+ 140/90, Kinder 4–12 J. 100/60, Säuglinge 80/60 mmHg.
+
+33. **Abschnittstrenner „Steuerung des Blutdrucks"** — Folie mit Logo.
+
+Auf nahezu allen Inhaltsfolien: grün-weißer Farbverlauf am linken Rand, Fußzeilen-Logo der Christlichen Bildungsakademie für Gesundheitsberufe.
 
 ## Transkribierte Fototexte
 
-### Monitoranzeige (Grundbegriffe)
-"120/70 (91)"
+### Monitor-Anzeige (Grundbegriffe)
+„120/70 (91)" — systolischer / diastolischer Blutdruck (Mitteldruck in Klammern).
 
-### Neugeborenen-Monitor
-Sichtbare Werte u.a.: "97" (SpO2), "133", "31" (Herzfrequenz/Atemfrequenz o.ä.)
+### Monitor Neugeborenes
+Displaywerte: „97" (SpO₂ %), „133", „31".
 
-### Beschriftungen Blutdruckmessgerät (Materialien)
-"Manschette mit Klettverschluss" / "Manometer zum Ablesen des Blutdrucks in mmHg" / "Drehventil zum Ablassen des Drucks in der Manschette" / "Ballon zum Aufpumpen der Manschette" / "Schlauch vom Ballon zur Manschette"
+### Beschriftung Blutdruckmanschette
+- „Manschette mit Klettverschluss"
+- „Manometer zum Ablesen des Blutdrucks in mmHg"
+- „Drehventil zum Ablassen des Drucks in der Manschette"
+- „Ballon zum Aufpumpen der Manschette"
+- „Schlauch vom Ballon zur Manschette"
+- Aufdruck auf Manschette: „SPHYGMOMANOMETER / ARTERY / LEFT | RIGHT"
 
-### Beschriftungen Stethoskop
-"Ohroliven" / "Doppelblattfeder" / "Ohrbügel" / "Schlauch" / "Schlauchanschluss" / "Dual Fequency Membrane" (so im Original; korrekt: Dual Frequency Membrane)
+### Beschriftung Stethoskop
+Ohroliven · Doppelblattfeder · Ohrbügel · Schlauch · Schlauchanschluss · „Dual Fequency Membrane" (so im Original, gemeint: Dual Frequency Membrane / Doppelfrequenzmembran).
 
-### Manschetten-Foto (Aufdrucke)
-"DURA-CUF", "WelchAllyn Durable Blood Pressure Cuff LARGE ADULT", "REF 2774 25-33 CM", "ADULT", "CE"
+### Beschriftung Manschetten-Foto
+„WelchAllyn — Durable Blood Pressure Cuff — LARGE ADULT"; „DURA-CUF REF 2774 23-33 CM ADULT".
 
-### Korotkow-Schema
-"Korotkow-Töne hörbarer Bereich" / "Blutdruck 140/80 mmHg" / "Stethoskop" / "Blutdruckmessgerät" / "Blutdruckmanschette" / "2,5 cm"
+### Schema Korotkow-Geräusche (Manometeranzeige)
+„Korotkow-Töne hörbarer Bereich"; Skala 20–160; „Blutdruck 140/80 mmHg"; „Stethoskop"; „Blutdruckmessgerät"; „Blutdruckmanschette"; „2,5 cm".
 
-### Korotkow-Diagramm
-"Druck [mmHg]" / "allmählich fallender Manschettendruck" / "systolischer Blutdruck: 120 mmHg" / "diastolischer Blutdruck: 80 mmHg" / "arterieller Druck" / "Arterie im Manschettenbereich: ständig zu – intermittierend zu und offen – ständig offen" / "Korotkow-Geräusche über der A. brachialis" / "G. Raichle, Ulm/© Elsevier GmbH, München 2016"
+### Diagramm Korotkow (Quellenangabe)
+„G. Raichle, Ulm / © Elsevier GmbH, München 2016". Beschriftungen: „allmählich fallender Manschettendruck", „systolischer Blutdruck: 120 mmHg", „diastolischer Blutdruck: 80 mmHg", „arterieller Druck", „Arterie im Manschettenbereich: ständig zu | intermittierend zu und offen | ständig offen", „Korotkow-Geräusche über der A. brachialis".
 
-### Thermometer-Grafik
-Überschriften "Systolisch" / "Diastolisch"; Quelle "Georg Thieme Verlag, Stuttgart. Thiemes Pflege, 11. Auflage · 2009" (vollständige Fehlerliste siehe Abb. 21)
+### Handschriftliche Notiz auf Laennec-Stethoskop (Foto, historisch, englisch — teils schwer lesbar)
+Sinngemäß: „This is one of Laennec's original stethoscopes, and it was presented by him to Dr. Bégin, a French army surgeon, whose widow gave it to me in …". (Hinweis: das abgebildete Holzstethoskop wird als eines der Original-Stethoskope Laennecs bezeichnet, überreicht an einen französischen Armeearzt Dr. Bégin, dessen Witwe es dem Sammler übergab.)
 
-### Diagramm Kreislaufabschnitte
-"Abb. 9.1 Blutdruckwerte in den einzelnen Kreislaufabschnitten. 1 = Linker Ventrikel, 2 = Aorta, 3 = periphere Arterie, 4 = Arteriole, 5 = Kapillare, 6 = große Hohlvene, 7 = zentralvenöser Druck (rechter Vorhof), 8 = rechter Ventrikel, 9 = Lungenarterie, 10 = linker Vorhof (nach Pschyrembel)"
+### Thermometer-Schema Fehlerquellen (vollständige OCR)
+Überschriften: **Systolisch** (links) / **Diastolisch** (rechts). Angaben = mmHg-Fehlerabweichung.
 
-### Shunt-Schema
-"Shuntmöglichkeiten (eigene Gefäße)" / "V. cephalica" / "A. radialis" / "A. brachialis" / "A/V Fistel oder Cimino Shunt" / "A/V Fistel oder Kaufmann Shunt" / "Grundzeichnung aus Buch: Gefäßchirurgie – Manual für die Praxis"
+Systolisch:
+- Manschette über Kleidung: +50
+- wiederholtes Aufpumpen; Harn-/Stuhldrang, Angst und Schmerz: +20
+- Sprechen: +10
+- Rauchen, Kaffee, Kälte, Alkohol: +5
+- Messtechnik (schmale Manschette, Manschette nicht zentriert; liegend messen, Parese): +2
+- Beine überkreuzt, Leck im Ablassventil, Zeitdruck, lose anliegende Manschette, Arteriosklerose, Hörfehler: variabel
+- postprandiale Messung, Manschette zu groß: −5
+- Manschette zu schmal, Arm oberhalb Herzhöhe: −10
+- nach Sport: −20
+- wiederholtes Aufpumpen (unten aufgeführt)
+
+Diastolisch:
+- Harn-/Stuhldrang: +20
+- wiederholtes Aufpumpen: +10
+- Sprechen; Manschette zu schmal; Patient sitzt nicht angelehnt, Ableseungenauigkeit: +8
+- Rauchen, Kaffee, Kälte, Alkohol: +5
+- Angst und Schmerz, Beine überkreuzt, Leck im Ablassventil, Zeitdruck, lose anliegende Manschette, Arteriosklerose, Hörfehler: +2 / variabel
+- postprandial; Messung im Liegen: −5
+- nach Sport, Arm oberhalb Herzhöhe, wiederholtes Aufpumpen: −10
+
+Quelle: „Georg Thieme Verlag, Stuttgart. Thiemes Pflege, 11. Auflage · 2009".
 
 ## Kernbegriffe (Glossar)
 
-- **Puls**: (lat. pulsus = Stoß) tastbare Druckwelle in den Arterien, ausgelöst durch den Blutausstoß der linken Herzkammer während der Systole; Vitalzeichen.
-- **Pulswelle**: rhythmisch in Aorta und Körperkreislauf fortgeleitete Druckwelle; gegen eine harte Struktur (Muskel/Knochen) tastbar.
-- **Schlagvolumen**: ca. 70 ml Blut, die pro Herzschlag in die Aorta ausgeworfen werden.
-- **Herzminutenvolumen (HMV)**: ca. 5 L Blut/Minute, die vom Herzen zirkuliert werden.
-- **Systole**: Anspannungs-/Auswurfphase des Herzens (höchster arterieller Druck).
-- **Diastole**: Erschlaffungs-/Füllungsphase des Herzens (niedrigster arterieller Druck).
-- **Peripherer Puls**: an vom Herzen entfernten Arterien tastbar (z.B. A. radialis, A. dorsalis pedis); bei Rhythmusstörungen, Hypotonie oder Arterienverschluss ggf. nicht tastbar.
-- **Zentraler Puls**: an herznahen Arterien (A. carotis, A. femoralis); genauer, gibt nahezu die Herzfrequenz an. CAVE A. carotis nur einseitig, leichter Druck (Kollapsgefahr).
-- **Pulsfrequenz**: Anzahl der Pulswellen (Schläge) pro Minute.
-- **Pulsrhythmus**: Regelmäßigkeit/Unregelmäßigkeit der Abstände zwischen den Pulswellen.
-- **Pulsqualität**: Beschaffenheit der Pulswelle (Spannung/Füllung; hart/weich, stark/schwach, Anstieg).
-- **Tachykardie**: zu schneller Puls, > 100 Schläge/min beim Erwachsenen.
-- **Bradykardie**: zu langsamer Puls, < 50 Schläge/min beim Erwachsenen.
+- **Puls (pulsus, „Stoß")**: tastbare Druckwelle in den Arterien, ausgelöst durch den Blutauswurf der linken Herzkammer (Systole).
+- **Systole**: Anspannungs-/Auswurfphase des Herzens; erzeugt den systolischen (oberen) Blutdruckwert.
+- **Diastole**: Erschlaffungs-/Füllungsphase des Herzens; entspricht dem diastolischen (unteren) Blutdruckwert.
+- **Pulswelle**: rhythmisch in Aorta und Körperkreislauf gestoßene Druckwelle; Schlagvolumen ca. 70 ml/Schlag, ca. 5 L/min (Herzminutenvolumen).
+- **Pulsfrequenz**: Anzahl der Pulswellen (Schläge) pro Minute. Erwachsene ~60–80/min.
+- **Pulsrhythmus**: Regelmäßigkeit der Abstände zwischen den Pulswellen.
+- **Pulsqualität**: Beschaffenheit (Spannung/Füllung) der Pulswelle – hart/weich, stark/schwach, Anstieg.
+- **Tachykardie**: zu schneller Puls, > 100 Schläge/min (Erwachsene).
+- **Bradykardie**: zu langsamer Puls, < 50 Schläge/min (Erwachsene).
 - **Asystolie**: keine Herzaktion – Notfall.
 - **Extrasystole**: zusätzliche Herzaktion außerhalb des Grundrhythmus.
 - **Bigeminus**: doppelter Puls / Zwillingspuls.
-- **Arrhythmie**: abweichende (unregelmäßige) Rhythmik.
-- **Pulsdefizit (Pulsdifferenz)**: Differenz zwischen Herzfrequenz und Pulsfrequenz; mit EKG diagnostizierbar.
-- **Pulsoximeter**: Gerät zur Messung von Puls und Sauerstoffsättigung (O2-Sättigung); muss geeicht/kalibriert sein.
-- **Blutdruck**: Druck, der auf Arterien und Venen wirkt; klinisch = arterieller Blutdruck; Zahlenpaar systolisch/diastolisch.
-- **Systolischer Blutdruck**: höchster Druck während der Auswurfphase.
-- **Diastolischer Blutdruck**: niedrigster Druck während der Erschlaffungsphase.
-- **Mittlerer arterieller Druck (MAP/MAD)**: mittlerer Druck über den Herzzyklus (Monitoranzeige in Klammern).
+- **Arrhythmie**: abweichende, unregelmäßige Rhythmik.
+- **Pulsdefizit/Pulsdifferenz**: Herzfrequenz ≠ Pulsfrequenz (mit EKG diagnostizierbar).
+- **Peripherer Puls**: an herzfernen Arterien (z. B. A. radialis, A. dorsalis pedis) getastet.
+- **Zentraler Puls**: an großen herznahen Arterien (A. carotis, A. femoralis); auch bei Rhythmusstörungen gut tastbar.
+- **A. radialis**: Speichenschlagader, Standardmessstelle für den Puls.
+- **A. carotis communis**: Halsschlagader; nur einseitig, leicht tasten (Kollapsgefahr).
+- **Pulsoximeter**: misst Puls und O₂-Sättigung; muss geeicht/kalibriert sein.
+- **Blutdruck (RR = Riva-Rocci)**: Druck des Blutes auf die Gefäßwände, klinisch der arterielle Druck; Angabe in mmHg.
+- **Systolischer Blutdruck**: höherer Wert während des Herzauswurfs (~120 mmHg).
+- **Diastolischer Blutdruck**: niedrigerer Wert während der Herzfüllung (~80 mmHg).
+- **Mittlerer arterieller Druck (MAD/MAP)**: durchschnittlicher Druck über den Herzzyklus (Bsp. 91).
 - **Blutdruckamplitude**: Differenz zwischen systolischem und diastolischem Wert.
-- **Windkesselfunktion**: Pufferfunktion der elastischen Aorta, die den pulsatilen Auswurf in einen kontinuierlichen Blutstrom umwandelt und den diastolischen Druck aufrechterhält.
-- **RR (Riva-Rocci)**: gängige Abkürzung für Blutdruck; Angabe in mmHg.
-- **mmHg**: Millimeter Quecksilbersäule (Maßeinheit des Blutdrucks).
-- **Korotkow-Geräusche**: Strömungs-/Verwirbelungsgeräusche, auskultatorisch hörbar; Beginn = systolischer, Verschwinden = diastolischer Wert.
-- **Auskultatorische Methode**: indirekte, nicht-invasive Messung mit Manschette und Stethoskop über die Korotkow-Geräusche.
-- **Palpatorische Methode**: Messung über tastbare Ausschläge/Manometerbewegung (nur systolisch).
-- **Oszillometrische/oszilloskopische Methode**: Messung über Schwingungen der Gefäßwände (automatische Geräte).
-- **Direkte (invasive) Messung**: kontinuierliche Messung über arteriellen Zugang (A. radialis/brachialis/femoralis) auf Intensiv/OP.
-- **Langzeitmessung (24-h-RR)**: ambulante Blutdruckmessung über 24 Stunden.
-- **Hypertonie**: pathologisch erhöhter Blutdruck, > 140/90 mmHg beim Erwachsenen.
-- **Hypotonie**: pathologisch niedriger Blutdruck, < 105/60 mmHg beim Erwachsenen.
-- **Total periphere resistance (TPR)**: gesamter (peripherer) Gefäß-/Strömungswiderstand, v.a. der Kapillaren; hormonell und nerval gesteuert.
-- **Vasokonstriktion**: Gefäßverengung (steigert Widerstand/Blutdruck).
-- **Vasodilatation**: Gefäßweitung (senkt Widerstand/Blutdruck).
-- **Shunt**: operativ angelegte arteriovenöse Verbindung (Dialyse; z.B. Cimino-, Kaufmann-Shunt) – Kontraindikation für Messung am betroffenen Arm.
-- **Lymphödem**: Schwellung durch Lymphstau (z.B. nach Mamma-Ca) – Kontraindikation.
-- **Kontraindikationen der Messung**: Shunt-Arm, Ödeme/Lymphödeme, Paresen/Plegien, venöser/arterieller Zugang, Verbrennungen, Frakturen/Gips – NIEMALS messen/stauen.
-- **Steuerungsmechanismen**: hormonell (Nieren-/Nebennierenhormone, Noradrenalin, Adrenalin, Dopamin, Angiotensin II) und nerval (Hirnstamm, Sympathikus/Parasympathikus); Rückmeldung über Chemo-, Presso- und Volumenrezeptoren.
+- **Windkesselfunktion**: elastische Aorta speichert das systolische Volumen und hält so den Druck kontinuierlich aufrecht.
+- **Korotkow-Geräusche**: Strömungs-/Verwirbelungsgeräusche beim Ablassen des Manschettendrucks; erstes Geräusch = systolisch, Verschwinden = diastolisch. Nach Nikolai Korotkow.
+- **Auskultatorische Methode**: indirekte, nicht-invasive Blutdruckmessung mit Stethoskop und Manschette.
+- **Palpatorische Methode**: Blutdruckabschätzung über Ausschläge/Tasten (nur systolisch).
+- **Oszillometrische/oszilloskopische Methode**: automatische Messung über Gefäßwandschwingungen.
+- **Direkte (invasive) Blutdruckmessung**: kontinuierliche Messung über arteriellen Zugang (A. radialis/brachialis/femoralis) auf Intensiv/OP.
+- **Hypertonie**: Bluthochdruck, > 140/90 mmHg bei Erwachsenen.
+- **Hypotonie**: niedriger Blutdruck, < 105/60 mmHg bei Erwachsenen.
+- **Total periphere Resistance (TPR)**: Gesamtgefäßwiderstand (v. a. Kapillaren); hormonell/nerval gesteuert.
+- **Vasokonstriktion**: Gefäßverengung (Druck steigt).
+- **Vasodilatation**: Gefäßweitung (Druck sinkt).
+- **Shunt (AV-Fistel)**: chirurgische Arterien-Venen-Verbindung (Dialyse); Shunt-Arm ist Kontraindikation zur Messung.
+- **Lymphödem**: Gewebeschwellung durch Lymphstau (z. B. nach Mamma-Ca); Kontraindikation.
+- **mmHg**: Millimeter Quecksilbersäule, Maßeinheit des Blutdrucks.
+- **Steuerung des Blutdrucks**: hormonell (Niere/Nebenniere, Noradrenalin, Adrenalin, Dopamin, Angiotensin II) und nerval (Hirnstamm, Sympathikus/Parasympathikus) über Chemo-, Presso- und Volumenrezeptoren.

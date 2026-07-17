@@ -1,102 +1,108 @@
-# Munderkrankungen (Übersichtstabelle)
+# Munderkrankungen (Erkrankungen im Mund-, Zahn- und Speicheldrüsenbereich)
 
 ## Quelle: PDFs/101-aa-munderkrankungen.pdf
 
-Kopfzeile beider Seiten: **CE02B UE2 Körperpflege**
-
 ## Dokumenttyp
-
-Tabellarische Übersicht (Lernblatt / Tafelbild) über häufige Munderkrankungen. Zweiseitige Tabelle mit vier Spalten: **Erkrankung**, **Ursachen/Risikofaktoren**, **Symptome**, **Therapie**. Nicht jede Zelle ist ausgefüllt (didaktisches Arbeitsblatt mit Lücken).
+Tabellarische Lernübersicht / Arbeitsblatt aus dem Ausbildungskontext Pflege.
+Kopfzeile jeder Seite: "CE02B UE2 Körperpflege" (Curriculare Einheit 02B, Unterrichtseinheit 2 – Körperpflege).
+Das Dokument besteht aus einer durchgehenden vierspaltigen Tabelle über zwei Seiten, die verschiedene Munderkrankungen mit Ursachen/Risikofaktoren, Symptomen und Therapie gegenüberstellt.
 
 ## Inhalt (nach Abschnitten)
 
-Die Tabelle listet elf Erkrankungen des Mund-, Zahn- und Speicheldrüsenbereichs. Aufbau der vier Spalten für jede Erkrankung:
+### Aufbau der Tabelle
+Die Tabelle hat vier Spalten:
+1. **Erkrankung** (mit Kurzdefinition)
+2. **Ursachen/Risikofaktoren**
+3. **Symptome**
+4. **Therapie**
 
-### 1. Rhagaden
-- **Definition:** schmerzhafte Einrisse am Mundwinkel, evtl. auch Nasenwinkel.
-- **Ursachen/Risikofaktoren:** Häufig bei Vitamin- und Eisenmangel; begünstigt durch trockene Haut.
-- **Symptome:** (im Dokument nicht ausgefüllt)
-- **Therapie:** (im Dokument nicht ausgefüllt)
+Nicht jede Zelle ist ausgefüllt; einige Felder sind im Original leer (im Folgenden als "(keine Angabe im Dokument)" vermerkt).
 
-### 2. Herpes labialis (Fieberbläschen)
-- **Definition:** Fieberbläschen.
-- **Ursachen/Risikofaktoren:** (nicht ausgefüllt)
-- **Symptome:** Beginn mit Spannungs- und Kribbelgefühl; Entwicklung von kleinen, flüssigkeitsgefüllten schmerzhaften Bläschen; später trocknen diese langsam aus.
-- **Therapie:** (nicht ausgefüllt)
+### Einzelne Erkrankungen
 
-### 3. Aphten
-- **Definition:** schmerzhafte, linsengroße Schleimhautdefekte.
-- **Ursachen/Risikofaktoren:** (nicht ausgefüllt)
-- **Symptome:** (nicht ausgefüllt)
-- **Therapie:** Spülungen/Einpinseln mit Myrrhetinktur oder Salbeiöl (Salviathymol®, Pyralex®), Kamille, Antiseptika (Chlorhexidin, Hexoral®); Betäubende Salben (Dynexan®/Kamistad®-Gel); ggf. Vitamin-Substitution.
+**1. Rhagaden**
+- Definition: schmerzhafte Einrisse am Mundwinkel, evtl. auch am Nasenwinkel.
+- Ursachen/Risikofaktoren: häufig bei Vitamin- und Eisenmangel; begünstigt durch trockene Haut.
+- Symptome: (keine Angabe im Dokument)
+- Therapie: (keine Angabe im Dokument)
 
-### 4. Stomatitis
-- **Definition:** Entzündung der Mundschleimhaut.
-- **Ursachen/Risikofaktoren:** Mangelnde Mundhygiene; Immunschwäche, Infektionen; Toxische Reaktion; Strahlen-/Chemotherapie, Antibiotikagabe; Xerostomie.
-- **Symptome:** (nicht ausgefüllt)
-- **Therapie:** (nicht ausgefüllt)
+**2. Herpes labialis (Fieberbläschen)**
+- Definition: Fieberbläschen.
+- Ursachen/Risikofaktoren: (keine Angabe im Dokument)
+- Symptome: Beginn mit Spannungs- und Kribbelgefühl; Entwicklung von kleinen, flüssigkeitsgefüllten schmerzhaften Bläschen; später trocknen diese langsam aus.
+- Therapie: (keine Angabe im Dokument)
 
-### 5. Soor
-- **Definition:** Hefe-Pilzinfektion der Mundhöhle (kann sich im gesamten MDT [Magen-Darm-Trakt] und in die Atemwege ausbreiten).
-- **Ursachen/Risikofaktoren:** (nicht ausgefüllt)
-- **Symptome:** grau-weißer Belag, zuerst in den Wangen/Zunge; Belag lässt sich nicht abwischen; Umgebung nur leicht gerötet.
-- **Therapie:** (nicht ausgefüllt)
+**3. Aphten**
+- Definition: schmerzhafte, linsengroße Schleimhautdefekte.
+- Ursachen/Risikofaktoren: (keine Angabe im Dokument)
+- Symptome: (keine Angabe im Dokument)
+- Therapie: Spülungen/Einpinseln mit Myrrhetinktur oder Salbeiöl (Salviathymol®, Pyralex®), Kamille, Antiseptika (Chlorhexidin, Hexoral®); betäubende Salben (Dynexan®/Kamistad®-Gel); ggf. Vitamin-Substitution.
 
-### 6. Xerostomie
-- **Definition:** Mundtrockenheit.
-- **Ursachen/Risikofaktoren:** Alter, Mundatmung; Nebenwirkung vieler Medikamente; Nahrungskarenz; Flüssigkeitsmangel (Dehydratation/Exsikkose); Infekte.
-- **Symptome:** (nicht ausgefüllt)
-- **Therapie:** (nicht ausgefüllt)
+**4. Stomatitis**
+- Definition: Entzündung der Mundschleimhaut.
+- Ursachen/Risikofaktoren: mangelnde Mundhygiene; Immunschwäche, Infektionen; toxische Reaktion; Strahlen-/Chemotherapie, Antibiotikagabe; Xerostomie.
+- Symptome: (keine Angabe im Dokument)
+- Therapie: (keine Angabe im Dokument)
 
-### 7. Parotitis
-- **Definition:** Entzündung der Ohrspeicheldrüse.
-- **Ursachen/Risikofaktoren:** (nicht ausgefüllt)
-- **Symptome:** Schwellung der Drüse; abstehendes Ohrläppchen; starke Schmerzen; Fieber; evtl. Kiefernklemme.
-- **Therapie:** (nicht ausgefüllt)
+**5. Soor (Mundsoor / orale Candidose)**
+- Definition: Hefe-Pilzinfektion der Mundhöhle (kann sich im gesamten MDT [Magen-Darm-Trakt] und in den Atemwegen ausbreiten).
+- Ursachen/Risikofaktoren: (keine Angabe im Dokument)
+- Symptome: grau-weißer Belag, zuerst in den Wangen/Zunge; Belag lässt sich nicht abwischen; Umgebung nur leicht gerötet.
+- Therapie: (keine Angabe im Dokument)
 
-### 8. Karies
-- **Definition:** „Zahnfäule" durch Entkalkung des Zahnschmelzes.
-- **Ursachen/Risikofaktoren:** Bakterien im Zahnbelag; Kohlenhydrate der Nahrung, v.a. Zucker; entstehende Säuren beim Abbau greifen Zahnschmelz an.
-- **Symptome:** Zunächst kleine bräunliche Verfärbungen; größer werdende Löcher; bei Erreichen der Zahnpulpa Schmerzen.
-- **Therapie:** Zahnärztliche Versorgung; **Prophylaxe:** 2x tägl. Zähneputzen 2-3 min, Zahnzwischenraumpflege, wenig Zucker, wenn dann lieber viel auf einmal als über den ganzen Tag verteilt; jährliche Kontrolle beim Zahnarzt mit Zahnsteinentfernung und Fluoridierung.
+**6. Xerostomie (Mundtrockenheit)**
+- Definition: Mundtrockenheit.
+- Ursachen/Risikofaktoren: Alter, Mundatmung; Nebenwirkung vieler Medikamente; Nahrungskarenz; Flüssigkeitsmangel (Dehydratation/Exsikkose); Infekte.
+- Symptome: (keine Angabe im Dokument)
+- Therapie: (keine Angabe im Dokument)
 
-### 9. Parodontose
-- **Definition:** durch Entzündung der Zahnfleischtasche (Parodontitis) bildet sich das Zahnfleisch zurück. Der Zahn hält immer weniger.
-- **Ursachen/Risikofaktoren:** Mangelnde Mundhygiene; Rauchen; Genetik.
-- **Symptome:** Rotes, schmerzendes Zahnfleisch; freiliegende Zahnhälse; Zahnausfall.
-- **Therapie:** Zahnärztliche Versorgung; Mundspülung 1x/Wo; Zahnzwischenraumpflege.
+**7. Parotitis**
+- Definition: Entzündung der Ohrspeicheldrüse.
+- Ursachen/Risikofaktoren: (keine Angabe im Dokument)
+- Symptome: Schwellung der Drüse; abstehendes Ohrläppchen; starke Schmerzen; Fieber; evtl. Kiefernklemme (Kieferklemme).
+- Therapie: (keine Angabe im Dokument)
+
+**8. Karies ("Zahnfäule")**
+- Definition: "Zahnfäule" durch Entkalkung des Zahnschmelzes.
+- Ursachen/Risikofaktoren: Bakterien im Zahnbelag; Kohlenhydrate der Nahrung, v.a. Zucker; entstehende Säuren beim Abbau greifen Zahnschmelz an.
+- Symptome: zunächst kleine bräunliche Verfärbungen; größer werdende Löcher; bei Erreichen der Zahnpulpa Schmerzen.
+- Therapie: zahnärztliche Versorgung; Prophylaxe: 2x täglich Zähneputzen 2–3 min, Zahnzwischenraumpflege, wenig Zucker – wenn dann lieber viel auf einmal als über den ganzen Tag verteilt; jährliche Kontrolle beim Zahnarzt mit Zahnsteinentfernung und Fluoridierung.
+
+**9. Parodontose / Parodontitis**
+- Definition: durch Entzündung der Zahnfleischtasche (Parodontitis) bildet sich das Zahnfleisch zurück. Der Zahn hält immer weniger.
+- Ursachen/Risikofaktoren: mangelnde Mundhygiene; Rauchen; Genetik.
+- Symptome: rotes, schmerzendes Zahnfleisch; freiliegende Zahnhälse; Zahnausfall.
+- Therapie: zahnärztliche Versorgung; Mundspülung 1x/Woche; Zahnzwischenraumpflege.
 
 ## Abbildungen & Tabellen
 
-Das Dokument enthält keine Fotos, Schemata oder Anatomie-Abbildungen. Es besteht ausschließlich aus **einer durchgehenden Tabelle**, die sich über zwei Seiten erstreckt.
+**Tabelle "Munderkrankungen" (Seite 1–2, vierspaltig)**
+- Inhalt: siehe vollständige Wiedergabe oben im Abschnitt "Inhalt". Die Tabelle vergleicht neun Erkrankungen des Mund-, Zahn- und Speicheldrüsenbereichs.
+- Spaltenüberschriften (nur auf Seite 1 vorhanden, Seite 2 setzt die Tabelle ohne wiederholte Überschrift fort): Erkrankung | Ursachen/Risikofaktoren | Symptome | Therapie.
+- Pflegerische/medizinische Bedeutung: Die Tabelle dient als Übersicht zur Erkennung typischer Mundraumveränderungen im Rahmen der Körperpflege und Mundpflege. Für die Pflege besonders relevant: Erkennung von Soor (nicht abwischbarer weißer Belag → Abgrenzung zu abwischbaren Speiseresten), Stomatitis-Risiko bei Chemo-/Strahlentherapie und Xerostomie, sowie Prophylaxe von Karies und Parodontitis durch konsequente Mundhygiene.
 
-**Tabellenstruktur:**
-- 4 Spalten mit Überschriften (nur auf Seite 1 sichtbar): Erkrankung | Ursachen/Risikofaktoren | Symptome | Therapie.
-- Seite 1 enthält die Zeilen: Rhagaden, Herpes labialis, Aphten, Stomatitis, Soor, Xerostomie (Beginn).
-- Seite 2 setzt die Xerostomie-Zeile fort (Ursachen: Nahrungskarenz, Flüssigkeitsmangel, Infekte) und enthält: Parotitis, Karies, Parodontose.
-- Pflegerische/medizinische Bedeutung: Übersichtsblatt für die Körperpflege/Mundpflege in der Pflegeausbildung — dient dazu, häufige Munderkrankungen zu erkennen (Symptome), ihre Entstehung zu verstehen (Ursachen) und geeignete Pflege-/Prophylaxemaßnahmen abzuleiten (Therapie).
+Es sind keine Fotos, Schemazeichnungen oder Anatomie-Abbildungen im Dokument enthalten – ausschließlich die beschriebene Text-Tabelle.
 
 ## Transkribierte Fototexte
+Keine handschriftlichen Notizen, Tafelbilder oder Fototexte vorhanden. Der gesamte Dokumenttext (maschinengeschrieben) ist bereits vollständig unter "Inhalt" transkribiert.
 
-Keine handschriftlichen Notizen oder separaten Fototexte vorhanden. Der gesamte Textinhalt der Tabelle ist oben unter „Inhalt" vollständig transkribiert. Kopfzeile jeder Seite oben rechts: **CE02B UE2 Körperpflege**.
+Kopfzeile beider Seiten (rechtsbündig): "CE02B UE2 Körperpflege".
 
 ## Kernbegriffe (Glossar)
-
-- **Rhagaden:** schmerzhafte Hauteinrisse, typisch an Mund-/Nasenwinkeln; oft Zeichen für Vitamin-/Eisenmangel.
-- **Herpes labialis:** Lippenherpes („Fieberbläschen"), virale Bläschenbildung an der Lippe.
-- **Aphten:** schmerzhafte, linsengroße Defekte der Mundschleimhaut.
-- **Stomatitis:** Entzündung der Mundschleimhaut.
-- **Soor:** Candida-(Hefe-)Pilzinfektion der Mundhöhle; charakteristischer, nicht abwischbarer grau-weißer Belag.
-- **Xerostomie:** Mundtrockenheit durch verminderten Speichelfluss.
-- **Parotitis:** Entzündung der Ohrspeicheldrüse (Glandula parotis).
-- **Kiefernklemme (Kieferklemme):** eingeschränkte Mundöffnung.
-- **Karies:** „Zahnfäule", Entkalkung/Zerstörung des Zahnschmelzes durch Säuren aus bakteriellem Zuckerabbau.
-- **Zahnpulpa:** Zahnmark (Nerven-/Gefäßgewebe im Zahninneren); Karies dort verursacht Schmerzen.
-- **Parodontitis:** Entzündung der Zahnfleischtasche/des Zahnhalteapparats.
-- **Parodontose:** Rückbildung des Zahnfleischs infolge Parodontitis, führt zu Zahnlockerung/-ausfall.
-- **Fluoridierung:** Härtung des Zahnschmelzes mit Fluorid (Kariesprophylaxe).
-- **MDT:** Magen-Darm-Trakt.
-- **Exsikkose:** Austrocknung/Flüssigkeitsmangel des Körpers.
-- **Chlorhexidin / Hexoral®:** Antiseptika zur Mundspülung.
-- **Myrrhetinktur, Salbeiöl (Salviathymol®, Pyralex®), Kamille:** pflanzliche/antiseptische Mittel zur Spülung/Einpinselung.
-- **Dynexan® / Kamistad®-Gel:** betäubende (lokalanästhetische) Salben/Gele.
+- **Rhagaden**: Schmerzhafte Hauteinrisse, typischerweise am Mundwinkel; Hinweis auf Vitamin-/Eisenmangel oder trockene Haut.
+- **Herpes labialis**: Durch Herpes-simplex-Virus verursachte Fieberbläschen an der Lippe; Verlauf von Kribbeln → Bläschen → Austrocknen.
+- **Aphten**: Schmerzhafte, linsengroße Schleimhautdefekte in der Mundhöhle.
+- **Stomatitis**: Entzündung der Mundschleimhaut; oft Folge mangelnder Mundhygiene, Immunschwäche oder Therapie (Strahlen-/Chemotherapie, Antibiotika).
+- **Soor (orale Candidose / Mundsoor)**: Hefe-Pilzinfektion (Candida) der Mundhöhle; charakteristischer nicht abwischbarer grau-weißer Belag.
+- **MDT**: Magen-Darm-Trakt (im Dokument im Kontext der Soor-Ausbreitung).
+- **Xerostomie**: Mundtrockenheit; durch verminderten Speichelfluss (Alter, Medikamente, Flüssigkeitsmangel).
+- **Exsikkose**: Austrocknung des Körpers durch Flüssigkeitsmangel (Dehydratation).
+- **Parotitis**: Entzündung der Ohrspeicheldrüse (Glandula parotis); Leitsymptom u.a. abstehendes Ohrläppchen.
+- **Kieferklemme (Kiefernklemme)**: Eingeschränkte Mundöffnung durch Kaumuskelverspannung/-schmerz.
+- **Karies**: "Zahnfäule" – bakteriell/säurebedingte Entkalkung und Zerstörung des Zahnschmelzes.
+- **Zahnpulpa**: Zahnmark (Nerven- und Gefäßgewebe im Zahninneren); Schmerz bei Kariesbefall der Pulpa.
+- **Fluoridierung**: Zahnärztliche Härtung des Zahnschmelzes mit Fluorid zur Kariesprophylaxe.
+- **Parodontitis**: Entzündung des Zahnhalteapparats bzw. der Zahnfleischtasche.
+- **Parodontose**: Rückgang des Zahnfleischs (Folge der Parodontitis) mit freiliegenden Zahnhälsen und drohendem Zahnausfall.
+- **Prophylaxe**: Vorbeugende Maßnahmen (hier: Mundhygiene, Zähneputzen, zahnärztliche Kontrolle).
+- **Antiseptika (z.B. Chlorhexidin, Hexoral®)**: Keimreduzierende Spüllösungen zur lokalen Mundtherapie.

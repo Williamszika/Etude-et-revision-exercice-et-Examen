@@ -1,180 +1,241 @@
-# Erhebung nach den AEDL (Pflegerischer Erhebungsbogen)
+# Erhebung nach den AEDL (Pflegeanamnese-/Assessmentbogen)
 
 ## Quelle: PDFs/62-erhebung-abedl.pdf
 
 ## Dokumenttyp
-Formular / Assessment-Instrument (pflegerischer Erhebungs- und Anamnesebogen). Zweiseitiger, doppelseitig bedruckter Vordruck der Firma **DGS-Dokumentationssysteme GmbH** (Produktreihe „B.a.M PflegeDoku", Formular-Nr. **2132**, www.dgsprodukte.de). Die Erhebung ist nach dem Pflegemodell der **AEDL** (Aktivitäten und existentielle Erfahrungen des Lebens nach Monika Krohwinkel) mit **13 AEDL-Bereichen** strukturiert. Das Formular dient der systematischen Erst-Erhebung (Pflegeanamnese) und ordnet jedem AEDL-Bereich Beobachtungskriterien, Einschätzungsspalten, Hilfsmittel und passende **Pflegediagnosen** (zum Ankreuzen) zu.
+Formular / Assessmentbogen (Pflegeanamnese). Zweiseitiger, vorgedruckter Erhebungsbogen im DIN-A3-Querformat, gescannt (Canon iR-ADV, Original um 90° gedreht). Verlag/Herausgeber: **DÖBLER PROMEDICA Pflegedokumentationssystem GmbH**, Postfach 22 24 60, 57024 Siegen, Tel. (02 71) 880 990, Fax (02 71) 880 99 99, www.doeblerpromedica.de. Formularbezeichnung unten rechts: **"Erhebung nach den AEDL – 2132"**, Reihe "D&B PROMEDICA Pflegedokumentationsmappe … vereinfachte Ausgabe 2007".
 
-Der Bogen ist ein Ankreuz-/Ausfüllformular (großenteils leere Freitextzeilen und Kästchen); die untenstehende Transkription gibt die **vorgedruckten Feldbezeichnungen und Auswahloptionen** wieder.
+Der Bogen strukturiert die Pflegeanamnese nach dem **AEDL-Modell (Aktivitäten und existenzielle Erfahrungen des Lebens)** nach Monika Krohwinkel mit 13 AEDL. Zu jeder AEDL werden Fähigkeiten/Defizite per Ankreuzfeldern erfasst, ergänzt um **Pflegediagnosen**, **Hilfsmittel**, **Bemerkungen** sowie den benötigten **Hilfebedarf** (rechte Spalte "Hilfe").
 
 ## Inhalt (nach Abschnitten)
 
-### Kopf / Legende (Einstufungsschlüssel)
-- Herausgeber/Kopfzeile: **DGS-Dokumentationssysteme GmbH**, Postfach 22 24 60, 57040 Siegen, Tel. (02 71) 890 990, Fax (02 71) 890 99 99.
-- Produkt-/Zeilenkennung: „B.a.M PflegeDoku – Pflegedokumentation nach personen[bezogen] … (entsprechende Kürzel in Klammern einzutragen)".
-- **Selbstständigkeits-/Hilfe-Legende** (Kürzel, die in die Kästchen eingetragen werden):
+### Kopf / Legende (auf beiden Seiten)
+- Eingabefeld: **Vor-/Nachname:** ______
+- Legende der Hilfebedarf-Kürzel (rechte Spalte "Hilfe" jeder Zeile):
   - **A** = Anleitung
   - **B** = Beaufsichtigung
   - **U** = Unterstützung
-  - **TU** = teilweise Übernahme
+  - **TÜ** = teilweise Übernahme
   - **VÜ** = vollständige Übernahme
-- Wiederkehrende Einstufungsspalten in den Tabellen: **selbstständig / bedingt selbstständig / teilweise unselbstständig / unselbstständig** sowie eine Spalte **Bemerkungen**.
-- Kopffelder zum Eintragen: **Vor-/Nachname**, **Störungen**, **Hilfe**.
+  - Hinweis: "entsprechende Kürzel in Kästchen 'Hilfe' eintragen"
+- Selbstständigkeits-Spalten (Kopfzeile über den Ankreuzblöcken vieler AEDL): **selbstständig / bedingt selbstständig / teilweise unselbstständig / unselbstständig**
 
-### AEDL 1 – Kommunizieren können
-- **Hörvermögen / Störungen:** □ eingeschränkt □ mäßig □ schwer □ Ausfall.
-- **Sprache ist:** □ offen □ direkt □ verständlich □ unverständlich □ umständlich □ leise □ laut □ verwaschen □ nuschelnd □ stotternd; □ zitternd □ monoton □ klagend □ hastig □ lebhaft □ ängstlich □ aufgeregt □ unbewegt □ apathisch.
-- **Körpersprache ist / Mimik ist:** □ ruhig □ fahrig □ hastig; □ heiter □ gelassen □ entspannt □ in sich ruhend.
-- **Hilfsmittel:** □ Brille □ Hörgerät rechts □ Hörgerät links.
-- **Muttersprache ist:** ____.
-- **spricht:** □ gerne □ nicht gerne □ viel □ wenig.
-- **spricht deutsch:** □ fließend □ gebrochen □ spricht Dialekt.
-- **Sprachvermögen:** □ unbeeinträchtigt □ leicht □ schwer □ Ausfall; **Sprachvermögen ist:** □ groß □ mittel □ gering.
-- **Wahrnehmung / Wahrnehmungsstörung:** □ visuell □ auditiv □ kinästhetisch □ olfaktorisch □ taktil □ Neglect; □ Behandlungsanleitung wird … gehandhabt / □ bewusst abgelehnt.
-- **Pflegediagnosen:** □ Beeinträchtigte verbale Kommunikation □ Beeinträchtigte sprachliche Kommunikation □ Beeinträchtigtes Hörvermögen □ Beeinträchtigtes Sehvermögen □ Beeinträchtigte Sinneswahrnehmung.
-- **ergänzend:** ____ (Freitext).
+---
 
-### AEDL 2 – Sich bewegen können
-- Einstufungstabelle (selbstständig / bedingt / teilweise unselbstständig / unselbstständig + Bemerkungen) für: **Gehen, Treppen gehen, Stehen, Mobilisieren** (□ im Bett □ außerhalb des Bettes).
-- **Pflegediagnosen / Befunde:** □ hochgradige Spastik (□ nein/□ ja) □ Thrombose (□ nein/□ ja) □ Akinese □ Tremor □ Paresen □ Plegien □ Hemiplegie; **Kontraktur an:** (□ nein/□ ja); **Dekubitus** (□ nein/□ ja).
-- **Hilfsmittel:** □ Gehstock □ Rollator □ Rollstuhl.
-- **Bewegungsdrang / Bewegungsarmut.**
-- **Gangart:** □ langsam □ kraftlos □ schlurfend □ unsicher □ vorsichtig □ trippelnd □ kleinschrittig □ ataktisch.
-- **Körperhaltung:** □ stolz □ gerade □ steif □ aufrecht □ krumm □ gebeugt □ erschöpft.
-- **Wärmebedürfnis / Reizempfindung:** □ normal □ erhöht; □ Hypotonie □ Hypertonie □ herabgesetzt □ verstärkt.
-- **ergänzend / Pflegediagnosen:** □ Beeinträchtigte Mobilität □ Sturzrisikoerkennung.
-- **Psychischer Zustand** (innere Ruhe und Gleichgewicht, Angst, Zorn, Erregung …) und Gewohnheiten: ____ (Freitext).
+### 1. Kommunizieren können
+- **Hörvermögen:** □ ungestört □ mäßig □ schwer □ Ausfall — Störungen: ______
+- **Sehvermögen:** □ ungestört □ mäßig □ schwer □ Ausfall — Störungen: ______
+- **Sprache ist:** □ offen □ direkt □ verständlich □ unverständlich □ umständlich □ leise □ laut □ verwaschen □ nuschelnd □ stotternd □ zitternd □ monoton □ klagend □ hastig □ lebhaft □ ängstlich □ aphasisch
+- **Körpersprache:** ______
+- **Gestik ist:** ______
+- **Mimik ist:** □ heiter □ gelassen □ entspannt □ in sich ruhend
+- **Hilfsmittel:** □ Brille □ Hörgerät rechts □ Hörgerät links
+- **Muttersprache ist:** ______
+- **spricht:** □ nicht gerne □ gerne □ viel □ wenig
+- **spricht deutsch:** □ fließend □ gebrochen □ spricht Dialekt
+- **Sprachvermögen ist:** □ groß □ mittel □ gering
+- **Pflegediagnosen:** □ Beeinträchtigte verbale Kommunikation □ Beeinträchtigtes Hörvermögen □ Beeinträchtigte Sehfähigkeit □ Beeinträchtigtes Tast- u. Berührungsempfinden
+- **ergänzend:** □ Beeinträchtigte Denkprozesse □ Behandlungsempfehlung wird: □ unangekündigt / □ vorsichtig gehandhabt □ bewusst abgelehnt
+- **Hilfsmittel:** ______
+- **Bemerkungen:** ______
 
-### AEDL 3 – Vitale Funktionen aufrechterhalten können
-- **Atemfrequenz:** □ Eupnoe □ Tachypnoe □ Bradypnoe; **Atemrhythmus** □ Hyperventilation; Qualität □ gut □ tief □ flach.
-- **Atemgeräusche:** □ keuchend □ rasselnd □ geräuschlos □ erhöht □ schweratmend.
-- **Atemgeruch:** □ nein □ nach Azeton □ nach Ammoniak □ gastrointestinal; □ verminderte Herzleistung; **Husten** □ □ Sputum.
-- **Atemnot:** □ Angst □ Schwitzen □ Beklemmung □ motorische Unruhe; **Zyanose der:** □ Lippen □ Fingernägel □ Haut.
-- **Pulsfrequenz:** ___/Min. □ Tachykardie □ Bradykardie □ Arrhythmie; □ Selbstversorgungsdefizit / periphere Durchblutung der Atemwege; □ voll □ normal.
-- **Blutdruck:** □ Hypertonie □ Hypotonie □ flach □ normal.
-- **Körpertemperatur:** ____.
-- **Pflegediagnosen:** □ Atemvorgang / beeinträchtigter Atemvorgang.
+### 2. Sich bewegen können
+Ankreuzblock mit Spalten selbstständig / bedingt selbstständig / teilweise unselbstständig / unselbstständig für:
+- **Gehen**
+- **Treppen gehen**
+- **Stehen**
+- **Mobilisieren:** □ im Bett □ außerhalb des Bettes
+- **Aufsuchen / Verlassen d. Bettes**
+- Weitere Bewegungsbefunde (Ankreuzfelder ja/nein): □ hochgradige Spastik (□ nein, □ ja) □ Thrombose (□ nein, □ ja) □ Akinese □ Tremor □ Paresen □ Plegien □ Hemiplegie □ Kontraktur an ___ (□ nein, □ ja) □ Dekubitus (□ nein, □ ja)
+- **Pflegediagnosen:** □ Beeinträchtigte (körperliche) Mobilität □ Beeinträchtigte Gehfähigkeit □ Beeinträchtigte Transferfähigkeit
+- **ergänzend:** ○ Dekubitusrisikoerkennung ○ Wunddokumentation ○ Bewegungsplan ○ Sturzrisikoerkennung ○ Kontrakturrisikoerfassung
+- **Gangart:** □ langsam □ kraftlos □ schlurfend □ unsicher □ trippelnd □ vorsichtig □ kleinschrittig □ ataktisch
+- **Körperhaltung:** □ stolz □ gerade □ steif □ aufrecht □ krumm □ gebeugt □ erschöpft
+- **Hilfsmittel:** □ Gehstock □ Gehbock □ Rollator □ Rollstuhl
+- **Wärmebedürfnis:** □ normal □ erhöht
+- **Bewegungsdrang:** ______
+- **Psychischer Zustand** (innere Ruhe und Gleichgewicht; Angst, Zorn, Erregung …) **und Gewohnheiten:** ______
+- **Bewegungsgebiete / -dürfnis bisher:** ______
 
-### AEDL 4 – Sich pflegen können
-- Einstufungstabelle (selbstständig … unselbstständig + Bemerkungen) für: **Waschen / Teilwaschen, Bad / Dusche, Augenpflege, Ohrenpflege, Intimpflege, Mundpflege, Zahnpflege, Rasieren / Kämmen, Nagelpflege.**
-- **Hautfarbe:** □ gerötet □ blass □ gelb-braun □ blau-grau □ bläulich-rot □ Pigmentmangel □ Hyperpigmentierung.
-- **Hautbeschaffenheit:** □ normal trocken □ abnorm trocken □ feucht □ elastisch □ glatt □ schuppig □ inaktile individuelle Hautmißbildung; □ Effloreszenzen □ Ulcera □ Warzen; □ Hämatome □ Ödeme □ Schweißbildung.
-- **Pflegediagnosen:** □ Wunddokumentation □ Dekubitusrisikoerkennung □ Beeinträchtigte Hautintegrität.
+### 3. Vitale Funktionen des Lebens aufrechterhalten (können)
+Ankreuzblock (Spalten selbstständig / bedingt selbstständig / teilweise unselbstständig / unselbstständig), Befunde:
+- **Atemfrequenz:** □ Eupnoe □ Tachypnoe □ Bradypnoe — **Atemrhythmus:** □ Hyperventilation □ erhöht □ schwankend
+- **Atemgeräusche:** □ hechelnd □ keuchend □ röchelnd □ rasselnd □ geräuschlos
+- **Durchblutungsstörung:** □ renal □ zerebral □ nach Ammoniak □ gastrointestinal □ verminderte Herzleistung
+- **ungenügende(r):** □ Atemvorgang □ Sportatmung □ Selbstreinigungsfunktion der Atemwege
+- **Atemnot / Unruhe:** □ Angst □ Schwitzen □ Beklemmung □ motorische Unruhe
+- **Blutdruck:** ______ □ Hypertonie □ Hypotonie — **Zyanose der:** □ Lippen □ Fingernägel □ Haut
+- **Puls:** ___ /Min. □ Tachykardie □ Bradykardie □ Arrhythmie — **Pulsqualität:** □ voll □ flach □ normal
+- **Hautfarbe:** □ normal □ blass □ gelb-braun □ blau-grau □ bläulich-rot
+- **Vitalwerte:** □ Körpertemperatur ___
+- **Atemskala** (Assessment-Instrument angekreuzt: □)
+- **ergänzend:** ○ Veränderungsgefahr ○ Selbstversorgungsdefizit — □ Reizmittel / Drogen: ______
+- **Bemerkungen:** ______
 
-### AEDL 5 – Essen und Trinken können
-- **Essen:** □ Eingeben von Nahrung □ Schluckstörungen □ mundgerechte Zubereitung □ ohne Hilfe. **Trinken:** □ ausreichend □ viel □ wenig □ ohne Hilfe.
-- **Ernährungszustand:** □ gut □ kachektisch □ adipös.
-- **Appetit:** □ gut □ befriedigend □ mäßig □ keine.
-- **Kostform:** □ Vollkost □ Diätkost □ Diabeteskost □ Schonkost □ hochkalorische Kost □ vegetarisch □ gemischt.
-- **Ernährungsform:** □ PEG □ enterale Ernährung.
-- **Gewicht:** ____ **BMI:** ____.
-- **Ernährungsgewohnheiten:** □ isst kleine Portionen nie auf □ isst die Hälfte der angebotenen Nahrung □ isst mehr als die Hälfte der Portion □ isst 2 oder weniger □ isst in etwa 3 □ isst in etwa 4 (Portionen/Mahlzeiten).
-- **ergänzend:** □ Screening/Assessment Mangelernährung □ Flüssigkeitsberechnungsschein.
-- **Pflegediagnosen:** □ Orale Ernährung □ Enterale Ernährung □ Einfuhrprotokoll □ Dehydratation □ Gefahr eines Flüssigkeitsungleichgewichts □ Gefahr der Unterernährung; □ Ernährungsberatung □ Selbstversorgungsdefizit Essen.
-- **Hilfsmittel:** □ Teilprothese □ Zahnprothese □ Unterkiefer □ Oberkiefer.
+### 4. Sich pflegen können
+Ankreuzblock (selbstständig / bedingt selbstständig / teilweise unselbstständig / unselbstständig) für:
+- **Bad / Dusche**
+- **Waschen / Teilwaschen**
+- **Augenpflege**
+- **Ohrenpflege**
+- **Intimpflege**
+- **Mundpflege / Zahnpflege / Rasieren / Kämmen / Nagelpflege**
+- **Hautbeschaffenheit:** □ normal trocken □ abnorm trocken □ feucht □ elastisch □ glatt □ schuppig
+- **Hautfarbe:** □ gerötet □ blass □ gelb-braun □ blau-grau □ Ulcera □ Warzen □ Pigmentmangel □ Hyperpigmentierung □ Hämatome
+- **Pflegediagnosen:** □ Beeinträchtigte Hautintegrität □ Selbstversorgungsdefizit: Körperpflege
+- **ergänzend:** ○ (Assessment) — □ Schweißbildung: □ verstärkt
+- **Bemerkungen:** ______
 
-### AEDL 6 – Ausscheiden können
-- **Kontinenzprofile:** ____ (Freitext / Einstufung).
-- **Stuhlinkontinenz:** □ nein □ ja; Schweregrad □ leicht □ mittel □ schwer; **Stuhlgang:** □ normal □ Verwirrtheit □ Störung ZNS □ Dehydratation □ Lähmung □ Schließmuskeldefekt.
-- **Harninkontinenz:** □ nein □ ja; □ normal □ regelmäßig □ Obstipation □ Diarrhö.
-- **Hautmazeration / -irritation:** ____.
-- **Toilettenversorgung / Ausscheidungshilfen:** □ Toilettenstuhl □ Urinflasche □ Steckbecken □ Einlagen □ Windelhosen □ Netzhosen; □ Stomabeutel □ Kondomurinal □ Anus praeter; **Katheter:** □ einmal □ dauernd □ suprapubischer.
-- **Hilfsmittel am Tag (Name, Typ, Größe):** ____ / **Hilfsmittel zur Nacht (Name, Typ, Größe):** ____.
-- **ergänzend:** □ Ein-/Ausfuhrprotokoll □ Inkontinenzversorgung □ Kontinenztraining □ Selbstversorgungsdefizit: Toilettenbenutzung.
-- **Pflegediagnosen:** □ Obstipation (□ objektiv □ subjektiv □ gefährdet) □ Diarrhö □ Stuhlinkontinenz (□ funktionell □ total) □ Veränderte Urinausscheidung □ Harnverhalt (□ akut □ chronisch) □ Inkontinenz (□ Stress □ Reflex □ Drang).
-- Freitext-Leitfragen: **Bewegungslust, Lebenseinstellung, Gefühle …**; **Tabu- und Schamgefühl, Sozialisation …**.
+### 5. Essen und Trinken können
+Ankreuzblock (selbstständig / bedingt selbstständig / teilweise unselbstständig / unselbstständig):
+- **Essen:** □ Eingeben von Nahrung □ Schluckstörungen □ mundgerechte Zubereitung — □ mit Hilfe / □ ohne Hilfe
+- **Trinken:** □ anreichen / □ ohne Hilfe
+- **Ernährungszustand:** □ gut □ befriedigend □ kachektisch □ adipös
+- **Appetit:** □ gut □ mäßig □ schlecht □ Diätkost □ Diabeteskost □ hochkalorische Kost □ vegetarisch □ gemischt
+- **Kostform:** □ Vollkost □ Diätkost □ Schonkost □ hochkalorische Kost
+- **Ernährung:** □ Orale Ernährung □ Enterale Ernährung □ Einfuhrprotokoll □ PEG □ PEJ
+- **Gewicht:** ___ kg — **BMI:** ___
+- **Ernährungsgewohnheiten:** ______
+- **Eiweißportionen:** ______
+- **Screening / Assessment Mangelernährung:** □
+- **Selbstversorgungsdefizit Körperpflege / Essen:** □
+- **Zahnprothese:** □ Unterkiefer □ Oberkiefer
+- **Pflegediagnosen:** □ Gefahr eines Flüssigkeitsdefizits □ Gefahr der Überernährung □ Mangelernährung □ Dehydratation □ Gefahr der Unterernährung □ Selbstversorgungsdefizit Essen
+- **isst:** □ ist Kleine Portionen nie auf □ ist 2 oder weniger □ ist die Hälfte der angebotenen Nahrung □ ist etwa 3 □ ist mehr als die Hälfte der Portion □ ist etwa 4
+- **Hilfsmittel:** ______
+- **Bemerkungen:** ______
 
-### AEDL 7 – Sich kleiden können
-- Einstufungstabelle (selbstständig … unselbstständig + Bemerkungen) für: **An- und Auskleiden, Kleidung auswählen, Kleidung hinlegen, Schuhe anziehen.**
-- **Hilfsmittel:** ____.
-- **Pflegediagnosen:** □ Selbstversorgungsdefizit: sich kleiden.
-- Freitext-Leitfragen: **Stimmung, Identität, Geschmack**; **Bräuche, Mode, Prestige, Identifikation.**
+### 6. Ausscheiden können
+- **Hilfsmittel:** □ Toilettensitzerhöhung □ Toilettenstuhl □ Urinflasche □ Steckbecken □ Einlagen □ Windelhosen □ Netzhosen □ Stomabeutel □ Kondomurinal □ Anus praeter □ Katheter: □ einmal □ dauernd □ suprapubischer
+- **Hilfsmittel am Tag (Name, Typ, Größe):** ______ — **Hilfsmittel zur Nacht (Name, Typ, Größe):** ______
+- **ergänzend:** □ Ein-/Ausfuhrprotokoll □ Inkontinenzversorgung □ Kontinenztraining
+- **Pflegediagnosen:** □ Obstipation □ Diarrhö □ Stuhlinkontinenz □ Selbstversorgungsdefizit: Toilettenbenutzung □ objektiv □ subjektiv □ gefährdet □ Harninkontinenz: □ akut □ chronisch — □ Inkontinenz: ○ Stress ○ Reflex ○ Drang □ funktionell □ total
+- **Veränderte Urinausscheidung:** ______
+- **Harnverhalt:** ______
+- **Kontinenzprofile:** □ Kontinenz □ Unabhängig erreichte Kontinenz □ Abhängig erreichte Kontinenz □ Unabhängig kompensierte Inkontinenz □ Abhängig kompensierte Inkontinenz □ Nicht kompensierte Inkontinenz
+- **Harninkontinenz:** □ nein □ ja □ leicht □ mittel □ schwer
+- **Stuhlinkontinenz:** □ nein □ ja □ leicht □ mittel □ schwer
+- **Stuhlgang:** □ normal □ regelmäßig □ unregelmäßig □ Obstipation □ Diarrhö
+- Weitere Ankreuzoptionen (Ursachen): □ Störung ZNS □ Dehydratation □ Gefahr der Unterernährung □ Stoffwechselstörung □ Lähmung □ Schließmuskeldefekt □ Verwirrtheit
+- **Harnwegsinfektion:** □ ja □ nein
+- **Bemerkungen:** ______
 
-### AEDL 8 – Ruhen und schlafen können
-- **Schlafstörungen:** □ Einschlafstörung □ Durchschlafstörung □ kombinierte Ein- und Durchschlafstörung □ Tiefschlafstörung □ Gabe von Schlafmittel.
-- **Einschlafposition:** ____.
-- **Pflegediagnosen:** □ Schlafstörung.
-- Freitext-Leitfragen: **Stimmungen, Ängste, Sorgen …**; **Gewohnheiten, Rituale …**.
+### 7. Sich kleiden können
+- **Bewegungslust, Lebenseinstellung, Gefühle …** ______
+- **Tabu- und Schamgefühl, Sozialisation …** ______
+- Ankreuzblock (selbstständig / bedingt selbstständig / teilweise unselbstständig / unselbstständig):
+  - **An- und Auskleiden**
+  - **Kleidung auswählen**
+  - Bemerkungen: **Kleidung hinlegen**, **Schuhe anziehen**
+- **Hilfsmittel:** ______
+- **Pflegediagnosen:** □ Selbstversorgungsdefizit: sich kleiden
+- **ergänzend:** ○ ______
+- **Stimmung, Identität, Geschmack:** ______
+- **Bräuche, Mode, Prestige, Identifikation:** ______
 
-### AEDL 9 – Sich beschäftigen können
-- **ergänzend:** □ Angebotsnachweis □ Therapieblatt.
-- **Therapien:** □ Gym. □ KG □ Phys. □ Ergo □ Musik □ Kunst.
-- **Hilfsmittel:** ____.
-- **Pflegediagnosen:** □ eingeschränkte Beschäftigungsfähigkeit.
-- Freitext-Leitfrage: **Selbstwertgefühl, Interessen, Hobbies …**.
+### 8. Ruhen und schlafen können
+- Ankreuzblock (selbstständig / bedingt selbstständig / teilweise unselbstständig / unselbstständig):
+  - **Einschlafstörung** □
+  - **Durchschlafstörung** □ — kombinierte Ein- und Durchschlafstörung □
+  - **Tiefschlafstörung** □
+- **Gabe von Schlafmittel:** □ ja □ nein
+- **Einschlafposition:** ______
+- **Pflegediagnosen:** □ Schlafstörung ○ ______
+- **Hilfsmittel:** ______
+- **Stimmungen, Ängste, Sorgen …** ______
+- **Gewohnheiten, Rituale …** ______
+- **ergänzend:** ○ Angebotsnachweis ○ Therapieblatt
 
-### AEDL 10 – Sich als Mann / Frau fühlen können
-- **ergänzend:** □ Verändertes Rollenverhalten.
-- **Pflegerische Verrichtungen im Intimbereich:** □ von gleichgeschlechtlicher Pflegeperson □ egal □ selbstständig.
-- **Pflegediagnosen:** ____.
+### 9. Sich beschäftigen können
+- **Sich beschäftigen können:** □ eingeschränkte Beschäftigungsfähigkeit
+- **Therapien:** □ Gym. □ KG □ Phys. □ Ergo □ Musik □ Kunst
+- **Hilfsmittel:** ______
+- **Selbstwertgefühl, Interessen, Hobbies …** ______
+- **Pflegediagnosen:** ○ ______
 
-### AEDL 11 – Für Sicherheit sorgen können
-- **Tagesstruktur:** □ selbstständig □ bedingt selbstständig □ teilweise selbstständig □ unselbstständig.
-- **Umgang mit Hilfsmitteln:** □ selbstständig □ bedingt selbstständig □ teilweise selbstständig □ unselbstständig.
-- **Medikation:** □ nimmt selbst □ allein □ muss beaufsichtigt werden □ erhält Beruhigungsmittel.
-- **Psychischer Zustand – fühlt sich:** □ angenommen □ verstanden □ geborgen □ zeigt Gefühle □ lässt Gefühle zu / (Gegenteile) □ allein □ nicht verstanden □ vernachlässigt □ lässt Gefühle nicht zu □ verbirgt Gefühle; □ nein.
-- **Orientierungsvermögen** je □ ja / □ zeitweise / □ nein für: **zeitlich, örtlich, persönlich, situativ.**
-- **Hilfsmittel:** ____.
-- **Entscheidungsvermögen:** □ Risiken kennen □ eingeschätzt □ bewältigt □ nicht bewältigt werden.
-- **Bedürfnis nach Sicherheit, Risikobereitschaft …** (Freitext).
-- **ergänzend:** □ Freiheitsentziehende Maßnahmen □ Sturzrisikoerkennung □ Assessment Demenziell.
-- **Pflegediagnosen:** □ Infektionsgefahr □ Gefahr einer Körperschädigung □ Erstickungsgefahr □ Verletzungsgefahr □ Aspirationsgefahr □ Allergische Reaktion auf: ____ □ Veränderter Selbstschutz □ Verändertes Gesundheitsverhalten □ Gefahr der Gewalttätigkeit (□ gegen sich selbst □ gegen andere).
+### 10. Sich als Mann / Frau fühlen und verhalten (können)
+- Ankreuzblock (selbstständig / bedingt selbstständig / teilweise unselbstständig / unselbstständig):
+  - **Verändertes Rollenverhalten** □
+- **Pflegerische Verrichtungen im Intimbereich:** □ von gleichgeschlechtlicher Pflegeperson □ egal
+- **Pflegediagnosen:** ○ ______
 
-### AEDL 12 – Soziale Bereiche des Lebens sichern können
-- **Kontakte zu** (je □ ja / □ zeitweise / □ nein): **Angehörigen, Bezugspersonen, Freunde / Bekannte.**
-- **Hilfsmittel:** ____.
-- **Begleitung bei persönlichen Angelegenheiten:** □ nein □ ja: bei ____.
-- **Pflegediagnosen:** □ Soziale Isolation □ Vereinsamungsgefahr □ Beeinträchtigte Anpassung.
-- **Kontaktfähigkeit:** □ kontaktfreudig □ kontaktarm □ gesellig □ beziehungsfähig □ verantwortungsfähig □ konfliktfähig □ situationsbedingt gering □ gern allein.
-- **Beziehung zur Lebenswelt:** ____ (Freitext).
+### 11. Für Sicherheit sorgen können
+- **Psychischer Zustand — fühlt sich:** □ angenommen □ verstanden □ geborgen □ allein □ nicht verstanden □ vernachlässigt
+  - □ selbstständig □ bedingt selbstständig □ teilweise selbstständig □ unselbstständig
+  - □ nimmt selbst □ muss beaufsichtigt werden □ erhält Beruhigungsmittel □ erhält Schlafmittel
+- **Umgang mit Hilfsmitteln:** □ selbstständig □ teilweise selbstständig □ unselbstständig
+- **Medikation:** □ selbstständig □ bedingt selbstständig □ unselbstständig □ muss beaufsichtigt werden
+- **Kontakte, Empfinden der Intimsphäre, Rolle als Mensch …** ______
+- **Orientierungsvermögen zeitlich:** □ ja □ nein □ zeitweise
+- **Orientierungsvermögen örtlich:** □ ja □ nein □ zeitweise
+- **Orientierungsvermögen persönlich:** □ ja □ nein □ zeitweise
+- **Orientierungsvermögen situativ:** □ ja □ nein □ zeitweise
+- **Hilfsmittel:** ______
+- **Entscheidungsvermögen:** □ bewältigt □ nicht bewältigt werden
+- **Risiken können:** □ eingeschätzt werden
+- **Bedürfnis nach Sicherheit, Risikobereitschaft …** ______
+- **Pflegediagnosen:** □ Soziale Isolation □ Verwirrung □ Vereinsamungsgefahr □ Assessment Demenz □ Sturzrisikoerkennung
+- **ergänzend:** ○ Freiheitsentziehende Maßnahmen □ Infektionsgefahr □ Gefahr einer Körperschädigung □ Erstickungsgefahr □ Verletzungsgefahr □ Aspirationsgefahr □ Veränderter Selbstschutz □ Verändertes Gesundheitsverhalten
+- **Allergische Reaktion auf:** ______
+- **Gefahr der Gewalttätigkeit:** □ gegen sich selbst □ gegen andere
 
-### AEDL 13 – Mit existentiellen Erfahrungen des Lebens umgehen können
-- **Selbstwertgefühl:** □ stark □ chronisch gering; □ Beeinträchtigte Anpassung.
-- **Schmerzempfindung:** □ sehr stark □ verhalten □ gering.
-- **Schmerzäußerung:** □ Verdrängung □ versteckte Mitteilung □ weinend □ neutral □ genau beschreibend.
-- **ergänzend:** □ Schmerzerfassung □ Schmerzprotokoll.
+### 12. Soziale Bereiche des Lebens sichern können
+- Ankreuzblock (selbstständig / bedingt selbstständig / teilweise unselbstständig / unselbstständig):
+  - **Tagesstruktur:** □ selbstständig □ bedingt selbstständig □ zeigt Gefühle □ lässt Gefühle zu □ lässt Gefühle nicht zu □ verbirgt Gefühle
+- **Begleitung bei persönlichen Angelegenheiten:** □ ja □ nein — bei: ______
+- **Kontakte zu:** □ Familie □ Angehörige □ Bezugspersonen □ Freunde / Bekannte — Bemerkungen: ______
+- **Pflegediagnosen:** □ Soziale Isolation
+- **ergänzend:** ○ ______
+- **Kontaktfähigkeit:** □ kontaktfreudig □ gesellig □ konfliktfähig □ beziehungsfähig □ verantwortungsfähig □ kontaktarm □ gern allein
+- **Beziehung zur Lebenswelt:** ______
 
-### Abschluss / Unterschriftenfeld
-- **Datum der Erstellung:** von ____ bis ____.
-- **Weitere an der Erhebung beteiligte Personen** (z. B. Angehörige, Betreuer, …): ____.
-- **Informationen des Erstgesprächs haben die Farbe:** ____ **und sind von:** ____ (Hinweis auf farbliche Kennzeichnung von Erstgesprächs-Einträgen).
-- **Unterschrift:** ____ (zwei Unterschriftenzeilen).
-- Fußzeile: **„Erhebung nach den AEDL – 2132"**, www.dgsprodukte.de.
+### 13. Mit existenziellen Erfahrungen des Lebens umgehen können
+- Ankreuzblock (selbstständig / bedingt selbstständig / teilweise unselbstständig / unselbstständig):
+  - **Selbstwertgefühl:** □ gestört □ chronisch gering □ situationsbedingt gering □ Beeinträchtigte Anpassung
+  - **Erhebung erfolgt in der Biografie** □
+- **Schmerzempfindung:** □ sehr stark □ stark □ verhalten □ Beeinträchtigte Anpassung
+- **Schmerzäußerung:** □ Verdrängung □ versteckte Mitteilung □ weinend □ neutral □ genau beschreibend
+- **ergänzend:** ○ Schmerzerfassung ○ Schmerzprotokoll — von ___ bis ___
+- **Datum der Erstellung:** ______ — **Unterschrift:** ______
+- **Weitere an der Erhebung beteiligte Personen** (z. B. Angehörige, Betreuer, …): ______ — und zwar von ______ — **Unterschrift:** ______
+- Fußnote: "Informationen des Erstgespräches haben die Farbe ___"
+
+---
 
 ## Abbildungen & Tabellen
-Das Dokument enthält **keine anatomischen Abbildungen, Fotos oder Schemazeichnungen**. Es besteht ausschließlich aus **tabellarischen Formularstrukturen** (Ankreuzfelder, Einstufungsspalten, Freitextzeilen).
+Das Dokument enthält **keine anatomischen Abbildungen, Fotos oder Schemata**. Es besteht vollständig aus einem **tabellarisch/formularartig aufgebauten Erhebungsbogen**:
 
-**Tabellentyp (durchgängiges Muster):** Bei den AEDL 2, 4 und 7 findet sich eine wiederkehrende **Einstufungstabelle** mit Zeilen für die einzelnen Aktivitäten (z. B. Gehen, Waschen, An-/Auskleiden) und vier Spalten zur Selbstständigkeitseinstufung – **„selbstständig", „bedingt selbstständig", „teilweise unselbstständig", „unselbstständig"** – plus einer Spalte **„Bemerkungen"**. In diese Felder werden die Hilfe-Kürzel A/B/U/TU/VÜ eingetragen.
+1. **Rasterförmige Ankreuztabellen** – Jede der 13 AEDL bildet einen Kasten mit vorgedruckten Items und quadratischen Ankreuzkästchen (□) sowie runden Optionsfeldern (○). Über vielen Blöcken steht die Vier-Stufen-Kopfzeile **selbstständig / bedingt selbstständig / teilweise unselbstständig / unselbstständig**, in die die Selbstständigkeit angekreuzt wird.
+2. **Rechte Spalte "Hilfe"** – durchgehende Spalte am rechten Rand jeder Zeile; hier wird das Hilfebedarf-Kürzel (A/B/U/TÜ/VÜ) eingetragen. Pflegerische Bedeutung: sie quantifiziert den konkreten personellen Unterstützungsbedarf je Tätigkeit und ist Grundlage für Pflegeplanung und Leistungsnachweis.
+3. **Verweis-Symbole (○) auf mitgeltende Assessment-Instrumente** – z. B. Dekubitusrisikoerkennung, Wunddokumentation, Bewegungsplan, Sturzrisikoerkennung, Kontrakturrisikoerfassung, Atemskala, Ernährungs-Screening, Schmerzerfassung/Schmerzprotokoll, Assessment Demenz. Diese Symbole signalisieren, dass bei auffälligem Befund ein separates Fachassessment ausgefüllt werden muss.
+4. **Unterschriften-/Datumsfeld** (Abschnitt 13) mit geschwungenen Unterschriftslinien und Feld für weitere Beteiligte.
 
-**Pflegerische/medizinische Bedeutung:** Der Bogen operationalisiert das Krohwinkel-Modell (AEDL). Er dient dazu, den Pflegebedarf strukturiert je Lebensaktivität zu erfassen, den Grad der Selbstständigkeit einzustufen und daraus **Pflegediagnosen** (nach ankreuzbaren Standardformulierungen, angelehnt an NANDA/nationale Expertenstandards) und Pflegemaßnahmen abzuleiten. Die ankreuzbaren „ergänzend"-Felder verweisen auf weiterführende Assessment-Instrumente (Sturzrisiko, Dekubitusrisiko, Mangelernährungs-Screening, Ein-/Ausfuhrprotokoll, Schmerzprotokoll, Assessment Demenziell, Freiheitsentziehende Maßnahmen).
+**Pflegerisch-medizinische Bedeutung des Bogens:** Der AEDL-Erhebungsbogen ist das Instrument der **Pflegeanamnese** (Erstgespräch/Informationssammlung) im Pflegeprozess. Er erfasst systematisch Ressourcen und Defizite über alle 13 Lebensaktivitäten nach Krohwinkel, mündet in **Pflegediagnosen** und den quantifizierten **Hilfebedarf** und ist damit Ausgangspunkt für Pflegeziele und Pflegemaßnahmenplanung.
 
 ## Transkribierte Fototexte
-Es sind **keine handschriftlichen Notizen, Fotos oder Tafelbilder** vorhanden (leerer/unausgefüllter Vordruck). Alle transkribierten Texte sind vorgedruckte Formularbezeichnungen und im Abschnitt „Inhalt" vollständig wiedergegeben. Der einzige nennenswerte Fototext ist die **Kopf-/Fußzeile des Herstellers**:
-- Kopf: „DGS-Dokumentationssysteme GmbH, Postfach 22 24 60, 57040 Siegen, Tel. (02 71) 890 990, Fax (02 71) 890 99 99 – B.a.M PflegeDoku".
-- Fuß: „Erhebung nach den AEDL – 2132 – www.dgsprodukte.de".
+Es sind **keine handschriftlichen Notizen, Tafelbilder oder Fototexte** vorhanden – der Bogen ist ein leerer/blanko Vordruck. Fest eingedruckte Kopf-/Fußtexte (transkribiert):
+- Kopf: "Vor-/Nachname:" — Legende "A = Anleitung  B = Beaufsichtigung  U = Unterstützung  TÜ = teilweise Übernahme  VÜ = vollständige Übernahme (entsprechende Kürzel in Kästchen 'Hilfe' eintragen)" — Spaltenüberschrift "Hilfe".
+- Verlag: "DÖBLER PROMEDICA Pflegedokumentationssystem GmbH · Postfach 22 24 60 · 57024 Siegen · Tel. (02 71) 880 990 · Fax (02 71) 880 99 99".
+- Reihe: "D&B PROMEDICA Pflegedokumentationsmappe … vereinfachte Ausgabe 2007".
+- Fuß: "www.doeblerpromedica.de" — Formular-Titel/-Nr.: "Erhebung nach den AEDL   2132".
 
 ## Kernbegriffe (Glossar)
-- **AEDL** – Aktivitäten und existentielle Erfahrungen des Lebens; Pflegemodell nach Monika Krohwinkel mit 13 Bereichen; Grundlage der strukturierten Pflegeerhebung.
-- **Pflegeerhebung / Pflegeanamnese** – systematische Ersterfassung des Pflegebedarfs und der Ressourcen einer pflegebedürftigen Person.
-- **Selbstständigkeitseinstufung** – Bewertung der Fähigkeit, eine Aktivität allein auszuführen: selbstständig / bedingt selbstständig / teilweise unselbstständig / unselbstständig.
-- **Hilfeschlüssel A/B/U/TU/VÜ** – Anleitung, Beaufsichtigung, Unterstützung, teilweise Übernahme, vollständige Übernahme (steigender Grad pflegerischer Hilfe).
-- **Pflegediagnose** – standardisierte Beschreibung eines pflegerischen Problems/Risikos (z. B. „Beeinträchtigte Mobilität", „Soziale Isolation"), Basis der Maßnahmenplanung.
-- **Eupnoe / Tachypnoe / Bradypnoe** – normale / beschleunigte / verlangsamte Atemfrequenz.
-- **Tachykardie / Bradykardie / Arrhythmie** – beschleunigter / verlangsamter / unregelmäßiger Puls.
-- **Hypertonie / Hypotonie** – erhöhter / erniedrigter Blutdruck bzw. Muskeltonus.
-- **Zyanose** – bläuliche Verfärbung von Lippen, Fingernägeln oder Haut durch Sauerstoffmangel.
-- **Kachexie / Adipositas** – starke Auszehrung / krankhaftes Übergewicht (Ernährungszustand).
-- **PEG / enterale Ernährung** – perkutane endoskopische Gastrostomie; Sondenernährung über den Magen-Darm-Trakt.
-- **Kontinenzprofil** – strukturierte Beschreibung der Blasen-/Darmkontrolle (nach Expertenstandard Kontinenzförderung).
-- **Obstipation / Diarrhö** – Verstopfung / Durchfall.
-- **Harnverhalt** – Unfähigkeit, die Blase zu entleeren (akut oder chronisch).
-- **Inkontinenz (Stress/Reflex/Drang)** – unwillkürlicher Harn-/Stuhlabgang verschiedener Ursache.
-- **Anus praeter / Stomabeutel / Kondomurinal / suprapubischer Katheter** – Ausscheidungshilfen bzw. künstliche Ausgänge/Ableitungen.
-- **Dekubitus / Dekubitusrisikoerkennung** – Druckgeschwür / Instrument zur Risikoeinschätzung.
-- **Kontraktur** – dauerhafte Gelenkversteifung durch Verkürzung von Muskeln/Bändern.
-- **Spastik / Akinese / Tremor / Paresen / Plegien / Hemiplegie** – erhöhter Muskeltonus / Bewegungsarmut / Zittern / Teillähmungen / vollständige Lähmungen / halbseitige Lähmung.
-- **Neglect** – Vernachlässigung einer Körper-/Raumhälfte (Wahrnehmungsstörung).
-- **Orientierungsvermögen (zeitlich/örtlich/persönlich/situativ)** – vier Qualitäten der geistigen Orientierung.
-- **Freiheitsentziehende Maßnahmen (FEM)** – bewegungseinschränkende Maßnahmen (dokumentations- und genehmigungspflichtig).
-- **Aspirationsgefahr** – Risiko des Verschluckens/Eindringens von Speisen/Flüssigkeit in die Atemwege.
-- **Effloreszenzen / Ulcera / Ödeme / Hämatome** – Hautveränderungen / Geschwüre / Wassereinlagerungen / Blutergüsse.
+- **AEDL** – Aktivitäten und existenzielle Erfahrungen des Lebens; Pflegemodell nach Monika Krohwinkel mit 13 Bereichen, Grundlage der strukturierten Pflegeanamnese.
+- **Pflegeanamnese / Erhebung** – systematische Informationssammlung zu Ressourcen und Problemen als erster Schritt des Pflegeprozesses.
+- **Hilfebedarf-Kürzel** – A (Anleitung), B (Beaufsichtigung), U (Unterstützung), TÜ (teilweise Übernahme), VÜ (vollständige Übernahme); Skala des personellen Unterstützungsbedarfs.
+- **Selbstständigkeitsgrade** – selbstständig / bedingt selbstständig / teilweise unselbstständig / unselbstständig.
+- **Pflegediagnose** – standardisierte Benennung eines pflegerischen Problems (z. B. Beeinträchtigte Mobilität, Selbstversorgungsdefizit, Mangelernährung, Soziale Isolation, Schlafstörung).
+- **Kontinenzprofile** – standardisierte Einteilung (Kontinenz, unabhängig/abhängig erreichte Kontinenz, unabhängig/abhängig kompensierte Inkontinenz, nicht kompensierte Inkontinenz) nach Expertenstandard Kontinenzförderung.
+- **Inkontinenzformen** – Stress-, Reflex-, Drang-, funktionelle und totale Inkontinenz.
+- **Vitalzeichen** – Atemfrequenz, Puls, Blutdruck, Körpertemperatur; Befundbegriffe: Eupnoe, Tachypnoe, Bradypnoe, Hyperventilation, Tachykardie, Bradykardie, Arrhythmie, Hypertonie, Hypotonie, Zyanose.
+- **Zyanose** – bläuliche Verfärbung (Lippen, Fingernägel, Haut) durch Sauerstoffmangel.
+- **Kachexie / Adipositas** – starke Abmagerung bzw. Fettleibigkeit (Beschreibung des Ernährungszustands).
+- **BMI** – Body-Mass-Index zur Bewertung des Körpergewichts.
+- **PEG / PEJ** – perkutane endoskopische Gastrostomie / Jejunostomie (Sondenernährung).
+- **Anus praeter** – künstlicher Darmausgang (Stoma); Stomabeutel als Hilfsmittel.
+- **Suprapubischer Katheter** – Blasenkatheter durch die Bauchdecke (vgl. suprapubische Blasendrainage).
+- **Kontraktur / Spastik / Parese / Plegie / Hemiplegie / Akinese / Tremor** – Bewegungsstörungen (Gelenkversteifung, erhöhter Muskeltonus, Teil-/Vollähmung, halbseitige Lähmung, Bewegungsarmut, Zittern).
+- **Dekubitus** – Druckgeschwür; zugehörige Instrumente: Dekubitusrisikoerkennung, Wunddokumentation.
+- **Freiheitsentziehende Maßnahmen (FEM)** – dokumentationspflichtige Beschränkungen der Bewegungsfreiheit.
+- **Assessment-Instrumente (mitgeltend)** – Atemskala, Sturzrisikoerkennung, Kontrakturrisikoerfassung, Mangelernährungs-Screening, Assessment Demenz, Schmerzerfassung/Schmerzprotokoll.
+- **Biografiearbeit** – Berücksichtigung der Lebensgeschichte (Abschnitt 13, existenzielle Erfahrungen).

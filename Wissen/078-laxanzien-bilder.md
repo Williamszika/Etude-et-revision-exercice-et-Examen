@@ -1,264 +1,95 @@
-# Laxanzien – Bildersammlung der Wirkstoffgruppen
+# Laxanzien – Bildersammlung (Handelspräparate nach Wirkstoffgruppen)
 
 ## Quelle: PDFs/79-laxanzien-bilder.pdf
 
 ## Dokumenttyp
-Bildersammlung / Fotodokumentation (Produktabbildungen). Das Dokument enthält
-ausschließlich beschriftete Produktfotos handelsüblicher Abführmittel (Laxanzien)
-und Ballaststoff-/Quellstoffprodukte, gegliedert nach vier Wirkstoffgruppen. Es
-dient als bildliche Ergänzung zu einem theoretischen Laxanzien-Skript und zeigt
-konkrete Handelspräparate zu den einzelnen pharmakologischen Gruppen.
+Bildersammlung / Anschauungsmaterial (Produktfotos von Abführmitteln, geordnet nach Wirkstoffgruppen). Das Dokument enthält keinen zusammenhängenden Fließtext, sondern gruppierte Produktabbildungen mit jeweils einer Überschrift. Ergänzendes Anschauungsmaterial zur Pharmakologie der Laxanzien (Abführmittel) in der Pflegeausbildung.
 
 ## Inhalt (nach Abschnitten)
 
-Das Dokument ist in vier bebilderte Abschnitte gegliedert. Jeder Abschnitt trägt
-eine Überschrift, die die pharmakologische Wirkstoffgruppe benennt, und zeigt dazu
-passende Produkte bzw. Naturstoffe.
+Das Dokument gliedert die Laxanzien (Abführmittel) anhand von Produktbildern in vier Wirkstoffgruppen. Jede Gruppe wird durch eine Überschrift eingeleitet, gefolgt von Fotos handelsüblicher Präparate.
 
-### Abschnitt 1: Quellstoffe (Ballaststoffe)
-Überschrift im Dokument: "Bilder zu Quellstoffen:"
+### 1. Quellstoffe (Bilder zu Quellstoffen)
+Quellstoffe sind ballaststoffreiche, natürliche Abführmittel. Sie binden im Darm Wasser, quellen auf und vergrößern das Stuhlvolumen. Dadurch wird die Darmwand gedehnt, die Peristaltik (Eigenbewegung des Darms) angeregt und der Stuhl weicher und gleitfähiger. Wichtig: Quellstoffe müssen mit ausreichend Flüssigkeit eingenommen werden (mindestens 1,5–2 Liter täglich), da sonst die Gefahr eines Darmverschlusses (Ileus) besteht.
+Gezeigte/genannte Vertreter: Flohsamenschalen, Leinsamen (Leinsaat), Weizenkleie sowie allgemein ballaststoffreiche Lebensmittel (Obst, Gemüse, Vollkornprodukte).
 
-Quellstoffe (auch Quell- und Ballaststoffe genannt) binden im Darm Wasser, quellen
-auf und vergrößern so das Stuhlvolumen. Dies dehnt die Darmwand, regt die Peristaltik
-an und macht den Stuhl weicher. Wichtig für die Pflege: Quellstoffe müssen immer mit
-ausreichend Flüssigkeit eingenommen werden (Gefahr des Darmverschlusses/Ileus bei zu
-geringer Flüssigkeitszufuhr). Wirkeintritt verzögert (oft erst nach 1–3 Tagen). Gelten
-als schonende, physiologische Mittel der ersten Wahl.
+### 2. Schleimhautreizende (antiabsorptive/hydragoge) Laxanzien (Bilder zu schleimhautreizenden Laxanzien)
+Diese Laxanzien wirken direkt auf die Darmschleimhaut. Sie hemmen die Aufnahme (Resorption) von Wasser und Elektrolyten aus dem Darm und fördern gleichzeitig deren Abgabe (Sekretion) in den Darm. Dadurch bleibt mehr Flüssigkeit im Darm, das Stuhlvolumen steigt und die Peristaltik wird angeregt. Sie fördern die Eigenbewegung des Dickdarms. Bei längerem Gebrauch drohen Elektrolytverluste (v. a. Kalium) und Gewöhnung.
+Gezeigte Vertreter: Laxoberal Abführ-Tropfen (Wirkstoff Natriumpicosulfat), Dulcolax Zäpfchen (Wirkstoff Bisacodyl).
 
-Gezeigte Produkte/Stoffe:
-- Zirkulin Flohsamenschalen gemahlen (200 g Pulver)
-- Farbfoto verschiedener ballaststoffreicher Lebensmittel (Obst, Gemüse, Nüsse, Samen)
-- Leinsamen (Foto von Leinsamen in Schale und Holzlöffel)
-- dm Bio Weizenkleie (250 g)
+### 3. Osmotisch wirksame Laxanzien (Bilder zu osmotisch wirksamen Laxanzien)
+Osmotische Laxanzien binden aufgrund osmotischer Wirkung Wasser im Darm bzw. halten Wasser im Darmlumen zurück. Das erhöhte Wasservolumen macht den Stuhl weicher, vergrößert das Volumen und regt die Peristaltik an.
+Gezeigte Vertreter:
+- Macrogol (Polyethylenglykol, PEG) – z. B. Macrogol-ratiopharm Balance, Pulver zur Herstellung einer Lösung zum Einnehmen, bei chronischer Verstopfung.
+- Lactulose – z. B. Bifiteral Sirup (synthetischer Zweifachzucker, wird im Dickdarm bakteriell abgebaut).
+- Salinische Abführmittel – z. B. Glaubersalz (Wirkstoff Natriumsulfat-Decahydrat).
 
-### Abschnitt 2: Schleimhautreizende Laxanzien (antiabsorptiv/hydragog)
-Überschrift im Dokument: "Bilder zu schleimhautreizenden Laxanzien:"
-
-Diese Gruppe wirkt direkt auf die Darmschleimhaut: Sie hemmt die Aufnahme (Absorption)
-von Wasser und Elektrolyten aus dem Darm und fördert deren Ausscheidung ins Darmlumen
-(hydragoge Wirkung). Zusätzlich wird die Darmmotilität (Eigenbewegung/Peristaltik)
-angeregt. Typische Wirkstoffe sind Bisacodyl und Natriumpicosulfat. Wichtig für die
-Pflege: Nur zur kurzfristigen Anwendung; bei Dauergebrauch drohen Elektrolytverluste
-(v. a. Kaliumverlust/Hypokaliämie), Gewöhnung und Verstärkung der Verstopfung.
-
-Gezeigte Produkte:
-- Laxoberal Abführ-Tropfen (15 ml; Wirkstoff Natriumpicosulfat)
-- DulcoLax Zäpfchen (6 Zäpfchen; Wirkstoff Bisacodyl)
-
-### Abschnitt 3: Osmotisch wirksame Laxanzien
-Überschrift im Dokument: "Bilder zu osmotisch wirksamen Laxanzien:"
-
-Osmotische Laxanzien binden über osmotischen Druck Wasser im Darm bzw. halten
-Wasser im Darmlumen zurück. Dadurch wird der Stuhl aufgeweicht, das Volumen erhöht
-und die Peristaltik angeregt. Untergruppen: Macrogol (Polyethylenglykol), Zuckerstoffe
-(Lactulose) und salinische Abführmittel (Salze wie Glaubersalz/Natriumsulfat, Bittersalz).
-Auch hier gilt: ausreichende Flüssigkeitszufuhr wichtig; salinische Mittel können bei
-Überdosierung zu Elektrolytstörungen führen. Lactulose wirkt zusätzlich präbiotisch.
-
-Gezeigte Produkte:
-- Macrogol-ratiopharm Balance (Pulver zur Herstellung einer Lösung zum Einnehmen,
-  50 Beutel N3; bei chronischer Verstopfung)
-- Bifiteral Sirup (500 ml; 667 g/l; Wirkstoff Lactulose)
-- Glaubersalz (100 g Pulver; Wirkstoff Natriumsulfat-Decahydrat; salinisches Abführmittel)
-
-### Abschnitt 4: Gleitmittel (Gleit- und Weichmacher)
-Überschrift im Dokument: "Bilder zu Gleitmitteln:"
-
-Gleitmittel machen den Stuhl geschmeidig und "schmieren" die Darmwand, sodass der
-Stuhl leichter gleiten kann. Glycerol (Glycerin) als Zäpfchen wirkt zusätzlich leicht
-wasserziehend und reizt die Enddarmschleimhaut, was den Entleerungsreflex auslöst –
-Wirkeintritt daher schnell (oft innerhalb von Minuten). Anwendung rektal. Geeignet zur
-kurzfristigen Enddarmentleerung.
-
-Gezeigtes Produkt:
-- Milax 1,0 Zäpfchen (10 Zäpfchen, rektale Anwendung; Wirkstoff Glycerol;
-  Hersteller Berlin-Chemie Menarini)
+### 4. Gleitmittel (Bilder zu Gleitmitteln)
+Gleitmittel machen den Stuhl gleitfähiger und erleichtern so die Darmpassage bzw. die Entleerung. Sie werden häufig rektal (als Zäpfchen) angewendet und wirken lokal, ohne die eigentliche Peristaltik stark zu beeinflussen.
+Gezeigter Vertreter: Milax 1,0 Zäpfchen (Wirkstoff Glycerol/Glyzerin), rektale Anwendung.
 
 ## Abbildungen & Tabellen
 
-Das Dokument enthält keine Tabellen und keine Anatomie-Schemata, sondern ausschließlich
-Produktfotos. Nachfolgend jede Abbildung einzeln beschrieben.
-
 ### Seite 1 – Quellstoffe
-
-**Abbildung 1.1 – Zirkulin Flohsamenschalen (Produktdose):**
-Gelbe Kunststoffdose mit blauem Deckel. Marke "zirkulin" (Slogan "RUNDUM GUT. FÜR MICH.").
-Produktname groß: "FLOHSAMEN SCHALEN GEMAHLEN". Untertitel: "Fördern die natürliche
-Verdauung und unterstützen die Darmgesundheit". Rotes Störer-Emblem: "NEUES DESIGN /
-Bewährte Rezeptur". Am unteren Rand drei Info-Kästen: "Mit Lein-samen und Chia-samen" /
-"Unterstützen eine ballaststoffreiche, gesunde Ernährung" / "Mit Orangengeschmack".
-Menge: "200 g Pulver". Kennzeichnung "Lebensmittel" und Siegel "HERGESTELLT IN
-DEUTSCHLAND". Pflegerische Bedeutung: typischer Quellstoff (Flohsamenschalen/Psyllium),
-freiverkäuflich als Lebensmittel/Ballaststoffquelle.
-
-**Abbildung 1.2 – Ballaststoffreiche Lebensmittel (Foodfoto):**
-Farbfoto einer Auslage vieler ballaststoffreicher Lebensmittel auf Holzuntergrund:
-Obst und Gemüse (Tomaten, Avocado, Kiwi, Möhren/Karotten, Brokkoli, grüner Spargel,
-Banane, Zitrusfrüchte, Beeren, Süßkartoffel), Nüsse, Samen (u. a. Chiasamen), Hülsenfrüchte,
-Vollkornnudeln, Gewürze und Öl in kleinen Schälchen. Bedeutung: veranschaulicht, dass
-Ballaststoffe zuerst über die Ernährung zugeführt werden sollen (Basismaßnahme bei
-Obstipation vor Medikamenten).
-
-**Abbildung 1.3 – Leinsamen (Naturprodukt-Foto):**
-Nahaufnahme von braunen Leinsamen, teils in einem Holzlöffel, teils in einer dunklen
-Schale, mit einem Rosmarinzweig als Deko. Bedeutung: Leinsamen als klassischer
-pflanzlicher Quellstoff; müssen mit reichlich Flüssigkeit eingenommen werden.
-
-**Abbildung 1.4 – dm Bio Weizenkleie (Produktbeutel):**
-Papier-/Folienbeutel. Grünes "dm Bio"-Logo ("aus biologischer Landwirtschaft"). Produktname
-groß: "WEIZEN KLEIE". EU-Bio-Siegel. Hinweis "Weizen aus Österreich". Menge: "250 g".
-Bedeutung: Weizenkleie als ballaststoffreicher Quellstoff zur Anregung der Darmtätigkeit.
+1. **Produktfoto Zirkulin Flohsamenschalen (gemahlen):** Gelbe Dose mit blauem Deckel, Marke „zirkulin – RUNDUM GUT. FÜR MICH.". Aufschrift: „FLOHSAMEN SCHALEN GEMAHLEN – Fördern die natürliche Verdauung und unterstützen die Darmgesundheit". Roter Störer: „NEUES DESIGN – Bewährte Rezeptur". Drei Feld-Hinweise am unteren Rand: „Mit Lein-samen und Chia-samen" / „Unterstützen eine ballaststoffreiche, gesunde Ernährung" / „Mit Orangengeschmack". Menge: „200 g Pulver", Kategorie „Lebensmittel", Siegel „HERGESTELLT IN DEUTSCHLAND". – Pflegerische Bedeutung: typischer pflanzlicher Quellstoff, Beispiel für ballaststoffbasiertes Abführmittel; nur mit reichlich Flüssigkeit einnehmen.
+2. **Foto ballaststoffreiche Lebensmittel:** Übersichtsbild mit vielen Nahrungsmitteln auf Holzuntergrund – u. a. Avocado, Kiwi, Tomaten, Karotten, Spargel, Brokkoli, Bananen, Vollkorn-Nudeln, Nüsse, Samen (Chia-, Leinsamen), Hülsenfrüchte, Beeren, Öl, Gewürze, Tofu. – Bedeutung: veranschaulicht ballaststoffreiche Ernährung als natürliche, nicht-medikamentöse Maßnahme gegen Obstipation.
+3. **Foto Leinsamen (Leinsaat):** Braune Leinsamen auf dunklem Holztisch, ein Holzlöffel voll Samen, eine schwarze Schale mit Samen, ein Rosmarinzweig als Deko. – Bedeutung: pflanzlicher Quellstoff; ganze oder geschrotete Leinsamen quellen im Darm auf.
+4. **Produktfoto dmBio Weizenkleie:** Klarsicht-/Papierbeutel mit grünem „dmBio"-Logo (aus biologischer Landwirtschaft), Aufschrift „WEIZEN KLEIE", Hinweis „Weizen aus Österreich", EU-Bio-Siegel, Menge „250 g". – Bedeutung: ballaststoffreicher Quellstoff aus den Randschichten des Weizenkorns.
 
 ### Seite 2 – Schleimhautreizende Laxanzien
-
-**Abbildung 2.1 – Laxoberal Abführ-Tropfen:**
-Weiße Faltschachtel und weißes Fläschchen mit grünem Schraubverschluss, grün-weißes
-Design mit stilisiertem grünem Tropfen. Beschriftung: "Laxoberal – Abführ-Tropfen".
-Menge: "15 ml". Wirkstoff (aus Kontext/Skript): Natriumpicosulfat. Bedeutung:
-schleimhautreizendes/antiresorptiv-hydragoges Laxans in Tropfenform, individuelle
-Dosierung möglich; nur kurzfristige Anwendung.
-
-**Abbildung 2.2 – DulcoLax Zäpfchen:**
-Grün-weiße Faltschachtel. Markenname groß: "DulcoLax", darunter "ZÄPFCHEN". Grüner
-Wellen-/Spiral-Bogen (Firmensignet). Text: "Fördern die Eigenbewegung des Dickdarms
-und lösen so die Verstopfung". Hinweis: "WIRKEINTRITT NACH CA. 15–30 MIN.". Menge:
-"6 ZÄPFCHEN". Wirkstoff (aus Kontext): Bisacodyl. Bedeutung: rektales schleimhautreizendes
-Laxans, rascher Wirkeintritt, regt Dickdarmperistaltik an.
+5. **Produktfoto Laxoberal Abführ-Tropfen:** Weiß-grüne Faltschachtel und weißes Fläschchen mit grünem Deckel, Marke „Laxoberal – Abführ-Tropfen", grünes Tropfen-Motiv, Menge „15 ml". Wirkstoff (fachlich): Natriumpicosulfat. – Bedeutung: schleimhautreizendes/antiabsorptives Laxans in Tropfenform, Wirkeintritt meist über Nacht.
+6. **Produktfoto DulcoLax Zäpfchen:** Grün-weiße Faltschachtel, Marke „DulcoLax ZÄPFCHEN". Aufschrift: „Fördern die Eigenbewegung des Dickdarms und lösen so die Verstopfung". Hinweis: „WIRKEINTRITT NACH CA. 15–30 MIN.", Packungsangabe „6 ZÄPFCHEN". Wirkstoff (fachlich): Bisacodyl. – Bedeutung: schleimhautreizendes Laxans zur rektalen Anwendung mit schnellem Wirkeintritt.
 
 ### Seite 3 – Osmotisch wirksame Laxanzien
-
-**Abbildung 3.1 – Macrogol-ratiopharm Balance:**
-Weiß-orange-türkise Faltschachtel. Marke "ratiopharm". Produktname: "Macrogol-ratiopharm
-Balance – Pulver zur Herstellung einer Lösung zum Einnehmen". Hinweis: "Bei chronischer
-Verstopfung". Packungsgröße: "50 Beutel N3". Bedeutung: Macrogol (Polyethylenglykol) als
-osmotisches Laxans, wird in Wasser gelöst getrunken, für Langzeitanwendung geeignet,
-elektrolytneutral.
-
-**Abbildung 3.2 – Bifiteral Sirup:**
-Grün-weiße Faltschachtel und weiße Flasche. Marke "Bifiteral". Angaben: "500 ml Sirup N2",
-"667 g/l", "Wirkstoff: Lactulose". Herstellerlogo "VIATRIS". Bedeutung: Lactulose als
-osmotisch (und präbiotisch) wirksames Laxans, häufig bei chronischer Obstipation und in
-der Langzeittherapie; auch bei hepatischer Enzephalopathie eingesetzt.
-
-**Abbildung 3.3 – Glaubersalz (Bombastus):**
-Weiße Dose mit violettem/lila Schraubdeckel. Beschriftung: "GLAUBERSALZ – Pulver zum
-Einnehmen nach Auflösen in Wasser. Zur Anwendung bei Kindern über 6 Jahren und Erwachsenen.
-Wirkstoff: Natriumsulfat-Decahydrat". Unten: "Salinisches Abführmittel". Menge: "100 g".
-Hersteller "Bombastus". Bedeutung: salinisches (osmotisch wirkendes) Abführmittel, wirkt
-schnell und stark, v. a. zur Darmentleerung; Vorsicht wegen Elektrolyt-/Flüssigkeitsverschiebung.
+7. **Produktfoto Macrogol-ratiopharm Balance:** Weiß-orange Faltschachtel, Marke „ratiopharm", Produkt „Macrogol-ratiopharm Balance – Pulver zur Herstellung einer Lösung zum Einnehmen". Hinweis: „Bei chronischer Verstopfung", Packungsgröße „50 Beutel N3". Wirkstoff: Macrogol (Polyethylenglykol). – Bedeutung: osmotisches Laxans, bindet Wasser im Darm, gut für Dauer-/Langzeittherapie bei chronischer Obstipation geeignet.
+8. **Produktfoto Bifiteral Sirup:** Grün-weiße Faltschachtel und weiße Flasche, Marke „Bifiteral – 667 g/l Sirup", Angabe „Wirkstoff: Lactulose", Menge „500 ml Sirup N2/N3", Hersteller-Logo „VIATRIS". – Bedeutung: osmotisch wirksames Laxans (Lactulose), auch bei hepatischer Enzephalopathie eingesetzt; wird im Dickdarm bakteriell zu osmotisch aktiven Säuren abgebaut.
+9. **Produktfoto Glaubersalz (Bombastus):** Weißes Kunststoffdöschen mit violettem Deckel, Aufschrift „GLAUBERSALZ – Pulver zum Einnehmen nach Auflösen in Wasser. Zur Anwendung bei Kindern über 6 Jahren und Erwachsenen. Wirkstoff: Natriumsulfat-Decahydrat. Salinisches Abführmittel". Menge „100 g", Hersteller „Bombastus". – Bedeutung: salinisches (osmotisches) Abführmittel, stark wirksam, zur kurzfristigen Darmentleerung.
 
 ### Seite 4 – Gleitmittel
-
-**Abbildung 4.1 – Milax 1,0 Zäpfchen (Schachtel):**
-Weiß-blaue Faltschachtel mit stilisierter blauer Darmzeichnung. Beschriftung: "Milax 1,0",
-"1,0 g, Zäpfchen", "Wirkstoff: Glycerol", "10 Zäpfchen", "Rektale Anwendung", "Abführmittel".
-Hersteller: "BERLIN-CHEMIE MENARINI". Bedeutung: Glycerol-Zäpfchen als Gleit-/Weichmacher
-für den Enddarm, schneller Wirkeintritt, zur kurzfristigen rektalen Entleerung.
-
-**Abbildung 4.2 – Milax 1,0 Zäpfchen (Blisterstreifen):**
-Foto eines Blisterstreifens mit mehreren einzeln verpackten weißen Glycerol-Zäpfchen,
-jeweils mit Aufdruck "Milax 1,0". Bedeutung: zeigt die einzelnen Suppositorien der
-Handelspackung.
+10. **Produktfoto Milax 1,0 Zäpfchen (Faltschachtel):** Weiß-blaue Faltschachtel, Marke „Milax 1,0 – 1,0 g, Zäpfchen", Angabe „Wirkstoff: Glycerol", „10 Zäpfchen – Rektale Anwendung", Kategorie „Abführmittel", grafisches Darm-Symbol, Hersteller „BERLIN-CHEMIE MENARINI". – Bedeutung: Gleitmittel zur rektalen Anwendung; Glycerol macht den Stuhl gleitfähig und regt lokal die Entleerung an.
+11. **Produktfoto Milax 1,0 Zäpfchen (Blister):** Aluminium-/Kunststoff-Blisterstreifen mit mehreren einzeln verpackten Zäpfchen, jeweils bedruckt „Milax 1,0". – Bedeutung: zeigt die Darreichungsform (Suppositorien) im Blister.
 
 ## Transkribierte Fototexte
 
-Wörtliche Transkription aller auf den Produktfotos lesbaren Texte (OCR):
+**Seite 1 (Überschrift):** „Bilder zu Quellstoffen:"
+- zirkulin – RUNDUM GUT. FÜR MICH. / FLOHSAMEN SCHALEN GEMAHLEN / Fördern die natürliche Verdauung und unterstützen die Darmgesundheit / NEUES DESIGN – Bewährte Rezeptur / Mit Lein-samen und Chia-samen / Unterstützen eine ballaststoffreiche, gesunde Ernährung / Mit Orangengeschmack / 200 g Pulver / Lebensmittel / HERGESTELLT IN DEUTSCHLAND
+- dmBio / aus biologischer Landwirtschaft / WEIZEN KLEIE / Weizen aus Österreich / 250 g
 
-Abschnittsüberschriften:
-- "Bilder zu Quellstoffen:"
-- "Bilder zu schleimhautreizenden Laxanzien:"
-- "Bilder zu osmotisch wirksamen Laxanzien:"
-- "Bilder zu Gleitmitteln:"
+**Seite 2 (Überschrift):** „Bilder zu schleimhautreizenden Laxanzien:"
+- Laxoberal / Abführ-Tropfen / 15 ml
+- DulcoLax / ZÄPFCHEN / Fördern die Eigenbewegung des Dickdarms und lösen so die Verstopfung / WIRKEINTRITT NACH CA. 15–30 MIN. / 6 ZÄPFCHEN
 
-Zirkulin Flohsamenschalen:
-- "zirkulin – RUNDUM GUT. FÜR MICH."
-- "FLOHSAMEN SCHALEN GEMAHLEN"
-- "Fördern die natürliche Verdauung und unterstützen die Darmgesundheit"
-- "NEUES DESIGN / Bewährte Rezeptur"
-- "Mit Leinsamen und Chiasamen"
-- "Unterstützen eine ballaststoffreiche, gesunde Ernährung"
-- "Mit Orangengeschmack"
-- "200 g Pulver"
-- "Lebensmittel"
-- "HERGESTELLT IN DEUTSCHLAND"
+**Seite 3 (Überschrift):** „Bilder zu osmotisch wirksamen Laxanzien:"
+- ratiopharm / Macrogol-ratiopharm Balance / Pulver zur Herstellung einer Lösung zum Einnehmen / Bei chronischer Verstopfung / 50 Beutel N3
+- Bifiteral / 667 g/l Sirup / Wirkstoff: Lactulose / 500 ml Sirup N2 / VIATRIS
+- GLAUBERSALZ / Pulver zum Einnehmen nach Auflösen in Wasser / Zur Anwendung bei Kindern über 6 Jahren und Erwachsenen / Wirkstoff: Natriumsulfat-Decahydrat / Salinisches Abführmittel / 100 g / Bombastus
 
-dm Bio Weizenkleie:
-- "dm Bio – aus biologischer Landwirtschaft"
-- "WEIZEN KLEIE"
-- "Weizen aus Österreich"
-- "250 g"
-
-Laxoberal:
-- "Laxoberal – Abführ-Tropfen"
-- "15 ml"
-
-DulcoLax:
-- "DulcoLax – ZÄPFCHEN"
-- "Fördern die Eigenbewegung des Dickdarms und lösen so die Verstopfung"
-- "WIRKEINTRITT NACH CA. 15–30 MIN."
-- "6 ZÄPFCHEN"
-
-Macrogol-ratiopharm:
-- "ratiopharm"
-- "Macrogol-ratiopharm Balance"
-- "Pulver zur Herstellung einer Lösung zum Einnehmen"
-- "Bei chronischer Verstopfung"
-- "50 Beutel N3"
-
-Bifiteral:
-- "Bifiteral – 667 g/l Sirup"
-- "Wirkstoff: Lactulose"
-- "500 ml Sirup N2"
-- "VIATRIS"
-
-Glaubersalz:
-- "GLAUBERSALZ"
-- "Pulver zum Einnehmen nach Auflösen in Wasser"
-- "Zur Anwendung bei Kindern über 6 Jahren und Erwachsenen"
-- "Wirkstoff: Natriumsulfat-Decahydrat"
-- "Salinisches Abführmittel"
-- "100 g"
-- "Bombastus"
-
-Milax 1,0:
-- "Milax 1,0"
-- "1,0 g, Zäpfchen"
-- "Wirkstoff: Glycerol"
-- "10 Zäpfchen"
-- "Rektale Anwendung"
-- "Abführmittel"
-- "BERLIN-CHEMIE MENARINI"
-
-(Keine handschriftlichen Notizen oder Tafelbilder im Dokument enthalten.)
+**Seite 4 (Überschrift):** „Bilder zu Gleitmitteln:"
+- Milax 1,0 / 1,0 g, Zäpfchen / Wirkstoff: Glycerol / 10 Zäpfchen / Rektale Anwendung / Abführmittel / BERLIN-CHEMIE MENARINI
+- Milax 1,0 (Blister-Aufdruck, mehrfach)
 
 ## Kernbegriffe (Glossar)
 
-- **Laxanzien / Laxantien:** Abführmittel; Arzneimittel oder Stoffe, die die Darmentleerung
-  fördern und bei Obstipation (Verstopfung) eingesetzt werden.
-- **Quellstoffe / Ballaststoffe:** Binden Wasser, quellen auf, vergrößern das Stuhlvolumen,
-  regen die Peristaltik an. Beispiele: Flohsamen(schalen), Leinsamen, Weizenkleie.
-  Wichtig: reichlich Flüssigkeit zuführen (sonst Ileusgefahr).
-- **Flohsamenschalen (Psyllium):** Pflanzlicher Quellstoff mit hoher Wasserbindungskapazität.
-- **Weizenkleie:** Ballaststoffreiche äußere Kornschale, wirkt als Quellstoff.
-- **Schleimhautreizende Laxanzien (antiresorptiv/hydragog):** Hemmen die Wasser- und
-  Elektrolytresorption und fördern die Sekretion ins Darmlumen, regen die Motilität an.
-  Wirkstoffe: Bisacodyl (DulcoLax), Natriumpicosulfat (Laxoberal). Nur kurzfristig
-  anwenden – Risiko: Kaliumverlust/Hypokaliämie, Gewöhnung.
-- **Bisacodyl:** Wirkstoff schleimhautreizender Laxanzien; wirkt v. a. im Dickdarm.
-- **Natriumpicosulfat:** Wirkstoff schleimhautreizender Abführtropfen.
-- **Osmotisch wirksame Laxanzien:** Ziehen/halten durch osmotischen Druck Wasser im Darm,
-  weichen den Stuhl auf. Untergruppen: Macrogol, Lactulose, salinische Salze.
-- **Macrogol (Polyethylenglykol, PEG):** Osmotisches Laxans, elektrolytneutral, für
-  Langzeitanwendung geeignet.
-- **Lactulose:** Nicht resorbierbarer Zucker; osmotisch und präbiotisch wirksam
-  (Bifiteral). Auch bei hepatischer Enzephalopathie.
-- **Salinische Abführmittel:** Salze (z. B. Glaubersalz = Natriumsulfat, Bittersalz =
-  Magnesiumsulfat); wirken osmotisch, schnell und stark.
-- **Glaubersalz (Natriumsulfat-Decahydrat):** Salinisches Abführmittel zur Darmentleerung.
-- **Gleitmittel / Gleit- und Weichmacher:** Machen den Stuhl geschmeidig, erleichtern das
-  Gleiten. Beispiel: Glycerol-Zäpfchen (Milax), rektal, schneller Wirkeintritt.
-- **Glycerol (Glycerin):** Wirkstoff von Gleitmittel-Zäpfchen; wirkt lokal, löst
-  Entleerungsreflex im Enddarm aus.
-- **Obstipation:** Verstopfung; erschwerte, seltene oder unvollständige Stuhlentleerung.
-- **Peristaltik:** Wellenförmige Eigenbewegung des Darms zum Weitertransport des Darminhalts.
-- **Hydragog:** Wasserausscheidend – bewirkt vermehrte Wasserabgabe ins Darmlumen.
+- **Laxanzien / Laxantien:** Abführmittel; Arzneimittel oder Stoffe, die die Darmentleerung fördern und bei Verstopfung (Obstipation) eingesetzt werden.
+- **Obstipation:** Verstopfung; erschwerte, seltene oder unvollständige Darmentleerung.
+- **Quellstoffe:** Ballaststoffreiche Abführmittel (z. B. Flohsamen, Leinsamen, Weizenkleie), die im Darm Wasser binden, aufquellen, das Stuhlvolumen erhöhen und die Peristaltik anregen. Nur mit reichlich Flüssigkeit einnehmen (Ileusgefahr).
+- **Flohsamenschalen:** Pflanzlicher Quellstoff aus den Samenschalen des Flohsamens (Plantago), hoher Quellindex.
+- **Leinsamen (Leinsaat):** Pflanzlicher Quellstoff, ganz oder geschrotet.
+- **Weizenkleie:** Ballaststoffreiche Randschichten des Weizenkorns; Quellstoff.
+- **Ballaststoffe:** Unverdauliche Nahrungsbestandteile, die das Stuhlvolumen erhöhen und die Verdauung fördern.
+- **Schleimhautreizende (antiabsorptive/hydragoge) Laxanzien:** Wirken direkt auf die Darmschleimhaut; hemmen die Resorption von Wasser/Elektrolyten und fördern deren Sekretion in den Darm; regen die Peristaltik an. Gefahr: Elektrolytverlust (v. a. Kalium), Gewöhnung.
+- **Natriumpicosulfat:** Wirkstoff schleimhautreizender Tropfen (z. B. Laxoberal).
+- **Bisacodyl:** Wirkstoff schleimhautreizender Präparate (z. B. DulcoLax).
+- **Osmotisch wirksame Laxanzien:** Binden bzw. halten durch osmotische Wirkung Wasser im Darmlumen zurück; Stuhl wird weicher und voluminöser, Peristaltik wird angeregt.
+- **Macrogol (Polyethylenglykol, PEG):** Osmotisches Laxans; für Langzeittherapie bei chronischer Verstopfung geeignet.
+- **Lactulose:** Synthetischer Zweifachzucker; osmotisch wirksames Laxans; wird im Dickdarm bakteriell abgebaut (z. B. Bifiteral).
+- **Salinische Abführmittel:** Salzhaltige osmotische Laxanzien (z. B. Glaubersalz).
+- **Glaubersalz / Natriumsulfat-Decahydrat:** Salinisches, stark wirksames osmotisches Abführmittel zur kurzfristigen Darmentleerung.
+- **Gleitmittel:** Machen den Stuhl gleitfähiger und erleichtern die Darmpassage/Entleerung; häufig rektal.
+- **Glycerol (Glyzerin):** Wirkstoff von Gleitmittel-Zäpfchen (z. B. Milax).
+- **Suppositorium (Zäpfchen):** Feste Arzneiform zur rektalen Anwendung.
+- **Peristaltik:** Wellenförmige Eigenbewegung des Darms, die den Stuhl weitertransportiert.
+- **Resorption:** Aufnahme von Wasser/Stoffen aus dem Darm ins Blut.
+- **Sekretion:** Abgabe von Flüssigkeit/Elektrolyten in den Darm.
+- **Ileus:** Darmverschluss; mögliche Komplikation bei Quellstoffen ohne ausreichende Flüssigkeitszufuhr.
+- **Rektale Anwendung:** Verabreichung über den Enddarm (Zäpfchen, Klistier).

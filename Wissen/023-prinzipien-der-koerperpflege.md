@@ -5,17 +5,18 @@
 ## Dokumenttyp
 Unterrichtspräsentation / Foliensatz (22 Folien) für die Pflegeausbildung.
 Kurskennung: PF 25-28-1, CE 02 / UE 01 „Bei der Körperpflege unterstützen".
-Inhalt: Prinzipien, Ablauf und Beachtungspunkte der Körperpflege, inklusive Produktkunde, Grundregeln, Vorgehen und praktischen Aufträgen.
+Behandelt Prinzipien, Ablauf und Beachtungspunkte der Körperpflege sowie Reinigungs- und Pflegeprodukte, pH-Werte, Grundregeln und praktische Aufträge.
 
 ## Inhalt (nach Abschnitten)
 
-### Folie 1 – Titel
-Titel: KÖRPERPFLEGE
+### Folie 1 – Titelfolie
+Titel: **KÖRPERPFLEGE**
 Untertitel: Prinzipien, Ablauf, Beachtungspunkte
 PF 25-28-1
-CE 02/ UE 01 Bei der Körperpflege unterstützen
+CE 02 / UE 01 Bei der Körperpflege unterstützen
+(Illustration: Pflegekraft reicht einer im Bett liegenden älteren Person eine Waschschüssel – siehe Abbildungen.)
 
-### Folie 2 – Einstieg (Reflexionsfragen)
+### Folie 2 – Einstieg (Aktivierungsfragen)
 - Was sind Ihre bisherigen Kenntnisse zu dem Thema „Körperpflege"?
 - Wie fühlen Sie sich „ungepflegt"?
 - Was sollte bei der Körperpflege beachtet werden?
@@ -26,7 +27,7 @@ CE 02/ UE 01 Bei der Körperpflege unterstützen
 - Gesunderhaltung der Haut
 - Förderung Wohlbefinden
 
-Merksatz: **Haut** = unser größtes Organ und hat viele lebenswichtige Funktionen (z.B. Schutz vor Krankheitserregern).
+**Haut** = unser größtes Organ und hat viele lebenswichtige Funktionen (z.B. Schutz vor Krankheitserregern)
 
 ### Folie 4 – Bedeutung „Prinzipien"
 - feste Regeln → dadurch wird Denken & Handeln geleitet (z.B. moralisches Prinzip)
@@ -35,8 +36,6 @@ Merksatz: **Haut** = unser größtes Organ und hat viele lebenswichtige Funktion
 
 ### Folie 5 – Pflege-Charta
 → Menschen mit Hilfe- und Pflegebedarf sollen die gleichen Rechte haben wie andere Menschen auch.
-
-Die Rechte:
 - Recht auf Selbstbestimmung und Hilfe zur Selbsthilfe
 - Recht auf körperliche Unversehrtheit und Sicherheit
 - Recht auf Privatheit
@@ -45,7 +44,7 @@ Die Rechte:
 - Recht gemäß der eigenen Religion, Kultur, Weltanschauung
 
 ### Folie 6 – Vorbereitung Körperpflege
-Generell:
+**Generell:**
 - Welcher Hauttyp liegt vor? (trockene oder feuchte Haut?)
 - Wo soll die Körperpflege stattfinden? (im Bett / an Bettkante / im Badezimmer?)
 - Sollen auch die Haare gewaschen werden?
@@ -54,79 +53,80 @@ Generell:
 - pH-neutrale Produkte (pH-Wert 7) → steht immer auf der Verpackung des Produkts
 - trockene Haut: Urea, Glycerin, Milchsäure hilfreich
 
-### Folie 7 – Seife (Warnhinweis)
+### Folie 7 – Seife (Warnhinweis!)
 - pH-Wert ist alkalisch (8-11)
 - Veränderung des gesunden pH-Wertes der Haut
 - trocknet + entfettet die Haut
 - kann bei starker Verschmutzung oder fettiger Haut genutzt werden
 - immer gründlich von der Haut entfernen
 
-### Folie 8 – pH-Werte (Übersicht)
+### Folie 8 – pH-Skala
+Merkkasten:
 - Haut: pH 5,5 (leicht sauer)
 - Seife: pH 8-11 (alkalisch)
 - Wasser: pH 6-8 (neutral)
-(Siehe pH-Skala unter Abbildungen)
+(Farbige pH-Skala von 0 bis 14 – siehe Abbildungen.)
 
 ### Folie 9 – Produkte zur Reinigung + Pflege (Tabelle 1)
-- **Seifenfreie Waschlotion**: schont den Säure-Schutzmantel der Haut; pH-neutral
-- **Fetthaltige Waschprodukte** (für trockene Haut → sind rückfettend):
+- **Seifenfreie Waschlotion** (schont den Säure-Schutzmantel der Haut; pH-neutral)
+- **Fetthaltige Waschprodukte** (für trockene Haut → sind rückfettend)
   - Wird in Kombination mit Wasser genutzt
   - Körper danach abtupfen (Ölfilm bleibt enthalten)
   - Rutschgefahr in Dusche / Badewanne beachten
 
 ### Folie 10 – Produkte zur Reinigung + Pflege (Tabelle 2)
-- **Feuchte Waschtücher** für wasserfreie Reinigung, z.B. für die Intimpflege (Achtung: Gibt meistens nicht das Gefühl von Sauberkeit und enthält Parfüm):
+- **Feuchte Waschtücher** für wasserfreie Reinigung z.B. für die Intimpflege (Achtung: Gibt meistens nicht das Gefühl von Sauberkeit und enthält Parfüm)
   - Erwärmen in Mikrowelle
   - 8 Waschhandschuhe enthalten
   - Erhält Reinigungsflüssigkeit + Lotion zur Pflege
-- **Körperlotion** (O/W = wenig Öl in viel Wasser Emulsion):
+- **Körperlotion** (O/W = wenig Öl in viel Wasser Emulsion)
   - Ähnlich wie Milch
   - Wasseranteil 60%
   - Bei normaler – fettiger Haut
   - Zieht schnell ein
 
 ### Folie 11 – Produkte zur Reinigung + Pflege (Tabelle 3)
-- **Hautcreme** (W/O = wenig Wasser in viel Öl Emulsion):
+- **Hautcreme** (W/O = wenig Wasser in viel Öl Emulsion)
   - Ähnlich wie Butter
   - Wasseranteil 30%
   - Bei trockener Haut (Altershaut)
-- **Salben**:
+- **Salben**
   - Lokale Hautbehandlung
   - Bilden Fettfilm
   - Verschließt Talg- und Schweißdrüsen
   - Behinderung der Hautatmung
 
 ### Folie 12 – Produkte zur Reinigung + Pflege (Tabelle 4)
-- **Pasten**:
+- **Pasten**
   - Gemisch aus Salbe + Puder
   - Kein Wasseranteil
   - Verstopfung der Poren
   - Kann bei Feuchtigkeit genutzt werden
   - Entfernung mit Öl
-- **Puder**:
+- **Puder**
   - Bei juckenden + nässenden Hauterkrankungen
   - Entzieht der Haut Feuchtigkeit
   - Krümel auf der Haut entstehen (Reibung + Schädigung)
 
 ### Folie 13 – Produkte zur Reinigung + Pflege (Tabelle 5)
-- **Alkoholische Präparate**:
+- **Alkoholische Präparate**
   - Zur Erfrischung + Regeneration
   - Bei Muskelbeanspruchung
   - Wirkt entfettend + austrocknend
   - Haut muss dafür intakt sein
 
 ### Folie 14 – Grundregeln / Prinzipien der Körperpflege (1-3)
-1. **Selbstbestimmung beachten**: Jeder Mensch hat das Recht, selbst zu bestimmen. Es soll zu keiner Bevormundung oder zu Zwang kommen.
-2. **Selbstständigkeit erhalten**: Fähigkeiten, Selbstständigkeit und Selbstvertrauen fördern. Pflegekräfte leiten an und unterstützen dabei, die Dinge selbst zu tun.
-3. **Vorgehen abstimmen**: Der Zeitpunkt und das Vorgehen wird abgesprochen. Gewohnheiten, vertraute Abläufe und ausreichend Zeit geben ein sicheres Gefühl.
+1. **Selbstbestimmung beachten** – Jeder Mensch hat das Recht, selbst zu bestimmen. Es soll zu keiner Bevormundung oder zu Zwang kommen.
+2. **Selbstständigkeit erhalten** – Fähigkeiten, Selbstständigkeit und Selbstvertrauen fördern. Pflegekräfte leiten an und unterstützen dabei, die Dinge selbst zu tun.
+3. **Vorgehen abstimmen** – Der Zeitpunkt und das Vorgehen wird abgesprochen. Gewohnheiten, vertraute Abläufe und ausreichend Zeit geben ein sicheres Gefühl.
 
 ### Folie 15 – Grundregeln / Prinzipien der Körperpflege (4-7)
-4. **Schamgefühle verringern**: Ein offener, einfühlsamer und vertrauensvoller Umgang ist hilfreich, um Schamgefühle zu verringern. Währenddessen über Alltägliches zu sprechen, kann auflockern.
-5. **Haut beobachten**: Fragen Sie nach Beschwerden und kontrollieren Sie das Hautbild.
-6. **Hygiene beachten**: Saubere Materialien, Einmalhandschuhe, Desinfektion.
-7. **Für Sicherheit sorgen**: Sorgen Sie dafür, dass ein Sturz vermieden wird.
+4. **Schamgefühle verringern** – Ein offener, einfühlsamer und vertrauensvoller Umgang ist hilfreich, um Schamgefühle zu verringern. Währenddessen über Alltägliches zu sprechen, kann auflockern.
+5. **Haut beobachten** – Fragen Sie nach Beschwerden und kontrollieren Sie das Hautbild.
+6. **Hygiene beachten** – Saubere Materialien, Einmalhandschuhe, Desinfektion.
+7. **Für Sicherheit sorgen** – Sorgen Sie dafür, dass ein Sturz vermieden wird.
 
-### Folie 16 – Anwendung (Arbeitsauftrag AA)
+### Folie 16 – Anwendung (Arbeitsauftrag)
 AA: Finden Sie für pro Grundregel / Prinzip jeweils **ein** Beispiel, wie Sie dies im Alltag während der Körperpflege integrieren können. Machen Sie sich Notizen in Stichpunkten.
 - Selbstbestimmung beachten
 - Selbstständigkeit erhalten
@@ -145,15 +145,15 @@ AA: Finden Sie für pro Grundregel / Prinzip jeweils **ein** Beispiel, wie Sie d
   - Mann: Vorhaut zurückziehen + wieder vorschieben (sonst Gefahr Paraphimose → verengte Vorhaut die Eichel des Penis einklemmt)
 
 ### Folie 18 – Häufige Unklarheiten (Teil 1)
-- Wann muss das Wasser in der Waschschüssel gewechselt werden?
+- **Wann muss das Wasser in der Waschschüssel gewechselt werden?**
   - Vor der Intimpflege
   - Wenn vorher Seife vorhanden ist
   - Nach Waschung Füße
-- Wann sollen Einmalhandschuhe getragen werden?
+- **Wann sollen Einmalhandschuhe getragen werden?**
   - Zum Eigenschutz bei der Intimpflege + Kontakt mit potenziell infektiösem Material
 
 ### Folie 19 – Häufige Unklarheiten (Teil 2)
-- Wann sollen die Hände desinfiziert werden? (5 Momente der Handhygiene)
+- **Wann sollen die Hände desinfiziert werden? (5 Momente der Handhygiene)**
   - Vor dem Kontakt (bei jedem Betreten des Zimmers)
   - Vor aseptischen Tätigkeiten (z.B. vor Wundversorgung)
   - Nach Kontakt mit potenziell infektiösen Materialien (z.B. nach Kontakt mit Blut / Urin)
@@ -170,68 +170,71 @@ Pro Gruppe verschiedene Rollen
 - Sie sollen im Demonstrationsraum eine Körperpflege im Bett durchführen.
 
 ### Folie 21 – Auftrag Intimpflege
-- Auftrag: Intimpflege Mann → https://learningapps.org/watch?v=pk125k1av25 (QR-Code)
-- Auftrag: Intimpflege Frau → https://learningapps.org/watch?v=p1av2npik25 (QR-Code)
+- **Auftrag: Intimpflege Mann** – https://learningapps.org/watch?v=pk125k1av25 (QR-Code)
+- **Auftrag: Intimpflege Frau** – https://learningapps.org/watch?v=p1av2npik25 (QR-Code)
 
 ### Folie 22 – Literaturverzeichnis
 - Altmann, K. et al. (2022): Pflegetechniken. Von Absaugen bis ZVK. 4. Auflage, München: Elsevier GmbH
-- Lauter, Martina/ Drescher, Anke/ Wiederhold, Dagmar/ Menche, Nicole (2023): Pflege Heute: Lehrbuch für Pflegeberufe. 8. Auflage, München: Elsevier GmbH
+- Lauter, Martina / Drescher, Anke / Wiederhold, Dagmar / Menche, Nicole (2023): Pflege Heute: Lehrbuch für Pflegeberufe. 8. Auflage, München: Elsevier GmbH
 - Schmidt, Dita (2023). Grundlagen pflegerischen Handelns: Was bei der Grundpflege zu beachten ist. Die Schwester der Pfleger, Ausgabe 07/23.
 
 ## Abbildungen & Tabellen
 
-**Folie 1 – Titelillustration**: Cartoon/Zeichnung. Eine ältere Person mit grauen Locken liegt in einem Pflegebett (aufgerichtetes Kopfteil), Oberkörper mit türkisem Tuch/Handtuch bedeckt. Eine jüngere Pflegeperson (rotes T-Shirt) hält eine Waschschüssel mit Wasser bereit und lächelt. Symbolisiert die Unterstützung bei der Körperpflege.
-
-**Folie 6 – Piktogramm-Illustration** (oben rechts): Aquarell-Skizzen auf hellblauem Hintergrund zeigen drei Pflegeutensilien: einen Seifen-/Lotionspender (Pumpspender), einen Duschkopf mit Wasserstrahlen und ein hängendes Handtuch. Symbolisiert die Vorbereitung der Körperpflege.
-
-**Folie 7 – Warnsymbol + Seifenfoto**: Rotes rundes Warnzeichen mit weißem Ausrufezeichen (!) neben der Überschrift „SEIFE" – signalisiert Achtung/Vorsicht. Rechts Foto eines beigen/gelblichen Seifenstücks (Marke „MELOS", Honig). Bedeutung: Seife verändert den sauren Schutzmantel der Haut, ist alkalisch und trocknet aus.
-
-**Folie 8 – pH-Skala (Schema/Abbildung)**: Farbige Skala „PH Skala" mit Zahlen von 0 bis 14, jeweils farbcodiert von Rot (0, stark sauer) über Gelb/Grün (7, neutral) bis Blau/Violett (14, stark basisch). Unterhalb Klammern mit Beschriftungen: „sauer" (0-6), „neutral" (7), „basisch / alkalisch" (8-14). Blaue Textbox oben rechts: Haut pH 5,5 (leicht sauer); Seife pH 8-11 (alkalisch); Wasser pH 6-8 (neutral). Medizinische Bedeutung: verdeutlicht, warum Seife (alkalisch) den leicht sauren Säureschutzmantel der Haut stört.
-
-**Folie 9 – Produkttabelle (2 Zeilen, 2 Spalten)**: Linke Spalte Text, rechte Spalte Produktfotos. Zeile 1: Seifenfreie Waschlotion (Foto: weiße Balea Pumpflasche „pH 5,5 hautneutral seifenfreie Waschlotion"). Zeile 2: Fetthaltige Waschprodukte (Foto: gelbe Nivea „Rich Care Shower Oil" Flasche).
-
-**Folie 10 – Produkttabelle (2 Zeilen, 2 Spalten)**: Zeile 1: Feuchte Waschtücher (Foto: grüne Verpackung „swash BATHING GLOVES / Waschhandschuhe"). Zeile 2: Körperlotion (Foto: Alverde Körperlotion-Flasche).
-
-**Folie 11 – Produkttabelle (2 Zeilen, 2 Spalten)**: Zeile 1: Hautcreme (Foto: alverde „KÖRPERBUTTER Bio-Macadamianuss/Bio-Karitébutter, sehr trockene Haut", Tiegel). Zeile 2: Salben (Foto: Panthenol-ratiopharm Wundbalsam Faltschachtel + Tube).
-
-**Folie 12 – Produkttabelle (2 Zeilen, 2 Spalten)**: Zeile 1: Pasten (Foto: „ZINKPASTE WEICH" Tube + Faltschachtel). Zeile 2: Puder (Foto: blaue Flasche „PENATEN Baby Puder").
-
-**Folie 13 – Produkttabelle (1 Zeile, 2 Spalten)**: Alkoholische Präparate (Foto: Klosterfrau „Franzbranntwein Latschenkiefer" Faltschachtel + Flasche).
-
-**Folie 20 – Foto**: Edelstahl-Waschschüssel (Waschschüssel aus Metall) oben rechts. Bezug zur praktischen Körperpflege-Demonstration.
-
-**Folie 21 – Zwei QR-Codes**: Links QR-Code „Intimpflege Mann" (Link https://learningapps.org/watch?v=pk125k1av25), rechts QR-Code „Intimpflege Frau" (Link https://learningapps.org/watch?v=p1av2npik25). Führen zu interaktiven LearningApps-Übungen.
+- **Folie 1 – Illustration (Cartoon):** Eine im Pflegebett halb aufgerichtete ältere Person mit grauem Lockenhaar, gestützt durch ein türkisfarbenes Kissen. Eine jüngere Pflegekraft im roten T-Shirt reicht ihr eine Waschschüssel/Schale mit Wasser. Symbolisiert die Unterstützung bei der Körperpflege im Bett.
+- **Folie 6 – kleine Icon-Grafik (Aquarell-Stil):** Seifenspender/Pumpflasche, Duschkopf mit Wasserstrahl und ein aufgehängtes Handtuch. Verweist auf die Vorbereitung und Utensilien der Körperpflege.
+- **Folie 7 – Warnsymbol + Foto:** Rundes rotes Warnzeichen mit weißem Ausrufezeichen (Achtung/Vorsicht). Foto eines cremefarbenen Seifenstücks mit Prägung „MELOS" und „Honig". Unterstreicht, dass Seife wegen des alkalischen pH-Wertes die Haut belastet.
+- **Folie 8 – pH-Skala (Diagramm):** Farbverlaufsskala mit Zahlen 0-14. Rot/Orange/Gelb (0-6) = sauer; Grün (7) = neutral; Blau/Violett (8-14) = basisch/alkalisch. Beschriftung darunter: „sauer" – „neutral" – „basisch / alkalisch". Merkkasten (blau) rechts oben: Haut pH 5,5 (leicht sauer), Seife pH 8-11 (alkalisch), Wasser pH 6-8 (neutral). Pflegerische Bedeutung: verdeutlicht, warum pH-neutrale/hautfreundliche Produkte den Säureschutzmantel schonen.
+- **Folie 9 – Tabelle (2 Zeilen, Text links / Produktfoto rechts):**
+  - Zeile 1: Seifenfreie Waschlotion – Foto einer weiß-blauen Pumpflasche (Marke Balea, „pH 5,5 hautneutral, seifenfreie Waschlotion").
+  - Zeile 2: Fetthaltige Waschprodukte – Foto einer gelben Flasche (Nivea „Rich Care Shower Oil").
+- **Folie 10 – Tabelle (2 Zeilen):**
+  - Zeile 1: Feuchte Waschtücher – Foto einer grün-weißen Verpackung (Marke „swash", Bathing Gloves / Waschhandschuhe).
+  - Zeile 2: Körperlotion – Foto einer Lotionsflasche (Marke „alverde"/Naturkosmetik).
+- **Folie 11 – Tabelle (2 Zeilen):**
+  - Zeile 1: Hautcreme – Foto eines Tiegels „alverde Körperbutter Bio-Macadamianuss / Bio-Karitébutter, sehr trockene Haut".
+  - Zeile 2: Salben – Foto einer Faltschachtel „Panthenol-ratiopharm Wund- und Heilcreme".
+- **Folie 12 – Tabelle (2 Zeilen):**
+  - Zeile 1: Pasten – Foto einer Tube/Schachtel „Zinkpaste weich BW 50%".
+  - Zeile 2: Puder – Foto einer blauen Puderflasche (Penaten Baby Puder).
+- **Folie 13 – Tabelle (1 Zeile):** Alkoholische Präparate – Foto Faltschachtel + Flasche „Klosterfrau Franzbranntwein Latschenkiefer".
+- **Folie 20 – Foto:** Silberne Edelstahl-Waschschüssel (Waschschale) als Verweis auf die praktische Übung im Demonstrationsraum.
+- **Folie 21 – 2 QR-Codes:** links „Intimpflege Mann" (LearningApps-Link), rechts „Intimpflege Frau" (LearningApps-Link).
 
 ## Transkribierte Fototexte
-- Folie 7, Seifenfoto: „MELOS" (Honig) – Beschriftung auf dem Seifenstück.
-- Folie 8, pH-Skala: „PH Skala"; Zahlen 0–14; Beschriftungen „sauer", „neutral", „basisch"; ergänzter Zusatz „/ alkalisch". Textbox: „Haut: pH 5,5 (leicht Sauer) / Seife: pH 8-11 (alkalisch) / Wasser: pH 6-8 (neutral)".
-- Folie 9, Produktfotos: „Balea pH 5,5 hautneutral SEIFENFREIE WASCHLOTION"; „NIVEA Rich Care Shower Oil".
-- Folie 10, Produktfotos: „swash simply care BATHING GLOVES / WHITE / www.swash.eu"; „alverde Körperlotion".
-- Folie 11, Produktfotos: „alverde NATURKOSMETIK KÖRPERBUTTER Bio-Macadamianuss Bio-Karitébutter SEHR TROCKENE HAUT"; „ratiopharm Panthenol-ratiopharm Wundbalsam 30 g Creme".
-- Folie 12, Produktfotos: „ZINKPASTE WEICH BW. 50 %"; „PENATEN Baby PUDER".
-- Folie 13, Produktfoto: „KLOSTERFRAU Franzbranntwein Latschenkiefer – Pflanzliches Arzneimittel – Mehrfach Wirkung – Mit ätherischem Öl – 400 ml".
-- Folie 21, QR-Code-Texte: „Auftrag: Intimpflege Mann – https://learningapps.org/watch?v=pk125k1av25"; „Auftrag: Intimpflege Frau – https://learningapps.org/watch?v=p1av2npik25".
+
+- **Folie 7 Seifenfoto:** „MELOS – Honig" (Prägung auf dem Seifenstück).
+- **Folie 9 Foto 1:** „Balea – pH 5,5 hautneutral – seifenfreie Waschlotion".
+- **Folie 9 Foto 2:** „NIVEA – Rich Care Shower Oil".
+- **Folie 10 Foto 1:** „swash – simply care – BATHING GLOVES – WHITE – www.swash.eu".
+- **Folie 10 Foto 2:** „alverde" (Naturkosmetik-Körperlotion).
+- **Folie 11 Foto 1:** „alverde NATURKOSMETIK – KÖRPERBUTTER – Bio-Macadamianuss – Bio-Karitébutter – SEHR TROCKENE HAUT".
+- **Folie 11 Foto 2:** „ratiopharm – Panthenol-ratiopharm Wund- und Heilcreme".
+- **Folie 12 Foto 1:** „ZINKPASTE WEICH BW 50%".
+- **Folie 12 Foto 2:** „PENATEN Baby – PUDER".
+- **Folie 13 Foto:** „KLOSTERFRAU – Franzbranntwein Latschenkiefer – Pflanzliches Arzneimittel – Mehrfach Wirkung – 400 ml".
+- **Folie 21 QR/Links:** „Auftrag: Intimpflege Mann – https://learningapps.org/watch?v=pk125k1av25" und „Auftrag: Intimpflege Frau – https://learningapps.org/watch?v=p1av2npik25".
 
 ## Kernbegriffe (Glossar)
-- **Körperpflege**: Reinigung und Pflege des Körpers; gehört zu den Grundbedürfnissen; dient Gesunderhaltung der Haut und Förderung des Wohlbefindens.
-- **Haut**: größtes Organ des Menschen; erfüllt lebenswichtige Funktionen (u.a. Schutz vor Krankheitserregern).
-- **Säureschutzmantel**: leicht saurer Schutzfilm der Haut (pH 5,5), der vor Krankheitserregern schützt; wird durch alkalische Seife gestört.
-- **pH-Wert**: Maß für den sauren/basischen Charakter (Skala 0–14); Haut 5,5 (leicht sauer), Wasser 6–8 (neutral), Seife 8–11 (alkalisch).
-- **pH-neutral**: pH-Wert 7; schont die Haut; Angabe auf der Produktverpackung.
-- **Urea / Glycerin / Milchsäure**: feuchtigkeitsbindende Wirkstoffe, hilfreich bei trockener Haut.
-- **Seifenfreie Waschlotion**: mildes, pH-neutrales Reinigungsprodukt, das den Säureschutzmantel schont.
-- **Fetthaltige (rückfettende) Waschprodukte**: für trockene Haut; hinterlassen Ölfilm (Körper nur abtupfen); Rutschgefahr.
-- **O/W-Emulsion (Öl-in-Wasser)**: Körperlotion; wenig Öl in viel Wasser (Wasseranteil ca. 60%); zieht schnell ein; für normale bis fettige Haut.
-- **W/O-Emulsion (Wasser-in-Öl)**: Hautcreme; wenig Wasser in viel Öl (Wasseranteil ca. 30%); für trockene Haut / Altershaut.
-- **Salbe**: fetthaltiges Produkt zur lokalen Hautbehandlung; bildet Fettfilm, verschließt Talg- und Schweißdrüsen, behindert die Hautatmung.
-- **Paste**: Gemisch aus Salbe und Puder ohne Wasseranteil; kann Poren verstopfen; Entfernung mit Öl.
-- **Puder**: bei juckenden/nässenden Hauterkrankungen; entzieht Feuchtigkeit; Risiko: Krümelbildung → Reibung und Hautschädigung.
-- **Alkoholische Präparate (z.B. Franzbranntwein)**: zur Erfrischung/Regeneration, bei Muskelbeanspruchung; entfettend und austrocknend; nur auf intakter Haut.
-- **Pflege-Charta**: Rechtekatalog für Menschen mit Hilfe- und Pflegebedarf (u.a. Selbstbestimmung, körperliche Unversehrtheit, Privatheit, Pflege, Wertschätzung, Religion/Kultur).
-- **Prinzip**: feste Regel / Grundsatz / Schema, nach dem Denken und Handeln geleitet wird.
-- **Grundregeln der Körperpflege**: 1. Selbstbestimmung, 2. Selbstständigkeit erhalten, 3. Vorgehen abstimmen, 4. Schamgefühle verringern, 5. Haut beobachten, 6. Hygiene beachten, 7. Für Sicherheit sorgen.
-- **Intimpflege**: immer von vorne (Schambein) nach hinten (Gesäß), um Keimverschleppung zu vermeiden; Frau von innen nach außen; Mann Vorhaut zurückziehen und wieder vorschieben.
-- **Paraphimose**: Notfall, bei dem eine verengte, zurückgezogene Vorhaut die Eichel des Penis einklemmt; Grund, die Vorhaut nach der Reinigung wieder vorzuschieben.
-- **Keimverschleppung**: Übertragung von Keimen (z.B. Darmkeime in den Intimbereich) durch falsche Wischrichtung; durch Vorgehen von oben nach unten und von vorne nach hinten vermeidbar.
-- **5 Momente der Handhygiene**: Vor Patientenkontakt, vor aseptischen Tätigkeiten, nach Kontakt mit potenziell infektiösem Material, nach Patientenkontakt, nach Kontakt mit der Patientenumgebung.
-- **Einmalhandschuhe**: zum Eigenschutz bei Intimpflege und Kontakt mit potenziell infektiösem Material.
+
+- **Körperpflege:** Grundbedürfnis; umfasst Reinigung, Gesunderhaltung der Haut und Förderung des Wohlbefindens.
+- **Haut:** größtes Organ des Menschen; Schutzfunktion vor Krankheitserregern; Säureschutzmantel bei pH ca. 5,5.
+- **Prinzip:** feste Regel/Grundsatz, der Denken und Handeln leitet, bzw. Schema, nach dem etwas aufgebaut ist.
+- **Pflege-Charta:** Rechtekatalog für Menschen mit Hilfe- und Pflegebedarf (Selbstbestimmung, Unversehrtheit, Privatheit, Pflege, Wertschätzung, Religion/Kultur/Weltanschauung).
+- **pH-Wert:** Maß für sauer (0-6), neutral (7), basisch/alkalisch (8-14). Haut 5,5; Wasser 6-8; Seife 8-11.
+- **Säureschutzmantel:** leicht saurer Schutzfilm der Haut (pH ~5,5); wird durch alkalische Seife gestört.
+- **pH-neutral:** Produkte mit pH um 7 (bzw. hautneutral 5,5), schonen den Säureschutzmantel.
+- **Urea (Harnstoff), Glycerin, Milchsäure:** feuchtigkeitsbindende Wirkstoffe, hilfreich bei trockener Haut.
+- **Seifenfreie Waschlotion:** hautschonendes, pH-neutrales Reinigungsprodukt.
+- **Fetthaltige/rückfettende Waschprodukte:** für trockene Haut; hinterlassen Ölfilm; Rutschgefahr beachten.
+- **O/W-Emulsion (Öl-in-Wasser):** Körperlotion, Wasseranteil ~60%, zieht schnell ein, für normale bis fettige Haut.
+- **W/O-Emulsion (Wasser-in-Öl):** Hautcreme, Wasseranteil ~30%, fettreicher, für trockene/Altershaut.
+- **Salbe:** fettbasiert, bildet Fettfilm, verschließt Talg-/Schweißdrüsen, kann Hautatmung behindern.
+- **Paste:** Gemisch aus Salbe + Puder, kein Wasseranteil, bei Feuchtigkeit; Entfernung mit Öl.
+- **Puder:** entzieht der Haut Feuchtigkeit; bei juckenden/nässenden Hauterkrankungen; Krümelbildung = Reibungsgefahr.
+- **Alkoholische Präparate (z.B. Franzbranntwein):** erfrischend/regenerierend, entfettend + austrocknend; nur bei intakter Haut.
+- **Intimpflege:** immer von vorne (Schambein) nach hinten (Gesäß) waschen → Vermeidung von Keimverschleppung. Frau: von innen nach außen. Mann: Vorhaut zurückziehen und wieder vorschieben.
+- **Paraphimose:** Notfall, bei dem eine verengte, zurückgezogene Vorhaut die Eichel einklemmt (Folge unterlassenen Vorschiebens).
+- **Keimverschleppung:** Übertragung von Keimen in andere Körperregionen; wird durch korrekte Wischrichtung vermieden.
+- **5 Momente der Handhygiene:** vor Kontakt, vor aseptischen Tätigkeiten, nach Kontakt mit potenziell infektiösem Material, nach Kontakt, nach Kontakt mit der Umgebung.
+- **Vorgehensprinzip „von oben nach unten":** Körperpflege beginnt am Gesicht und endet an den Füßen.
+- **Grundregeln der Körperpflege:** Selbstbestimmung, Selbstständigkeit, Vorgehen abstimmen, Schamgefühle verringern, Haut beobachten, Hygiene, Sicherheit.

@@ -3,167 +3,148 @@
 ## Quelle: PDFs/63-erhebung-lebensaktivitaeten-lh.pdf
 
 ## Dokumenttyp
-Standardisiertes Pflege-Assessmentformular (Erhebungs-/Einschätzungsbogen, tabellarische Skala). Es handelt sich um das **epaAC® 2.3** – das *ergebnisorientierte PflegeAssessment AcuteCare* für erwachsene Patientinnen und Patienten ab 18 Jahren. Das Dokument ist ein einseitiger, im Querformat gedruckter Erhebungsbogen mit Merkmalszeilen (Assessment-Items) und je Merkmal einer 4-stufigen Ausprägungsskala (Antwortstufen 1–4) sowie zusätzlichen Spalten „nicht zutreffend" und Summen-/Ankreuzfeldern. Kürzel „lh" im Dateinamen = Lernhilfe/Lehrmaterial.
+Standardisiertes Pflege-Assessment-Formular / Erhebungsbogen (ein einseitiges, quer bedrucktes Vordruckblatt). Es handelt sich um das **epaAC 2.3** (ergebnisorientiertes PflegeAssessment AcuteCare) für **Erwachsene ab 18 Jahre**. Das Formular dient der strukturierten Ersteinschätzung des pflegerischen Unterstützungsbedarfs eines Patienten bei Aufnahme und im Verlauf. Es enthält Kopffelder für **Station**, **Blatt-Nr.** und ein **Patientenetikett** (rechts, hochkant beschriftet). Am unteren/rechten Rand jeder Rubrik gibt es Ankreuz-/Summenfelder ("Summe Bd …") zur Auswertung.
 
----
+Das Formular ist als Merkmalskatalog aufgebaut: pro Rubrik werden einzelne Lebensaktivitäten/Fähigkeiten aufgeführt und je Merkmal auf einer **4-stufigen Skala** eingeschätzt, ergänzt um die Spalte **"nicht zutreffend"** (n. z.). Die Grundskala der Fähigkeitsmerkmale lautet in der Regel:
+- **1 = keine Fähigkeit**
+- **2 = gering / geringe vorhandene Fähigkeit**
+- **3 = überwiegend vorhandene Fähigkeit**
+- **4 = volle Fähigkeit**
+- zusätzlich: **nicht zutreffend (n. z.)**
 
-## Inhalt (nach Abschnitten)
+## Inhalt (nach Abschnitten/Rubriken)
 
-### Kopfbereich des Bogens
-- **Station:** ______ (Freifeld zum Eintragen der Station)
-- **Blatt-Nr.:** ______ (Freifeld zur Nummerierung des Bogens)
-- **epaAC® 2.3 Erwachsene ab 18 Jahre** (Titel/Bezeichnung des Instruments, links stehend als Überschrift der Tabelle)
-- **Patientenetikett** (rechtes Feld zum Aufkleben des Patientenetiketts / der Patientenidentifikation)
-- Rechts oben eine Spalte für „Zeit" bzw. Datums-/Zeiterhebungen (mehrere Erhebungszeitpunkte pro Bogen möglich, erkennbar an mehreren nebeneinanderliegenden Ankreuz-/Summenspalten).
+Das Blatt gliedert sich in Rubriken (fett hervorgehobene Zeilenblöcke, von oben nach unten):
 
-### Aufbau der Tabelle (Logik des Instruments)
-Das Formular ist in thematische **Lebensaktivitäten / Assessment-Domänen** gegliedert (schwarze Balken als Rubriküberschriften). Jede Domäne enthält mehrere **Merkmalszeilen (Items)**. Zu jedem Item werden vier abgestufte Ausprägungen (1 = höchste Selbständigkeit/geringste Beeinträchtigung bis 4 = vollständige Abhängigkeit/stärkste Beeinträchtigung) sowie – wo sinnvoll – eine Spalte **„nicht zutreffend"** angeboten. Am rechten Rand befinden sich mehrere Spalten mit **Ankreuzfeldern (Kästchen)** und **Summenfeldern („Summe … Bär." / Berechnungsfelder)** für die wiederholte Erhebung zu mehreren Zeitpunkten.
+### Bewegung
+Eingeschätzte Merkmale (Skala 1 = keine Fähigkeit bis 4 = volle Fähigkeit, plus n. z.):
+- Positionswechsel im Liegen
+- Sitzposition halten
+- Transfer
+- Fortbewegung
+- Rollstuhlsicherheit bei Positionswechsel/Transfer (verändertes Gangbild)
+- Gleichgewicht halten
+- Sturzprophylaxe / Sturzgeschichte
+- Sturzereignis aktuell (heute) auf Station
+- Einschätzung / Fatigue (Erschöpfung)
 
-Die eingekreiste Zahl in einer Skalenstufe markiert i.d.R. den Selbständigkeitsgrad, der in die Pflegeplanung / Aufwandsberechnung einfließt.
+Abstufungen typischerweise: 1: keine Fähigkeit – 2: gering vorhandene Fähigkeit – 3: überwiegend vorhandene Fähigkeit – 4: volle Fähigkeit; n. z.
 
----
+### Ernährung
+- Essen — 1: keine Fähigkeit / 2: geringe vorhandene Fähigkeit / 3: überwiegend vorhandene Fähigkeit / 4: volle Fähigkeit
+- Trinken — analoge Abstufung
+- Nahrungsmenge (oral) (Angabe der aufgenommenen Menge, z. B. isst nichts / bis 25 % / 25–50 % / 50–75 % / über 75 % der Tagesration)
+- akute Nahrungsmenge (gesamt)
+- Energie-/Nährstoffbedarf (Ernährungsstatus)
+- Verhältnis Flüssigkeitszufuhr zu Flüssigkeitsbedarf (z. B. Flüssigkeitsmenge oral: < 500 ml / 500–1000 ml / 1000–1500 ml / > 1500 ml)
+- Flüssigkeitsbilanz
+- Sondennahrung
+- An-/Ausleiten Sondenkörper (Sonde)
 
-### Domäne: Bewegung
-Items (Merkmalszeilen):
-- **Positionswechsel im Liegen** — Skala 1 keine Fähigkeit … / 2 geringe vorhandene Fähigkeit / 3 überwiegend vorhandene Fähigkeit / 4 volle Fähigkeit
-- **Sitzposition halten** — 1 keine Fähigkeit / 2 geringe vorhandene Fähigkeit / 3 überwiegend vorhandene Fähigkeit / 4 volle Fähigkeit
-- **Transfer** — 1 keine Fähigkeit / 2 geringe vorhandene Fähigkeit / 3 überwiegend vorhandene Fähigkeit / 4 volle Fähigkeit
-- **Fortbewegung** — 1 keine Fähigkeit / 2 geringe vorhandene Fähigkeit / 3 überwiegend vorhandene Fähigkeit / 4 volle Fähigkeit
-- **Rollstuhlbenutzung bei Positionswechsel/Transfer** — 1 keine Fähigkeit / 2 geringe/teilw. vorhandene Fähigkeit / 3 überwiegend vorhandene Fähigkeit / 4 volle Fähigkeit; zusätzlich „nicht zutreffend"
-- **Gleichgewicht halten** — Ausprägungen 1–4 (keine bis volle Fähigkeit)
-- **Sturzgeschichte** — Anamnese früherer Stürze
-- **Sturzrisiko aktuell (heute) auf Station** — Einschätzung des aktuellen Sturzrisikos
+### Körperpflege und Kleiden
+- Körperpflege Oberkörper — 1: keine / 2: geringe / 3: überwiegend / 4: volle Fähigkeit
+- Körperpflege Unterkörper
+- Mundhygiene / Zahnpflege
+- An-/Auskleiden Oberkörper
+- An-/Auskleiden Unterkörper
 
-### Einschätzung / Fatigue
-- **Fatigue** (Erschöpfung/Müdigkeit) — eigenes Einschätzungsmerkmal.
+### Ausscheidung
+- Urinausscheidung durchführen — 1: keine Fähigkeit / 2 / 3 / 4: volle Fähigkeit
+- Urinausscheidung kontrollieren (Harnkontinenz)
+- Umgang mit Ausscheidungssystem (Urin) / Urinableitungssystem
+- Stuhlausscheidung durchführen
+- Stuhlausscheidung kontrollieren (Stuhlkontinenz)
+- Stuhlbeschaffenheit
+- Stuhlverhalten (z. B. Obstipation / Diarrhoe)
+- Stuhlkontinenz
+- Stuhlausscheidungssystem
+- Drainage / sonstige Ausscheidung
+- Feuchtigkeit der Haut (z. B. Haut ist trocken / feucht / nass, ggf. durch Schwitzen, Urin, Stuhl)
 
-### Domäne: Körperpflege und Kleiden
-Items:
-- **Körperpflege Oberkörper** — 1 keine Fähigkeit / 2 geringe vorhandene Fähigkeit / 3 überwiegend vorhandene Fähigkeit / 4 volle Fähigkeit; „nicht zutreffend"
-- **Körperpflege Unterkörper** — Skala 1–4 (keine bis volle Fähigkeit)
-- **Mundpflege** — Skala 1–4
-- **An-/Auskleiden Oberkörper** — Skala 1–4
-- **An-/Auskleiden Unterkörper** — Skala 1–4
+### Kognition, Bewusstsein
+- Bewusstsein / Vigilanz — Abstufungen von normal/wach bis nicht kontaktierbar/somnolent/soporös/komatös
+- Orientierung zu den Qualitäten Person, Ort, Zeit, Situation
+- Umsetzungsvermögen
+- Informationen verstehen/verarbeiten
+- Alltagskompetenz
+- Antrieb
+- herausforderndes / abwehrendes Verhalten (z. B. aggressives Verhalten (körperlich/verbal), passives / apathisches Verhalten)
 
-### Domäne: Ernährung
-Items:
-- **Essen** — 1 keine Fähigkeit / 2 geringe vorhandene Fähigkeit / 3 überwiegend vorhandene Fähigkeit / 4 volle Fähigkeit
-- **Nahrungsmenge (oral)** (Regel: nicht bei Sondenkost) — Stufen z.B. isst nichts / bis ca. 25 % / ca. 25–50 % / ca. 50–75 % / normale Portionen (ca. 75–100 %)
-- **künstliche Ernährung / Zusatzkost** — Zeichenangabe / Kennzeichnung
-- **akute Nahrungskarenz (gesamt)** — Erfassung von Nahrungskarenz
-- **Energie-/Nährstoffbedarf (Immunsituation)** — erhöhter/normaler Bedarf, Stressstoffwechsel etc.
-- **Trinken** — 1 keine Fähigkeit / 2 geringe vorhandene Fähigkeit / 3 überwiegend vorhandene Fähigkeit / 4 volle Fähigkeit
-- **akute Trinkmenge (oral)** — Mengenstufen (z.B. 0 ml / 1–500 ml / 501–1000 ml / mehr als 1000 ml, bezogen auf Tageszeitraum)
-- **Verhältnis Flüssigkeitsmenge zu Flüssigkeitsbedarf** — ausgeglichen / defizitär etc.
-- **Flüssigkeitszufuhr** — Zufuhrmenge/-weg
-- **Sondennahrung** — ja/nein bzw. Kennzeichnung
-- **Sondenkostart** — Art der Sondenkost
+### Kommunikation und Interaktion
+- Hören — 1: hört nicht / 2: eingeschränkt / 3 / 4: hört uneingeschränkt (ggf. mit Hilfsmittel); n. z.
+- Sehen — 1: sieht nicht / 2 / 3 / 4: sieht uneingeschränkt (ggf. mit Hilfsmittel); n. z.
+- Sich mitteilen (verbal oder nonverbal)
 
-### Domäne: Ausscheidung
-Items:
-- **Urinausscheidung** — Skala 1–4
-- **Urinausscheidung durchführen** — 1 keine Fähigkeit / 2 geringe / 3 überwiegend / 4 volle Fähigkeit
-- **Urinausscheidung kontrollieren** — 1 keine Fähigkeit / 2 teilweise Kontrolle / 3 überwiegend / 4 volle Fähigkeit; „nicht zutreffend"
-- **Stuhlausscheidung durchführen** — Skala 1–4
-- **Stuhlausscheidung kontrollieren** — Skala 1–4
-- **Stuhlbeschaffenheit** — Beschaffenheit/Konsistenz (Bezug zur Stuhlbeobachtung/Bristol-Skala)
-- **Ausscheidungssystem** — vorhandenes Ausscheidungssystem (z.B. Katheter, Stoma)
-- **Stuhlableitungssystem** — vorhandenes Stuhlableitungssystem
-- **Dranginkontinenz / geringe Ausscheidung** — Kennzeichnung
-- **Feuchtigkeit der Haut** — 1 Haut ist trocken / 2 Haut ist häufig feucht (mehr) — Bezug zur Feuchtigkeitsbelastung der Haut (IAD-Risiko)
+### Schlaf
+- Einschlafen / Durchschlafen — Abstufungen zur Schlafqualität
+- Schlaf-Wach-Rhythmus (z. B. verändert / nicht verändert)
 
-### Domäne: Kognition, Bewusstsein
-Items:
-- **Bewusstsein / Vigilanz** — 1 wach / 2 somnolent / 3 soporös / 4 komatös (Bewusstseinsstufen)
-- **Sehen** — 1 keine Einschränkung … bis stärkere Sehbeeinträchtigung
-- **Orientierung** zu den Qualitäten **Person, Ort, Zeit, Situation** — 1 zu allen Qualitäten orientiert / 2 zu 3 Qualitäten / 3 zu 2 Qualitäten / 4 zu 1 oder keiner Qualität orientiert
-- **Umstellungssystem** (Anpassungs-/Umstellungsfähigkeit) — Skala 1–4
-- **Informationen verständlich verstehen** — 1 versteht / … / 4 versteht nicht
-- **Selbständigkeit/Aktivität … Rehabilitation und Krankheiten** — Einschätzung der Alltags-/Rehabilitationsfähigkeit
-- **Alltagskompetenz** — Skala 1–4
-- **Kulturverständnis** — Kennzeichnung kultureller Aspekte
-- **Suchterkrankungen** — Erfassung von Suchterkrankungen
-- **Schlafstörungen** — Erfassung von Schlafstörungen
+### Regulation von Körperfunktionen
+- Atmung beeinträchtigt (aktuell)
+- Chronische Erkrankung des Atmungssystems
+- Beatmung / Beatmungsdauer im aktuellen Krankenhausaufenthalt (alle 24 h)
+- Tracheostoma
+- Chronische Schmerzen (Ja / Nein)
 
-### Domäne: Kommunikation und Interaktion
-Items:
-- **Hören** — 1 hört normal / 2 leicht beeinträchtigt / 3 stark beeinträchtigt / 4 gehörlos
-- **Motorisch herausforderndes Verhalten / herausfordernde Medikamenten…** — Einschätzung aggressiven/herausfordernden Verhaltens: 1 kein aggressives Verhalten … / 2 wenig / 3 zeitweise / 4 aggressiv (verbal/nonverbal); „nicht zutreffend"
+### Schmerz und emotionales Befinden
+- Schmerzintensität — **S = Selbsteinschätzung des Patienten**, Wert der **VAS 0–10** (numerische/visuelle Analogskala). Typische Eintragskategorien:
+  - S0 / F0: keine Schmerzen (NRS 0)
+  - S1: leichte Schmerzen (NRS 1–3)
+  - S2 / S3: mittelstarke Schmerzen (NRS 4–6)
+  - S4: starke / stärkste Schmerzen (NRS 7–10)
+  - **F = Fremdeinschätzung** (wenn Selbsteinschätzung nicht möglich)
+- Angst — **S = Selbsteinschätzung des Patienten (Wert der VAS 0–10)** bzw. **F = Fremdeinschätzung**:
+  - S1: leichte Angst / S2: mittlere Angst / S3: starke Angst; F: Hinweise auf Angst / keine Hinweise auf Angst
 
-### Domäne: Schlaf
-Items:
-- **Einschlafen / Durchschlafen** — 1 keine / 2 leichte / 3 mittlere / 4 schwere Störung; „nicht zutreffend"
-- **Schlaf-Wach-Rhythmus** — 1 normaler / … / gestörter Rhythmus
+### Dekubitus, Wunden und Hautveränderungen
+- Dekubitus (Vorhandensein / Kategorie)
+- Expositionsdauer (F = Bz), weitere Dekubitus-Risikoindikatoren
+- Wunden / pathologische Hautveränderungen (Ja / Nein, ggf. Beschreibung: z. B. Wunde / Hautveränderung vorhanden)
 
-### Domäne: Regulation von Körperfunktionen
-Items:
-- **Atmung beeinträchtigt (aktuell)** — 1 keine / … / 4 stark beeinträchtigte Atmung
-- **Chronische Erkrankung des Atmungssystems** — ja/nein-Kennzeichnung
-- **Bestimmung Körpertemperatur (letzte 24 h / aktueller Krankenhausaufenthalt)** — Temperaturmessung
-- **Tracheostoma** — vorhanden ja/nein
-- **Chronische Schmerzen** — Erfassung chronischer Schmerzen
-
-### Domäne: Schmerz und emotionales Befinden
-Items mit Skalenbezug (NRS/VAS):
-- **Somatischer Schmerz** (S-Selbsteinschätzung des Patienten mit VAS 0–10) — Stufen: S1 keine Schmerzen (NRS 0) / S2 mittelstarke Schmerzen (NRS 4–6) / S3 starke Schmerzen (NRS ≥7) / S4 stärkste Schmerzen (NRS 8–10). Alternativ **OR** **Somatischer Schmerz (S-Fremdeinschätzung des Patienten, Wert bei VAS 0–10)** bei nicht auskunftsfähigen Patienten.
-- **Traurigkeit** (T-Fremdeinschätzung des Patienten, Wert bei VAS 0–10) — T1 nicht traurig / T2 leicht traurig / T3 mittelstark traurig / T4 sehr traurig; „nicht zutreffend"
-- **Angst** (F-Fremdeinschätzung des Patienten, Wert bei VAS 0–10) — F1 keine Angst / F2 leichte Angst (NRS 1–3) / F3 mittlere Angst (NRS 4–6) / F4 starke Angst (NRS 7–10); „nicht zutreffend"
-
-### Domäne: Dekubitus, Wunden und Hautveränderungen
-Items:
-- **Sensorisches Wahrnehmungsvermögen** (S-Selbsteinschätzung des Patienten / Braden-Kriterium) — abgestufte Skala 1–4 (fehlt / stark eingeschränkt / leicht eingeschränkt / vorhanden)
-- **Schleimhaut-Rhythmus / Schleimhautveränderungen** — Kennzeichnung
-- **Dekubitus** — Vorliegen/Kategorie eines Dekubitus (Ankreuzfeld)
-- **Wunden / pathologische Hautveränderungen** — Erfassung von Wunden/Hautveränderungen; Runde/Beschreibung
-- **Chronische Wunde** — Kennzeichnung chronischer Wunden
-
-### Fußzeile / Berechnungs- und Legendenbereich
-Am rechten und unteren Rand:
-- **Summenfelder** je Erhebungsspalte („Summe … Bär." — Berechnung des Pflegeaufwands/Selbständigkeitsindex pro Domäne)
-- Mehrere **Ankreuzfelder (Kästchen)** pro Zeile für die Dokumentation zu unterschiedlichen Erhebungszeitpunkten
-- **Legenden-/Hinweistext** (klein gedruckt, unten links): Erläuterungen zum Ausfüllen — z.B. „Deutlich mehr/weniger vom Patienten Skala 1 bis 4 …", Hinweise zur Aufnahme-Selbsteinschätzung und dass jeweils ein Wert (Feld) anzukreuzen ist; Hinweis, dass bei zwei oder mehr zutreffenden Aussagen immer die schwerwiegendere/geringere Fähigkeit gewählt wird (Prinzip: „im Zweifel den Wert 1 oder 2 zentral / schlechteren Wert wählen").
-- Rechte Randspalte „Zeit" für Datum/Uhrzeit der jeweiligen Erhebung.
-
----
+### Auswertung / Summenfelder
+Am rechten bzw. unteren Rand jeder Rubrik befinden sich Ankreuzkästchen sowie **Summenfelder** (z. B. "Summe Bd 6a", "Summe Bd 8a"), in die die Punktwerte je Bereich eingetragen und zu einem Bereichs-Score summiert werden. Diese Scores dienen der Verlaufsbeobachtung und der Zuordnung des Pflegebedarfs / der Pflegeintensität.
 
 ## Abbildungen & Tabellen
 
-**Große tabellarische Assessment-Matrix (gesamter Bogen, 1 Seite, Querformat):**
-- **Aufbau:** linke Spalte = Merkmalsbezeichnungen (Items), gruppiert unter schwarzen Rubrikbalken (Domänen). Nach rechts folgen für jedes Item vier abgestufte Antwortstufen-Spalten (1–4) mit Textbeschreibungen der Ausprägung, teilweise eine „nicht zutreffend"-Spalte (grau/schraffiert hinterlegt) und ganz rechts die Ankreuz-/Summenspalten.
-- **Grafische Elemente:** Rubriküberschriften sind als schwarze Balken mit weißer Schrift gesetzt. Die „nicht zutreffend"-Bereiche sind grau schattiert. Kleine quadratische Kästchen (□) dienen als Ankreuzfelder; darunter „Summe"-Felder zur Aufwandsberechnung.
-- **Kopf rechts:** Rechteckiges Feld „Patientenetikett" (hochkant beschriftet) zum Aufkleben der Patientenidentifikation.
-- **Pflegerische/medizinische Bedeutung:** Der Bogen dient der strukturierten, standardisierten Ersteinschätzung und Verlaufsdokumentation der Selbstpflegefähigkeiten und des Pflegebedarfs. Die Domänen entsprechen den Lebensaktivitäten (ATL/AEDL). Aus den angekreuzten Werten wird der Pflegeaufwand bzw. der Selbständigkeitsgrad berechnet (ergebnisorientiertes Assessment). Er bildet die Grundlage für Pflegeplanung, Risikoerkennung (Sturz, Dekubitus, Mangelernährung, Inkontinenz) und Leistungserfassung im Akutkrankenhaus.
+Das Dokument besteht aus **einer einzigen großen Tabelle** (quer/hochformatig gedruckter Erhebungsbogen). Es enthält **keine** anatomischen Abbildungen, Fotos oder Schemazeichnungen.
 
-**Es sind keine anatomischen Abbildungen, Fotos oder Schemata enthalten** – das Dokument besteht ausschließlich aus der genannten Assessment-Tabelle.
+**Tabellenaufbau:**
+- **Linke Spalte:** Bezeichnung der Rubrik (fett) und der einzelnen Merkmale/Lebensaktivitäten (siehe Inhalt oben).
+- **Mittlere Spalten (Skalenspalten):** je Merkmal 4 abgestufte Ausprägungen (Zahl + Kurztext), gedruckt in kleinen Zellen. Skala 1 (geringste Fähigkeit / stärkste Beeinträchtigung) bis 4 (volle Fähigkeit / keine Beeinträchtigung).
+- **Spalte "nicht zutreffend" (n. z.):** grau hinterlegte Spalte am rechten Rand jeder Rubrik zur Kennzeichnung nicht anwendbarer Merkmale.
+- **Ankreuz-/Summenfelder:** rechts außen, kleine Kästchen und Summenzeilen ("Summe Bd …").
+- **Kopfbereich:** Felder "Station:", "Blatt-Nr.:", Titel "epaAC 2.3 Erwachsene ab 18 Jahre" sowie ein hochkant gestelltes Feld **"Patientenetikett"** (rechts) zum Aufkleben des Patientenaufklebers.
 
----
+**Pflegerische/medizinische Bedeutung:** Der Bogen operationalisiert die Selbstpflegefähigkeit und den Unterstützungsbedarf des Patienten in allen zentralen Lebensaktivitäten (angelehnt an die AEDL/ABEDL-Systematik). Er ermöglicht eine standardisierte, reproduzierbare Einschätzung, unterstützt die Pflegeplanung, das Risikomanagement (Sturz, Dekubitus, Ernährung, Flüssigkeit) und die Verlaufskontrolle. Die 4-stufige Fähigkeitsskala macht Veränderungen des Zustands über die Zeit messbar und dient als Grundlage für die Abbildung des Pflegeaufwands.
 
 ## Transkribierte Fototexte
-Keine Fotos, Tafelbilder oder handschriftlichen Notizen vorhanden. Transkribierbare Vordrucktexte (Feldbeschriftungen) sind oben unter „Inhalt" aufgeführt. Zentrale gedruckte Beschriftungen:
-- „Station:" / „Blatt-Nr.:" / „Patientenetikett"
-- „epaAC® 2.3 Erwachsene ab 18 Jahre"
-- Skalenlogik pro Item: Stufen 1–4 (von „keine Fähigkeit" bis „volle Fähigkeit" bzw. von geringster bis stärkster Beeinträchtigung) + „nicht zutreffend"
-- Schmerz/Emotion mit NRS/VAS: S1–S4 (Schmerz), T1–T4 (Traurigkeit), F1–F4 (Angst), jeweils mit NRS-Werten (0 / 1–3 / 4–6 / 7–10 bzw. ≥7, 8–10)
-- Summen-/Berechnungsfelder „Summe … Bär." je Erhebungszeitpunkt
 
----
+Es gibt **keine** handschriftlichen Notizen, Tafelbilder oder Fotos auf dem Blatt (leerer, unausgefüllter Vordruck). Transkribierte gedruckte Kopf- und Randtexte:
+- **"Station:"** (Kopf links)
+- **"Blatt-Nr.:"** (Kopf links)
+- **"epaAC 2.3 Erwachsene ab 18 Jahre"** (Titel)
+- **"Patientenetikett"** (Feld rechts, hochkant)
+- Randbeschriftung der Skala: **"nicht zutreffend"**
+- Summenfelder: **"Summe Bd 6a"**, **"Summe Bd 8a"** u. Ä.
+- Legendenkürzel: **S = Selbsteinschätzung des Patienten (Wert der VAS 0–10)**, **F = Fremdeinschätzung**, **NRS** (Numerische Rating-Skala), **VAS** (Visuelle Analogskala), **n. z. = nicht zutreffend**.
 
 ## Kernbegriffe (Glossar)
-- **epaAC®** — ergebnisorientiertes PflegeAssessment AcuteCare; standardisiertes Assessmentinstrument zur Einschätzung von Pflegebedarf und Selbständigkeit im Akutkrankenhaus. Version 2.3, für Erwachsene ab 18 Jahren.
-- **Lebensaktivitäten / ATL / AEDL** — Aktivitäten des täglichen Lebens; strukturierende Domänen des Assessments (Bewegung, Körperpflege, Ernährung, Ausscheidung, Kognition, Kommunikation, Schlaf, Regulation, Schmerz, Haut).
-- **Selbständigkeitsgrad / Skala 1–4** — abgestufte Bewertung: 1 = keine Fähigkeit (vollständige Abhängigkeit) bis 4 = volle Fähigkeit (Selbständigkeit); je nach Item auch als Beeinträchtigungsgrad zu lesen.
-- **nicht zutreffend** — Antwortoption für Items, die auf den Patienten nicht anwendbar sind (grau hinterlegte Spalte).
-- **Positionswechsel im Liegen** — Fähigkeit, die Körperlage im Bett selbst zu verändern (Dekubitus- und Bewegungsassessment).
-- **Transfer** — Umsetzen/Übergang z.B. von Bett zu Stuhl.
-- **Fatigue** — krankheits-/therapiebedingte Erschöpfung/Müdigkeit.
-- **Vigilanz / Bewusstsein** — Wachheitsgrad: wach – somnolent – soporös – komatös.
-- **Orientierung (Person, Ort, Zeit, Situation)** — vier Orientierungsqualitäten zur Beurteilung der Kognition.
-- **NRS / VAS** — Numerische Rating-Skala / Visuelle Analogskala 0–10 zur Schmerz-, Traurigkeits- und Angsteinschätzung.
-- **S- / T- / F-Einschätzung** — Somatischer Schmerz / Traurigkeit / Angst; als Selbst- oder Fremdeinschätzung (bei nicht auskunftsfähigen Patienten).
-- **Braden-Kriterium / Sensorisches Wahrnehmungsvermögen** — Teilaspekt der Dekubitusrisiko-Einschätzung.
-- **Dekubitus / IAD / Feuchtigkeit der Haut** — hautbezogene Risikomerkmale (Druckgeschwür bzw. inkontinenzassoziierte Dermatitis; Hautfeuchtigkeit als Risikofaktor).
-- **Nahrungskarenz / Energie-/Nährstoffbedarf** — Erfassung von Ernährungszustand und Mangelernährungsrisiko.
-- **Sondennahrung / Sondenkostart** — enterale Ernährung über Sonde und deren Zusammensetzung.
-- **Ausscheidungs-/Stuhlableitungssystem** — vorhandene Hilfsmittel (Katheter, Stoma, Fäkalkollektor).
-- **Patientenetikett** — aufzuklebende Patientenidentifikation im Kopf des Bogens.
-- **Summe / Bär.** — Berechnungsfeld je Erhebungszeitpunkt zur Ermittlung des Pflegeaufwands/Selbständigkeitsindex.
+
+- **epaAC (2.3):** Ergebnisorientiertes PflegeAssessment AcuteCare – standardisiertes Instrument zur Erhebung des Pflegebedarfs im Akutkrankenhaus; Version für Erwachsene ab 18 Jahre.
+- **Lebensaktivitäten (AEDL/ABEDL):** Aktivitäten und existenzielle Erfahrungen des täglichen Lebens; Grundraster der Pflegeeinschätzung (Bewegung, Ernährung, Körperpflege, Ausscheidung, Kognition, Kommunikation, Schlaf, Regulation, Schmerz/Emotion, Haut).
+- **Fähigkeitsskala 1–4:** 1 = keine Fähigkeit, 2 = gering vorhandene Fähigkeit, 3 = überwiegend vorhandene Fähigkeit, 4 = volle Fähigkeit.
+- **nicht zutreffend (n. z.):** Merkmal ist beim Patienten nicht anwendbar.
+- **Transfer:** Ortswechsel des Patienten (z. B. Bett–Stuhl).
+- **Fortbewegung:** eigenständige Mobilität (gehen / Rollstuhl).
+- **Fatigue:** krankheitsbedingte Erschöpfung/Müdigkeit.
+- **Flüssigkeitsbilanz:** Gegenüberstellung von Ein- und Ausfuhr.
+- **Sondennahrung:** enterale Ernährung über Magensonde/PEG.
+- **Vigilanz:** Wachheit/Bewusstseinslage.
+- **Orientierung (Person/Ort/Zeit/Situation):** vierfache personale, räumliche, zeitliche und situative Orientierung.
+- **Alltagskompetenz:** Fähigkeit zur selbstständigen Alltagsbewältigung.
+- **Kontinenz (Harn-/Stuhl-):** Fähigkeit, die Ausscheidung willentlich zu kontrollieren.
+- **Tracheostoma:** operativ angelegte Öffnung der Luftröhre.
+- **VAS / NRS:** Visuelle Analogskala / Numerische Rating-Skala zur Schmerz-/Angstintensität (0–10).
+- **Selbst-/Fremdeinschätzung (S/F):** Einschätzung durch den Patienten selbst bzw. durch Pflegende, wenn Selbstauskunft nicht möglich ist.
+- **Dekubitus:** Druckgeschwür infolge anhaltenden Drucks; Expositionsdauer und Risikoindikatoren werden erfasst.
+- **Summenfeld (Summe Bd …):** Score-Feld zur Bereichsauswertung des Assessments.
