@@ -2,7 +2,7 @@
 
 > Gestaffelt nach Anforderungsbereichen (AFB). Operator am Satzanfang, Mengenangabe und Punktzahl.
 > Verteilung ca. AFB I 40 % · AFB II 40 % · AFB III 20 %.
-> **Lösung** jeweils direkt unter der Aufgabe. Gesamtpunkte: 70.
+> **Lösung** jeweils direkt unter der Aufgabe. Gesamtpunkte: 95.
 
 ---
 

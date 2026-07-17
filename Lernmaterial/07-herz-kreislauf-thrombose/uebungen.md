@@ -3,7 +3,7 @@
 > CE02/UE02 · 2. Ausbildungsjahr · Sprachniveau B2
 > Gestaffelt nach Anforderungsbereichen (AFB I ca. 40 % · AFB II ca. 40 % · AFB III ca. 20 %).
 > Jede Aufgabe hat einen Operator, eine Mengenangabe, eine Punktzahl und direkt darunter die **Lösung**.
-> Gesamtpunktzahl der offenen Aufgaben: 80 P. (AFB I ≈ 32 P · AFB II ≈ 32 P · AFB III ≈ 16 P).
+> Gesamtpunktzahl der offenen Aufgaben (Teile A–C): 88 P. (AFB I ≈ 32 P · AFB II ≈ 40 P · AFB III ≈ 16 P).
 
 ---
 

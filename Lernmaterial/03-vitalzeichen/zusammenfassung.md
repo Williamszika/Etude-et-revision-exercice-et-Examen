@@ -199,7 +199,7 @@ Der Blutdruck ist **keine unabhängige Größe**. Er hängt ab von:
 ### 3.8 Steuerung des Blutdrucks
 
 - **Hormonell:** Hormone von Niere und Nebenniere; Noradrenalin, Adrenalin, Dopamin, Angiotensin II.
-- **Nerval:** Atemzentrum/Hirnstamm; **Sympathikus** (steigert) und **Parasympathikus** (senkt).
+- **Nerval:** Kreislaufzentrum (Vasomotorenzentrum) im Hirnstamm; **Sympathikus** (steigert) und **Parasympathikus** (senkt).
 - Gemessen über **Presso-, Chemo- und Volumenrezeptoren** im ganzen Körper.
 - **Vasokonstriktion** = Gefäßverengung → Widerstand/Druck steigt.
 - **Vasodilatation** = Gefäßweitung → Widerstand/Druck sinkt.

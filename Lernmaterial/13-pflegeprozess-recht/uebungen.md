@@ -2,7 +2,7 @@
 
 > Gestaffelt nach Anforderungsbereichen (AFB). Operator am Satzanfang, Mengenangabe und Punktzahl.
 > Verteilung ca. AFB I 40 % · AFB II 40 % · AFB III 20 %.
-> **Lösung** jeweils direkt unter der Aufgabe. Gesamtpunkte: 92.
+> **Lösung** jeweils direkt unter der Aufgabe. Gesamtpunkte: 124.
 
 ---
 
@@ -274,6 +274,6 @@ Bringen Sie die **sechs Schritte des Pflegeprozesses** in die richtige Reihenfol
 | B | 10–18 | 43 | II |
 | C | 19–22 | 20 | III |
 | MC / Zuordnung / Lückentext / Reihenfolge | – | 23 | I–II |
-| **Gesamt** | | **92** | ca. 40 / 40 / 20 |
+| **Gesamt** | | **124** | ca. 40 / 40 / 20 |
 
 > Hinweis: Die Zusatzformate (MC, Zuordnung, Lückentext, Reihenfolge) sind überwiegend AFB I–II und in der obigen Gesamtverteilung bereits mitgedacht.

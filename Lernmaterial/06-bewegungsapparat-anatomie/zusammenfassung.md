@@ -132,7 +132,7 @@ Die Form der Gelenkflächen bestimmt, wie sich ein Gelenk bewegen kann.
 | Zapfen-/Radgelenk | Atlas-Axis (Kopfdrehung) | Rotation/Drehung |
 | planes (ebenes) Gelenk | Wirbelbogengelenke | geringes Gleiten/Verschieben |
 | Eigelenk (Ellipsoidgelenk) | proximales Handgelenk | Beugung/Streckung + Ab-/Adduktion (2 Achsen) |
-| Sattelgelenk | Daumengrundgelenk | 2 Achsen + Opposition |
+| Sattelgelenk | Daumensattelgelenk (Daumenbasis) | 2 Achsen + Opposition |
 | Kugelgelenk | Schultergelenk, Hüftgelenk | alle Richtungen (3 Achsen) |
 
 **Die 8 Bewegungsrichtungen:**
@@ -379,7 +379,7 @@ Eine **intramuskuläre Injektion** setzt ein Medikament in einen Muskel. **Geeig
 1. Aufklärung, Händedesinfektion, Handschuhe.
 2. Korrekte Injektionsstelle **exakt** lokalisieren (z. B. ventrogluteal am M. gluteus medius).
 3. Haut desinfizieren, Einwirkzeit abwarten.
-4. Kanüle zügig im richtigen Winkel einstechen.
+4. Kanüle zügig im richtigen Winkel einstechen (i.m.: 90°, senkrecht zur Haut).
 5. Langsam injizieren, Kanüle entfernen, Einstichstelle kurz komprimieren.
 6. Beobachtung, Dokumentation.
 

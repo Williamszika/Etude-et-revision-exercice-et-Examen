@@ -251,7 +251,7 @@ Ordnen Sie jedem Assessment (1–6) die passende Kurzbeschreibung (A–F) zu.
 |---|---|---|
 | 1. Tinetti | | A. Erfasst das gesamte Mobilitätsspektrum, Rohwert max. 19 → Score 0–100 |
 | 2. SPPB | | B. Balancetest + Gehprobe, max. 28 Punkte |
-| 3. DEMMI | | C. Bettlägerigkeits-Phasenmodell / Mobilitätsbogen für die Einrichtung (A1–A5) |
+| 3. DEMMI | | C. Mobilitätsbogen für die Einrichtung (stationär), fünf Bereiche A1–A5, je Item 1–4 Punkte |
 | 4. HABAM | | D. Drei Teiltests (Balance, 4-m-Gehtest, Stuhl-Aufstehen), Score 0–12 |
 | 5. EBoMo | | E. Risiko-Score mit 9 Parametern, max. 24 Punkte, hoher Wert = hohes Risiko |
 | 6. Sturzrisiko-Skala (Huhn) | | F. Hierarchisch, Verlauf über 14 Kliniktage, höchster Wert je Bereich zählt |
