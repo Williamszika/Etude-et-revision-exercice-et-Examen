@@ -247,7 +247,7 @@ function buildNav(){
   DATA.forEach((t,idx)=>{
     if(t.special&&!lastSpecial){const h2=document.createElement('h2');h2.textContent='Prüfung & Plan';navEl.appendChild(h2);lastSpecial=true;}
     const b=document.createElement('button');
-    const marker=t.special?'★':String(idx+1).padStart(2,'0');
+    const marker=t.mixquiz?'🎲':(t.special?'★':String(idx+1).padStart(2,'0'));
     b.innerHTML='<span class="tnum">'+marker+'</span><span>'+t.title+'</span>'+(t.partial?'<span class="partial-dot">● unvollständig</span>':'');
     b.onclick=()=>{curTheme=idx;render();};
     b.dataset.idx=idx;
@@ -268,8 +268,14 @@ function buildTabs(){
 }
 function render(){
   const t=DATA[curTheme];
-  if(!hasRubrik(t,curRubrik)){const avail=RUBRIKEN.map(r=>r.key).find(k=>hasRubrik(t,k));curRubrik=avail||'zusammenfassung';}
   [...navEl.querySelectorAll('button')].forEach(b=>b.classList.toggle('active',+b.dataset.idx===curTheme));
+  if(t.mixquiz){
+    tabsEl.innerHTML='';solBtn.style.display='none';
+    titleEl.textContent='🎲 '+t.title;
+    subEl.textContent=MIXPOOL.length+' Fragen im Pool · je Runde 30 zufällig gemischt (auch die Antworten)';
+    renderMixQuiz();window.scrollTo({top:0,behavior:'smooth'});return;
+  }
+  if(!hasRubrik(t,curRubrik)){const avail=RUBRIKEN.map(r=>r.key).find(k=>hasRubrik(t,k));curRubrik=avail||'zusammenfassung';}
   buildTabs();
   titleEl.textContent=t.title;
   const rubLabel=RUBRIKEN.find(r=>r.key===curRubrik).label.replace(/^[^ ]+ /,'');
@@ -283,7 +289,16 @@ function render(){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 /* ---------- Interaktives Quiz ---------- */
-function renderQuiz(questions){
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));const tmp=a[i];a[i]=a[j];a[j]=tmp;}return a;}
+function withShuffledOpts(q){const idx=shuffle(q.opts.map((_,i)=>i));return {q:q.q,opts:idx.map(i=>q.opts[i]),correct:idx.indexOf(q.correct),why:q.why,_theme:q._theme};}
+const MIXPOOL=[];
+DATA.forEach(t=>{if(Array.isArray(t.quiz)&&!t.mixquiz)t.quiz.forEach(q=>MIXPOOL.push(Object.assign({_theme:t.title},q)));});
+function renderMixQuiz(){
+  const N=Math.min(30,MIXPOOL.length);
+  const qs=shuffle(MIXPOOL).slice(0,N).map(withShuffledOpts);
+  renderQuiz(qs,renderMixQuiz);
+}
+function renderQuiz(questions,onRestart){
   let answered=0, right=0;
   const total=questions.length;
   const wrap=document.createElement('div');wrap.className='quizwrap';
@@ -291,11 +306,11 @@ function renderQuiz(questions){
   bar.innerHTML='<div class="prog"><i></i></div><span class="scorepill">0 / '+total+' richtig</span><button class="restart">↻ Neu starten</button>';
   wrap.appendChild(bar);
   const prog=bar.querySelector('.prog i'), pill=bar.querySelector('.scorepill');
-  bar.querySelector('.restart').onclick=()=>renderQuiz(questions);
+  bar.querySelector('.restart').onclick=()=>(onRestart||(()=>renderQuiz(questions,onRestart)))();
   questions.forEach((item,qi)=>{
     const card=document.createElement('div');card.className='qcard';
     const h=document.createElement('div');h.className='qtext';
-    const nr=document.createElement('div');nr.className='qnr';nr.textContent='Frage '+(qi+1)+' / '+total;
+    const nr=document.createElement('div');nr.className='qnr';nr.textContent='Frage '+(qi+1)+' / '+total+(item._theme?' · '+item._theme:'');
     h.textContent=item.q; card.appendChild(nr); card.appendChild(h);
     const why=document.createElement('div');why.className='qwhy';why.textContent=item.why||'';
     item.opts.forEach((txt,oi)=>{
