@@ -1,0 +1,547 @@
+<title>Schulung: Pflegeplanung schreiben</title>
+<style>
+  :root{
+    --paper:#f6f4ef;--paper-2:#efece4;--card:#fffdf9;--ink:#1a2321;--ink-soft:#4a5551;
+    --line:#ddd8cd;--accent:#0d6b6e;--accent-deep:#094c4e;--accent-soft:#d6e8e6;
+    --p:#bb4d3f;--pbg:#f6e2dd;--e:#b5731a;--ebg:#f6ebd8;--s:#6a4c93;--sbg:#ece4f3;--r:#2f7d54;--rbg:#e3f0e7;
+    --good:#2f7d54;--bad:#bb4d3f;--gold:#b5731a;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#131817;--paper-2:#0e1211;--card:#1b2220;--ink:#eef2f0;--ink-soft:#a6b2ae;--line:#2c3532;
+    --accent:#4fb3b3;--accent-deep:#7fcccc;--accent-soft:#16302f;
+    --p:#e08a7c;--pbg:#2e1a16;--e:#d9a559;--ebg:#2c2312;--s:#b9a3e0;--sbg:#211a2e;--r:#6fc292;--rbg:#14281c;
+    --good:#6fc292;--bad:#e08a7c;--gold:#d9a559;}}
+  :root[data-theme="dark"]{--paper:#131817;--paper-2:#0e1211;--card:#1b2220;--ink:#eef2f0;--ink-soft:#a6b2ae;--line:#2c3532;
+    --accent:#4fb3b3;--accent-deep:#7fcccc;--accent-soft:#16302f;--p:#e08a7c;--pbg:#2e1a16;--e:#d9a559;--ebg:#2c2312;--s:#b9a3e0;--sbg:#211a2e;--r:#6fc292;--rbg:#14281c;--good:#6fc292;--bad:#e08a7c;--gold:#d9a559;}
+  :root[data-theme="light"]{--paper:#f6f4ef;--paper-2:#efece4;--card:#fffdf9;--ink:#1a2321;--ink-soft:#4a5551;--line:#ddd8cd;
+    --accent:#0d6b6e;--accent-deep:#094c4e;--accent-soft:#d6e8e6;--p:#bb4d3f;--pbg:#f6e2dd;--e:#b5731a;--ebg:#f6ebd8;--s:#6a4c93;--sbg:#ece4f3;--r:#2f7d54;--rbg:#e3f0e7;--good:#2f7d54;--bad:#bb4d3f;--gold:#b5731a;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px 90px;}
+  header.hero{padding:52px 20px 34px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 60%);}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin:0 0 12px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6vw,3rem);margin:0 0 12px;line-height:1.08;text-wrap:balance;}
+  header.hero p{max-width:56ch;margin:0 auto;color:var(--ink-soft);}
+  nav.toc{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding:9px 14px;}
+  nav.toc a{flex:0 0 auto;text-decoration:none;color:var(--ink-soft);font-size:13.5px;padding:6px 11px;border-radius:8px;white-space:nowrap;}
+  nav.toc a:hover{background:var(--paper-2);color:var(--ink);}
+  section{margin-top:52px;scroll-margin-top:60px;}
+  h2{font-family:var(--serif);font-weight:600;font-size:1.75rem;margin:0 0 6px;display:flex;align-items:baseline;gap:12px;text-wrap:balance;}
+  h2 .n{font-family:var(--mono);font-size:.8rem;color:var(--accent);border:1px solid var(--line);border-radius:7px;padding:2px 8px;}
+  h3{font-family:var(--serif);font-weight:600;font-size:1.2rem;margin:26px 0 8px;}
+  .lead{color:var(--ink-soft);margin:0 0 18px;}
+  p{margin:.6em 0;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:14px 0;}
+  .card.tight{padding:14px 18px;}
+  ul.clean{list-style:none;padding:0;margin:12px 0;}
+  ul.clean li{padding:7px 0 7px 26px;position:relative;border-bottom:1px dashed var(--line);}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean li::before{content:"→";position:absolute;left:2px;color:var(--accent);font-weight:700;}
+  .note{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0;font-size:15.5px;}
+  .warn{border-left:3px solid var(--gold);background:var(--ebg);border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0;font-size:15.5px;}
+  .scroll-x{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;}
+  th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-soft);}
+  code{font-family:var(--mono);font-size:.85em;background:var(--paper-2);padding:1px 5px;border-radius:5px;}
+  .pill{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:600;padding:2px 8px;border-radius:6px;}
+
+  /* Regelkreis */
+  .kreis-wrap{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:center;}
+  @media (max-width:720px){.kreis-wrap{grid-template-columns:1fr;}}
+  .kreis{width:100%;max-width:360px;margin:0 auto;display:block;}
+  .kstep{cursor:pointer;transition:transform .15s;}
+  .kstep circle{transition:fill .15s,stroke .15s;}
+  .kstep text{font-family:var(--sans);font-weight:600;fill:#fff;pointer-events:none;}
+  @media (prefers-color-scheme:dark){.kstep text{fill:#06201f;}}
+  :root[data-theme="dark"] .kstep text{fill:#06201f;} :root[data-theme="light"] .kstep text{fill:#fff;}
+  .kdetail{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-height:150px;}
+  .kdetail h4{margin:0 0 6px;font-family:var(--serif);font-size:1.1rem;}
+  .kdetail .knum{font-family:var(--mono);font-size:12px;color:var(--accent);}
+
+  /* ABEDL grid */
+  .abedl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:8px;margin:14px 0;}
+  .abedl-btn{text-align:left;font:inherit;font-size:14.5px;color:var(--ink);background:var(--card);border:1px solid var(--line);
+    border-radius:10px;padding:10px 12px;cursor:pointer;display:flex;gap:9px;align-items:center;transition:border-color .12s,background .12s;}
+  .abedl-btn:hover{border-color:var(--accent);}
+  .abedl-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+  @media (prefers-color-scheme:dark){.abedl-btn.active{color:#06201f;}}
+  :root[data-theme="dark"] .abedl-btn.active{color:#06201f;} :root[data-theme="light"] .abedl-btn.active{color:#fff;}
+  .abedl-btn .an{font-family:var(--mono);font-size:12px;opacity:.7;flex:0 0 auto;}
+  .abedl-btn.prio{border-color:var(--accent);}
+  .star{color:var(--gold);flex:0 0 auto;}
+  .abedl-btn.active .star{color:#fff;}
+  #abedl-detail{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:6px;min-height:96px;}
+  #abedl-detail .proph{display:inline-block;margin:4px 6px 0 0;padding:4px 10px;border-radius:99px;background:var(--pbg);color:var(--p);font-size:13.5px;font-weight:600;}
+  #abedl-detail .es{background:var(--accent-soft);color:var(--accent-deep);}
+
+  /* PESR */
+  .pesr{display:grid;grid-template-columns:auto 1fr;gap:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:14px 0;}
+  .pesr .lab{font-family:var(--mono);font-weight:700;padding:12px 14px;display:flex;align-items:center;gap:8px;}
+  .pesr .val{padding:12px 14px;border-left:1px solid var(--line);}
+  .pesr>div{border-top:1px solid var(--line);}
+  .pesr>div:nth-child(-n+2){border-top:none;}
+  .pesr .P{background:var(--pbg);color:var(--p);} .pesr .E{background:var(--ebg);color:var(--e);}
+  .pesr .S{background:var(--sbg);color:var(--s);} .pesr .R{background:var(--rbg);color:var(--r);}
+  .letterkey{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0;}
+  .letterkey span{font-size:13.5px;padding:4px 10px;border-radius:8px;font-weight:600;}
+
+  /* SMART */
+  .smart-row{display:flex;gap:12px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--line);}
+  .smart-row:last-child{border-bottom:none;}
+  .smart-row b{flex:0 0 118px;color:var(--accent-deep);}
+  .toggle-ex{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px 0;}
+  @media (max-width:640px){.toggle-ex{grid-template-columns:1fr;}}
+  .ex{border-radius:12px;padding:14px 16px;font-size:15px;}
+  .ex.bad{background:var(--pbg);border:1px solid var(--bad);} .ex.good{background:var(--rbg);border:1px solid var(--good);}
+  .ex .tag{font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;}
+  .ex.bad .tag{color:var(--bad);} .ex.good .tag{color:var(--good);}
+
+  /* reveal */
+  details.reveal{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:0 16px;margin:10px 0;}
+  details.reveal>summary{cursor:pointer;padding:13px 0;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center;}
+  details.reveal>summary::-webkit-details-marker{display:none;}
+  details.reveal>summary::before{content:"＋";font-family:var(--mono);color:var(--accent);font-weight:700;}
+  details.reveal[open]>summary::before{content:"－";}
+  details.reveal .ans{padding:0 0 14px 4px;color:var(--ink-soft);}
+  .pts{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;}
+
+  /* Do/Dont */
+  .dd{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+  @media (max-width:640px){.dd{grid-template-columns:1fr;}}
+  .dd .col{border-radius:12px;padding:14px 16px;}
+  .dd .do{background:var(--rbg);border:1px solid var(--good);} .dd .dont{background:var(--pbg);border:1px solid var(--bad);}
+  .dd h4{margin:0 0 8px;font-family:var(--serif);}
+  .dd ul{margin:0;padding-left:18px;} .dd li{margin:6px 0;font-size:15px;}
+
+  /* Quiz */
+  .quizbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+  .quizbar .prog{flex:1 1 140px;height:8px;background:var(--paper-2);border-radius:99px;overflow:hidden;min-width:110px;}
+  .quizbar .prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s;}
+  .scorepill{font-family:var(--mono);font-size:13px;color:var(--accent-deep);background:var(--accent-soft);border-radius:99px;padding:5px 12px;}
+  .restart{font:inherit;font-size:13px;color:var(--ink-soft);background:none;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;}
+  .qcard{border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin:12px 0;background:var(--card);}
+  .qcard .qnr{font-family:var(--mono);font-size:12px;color:var(--accent);}
+  .qcard .qtext{font-weight:600;margin:4px 0 10px;}
+  .opt{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin:6px 0;cursor:pointer;transition:border-color .12s,background .12s;}
+  .opt:hover:not(:disabled){border-color:var(--accent);}
+  .opt:disabled{cursor:default;}
+  .opt.correct{border-color:var(--good);background:color-mix(in srgb,var(--good) 15%,var(--card));}
+  .opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 13%,var(--card));}
+  .opt .mk{float:right;font-weight:700;} .opt.correct .mk::after{content:"✓";color:var(--good);} .opt.wrong .mk::after{content:"✗";color:var(--bad);}
+  .qwhy{font-size:14px;color:var(--ink-soft);margin:8px 2px 0;padding-left:12px;border-left:2px solid var(--accent);display:none;}
+  .qwhy.show{display:block;}
+  .quizdone{margin-top:16px;padding:16px;border-radius:12px;background:var(--accent-soft);text-align:center;}
+  .quizdone .big{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--accent-deep);}
+  footer{margin-top:64px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:14px;text-align:center;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}.kstep{transition:none;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Schulung · Pflegeausbildung · Niveau B1</p>
+  <h1>Eine gute Pflegeplanung schreiben</h1>
+  <p>Hier lernst du Schritt für Schritt, wie du eine Pflegeplanung schreibst. Du lernst den Pflegeprozess
+  und das Modell von Monika Krohwinkel (die 13 ABEDL). Mit einem klickbaren Regelkreis, Übungen zu PESR
+  und SMART, einem Beispiel und einem Quiz.</p>
+</header>
+
+<nav class="toc">
+  <a href="#warum">Warum?</a>
+  <a href="#prozess">Pflegeprozess</a>
+  <a href="#krohwinkel">Krohwinkel & ABEDL</a>
+  <a href="#schritte">Schritt für Schritt</a>
+  <a href="#achten">Worauf achten</a>
+  <a href="#beispiel">Musterbeispiel</a>
+  <a href="#quiz">Quiz</a>
+  <a href="#tipps">Prüfungstipps</a>
+</nav>
+
+<div class="wrap">
+
+  <section id="warum">
+    <h2><span class="n">0</span> Warum überhaupt eine Pflegeplanung?</h2>
+    <p class="lead">Die Pflegeplanung ist der schriftliche Kern der Pflege. Sie macht die Pflege persönlich,
+    klar und überprüfbar.</p>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Persönlich:</b> Die Pflege passt genau zu diesem Menschen — zu seinen Problemen, seinen <b>Ressourcen</b> (das sind seine Fähigkeiten) und seinen Wünschen.</li>
+        <li><b>Sicher im Team:</b> Alle pflegen nach demselben Plan. So wissen auch die Vertretung und der Nachtdienst, was zu tun ist.</li>
+        <li><b>Recht:</b> Das <b>Pflegeberufegesetz (PflBG, seit 2020)</b> sagt: Bedarf erheben, planen und bewerten ist eine <b>vorbehaltene Tätigkeit</b>. Das heißt: Nur ausgebildete Pflegefachpersonen dürfen das machen.</li>
+        <li><b>Qualität und Geld:</b> Der Plan begründet, warum du etwas tust (auch für den Medizinischen Dienst) und für welchen <b>Pflegegrad</b>.</li>
+      </ul>
+    </div>
+    <div class="note"><b>Merke:</b> Eine Pflegeplanung ist kein Formular, das man nur einmal ausfüllt.
+    Der Mensch verändert sich. Darum passt du den Plan <b>immer wieder an</b>. Das ist ein Kreis (Regelkreis).</div>
+  </section>
+
+  <section id="prozess">
+    <h2><span class="n">1</span> Der Pflegeprozess — die 6 Schritte</h2>
+    <p class="lead">Der Pflegeprozess nach <b>Fiechter & Meier</b> ist ein <b>Kreis</b> (Regelkreis) mit 6 Schritten.
+    Klicke einen Schritt an. Dann siehst du mehr Infos. Nach Schritt 6 fängt der Kreis wieder von vorne an.</p>
+    <div class="kreis-wrap">
+      <svg class="kreis" viewBox="0 0 320 320" role="img" aria-label="Regelkreis Pflegeprozess mit 6 Schritten" id="kreis"></svg>
+      <div class="kdetail" id="kdetail"></div>
+    </div>
+    <div class="note">Merkhilfe: <b>I-P-Z-M-D-E</b> — <b>I</b>nformationen, <b>P</b>robleme/Ressourcen,
+    <b>Z</b>iele, <b>M</b>aßnahmen, <b>D</b>urchführung, <b>E</b>valuation.</div>
+    <p style="color:var(--ink-soft);font-size:14.5px">Hinweis: Krohwinkel selbst nutzt nur <b>4 Schritte</b>. In der Prüfung will man meistens das <b>6-Schritte-Modell</b>. Nimm das Modell, das deine Schule benutzt.</p>
+  </section>
+
+  <section id="krohwinkel">
+    <h2><span class="n">2</span> Krohwinkel: Fördernde Prozesspflege & die 13 ABEDL</h2>
+    <p class="lead">Monika Krohwinkel ist eine bekannte Pflege-Expertin aus Deutschland. Ihr Modell heißt
+    <b>Fördernde Prozesspflege</b>. Es gibt der Pflegeplanung eine feste Struktur: die <b>13 ABEDL</b>.</p>
+
+    <h3>Die Grundidee</h3>
+    <div class="card">
+      <p><b>ABEDL</b> heißt: <b>A</b>ktivitäten, <b>B</b>eziehungen und <b>e</b>xistenzielle <b>E</b>rfahrungen
+      <b>d</b>es <b>L</b>ebens. Krohwinkel schaut nicht nur auf die Probleme. Sie schaut auch auf die
+      <b>Ressourcen</b>, also auf das, was der Mensch noch <b>gut kann</b>. Man nennt das „fördern".</p>
+      <p>Wichtig ist auch die <b>Bezugsperson</b>: Die Familie gehört mit dazu. Das Ziel ist immer:
+      Der Mensch soll <b>möglichst selbstständig</b> sein und sich <b>wohlfühlen</b>.</p>
+    </div>
+
+    <h3>Die 13 ABEDL — klicke eine an, um die zugehörigen Prophylaxen zu sehen</h3>
+    <p style="font-size:14.5px;color:var(--ink-soft)"><span class="star">★</span> = die 3 <b>wichtigsten</b> ABEDL. Sie machen oft auch Probleme in den anderen ABEDL. Die ABEDL Nr. 13 wirkt auf <b>alle</b> anderen.</p>
+    <div class="abedl-grid" id="abedl-grid"></div>
+    <div id="abedl-detail">Wähle oben eine ABEDL aus…</div>
+    <div class="warn" style="margin-top:14px"><b>Wichtig für die Prüfung:</b> Du sollst oft <b>ABEDL → Prophylaxe</b>
+    zuordnen. Beispiel: „Sich bewegen können" → <b>Sturz-, Dekubitus-, Thrombose- und Kontrakturprophylaxe</b>.</div>
+
+    <details class="reveal">
+      <summary>Krohwinkels 5 Teilmodelle (Überblick) <span class="pts">Hintergrund</span></summary>
+      <div class="ans">
+        <p style="margin-top:6px">Krohwinkels Theorie hat 5 Teile:</p>
+        <ul class="clean" style="margin-top:6px">
+          <li><b>Rahmenmodell:</b> Worauf schaut die Pflege? Was ist das Ziel? Was tut die Pflege? (helfen, anleiten, begleiten, im Sinne des Menschen handeln)</li>
+          <li><b>Strukturmodell:</b> die 13 ABEDL.</li>
+          <li><b>Pflegeprozessmodell:</b> der Weg zum Lösen von Problemen (bei Krohwinkel 4 Schritte).</li>
+          <li><b>Managementmodell:</b> die Rahmenbedingungen (Zeit, Personal, Struktur).</li>
+          <li><b>Qualitätsmodell:</b> die Pflege wird immer besser (aus Erfahrung lernen).</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+  <section id="schritte">
+    <h2><span class="n">3</span> Schritt für Schritt: die Pflegeplanung schreiben</h2>
+    <p class="lead">Jetzt ganz konkret. Wir gehen den Kreis von Schritt 1 bis 6 durch. Dabei brauchst du drei
+    Werkzeuge für die Prüfung: <b>PESR</b>, <b>SMART</b> und die <b>W-Fragen</b>.</p>
+
+    <h3>3.1 · Informationen sammeln (Pflegeanamnese)</h3>
+    <p>Zuerst sammelst du <b>alle wichtigen Informationen</b> über den Menschen. Du ordnest sie nach den
+    13 ABEDL. Deine Quellen sind: der Mensch selbst, die <b>Familie</b>, das Team, die Ärzte und die
+    Unterlagen (zum Beispiel die Patientenakte oder Arztbriefe).</p>
+    <div class="card tight">
+      <b>Dazu gehören:</b>
+      <ul class="clean" style="margin-top:6px">
+        <li><b>Stammdaten:</b> Name, Alter, Krankheiten, Pflegegrad</li>
+        <li><b>Biografie:</b> die Lebensgeschichte und die Gewohnheiten — sie macht die Pflege persönlich</li>
+        <li><b>Assessments</b> (das sind Mess-Bögen, z. B. Braden für Dekubitus, Barthel für Selbstständigkeit)</li>
+        <li><b>Objektive Daten</b> (man kann sie messen, z. B. Blutdruck 150/95) und <b>subjektive Daten</b> (was der Mensch sagt: „Mir ist schwindelig")</li>
+      </ul>
+    </div>
+
+    <h3>3.2 · Pflegeprobleme & Ressourcen erkennen — mit <span style="color:var(--accent-deep)">PESR</span></h3>
+    <p>Ein gutes Pflegeproblem schreibst du mit der <b>PESR-Regel</b>. So wird klar: <em>Was</em> ist das
+    Problem? <em>Warum</em> gibt es das Problem? <em>Woran</em> sieht man es? Und <em>was kann</em> der Mensch noch gut?</p>
+    <div class="letterkey">
+      <span style="background:var(--pbg);color:var(--p)">P = Problem</span>
+      <span style="background:var(--ebg);color:var(--e)">E = Einflussfaktoren / Ursache</span>
+      <span style="background:var(--sbg);color:var(--s)">S = Symptome / Kennzeichen</span>
+      <span style="background:var(--rbg);color:var(--r)">R = Ressourcen</span>
+    </div>
+    <p style="font-size:15px;color:var(--ink-soft)">Beispiel (ABEDL „Sich bewegen können"):</p>
+    <div class="pesr">
+      <div class="lab P">P</div><div class="val"><b>Erhöhtes Sturzrisiko</b></div>
+      <div class="lab E">E</div><div class="val">bedingt durch Schwindel, Muskelschwäche in den Beinen und ein neues Beruhigungsmittel</div>
+      <div class="lab S">S</div><div class="val">zeigt sich durch unsicheren Gang, Festhalten an Möbeln, bereits 1 Sturz letzte Woche</div>
+      <div class="lab R">R</div><div class="val">Frau K. ist motiviert, nutzt ihren Rollator und ruft nach Hilfe</div>
+    </div>
+    <div class="note"><b>Tipp:</b> Nutze diesen Satz: <em>„…&nbsp;<b>bedingt durch</b>&nbsp;… (E),
+    <b>zeigt sich durch</b>&nbsp;… (S)"</em>. Vergiss die <b>Ressourcen</b> nie! Ohne sie kannst du nicht fördern.</div>
+
+    <h3>3.3 · Pflegeziele festlegen — mit <span style="color:var(--accent-deep)">SMART</span></h3>
+    <p>Zu jedem Problem gehört mindestens ein <b>Ziel</b>. Ein gutes Ziel ist <b>SMART</b>. Es sagt, was
+    der <b>Mensch erreichen soll</b>. Es sagt <b>nicht</b>, was die Pflegekraft tut.</p>
+    <div class="card tight">
+      <div class="smart-row"><b>S — Spezifisch</b><span>Genau und klar. Kein „irgendwie".</span></div>
+      <div class="smart-row"><b>M — Messbar</b><span>Man kann es prüfen (Menge, wie oft, Zeit).</span></div>
+      <div class="smart-row"><b>A — Attraktiv</b><span>Der Mensch will das Ziel auch.</span></div>
+      <div class="smart-row"><b>R — Realistisch</b><span>Es ist wirklich zu schaffen.</span></div>
+      <div class="smart-row"><b>T — Terminiert</b><span>Es gibt ein Datum (bis wann?).</span></div>
+    </div>
+    <p style="font-size:15px;color:var(--ink-soft)">Schlecht und gut im Vergleich:</p>
+    <div class="toggle-ex">
+      <div class="ex bad"><div class="tag">✗ schlecht</div><p style="margin:.4em 0 0">„Frau K. soll nicht mehr stürzen."</p><p style="margin:.3em 0 0;font-size:13.5px">Man kann es nicht messen. Es gibt kein Datum.</p></div>
+      <div class="ex good"><div class="tag">✓ SMART</div><p style="margin:.4em 0 0">„Frau K. geht bis zum 30.09. mit dem Rollator sicher zur Toilette."</p><p style="margin:.3em 0 0;font-size:13.5px">Genau, messbar, realistisch, mit Datum.</p></div>
+    </div>
+    <div class="note"><b>Nahziel und Fernziel:</b> Ein Nahziel ist ein kleiner Schritt (in Tagen oder Wochen).
+    Das Fernziel ist das große Ziel am Ende (z. B. „geht wieder allein"). Manche Menschen werden nicht mehr
+    gesund. Dann ist auch dieses Ziel richtig: „Der Zustand bleibt gleich (stabil)."</div>
+
+    <h3>3.4 · Pflegemaßnahmen planen — mit den <span style="color:var(--accent-deep)">W-Fragen</span></h3>
+    <p>Maßnahmen sind die konkreten Handlungen. Sie führen zum Ziel. Jede Kollegin soll sie <b>gleich</b>
+    machen können. Darum beantwortest du die <b>W-Fragen</b>:</p>
+    <div class="scroll-x card tight">
+      <table>
+        <thead><tr><th>Frage</th><th>Beispiel bei Sturzgefahr</th></tr></thead>
+        <tbody>
+          <tr><td><b>Wer?</b></td><td>Pflegefachkraft / Frau K. selbst (Förderung!)</td></tr>
+          <tr><td><b>Was?</b></td><td>Begleitung zur Toilette, Rollator griffbereit stellen</td></tr>
+          <tr><td><b>Wann? / Wie oft?</b></td><td>morgens, abends und bei Bedarf; nachts stündliche Kontrolle</td></tr>
+          <tr><td><b>Wie?</b></td><td>langsam aufstehen lassen, festes Schuhwerk, Licht einschalten</td></tr>
+          <tr><td><b>Womit?</b></td><td>Rollator, rutschfeste Socken, Hüftprotektor</td></tr>
+          <tr><td><b>Wo?</b></td><td>Zimmer und Bad</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><b>Hilfeformen</b> (nach Krohwinkel): Die Regel heißt: <b>so viel wie möglich selbst, so viel Hilfe
+    wie nötig</b>. Von wenig Hilfe bis viel Hilfe:</p>
+    <ul class="clean">
+      <li><b>anleiten / informieren / beraten</b> — der Mensch macht es selbst, du erklärst es</li>
+      <li><b>beaufsichtigen / begleiten</b> — du bist dabei und passt auf</li>
+      <li><b>unterstützen</b> — ihr macht es zusammen</li>
+      <li><b>ganz übernehmen</b> — du machst alles, aber nur wenn es nötig ist</li>
+    </ul>
+
+    <h3>3.5 · Durchführung & Pflegebericht</h3>
+    <p>Jetzt machst du die Maßnahmen. Danach schreibst du sie in den <b>Pflegebericht</b>
+    (mit Handzeichen, Datum und Besonderheiten). Wichtig: Was nicht geschrieben ist, gilt als <b>nicht gemacht</b>.</p>
+
+    <h3>3.6 · Evaluation (Bewertung)</h3>
+    <p>Am Datum aus dem Ziel prüfst du: <b>Ist das Ziel erreicht?</b> Dann änderst du den Plan.
+    Ist das Problem weg? → schließen. Gibt es ein neues Problem? → neu planen. Hilft die Maßnahme nicht?
+    → ändern. So fängt der Kreis wieder von vorne an.</p>
+  </section>
+
+  <section id="achten">
+    <h2><span class="n">4</span> Worauf muss ich achten?</h2>
+    <p class="lead">Das sind die häufigsten Fehler — und wie du sie vermeidest.</p>
+    <div class="dd">
+      <div class="col do">
+        <h4>✓ So machst du es richtig</h4>
+        <ul>
+          <li>Nenne immer die <b>Ressourcen</b> (nicht nur die Probleme).</li>
+          <li>Schreib das Ziel als <b>Zustand des Menschen</b>, SMART und mit Datum.</li>
+          <li>Schreib die Maßnahmen <b>genau</b> (W-Fragen). Jede Kollegin macht sie dann gleich.</li>
+          <li>Beziehe alles auf <b>den Fall</b> und den Menschen (nutze die Biografie).</li>
+          <li>Nenne den passenden <b>Expertenstandard</b> (Sturz, Dekubitus, Schmerz, Ernährung, Kontinenz …).</li>
+          <li>Schreib <b>klar</b> und mit den richtigen Fachwörtern.</li>
+        </ul>
+      </div>
+      <div class="col dont">
+        <h4>✗ Typische Fehler</h4>
+        <ul>
+          <li>Das Ziel sagt, was die Pflegekraft tut („Ich lagere die Patientin"). Falsch: Es soll den Menschen beschreiben.</li>
+          <li>Das Ziel hat kein Datum oder man kann es nicht messen („soll sich wohler fühlen").</li>
+          <li>Die Maßnahme ist zu ungenau („Mobilisation fördern") — <b>wie?</b> wie oft? womit?</li>
+          <li>Du <b>vergisst die Ressourcen</b> → du kannst nicht fördern.</li>
+          <li>Das Problem hat keine <b>Ursache</b> und keine <b>Symptome</b> (PESR nicht komplett).</li>
+          <li>Der Plan wird nie <b>geprüft</b> und nie geändert.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="beispiel">
+    <h2><span class="n">5</span> Vollständiges Musterbeispiel</h2>
+    <p class="lead">Hier siehst du einen kleinen Fall und die passende Pflegeplanung. So sieht das Ergebnis aus.
+    Versuch es zuerst selbst. Dann öffne die Lösung.</p>
+    <div class="card">
+      <p style="font-family:var(--mono);font-size:13px;color:var(--accent-deep);margin-top:0">Frau Kowalski, 82 J. · Pflegeheim · nach Schlaganfall, halbseitig geschwächt (links)</p>
+      <p>Frau Kowalski ist nach einem Schlaganfall links gelähmt. Sie liegt viel im Bett. Sie kann sich
+      allein kaum drehen. Am Steiß (unterer Rücken) hat sie eine rote Stelle. Sie sagt: „Das Drehen tut so weh."
+      Sie ist wach und versteht alles. Sie möchte gern wieder mehr sitzen. Ihre Tochter kommt jeden Tag.</p>
+    </div>
+    <details class="reveal">
+      <summary>Musterlösung: Pflegeplanung (ABEDL „Sich bewegen können") <span class="pts">PESR + SMART + Maßnahmen</span></summary>
+      <div class="ans">
+        <div class="pesr" style="margin-top:10px">
+          <div class="lab P">P</div><div class="val"><b>Erhöhtes Dekubitusrisiko</b> (ABEDL: Sich bewegen können)</div>
+          <div class="lab E">E</div><div class="val">bedingt durch Halbseitenlähmung links, Immobilität und langes Liegen</div>
+          <div class="lab S">S</div><div class="val">zeigt sich durch Rötung am Steiß (Fingertest negativ), Schmerz beim Drehen, wenig Eigenbewegung</div>
+          <div class="lab R">R</div><div class="val">wach und orientiert, kooperativ, rechte Körperseite voll beweglich, motivierte Tochter als Bezugsperson</div>
+        </div>
+        <p style="margin-top:12px"><b>Pflegeziel (SMART):</b> „Die Haut am Steiß von Frau Kowalski ist bis zum
+        10.09. intakt (keine neue Rötung); Frau K. sitzt täglich mind. 2× für 20 Minuten im Sessel."</p>
+        <p style="margin:.4em 0 0"><b>Maßnahmen (W-Fragen, mit Expertenstandard Dekubitusprophylaxe):</b></p>
+        <ul class="clean" style="margin-top:4px">
+          <li>Pflegefachkraft lagert Frau K. nach individuellem Plan <b>2-stündlich</b> um (30°-Schräglage, Mikrolagerung); nachts ebenso.</li>
+          <li>Haut bei jeder Lagerung <b>inspizieren</b> (Fingertest), Druckstellen dokumentieren.</li>
+          <li>Frau K. zur <b>Eigenbewegung anleiten</b> und die gesunde rechte Seite aktiv einsetzen lassen (Ressource fördern).</li>
+          <li>Zweimal täglich mit Unterstützung in den Sessel <b>mobilisieren</b>; Druck verteilen (Weichlagerungskissen).</li>
+          <li>Auf <b>ausreichende Ernährung/Flüssigkeit</b> achten (Hautzustand); Tochter in die Mobilisation einbeziehen.</li>
+        </ul>
+        <p style="margin:.6em 0 0"><b>Evaluation</b> am 10.09.: Hautzustand und Sitzdauer überprüfen, Plan anpassen.</p>
+      </div>
+    </details>
+  </section>
+
+  <section id="quiz">
+    <h2><span class="n">6</span> Teste dich — Quiz</h2>
+    <p class="lead">Wähle bei jeder Frage eine Antwort. Du siehst sofort, ob sie richtig ist. Dazu gibt es eine kurze Erklärung. Am Ende siehst du deinen Score.</p>
+    <div class="quizbar"><div class="prog"><i></i></div><span class="scorepill">0 / 0 richtig</span><button class="restart">↻ Neu starten</button></div>
+    <div id="quiz"></div>
+  </section>
+
+  <section id="tipps">
+    <h2><span class="n">7</span> Prüfungstipps auf einen Blick</h2>
+    <div class="card">
+      <ul class="clean">
+        <li>Lerne den <b>Kreis</b> auswendig: I-P-Z-M-D-E (6 Schritte, Fiechter & Meier).</li>
+        <li>Jedes Problem mit <b>PESR</b>. Jedes Ziel <b>SMART</b>. Jede Maßnahme mit den <b>W-Fragen</b>.</li>
+        <li>Üben: <b>ABEDL → Prophylaxe</b> (vor allem „Sich bewegen" → Sturz / Dekubitus / Thrombose / Kontraktur).</li>
+        <li>Nenne immer die <b>Ressourcen</b>. Beziehe die <b>Familie</b> mit ein (Krohwinkel).</li>
+        <li>Die Aufgabenwörter: <b>Nennen</b> = aufzählen. <b>Beschreiben</b> = in eigenen Worten sagen. <b>Erklären/Begründen</b> = das Warum sagen.</li>
+        <li>Denk an das Recht: Die Planung ist eine <b>vorbehaltene Tätigkeit</b> (PflBG). Nur Pflegefachpersonen dürfen das.</li>
+      </ul>
+    </div>
+    <div class="note">Diese Schulung passt zu deinem Thema <b>„Pflegeprozess & Recht"</b> im großen Lern-Hub.
+    Für deine Hausaufgabe: Nimm einen echten Fall (ohne echten Namen) und schreib eine ABEDL nach diesem Muster.</div>
+  </section>
+
+  <footer>
+    Schulung „Pflegeplanung" · erstellt aus deinen Unterlagen (Krohwinkel · ABEDL & Prophylaxen · Pflegeprozess) ·
+    Niveau B1 · prüfe bei Fachfragen immer die aktuellen Expertenstandards und deine Schulunterlagen.
+  </footer>
+</div>
+
+<script>
+/* ---------- Regelkreis ---------- */
+const STEPS=[
+  {t:'Informationen',full:'1 · Informationen sammeln',d:'Sammle alle wichtigen Infos über den Menschen. Ordne sie nach den 13 ABEDL. Quellen: der Mensch, die Familie, das Team, die Ärzte und die Unterlagen. Dazu Stammdaten, Biografie und Assessments (Mess-Bögen).'},
+  {t:'Probleme',full:'2 · Probleme & Ressourcen',d:'Finde die Probleme UND die Ressourcen (das, was der Mensch gut kann). Schreib es mit PESR: Problem, Ursache, Symptome (woran man es sieht), Ressourcen.'},
+  {t:'Ziele',full:'3 · Ziele',d:'Schreib zu jedem Problem ein Ziel. Es sagt, was der Mensch erreichen soll. Das Ziel ist SMART: genau, messbar, gewollt, realistisch und mit Datum. Es gibt Nahziele und Fernziele.'},
+  {t:'Maßnahmen',full:'4 · Maßnahmen',d:'Plane die konkreten Handlungen, die zum Ziel führen. Nutze die W-Fragen (wer, was, wann, wie, wie oft, womit, wo). Wähle die richtige Hilfeform und den passenden Expertenstandard.'},
+  {t:'Durchführung',full:'5 · Durchführung',d:'Mach die Maßnahmen. Schreib sie in den Pflegebericht (Handzeichen, Datum, Besonderheiten). Was nicht geschrieben ist, gilt als nicht gemacht.'},
+  {t:'Evaluation',full:'6 · Evaluation',d:'Prüfe am Datum: Ist das Ziel erreicht? Ändere dann den Plan: Problem schließen, Maßnahme ändern oder neu planen. Danach fängt der Kreis wieder von vorne an.'},
+];
+const svg=document.getElementById('kreis'), NS='http://www.w3.org/2000/svg';
+const cx=160,cy=160,R=118,r=38;
+const cols=['#0d6b6e','#0d6b6e','#0d6b6e','#0d6b6e','#0d6b6e','#0d6b6e'];
+function drawKreis(active){
+  svg.innerHTML='';
+  // arrows circle
+  for(let i=0;i<6;i++){
+    const a0=(-90 + i*60)*Math.PI/180, a1=(-90+(i+1)*60)*Math.PI/180;
+    const p0={x:cx+R*Math.cos(a0+0.28),y:cy+R*Math.sin(a0+0.28)};
+    const p1={x:cx+R*Math.cos(a1-0.28),y:cy+R*Math.sin(a1-0.28)};
+    const path=document.createElementNS(NS,'path');
+    const large=0;
+    path.setAttribute('d',`M ${p0.x} ${p0.y} A ${R} ${R} 0 ${large} 1 ${p1.x} ${p1.y}`);
+    path.setAttribute('fill','none');path.setAttribute('stroke','var(--line)');path.setAttribute('stroke-width','2');
+    svg.appendChild(path);
+  }
+  for(let i=0;i<6;i++){
+    const a=(-90+i*60)*Math.PI/180;
+    const x=cx+R*Math.cos(a), y=cy+R*Math.sin(a);
+    const g=document.createElementNS(NS,'g');g.setAttribute('class','kstep');
+    g.addEventListener('click',()=>{drawKreis(i);showStep(i);});
+    const c=document.createElementNS(NS,'circle');
+    c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',r);
+    c.setAttribute('fill',i===active?'var(--accent)':'var(--card)');
+    c.setAttribute('stroke',i===active?'var(--accent-deep)':'var(--line)');c.setAttribute('stroke-width','2');
+    const num=document.createElementNS(NS,'text');
+    num.setAttribute('x',x);num.setAttribute('y',y-4);num.setAttribute('text-anchor','middle');
+    num.setAttribute('font-size','15');num.setAttribute('fill',i===active?'#fff':'var(--accent)');num.textContent=(i+1);
+    const lab=document.createElementNS(NS,'text');
+    lab.setAttribute('x',x);lab.setAttribute('y',y+12);lab.setAttribute('text-anchor','middle');
+    lab.setAttribute('font-size','9.5');lab.setAttribute('fill',i===active?'#fff':'var(--ink-soft)');lab.textContent=STEPS[i].t;
+    if(i!==active){num.setAttribute('fill','var(--accent)');lab.setAttribute('fill','var(--ink-soft)');}
+    g.appendChild(c);g.appendChild(num);g.appendChild(lab);svg.appendChild(g);
+  }
+}
+function showStep(i){
+  document.getElementById('kdetail').innerHTML='<div class="knum">Schritt '+(i+1)+' / 6</div><h4>'+STEPS[i].full.replace(/^\d+ · /,'')+'</h4><p style="margin:.3em 0 0">'+STEPS[i].d+'</p>';
+}
+drawKreis(0);showStep(0);
+
+/* ---------- ABEDL ---------- */
+const ABEDL=[
+ {n:'Kommunizieren können',prio:true,pr:[['Desorientierung',0]]},
+ {n:'Sich bewegen können',prio:true,pr:[['Sturz',1],['Dekubitus',1],['Thrombose',0],['Kontraktur',0]]},
+ {n:'Vitale Funktionen aufrechterhalten',prio:true,pr:[['Pneumonie',0]]},
+ {n:'Sich pflegen können',prio:false,pr:[['Soor & Parotitis',1],['Intertrigo',0],['Infektion',0]]},
+ {n:'Essen und trinken können',prio:false,pr:[['Dehydration',1],['Mangelernährung',1],['Aspiration',0]]},
+ {n:'Ausscheiden können',prio:false,pr:[['Obstipation',0],['Harnwegsinfekt',0],['Kontinenz',1]]},
+ {n:'Sich kleiden können',prio:false,pr:[]},
+ {n:'Ruhen und schlafen können',prio:false,pr:[]},
+ {n:'Sich beschäftigen können',prio:false,pr:[['Deprivation',0],['Gewalt/Aggression',0]]},
+ {n:'Sich als Mann/Frau fühlen können',prio:false,pr:[]},
+ {n:'Für Sicherheit in der Umgebung sorgen',prio:false,pr:[]},
+ {n:'Soziale Bereiche des Lebens sichern',prio:false,pr:[]},
+ {n:'Mit existenziellen Erfahrungen umgehen',prio:false,pr:[],all:true},
+];
+const grid=document.getElementById('abedl-grid');
+ABEDL.forEach((a,i)=>{
+  const b=document.createElement('button');b.className='abedl-btn'+(a.prio?' prio':'');
+  b.innerHTML='<span class="an">'+(i+1)+'</span>'+(a.prio?'<span class="star">★</span>':'')+'<span>'+a.n+'</span>';
+  b.onclick=()=>{[...grid.children].forEach(x=>x.classList.remove('active'));b.classList.add('active');showAbedl(i);};
+  grid.appendChild(b);
+});
+function showAbedl(i){
+  const a=ABEDL[i];const el=document.getElementById('abedl-detail');
+  let h='<b>'+(i+1)+'. '+a.n+'</b>';
+  if(a.prio)h+=' <span class="pill" style="background:var(--accent-soft);color:var(--accent-deep)">prioritäre ABEDL</span>';
+  if(a.all)h+=' <span class="pill" style="background:var(--ebg);color:var(--e)">beeinflusst alle anderen ABEDL</span>';
+  if(a.pr.length){h+='<div style="margin-top:8px">Zugehörige Prophylaxen: ';h+=a.pr.map(p=>'<span class="proph'+(p[1]?' es':'')+'">'+p[0]+(p[1]?' · Expertenstandard':'')+'</span>').join('');h+='</div>';}
+  else{h+='<div style="margin-top:8px;color:var(--ink-soft)">In dieser Vorlage ist hier keine spezifische Prophylaxe zugeordnet — trotzdem für die individuelle Planung wichtig (z. B. Wohlbefinden, Selbstbestimmung).</div>';}
+  el.innerHTML=h;
+}
+
+/* ---------- Quiz ---------- */
+const QUIZ=[
+ {q:'Wie viele Schritte hat der Pflegeprozess nach Fiechter & Meier?',opts:['4 Schritte','5 Schritte','6 Schritte','7 Schritte'],correct:2,why:'Das gängige Modell nach Fiechter & Meier hat 6 Schritte (I-P-Z-M-D-E). Krohwinkels eigenes Modell fasst sie zu 4 Schritten zusammen.'},
+ {q:'Wofür steht das „R" in der PESR-Regel?',opts:['Risiko','Ressourcen','Realistisch','Reaktion'],correct:1,why:'PESR = Problem, Einflussfaktoren/Ursache, Symptome, Ressourcen. Die Ressourcen sind die Fähigkeiten, auf denen die Förderung aufbaut.'},
+ {q:'Welches Pflegeziel ist korrekt (SMART) formuliert?',opts:['Frau K. soll sich wohler fühlen.','Ich lagere Frau K. regelmäßig.','Frau K. geht bis zum 30.09. mit Rollator sicher zur Toilette.','Frau K. soll nie wieder stürzen.'],correct:2,why:'Ein SMART-Ziel beschreibt einen messbaren Zustand des Menschen mit Termin. „Ich lagere…" ist eine Maßnahme, nicht ein Ziel.'},
+ {q:'Zur ABEDL „Sich bewegen können" gehören typischerweise welche Prophylaxen?',opts:['Pneumonie und Aspiration','Sturz, Dekubitus, Thrombose, Kontraktur','Obstipation und Harnwegsinfekt','Soor und Parotitis'],correct:1,why:'Bewegungsmangel führt zu Sturz-, Dekubitus-, Thrombose- und Kontrakturrisiko. Sturz und Dekubitus haben eigene Expertenstandards.'},
+ {q:'Ein Pflegeziel beschreibt…',opts:['die Tätigkeit der Pflegekraft','einen erreichbaren Zustand des Menschen','die ärztliche Diagnose','die benötigten Hilfsmittel'],correct:1,why:'Ziele formulieren, was beim Menschen erreicht werden soll — nicht, was die Pflegekraft tut (das sind die Maßnahmen).'},
+ {q:'Womit machst du eine Pflegemaßnahme so konkret, dass jede Kollegin sie gleich ausführt?',opts:['mit der SMART-Regel','mit den W-Fragen (wer/was/wann/wie/womit/wo)','mit dem Barthel-Index','mit der PESR-Regel'],correct:1,why:'Die W-Fragen machen Maßnahmen eindeutig und wiederholbar. SMART gehört zu den Zielen, PESR zum Problem.'},
+ {q:'Was bedeutet ABEDL bei Krohwinkel?',opts:['Aktivitäten, Beziehungen und existenzielle Erfahrungen des Lebens','Allgemeine Bedürfnisse elementarer Lebensdaten','Aktivitäten bei ergänzender Dokumentation der Lebensqualität','Ableitung besonderer einzelner Diagnosen im Leben'],correct:0,why:'1999 erweiterte Krohwinkel das ältere AEDL-Modell um die Beziehungen — daraus wurden die 13 ABEDL.'},
+ {q:'Welche Aussage zur Pflegeplanung stimmt rechtlich?',opts:['Sie darf von jeder Hilfskraft gemacht werden.','Sie ist eine vorbehaltene Tätigkeit nach dem PflBG.','Sie ist gesetzlich nicht geregelt.','Nur Ärzte dürfen sie erstellen.'],correct:1,why:'Seit dem Pflegeberufegesetz (2020) sind Bedarfserhebung, Planung und Evaluation vorbehaltene Tätigkeiten ausgebildeter Pflegefachpersonen.'},
+ {q:'Welche 3 ABEDL gelten als „prioritär", weil sie häufig Probleme in anderen verursachen?',opts:['Essen, Ausscheiden, Schlafen','Kommunizieren, Sich bewegen, Vitale Funktionen aufrechterhalten','Sich pflegen, Sich kleiden, Sich beschäftigen','Sicherheit, Soziales, Sexualität'],correct:1,why:'Krohwinkel hebt die ersten drei ABEDL hervor; die 13. (existenzielle Erfahrungen) beeinflusst zusätzlich alle anderen.'},
+ {q:'Was tust du in der Evaluation?',opts:['Du sammelst zum ersten Mal Informationen.','Du prüfst, ob das Ziel erreicht ist, und passt den Plan an.','Du formulierst die Diagnose des Arztes.','Du dokumentierst nur die Stammdaten.'],correct:1,why:'Die Evaluation schließt den Regelkreis: Ziel erreicht? → Problem schließen, Maßnahmen ändern oder neu planen.'},
+ {q:'„So viel Selbstständigkeit wie möglich, so viel Hilfe wie nötig" — welche Hilfeform passt zur größten Selbstständigkeit?',opts:['vollständig übernehmen','unterstützen','anleiten/beraten','beaufsichtigen'],correct:2,why:'Anleiten/Beraten fördert die Ressourcen am meisten — der Mensch handelt selbst, die Pflegekraft erklärt und begleitet.'},
+ {q:'Warum ist die Biografie in der Informationssammlung wichtig?',opts:['Sie ist gesetzlich verboten.','Sie macht die Pflege individuell (Gewohnheiten, Vorlieben).','Sie ersetzt die ärztliche Diagnose.','Sie ist nur für die Abrechnung nötig.'],correct:1,why:'Die Biografie (Lebensgeschichte, Gewohnheiten) ermöglicht eine individuelle, an den Menschen angepasste Pflege — ein Kerngedanke bei Krohwinkel.'},
+];
+const quizEl=document.getElementById('quiz');
+const prog=document.querySelector('.quizbar .prog i');
+const pill=document.querySelector('.quizbar .scorepill');
+document.querySelector('.quizbar .restart').onclick=()=>buildQuiz();
+function buildQuiz(){
+  quizEl.innerHTML='';let answered=0,right=0;const total=QUIZ.length;
+  pill.textContent='0 / '+total+' richtig';prog.style.width='0%';
+  QUIZ.forEach((item,qi)=>{
+    const card=document.createElement('div');card.className='qcard';
+    const nr=document.createElement('div');nr.className='qnr';nr.textContent='Frage '+(qi+1)+' / '+total;
+    const h=document.createElement('div');h.className='qtext';h.textContent=item.q;
+    card.appendChild(nr);card.appendChild(h);
+    const why=document.createElement('div');why.className='qwhy';why.textContent=item.why;
+    item.opts.forEach((txt,oi)=>{
+      const b=document.createElement('button');b.className='opt';
+      b.innerHTML='<span class="lbl"></span><span class="mk"></span>';b.querySelector('.lbl').textContent=txt;
+      b.onclick=()=>{
+        if(card.dataset.done)return;card.dataset.done='1';answered++;
+        card.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        card.querySelectorAll('.opt')[item.correct].classList.add('correct');
+        if(oi===item.correct)right++;else b.classList.add('wrong');
+        why.classList.add('show');pill.textContent=right+' / '+total+' richtig';prog.style.width=Math.round(answered/total*100)+'%';
+        if(answered===total){const pct=Math.round(right/total*100);
+          const d=document.createElement('div');d.className='quizdone';
+          const note=pct>=90?'Sehr gut! 🎉':pct>=75?'Gut gemacht! 👍':pct>=50?'Bestanden — dranbleiben! 💪':'Weiter üben — geh die Schritte nochmal durch. 📘';
+          d.innerHTML='<div class="big">'+right+' / '+total+' ('+pct+' %)</div><div style="color:var(--ink-soft);font-size:14px;margin-top:4px">'+note+'</div>';
+          quizEl.appendChild(d);d.scrollIntoView({behavior:'smooth',block:'center'});}
+      };
+      card.appendChild(b);
+    });
+    card.appendChild(why);quizEl.appendChild(card);
+  });
+}
+buildQuiz();
+</script>
