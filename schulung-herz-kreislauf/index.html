@@ -1,0 +1,413 @@
+<title>Schulung: Hypotonie & Hypertonie</title>
+<style>
+  :root{
+    --paper:#f6f4ef;--paper-2:#efece4;--card:#fffdf9;--ink:#1a2321;--ink-soft:#4a5551;--line:#ddd8cd;
+    --accent:#b23a48;--accent-deep:#8f2a36;--accent-soft:#f6e0e2;
+    --hyper:#bb4d3f;--hyperbg:#f6e2dd;--hypo:#2f6fb0;--hypobg:#dde8f4;--normal:#2f7d54;--normalbg:#e3f0e7;--warn:#b5731a;--warnbg:#f6ebd8;
+    --good:#2f7d54;--bad:#bb4d3f;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#161314;--paper-2:#100d0e;--card:#211b1c;--ink:#f0ecec;--ink-soft:#b0a6a7;--line:#352b2d;
+    --accent:#e0808c;--accent-deep:#eba6ae;--accent-soft:#2e1a1d;
+    --hyper:#e08a7c;--hyperbg:#2e1a16;--hypo:#7fb0e0;--hypobg:#15212e;--normal:#6fc292;--normalbg:#14281c;--warn:#d9a559;--warnbg:#2c2312;
+    --good:#6fc292;--bad:#e08a7c;}}
+  :root[data-theme="dark"]{--paper:#161314;--paper-2:#100d0e;--card:#211b1c;--ink:#f0ecec;--ink-soft:#b0a6a7;--line:#352b2d;--accent:#e0808c;--accent-deep:#eba6ae;--accent-soft:#2e1a1d;--hyper:#e08a7c;--hyperbg:#2e1a16;--hypo:#7fb0e0;--hypobg:#15212e;--normal:#6fc292;--normalbg:#14281c;--warn:#d9a559;--warnbg:#2c2312;--good:#6fc292;--bad:#e08a7c;}
+  :root[data-theme="light"]{--paper:#f6f4ef;--paper-2:#efece4;--card:#fffdf9;--ink:#1a2321;--ink-soft:#4a5551;--line:#ddd8cd;--accent:#b23a48;--accent-deep:#8f2a36;--accent-soft:#f6e0e2;--hyper:#bb4d3f;--hyperbg:#f6e2dd;--hypo:#2f6fb0;--hypobg:#dde8f4;--normal:#2f7d54;--normalbg:#e3f0e7;--warn:#b5731a;--warnbg:#f6ebd8;--good:#2f7d54;--bad:#bb4d3f;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px 90px;}
+  header.hero{padding:50px 20px 32px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 12px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,6vw,2.9rem);margin:0 0 10px;line-height:1.1;text-wrap:balance;}
+  header.hero p{max-width:56ch;margin:0 auto;color:var(--ink-soft);}
+  .doz{display:inline-block;margin-top:16px;font-size:13px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 15px;}
+  nav.toc{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding:9px 14px;}
+  nav.toc a{flex:0 0 auto;text-decoration:none;color:var(--ink-soft);font-size:13.5px;padding:6px 11px;border-radius:8px;white-space:nowrap;}
+  nav.toc a:hover{background:var(--paper-2);color:var(--ink);}
+  section{margin-top:50px;scroll-margin-top:60px;}
+  h2{font-family:var(--serif);font-weight:600;font-size:1.7rem;margin:0 0 6px;display:flex;align-items:baseline;gap:12px;text-wrap:balance;}
+  h2 .n{font-family:var(--mono);font-size:.78rem;color:var(--accent);border:1px solid var(--line);border-radius:7px;padding:2px 8px;}
+  h3{font-family:var(--serif);font-weight:600;font-size:1.2rem;margin:24px 0 8px;}
+  .lead{color:var(--ink-soft);margin:0 0 16px;}
+  p{margin:.6em 0;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:14px 0;}
+  .card.tight{padding:14px 18px;}
+  ul.clean{list-style:none;padding:0;margin:12px 0;}
+  ul.clean li{padding:7px 0 7px 26px;position:relative;border-bottom:1px dashed var(--line);}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean li::before{content:"→";position:absolute;left:2px;color:var(--accent);font-weight:700;}
+  .note{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0;font-size:15.5px;}
+  .warnbox{border-left:3px solid var(--warn);background:var(--warnbg);border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0;font-size:15.5px;}
+  .scroll-x{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;}
+  th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-soft);}
+  code{font-family:var(--mono);font-size:.85em;background:var(--paper-2);padding:1px 5px;border-radius:5px;}
+  .tag{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;padding:2px 8px;border-radius:6px;}
+  .t-hyper{background:var(--hyperbg);color:var(--hyper);} .t-hypo{background:var(--hypobg);color:var(--hypo);} .t-normal{background:var(--normalbg);color:var(--normal);}
+
+  /* BP Rechner */
+  .bp{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:14px 0;}
+  .bp .readout{text-align:center;margin-bottom:14px;}
+  .bp .val{font-family:var(--mono);font-size:2.2rem;font-weight:700;}
+  .bp .cat{display:inline-block;margin-top:8px;padding:6px 16px;border-radius:999px;font-weight:700;font-size:15px;}
+  .bp label{display:block;font-size:13.5px;color:var(--ink-soft);margin:14px 0 4px;font-family:var(--mono);}
+  .bp input[type=range]{width:100%;accent-color:var(--accent);}
+  .bp .hint{font-size:13.5px;color:var(--ink-soft);margin-top:12px;}
+
+  /* Sortierspiel */
+  .sort-item{display:flex;gap:10px;align-items:center;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin:8px 0;background:var(--card);}
+  .sort-item .txt{flex:1 1 240px;font-size:15px;}
+  .sort-item button{font:inherit;font-size:13.5px;border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;background:var(--paper);color:var(--ink);}
+  .sort-item button.hypo:hover{border-color:var(--hypo);} .sort-item button.hyper:hover{border-color:var(--hyper);}
+  .sort-item.done .txt{font-weight:600;}
+  .sort-item.right{border-color:var(--good);} .sort-item.wrong{border-color:var(--bad);}
+  .sort-item .fb{flex-basis:100%;font-size:13.5px;color:var(--ink-soft);display:none;}
+  .sort-item.done .fb{display:block;}
+  .sortscore{font-family:var(--mono);font-size:14px;color:var(--accent-deep);background:var(--accent-soft);border-radius:99px;padding:5px 12px;display:inline-block;margin-top:8px;}
+
+  details.reveal{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:0 16px;margin:10px 0;}
+  details.reveal>summary{cursor:pointer;padding:13px 0;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center;}
+  details.reveal>summary::-webkit-details-marker{display:none;}
+  details.reveal>summary::before{content:"＋";font-family:var(--mono);color:var(--accent);font-weight:700;}
+  details.reveal[open]>summary::before{content:"－";}
+  details.reveal .ans{padding:0 0 14px 4px;color:var(--ink-soft);}
+  .pts{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;}
+
+  .quizbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+  .quizbar .prog{flex:1 1 140px;height:8px;background:var(--paper-2);border-radius:99px;overflow:hidden;min-width:110px;}
+  .quizbar .prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s;}
+  .scorepill{font-family:var(--mono);font-size:13px;color:var(--accent-deep);background:var(--accent-soft);border-radius:99px;padding:5px 12px;}
+  .restart{font:inherit;font-size:13px;color:var(--ink-soft);background:none;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;}
+  .qcard{border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin:12px 0;background:var(--card);}
+  .qcard .qnr{font-family:var(--mono);font-size:12px;color:var(--accent);}
+  .qcard .qtext{font-weight:600;margin:4px 0 10px;}
+  .opt{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin:6px 0;cursor:pointer;transition:border-color .12s,background .12s;}
+  .opt:hover:not(:disabled){border-color:var(--accent);}
+  .opt:disabled{cursor:default;}
+  .opt.correct{border-color:var(--good);background:color-mix(in srgb,var(--good) 15%,var(--card));}
+  .opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 13%,var(--card));}
+  .opt .mk{float:right;font-weight:700;} .opt.correct .mk::after{content:"✓";color:var(--good);} .opt.wrong .mk::after{content:"✗";color:var(--bad);}
+  .qwhy{font-size:14px;color:var(--ink-soft);margin:8px 2px 0;padding-left:12px;border-left:2px solid var(--accent);display:none;}
+  .qwhy.show{display:block;}
+  .quizdone{margin-top:16px;padding:16px;border-radius:12px;background:var(--accent-soft);text-align:center;}
+  .quizdone .big{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--accent-deep);}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:14px;text-align:center;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">UE 1 · Herz- und Kreislaufsystem · Niveau B1</p>
+  <h1>Hypotonie & Hypertonie</h1>
+  <p>Niedriger und hoher Blutdruck: Was ist das? Woran erkenne ich es? Und was mache ich als
+  Pflegekraft? Mit einem Blutdruck-Rechner zum Schieben, einem Sortierspiel, einem Fallbeispiel und einem Quiz.</p>
+  <span class="doz">Dozentin: Annette Küppers</span>
+</header>
+
+<nav class="toc">
+  <a href="#grundlagen">Blutdruck</a>
+  <a href="#hyper">Hypertonie</a>
+  <a href="#hypo">Hypotonie</a>
+  <a href="#vergleich">Vergleich</a>
+  <a href="#messen">Messen</a>
+  <a href="#fall">Fallbeispiel</a>
+  <a href="#quiz">Quiz</a>
+  <a href="#tipps">Tipps</a>
+</nav>
+
+<div class="wrap">
+
+  <section id="grundlagen">
+    <h2><span class="n">1</span> Grundlagen: Was ist Blutdruck?</h2>
+    <p class="lead">Der Blutdruck ist der Druck, mit dem das Blut auf die Wände der Arterien drückt.
+    Man misst ihn in <b>mmHg</b> (Millimeter Quecksilbersäule) und schreibt zwei Zahlen.</p>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Der obere Wert (systolisch):</b> das Herz zieht sich zusammen und pumpt das Blut heraus.</li>
+        <li><b>Der untere Wert (diastolisch):</b> das Herz ist locker und füllt sich wieder mit Blut.</li>
+        <li><b>Normalwert:</b> etwa <b>120/80 mmHg</b> („120 zu 80"). Der Puls liegt normal bei <b>60–100 Schlägen pro Minute</b>.</li>
+      </ul>
+    </div>
+
+    <h3>🎚️ Blutdruck-Rechner — schiebe die Werte</h3>
+    <p style="font-size:15px;color:var(--ink-soft)">Stell die zwei Werte ein. Die Seite zeigt dir sofort, zu welcher Gruppe der Blutdruck gehört.</p>
+    <div class="bp">
+      <div class="readout">
+        <div class="val"><span id="sVal">120</span> / <span id="dVal">80</span> <span style="font-size:1rem;color:var(--ink-soft)">mmHg</span></div>
+        <div class="cat" id="bpCat"></div>
+      </div>
+      <label>Oberer Wert (systolisch): <span id="sLbl">120</span> mmHg</label>
+      <input type="range" id="sysR" min="70" max="220" value="120">
+      <label>Unterer Wert (diastolisch): <span id="dLbl">80</span> mmHg</label>
+      <input type="range" id="diaR" min="40" max="130" value="80">
+      <div class="hint">Faustregel: <b>ab 140/90</b> = Bluthochdruck · <b>unter 100</b> (oben) = niedriger Blutdruck · <b>ab 180/120</b> = Notfall (hypertensive Krise).</div>
+    </div>
+  </section>
+
+  <section id="hyper">
+    <h2><span class="n">2</span> Hypertonie — hoher Blutdruck <span class="tag t-hyper">Hyper = hoch</span></h2>
+    <p class="lead">Hypertonie heißt: Der Blutdruck ist <b>dauerhaft zu hoch</b> — ab etwa <b>140/90 mmHg</b>
+    (in der Praxis gemessen).</p>
+
+    <h3>Ursachen</h3>
+    <div class="card tight">
+      <ul class="clean">
+        <li><b>Primäre (essenzielle) Hypertonie</b> (ca. 90 %): keine einzelne Ursache. Risikofaktoren: Alter, Übergewicht, viel Salz, wenig Bewegung, Stress, Rauchen, Alkohol, Vererbung.</li>
+        <li><b>Sekundäre Hypertonie</b> (ca. 10 %): Folge einer anderen Krankheit, z. B. der Nieren oder der Hormone.</li>
+      </ul>
+    </div>
+
+    <h3>Symptome</h3>
+    <p>Oft merkt man <b>nichts</b> — darum heißt Hypertonie „der stille Killer". Manchmal:</p>
+    <ul class="clean">
+      <li>Kopfschmerzen (oft morgens, am Hinterkopf)</li>
+      <li>Schwindel, Ohrensausen, Nasenbluten</li>
+      <li>Sehstörungen, rotes Gesicht, Nervosität</li>
+    </ul>
+
+    <h3>Warum ist das gefährlich? (Folgen)</h3>
+    <div class="warnbox">Hoher Druck schädigt langsam die Gefäße und Organe. Mögliche Folgen:
+    <b>Schlaganfall</b>, <b>Herzinfarkt</b>, <b>Herzschwäche</b>, <b>Nierenschwäche</b> und Augenschäden.</div>
+
+    <h3>Therapie</h3>
+    <div class="scroll-x card tight">
+      <table>
+        <thead><tr><th>Ohne Medikamente (Lebensstil)</th><th>Mit Medikamenten (Beispiele)</th></tr></thead>
+        <tbody>
+          <tr><td>weniger Salz (unter 6 g/Tag), gesunde Ernährung</td><td>ACE-Hemmer / Sartane</td></tr>
+          <tr><td>Gewicht senken, mehr Bewegung</td><td>Diuretika (Wassertabletten)</td></tr>
+          <tr><td>weniger Alkohol, nicht rauchen</td><td>Beta-Blocker</td></tr>
+          <tr><td>Stress abbauen</td><td>Kalziumantagonisten</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Pflege & Beobachtung</h3>
+    <ul class="clean">
+      <li>Blutdruck regelmäßig messen (in Ruhe, richtig) und dokumentieren.</li>
+      <li>Auf Symptome achten und die Medikamente pünktlich geben.</li>
+      <li>Den Menschen beraten: Ernährung, Bewegung, Selbstmessung anleiten.</li>
+    </ul>
+
+    <div class="warnbox"><b>Notfall — hypertensive Krise:</b> Blutdruck <b>ab 180/120 mmHg</b>, oft mit
+    Kopfschmerz, Sehstörung, Atemnot oder Verwirrtheit. → <b>Ruhe, Oberkörper hoch, Vitalzeichen, sofort Arzt/Notruf.</b></div>
+  </section>
+
+  <section id="hypo">
+    <h2><span class="n">3</span> Hypotonie — niedriger Blutdruck <span class="tag t-hypo">Hypo = niedrig</span></h2>
+    <p class="lead">Hypotonie heißt: Der Blutdruck ist <b>zu niedrig</b> — meist <b>unter 100 mmHg</b> (oberer Wert).
+    Sie ist oft <b>nicht gefährlich</b>, aber unangenehm.</p>
+
+    <h3>Formen & Ursachen</h3>
+    <ul class="clean">
+      <li><b>Primäre Hypotonie:</b> von Natur aus niedriger Blutdruck (oft junge, schlanke Frauen).</li>
+      <li><b>Sekundäre Hypotonie:</b> Folge z. B. von Flüssigkeitsmangel, Blutverlust, Herzschwäche oder Medikamenten.</li>
+      <li><b>Orthostatische Hypotonie:</b> Der Druck fällt <b>beim schnellen Aufstehen</b> ab (vom Liegen/Sitzen zum Stehen).</li>
+    </ul>
+
+    <h3>Symptome</h3>
+    <ul class="clean">
+      <li>Schwindel, „Schwarzwerden" vor den Augen (besonders beim Aufstehen)</li>
+      <li>Müdigkeit, schlechte Konzentration, kalte Hände und Füße</li>
+      <li>im schlimmsten Fall <b>Ohnmacht (Synkope)</b> → Sturzgefahr!</li>
+    </ul>
+
+    <h3>Pflege & Maßnahmen</h3>
+    <ul class="clean">
+      <li><b>Langsam aufstehen</b> (erst sitzen, dann stehen) — das ist das Wichtigste.</li>
+      <li>Genug trinken; wenn erlaubt, etwas mehr Salz.</li>
+      <li>Bewegung, Wechselduschen, Kompressionsstrümpfe.</li>
+      <li>Bei Ohnmacht/Kollaps: <b>hinlegen und die Beine hochlagern</b> (Schocklage), Vitalzeichen prüfen, Hilfe holen.</li>
+    </ul>
+    <div class="note"><b>Schellong-Test:</b> Man misst Blutdruck und Puls im <b>Liegen</b> und dann mehrmals
+    nach dem <b>Aufstehen</b>. So sieht man eine orthostatische Hypotonie.</div>
+  </section>
+
+  <section id="vergleich">
+    <h2><span class="n">4</span> Hypo oder Hyper? — Sortierspiel</h2>
+    <p class="lead">Gehört das Merkmal zu <b>Hypotonie</b> (niedrig) oder <b>Hypertonie</b> (hoch)?
+    Klicke deine Antwort. Du siehst sofort, ob es stimmt.</p>
+    <div id="sortgame"></div>
+    <div class="sortscore" id="sortscore">0 / 0 richtig</div>
+  </section>
+
+  <section id="messen">
+    <h2><span class="n">5</span> Blutdruck richtig messen</h2>
+    <p class="lead">Die Messung nach <b>Riva-Rocci</b> mit dem Stethoskop (Korotkow-Geräusche). Kleine Fehler
+    verändern das Ergebnis stark — darum ist die richtige Technik wichtig.</p>
+    <div class="card tight">
+      <ul class="clean">
+        <li>Der Mensch sitzt <b>5 Minuten ruhig</b>, spricht nicht, Beine nicht überkreuzt.</li>
+        <li>Die <b>Manschette</b> hat die richtige Größe und liegt auf <b>Herzhöhe</b>, der Arm ist locker.</li>
+        <li>Manschette aufpumpen, langsam Luft ablassen: <b>erstes Geräusch = oberer Wert (systolisch)</b>.</li>
+        <li><b>Letztes Geräusch / Verschwinden = unterer Wert (diastolisch)</b>.</li>
+        <li>Bei hohem Blutdruck an <b>beiden Armen</b> und mehrmals messen. Immer dokumentieren.</li>
+      </ul>
+    </div>
+    <div class="note"><b>Häufige Fehler:</b> falsche Manschettengröße, Arm hängt herunter, keine Ruhe vorher,
+    Sprechen beim Messen — das macht die Werte falsch (meist zu hoch).</div>
+  </section>
+
+  <section id="fall">
+    <h2><span class="n">6</span> Fallbeispiel</h2>
+    <p class="lead">Versuch zuerst selbst, dann öffne die Lösung.</p>
+    <div class="card">
+      <p style="font-family:var(--mono);font-size:13px;color:var(--accent-deep);margin-top:0">Frau Berg, 78 Jahre · Pflegeheim</p>
+      <p>Frau Berg steht morgens schnell aus dem Bett auf. Ihr wird plötzlich schwindelig, es wird ihr
+      „schwarz vor den Augen", und sie muss sich am Schrank festhalten. Du misst kurz danach den Blutdruck:
+      <b>95/58 mmHg</b>, Puls 92/min.</p>
+    </div>
+    <details class="reveal">
+      <summary>Frage 1: Welche Störung liegt vor? (Beschreiben Sie) <span class="pts">Lösung</span></summary>
+      <div class="ans"><p>Eine <b>orthostatische Hypotonie</b> (niedriger Blutdruck beim Aufstehen). Anzeichen:
+      Schwindel und Schwarzwerden vor den Augen beim schnellen Aufstehen, dazu ein niedriger Wert (95/58 mmHg).</p></div>
+    </details>
+    <details class="reveal">
+      <summary>Frage 2: Welche 2 Sofortmaßnahmen machst du? <span class="pts">Lösung</span></summary>
+      <div class="ans"><p>1. Frau Berg <b>hinsetzen oder hinlegen</b> und die <b>Beine hochlagern</b>, damit das Blut
+      zum Kopf kommt. 2. <b>Bei ihr bleiben</b>, beruhigen und <b>Vitalzeichen kontrollieren</b> (Blutdruck, Puls);
+      bei Bedarf Hilfe holen.</p></div>
+    </details>
+    <details class="reveal">
+      <summary>Frage 3: Nenne 2 Maßnahmen, damit das nicht wieder passiert. <span class="pts">Lösung</span></summary>
+      <div class="ans"><p>Zum Beispiel: <b>langsam aufstehen</b> (erst an die Bettkante setzen, kurz warten, dann stehen);
+      <b>genug trinken</b>; Kompressionsstrümpfe; morgens vor dem Aufstehen die Beine bewegen.</p></div>
+    </details>
+  </section>
+
+  <section id="quiz">
+    <h2><span class="n">7</span> Quiz</h2>
+    <p class="lead">Wähle bei jeder Frage eine Antwort. Du siehst sofort, ob sie richtig ist, und am Ende deinen Score.</p>
+    <div class="quizbar"><div class="prog"><i></i></div><span class="scorepill">0 / 0 richtig</span><button class="restart">↻ Neu starten</button></div>
+    <div id="quiz"></div>
+  </section>
+
+  <section id="tipps">
+    <h2><span class="n">8</span> Prüfungstipps</h2>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Normalwert:</b> 120/80 mmHg · Puls 60–100/min.</li>
+        <li><b>Hyper</b>tonie = <b>hoch</b> (ab 140/90) · <b>Hypo</b>tonie = <b>niedrig</b> (unter 100 oben).</li>
+        <li>Hypertonie ist der <b>„stille Killer"</b> → Folgen: Schlaganfall, Herzinfarkt, Nieren-/Herzschwäche.</li>
+        <li>Hypotonie → Hauptgefahr ist der <b>Sturz</b> (Schwindel/Ohnmacht). Wichtigste Maßnahme: <b>langsam aufstehen</b>.</li>
+        <li>Notfall: <b>hypertensive Krise ab 180/120</b> → Ruhe, Oberkörper hoch, Arzt. Kollaps bei Hypotonie → <b>Beine hoch</b>.</li>
+        <li><b>Schellong-Test</b> = Blutdruck/Puls im Liegen und Stehen (für orthostatische Hypotonie).</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    Schulung „Hypotonie & Hypertonie" (UE 1, Herz-Kreislauf) · Dozentin A. Küppers · Niveau B1 ·
+    Werte nach gängigen Leitlinien — prüfe bei Details immer deine Schulunterlagen.
+  </footer>
+</div>
+
+<script>
+/* ---------- BP-Rechner ---------- */
+const sysR=document.getElementById('sysR'), diaR=document.getElementById('diaR');
+function classify(s,d){
+  if(s>=180||d>=120) return ['Hypertensive Krise (Notfall!)','var(--hyper)','#fff'];
+  if(s>=140||d>=90)  return ['Bluthochdruck (Hypertonie)','var(--hyper)','#fff'];
+  if(s>=130||d>=85)  return ['Hoch-normal','var(--warn)','#fff'];
+  if(s<100||d<60)    return ['Niedriger Blutdruck (Hypotonie)','var(--hypo)','#fff'];
+  return ['Normal','var(--normal)','#fff'];
+}
+function updBP(){
+  const s=+sysR.value, d=+diaR.value;
+  document.getElementById('sVal').textContent=s; document.getElementById('dVal').textContent=d;
+  document.getElementById('sLbl').textContent=s; document.getElementById('dLbl').textContent=d;
+  const [txt,bg,fg]=classify(s,d);
+  const cat=document.getElementById('bpCat'); cat.textContent=txt; cat.style.background=bg; cat.style.color=fg;
+}
+sysR.oninput=updBP; diaR.oninput=updBP; updBP();
+
+/* ---------- Sortierspiel ---------- */
+const SORT=[
+  {t:'Blutdruck 155/95 mmHg',a:'hyper',why:'Ab 140/90 spricht man von Bluthochdruck.'},
+  {t:'Schwindel und Schwarzwerden vor den Augen beim Aufstehen',a:'hypo',why:'Typisch für niedrigen Blutdruck (orthostatisch).'},
+  {t:'Risiko für Schlaganfall und Herzinfarkt',a:'hyper',why:'Hoher Druck schädigt Gefäße und Organe.'},
+  {t:'Hauptgefahr ist der Sturz durch Ohnmacht',a:'hypo',why:'Bei niedrigem Druck kann man kurz ohnmächtig werden (Synkope).'},
+  {t:'„Stiller Killer" — man merkt oft nichts',a:'hyper',why:'Hoher Blutdruck macht lange keine Beschwerden.'},
+  {t:'Wichtigste Maßnahme: langsam aufstehen',a:'hypo',why:'So fällt der Druck beim Aufstehen nicht so stark ab.'},
+  {t:'Therapie: weniger Salz, Gewicht senken, ACE-Hemmer',a:'hyper',why:'Lebensstil + Medikamente senken den hohen Druck.'},
+  {t:'Blutdruck 92/55 mmHg',a:'hypo',why:'Unter 100 (oben) ist der Blutdruck niedrig.'},
+  {t:'Notfall ab 180/120 mmHg',a:'hyper',why:'Das ist die hypertensive Krise.'},
+  {t:'Bei Kollaps: Beine hochlagern (Schocklage)',a:'hypo',why:'So kommt mehr Blut zum Kopf.'},
+];
+const sg=document.getElementById('sortgame'); let sDone=0,sRight=0;
+function renderSort(){
+  sg.innerHTML=''; sDone=0; sRight=0; updSortScore();
+  SORT.forEach(item=>{
+    const row=document.createElement('div'); row.className='sort-item';
+    row.innerHTML='<span class="txt">'+item.t+'</span>'+
+      '<button class="hypo">Hypotonie</button><button class="hyper">Hypertonie</button>'+
+      '<span class="fb"></span>';
+    const [bHypo,bHyper]=row.querySelectorAll('button');
+    function answer(choice){
+      if(row.dataset.done)return; row.dataset.done='1'; sDone++;
+      row.classList.add('done');
+      const ok=choice===item.a; if(ok)sRight++;
+      row.classList.add(ok?'right':'wrong');
+      row.querySelector('.fb').textContent=(ok?'✓ Richtig. ':'✗ Falsch. ')+item.why;
+      bHypo.disabled=true; bHyper.disabled=true; updSortScore();
+    }
+    bHypo.onclick=()=>answer('hypo'); bHyper.onclick=()=>answer('hyper');
+    sg.appendChild(row);
+  });
+}
+function updSortScore(){document.getElementById('sortscore').textContent=sRight+' / '+SORT.length+' richtig';}
+renderSort();
+
+/* ---------- Quiz ---------- */
+const QUIZ=[
+ {q:'Was ist der normale Blutdruck (Richtwert)?',opts:['80/50 mmHg','120/80 mmHg','160/95 mmHg','200/110 mmHg'],correct:1,why:'Etwa 120/80 mmHg gilt als normal.'},
+ {q:'Ab welchem Wert spricht man von Bluthochdruck (Hypertonie)?',opts:['ab 120/80 mmHg','ab 130/85 mmHg','ab 140/90 mmHg','ab 100/60 mmHg'],correct:2,why:'Ab etwa 140/90 mmHg (in der Praxis gemessen) ist es eine Hypertonie.'},
+ {q:'Was bedeutet der obere (systolische) Wert?',opts:['Das Herz ist locker und füllt sich','Das Herz zieht sich zusammen und pumpt','Der Puls pro Minute','Der Sauerstoff im Blut'],correct:1,why:'Systolisch = das Herz pumpt das Blut heraus.'},
+ {q:'Welche Folge kann ein dauerhaft hoher Blutdruck haben?',opts:['Schlaganfall und Herzinfarkt','Bessere Wundheilung','Niedriger Puls','Mehr Muskelkraft'],correct:0,why:'Hoher Druck schädigt Gefäße und Organe → Schlaganfall, Herzinfarkt, Nieren-/Herzschwäche.'},
+ {q:'Ein Bewohner wird beim schnellen Aufstehen schwindelig und muss sich festhalten. Was ist das?',opts:['Hypertensive Krise','Orthostatische Hypotonie','Herzinfarkt','Fieber'],correct:1,why:'Beim Aufstehen fällt der Blutdruck ab → orthostatische Hypotonie.'},
+ {q:'Was ist die WICHTIGSTE Maßnahme bei niedrigem Blutdruck (Hypotonie)?',opts:['Schnell aufstehen','Langsam aufstehen','Kein Wasser trinken','Viel Salz vermeiden'],correct:1,why:'Langsam aufstehen verhindert den plötzlichen Druckabfall und den Sturz.'},
+ {q:'Ab welchem Wert spricht man von einer hypertensiven Krise (Notfall)?',opts:['ab 140/90 mmHg','ab 160/100 mmHg','ab 180/120 mmHg','ab 100/60 mmHg'],correct:2,why:'Ab 180/120 mmHg ist es ein Notfall (hypertensive Krise).'},
+ {q:'Warum nennt man die Hypertonie „stiller Killer"?',opts:['Weil sie sofort Schmerzen macht','Weil man oft nichts merkt, aber Schäden entstehen','Weil sie nur nachts kommt','Weil sie ansteckend ist'],correct:1,why:'Hoher Blutdruck macht lange keine Beschwerden, schädigt aber im Stillen die Organe.'},
+ {q:'Bei einem Kollaps durch niedrigen Blutdruck: Wie lagerst du den Menschen?',opts:['Oberkörper hoch','Beine hochlagern (Schocklage)','Bauchlage','Sitzend mit Beinen nach unten'],correct:1,why:'Beine hoch bringt mehr Blut zum Kopf.'},
+ {q:'Womit prüft man eine orthostatische Hypotonie?',opts:['Barthel-Index','Schellong-Test','Braden-Skala','BMI'],correct:1,why:'Der Schellong-Test misst Blutdruck und Puls im Liegen und im Stehen.'},
+ {q:'Was ist beim Blutdruckmessen richtig?',opts:['Der Mensch spricht dabei','Der Arm hängt locker nach unten','5 Minuten Ruhe, Manschette auf Herzhöhe','Immer nur einmal, ganz schnell'],correct:2,why:'Ruhe vorher und die Manschette auf Herzhöhe geben richtige Werte.'},
+ {q:'Welches ist ein Medikament gegen hohen Blutdruck?',opts:['ACE-Hemmer','Traubenzucker','Vitamin C','Insulin'],correct:0,why:'ACE-Hemmer (auch Sartane, Diuretika, Beta-Blocker) senken den Blutdruck.'},
+];
+const quizEl=document.getElementById('quiz');
+const prog=document.querySelector('.quizbar .prog i'), pill=document.querySelector('.quizbar .scorepill');
+document.querySelector('.quizbar .restart').onclick=()=>buildQuiz();
+function buildQuiz(){
+  quizEl.innerHTML=''; let answered=0,right=0; const total=QUIZ.length;
+  pill.textContent='0 / '+total+' richtig'; prog.style.width='0%';
+  QUIZ.forEach((item,qi)=>{
+    const card=document.createElement('div');card.className='qcard';
+    const nr=document.createElement('div');nr.className='qnr';nr.textContent='Frage '+(qi+1)+' / '+total;
+    const h=document.createElement('div');h.className='qtext';h.textContent=item.q;
+    card.appendChild(nr);card.appendChild(h);
+    const why=document.createElement('div');why.className='qwhy';why.textContent=item.why;
+    item.opts.forEach((txt,oi)=>{
+      const b=document.createElement('button');b.className='opt';
+      b.innerHTML='<span class="lbl"></span><span class="mk"></span>';b.querySelector('.lbl').textContent=txt;
+      b.onclick=()=>{
+        if(card.dataset.done)return;card.dataset.done='1';answered++;
+        card.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        card.querySelectorAll('.opt')[item.correct].classList.add('correct');
+        if(oi===item.correct)right++;else b.classList.add('wrong');
+        why.classList.add('show');pill.textContent=right+' / '+total+' richtig';prog.style.width=Math.round(answered/total*100)+'%';
+        if(answered===total){const pct=Math.round(right/total*100);
+          const d=document.createElement('div');d.className='quizdone';
+          const note=pct>=90?'Sehr gut! 🎉':pct>=75?'Gut gemacht! 👍':pct>=50?'Bestanden — weiter so! 💪':'Weiter üben — lies die Kapitel nochmal. 📘';
+          d.innerHTML='<div class="big">'+right+' / '+total+' ('+pct+' %)</div><div style="color:var(--ink-soft);font-size:14px;margin-top:4px">'+note+'</div>';
+          quizEl.appendChild(d);d.scrollIntoView({behavior:'smooth',block:'center'});}
+      };
+      card.appendChild(b);
+    });
+    card.appendChild(why);quizEl.appendChild(card);
+  });
+}
+buildQuiz();
+</script>
