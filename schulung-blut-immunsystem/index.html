@@ -1,0 +1,372 @@
+<title>Schulung: Transfusionen</title>
+<style>
+  :root{
+    --paper:#f7f3f2;--paper-2:#efe8e7;--card:#fffdfc;--ink:#211a1b;--ink-soft:#544a4b;--line:#e0d6d5;
+    --accent:#a01e2e;--accent-deep:#7d1624;--accent-soft:#f6dcdf;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f6e2dd;--warn:#b5731a;--warnbg:#f6ebd8;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#181314;--paper-2:#120d0e;--card:#231b1c;--ink:#f1eceb;--ink-soft:#b3a7a8;--line:#372b2c;
+    --accent:#e88490;--accent-deep:#f0a8b0;--accent-soft:#2f181c;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;}}
+  :root[data-theme="dark"]{--paper:#181314;--paper-2:#120d0e;--card:#231b1c;--ink:#f1eceb;--ink-soft:#b3a7a8;--line:#372b2c;--accent:#e88490;--accent-deep:#f0a8b0;--accent-soft:#2f181c;--good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;}
+  :root[data-theme="light"]{--paper:#f7f3f2;--paper-2:#efe8e7;--card:#fffdfc;--ink:#211a1b;--ink-soft:#544a4b;--line:#e0d6d5;--accent:#a01e2e;--accent-deep:#7d1624;--accent-soft:#f6dcdf;--good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f6e2dd;--warn:#b5731a;--warnbg:#f6ebd8;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px 90px;}
+  header.hero{padding:50px 20px 32px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 12px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,6vw,2.9rem);margin:0 0 10px;line-height:1.1;text-wrap:balance;}
+  header.hero p{max-width:56ch;margin:0 auto;color:var(--ink-soft);}
+  .doz{display:inline-block;margin-top:16px;font-size:13px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 15px;}
+  nav.toc{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding:9px 14px;}
+  nav.toc a{flex:0 0 auto;text-decoration:none;color:var(--ink-soft);font-size:13.5px;padding:6px 11px;border-radius:8px;white-space:nowrap;}
+  nav.toc a:hover{background:var(--paper-2);color:var(--ink);}
+  section{margin-top:50px;scroll-margin-top:60px;}
+  h2{font-family:var(--serif);font-weight:600;font-size:1.7rem;margin:0 0 6px;display:flex;align-items:baseline;gap:12px;text-wrap:balance;}
+  h2 .n{font-family:var(--mono);font-size:.78rem;color:var(--accent);border:1px solid var(--line);border-radius:7px;padding:2px 8px;}
+  h3{font-family:var(--serif);font-weight:600;font-size:1.2rem;margin:24px 0 8px;}
+  .lead{color:var(--ink-soft);margin:0 0 16px;}
+  p{margin:.6em 0;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:14px 0;}
+  .card.tight{padding:14px 18px;}
+  ul.clean{list-style:none;padding:0;margin:12px 0;}
+  ul.clean li{padding:7px 0 7px 26px;position:relative;border-bottom:1px dashed var(--line);}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean li::before{content:"→";position:absolute;left:2px;color:var(--accent);font-weight:700;}
+  ol.steps{counter-reset:s;list-style:none;padding:0;margin:12px 0;}
+  ol.steps li{position:relative;padding:8px 0 8px 40px;border-bottom:1px dashed var(--line);}
+  ol.steps li:last-child{border-bottom:none;}
+  ol.steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:8px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-family:var(--mono);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+  .note{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0;font-size:15.5px;}
+  .warnbox{border-left:3px solid var(--warn);background:var(--warnbg);border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0;font-size:15.5px;}
+  .stop{border:2px solid var(--bad);background:var(--badbg);border-radius:12px;padding:16px 18px;margin:14px 0;}
+  .stop b{color:var(--bad);}
+  .scroll-x{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;}
+  th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-soft);}
+  code{font-family:var(--mono);font-size:.85em;background:var(--paper-2);padding:1px 5px;border-radius:5px;}
+
+  /* Kompatibilität */
+  .compat{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:14px 0;}
+  .compat .pick{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 4px;}
+  .bg-btn{font:inherit;font-family:var(--mono);font-weight:700;font-size:15px;border:1px solid var(--line);border-radius:10px;padding:9px 14px;cursor:pointer;background:var(--paper);color:var(--ink);min-width:56px;}
+  .bg-btn:hover{border-color:var(--accent);}
+  .bg-btn.sel{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .donors{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px;}
+  @media (max-width:560px){.donors{grid-template-columns:repeat(2,1fr);}}
+  .donor{border-radius:10px;padding:10px;text-align:center;font-family:var(--mono);font-weight:700;border:1px solid var(--line);font-size:15px;}
+  .donor.ok{background:var(--goodbg);color:var(--good);border-color:var(--good);}
+  .donor.no{background:var(--badbg);color:var(--bad);border-color:var(--bad);opacity:.75;}
+  .donor small{display:block;font-family:var(--sans);font-weight:400;font-size:11px;margin-top:2px;}
+
+  details.reveal{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:0 16px;margin:10px 0;}
+  details.reveal>summary{cursor:pointer;padding:13px 0;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center;}
+  details.reveal>summary::-webkit-details-marker{display:none;}
+  details.reveal>summary::before{content:"＋";font-family:var(--mono);color:var(--accent);font-weight:700;}
+  details.reveal[open]>summary::before{content:"－";}
+  details.reveal .ans{padding:0 0 14px 4px;color:var(--ink-soft);}
+  .pts{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;}
+
+  .quizbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+  .quizbar .prog{flex:1 1 140px;height:8px;background:var(--paper-2);border-radius:99px;overflow:hidden;min-width:110px;}
+  .quizbar .prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s;}
+  .scorepill{font-family:var(--mono);font-size:13px;color:var(--accent-deep);background:var(--accent-soft);border-radius:99px;padding:5px 12px;}
+  .restart{font:inherit;font-size:13px;color:var(--ink-soft);background:none;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;}
+  .qcard{border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin:12px 0;background:var(--card);}
+  .qcard .qnr{font-family:var(--mono);font-size:12px;color:var(--accent);}
+  .qcard .qtext{font-weight:600;margin:4px 0 10px;}
+  .opt{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin:6px 0;cursor:pointer;transition:border-color .12s,background .12s;}
+  .opt:hover:not(:disabled){border-color:var(--accent);}
+  .opt:disabled{cursor:default;}
+  .opt.correct{border-color:var(--good);background:color-mix(in srgb,var(--good) 15%,var(--card));}
+  .opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 13%,var(--card));}
+  .opt .mk{float:right;font-weight:700;} .opt.correct .mk::after{content:"✓";color:var(--good);} .opt.wrong .mk::after{content:"✗";color:var(--bad);}
+  .qwhy{font-size:14px;color:var(--ink-soft);margin:8px 2px 0;padding-left:12px;border-left:2px solid var(--accent);display:none;}
+  .qwhy.show{display:block;}
+  .quizdone{margin-top:16px;padding:16px;border-radius:12px;background:var(--accent-soft);text-align:center;}
+  .quizdone .big{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--accent-deep);}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:14px;text-align:center;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">UE 6 · Blut- und Immunsystem · Niveau B1</p>
+  <h1>Transfusionen</h1>
+  <p>Bluttransfusion sicher begleiten: Blutgruppen, Vorbereitung, der Bedside-Test, die Durchführung und
+  die gefährliche Transfusionsreaktion. Mit einem Blutgruppen-Checker, Fallbeispiel und Quiz.</p>
+  <span class="doz">Dozentin: Sabrina van de Kamp</span>
+</header>
+
+<nav class="toc">
+  <a href="#blut">Blut & Blutgruppen</a>
+  <a href="#produkte">Blutprodukte</a>
+  <a href="#checker">Blutgruppen-Checker</a>
+  <a href="#vorher">Vorbereitung</a>
+  <a href="#durchfuehrung">Durchführung</a>
+  <a href="#reaktion">Transfusionsreaktion</a>
+  <a href="#fall">Fallbeispiel</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<div class="wrap">
+
+  <section id="blut">
+    <h2><span class="n">1</span> Blut und Blutgruppen</h2>
+    <p class="lead">Blut hat feste Teile (Zellen) und einen flüssigen Teil (Plasma).</p>
+    <div class="card tight">
+      <ul class="clean">
+        <li><b>Erythrozyten</b> (rote Blutkörperchen): transportieren Sauerstoff.</li>
+        <li><b>Leukozyten</b> (weiße Blutkörperchen): gehören zur Abwehr (Immunsystem).</li>
+        <li><b>Thrombozyten</b> (Blutplättchen): sind wichtig für die Blutgerinnung.</li>
+        <li><b>Plasma</b>: der flüssige Teil mit Eiweißen und Gerinnungsfaktoren.</li>
+      </ul>
+    </div>
+
+    <h3>Das AB0-System und der Rhesusfaktor</h3>
+    <p>Jeder Mensch hat eine <b>Blutgruppe</b>. Wichtig sind zwei Systeme:</p>
+    <ul class="clean">
+      <li><b>AB0-System:</b> A, B, AB oder 0. Auf den roten Blutkörperchen sitzen Merkmale (Antigene),
+      im Blut gibt es passende Abwehrstoffe (Antikörper).</li>
+      <li><b>Rhesusfaktor:</b> <b>positiv (Rh+)</b> oder <b>negativ (Rh−)</b>. Beispiel: „A positiv".</li>
+    </ul>
+    <div class="note">
+      <b>0 negativ</b> = <b>Universalspender</b> (kann fast jedem rote Blutkörperchen geben). ·
+      <b>AB positiv</b> = <b>Universalempfänger</b> (kann von fast allen empfangen).
+    </div>
+  </section>
+
+  <section id="produkte">
+    <h2><span class="n">2</span> Welche Blutprodukte gibt es?</h2>
+    <div class="scroll-x card tight">
+      <table>
+        <thead><tr><th>Produkt</th><th>Was ist drin?</th><th>Wann?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Erythrozytenkonzentrat (EK)</b></td><td>rote Blutkörperchen</td><td>bei starkem Blutmangel (Anämie), großem Blutverlust</td></tr>
+          <tr><td><b>Thrombozytenkonzentrat (TK)</b></td><td>Blutplättchen</td><td>bei zu wenig Blutplättchen / Blutungsgefahr</td></tr>
+          <tr><td><b>Gefrorenes Frischplasma (GFP/FFP)</b></td><td>Plasma mit Gerinnungsfaktoren</td><td>bei Gerinnungsstörungen</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14.5px;color:var(--ink-soft)">Am häufigsten ist das <b>Erythrozytenkonzentrat (EK)</b>.
+    Es wird kühl gelagert (2–6 °C) und muss nach dem Anwärmen zügig gegeben werden.</p>
+  </section>
+
+  <section id="checker">
+    <h2><span class="n">3</span> Blutgruppen-Checker: Wer darf wem spenden?</h2>
+    <p class="lead">Für <b>Erythrozytenkonzentrate</b>. Wähle die Blutgruppe des <b>Empfängers</b>.
+    Grün = darf diese Spende bekommen, Rot = darf nicht.</p>
+    <div class="compat">
+      <div style="font-family:var(--mono);font-size:13px;color:var(--ink-soft)">Empfänger wählen:</div>
+      <div class="pick" id="recipPick"></div>
+      <div style="font-family:var(--mono);font-size:13px;color:var(--ink-soft);margin-top:10px">Mögliche Spender:</div>
+      <div class="donors" id="donorGrid"></div>
+    </div>
+    <div class="warnbox"><b>Merke:</b> <b>0 negativ</b> passt zu allen (Universalspender).
+    <b>AB positiv</b> darf von allen empfangen (Universalempfänger). Bei falscher Blutgruppe droht eine
+    schwere Verklumpung (Hämolyse) — deshalb die vielen Kontrollen!</div>
+  </section>
+
+  <section id="vorher">
+    <h2><span class="n">4</span> Vor der Transfusion — die Kontrollen</h2>
+    <p class="lead">Sicherheit geht vor. Vor jeder Transfusion gibt es feste Kontrollen.</p>
+    <ol class="steps">
+      <li><b>Ärztliche Anordnung</b> und <b>Aufklärung + Einwilligung</b> des Patienten liegen vor.</li>
+      <li><b>Blutgruppe bestimmen</b> und <b>Kreuzprobe</b> machen (im Labor: passt Spenderblut zum Patienten?).</li>
+      <li><b>Konserve prüfen:</b> Name, Blutgruppe, Konservennummer, Verfallsdatum; ist der Beutel dicht und unbeschädigt?</li>
+      <li><b>Patienten identifizieren:</b> Name und Geburtsdatum aktiv abfragen (nicht nur Bett-Nummer).</li>
+      <li><b>Vitalzeichen messen</b> (Blutdruck, Puls, Temperatur) — als Ausgangswert.</li>
+      <li><b>Bedside-Test</b> direkt am Bett (siehe unten).</li>
+    </ol>
+    <div class="note"><b>Bedside-Test (AB0-Identitätstest):</b> Direkt am Bett, <b>unmittelbar vor</b> der
+    Transfusion, wird die Blutgruppe des Patienten noch einmal getestet. Der <b>Arzt</b> ist dafür
+    verantwortlich. So wird eine Verwechslung verhindert.</div>
+  </section>
+
+  <section id="durchfuehrung">
+    <h2><span class="n">5</span> Durchführung</h2>
+    <ul class="clean">
+      <li>Nur mit passendem <b>Transfusionsbesteck (mit Filter)</b>; als Spüllösung nur <b>NaCl 0,9 %</b> (kein anderes Medikament dazugeben).</li>
+      <li><b>Langsam anfangen</b> und die <b>ersten 10–15 Minuten am Bett bleiben</b> (Einlaufkontrolle) — hier zeigen sich Reaktionen zuerst.</li>
+      <li>Vitalzeichen <b>vor</b>, <b>während</b> und <b>nach</b> der Transfusion kontrollieren.</li>
+      <li>Eine Konserve nicht zu lange laufen lassen (in der Regel <b>max. 4 Stunden</b>).</li>
+      <li>Den Patienten gut beobachten und ihn bitten, sich sofort zu melden, wenn ihm schlecht wird.</li>
+    </ul>
+  </section>
+
+  <section id="reaktion">
+    <h2><span class="n">6</span> Transfusionsreaktion — die STOP-Regel</h2>
+    <p class="lead">Manchmal verträgt der Körper das fremde Blut nicht. Das kann <b>gefährlich</b> werden.
+    Du musst die Warnzeichen kennen und sofort handeln.</p>
+
+    <h3>Warnzeichen</h3>
+    <ul class="clean">
+      <li><b>Fieber und Schüttelfrost</b>, Unruhe, Angst</li>
+      <li><b>Schmerzen</b> (oft im Rücken / in der Lende), Kopfschmerz</li>
+      <li><b>Blutdruckabfall</b>, schneller Puls, <b>Atemnot</b></li>
+      <li>Übelkeit, Hautausschlag, Juckreiz, roter Urin</li>
+    </ul>
+
+    <div class="stop">
+      <b>STOP-Regel — was du sofort tust:</b>
+      <ol class="steps" style="margin-top:8px">
+        <li><b>Transfusion sofort stoppen!</b></li>
+        <li>Den <b>venösen Zugang offen halten</b> — mit <b>NaCl 0,9 %</b> (neues Besteck).</li>
+        <li><b>Arzt sofort rufen</b> und beim Patienten bleiben.</li>
+        <li><b>Vitalzeichen</b> kontrollieren (Blutdruck, Puls, Temperatur, Atmung).</li>
+        <li><b>Blutkonserve und Besteck aufbewahren</b> (für die Untersuchung) und alles dokumentieren.</li>
+      </ol>
+    </div>
+    <div class="warnbox">Die gefährlichste Reaktion ist die <b>hämolytische Reaktion</b>: Das Blut verklumpt,
+    weil die Blutgruppe nicht passt (z. B. nach einer Verwechslung). Darum sind Bedside-Test und alle Kontrollen so wichtig.</div>
+
+    <h3>Nach der Transfusion</h3>
+    <ul class="clean">
+      <li>Vitalzeichen noch einmal messen und den Patienten weiter beobachten.</li>
+      <li><b>Dokumentieren:</b> Konservennummer, Uhrzeit (Beginn/Ende), Beobachtungen (Rückverfolgbarkeit, Transfusionsgesetz).</li>
+      <li>Den <b>leeren Beutel + Besteck</b> nach Vorschrift aufbewahren (meist 24 Stunden im Kühlschrank).</li>
+    </ul>
+  </section>
+
+  <section id="fall">
+    <h2><span class="n">7</span> Fallbeispiel</h2>
+    <p class="lead">Versuch zuerst selbst, dann öffne die Lösung.</p>
+    <div class="card">
+      <p style="font-family:var(--mono);font-size:13px;color:var(--accent-deep);margin-top:0">Herr Sommer, 70 Jahre · bekommt ein Erythrozytenkonzentrat</p>
+      <p>Herr Sommer bekommt wegen einer Blutarmut eine Transfusion. Nach etwa 10 Minuten klagt er über
+      <b>Rückenschmerzen und Schüttelfrost</b>, ihm ist übel und er wirkt unruhig. Der Blutdruck fällt ab.</p>
+    </div>
+    <details class="reveal">
+      <summary>Frage 1: Was vermutest du? (Beschreiben Sie) <span class="pts">Lösung</span></summary>
+      <div class="ans"><p>Eine <b>Transfusionsreaktion</b> (Unverträglichkeit gegen das fremde Blut).
+      Anzeichen: Schüttelfrost, Rückenschmerzen, Übelkeit, Unruhe und Blutdruckabfall kurz nach dem Start.</p></div>
+    </details>
+    <details class="reveal">
+      <summary>Frage 2: Nenne die Sofortmaßnahmen in der richtigen Reihenfolge. <span class="pts">Lösung</span></summary>
+      <div class="ans"><p>1. <b>Transfusion sofort stoppen.</b> 2. <b>Zugang offen halten</b> mit NaCl 0,9 %.
+      3. <b>Arzt rufen</b> und beim Patienten bleiben. 4. <b>Vitalzeichen</b> kontrollieren.
+      5. <b>Konserve und Besteck aufbewahren</b> und alles dokumentieren.</p></div>
+    </details>
+    <details class="reveal">
+      <summary>Frage 3: Warum ist der Bedside-Test so wichtig? (Begründen Sie) <span class="pts">Lösung</span></summary>
+      <div class="ans"><p>Weil er direkt am Bett <b>eine Verwechslung der Blutgruppe verhindert</b>. Falsches
+      Blut kann zu einer gefährlichen <b>hämolytischen Reaktion</b> führen (das Blut verklumpt). Der Test
+      ist die letzte Kontrolle vor der Transfusion.</p></div>
+    </details>
+  </section>
+
+  <section id="quiz">
+    <h2><span class="n">8</span> Quiz</h2>
+    <p class="lead">Wähle bei jeder Frage eine Antwort. Du siehst sofort, ob sie richtig ist, und am Ende deinen Score.</p>
+    <div class="quizbar"><div class="prog"><i></i></div><span class="scorepill">0 / 0 richtig</span><button class="restart">↻ Neu starten</button></div>
+    <div id="quiz"></div>
+  </section>
+
+  <section id="tipps">
+    <h2><span class="n">9</span> Prüfungstipps</h2>
+    <div class="card">
+      <ul class="clean">
+        <li><b>0 negativ</b> = Universalspender · <b>AB positiv</b> = Universalempfänger.</li>
+        <li>Vor der Transfusion: Anordnung, Einwilligung, <b>Kreuzprobe</b>, Konserve prüfen, Patient identifizieren, <b>Bedside-Test</b> (Arzt).</li>
+        <li>Start langsam, <b>erste 10–15 Minuten am Bett bleiben</b>; Vitalzeichen vor/während/nach.</li>
+        <li>Bei Reaktion: <b>STOP</b> → Zugang offen (NaCl) → Arzt → Vitalzeichen → Konserve aufheben + dokumentieren.</li>
+        <li>Gefährlichste Reaktion: <b>hämolytische Reaktion</b> (falsche Blutgruppe).</li>
+        <li>Alles dokumentieren (Transfusionsgesetz, Rückverfolgbarkeit); Beutel 24 h aufbewahren.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    Schulung „Transfusionen" (UE 6, Blut- und Immunsystem) · Dozentin S. van de Kamp · Niveau B1 ·
+    Halte dich bei der Durchführung immer an die aktuellen Richtlinien deiner Einrichtung und deine Schulunterlagen.
+  </footer>
+</div>
+
+<script>
+/* ---------- Blutgruppen-Checker (Erythrozytenkonzentrat) ---------- */
+const GROUPS=['0−','0+','A−','A+','B−','B+','AB−','AB+'];
+// erlaubte Spender je Empfänger (RBC)
+const CAN_RECEIVE={
+  '0−':['0−'],
+  '0+':['0−','0+'],
+  'A−':['0−','A−'],
+  'A+':['0−','0+','A−','A+'],
+  'B−':['0−','B−'],
+  'B+':['0−','0+','B−','B+'],
+  'AB−':['0−','A−','B−','AB−'],
+  'AB+':['0−','0+','A−','A+','B−','B+','AB−','AB+'],
+};
+let recip='A+';
+const recipPick=document.getElementById('recipPick'), donorGrid=document.getElementById('donorGrid');
+GROUPS.forEach(g=>{
+  const b=document.createElement('button');b.className='bg-btn'+(g===recip?' sel':'');b.textContent=g;
+  b.onclick=()=>{recip=g;[...recipPick.children].forEach(x=>x.classList.remove('sel'));b.classList.add('sel');drawDonors();};
+  recipPick.appendChild(b);
+});
+function drawDonors(){
+  donorGrid.innerHTML='';
+  const ok=CAN_RECEIVE[recip];
+  GROUPS.forEach(g=>{
+    const d=document.createElement('div');
+    const good=ok.includes(g);
+    d.className='donor '+(good?'ok':'no');
+    d.innerHTML=g+'<small>'+(good?'✓ passt':'✗ passt nicht')+'</small>';
+    donorGrid.appendChild(d);
+  });
+}
+drawDonors();
+
+/* ---------- Quiz ---------- */
+const QUIZ=[
+ {q:'Welche Blutgruppe ist der Universalspender (für rote Blutkörperchen)?',opts:['AB positiv','0 negativ','A positiv','B negativ'],correct:1,why:'0 negativ hat keine AB0-Antigene und keinen Rhesusfaktor → passt fast allen.'},
+ {q:'Welche Blutgruppe ist der Universalempfänger?',opts:['0 negativ','A negativ','AB positiv','B positiv'],correct:2,why:'AB positiv kann von allen anderen Gruppen empfangen.'},
+ {q:'Was macht man DIREKT am Bett, kurz vor der Transfusion?',opts:['Die Kreuzprobe','Den Bedside-Test','Die Blutgruppe zum ersten Mal bestimmen','Das Blut anwärmen'],correct:1,why:'Der Bedside-Test (AB0-Identitätstest) verhindert am Bett eine Verwechslung.'},
+ {q:'Wer ist für den Bedside-Test verantwortlich?',opts:['Die Reinigungskraft','Der Arzt','Die Küche','Der Patient allein'],correct:1,why:'Der Arzt ist für den Bedside-Test verantwortlich.'},
+ {q:'Welche Spüllösung benutzt man beim Transfusionsbesteck?',opts:['Glukose 5 %','NaCl 0,9 % (Kochsalz)','Leitungswasser','Ringer-Laktat mit Medikament'],correct:1,why:'Nur NaCl 0,9 % — keine anderen Medikamente dazugeben.'},
+ {q:'Wie lange bleibst du am Anfang am Bett (Einlaufkontrolle)?',opts:['gar nicht','die ersten 10–15 Minuten','die ganze Nacht','nur 1 Minute'],correct:1,why:'Reaktionen zeigen sich meist am Anfang → die ersten 10–15 Minuten dabei bleiben.'},
+ {q:'Der Patient bekommt kurz nach Start Schüttelfrost und Rückenschmerzen. Was tust du ZUERST?',opts:['schneller laufen lassen','Transfusion sofort stoppen','warten und beobachten','mehr Blut anhängen'],correct:1,why:'Bei Zeichen einer Reaktion: sofort stoppen (STOP-Regel).'},
+ {q:'Was ist nach dem Stoppen der nächste wichtige Schritt?',opts:['Zugang ziehen','Zugang offen halten mit NaCl 0,9 %','Patient allein lassen','Beutel wegwerfen'],correct:1,why:'Den Zugang offen halten (mit NaCl), damit man weiter Medikamente/Flüssigkeit geben kann.'},
+ {q:'Warum darf man die Blutkonserve nach einer Reaktion NICHT wegwerfen?',opts:['Sie ist teuer','Für die Untersuchung / Rückverfolgung','Man kann sie später nochmal geben','Aus Gewohnheit'],correct:1,why:'Konserve und Besteck werden für die Untersuchung aufbewahrt (Ursache klären).'},
+ {q:'Was ist die gefährlichste Transfusionsreaktion?',opts:['leichtes Jucken','die hämolytische Reaktion (falsche Blutgruppe)','ein kleiner Bluterguss','Kopfschmerz am nächsten Tag'],correct:1,why:'Bei falscher Blutgruppe verklumpt das Blut (Hämolyse) — lebensgefährlich.'},
+ {q:'Welche Kontrolle passiert im Labor VOR der Transfusion?',opts:['der Bedside-Test','die Kreuzprobe','das Wiegen','der Schellong-Test'],correct:1,why:'Die Kreuzprobe im Labor prüft, ob Spenderblut und Patient zusammenpassen.'},
+ {q:'Welches Blutprodukt gibt man bei starker Blutarmut (Anämie)?',opts:['Thrombozytenkonzentrat','Erythrozytenkonzentrat','Frischplasma','Kochsalz'],correct:1,why:'Erythrozytenkonzentrat (rote Blutkörperchen) hilft bei Anämie/Blutverlust.'},
+];
+const quizEl=document.getElementById('quiz');
+const prog=document.querySelector('.quizbar .prog i'), pill=document.querySelector('.quizbar .scorepill');
+document.querySelector('.quizbar .restart').onclick=()=>buildQuiz();
+function buildQuiz(){
+  quizEl.innerHTML=''; let answered=0,right=0; const total=QUIZ.length;
+  pill.textContent='0 / '+total+' richtig'; prog.style.width='0%';
+  QUIZ.forEach((item,qi)=>{
+    const card=document.createElement('div');card.className='qcard';
+    const nr=document.createElement('div');nr.className='qnr';nr.textContent='Frage '+(qi+1)+' / '+total;
+    const h=document.createElement('div');h.className='qtext';h.textContent=item.q;
+    card.appendChild(nr);card.appendChild(h);
+    const why=document.createElement('div');why.className='qwhy';why.textContent=item.why;
+    item.opts.forEach((txt,oi)=>{
+      const b=document.createElement('button');b.className='opt';
+      b.innerHTML='<span class="lbl"></span><span class="mk"></span>';b.querySelector('.lbl').textContent=txt;
+      b.onclick=()=>{
+        if(card.dataset.done)return;card.dataset.done='1';answered++;
+        card.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        card.querySelectorAll('.opt')[item.correct].classList.add('correct');
+        if(oi===item.correct)right++;else b.classList.add('wrong');
+        why.classList.add('show');pill.textContent=right+' / '+total+' richtig';prog.style.width=Math.round(answered/total*100)+'%';
+        if(answered===total){const pct=Math.round(right/total*100);
+          const d=document.createElement('div');d.className='quizdone';
+          const note=pct>=90?'Sehr gut! 🎉':pct>=75?'Gut gemacht! 👍':pct>=50?'Bestanden — weiter so! 💪':'Weiter üben — lies die Kapitel nochmal. 📘';
+          d.innerHTML='<div class="big">'+right+' / '+total+' ('+pct+' %)</div><div style="color:var(--ink-soft);font-size:14px;margin-top:4px">'+note+'</div>';
+          quizEl.appendChild(d);d.scrollIntoView({behavior:'smooth',block:'center'});}
+      };
+      card.appendChild(b);
+    });
+    card.appendChild(why);quizEl.appendChild(card);
+  });
+}
+buildQuiz();
+</script>
