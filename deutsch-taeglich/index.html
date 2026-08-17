@@ -1,0 +1,166 @@
+<title>Deutsch täglich</title>
+<style>
+  :root{
+    --paper:#f5f3ee;--paper-2:#edeae2;--card:#fffdf9;--ink:#1c211f;--ink-soft:#4c5552;--line:#dcd7cc;
+    --accent:#1f5f8b;--accent-deep:#164866;--accent-soft:#dce9f2;
+    --verb:#1f5f8b;--verbbg:#dce9f2;--voc:#8a5a2b;--vocbg:#f3e6d5;--gram:#5c4a8a;--grambg:#e7e2f3;
+    --good:#2f7d54;--gold:#b5731a;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#121618;--paper-2:#0d1113;--card:#1a2023;--ink:#eef2f2;--ink-soft:#a4b0b2;--line:#2a3336;
+    --accent:#6cb2dd;--accent-deep:#94cbef;--accent-soft:#14293a;
+    --verb:#6cb2dd;--verbbg:#14293a;--voc:#d9a05b;--vocbg:#2d2416;--gram:#a99ae0;--grambg:#221d33;
+    --good:#6fc292;--gold:#d9a559;}}
+  :root[data-theme="dark"]{--paper:#121618;--paper-2:#0d1113;--card:#1a2023;--ink:#eef2f2;--ink-soft:#a4b0b2;--line:#2a3336;--accent:#6cb2dd;--accent-deep:#94cbef;--accent-soft:#14293a;--verb:#6cb2dd;--verbbg:#14293a;--voc:#d9a05b;--vocbg:#2d2416;--gram:#a99ae0;--grambg:#221d33;--good:#6fc292;--gold:#d9a559;}
+  :root[data-theme="light"]{--paper:#f5f3ee;--paper-2:#edeae2;--card:#fffdf9;--ink:#1c211f;--ink-soft:#4c5552;--line:#dcd7cc;--accent:#1f5f8b;--accent-deep:#164866;--accent-soft:#dce9f2;--verb:#1f5f8b;--verbbg:#dce9f2;--voc:#8a5a2b;--vocbg:#f3e6d5;--gram:#5c4a8a;--grambg:#e7e2f3;--good:#2f7d54;--gold:#b5731a;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:800px;margin:0 auto;padding:0 20px 80px;}
+  header.hero{padding:40px 20px 26px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -30%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,5.5vw,2.7rem);margin:0 0 8px;line-height:1.1;}
+  header.hero p{max-width:52ch;margin:0 auto;color:var(--ink-soft);font-size:15.5px;}
+  .streak{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:13px;color:var(--accent-deep);background:var(--accent-soft);border-radius:999px;padding:6px 15px;}
+  /* Datumsnavigation */
+  .datebar{position:sticky;top:0;z-index:20;display:flex;gap:6px;align-items:center;overflow-x:auto;
+    background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:9px 14px;}
+  .datebar button{flex:0 0 auto;font:inherit;font-family:var(--mono);font-size:13px;color:var(--ink-soft);
+    background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;white-space:nowrap;}
+  .datebar button:hover{border-color:var(--accent);color:var(--ink);}
+  .datebar button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+  @media (prefers-color-scheme:dark){.datebar button.active{color:#08202e;}}
+  :root[data-theme="dark"] .datebar button.active{color:#08202e;} :root[data-theme="light"] .datebar button.active{color:#fff;}
+  h2.day{font-family:var(--serif);font-weight:600;font-size:1.5rem;margin:30px 0 4px;}
+  .day-sub{color:var(--ink-soft);font-family:var(--mono);font-size:13px;margin:0 0 18px;}
+  /* Blöcke */
+  .block{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:16px 0;}
+  .block .kind{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;padding:3px 9px;border-radius:6px;margin-bottom:8px;}
+  .k-verb{background:var(--verbbg);color:var(--verb);} .k-voc{background:var(--vocbg);color:var(--voc);} .k-gram{background:var(--grambg);color:var(--gram);}
+  .block h3{font-family:var(--serif);font-weight:600;font-size:1.5rem;margin:0 0 2px;}
+  .block .lit{color:var(--ink-soft);font-size:14.5px;font-style:italic;margin:0 0 10px;}
+  .block p{margin:.5em 0;}
+  .fr{color:var(--ink-soft);font-size:14.5px;}
+  .fr::before{content:"🇫🇷 ";}
+  .scroll-x{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;}
+  th,td{border:1px solid var(--line);padding:7px 11px;text-align:left;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-soft);}
+  td.form{font-family:var(--mono);}
+  ul.ex{list-style:none;padding:0;margin:10px 0;}
+  ul.ex li{padding:9px 0 9px 26px;position:relative;border-bottom:1px dashed var(--line);}
+  ul.ex li:last-child{border-bottom:none;}
+  ul.ex li::before{content:"›";position:absolute;left:6px;color:var(--accent);font-weight:700;}
+  ul.ex .de{font-weight:600;}
+  ul.ex .tr{display:block;color:var(--ink-soft);font-size:14.5px;margin-top:2px;}
+  .tipbox{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:11px 15px;margin:12px 0;font-size:15px;}
+  .goldbox{border-left:3px solid var(--gold);background:var(--vocbg);border-radius:0 10px 10px 0;padding:11px 15px;margin:12px 0;font-size:15px;}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;}
+  .chip{font-size:14px;background:var(--paper-2);border:1px solid var(--line);border-radius:999px;padding:4px 12px;}
+  /* Selbsttest */
+  .test{background:var(--paper-2);border-radius:12px;padding:14px 16px;margin-top:14px;}
+  .test .q{font-weight:600;margin-bottom:6px;}
+  .test .gap{font-family:var(--mono);color:var(--accent);}
+  .test button{font:inherit;font-size:13.5px;color:var(--accent-deep);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;}
+  .test button:hover{border-color:var(--accent);}
+  .test .sol{display:none;margin-top:8px;padding-left:12px;border-left:2px solid var(--good);color:var(--ink-soft);font-size:15px;}
+  .test .sol.show{display:block;}
+  footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:13.5px;text-align:center;}
+  @media (max-width:620px){.block{padding:16px 15px;} body{font-size:16.5px;}}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Deutsch lernen · Niveau B2 · jeden Tag</p>
+  <h1>Deutsch täglich</h1>
+  <p>Jeden Morgen: ein <b>Verb</b>, ein <b>Wort oder ein Ausdruck</b> und ein <b>Grammatik-Thema</b> —
+  mit Erklärungen und Beispielen zum Lernen.</p>
+  <span class="streak" id="streak"></span>
+</header>
+
+<div class="datebar" id="datebar"></div>
+
+<div class="wrap">
+  <h2 class="day" id="dayTitle"></h2>
+  <p class="day-sub" id="daySub"></p>
+  <div id="content"></div>
+  <footer>
+    Deutsch täglich · automatisch jeden Morgen um 07:00 (Berlin) erweitert ·
+    Erklärungen auf Deutsch (B2) mit französischer Hilfe für schwere Stellen.
+  </footer>
+</div>
+
+<script>
+const LEKTIONEN = [{"datum": "2026-08-17", "thema": "sich verschlechtern · nach wie vor · Konjunktiv II (Höflichkeit)", "verb": {"titel": "sich verschlechtern", "uebersetzung": "s'aggraver, se dégrader (état, situation, résultats)", "erklaerung": "**sich verschlechtern** heißt: etwas wird **schlechter als vorher**. Es ist ein **reflexives** Verb (mit **sich**) und **regelmäßig** (schwach). Das Gegenteil ist **sich verbessern**. In der Pflege benutzt du es sehr oft für den Zustand eines Patienten. Das Perfekt bildest du mit **haben**: *hat sich verschlechtert*.", "fr": "Attention : en allemand on dit « der Zustand verschlechtert SICH » (verbe pronominal), là où le français dit simplement « l'état s'aggrave ». Le « sich » est obligatoire.", "tabelle": {"head": ["Person", "Präsens", "Präteritum", "Perfekt"], "rows": [["ich", "verschlechtere mich", "verschlechterte mich", "habe mich verschlechtert"], ["du", "verschlechterst dich", "verschlechtertest dich", "hast dich verschlechtert"], ["er/sie/es", "verschlechtert sich", "verschlechterte sich", "hat sich verschlechtert"], ["wir", "verschlechtern uns", "verschlechterten uns", "haben uns verschlechtert"], ["ihr", "verschlechtert euch", "verschlechtertet euch", "habt euch verschlechtert"], ["sie/Sie", "verschlechtern sich", "verschlechterten sich", "haben sich verschlechtert"]]}, "chips": ["sich verbessern (↔)", "sich verschlimmern (Synonym)", "die Verschlechterung (Nomen)", "zunehmend"], "beispiele": [{"de": "Der Zustand des Patienten **hat sich** über Nacht **verschlechtert**.", "fr": "L'état du patient s'est aggravé pendant la nuit."}, {"de": "Wenn sich die Werte **weiter verschlechtern**, informiere ich sofort den Arzt.", "fr": "Si les valeurs continuent de se dégrader, j'informe immédiatement le médecin."}, {"de": "Seine Mobilität **verschlechterte sich** nach dem Sturz deutlich.", "fr": "Sa mobilité s'est nettement dégradée après la chute."}, {"de": "Zum Glück **hat sich** nichts **verschlechtert** — im Gegenteil, es geht ihr besser.", "fr": "Heureusement, rien ne s'est aggravé — au contraire, elle va mieux."}], "tipp": "Merke die feste Wendung: **sich zunehmend verschlechtern** (= s'aggraver progressivement). Sehr nützlich in der Pflegedokumentation und im Prüfungsgespräch.", "test": {"frage": "Ergänze im Perfekt: „Der Blutdruck ________ seit gestern ________.\" (sich verschlechtern)", "loesung": "„Der Blutdruck **hat sich** seit gestern **verschlechtert**.\" — Perfekt mit *haben* + Reflexivpronomen *sich* + Partizip *verschlechtert*."}}, "wortschatz": {"titel": "nach wie vor", "uebersetzung": "toujours (encore), comme avant — expression figée", "erklaerung": "**nach wie vor** bedeutet **immer noch** / **weiterhin**: Etwas hat sich **nicht geändert**. Es klingt eleganter und schriftlicher als *immer noch* und ist typisch für **Niveau B2**. Die Wortstellung ist wichtig: Steht der Ausdruck am **Satzanfang**, kommt danach direkt das **Verb** (Inversion).", "fr": "Piège : ce n'est pas « après comme avant ». C'est une expression figée qui veut dire « toujours / encore aujourd'hui ». On ne la traduit jamais mot à mot.", "chips": ["immer noch (neutral)", "weiterhin", "unverändert", "bis heute"], "beispiele": [{"de": "Die Patientin ist **nach wie vor** sturzgefährdet.", "fr": "La patiente est toujours exposée au risque de chute."}, {"de": "**Nach wie vor** gilt: Erst beobachten, dann handeln.", "fr": "Aujourd'hui encore, la règle est : d'abord observer, puis agir."}, {"de": "Ich finde diese Methode **nach wie vor** sinnvoll.", "fr": "Je trouve cette méthode toujours pertinente."}, {"de": "Er hat **nach wie vor** Schmerzen, obwohl er das Medikament bekommen hat.", "fr": "Il a toujours des douleurs, bien qu'il ait reçu le médicament."}], "diskussion": "Benutze es, wenn du **auf einer Meinung bestehst** oder sagst, dass sich **nichts geändert** hat: *„Ich bin **nach wie vor** der Meinung, dass …\"* oder *„Das Problem besteht **nach wie vor**.\"* Damit klingst du sicher und erwachsen in einer Diskussion.", "tipp": "Am Satzanfang → Verb sofort danach: *„**Nach wie vor** **ist** das Risiko hoch.\"* (nicht: *Nach wie vor das Risiko ist hoch.*)", "test": {"frage": "Sag mit „nach wie vor\": Du bist immer noch überzeugt, dass die Beratung wichtig ist.", "loesung": "„Ich bin **nach wie vor** davon überzeugt, dass die Beratung wichtig ist.\" — oder: „**Nach wie vor** **halte** ich die Beratung für wichtig.\""}}, "grammatik": {"titel": "Konjunktiv II — höflich und vorsichtig sprechen", "uebersetzung": "le subjonctif II : politesse, demandes, hypothèses, conseils", "erklaerung": "Mit dem **Konjunktiv II** wirst du **höflicher** und **vorsichtiger**. Du brauchst ihn für **Bitten**, **Vorschläge**, **Ratschläge** und **irreale Situationen**. Zwei Formen: die **eigene Form** (nur bei wenigen Verben: *wäre, hätte, könnte, müsste, würde, wüsste, ginge*) und die **Umschreibung mit würde** + Infinitiv (bei fast allen anderen Verben).", "fr": "Règle simple : les verbes fréquents gardent leur forme propre (wäre, hätte, könnte…). Pour tous les autres, on utilise « würde + infinitif » — comme le conditionnel français.", "tabelle": {"head": ["Verb", "Konjunktiv II", "Beispiel"], "rows": [["sein", "ich **wäre**", "Das **wäre** sehr nett."], ["haben", "ich **hätte**", "**Hätten** Sie kurz Zeit?"], ["können", "ich **könnte**", "**Könnten** Sie mir bitte helfen?"], ["müssen", "ich **müsste**", "Ich **müsste** eigentlich gehen."], ["werden → würde", "ich **würde** … machen", "Ich **würde** den Arzt informieren."]]}, "chips": ["Bitte: Könnten Sie …?", "Vorschlag: Wir könnten …", "Rat: An deiner Stelle würde ich …", "Wunsch: Ich hätte gern …"], "beispiele": [{"de": "**Könnten** Sie mir bitte kurz helfen?", "fr": "Pourriez-vous m'aider un instant, s'il vous plaît ? (bien plus poli que « Helfen Sie mir »)"}, {"de": "An Ihrer Stelle **würde** ich sofort den Arzt informieren.", "fr": "À votre place, j'informerais tout de suite le médecin."}, {"de": "Es **wäre** gut, wenn wir den Blutdruck noch einmal messen **würden**.", "fr": "Ce serait bien de remesurer la tension."}, {"de": "Wenn der Patient früher gekommen **wäre**, **hätte** man mehr tun können.", "fr": "Si le patient était venu plus tôt, on aurait pu faire davantage. (irréel du passé)"}], "tipp": "Faustregel: **Nicht zwei Mal *würde*** in einem Satz, wenn es eine eigene Form gibt. Sag lieber *„Wenn ich **Zeit hätte**, **würde** ich …\"* statt *„Wenn ich Zeit **haben würde** …\"*.", "diskussion": "Im Gespräch (und in der Prüfung!) wirkst du sofort professioneller: *„Ich **würde** vorschlagen, dass …\"*, *„Das **wäre** aus meiner Sicht sinnvoll, weil …\"*, *„**Könnten** wir das noch einmal besprechen?\"*", "test": {"frage": "Mach höflicher: „Geben Sie mir das Formular!\"", "loesung": "„**Könnten** Sie mir bitte das Formular geben?\" — oder: „Ich **hätte** gern das Formular, bitte.\""}}}];   // neueste zuerst
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function bold(s){return esc(s).replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>');}
+
+function exList(arr){
+  if(!arr||!arr.length)return '';
+  return '<ul class="ex">'+arr.map(e=>'<li><span class="de">'+bold(e.de)+'</span>'+
+    (e.fr?'<span class="tr">'+esc(e.fr)+'</span>':'')+'</li>').join('')+'</ul>';
+}
+function table(t){
+  if(!t||!t.rows||!t.rows.length)return '';
+  return '<div class="scroll-x"><table><thead><tr>'+t.head.map(h=>'<th>'+esc(h)+'</th>').join('')+
+    '</tr></thead><tbody>'+t.rows.map(r=>'<tr>'+r.map((c,i)=>'<td'+(i>0?' class="form"':'')+'>'+bold(c)+'</td>').join('')+'</tr>').join('')+
+    '</tbody></table></div>';
+}
+function testBlock(t,id){
+  if(!t)return '';
+  return '<div class="test"><div class="q">✍️ '+bold(t.frage)+'</div>'+
+    '<button onclick="document.getElementById(\''+id+'\').classList.toggle(\'show\')">Lösung zeigen</button>'+
+    '<div class="sol" id="'+id+'">'+bold(t.loesung)+'</div></div>';
+}
+function renderBlock(b,kind,idx){
+  const kmap={verb:['k-verb','Verb des Tages'],voc:['k-voc','Wort des Tages'],gram:['k-gram','Grammatik des Tages']};
+  const [cls,label]=kmap[kind];
+  let h='<div class="block"><span class="kind '+cls+'">'+label+'</span>';
+  h+='<h3>'+bold(b.titel)+'</h3>';
+  if(b.uebersetzung)h+='<p class="lit">'+esc(b.uebersetzung)+'</p>';
+  if(b.erklaerung)h+='<p>'+bold(b.erklaerung)+'</p>';
+  if(b.fr)h+='<p class="fr">'+esc(b.fr)+'</p>';
+  if(b.tabelle)h+=table(b.tabelle);
+  if(b.chips&&b.chips.length)h+='<div class="chips">'+b.chips.map(c=>'<span class="chip">'+bold(c)+'</span>').join('')+'</div>';
+  if(b.beispiele)h+=exList(b.beispiele);
+  if(b.tipp)h+='<div class="tipbox">'+bold(b.tipp)+'</div>';
+  if(b.diskussion){h+='<div class="goldbox"><b>So benutzt du es im Gespräch:</b> '+bold(b.diskussion)+'</div>';}
+  if(b.test)h+=testBlock(b.test,'sol-'+kind+'-'+idx);
+  h+='</div>';
+  return h;
+}
+let cur=0;
+const bar=document.getElementById('datebar');
+function fmtDate(iso){
+  const [y,m,d]=iso.split('-');
+  const tage=['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+  const dt=new Date(+y,+m-1,+d);
+  return {kurz:d+'.'+m+'.', lang:tage[dt.getDay()]+', '+d+'.'+m+'.'+y};
+}
+function buildBar(){
+  bar.innerHTML='';
+  LEKTIONEN.forEach((l,i)=>{
+    const b=document.createElement('button');
+    b.textContent=(i===0?'Heute · ':'')+fmtDate(l.datum).kurz;
+    b.onclick=()=>{cur=i;render();};
+    bar.appendChild(b);
+  });
+}
+function render(){
+  [...bar.children].forEach((b,i)=>b.classList.toggle('active',i===cur));
+  const l=LEKTIONEN[cur];
+  document.getElementById('dayTitle').textContent=fmtDate(l.datum).lang;
+  document.getElementById('daySub').textContent='Lektion '+(LEKTIONEN.length-cur)+' · '+(l.thema||'Verb · Wortschatz · Grammatik');
+  document.getElementById('content').innerHTML=
+    renderBlock(l.verb,'verb',cur)+renderBlock(l.wortschatz,'voc',cur)+renderBlock(l.grammatik,'gram',cur);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.getElementById('streak').textContent='📚 '+LEKTIONEN.length+' Lektion'+(LEKTIONEN.length>1?'en':'')+' gesammelt';
+buildBar();render();
+</script>
