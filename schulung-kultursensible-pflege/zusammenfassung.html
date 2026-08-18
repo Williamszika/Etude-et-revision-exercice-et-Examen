@@ -1,0 +1,1836 @@
+<title>Kultursensible Pflege — Große Zusammenfassung</title>
+<style>
+  :root{
+    --paper:#f6f4f7;--paper-2:#ece8ef;--card:#fdfcfe;--ink:#1e1b23;--ink-soft:#514c59;--line:#ddd7e2;
+    --accent:#6b5b95;--accent-deep:#503f7d;--accent-soft:#e6e0f0;
+    --a1:#4a7c8a;--a1bg:#dceaee;--a2:#8a6d3b;--a2bg:#f2e8d5;--a3:#8a4a6b;--a3bg:#f2dfe8;--a4:#4a7c59;--a4bg:#dfeadf;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#16141a;--paper-2:#100e14;--card:#201d26;--ink:#f0edf3;--ink-soft:#a9a3b3;--line:#332e3b;
+    --accent:#a998d4;--accent-deep:#c4b6e8;--accent-soft:#241f30;
+    --a1:#7fb2c0;--a1bg:#16262b;--a2:#d0a95f;--a2bg:#2b2415;--a3:#d089a8;--a3bg:#2d1a24;--a4:#7fb98e;--a4bg:#1a2b1f;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;}}
+  :root[data-theme="dark"]{--paper:#16141a;--paper-2:#100e14;--card:#201d26;--ink:#f0edf3;--ink-soft:#a9a3b3;--line:#332e3b;--accent:#a998d4;--accent-deep:#c4b6e8;--accent-soft:#241f30;--a1:#7fb2c0;--a1bg:#16262b;--a2:#d0a95f;--a2bg:#2b2415;--a3:#d089a8;--a3bg:#2d1a24;--a4:#7fb98e;--a4bg:#1a2b1f;--good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;}
+  :root[data-theme="light"]{--paper:#f6f4f7;--paper-2:#ece8ef;--card:#fdfcfe;--ink:#1e1b23;--ink-soft:#514c59;--line:#ddd7e2;--accent:#6b5b95;--accent-deep:#503f7d;--accent-soft:#e6e0f0;--a1:#4a7c8a;--a1bg:#dceaee;--a2:#8a6d3b;--a2bg:#f2e8d5;--a3:#8a4a6b;--a3bg:#f2dfe8;--a4:#4a7c59;--a4bg:#dfeadf;--good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+  header.hero{padding:40px 20px 26px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,5vw,2.6rem);margin:0 0 10px;line-height:1.12;text-wrap:balance;}
+  header.hero p{max-width:62ch;margin:0 auto;color:var(--ink-soft);font-size:15.5px;}
+  .rainbow{height:5px;width:170px;margin:14px auto 0;border-radius:99px;
+    background:linear-gradient(90deg,#e03e3e,#e58a1f,#e3c020,#3f9a4e,#3a6fb0,#7a4a9c);}
+  .meta{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:14px;}
+  .meta span{font-size:12.5px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 13px;}
+  .toolbar{position:sticky;top:0;z-index:40;display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+    background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:9px 16px;}
+  .toolbar input{flex:1 1 200px;font:inherit;font-size:14.5px;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:9px;padding:8px 13px;min-width:0;}
+  .toolbar input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .toolbar button{font:inherit;font-size:13.5px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);
+    border-radius:9px;padding:8px 13px;cursor:pointer;white-space:nowrap;}
+  .toolbar button:hover{border-color:var(--accent);color:var(--ink);}
+  .hits{font-family:var(--mono);font-size:12.5px;color:var(--accent-deep);white-space:nowrap;}
+  .layout{display:flex;max-width:1240px;margin:0 auto;align-items:flex-start;}
+  nav.toc{position:sticky;top:56px;align-self:flex-start;flex:0 0 258px;max-height:calc(100vh - 60px);overflow-y:auto;
+    padding:16px 10px 40px;border-right:1px solid var(--line);}
+  nav.toc a{display:block;text-decoration:none;color:var(--ink-soft);font-size:13.5px;padding:6px 10px;border-radius:8px;line-height:1.35;}
+  nav.toc a:hover{background:var(--paper-2);color:var(--ink);}
+  nav.toc a .n{font-family:var(--mono);font-size:11px;opacity:.7;margin-right:6px;}
+  main{flex:1 1 auto;min-width:0;padding:10px 26px 90px;}
+  section{margin-top:44px;scroll-margin-top:62px;}
+  section.hidden{display:none;}
+  h2{font-family:var(--serif);font-weight:600;font-size:1.55rem;margin:0 0 10px;display:flex;align-items:baseline;gap:11px;text-wrap:balance;}
+  h2 .n{font-family:var(--mono);font-size:.72rem;color:var(--accent);border:1px solid var(--line);border-radius:7px;padding:2px 8px;flex:0 0 auto;}
+  h3{font-family:var(--serif);font-weight:600;font-size:1.16rem;margin:24px 0 7px;}
+  h4{font-family:var(--serif);font-weight:600;font-size:1.02rem;margin:0 0 7px;}
+  .lead{color:var(--ink-soft);margin:0 0 14px;}
+  p{margin:.55em 0;}
+  mark{background:#ffe680;color:#1a1a1a;border-radius:3px;padding:0 2px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:17px 21px;margin:13px 0;}
+  .card.tight{padding:13px 17px;}
+  ul.clean{list-style:none;padding:0;margin:11px 0;}
+  ul.clean li{padding:6px 0 6px 24px;position:relative;border-bottom:1px dashed var(--line);}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean li::before{content:"→";position:absolute;left:2px;color:var(--accent);font-weight:700;}
+  ul.plain{margin:8px 0;padding-left:19px;} ul.plain li{margin:5px 0;}
+  .note{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  .warnbox{border-left:3px solid var(--warn);background:var(--warnbg);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  .badbox{border-left:3px solid var(--bad);background:var(--badbg);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  .goodbox{border-left:3px solid var(--good);background:var(--goodbg);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  blockquote{margin:12px 0;padding:10px 17px;border-left:3px solid var(--line);color:var(--ink-soft);font-style:italic;font-size:15px;}
+  blockquote cite{display:block;font-style:normal;font-size:12.5px;margin-top:5px;font-family:var(--mono);}
+  .scroll-x{overflow-x:auto;margin:11px 0;}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px;}
+  th,td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-soft);}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:13px 0;}
+  @media (max-width:700px){.two{grid-template-columns:1fr;}}
+  .two .col{border-radius:12px;padding:13px 15px;border:1px solid var(--line);}
+  .two .c1{background:var(--a3bg);} .two .c2{background:var(--a4bg);}
+  .two ul{margin:0;padding-left:17px;} .two li{margin:5px 0;font-size:14.5px;}
+  .bubbles{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:13px 0;}
+  @media (max-width:760px){.bubbles{grid-template-columns:1fr;}}
+  .bub{border:1px solid var(--line);border-radius:13px;padding:14px 16px;}
+  .bub.p{background:var(--a2bg);} .bub.b{background:var(--a1bg);}
+  .bub h4{margin:0 0 9px;}
+  .bub q{display:block;font-size:14.5px;font-style:italic;padding:6px 0;border-bottom:1px dashed var(--line);}
+  .bub q:last-of-type{border-bottom:none;}
+  .merk{counter-reset:m;list-style:none;padding:0;margin:13px 0;}
+  .merk li{counter-increment:m;position:relative;padding:8px 0 8px 38px;border-bottom:1px dashed var(--line);font-size:15px;}
+  .merk li:last-child{border-bottom:none;}
+  .merk li::before{content:counter(m);position:absolute;left:0;top:8px;font-family:var(--mono);font-size:11px;background:var(--accent-soft);color:var(--accent-deep);border-radius:6px;padding:2px 7px;}
+  .backtop{position:fixed;right:16px;bottom:16px;z-index:50;font:inherit;font-size:13px;color:var(--ink-soft);
+    background:var(--card);border:1px solid var(--line);border-radius:99px;padding:8px 14px;cursor:pointer;}
+  .backtop:hover{border-color:var(--accent);color:var(--ink);}
+  @media (max-width:900px){
+    .layout{display:block;}
+    nav.toc{position:static;flex:none;max-height:none;border-right:none;border-bottom:1px solid var(--line);
+      display:flex;flex-wrap:wrap;gap:3px;padding:10px 14px;}
+    nav.toc a{font-size:12.5px;padding:5px 9px;background:var(--card);border:1px solid var(--line);}
+    main{padding:10px 16px 80px;}
+  }
+  @media print{
+    .toolbar,nav.toc,.backtop{display:none;}
+    body{background:#fff;color:#000;font-size:10.5pt;}
+    section{page-break-inside:auto;margin-top:20px;}
+    h2{page-break-after:avoid;}
+    .card,.note,.warnbox,.badbox,.goodbox,.merk,table,.bub{page-break-inside:avoid;}
+  }
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 09 · UE 01 · Menschen in der Lebensgestaltung individuell unterstützen</p>
+  <h1>Kultursensible Pflege &amp; LSBTI — Große Zusammenfassung</h1>
+  <p>Alles aus den drei Unterlagen in einem Dokument: das Unterrichtsskript von André Perleberg,
+  der Kompetenzkatalog von Doukas &amp; Heinbach (PADUA 2023) und die RUBICON-Broschüre
+  „Kultursensible Pflege für Lesben und Schwule in NRW“ — vollständig und in einfachem Deutsch (B1) erklärt.</p>
+  <div class="rainbow"></div>
+  <div class="meta">
+    <span>Dozent: André Perleberg</span>
+    <span>24 Kapitel</span>
+    <span>Niveau B1</span>
+    <span>mit Suche &amp; Druckansicht</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <input type="search" id="q" placeholder="🔎 Suchen … (z. B. Stigma, § 175, Eisberg, Biografie)" autocomplete="off">
+  <span class="hits" id="hits"></span>
+  <button id="reset">↺ alles zeigen</button>
+  <button onclick="window.print()">🖨️ Drucken / PDF</button>
+</div>
+
+<div class="layout">
+  <nav class="toc" id="toc"></nav>
+  <main id="main">
+
+  <section id="s1">
+    <h2><span class="n">1</span> Überblick — worum geht es?</h2>
+    <p class="lead">Drei Unterlagen, ein Thema: Wie pflege ich Menschen, die anders leben, anders glauben und
+    anders lieben als ich — <b>professionell und würdevoll</b>?</p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Unterlage</th><th>Was steht darin?</th></tr></thead>
+        <tbody>
+          <tr><td><b>André Perleberg</b><br>„Interkulturelle und LSBTI Pflege“, CE 09 UE 01</td>
+              <td>Das Unterrichtsskript. Kultur, kulturelle Identität, Menschenrechte, Menschenbilder in der
+              Geschichte, Bedeutung der kultursensiblen Pflege, zentrale Elemente (Gestik/Mimik, Religion),
+              Stigma-Management, LSBTI-Pflege, kultursensible Biografiearbeit.</td></tr>
+          <tr><td><b>Maria Doukas &amp; Gesa Heinbach</b><br>„Kultursensibel pflegen — Ein Kompetenzkatalog“,
+              PADUA 2023; 18 (3): 161–164</td>
+              <td>Der wissenschaftliche Fachartikel. Was ist Kultur? Was ist Lernen? Interkulturelle Öffnung des
+              Gesundheitswesens. Und vor allem: die <b>vier Kompetenzen</b>, die kultursensible Pflege braucht.</td></tr>
+          <tr><td><b>Gabi Stummer / RUBICON e. V.</b><br>„Kultursensible Pflege für Lesben und Schwule in NRW“,
+              Köln 2014</td>
+              <td>Die Informationsbroschüre für die professionelle Altenpflege. Geschichte von den 1920er-Jahren
+              bis heute, Lebenserfahrungen, lesbische und schwule Kultur, Pflegeverständnis, konkrete Umsetzung,
+              Glossar.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Der rote Faden in einem Satz</h3>
+    <div class="note" style="font-size:16px">
+      Jeder Mensch bringt seine <b>Kultur, seine Geschichte und seine Identität</b> mit in die Pflegesituation.
+      Wer sie nicht kennt, pflegt an der Wirklichkeit vorbei — und übersieht die echten Pflegeprobleme.
+    </div>
+
+    <h3>Warum das für die Prüfung zählt</h3>
+    <ul class="clean">
+      <li>Der <b>demografische Wandel</b> und die <b>Vielfalt der Lebensformen</b> zwingen die Pflege zu einem
+      bewussten Umgang mit individuellen Lebensentwürfen, Gruppen und Kulturen.</li>
+      <li>Bei Menschen mit <b>Migrationshintergrund</b> haben Pflegende das schon erkannt. Bei <b>homosexuellen
+      Menschen</b> ist der Begriff „Kultursensibilität“ noch kaum bekannt — genau da liegt die Lücke.</li>
+      <li>Wer die <b>Lebensrealität</b> eines Menschen nicht erfasst, kann keine korrekte <b>Pflegediagnose</b>
+      stellen. Dann ist die ganze Pflegeplanung falsch.</li>
+    </ul>
+  </section>
+
+  <section id="s2">
+    <h2><span class="n">2</span> Was ist Kultur?</h2>
+
+    <h3>Die Definition aus dem Skript</h3>
+    <div class="card">
+      <p style="margin-top:0">Kultur ist die <b>Gesamtheit einzigartiger</b> …</p>
+      <ul class="plain">
+        <li><b>geistiger</b> Aspekte</li>
+        <li><b>materieller</b> Aspekte</li>
+        <li><b>intellektueller</b> Aspekte</li>
+        <li><b>emotionaler</b> Aspekte</li>
+      </ul>
+      <p style="margin-bottom:0">… die eine <b>Gesellschaft oder soziale Gruppe kennzeichnen</b>.</p>
+    </div>
+
+    <h3>Die Definition aus dem Fachartikel</h3>
+    <p>Doukas &amp; Heinbach sagen ehrlich: Den <b>einen allgemein gültigen Kulturbegriff gibt es nicht</b>
+    (Bolten 2012). Trotzdem lohnt sich die Frage, was wir eigentlich meinen.</p>
+    <blockquote>Kultur ist ein spezifisches „Ensemble von Deutungs- und Interpretationsmustern“.
+      <cite>Mecheril 2013, S. 26</cite></blockquote>
+    <p>Diese Muster führen dazu, dass uns bestimmte Handlungen <b>nahegelegt</b> werden — nämlich die, die in
+    diesen Mustern als <b>normal und angemessen</b> gelten.</p>
+
+    <div class="two">
+      <div class="col c1">
+        <h4>⚠️ Die Gefahr des Wortes</h4>
+        <ul>
+          <li>Das Wort „Kultur“ verleitet dazu, <b>Stereotype</b> zu bilden — positive wie negative.</li>
+          <li>Menschen werden nach <b>Ethnien, Nationen</b> oder anderen Kategorien <b>sortiert</b>.</li>
+        </ul>
+      </div>
+      <div class="col c2">
+        <h4>✓ Der Nutzen des Wortes</h4>
+        <ul>
+          <li>Der Kulturbegriff schafft <b>Orientierung</b> in einer Welt mit vielen Kontakten.</li>
+          <li>„Kultur“ schafft <b>Zugehörigkeit</b> (Uzarewicz 2014).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="goodbox"><b>Der wichtigste Satz des ganzen Kapitels:</b> Kultur muss immer als
+    <b>veränderlich und unscharf</b> verstanden werden. Der einzelne Mensch <b>„ist“ nicht seine Kultur</b> —
+    er <b>bringt sie in eine Begegnung ein</b>.</div>
+
+    <h3>Der Kultur bewusst werden — die kulturelle Brille</h3>
+    <p>Wenn Menschen unterschiedlicher Kulturen aufeinandertreffen, dann <b>sehen</b> und <b>bewerten</b> sie ihr
+    Gegenüber immer durch ihre eigene kulturelle „<b>Brille</b>“.</p>
+    <p>Das kann zu Missverständnissen führen, und zwar aus drei Gründen:</p>
+    <ul class="clean">
+      <li>Wir sind uns nur zu einem <b>kleinen Teil bewusst</b>, wie wir kulturell „programmiert“ wurden.</li>
+      <li>Wie wir uns von kulturell anders geprägten Menschen unterscheiden, hängt vor allem vom
+      <b>nicht sichtbaren Teil</b> ab: Einstellungen, Glaube, Moralvorstellungen usw.</li>
+      <li>Das zu erkennen braucht <b>Zeit, Gespräche und ein Kennenlernen</b>.</li>
+    </ul>
+
+    <h3>Das Eisberg-Bild (Lernhilfe)</h3>
+    <div class="two">
+      <div class="col c1">
+        <h4>🌊 Sichtbar — ca. 10 %</h4>
+        <ul><li>Sprache</li><li>Kleidung</li><li>Essen</li><li>Musik, Feste</li><li>Begrüßung, Rituale</li></ul>
+      </div>
+      <div class="col c2">
+        <h4>🧊 Unsichtbar — ca. 90 %</h4>
+        <ul><li>Werte und Normen</li><li>Schamgefühl</li><li>Glaube</li><li>Krankheitsverständnis</li>
+        <li>Umgang mit Zeit</li><li>Rollenbilder</li><li>Nähe und Distanz</li><li>Umgang mit Tod</li>
+        <li>Erfahrungen mit Diskriminierung</li></ul>
+      </div>
+    </div>
+    <div class="note">Konflikte in der Pflege entstehen fast nie oben (Essen, Kleidung), sondern <b>unten</b>:
+    Wer entscheidet? Wie viel Körper darf man zeigen? Wie zeigt man Schmerz? Ist Pünktlichkeit wichtig?</div>
+
+    <h3>Fremdheit und Vertrautheit</h3>
+    <p>Migration, Wissen über andere Kulturen, sich ändernde Zugehörigkeitsgefühle und sich widersprechende
+    Weltanschauungen führen zu <b>sehr individuellen Empfindungen</b> von Fremdheit bzw. Vertrautheit.</p>
+    <p>Aus dieser „Vielstimmigkeit“ kann auch <b>kulturbedingte Ausgrenzung</b> im Gesundheitsbereich entstehen —
+    sei es wegen fremd empfundenem Verhalten oder wegen Konflikten auf sozialer oder sprachlicher Ebene.</p>
+    <div class="card tight">
+      <b>Fachbegriff: „sich einander entfremden“</b> (Uzarewicz 2014). Das klingt komisch, meint aber das
+      Gegenteil von Distanz: Die <b>Fremdheit soll aufgelöst</b> werden. Aus „einer von denen“ wird ein Mensch
+      mit Namen und Geschichte. Dieses Ziel gilt für <b>Patient*innen genauso wie für Kolleg*innen</b>.
+    </div>
+  </section>
+
+  <section id="s3">
+    <h2><span class="n">3</span> Kulturelle Identität und Gruppendynamik</h2>
+
+    <h3>Bedeutung der Kultur für den einzelnen Menschen</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>Kultur schafft <b>IDENTITÄT</b>.</li>
+        <li><b>Erfahrungen, Eindrücke und Wissen</b> schaffen das eigene <b>ICH</b>.</li>
+      </ul>
+    </div>
+
+    <h3>Was ist kulturelle Identität?</h3>
+    <p>Sie hat zwei Ebenen:</p>
+    <div class="two">
+      <div class="col c1">
+        <h4>1 · Die persönliche Ebene</h4>
+        <ul><li>Kleidung</li><li>Überzeugungen</li><li>Musik usw.</li></ul>
+      </div>
+      <div class="col c2">
+        <h4>2 · Die Zugehörigkeit zur Gruppe</h4>
+        <p style="font-size:14.5px;margin:0 0 6px">Zu einer Gruppe, Gesellschaft oder einem Kollektiv gehören —
+        und sich dabei von anderen Gruppen <b>unterscheiden</b>:</p>
+        <ul><li>Sprache</li><li>Religion</li><li>Nation</li><li>Wertevorstellungen</li><li>Sitten und Gebräuche</li></ul>
+      </div>
+    </div>
+    <div class="goodbox">Identität entsteht also, indem man sich von „<b>anderen oder Fremden</b>“ <b>abgrenzt</b> —
+    und gleichzeitig in der eigenen Gruppe <b>Sicherheit und Heimat</b> sucht.</div>
+
+    <h3>Dynamik zwischen Gruppen</h3>
+    <ul class="clean">
+      <li><b>Angst vor dem Fremden</b> und die Ablehnung des Anderen können sich zu <b>Verunsicherung, sogar zu
+      Hass</b> entwickeln.</li>
+      <li>Wird eine Gruppe durch eine andere <b>unterdrückt und/oder ausgebeutet</b>, rücken ihre Mitglieder
+      wahrscheinlich enger zusammen und suchen <b>Stärke in der kollektiven Identität</b>.</li>
+    </ul>
+    <blockquote>Zu wünschen wäre, dass Menschen sich auch dann verstehen und miteinander leben können, wenn sie
+    an einen anderen Gott glauben, andere Rollenvorstellungen haben, andere Musik hören oder einen anderen
+    Kleidungsstil pflegen.<cite>Perleberg, CE 09 UE 01</cite></blockquote>
+    <div class="note"><b>Für die Praxis:</b> Diese Dynamik gilt auch im <b>Team</b>. Wenn eine Kollegin sich
+    ausgegrenzt fühlt, sucht sie Halt bei Menschen, die so sind wie sie — und das Team spaltet sich.
+    Kultursensibilität ist deshalb auch <b>Teamarbeit</b>.</div>
+  </section>
+
+  <section id="s4">
+    <h2><span class="n">4</span> Kultur und Menschenrechte</h2>
+    <div class="card">
+      <ul class="clean">
+        <li>Menschenrechte sind Rechte, die sich aus der <b>Würde des Menschen</b> herleiten und begründen lassen.</li>
+        <li>Sie sind <b>unveräußerlich</b> (man kann sie nicht wegnehmen oder abgeben), <b>unteilbar</b> (man kann
+        nicht nur einen Teil gewähren) und <b>unverzichtbar</b>.</li>
+        <li>Sie stehen <b>allen Menschen</b> zu — unabhängig davon, <b>wo</b> sie leben, und unabhängig davon,
+        <b>wie</b> sie leben.</li>
+      </ul>
+    </div>
+    <div class="warnbox"><b>Die Grenze der Toleranz:</b> Kultursensibel sein heißt <b>nicht</b>, alles zu
+    akzeptieren. Wenn eine kulturelle oder religiöse Praxis die Menschenrechte, die Würde oder die
+    Selbstbestimmung eines Menschen verletzt (z. B. Gewalt, Zwang, Zwangsverheiratung), dann geht das
+    <b>Menschenrecht vor</b>. Das ist der Kern der Überschrift „Kultur <b>vs.</b> Menschenrechte“ im Skript.</div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="n">5</span> Menschenbilder in der Geschichte</h2>
+    <p class="lead">Warum lernen wir das? Weil jedes Pflegemodell ein <b>Menschenbild</b> hat. Wie ich über den
+    Menschen denke, so pflege ich ihn.</p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Epoche</th><th>Menschenbild</th></tr></thead>
+        <tbody>
+          <tr><td><b>Griechische Antike</b></td>
+            <td>Der Mensch als <b>Teil des Kosmos</b>, von den Göttern geschaffen und mit ihnen verwandt.
+            Der Mensch gilt als <b>„Maß aller Dinge“</b>. <b>Platon</b> betonte die <b>unsterbliche Seele</b> und
+            die Suche nach dem Göttlichen. <b>Aristoteles</b> hob die <b>organische Einheit von Körper und Seele</b>
+            hervor.</td></tr>
+          <tr><td><b>Spätantike</b></td>
+            <td>Das antike Denken verband sich mit dem <b>christlich-jüdischen</b> Menschenbild: der Mensch als
+            <b>Ebenbild Gottes</b>. Leib und Seele (Psyche, Neschome, Ruach) gelten als von Gott geschaffen.</td></tr>
+          <tr><td><b>Mittelalter</b></td>
+            <td>Der Mensch als <b>Mikrokosmos</b> und <b>Spiegel des Makrokosmos</b>, als Ebenbild Gottes.
+            Religiöse Vorstellungen und <b>hierarchische Strukturen</b> spiegelten sich in den Darstellungen
+            gottgefälliger Menschen (Mönche, Adelige, Bauern) in den <i>Biblia Pauperum</i> wider.</td></tr>
+          <tr><td><b>Moderne · Aufklärung</b></td>
+            <td>Betonung von <b>Vernunft und Autonomie</b>: Der Mensch kann nach Prinzipien leben, die er
+            <b>sich selbst gegeben</b> hat.</td></tr>
+          <tr><td><b>Moderne · Darwinismus</b></td>
+            <td>Die Evolutionstheorie führte zu einem Menschenbild, das den Menschen als ein <b>in der Evolution
+            entstandenes Lebewesen</b> sieht, das denselben Prozessen von <b>Variation und Selektion</b> unterliegt
+            wie Tiere.</td></tr>
+          <tr><td><b>Moderne · Psychoanalyse</b></td>
+            <td>Betonung der Rolle des <b>Unbewussten</b> und der Bedeutung der <b>frühen Kindheit</b> für die
+            Entwicklung des Menschen.</td></tr>
+          <tr><td><b>Gegenwart</b></td>
+            <td><b>Neurobiologie und Neurophilosophie</b>: Aktuelle Erkenntnisse führen zu einem Menschenbild,
+            das den <b>freien Willen als Illusion</b> betrachtet und den Menschen als <b>Produkt der Natur</b>
+            sieht.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><b>Merke:</b> Vom „Ebenbild Gottes“ über das „vernünftige, autonome Subjekt“ bis zum
+    „Produkt der Natur“ — jedes dieser Bilder wirkt bis heute nach. Menschen, die im Mittelalter-Denken
+    aufgewachsen sind, deuten Krankheit anders (Schicksal, Prüfung) als Menschen mit naturwissenschaftlichem
+    Weltbild (Ursache und Wirkung).</div>
+  </section>
+
+  <section id="s6">
+    <h2><span class="n">6</span> Bedeutung der kultursensiblen Pflege — warum jetzt?</h2>
+
+    <h3>Die Geschichte der Arbeitsmigration (Skript)</h3>
+    <ul class="clean">
+      <li>Nach Ende des <b>Zweiten Weltkrieges</b> fehlte es in Deutschland an <b>Fachkräften und Arbeitern</b>,
+      die das Land wieder aufbauen und die Wirtschaft ankurbeln sollten.</li>
+      <li>Deshalb bemühte sich die Bundesregierung von <b>Mitte der 1950er bis Anfang der 1970er Jahre</b>,
+      Arbeiter*innen aus anderen Ländern zu <b>rekrutieren</b> — geplant war ausdrücklich nur
+      „<b>vorübergehend</b>“.</li>
+      <li>Die Migrant*innen sind <b>geblieben</b>, und die Wirtschaft erlebte einen Boom
+      („<b>Boomer-Generation</b>“).</li>
+      <li>Jedoch: Die ehemaligen Migrant*innen <b>werden alt</b>, gehen in Rente und werden zu
+      <b>Pflegeempfängern</b>.</li>
+      <li>Dazu kommen <b>aktuelle Kriege und Notstände</b>, die Pflegeempfänger und ihre Familien in westliche
+      Länder treiben.</li>
+    </ul>
+
+    <h3>Was heißt „kultursensibel pflegen“ genau?</h3>
+    <p>Die RUBICON-Broschüre gibt die klarste Definition. Kultursensibel pflegen bedeutet:</p>
+    <ol class="merk">
+      <li><b>Interesse</b> an der Kultur von anderen zu haben.</li>
+      <li><b>Wissen</b> über diese Kultur zu haben — <b>und</b> zu erkennen, <b>inwieweit die allgemeinen Regeln
+      dieser Kultur auf das Individuum zutreffen</b>.</li>
+      <li>Eine <b>Haltung</b> einzunehmen, die die kulturellen Besonderheiten <b>erkennt und anerkennt</b>.</li>
+    </ol>
+    <div class="goodbox"><b>Punkt 2 ist der Prüfungspunkt.</b> Wissen allein reicht nicht — ich muss immer prüfen,
+    ob die allgemeine Regel bei <b>diesem</b> Menschen überhaupt gilt. Sonst wird aus Wissen ein Vorurteil.</div>
+
+    <p>Die zweite Definition kommt aus dem Fachartikel:</p>
+    <blockquote>Kultursensibel bedeutet, die <b>kulturelle Identität</b> von Menschen zu <b>verstehen</b>
+    (Uzarewicz 2003), sie <b>reflektieren</b> zu können und sie sowohl als <b>stabilisierend</b> wie auch als
+    <b>veränderbar</b> anzunehmen (Schiffauer 2002).<cite>Doukas &amp; Heinbach 2023</cite></blockquote>
+
+    <h3>Vielfalt auch beim Personal</h3>
+    <p>Kulturbezogene Vielfalt zeigt sich im deutschen Gesundheitswesen nicht nur bei Patient*innen, sondern
+    <b>auch unter den Beschäftigten</b>: Menschen kommen nach Deutschland — oder verlassen Deutschland,
+    z. B. Richtung Skandinavien (Friebe 2003).</p>
+    <blockquote>„Das Verständnis von Krankheit und Gesundheit ist kulturell unterschiedlich geprägt und kann
+    Einfluss auf das Gesundheitsverhalten sowie auf medizinische Therapieentscheidungen haben.“
+      <cite>Bauer 2010, S. 8</cite></blockquote>
+    <div class="note">Wichtig: Diese Unterschiede lassen sich <b>nicht an der Staatsbürgerschaft ablesen</b>.
+    Auch innerhalb der scheinbar homogenen Bevölkerung <b>ohne</b> Migrationsgeschichte gibt es große
+    Abweichungen im Verständnis von Gesundheit und Krankheit.</div>
+  </section>
+
+  <section id="s7">
+    <h2><span class="n">7</span> Lernen und interkulturelle Öffnung</h2>
+
+    <h3>Wie Lernen funktioniert</h3>
+    <ul class="clean">
+      <li>Unser Blickwinkel ist <b>vorgeprägt</b> durch das, was wir bereits erlebt und empfunden haben
+      (Arnold 2019). Jede Veränderung beginnt deshalb mit <b>Reflexion über diese Vorprägung</b>.</li>
+      <li>Für einen erfolgreichen Lernprozess braucht es immer die <b>Bereitschaft, sich zu verändern</b>.</li>
+      <li>Es braucht eine „<b>Stop-and-Think-Schleife</b>“ (Arnold 2008): einen Moment der Reflexion über die
+      eigenen, teilweise <b>tief eingeprägten Deutungsmuster</b> — und daran anschließend eine <b>Änderung des
+      eigenen Handelns</b>.</li>
+      <li><b>Lebenslanges Lernen</b> ist Notwendigkeit <b>und</b> Freiheit. Es basiert auf Begegnungen,
+      Eigenbedarf, Ressourcen und Emotionen sowie auf <b>Selbststeuerung</b>.</li>
+    </ul>
+    <blockquote>„Leben bedeutet deshalb, permanent zu lernen. Leben und Lernen bedingen sich wechselseitig.“
+      <cite>Schäfer 2017, S. 288</cite></blockquote>
+
+    <h3>Interkulturelle Öffnung im deutschen Gesundheitswesen</h3>
+    <ul class="clean">
+      <li>Der interkulturelle Öffnungsprozess deutscher Krankenhäuser <b>beschleunigt sich</b>
+      (Graef-Calliess 2017).</li>
+      <li>Es geht dabei <b>nicht nur um humanitäre Ziele</b> der Pflegepraxis, sondern auch um
+      <b>Arbeitgeberattraktivität und Wirtschaftlichkeit</b> (Behrens 2011).</li>
+      <li>Zur bedarfsorientierten <b>Personalentwicklung</b> gehören deshalb Weiterbildungen für eine
+      kultursensible Pflege, die der <b>Internationalisierung des Berufs</b> gerecht werden.</li>
+      <li>Trotzdem sind viele Fragen <b>ungeklärt</b> — sowohl für die kultursensible Pflege als auch für das
+      Arbeiten in <b>multikulturellen Teams</b>, besonders in Aus- und Weiterbildung.</li>
+    </ul>
+
+    <h3>Das Fazit des Fachartikels</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>Die Kompetenzen sind <b>Grundlagen</b>. Sie führen zu persönlicher Weiterentwicklung, zu bewusstem
+        kultursensiblen Handeln und zu einem <b>professionellen Pflegeverständnis</b>.</li>
+        <li>Zusammengeführt ergeben sie ein <b>Anforderungsprofil</b> für Ausbildung und Weiterbildungen.</li>
+        <li>Der Prozess beginnt <b>punktuell auf praktischer Ebene</b> — gesteuert werden muss er aber von der
+        <b>Führungsebene</b>. Sie muss das Prinzip glaubwürdig <b>vorleben</b> und in die Abläufe der
+        Mitarbeitenden <b>partizipativ einführen und festigen</b> (Hundenborn et al. 2018).</li>
+      </ul>
+      <blockquote style="margin-bottom:0">„Die Entwicklung einer eigenen Wertebasis, die bewusste Arbeit an den
+      eigenen Einstellungen und Haltungen, ist ein Anspruch in allen Bildungsprozessen.“
+        <cite>Hundenborn et al. 2018, S. 35</cite></blockquote>
+    </div>
+    <div class="warnbox"><b>Wichtige Aussage für die Prüfung:</b> <b>Vereinzelte Fortbildungen für einzelne
+    Mitarbeiter*innen können nicht das Mittel der Wahl sein.</b> Empfohlen wird stattdessen z. B. die
+    Etablierung eines oder einer <b>Migrationsbeauftragten</b> (Praxisratgeber des bundesweiten Arbeitskreises
+    Migration und öffentliche Gesundheit). Wertvoll ist die <b>Verknüpfung</b> von Ausbildung, Weiterbildung,
+    Organisationsentwicklung und Pflegepraxis — begleitet von <b>Reflexionsmöglichkeiten (z. B. Supervision)</b>
+    und Unterstützung durch die Leitung.</div>
+  </section>
+
+  <section id="s8">
+    <h2><span class="n">8</span> Die vier Kompetenzen kultursensibler Pflege</h2>
+    <p class="lead">Der Kern des Kompetenzkatalogs von Doukas &amp; Heinbach (PADUA 2023). Diese vier Begriffe
+    solltest du auswendig können.</p>
+
+    <h3>1 · Reflexivität</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>Reflexion ist die <b>Voraussetzung jedes Lernprozesses</b>. Sie führt dazu, sich <b>und andere</b>
+        zu verstehen.</li>
+        <li>Die Art, wie wir die Welt sehen, unterscheidet sich immer mehr oder weniger stark von anderen.
+        Dieser individuelle Blickwinkel macht uns <b>einzigartig</b> — und gleichzeitig in unserer Wahrnehmung
+        <b>eingeschränkt</b>.</li>
+        <li>Die Kompetenz der Reflexivität ermöglicht es, diese Einschränkung zu <b>minimieren</b>, also
+        <b>offen zu werden für andere Perspektiven</b>.</li>
+        <li>Erst dadurch lassen sich <b>Stereotype auflösen</b>, negative Fremdheitserfahrungen überwinden und
+        schließlich eine <b>nicht-diskriminierende Pflegesituation</b> schaffen.</li>
+        <li><b>Beide</b> Kooperationspartner*innen brauchen Reflexion über ihre jeweilige Prägung.</li>
+      </ul>
+      <h4>Die vier Reflexionsfragen aus dem Artikel</h4>
+      <ul class="plain">
+        <li>Welche Erfahrungen habe ich als <b>Patient*in</b> bereits im Krankenhaus gemacht?</li>
+        <li>Habe ich mich <b>eingebunden</b> gefühlt oder wurde <b>über meinen Kopf hinweg</b> entschieden?</li>
+        <li>Wurde ich als <b>Pflegekraft</b> aufgrund meiner <b>Hautfarbe</b> bereits diskriminiert und meine
+        <b>Professionalität infrage gestellt</b>?</li>
+        <li>Habe ich schon einmal <b>schlecht mit einem bestimmten Kulturkreis kooperiert</b>, und meine
+        professionellen Handlungen hatten nicht den Effekt, den ich mir gewünscht hätte?</li>
+      </ul>
+      <p style="margin-bottom:0">Die Feststellung, dass die eigenen Deutungsmuster einen derartigen Einfluss auf
+      unser Verhalten und Denken haben, ist die <b>Basis dafür, sie zu überarbeiten</b>. Angestoßen wird dieser
+      Prozess durch <b>interaktiven Austausch</b> über bisherige Erfahrungen zwischen Lehrenden und Lernenden.</p>
+    </div>
+
+    <h3>2 · Respektvolle Haltung</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>Patient*in und Pflegekraft bzw. Mediziner*in müssen sich <b>auf Augenhöhe</b> begegnen, um konstruktiv
+        zusammenzuarbeiten und die besten Erfolge zu erreichen.</li>
+        <li>Das geht mit einer gewissen „<b>Ambiguitätstoleranz</b>“ einher (Witzenleiter &amp; Luppold 2020, S. 5),
+        die <b>Akzeptanz und Respekt vor Andersartigkeit</b> voraussetzt.</li>
+        <li>Die <b>Stop-and-Think-Schleife</b> kann durch Reflexion — nicht nur bezogen auf kulturelle oder
+        ethnische Bedingungen — zu einem respektvollen und wertschätzenden Umgang beitragen.</li>
+        <li>Um diese <b>Offenheit, Neugier und neutrale, aber aktive Haltung</b> einnehmen zu können, ist es
+        <b>zwingend notwendig, auch negative Emotionen wie Angst, Zweifel und Antipathie zu adressieren</b> —
+        nur so lassen sie sich bewältigen (Uzarewicz 2014).</li>
+        <li>Das gilt <b>umgekehrt auch für die Patient*innen</b>, die möglicherweise schon negative Erfahrungen
+        im Krankenhaus oder mit bestimmten Personen aus dem Pflegeteam gemacht haben.</li>
+        <li>Ein solcher Konflikt kann nur behoben werden, wenn <b>gegenseitiger Respekt besteht</b> — und dieser
+        Respekt kann sich, <b>auch im Konflikt</b>, Stück für Stück vertiefen und weiterentwickeln (Bolten 2012).</li>
+      </ul>
+    </div>
+
+    <h3>3 · Selbstwirksamkeit</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>Selbstwirksamkeit im eigenen Dasein ist ein <b>grundlegendes menschliches Bedürfnis</b> und erzeugt
+        <b>Sinn im eigenen Handeln</b>.</li>
+        <li>Pflegemaßnahmen müssen mit dem <b>Wertesystem und dem ethischen Selbstverständnis</b> der Pflegeperson
+        konform sein (Behrens 2012).</li>
+        <li>Sonst können <b>Erschöpfungszustände</b> entstehen (Tegtmeier &amp; Tegtmeier 2013), die auf fehlender
+        Selbstwirksamkeit basieren: <b>Tagtäglich die eigenen Grundsätze zu verleugnen schafft Hilflosigkeit und
+        raubt Energie.</b></li>
+        <li>Das gilt für Pflegende <b>ebenso wie für Patient*innen</b> — insbesondere, wenn diese zusätzlich mit
+        dem <b>Kontrollverlust durch eine Erkrankung</b> zu kämpfen haben.</li>
+        <li>Folgen sonst: <b>Abwehrhaltung, Missverständnisse und Verhärtungen</b> (Schiffauer 2002).</li>
+        <li>Das Bedürfnis wird dort erfüllt, wo <b>alle Beteiligten sich gegenseitig den Raum lassen</b>,
+        Selbstwirksamkeit zu erleben.</li>
+      </ul>
+      <h4>Wie man das in der Ausbildung erlebbar macht</h4>
+      <p style="margin-bottom:0">Man bearbeitet <b>komplexe Fälle aus der Praxis mit hohem Konfliktpotenzial</b>
+      und löst sie <b>gemeinsam</b> — durch Zusammenführung der verschiedenen Blickwinkel der Lernenden —
+      so, dass die Lösung für alle <b>moralisch und ethisch vertretbar, pragmatisch und zufriedenstellend</b> ist.
+      Das Bedürfnis nach <b>Autonomie</b> der betreffenden Patient*innen steht dabei im Mittelpunkt.
+      Dozent*innen nehmen die Rolle eines <b>Moderators / einer Moderatorin</b> ein.</p>
+    </div>
+
+    <h3>4 · Kooperation und sozialer Beziehungsaufbau</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>Jede Lernsituation, jede kulturelle Handlung und jede pflegerische Situation basiert auf
+        <b>sozialer Interaktion</b>.</li>
+        <li>Die Kompetenz zur Kooperation ist zentraler Bestandteil <b>informeller und formeller Lernprozesse</b>,
+        da Menschen <b>in jedem Fall voneinander lernen</b> (Bolten 2012).</li>
+        <li><b>Merksatz:</b> Je größer die <b>Divergenz</b> (der Unterschied) zwischen den kommunizierenden und
+        kooperierenden Partner*innen, desto <b>größeres Konfliktpotenzial</b> besteht.</li>
+        <li>Können diese Unterschiede durch Kompetenzen wie <b>Reflexivität oder Selbstwirksamkeit</b> überwunden
+        werden, dann verbergen sich <b>hinter jeder zwischenmenschlichen Begegnung Entwicklungspotenziale</b>.</li>
+        <li>Diese Potenziale <b>zu sehen und nutzbar zu machen</b> — das ist die vierte Kompetenz.</li>
+      </ul>
+    </div>
+
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Kompetenz</th><th>Leitfrage</th><th>Schlüsselbegriff</th></tr></thead>
+        <tbody>
+          <tr><td><b>Reflexivität</b></td><td>Wie wurde ich selbst geprägt?</td><td>Stop-and-Think-Schleife</td></tr>
+          <tr><td><b>Respektvolle Haltung</b></td><td>Begegnen wir uns auf Augenhöhe?</td><td>Ambiguitätstoleranz</td></tr>
+          <tr><td><b>Selbstwirksamkeit</b></td><td>Kann ich nach meinen Werten handeln?</td><td>Autonomie / Burnout-Schutz</td></tr>
+          <tr><td><b>Kooperation</b></td><td>Was kann ich aus dieser Begegnung lernen?</td><td>Divergenz → Entwicklungspotenzial</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="s9">
+    <h2><span class="n">9</span> Zentrale Elemente: Gestik und Mimik</h2>
+    <p class="lead">Dieselbe Geste bedeutet nicht überall dasselbe. Das ist eine sehr beliebte Prüfungsfrage.</p>
+
+    <h3>Augenkontakt</h3>
+    <ul class="clean">
+      <li><b>Westliche Kulturen:</b> zeigt <b>Ehrlichkeit und Höflichkeit</b>.</li>
+      <li><b>Asiatische Kulturen:</b> eher <b>untersagt</b> — als <b>Zeichen des Respekts</b> vor dem Anderen
+      (z. B. gegenüber Vorgesetzten).</li>
+    </ul>
+
+    <h3>Lächeln</h3>
+    <ul class="clean">
+      <li><b>Bei uns:</b> generell eher <b>freundlich</b> gemeint.</li>
+      <li><b>Japan:</b> es gibt <b>6 verschiedene Arten zu lächeln</b> — z. B. für <b>Zuneigung, Zustimmung,
+      Entschuldigung oder Ablehnung</b>. <b>Lautes Lachen</b> gilt dort eher als <b>unhöflich oder unsicher</b>.</li>
+    </ul>
+
+    <h3>Kopfschütteln</h3>
+    <ul class="clean">
+      <li><b>Deutschland:</b> Nein.</li>
+      <li><b>Indien:</b> Ja, Nein <b>oder</b> Vielleicht.</li>
+      <li><b>Orient:</b> einmal <b>nach unten</b> → <b>Zustimmung</b>; Nicken <b>nach oben</b> → <b>Ablehnung</b>.</li>
+      <li><b>Teile von Asien:</b> zustimmend.</li>
+      <li><b>Tibet:</b> Man streckt zur <b>Begrüßung die Zunge</b> heraus.</li>
+      <li><b>Philippinen:</b> Man sagt Hallo, indem man die <b>Augenbraue hochzieht</b>.</li>
+    </ul>
+
+    <h3>Das OK-Zeichen 👌</h3>
+    <ul class="clean">
+      <li><b>Meist in Europa:</b> Okay.</li>
+      <li><b>Frankreich und Italien:</b> <b>Null</b> oder <b>Schlecht</b>.</li>
+      <li><b>Japan:</b> <b>Geld</b>.</li>
+      <li><b>In arabischen Ländern:</b> kann eine <b>Drohgebärde</b> oder eine <b>sexuelle Beleidigung</b> sein.</li>
+    </ul>
+    <div class="warnbox"><b>Regel für die Praxis:</b> Diese Geste in der Pflege besser <b>ganz weglassen</b>.
+    Und bei allen Ja/Nein-Antworten zu Medikamenten oder Nahrung <b>immer nachfragen</b>:
+    „Habe ich Sie richtig verstanden?“</div>
+  </section>
+
+  <section id="s10">
+    <h2><span class="n">10</span> Den Menschen als Menschen sehen — Religion</h2>
+    <p class="lead">Aus dem Skript: „Religionen sind eines der Kernelemente eines jeden Menschen — <b>so auch des
+    Atheisten</b>.“ Der Arbeitsauftrag lautete, für Christentum, Islam, Judentum und Atheismus jeweils sechs
+    Bereiche zu klären. Hier die Antworten.</p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th></th><th>Christentum</th><th>Islam</th><th>Judentum</th><th>Atheismus</th></tr></thead>
+        <tbody>
+          <tr><td><b>Grundlage des Glaubens und seine Bedeutung</b></td>
+            <td>Ein Gott, Jesus Christus als Erlöser; Bibel. Gibt Trost, Hoffnung auf ein Leben nach dem Tod,
+            Gemeinschaft in der Gemeinde.</td>
+            <td>Ein Gott (Allah), Prophet Mohammed; Koran; die <b>5 Säulen</b> (Glaubensbekenntnis, Gebet,
+            Almosen, Fasten, Pilgerfahrt). Strukturiert den ganzen Tag.</td>
+            <td>Ein Gott; Tora; der <b>Bund</b> mit Gott. Starke Verbindung von Glaube, Volk und Geschichte.</td>
+            <td>Kein Gottesglaube. Sinn entsteht aus <b>Vernunft, Menschlichkeit, eigenen Werten</b> und
+            Beziehungen.</td></tr>
+          <tr><td><b>Ernährung</b></td>
+            <td>Meist keine festen Regeln. Fastenzeit vor Ostern; mancherorts freitags kein Fleisch.</td>
+            <td><b>Halal</b>: kein Schweinefleisch, kein Alkohol (auch nicht in Medikamenten oder Desinfektion —
+            nachfragen!). Im <b>Ramadan</b> tagsüber kein Essen und Trinken. <b>Kranke sind vom Fasten befreit</b> —
+            aber viele fasten trotzdem, deshalb Medikamentenzeiten besprechen.</td>
+            <td><b>Koscher</b>: kein Schweinefleisch, keine Meeresfrüchte; <b>Fleisch und Milch getrennt</b>
+            (auch Geschirr). <b>Jom Kippur</b>: strenges Fasten.</td>
+            <td>Persönliche Entscheidung, z. B. vegetarisch oder vegan.</td></tr>
+          <tr><td><b>Körperpflege</b></td>
+            <td>Keine besonderen religiösen Regeln.</td>
+            <td><b>Rituelle Waschung</b> vor dem Gebet. <b>Fließendes Wasser</b> wird bevorzugt (nicht die
+            Waschschüssel). Intimpflege traditionell mit der <b>linken Hand</b>. Häufig Wunsch nach einer
+            <b>gleichgeschlechtlichen Pflegekraft</b>.</td>
+            <td>Rituelle Reinheit ist wichtig. Am <b>Schabbat</b> (Freitagabend bis Samstagabend) gibt es
+            Einschränkungen bei Arbeit, Strom und Schreiben.</td>
+            <td>Keine religiösen Regeln.</td></tr>
+          <tr><td><b>Selbstpflege und Scham</b></td>
+            <td>Individuell.</td>
+            <td>Schamgrenzen oft hoch; der Körper wird bedeckt. Besuch und Anwesenheit der <b>Familie</b> sind
+            sehr wichtig — auch in großer Zahl.</td>
+            <td>Individuell; Schabbat und Feiertage beachten.</td>
+            <td>Individuell.</td></tr>
+          <tr><td><b>Geburt</b></td>
+            <td><b>Taufe</b>, oft einige Wochen oder Monate nach der Geburt.</td>
+            <td><b>Gebetsruf ins Ohr</b> des Neugeborenen. <b>Beschneidung</b> von Jungen üblich.</td>
+            <td><b>Beschneidung</b> von Jungen am <b>8. Tag</b> (Brit Mila) — ein Familienfest.</td>
+            <td>Keine religiöse Feier; ggf. weltliche Namensfeier.</td></tr>
+          <tr><td><b>Sterben</b></td>
+            <td><b>Krankensalbung</b>, Segen, Seelsorge, Gebet. Erd- oder Feuerbestattung möglich.</td>
+            <td>Sterbende möglichst <b>Richtung Mekka</b> ausrichten; das <b>Glaubensbekenntnis</b> sprechen bzw.
+            vorsprechen. <b>Schnelle Beerdigung</b> (in der Regel innerhalb von 24 Stunden), rituelle Waschung
+            durch Gläubige des gleichen Geschlechts, <b>keine Feuerbestattung</b>, in der Regel <b>keine
+            Obduktion</b> erwünscht.</td>
+            <td>Beistand, Psalmen. <b>Schnelle Beerdigung</b>, <b>keine Feuerbestattung</b>. Danach Trauerzeit
+            (<b>Schiwa</b>, 7 Tage).</td>
+            <td>Abschied ohne Religion; Wünsche vorher besprechen (z. B. Musik, Rede, Bestattungsform).</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warnbox"><b>Achtung Stereotyp:</b> Nicht jede muslimische Frau möchte eine weibliche Pflegekraft,
+    nicht jeder Jude hält den Schabbat streng ein, nicht jeder Christ möchte Seelsorge. Diese Tabelle ist ein
+    <b>Gesprächsanlass</b>, keine Regel. Der richtige Satz lautet:
+    <i>„Gibt es etwas, das ich für Sie beachten soll?“</i></div>
+  </section>
+
+  <section id="s11">
+    <h2><span class="n">11</span> Stigma-Management</h2>
+
+    <h3>Was ist ein Stigma?</h3>
+    <p>Im Allgemeinen ein <b>auffälliges, oft negativ bewertetes Merkmal oder Zeichen</b> — z. B.
+    Hautunreinheiten, Lebermale, Narben. Das Wort kommt aus dem Griechischen und bedeutet
+    „<b>Brandmal</b>“ oder „Stich“.</p>
+
+    <h3>Was ist Stigmatisierung?</h3>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Negative Bewertung</b></li>
+        <li><b>Ausgrenzung</b></li>
+        <li><b>Diskriminierung</b></li>
+        <li><b>Verallgemeinerung — Stereotypisierung</b></li>
+        <li><b>Selbst-Stigmatisierung</b></li>
+      </ul>
+    </div>
+    <p><b>Selbst-Stigmatisierung</b> heißt: Der betroffene Mensch <b>übernimmt die Abwertung gegen sich selbst</b>.
+    Er glaubt irgendwann, dass mit ihm wirklich etwas nicht stimmt. In der LSBTI-Fachsprache heißt das
+    <b>„internalisierte Homonegativität“</b> (Steffens &amp; Geisler 2009).</p>
+
+    <h3>Welche Folgen hat Stigmatisierung?</h3>
+    <div class="two">
+      <div class="col c1">
+        <ul>
+          <li><b>Psychische Belastung</b> — Scham, Angst, Depression</li>
+          <li><b>Soziale Ausgrenzung</b> — Isolation, Rückzug</li>
+        </ul>
+      </div>
+      <div class="col c2">
+        <ul>
+          <li><b>Begrenzte Chancen</b> — Arbeit, Wohnung, Bildung</li>
+          <li><b>Gesundheitliche Folgen</b></li>
+        </ul>
+      </div>
+    </div>
+    <div class="badbox"><b>Der Pflege-Zusammenhang:</b> Gesundheitliche Folgen entstehen nicht nur durch den
+    Stress. Sie entstehen auch, weil stigmatisierte Menschen <b>Hilfe meiden</b> und <b>Informationen
+    verschweigen</b>. Dann fehlen der Pflege wichtige Daten — und die Pflegeplanung geht an den echten
+    Problemen vorbei.</div>
+  </section>
+
+  <section id="s12">
+    <h2><span class="n">12</span> LSBTI — die Begriffe (Glossar)</h2>
+    <p class="lead"><b>LSBTI</b> = <b>L</b>esbisch · <b>S</b>chwul · <b>B</b>isexuell · <b>T</b>rans ·
+    <b>I</b>nter. Man liest auch LGBTQ+ oder „queer“. Die Begriffe stammen überwiegend aus der
+    <i>Fibel der kleinen Unterschiede</i> (LAG Lesben in NRW 2013) im Anhang der RUBICON-Broschüre.</p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><b>homo</b></td><td>Griechisch für <b>„gleich“</b> (Gegenteil von hetero).</td></tr>
+          <tr><td><b>hetero</b></td><td>Griechisch für <b>„verschieden“ oder „ungleich“</b>.</td></tr>
+          <tr><td><b>hetera</b></td><td>Die <b>weibliche Form</b> von hetero. Die Broschüre verwendet bewusst
+          „hetera- und heterosexuell“, um Frauen sprachlich sichtbar zu machen.</td></tr>
+          <tr><td><b>heterasexuell / heterosexuell</b></td><td><b>Heterasexuelle</b> (weibliche Form) fühlen sich
+          zu Männern hingezogen. <b>Heterosexuelle</b> (männliche Form) fühlen sich zu Frauen hingezogen.</td></tr>
+          <tr><td><b>homosexuell</b></td><td>Homosexuelle fühlen sich von Menschen des <b>gleichen Geschlechts</b>
+          angezogen.</td></tr>
+          <tr><td><b>lesbisch / schwul</b></td><td>Frau liebt Frau / Mann liebt Mann. Beides waren früher
+          <b>Schimpfwörter</b> — die Bewegung hat sie <b>positiv umgedeutet</b> (siehe Kapitel 14, 1970er).</td></tr>
+          <tr><td><b>gleichgeschlechtlich liebend</b></td><td>Eine Bezeichnung, die <b>eher ältere Menschen</b>
+          nutzen, weil diese Selbstbezeichnung ihnen mehr entspricht als die „modernen“ und ehemals negativ
+          besetzten Begriffe homosexuell, lesbisch oder schwul. <b>Sehr wichtig für die Altenpflege!</b></td></tr>
+          <tr><td><b>sexuelle Identität</b></td><td>Das Geschlecht eines Menschen und seine Sexualität tragen —
+          neben Herkunft, Alter und Weltanschauung — <b>maßgeblich zur Ausbildung einer Identität</b> bei.
+          Der Begriff bezeichnet das <b>elementare Selbstverständnis über das geschlechtliche Wesen</b> eines
+          Menschen. Grundlegend ist, <b>wie ein Mensch sich selbst wahrnimmt und von anderen wahrgenommen werden
+          will</b>. Sie umfasst das <b>biologische</b> und das <b>soziale Geschlecht</b> <b>und</b> die sexuelle
+          Orientierung.</td></tr>
+          <tr><td><b>sexuelle Orientierung</b></td><td>Beschreibt, <b>auf wen</b> sich die Sexualität eines
+          Menschen richtet: auf das andere Geschlecht (heterosexuell), das gleiche Geschlecht (homosexuell) oder
+          auf beide (bisexuell).</td></tr>
+          <tr><td><b>Herkunftsfamilie</b></td><td>Die Familie, <b>in die wir hineingeboren werden</b> — auch
+          <b>biologische Familie</b> genannt. Gegenteil: die selbst <b>gewählte Familie</b> aus Freund*innen.</td></tr>
+          <tr><td><b>cis</b></td><td>Das gefühlte Geschlecht stimmt mit dem bei der Geburt eingetragenen überein.
+          Anamnesebögen sind meist nur für den <b>CIS-Mann und die CIS-Frau</b> gemacht.</td></tr>
+          <tr><td><b>trans / transgender / transsexuell</b></td><td>Das gefühlte Geschlecht stimmt <b>nicht</b>
+          mit dem bei der Geburt eingetragenen überein.</td></tr>
+          <tr><td><b>inter / intersexuell</b></td><td>Die körperlichen Geschlechtsmerkmale lassen sich nicht
+          eindeutig „männlich“ oder „weiblich“ zuordnen.</td></tr>
+          <tr><td><b>Heteronormativität</b></td><td>Die stille <b>Vorannahme, alle Menschen seien hetera- oder
+          heterosexuell</b>. Diese Vorannahme <b>besteht grundsätzlich</b> — in Formularen, Fragen und Blicken.
+          Sie macht andere Lebensformen unsichtbar. <b>Hinweis der Broschüre:</b> Das Wort wird bewusst nur in der
+          männlichen Form benutzt, um die darin liegende <b>patriarchale Struktur</b> auszudrücken.</td></tr>
+          <tr><td><b>Coming-out</b></td><td><b>Inneres</b> Coming-out: sich selbst eingestehen, lesbisch oder
+          schwul zu sein. <b>Äußeres</b> Coming-out: offen damit umgehen — gegenüber Bezugspersonen, der
+          Herkunftsfamilie, Freund*innen.</td></tr>
+          <tr><td><b>Homophobie</b></td><td>Abwertung, Angst oder Hass gegenüber homosexuellen Menschen.</td></tr>
+          <tr><td><b>internalisierte Homonegativität</b></td><td>Die jahrzehntelange Konfrontation mit negativen
+          Zuschreibungen und gesellschaftlicher Ausgrenzung führt zur <b>Selbstabwertung</b>.</td></tr>
+          <tr><td><b>Rosa Winkel</b></td><td>Kennzeichnung schwuler Männer in den Konzentrationslagern; ab den
+          1970er-Jahren von der Bewegung als <b>selbstgewähltes Zeichen</b> getragen.</td></tr>
+          <tr><td><b>Schwarzer Winkel</b></td><td>Kennzeichnung als „<b>asozial</b>“ im KZ — damit wurden
+          lesbische Frauen oft gebrandmarkt. „Asozial“ bedeutete für die Nazis einen „unsittlichen
+          Lebenswandel“.</td></tr>
+          <tr><td><b>CSD</b></td><td><b>Christopher Street Day</b> — benannt nach der Straße in New York, in der
+          1969 der Aufstand gegen die Polizeirazzien begann.</td></tr>
+          <tr><td><b>Klappen</b></td><td>Öffentliche Toiletten — sie waren wichtige <b>Treffpunkte schwuler
+          Männer</b>, weil ihnen der private Raum verschlossen war.</td></tr>
+          <tr><td><b>Josefsehe</b></td><td>Eine Ehe, in der im <b>gegenseitigen Einvernehmen auf
+          Geschlechtsverkehr verzichtet</b> wurde — eine Schutzform in der NS-Zeit.</td></tr>
+          <tr><td><b>Schwester</b></td><td>Unter lesbischen Frauen ein Zeichen der <b>Verbundenheit</b>
+          („… das ist doch auch eine Schwester!“). Ältere Schwule sprechen anerkennend von der
+          <b>„Bewegungsschwester“</b> — jemand, der sich aktiv für die Community einsetzt.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warnbox"><b>Nicht verwechseln:</b> <b>Sexuelle Identität</b> (Wer bin ich?) ist etwas anderes als
+    <b>sexuelle Orientierung</b> (Wen liebe ich?). Und beides hat nichts mit sexuellen Handlungen im Pflegezimmer
+    zu tun — genau diese Verwechslung ist ein häufiges Vorurteil.</div>
+  </section>
+
+  <section id="s13">
+    <h2><span class="n">13</span> LSBTI in der Geschichte — Überblick</h2>
+    <p class="lead">Zuerst der kurze Überblick aus dem Skript. Die ausführliche Zeittafel für Deutschland folgt
+    in Kapitel 14.</p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Epoche</th><th>Wie war die Lage?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Antike</b></td>
+            <td>In <b>Griechenland, im Orient, im östlichen Asien und in Ägypten</b> war die gleichgeschlechtliche
+            Liebe <b>anerkannt und akzeptiert</b>. Offizielle Hochzeiten gab es kaum. Inter- und Transmenschen
+            wurden ebenfalls akzeptiert, <b>doch meist ausgebeutet</b>.</td></tr>
+          <tr><td><b>Mittelalter</b></td>
+            <td>Der <b>religiöse Einfluss</b> nahm stark zu. Neben dem christlichen Verfolgungswahn nahm die
+            Akzeptanz <b>rapide ab</b>. „<b>Sodomiten</b>“ wurden verfolgt, wegen „Unzucht“ bestraft,
+            vergewaltigt, gefoltert, verbrannt, gekreuzigt.</td></tr>
+          <tr><td><b>Neuzeit</b></td>
+            <td>LSBTI wurde <b>präsenter</b>, war aber durch christlichen, islamischen und jüdischen Glauben
+            <b>verrufen</b>. Deshalb bildeten sich viele Organisationen <b>im Untergrund</b>.</td></tr>
+          <tr><td><b>Nazi-Deutschland</b></td>
+            <td><b>Verfolgung, Folterung und Tötung</b> von LSBTI-Menschen sowie von Anhänger*innen und
+            Befürworter*innen.</td></tr>
+          <tr><td><b>Spätes 20. Jahrhundert</b></td>
+            <td><b>Bewegungen und Streiks</b> für mehr Rechte und Sichtbarkeit. Erst am <b>11. Juni 1994</b> wurde
+            <b>§ 175 StGB</b> gestrichen — der Paragraph, nach dem LSBTI offiziell verboten, verfolgt und bestraft
+            werden durfte.</td></tr>
+          <tr><td><b>21. Jahrhundert</b></td>
+            <td><b>Wandel und Legalisierung</b> in verschiedenen Ländern. <b>Teils aber auch Rückwandel und
+            Kriminalisierung</b>, z. B. in den USA, China, Singapur usw.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><b>Wichtiger Gedanke:</b> Die Geschichte verläuft <b>nicht</b> geradlinig nach oben.
+    In der Antike war vieles akzeptiert, im Mittelalter nicht mehr. Auch heute gibt es Rückschritte.
+    Ältere Menschen wissen das — deshalb trauen sie dem Frieden nicht.</div>
+  </section>
+
+  <section id="s14">
+    <h2><span class="n">14</span> Zeittafel Deutschland — von den 1920ern bis heute</h2>
+    <p class="lead">Aus der RUBICON-Broschüre. Der Rückblick beginnt bei den 1920er-Jahren, weil die heute
+    Hochaltrigen in dieser Zeit geboren wurden.</p>
+
+    <h3>Die 1920er-Jahre — Weimarer Republik</h3>
+    <ul class="clean">
+      <li>Zeit des <b>politischen Aufbruchs</b>: Ausbau des Sozialstaats, demokratische Rechte in der Verfassung,
+      erstmals <b>aktives und passives Wahlrecht für Frauen</b>.</li>
+      <li>Kunst und Kultur profitierten. Trotz großer Armut entstand ein freizügiges gesellschaftliches Leben —
+      die „<b>Goldenen Zwanziger</b>“.</li>
+      <li>Zumindest in Großstädten (<b>Berlin, Frankfurt, Köln, Hamburg</b>) war es möglich, eine eigene
+      <b>Subkultur</b> zu gestalten. Lesbisches und schwules Leben war <b>öffentlich sichtbar</b>.</li>
+      <li>Es entstanden <b>Interessensorganisationen</b>: der <b>Bund für Menschenrechte</b>, der
+      <b>Bund für ideale Frauenfreundschaft</b>. Es gab Vorträge, Clubs und eigene Zeitschriften wie
+      <i>„Die Frauenliebe“</i> und <i>„Die Freundin“</i>. Es gab Feste und Bälle, auf denen Frau mit Frau und
+      Mann mit Mann tanzte.</li>
+      <li><b>1919:</b> Magnus Hirschfeld gründete das <b>weltweit erste Institut für Sexualwissenschaft</b>.</li>
+      <li>Symbol dieser Zeit: das <b>Veilchen</b> (heute fast unbekannt).</li>
+    </ul>
+    <div class="warnbox">Aber: Die <b>Mehrheit der Bevölkerung behielt ihre homophobe Einstellung bei</b>, und
+    <b>§ 175</b> (eingeführt <b>1872</b>) stellte sexuelle Handlungen zwischen Männern weiter unter Strafe.</div>
+
+    <h3>Der Nationalsozialismus (1933–1945)</h3>
+    <ul class="clean">
+      <li>Homosexualität stand im Widerspruch zur <b>NS-Familienideologie und Bevölkerungspolitik</b>. Sie galt
+      als <b>sittenwidrig</b> und als <b>Bedrohung für das Bevölkerungswachstum</b>.</li>
+      <li>Die Repressionen führten <b>in kurzer Zeit zum Zusammenbruch</b> der sozialen und organisierten
+      Strukturen — durch <b>Verleumdungen, Denunziationen, Verfolgung und Gewalt</b>.</li>
+      <li><b>§ 175 verschärft:</b> Das Strafmaß wurde von <b>sechs Monaten auf fünf Jahre</b> erhöht.</li>
+      <li><b>Sex zwischen Frauen</b> wurde <b>nicht</b> strafrechtlich verfolgt — weil die Nationalsozialisten
+      Frauen <b>keine eigene Sexualität zusprachen</b>. Vorbehalte gegenüber lesbischen Frauen gab es trotzdem
+      schwerste.</li>
+      <li><b>Tausende schwule Männer</b> wurden verhaftet und in <b>Konzentrationslager</b> verschleppt.
+      Der <b>Rosa Winkel</b> an der Häftlingsjacke wies sie als homosexuell aus und trug <b>auch innerhalb des
+      KZ</b> zur weiteren Stigmatisierung bei.</li>
+      <li><b>Lesbische Frauen</b> wurden anders verfolgt, aber <b>genauso inhaftiert</b> und in KZ gebracht — oft
+      mit dem <b>Schwarzen Winkel</b> als „<b>asozial</b>“ gebrandmarkt.</li>
+      <li><b>Von 1933 bis 1945 wurden 100.000 Homosexuelle verhaftet</b> (Gerlach 2001). Das reichte, um den
+      weitaus größeren „Rest“ <b>einzuschüchtern</b>.</li>
+      <li>Viele flüchteten in die <b>Schutzheirat</b> mit einer Frau oder in den <b>Suizid</b>. Auch lesbische
+      Frauen wählten zum Schutz die Ehe — als <b>Josefsehe</b> (ohne Geschlechtsverkehr) oder mit einem
+      heterosexuellen Partner, der die „Erfüllung ehelicher Pflichten“ erwartete und nichts von der
+      Vergangenheit wissen durfte.</li>
+      <li>Auch <b>Wissenschaft und Forschung</b> waren betroffen: Liberalisierende Tendenzen wie Hirschfelds
+      Institut wurden <b>zunichtegemacht</b>.</li>
+      <li>Zeitzeuginnen berichten von <b>Razzien in lesbischen Lokalen</b>. Die Besucherinnen wurden zur
+      „Gesundheitskontrolle“ gebracht, weil sie <b>automatisch der Prostitution verdächtigt</b> wurden.</li>
+    </ul>
+    <blockquote>Die Historikerin Claudia Schoppmann nennt diese Phase eine „<b>Zeit der Maskierung</b>“.
+      <cite>Schoppmann 1993</cite></blockquote>
+    <div class="badbox"><b>Die entscheidende Folge:</b> Am Ende der Nazizeit gab es <b>kein öffentliches
+    lesbisches oder schwules Leben und keine Kultur mehr</b>. Homosexuelles Leben war ausgemerzt und
+    verschwunden. Deshalb gab es für junge Lesben und Schwule <b>keine Vorbilder, keine Gemeinschaft und keine
+    Netzwerke</b>. Sie waren auf sich allein gestellt — in einem homophoben Klima.</div>
+
+    <h3>Die Nachkriegszeit und die 1950er-Jahre</h3>
+    <ul class="clean">
+      <li>An der Stigmatisierung änderte sich <b>nichts</b>. Homosexuelle wurden als „<b>krank</b>“ diagnostiziert
+      und eingeordnet. Worte wie „<b>pervers</b>“ und „<b>abartig</b>“ hatten sich fest eingebrannt.</li>
+      <li>Die junge Demokratie schaffte alte Gesetze wie § 175 <b>nicht</b> ab.</li>
+      <li>Homosexuellen, die im Nationalsozialismus verfolgt, gefoltert und im KZ eingesperrt waren, wurde die
+      <b>Anerkennung als NS-Opfer verwehrt</b>. Manche mussten die <b>Reststrafe absitzen</b>.</li>
+      <li><b>Zahlen BRD:</b> Seit 1950 stieg die Zahl der Verurteilten von knapp <b>2.000</b> kontinuierlich an
+      und erreichte <b>1959 mit mehr als 3.500</b> ihren Höhepunkt. In den ersten <b>15 Jahren fast 45.000
+      Verurteilungen</b> — zum Vergleich: in den 15 Jahren der Weimarer Republik <b>9.375</b>. Also mehr als das
+      <b>Vierfache unter dem Schutz des Grundgesetzes</b>. Gemeldete Fälle: 7.100 (1953) → rund 8.700 (1959);
+      zusammen über <b>100.000</b> für 1953–1966 (Bruns 2011).</li>
+      <li><b>DDR:</b> Anders als die BRD nahm die DDR die NS-Verschärfungen zurück. <b>Ab 1957</b> wurden
+      homosexuelle Handlungen unter Erwachsenen <b>nicht mehr geahndet</b>, § 175 blieb aber formal bestehen.</li>
+    </ul>
+    <div class="badbox">Eine Verurteilung bedeutete zugleich den „<b>sozialen Tod</b>“. <b>Nicht wenige
+    Homosexuelle, die die Verfolgung der Nazis überlebt hatten, nahmen sich in den 1950er-Jahren aus Verzweiflung
+    über diese Verfolgungspraxis das Leben.</b> Eine Anklage war nur mit Anzeige möglich — und die Anzeigen kamen
+    <b>auch aus der Bevölkerung</b>.</div>
+
+    <h3>Die 1960er-Jahre</h3>
+    <ul class="clean">
+      <li>Die <b>patriarchale Gesellschaftsordnung</b> duldete keine Abweichung. Die <b>Ehe zwischen Mann und
+      Frau</b> war die einzig legitime Beziehungsform. Im Rahmen dieser Normen <b>durfte es kein homosexuelles
+      Leben geben</b>.</li>
+      <li>Studentinnen und Studenten rebellierten gegen die starren Normen und die prüde Sexualmoral. In den
+      späten 1960er-Jahren begann die Zeit des Umbruchs — die „<b>sexuelle Revolution</b>“.</li>
+      <li>Folge: Dem Staat wurde die Befugnis abgesprochen, die „sittliche Ordnung“ mit dem Strafrecht zu
+      verteidigen. Er sollte nur noch bei <b>sozialschädlichen Handlungen</b> strafen.</li>
+      <li><b>DDR 1968:</b> endgültige Streichung des § 175 mit dem eigenen Strafgesetzbuch. Neu eingeführt wurde
+      allerdings ein Passus, der gleichgeschlechtliche Handlungen <b>mit Jugendlichen</b> — für Frauen <b>und</b>
+      Männer — unter Strafe stellte. Damit fanden <b>erstmals in der deutschen Rechtsgeschichte sexuelle
+      Handlungen von Frauen Beachtung</b>, wenn auch in einem negativ bewerteten Kontext (Schenk 2008).</li>
+      <li><b>BRD 1969:</b> Straffreiheit für homosexuelle Handlungen <b>unter Erwachsenen</b>.</li>
+    </ul>
+    <div class="warnbox"><b>Aber:</b> Das <b>Schutzalter</b> lag bei <b>21 Jahren</b> — ein über 18-Jähriger konnte
+    weiterhin mit bis zu <b>fünf Jahren Freiheitsentzug</b> bestraft werden. Und die Sprecher <b>aller</b>
+    Bundestagsparteien betonten bei der Verabschiedung ausdrücklich, homosexuelles Verhalten werde damit
+    <b>nicht gebilligt</b>, sondern sei „nach wie vor <b>moralisch verwerflich</b>“ (Bruns 2010).</div>
+
+    <h3>Die 1970er-Jahre — Emanzipation</h3>
+    <ul class="clean">
+      <li><b>1969, Christopher Street, New York:</b> In einer Bar wehrten sich Schwule, Lesben, Prostituierte und
+      Transsexuelle gegen die <b>willkürlichen Polizeirazzien</b>, deren Ziel die Zerschlagung der Treffpunkte
+      war. Diese Auflehnung markiert den <b>Beginn der lesbisch-schwulen Emanzipationsbewegung</b> und ist
+      Namensgeberin des heute weltweiten <b>Christopher Street Day (CSD)</b>.</li>
+      <li><b>1972, Münster:</b> erste Demonstration in der BRD. Die Demonstrierenden wurden <b>beschimpft und mit
+      Steinen und Blumentöpfen beworfen</b>.</li>
+      <li>Die Bewegungen von Lesben und Schwulen nahmen <b>rasch einen unterschiedlichen Verlauf</b>.</li>
+      <li><b>Lesbische Frauen</b> engagierten sich in der <b>neuen Frauenbewegung</b> und kämpften gemeinsam mit
+      heterasexuellen Feministinnen für sexuelle Selbstbestimmung. Wesentliche Erfahrung: Homosexualität war
+      <b>auch in der Frauenbewegung tabuisiert</b> — sie galt als privates, nicht als politisches Thema.
+      Lesbische Feministinnen entwickelten erst allmählich eine <b>Sprache</b> dafür (Schäfer 2010).</li>
+      <li><b>Schwule Studenten</b> gründeten politische Gruppen. Es ging ihnen <b>nicht um Integration, sondern um
+      Rebellion</b>. Sie <b>übernahmen das Schimpfwort „schwul“ und deuteten es positiv um</b>. Initialzündung war
+      Rosa von Praunheims Film <i>„Nicht der Homosexuelle ist pervers, sondern die Situation, in der er lebt“</i>
+      (1972).</li>
+      <li>Auch in der frühen Schwulenbewegung gab es eine Auseinandersetzung mit dem <b>Patriarchat</b> und der
+      klassischen Männerrolle — dokumentiert im sogenannten <b>„Tuntenstreit“</b> (1974).</li>
+      <li><b>1974:</b> Der „<b>Kuppelei-Paragraph</b>“ wird abgeschafft. Er hatte besagt, dass Wohnraum „zwecks
+      Verhinderung von Unzucht“ <b>nicht an unverheiratete Paare</b> vermietet werden durfte.</li>
+      <li><b>1973:</b> Die <b>APA</b> (American Psychiatric Association) bestätigt das Paradigma der
+      <b>Normvariation</b> und entfernt Homosexualität aus ihrer Auflistung psychischer Störungen. Die wichtigsten
+      Verbände in den USA und anderen Ländern folgten.</li>
+      <li>Ab den 1970er-Jahren wurde der <b>Rosa Winkel</b> von Schwulen als <b>selbstgewähltes Zeichen</b>
+      getragen.</li>
+    </ul>
+    <div class="note">Lesben und Schwule waren sich einig in der <b>Auflehnung gegen patriarchale, heteronormative
+    Strukturen</b>. Wie massiv die Rollenvorstellungen wirkten, zeigen die Vorurteile: Lesben wurden als
+    „<b>Mannweiber</b>“ und „kerlig“ beschimpft, Schwule mit dem Attribut „<b>weiblich</b>“ als Mann degradiert.</div>
+
+    <h3>Ab den 1990er-Jahren</h3>
+    <ul class="clean">
+      <li><b>11. Juni 1994: § 175 StGB wird endgültig gestrichen.</b></li>
+      <li><b>1993:</b> Homosexualität wird aus der <b>International Classification of Diseases (ICD)</b> der
+      <b>WHO</b> entfernt (Drescher).</li>
+      <li>In der Bewegung begann eine <b>Ausdifferenzierung</b>: Neben politisch motivierten Vereinen und
+      Institutionen entstanden <b>Gruppen für Sport, Freizeit und Hobbys</b>.</li>
+      <li>Bars, Kneipen und Restaurants öffnen; lesbisches und schwules Leben findet auch im öffentlichen Raum
+      wieder statt — allerdings, wie schon in den 20er-Jahren, <b>eher in den Großstädten</b>.</li>
+      <li>Der <b>Regenbogen</b> mit der Farbreihenfolge <b>rot, orange, gelb, grün, blau, lila</b> hat sich
+      weltweit als Symbol einer ganzen Bewegung durchgesetzt.</li>
+      <li><b>Seit 2001</b> besteht die Möglichkeit zur <b>Verpartnerung</b>; unter bestimmten Bedingungen können
+      Lesben und Schwule die Kinder ihrer Partnerin oder ihres Partners <b>adoptieren</b>; es gibt
+      <b>Aktionspläne gegen Homophobie</b>.</li>
+    </ul>
+    <div class="warnbox"><b>Aber die Broschüre bleibt nüchtern:</b> In der öffentlichen Wahrnehmung <b>scheint</b>
+    Gleichstellung erreicht. Im Mainstream fehlt aber nach wie vor der <b>diskriminierungsfreie Umgang</b> und die
+    <b>Selbstverständlichkeit</b>, mit der lesbisches und schwules Leben gelebt werden kann. Zudem gibt es
+    <b>bereits wieder politische Bewegungen, die laut nach rechtlicher und gesellschaftlicher Eindämmung rufen</b>.
+    Auch <b>innerhalb</b> der Community gibt es Vielfalt: Einige nehmen ihre Rechte wahr und „verpartnern“ sich,
+    andere sehen die Gleichstellung als <b>Anpassung an eine Lebensform</b>, die ihnen nicht entspricht.</div>
+
+    <div class="badbox"><b>Das Wichtigste für die Altenpflege:</b> Für viele der älteren, alten und hochaltrigen
+    Lesben und Schwulen kommen diese positiven Entwicklungen <b>zu spät</b>. Ihr Leben ist davon <b>nicht
+    geprägt</b>. Sie hatten nicht die Chance, ihrem Lebensgefühl mit Selbstverständlichkeit Ausdruck zu verleihen.
+    Wahrgenommen werden vor allem die <b>jungen</b> Generationen. <b>Viele ältere Lesben und Schwule leben nach
+    wie vor nicht offen — sie halten zentrale Anteile ihres Selbst „unter Verschluss“.</b></div>
+  </section>
+
+  <section id="s15">
+    <h2><span class="n">15</span> Die AIDS-Krise der 1980er-Jahre</h2>
+    <p class="lead">Ein eigenes Kapitel, weil es für die heute 60- bis 80-Jährigen prägend war — und weil es
+    direkt in Gesundheitseinrichtungen spielte.</p>
+
+    <h3>Was gesellschaftlich passierte</h3>
+    <ul class="clean">
+      <li>Als in den 80er-Jahren die ersten AIDS-Erkrankungen bekannt wurden, zeigte sich <b>in aller Deutlichkeit
+      die noch existierende Homophobie</b>. Die AIDS-Krise <b>schürte eine Homosexuellenhetze</b>, die
+      <b>quer durch die Gesellschaft</b> lief.</li>
+      <li><b>Nicht nur</b> Konservative aus Kirche und Politik sprachen von der „<b>Rache Gottes an den
+      Homosexuellen</b>“ und sahen HIV als „<b>angemessene Strafe für ihren unmoralischen Lebenswandel</b>“.</li>
+      <li>Man scheute sich nicht, Homosexuelle erneut als „<b>Perverse</b>“ und „<b>Abartige</b>“ zu bezeichnen —
+      also mit <b>Worten aus der Zeit des Nationalsozialismus</b>.</li>
+      <li>Offen wurde der Wunsch geäußert, die Schwulen zu <b>ghettoisieren</b>, „damit sich die Seuche nicht
+      weiter ausbreitet“. AIDS wurde als „<b>Schwulen- oder Lustseuche</b>“ bezeichnet.</li>
+      <li>Nur eine <b>Minderheit</b> bekannte sich offen — verständlicherweise: Wer sich offen bekannte und für
+      seine Rechte einsetzte, lief Gefahr, <b>Arbeitsstelle, Wohnung, Familie und die gesamte soziale Existenz</b>
+      zu verlieren.</li>
+    </ul>
+
+    <h3>Was in den Gesundheitseinrichtungen passierte</h3>
+    <div class="badbox">
+      In Krankenhäusern, Altenheimen, Praxen und Pflegediensten:
+      <ul class="plain" style="margin-bottom:0">
+        <li>Homosexuellen wurden <b>Informationen über ihre Lebenspartnerinnen und -partner vorenthalten</b>.</li>
+        <li>Nicht selten wurden sie — vom <b>Pflegepersonal</b>, von <b>Ärztinnen und Ärzten</b> und von den
+        <b>Herkunftsfamilien</b> — <b>aus den Zimmern und aus den Einrichtungen verwiesen</b>.</li>
+        <li><b>Pflege und Sterbebegleitung</b> fanden häufig <b>allein durch die Herkunftsfamilie</b> statt —
+        obwohl zu ihr vor der Krankheit oder dem Tod oft <b>gar kein Kontakt mehr</b> bestanden hatte.</li>
+        <li>Lebenspartner*innen wurden entweder <b>aktiv ausgegrenzt</b> oder <b>aus Unkenntnis der
+        Lebensumstände nicht einbezogen</b>.</li>
+        <li>Viele konnten ihren Liebsten und ihren Freund*innen <b>in Zeiten größter Not nicht beistehen</b>.</li>
+        <li>Auch bei <b>Bestattungen</b> waren Lebenspartner*innen und Freund*innen meist <b>unerwünscht</b>.
+        In <b>Traueranzeigen</b> wurden sie <b>nicht genannt</b> — sie „kamen einfach nicht vor“. Der Schmerz
+        über den Verlust und die Trauer <b>durften und konnten nicht offen geäußert werden</b>.</li>
+      </ul>
+    </div>
+
+    <blockquote>„Das mühevoll erkämpfte schwule Selbstverständnis wird durch HIV und AIDS schwer erschüttert. […]
+    Sexuelles Begehren bedeutete auf einmal, mit einer tödlichen Gefahr, mit einer Krankheit konfrontiert zu
+    werden. Die Angst vor einer Ansteckung mit HIV und die Verluste durch den Tod nahestehender schwuler Freunde
+    prägten schwules Leben. Kondome (‚Safer Sex‘) wurden zum unverzichtbaren Hilfsmittel. Politisches Engagement
+    konzentrierte sich auf reines Krisenmanagement. <b>Viele Schwule zogen sich wieder ins ‚Private‘ zurück.</b>“
+      <cite>Gerlach 2001, S. 25</cite></blockquote>
+
+    <div class="goodbox"><b>Und trotzdem:</b> Umso bemerkenswerter ist, dass es der schwulen
+    Emanzipationsbewegung trotz aller Schwierigkeiten gelang, ein <b>tragfähiges Netzwerk von AIDS-Hilfen</b>
+    aufzubauen. Die <b>AIDS-Hilfe</b> ist bis heute für Schwule ein zentrales Netzwerk, für Lesben der
+    <b>Lesbenring</b>.</div>
+
+    <div class="note"><b>Für die Pflege heute:</b> Wenn ein heute 75-jähriger schwuler Mann misstrauisch reagiert,
+    wenn du seinen Besucher nicht ins Zimmer lässt oder Informationen nur der Familie gibst — dann erinnert ihn
+    das an die 80er-Jahre. Das ist keine Übertreibung, das ist <b>Erinnerung</b>.</div>
+  </section>
+
+  <section id="s16">
+    <h2><span class="n">16</span> Lebenserfahrungen — die zehn Themen</h2>
+    <p class="lead">Diese zehn Punkte stehen so im Skript und werden in der Broschüre ausführlich erklärt.
+    Sie sind der Kern für das Verständnis in der Altenpflege.</p>
+
+    <h3>1 · Schwere Identitätsentwicklung — keine Vorbilder</h3>
+    <ul class="clean">
+      <li>Die <b>Auslöschung im Dritten Reich</b> führte dazu, dass es <b>keine Worte mehr</b> für schwules und
+      lesbisches Leben gab. Begriffe wie homosexuell, lesbisch, schwul mussten erst <b>wieder mit Leben gefüllt</b>
+      und von den Betroffenen <b>selbst positiv besetzt</b> werden.</li>
+      <li>Für viele ältere Menschen ist es Lebensrealität, <b>von anderen nicht so wahrgenommen zu werden, wie es
+      ihrer Identität entspricht</b>. Sie konnten sich nicht zu erkennen geben — und wurden auch nicht erkannt.</li>
+      <li>Über Jahre hinweg wurde ihnen die <b>Bedeutung ihrer Identität abgesprochen</b> und die Bedeutung des
+      „offen leben Könnens“ <b>für irrelevant gehalten</b>.</li>
+      <li>In den seltensten Fällen wurde vermittelt, dass Homosexualität ein <b>positiver oder überhaupt möglicher
+      Lebensentwurf</b> ist.</li>
+    </ul>
+    <blockquote>„Das Wort ‚lesbisch‘ oder ‚Lesbierin‘ war damals — 1947 — unbekannt, auch das Wort ‚homosexuell‘
+    war nicht üblich, ich kannte es jedenfalls nicht. […] Ich kannte kein Mädchen, keine Frau außer mir, die meine
+    ‚Neigungen‘ teilte. […] Ich hatte noch keine entsprechende Identität, und wenn, allenfalls die Vorboten einer
+    <b>Negatividentität</b>. Es gab niemanden, die oder der mir beigestanden hätte bei meiner Liebe zu Frauen …“
+      <cite>Lising Pagenstecher 2013, S. 2 f.</cite></blockquote>
+    <blockquote>„Normen als Normen fallen uns nur auf, wenn wir ihnen <b>nicht</b> entsprechen. […] Wer eine weiße
+    Hautfarbe hat, hält die Kategorie Hautfarbe für irrelevant. Wer heterosexuell ist, hält die Kategorie sexuelle
+    Orientierung für irrelevant, weil die eigene sexuelle Orientierung im Leben eines Heterosexuellen irrelevant
+    sein <b>kann</b>. Wer einen Körper besitzt, in dem er oder sie sich wiedererkennt, dem erscheint die Kategorie
+    Geschlecht selbstverständlich, weil dieser Körper niemals in Frage gestellt wird.“
+      <cite>Carolin Emcke 2012, S. 21</cite></blockquote>
+    <div class="note">Dieses Zitat erklärt das Prinzip <b>Privileg</b>: Wer zur Norm gehört, merkt die Norm nicht.
+    Genau deshalb braucht Pflege <b>Reflexivität</b>.</div>
+
+    <h3>2 · (Nicht) gemeinsam leben können</h3>
+    <ul class="clean">
+      <li>Gesellschaftliche Restriktionen, enge Moralvorstellungen und die Gesetzeslage verhinderten lange das
+      Zusammenleben unverheirateter Paare. Ein <b>„Recht“ auf Zusammenleben</b> gab es nicht.</li>
+      <li>Der <b>Kuppelei-Paragraph</b> (bis 1974) verbot die Vermietung an unverheiratete Paare. Faktisch konnten
+      nur Mann und Frau <b>mit Eheschein</b> gemeinsam eine Wohnung mieten.</li>
+      <li><b>Paradoxe „Möglichkeit“ für Frauen:</b> Weil Frauen keine eigenständige Sexualität zugestanden wurde,
+      konnte es in der Vorstellung vieler auch kein lesbisches Beziehungsleben geben. Zwei zusammenwohnende Frauen
+      galten als „<b>alte Jungfern</b>“, die „keinen Mann abgekriegt hatten“.</li>
+      <li><b>Männer</b> standen dagegen schneller unter Verdacht. Manche zogen wenigstens ins <b>gleiche Haus</b>,
+      um räumlich nah zu sein.</li>
+    </ul>
+
+    <h3>3 · (Nicht) offen leben können</h3>
+    <ul class="clean">
+      <li>Die <b>Prüderie der Nachkriegszeit</b> drängte Sexualität ins Private. Küssen in der Öffentlichkeit war
+      verpönt, Händchenhalten kaum üblich — für homosexuelle Kontakte galt das <b>verschärft</b> und war sogar
+      <b>gefährlich</b>.</li>
+      <li>Es war ausgeschlossen, einen <b>„Ehe“-Ring</b> zu tragen oder am Arbeitsplatz eine <b>Fotografie</b> der
+      geliebten Person aufzustellen. (Die Broschüre merkt an: <b>zum Teil bis heute</b>.)</li>
+      <li><b>Frauen</b> mussten sich in <b>private Räume</b> — ins Wohnzimmer — zurückziehen, weil ihnen der
+      öffentliche Raum ohnehin nicht zustand. <b>Männern</b> stand der öffentliche Raum zu, aber nicht für die
+      Homosexualität: Wichtige Treffpunkte waren öffentliche Toiletten, die sogenannten <b>Klappen</b>.</li>
+      <li>Dieses erzwungene Verhalten <b>prägt bis heute die Umgangsformen</b> und erklärt Unterschiede zwischen
+      lesbischer und schwuler Kultur.</li>
+    </ul>
+
+    <h3>4 · Schein und Schutz der Ehe</h3>
+    <ul class="clean">
+      <li><b>Die Mehrheit lebte zurückgezogen.</b> Nicht allen war es möglich, ihre Homosexualität zu leben.</li>
+      <li>Um dem moralischen Druck zu begegnen, wurden <b>hetera- und heterosexuelle Beziehungen eingegangen</b>
+      oder Ehen geschlossen. Viele versuchten, <b>Heteronormalität vorzuspielen</b>.</li>
+      <li>Einige „<b>vergaßen</b>“ ihre Homosexualität oder verdrängten sie. Andere führten jahrelang ein
+      <b>Doppelleben</b>. Manche heirateten und ließen sich scheiden, um dann „endlich frei“ leben zu können.</li>
+    </ul>
+    <div class="goodbox"><b>Wichtiger Merksatz:</b> „Ledig, verheiratet, geschieden“ — dieser aktenkundige Hinweis
+    auf den Personenstand hat mit der <b>sexuellen Identität wenig oder gar nichts</b> zu tun.</div>
+
+    <h3>5 · Angst vor dem Verlust der sozialen Existenz</h3>
+    <ul class="clean">
+      <li>Den <b>Ausbildungs- oder Arbeitsplatz zu verlieren</b>, war eine durchaus berechtigte Angst. Aufgrund
+      dieser <b>existentiellen Bedrohung</b> war es nahezu unmöglich, offen zu reden.</li>
+      <li>Wurde eine Beziehung bekannt, gab es „im besten Fall nur Getuschel“ — nicht selten aber
+      <b>verbale und körperliche Gewalt</b>.</li>
+      <li>Anderen wesentliche Informationen über sich <b>vorzuenthalten</b>, genau zu prüfen, was erzählt werden
+      kann, und auch etwas <b>vorzugeben</b>, gehörte für viele zum Alltag. <b>Versteckt zu leben ist eine über
+      Jahrzehnte gelebte Lebensrealität.</b></li>
+    </ul>
+
+    <h3>6 · Abkehr der Familie</h3>
+    <ul class="clean">
+      <li>Wer sich der Familie anvertraute, erlebte oft, dass Familienmitglieder sich <b>lossagten und regelrecht
+      verstießen</b>: „<b>Du bist nicht mehr meine Tochter</b>“, „<b>Du bist nicht mehr mein Sohn</b>“ — bis zum
+      endgültigen Kontaktbruch.</li>
+      <li>Andere Familien fühlten sich als <b>Opfer</b> („<b>Warum tust du uns das an?</b>“), sahen den
+      <b>Familienruf</b> gefährdet oder bemühten fadenscheinige Gründe („<b>Du sagst es Tante Erna nicht, die
+      könnte das nicht ertragen!</b>“).</li>
+      <li>Um dem Druck zu entgehen, wählten viele den <b>Umzug in eine andere Stadt</b> oder gingen ins
+      <b>Ausland</b> — weg von der sozialen Kontrolle der Familie und Nachbarschaft.</li>
+    </ul>
+    <blockquote>„Meine Mutter war total verzweifelt […] und hat mich dann quasi angefleht, eine Psychoanalyse zu
+    machen“ — mit dem Ziel, dass die Tochter „normal“ wird. Da in der Familie die „<b>Normal-Biografie</b>“ für
+    Frauen das Ideal war — frühe Heirat und mindestens fünf Kinder —, war der Druck enorm.
+      <cite>Schäfer 2010, S. 44</cite></blockquote>
+
+    <h3>7 · Gewalt in Gesundheitseinrichtungen ⚠️</h3>
+    <div class="badbox">
+      <ul class="plain" style="margin-top:0">
+        <li>Homosexualität galt <b>jahrelang als Krankheit</b>. Die <b>Pathologisierung</b> trug nicht nur zur
+        Diskriminierung bei — sie <b>schädigte die Gesundheit Einzelner aufs Schwerste</b>.</li>
+        <li>Als Krankheit eingestuft war Homosexualität <b>behandlungsbedürftig</b>. Lesben und Schwule wurden
+        therapiert und <b>erst durch diese Behandlungen krank gemacht</b>.</li>
+        <li>Die Behandlungen fanden statt in <b>Krankenhäusern, Psychiatrien, Altenheimen, Praxen,
+        Pflegediensten</b>.</li>
+        <li>Die Erfahrungen reichen von <b>Elektroschocks</b> bis zu <b>aufgezwungenen Psycho- und
+        Hormontherapien</b> als „Mittel gegen ihre Homosexualität“.</li>
+        <li>Nicht minder zerstörend war der <b>Umgang</b> mit den „kranken Menschen, die an Homosexualität
+        leiden“.</li>
+        <li>Viele haben dadurch <b>massive Traumata</b> erfahren. Es war kaum möglich, Vertrauen in
+        Gesundheitseinrichtungen zu fassen — <b>bei einigen dauern die Vorbehalte bis heute an</b>.</li>
+      </ul>
+    </div>
+    <blockquote>„Medizin, Psychiatrie und Psychologie haben über lange Zeit Lesben, Schwule und Bisexuelle
+    pathologisiert. Seit den 1970er-Jahren hat sich dieses Bild gewandelt: <b>Nicht Lesben und Schwule sind krank,
+    sondern die Gesellschaft, in der sie leben.</b>“<cite>Steffens und Geisler</cite></blockquote>
+    <div class="warnbox">Die Broschüre warnt: Mit dem <b>Löschen aus den Krankheitslisten</b> (APA 1973, WHO 1993)
+    ist eine <b>grundlegende Einstellungsänderung der im Gesundheitswesen Tätigen leider nicht immer
+    gleichzusetzen</b>.</div>
+
+    <h3>8 · Umgang mit schmerzvollen Erfahrungen und Traumata</h3>
+    <p>Gemeinsam ist diesen Generationen die Erfahrung einer <b>aufgezwungenen Heteronormativität</b>, die kein
+    freies, selbstbestimmtes Leben jenseits der Rollenerwartungen ermöglichte. <b>Wie</b> Menschen damit umgehen,
+    ist aber <b>individuell verschieden</b>. Es gibt ältere Menschen, die …</p>
+    <ul class="clean">
+      <li>ihre Homosexualität <b>nicht gelebt</b> haben,</li>
+      <li>ihre Homosexualität <b>nicht annehmen und leben konnten</b>,</li>
+      <li>ihre Liebe zum gleichen Geschlecht <b>ahnten</b>, sie jedoch nicht mit ihrem Leben und den
+      gesellschaftlichen Moralvorstellungen <b>vereinbaren konnten</b>,</li>
+      <li>ihre Liebe <b>annehmen konnten, sie jedoch nur heimlich auslebten</b>,</li>
+      <li>ihre Liebe <b>lebten, ohne sie offensiv nach außen zu tragen</b>,</li>
+      <li>mit ihrer Homosexualität <b>in Tagträume flüchteten</b> und für das gleiche Geschlecht
+      „<b>schwärmerische Zuneigung</b>“ empfanden,</li>
+      <li><b>trotz ihrer Homosexualität Ehen eingingen</b>.</li>
+    </ul>
+    <div class="goodbox"><b>Es gibt keinen typischen Lebenslauf.</b> Das ist genau der Punkt: Kultursensible Pflege
+    heißt nicht, ein neues Schema anzuwenden, sondern <b>jede Biografie einzeln</b> zu betrachten.</div>
+
+    <h3>9 · Isolation und Trauer</h3>
+    <blockquote>„Isolation ist — wenig verwunderlich — eine Folge dieser Situation. <b>Das Fehlen von Gesprächs-
+    und Reflexionsmöglichkeiten, aber auch einfach von Spaß und Vergnügen in einem größeren Freundeskreis</b>,
+    bei dem man davon ausgehen kann, dass er einen kennt und akzeptiert, wie man eben ist, durchzieht die
+    Lebensberichte wie ein roter Faden. Allenfalls wenige, einzelne Freundschaftsbeziehungen und berufliche
+    Kontakte bilden das <b>dünne soziale Gerüst</b> …“<cite>Schäfer 2010, S. 69</cite></blockquote>
+    <ul class="clean">
+      <li>Wer erst im fortgeschrittenen Alter zu einer offenen Lebensweise fand, <b>trauert mitunter darüber</b>,
+      nicht schon als junger Mensch Liebe und Begehren erfahren zu haben. Der Blick auf diese
+      „<b>verlorene</b>“ Zeit ist schmerzvoll.</li>
+      <li>Für manche ältere Lesben und Schwule sind <b>CSD-Paraden nicht nur ein Grund zur Freude</b>. Sie machen
+      auch bewusst, <b>was ihnen genommen wurde</b>.</li>
+    </ul>
+
+    <h3>10 · Nicht gelebtes Coming-out</h3>
+    <ul class="clean">
+      <li>Einigen war es <b>unmöglich, sich selbst zuzugestehen</b>, dass sie sich zum gleichen Geschlecht
+      hingezogen fühlen. Das <b>innere Coming-out</b> war nicht allen möglich — es „durfte nicht bewusst
+      werden“.</li>
+      <li>Das <b>äußere Coming-out</b> gegenüber Bezugspersonen, Herkunftsfamilie und Freund*innen war durch das
+      gesellschaftliche Klima <b>schwer möglich, nicht möglich oder sogar gefährlich</b>.</li>
+    </ul>
+  </section>
+
+  <section id="s17">
+    <h2><span class="n">17</span> Ängste der Pflegeempfänger*innen</h2>
+    <p class="lead">Diese Liste steht so im Skript — sie beschreibt, was Menschen mitbringen, wenn sie in eine
+    Einrichtung kommen.</p>
+    <ul class="clean">
+      <li>LSBTI-Angehörige <b>wuchsen damit auf, dass SIE SELBST verboten sind</b>, „unzüchtig“ sind usw.
+      Deshalb vermeiden viele in öffentlichen Räumen <b>körperliche Nähe</b> — aus Angst vor Ablehnung oder
+      herabwürdigenden Reaktionen.</li>
+      <li><b>Anamnesebögen und vorgefertigte Bögen</b> liefern nur für den <b>CIS-Mann und die CIS-Frau</b>
+      passende Fragen. Betroffene <b>müssen sich stets offenbaren und erneut outen</b>.</li>
+      <li><b>Sexuelle Identität in Abgrenzung zur sexuellen Orientierung</b> — hier bestehen viele
+      <b>Vorurteile</b>.</li>
+      <li><b>STI/HIV/AIDS-Vorurteile</b> gegenüber LSBTI — daraus folgt die <b>Angst vor Ausgrenzung</b>.</li>
+      <li><b>Äußerlichkeiten, Kleidungsstil, Wortklang, Wortwahl</b> — die <b>Angst davor, sie selbst zu
+      sein</b>.</li>
+    </ul>
+
+    <h3>Drei zusätzliche Sorgen aus der Broschüre</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Sorge</th><th>Was dahintersteckt</th></tr></thead>
+        <tbody>
+          <tr><td><b>„Werde ich hier ähnliche Erfahrungen machen?“</b></td>
+          <td>Wegen der jahrzehntelangen Diskriminierungserfahrungen <b>in</b> Gesundheitseinrichtungen bestehen
+          Bedenken, das alles wieder zu erleben — auch bezogen auf <b>Pflegeheime und ambulante Dienste</b>.</td></tr>
+          <tr><td><b>„Wen treffe ich dort?“</b></td>
+          <td>Die Sorge, auf <b>gleichaltrige Menschen</b> zu treffen, die früher homosexuelle Menschen
+          diskriminiert, sich abfällig geäußert oder sogar <b>Strafanzeigen</b> auf den Weg gebracht haben. Das
+          ruft die Angst hervor, sich <b>wieder verstecken zu müssen</b>.</td></tr>
+          <tr><td><b>„Passe ich hier überhaupt hin?“</b></td>
+          <td>In Einrichtungen sind <b>hetera- und heterosexuelle Inhalte vorrangig</b>. Die Themen entsprechen
+          nicht den Interessen. „<b>Leben in der anderen Welt</b>“ heißt: sich in Gesprächen, im Alltag und in den
+          Angeboten <b>nicht wiederzufinden</b> — und sich dem wegen der Pflegebedürftigkeit <b>nicht mehr
+          entziehen zu können</b>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="badbox"><b>Die Folge, die du kennen musst:</b> Um sich dem <b>Druck des „andauernden
+    Coming-outs“</b> zu entziehen, ziehen viele ältere Lesben und Schwule sich in Einrichtungen zurück.
+    <b>Alleinsein und Isolation werden „scheinbar freiwillig“ vorgezogen</b> — in der „<b>selbstgewählten
+    Isolation</b>“ ist dieser Druck „nicht vorhanden“. Manche leben versteckt, <b>obwohl sie vor dem Umzug in
+    die Einrichtung „out“ waren</b>.</div>
+  </section>
+
+  <section id="s18">
+    <h2><span class="n">18</span> Lesbische und schwule Kultur: Symbole, Sprache, Umgangsformen</h2>
+
+    <h3>Wie diese Kultur entstanden ist</h3>
+    <ul class="clean">
+      <li>Bedingt durch Diskriminierung und Verfolgung musste Gemeinschaft zuerst <b>an versteckten Orten</b>
+      gelebt werden. Später konnten Bars, Kneipen und Restaurants genutzt werden.</li>
+      <li>Über Jahrzehnte entwickelte sich so eine <b>ganz eigene Kultur inmitten des Mainstreams</b>.</li>
+      <li>Darin finden sich <b>vielfältige, genderflexible, nicht-heteronormative Rollenvorstellungen</b> sowie
+      eigene <b>Werte und Normen</b>.</li>
+      <li>Sichtbar wird sie in <b>Netzwerken</b> — z. B. der <b>AIDS-Hilfe</b> (für Schwule) und dem
+      <b>Lesbenring</b> (für Lesben).</li>
+      <li>In <b>Literatur, Theater, Musik und bildender Kunst</b> hat sie ein eigenes Genre entwickelt.
+      Die Kunst bietet eine Welt, in der Lesben und Schwule <b>selbstverständlich vorkommen</b> — viele erinnern
+      sich an ihr <b>erstes Buch oder ihren ersten Film</b> mit lesbischem oder schwulem Leben.</li>
+    </ul>
+
+    <h3>Symbole im Wandel der Zeit</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Zeit</th><th>Symbol</th></tr></thead>
+        <tbody>
+          <tr><td>Weimarer Republik</td><td>Das <b>Veilchen</b> — heute fast unbekannt.</td></tr>
+          <tr><td>Ab den 1970er-Jahren</td><td>Der <b>Rosa Winkel</b>, von Schwulen getragen.</td></tr>
+          <tr><td>1980er-Jahre</td><td><b>Buttons und Anstecknadeln</b>, z. B. mit ineinander verschränkten
+          <b>Frauen- oder Männerzeichen</b>. Sie dienten nun nicht mehr nur dem gegenseitigen Erkennen, sondern
+          waren auch ein <b>politisches Statement</b>.</td></tr>
+          <tr><td>Ab den 1980ern</td><td>Die <b>rote Schleife</b> als Zeichen der <b>Solidarität mit vom HI-Virus
+          Betroffenen</b>.</td></tr>
+          <tr><td>Heute</td><td>Der <b>Regenbogen</b> — <b>rot, orange, gelb, grün, blau, lila</b>.</td></tr>
+          <tr><td>Kunst</td><td>Der <b>David von Michelangelo</b> (der wertschätzende Blick des homosexuellen
+          Künstlers auf den Mann) und die <b>Doppelaxt der Amazonen</b> (das Leben eines Frauenverbundes).</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">Für <b>ältere</b> Menschen steht weniger das öffentliche Bekenntnis im Vordergrund, sondern
+    das <b>Erkennen untereinander</b>. Genau deshalb sind alte Anstecker und Bilder im Zimmer so wichtig —
+    sie sind <b>Sprache</b>.</div>
+
+    <h3>Sprache und Umgangsformen</h3>
+    <ul class="clean">
+      <li>Zeichen finden sich nicht nur auf Anstecknadeln, sondern auch in <b>Gesten, Blicken und Sprache</b>.
+      Es gibt eine <b>eigene Kommunikationsform</b>, die Außenstehenden meist verborgen bleibt.</li>
+      <li><b>Das „Du“</b> ist ein wichtiges Zeichen: Geduzt wird <b>ab der ersten Begegnung</b> — es drückt
+      <b>Zusammengehörigkeit</b> aus. (Dieser Brauch geht heute mehr und mehr verloren.)</li>
+      <li><b>„Schwester“</b>: Unter Frauen signalisiert dieses Wort <b>Verbundenheit</b> („… das ist doch auch
+      eine Schwester!“). Ältere Schwule sprechen anerkennend von der <b>„Bewegungsschwester“</b> — jemand, der
+      sich aktiv für die Ziele der Community einsetzt.</li>
+      <li>Ein <b>kumpelhafter, ruppiger Umgang</b> ist schwulen Männern eher fremd. Sie können und wollen sich
+      <b>emotional und körperlich berühren lassen</b> und lassen <b>liebevolle Wendungen</b> einfließen — es ist
+      üblich, jemanden mit „<b>mein Lieber</b>“ anzusprechen, auch bei neuer Bekanntschaft.</li>
+    </ul>
+    <div class="warnbox"><b>Aber Achtung — sehr wichtig:</b> Diese Zeichen und diese Sprache haben nur für die
+    Menschen Bedeutung, die <b>in diesen Zusammenhängen gelebt haben</b>. Wer nie in der Gemeinschaft gelebt hat,
+    kennt den besonderen Umgang <b>nicht</b> — er hatte keine <b>Sozialisation</b> in der lesbischen und schwulen
+    Gemeinschaft. Also: <b>nicht bei jedem voraussetzen</b>.</div>
+  </section>
+
+  <section id="s19">
+    <h2><span class="n">19</span> Pflegeverständnis: Auftrag, Verantwortung, Kompetenzen</h2>
+
+    <h3>Die Definition von Pflege (DBfK / ICN)</h3>
+    <blockquote>„Pflege umfasst die <b>eigenverantwortliche Versorgung und Betreuung</b>, allein oder in
+    Kooperation mit anderen Berufsangehörigen, von Menschen aller Altersgruppen, von Familien oder
+    <b>Lebensgemeinschaften</b> sowie von Gruppen und sozialen Gemeinschaften, ob krank oder gesund, in allen
+    Lebenssituationen (Settings). Pflege schließt die <b>Förderung der Gesundheit</b>, <b>Verhütung von
+    Krankheiten</b> und die Versorgung und Betreuung kranker, behinderter und sterbender Menschen ein.
+    Weitere Schlüsselaufgaben sind <b>Wahrnehmung der Interessen und Bedürfnisse (Advocacy)</b>, Förderung einer
+    sicheren Umgebung, Forschung, Mitwirkung in der Gestaltung der Gesundheitspolitik sowie im Management des
+    Gesundheitswesens und in der Bildung.“<cite>DBfK</cite></blockquote>
+    <div class="note">Beachte das Wort „<b>Lebensgemeinschaften</b>“ — die Definition denkt andere Familienformen
+    von Anfang an mit. Und <b>Advocacy</b> heißt: Die Pflege <b>vertritt die Interessen</b> des Menschen,
+    auch gegenüber anderen.</div>
+
+    <h3>Verantwortung gegenüber Individuen, Gruppen und Gemeinschaften</h3>
+    <ul class="clean">
+      <li>Pflege schaut sowohl auf das <b>Individuum</b> als auch auf <b>Gruppen und Gemeinschaften</b>.</li>
+      <li>Im Rahmen der Gesundheitspolitik setzt Pflege sich dafür ein, dass <b>Gesundheitsrisiken erkannt und
+      vermindert bzw. vermieden</b> werden. Erkenntnisse dazu kommen aus der <b>Pflegeforschung</b>.</li>
+      <li>Auf der Ebene der individuellen Pflege fließt das <b>Wissen über Gruppen, die diesen Gefährdungen
+      ausgesetzt sind</b>, in die praktische Pflege ein.</li>
+    </ul>
+
+    <h3>Professionelles Arbeiten und Pflegediagnostik</h3>
+    <ul class="clean">
+      <li>Zum professionellen Handeln gehört Wissen über den <b>eigenen Verantwortungsbereich</b>, über die
+      <b>Pflegemodelle</b> mit ihrem <b>Menschenbild</b> und ihrem Gesundheits- und Krankheitsverständnis sowie
+      über <b>Pflegediagnostik und Pflegebehandlung</b> — dazu die <b>evidenzbasierten Erkenntnisse</b> aus der
+      Forschung.</li>
+      <li>In der <b>Pflegediagnostik</b> werden <b>Zeichen und Symptome systematisch gesammelt und miteinander in
+      Beziehung gesetzt</b>. Ziel: klar benennen zu können, welches Pflegeproblem bzw. welche Pflegediagnose
+      vorliegt. <b>Erst dann</b> kann die angemessene Pflegebehandlung ausgewählt werden.</li>
+    </ul>
+    <blockquote>„Um den Pflegebedarf und die Handlungsnotwendigkeit feststellen zu können, zu diagnostizieren,
+    müssen Pflegende sich damit befassen, <b>wie Menschen auf bestimmte Gesundheitsprobleme reagieren</b>, was sie
+    tun, wie sie sich verhalten, wie sie handeln, wie sie <b>emotional</b> auf solche Zustände reagieren und sie
+    <b>bewältigen</b>, welche <b>Einstellungen und Wertvorstellungen</b> sie dazu haben.“
+      <cite>Mischo-Kelling 1993, in: Bartholomeyczik 1997, S. 48 f.</cite></blockquote>
+    <div class="goodbox"><b>Der Schlüsselgedanke:</b> Reaktionen sind <b>nicht nur angeboren</b>, sondern immer
+    auch von <b>Sozialisation und Erfahrungen</b> beeinflusst. Das „<b>Wie</b>“ und „<b>Worauf</b>“ wird im Laufe
+    des Lebens <b>erlernt</b>. Deshalb sehen Pflegende die Reaktionen <b>immer im Zusammenhang mit den
+    Lebenserfahrungen und der Biografie</b>.</div>
+
+    <h3>Identität als Teil der Pflegebetrachtung</h3>
+    <ul class="clean">
+      <li>Pflege bezieht die <b>Identität — auch die sexuelle Identität</b> — als wichtigen Lebensaspekt in ihre
+      Betrachtung ein.</li>
+      <li>Bedeutsam ist nicht nur, <b>wie sich jemand selbst wahrnimmt</b> und wie er wahrgenommen werden möchte,
+      sondern auch, dass die Identität <b>immer in Bezug zu Gesundheit und Krankheit</b> gesehen werden muss.</li>
+      <li>Die Identität steht in <b>engem Zusammenhang mit den Reaktionen</b>, die in Pflegesituationen gezeigt
+      werden — und die die Pflege erfassen muss.</li>
+    </ul>
+
+    <h3>Die Pflegekompetenzen Empathie und Reflexion</h3>
+    <blockquote>„Um den Fall aus der Sicht der Betroffenen verstehen zu können, müssen im professionellen
+    Pflegeassessment die <b>Bewusstseinsinhalte</b> der Betroffenen erkannt und erfasst werden. […] <b>Das bewusste
+    Hineinversetzen in fremde Bewusstseinsinhalte wird Empathie genannt.</b>“<cite>Stummer 2010, S. 29</cite></blockquote>
+    <ul class="clean">
+      <li><b>Empathie</b> wird <b>bewusst eingesetzt</b>: Pflegende versetzen sich in die andere Person und ihre
+      Lage, um die aktuelle Lebenssituation nachvollziehen zu können (Bischoff-Wanner 2002).</li>
+      <li>Um dabei zwischen der <b>eigenen</b> und der <b>fremden</b> Perspektive unterscheiden zu können, gehen
+      sie <b>reflektiert</b> vor: Sie kennen ihre eigenen Werte und Normen, ihre eigene (sexuelle) Identität und
+      damit ihren <b>persönlichen kulturellen Hintergrund</b>.</li>
+      <li><b>Im Alltag</b> gelingt das Erfassen eines Menschen mehr oder weniger gut — je nach persönlicher
+      Fähigkeit. <b>Im professionellen Kontext ist es gefordert.</b> Wertfreie Wahrnehmung und bewusstes
+      Hineinversetzen sind <b>professionelle Kompetenzen</b>, die in der Ausbildung gelehrt und gelernt werden.</li>
+    </ul>
+
+    <h3>Der Verantwortung (nicht) nachkommen</h3>
+    <div class="badbox">Lesben und Schwule sind in den von der Pflege mit verantworteten Bereichen —
+    Gesundheitsförderung, Krankheitsverhütung, Pflege von Kranken, Behinderten und Sterbenden — derzeit
+    <b>besonderen Gesundheitsgefährdungen</b> ausgesetzt. Ihre Lebensrealitäten werden <b>nicht erkannt oder nicht
+    für relevant gehalten</b>. Es fehlt in der Breite das Wissen darüber, wie sich jahrzehntelange
+    Diskriminierungserfahrungen auswirken. <b>Werden diese Aspekte beachtet, gelingt eine Pflegediagnostik, die
+    sich an den tatsächlich vorhandenen Pflegeproblemen ausrichtet.</b></div>
+  </section>
+
+  <section id="s20">
+    <h2><span class="n">20</span> Umsetzung der Sensibilisierung — die acht Bausteine</h2>
+    <p class="lead">Im Skript stehen diese acht Felder als Schema. Hier sind sie mit dem Inhalt der Broschüre
+    gefüllt.</p>
+
+    <h3>1 · (An-)Erkennen der Relevanz</h3>
+    <ul class="clean">
+      <li>Weder hetera-/heterosexuelle noch homosexuelle Menschen können ihre Identität <b>„einfach ablegen“</b>.
+      Sie ist <b>immer gegeben</b> — und damit <b>immer relevant für die Pflege</b>.</li>
+      <li>„In jeder Situation ihres Lebens sind Lesben und Schwule lesbisch oder schwul.“ Beim Besuch, zu jeder
+      Tageszeit, beim Mittag- wie beim Abendessen, im Kontakt mit anderen Bewohner*innen — <b>zu jeder Zeit</b>.</li>
+      <li>Der häufige Satz „<b>Das ist doch deren Privatsache</b>“ führt dazu, dass <b>Lebensrealitäten verkannt</b>
+      werden.</li>
+    </ul>
+
+    <h3>2 · Wahrnehmen der Verantwortung</h3>
+    <ul class="clean">
+      <li>Die eigene Identität in der Pflegebeziehung <b>verbergen zu müssen</b>, kann zu <b>schweren
+      Gesundheitsbeeinträchtigungen</b> führen.</li>
+      <li>Man kann <b>nicht davon ausgehen</b>, dass ältere Lesben und Schwule ohne Weiteres einen wesentlichen
+      Teil ihres Selbst offenbaren.</li>
+      <li>Wird jemand durch <b>unangemessenes Verhalten</b> darin bestärkt, sich besser nicht zu outen, oder wird
+      ihm vermittelt, sexuelle Identität sei <b>nicht relevant</b>, oder wird ein Outing sogar <b>unmöglich
+      gemacht</b> — dann <b>gehen pflegerelevante Informationen verloren</b>.</li>
+      <li>Die daraus entstehende Unmöglichkeit, die <b>tatsächlich vorhandenen Pflegeprobleme zu erkennen</b>,
+      ist <b>von der Pflege zu verantworten</b>.</li>
+      <li><b>Verantwortliches Handeln</b> heißt: bewusst mit der sexuellen Identität umzugehen und sie
+      <b>von Anfang an reflektiert in den gesamten Pflegeprozess einzubinden</b>.</li>
+    </ul>
+
+    <h3>3 · Erkennen der Perspektiven</h3>
+    <div class="card">
+      <p style="margin-top:0">Durch die hetera-/heterosexuelle Brille betrachtet werden …</p>
+      <ul class="plain">
+        <li><b>zwei Männer</b> häufig als <b>gute Freunde oder Kumpel</b> wahrgenommen,</li>
+        <li><b>zwei Frauen</b> hingegen als <b>Mutter und Tochter, als Schwestern</b> oder als gute Freundinnen.</li>
+      </ul>
+      <p><b>Die Folgen:</b></p>
+      <ul class="plain" style="margin-bottom:0">
+        <li>Wird der Lebenspartner als „guter Freund“ gesehen, wird er <b>nicht als An- und Zugehöriger
+        angemessen in die Pflege einbezogen</b> — ihm werden <b>wesentliche Informationen vorenthalten</b>.</li>
+        <li>Wird eine sich sorgende Frau als „Bekannte“ statt als <b>Lebenspartnerin</b> wahrgenommen, drückt sich
+        das <b>im Verhalten ihr gegenüber</b> aus.</li>
+        <li>Der Blick auf eine <b>trauernde Partnerin</b> unterscheidet sich vom Blick auf eine trauernde
+        Bekannte. Bei einer Verkennung der Situation ist eine <b>adäquate Begleitung kaum möglich</b>.</li>
+      </ul>
+    </div>
+
+    <h3>4 · Versteckt und doch präsent</h3>
+    <ul class="clean">
+      <li>Es ist eine besondere Herausforderung, mit älteren Pflegebedürftigen umzugehen, die <b>nicht „out“
+      sind</b>. Pflege muss das <b>erkennen, darauf eingehen und damit umgehen</b>.</li>
+      <li>Wesentlich ist das <b>Wissen über die (Un-)Möglichkeit eines Coming-outs</b>.</li>
+      <li><b>Das Coming-out ist kein einmaliger Vorgang</b> — es <b>kehrt situationsbedingt immer wieder</b>.
+      Auch Menschen, die längst offen leben, müssen sich <b>immer wieder erklären und selbst outen</b>, weil die
+      <b>Vorannahme der Hetera-/Heterosexualität grundsätzlich besteht</b>. Selbst belanglose Gespräche geben
+      Anlass zu einer „Richtigstellung“.</li>
+      <li><b>Zu wissen, dass man in den meisten Situationen nicht in der eigenen Identität wahrgenommen wird,
+      kann belastend sein.</b></li>
+      <li>Trotzdem kann Pflege <b>nicht aus der Verantwortung entlassen werden</b>: Es gilt, die relevanten Zeichen
+      und Informationen, die <b>versteckt oder nicht offen</b> ausgedrückt werden, <b>wahrzunehmen</b> und in den
+      Pflegeprozess einzubeziehen.</li>
+    </ul>
+
+    <h3>5 · Umgang mit Vulnerabilität</h3>
+    <ul class="clean">
+      <li><b>Vulnerabilität</b> heißt <b>Verletzlichkeit</b>. Pflege muss umsetzen, dass diese Menschen
+      <b>in erheblichem Maß Diskriminierung, Ausgrenzung und Verfolgung</b> erlebt haben.</li>
+      <li>Sich offen zur Homosexualität zu bekennen, ist nicht allen möglich — <b>in der Gesellschaft nicht und
+      damit auch in ihren Einrichtungen nicht</b>. Gesundheitseinrichtungen sind „nur“ ein <b>Spiegelbild der
+      Gesellschaft</b>.</li>
+      <li>Pflegenden muss <b>bewusst und bekannt</b> sein, dass Diskriminierungen und Verfolgungen <b>auch im
+      medizinischen und pflegerischen Bereich</b> stattgefunden haben.</li>
+      <li>Der <b>Zugang zum Gesundheitssystem</b> ist erschwert, weil Einrichtungen wegen negativer Erlebnisse
+      <b>gemieden</b> werden — und weil dort wesentliche gesundheitsbezogene Informationen <b>nicht mitgeteilt</b>
+      werden (Dennert 2005).</li>
+    </ul>
+
+    <h3>6 · Leben in einer (anderen) Welt</h3>
+    <p>Siehe Kapitel 17. Kurz: Die Themen und Angebote der Einrichtung passen nicht zum eigenen Leben; man findet
+    sich nicht wieder; wegen der Pflegebedürftigkeit kann man sich dem <b>nicht mehr entziehen</b>; und es besteht
+    Unsicherheit, ob man die <b>eigenen Zusammenhänge</b> (Community, Treffpunkte) weiter aufsuchen kann.
+    Um dem Druck des andauernden Coming-outs zu entgehen, kann das <b>Leben in der Community</b> dem Leben im
+    Mainstream vorgezogen werden — dort kann man <b>ohne Erklärungen ganz selbstverständlich</b> in der eigenen
+    Identität leben.</p>
+
+    <h3>7 · Verständnis durch Sprache und Haltung</h3>
+    <div class="card">
+      <h4>Verzicht auf binäre Ansprachen — stattdessen:</h4>
+      <ul class="plain">
+        <li>„<b>Herzlich willkommen. Mein Name ist XY. Wie möchten Sie angesprochen werden?</b>“</li>
+        <li>„<b>Hallo, ich bin XY — und Sie sind?</b>“</li>
+      </ul>
+      <h4>Heteronormative Standards abbauen:</h4>
+      <ul class="plain">
+        <li>„<b>Wer ist Ihre Hauptbezugsperson?</b>“</li>
+        <li>„<b>Wen möchten Sie an Ihrer Seite haben, wenn sich Ihr Zustand verschlechtert?</b>“</li>
+      </ul>
+      <h4>Auf „versteckte“ Umschreibungen achten:</h4>
+      <ul class="plain">
+        <li>„meine alte Freundin“, „mein Kollege“, „ein alter Freund“ …</li>
+        <li>Diese <b>nicht mit einer Nachfrage zu einem Outing zwingen</b>.</li>
+        <li><b>Weiter benutzen</b>, was der Mensch selbst sagt — und <b>nicht richtigstellen</b>
+        („… Sie meinen doch Ihre Lebenspartnerin …“).</li>
+        <li>Dadurch wird vermittelt, dass <b>„verstanden“ wurde</b>. Ein <b>offensives Outing ist auf beiden
+        Seiten nicht notwendig</b>.</li>
+      </ul>
+      <h4>Zeichen einer queeren Akzeptanz zeigen:</h4>
+      <ul class="plain" style="margin-bottom:0">
+        <li><b>Flagge zeigen, Farbe zeigen, offene Gespräche anbieten.</b></li>
+      </ul>
+    </div>
+    <div class="warnbox"><b>Grenze:</b> Es ist <b>wenig förderlich, sich einen Szene-Jargon anzueignen</b> und
+    reine „Worthülsen“ zu gebrauchen. Es geht um den <b>bewussten und professionellen Einsatz von Sprache</b>,
+    um reflektiertes Eingehen auf die individuelle Lage (z. B. Demenz) und um bewussten Umgang mit <b>Nähe und
+    Distanz</b>.</div>
+    <div class="goodbox">Zwei Beispiele aus der Broschüre: Sich einem <b>schwulen, demenziell veränderten Mann</b>
+    mit den Worten „<b>Guten Tag, mein Lieber</b>“ zu nähern, <b>öffnet möglicherweise die Tür in eine andere
+    Welt</b>. Und einer <b>lesbischen Frau</b>, die ihre Wertschätzung der Frau auch durch die <b>weibliche
+    Sprachform</b> ausdrückt, in ihrer Sprache zu begegnen, kann dazu beitragen, dass sie sich <b>in ihrer Welt
+    fühlt</b>.</div>
+
+    <h3>8 · Arbeit mit Biografien und Begleitung in Lebenskrisen</h3>
+    <ul class="clean">
+      <li><b>Biografiearbeit</b> ist eine <b>zentrale Methode</b> der Altenpflege. <b>Fotos, Bücher und
+      Einrichtungsgegenstände</b> liefern Hinweise auf lesbisches und schwules Leben. Es gilt, diese Zeichen
+      <b>zu erkennen und richtig zu deuten</b>.</li>
+      <li>Wird ein Bild, Zeichen oder Symbol <b>richtig gedeutet</b> und die Pflegende geht darüber in Kontakt,
+      kann sie es dem Menschen <b>ermöglichen, sich zu öffnen</b>.</li>
+      <li>Liegt der <b>umgekehrte Fall</b> vor — die <b>Fehldeutung</b> —, ist die (vielleicht heftige)
+      <b>ablehnende Reaktion verständlich</b>.</li>
+      <li><b>Begleitung in Lebenskrisen:</b> Dazu gehört, Menschen in der <b>Trauer um ihre Lebensgefährt*innen</b>
+      zu begleiten. Werden zwei Frauen auf einem Foto <b>als Lebenspartnerinnen erkannt</b> und nicht als
+      Bekannte <b>verkannt</b>, hat das wesentlichen Einfluss: Der Pflegebedürftigen wird ermöglicht, <b>ihrer
+      Trauer Ausdruck zu verleihen</b> — auch wenn sie sich nicht vollständig offenbaren kann. So kann verhindert
+      werden, dass sie sich zurückzieht, <b>weil sie ihrer Trauer nirgendwo Ausdruck verleihen kann</b>.</li>
+    </ul>
+  </section>
+
+  <section id="s21">
+    <h2><span class="n">21</span> Gesunde (Lebens-)Räume gestalten — und Demenz</h2>
+    <ul class="clean">
+      <li>Es können gemeinsam <b>(Lebens-)Räume geschaffen werden, in denen lesbisches und schwules Leben
+      selbstverständlich gelebt wird</b>.</li>
+      <li>Dazu gehört ein <b>diskriminierungsfreier Ort</b>, an dem klar die <b>Diskriminierten geschützt</b>
+      werden.</li>
+      <li><b>Diejenigen, die verbale oder körperliche Gewalt ausüben, werden des Raumes verwiesen — nicht
+      umgekehrt!</b></li>
+      <li><b>Orte der Begegnung</b> fördern Gemeinschaft, kommunikatives Miteinander und damit die individuelle
+      Gesundheit.</li>
+      <li>Eine Kommunikationsform ist die <b>körperliche Berührung</b>. Auch <b>demenziell veränderte Menschen
+      wünschen sich Berührung und Zärtlichkeit</b>.</li>
+    </ul>
+    <div class="badbox">
+      <b>Demenz und gleichgeschlechtliche Nähe — das Prüfungsthema:</b>
+      <ul class="plain" style="margin-bottom:0">
+        <li>Mit einer Demenz gehen <b>gelerntes Verhalten, Konventionen und Umgangsformen verloren</b>.</li>
+        <li>Möglicherweise zeigen Menschen <b>erst in der Demenz</b> ihren Wunsch nach gleichgeschlechtlichem
+        Kontakt und fordern ihn über Berührungen und Zärtlichkeiten ein.</li>
+        <li>Professionelles Pflegeverhalten bedeutet, <b>reflektiert mit dem früheren Krankheitsbegriff der
+        Homosexualität umzugehen</b>.</li>
+        <li><b>Gleichgeschlechtliche Zuneigung — bei Menschen mit Demenz oder ohne — ist kein „krankes oder
+        enthemmtes Verhalten“ und darf nicht unterbunden werden.</b></li>
+        <li>Im Gegenteil: Menschen zu unterstützen und ihnen zu helfen, dass ihre <b>Bedürfnisse erfüllt</b>
+        werden, ist das Ziel. Voraussetzung ist, dass der <b>Wunsch nach gleichgeschlechtlicher Nähe als
+        Bedürfnis wahrgenommen</b> wird.</li>
+      </ul>
+    </div>
+    <div class="note"><b>Ergänzung für die Praxis:</b> Wie bei jeder Form von Nähe gilt selbstverständlich —
+    beide Seiten müssen es <b>wollen</b>. Die Aufgabe der Pflege ist, das zu beobachten und Privatsphäre zu
+    ermöglichen, <b>nicht</b> zu verbieten.</div>
+  </section>
+
+  <section id="s22">
+    <h2><span class="n">22</span> Kultursensible Biografiearbeit</h2>
+    <p class="lead">Diese 16 Prinzipien stehen im Skript als Schema. Sie sind die Grundlage für den
+    Arbeitsauftrag: einen eigenen Biografie-Fragebogen entwickeln.</p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Prinzip</th><th>Was heißt das in der Praxis?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Diversitätssensibel</b></td><td>Vielfalt von Anfang an mitdenken — nicht als Sonderfall.</td></tr>
+          <tr><td><b>Anerkennung der Vielfalt</b></td><td>Unterschiede sind normal, nicht störend.</td></tr>
+          <tr><td><b>Vielfältige Perspektiven</b></td><td>Es gibt mehr als eine richtige Art zu leben.</td></tr>
+          <tr><td><b>Inklusion</b></td><td>Alle gehören dazu — niemand muss sich erst „qualifizieren“.</td></tr>
+          <tr><td><b>Reflexion des eigenen Denkens</b></td><td>Stop-and-Think: Was denke ich gerade, und warum?</td></tr>
+          <tr><td><b>Sozial gerecht</b></td><td>Gleiche Chancen auf gute Pflege für alle.</td></tr>
+          <tr><td><b>Keine starren Bögen</b></td><td>Standardbögen mit „ledig / verheiratet / geschieden“ geben nur dem heteronormativen Leben Ausdruck. <b>Offene Fragen</b> ermuntern Menschen, ihre <b>tatsächliche Lebensgeschichte</b> mitzuteilen.</td></tr>
+          <tr><td><b>Möglichkeit zur vertrauensvollen Beziehung</b></td><td>Erst Vertrauen, dann Fragen. Nicht am ersten Tag alles wissen wollen.</td></tr>
+          <tr><td><b>Aktives Zuhören</b></td><td>Nachfragen, spiegeln, Pausen aushalten.</td></tr>
+          <tr><td><b>Hemmschwellen und Ängste abbauen</b></td><td>Signalisieren: Hier ist es sicher.</td></tr>
+          <tr><td><b>Gendersensible und inklusive Sprache</b></td><td>Siehe Kapitel 20, Baustein 7.</td></tr>
+          <tr><td><b>Kein „Schubladendenken“ / Vorurteile abbauen</b></td><td>Wissen ja — aber immer prüfen, ob die allgemeine Regel auf <b>diesen</b> Menschen zutrifft.</td></tr>
+          <tr><td><b>Erzählungen und Erinnerungen anregen</b></td><td>Über Fotos, Musik, Gegenstände ins Gespräch kommen.</td></tr>
+          <tr><td><b>Informationen über gefeierte religiöse Feiertage einholen</b></td><td>Nicht raten — fragen und im Team dokumentieren.</td></tr>
+          <tr><td><b>Akzeptanz zeigen!!!</b></td><td>Im Skript mit drei Ausrufezeichen. Haltung ist wichtiger als Technik.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Der Arbeitsauftrag aus dem Unterricht</h3>
+    <div class="card tight">
+      „Entwickeln Sie einen <b>Biografie-Fragebogen</b> nach den nun von Ihnen gelernten Normen,
+      Sensibilisierungen und Managements. Konstruieren Sie dies in einer <b>Kleingruppe von maximal 4 Personen</b>.
+      Stellen Sie Ihren Fragebogen in einem <b>Rollenspiel</b> dar.“
+    </div>
+
+    <h3>Vorschlag: 12 offene Fragen für deinen Bogen</h3>
+    <ol class="merk">
+      <li>Wie möchten Sie <b>angesprochen</b> werden?</li>
+      <li>Wer ist Ihre <b>wichtigste Bezugsperson</b>?</li>
+      <li><b>Wen</b> möchten Sie an Ihrer Seite haben, wenn sich Ihr Zustand verschlechtert?</li>
+      <li>Welche Menschen sind Ihnen wichtig — und wie oft möchten Sie sie sehen?</li>
+      <li>Wie sah ein <b>normaler Tag</b> bei Ihnen früher aus?</li>
+      <li>Was war Ihnen in Ihrem Leben besonders <b>wichtig</b>?</li>
+      <li>Wovon erzählen Sie gern? Wovon lieber nicht?</li>
+      <li>Gibt es <b>Feiertage, Rituale oder Gebete</b>, die für Sie zählen?</li>
+      <li>Gibt es bei <b>Essen und Trinken</b> etwas, das ich beachten soll?</li>
+      <li>Gibt es bei der <b>Körperpflege</b> etwas, das ich beachten soll?</li>
+      <li>Was hilft Ihnen, wenn es Ihnen <b>schlecht geht</b>?</li>
+      <li>Was möchten Sie, dass wir am <b>Lebensende</b> beachten?</li>
+    </ol>
+    <div class="warnbox"><b>Grundregeln:</b> Biografiearbeit ist <b>freiwillig</b>, wird <b>nicht bewertet</b> und
+    unterliegt der <b>Schweigepflicht</b>. Was der Mensch erzählt, gehört ihm — nicht dem Team-Klatsch.</div>
+  </section>
+
+  <section id="s23">
+    <h2><span class="n">23</span> Was Menschen wirklich denken</h2>
+    <p class="lead">Diese beiden Sammlungen stehen in der RUBICON-Broschüre einander gegenüber. Sie zeigen den
+    Abstand zwischen den beiden Seiten besser als jede Theorie.</p>
+    <div class="bubbles">
+      <div class="bub p">
+        <h4>Sätze aus der Pflege</h4>
+        <q>„So was gibt es bei uns nicht!“</q>
+        <q>„Das ist deren Privatsache! Ist mir doch egal, mit wem die Sex haben!“</q>
+        <q>„Das ist doch pervers!“</q>
+        <q>„Gepflegt werden muss doch jede gleich!“</q>
+        <q>„In meinem Freundeskreis sind ein paar ganz nette Schwule, ich bin doch tolerant!“</q>
+        <q>„Ich hab doch kein Problem damit!“</q>
+        <q>„Das ist doch nicht relevant für die Pflege!“</q>
+        <q>„Sollen DIE sich doch outen, dann kann ich auch auf sie eingehen!“</q>
+        <q>„Das auch noch! Um welche Gruppe soll ich mich denn noch alles kümmern!“</q>
+        <q>„Das betrifft doch eher junge Leute, ältere Homosexuelle gibt es nicht. Im Alter gibt es doch keinen
+        Sex mehr!“</q>
+      </div>
+      <div class="bub b">
+        <h4>Sätze von Betroffenen</h4>
+        <q>„Ich habe Angst es zu sagen, die verstehen das nicht!“</q>
+        <q>„Ich will nicht wieder so tun als wäre ich hetera, nur damit ich Hilfe kriege!“</q>
+        <q>„Wie soll ich denen sagen, dass es nicht meine Nachbarin ist, die mich besuchen kommt!“</q>
+        <q>„Es geht doch um mein ganzes Leben!“</q>
+        <q>„Die Geschichten über Kinder und Enkel interessieren mich nicht!“</q>
+        <q>„Wenn ich ins Heim muss, werde ich gelebt wie ich es niemals wollte. Da muss ich leben wie ich es mein
+        ganzes Leben nicht gemacht habe!“</q>
+        <q>„Die haben bestimmt noch nie eine ältere Lesbe gesehen!“</q>
+      </div>
+    </div>
+    <div class="note"><b>Übung:</b> Nimm jeden Satz aus der linken Spalte und beantworte ihn fachlich.
+    Beispiel: <i>„Gepflegt werden muss doch jede gleich!“</i> → <b>Nein.</b> Alle gleich zu behandeln heißt, alle
+    nach <b>meinem</b> Standard zu behandeln. Individuelle Pflege beachtet Unterschiede — sonst wäre auch jede
+    Pflegeplanung überflüssig.</div>
+
+    <h3>Der Ausblick der Broschüre</h3>
+    <div class="card">
+      <p style="margin-top:0">Pflege steht vor der Herausforderung, den älteren, alten und hochaltrigen Lesben und
+      Schwulen <b>in professioneller Verantwortung</b> zu begegnen. <b>Professionell pflegen heißt auch, Lesben und
+      Schwule kultursensibel zu pflegen.</b> Lesbisches und schwules Leben soll in Pflegeeinrichtungen zur
+      <b>selbstverständlichen Realität</b> werden — in der <b>professionellen Haltung</b> und im <b>individuellen
+      Pflegehandeln</b>.</p>
+      <p style="margin-bottom:0">Kultursensible Pflege für Lesben und Schwule in der Altenpflege bedeutet, dass …</p>
+      <ul class="clean" style="margin-bottom:0">
+        <li>ältere, alte und hochaltrige gleichgeschlechtlich liebende Menschen mit Pflegebedürftigkeit
+        <b>gut und gesund altern</b> können,</li>
+        <li>ältere Menschen ihre <b>Identität weiter entwickeln und entfalten</b> können,</li>
+        <li>der <b>Einfluss der sexuellen Identität auf die Gesundheit</b> bewusst in die Pflege einbezogen wird,</li>
+        <li>die <b>Lebensrealitäten</b> von älteren, alten und hochaltrigen Lesben und Schwulen <b>erkannt und
+        anerkannt</b> werden.</li>
+      </ul>
+    </div>
+    <div class="goodbox">Kultursensible Pflege kann zu einem <b>Leben in Würde</b> und zu <b>gesundem Altern</b>
+    beitragen. Durch Anerkennung und Akzeptanz leistet die Pflege einen Beitrag zur
+    <b>Gesundheitsförderung und -erhaltung</b>.</div>
+  </section>
+
+  <section id="s24">
+    <h2><span class="n">24</span> Prüfungswissen kompakt</h2>
+
+    <h3>25 Merksätze</h3>
+    <ol class="merk">
+      <li><b>Kultur</b> = Gesamtheit einzigartiger geistiger, materieller, intellektueller und emotionaler
+      Aspekte, die eine Gesellschaft oder soziale Gruppe kennzeichnen.</li>
+      <li>Wissenschaftlich: Kultur = „Ensemble von Deutungs- und Interpretationsmustern“ (Mecheril).</li>
+      <li>Der Mensch <b>„ist“ nicht seine Kultur</b> — er <b>bringt sie in die Begegnung ein</b>. Kultur ist
+      veränderlich und unscharf.</li>
+      <li>Wir sehen und bewerten andere immer durch unsere eigene <b>kulturelle Brille</b>.</li>
+      <li>Der <b>größte Teil</b> der Kultur ist <b>unsichtbar</b>: Einstellungen, Glaube, Moralvorstellungen.</li>
+      <li><b>Kultur schafft Identität.</b> Identität entsteht durch Abgrenzung von anderen und Sicherheit in der
+      eigenen Gruppe.</li>
+      <li><b>Menschenrechte</b> sind unveräußerlich, unteilbar, unverzichtbar — unabhängig davon, <b>wo</b> und
+      <b>wie</b> jemand lebt.</li>
+      <li><b>Kultursensibel pflegen</b> = <b>Interesse</b> + <b>Wissen</b> (und prüfen, ob es auf das Individuum
+      zutrifft) + <b>Haltung</b>.</li>
+      <li>Kultursensible Pflege wurde nötig, weil die <b>Arbeitsmigrant*innen der 1950er–70er Jahre</b> heute
+      pflegebedürftig werden.</li>
+      <li><b>Interkulturelle Öffnung</b> ist Aufgabe der ganzen Organisation, gesteuert von der Führungsebene.
+      Einzelne Fortbildungen reichen nicht.</li>
+      <li>Die <b>vier Kompetenzen</b>: Reflexivität · respektvolle Haltung · Selbstwirksamkeit · Kooperation.</li>
+      <li><b>Stop-and-Think-Schleife</b> (Arnold): innehalten, eigenes Deutungsmuster erkennen, Handeln ändern.</li>
+      <li><b>Ambiguitätstoleranz</b> (Witzenleiter &amp; Luppold): Mehrdeutigkeit aushalten können.</li>
+      <li>Fehlende <b>Selbstwirksamkeit</b> macht Pflegende <b>hilflos und erschöpft</b> — Burnout-Risiko.</li>
+      <li><b>Je größer die Divergenz, desto größer das Konfliktpotenzial</b> — aber auch das
+      Entwicklungspotenzial.</li>
+      <li><b>Stigmatisierung</b> = negative Bewertung + Ausgrenzung + Diskriminierung + Stereotypisierung +
+      Selbst-Stigmatisierung. Folgen: psychische Belastung, soziale Ausgrenzung, begrenzte Chancen,
+      gesundheitliche Folgen.</li>
+      <li><b>§ 175 StGB</b>: 1872 eingeführt · von den Nazis von 6 Monaten auf <b>5 Jahre</b> verschärft ·
+      DDR 1968 gestrichen · BRD 1969 Straffreiheit unter Erwachsenen (Schutzalter 21) · endgültig gestrichen am
+      <b>11. Juni 1994</b>.</li>
+      <li>Im KZ: <b>Rosa Winkel</b> für schwule Männer · <b>Schwarzer Winkel</b> („asozial“) oft für lesbische
+      Frauen · <b>100.000 Verhaftungen 1933–1945</b>.</li>
+      <li>BRD 1950–1965: fast <b>45.000 Verurteilungen</b>, Höhepunkt <b>1959 mit über 3.500</b>.</li>
+      <li><b>1973</b> APA · <b>1993</b> WHO/ICD — erst dann galt Homosexualität nicht mehr als Krankheit.</li>
+      <li><b>CSD</b> erinnert an den Aufstand 1969 in der Christopher Street, New York. Erste Demo in der BRD:
+      <b>1972 in Münster</b>. <b>Kuppelei-Paragraph</b> abgeschafft <b>1974</b>. <b>Verpartnerung seit 2001</b>.</li>
+      <li>Der <b>Regenbogen</b>: rot, orange, gelb, grün, blau, lila.</li>
+      <li><b>Heteronormativität</b> = die stille Vorannahme, alle seien hetero. Deshalb ist das
+      <b>Coming-out kein einmaliger Vorgang</b>.</li>
+      <li><b>Sprache:</b> Wörter des Menschen übernehmen · nicht richtigstellen · nach der <b>Hauptbezugsperson</b>
+      fragen · kein Szene-Jargon.</li>
+      <li>Gleichgeschlechtliche Zuneigung bei Demenz ist <b>kein enthemmtes Verhalten</b> und darf <b>nicht
+      unterbunden</b> werden. Wer <b>Gewalt ausübt</b>, wird des Raumes verwiesen — nicht umgekehrt.</li>
+    </ol>
+
+    <h3>Zahlen und Jahreszahlen auf einen Blick</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Jahr / Zahl</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><b>1872</b></td><td>§ 175 eingeführt (sexuelle Handlungen zwischen Männern strafbar)</td></tr>
+          <tr><td><b>1919</b></td><td>Institut für Sexualwissenschaft (Magnus Hirschfeld), weltweit das erste</td></tr>
+          <tr><td><b>6 Monate → 5 Jahre</b></td><td>Verschärfung des Strafmaßes durch die Nationalsozialisten</td></tr>
+          <tr><td><b>100.000</b></td><td>Verhaftete Homosexuelle 1933–1945</td></tr>
+          <tr><td><b>ca. 45.000</b></td><td>Verurteilungen in der BRD in den ersten 15 Jahren (zum Vergleich Weimar: 9.375)</td></tr>
+          <tr><td><b>1959</b></td><td>Höhepunkt der Verfolgung in der BRD: über 3.500 Verurteilte</td></tr>
+          <tr><td><b>1957 / 1968</b></td><td>DDR: keine Ahndung mehr / § 175 gestrichen</td></tr>
+          <tr><td><b>1969</b></td><td>BRD: Straffreiheit unter Erwachsenen · Stonewall/Christopher Street, New York</td></tr>
+          <tr><td><b>1972</b></td><td>Erste Demonstration in der BRD (Münster) · Film von Rosa von Praunheim</td></tr>
+          <tr><td><b>1973</b></td><td>APA streicht Homosexualität aus der Liste psychischer Störungen</td></tr>
+          <tr><td><b>1974</b></td><td>Kuppelei-Paragraph abgeschafft · „Tuntenstreit“</td></tr>
+          <tr><td><b>1993</b></td><td>WHO entfernt Homosexualität aus der ICD</td></tr>
+          <tr><td><b>11. Juni 1994</b></td><td>§ 175 StGB endgültig gestrichen</td></tr>
+          <tr><td><b>2001</b></td><td>Möglichkeit zur Verpartnerung in Deutschland</td></tr>
+          <tr><td><b>Mitte 1950er – Anfang 1970er</b></td><td>Anwerbung von Arbeitsmigrant*innen („vorübergehend“)</td></tr>
+          <tr><td><b>6</b></td><td>Arten zu lächeln in Japan · Farben der Regenbogenflagge</td></tr>
+          <tr><td><b>4</b></td><td>Kompetenzen im Kompetenzkatalog (Doukas &amp; Heinbach)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Typische Prüfungsfragen</h3>
+    <ul class="clean">
+      <li>Erklären Sie den Begriff <b>kultursensible Pflege</b> und nennen Sie die drei Bestandteile.</li>
+      <li>Was ist <b>Stigmatisierung</b>? Nennen Sie Formen und Folgen.</li>
+      <li>Nennen und erklären Sie die <b>vier Kompetenzen</b> kultursensibler Pflege.</li>
+      <li>Was bedeutet die <b>Stop-and-Think-Schleife</b>, was <b>Ambiguitätstoleranz</b>?</li>
+      <li>Warum ist die <b>Kenntnis der Geschichte</b> für die Pflege älterer homosexueller Menschen wichtig?</li>
+      <li>Nennen Sie fünf <b>Lebenserfahrungen</b> älterer Lesben und Schwuler und erklären Sie ihre Bedeutung für
+      die Pflege.</li>
+      <li>Was bedeutet <b>Heteronormativität</b>, und warum ist das Coming-out kein einmaliger Vorgang?</li>
+      <li>Formulieren Sie drei <b>heteronormative Fragen</b> in <b>offene Fragen</b> um.</li>
+      <li>Eine Bewohnerin mit Demenz sucht Nähe zu einer Mitbewohnerin. Wie handeln Sie <b>professionell</b>?</li>
+      <li>Worauf achten Sie bei einem <b>kultursensiblen Biografiebogen</b>?</li>
+      <li>Nennen Sie drei Gesten, die in verschiedenen Kulturen <b>unterschiedlich</b> verstanden werden.</li>
+      <li>Was ist beim Sterben eines muslimischen bzw. jüdischen Menschen zu beachten?</li>
+    </ul>
+  </section>
+
+  <section id="s25">
+    <h2><span class="n">25</span> Quellen</h2>
+    <div class="card">
+      <ul class="clean">
+        <li><b>André Perleberg:</b> <i>Interkulturelle und LSBTI Pflege</i>, CE 09 UE 01, Unterrichtsskript.</li>
+        <li><b>Maria Doukas &amp; Gesa Heinbach:</b> <i>Kultursensibel pflegen — Ein Kompetenzkatalog für beruflich
+        Pflegende</i>. PADUA (2023), 18 (3), 161–164. https://doi.org/10.1024/1861-6186/a000742</li>
+        <li><b>Gabi Stummer / RUBICON e. V. (Hrsg.):</b> <i>Kultursensible Pflege für Lesben und Schwule in NRW —
+        Informationen für die professionelle Altenpflege</i>. Köln 2014. Mit Grußwort von Barbara Steffens,
+        damalige Ministerin für Gesundheit, Emanzipation, Pflege und Alter des Landes NRW.</li>
+        <li><b>LAG Lesben in NRW e. V. (Hrsg.):</b> <i>Fibel der kleinen Unterschiede. Begriffe zur sexuellen und
+        geschlechtlichen Identität</i>. Düsseldorf 2013 (Grundlage des Glossars).</li>
+      </ul>
+      <p style="margin-bottom:0"><b>Im Text zitierte Autor*innen:</b> Arnold (2008, 2019) · Arnold &amp; Rohs (2014) ·
+      Bartholomeyczik (1997) · Bauer (2010) · Behrens (2011, 2012) · Bischoff-Wanner (2002) · Bolten (2012) ·
+      Bruns (2010, 2011) · Dennert (2005) · Drescher · Emcke (2012) · Friebe (2003) · Gerlach (2001) ·
+      Graef-Calliess (2017, 2021) · Hundenborn et al. (2018) · Kokula (1987) · Louis (2007) · Mecheril (2013) ·
+      Meyer (1981) · Mischo-Kelling (1993) · Pagenstecher (2013) · Schäfer (2010, 2017) · Schenk (2008) ·
+      Schiffauer (2002) · Schoppmann (1993) · Steffens &amp; Geisler (2009) · Stummer (2010) ·
+      Tegtmeier &amp; Tegtmeier (2013) · Tezcan-Gütekin (2020) · Tuntenstreit (1974) · Uzarewicz (2003, 2014) ·
+      Witzenleiter &amp; Luppold (2020).</p>
+    </div>
+    <p style="text-align:center;color:var(--ink-soft);font-size:14px;margin-top:30px">
+      Lernmaterial für die Pflegeausbildung · CE 09 UE 01 · Niveau B1
+    </p>
+  </section>
+
+  </main>
+</div>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ nach oben</button>
+
+<script>
+/* Inhaltsverzeichnis automatisch aufbauen */
+const toc=document.getElementById('toc');
+const secs=[...document.querySelectorAll('main section')];
+secs.forEach(sec=>{
+  const h=sec.querySelector('h2');
+  const n=h.querySelector('.n').textContent.trim();
+  const t=h.textContent.replace(n,'').trim();
+  const a=document.createElement('a');
+  a.href='#'+sec.id;
+  a.innerHTML='<span class="n"></span>';
+  a.querySelector('.n').textContent=n;
+  a.appendChild(document.createTextNode(t));
+  toc.appendChild(a);
+});
+/* Suche */
+const q=document.getElementById('q'), hits=document.getElementById('hits');
+function clearMarks(){
+  document.querySelectorAll('main mark').forEach(m=>{
+    const p=m.parentNode; p.replaceChild(document.createTextNode(m.textContent),m); p.normalize();
+  });
+}
+function markIn(node,re){
+  if(node.nodeType===3){
+    const t=node.nodeValue; re.lastIndex=0; if(!re.test(t))return 0;
+    const frag=document.createDocumentFragment(); let last=0,c=0,m; re.lastIndex=0;
+    while((m=re.exec(t))!==null){
+      frag.appendChild(document.createTextNode(t.slice(last,m.index)));
+      const mk=document.createElement('mark'); mk.textContent=m[0]; frag.appendChild(mk);
+      last=m.index+m[0].length; c++;
+      if(m[0].length===0)re.lastIndex++;
+    }
+    frag.appendChild(document.createTextNode(t.slice(last)));
+    node.parentNode.replaceChild(frag,node); return c;
+  }
+  if(node.nodeType===1 && !['SCRIPT','STYLE','MARK'].includes(node.tagName)){
+    let c=0; [...node.childNodes].forEach(ch=>c+=markIn(ch,re)); return c;
+  }
+  return 0;
+}
+function run(){
+  const v=q.value.trim();
+  clearMarks();
+  if(v.length<2){secs.forEach(s=>s.classList.remove('hidden'));hits.textContent='';return;}
+  const esc=v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const re=new RegExp(esc,'gi');
+  let total=0, shown=0;
+  secs.forEach(s=>{
+    const has=re.test(s.textContent); re.lastIndex=0;
+    s.classList.toggle('hidden',!has);
+    if(has){shown++; total+=markIn(s,re);}
+  });
+  hits.textContent=total? total+' Treffer in '+shown+' Kapitel'+(shown>1?'n':'') : 'keine Treffer';
+}
+let tId; q.addEventListener('input',()=>{clearTimeout(tId);tId=setTimeout(run,180);});
+document.getElementById('reset').onclick=()=>{q.value='';run();q.focus();};
+</script>
