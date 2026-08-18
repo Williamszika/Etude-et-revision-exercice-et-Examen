@@ -1,0 +1,513 @@
+<title>Schulung: Neurodermitis</title>
+<style>
+  :root{
+    --paper:#f8f4f0;--paper-2:#f0e9e3;--card:#fffdfb;--ink:#231d1a;--ink-soft:#574d47;--line:#e3d9d0;
+    --accent:#b4603a;--accent-deep:#8d472a;--accent-soft:#f6e3d8;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#181413;--paper-2:#120f0e;--card:#221c1a;--ink:#f2ecea;--ink-soft:#b5a8a2;--line:#372e2a;
+    --accent:#e0906a;--accent-deep:#efaf8c;--accent-soft:#2f1d14;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;}}
+  :root[data-theme="dark"]{--paper:#181413;--paper-2:#120f0e;--card:#221c1a;--ink:#f2ecea;--ink-soft:#b5a8a2;--line:#372e2a;--accent:#e0906a;--accent-deep:#efaf8c;--accent-soft:#2f1d14;--good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;}
+  :root[data-theme="light"]{--paper:#f8f4f0;--paper-2:#f0e9e3;--card:#fffdfb;--ink:#231d1a;--ink-soft:#574d47;--line:#e3d9d0;--accent:#b4603a;--accent-deep:#8d472a;--accent-soft:#f6e3d8;--good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px 90px;}
+  header.hero{padding:48px 20px 32px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 12px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,6vw,2.9rem);margin:0 0 10px;line-height:1.1;text-wrap:balance;}
+  header.hero p{max-width:56ch;margin:0 auto;color:var(--ink-soft);}
+  .doz{display:inline-block;margin-top:16px;font-size:13px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 15px;}
+  nav.toc{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding:9px 14px;}
+  nav.toc a{flex:0 0 auto;text-decoration:none;color:var(--ink-soft);font-size:13.5px;padding:6px 11px;border-radius:8px;white-space:nowrap;}
+  nav.toc a:hover{background:var(--paper-2);color:var(--ink);}
+  section{margin-top:50px;scroll-margin-top:60px;}
+  h2{font-family:var(--serif);font-weight:600;font-size:1.7rem;margin:0 0 6px;display:flex;align-items:baseline;gap:12px;text-wrap:balance;}
+  h2 .n{font-family:var(--mono);font-size:.78rem;color:var(--accent);border:1px solid var(--line);border-radius:7px;padding:2px 8px;}
+  h3{font-family:var(--serif);font-weight:600;font-size:1.2rem;margin:24px 0 8px;}
+  .lead{color:var(--ink-soft);margin:0 0 16px;}
+  p{margin:.6em 0;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:14px 0;}
+  .card.tight{padding:14px 18px;}
+  ul.clean{list-style:none;padding:0;margin:12px 0;}
+  ul.clean li{padding:7px 0 7px 26px;position:relative;border-bottom:1px dashed var(--line);}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean li::before{content:"→";position:absolute;left:2px;color:var(--accent);font-weight:700;}
+  .note{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0;font-size:15.5px;}
+  .warnbox{border-left:3px solid var(--warn);background:var(--warnbg);border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0;font-size:15.5px;}
+  .scroll-x{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;}
+  th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-soft);}
+  code{font-family:var(--mono);font-size:.85em;background:var(--paper-2);padding:1px 5px;border-radius:5px;}
+
+  /* Alters-Schalter */
+  .agepick{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0;}
+  .agebtn{font:inherit;font-size:15px;border:1px solid var(--line);border-radius:10px;padding:9px 15px;cursor:pointer;background:var(--card);color:var(--ink);}
+  .agebtn:hover{border-color:var(--accent);}
+  .agebtn.sel{background:var(--accent);color:#fff;border-color:var(--accent);}
+  @media (prefers-color-scheme:dark){.agebtn.sel{color:#2a1108;}}
+  :root[data-theme="dark"] .agebtn.sel{color:#2a1108;} :root[data-theme="light"] .agebtn.sel{color:#fff;}
+  .agebox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-height:120px;}
+  .agebox h4{margin:0 0 6px;font-family:var(--serif);font-size:1.15rem;}
+  .spots{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 0;}
+  .spot{font-size:14px;background:var(--accent-soft);color:var(--accent-deep);border-radius:999px;padding:4px 12px;}
+
+  /* Teufelskreis */
+  .kreis-wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:20px;align-items:center;}
+  @media (max-width:720px){.kreis-wrap{grid-template-columns:1fr;}}
+  .kreis{width:100%;max-width:340px;margin:0 auto;display:block;}
+  .kstep{cursor:pointer;}
+  .kdetail{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-height:130px;}
+  .kdetail h4{margin:0 0 6px;font-family:var(--serif);font-size:1.1rem;}
+  .kdetail .knum{font-family:var(--mono);font-size:12px;color:var(--accent);}
+
+  /* Sortierspiel */
+  .sort-item{display:flex;gap:10px;align-items:center;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin:8px 0;background:var(--card);}
+  .sort-item .txt{flex:1 1 240px;font-size:15px;}
+  .sort-item button{font:inherit;font-size:13.5px;border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;background:var(--paper);color:var(--ink);}
+  .sort-item button.g:hover{border-color:var(--good);} .sort-item button.b:hover{border-color:var(--bad);}
+  .sort-item.right{border-color:var(--good);} .sort-item.wrong{border-color:var(--bad);}
+  .sort-item .fb{flex-basis:100%;font-size:13.5px;color:var(--ink-soft);display:none;}
+  .sort-item.done .fb{display:block;}
+  .sortscore{font-family:var(--mono);font-size:14px;color:var(--accent-deep);background:var(--accent-soft);border-radius:99px;padding:5px 12px;display:inline-block;margin-top:8px;}
+
+  details.reveal{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:0 16px;margin:10px 0;}
+  details.reveal>summary{cursor:pointer;padding:13px 0;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center;}
+  details.reveal>summary::-webkit-details-marker{display:none;}
+  details.reveal>summary::before{content:"＋";font-family:var(--mono);color:var(--accent);font-weight:700;}
+  details.reveal[open]>summary::before{content:"－";}
+  details.reveal .ans{padding:0 0 14px 4px;color:var(--ink-soft);}
+  .pts{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;}
+
+  .quizbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+  .quizbar .prog{flex:1 1 140px;height:8px;background:var(--paper-2);border-radius:99px;overflow:hidden;min-width:110px;}
+  .quizbar .prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s;}
+  .scorepill{font-family:var(--mono);font-size:13px;color:var(--accent-deep);background:var(--accent-soft);border-radius:99px;padding:5px 12px;}
+  .restart{font:inherit;font-size:13px;color:var(--ink-soft);background:none;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;}
+  .qcard{border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin:12px 0;background:var(--card);}
+  .qcard .qnr{font-family:var(--mono);font-size:12px;color:var(--accent);}
+  .qcard .qtext{font-weight:600;margin:4px 0 10px;}
+  .opt{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin:6px 0;cursor:pointer;transition:border-color .12s,background .12s;}
+  .opt:hover:not(:disabled){border-color:var(--accent);}
+  .opt:disabled{cursor:default;}
+  .opt.correct{border-color:var(--good);background:color-mix(in srgb,var(--good) 15%,var(--card));}
+  .opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 13%,var(--card));}
+  .opt .mk{float:right;font-weight:700;} .opt.correct .mk::after{content:"✓";color:var(--good);} .opt.wrong .mk::after{content:"✗";color:var(--bad);}
+  .qwhy{font-size:14px;color:var(--ink-soft);margin:8px 2px 0;padding-left:12px;border-left:2px solid var(--accent);display:none;}
+  .qwhy.show{display:block;}
+  .quizdone{margin-top:16px;padding:16px;border-radius:12px;background:var(--accent-soft);text-align:center;}
+  .quizdone .big{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--accent-deep);}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:14px;text-align:center;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 05 · UE 7 · Hauterkrankungen · Niveau B1</p>
+  <h1>Neurodermitis</h1>
+  <p>Die chronische, juckende Hautkrankheit verstehen und pflegen: Ursachen, Auslöser, der Teufelskreis
+  aus Juckreiz und Kratzen, die richtige Hautpflege und die Beratung. Mit Alters-Schalter,
+  Sortierspiel, Fallbeispiel und Quiz.</p>
+  <span class="doz">Dozent: Andre Perleberg · Raum S5 (BA E13) · 08:00–09:30</span>
+</header>
+
+<nav class="toc">
+  <a href="#haut">Die Haut</a>
+  <a href="#was">Was ist das?</a>
+  <a href="#ursachen">Ursachen & Auslöser</a>
+  <a href="#symptome">Symptome</a>
+  <a href="#kreis">Teufelskreis</a>
+  <a href="#therapie">Therapie</a>
+  <a href="#pflege">Pflege & Beratung</a>
+  <a href="#spiel">Spiel</a>
+  <a href="#fall">Fallbeispiel</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<div class="wrap">
+
+  <section id="haut">
+    <h2><span class="n">1</span> Kurz zur Haut</h2>
+    <p class="lead">Die Haut ist das größte Organ des Menschen. Sie hat drei Schichten und viele Aufgaben.</p>
+    <div class="card tight">
+      <ul class="clean">
+        <li><b>Oberhaut (Epidermis):</b> ganz außen, hier liegt die <b>Hautbarriere</b> — sie hält Wasser drinnen und Keime draußen.</li>
+        <li><b>Lederhaut (Dermis):</b> mit Gefäßen und Nerven (hier entsteht auch der Juckreiz).</li>
+        <li><b>Unterhaut (Subkutis):</b> Fettgewebe, schützt und wärmt.</li>
+      </ul>
+      <p style="margin-bottom:0"><b>Aufgaben der Haut:</b> Schutz, Temperatur regeln, Fühlen (Sinnesorgan), Ausscheidung.</p>
+    </div>
+    <div class="note">Bei Neurodermitis ist die <b>Hautbarriere gestört</b>: Die Haut verliert zu viel Wasser
+    und wird trocken. Reizstoffe und Keime kommen leichter hinein. Darum ist die <b>tägliche Pflege</b> so wichtig.</div>
+  </section>
+
+  <section id="was">
+    <h2><span class="n">2</span> Was ist Neurodermitis?</h2>
+    <p class="lead">Andere Namen: <b>atopisches Ekzem</b> oder <b>atopische Dermatitis</b>.</p>
+    <div class="card">
+      <ul class="clean">
+        <li>Eine <b>chronische</b> (dauerhafte) Hautkrankheit mit <b>starkem Juckreiz</b>.</li>
+        <li>Sie verläuft in <b>Schüben</b>: Es gibt schlechte Zeiten (Schub) und gute Zeiten (beschwerdefrei).</li>
+        <li>Sie ist <b>nicht ansteckend</b> — das ist eine wichtige Information für Patienten und Angehörige!</li>
+        <li>Sie beginnt oft schon im <b>Säuglings- oder Kindesalter</b>.</li>
+      </ul>
+    </div>
+    <div class="note"><b>Atopischer Formenkreis:</b> Neurodermitis, <b>Asthma bronchiale</b> und <b>Heuschnupfen</b>
+    (allergische Rhinitis) gehören zusammen. Wer eine dieser Krankheiten hat, bekommt leichter auch eine andere.</div>
+  </section>
+
+  <section id="ursachen">
+    <h2><span class="n">3</span> Ursachen und Auslöser (Trigger)</h2>
+    <p class="lead">Die Ursache ist eine Mischung: <b>Vererbung</b> + <b>gestörte Hautbarriere</b> +
+    <b>überempfindliches Immunsystem</b>. Ein <b>Auslöser</b> („Trigger") startet dann einen Schub.</p>
+    <div class="scroll-x card tight">
+      <table>
+        <thead><tr><th>Gruppe</th><th>Beispiele</th></tr></thead>
+        <tbody>
+          <tr><td><b>Umwelt & Klima</b></td><td>trockene Heizungsluft, Kälte, starkes Schwitzen, Hausstaubmilben, Pollen, Tierhaare</td></tr>
+          <tr><td><b>Haut & Kleidung</b></td><td>Wolle, raue Stoffe, zu heißes/langes Duschen, aggressive Seifen</td></tr>
+          <tr><td><b>Ernährung</b></td><td>bei manchen: Kuhmilch, Ei, Nüsse, Zitrusfrüchte (nur bei nachgewiesener Allergie weglassen!)</td></tr>
+          <tr><td><b>Psyche</b></td><td><b>Stress</b>, Ärger, Prüfungsangst, wenig Schlaf</td></tr>
+          <tr><td><b>Infekte</b></td><td>Erkältung, Infektionen der Haut</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warnbox"><b>Wichtig für die Beratung:</b> Keine Diät „auf Verdacht"! Lebensmittel nur weglassen,
+    wenn eine Allergie <b>getestet und nachgewiesen</b> ist — sonst droht eine Mangelernährung.</div>
+  </section>
+
+  <section id="symptome">
+    <h2><span class="n">4</span> Symptome — und wo sie sitzen</h2>
+    <p class="lead">Die typischen Zeichen sind immer gleich, aber die <b>Stellen am Körper ändern sich mit dem Alter</b>.
+    Klicke auf ein Alter.</p>
+
+    <div class="card tight" style="margin-bottom:14px">
+      <b>Typische Symptome:</b>
+      <ul class="clean" style="margin-top:6px">
+        <li><b>Starker Juckreiz</b> (das Hauptproblem, oft nachts schlimmer)</li>
+        <li><b>Sehr trockene Haut</b> (Xerose), Rötung, Schuppen</li>
+        <li>Im Schub: <b>nässende</b> Stellen, Bläschen, Krusten</li>
+        <li>Später: <b>verdickte, grobe Haut</b> mit tiefen Linien (Lichenifikation) durch das lange Kratzen</li>
+        <li>Kratzspuren, oft <b>Schlafstörungen</b> und deshalb schlechte Laune / Konzentrationsprobleme</li>
+      </ul>
+    </div>
+
+    <div class="agepick" id="agepick"></div>
+    <div class="agebox" id="agebox"></div>
+  </section>
+
+  <section id="kreis">
+    <h2><span class="n">5</span> Der Teufelskreis: Juckreiz → Kratzen</h2>
+    <p class="lead">Kratzen hilft kurz — und macht dann alles schlimmer. Klicke die Schritte an.</p>
+    <div class="kreis-wrap">
+      <svg class="kreis" viewBox="0 0 300 300" role="img" aria-label="Teufelskreis Juckreiz und Kratzen" id="kreis"></svg>
+      <div class="kdetail" id="kdetail"></div>
+    </div>
+    <div class="note"><b>Ziel der Pflege:</b> diesen Kreis <b>durchbrechen</b> — den Juckreiz lindern und das
+    Kratzen ersetzen (kühlen, drücken statt kratzen, Ablenkung, Nägel kurz schneiden, nachts Baumwollhandschuhe).</div>
+  </section>
+
+  <section id="therapie">
+    <h2><span class="n">6</span> Therapie</h2>
+
+    <h3>6.1 · Basistherapie — die wichtigste Maßnahme</h3>
+    <p>Die <b>Basispflege</b> macht man <b>JEDEN TAG</b> — auch wenn die Haut gerade gut aussieht.
+    Sie repariert die Hautbarriere und verlängert die guten Zeiten.</p>
+    <ul class="clean">
+      <li><b>Rückfettende Cremes und Salben</b> (mit Harnstoff/Urea oder Glycerin) mindestens <b>2× täglich</b> auftragen.</li>
+      <li><b>Regel:</b> Je trockener die Haut, desto <b>fetter</b> das Produkt (Salbe statt Lotion). Bei nässenden Stellen eher feuchte Umschläge.</li>
+      <li>Am besten <b>direkt nach dem Baden/Duschen</b> auf die leicht feuchte Haut eincremen.</li>
+    </ul>
+
+    <h3>6.2 · Im Schub (nach ärztlicher Anordnung)</h3>
+    <div class="scroll-x card tight">
+      <table>
+        <thead><tr><th>Mittel</th><th>Wirkung / Hinweis</th></tr></thead>
+        <tbody>
+          <tr><td><b>Topische Kortikoide</b> (Kortison-Creme)</td><td>hemmt die Entzündung; nur kurz und dünn auftragen, nicht im Gesicht dauerhaft; <b>langsam ausschleichen</b>, nicht plötzlich absetzen</td></tr>
+          <tr><td><b>Calcineurininhibitoren</b> (Tacrolimus, Pimecrolimus)</td><td>Alternative ohne Kortison, gut für Gesicht und Hals; Sonnenschutz beachten</td></tr>
+          <tr><td><b>Antihistaminika</b></td><td>gegen den Juckreiz, machen oft müde → hilft nachts</td></tr>
+          <tr><td><b>Antibiotika / Antiseptika</b></td><td>nur wenn die Haut zusätzlich <b>infiziert</b> ist</td></tr>
+          <tr><td><b>Lichttherapie (UV)</b>, moderne Antikörper</td><td>bei schweren Formen, durch den Hautarzt</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><b>Merke die Reihenfolge:</b> Basispflege = <b>immer</b>. Kortison = <b>nur im Schub</b>,
+    kurz und gezielt. So bleibt die Haut ruhig und man braucht weniger Medikamente.</div>
+  </section>
+
+  <section id="pflege">
+    <h2><span class="n">7</span> Pflege und Beratung</h2>
+
+    <h3>Beobachtung (was dokumentierst du?)</h3>
+    <ul class="clean">
+      <li><b>Wo</b> sind die Stellen, <b>wie groß</b>, wie sehen sie aus (rot, trocken, nässend, verkrustet)?</li>
+      <li><b>Juckreiz</b> einschätzen (z. B. Skala 0–10) und wann er am stärksten ist.</li>
+      <li><b>Zeichen einer Infektion:</b> gelbe Krusten, Eiter, Wärme, Fieber → <b>Arzt informieren</b>.</li>
+      <li><b>Schlaf</b> und Stimmung (Juckreiz stört den Schlaf sehr).</li>
+    </ul>
+
+    <h3>Maßnahmen und Tipps für den Alltag</h3>
+    <ul class="clean">
+      <li><b>Kurz und lauwarm duschen</b> (nicht heiß, max. 5–10 Min), milde Waschsubstanzen ohne Parfüm; danach <b>trocken tupfen</b>, nicht reiben.</li>
+      <li>Direkt danach <b>eincremen</b> („3-Minuten-Regel").</li>
+      <li><b>Fingernägel kurz</b> schneiden; nachts <b>Baumwollhandschuhe</b> für Kinder.</li>
+      <li><b>Kleidung aus Baumwolle</b> — keine Wolle direkt auf der Haut; Kleidung vor dem ersten Tragen waschen.</li>
+      <li><b>Kühlen</b> statt kratzen (kühle Umschläge, Creme aus dem Kühlschrank); <b>drücken oder klopfen</b> statt kratzen.</li>
+      <li><b>Ablenkung</b> anbieten und für <b>Entspannung</b> sorgen (Stress ist ein starker Auslöser).</li>
+      <li>Raum nicht zu warm, <b>Luft nicht zu trocken</b>; Bettwäsche regelmäßig heiß waschen (Milben).</li>
+    </ul>
+
+    <h3>Beratung — das musst du sagen können</h3>
+    <div class="card tight">
+      <ul class="clean">
+        <li>„Die Krankheit ist <b>nicht ansteckend</b>."</li>
+        <li>„Cremen Sie <b>jeden Tag</b>, auch wenn die Haut gerade gut ist."</li>
+        <li>„Führen Sie ein <b>Tagebuch</b>: Wann kommt ein Schub? Was war vorher? So finden Sie Ihre Auslöser."</li>
+        <li>„Kortison ist <b>kein Feind</b> — richtig und kurz benutzt hilft es schnell."</li>
+        <li>Hinweis auf <b>Schulungen</b> und <b>Selbsthilfegruppen</b> (auch für Eltern).</li>
+      </ul>
+    </div>
+    <div class="warnbox"><b>Psychosoziale Seite:</b> Sichtbare Haut und ständiger Juckreiz belasten stark —
+    Scham, Rückzug, schlechter Schlaf, Probleme in Schule oder Beruf. Nimm das ernst und sprich es an.</div>
+  </section>
+
+  <section id="spiel">
+    <h2><span class="n">8</span> Spiel: Hilft das der Haut — oder schadet es?</h2>
+    <p class="lead">Klicke deine Antwort. Du siehst sofort, ob es stimmt.</p>
+    <div id="sortgame"></div>
+    <div class="sortscore" id="sortscore">0 / 0 richtig</div>
+  </section>
+
+  <section id="fall">
+    <h2><span class="n">9</span> Fallbeispiel</h2>
+    <div class="card">
+      <p style="font-family:var(--mono);font-size:13px;color:var(--accent-deep);margin-top:0">Lena, 9 Jahre · Kinderstation</p>
+      <p>Lena hat seit ihrem ersten Lebensjahr Neurodermitis. In den <b>Kniekehlen und Ellenbeugen</b> ist die
+      Haut rot, trocken und rissig, es gibt frische <b>Kratzspuren</b>. Lena schläft schlecht und ist müde und
+      gereizt. Die Mutter sagt: „Ich creme nur, wenn es schlimm ist. Und ich habe Angst vor dem Kortison."
+      Gerade sind Prüfungen in der Schule.</p>
+    </div>
+    <details class="reveal">
+      <summary>Frage 1: Nennen Sie 3 Pflegeprobleme. <span class="pts">Lösung</span></summary>
+      <div class="ans"><p>1. <b>Starker Juckreiz</b> mit Kratzen → Gefahr einer Hautinfektion.
+      2. <b>Sehr trockene, rissige Haut</b> (gestörte Hautbarriere).
+      3. <b>Schlafstörung</b> und Müdigkeit/Gereiztheit. (Auch möglich: Wissensdefizit der Mutter zur Pflege.)</p></div>
+    </details>
+    <details class="reveal">
+      <summary>Frage 2: Welche 2 Auslöser erkennst du im Text? <span class="pts">Lösung</span></summary>
+      <div class="ans"><p><b>Stress</b> durch die Prüfungen in der Schule und die <b>fehlende tägliche Basispflege</b>
+      (die Mutter cremt nur im Schub) — dadurch bleibt die Hautbarriere gestört.</p></div>
+    </details>
+    <details class="reveal">
+      <summary>Frage 3: Nennen Sie 4 Maßnahmen mit Begründung. <span class="pts">Lösung</span></summary>
+      <div class="ans">
+        <p>1. <b>Maßnahme:</b> Die Pflegekraft cremt Lena mindestens 2× täglich mit einer rückfettenden Salbe ein,
+        besonders nach dem Duschen. <b>Begründung:</b> Das repariert die Hautbarriere und lindert den Juckreiz.</p>
+        <p>2. <b>Maßnahme:</b> Die Pflegekraft schneidet Lenas Fingernägel kurz und bietet nachts Baumwollhandschuhe an.
+        <b>Begründung:</b> So verletzt Lena die Haut beim Kratzen weniger → weniger Infektionsgefahr.</p>
+        <p>3. <b>Maßnahme:</b> Die Pflegekraft bietet kühle Umschläge und Ablenkung an (Spiel, Vorlesen).
+        <b>Begründung:</b> Kühle lindert den Juckreiz; Ablenkung durchbricht den Teufelskreis.</p>
+        <p>4. <b>Maßnahme:</b> Die Pflegekraft berät die Mutter über die tägliche Basispflege und den richtigen
+        Umgang mit Kortison. <b>Begründung:</b> Wissen nimmt die Angst; die tägliche Pflege verlängert die
+        beschwerdefreien Zeiten.</p>
+      </div>
+    </details>
+  </section>
+
+  <section id="quiz">
+    <h2><span class="n">10</span> Quiz</h2>
+    <p class="lead">Wähle bei jeder Frage eine Antwort. Du siehst sofort, ob sie richtig ist, und am Ende deinen Score.</p>
+    <div class="quizbar"><div class="prog"><i></i></div><span class="scorepill">0 / 0 richtig</span><button class="restart">↻ Neu starten</button></div>
+    <div id="quiz"></div>
+  </section>
+
+  <section id="tipps">
+    <h2><span class="n">11</span> Prüfungstipps</h2>
+    <div class="card">
+      <ul class="clean">
+        <li>Neurodermitis = <b>atopisches Ekzem</b>: chronisch, <b>in Schüben</b>, stark juckend, <b>nicht ansteckend</b>.</li>
+        <li><b>Atopischer Formenkreis:</b> Neurodermitis + Asthma + Heuschnupfen.</li>
+        <li>Ursache: <b>Vererbung + gestörte Hautbarriere + überempfindliches Immunsystem</b>; Trigger lösen den Schub aus.</li>
+        <li>Lokalisation nach Alter: Säugling <b>Gesicht/Kopf</b> → Kind <b>Beugen</b> (Ellenbeuge, Kniekehle) → Erwachsener <b>Hände, Gesicht, Hals</b>.</li>
+        <li><b>Basistherapie täglich</b> (rückfettend), Kortison <b>nur im Schub</b> und ausschleichen.</li>
+        <li>Pflege: Nägel kurz, Baumwolle, lauwarm duschen, kühlen statt kratzen, Stress reduzieren, <b>Teufelskreis durchbrechen</b>.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    Schulung „Neurodermitis" (CE 05, UE 7 · Menschen mit Hauterkrankungen pflegen) · Dozent A. Perleberg ·
+    Niveau B1 · Bei Therapie-Details immer die ärztliche Anordnung und deine Schulunterlagen beachten.
+  </footer>
+</div>
+
+<script>
+/* ---------- Alters-Schalter ---------- */
+const AGES=[
+ {k:'Säugling (0–2 Jahre)',t:'Säugling',h:'Milchschorf & Gesicht',
+  txt:'Es beginnt oft mit dem <b>Milchschorf</b> (gelbliche Krusten am Kopf). Die Haut ist im Gesicht rot, nässt und juckt. Wichtig: Milchschorf ist NICHT dasselbe wie Kopfgneis (der ist harmlos).',
+  spots:['Wangen','behaarter Kopf','Stirn','Streckseiten der Arme und Beine','Rumpf']},
+ {k:'Kind (2 Jahre – Pubertät)',t:'Kind',h:'die großen Beugen',
+  txt:'Jetzt sitzt das Ekzem typischerweise in den <b>Beugen</b>. Die Haut wird trockener und durch das Kratzen dicker und gröber (Lichenifikation).',
+  spots:['Ellenbeugen','Kniekehlen','Handgelenke','Nacken','Hände und Füße']},
+ {k:'Jugendliche & Erwachsene',t:'Erwachsen',h:'Hände, Gesicht, Hals',
+  txt:'Häufig sind jetzt <b>Hände</b> betroffen (wichtig im Pflegeberuf!), dazu Gesicht, Hals und Augenlider. Die Haut ist oft sehr trocken und verdickt.',
+  spots:['Hände','Gesicht','Augenlider','Hals und Dekolleté','Ellenbeugen','Kniekehlen']},
+];
+const agepick=document.getElementById('agepick'), agebox=document.getElementById('agebox');
+AGES.forEach((a,i)=>{
+  const b=document.createElement('button');b.className='agebtn'+(i===0?' sel':'');b.textContent=a.t;
+  b.onclick=()=>{[...agepick.children].forEach(x=>x.classList.remove('sel'));b.classList.add('sel');showAge(i);};
+  agepick.appendChild(b);
+});
+function showAge(i){
+  const a=AGES[i];
+  agebox.innerHTML='<h4>'+a.k+' — '+a.h+'</h4><p style="margin:.3em 0">'+a.txt+'</p>'+
+    '<div class="spots">'+a.spots.map(s=>'<span class="spot">'+s+'</span>').join('')+'</div>';
+}
+showAge(0);
+
+/* ---------- Teufelskreis ---------- */
+const STEPS=[
+ {t:'Trockene Haut',d:'Die Hautbarriere ist gestört. Die Haut verliert Wasser und wird trocken und empfindlich. Reizstoffe kommen leicht hinein.'},
+ {t:'Juckreiz',d:'Die gereizte Haut juckt — oft sehr stark und besonders nachts. Der Juckreiz ist das Hauptproblem für die Betroffenen.'},
+ {t:'Kratzen',d:'Kratzen hilft nur für kurze Zeit. Es fühlt sich gut an, aber es verletzt die Haut.'},
+ {t:'Entzündung & Wunden',d:'Durch das Kratzen entstehen kleine Wunden. Die Haut entzündet sich, Keime können eindringen (Infektionsgefahr).'},
+ {t:'Barriere noch schlechter',d:'Die Haut wird noch trockener und dicker. Der Juckreiz wird stärker — der Kreis beginnt von vorne.'},
+];
+const svg=document.getElementById('kreis'), NS='http://www.w3.org/2000/svg';
+const cx=150,cy=150,R=105,r=40;
+function drawKreis(active){
+  svg.innerHTML='';
+  for(let i=0;i<STEPS.length;i++){
+    const a0=(-90+i*72)*Math.PI/180, a1=(-90+(i+1)*72)*Math.PI/180;
+    const p0={x:cx+R*Math.cos(a0+0.36),y:cy+R*Math.sin(a0+0.36)};
+    const p1={x:cx+R*Math.cos(a1-0.36),y:cy+R*Math.sin(a1-0.36)};
+    const path=document.createElementNS(NS,'path');
+    path.setAttribute('d','M '+p0.x+' '+p0.y+' A '+R+' '+R+' 0 0 1 '+p1.x+' '+p1.y);
+    path.setAttribute('fill','none');path.setAttribute('stroke','var(--line)');path.setAttribute('stroke-width','2');
+    svg.appendChild(path);
+  }
+  STEPS.forEach((s,i)=>{
+    const a=(-90+i*72)*Math.PI/180;
+    const x=cx+R*Math.cos(a), y=cy+R*Math.sin(a);
+    const g=document.createElementNS(NS,'g');g.setAttribute('class','kstep');
+    g.addEventListener('click',()=>{drawKreis(i);showStep(i);});
+    const c=document.createElementNS(NS,'circle');
+    c.setAttribute('cx',x);c.setAttribute('cy',y);c.setAttribute('r',r);
+    c.setAttribute('fill',i===active?'var(--accent)':'var(--card)');
+    c.setAttribute('stroke',i===active?'var(--accent-deep)':'var(--line)');c.setAttribute('stroke-width','2');
+    const words=s.t.split(' ');
+    const t1=document.createElementNS(NS,'text');
+    t1.setAttribute('x',x);t1.setAttribute('y',y+(words.length>1?-2:4));t1.setAttribute('text-anchor','middle');
+    t1.setAttribute('font-size','10');t1.setAttribute('font-family','var(--sans)');t1.setAttribute('font-weight','600');
+    t1.setAttribute('fill',i===active?'#fff':'var(--ink)');t1.textContent=words[0];
+    g.appendChild(c);g.appendChild(t1);
+    if(words.length>1){
+      const t2=document.createElementNS(NS,'text');
+      t2.setAttribute('x',x);t2.setAttribute('y',y+11);t2.setAttribute('text-anchor','middle');
+      t2.setAttribute('font-size','10');t2.setAttribute('font-family','var(--sans)');t2.setAttribute('font-weight','600');
+      t2.setAttribute('fill',i===active?'#fff':'var(--ink)');t2.textContent=words.slice(1).join(' ');
+      g.appendChild(t2);
+    }
+    svg.appendChild(g);
+  });
+}
+function showStep(i){
+  document.getElementById('kdetail').innerHTML='<div class="knum">Schritt '+(i+1)+' / '+STEPS.length+'</div>'+
+    '<h4>'+STEPS[i].t+'</h4><p style="margin:.3em 0 0">'+STEPS[i].d+'</p>';
+}
+drawKreis(0);showStep(0);
+
+/* ---------- Sortierspiel ---------- */
+const SORT=[
+ {t:'Jeden Tag rückfettend eincremen — auch ohne Beschwerden',a:'gut',why:'Das ist die Basistherapie: Sie repariert die Hautbarriere.'},
+ {t:'Lange und sehr heiß duschen',a:'schlecht',why:'Heißes Wasser entfettet die Haut zusätzlich. Besser kurz und lauwarm.'},
+ {t:'Kleidung aus Wolle direkt auf der Haut tragen',a:'schlecht',why:'Wolle kratzt und reizt. Besser: Baumwolle.'},
+ {t:'Fingernägel kurz schneiden',a:'gut',why:'So verletzt man die Haut beim Kratzen weniger.'},
+ {t:'Nach dem Duschen die Haut kräftig trocken reiben',a:'schlecht',why:'Reiben reizt die Haut. Besser vorsichtig trocken tupfen.'},
+ {t:'Kühle Umschläge bei Juckreiz',a:'gut',why:'Kühle lindert den Juckreiz und ersetzt das Kratzen.'},
+ {t:'Ohne Test einfach Milch, Ei und Nüsse weglassen',a:'schlecht',why:'Nur bei nachgewiesener Allergie weglassen — sonst droht Mangelernährung.'},
+ {t:'Kortisoncreme im Schub kurz und dünn auftragen (nach Anordnung)',a:'gut',why:'Richtig angewendet hemmt sie schnell die Entzündung.'},
+ {t:'Kortison nach dem Schub sofort ganz absetzen',a:'schlecht',why:'Man schleicht langsam aus, sonst kommt der Schub zurück (Rebound).'},
+ {t:'Für Entspannung sorgen und Stress abbauen',a:'gut',why:'Stress ist ein häufiger Auslöser für einen Schub.'},
+ {t:'Parfümierte Seife und Schaumbad benutzen',a:'schlecht',why:'Duftstoffe reizen die empfindliche Haut. Besser milde Produkte ohne Parfüm.'},
+ {t:'Ein Tagebuch über Schübe und mögliche Auslöser führen',a:'gut',why:'So findet man die persönlichen Trigger und kann sie vermeiden.'},
+];
+const sg=document.getElementById('sortgame'); let sRight=0;
+function renderSort(){
+  sg.innerHTML=''; sRight=0; updSortScore();
+  SORT.forEach(item=>{
+    const row=document.createElement('div'); row.className='sort-item';
+    row.innerHTML='<span class="txt">'+item.t+'</span>'+
+      '<button class="g">👍 hilft</button><button class="b">👎 schadet</button><span class="fb"></span>';
+    const [bg,bb]=row.querySelectorAll('button');
+    function answer(choice){
+      if(row.dataset.done)return; row.dataset.done='1'; row.classList.add('done');
+      const ok=choice===item.a; if(ok)sRight++;
+      row.classList.add(ok?'right':'wrong');
+      row.querySelector('.fb').textContent=(ok?'✓ Richtig. ':'✗ Falsch. ')+item.why;
+      bg.disabled=true; bb.disabled=true; updSortScore();
+    }
+    bg.onclick=()=>answer('gut'); bb.onclick=()=>answer('schlecht');
+    sg.appendChild(row);
+  });
+}
+function updSortScore(){document.getElementById('sortscore').textContent=sRight+' / '+SORT.length+' richtig';}
+renderSort();
+
+/* ---------- Quiz ---------- */
+const QUIZ=[
+ {q:'Wie heißt Neurodermitis mit Fachbegriff?',opts:['Psoriasis','Atopisches Ekzem','Intertrigo','Herpes zoster'],correct:1,why:'Neurodermitis = atopisches Ekzem / atopische Dermatitis.'},
+ {q:'Ist Neurodermitis ansteckend?',opts:['Ja, durch Hautkontakt','Ja, über die Luft','Nein, sie ist nicht ansteckend','Nur im Schub'],correct:2,why:'Sie ist nicht ansteckend — eine wichtige Information für die Beratung.'},
+ {q:'Welche Krankheiten gehören zum atopischen Formenkreis?',opts:['Neurodermitis, Asthma, Heuschnupfen','Diabetes, Gicht, Rheuma','Dekubitus, Intertrigo, Soor','Grippe, Masern, Röteln'],correct:0,why:'Neurodermitis, Asthma bronchiale und Heuschnupfen treten oft zusammen auf.'},
+ {q:'Was ist das HAUPTsymptom der Neurodermitis?',opts:['Fieber','Starker Juckreiz','Husten','Schmerzen in den Gelenken'],correct:1,why:'Der starke Juckreiz belastet am meisten und führt zum Kratzen.'},
+ {q:'Wo sitzt das Ekzem typischerweise beim Kind (nach dem 2. Lebensjahr)?',opts:['nur an den Füßen','in den Ellenbeugen und Kniekehlen','nur am Rücken','an den Fingernägeln'],correct:1,why:'Beim Kind sind typischerweise die großen Beugen betroffen.'},
+ {q:'Wie oft macht man die Basistherapie (rückfettendes Eincremen)?',opts:['nur im Schub','einmal pro Woche','jeden Tag, auch ohne Beschwerden','nur im Winter'],correct:2,why:'Die Basispflege macht man täglich — sie hält die Hautbarriere stabil.'},
+ {q:'Welcher Tipp ist RICHTIG?',opts:['Heiß und lange baden','Kurz und lauwarm duschen, danach eincremen','Haut kräftig trocken reiben','Wollpullover direkt auf der Haut'],correct:1,why:'Kurz, lauwarm, trocken tupfen und direkt danach eincremen.'},
+ {q:'Was gilt für die Kortisoncreme im Schub?',opts:['dick und über Monate auftragen','kurz und dünn, dann langsam ausschleichen','nie benutzen','nur auf gesunde Haut'],correct:1,why:'Kurz und gezielt anwenden und ausschleichen — nicht plötzlich absetzen.'},
+ {q:'Welcher Auslöser (Trigger) ist typisch?',opts:['Stress','viel trinken','Baumwollkleidung','kurze Fingernägel'],correct:0,why:'Stress ist ein sehr häufiger Auslöser für einen Schub.'},
+ {q:'Warum sollen die Fingernägel kurz sein?',opts:['Das sieht schöner aus','Damit beim Kratzen weniger Verletzungen und Infektionen entstehen','Damit die Creme besser wirkt','Wegen der Blutgerinnung'],correct:1,why:'Kurze Nägel verletzen die Haut weniger → weniger Infektionsgefahr.'},
+ {q:'Welche Zeichen sprechen für eine INFEKTION der Haut?',opts:['trockene Schuppen','gelbe Krusten, Eiter, Wärme, Fieber','leichte Rötung','Juckreiz am Abend'],correct:1,why:'Gelbe Krusten, Eiter, Überwärmung und Fieber → sofort den Arzt informieren.'},
+ {q:'Was gilt bei der Ernährung?',opts:['Immer Milch und Ei weglassen','Nur bei nachgewiesener Allergie weglassen','Gar nichts essen im Schub','Viel Zitrusfrucht hilft immer'],correct:1,why:'Ohne Test keine Diät — sonst droht eine Mangelernährung.'},
+];
+const quizEl=document.getElementById('quiz');
+const prog=document.querySelector('.quizbar .prog i'), pill=document.querySelector('.quizbar .scorepill');
+document.querySelector('.quizbar .restart').onclick=()=>buildQuiz();
+function buildQuiz(){
+  quizEl.innerHTML=''; let answered=0,right=0; const total=QUIZ.length;
+  pill.textContent='0 / '+total+' richtig'; prog.style.width='0%';
+  QUIZ.forEach((item,qi)=>{
+    const card=document.createElement('div');card.className='qcard';
+    const nr=document.createElement('div');nr.className='qnr';nr.textContent='Frage '+(qi+1)+' / '+total;
+    const h=document.createElement('div');h.className='qtext';h.textContent=item.q;
+    card.appendChild(nr);card.appendChild(h);
+    const why=document.createElement('div');why.className='qwhy';why.textContent=item.why;
+    item.opts.forEach((txt,oi)=>{
+      const b=document.createElement('button');b.className='opt';
+      b.innerHTML='<span class="lbl"></span><span class="mk"></span>';b.querySelector('.lbl').textContent=txt;
+      b.onclick=()=>{
+        if(card.dataset.done)return;card.dataset.done='1';answered++;
+        card.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        card.querySelectorAll('.opt')[item.correct].classList.add('correct');
+        if(oi===item.correct)right++;else b.classList.add('wrong');
+        why.classList.add('show');pill.textContent=right+' / '+total+' richtig';prog.style.width=Math.round(answered/total*100)+'%';
+        if(answered===total){const pct=Math.round(right/total*100);
+          const d=document.createElement('div');d.className='quizdone';
+          const note=pct>=90?'Sehr gut! 🎉':pct>=75?'Gut gemacht! 👍':pct>=50?'Bestanden — weiter so! 💪':'Weiter üben — lies die Kapitel nochmal. 📘';
+          d.innerHTML='<div class="big">'+right+' / '+total+' ('+pct+' %)</div><div style="color:var(--ink-soft);font-size:14px;margin-top:4px">'+note+'</div>';
+          quizEl.appendChild(d);d.scrollIntoView({behavior:'smooth',block:'center'});}
+      };
+      card.appendChild(b);
+    });
+    card.appendChild(why);quizEl.appendChild(card);
+  });
+}
+buildQuiz();
+</script>

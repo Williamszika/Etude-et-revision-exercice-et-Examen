@@ -1,0 +1,466 @@
+<title>Schulung: Lebensentwürfe verstehen</title>
+<style>
+  :root{
+    --paper:#f4f5f2;--paper-2:#eaece7;--card:#fdfefc;--ink:#1b211d;--ink-soft:#4d564f;--line:#d9ded6;
+    --accent:#4a7c59;--accent-deep:#375f43;--accent-soft:#dfeadf;
+    --a1:#4a7c59;--a1bg:#dfeadf;--a2:#8a6d3b;--a2bg:#f2e8d5;--a3:#4a6b8a;--a3bg:#dde6f0;--a4:#7a4a7c;--a4bg:#efe0f0;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#14171५;--paper:#141715;--paper-2:#0f110f;--card:#1d211e;--ink:#eef2ee;--ink-soft:#a8b2a9;--line:#2d332e;
+    --accent:#7fb98e;--accent-deep:#a3d3ae;--accent-soft:#1a2b1f;
+    --a1:#7fb98e;--a1bg:#1a2b1f;--a2:#d0a95f;--a2bg:#2b2415;--a3:#7fa8d0;--a3bg:#18242f;--a4:#c088c2;--a4bg:#2a1a2b;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;}}
+  :root[data-theme="dark"]{--paper:#141715;--paper-2:#0f110f;--card:#1d211e;--ink:#eef2ee;--ink-soft:#a8b2a9;--line:#2d332e;--accent:#7fb98e;--accent-deep:#a3d3ae;--accent-soft:#1a2b1f;--a1:#7fb98e;--a1bg:#1a2b1f;--a2:#d0a95f;--a2bg:#2b2415;--a3:#7fa8d0;--a3bg:#18242f;--a4:#c088c2;--a4bg:#2a1a2b;--good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;}
+  :root[data-theme="light"]{--paper:#f4f5f2;--paper-2:#eaece7;--card:#fdfefc;--ink:#1b211d;--ink-soft:#4d564f;--line:#d9ded6;--accent:#4a7c59;--accent-deep:#375f43;--accent-soft:#dfeadf;--a1:#4a7c59;--a1bg:#dfeadf;--a2:#8a6d3b;--a2bg:#f2e8d5;--a3:#4a6b8a;--a3bg:#dde6f0;--a4:#7a4a7c;--a4bg:#efe0f0;--good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65;font-size:17px;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:860px;margin:0 auto;padding:0 20px 90px;}
+  header.hero{padding:48px 20px 32px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 12px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,6vw,2.9rem);margin:0 0 10px;line-height:1.1;text-wrap:balance;}
+  header.hero p{max-width:56ch;margin:0 auto;color:var(--ink-soft);}
+  .doz{display:inline-block;margin-top:16px;font-size:13px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 15px;}
+  nav.toc{position:sticky;top:0;z-index:30;background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);display:flex;gap:4px;overflow-x:auto;padding:9px 14px;}
+  nav.toc a{flex:0 0 auto;text-decoration:none;color:var(--ink-soft);font-size:13.5px;padding:6px 11px;border-radius:8px;white-space:nowrap;}
+  nav.toc a:hover{background:var(--paper-2);color:var(--ink);}
+  section{margin-top:50px;scroll-margin-top:60px;}
+  h2{font-family:var(--serif);font-weight:600;font-size:1.7rem;margin:0 0 6px;display:flex;align-items:baseline;gap:12px;text-wrap:balance;}
+  h2 .n{font-family:var(--mono);font-size:.78rem;color:var(--accent);border:1px solid var(--line);border-radius:7px;padding:2px 8px;}
+  h3{font-family:var(--serif);font-weight:600;font-size:1.2rem;margin:24px 0 8px;}
+  .lead{color:var(--ink-soft);margin:0 0 16px;}
+  p{margin:.6em 0;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:14px 0;}
+  .card.tight{padding:14px 18px;}
+  ul.clean{list-style:none;padding:0;margin:12px 0;}
+  ul.clean li{padding:7px 0 7px 26px;position:relative;border-bottom:1px dashed var(--line);}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean li::before{content:"→";position:absolute;left:2px;color:var(--accent);font-weight:700;}
+  .note{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0;font-size:15.5px;}
+  .warnbox{border-left:3px solid var(--warn);background:var(--warnbg);border-radius:0 10px 10px 0;padding:12px 16px;margin:14px 0;font-size:15.5px;}
+  .scroll-x{overflow-x:auto;margin:12px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;}
+  th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11.5px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-soft);}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+  @media (max-width:640px){.two{grid-template-columns:1fr;}}
+  .two .col{border-radius:12px;padding:14px 16px;border:1px solid var(--line);}
+  .two .c1{background:var(--a3bg);} .two .c2{background:var(--a1bg);}
+  .two h4{margin:0 0 8px;font-family:var(--serif);}
+  .two ul{margin:0;padding-left:18px;} .two li{margin:6px 0;font-size:15px;}
+
+  /* Lebenslinie */
+  .linie{display:flex;gap:6px;overflow-x:auto;padding:6px 0 10px;}
+  .phase{flex:0 0 auto;font:inherit;font-size:14px;border:1px solid var(--line);border-radius:10px;padding:9px 13px;cursor:pointer;background:var(--card);color:var(--ink);white-space:nowrap;}
+  .phase:hover{border-color:var(--accent);}
+  .phase.sel{background:var(--accent);color:#fff;border-color:var(--accent);}
+  @media (prefers-color-scheme:dark){.phase.sel{color:#0d1a11;}}
+  :root[data-theme="dark"] .phase.sel{color:#0d1a11;} :root[data-theme="light"] .phase.sel{color:#fff;}
+  .phasebox{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;min-height:130px;}
+  .phasebox h4{margin:0 0 4px;font-family:var(--serif);font-size:1.15rem;}
+  .phasebox .alter{font-family:var(--mono);font-size:12px;color:var(--accent);}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+  .tag{font-size:13.5px;background:var(--paper-2);border:1px solid var(--line);border-radius:999px;padding:4px 12px;}
+
+  /* Vorurteil-Check */
+  .sort-item{display:flex;gap:10px;align-items:center;flex-wrap:wrap;border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin:8px 0;background:var(--card);}
+  .sort-item .txt{flex:1 1 240px;font-size:15px;font-style:italic;}
+  .sort-item button{font:inherit;font-size:13.5px;border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;background:var(--paper);color:var(--ink);}
+  .sort-item button.g:hover{border-color:var(--good);} .sort-item button.b:hover{border-color:var(--bad);}
+  .sort-item.right{border-color:var(--good);} .sort-item.wrong{border-color:var(--bad);}
+  .sort-item .fb{flex-basis:100%;font-size:13.5px;color:var(--ink-soft);display:none;}
+  .sort-item.done .fb{display:block;}
+  .sortscore{font-family:var(--mono);font-size:14px;color:var(--accent-deep);background:var(--accent-soft);border-radius:99px;padding:5px 12px;display:inline-block;margin-top:8px;}
+
+  details.reveal{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:0 16px;margin:10px 0;}
+  details.reveal>summary{cursor:pointer;padding:13px 0;font-weight:600;list-style:none;display:flex;gap:10px;align-items:center;}
+  details.reveal>summary::-webkit-details-marker{display:none;}
+  details.reveal>summary::before{content:"＋";font-family:var(--mono);color:var(--accent);font-weight:700;}
+  details.reveal[open]>summary::before{content:"－";}
+  details.reveal .ans{padding:0 0 14px 4px;color:var(--ink-soft);}
+  .pts{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;}
+
+  .quizbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+  .quizbar .prog{flex:1 1 140px;height:8px;background:var(--paper-2);border-radius:99px;overflow:hidden;min-width:110px;}
+  .quizbar .prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .3s;}
+  .scorepill{font-family:var(--mono);font-size:13px;color:var(--accent-deep);background:var(--accent-soft);border-radius:99px;padding:5px 12px;}
+  .restart{font:inherit;font-size:13px;color:var(--ink-soft);background:none;border:1px solid var(--line);border-radius:8px;padding:5px 11px;cursor:pointer;}
+  .qcard{border:1px solid var(--line);border-radius:12px;padding:15px 17px;margin:12px 0;background:var(--card);}
+  .qcard .qnr{font-family:var(--mono);font-size:12px;color:var(--accent);}
+  .qcard .qtext{font-weight:600;margin:4px 0 10px;}
+  .opt{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 13px;margin:6px 0;cursor:pointer;transition:border-color .12s,background .12s;}
+  .opt:hover:not(:disabled){border-color:var(--accent);}
+  .opt:disabled{cursor:default;}
+  .opt.correct{border-color:var(--good);background:color-mix(in srgb,var(--good) 15%,var(--card));}
+  .opt.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 13%,var(--card));}
+  .opt .mk{float:right;font-weight:700;} .opt.correct .mk::after{content:"✓";color:var(--good);} .opt.wrong .mk::after{content:"✗";color:var(--bad);}
+  .qwhy{font-size:14px;color:var(--ink-soft);margin:8px 2px 0;padding-left:12px;border-left:2px solid var(--accent);display:none;}
+  .qwhy.show{display:block;}
+  .quizdone{margin-top:16px;padding:16px;border-radius:12px;background:var(--accent-soft);text-align:center;}
+  .quizdone .big{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--accent-deep);}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:14px;text-align:center;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 09 · UE 1 · Lebensgestaltung · Niveau B1</p>
+  <h1>Lebensentwürfe verstehen</h1>
+  <p>Jeder Mensch lebt sein Leben anders. Wer den Lebensentwurf eines Menschen kennt, kann ihn
+  individuell und würdevoll pflegen. Mit Lebenslinie, Vorurteils-Check, Biografiearbeit,
+  Fallbeispiel und Quiz.</p>
+  <span class="doz">Dozentin: Dr. Ortrud Knauf · Raum S5 (BA E13) · 11:45–13:15</span>
+</header>
+
+<nav class="toc">
+  <a href="#was">Lebensentwurf?</a>
+  <a href="#wandel">Früher & heute</a>
+  <a href="#linie">Lebenslinie</a>
+  <a href="#vielfalt">Vielfalt</a>
+  <a href="#haltung">Haltung</a>
+  <a href="#check">Vorurteils-Check</a>
+  <a href="#biografie">Biografiearbeit</a>
+  <a href="#fall">Fallbeispiel</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<div class="wrap">
+
+  <section id="was">
+    <h2><span class="n">1</span> Was ist ein Lebensentwurf?</h2>
+    <p class="lead">Ein <b>Lebensentwurf</b> ist die Vorstellung eines Menschen davon, <b>wie er leben möchte</b>:
+    seine Ziele, Werte, Wünsche und Pläne für das eigene Leben.</p>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Lebenslauf</b> = was <b>wirklich passiert</b> ist (Fakten: Schule, Beruf, Familie, Krankheiten).</li>
+        <li><b>Biografie</b> = wie der Mensch sein Leben <b>selbst erzählt und bewertet</b> (seine Sicht, seine Gefühle).</li>
+        <li><b>Lebensentwurf</b> = wie er leben <b>will</b>: Werte, Ziele, Pläne — auch für die Zukunft.</li>
+      </ul>
+      <p style="margin-bottom:0">Der Lebensentwurf wird geprägt von: <b>Familie</b>, <b>Kultur und Religion</b>,
+      <b>Bildung und Beruf</b>, <b>Geld</b>, <b>Gesundheit</b>, <b>Zeit und Gesellschaft</b> sowie
+      <b>persönlichen Erfahrungen</b>.</p>
+    </div>
+    <div class="note"><b>Warum ist das für die Pflege wichtig?</b> Nur wenn ich den Lebensentwurf kenne,
+    kann ich <b>individuell</b> pflegen und die <b>Selbstbestimmung</b> (Autonomie) des Menschen achten.
+    Sonst pflege ich nach <b>meinen eigenen</b> Vorstellungen — und nicht nach seinen.</div>
+  </section>
+
+  <section id="wandel">
+    <h2><span class="n">2</span> Früher und heute: Normalbiografie und Wahlbiografie</h2>
+    <p class="lead">Die Gesellschaft hat sich verändert. Früher war der Lebensweg oft <b>vorgegeben</b>,
+    heute gibt es viel mehr <b>Wahlmöglichkeiten</b> — aber auch mehr Unsicherheit.</p>
+    <div class="two">
+      <div class="col c1">
+        <h4>Normalbiografie (früher)</h4>
+        <ul>
+          <li>fester Weg: Schule → Ausbildung → ein Beruf bis zur Rente</li>
+          <li>früh heiraten, Kinder bekommen, zusammenbleiben</li>
+          <li>klare <b>Rollen</b>: Mann verdient Geld, Frau versorgt Haushalt und Kinder</li>
+          <li>viel <b>Sicherheit</b>, wenig eigene Wahl</li>
+        </ul>
+      </div>
+      <div class="col c2">
+        <h4>Wahlbiografie (heute)</h4>
+        <ul>
+          <li>Brüche und Neuanfänge sind normal (Umschulung, zweiter Beruf, Migration)</li>
+          <li>viele <b>Familienformen</b>: Single, Patchwork, allein­erziehend, gleichgeschlechtliche Paare, ohne Kinder</li>
+          <li>Rollen sind <b>verhandelbar</b>; Männer und Frauen teilen sich Aufgaben</li>
+          <li>viel <b>Freiheit</b>, aber auch Druck und Unsicherheit</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">Wichtig für dich: Die <b>alten Menschen</b>, die du pflegst, sind meist mit der
+    <b>Normalbiografie</b> groß geworden. Ihre Werte (z. B. Fleiß, Sparsamkeit, Pflichtgefühl, Scham beim
+    Thema Körper) kommen aus einer anderen Zeit. Das musst du verstehen — nicht bewerten.</div>
+  </section>
+
+  <section id="linie">
+    <h2><span class="n">3</span> Die Lebenslinie — Phasen und Ereignisse</h2>
+    <p class="lead">Ein Leben verläuft in <b>Phasen</b>. Dazwischen gibt es <b>kritische Lebensereignisse</b>,
+    die alles verändern können. Klicke auf eine Phase.</p>
+    <div class="linie" id="linie"></div>
+    <div class="phasebox" id="phasebox"></div>
+    <div class="warnbox"><b>Kritische Lebensereignisse</b> sind einschneidende Erlebnisse, z. B. Krankheit,
+    Unfall, Verlust des Partners, Arbeitslosigkeit, Flucht, Umzug ins Pflegeheim. Sie <b>unterbrechen</b> den
+    Lebensentwurf. Der Mensch muss sein Leben dann neu ordnen — dabei brauchst du viel Verständnis.</div>
+  </section>
+
+  <section id="vielfalt">
+    <h2><span class="n">4</span> Vielfalt (Diversität) achten</h2>
+    <p class="lead">Menschen sind verschieden. Diese Unterschiede beeinflussen den Lebensentwurf stark.</p>
+    <div class="scroll-x card tight">
+      <table>
+        <thead><tr><th>Bereich</th><th>Was bedeutet das in der Pflege?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Alter und Generation</b></td><td>Andere Zeit, andere Werte (Krieg, Wiederaufbau, Digitalisierung).</td></tr>
+          <tr><td><b>Geschlecht und sexuelle Orientierung</b></td><td>Respekt vor allen Lebensformen; Intimpflege und Scham beachten.</td></tr>
+          <tr><td><b>Kultur und Sprache</b></td><td>Essen, Begrüßung, Körperkontakt, Rolle der Familie können anders sein.</td></tr>
+          <tr><td><b>Religion und Weltanschauung</b></td><td>Gebet, Feiertage, Speisevorschriften, Rituale beim Sterben.</td></tr>
+          <tr><td><b>Behinderung und Gesundheit</b></td><td>Teilhabe ermöglichen statt nur „versorgen".</td></tr>
+          <tr><td><b>Soziale Lage und Bildung</b></td><td>Geld und Wissen bestimmen, welche Wahlmöglichkeiten jemand hatte.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><b>Merke:</b> <b>Individualität</b> heißt: Ich pflege <b>diesen einen Menschen</b> — nicht
+    „den Türken", „die alte Dame" oder „den Demenzkranken". Jeder Mensch hat seine eigene Geschichte.</div>
+  </section>
+
+  <section id="haltung">
+    <h2><span class="n">5</span> Die richtige Haltung</h2>
+    <p class="lead">Um einen Lebensentwurf wirklich zu verstehen, brauchst du eine bestimmte innere Haltung
+    (nach Carl Rogers, personenzentrierter Ansatz).</p>
+    <div class="card tight">
+      <ul class="clean">
+        <li><b>Wertschätzung (Akzeptanz):</b> Ich nehme den Menschen an, wie er ist — auch wenn er anders lebt als ich.</li>
+        <li><b>Empathie:</b> Ich versuche, die Welt mit <b>seinen</b> Augen zu sehen.</li>
+        <li><b>Echtheit (Kongruenz):</b> Ich bin ehrlich und spiele keine Rolle.</li>
+        <li><b>Aktives Zuhören:</b> Ich höre wirklich zu, frage nach und lasse den anderen ausreden.</li>
+        <li><b>Selbstreflexion:</b> Ich denke über meine <b>eigenen</b> Werte und Vorurteile nach.</li>
+      </ul>
+    </div>
+    <h3>Vorurteil, Stereotyp, Beobachtung</h3>
+    <ul class="clean">
+      <li><b>Beobachtung:</b> Was ich wirklich sehe oder höre — ohne Bewertung. („Frau M. hat das Essen stehen lassen.")</li>
+      <li><b>Bewertung/Interpretation:</b> Meine Erklärung dafür. („Sie mag das Essen nicht.")</li>
+      <li><b>Vorurteil:</b> Ein festes Urteil über eine ganze Gruppe, ohne den Menschen zu kennen. („Alte Menschen wollen sowieso nichts Neues.")</li>
+    </ul>
+    <div class="warnbox">Vorurteile hat <b>jeder</b> — das ist normal. Wichtig ist, dass du sie
+    <b>bemerkst</b> und dann trotzdem offen auf den Menschen zugehst.</div>
+  </section>
+
+  <section id="check">
+    <h2><span class="n">6</span> Übung: Beobachtung oder Vorurteil?</h2>
+    <p class="lead">Ist der Satz eine sachliche <b>Beobachtung</b> oder schon ein <b>Vorurteil / eine Bewertung</b>?</p>
+    <div id="sortgame"></div>
+    <div class="sortscore" id="sortscore">0 / 0 richtig</div>
+  </section>
+
+  <section id="biografie">
+    <h2><span class="n">7</span> Biografiearbeit — den Lebensentwurf kennenlernen</h2>
+    <p class="lead"><b>Biografiearbeit</b> heißt: sich mit der Lebensgeschichte eines Menschen beschäftigen,
+    um ihn besser zu verstehen und die Pflege daran anzupassen.</p>
+
+    <h3>Warum machen wir das?</h3>
+    <ul class="clean">
+      <li>Die Pflege wird <b>individuell</b> (Gewohnheiten, Vorlieben, Tagesablauf).</li>
+      <li>Man versteht <b>Verhalten</b> besser — besonders bei <b>Demenz</b> (z. B. warum jemand nachts wach wird oder Angst vor dem Duschen hat).</li>
+      <li>Der Mensch fühlt sich <b>gesehen</b>; das stärkt Identität und Selbstwert.</li>
+      <li>Man findet <b>Ressourcen</b>: Was hat ihm früher geholfen? Was macht ihm Freude?</li>
+    </ul>
+
+    <h3>Wie geht das? (Methoden)</h3>
+    <div class="scroll-x card tight">
+      <table>
+        <thead><tr><th>Methode</th><th>So funktioniert es</th></tr></thead>
+        <tbody>
+          <tr><td><b>Biografiebogen</b></td><td>Fragebogen zu Kindheit, Beruf, Familie, Vorlieben, Gewohnheiten — oft beim Einzug ausgefüllt.</td></tr>
+          <tr><td><b>Erzählen lassen</b></td><td>Offene Fragen stellen: „Erzählen Sie mir von …" und einfach zuhören.</td></tr>
+          <tr><td><b>Erinnerungsstücke</b></td><td>Fotos, Musik, Gerüche, alte Gegenstände wecken Erinnerungen.</td></tr>
+          <tr><td><b>Lebensbuch / Erinnerungskiste</b></td><td>Gemeinsam sammeln und gestalten (auch mit Angehörigen).</td></tr>
+          <tr><td><b>Angehörige einbeziehen</b></td><td>Besonders wichtig, wenn der Mensch selbst nicht mehr erzählen kann.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Regeln für die Biografiearbeit</h3>
+    <ul class="clean">
+      <li><b>Freiwilligkeit:</b> Niemand muss erzählen. Kein Ausfragen!</li>
+      <li><b>Schweigepflicht und Datenschutz:</b> Informationen nur im Team weitergeben, wenn sie für die Pflege nötig sind.</li>
+      <li><b>Nicht bewerten</b> und nicht korrigieren — es ist <b>seine</b> Wahrheit.</li>
+      <li><b>Vorsicht bei schweren Themen</b> (Krieg, Flucht, Gewalt, Verluste): Es können belastende Erinnerungen (Trauma) hochkommen. Dann Gespräch behutsam beenden und im Team besprechen.</li>
+      <li><b>Zeit und Ruhe</b> einplanen — nicht „zwischen Tür und Angel".</li>
+    </ul>
+    <div class="note"><b>Gute Fragen:</b> „Wie sah ein normaler Tag bei Ihnen früher aus?" · „Was war Ihnen im
+    Leben besonders wichtig?" · „Was hat Ihnen in schweren Zeiten geholfen?" · „Was möchten Sie unbedingt
+    beibehalten?" — Das sind <b>offene</b> Fragen, keine Ja/Nein-Fragen.</div>
+  </section>
+
+  <section id="fall">
+    <h2><span class="n">8</span> Fallbeispiel</h2>
+    <div class="card">
+      <p style="font-family:var(--mono);font-size:13px;color:var(--accent-deep);margin-top:0">Herr Novak, 84 Jahre · neu im Pflegeheim</p>
+      <p>Herr Novak ist vor zwei Wochen ins Pflegeheim gezogen. Er war früher <b>Bäcker</b> und stand jeden Tag
+      um <b>3 Uhr</b> auf. Im Heim ist er morgens um 7 Uhr schon lange wach und läuft unruhig über den Flur.
+      Beim Waschen wird er abweisend und sagt: „Das mache ich selbst!" Eine Kollegin sagt: „Der ist einfach
+      stur, typisch alter Mann." Herr Novak spricht wenig über sich; seine Tochter besucht ihn sonntags.</p>
+    </div>
+    <details class="reveal">
+      <summary>Frage 1: Wie erklärst du sein Verhalten mit seinem Lebensentwurf? <span class="pts">Lösung</span></summary>
+      <div class="ans"><p>Sein <b>Berufsleben als Bäcker</b> hat seinen Rhythmus geprägt: Früh aufstehen war
+      50 Jahre lang normal. Die Unruhe am Morgen ist also keine „Störung", sondern seine <b>Gewohnheit</b>.
+      Das „Das mache ich selbst!" zeigt seinen Wert <b>Selbstständigkeit</b> — er möchte nicht abhängig sein.</p></div>
+    </details>
+    <details class="reveal">
+      <summary>Frage 2: Was ist an der Aussage der Kollegin problematisch? <span class="pts">Lösung</span></summary>
+      <div class="ans"><p>„Der ist einfach stur, typisch alter Mann" ist ein <b>Vorurteil</b> (und ein
+      <b>Stereotyp</b> über eine ganze Gruppe). Sie <b>bewertet</b>, statt zu <b>beobachten</b>, und sucht
+      nicht nach dem Grund. So bleibt sein Bedürfnis unerkannt und die Pflege wird nicht individuell.</p></div>
+    </details>
+    <details class="reveal">
+      <summary>Frage 3: Nenne 4 Maßnahmen mit Begründung. <span class="pts">Lösung</span></summary>
+      <div class="ans">
+        <p>1. <b>Maßnahme:</b> Die Pflegekraft führt mit Herrn Novak (und mit Zustimmung mit der Tochter) ein
+        Biografiegespräch und füllt den Biografiebogen aus. <b>Begründung:</b> So lernt das Team seine
+        Gewohnheiten und Werte kennen und kann die Pflege anpassen.</p>
+        <p>2. <b>Maßnahme:</b> Die Pflegekraft passt den Tagesablauf an: Herr Novak darf früh aufstehen und
+        bekommt eine sinnvolle Beschäftigung am Morgen (z. B. Tisch decken, Zeitung, Kaffee). <b>Begründung:</b>
+        Sein gewohnter Rhythmus wird geachtet; die Unruhe nimmt ab.</p>
+        <p>3. <b>Maßnahme:</b> Die Pflegekraft lässt ihn sich so weit wie möglich selbst waschen und leitet nur an.
+        <b>Begründung:</b> Das achtet seinen Wert Selbstständigkeit und fördert seine Ressourcen.</p>
+        <p>4. <b>Maßnahme:</b> Die Pflegekraft spricht die Aussage im Team an und bringt die Biografie in die
+        Übergabe ein. <b>Begründung:</b> Vorurteile werden abgebaut und alle pflegen nach demselben,
+        individuellen Plan.</p>
+      </div>
+    </details>
+  </section>
+
+  <section id="quiz">
+    <h2><span class="n">9</span> Quiz</h2>
+    <p class="lead">Wähle bei jeder Frage eine Antwort. Du siehst sofort, ob sie richtig ist, und am Ende deinen Score.</p>
+    <div class="quizbar"><div class="prog"><i></i></div><span class="scorepill">0 / 0 richtig</span><button class="restart">↻ Neu starten</button></div>
+    <div id="quiz"></div>
+  </section>
+
+  <section id="tipps">
+    <h2><span class="n">10</span> Prüfungstipps</h2>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Lebenslauf</b> = Fakten · <b>Biografie</b> = eigene Erzählung · <b>Lebensentwurf</b> = wie ich leben will.</li>
+        <li><b>Normalbiografie</b> (früher, vorgegeben) ↔ <b>Wahlbiografie</b> (heute, viele Möglichkeiten).</li>
+        <li><b>Kritische Lebensereignisse</b> unterbrechen den Lebensentwurf (Krankheit, Verlust, Heimeinzug).</li>
+        <li>Haltung nach Rogers: <b>Wertschätzung, Empathie, Echtheit</b> + aktives Zuhören + Selbstreflexion.</li>
+        <li><b>Beobachtung ≠ Bewertung ≠ Vorurteil</b> — in der Prüfung gern gefragt!</li>
+        <li><b>Biografiearbeit:</b> freiwillig, ohne Bewertung, mit Schweigepflicht; Methoden: Biografiebogen, Erzählen, Erinnerungsstücke, Angehörige.</li>
+        <li>Ziel: <b>Individualität, Selbstbestimmung und Teilhabe</b> ermöglichen.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    Schulung „Lebensentwürfe verstehen" (CE 09, UE 1 · Menschen in der Lebensgestaltung individuell
+    unterstützen) · Dozentin Dr. O. Knauf · Niveau B1 · Ergänze die Inhalte mit deinen Schulunterlagen.
+  </footer>
+</div>
+
+<script>
+/* ---------- Lebenslinie ---------- */
+const PHASEN=[
+ {t:'Kindheit',alter:'0–12 Jahre',
+  d:'Hier werden <b>Grundvertrauen</b>, Werte und Gewohnheiten gelegt. Familie, Sprache und Religion prägen den Menschen ein Leben lang.',
+  tags:['Familie','Schule','Freundschaften','Werte lernen','Sicherheit']},
+ {t:'Jugend',alter:'13–20 Jahre',
+  d:'Der Mensch sucht seine <b>Identität</b>: Wer bin ich? Was will ich? Der erste eigene Lebensentwurf entsteht.',
+  tags:['Identität','Ablösung von den Eltern','Ausbildung','erste Liebe','eigene Meinung']},
+ {t:'Junges Erwachsenenalter',alter:'20–40 Jahre',
+  d:'Jetzt wird der Lebensentwurf <b>umgesetzt</b>: Beruf, Partnerschaft, vielleicht Kinder, eigene Wohnung.',
+  tags:['Beruf','Partnerschaft','Familie gründen','Selbstständigkeit','Verantwortung']},
+ {t:'Mittleres Alter',alter:'40–65 Jahre',
+  d:'Oft eine Zeit der <b>Bilanz</b>: Habe ich erreicht, was ich wollte? Manche machen einen Neuanfang. Kinder gehen aus dem Haus, die eigenen Eltern werden pflegebedürftig.',
+  tags:['Bilanz ziehen','Neuorientierung','Pflege der Eltern','Beruf und Familie','erste Krankheiten']},
+ {t:'Alter',alter:'ab 65 Jahren',
+  d:'Der Beruf endet, es gibt mehr Zeit — aber auch <b>Verluste</b> (Partner, Freunde, Gesundheit, Selbstständigkeit). Wichtig sind Sinn, Rückblick und Teilhabe.',
+  tags:['Rente','Enkelkinder','Verluste','Krankheit','Rückblick','Teilhabe']},
+ {t:'Hohes Alter & Lebensende',alter:'ab ca. 80 Jahren',
+  d:'Häufig Pflegebedürftigkeit und ein Umzug ins Heim. Der Mensch schaut auf sein Leben zurück und stellt Sinnfragen. <b>Würde und Selbstbestimmung</b> sind jetzt besonders wichtig.',
+  tags:['Pflegebedürftigkeit','Heimeinzug','Abschied','Sinnfragen','Würde','Patientenverfügung']},
+];
+const linie=document.getElementById('linie'), phasebox=document.getElementById('phasebox');
+PHASEN.forEach((p,i)=>{
+  const b=document.createElement('button');b.className='phase'+(i===0?' sel':'');b.textContent=p.t;
+  b.onclick=()=>{[...linie.children].forEach(x=>x.classList.remove('sel'));b.classList.add('sel');showPhase(i);};
+  linie.appendChild(b);
+});
+function showPhase(i){
+  const p=PHASEN[i];
+  phasebox.innerHTML='<div class="alter">'+p.alter+'</div><h4>'+p.t+'</h4><p style="margin:.3em 0">'+p.d+'</p>'+
+    '<div class="tags">'+p.tags.map(t=>'<span class="tag">'+t+'</span>').join('')+'</div>';
+}
+showPhase(0);
+
+/* ---------- Beobachtung oder Vorurteil? ---------- */
+const SORT=[
+ {t:'„Frau M. hat heute Mittag ihr Essen stehen lassen."',a:'beob',why:'Das ist eine sachliche Beobachtung — sie beschreibt nur, was zu sehen war.'},
+ {t:'„Alte Menschen wollen sowieso nichts Neues lernen."',a:'vor',why:'Ein Vorurteil über eine ganze Gruppe — ohne den einzelnen Menschen zu kennen.'},
+ {t:'„Herr K. steht jeden Morgen um 5 Uhr auf."',a:'beob',why:'Beobachtung: eine konkrete, überprüfbare Tatsache.'},
+ {t:'„Der ist einfach stur, typisch alter Mann."',a:'vor',why:'Vorurteil und Stereotyp — es bewertet statt zu beobachten.'},
+ {t:'„Frau S. hat beim Waschen die Augen zugemacht und den Kopf weggedreht."',a:'beob',why:'Beobachtung. Warum sie das tut, muss man erst herausfinden.'},
+ {t:'„Menschen aus dieser Kultur sind immer laut."',a:'vor',why:'Klares Vorurteil: eine ganze Gruppe wird über einen Kamm geschoren.'},
+ {t:'„Herr B. hat dreimal nach seiner Frau gefragt."',a:'beob',why:'Beobachtung — genau und ohne Bewertung.'},
+ {t:'„Sie will nur Aufmerksamkeit, deshalb klingelt sie so oft."',a:'vor',why:'Das ist eine Bewertung/Unterstellung. Die Ursache ist nicht bekannt.'},
+ {t:'„Frau L. hat erzählt, dass sie früher gern getanzt hat."',a:'beob',why:'Beobachtung (Aussage der Bewohnerin) — eine wichtige Ressource für die Biografiearbeit.'},
+ {t:'„Wer im Heim ist, hat sein Leben doch hinter sich."',a:'vor',why:'Ein schweres Vorurteil. Es nimmt dem Menschen Zukunft, Ziele und Teilhabe.'},
+];
+const sg=document.getElementById('sortgame'); let sRight=0;
+function renderSort(){
+  sg.innerHTML=''; sRight=0; updSortScore();
+  SORT.forEach(item=>{
+    const row=document.createElement('div'); row.className='sort-item';
+    row.innerHTML='<span class="txt">'+item.t+'</span>'+
+      '<button class="g">👁️ Beobachtung</button><button class="b">⚠️ Vorurteil</button><span class="fb"></span>';
+    const [bg,bb]=row.querySelectorAll('button');
+    function answer(choice){
+      if(row.dataset.done)return; row.dataset.done='1'; row.classList.add('done');
+      const ok=choice===item.a; if(ok)sRight++;
+      row.classList.add(ok?'right':'wrong');
+      row.querySelector('.fb').textContent=(ok?'✓ Richtig. ':'✗ Falsch. ')+item.why;
+      bg.disabled=true; bb.disabled=true; updSortScore();
+    }
+    bg.onclick=()=>answer('beob'); bb.onclick=()=>answer('vor');
+    sg.appendChild(row);
+  });
+}
+function updSortScore(){document.getElementById('sortscore').textContent=sRight+' / '+SORT.length+' richtig';}
+renderSort();
+
+/* ---------- Quiz ---------- */
+const QUIZ=[
+ {q:'Was ist ein Lebensentwurf?',opts:['Die Liste aller Krankheiten','Die Vorstellung, wie ein Mensch leben möchte (Werte, Ziele, Pläne)','Der Dienstplan','Die ärztliche Diagnose'],correct:1,why:'Der Lebensentwurf umfasst Werte, Ziele und Wünsche für das eigene Leben.'},
+ {q:'Was ist der Unterschied zwischen Lebenslauf und Biografie?',opts:['Es ist dasselbe','Lebenslauf = die Fakten, Biografie = die eigene Erzählung und Bewertung','Biografie = nur der Beruf','Lebenslauf = nur die Kindheit'],correct:1,why:'Der Lebenslauf nennt Fakten, die Biografie ist die persönliche Sicht des Menschen.'},
+ {q:'Was kennzeichnet die „Wahlbiografie" von heute?',opts:['Ein fester, vorgegebener Weg','Viele Möglichkeiten, Brüche und Neuanfänge sind normal','Alle heiraten früh','Es gibt nur eine Familienform'],correct:1,why:'Heute gibt es viele Lebensformen und Wege — mit mehr Freiheit, aber auch mehr Unsicherheit.'},
+ {q:'Was ist ein „kritisches Lebensereignis"?',opts:['Ein normaler Arbeitstag','Ein einschneidendes Erlebnis wie Krankheit, Verlust oder Heimeinzug','Ein Geburtstag','Eine Urlaubsreise'],correct:1,why:'Solche Ereignisse unterbrechen den Lebensentwurf; der Mensch muss sein Leben neu ordnen.'},
+ {q:'Welche Haltung gehört NICHT zum personenzentrierten Ansatz (Rogers)?',opts:['Wertschätzung','Empathie','Echtheit','Bewertung und Belehrung'],correct:3,why:'Bewerten und Belehren widerspricht der wertschätzenden, offenen Haltung.'},
+ {q:'Welcher Satz ist eine Beobachtung (keine Bewertung)?',opts:['„Sie will nur Aufmerksamkeit."','„Der ist stur."','„Frau M. hat das Mittagessen stehen lassen."','„Alte Menschen sind unflexibel."'],correct:2,why:'Nur dieser Satz beschreibt sachlich, was wirklich zu sehen war.'},
+ {q:'Warum ist Biografiearbeit besonders bei Demenz wichtig?',opts:['Damit die Akte dicker wird','Weil man Verhalten besser versteht und die Pflege anpassen kann','Weil es Pflicht der Angehörigen ist','Damit man weniger dokumentieren muss'],correct:1,why:'Die Lebensgeschichte erklärt oft das Verhalten und zeigt Ressourcen und Vorlieben.'},
+ {q:'Welche Regel gilt für die Biografiearbeit?',opts:['Der Mensch muss alles erzählen','Sie ist freiwillig und unterliegt der Schweigepflicht','Man darf die Erinnerungen korrigieren','Man erzählt es allen Besuchern weiter'],correct:1,why:'Freiwilligkeit, keine Bewertung und Datenschutz sind Grundregeln.'},
+ {q:'Welche Frage ist eine gute, OFFENE Biografiefrage?',opts:['„Waren Sie verheiratet?"','„Haben Sie Kinder?"','„Wie sah ein normaler Tag bei Ihnen früher aus?"','„Mögen Sie Kaffee?"'],correct:2,why:'Offene Fragen laden zum Erzählen ein; die anderen sind Ja/Nein-Fragen.'},
+ {q:'Ein Bewohner war früher Bäcker und steht um 4 Uhr auf. Wie reagierst du richtig?',opts:['Ihn zwingen, bis 7 Uhr im Bett zu bleiben','Seinen Rhythmus achten und eine sinnvolle Beschäftigung anbieten','Ihn ignorieren','Ein Schlafmittel verlangen'],correct:1,why:'Individuelle Pflege heißt: den gewohnten Rhythmus und die Biografie achten.'},
+ {q:'Was bedeutet Diversität (Vielfalt) in der Pflege?',opts:['Alle gleich behandeln, egal was sie wollen','Unterschiede wie Kultur, Religion, Geschlecht und Alter achten','Nur deutsche Gewohnheiten gelten','Immer nach dem Standard des Hauses pflegen'],correct:1,why:'Vielfalt achten heißt, den einzelnen Menschen mit seiner Geschichte zu sehen.'},
+ {q:'Was ist das Ziel, wenn ich den Lebensentwurf verstehe?',opts:['Schneller arbeiten','Individuelle Pflege, Selbstbestimmung und Teilhabe ermöglichen','Weniger dokumentieren','Die Angehörigen loswerden'],correct:1,why:'Nur so kann Pflege wirklich individuell sein und die Autonomie achten.'},
+];
+const quizEl=document.getElementById('quiz');
+const prog=document.querySelector('.quizbar .prog i'), pill=document.querySelector('.quizbar .scorepill');
+document.querySelector('.quizbar .restart').onclick=()=>buildQuiz();
+function buildQuiz(){
+  quizEl.innerHTML=''; let answered=0,right=0; const total=QUIZ.length;
+  pill.textContent='0 / '+total+' richtig'; prog.style.width='0%';
+  QUIZ.forEach((item,qi)=>{
+    const card=document.createElement('div');card.className='qcard';
+    const nr=document.createElement('div');nr.className='qnr';nr.textContent='Frage '+(qi+1)+' / '+total;
+    const h=document.createElement('div');h.className='qtext';h.textContent=item.q;
+    card.appendChild(nr);card.appendChild(h);
+    const why=document.createElement('div');why.className='qwhy';why.textContent=item.why;
+    item.opts.forEach((txt,oi)=>{
+      const b=document.createElement('button');b.className='opt';
+      b.innerHTML='<span class="lbl"></span><span class="mk"></span>';b.querySelector('.lbl').textContent=txt;
+      b.onclick=()=>{
+        if(card.dataset.done)return;card.dataset.done='1';answered++;
+        card.querySelectorAll('.opt').forEach(x=>x.disabled=true);
+        card.querySelectorAll('.opt')[item.correct].classList.add('correct');
+        if(oi===item.correct)right++;else b.classList.add('wrong');
+        why.classList.add('show');pill.textContent=right+' / '+total+' richtig';prog.style.width=Math.round(answered/total*100)+'%';
+        if(answered===total){const pct=Math.round(right/total*100);
+          const d=document.createElement('div');d.className='quizdone';
+          const note=pct>=90?'Sehr gut! 🎉':pct>=75?'Gut gemacht! 👍':pct>=50?'Bestanden — weiter so! 💪':'Weiter üben — lies die Kapitel nochmal. 📘';
+          d.innerHTML='<div class="big">'+right+' / '+total+' ('+pct+' %)</div><div style="color:var(--ink-soft);font-size:14px;margin-top:4px">'+note+'</div>';
+          quizEl.appendChild(d);d.scrollIntoView({behavior:'smooth',block:'center'});}
+      };
+      card.appendChild(b);
+    });
+    card.appendChild(why);quizEl.appendChild(card);
+  });
+}
+buildQuiz();
+</script>
