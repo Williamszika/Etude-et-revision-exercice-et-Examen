@@ -81,6 +81,14 @@
   .stufe.open .det{display:block;}
   .stufe .det ul{margin:.4em 0;padding-left:18px;} .stufe .det li{margin:5px 0;}
 
+  .legende{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
+  .rec-b{font-family:var(--mono);font-size:12px;font-weight:700;padding:3px 9px;border-radius:7px;white-space:nowrap;flex:0 0 auto;}
+  .r2{background:var(--goodbg);color:var(--good);} .r1{background:var(--s1bg);color:var(--s1);}
+  .r0{background:var(--paper-2);color:var(--ink-soft);} .rm1{background:var(--warnbg);color:var(--warn);}
+  .rm2{background:var(--badbg);color:var(--bad);}
+  .reclist{margin:12px 0;}
+  .rec{display:flex;gap:10px;align-items:flex-start;background:var(--card);border:1px solid var(--line);
+    border-radius:10px;padding:11px 14px;margin:7px 0;font-size:15.5px;}
   .two2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
   @media (max-width:640px){.two2{grid-template-columns:1fr;}}
   .colbox{border-radius:12px;padding:15px 17px;border:1px solid var(--line);font-size:15.5px;}
@@ -336,160 +344,239 @@
   <section id="topisch">
     <h2><span class="n">9</span> Die topische Therapie im Detail</h2>
     <p class="lead">„Topisch" heißt: <b>äußerlich, direkt auf die Haut</b> (Creme, Salbe, Lotion, Umschlag).
-    Das Gegenteil ist „systemisch" = im ganzen Körper (Tabletten, Spritzen).
-    <span class="src">AWMF-Leitlinie S. 34 ff</span></p>
+    Das Gegenteil ist „systemisch" = im ganzen Körper (Tabletten, Spritzen). Alle Angaben hier folgen der
+    <b>S3-Leitlinie Atopische Dermatitis</b> (AWMF 013-027), Kapitel 2 und 3.
+    <span class="src">AWMF S3-LL, S. 34 ff</span></p>
+
+    <div class="card tight">
+      <b>So liest du die Empfehlungen der Leitlinie:</b>
+      <div class="legende">
+        <span class="rec-b r2">↑↑ soll</span>
+        <span class="rec-b r1">↑ sollte</span>
+        <span class="rec-b r0">0 kann erwogen werden</span>
+        <span class="rec-b rm1">↓ sollte nicht</span>
+        <span class="rec-b rm2">↓↓ soll nicht</span>
+      </div>
+    </div>
 
     <h3>9.1 · Welche Mittel gibt es? — Überblick</h3>
     <div class="scroll-x card tight">
       <table>
         <thead><tr><th>Gruppe</th><th>Wozu?</th><th>Konkrete Beispiele</th></tr></thead>
         <tbody>
-          <tr><td><b>Emollienzien / Moisturizer</b><br><small>Basistherapie</small></td><td>Hautbarriere reparieren, Haut weich und feucht halten</td><td>Fettsalbe, Vaseline, Paraffin, Pflanzenöle; mit <b>Harnstoff (Urea)</b> oder <b>Glycerin</b></td></tr>
-          <tr><td><b>Glukokortikosteroide (TCS)</b></td><td>Entzündung hemmen im Schub</td><td>Hydrocortison (Klasse I), Prednicarbat (II), <b>Mometasonfuroat</b> / Methylprednisolonaceponat (III), Clobetasol (IV)</td></tr>
-          <tr><td><b>Calcineurininhibitoren (TCI)</b></td><td>Entzündung hemmen <b>ohne</b> Hautverdünnung</td><td><b>Tacrolimus</b> Salbe 0,03 % / 0,1 % · <b>Pimecrolimus</b> Creme 1 %</td></tr>
-          <tr><td><b>Antipruriginosa</b></td><td>Juckreiz stillen</td><td><b>Polidocanol</b>, Gerbstoffe, Zink, kühlende Umschläge</td></tr>
-          <tr><td><b>Antiseptika / Antimikrobielle</b></td><td>nur bei Superinfektion</td><td>Octenidin, Chlorhexidin; antiseptische Bäder</td></tr>
-          <tr><td><b>Topischer JAK-Hemmer</b></td><td>neu, bei chronischem Handekzem</td><td>Delgocitinib</td></tr>
+          <tr><td><b>Emollienzien / Moisturizer</b><br><small>Basistherapie</small></td><td>gestörte Hautbarriere wiederherstellen</td><td>Fettsalbe, Vaseline, Paraffin; mit <b>Harnstoff (Urea)</b> oder <b>Glycerin</b></td></tr>
+          <tr><td><b>Emollienzien plus</b></td><td>Basistherapie mit Zusatzstoffen (keine Arzneistoffe)</td><td>Licochalcon A, Saponine/Riboflavine aus Junghafer, Lysate von <i>Aquaphilus dolomiae</i> oder <i>Vitreoscilla filiformis</i></td></tr>
+          <tr><td><b>Glukokortikosteroide (TCS)</b></td><td>Entzündung hemmen (First Line im Schub)</td><td>Hydrocortison (I), Prednicarbat (II), <b>Mometasonfuroat</b>, Methylprednisolonaceponat, Fluticasonpropionat (III), Clobetasol (IV)</td></tr>
+          <tr><td><b>Calcineurin-Inhibitoren (TCI)</b></td><td>Entzündung hemmen <b>ohne</b> Hautverdünnung</td><td><b>Tacrolimus</b> Salbe 0,03 % / 0,1 % · <b>Pimecrolimus</b> Creme 1 %</td></tr>
+          <tr><td><b>Antiseptika</b></td><td>nur bei sichtbarer Superinfektion</td><td>antiseptische Zusätze, Bleichbäder (Natriumhypochlorit)</td></tr>
+          <tr><td><b>Antipruriginosa</b></td><td>Juckreiz stillen</td><td><b>Polidocanol</b> (oft mit 5 % Harnstoff)</td></tr>
         </tbody>
       </table>
     </div>
 
-    <h3>9.2 · Emollienzien und Moisturizer — was ist der Unterschied?</h3>
+    <h3>9.2 · Emollienzien und Moisturizer — die Definitionen der Leitlinie</h3>
     <div class="two2">
       <div class="colbox b1">
         <h4>🧈 Emollienzien</h4>
-        <p><b>Definition:</b> Fettende Zubereitungen <b>ohne aktiven Wirkstoff</b>. Sie legen einen Fettfilm
-        auf die Haut und füllen die Lücken zwischen den Hornzellen.</p>
-        <p><b>Wirkung:</b> Sie machen die Haut <b>weich und geschmeidig</b> und verhindern, dass Wasser
-        verdunstet (Verdunstungsschutz).</p>
-        <p><b>Beispiele:</b> Vaseline, Paraffin, Wollwachs, Pflanzenöle, Fettsalben.</p>
-        <p style="margin-bottom:0"><b>Merkhilfe:</b> <i>emollire</i> (lateinisch) = <b>weich machen</b> — wie
-        eine <b>Schutzdecke</b> über der Haut.</p>
+        <p><b>Definition (Leitlinie):</b> „topische Zubereitungen mit <b>Vehikel-Substanzen ohne Wirkstoffe</b>".</p>
+        <p><b>Aufgabe:</b> Der Oberhaut (Epidermis) werden <b>Lipide (Fette)</b> zugeführt, um die
+        <b>Hautbarriere wiederherzustellen</b>. Das ist das Hauptprinzip der Basistherapie.</p>
+        <p><b>Emollienzien plus</b> = dieselbe Grundlage <b>plus Zusatzstoffe</b>, die aber <b>keine Arzneistoffe</b>
+        sind (z. B. Licochalcon A, Saponine, Riboflavine, Bakterienlysate).</p>
       </div>
       <div class="colbox b2">
         <h4>💧 Moisturizer</h4>
-        <p><b>Definition:</b> Stoffe, die <b>Wasser in der Haut binden</b> (auch: Feuchthaltefaktoren,
-        „Humectants").</p>
-        <p><b>Wirkung:</b> Sie ziehen Feuchtigkeit an und halten sie fest — die Haut wird von innen
-        <b>aufgefüllt</b>.</p>
-        <p><b>Beispiele:</b> <b>Harnstoff (Urea)</b>, <b>Glycerin</b>, Milchsäure, Hyaluronsäure.</p>
-        <p style="margin-bottom:0"><b>Merkhilfe:</b> <i>moisture</i> (englisch) = <b>Feuchtigkeit</b> — wie ein
-        <b>Schwamm</b>, der Wasser speichert.</p>
+        <p><b>Definition (Leitlinie):</b> Stoffe, welche „die <b>Hydratation des Stratum corneum</b> (Hornschicht)
+        fördern" — dazu Moleküle, die den <b>Wasserverlust verringern</b>.</p>
+        <p><b>Beispiele:</b> <b>Harnstoff (Urea)</b>, <b>Glycerin</b>, Propylenglykol.</p>
+        <p><b>Wichtig:</b> Emollienzien <b>enthalten oft</b> Moisturizer. Produkte <b>mit</b> Moisturizer waren in
+        einem Cochrane-Review <b>besser</b>: weniger schwere Ekzeme, weniger Schübe, weniger Kortison nötig.</p>
       </div>
     </div>
-    <div class="note"><b>In der Praxis:</b> Die meisten Produkte enthalten <b>beides</b> — Fett <b>und</b>
-    Feuchthaltefaktoren (z. B. eine Basiscreme mit 5 % Urea). Kommen noch pflanzliche Zusatzstoffe dazu
-    (Saponine, Flavonoide, Riboflavine), spricht man von <b>„Emollienzien plus"</b>.</div>
-    <div class="warnbox"><b>Vorsicht bei Harnstoff (Urea):</b> Auf akut entzündeter Haut und bei
-    <b>kleinen Kindern</b> kann Urea <b>brennen</b> („Stinging-Effekt"). Bei Säuglingen und Kleinkindern
-    nimmt man deshalb eher <b>Glycerin</b>.</div>
-    <div class="card tight">
-      <b>Die wichtigste Regel für die Grundlage (Galenik):</b>
-      <ul class="clean" style="margin-top:6px">
-        <li><b>„Feucht auf feucht"</b> — nässendes, akutes Ekzem → <b>Lotion, Creme, feuchte Umschläge</b>.</li>
-        <li><b>„Fett auf trocken"</b> — trockene, verdickte Haut → <b>Fettsalbe</b>.</li>
-        <li><b>Wie viel?</b> Die <b>Fingerspitzeneinheit (FTU)</b>: ein Cremestrang von der Fingerspitze bis
-        zum ersten Fingergelenk (ca. 0,5 g) reicht für die Fläche von <b>zwei Handflächen</b>.</li>
-      </ul>
+    <div class="note"><b>Sprach-Tipp der Leitlinie:</b> Statt „Hautpflege" sagt man besser
+    <b>„Basistherapie der gestörten Hautbarrierefunktion"</b> — denn es ist eine <b>Therapie</b>, kein Luxus.</div>
+
+    <div class="reclist">
+      <div class="rec"><span class="rec-b r2">↑↑</span><span>Patient:innen mit AD <b>sollen</b> bedarfsgerecht und regelmäßig <b>Emollienzien als Basistherapie</b> der gestörten Hautbarriere anwenden.</span></div>
+      <div class="rec"><span class="rec-b r2">↑↑</span><span>Emollienzien <b>sollen</b> auch <b>im schubfreien Intervall</b> eingesetzt werden — zur <b>Verhinderung von Schüben</b>.</span></div>
+      <div class="rec"><span class="rec-b r2">↑↑</span><span>Emollienzien <b>sollen unmittelbar nach dem Baden oder Duschen</b> und nach dem <b>Trockentupfen</b> aufgetragen werden (Haut noch leicht feucht).</span></div>
+      <div class="rec"><span class="rec-b r1">↑</span><span>Die Grundlage <b>sollte</b> individuell angepasst sein: im <b>Sommer hydrophiler</b> (wasserreicher), im <b>Winter fetter</b>.</span></div>
     </div>
 
-    <h3>9.3 · Was ist beim Baden und Duschen zu beachten?</h3>
+    <h4>Wie viel Creme? Die Fingerspitzeneinheit (FTU)</h4>
     <div class="card tight">
       <ul class="clean">
-        <li><b>Kurz:</b> duschen ca. <b>5 Minuten</b>, baden höchstens <b>10 Minuten</b>.</li>
-        <li><b>Lauwarm</b> (etwa 27–32 °C) — <b>nicht heiß</b>! Heißes Wasser entfettet und verstärkt den Juckreiz.</li>
-        <li><b>Milde, seifenfreie Waschmittel</b> (Syndets) mit hautfreundlichem pH-Wert, <b>ohne Parfüm</b>. Keine Schaumbäder.</li>
-        <li><b>Rückfettende Ölbäder</b> sind erlaubt und sinnvoll. <b>Achtung: Rutschgefahr</b> in der Wanne!</li>
-        <li>Danach <b>abtupfen statt rubbeln</b>.</li>
-        <li><b>3-Minuten-Regel:</b> <b>direkt danach</b> auf die noch leicht feuchte Haut eincremen — so wird
-        die Feuchtigkeit „eingeschlossen".</li>
-        <li>Bei Superinfektion: <b>antiseptische Badezusätze</b> nur nach ärztlicher Anordnung.</li>
+        <li><b>1 FTU</b> = Salbenstrang aus einer Tube (Öffnung 5 mm) von der <b>letzten Fingerfalte bis zur Spitze des Zeigefingers</b> ≈ <b>0,5 g</b>.</li>
+        <li>Das reicht für <b>zwei Handflächen</b> eines Erwachsenen ≈ <b>2 % der Körperoberfläche</b>.</li>
+        <li>Insgesamt braucht man <b>viel</b>: oft <b>250–500 g pro Woche</b>.</li>
+        <li>Erklärung für Kinder: <b>1 FTU</b> reicht für das <b>Gesicht eines 3 Monate alten Säuglings</b>; für ein <b>ganzes Bein eines 6-Jährigen</b> braucht man <b>4 FTU</b>.</li>
+      </ul>
+    </div>
+    <div class="warnbox"><b>Kosten:</b> Wirkstofffreie Basistherapeutika werden von der Kasse nur für <b>Kinder bis
+    zum 12. Lebensjahr</b> (bei Entwicklungsstörungen bis 18) bezahlt. Ältere zahlen selbst — ein häufiger Grund,
+    warum zu wenig gecremt wird. Sprich das in der Beratung an!</div>
+
+    <h4>Vorsicht — diese Fehler sind in der Leitlinie ausdrücklich genannt</h4>
+    <ul class="clean">
+      <li><b>Harnstoff (Urea)</b> kann bei <b>Säuglingen</b> die Haut reizen → in dieser Altersgruppe <b>meiden</b>; Kleinkinder nur mit <b>niedrigerer Konzentration</b>. <b>Glycerin wird besser vertragen.</b></li>
+      <li><b>Propylenglykol</b> kann bei Kindern <b>unter 2 Jahren</b> die Haut reizen.</li>
+      <li>Bei Kindern unter 2 Jahren <b>keine</b> eiweißhaltigen Allergene oder Haptene wie <b>Lanolin (Wollwachsalkohol)</b>.</li>
+      <li><b>Reine Öle</b> (Kokosnuss-, Olivenöl) statt Emulsionen: Die Haut <b>trocknet dadurch aus</b> und verliert mehr Wasser! Also <b>keine</b> reinen Öle als Basispflege.</li>
+      <li><b>Badeöle</b> sollen <b>keine allergenen Eiweiße</b> enthalten (Erdnuss- und Kokosnussöl können sensibilisieren).</li>
+      <li>Emollienzien können selbst <b>Kontaktallergien</b> auslösen (Emulgatoren, Konservierungs- und Duftstoffe) oder <b>brennen/stechen</b>.</li>
+      <li><b>Nur</b> Emollienzien bei einer Haut, die eigentlich entzündungshemmend behandelt werden müsste → erhebliches Risiko, dass sich <b>bakterielle oder virale Infektionen ausbreiten</b>.</li>
+    </ul>
+
+    <h3>9.3 · Reinigen und Baden — was ist zu beachten?</h3>
+    <div class="reclist">
+      <div class="rec"><span class="rec-b r2">↑↑</span><span>Es <b>sollen schonende Reinigungs- und Badeverfahren</b> angewendet werden — besonders bei akut entzündeter oder superinfizierter Haut.</span></div>
+      <div class="rec"><span class="rec-b r1">↑</span><span>Dusch- oder Vollbäder <b>sollten kurz</b> sein und mit <b>mäßig warmem</b> Wasser erfolgen.</span></div>
+      <div class="rec"><span class="rec-b rm1">↓</span><span>Patient:innen <b>sollten keine alkalischen Seifen</b> verwenden.</span></div>
+      <div class="rec"><span class="rec-b r1">↑</span><span>Es <b>sollten</b> regelmäßig Körperpflegeprodukte <b>ohne relevante Reizstoffe oder Kontaktallergene</b> verwendet werden.</span></div>
+    </div>
+    <div class="card tight">
+      <b>Die konkreten Zahlen aus der Leitlinie:</b>
+      <ul class="clean" style="margin-top:6px">
+        <li><b>Badedauer ca. 5 Minuten</b>, Wassertemperatur <b>27–30 °C</b> für die Spülung in der Wanne — nicht zu heiß.</li>
+        <li>Reinigungsmittel: <b>Syndets</b> oder wässrige Lösungen mit <b>pH-Wert 5–6</b>, nicht hautreizend, ohne starke Allergene.</li>
+        <li><b>Badeöle</b> helfen gegen das Austrocknen der Oberhaut.</li>
+        <li><b>Tägliches Baden oder Duschen ist erlaubt</b> — es macht die Erkrankung nicht schlimmer. Man soll den Betroffenen also <b>nicht davon abraten</b>.</li>
+        <li>Bei Superinfektion: <b>gründlich, aber schonend</b> reinigen, um Krusten und Bakterien mechanisch zu entfernen. Die <b>mechanische Reinigung ist wahrscheinlich wichtiger</b> als das Antiseptikum (das wirkt nur kurz).</li>
+        <li>Salz-Zusatz bis <b>5 %</b> in ölhaltigen Bädern ist möglich (keratolytisch und hautbefeuchtend).</li>
+        <li>Bei Säuglingen: erste schonende Reinigung <b>auf dem Wickeltisch</b>, dann kurze Spülung in der Wanne. Baden ist auch für die <b>Eltern-Kind-Beziehung</b> wichtig.</li>
       </ul>
     </div>
 
-    <h3>9.4 · Was sind Glukokortikosteroide (TCS)?</h3>
+    <h3>9.4 · Topische Glukokortikosteroide (TCS)</h3>
     <div class="card">
-      <p><b>Definition:</b> Künstlich hergestellte Abkömmlinge des körpereigenen Hormons <b>Kortisol</b>
-      (wird in der <b>Nebennierenrinde</b> gebildet). „Topisch" = als Creme oder Salbe auf die Haut.
-      Abkürzung: <b>TCS</b> (topische Kortikosteroide).</p>
-      <p style="margin-bottom:0"><b>Beispiel aus dem Alltag:</b> Der Körper macht bei Stress selbst Kortisol,
-      um Entzündungen zu bremsen. Die Creme bringt diesen „Bremsstoff" direkt an die entzündete Stelle.</p>
+      <p><b>Definition:</b> Künstliche Abkömmlinge des körpereigenen Hormons <b>Kortisol</b>, als Creme oder Salbe
+      auf die Haut. Abkürzung <b>TCS</b> (topische Kortikosteroide).</p>
+      <p style="margin-bottom:0"><b>Wirkmechanismus (Leitlinie):</b> TCS sind <b>fettlöslich</b> und haben ein
+      <b>kleines Molekulargewicht</b> → sie dringen gut in die Haut ein und binden dort an einen
+      <b>Steroidrezeptor in der Zelle</b>. Dieser Komplex wirkt wie ein <b>Schalter für die Gene</b>: Er
+      <b>verringert</b> die Bildung entzündungsfördernder Botenstoffe (Zytokine) und <b>erhöht</b> die Bildung
+      entzündungshemmender Stoffe. Zusätzlich wirken sie <b>immunsuppressiv</b> und hemmen die <b>T-Lymphozyten</b>.</p>
     </div>
-    <p><b>Wie wirken sie?</b></p>
-    <ul class="clean">
-      <li><b>antiinflammatorisch</b> — sie hemmen die Entzündung (Rötung und Schwellung gehen zurück).</li>
-      <li><b>immunsuppressiv</b> — sie dämpfen die überschießende Reaktion des Immunsystems.</li>
-      <li><b>vasokonstriktorisch</b> — die Blutgefäße werden enger, die Haut wird weniger rot.</li>
-      <li><b>antipruriginös</b> — der Juckreiz lässt nach.</li>
-      <li><b>antiproliferativ</b> — sie bremsen die Zellteilung (das erklärt auch die Nebenwirkung: dünne Haut).</li>
-    </ul>
+    <div class="reclist">
+      <div class="rec"><span class="rec-b r2">↑↑</span><span>TCS <b>sollen</b> als entzündungshemmende Wirkstoffe eingesetzt werden — besonders zur Behandlung <b>akuter Schübe</b>.</span></div>
+      <div class="rec"><span class="rec-b r2">↑↑</span><span>Auf <b>Bedenken oder Ängste</b> der Patient:innen oder Eltern gegenüber Kortison <b>soll angemessen eingegangen</b> werden.</span></div>
+      <div class="rec"><span class="rec-b r1">↑</span><span>Die <b>Finger-Tip-Unit-Regel sollte</b> verwendet und den Patient:innen <b>erklärt</b> werden.</span></div>
+      <div class="rec"><span class="rec-b r2">↑↑</span><span>Eine <b>proaktive Therapie</b> (in der Regel <b>2× wöchentlich</b>) mit einem geeigneten TCS oder TCI <b>soll</b> bedarfsgerecht durchgeführt werden, um das <b>Rezidivrisiko zu verringern</b>.</span></div>
+    </div>
+
+    <h4>Wirkstärke: Klassen nach Niedner</h4>
     <div class="scroll-x card tight">
       <table>
         <thead><tr><th>Klasse</th><th>Stärke</th><th>Beispiel</th></tr></thead>
         <tbody>
-          <tr><td><b>I</b></td><td>schwach</td><td>Hydrocortison 0,5–1 %</td></tr>
-          <tr><td><b>II</b></td><td>mittelstark</td><td>Prednicarbat, Hydrocortisonbutyrat</td></tr>
-          <tr><td><b>III</b></td><td>stark</td><td>Mometasonfuroat, Methylprednisolonaceponat, Betamethason</td></tr>
+          <tr><td><b>I</b></td><td>schwach</td><td>Hydrocortison</td></tr>
+          <tr><td><b>II</b></td><td>mittelstark</td><td>Prednicarbat, Hydrocortisonbutyrat, Methylprednisolonaceponat</td></tr>
+          <tr><td><b>III</b></td><td>stark</td><td>Mometasonfuroat, Fluticasonpropionat</td></tr>
           <tr><td><b>IV</b></td><td>sehr stark</td><td>Clobetasolpropionat</td></tr>
         </tbody>
       </table>
     </div>
-    <p><b>Was ist zu beachten?</b></p>
+    <div class="note"><b>Merke:</b> <b>Doppelt veresterte</b>, moderne TCS (Prednicarbat, Methylprednisolonaceponat,
+    Mometasonfuroat, Hydrocortisonbutyrat) wirken stark gegen die Entzündung, aber <b>kaum antiproliferativ</b> →
+    sie machen die Haut <b>weniger dünn</b> (geringeres atrophogenes Potenzial). Sie werden bevorzugt.</div>
+
+    <h4>Anwendung: wo, wie stark, wie viel</h4>
     <ul class="clean">
-      <li><b>So kurz wie möglich, so lange wie nötig</b> — meist reicht <b>1× täglich</b>, dünn auftragen.</li>
-      <li><b>Nicht plötzlich absetzen</b>, sondern <b>ausschleichen</b> (Intervalltherapie), sonst kommt der Schub zurück (Rebound).</li>
-      <li><b>Proaktiv</b> möglich: 2× pro Woche auf die bekannten Problemstellen, auch wenn sie gerade ruhig sind.</li>
-      <li><b>Zurückhaltung</b> bei <b>Kindern</b> und an dünner Haut: <b>Gesicht, Augenlider, Hals, Hautfalten, Genitalbereich</b> → dort besser TCI.</li>
-      <li><b>Nebenwirkungen</b> bei zu langem Gebrauch: <b>Hautatrophie</b> (dünne Haut), sichtbare Äderchen
-      (Teleangiektasien), Dehnungsstreifen (Striae), periorale Dermatitis, Steroidakne, vermehrte Behaarung,
-      schlechtere Wundheilung; an den Augenlidern Glaukom/Katarakt.</li>
-      <li><b>Nicht auf infizierte Haut</b> ohne gleichzeitige Behandlung der Infektion.</li>
-      <li><b>Beratung:</b> Viele haben <b>Kortisonangst</b> (Steroidphobie) und cremen deshalb zu wenig oder zu
-      kurz. Erkläre: richtig angewendet ist es <b>sicher und wirksam</b>.</li>
+      <li><b>Kinder:</b> in der Regel <b>schwach bis mittelstark</b> wirksame TCS.</li>
+      <li><b>Gesicht, Augenpartie, Hals, Hautfalten:</b> wenn überhaupt, dann <b>nur wenige Tage</b> und <b>nur Klasse I oder II</b>.</li>
+      <li><b>Sehr stark wirksame TCS</b> (Klasse IV) sollen bei Säuglingen und Kleinkindern <b>nicht</b> eingesetzt werden.</li>
+      <li>Bei Kindern unter 12 Jahren reicht meist <b>1× täglich</b>.</li>
+      <li><b>Erhaltung bei milder Aktivität:</b> 2× wöchentlich — monatlich etwa <b>15 g bei Säuglingen</b>, <b>30 g bei Kindern</b>, <b>60–90 g bei Jugendlichen und Erwachsenen</b>.</li>
+      <li><b>Feuchte Wickel („wet wraps")</b> mit <b>verdünntem</b> TCS (Klasse II/III, Verdünnung 1:3 bis 1:10, meist wenige Tage) sind eine <b>sichere Krisenintervention</b> bei schweren, nässenden Schüben.</li>
     </ul>
 
-    <h3>9.5 · Was sind Calcineurininhibitoren (TCI)?</h3>
+    <h4>Sicherheit — was ist zu beachten?</h4>
+    <ul class="clean">
+      <li><b>Lokale Nebenwirkungen:</b> <b>Hautatrophie</b> (dünne, faltige Haut), <b>Teleangiektasien</b> (Äderchen), <b>Striae distensae</b> (Dehnungsstreifen), Ekchymosen (blaue Flecken), <b>Hypertrichose</b> (mehr Haare), selten Kontaktallergie.</li>
+      <li><b>Brennen, Juckreiz oder Wärmegefühl</b> nach dem Auftragen: bei <b>unter 1 % bis 6 %</b> der Behandelten.</li>
+      <li><b>Im Gesicht</b> bei falscher Langzeitanwendung starker TCS: <b>periorale/rosaceaähnliche Dermatitis</b> und das <b>„Red-Skin-Syndrom"</b> (Kortikosteroid-Entzugssyndrom) mit anhaltender Rötung, Brennen und Stechen.</li>
+      <li><b>Säuglinge:</b> falsche Anwendung starker TCS im <b>Windelbereich</b> kann zu <b>Granuloma gluteale infantum</b> oder sogar zu einem <b>iatrogenen Cushing-Syndrom</b> führen.</li>
+      <li>Klasse III und IV können <b>systemisch aufgenommen</b> werden → eher Unterdrückung der Nebennierenfunktion als Klasse I/II. <b>Bei kurzer Anwendung schwacher/mittelstarker TCS wurde kein Risiko festgestellt.</b></li>
+      <li><b>Augen:</b> Das Risiko ist nach aktueller Datenlage <b>gering</b> — auch längere Anwendung an den Lidern bei Erwachsenen wurde <b>nicht</b> mit Glaukom oder Katarakt in Verbindung gebracht. Es gibt aber <b>Einzelfallberichte</b> über erhöhten Augeninnendruck → aufmerksam bleiben.</li>
+      <li><b>Absetzen:</b> Zur Vermeidung eines Rebounds <b>kann</b> die Dosis langsam reduziert werden — ein Nutzen des „Ausschleichens" ist allerdings <b>in keiner kontrollierten Studie belegt</b>. Man kann auch auf ein <b>schwächeres</b> Präparat wechseln oder das stärkere <b>seltener</b> anwenden (Intervalltherapie).</li>
+      <li><b>Das Wirksamste gegen Nebenwirkungen:</b> die Entzündung <b>früh</b> behandeln und im Schub <b>konsequent</b> — dann braucht man insgesamt weniger Kortison.</li>
+    </ul>
+    <div class="warnbox"><b>Kortisonangst (Kortikophobie)</b> ist weit verbreitet und führt dazu, dass zu wenig
+    oder zu kurz behandelt wird. Sie lässt sich mit dem <b>TOPICOP-Score</b> messen. Nimm die Angst ernst und
+    erkläre die richtige Anwendung — das verbessert den Therapieerfolg.</div>
+
+    <h3>9.5 · Topische Calcineurin-Inhibitoren (TCI)</h3>
     <div class="card">
-      <p><b>Definition:</b> Wirkstoffe, die das Enzym <b>Calcineurin</b> in den <b>T-Zellen</b> (Abwehrzellen)
-      <b>hemmen</b> („Inhibitor" = Hemmer). Es gibt zwei: <b>Tacrolimus</b> (Salbe 0,03 % und 0,1 %) und
-      <b>Pimecrolimus</b> (Creme 1 %). Sie sind <b>kein Kortison</b>.</p>
-      <p style="margin-bottom:0"><b>Bild dazu:</b> Calcineurin ist wie der <b>Startknopf</b> der Abwehrzelle.
-      Wird er blockiert, kann die Zelle keine Entzündungsbotenstoffe (Zytokine) mehr aussenden — die
-      Entzündung geht zurück.</p>
+      <p><b>Definition:</b> Wirkstoffe, die das Enzym <b>Calcineurin</b> hemmen. Dadurch wird die
+      <b>Aktivierung der T-Lymphozyten</b> (Abwehrzellen) gebremst und die Entzündung geht zurück.
+      Zwei Wirkstoffe sind zugelassen: <b>Tacrolimus-Salbe</b> und <b>Pimecrolimus-Creme</b>. Sie sind <b>kein Kortison</b>.</p>
+      <p style="margin-bottom:0">Ihre <b>Aufnahme durch die Haut ist geringer</b> als bei TCS. Die Wirkstärke von
+      <b>Tacrolimus 0,1 %</b> entspricht etwa einem Kortison der <b>Klasse II–III</b>; es wirkt stärker als
+      Tacrolimus 0,03 % oder Pimecrolimus 1 %.</p>
+    </div>
+    <div class="reclist">
+      <div class="rec"><span class="rec-b r2">↑↑</span><span>TCI <b>sollen</b> als entzündungshemmende Wirkstoffe bei AD eingesetzt werden.</span></div>
+      <div class="rec"><span class="rec-b r2">↑↑</span><span>Wegen der Nebenwirkungen der TCS <b>sollen TCI in Problemarealen</b> (<b>Gesicht, intertriginöse Bereiche, Anogenitalbereich</b>) als <b>bevorzugte Langzeittherapie</b> eingesetzt werden.</span></div>
+      <div class="rec"><span class="rec-b r2">↑↑</span><span>TCI <b>sollen</b> eingesetzt werden, wenn TCS <b>nicht wirken</b> oder <b>nicht angewendet werden dürfen</b>.</span></div>
+    </div>
+    <div class="card tight">
+      <b>Zulassung (Alter):</b>
+      <ul class="clean" style="margin-top:6px">
+        <li><b>Pimecrolimus-Creme 1 %</b> — in der EU ab <b>3 Monaten</b></li>
+        <li><b>Tacrolimus-Salbe 0,03 %</b> — ab <b>2 Jahren</b></li>
+        <li><b>Tacrolimus-Salbe 0,1 %</b> — ab <b>16 Jahren</b></li>
+      </ul>
     </div>
     <p><b>Was ist zu beachten?</b></p>
     <ul class="clean">
-      <li><b>Großer Vorteil:</b> Sie machen die Haut <b>NICHT dünn</b> (keine Atrophie) → ideal für
-      <b>Gesicht, Augenlider, Hals, Hautfalten und Genitalbereich</b>.</li>
-      <li><b>Zulassung:</b> Pimecrolimus 1 % ab <b>3 Monaten</b>, Tacrolimus 0,03 % ab <b>2 Jahren</b>,
-      Tacrolimus 0,1 % ab <b>16 Jahren</b>.</li>
-      <li><b>Am Anfang brennt es oft</b> oder es entsteht ein Wärmegefühl (die ersten Tage) — <b>vorher
-      informieren</b>, sonst setzen die Patienten es ab!</li>
-      <li><b>Konsequenter Sonnenschutz</b>, <b>keine gleichzeitige UV-Therapie</b>.</li>
-      <li><b>Kein Alkohol</b> während der Behandlung (Gesichtsrötung, „Flush").</li>
-      <li><b>Nicht auf infizierte Haut</b> auftragen.</li>
-      <li>Auch <b>proaktiv</b> anwendbar (meist 2× pro Woche).</li>
+      <li>⭐ <b>TCI machen die Haut NICHT dünn</b> (keine Atrophie) → sie sind an empfindlichen Stellen (Augenlider, um den Mund, Genitalbereich, Achseln, Leiste) den TCS <b>überlegen</b> und für die <b>Langzeitbehandlung</b> geeignet.</li>
+      <li><b>Häufigste Nebenwirkung:</b> vorübergehendes <b>Wärmegefühl, Kribbeln oder Brennen</b> an der Auftragsstelle — kann <b>bis zu einer Stunde</b> anhalten, verschwindet aber meist <b>innerhalb weniger Tage</b>. Bei <b>Tacrolimus häufiger</b> als bei Pimecrolimus, besonders auf <b>akut entzündeter</b> Haut.</li>
+      <li>➡️ <b>Deshalb:</b> Im <b>akuten Schub zuerst mit TCS</b> behandeln und erst danach auf TCI wechseln — dann brennt es weniger. Und: <b>vorher informieren</b>, sonst setzen die Patient:innen das Mittel ab!</li>
+      <li>Bei manchen führt <b>Alkohol</b> zu einer harmlosen, aber lästigen <b>Gesichtsrötung</b> (Flush).</li>
+      <li><b>UV-Schutz:</b> Sonnenlicht möglichst meiden, <b>Sonnenschutzmittel und Kleidung</b> empfehlen. Die <b>Kombination von TCI und Phototherapie ist zu vermeiden</b>.</li>
+      <li><b>Krebsrisiko:</b> Die US-Behörde FDA hat eine <b>Black-Box-Warnung</b>. In zahlreichen Studien — u. a. einer <b>10-Jahres-Studie bei Kindern</b> — fand sich <b>kein überzeugender Beleg</b> für ein erhöhtes Lymphom- oder Hautkrebsrisiko. Ärzt:innen sollen die Warnung <b>kennen und besprechen</b>, damit die Patient:innen die Therapie nicht abbrechen.</li>
+      <li><b>Kombination:</b> TCS und TCI <b>gleichzeitig an derselben Stelle</b> sind zu Beginn <b>nicht sinnvoll</b>. Übliche Praxis: <b>Gesicht mit TCI</b>, andere Körperstellen mit TCS.</li>
+      <li>In <b>Schwangerschaft und Stillzeit</b> nicht zugelassen, aber eine <b>Off-Label-Anwendung ist möglich</b> — für die Substanzklasse ist <b>kein teratogenes Potenzial</b> bekannt.</li>
     </ul>
 
-    <h3>9.6 · Was ist eine antipruriginöse Therapie?</h3>
-    <div class="card">
-      <p><b>Definition:</b> <b>Pruritus</b> = Juckreiz. Eine <b>antipruriginöse</b> Therapie ist also alles,
-      was <b>gegen den Juckreiz</b> hilft. Sie ist eine <b>Ergänzung</b> — denn schon die entzündungshemmenden
-      Mittel senken den Juckreiz.</p>
+    <h3>9.6 · Antimikrobielle Therapie (bei Infektion)</h3>
+    <div class="reclist">
+      <div class="rec"><span class="rec-b r1">↑</span><span>Bei <b>sichtbarer Superinfektion sollte</b> zusätzlich mit <b>topischen Antiseptika</b> behandelt werden.</span></div>
+      <div class="rec"><span class="rec-b r2">↑↑</span><span>Bei <b>großflächig superinfizierten</b> Läsionen <b>soll</b> eine <b>systemische Antibiotikatherapie</b> erfolgen.</span></div>
+      <div class="rec"><span class="rec-b rm2">↓↓</span><span><b>Topische Antibiotika sollen NICHT</b> angewendet werden — Gefahr von <b>Resistenzen</b> und <b>Sensibilisierung</b>.</span></div>
+      <div class="rec"><span class="rec-b r2">↑↑</span><span>Ein <b>Eczema herpeticatum soll umgehend systemisch antiviral</b> behandelt werden (Aciclovir/Valaciclovir).</span></div>
     </div>
-    <ul class="clean">
-      <li><b>Auf die Haut (topisch):</b> <b>Polidocanol</b> (betäubt leicht und stillt den Juckreiz),
-      <b>Gerbstoffe</b> (adstringierend, trocknen nässende Stellen), <b>Zink</b>, kühlende Umschläge
-      und feuchte Verbände („wet wraps"), Creme aus dem Kühlschrank.</li>
-      <li><b>WICHTIG:</b> <b>Topische Antihistaminika</b> (Antihistamin-Creme) sollen <b>NICHT</b> zur
-      Juckreizbehandlung eingesetzt werden — sie wirken kaum und können allergisch machen.</li>
-      <li><b>Als Tablette (systemisch):</b> <b>müde machende Antihistaminika</b> nur <b>kurzfristig zur Nacht</b>,
-      damit der Patient schlafen kann. Moderne Systemtherapien (z. B. <b>Dupilumab</b>, <b>Nemolizumab</b>,
-      JAK-Hemmer) wirken sehr stark gegen Juckreiz.</li>
-      <li><b>Ohne Medikamente:</b> Nägel kurz, Baumwollhandschuhe nachts, <b>drücken oder klopfen statt
-      kratzen</b>, kühlen, Ablenkung, Entspannung — also den <b>Juckreiz-Kratz-Kreis durchbrechen</b>.</li>
-    </ul>
-    <div class="note"><b>Prüfungsfrage-Klassiker:</b> „Was wirkt juckreizstillend?" → <b>Polidocanol</b> und
+    <div class="note">Über <b>80–90 %</b> der Betroffenen sind mit <b>Staphylococcus aureus</b> besiedelt — das ist
+    <b>noch keine Infektion</b>! Zeichen einer echten Infektion sind <b>nässende, honigfarbene Krusten und Pusteln</b>.
+    Gut zu wissen: <b>TCS und TCI senken</b> die Staphylokokken-Besiedlung von selbst.</div>
+
+    <h3>9.7 · Antipruriginöse Therapie (gegen den Juckreiz)</h3>
+    <div class="card">
+      <p><b>Definition:</b> <b>Pruritus</b> = Juckreiz. Eine antipruriginöse Therapie ist alles, was gegen den
+      Juckreiz hilft. Die Leitlinie fordert einen <b>mehrdimensionalen Ansatz</b>: Man behandelt nicht nur den
+      Juckreiz selbst, sondern auch seine <b>Ursachen</b> — <b>trockene Haut</b> (Barrierestörung),
+      <b>Entzündung</b> und <b>psychische Belastung</b>.</p>
+    </div>
+    <div class="reclist">
+      <div class="rec"><span class="rec-b r2">↑↑</span><span>Zur Juckreizbehandlung <b>sollen</b> bedarfsgerecht <b>entzündungshemmende</b> topische und systemische Therapien eingesetzt werden.</span></div>
+      <div class="rec"><span class="rec-b r0">0</span><span>Die zusätzliche Verwendung von <b>Polidocanol kann erwogen</b> werden.</span></div>
+      <div class="rec"><span class="rec-b rm2">↓↓</span><span><b>Topische Antihistaminika sollen NICHT</b> zur Juckreizbehandlung eingesetzt werden.</span></div>
+      <div class="rec"><span class="rec-b rm2">↓↓</span><span><b>Systemische Antihistaminika</b> der 1. oder 2. Generation <b>sollen NICHT</b> als <b>Langzeitbehandlung</b> gegen Juckreiz verwendet werden.</span></div>
+      <div class="rec"><span class="rec-b r1">↑</span><span>Eine <b>UV-Therapie</b> (Schmalband-UVB oder UVA1) <b>sollte</b> vor allem bei <b>Erwachsenen zeitlich befristet</b> gegen den Juckreiz eingesetzt werden.</span></div>
+    </div>
+    <div class="card tight">
+      <b>Was hilft wirklich?</b>
+      <ul class="clean" style="margin-top:6px">
+        <li><b>Entzündungshemmung ist die beste Juckreiztherapie.</b> Interessant: TCS wirken <b>nicht direkt</b> juckreizstillend — sie helfen, <b>weil</b> sie die Entzündung hemmen. <b>TCI</b> senken den Juckreiz schon <b>in den ersten Behandlungstagen</b>.</li>
+        <li><b>Polidocanol</b> (oft mit 5 % Harnstoff): betäubt leicht; bei Kindern <b>30 % bessere</b> Juckreizlinderung als ein reines Emolliens. In Europa <b>nicht für AD zugelassen</b>, aber rezeptfrei erhältlich.</li>
+        <li><b>Systemische Antihistaminika:</b> Ein klarer Nutzen ist <b>nicht belegt</b>. Eine <b>zeitlich begrenzte</b> Gabe eines <b>müde machenden</b> Antihistaminikums (1. Generation) ist bei Erwachsenen in Einzelfällen vertretbar — wegen der Sedierung zur Nacht.</li>
+        <li>⚠️ <b>Bei Kindern:</b> Die Kommission für Arzneimittelsicherheit im Kindesalter (DGKJ) <b>rät von sedierenden Antihistaminika ab</b> (z. B. Doxylamin, Diphenhydramin, Dimenhydrinat, Promethazin) — <b>ungünstiges Nutzen-Risiko-Profil</b>.</li>
+        <li>Moderne <b>Systemtherapien</b> wirken sehr stark gegen Juckreiz: <b>Dupilumab</b> (Wirkung ab Tag 2–5), <b>Nemolizumab</b> und die <b>JAK-Inhibitoren</b> (noch schneller).</li>
+        <li><b>Nicht empfohlen:</b> SSRI (Antidepressiva) zur Juckreizbehandlung <span class="rec-b rm1">↓</span> — nur bei zusätzlicher Depression/Angst als Zweit-/Drittlinie erwägbar. <b>Opioidrezeptor-Antagonisten</b>: ungünstiges Nutzen-Risiko-Verhältnis, nicht zugelassen.</li>
+        <li><b>Ohne Medikamente:</b> Nägel kurz, Baumwollhandschuhe, <b>drücken statt kratzen</b>, kühlen, Ablenkung, Entspannung, <b>Schulung</b> — so durchbrichst du den Juckreiz-Kratz-Kreis.</li>
+      </ul>
+    </div>
+    <div class="note"><b>Prüfungs-Klassiker:</b> „Was wirkt juckreizstillend?" → <b>Polidocanol</b> und
     <b>topische Kortikosteroide (TCS)</b>. <b>Nicht</b>: topische Antihistaminika.</div>
   </section>
 
@@ -887,6 +974,16 @@ const QUIZ=[
  {q:'Wo sitzt das Ekzem typischerweise beim Säugling?',opts:['In den Kniekehlen','Im Gesicht, am behaarten Kopf und an den Streckseiten','Nur an den Händen','An den Fußsohlen'],correct:1,why:'Im frühen Kindesalter: Gesicht, behaarter Kopf und Streckseiten der Extremitäten.'},
  {q:'Welche Komplikation ist ein NOTFALL und muss sofort systemisch behandelt werden?',opts:['Trockene Haut','Eczema herpeticatum','Leichte Rötung','Schuppung'],correct:1,why:'Beim Eczema herpeticatum (Herpes-simplex-Infektion) ist umgehend eine systemische antivirale Therapie nötig.'},
  {q:'Welches Bakterium verursacht besonders häufig eine Superinfektion?',opts:['Escherichia coli','Staphylococcus aureus','Clostridium difficile','Helicobacter pylori'],correct:1,why:'Staphylococcus aureus führt häufig zur Impetiginisation der ekzematösen Haut.'},
+ {q:'Wie definiert die Leitlinie „Emollienzien"?',opts:['Cremes mit Kortison','Topische Zubereitungen mit Vehikel-Substanzen OHNE Wirkstoffe','Tabletten gegen Juckreiz','Antibiotische Salben'],correct:1,why:'Emollienzien sind wirkstofffreie Grundlagen; sie führen der Oberhaut Lipide zu und stellen die Hautbarriere wieder her.'},
+ {q:'Was ist ein Moisturizer?',opts:['Ein Stoff, der Wasser in der Hornschicht bindet (z. B. Harnstoff, Glycerin)','Ein starkes Kortison','Ein Antibiotikum','Ein Sonnenschutz'],correct:0,why:'Moisturizer fördern die Hydratation des Stratum corneum und verringern den Wasserverlust.'},
+ {q:'Wie groß ist eine Fingerspitzeneinheit (FTU) und wofür reicht sie?',opts:['5 g – für den ganzen Körper','0,5 g – für zwei Handflächen eines Erwachsenen','50 g – für ein Bein','0,05 g – für einen Finger'],correct:1,why:'1 FTU ≈ 0,5 g und reicht für ca. 2 % der Körperoberfläche, also zwei Handflächen.'},
+ {q:'Was ist bei Säuglingen in der Basispflege zu meiden?',opts:['Glycerin','Harnstoff (Urea)','Wasser','Baumwollkleidung'],correct:1,why:'Harnstoff kann bei Säuglingen die Haut reizen. Glycerin wird besser vertragen.'},
+ {q:'Warum sind reine Öle (z. B. Kokos- oder Olivenöl) als Basispflege ungeeignet?',opts:['Sie riechen unangenehm','Die Haut trocknet dadurch aus und verliert mehr Wasser','Sie sind zu teuer','Sie färben die Kleidung'],correct:1,why:'Laut Leitlinie führen reine Ölprodukte statt Emulsionen zu Austrocknung und erhöhtem transepidermalem Wasserverlust.'},
+ {q:'Wann soll man Emollienzien auftragen?',opts:['Nur wenn die Haut juckt','Unmittelbar nach dem Baden/Duschen auf die noch leicht feuchte Haut','Nur einmal pro Woche','Nur vor dem Duschen'],correct:1,why:'Starke Empfehlung (soll): direkt nach dem Baden/Duschen und Trockentupfen auftragen.'},
+ {q:'Welche Aussage zu topischen Antibiotika bei AD ist richtig?',opts:['Sie sollen bei jeder Rötung benutzt werden','Sie sollen NICHT angewendet werden (Resistenzen, Sensibilisierung)','Sie ersetzen die Basistherapie','Sie sind die First-Line-Therapie'],correct:1,why:'Starke Negativ-Empfehlung: topische Antibiotika sollen wegen Resistenz- und Sensibilisierungsgefahr nicht eingesetzt werden.'},
+ {q:'Ein Patient klagt beim ersten Auftragen von Tacrolimus über Brennen. Was ist richtig?',opts:['Sofort absetzen, das ist gefährlich','Das ist häufig, hält bis zu 1 Stunde an und verschwindet meist nach wenigen Tagen','Das bedeutet eine Allergie','Die Dosis muss verdoppelt werden'],correct:1,why:'Wärmegefühl/Brennen ist die häufigste Nebenwirkung der TCI und klingt meist innerhalb weniger Tage ab — vorher informieren!'},
+ {q:'Was gilt bei TCI und Sonne bzw. UV-Therapie?',opts:['UV-Therapie ideal kombinieren','UV-Schutz empfehlen und die Kombination mit Phototherapie vermeiden','Sonne ist unbedenklich','TCI ersetzen den Sonnenschutz'],correct:1,why:'Sonnenexposition gering halten, wirksamen UV-Schutz empfehlen; die Kombination TCI + Phototherapie ist zu vermeiden.'},
+ {q:'Wie oft wird eine proaktive Therapie mit TCS oder TCI in der Regel durchgeführt?',opts:['täglich für immer','zweimal wöchentlich auf die früher entzündeten Stellen','einmal im Monat','nur im Winter'],correct:1,why:'Proaktiv = in der Regel 2× pro Woche auf die zuvor entzündeten Areale plus tägliche Basistherapie am ganzen Körper.'},
  {q:'Was ist bei körperlicher Aktivität richtig?',opts:['Sport ganz verbieten','Die körperliche Aktivität soll nicht eingeschränkt werden','Nur Sport im Winter','Sport nur ohne Duschen danach'],correct:1,why:'Trotz Schwitzen als Trigger soll die körperliche Aktivität nicht eingeschränkt werden.'},
 ];
 const quizEl=document.getElementById('quiz');
