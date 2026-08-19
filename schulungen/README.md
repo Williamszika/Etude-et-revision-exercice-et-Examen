@@ -1,10 +1,21 @@
-# Meine Schulungen — die eine Seite
+# Meine Schulungen
 
-**Der eine Link:** https://claude.ai/code/artifact/70ca4043-134c-44a7-ae57-307f4df8b29c
+**Der Link für die Schulungen:** https://claude.ai/code/artifact/70ca4043-134c-44a7-ae57-307f4df8b29c
 
-Diese Seite sammelt **alle** Schulungen, Zusammenfassungen und Original-PDFs,
+Diese Seite sammelt **alle Schulungen**, Zusammenfassungen und Original-PDFs,
 sortiert nach dem Tag, an dem sie dazugekommen sind — neueste zuerst.
-Der Link bleibt **immer derselbe**, genau wie bei „Deutsch täglich“.
+Der Link bleibt **immer derselbe**.
+
+## Zwei getrennte Links
+
+| Bereich | Link |
+|---|---|
+| 🎓 **Schulungen** (Pflege) | https://claude.ai/code/artifact/70ca4043-134c-44a7-ae57-307f4df8b29c |
+| 🇩🇪 **Deutsch täglich** | https://claude.ai/code/artifact/e499dbe3-e198-410a-94d3-9393e6b27c84 |
+
+**Deutsch täglich gehört bewusst NICHT auf die Schulungs-Seite** und wird auch nicht
+in `schulungen.json` eingetragen. Es hat seinen eigenen Ordner (`deutsch-taeglich/`),
+sein eigenes Build-Skript und seinen eigenen Link.
 
 ## Dateien
 

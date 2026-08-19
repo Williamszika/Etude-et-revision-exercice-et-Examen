@@ -137,8 +137,8 @@
   <div id="liste"></div>
   <div class="leer" id="leer">Keine Schulung gefunden. Versuch ein anderes Wort.</div>
 
-  <div class="weitere">
-    <div class="monat"><h2>Weitere Lernmittel</h2><div class="li"></div></div>
+  <div class="weitere" id="weitere">
+    <div class="monat"><h2>Weiteres Pflege-Lernmaterial</h2><div class="li"></div></div>
     <div class="wgrid" id="wgrid"></div>
   </div>
 
@@ -164,8 +164,8 @@ document.getElementById('stats').innerHTML =
 document.getElementById('info').innerHTML =
   '<b>So wächst diese Seite:</b> Jede neue Schulung wird in <code>schulungen/schulungen.json</code> ' +
   'eingetragen und mit <code>python3 schulungen/build.py</code> neu gebaut. ' +
-  'Der <b>Link zu dieser Seite bleibt immer derselbe</b> — genau wie bei „Deutsch täglich“. ' +
-  'Du musst dir also nur diese eine Adresse merken.';
+  'Der <b>Link zu dieser Seite bleibt immer derselbe</b> — neue Schulungen erscheinen automatisch oben. ' +
+  '<br><br><b>Deutsch täglich hat einen eigenen Link</b> und ist hier bewusst nicht enthalten.';
 
 /* ---- Filter-Chips ---- */
 let fFach = null, fText = '';
@@ -311,7 +311,7 @@ function render(){
 }
 render();
 
-/* ---- Weitere Lernmittel ---- */
+/* ---- Weiteres Pflege-Lernmaterial (ohne Deutsch täglich — das hat einen eigenen Link) ---- */
 const wg = document.getElementById('wgrid');
 D.weitere.forEach(w => {
   const a = el('a', 'wcard');
@@ -323,4 +323,6 @@ D.weitere.forEach(w => {
   a.appendChild(el('span', 'd', 'seit ' + w.datum_de));
   wg.appendChild(a);
 });
+if (!D.weitere.length) document.getElementById('weitere').style.display = 'none';
+
 </script>
