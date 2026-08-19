@@ -1,0 +1,326 @@
+<title>Meine Schulungen</title>
+<style>
+  :root{
+    --paper:#f5f4f2;--paper-2:#eceae6;--card:#fffefc;--ink:#1d1b19;--ink-soft:#585350;--line:#dedad4;
+    --accent:#3f6b7d;--accent-deep:#2d5364;--accent-soft:#dfeaee;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f9e5e1;--warn:#b5731a;--warnbg:#f8edda;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#161717;--paper-2:#101111;--card:#1f2121;--ink:#eff0ef;--ink-soft:#a6a9a7;--line:#2f3232;
+    --accent:#8fbccd;--accent-deep:#addbeb;--accent-soft:#1a2a31;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#331b17;--warn:#d9a559;--warnbg:#2c2312;}}
+  :root[data-theme="dark"]{--paper:#161717;--paper-2:#101111;--card:#1f2121;--ink:#eff0ef;--ink-soft:#a6a9a7;--line:#2f3232;--accent:#8fbccd;--accent-deep:#addbeb;--accent-soft:#1a2a31;--good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#331b17;--warn:#d9a559;--warnbg:#2c2312;}
+  :root[data-theme="light"]{--paper:#f5f4f2;--paper-2:#eceae6;--card:#fffefc;--ink:#1d1b19;--ink-soft:#585350;--line:#dedad4;--accent:#3f6b7d;--accent-deep:#2d5364;--accent-soft:#dfeaee;--good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f9e5e1;--warn:#b5731a;--warnbg:#f8edda;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+  header.hero{padding:46px 20px 30px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,6vw,2.9rem);margin:0 0 10px;line-height:1.1;}
+  header.hero p{max-width:56ch;margin:0 auto;color:var(--ink-soft);font-size:15.5px;}
+  .stats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px;}
+  .stats span{font-size:12.5px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 14px;}
+  .stats b{color:var(--accent-deep);font-family:var(--mono);}
+
+  .toolbar{position:sticky;top:0;z-index:40;background:color-mix(in srgb,var(--paper) 92%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 16px;}
+  .toolbar .row{max-width:940px;margin:0 auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .toolbar input{flex:1 1 210px;font:inherit;font-size:14.5px;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:9px;padding:9px 13px;min-width:0;}
+  .toolbar input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .chips{max-width:940px;margin:8px auto 0;display:flex;gap:6px;flex-wrap:wrap;}
+  .chip{font:inherit;font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:999px;
+    padding:5px 13px;cursor:pointer;color:var(--ink-soft);}
+  .chip:hover{border-color:var(--accent);color:var(--ink);}
+  .chip.sel{background:var(--accent);color:#fff;border-color:var(--accent);}
+  :root[data-theme="dark"] .chip.sel{color:#101c22;}
+  @media (prefers-color-scheme:dark){.chip.sel{color:#101c22;}}
+  :root[data-theme="light"] .chip.sel{color:#fff;}
+  .hits{font-family:var(--mono);font-size:12.5px;color:var(--accent-deep);white-space:nowrap;}
+
+  .wrap{max-width:940px;margin:0 auto;padding:0 20px 90px;}
+  .monat{display:flex;align-items:center;gap:12px;margin:38px 0 4px;}
+  .monat h2{font-family:var(--serif);font-weight:600;font-size:1.25rem;margin:0;white-space:nowrap;color:var(--ink-soft);}
+  .monat .li{flex:1;height:1px;background:var(--line);}
+  .monat .cnt{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);background:var(--paper-2);
+    border-radius:999px;padding:3px 10px;}
+
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;margin:14px 0;
+    position:relative;overflow:hidden;}
+  .karte::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--accent);opacity:.8;}
+  .karte.hidden{display:none;}
+  .k-top{display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap;}
+  .k-ico{font-size:2rem;line-height:1;flex:0 0 auto;}
+  .k-head{flex:1 1 220px;min-width:0;}
+  .k-head h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:0 0 3px;}
+  .k-head .sub{color:var(--ink-soft);font-size:14.5px;margin:0;}
+  .k-date{flex:0 0 auto;font-family:var(--mono);font-size:12px;color:var(--accent-deep);
+    background:var(--accent-soft);border-radius:999px;padding:5px 12px;white-space:nowrap;}
+  .k-badges{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;}
+  .k-badges span{font-size:12.5px;color:var(--ink-soft);background:var(--paper-2);border:1px solid var(--line);
+    border-radius:999px;padding:4px 11px;}
+  .k-badges span.doz{background:var(--accent-soft);color:var(--accent-deep);border-color:transparent;}
+  .k-hint{font-size:14.5px;color:var(--ink-soft);margin:10px 0 0;}
+  .k-hl{list-style:none;padding:0;margin:12px 0 0;}
+  .k-hl li{font-size:14.5px;padding:4px 0 4px 22px;position:relative;color:var(--ink-soft);}
+  .k-hl li::before{content:"▸";position:absolute;left:2px;color:var(--accent);}
+  .k-btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+  .btn{font:inherit;font-size:14.5px;text-decoration:none;display:inline-flex;align-items:center;gap:7px;
+    border:1px solid var(--line);border-radius:10px;padding:9px 16px;color:var(--ink);background:var(--paper);
+    cursor:pointer;transition:border-color .12s,background .12s;}
+  .btn:hover{border-color:var(--accent);}
+  .btn.prim{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .btn.prim:hover{background:var(--accent-deep);border-color:var(--accent-deep);}
+  :root[data-theme="dark"] .btn.prim{color:#101c22;}
+  @media (prefers-color-scheme:dark){.btn.prim{color:#101c22;}}
+  :root[data-theme="light"] .btn.prim{color:#fff;}
+  .btn.ghost{background:none;color:var(--ink-soft);font-size:13.5px;padding:8px 13px;}
+
+  details.q{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;}
+  details.q>summary{cursor:pointer;list-style:none;font-size:13.5px;color:var(--ink-soft);
+    display:flex;align-items:center;gap:8px;}
+  details.q>summary::-webkit-details-marker{display:none;}
+  details.q>summary::before{content:"＋";font-family:var(--mono);color:var(--accent);font-weight:700;}
+  details.q[open]>summary::before{content:"－";}
+  details.q ul{list-style:none;padding:0;margin:10px 0 0;}
+  details.q li{font-size:14px;padding:5px 0 5px 24px;position:relative;border-bottom:1px dashed var(--line);}
+  details.q li:last-child{border-bottom:none;}
+  details.q li::before{content:"📄";position:absolute;left:0;font-size:12px;}
+  details.q li.md::before{content:"📝";}
+  details.q a{color:var(--accent-deep);text-decoration:none;border-bottom:1px solid transparent;}
+  details.q a:hover{border-bottom-color:var(--accent);}
+
+  .weitere{margin-top:48px;}
+  .wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:13px;margin-top:14px;}
+  .wcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 19px;
+    text-decoration:none;color:var(--ink);display:block;transition:border-color .12s;}
+  .wcard:hover{border-color:var(--accent);}
+  .wcard .i{font-size:1.6rem;}
+  .wcard h4{font-family:var(--serif);font-weight:600;font-size:1.12rem;margin:7px 0 3px;}
+  .wcard .s{font-size:14px;color:var(--ink-soft);margin:0;}
+  .wcard .h{font-size:13px;color:var(--ink-soft);margin:9px 0 0;padding-top:9px;border-top:1px dashed var(--line);}
+  .wcard .d{font-family:var(--mono);font-size:11.5px;color:var(--accent-deep);margin-top:8px;display:block;}
+
+  .leer{text-align:center;color:var(--ink-soft);padding:40px 20px;font-size:15px;display:none;}
+  .info{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;
+    padding:13px 17px;margin:34px 0 0;font-size:14.5px;}
+  footer{margin-top:50px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-soft);
+    font-size:13.5px;text-align:center;}
+  @media (max-width:560px){
+    .k-date{order:-1;}
+    .karte{padding:17px 18px;}
+  }
+  @media print{.toolbar{display:none;}body{background:#fff;color:#000;}.karte{page-break-inside:avoid;}}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Pflegeausbildung · 2. Lehrjahr · generalistisch</p>
+  <h1>Meine Schulungen</h1>
+  <p>Alle Schulungen, Zusammenfassungen und Quellen an einem Ort — sortiert nach dem Tag,
+  an dem sie dazugekommen sind. Neue Schulungen erscheinen automatisch oben.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="toolbar">
+  <div class="row">
+    <input type="search" id="q" placeholder="🔎 Suchen … (Thema, Dozent, Stichwort)" autocomplete="off">
+    <span class="hits" id="hits"></span>
+  </div>
+  <div class="chips" id="chips"></div>
+</div>
+
+<div class="wrap">
+  <div id="liste"></div>
+  <div class="leer" id="leer">Keine Schulung gefunden. Versuch ein anderes Wort.</div>
+
+  <div class="weitere">
+    <div class="monat"><h2>Weitere Lernmittel</h2><div class="li"></div></div>
+    <div class="wgrid" id="wgrid"></div>
+  </div>
+
+  <div class="info" id="info"></div>
+
+  <footer>
+    Alles ist im Repository <b>Etude-et-revision-exercice-et-Examen</b> gespeichert —
+    inklusive der Original-PDFs der Dozent*innen.<br>
+    Lernmaterial für die Pflegeausbildung · Niveau B1
+  </footer>
+</div>
+
+<script>
+const D = __DATA__;
+
+/* ---- Kopfzahlen ---- */
+document.getElementById('stats').innerHTML =
+  '<span><b>' + D.schulungen.length + '</b> Schulungen</span>' +
+  '<span><b>' + D.schulungen.filter(s=>s.links.zusammenfassung).length + '</b> große Zusammenfassungen</span>' +
+  '<span><b>' + D.anzahl_pdf + '</b> Quellen-PDFs</span>' +
+  '<span>Stand: <b>' + D.stand_de + '</b></span>';
+
+document.getElementById('info').innerHTML =
+  '<b>So wächst diese Seite:</b> Jede neue Schulung wird in <code>schulungen/schulungen.json</code> ' +
+  'eingetragen und mit <code>python3 schulungen/build.py</code> neu gebaut. ' +
+  'Der <b>Link zu dieser Seite bleibt immer derselbe</b> — genau wie bei „Deutsch täglich“. ' +
+  'Du musst dir also nur diese eine Adresse merken.';
+
+/* ---- Filter-Chips ---- */
+let fFach = null, fText = '';
+const chips = document.getElementById('chips');
+function addChip(label, val){
+  const b = document.createElement('button');
+  b.className = 'chip'; b.type = 'button'; b.textContent = label;
+  if(val === null) b.classList.add('sel');
+  b.onclick = () => {
+    fFach = val;
+    [...chips.children].forEach(c => c.classList.remove('sel'));
+    b.classList.add('sel');
+    render();
+  };
+  chips.appendChild(b);
+}
+addChip('Alle', null);
+D.faecher.forEach(f => addChip(f, f));
+
+document.getElementById('q').addEventListener('input', e => { fText = e.target.value.trim().toLowerCase(); render(); });
+
+/* ---- Karten bauen ---- */
+function el(tag, cls, txt){
+  const e = document.createElement(tag);
+  if(cls) e.className = cls;
+  if(txt !== undefined) e.textContent = txt;
+  return e;
+}
+
+function karte(s){
+  const k = el('div', 'karte');
+  const top = el('div', 'k-top');
+  top.appendChild(el('div', 'k-ico', s.icon));
+
+  const head = el('div', 'k-head');
+  head.appendChild(el('h3', null, s.titel));
+  head.appendChild(el('p', 'sub', s.untertitel));
+  top.appendChild(head);
+  top.appendChild(el('div', 'k-date', s.datum_de));
+  k.appendChild(top);
+
+  const bad = el('div', 'k-badges');
+  bad.appendChild(el('span', null, s.fach + ' · ' + s.ue));
+  if(s.dozent && s.dozent !== '—') bad.appendChild(el('span', 'doz', '👤 ' + s.dozent));
+  k.appendChild(bad);
+
+  if(s.hinweis) k.appendChild(el('p', 'k-hint', s.hinweis));
+
+  if(s.highlights && s.highlights.length){
+    const ul = el('ul', 'k-hl');
+    s.highlights.forEach(h => ul.appendChild(el('li', null, h)));
+    k.appendChild(ul);
+  }
+
+  const btns = el('div', 'k-btns');
+  if(s.links.zusammenfassung){
+    const a = el('a', 'btn prim', '📚 Große Zusammenfassung');
+    a.href = s.links.zusammenfassung; a.target = '_blank'; a.rel = 'noopener';
+    btns.appendChild(a);
+  }
+  if(s.links.schulung){
+    const a = el('a', s.links.zusammenfassung ? 'btn' : 'btn prim', '🎯 Interaktive Schulung');
+    a.href = s.links.schulung; a.target = '_blank'; a.rel = 'noopener';
+    btns.appendChild(a);
+  }
+  const g = el('a', 'btn ghost', '📁 Ordner im Repo');
+  g.href = s.repo_ordner; g.target = '_blank'; g.rel = 'noopener';
+  btns.appendChild(g);
+  k.appendChild(btns);
+
+  const quellen = s.quellen || [], dateien = s.dateien || [];
+  if(quellen.length || dateien.length){
+    const d = el('details', 'q');
+    const n = quellen.length + dateien.length;
+    d.appendChild(el('summary', null, n + (n === 1 ? ' Quelle & Datei' : ' Quellen & Dateien')));
+    const ul = el('ul');
+    quellen.forEach(q => {
+      const li = el('li');
+      const a = el('a', null, q.name);
+      a.href = q.url; a.target = '_blank'; a.rel = 'noopener';
+      li.appendChild(a);
+      li.appendChild(el('span', null, ' '));
+      const c = el('span', null, '(PDF)');
+      c.style.cssText = 'color:var(--ink-soft);font-size:12px';
+      li.appendChild(c);
+      ul.appendChild(li);
+    });
+    dateien.forEach(f => {
+      const li = el('li', 'md');
+      const a = el('a', null, f.name);
+      a.href = f.url; a.target = '_blank'; a.rel = 'noopener';
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    d.appendChild(ul);
+    k.appendChild(d);
+  }
+
+  k._such = [s.titel, s.untertitel, s.fach, s.ue, s.hinweis, s.dozent,
+             (s.highlights || []).join(' '), (s.quellen || []).map(q => q.name).join(' ')]
+            .join(' ').toLowerCase();
+  k._fach = s.fach;
+  return k;
+}
+
+/* ---- Rendern nach Monat gruppiert ---- */
+const liste = document.getElementById('liste');
+const alle = [];
+let letzterMonat = null;
+D.schulungen.forEach(s => {
+  if(s.monat !== letzterMonat){
+    letzterMonat = s.monat;
+    const h = el('div', 'monat');
+    h.appendChild(el('h2', null, s.monat));
+    h.appendChild(el('div', 'li'));
+    const anz = D.schulungen.filter(x => x.monat === s.monat).length;
+    h.appendChild(el('div', 'cnt', anz + (anz === 1 ? ' Schulung' : ' Schulungen')));
+    h._monat = s.monat;
+    liste.appendChild(h);
+  }
+  const k = karte(s);
+  liste.appendChild(k);
+  alle.push({ k: k, monat: s.monat });
+});
+
+function render(){
+  let n = 0;
+  alle.forEach(o => {
+    const okF = !fFach || o.k._fach === fFach;
+    const okT = !fText || o.k._such.indexOf(fText) !== -1;
+    const zeig = okF && okT;
+    o.k.classList.toggle('hidden', !zeig);
+    if(zeig) n++;
+  });
+  // Monatsüberschriften nur zeigen, wenn darunter etwas sichtbar ist
+  [...liste.querySelectorAll('.monat')].forEach(h => {
+    const sichtbar = alle.some(o => o.monat === h._monat && !o.k.classList.contains('hidden'));
+    h.style.display = sichtbar ? '' : 'none';
+  });
+  document.getElementById('leer').style.display = n ? 'none' : 'block';
+  document.getElementById('hits').textContent =
+    (fFach || fText) ? n + ' von ' + alle.length : '';
+}
+render();
+
+/* ---- Weitere Lernmittel ---- */
+const wg = document.getElementById('wgrid');
+D.weitere.forEach(w => {
+  const a = el('a', 'wcard');
+  a.href = w.link; a.target = '_blank'; a.rel = 'noopener';
+  a.appendChild(el('div', 'i', w.icon));
+  a.appendChild(el('h4', null, w.titel));
+  a.appendChild(el('p', 's', w.untertitel));
+  a.appendChild(el('p', 'h', w.hinweis));
+  a.appendChild(el('span', 'd', 'seit ' + w.datum_de));
+  wg.appendChild(a);
+});
+</script>
