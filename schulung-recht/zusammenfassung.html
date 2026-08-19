@@ -1,0 +1,2073 @@
+<title>Recht in der Pflege — Große Zusammenfassung</title>
+<style>
+  :root{
+    --paper:#f6f5f2;--paper-2:#eceae4;--card:#fffefb;--ink:#1e1c17;--ink-soft:#55514a;--line:#ddd9d0;
+    --accent:#8a6a2f;--accent-deep:#6b5121;--accent-soft:#f2e9d6;
+    --a1:#4a6b8a;--a1bg:#dde6f0;--a2:#7a4a3b;--a2bg:#f2e2dd;--a3:#4a7c59;--a3bg:#dfeadf;--a4:#6b5b95;--a4bg:#e8e3f0;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e4e0;--warn:#b5731a;--warnbg:#f8edda;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#181714;--paper-2:#121110;--card:#221f1b;--ink:#f1efea;--ink-soft:#aaa49a;--line:#37332c;
+    --accent:#d8b46a;--accent-deep:#ecd196;--accent-soft:#2d2618;
+    --a1:#7fa8d0;--a1bg:#18242f;--a2:#d09484;--a2bg:#2f1e19;--a3:#7fb98e;--a3bg:#1a2b1f;--a4:#a998d4;--a4bg:#241f30;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#321b17;--warn:#d9a559;--warnbg:#2c2312;}}
+  :root[data-theme="dark"]{--paper:#181714;--paper-2:#121110;--card:#221f1b;--ink:#f1efea;--ink-soft:#aaa49a;--line:#37332c;--accent:#d8b46a;--accent-deep:#ecd196;--accent-soft:#2d2618;--a1:#7fa8d0;--a1bg:#18242f;--a2:#d09484;--a2bg:#2f1e19;--a3:#7fb98e;--a3bg:#1a2b1f;--a4:#a998d4;--a4bg:#241f30;--good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#321b17;--warn:#d9a559;--warnbg:#2c2312;}
+  :root[data-theme="light"]{--paper:#f6f5f2;--paper-2:#eceae4;--card:#fffefb;--ink:#1e1c17;--ink-soft:#55514a;--line:#ddd9d0;--accent:#8a6a2f;--accent-deep:#6b5121;--accent-soft:#f2e9d6;--a1:#4a6b8a;--a1bg:#dde6f0;--a2:#7a4a3b;--a2bg:#f2e2dd;--a3:#4a7c59;--a3bg:#dfeadf;--a4:#6b5b95;--a4bg:#e8e3f0;--good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e4e0;--warn:#b5731a;--warnbg:#f8edda;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+  header.hero{padding:40px 20px 26px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,5vw,2.6rem);margin:0 0 10px;line-height:1.12;}
+  header.hero p{max-width:62ch;margin:0 auto;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:14px;}
+  .meta span{font-size:12.5px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 13px;}
+  .toolbar{position:sticky;top:0;z-index:40;display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+    background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:9px 16px;}
+  .toolbar input{flex:1 1 200px;font:inherit;font-size:14.5px;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:9px;padding:8px 13px;min-width:0;}
+  .toolbar input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .toolbar button{font:inherit;font-size:13.5px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);
+    border-radius:9px;padding:8px 13px;cursor:pointer;white-space:nowrap;}
+  .toolbar button:hover{border-color:var(--accent);color:var(--ink);}
+  .hits{font-family:var(--mono);font-size:12.5px;color:var(--accent-deep);white-space:nowrap;}
+  .layout{display:flex;max-width:1240px;margin:0 auto;align-items:flex-start;}
+  nav.toc{position:sticky;top:56px;align-self:flex-start;flex:0 0 268px;max-height:calc(100vh - 60px);overflow-y:auto;
+    padding:16px 10px 40px;border-right:1px solid var(--line);}
+  nav.toc a{display:block;text-decoration:none;color:var(--ink-soft);font-size:13.5px;padding:6px 10px;border-radius:8px;line-height:1.35;}
+  nav.toc a:hover{background:var(--paper-2);color:var(--ink);}
+  nav.toc a .n{font-family:var(--mono);font-size:11px;opacity:.7;margin-right:6px;}
+  main{flex:1 1 auto;min-width:0;padding:10px 26px 90px;}
+  section{margin-top:44px;scroll-margin-top:62px;}
+  section.hidden{display:none;}
+  h2{font-family:var(--serif);font-weight:600;font-size:1.55rem;margin:0 0 10px;display:flex;align-items:baseline;gap:11px;}
+  h2 .n{font-family:var(--mono);font-size:.72rem;color:var(--accent);border:1px solid var(--line);border-radius:7px;padding:2px 8px;flex:0 0 auto;}
+  h3{font-family:var(--serif);font-weight:600;font-size:1.16rem;margin:24px 0 7px;}
+  h4{font-family:var(--serif);font-weight:600;font-size:1.02rem;margin:0 0 7px;}
+  .teil{margin:52px 0 0;padding:14px 18px;border-radius:12px;background:var(--accent-soft);border:1px solid var(--line);
+    font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--accent-deep);text-align:center;}
+  .lead{color:var(--ink-soft);margin:0 0 14px;}
+  p{margin:.55em 0;}
+  mark{background:#ffe680;color:#1a1a1a;border-radius:3px;padding:0 2px;}
+  code{font-family:var(--mono);font-size:.9em;background:var(--paper-2);border-radius:4px;padding:1px 5px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:17px 21px;margin:13px 0;}
+  .card.tight{padding:13px 17px;}
+  ul.clean{list-style:none;padding:0;margin:11px 0;}
+  ul.clean li{padding:6px 0 6px 24px;position:relative;border-bottom:1px dashed var(--line);}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean li::before{content:"→";position:absolute;left:2px;color:var(--accent);font-weight:700;}
+  ul.plain{margin:8px 0;padding-left:19px;} ul.plain li{margin:5px 0;}
+  .note{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  .warnbox{border-left:3px solid var(--warn);background:var(--warnbg);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  .badbox{border-left:3px solid var(--bad);background:var(--badbg);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  .goodbox{border-left:3px solid var(--good);background:var(--goodbg);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  blockquote{margin:12px 0;padding:10px 17px;border-left:3px solid var(--line);color:var(--ink-soft);font-style:italic;font-size:15px;}
+  blockquote cite{display:block;font-style:normal;font-size:12.5px;margin-top:5px;font-family:var(--mono);}
+  .scroll-x{overflow-x:auto;margin:11px 0;}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px;}
+  th,td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-soft);}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:13px 0;}
+  @media (max-width:700px){.two{grid-template-columns:1fr;}}
+  .two .col{border-radius:12px;padding:13px 15px;border:1px solid var(--line);}
+  .two .c1{background:var(--a1bg);} .two .c2{background:var(--a3bg);}
+  .two ul{margin:0;padding-left:17px;} .two li{margin:5px 0;font-size:14.5px;}
+  .schema{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:4px 0;margin:13px 0;}
+  .stufe{padding:13px 20px;border-bottom:1px solid var(--line);}
+  .stufe:last-child{border-bottom:none;}
+  .stufe .rn{font-family:var(--mono);font-size:11.5px;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;}
+  .stufe h4{margin:3px 0 6px;font-size:1.08rem;}
+  .stufe p,.stufe li{font-size:14.5px;}
+  .satz{font-family:var(--mono);font-size:13.5px;background:var(--accent-soft);color:var(--accent-deep);
+    border-radius:8px;padding:9px 13px;margin:8px 0;display:block;line-height:1.55;}
+  .merk{counter-reset:m;list-style:none;padding:0;margin:13px 0;}
+  .merk li{counter-increment:m;position:relative;padding:8px 0 8px 38px;border-bottom:1px dashed var(--line);font-size:15px;}
+  .merk li:last-child{border-bottom:none;}
+  .merk li::before{content:counter(m);position:absolute;left:0;top:8px;font-family:var(--mono);font-size:11px;background:var(--accent-soft);color:var(--accent-deep);border-radius:6px;padding:2px 7px;}
+  .backtop{position:fixed;right:16px;bottom:16px;z-index:50;font:inherit;font-size:13px;color:var(--ink-soft);
+    background:var(--card);border:1px solid var(--line);border-radius:99px;padding:8px 14px;cursor:pointer;}
+  .backtop:hover{border-color:var(--accent);color:var(--ink);}
+  @media (max-width:900px){
+    .layout{display:block;}
+    nav.toc{position:static;flex:none;max-height:none;border-right:none;border-bottom:1px solid var(--line);
+      display:flex;flex-wrap:wrap;gap:3px;padding:10px 14px;}
+    nav.toc a{font-size:12.5px;padding:5px 9px;background:var(--card);border:1px solid var(--line);}
+    main{padding:10px 16px 80px;}
+  }
+  @media print{
+    .toolbar,nav.toc,.backtop{display:none;}
+    body{background:#fff;color:#000;font-size:10.5pt;}
+    section{page-break-inside:auto;margin-top:20px;}
+    h2{page-break-after:avoid;}
+    .card,.note,.warnbox,.badbox,.goodbox,.merk,table,.schema{page-break-inside:avoid;}
+  }
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 6 · UE 1 · Ausbildungs- und berufsbezogene Rechte und Pflichten</p>
+  <h1>Recht in der Pflege — Große Zusammenfassung</h1>
+  <p>Alle acht Unterlagen in einem Dokument: Strafrecht, Zivilrecht, Arbeitsrecht, Berufsrecht,
+  Schweigepflicht, Datenschutz, Instanzenzug und Medizinprodukte — mit den kompletten
+  Prüfungsschemata und allen Übungsfällen. In einfachem Deutsch (B1).</p>
+  <div class="meta">
+    <span>Dozentin: RAin Stephanie Welters</span>
+    <span>28 Kapitel</span>
+    <span>Niveau B1</span>
+    <span>mit Suche &amp; Druckansicht</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <input type="search" id="q" placeholder="🔎 Suchen … (z. B. § 203, Fahrlässigkeit, Notstand, Regress)" autocomplete="off">
+  <span class="hits" id="hits"></span>
+  <button id="reset">↺ alles zeigen</button>
+  <button onclick="window.print()">🖨️ Drucken / PDF</button>
+</div>
+
+<div class="layout">
+  <nav class="toc" id="toc"></nav>
+  <main id="main">
+
+  <section id="s1">
+    <h2><span class="n">1</span> Überblick — worum geht es?</h2>
+    <p class="lead">Ein einziger Pflegefehler kann <b>vier</b> verschiedene Verfahren auslösen. Das ist der Kern
+    dieser ganzen Unterrichtseinheit.</p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Unterlage</th><th>Inhalt</th></tr></thead>
+        <tbody>
+          <tr><td><b>CE 6 UE 1 — Rechte und Pflichten</b> (RAin Stephanie Welters)</td>
+            <td>Das Hauptskript: die vier Rechtsgebiete, Haftung, Delegation, Regress, Schweigepflicht § 203
+            mit 15 Übungsfällen, Vorsorgevollmacht, Datenschutz/DSGVO</td></tr>
+          <tr><td><b>Spicker Strafrecht</b></td><td>Das komplette Prüfungsschema und alle 9 Tatbestände</td></tr>
+          <tr><td><b>Spicker Zivilrecht</b></td><td>Die beiden Prüfungsschemata: aus Vertrag und aus Delikt</td></tr>
+          <tr><td><b>Relevante Gesetze</b></td><td>Alle Rechtsquellen: BGB, StGB, SGB, PflBG, GG, DSGVO, WTG …</td></tr>
+          <tr><td><b>Instanzen Zivil- und Strafgerichte</b></td><td>Der Instanzenzug und die fünf
+            Gerichtsbarkeiten</td></tr>
+          <tr><td><b>Übungsfälle</b> (2 Dokumente)</td><td>9 Fälle mit Prüfungsfragen für die Klausur</td></tr>
+          <tr><td><b>MPG-Schulung Rollatoren</b></td><td>Medizinprodukte in der Pflege</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Der Einstiegsfall aus dem Skript</h3>
+    <div class="card">
+      <p style="margin-top:0"><b>Teil 1:</b> Pflegefachkraft <b>Erika</b> überträgt der Pflegeschülerin
+      <b>Anna</b> die Aufgabe, Frau Müller zum Speisesaal zu begleiten. Die gangunsichere Frau Müller benötigt
+      einen <b>Rollator</b>. Um Zeit zu sparen, setzt Anna Frau Müller auf das <b>Sitzbrett des Rollators</b>.
+      Das hat sie schon bei Bewohnern gesehen — eine <b>Einweisung</b> in den Umgang mit dem Rollator hat sie
+      <b>noch nicht erhalten</b>. An der ersten Biegung rutscht die Bewohnerin vom Brett und bricht sich den
+      <b>Oberschenkelhals</b>.</p>
+      <p><b>Teil 2:</b> Im Krankenhaus pflegt Pflegefachkraft <b>Paul</b> Frau Müller. Die <b>Schwester</b> von
+      Frau Müller erkundigt sich telefonisch nach deren Befinden. <b>Bereitwillig gibt Paul Auskunft</b> über den
+      Krankheitsverlauf. (Bevollmächtigt ist aber die <b>Tochter</b>, Frau Müller-Lüdenscheid.)</p>
+      <p><b>Teil 3:</b> Paul zieht nachts den <b>Bettseitenschutz</b> hoch, um Frau Müller vor einem weiteren
+      Sturz zu schützen. <b>Frau Müller ist damit nicht einverstanden</b>, aber Paul will auf Nummer sicher gehen.</p>
+      <p style="margin-bottom:0"><b>Teil 4:</b> Am nächsten Tag teilt Frau Müller-Lüdenscheid <b>Erika, Anna und
+      Paul</b> mit, dass sie für ihr Fehlverhalten <b>haften</b> müssen. Im Übrigen nehme sie sich auch das
+      <b>Heim und das Krankenhaus</b> vor.</p>
+    </div>
+    <div class="note">In diesem einen Fall stecken <b>alle</b> Themen der Einheit: Delegation und
+    Übernahmeverantwortung (Anna ohne Einweisung), Medizinprodukterecht (Rollator als Sitz), Schweigepflicht
+    (Paul und die Schwester), Freiheitsberaubung (Bettseitenschutz gegen den Willen) und Haftung von Mitarbeiter,
+    Vorgesetzter und Träger.</div>
+  </section>
+
+  <section id="s2">
+    <h2><span class="n">2</span> Die vier Rechtsgebiete — die wichtigste Tabelle</h2>
+    <p class="lead">Diese Tabelle musst du auswendig können. Sie beantwortet in der Klausur fast jede Frage:
+    <b>Wer klagt? Woraus? Mit welcher Folge?</b></p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th></th><th>Strafrecht</th><th>Zivilrecht</th><th>Arbeitsrecht</th><th>Berufsrecht</th></tr></thead>
+        <tbody>
+          <tr><td><b>Wer wird tätig?</b></td>
+            <td>Der <b>Staatsanwalt</b> ermittelt gegen den Täter und klagt an</td>
+            <td>Der <b>Patient</b> verklagt das Krankenhaus (Heim, Pflegedienst), den Arzt, die Pflegekraft oder
+            den Schüler</td>
+            <td>Der <b>Arbeitgeber</b> (KH/Heim/Pflegedienst) rügt die Pflichtverletzung der Pflegeperson oder
+            des Schülers</td>
+            <td>Die <b>Bezirksregierung</b> überwacht das Pflegepersonal und den Schüler</td></tr>
+          <tr><td><b>Grundlage</b></td>
+            <td><b>Straftatbestand</b>: Körperverletzung · Verletzung von Privatgeheimnissen ·
+            Freiheitsberaubung</td>
+            <td><b>Anspruchsgrundlage</b>: aus Vertrag (§ 280 BGB) · aus Delikt (§ 823 BGB)</td>
+            <td><b>Anspruchsgrundlage</b>: Arbeitsvertrag · Ausbildungsvertrag</td>
+            <td><b>Verwaltungsakt</b>: Erlaubnis zur Führung des Titels · Prüfungszulassung</td></tr>
+          <tr><td><b>Gesetz</b></td>
+            <td><b>StGB</b> Strafgesetzbuch</td>
+            <td><b>BGB</b> Bürgerliches Gesetzbuch</td>
+            <td><b>BGB / KSchG</b> / Tarifrecht / ArbeitszeitG</td>
+            <td><b>PflBG</b> Pflegeberufegesetz</td></tr>
+          <tr><td><b>Konsequenz</b></td>
+            <td>• Geldstrafe<br>• Freiheitsstrafe<br>• <b>Berufsverbot</b></td>
+            <td>• Schadensersatz<br>• Schmerzensgeld</td>
+            <td>• Abmahnung<br>• Kündigung</td>
+            <td>• Rücknahme<br>• Widerruf des Titels</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="goodbox"><b>Merksatz:</b> <b>Ein Fehler — vier Verfahren.</b> Sie laufen <b>unabhängig
+    voneinander</b>. Ein Freispruch im Strafverfahren bedeutet <b>nicht</b>, dass man zivilrechtlich nicht haftet
+    oder arbeitsrechtlich nicht gekündigt werden kann.</div>
+    <div class="note"><b>Rücknahme oder Widerruf?</b> <b>Rücknahme</b> = die Voraussetzungen haben schon
+    <b>von Anfang an nicht vorgelegen</b>. <b>Widerruf</b> = die Voraussetzungen sind <b>nachträglich
+    weggefallen</b> (§ 3 PflBG). Die Erlaubnis zur Titelführung steht in <b>§ 2 PflBG</b>.</div>
+  </section>
+
+  <section id="s3">
+    <h2><span class="n">3</span> Relevante Gesetze und Rechtsquellen</h2>
+
+    <h3>BGB — Bürgerliches Gesetzbuch</h3>
+    <p>Besteht aus <b>5 Büchern (Teilen)</b> — der Merkspruch dazu: <b>„von der Wiege bis zur Bahre“</b>.</p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Teil</th><th>Name</th><th>Was steht drin — für die Pflege wichtig</th></tr></thead>
+        <tbody>
+          <tr><td><b>Teil 1</b></td><td>Allgemeines Recht</td>
+            <td>Grundsätzliche Regelungen wie <b>Geschäftsfähigkeit</b> und <b>Rechtsfähigkeit</b></td></tr>
+          <tr><td><b>Teil 2</b></td><td>Recht der Schuldverhältnisse</td>
+            <td><b>Behandlungsvertrag, Heimvertrag, Krankenhausaufnahmevertrag, Versorgungsvertrag</b>;
+            Rechtsfolge: <b>Schadensersatz, Schmerzensgeld</b></td></tr>
+          <tr><td><b>Teil 3</b></td><td>Sachenrecht</td><td><b>Eigentum, Besitz</b></td></tr>
+          <tr><td><b>Teil 4</b></td><td>Familienrecht</td>
+            <td><b>Betreuungsrecht</b> (Betreuer, Aufgabenkreise, <b>Genehmigung von Fixierungen</b>),
+            <b>Vorsorgevollmacht, Patientenverfügung</b>, Sorgerecht, Unterhalt,
+            <b>Ehegattennotvertretungsrecht</b></td></tr>
+          <tr><td><b>Teil 5</b></td><td>Erbrecht</td><td>Gesetzliches Erbrecht, Testament, Erbvertrag</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Die weiteren Rechtsquellen</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Kürzel</th><th>Name</th><th>Inhalt / Rechtsfolge</th></tr></thead>
+        <tbody>
+          <tr><td><b>StGB</b></td><td>Strafgesetzbuch</td>
+            <td>Körperverletzung, Freiheitsberaubung, Verletzung von Privatgeheimnissen —
+            Rechtsfolge: <b>Geld- und Freiheitsstrafe, Berufsverbot</b></td></tr>
+          <tr><td><b>SGB</b></td><td>Sozialgesetzbuch (I–XIV)</td>
+            <td><b>III</b> Arbeitslosenversicherung · <b>V</b> Krankenversicherung · <b>VI</b>
+            Rentenversicherung · <b>VII</b> Unfallversicherung · <b>VIII</b> Kinder und Jugendliche ·
+            <b>IX</b> Rehabilitation und Teilhabe · <b>XI</b> <b>Pflegeversicherung</b> · <b>XII</b> Sozialhilfe ·
+            <b>XIV</b> soziales Entschädigungsrecht</td></tr>
+          <tr><td><b>PflBG</b></td><td>Pflegeberufegesetz</td>
+            <td>Ausbildungsgesetz, Ziele der Ausbildung, <b>Vorbehaltstätigkeiten</b></td></tr>
+          <tr><td><b>PflFAssG</b></td><td>Pflegefachassistenzgesetz</td>
+            <td>Ausbildungsgesetz für Pflegefachassistenten, bundesweit</td></tr>
+          <tr><td><b>BO NRW</b></td><td>Berufsordnung NRW</td>
+            <td>Regelt Rechte, Pflichten und Standards in der Pflegeausübung auf <b>Landesebene</b>,
+            basiert auf dem <b>Heilberufsgesetz (HeilBerG)</b></td></tr>
+          <tr><td><b>GG</b></td><td>Grundgesetz</td>
+            <td>Grundrechte: <b>Menschenwürde</b>, Recht auf <b>Freiheit</b>, Recht auf <b>körperliche
+            Unversehrtheit</b>; Organe des Staates (Bundestag, Bundesrat, Bundeskanzler,
+            Bundespräsident)</td></tr>
+          <tr><td><b>DSGVO</b></td><td>Datenschutzgrundverordnung</td>
+            <td>Schutz personenbezogener Daten — Rechtsfolge: <b>Ordnungswidrigkeit, Strafe,
+            Schadensersatz</b></td></tr>
+          <tr><td><b>WTG NRW</b></td><td>Wohn- und Teilhabegesetz</td>
+            <td>Das <b>Heimgesetz in NRW</b> — Schutz der Würde, Rechte, Interessen und Bedürfnisse von
+            Heimbewohnern</td></tr>
+          <tr><td><b>WBVG</b></td><td>Wohn- und Betreuungsvertragsgesetz</td>
+            <td><b>Verbraucherschutzgesetz</b> — schützt ältere und pflegebedürftige Menschen sowie Menschen
+            mit Behinderungen vor Benachteiligungen</td></tr>
+          <tr><td><b>KSchG</b></td><td>Kündigungsschutzgesetz</td>
+            <td>Arbeitnehmer sind geschützt nach <b>6 Monaten</b> und bei <b>mehr als 10 Arbeitnehmern</b> im
+            Betrieb</td></tr>
+          <tr><td><b>Arbeitsschutz</b></td><td>—</td>
+            <td>Arbeitszeitgesetz, Mutterschutzgesetz, Bundesurlaubsgesetz, Jugendarbeitsschutzgesetz …</td></tr>
+          <tr><td><b>MPDG</b></td><td>Medizinprodukterecht-Durchführungsgesetz</td>
+            <td>Gilt für <b>Inverkehrbringen, Inbetriebnahme und klinische Prüfung</b> von Medizinprodukten und
+            In-vitro-Diagnostika</td></tr>
+          <tr><td><b>MPBetreibV</b></td><td>Medizinproduktebetreiberverordnung</td>
+            <td>Regelt <b>Errichten, Betreiben, Anwenden und Instandhalten</b> von Medizinprodukten</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="goodbox"><b>Klausur-Tipp:</b> Bei der Frage „Nennen Sie zwei relevante Gesetze und begründen Sie“
+    reicht fast immer diese Kombination: <b>StGB</b> (weil das Verhalten einen Straftatbestand erfüllt) +
+    <b>BGB</b> (weil ein Behandlungs-/Heimvertrag besteht und ein Schaden entstanden ist). Bei Fixierung
+    zusätzlich <b>GG</b> (Freiheit, Würde) und <b>BGB Teil 4</b> (Betreuungsrecht). Bei Schweigepflicht
+    zusätzlich <b>DSGVO</b>.</div>
+  </section>
+
+  <div class="teil">Teil B · Strafrecht</div>
+
+  <section id="s4">
+    <h2><span class="n">4</span> Das strafrechtliche Prüfungsschema</h2>
+    <p class="lead">Dieses Schema ist das Herzstück der Klausur. Es hat <b>immer</b> dieselben drei Stufen —
+    egal um welchen Tatbestand es geht.</p>
+
+    <div class="schema">
+      <div class="stufe">
+        <div class="rn">Einstieg</div>
+        <h4>Obersatz</h4>
+        <span class="satz">X könnte sich wegen …………… strafbar gemacht haben.</span>
+      </div>
+      <div class="stufe">
+        <div class="rn">Stufe I</div>
+        <h4>Tatbestand</h4>
+        <p style="margin-top:0">Liegen die im Gesetz genannten <b>Tatbestandsmerkmale</b> vor, also eine
+        Handlung laut StGB?</p>
+        <span class="satz">a) Dann müsste er ……… (Merkmale aus dem Gesetz)<br>
+        b) Hier hat X ……… (der Fall)<br>
+        c) bei Unterlassen → siehe Kapitel 8</span>
+      </div>
+      <div class="stufe">
+        <div class="rn">Stufe II</div>
+        <h4>Rechtswidrigkeit</h4>
+        <p style="margin-top:0">Eine Tat ist rechtswidrig, wenn sie der <b>Rechtsordnung widerspricht</b>.
+        Die Rechtswidrigkeit <b>entfällt</b>, wenn <b>Rechtfertigungsgründe</b> vorliegen.</p>
+        <span class="satz">a) X müsste auch rechtswidrig gehandelt haben. Die Rechtswidrigkeit entfällt, wenn
+        Rechtfertigungsgründe vorliegen. In Betracht kommt ………<br>
+        b) Hier ist die Handlung des X durch ……… (nichts) gerechtfertigt.</span>
+      </div>
+      <div class="stufe">
+        <div class="rn">Stufe III</div>
+        <h4>Schuld</h4>
+        <p style="margin-top:0">Zuerst <b>Schuldfähigkeit</b>, dann die <b>Schuldform</b>
+        (Vorsatz oder Fahrlässigkeit).</p>
+        <span class="satz">a) X müsste auch schuldhaft gehandelt haben.<br>
+        aa) X müsste schuldfähig sein. (Dann müsste X über 14 Jahre alt und nicht krankhaft seelisch gestört
+        sein.)<br>
+        b) In Betracht kommt Vorsatz oder Fahrlässigkeit.</span>
+      </div>
+      <div class="stufe">
+        <div class="rn">Abschluss</div>
+        <h4>Ergebnis</h4>
+        <span class="satz">X hat sich (nicht) wegen (vorsätzlicher oder fahrlässiger) ………
+        strafbar gemacht.</span>
+      </div>
+    </div>
+
+    <div class="goodbox"><b>Die drei Stufen als Merksatz:</b>
+    <b>T</b>atbestand → <b>R</b>echtswidrigkeit → <b>S</b>chuld.
+    Fällt eine Stufe weg, ist die Prüfung <b>zu Ende</b> — dann ist X <b>nicht</b> strafbar.
+    Man schreibt trotzdem alle drei Stufen auf, um Punkte zu bekommen.</div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="n">5</span> Rechtswidrigkeit — die Rechtfertigungsgründe</h2>
+
+    <h3>aa) Einwilligung</h3>
+    <div class="card">
+      <p style="margin-top:0">Der wichtigste Rechtfertigungsgrund in der Pflege. Zwei Formen:</p>
+      <ul class="clean">
+        <li><b>Ausdrücklich:</b> mündlich, schriftlich oder durch <b>schlüssiges Handeln</b>
+        (z. B. der Patient hält von selbst den Arm hin).</li>
+        <li><b>Mutmaßlich:</b> Der Patient ist <b>nicht bei Bewusstsein</b>. Dann wird vom Arzt <b>vermutet, was
+        ein vernünftiger Patient wünschen würde</b>.</li>
+      </ul>
+      <p style="margin-bottom:0"><b>Einwilligungsfähig</b> ist nicht, wer <b>unter 14 Jahren</b> ist oder
+      <b>geisteskrank</b> ist. Zur <b>Beweissicherung</b> immer schriftlich.</p>
+    </div>
+    <div class="warnbox"><b>Grenze der mutmaßlichen Einwilligung:</b> Sie ist <b>nicht anzuwenden</b>, wenn ein
+    <b>rechtswirksam entgegenstehender Wille</b> bekannt ist — z. B. eine <b>Patientenverfügung</b>.</div>
+
+    <h3>bb) Notwehr / Nothilfe</h3>
+    <div class="card tight">
+      Die <b>Verteidigung, die erforderlich ist</b>, um einen <b>gegenwärtigen, rechtswidrigen Angriff</b>
+      von sich oder einem anderen <b>abzuwehren</b>.
+      <ul class="plain" style="margin-bottom:0">
+        <li><b>Notwehr</b> = ich verteidige <b>mich</b>.</li>
+        <li><b>Nothilfe</b> = ich verteidige <b>einen anderen</b>.</li>
+        <li><b>Notwehr gegen Notwehr gibt es nicht</b> — wer sich rechtmäßig wehrt, greift nicht
+        rechtswidrig an.</li>
+      </ul>
+    </div>
+
+    <h3>cc) Notstand</h3>
+    <div class="card tight">
+      Bei <b>gegenwärtiger Gefahr</b> für ein Rechtsgut (z. B. <b>Leben</b>) darf in ein <b>anderes, weniger
+      gewichtiges</b> Rechtsgut (z. B. <b>Gesundheit, Freiheit, Eigentum, informationelle Selbstbestimmung</b>)
+      eingegriffen werden, <b>wenn dies erforderlich ist</b>.
+    </div>
+    <div class="note"><b>Der Unterschied:</b> Bei der <b>Notwehr</b> gibt es einen <b>Angreifer</b>.
+    Beim <b>Notstand</b> gibt es nur eine <b>Gefahr</b> — und das gerettete Rechtsgut muss <b>wichtiger</b> sein
+    als das verletzte.</div>
+
+    <h3>dd) Besondere Rechtfertigungsgründe</h3>
+    <p>Diese gelten <b>nur</b> bei der <b>Verletzung von Privatgeheimnissen (§ 203)</b> und bei der
+    <b>Freiheitsberaubung (§ 239)</b>.</p>
+    <div class="two">
+      <div class="col c1">
+        <h4>Bei § 203 — Schweigepflicht</h4>
+        <ul>
+          <li><b>Gesetzliche Vorschriften</b>: Personenstandsgesetz, Infektionsschutzgesetz,
+          Kinderschutzgesetz (KKG)</li>
+          <li><b>Wahrnehmung berechtigter Interessen</b></li>
+          <li><b>Nichtanzeige geplanter Straftaten</b> (§ 138 StGB)</li>
+        </ul>
+      </div>
+      <div class="col c2">
+        <h4>Bei § 239 — Freiheitsberaubung</h4>
+        <ul>
+          <li><b>Richterlicher Beschluss</b> bei Menschen unter Betreuung</li>
+          <li><b>Richterliche Anordnung</b> bei Unterbringung nach <b>PsychKG</b></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="s6">
+    <h2><span class="n">6</span> Schuld — Schuldfähigkeit, Vorsatz, Fahrlässigkeit</h2>
+
+    <h3>Schuldfähigkeit</h3>
+    <div class="card tight">
+      X müsste <b>über 14 Jahre alt</b> und <b>nicht krankhaft seelisch gestört</b> sein.<br>
+      <b>Nicht schuldfähig sind:</b> Kinder unter 14 Jahren · krankhaft seelisch gestörte Menschen.
+    </div>
+
+    <h3>Die beiden Schuldformen</h3>
+    <div class="two">
+      <div class="col c1">
+        <h4>Vorsatz</h4>
+        <p style="font-size:14.5px;margin:0"><b>Wissen und Wollen</b> der objektiven Tatbestandsmerkmale.</p>
+        <span class="satz" style="font-size:12.5px">Dann müsste X mit Wissen und Wollen den Tatbestand erfüllt
+        haben. Hier wusste X ……… und wollte X ………</span>
+      </div>
+      <div class="col c2">
+        <h4>Fahrlässigkeit</h4>
+        <p style="font-size:14.5px;margin:0"><b>Außerachtlassen der im Verkehr erforderlichen Sorgfalt</b>
+        (= Sorgfaltspflichtverletzung).</p>
+        <span class="satz" style="font-size:12.5px">Dann müsste X eine Sorgfaltspflichtverletzung begangen haben.
+        Hier hat X eine Pflicht verletzt, indem ………</span>
+      </div>
+    </div>
+    <div class="goodbox"><b>Die Prüfungsfrage lautet oft: „Mit welcher Form der Schuld hat … gehandelt?“</b><br>
+    Antwort-Muster: <i>„… handelte <b>fahrlässig</b>, weil sie die im Verkehr erforderliche Sorgfalt außer Acht
+    ließ. Sie wollte den Schaden nicht, hätte ihn aber bei sorgfältigem Handeln vermeiden können.“</i><br>
+    Oder: <i>„… handelte <b>vorsätzlich</b>, weil sie wusste, dass … und dies auch wollte.“</i></div>
+    <div class="note"><b>Faustregel für die Fälle:</b> Ein <b>Fehler aus Zeitdruck oder Unachtsamkeit</b>
+    (vergessene Tablette, falsche Wassertemperatur, Medikamentenverwechslung) = <b>Fahrlässigkeit</b>.
+    Ein <b>bewusstes Handeln gegen den Willen</b> (fixieren, einsperren, gegen den Willen waschen, Geheimnis
+    weitererzählen) = <b>Vorsatz</b>.</div>
+  </section>
+
+  <section id="s7">
+    <h2><span class="n">7</span> Die neun Tatbestände</h2>
+    <p class="lead">Aus dem Spicker Strafrecht. Für jeden Tatbestand steht hier, was du bei
+    <b>I. a) „Dann müsste X …“</b> einsetzen musst.</p>
+
+    <h3>1 · Körperverletzung § 223 StGB</h3>
+    <div class="card">
+      <b>Dann müsste X</b>
+      <ul class="plain">
+        <li>eine <b>andere Person</b></li>
+        <li><b>körperlich misshandelt</b></li>
+        <li>oder <b>an der Gesundheit geschädigt</b> haben.</li>
+      </ul>
+      <b>Rechtsfolge:</b> Freiheitsstrafe bis zu <b>fünf Jahren</b> oder Geldstrafe.
+    </div>
+    <div class="badbox"><b>Beachte — das ist der wichtigste Satz der ganzen Einheit:</b><br>
+    Nach der Rechtsprechung ist der <b>Heileingriff</b> (z. B. OP, Behandlungspflege, Bestrahlung)
+    <b>IMMER eine Körperverletzung</b>. Gerechtfertigt wird er erst durch die <b>Einwilligung</b> des Patienten.
+    <b>Ohne Einwilligung = strafbare Körperverletzung</b> — auch wenn die Maßnahme medizinisch richtig war.</div>
+
+    <h3>2 · Verletzung von Privatgeheimnissen § 203 StGB</h3>
+    <div class="card">
+      <b>Dann müsste X</b>
+      <ul class="plain">
+        <li>als <b>Geheimnisträger</b></li>
+        <li>ein <b>fremdes Geheimnis</b>,</li>
+        <li>das ihm <b>im Rahmen seiner Berufsausübung anvertraut oder bekanntgeworden</b> ist,</li>
+        <li><b>offenbart</b> haben.</li>
+      </ul>
+      <b>Rechtsfolge:</b> Freiheitsstrafe bis zu <b>einem Jahr</b> oder Geldstrafe.<br>
+      <b>Besondere Rechtfertigungsgründe:</b> siehe Kapitel 5 (II. dd) — ausführlich in Kapitel 10.
+    </div>
+
+    <h3>3 · Freiheitsberaubung § 239 StGB</h3>
+    <div class="card">
+      <b>Dann müsste X</b>
+      <ul class="plain">
+        <li>einen <b>anderen Menschen</b></li>
+        <li><b>einsperren</b> oder</li>
+        <li>auf <b>andere Weise der Freiheit berauben</b>.</li>
+      </ul>
+      <b>Rechtsfolge:</b> Freiheitsstrafe bis zu <b>fünf Jahren</b> oder Geldstrafe.<br>
+      <b>Besondere Rechtfertigungsgründe:</b> richterlicher Beschluss bei Menschen unter Betreuung ·
+      richterliche Anordnung bei Unterbringung nach <b>PsychKG</b>.
+    </div>
+    <div class="warnbox"><b>„Auf andere Weise“</b> heißt in der Pflege: <b>Bettgitter, Bauchgurt, Fixierung,
+    abgeschlossene Tür, Trickschlösser, sedierende Medikamente</b> — all das ist Freiheitsentziehung, wenn es
+    gegen den Willen geschieht.</div>
+
+    <h3>4 · Totschlag § 212 StGB</h3>
+    <div class="card tight"><b>Dann müsste X</b> einen <b>Menschen getötet</b> haben, <b>ohne Mörder zu
+    sein</b>.</div>
+
+    <h3>5 · Sachbeschädigung § 303 StGB</h3>
+    <div class="card tight"><b>Dann müsste X</b> eine <b>fremde Sache beschädigt oder zerstört</b> haben.</div>
+
+    <h3>6 · Unterlassene Hilfeleistung § 323 c StGB</h3>
+    <div class="card tight">
+      <b>Dann müsste X</b>
+      <ul class="plain" style="margin-bottom:0">
+        <li>bei einer <b>Notlage</b></li>
+        <li><b>nicht Hilfe geleistet</b> haben,</li>
+        <li>obwohl diese <b>erforderlich und zumutbar</b> war.</li>
+      </ul>
+    </div>
+
+    <h3>7 · Aussetzung § 221 StGB</h3>
+    <div class="card tight">
+      <b>Dann müsste X einen Menschen</b>
+      <ul class="plain" style="margin-bottom:0">
+        <li>in eine <b>hilflose Lage versetzt</b> oder</li>
+        <li>in hilfloser Lage <b>trotz Obhuts- und Beistandspflicht im Stich lassen</b> und ihn dadurch</li>
+        <li>der <b>Gefahr des Todes oder einer schweren Gesundheitsschädigung</b> ausgesetzt haben.</li>
+      </ul>
+    </div>
+
+    <h3>8 · Tötung auf Verlangen § 216 StGB</h3>
+    <div class="card tight"><b>Dann müsste X</b> durch das <b>ausdrückliche und ernsthafte Verlangen des
+    Getöteten</b> zur Tötung <b>bestimmt worden</b> sein.</div>
+
+    <h3>9 · Urkundenfälschung § 267 StGB</h3>
+    <div class="card tight">
+      <b>Dann müsste X</b> — <b>zur Täuschung im Rechtsverkehr</b> —
+      <ul class="plain" style="margin-bottom:0">
+        <li>eine <b>unechte Urkunde herstellen</b>,</li>
+        <li>eine <b>echte Urkunde verfälschen</b>,</li>
+        <li>oder eine <b>solche Urkunde gebrauchen</b>.</li>
+      </ul>
+    </div>
+    <div class="note">In der Pflege besonders relevant: <b>Falsche Einträge in die Pflegedokumentation</b>
+    (z. B. eine nicht gegebene Tablette als gegeben abzeichnen). Die Dokumentation ist eine <b>Urkunde</b>.</div>
+  </section>
+
+  <section id="s8">
+    <h2><span class="n">8</span> Unechte Unterlassungsdelikte — strafbar durch Nichtstun</h2>
+    <p class="lead">Nicht nur <b>Tun</b> ist strafbar, sondern auch <b>Nichtstun</b> — wenn man eine
+    <b>Garantenstellung</b> hat.</p>
+    <div class="card">
+      <b>I. c) Dann müsste X durch Nichtstun ………</b>
+      <p style="margin-top:10px"><b>+ Seine Garantenstellung ergibt sich aus:</b></p>
+      <ul class="clean" style="margin-bottom:0">
+        <li><b>Vertrag</b> (Arzt / Pflegekraft — der Behandlungs- oder Arbeitsvertrag)</li>
+        <li><b>Gesetz</b></li>
+        <li><b>Vertragsanstellung</b></li>
+        <li><b>Vorangegangenes gefährdendes Tun</b> (Ingerenz)</li>
+      </ul>
+    </div>
+    <div class="goodbox"><b>Warum das für die Pflege zentral ist:</b> Als Pflegekraft bist du durch den
+    Arbeitsvertrag <b>Garant</b> für deine Patienten. Wenn du <b>nichts tust</b> — die Klingel ignorierst,
+    einen Sturz nicht meldest, eine Verschlechterung nicht weitergibst —, kannst du dich strafbar machen,
+    <b>obwohl du nichts getan hast</b>.</div>
+    <div class="note"><b>Unterschied zu § 323 c:</b> Die <b>unterlassene Hilfeleistung</b> gilt für
+    <b>jedermann</b> (auch für Passanten). Das <b>unechte Unterlassungsdelikt</b> gilt nur für <b>Garanten</b> —
+    und wird deshalb <b>wie das aktive Tun</b> bestraft (also z. B. wie eine Körperverletzung).</div>
+  </section>
+
+  <div class="teil">Teil C · Schweigepflicht und Datenschutz</div>
+
+  <section id="s9">
+    <h2><span class="n">9</span> § 203 StGB im Detail — die Schweigepflicht</h2>
+    <blockquote>„(1) Wer <b>unbefugt</b> ein <b>fremdes Geheimnis</b>, namentlich ein zum persönlichen
+    Lebensbereich gehörendes Geheimnis oder ein Betriebs- oder Geschäftsgeheimnis, <b>offenbart</b>, das ihm als
+    1. Arzt, Zahnarzt, Tierarzt, Apotheker oder <b>Angehörigen eines anderen Heilberufs</b>, der für die
+    Berufsausübung oder die Führung der Berufsbezeichnung eine <b>staatlich geregelte Ausbildung</b> erfordert,
+    […] <b>anvertraut worden oder sonst bekanntgeworden</b> ist, wird mit Freiheitsstrafe bis zu einem Jahr oder
+    mit Geldstrafe bestraft.“<cite>§ 203 StGB</cite></blockquote>
+
+    <h3>Die vier Tatbestandsmerkmale</h3>
+    <ol class="merk">
+      <li><b>Geheimnisträger</b></li>
+      <li><b>fremdes Geheimnis</b></li>
+      <li><b>im Rahmen der Berufsausübung anvertraut oder bekannt geworden</b> sein</li>
+      <li><b>offenbart</b> haben</li>
+    </ol>
+
+    <h3>Geltungsbereich — zwei wichtige Besonderheiten</h3>
+    <div class="warnbox">
+      <ul class="plain" style="margin:0">
+        <li>Die Straftat kann <b>nur verfolgt werden, wenn der Verletzte</b> (Patient, Bewohner) eine
+        <b>Strafanzeige und einen Strafantrag stellt</b>. Das ist ein sogenanntes <b>Antragsdelikt</b> —
+        genau wie die <b>Körperverletzung</b>.</li>
+        <li>Die Schweigepflicht besteht <b>auch über den Tod des Betroffenen hinaus</b>
+        (<b>postmortale Schweigepflicht</b>).</li>
+      </ul>
+    </div>
+
+    <h3>Wer ist Geheimnisträger? — drei Personengruppen</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Gruppe</th><th>Wer gehört dazu?</th></tr></thead>
+        <tbody>
+          <tr><td><b>1. Heilberufe</b></td>
+            <td>Ärzte, Zahnärzte, Tierärzte, Apotheker <b>oder Angehörige anderer Heilberufe mit staatlicher
+            Ausbildung</b>: <b>Pflegefachfrau/-mann</b>, <b>Pflegefachassistenten</b>, Physiotherapeuten,
+            Hebammen, medizinisch und pharmazeutisch-technische Assistenten, Masseure,
+            Notfallsanitäter*in …</td></tr>
+          <tr><td><b>2. Gehilfen</b></td>
+            <td>Personen, die einem anderen in dessen von § 203 erfasster Funktion <b>eng zuarbeiten</b>:
+            <b>Bufdis, Praktikanten, Sprechstundenhilfen, Sekretärinnen, aushilfsweise
+            Nachtwachen</b></td></tr>
+          <tr><td><b>3. Lernende</b></td><td><b>Lernende in einem Heilberuf</b> — also auch <b>du als
+            Auszubildende</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Wer ist KEIN Geheimnisträger?</h3>
+    <div class="card tight">
+      <b>Heilpraktiker</b> · <b>Küchen- oder Reinigungspersonal</b> · <b>Boten, Chauffeure, Handwerker,
+      Pförtner</b><br><br>
+      Sie unterliegen <b>nicht der strafrechtlichen Schweigepflicht</b>. Sie können aber sehr wohl
+      <b>arbeitsrechtlich oder zivilrechtlich</b> zur Verantwortung gezogen werden.
+    </div>
+
+    <h3>Was ist ein Geheimnis?</h3>
+    <div class="goodbox"><b>Definition:</b> Jede <b>Tatsache</b>, die <b>nur eine einzelne Person oder ein
+    begrenzter Personenkreis</b> kennt und an deren <b>Geheimhaltung der Patient ein schutzwürdiges
+    Interesse</b> hat.</div>
+
+    <h3>Umfang und Reichweite der Geheimnispflicht</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Kategorie</th><th>Was gehört dazu?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Behandlungsbezogene Tatsachen</b></td>
+            <td><b>Anbahnung des Behandlungsverhältnisses</b> · <b>Identität des Patienten</b> ·
+            <b>die Tatsache der Behandlung</b> · Anamnese · Diagnose · Therapiemaßnahme · Prognose</td></tr>
+          <tr><td><b>Behandlungsbezogene Unterlagen</b></td>
+            <td>Patientenakten · Röntgenbilder · Untersuchungsbefunde · Untersuchungsmaterialien</td></tr>
+          <tr><td><b>Anamnestische Zusatzinformationen</b></td>
+            <td>Schriftliche Mitteilungen des Patienten · persönliche Angaben · familiäre Umstände ·
+            berufliche Angaben · <b>finanzielle und wirtschaftliche Verhältnisse</b> ·
+            <b>Drittgeheimnisse</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="badbox"><b>Ganz wichtig:</b> Schon <b>die Identität des Patienten</b> und <b>die bloße Tatsache,
+    dass er behandelt wird</b>, sind geheim! Du darfst also nicht einmal bestätigen, <b>dass jemand bei euch
+    liegt</b>.</div>
+    <div class="note"><b>Drittgeheimnisse</b> sind Geheimnisse, die <b>eine andere Person als den Patienten</b>
+    betreffen (Angehörige, Freunde, Kollegen), an deren Geheimhaltung <b>der Patient</b> jedoch ein
+    schutzwürdiges Interesse hat.</div>
+
+    <h3>Anvertraut oder sonst bekannt geworden</h3>
+    <p>Ein Geheimnis ist dann anvertraut oder bekannt geworden, wenn es der Pflegekraft oder dem Arzt
+    <b>im Zusammenhang mit der Ausübung des Berufes</b> vermittelt wurde — <b>egal ob mündlich, schriftlich
+    oder in sonstiger Weise</b>.</p>
+  </section>
+
+  <section id="s10">
+    <h2><span class="n">10</span> Offenbaren — und die fünf Befugnisse</h2>
+
+    <h3>Was heißt „offenbaren“?</h3>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Offenbaren</b> = <b>jede Mitteilung</b> über die geheim zu haltende Tatsache <b>an einen
+        Dritten</b>, der das Geheimnis <b>noch nicht kennt oder noch nicht sicher kennt</b>.</li>
+        <li>Eine Mitteilung, <b>aus der die Person nicht hervorgeht</b>, ist <b>anonym</b> — und damit
+        <b>kein</b> Offenbaren.</li>
+        <li>Die Offenbarung ist <b>nur strafbar, wenn sie unbefugt geschieht</b>.</li>
+        <li><b>Die Weitergabe im Team ist kein Offenbaren!</b></li>
+      </ul>
+    </div>
+    <div class="goodbox"><b>Merke:</b> „Noch nicht <b>sicher</b> kennt“ heißt: Auch ein <b>bestätigendes
+    Nicken</b> auf eine Vermutung ist bereits ein Offenbaren. Das ist der Kern von Fall 11.</div>
+
+    <h3>Die fünf Befugnisse zum Offenbaren</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Befugnis</th><th>Was bedeutet sie?</th></tr></thead>
+        <tbody>
+          <tr><td><b>1. Einwilligung</b></td>
+            <td>Der Patient muss <b>einwilligungsfähig</b> sein (unter 14 Jahren und Geisteskranke nicht).
+            Möglich <b>mündlich, schriftlich und durch schlüssiges Verhalten</b>. Zur <b>Beweissicherung</b>
+            schriftlich.</td></tr>
+          <tr><td><b>2. Mutmaßliche Einwilligung</b></td>
+            <td>Wenn der Patient <b>bewusstlos</b> ist, insbesondere in <b>Notfällen</b>. Der Arzt benötigt zu
+            einer Heilbehandlung <b>immer</b> eine Einwilligung — wenn auch eine mutmaßliche.
+            <b>Nicht anzuwenden</b>, wenn ein <b>rechtswirksam entgegenstehender Wille</b> bekannt ist
+            (z. B. Patientenverfügung).</td></tr>
+          <tr><td><b>3. Befugnis aufgrund gesetzlicher Vorschriften</b></td>
+            <td><b>§ 138 StGB</b>: Anzeige <b>geplanter</b> schwerer Straftaten — gilt <b>nicht</b> für die
+            Meldung <b>bereits geschehener</b> Straftaten ohne Wiederholungsgefahr ·
+            <b>§§ 6, 7 Infektionsschutzgesetz</b>: namentliche und nichtnamentliche Meldung meldepflichtiger
+            Krankheiten zur Verhütung und Bekämpfung von Infektions- und Geschlechtskrankheiten ·
+            <b>§§ 18, 34 Personenstandsgesetz</b>: Anzeige von <b>Geburten und Tod</b> ·
+            <b>§ 4 Kinderschutzgesetz (KKG)</b>: Beratung und Übermittlung von Informationen durch
+            Geheimnisträger bei <b>Kindeswohlgefährdung</b> an das Jugendamt</td></tr>
+          <tr><td><b>4. Notstand</b></td>
+            <td><b>Fremdgefährdung im Straßenverkehr</b> · Offenbarung psychischer Erkrankungen zum Zweck der
+            <b>Unterbringung bei Eigen- und Fremdgefährdung</b> · Unterrichtung des Partners über die
+            <b>HIV-Erkrankung</b> des Lebensgefährten (<b>strittig</b>)</td></tr>
+          <tr><td><b>5. Wahrnehmung berechtigter Interessen</b></td>
+            <td><b>Geltendmachung von Honorarforderungen vor Gericht</b> · <b>Verteidigung vor
+            Gericht</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Die Lösung des Einstiegsfalls (Pfleger Paul)</h3>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Geheimnisträger</b> = Pflegefachkraft Paul — <b>Heilberufe stehen unter Schweigepflicht</b> ✓</li>
+        <li><b>Fremdes Geheimnis</b> = Gesundheitszustand von Frau Müller ✓</li>
+        <li><b>Im Rahmen der Berufsausübung anvertraut oder bekannt geworden</b> = Paul ist Pflegefachkraft
+        von Frau Müller ✓</li>
+        <li><b>Offenbart</b> = Weitergabe an die <b>unbefugte Schwester</b> ✓
+        <span style="color:var(--ink-soft)">(bevollmächtigt ist die <b>Tochter</b>, nicht die Schwester!)</span></li>
+        <li><b>Offenbarungsrechte</b> (Einwilligung · Notwehr · Notstand · gesetzliche Vorschriften ·
+        Wahrnehmung berechtigter Interessen) = <b>liegen nicht vor</b> ✗</li>
+      </ul>
+      <div class="goodbox" style="margin-bottom:0"><b>Ergebnis:</b> Paul hat sich wegen <b>vorsätzlicher
+      Verletzung von Privatgeheimnissen nach § 203 StGB</b> strafbar gemacht.</div>
+    </div>
+
+    <h3>Zeugnisverweigerungsrecht aus beruflichen Gründen</h3>
+    <ul class="clean">
+      <li>Zeugen können vor Gericht grundsätzlich <b>mit Zwangsmitteln zur Aussage</b> bewegt werden — das gilt
+      im <b>Zivil- wie im Strafprozess</b>.</li>
+      <li>Unterliegt die Pflegekraft aber der <b>Schweigepflicht</b>, hat sie das <b>Recht, die Aussage zu
+      verweigern</b>.</li>
+      <li><b>Besonderheit im Strafprozess:</b> Die Entscheidung über die Ausübung des
+      Zeugnisverweigerungsrechts liegt beim <b>vorgesetzten Arzt</b>.</li>
+      <li>Wird die Pflegeperson <b>von der Schweigepflicht entbunden</b>, <b>muss sie aussagen</b>.</li>
+    </ul>
+  </section>
+
+  <section id="s11">
+    <h2><span class="n">11</span> Die 15 Fälle zur Schweigepflicht</h2>
+    <p class="lead">Alle Übungsfälle aus dem Skript — mit Lösung. Das ist das beste Training für die Klausur.</p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>#</th><th>Fall</th><th>Lösung</th></tr></thead>
+        <tbody>
+          <tr><td><b>1</b></td>
+            <td>Bei der täglichen <b>Visite im Mehrbettzimmer</b> werden Patienten vor den Mitpatienten nach
+            ihrem Befinden befragt, Diagnosen und Therapien im Beisein anderer erläutert.</td>
+            <td><b>Ja, Verletzung.</b> Die Mitpatienten sind <b>Dritte</b> und keine Behandelnden. Es fehlt die
+            Einwilligung. Richtig wäre ein <b>Visitenwagen-Gespräch im Untersuchungszimmer</b> oder das
+            Nachfragen, ob der Patient einverstanden ist.</td></tr>
+          <tr><td><b>2</b></td>
+            <td>Der Arzt bescheinigt dem <b>Arbeitgeber</b> die Arbeitsunfähigkeit <b>unter Angabe der
+            Diagnose</b>.</td>
+            <td><b>Ja, Verletzung.</b> Der Arbeitgeber darf nur wissen, <b>dass</b> und <b>wie lange</b> jemand
+            arbeitsunfähig ist — <b>nicht warum</b>. Die Diagnose geht ihn nichts an.</td></tr>
+          <tr><td><b>3</b></td>
+            <td>Nach der Behandlung werden die <b>Krankenunterlagen der Verwaltung</b> zur finanziellen
+            Abwicklung zur Verfügung gestellt.</td>
+            <td><b>Nein, keine Verletzung.</b> Die Verwaltung gehört zum <b>notwendigen Ablauf der
+            Behandlung</b> und ist zur Abrechnung befugt. Es gilt jedoch die <b>Datenminimierung</b>:
+            nur so viel wie nötig.</td></tr>
+          <tr><td><b>4</b></td>
+            <td>Der <b>Ehegatte</b> erkundigt sich beim Pflegepersonal über den Gesundheitszustand.</td>
+            <td><b>Nur mit Einwilligung!</b> Die Ehe allein gibt <b>kein</b> Auskunftsrecht. Neu seit 2023:
+            das <b>Ehegattennotvertretungsrecht</b> — aber nur, wenn der Patient nicht mehr selbst entscheiden
+            kann <b>und</b> eine ärztliche Bescheinigung vorliegt (siehe Kapitel 20).</td></tr>
+          <tr><td><b>5</b></td>
+            <td>Ein Krankenpfleger erzählt <b>seiner Freundin</b>, dass sein ehemaliger <b>Englischlehrer</b>
+            mit Lungenkrebs aufgenommen wurde und noch ca. 4 Wochen zu leben habe.</td>
+            <td><b>Ja, strafbar.</b> Die Freundin ist eine Dritte, der Patient ist <b>identifizierbar</b>
+            (Englischlehrer), es liegt keine Befugnis vor. Klassischer § 203.</td></tr>
+          <tr><td><b>6</b></td>
+            <td>Ein <b>am Kopf blutender Mann</b> kommt nachts zur Notfallbehandlung. Die <b>Polizei</b> ruft an
+            und fragt nach ihm (Schlägerei auf dem Stadtfest, weitere Verletzte). Der Bereitschaftsdienst gibt
+            <b>keine Auskunft</b>.</td>
+            <td><b>Ja, das Handeln ist rechtmäßig.</b> Es geht um eine <b>bereits geschehene</b> Straftat.
+            <b>§ 138 StGB</b> verpflichtet nur zur Anzeige <b>geplanter</b> schwerer Straftaten. Ohne
+            Wiederholungsgefahr besteht <b>keine Offenbarungsbefugnis</b>.</td></tr>
+          <tr><td><b>7</b></td>
+            <td>Schwester Jutta bekommt von der berühmten Sängerin <b>Lena</b> (eingeliefert wegen eines
+            Abgangs) ein <b>Autogramm</b> und zeigt es stolz ihrer Freundin. Diese fragt, <b>woher</b> sie es
+            hat.</td>
+            <td><b>Sie darf gar nichts sagen.</b> Schon die <b>Identität</b> und <b>die Tatsache der
+            Behandlung</b> sind geheim. Sie darf nicht sagen, dass Lena im Krankenhaus war — geschweige denn
+            warum.</td></tr>
+          <tr><td><b>8</b></td>
+            <td>Krankenpfleger Ernst erfährt <b>auf dem Kegelabend</b>, dass ein Mitspieler HIV-positiv ist und
+            ein anderer sich „einen Tripper geholt“ hat. Darf er das seiner Freundin erzählen?</td>
+            <td><b>Kein § 203</b> — er hat es <b>privat</b> erfahren, <b>nicht im Rahmen der
+            Berufsausübung</b>. Also kein Straftatbestand. <b>Aber:</b> Es ist ein <b>Vertrauensbruch</b> und
+            kann <b>zivilrechtlich</b> (Persönlichkeitsrecht) Folgen haben. <b>Rat: nicht weitererzählen.</b></td></tr>
+          <tr><td><b>9</b></td>
+            <td>Schwester Maria erfährt <b>von der Nachbarin</b> von der Einlieferung ihres Mannes und dem
+            Alkoholkonsum. Im Krankenhaus erfährt sie <b>dienstlich</b> von der <b>Leberzirrhose</b>.
+            Was darf sie ihrem Ehemann sagen?</td>
+            <td><b>Nur das, was sie privat von der Nachbarin weiß</b> (Einlieferung, Bauchschmerzen).
+            Die <b>Diagnose Leberzirrhose</b> hat sie <b>dienstlich</b> erfahren — darüber muss sie
+            <b>schweigen</b>. Wichtige Unterscheidung: <b>private und dienstliche Quelle</b> trennen.</td></tr>
+          <tr><td><b>10</b></td>
+            <td>Schwester Adelheid erzählt daheim, dass ein <b>junger Mensch in ihrem Alter</b> im
+            <b>Krebsendstadium</b> auf Station liegt.</td>
+            <td><b>Grenzfall — hier wohl nein.</b> Es fehlt der <b>Personenbezug</b>: Die Person ist nicht
+            identifizierbar, die Mitteilung ist <b>anonym</b>. Anonyme Mitteilungen sind <b>kein
+            Offenbaren</b>. <b>Aber Vorsicht:</b> In einem kleinen Ort mit wenigen jungen Patienten kann die
+            Person sehr wohl identifizierbar werden — dann wäre es strafbar.</td></tr>
+          <tr><td><b>11</b></td>
+            <td>Auf Andreas Station wird die <b>Sekretärin ihres Ehemanns</b> eingeliefert. Er weiß es und
+            fragt, ob es etwas Ernsteres sei. Andrea <b>nickt lediglich</b>.</td>
+            <td><b>Ja, strafbar.</b> Auch ein <b>Nicken</b> ist ein Offenbaren — sie bestätigt eine Tatsache,
+            die er <b>noch nicht sicher kannte</b>. Offenbaren geht auch <b>ohne Worte</b>.</td></tr>
+          <tr><td><b>12</b></td>
+            <td>Die <b>15-jährige Katja</b> bekommt von der Frauenärztin die Pille. Die Ärztin erzählt es
+            <b>der Mutter</b> — später auch den <b>Abort</b>.</td>
+            <td><b>Ja, strafbar.</b> Mit 15 Jahren ist Katja bei ausreichender Einsichtsfähigkeit
+            <b>selbst einwilligungsfähig</b> (§ 203 nennt die Grenze von 14 Jahren). Die Schweigepflicht gilt
+            <b>auch gegenüber den Eltern</b>.</td></tr>
+          <tr><td><b>13</b></td>
+            <td>Stationsschwester Anna erzählt dem <b>Ehemann</b>, dass wegen einer
+            <b>Eileiterschwangerschaft</b> sofort operiert werden musste. Er hatte seit Monaten keinen Kontakt
+            zu seiner Frau.</td>
+            <td><b>Ja, strafbar.</b> Keine Einwilligung der Patientin. Der Fall zeigt eindrücklich, <b>welchen
+            Schaden</b> eine gut gemeinte Auskunft anrichten kann. <b>Gute Absicht rechtfertigt
+            nichts.</b></td></tr>
+          <tr><td><b>14</b></td>
+            <td>Bei Herrn Meyer wird eine <b>offene Lungentuberkulose</b> diagnostiziert. Die Schwester sagt
+            seinen Besuchern, es bestehe <b>Ansteckungsgefahr</b>. Herr Meyer will Strafanzeige stellen.</td>
+            <td><b>Er wird keinen Erfolg haben.</b> Bei einer <b>offenen Tuberkulose</b> besteht eine konkrete
+            <b>Fremdgefährdung</b> — die Offenbarung ist durch <b>Notstand</b> und das
+            <b>Infektionsschutzgesetz</b> gerechtfertigt. Der Schutz Dritter vor Ansteckung wiegt schwerer.</td></tr>
+          <tr><td><b>15</b></td>
+            <td><b>Kumpel Rudi</b> ist alkoholkrank und fährt ständig alkoholisiert Auto. Sein Hausarzt weiß es.
+            Darf er es der <b>Führerscheinbehörde</b> melden?</td>
+            <td><b>Ja, er darf.</b> <b>Fremdgefährdung im Straßenverkehr</b> ist ausdrücklich als
+            <b>Notstand</b> genannt. Das Rechtsgut <b>Leben und Gesundheit anderer</b> wiegt schwerer als Rudis
+            informationelle Selbstbestimmung. <b>Zuerst</b> sollte der Arzt aber mit Rudi sprechen und ihn
+            eindringlich warnen.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><b>Diese Lösungen sind ausgearbeitete Vorschläge</b> nach den Regeln aus dem Skript —
+    im Unterricht kann eine Bewertung im Detail abweichen, besonders bei den Grenzfällen 8, 10 und 12.</div>
+  </section>
+
+  <section id="s12">
+    <h2><span class="n">12</span> Datenschutz und DSGVO</h2>
+
+    <h3>Entstehungsgeschichte</h3>
+    <ul class="clean">
+      <li>Die Verbreitung der <b>elektronischen Datenverarbeitung (EDV)</b> machte Regelungen erforderlich.</li>
+      <li><b>1970</b> — erstes Datenschutzgesetz in <b>Hessen</b></li>
+      <li><b>1977</b> — <b>Bundesdatenschutzgesetz</b></li>
+      <li><b>1980</b> — <b>Volkszählung</b> → <b>Volkszählungsurteil des BVerfG</b>: Das <b>Recht auf
+      informationelle Selbstbestimmung</b> ist vom <b>allgemeinen Persönlichkeitsrecht</b> aus
+      <b>Art. 2 Abs. 1 GG i. V. m. Art. 1 Abs. 1 GG</b> umfasst.</li>
+      <li><b>2009</b> — <b>EU-Grundrechtecharta</b> durch den Vertrag von Lissabon: EU-Recht auch für EU-Bürger
+      einklagbar</li>
+      <li><b>2019</b> — <b>Datenschutz-Grundverordnung</b></li>
+    </ul>
+
+    <h3>Was sagt das Bundesverfassungsgericht?</h3>
+    <div class="goodbox">
+      <b>Informationelles Selbstbestimmungsrecht</b> (Volkszählungsurteil):
+      <ul class="plain" style="margin-bottom:0">
+        <li><b>Schutz des Bürgers</b> vor unzulässiger Verwendung seiner <b>personenbezogenen Daten</b></li>
+        <li>Der Bürger hat das Recht, <b>selbst über Preisgabe und Verwendung seiner Daten zu bestimmen</b></li>
+      </ul>
+    </div>
+
+    <h3>Personenbezogene Daten (Art. 4 Nr. 1 DSGVO)</h3>
+    <div class="card tight">
+      … sind <b>alle Informationen, die sich auf eine identifizierte oder identifizierbare natürliche Person
+      beziehen</b>. Als <b>identifizierbar</b> gilt eine Person, die <b>direkt oder indirekt</b> identifiziert
+      werden kann — insbesondere über einen <b>Namen</b>, eine <b>Kennnummer</b>, <b>Standortdaten</b>, eine
+      <b>Online-Kennung</b> oder <b>besondere Merkmale</b>, die Ausdruck der physischen, physiologischen,
+      genetischen, psychischen, wirtschaftlichen, kulturellen oder sozialen Identität sind.
+    </div>
+
+    <h3>Die DSGVO</h3>
+    <ul class="clean">
+      <li>Regelt seit dem <b>25. Mai 2018</b> den Datenschutz in der EU.</li>
+      <li>Idee: <b>europaweite Vereinheitlichung</b> und zugleich ein <b>strikterer Datenschutz</b> als
+      bisher.</li>
+      <li>Sie <b>ersetzt die nationalen Datenschutzgesetze</b> und enthält <b>Öffnungsklauseln</b> für die
+      Mitgliedsstaaten.</li>
+      <li>Sie regelt im Kern die <b>Verarbeitung personenbezogener Daten</b> — z. B. durch Unternehmen,
+      Vereine oder Behörden.</li>
+    </ul>
+
+    <h3>Die sechs Schutzziele der DSGVO</h3>
+    <ol class="merk">
+      <li><b>Rechtmäßigkeit</b>, Verarbeitung nach <b>Treu und Glauben</b>, <b>Transparenz</b></li>
+      <li><b>Zweckbindung</b></li>
+      <li><b>Datenminimierung</b> (Datensparsamkeit)</li>
+      <li><b>Richtigkeit</b></li>
+      <li><b>Speicherbegrenzung</b></li>
+      <li><b>Integrität und Vertraulichkeit</b> (Datensicherheit)</li>
+    </ol>
+
+    <h3>Was ist „Datenverarbeitung“? (Art. 4 Nr. 2 DSGVO)</h3>
+    <div class="two">
+      <div class="col c1">
+        <ul>
+          <li>Erheben, Erfassen</li>
+          <li>Organisieren, Ordnen</li>
+          <li>Speichern</li>
+          <li>Anpassen, Verändern</li>
+        </ul>
+      </div>
+      <div class="col c2">
+        <ul>
+          <li>Auslesen, Abfragen, Verwenden</li>
+          <li><b>Offenlegen, Übermitteln, Verbreiten, Bereitstellen</b></li>
+          <li>Abgleichen, Verknüpfen</li>
+          <li>Einschränken, Löschen, Vernichten</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note">Das umfasst <b>digitale und analoge</b> Daten, <b>digitales und manuelles</b> Verarbeiten
+    sowie alle Verfahren — z. B. <b>Aktenführung</b>, Dateispeicherung, Onlineübertragung oder <b>Transport von
+    Daten über einen USB-Stick</b>.</div>
+
+    <h3>Rechtsgrundlagen im Überblick</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Geltungsbereich</th><th>Gesetz</th><th>Datenschutzrelevante Inhalte</th></tr></thead>
+        <tbody>
+          <tr><td rowspan="2"><b>Mitgliedstaaten der EU</b></td><td>EU-Grundrechtecharta</td>
+            <td><b>Art. 8</b>: Schutz personenbezogener Daten</td></tr>
+          <tr><td><b>DSGVO</b></td>
+            <td>Schutz natürlicher Personen bei der Verarbeitung · freier Datenverkehr · <b>Schadensersatz,
+            Geldbußen</b></td></tr>
+          <tr><td rowspan="3"><b>Bundesrepublik Deutschland</b></td><td><b>Grundgesetz (GG)</b></td>
+            <td><b>Art. 1 Abs. 1</b> Menschenwürde · <b>Art. 2 Abs. 1</b> freie Entfaltung der Persönlichkeit ·
+            daraus abgeleitet: <b>Recht auf informationelle Selbstbestimmung</b></td></tr>
+          <tr><td><b>BDSG</b> (n. F.)</td>
+            <td>Schutz des Persönlichkeitsrechts · Datenverarbeitung · Sanktionen</td></tr>
+          <tr><td><b>KUG</b> (Kunsturhebergesetz)</td><td><b>Recht am eigenen Bild</b></td></tr>
+          <tr><td><b>Bundesländer</b></td><td>Landesdatenschutzgesetze</td>
+            <td>Landesrechtliche Regelungen zum Datenschutz</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Die Einwilligung im Datenschutz — sechs Regeln</h3>
+    <ol class="merk">
+      <li><b>freiwillig, verständlich</b></li>
+      <li>am besten <b>immer schriftlich</b></li>
+      <li><b>zweckgebunden</b></li>
+      <li>für eine <b>bestimmte Verarbeitung</b></li>
+      <li><b>Achtung — jederzeit widerrufbar</b></li>
+      <li><b>Alter</b> beachten</li>
+    </ol>
+    <div class="note">Neu: Früher musste die Einwilligung <b>schriftlich</b> vorliegen. Heute verlangt der
+    Gesetzgeber, dass sie <b>schriftlich oder elektronisch</b> erfolgen <b>soll</b>. Da es nur eine
+    <b>Soll-Vorschrift</b> ist, sollte man trotzdem <b>schriftlich</b> arbeiten — für einen verlässlichen
+    <b>Nachweis</b>.</div>
+
+    <h3>Rechte der betroffenen Personen</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Recht</th><th>Artikel</th></tr></thead>
+        <tbody>
+          <tr><td>Recht auf <b>Information</b> über die verarbeiteten Daten</td><td>Art. 13, 14 DSGVO</td></tr>
+          <tr><td>Recht auf <b>Auskunft</b> — welche Daten, aus welcher Quelle, zu welchem Zweck</td>
+            <td>Art. 15 DSGVO</td></tr>
+          <tr><td>Recht auf <b>kostenlose Kopie</b> der gespeicherten Daten</td><td>Art. 15 Abs. 3 DSGVO</td></tr>
+          <tr><td>Recht auf <b>Berichtigung</b> falscher Daten</td><td>Art. 16 DSGVO</td></tr>
+          <tr><td>Recht auf <b>Löschung</b></td><td>Art. 17 DSGVO</td></tr>
+          <tr><td>Recht auf <b>Einschränkung der Verarbeitung</b> strittiger Datensätze</td>
+            <td>Art. 18 DSGVO</td></tr>
+          <tr><td>Recht auf <b>Datenübertragbarkeit</b></td><td>Art. 20 DSGVO</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Aufgaben der Datenschutzbeauftragten (Art. 39 DSGVO)</h3>
+    <ul class="clean">
+      <li><b>Unterrichtung und Beratung</b> der Einrichtung und der Mitarbeiter hinsichtlich ihrer Pflichten</li>
+      <li><b>Überwachung der Einhaltung</b> aller Datenschutzvorschriften — einschließlich Überprüfungen,
+      <b>Sensibilisierung und Schulung</b> der Mitarbeiter</li>
+      <li><b>Anlaufstelle</b> für Anfragen von Mitarbeitern und Bewohnern zur Verarbeitung ihrer Daten und zur
+      Ausübung ihrer Rechte</li>
+    </ul>
+    <div class="badbox"><b>Praxisfall aus den Übungsfällen — „Das Foto fürs Pflegeheim“:</b>
+    Ein <b>Dekubitusfoto mit dem privaten Handy</b> und der Versand per <b>WhatsApp</b> verletzt gleich
+    mehrfach: <b>§ 203 StGB</b> (Offenbaren gegenüber dem Messenger-Dienst), die <b>DSGVO</b> (keine
+    Einwilligung, kein sicherer Verarbeitungsweg), das <b>Recht am eigenen Bild (KUG)</b> und in der Regel
+    interne Dienstanweisungen. <b>Nie private Geräte für Patientenfotos verwenden.</b></div>
+  </section>
+
+  <div class="teil">Teil D · Zivilrecht — Haftung</div>
+
+  <section id="s13">
+    <h2><span class="n">13</span> Wer haftet? — das Dreieck</h2>
+    <p class="lead">Im Zivilrecht geht es nicht um Strafe, sondern um <b>Geld</b>:
+    <b>Schadensersatz</b> und <b>Schmerzensgeld</b>.</p>
+
+    <h3>Die Vertragsbeziehungen</h3>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Krankenhaus / Heim ↔ Patient / Bewohner</b> = <b>Krankenhausaufnahmevertrag</b> oder
+        <b>Heimvertrag</b></li>
+        <li><b>Krankenhaus / Heim ↔ Pflegekraft / Arzt</b> = <b>Arbeitsvertrag</b></li>
+        <li>Zwischen Träger und Mitarbeiter läuft im Innenverhältnis der <b>Regress</b></li>
+      </ul>
+      <p style="margin-bottom:0"><b>Wichtig:</b> Zwischen <b>Patient und Pflegekraft</b> besteht
+      <b>kein Vertrag</b>! Deshalb kann der Patient die Pflegekraft nur <b>aus Delikt (§ 823 BGB)</b> verklagen —
+      den Träger dagegen <b>aus Vertrag und aus Delikt</b>.</p>
+    </div>
+
+    <h3>Es können haftbar gemacht werden</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Wer?</th><th>Wofür?</th><th>Paragraph</th></tr></thead>
+        <tbody>
+          <tr><td><b>Mitarbeiter / Schüler</b></td>
+            <td>Bei <b>vorwerfbarem, fehlerhaftem Handeln</b></td>
+            <td><b>§ 823 BGB</b></td></tr>
+          <tr><td><b>Vorgesetzte / Praxisanleiter</b></td>
+            <td>Bei <b>Anleitungs- und Überwachungsfehlern</b><br>Bei <b>Organisationsverschulden</b></td>
+            <td><b>§ 831 BGB</b><br><b>§ 823 BGB</b></td></tr>
+          <tr><td><b>Träger</b></td>
+            <td>Für <b>fremdes Verschulden</b><br>Bei <b>Auswahl-, Anleitungs- und Überwachungsfehlern</b><br>
+            Bei <b>Organisationsfehlern</b></td>
+            <td><b>§ 278 BGB</b><br><b>§ 831 BGB</b><br><b>§ 823 BGB</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="goodbox"><b>Für die Klausurfrage „Prüfen Sie den Anspruch gegen Mitarbeiter und Träger“:</b>
+    Der Patient kann <b>beide</b> in Anspruch nehmen. Die Haftung ergibt sich aus dem <b>Deliktsrecht
+    (§ 823 BGB)</b> und aus dem <b>Pflegevertrag (§ 280 BGB, § 278 BGB)</b>. Danach kann der Träger im
+    <b>Innenverhältnis Regress</b> beim Mitarbeiter nehmen — aber nur beschränkt (siehe Kapitel 17).</div>
+  </section>
+
+  <section id="s14">
+    <h2><span class="n">14</span> Prüfungsschema A — Anspruch aus Vertrag (§ 280 BGB)</h2>
+    <blockquote>„Verletzt der Schuldner eine Pflicht aus dem Schuldverhältnis, so kann der Gläubiger Ersatz des
+    hierdurch entstehenden Schadens verlangen.“<cite>§ 280 BGB</cite></blockquote>
+    <p class="lead">Die Merkformel für jeden zivilrechtlichen Anspruch:
+    <b>Wer — von wem — woraus — worauf?</b></p>
+
+    <div class="schema">
+      <div class="stufe">
+        <div class="rn">Obersatz</div>
+        <span class="satz">X könnte gegen Y (Träger) einen Anspruch aus Vertrag auf Schadensersatz haben.</span>
+      </div>
+      <div class="stufe">
+        <div class="rn">1.</div>
+        <h4>Es muss ein Vertrag vorliegen</h4>
+        <span class="satz">Voraussetzung dafür ist, dass zwischen X und Y ein Vertrag vorliegt. Hier liegt
+        ……… vor.</span>
+        <ul class="plain" style="margin-bottom:0">
+          <li>a) <b>Ambulanter Dienst</b>: Pflegevertrag</li>
+          <li>b) <b>Krankenhaus</b>: totaler / gespaltener Krankenhausaufnahmevertrag</li>
+          <li>c) <b>Heim</b>: Heimvertrag</li>
+          <li>d) <b>Arzt</b>: Behandlungsvertrag</li>
+        </ul>
+      </div>
+      <div class="stufe">
+        <div class="rn">2.</div>
+        <h4>Eine Pflicht aus dem Vertrag muss verletzt worden sein</h4>
+        <ul class="plain" style="margin:0">
+          <li>a) <b>Hauptpflicht</b> (die eigentliche Pflegeleistung)</li>
+          <li>b) <b>Nebenpflicht</b> (z. B. Schutz-, Aufklärungs-, Verkehrssicherungspflicht)</li>
+        </ul>
+      </div>
+      <div class="stufe">
+        <div class="rn">3.</div>
+        <h4>Die Pflichtverletzung muss schuldhaft erfolgt sein</h4>
+        <ul class="plain" style="margin:0">
+          <li><b>a) Eigenes Verschulden:</b> Hier hat Y (Träger) z. B. ein <b>Organisationsverschulden</b> oder
+          eine Verletzung der <b>Verkehrssicherungspflicht</b> begangen … <b>oder</b></li>
+          <li><b>b) Fremdverschulden:</b> Hier hat der Mitarbeiter Z als <b>Erfüllungsgehilfe</b> eine
+          Pflichtverletzung begangen …
+            <ul>
+              <li><b>aa) Vorsatz</b> (Wissen und Wollen): Hier hat er vorsätzlich gehandelt, weil er wusste …
+              und wollte … <b>oder</b></li>
+              <li><b>bb) Fahrlässigkeit</b> (Außerachtlassen der im Verkehr erforderlichen Sorgfalt):
+              Hier hat er fahrlässig gehandelt, weil … <i>(Was wäre von einer ordnungsgemäß arbeitenden
+              Fachkraft zu erwarten gewesen?)</i></li>
+            </ul>
+          </li>
+          <li><b>c)</b> Dieses <b>Verschulden von Z muss sich Y wie eigenes Verschulden anrechnen lassen</b>
+          (§ 278 BGB).</li>
+        </ul>
+      </div>
+      <div class="stufe">
+        <div class="rn">4.</div>
+        <h4>X muss einen Schaden erlitten haben</h4>
+        <ul class="plain" style="margin:0">
+          <li><b>a) Materieller Schaden</b> (mit Vermögenseinbuße): z. B. <b>Behandlungskosten, Rehakosten,
+          Lohnausfall</b></li>
+          <li><b>b) Immaterieller Schaden</b>: <b>Schmerzen, Psyche, entgangene Lebensfreude</b> …</li>
+        </ul>
+      </div>
+      <div class="stufe">
+        <div class="rn">Ergebnis</div>
+        <span class="satz">X hat gegen Y (Träger) einen Anspruch aus Vertrag auf Schadensersatz und/oder
+        Schmerzensgeld.</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="s15">
+    <h2><span class="n">15</span> Prüfungsschema B — Anspruch aus Delikt (§ 823 BGB)</h2>
+    <blockquote>„Wer vorsätzlich oder fahrlässig das <b>Leben, den Körper, die Gesundheit, die Freiheit, das
+    Eigentum oder ein sonstiges Recht</b> eines anderen <b>widerrechtlich</b> verletzt, ist zum Ersatz des daraus
+    entstandenen Schadens verpflichtet.“<cite>§ 823 BGB</cite></blockquote>
+
+    <div class="schema">
+      <div class="stufe">
+        <div class="rn">Obersatz</div>
+        <span class="satz">X könnte gegen Z (Pflegekraft) einen Anspruch aus Delikt auf Schadensersatz
+        haben.</span>
+      </div>
+      <div class="stufe">
+        <div class="rn">1.</div>
+        <h4>Z müsste ein Rechtsgut des X verletzt haben</h4>
+        <p style="margin:0">Das <b>Leben</b>, den <b>Körper</b>, die <b>Gesundheit</b>, die <b>Freiheit</b>,
+        das <b>Eigentum</b> … — <i>Hier ………</i></p>
+      </div>
+      <div class="stufe">
+        <div class="rn">2.</div>
+        <h4>Die Rechtsgutverletzung müsste rechtswidrig erfolgt sein</h4>
+        <p style="margin:0">In Betracht kommen als <b>Rechtfertigungsgründe</b>:</p>
+        <ul class="plain" style="margin:6px 0 0">
+          <li>a) <b>Einwilligung</b></li>
+          <li>b) <b>Notwehr</b> (Notwehr gegen Notwehr gibt es nicht)</li>
+          <li>c) <b>Notstand</b></li>
+        </ul>
+      </div>
+      <div class="stufe">
+        <div class="rn">3.</div>
+        <h4>Die Rechtsgutverletzung müsste schuldhaft erfolgt sein</h4>
+        <ul class="plain" style="margin:0">
+          <li>a) <b>Vorsatz</b> (Wissen und Wollen) <b>oder</b></li>
+          <li>b) <b>Fahrlässigkeit</b> (Außerachtlassen der im Verkehr erforderlichen Sorgfalt)</li>
+        </ul>
+      </div>
+      <div class="stufe">
+        <div class="rn">4.</div>
+        <h4>X müsste auch einen Schaden erlitten haben</h4>
+        <ul class="plain" style="margin:0">
+          <li>a) <b>Materieller</b> Schaden</li>
+          <li>b) <b>Immaterieller</b> Schaden (Schmerzen, Psyche …)</li>
+        </ul>
+      </div>
+      <div class="stufe">
+        <div class="rn">Ergebnis</div>
+        <span class="satz">X hat gegen Z einen Anspruch aus Delikt auf Schadensersatz und/oder
+        Schmerzensgeld.</span>
+      </div>
+    </div>
+
+    <div class="goodbox"><b>Der Unterschied auf einen Blick:</b>
+    <b>Aus Vertrag</b> → man braucht einen <b>Vertrag</b>, deshalb geht es fast immer <b>gegen den Träger</b>.
+    <b>Aus Delikt</b> → man braucht <b>keinen Vertrag</b>, deshalb geht es auch <b>direkt gegen die
+    Pflegekraft</b>. In der Klausur solltest du <b>beide Schemata</b> prüfen.</div>
+  </section>
+
+  <section id="s16">
+    <h2><span class="n">16</span> Delegation — die drei Verantwortungen</h2>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Ebene</th><th>Wer trägt sie?</th><th>Was gehört dazu?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Anordnungsverantwortung</b></td>
+            <td>Wer <b>delegiert</b> (Arzt, Pflegefachkraft, Vorgesetzte)</td>
+            <td><b>Auswahl</b> (Ist die Person geeignet?) · <b>Anleitung</b> (Wurde sie eingewiesen?) ·
+            <b>Überwachung</b> (Wird kontrolliert?)</td></tr>
+          <tr><td><b>Übernahmeverantwortung</b></td>
+            <td>Die <b>qualifizierte Pflegeperson</b>, die die Aufgabe annimmt</td>
+            <td>Sie muss prüfen: <b>Kann ich das? Darf ich das? Bin ich eingewiesen?</b> — Wenn nein,
+            <b>muss sie ablehnen</b>.</td></tr>
+          <tr><td><b>Durchführungsverantwortung</b></td>
+            <td>Wer die Aufgabe <b>ausführt</b></td>
+            <td><b>Sorgfältige, richtige Durchführung</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="badbox"><b>Zurück zum Einstiegsfall:</b> Pflegeschülerin <b>Anna</b> hatte <b>keine
+    Einweisung</b> in den Rollator. Sie hätte die Aufgabe in dieser Form <b>ablehnen müssen</b> →
+    Verletzung der <b>Übernahmeverantwortung</b>. Pflegefachkraft <b>Erika</b> hat delegiert, ohne die
+    Qualifikation zu prüfen und ohne anzuleiten → Verletzung der <b>Anordnungsverantwortung</b> (§ 831 BGB).
+    Der <b>Träger</b> haftet für beide (§ 278, § 831 BGB) und ggf. wegen <b>Organisationsverschulden</b>
+    (§ 823 BGB), weil die Einweisungen nicht organisiert waren.</div>
+  </section>
+
+  <section id="s17">
+    <h2><span class="n">17</span> Regress — die Arbeitnehmerhaftung</h2>
+    <div class="card tight">
+      <b>Regress (Arbeitnehmerhaftung)</b> ist das <b>Einstehenmüssen eines Arbeitnehmers für einen Schaden,
+      den er bei seiner Arbeit am Vermögen oder an der Person eines Dritten anrichtet.</b><br><br>
+      Nach der Rechtsprechung des <b>BAG (Bundesarbeitsgericht)</b> ist die Haftung des Arbeitnehmers
+      <b>beschränkt</b>:
+    </div>
+
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Verschulden</th><th>Haftung des Arbeitnehmers</th></tr></thead>
+        <tbody>
+          <tr><td><b>Leichte Fahrlässigkeit</b></td><td><b>Keine Haftung</b></td></tr>
+          <tr><td><b>Mittlere Fahrlässigkeit</b></td><td><b>Haftungsteilung</b>, Quote nach Einzelfall</td></tr>
+          <tr><td><b>Grobe Fahrlässigkeit</b></td><td><b>Uneingeschränkte Haftung</b></td></tr>
+          <tr><td><b>Grobe Fahrlässigkeit</b> und ein <b>deutliches Missverhältnis von Verdienst und
+            Schadensrisiko</b></td>
+            <td>Haftung bezogen auf ein <b>normales Schadensrisiko</b></td></tr>
+          <tr><td><b>Vorsatz</b></td><td><b>Uneingeschränkte Haftung</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Die drei Grade der Fahrlässigkeit — mit den Beispielen aus dem Skript</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Grad</th><th>Definition</th><th>Beispiel</th></tr></thead>
+        <tbody>
+          <tr><td><b>Leichte Fahrlässigkeit</b></td>
+            <td>Wenn dem Arbeitnehmer <b>geringfügige Fehler</b> unterlaufen</td>
+            <td>Das <b>Blutzuckermessgerät fällt aus der Tasche</b> und wird durch den Aufprall auf den Boden
+            beschädigt</td></tr>
+          <tr><td><b>Mittlere Fahrlässigkeit</b></td>
+            <td>Wenn der Arbeitnehmer die <b>erforderliche Sorgfalt außer Acht lässt</b></td>
+            <td>Die <b>Zeitvorgabe am Sterilisatorgerät wird falsch eingestellt</b>, sodass die
+            Wundbehandlungsinstrumente verschmelzen und unbrauchbar werden</td></tr>
+          <tr><td><b>Grobe Fahrlässigkeit</b></td>
+            <td>Wenn der Arbeitnehmer <b>diejenige Sorgfalt außer Acht lässt, die jedem eingeleuchtet
+            hätte</b></td>
+            <td><b>Handytelefonat während der Autofahrt</b>, <b>Rotlichtverstoß</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="goodbox"><b>Merksatz:</b> Je gröber der Fehler, desto mehr zahlst du selbst.
+    <b>Leicht = 0 %</b>, <b>mittel = Teilung</b>, <b>grob und Vorsatz = 100 %</b>.
+    Das ist <b>Arbeitnehmerschutz</b>: Der Arbeitgeber trägt das normale Betriebsrisiko.</div>
+    <div class="warnbox"><b>Und deshalb:</b> Eine <b>Berufshaftpflichtversicherung</b> ist für Pflegekräfte
+    dringend zu empfehlen — sie greift genau bei mittlerer und grober Fahrlässigkeit.</div>
+  </section>
+
+  <div class="teil">Teil E · Arbeitsrecht und Berufsrecht</div>
+
+  <section id="s18">
+    <h2><span class="n">18</span> Arbeitsrechtliche Konsequenzen</h2>
+    <p class="lead">Pflegefehler und Verstöße gegen die Schweigepflicht können neben straf- und
+    zivilrechtlichen Folgen auch <b>erhebliche arbeitsrechtliche Konsequenzen</b> haben.
+    Die Bandbreite reicht <b>von der Abmahnung bis zur fristlosen Kündigung</b> — abhängig von
+    <b>Schwere und Umständen</b> des Fehlverhaltens.</p>
+
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Maßnahme</th><th>Wann?</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><b>Ermahnung</b></td><td>Kleinere Verstöße</td><td>Hinweis ohne rechtliche Folgen</td></tr>
+          <tr><td><b>Abmahnung</b></td><td>Erstmaliger, mittlerer Verstoß</td>
+            <td><b>Warnfunktion</b>: Der Arbeitgeber rügt das Verhalten und kündigt für den Wiederholungsfall
+            die Kündigung an. In der Regel <b>Voraussetzung</b> für eine verhaltensbedingte Kündigung.</td></tr>
+          <tr><td><b>Ordentliche Kündigung</b></td><td>Nach Abmahnung oder bei schwerem Verstoß</td>
+            <td>Mit Einhaltung der <b>Kündigungsfrist</b></td></tr>
+          <tr><td><b>Fristlose (außerordentliche) Kündigung</b></td>
+            <td>Bei <b>besonders schwerem</b> Verstoß</td>
+            <td>Sofort, ohne Frist — z. B. bei <b>vorsätzlicher Misshandlung</b>, <b>Diebstahl</b>,
+            <b>Dokumentationsfälschung</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Die drei Übungsfälle — arbeitsrechtlich bewertet</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Fall</th><th>Was ist passiert?</th><th>Arbeitsrechtliche Folge</th></tr></thead>
+        <tbody>
+          <tr><td><b>Die vergessene Tablette</b></td>
+            <td>Vergessene Medikamentengabe (fahrlässig) <b>+ falscher Eintrag in die Dokumentation</b>
+            (vorsätzlich) <b>+ Schweigepflichtverstoß</b> (HIV vor Kollegen)</td>
+            <td><b>Fristlose Kündigung möglich.</b> Nicht wegen des Vergessens — das wäre eine Abmahnung.
+            Sondern wegen der <b>vorsätzlichen Falschdokumentation</b>: Sie zerstört das Vertrauensverhältnis
+            vollständig und ist zusätzlich <b>Urkundenfälschung (§ 267 StGB)</b>.</td></tr>
+          <tr><td><b>Der Zwang zur Körperpflege</b></td>
+            <td>Ganzkörperwäsche <b>gegen den erklärten Willen</b>, zu zweit festgehalten, danach
+            <b>Schweigepflichtverstoß</b> gegenüber der Tochter</td>
+            <td><b>Abmahnung bis fristlose Kündigung.</b> Zu berücksichtigen: T. handelte auf <b>Anweisung der
+            Stationsleitung</b> — das mildert, entlastet aber <b>nicht vollständig</b>. Eine Pflegekraft muss
+            eine <b>rechtswidrige Anweisung ablehnen</b>. Die Stationsleitung trifft eine Mitverantwortung.</td></tr>
+          <tr><td><b>Das Foto fürs Pflegeheim</b></td>
+            <td>Dekubitusfoto mit <b>privatem Handy</b>, Versand per <b>WhatsApp</b>, <b>ohne</b> den Patienten
+            zu fragen</td>
+            <td><b>Abmahnung</b>, bei Wiederholung Kündigung. Verstoß gegen <b>DSGVO</b>, <b>§ 203 StGB</b>,
+            <b>Recht am eigenen Bild</b> und in der Regel gegen eine <b>Dienstanweisung</b>. Für die
+            <b>Einrichtung</b> drohen zusätzlich <b>Bußgelder</b> nach der DSGVO.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><b>Kündigungsschutz (KSchG):</b> Arbeitnehmer sind geschützt, wenn sie
+    <b>länger als 6 Monate</b> im Betrieb sind <b>und</b> der Betrieb <b>mehr als 10 Arbeitnehmer</b> hat.</div>
+  </section>
+
+  <section id="s19">
+    <h2><span class="n">19</span> Berufsrecht</h2>
+    <ul class="clean">
+      <li>Die <b>Bezirksregierung</b> überwacht das Pflegepersonal und die Pflegeschüler.</li>
+      <li><b>Verwaltungsakt:</b> Erlaubnis zur Führung des Titels (<b>§ 2 PflBG</b>) / Zulassung zur
+      Prüfung.</li>
+      <li><b>Konsequenzen (§ 3 PflBG):</b>
+        <ul class="plain" style="margin:6px 0 0">
+          <li><b>Rücknahme</b> — wenn die Voraussetzungen <b>gar nicht vorgelegen haben</b></li>
+          <li><b>Widerruf</b> des Titels — wenn die Voraussetzungen <b>nachträglich weggefallen</b> sind</li>
+        </ul>
+      </li>
+      <li>Auf Landesebene regelt die <b>Berufsordnung NRW (BO NRW)</b> — auf Grundlage des
+      <b>Heilberufsgesetzes (HeilBerG)</b> — Rechte, Pflichten und Standards.</li>
+    </ul>
+    <div class="note">Das Berufsrecht ist die <b>vierte, oft vergessene Säule</b>. Wer den Titel verliert,
+    darf nicht mehr als Pflegefachfrau/-mann arbeiten — <b>unabhängig davon</b>, ob es eine Strafe oder eine
+    Kündigung gab.</div>
+  </section>
+
+  <div class="teil">Teil F · Der Instanzenzug</div>
+
+  <section id="s20">
+    <h2><span class="n">20</span> Instanzenzug im Strafrecht und im Zivilrecht</h2>
+
+    <h3>Strafrecht — ordentliche Gerichtsbarkeit</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Gericht</th><th>Besetzung</th><th>Wann zuständig?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Amtsgericht</b></td><td>Strafrichter / Schöffengericht</td>
+            <td><b>I. Instanz</b>, wenn die Straferwartung <b>nicht mehr als 4 Jahre</b> Freiheitsstrafe
+            beträgt</td></tr>
+          <tr><td><b>Landgericht</b></td><td>Strafkammer / Schwurgericht</td>
+            <td><b>I. Instanz</b>, wenn die Straferwartung <b>mehr als 4 Jahre</b> beträgt ·
+            <b>II. Instanz</b> bei Berufung</td></tr>
+          <tr><td><b>Oberlandesgericht</b></td><td>Strafsenat</td>
+            <td><b>Revision</b>, wenn das Landgericht II. Instanz war</td></tr>
+          <tr><td><b>Bundesgerichtshof</b></td><td>Strafsenat</td>
+            <td><b>Revision</b>, wenn das Landgericht I. Instanz war</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card tight">
+      <b>Die zwei Wege:</b><br>
+      • <b>Amtsgericht</b> → Berufung zum <b>Landgericht</b> → Revision zum <b>Oberlandesgericht</b><br>
+      • <b>Landgericht</b> (als I. Instanz) → Revision zum <b>Bundesgerichtshof</b><br><br>
+      <b>Sprungrevision:</b> Vom <b>Amtsgericht</b> direkt zum <b>Oberlandesgericht</b> — unter Überspringen
+      der Berufung.<br><br>
+      <b>Vorschriften:</b> GVG, StPO + Sonderregelungen (z. B. Staatsschutzsachen).
+    </div>
+
+    <h3>Zivilrecht — ordentliche Gerichtsbarkeit</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Gericht</th><th>Besetzung</th><th>Wann zuständig?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Amtsgericht</b></td><td>Abteilung mit <b>1 Richter</b></td>
+            <td><b>I. Instanz bis 5.000 € Streitwert</b> oder bei Sonderregelung (z. B. Miete für
+            Wohnraum)</td></tr>
+          <tr><td><b>Landgericht</b></td><td>Kammer mit 1 / 3 Richtern</td>
+            <td><b>I. Instanz über 5.000 € Streitwert</b> oder bei Sonderregelung ·
+            <b>II. Instanz</b> bei Berufung</td></tr>
+          <tr><td><b>Oberlandesgericht</b></td><td>Senat mit <b>3 Richtern</b></td>
+            <td><b>Berufung</b>, wenn das Landgericht I. Instanz war</td></tr>
+          <tr><td><b>Bundesgerichtshof</b></td><td>Senat mit <b>5 Richtern</b></td>
+            <td><b>Revision</b> (wenn zugelassen, sonst Nichtzulassungsbeschwerde)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card tight">
+      <b>Die zwei Wege (so steht es im Übungsblatt):</b><br>
+      • <b>Amtsgericht</b> → Berufung <b>Landgericht</b> → Revision <b>Oberlandesgericht</b> →
+      Revision <b>Bundesgerichtshof</b><br>
+      • <b>Landgericht</b> → Berufung <b>Oberlandesgericht</b> → Revision <b>Bundesgerichtshof</b><br><br>
+      <b>Berufung</b> ist nur möglich, wenn die <b>Beschwer über 600 €</b> liegt oder sie <b>zugelassen</b>
+      wurde. <b>Sprungrevision</b>: vom Landgericht direkt zum BGH.<br><br>
+      <b>Vorschriften:</b> GVG, ZPO + Sonderregelungen.
+    </div>
+
+    <h3>Die Antwort auf die Klausuraufgabe (Streitwert 10.000 €)</h3>
+    <div class="goodbox">
+      Bei einem Streitwert von <b>10.000 €</b> ist das <b>Landgericht</b> die <b>I. Instanz</b>
+      (über 5.000 €). Rechtsmittel: <b>Berufung zum Oberlandesgericht</b>, danach ggf.
+      <b>Revision zum Bundesgerichtshof</b>.
+    </div>
+
+    <h3>Berufung oder Revision?</h3>
+    <div class="two">
+      <div class="col c1">
+        <h4>Berufung</h4>
+        <p style="font-size:14.5px;margin:0">Der Fall wird <b>komplett neu verhandelt</b> — auch die
+        <b>Tatsachen</b> werden neu geprüft. Neue Beweise sind (begrenzt) möglich.</p>
+      </div>
+      <div class="col c2">
+        <h4>Revision</h4>
+        <p style="font-size:14.5px;margin:0">Es wird <b>nur geprüft, ob das Recht richtig angewendet</b> wurde
+        (<b>Rechtsfehler</b>). Die <b>Tatsachen stehen fest</b> und werden nicht neu verhandelt.</p>
+      </div>
+    </div>
+
+    <h3>Gemeinsamkeiten und Unterschiede</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th></th><th>Strafrecht</th><th>Zivilrecht</th></tr></thead>
+        <tbody>
+          <tr><td><b>Wer klagt?</b></td><td>Der <b>Staatsanwalt</b> (der Staat)</td>
+            <td>Der <b>Patient</b> (eine Privatperson)</td></tr>
+          <tr><td><b>Worum geht es?</b></td><td>Strafe: Geld-/Freiheitsstrafe, Berufsverbot</td>
+            <td>Geld: Schadensersatz, Schmerzensgeld</td></tr>
+          <tr><td><b>Zuständigkeit I. Instanz</b></td><td>nach der <b>Straferwartung</b> (4 Jahre)</td>
+            <td>nach dem <b>Streitwert</b> (5.000 €)</td></tr>
+          <tr><td><b>Gemeinsam</b></td>
+            <td colspan="2"><b>Dieselben Gerichte</b> (AG → LG → OLG → BGH), <b>dieselben Rechtsmittel</b>
+            (Berufung, Revision, Sprungrevision), <b>drei Instanzen</b> — beide gehören zur
+            <b>ordentlichen Gerichtsbarkeit</b>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><b>„Warum ist es wichtig, die Instanzen zu kennen?“</b> — Damit du weißt, dass ein Urteil
+    <b>nicht das Ende</b> ist. Es gibt <b>Rechtsmittel</b> mit <b>Fristen</b>. Und: Als Betroffene weißt du,
+    <b>wohin</b> du dich wenden musst, wann du <b>anwaltliche Hilfe</b> brauchst und dass deine
+    <b>Berufshaftpflicht</b> und die <b>Gewerkschaft</b> Rechtsschutz bieten.</div>
+
+    <h3>Die fünf Gerichtsbarkeiten</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Gerichtsbarkeit</th><th>Instanzen</th><th>Oberstes Gericht</th></tr></thead>
+        <tbody>
+          <tr><td><b>Ordentliche</b> (Zivil- und Strafgerichtsbarkeit)</td>
+            <td>Amtsgerichte → Landgerichte → Oberlandesgerichte</td><td><b>Bundesgerichtshof</b></td></tr>
+          <tr><td><b>Arbeitsgerichtsbarkeit</b></td><td>Arbeitsgerichte → Landesarbeitsgerichte</td>
+            <td><b>Bundesarbeitsgericht</b></td></tr>
+          <tr><td><b>Verwaltungsgerichtsbarkeit</b></td>
+            <td>Verwaltungsgerichte → Oberverwaltungsgerichte / Verwaltungsgerichtshöfe</td>
+            <td><b>Bundesverwaltungsgericht</b></td></tr>
+          <tr><td><b>Sozialgerichtsbarkeit</b></td><td>Sozialgerichte → Landessozialgerichte</td>
+            <td><b>Bundessozialgericht</b></td></tr>
+          <tr><td><b>Finanzgerichtsbarkeit</b></td><td>Finanzgerichte</td><td><b>Bundesfinanzhof</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="goodbox">Über allem stehen das <b>Bundesverfassungsgericht</b> und die
+    <b>Länderverfassungsgerichte</b>. Zwischen den obersten Gerichtshöfen des Bundes vermittelt der
+    <b>Gemeinsame Senat der obersten Gerichtshöfe des Bundes</b>.<br><br>
+    <b>Für die Pflege wichtig:</b> Arbeitsrechtliche Streitigkeiten (Abmahnung, Kündigung) laufen <b>nicht</b>
+    vor dem Amtsgericht, sondern vor dem <b>Arbeitsgericht</b>. Und der Streit um die Erlaubnis zur
+    Titelführung läuft vor dem <b>Verwaltungsgericht</b>.</div>
+  </section>
+
+  <div class="teil">Teil G · Vertretung, Betreuung und Fixierung</div>
+
+  <section id="s21">
+    <h2><span class="n">21</span> Wer darf entscheiden, wenn der Patient es nicht kann?</h2>
+
+    <h3>Vorsorgevollmacht</h3>
+    <ul class="clean">
+      <li>Der Mensch bestimmt <b>selbst und im Voraus</b>, wer für ihn entscheiden darf.</li>
+      <li>Sie geht <b>allen anderen Regelungen vor</b>: Hat jemand bereits <b>proaktiv eine rechtswirksame
+      Vorsorgevollmacht</b> erteilt, bleibt deren Wirkung erhalten — das gesetzliche
+      <b>Ehegattennotvertretungsrecht kommt dann nicht zum Tragen</b>.</li>
+    </ul>
+
+    <h3>Notfallvertretungsrecht für Ehegatten — neu seit Januar 2023</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>Es trat zum <b>Januar 2023</b> in Kraft.</li>
+        <li><b>Ehegatten</b> und <b>Partner eingetragener Lebenspartnerschaften</b> dürfen den jeweils anderen
+        in <b>Themen der Gesundheitssorge</b> vertreten, wenn dieser <b>nicht mehr in der Lage ist, selbst
+        Entscheidungen zu treffen</b>.</li>
+        <li>Die Ausübung setzt eine <b>Bescheinigung des behandelnden Arztes</b> voraus.</li>
+        <li>Das automatische Vertretungsrecht kann <b>nicht auf andere Familienmitglieder</b> übertragen werden
+        (z. B. nicht auf erwachsene Kinder).</li>
+        <li>Dauert die Einwilligungsunfähigkeit <b>länger als 6 Monate</b>, muss das <b>Betreuungsgericht einen
+        Betreuer bestellen</b>.</li>
+      </ul>
+    </div>
+    <div class="warnbox"><b>Häufiger Irrtum:</b> Ehepartner und erwachsene Kinder dürfen <b>nicht automatisch</b>
+    alles entscheiden oder Auskunft bekommen. Ohne Vollmacht, Betreuung oder (seit 2023) die
+    <b>ärztliche Bescheinigung</b> gilt weiterhin die <b>Schweigepflicht</b>.</div>
+
+    <h3>Betreuungsrecht</h3>
+    <ul class="clean">
+      <li>Geregelt im <b>BGB Teil 4 (Familienrecht)</b>.</li>
+      <li>Das <b>Betreuungsgericht</b> bestellt einen <b>Betreuer</b> mit festgelegten
+      <b>Aufgabenkreisen</b>.</li>
+      <li>Zum Betreuungsrecht gehört ausdrücklich auch die <b>Genehmigung von Fixierungen</b>.</li>
+    </ul>
+
+    <h3>Fixierung und freiheitsentziehende Maßnahmen</h3>
+    <div class="badbox">
+      <b>Eine Fixierung ist erlaubt, wenn eine dieser Voraussetzungen erfüllt ist:</b>
+      <ul class="plain">
+        <li>Der <b>einwilligungsfähige</b> Patient <b>willigt ein</b> (Einwilligung, § 5 des Prüfschemas), oder</li>
+        <li>es liegt eine <b>richterliche Genehmigung</b> vor (bei Betreuung) bzw. eine <b>richterliche
+        Anordnung</b> nach <b>PsychKG</b>, oder</li>
+        <li>es besteht ein <b>akuter Notfall</b> (rechtfertigender Notstand) — dann aber nur
+        <b>vorübergehend</b>, mit <b>sofortiger ärztlicher Absprache</b>, <b>lückenloser Dokumentation</b>
+        und <b>unverzüglicher Nachholung der richterlichen Genehmigung</b>.</li>
+      </ul>
+      <b>Fehlt all das → Freiheitsberaubung nach § 239 StGB.</b>
+    </div>
+    <div class="goodbox"><b>Zu Fall 3 („Frau Yilmaz“):</b> Pflegefachfrau Sabine entscheidet <b>allein</b>,
+    <b>aus Praktikabilitätsgründen</b>, <b>ohne richterliche Genehmigung</b>, <b>ohne ärztliche Absprache</b>
+    und <b>ohne Dokumentation</b> — und die Patientin äußert wiederholt, sie wolle aufstehen.
+    Damit ist <b>keine</b> der drei Voraussetzungen erfüllt. Zusätzlich zu § 239 kommt wegen der
+    <b>Hämatome</b> eine <b>Körperverletzung § 223</b> in Betracht. Schuldform: <b>Vorsatz</b> —
+    sie wusste, was sie tat, und wollte es.</div>
+    <div class="note"><b>Zum Bettseitenschutz im Einstiegsfall:</b> Auch das Hochziehen des Bettgitters
+    <b>gegen den erklärten Willen</b> von Frau Müller ist eine <b>freiheitsentziehende Maßnahme</b>.
+    Pauls gute Absicht („auf Nummer sicher gehen“) rechtfertigt sie <b>nicht</b>.</div>
+  </section>
+
+  <div class="teil">Teil H · Medizinprodukte</div>
+
+  <section id="s22">
+    <h2><span class="n">22</span> Medizinprodukte — die Rollator-Schulung</h2>
+    <p class="lead">Rechtsgrundlagen: <b>MPDG</b> (Medizinprodukterecht-Durchführungsgesetz) und
+    <b>MPBetreibV</b> (Medizinproduktebetreiberverordnung).</p>
+
+    <h3>1 · Rollatoren als Medizinprodukte</h3>
+    <ul class="clean">
+      <li>Rollatoren sind ein <b>gängiges Medizinprodukt</b>, um Menschen mit Gehbehinderungen wieder einen
+      gewissen Grad an <b>Bewegung</b> zu ermöglichen.</li>
+      <li>Vorteil: Patienten können sich <b>aufstützen</b>, <b>kleine Einkäufe transportieren</b> und ihn auch
+      als <b>kurzfristige Sitzgelegenheit</b> benutzen — <b>wenn der Hersteller dies vorsieht</b>.</li>
+      <li>Da die Produkte oft <b>faltbar oder zusammenklappbar</b> sind, lassen sie sich einfach verstauen und
+      transportieren.</li>
+      <li><b>Rollatoren</b> sind <b>vierrädrige</b> Gehhilfen. <b>Dreirädrige</b> Gehhilfen heißen
+      <b>Delta-Gehräder</b>.</li>
+      <li>Delta-Gehräder haben wegen ihrer <b>geringeren Standfläche wesentlich weniger
+      Unterstützungsmöglichkeiten</b> und sind <b>kein Ersatz</b> für Rollatoren.</li>
+    </ul>
+
+    <h3>2 · Maßnahmen zur Sicherheit</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>Der Rollator darf <b>nur bei angezogenen Bremsen</b> als Sitzhilfe genutzt werden.</li>
+        <li><b>Nutzen Sie den Rollator niemals als Rollstuhlersatz!</b></li>
+        <li>Eine <b>falsche Einstellung der Griffhöhe</b> führt dazu, dass der Patient entweder den
+        <b>sicheren Standbereich zwischen den Rädern verlässt</b> oder sich in Gefahrensituationen
+        <b>nicht effektiv aufstützen</b> kann.</li>
+        <li>Prüfen Sie daher <b>stets die korrekte Einstellung der Griffhöhe</b>.</li>
+        <li><b>Reinigen und desinfizieren</b> Sie Rollatoren, die von mehreren Patienten benutzt werden,
+        <b>bei jedem Patientenwechsel</b>.</li>
+      </ul>
+    </div>
+
+    <h3>3 · Worauf Sie achten müssen</h3>
+    <ul class="clean">
+      <li>Beachten Sie die Angaben der <b>Gebrauchsanweisung</b> und der <b>Kennzeichnung</b> sowie die
+      Maßnahmen zur <b>hygienischen Sicherheit</b>.</li>
+      <li><b>Überprüfen Sie jeden Rollator auf Schäden, bevor der Patient ihn benutzt.</b></li>
+      <li>Insbesondere die <b>Handgriffe</b> sollten bei Nutzung durch mehrere Patienten regelmäßig bei jedem
+      Patientenwechsel mit einer <b>Wischdesinfektion</b> gereinigt werden.</li>
+      <li>Die Produkte sind <b>nicht im Bestandsverzeichnis</b> und <b>nicht im Medizinproduktebuch</b> zu
+      führen.</li>
+      <li>Alle <b>Einweisungen von Anwendern</b> am Produkt werden in deren <b>Personalakte</b>
+      dokumentiert.</li>
+      <li>Die <b>Einweisung des Patienten</b> ist ebenfalls zu dokumentieren, und in der <b>Patientenakte</b>
+      ist das neue Hilfsmittel zu vermerken.</li>
+      <li><b>Meldung aller Vorkommnisse und Beinahe-Vorkommnisse</b> erfolgt immer an das <b>BfArM</b>
+      (Bundesinstitut für Arzneimittel und Medizinprodukte).</li>
+      <li><b>Ausnahme:</b> <b>Elektrisch unterstützte Rollatoren</b> <b>wären</b> im <b>Bestandsverzeichnis</b>
+      zu führen.</li>
+    </ul>
+
+    <h3>4 · Nicht vergessen</h3>
+    <div class="badbox">
+      <ul class="plain" style="margin:0">
+        <li><b>Beachten Sie immer die Angaben der Gebrauchsanweisung!</b></li>
+        <li><b>Überprüfen Sie regelmäßig den Rollator auf sichtbare Beschädigungen</b>, insbesondere
+        <b>Räder und Bremsen</b>!</li>
+        <li><b>Benutzen Sie den Rollator nie als „Rollstuhl“ oder als „Transportwagen“!</b></li>
+      </ul>
+    </div>
+
+    <h3>5 · Die drei Wiederholungsfragen — mit Antwort</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Frage</th><th>Antwort</th></tr></thead>
+        <tbody>
+          <tr><td><b>Können Rollatoren als Sitzhilfe genutzt werden?</b></td>
+            <td><b>Ja — aber nur</b>, wenn der <b>Hersteller es vorsieht</b> und <b>nur bei angezogenen
+            Bremsen</b>. Und <b>niemals</b> als Rollstuhlersatz, also nie im Sitzen schieben.</td></tr>
+          <tr><td><b>Was müssen Sie nach dem Zusammenfalten bzw. -klappen immer kontrollieren?</b></td>
+            <td>Dass der Rollator wieder <b>vollständig und sicher eingerastet</b> ist — und die
+            <b>Griffhöhe sowie die Bremsen</b> korrekt eingestellt und funktionsfähig sind.</td></tr>
+          <tr><td><b>Müssen Sie in Rollatoren eingewiesen werden?</b></td>
+            <td><b>Ja.</b> Die Einweisung ist Pflicht und wird in der <b>Personalakte</b> dokumentiert.
+            Auch der <b>Patient</b> muss eingewiesen werden — dokumentiert in der <b>Patientenakte</b>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="goodbox"><b>Und damit schließt sich der Kreis zum Einstiegsfall:</b> Anna hatte
+    <b>keine Einweisung</b> und benutzte den Rollator <b>als Transportwagen</b> — genau das, was hier
+    ausdrücklich verboten ist. Deshalb ist der Einstiegsfall gleichzeitig ein <b>Medizinprodukte-Fall</b>.</div>
+  </section>
+
+  <div class="teil">Teil I · Die Übungsfälle für die Klausur</div>
+
+  <section id="s23">
+    <h2><span class="n">23</span> Wie du einen Fall in der Klausur bearbeitest</h2>
+    <p class="lead">Alle Fälle haben dieselben vier Fragen. Hier ist die Bauanleitung für die Antwort.</p>
+
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Frage</th><th>So antwortest du</th></tr></thead>
+        <tbody>
+          <tr><td><b>a) Nennen Sie zwei relevante Gesetze und begründen Sie kurz.</b></td>
+            <td>Immer <b>Gesetz + warum</b>. Standardpaar: <b>StGB</b> („weil das Verhalten den Tatbestand
+            der … erfüllt“) und <b>BGB</b> („weil ein Behandlungs-/Heimvertrag besteht und dem Patienten ein
+            Schaden entstanden ist, § 280 / § 823 BGB“). Ergänze je nach Fall <b>GG</b> (Würde, Freiheit,
+            körperliche Unversehrtheit), <b>DSGVO</b> (Daten), <b>PflBG</b> (Berufspflichten),
+            <b>MPBetreibV</b> (Medizinprodukte).</td></tr>
+          <tr><td><b>b) Liegen die Voraussetzungen einer Straftat vor?</b></td>
+            <td>Die drei Stufen abarbeiten: <b>Tatbestand → Rechtswidrigkeit → Schuld</b>.
+            Jeweils mit dem Muster „Dann müsste …“ / „Hier hat …“.</td></tr>
+          <tr><td><b>Mit welcher Form der Schuld?</b></td>
+            <td><b>Vorsatz</b> (Wissen und Wollen) oder <b>Fahrlässigkeit</b> (Außerachtlassen der
+            erforderlichen Sorgfalt) — <b>immer mit Begründung</b>.</td></tr>
+          <tr><td><b>Nennen Sie eine mögliche Konsequenz.</b></td>
+            <td><b>Geldstrafe</b>, <b>Freiheitsstrafe</b> (bis 5 Jahre bei §§ 223/239, bis 1 Jahr bei § 203)
+            oder <b>Berufsverbot</b>.</td></tr>
+          <tr><td><b>Schlusssatz</b></td>
+            <td>Immer nach demselben Muster: <span class="satz" style="margin:4px 0 0">„… hat sich wegen
+            (vorsätzlicher / fahrlässiger) ……… nach § ……… StGB strafbar gemacht.“</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="goodbox"><b>Tipp:</b> Schreib bei <b>jedem</b> Fall alle drei Stufen auf — auch wenn das
+    Ergebnis schon nach Stufe I klar ist. Für jede Stufe gibt es <b>Punkte</b>.</div>
+  </section>
+
+  <section id="s24">
+    <h2><span class="n">24</span> Die 5 Fälle „Übungsfälle für die Klausur“</h2>
+
+    <h3>Fall 1 — Jana und die Medikamentenverwechslung</h3>
+    <div class="card">
+      <p style="margin-top:0"><b>Sachverhalt:</b> Pflegefachfrau <b>Jana</b> verzichtet <b>wegen Zeitdrucks</b>
+      auf die vorgeschriebene <b>Doppelkontrolle bei Hochrisiko-Medikamenten</b>, verwechselt die Tabletten
+      zweier Patienten und gibt Herrn Schulz ein <b>kontraindiziertes</b> Medikament. Er entwickelt
+      <b>Herzrasen und Blutdruckabfall</b> und muss auf die <b>Intensivstation</b> — eine vorübergehende
+      schwere <b>Kreislaufentgleisung</b>.</p>
+      <ul class="clean">
+        <li><b>a) Gesetze:</b> <b>StGB</b> — der Tatbestand der <b>Körperverletzung § 223</b> ist erfüllt
+        (Gesundheitsschädigung). <b>BGB</b> — es besteht ein <b>Behandlungsvertrag</b>, dessen Hauptpflicht
+        (sorgfältige Medikamentengabe) verletzt wurde; Ansprüche aus <b>§ 280</b> und <b>§ 823</b>.
+        Ergänzend: <b>PflBG</b> (Vorbehaltstätigkeiten, Sorgfaltspflicht).</li>
+        <li><b>I. Tatbestand:</b> Jana müsste eine andere Person <b>an der Gesundheit geschädigt</b> haben.
+        Hier hat sie durch die Gabe des falschen Medikaments eine Kreislaufentgleisung verursacht ✓</li>
+        <li><b>II. Rechtswidrigkeit:</b> Rechtfertigungsgründe? Eine <b>Einwilligung</b> lag nur für das
+        <b>richtige</b> Medikament vor, nicht für das falsche. Notwehr und Notstand scheiden aus →
+        <b>rechtswidrig</b> ✓</li>
+        <li><b>III. Schuld:</b> Jana ist über 14 und nicht seelisch gestört → <b>schuldfähig</b>.
+        <b>Schuldform: Fahrlässigkeit.</b> Sie wollte den Schaden nicht (kein Vorsatz), hat aber die
+        <b>im Verkehr erforderliche Sorgfalt außer Acht gelassen</b>, indem sie die <b>vorgeschriebene
+        Doppelkontrolle</b> unterließ. Da diese Kontrolle bei Hochrisiko-Medikamenten <b>jedem</b> eingeleuchtet
+        hätte, spricht viel für <b>grobe Fahrlässigkeit</b>.</li>
+        <li><b>Konsequenz:</b> <b>Geldstrafe</b> (bei fahrlässiger Körperverletzung § 229 StGB), zivilrechtlich
+        <b>Schadensersatz und Schmerzensgeld</b>, arbeitsrechtlich <b>Abmahnung</b>, wegen grober
+        Fahrlässigkeit droht <b>Regress</b>.</li>
+      </ul>
+      <div class="goodbox" style="margin-bottom:0"><b>Schlusssatz:</b> „Jana hat sich wegen <b>fahrlässiger
+      Körperverletzung nach §§ 223, 229 StGB</b> strafbar gemacht.“</div>
+    </div>
+
+    <h3>Fall 2 — Leon und die „peinliche Diagnose“</h3>
+    <div class="card">
+      <p style="margin-top:0"><b>Sachverhalt:</b> Pflegefachkraft <b>Leon</b> erzählt in der <b>Kaffeepause</b>
+      laut hörbar von der <b>sexuell übertragbaren Erkrankung</b> von Herrn Becker, <b>nennt Namen und
+      Zimmernummer</b>. Eine Angehörige hört mit, erkennt ihn, die Information verbreitet sich in der
+      <b>Nachbarschaft</b>.</p>
+      <ul class="clean">
+        <li><b>a) Gesetze:</b> <b>StGB</b> — <b>§ 203 Verletzung von Privatgeheimnissen</b>.
+        <b>DSGVO</b> — unbefugte Verarbeitung/Offenlegung besonders sensibler <b>Gesundheitsdaten</b>.
+        Ergänzend <b>GG Art. 1 und 2</b> (Menschenwürde, Persönlichkeitsrecht) und <b>BGB § 823</b>
+        (Verletzung des <b>allgemeinen Persönlichkeitsrechts</b> → Schmerzensgeld).</li>
+        <li><b>I. Tatbestand § 203:</b> Leon ist <b>Geheimnisträger</b> (Heilberuf mit staatlicher Ausbildung) ✓
+        · die Diagnose ist ein <b>fremdes Geheimnis</b> ✓ · er erfuhr sie <b>in der pflegerischen Übergabe</b>,
+        also im Rahmen der Berufsausübung ✓ · er hat sie <b>offenbart</b> — gegenüber der Kollegin aus einer
+        <b>anderen Abteilung</b> (nicht am Behandlungsprozess beteiligt) und gegenüber der mithörenden
+        Angehörigen ✓</li>
+        <li><b>II. Rechtswidrigkeit:</b> Keine der fünf Befugnisse liegt vor — keine Einwilligung, kein
+        Notstand, keine gesetzliche Vorschrift → <b>rechtswidrig</b> ✓</li>
+        <li><b>III. Schuld:</b> schuldfähig ✓ · <b>Schuldform: Vorsatz.</b> Leon <b>wusste</b>, dass es sich um
+        eine geheime Diagnose handelt, und <b>wollte</b> sie erzählen. Dass er die Verbreitung in der
+        Nachbarschaft nicht wollte, ändert nichts — der Vorsatz bezieht sich auf das <b>Offenbaren</b>.</li>
+        <li><b>Konsequenz:</b> <b>Freiheitsstrafe bis zu einem Jahr oder Geldstrafe</b>. Antragsdelikt —
+        Herr Becker muss <b>Strafantrag</b> stellen. Zivilrechtlich <b>Schmerzensgeld</b>, arbeitsrechtlich
+        bis zur <b>Kündigung</b>.</li>
+      </ul>
+      <div class="goodbox" style="margin-bottom:0"><b>Schlusssatz:</b> „Leon hat sich wegen <b>vorsätzlicher
+      Verletzung von Privatgeheimnissen nach § 203 StGB</b> strafbar gemacht.“</div>
+    </div>
+
+    <h3>Fall 3 — Sabine und die Fixierung von Frau Yilmaz</h3>
+    <div class="card">
+      <p style="margin-top:0"><b>Sachverhalt:</b> Pflegefachfrau <b>Sabine</b> fixiert die demenziell erkrankte,
+      82-jährige Frau Yilmaz <b>allein und aus Praktikabilitätsgründen</b> mit einem <b>Bauchgurt</b> im Bett.
+      <b>Keine richterliche Genehmigung</b>, <b>keine ärztliche Absprache</b>, <b>keine Dokumentation</b>.
+      Frau Yilmaz wird <b>mehrere Stunden</b> fixiert, äußert wiederholt, sie wolle aufstehen und fühle sich
+      eingesperrt. Am Morgen: <b>Schmerzen, Hämatome am Bauch, starke Angstgefühle</b>.</p>
+      <ul class="clean">
+        <li><b>a) Gesetze:</b> <b>StGB</b> — <b>§ 239 Freiheitsberaubung</b> und <b>§ 223 Körperverletzung</b>
+        (Hämatome, Schmerzen). <b>GG</b> — <b>Art. 2 Abs. 2</b>: Recht auf <b>Freiheit</b> und <b>körperliche
+        Unversehrtheit</b>; <b>Art. 1</b> Menschenwürde. Ergänzend <b>BGB Teil 4</b> (Betreuungsrecht —
+        Genehmigung von Fixierungen) und <b>WTG NRW</b>.</li>
+        <li><b>I. Tatbestand § 239:</b> Sabine müsste einen anderen Menschen <b>auf andere Weise der Freiheit
+        beraubt</b> haben. Hier hat sie Frau Yilmaz mit einem Bauchgurt über Stunden am Verlassen des Bettes
+        gehindert ✓ — zusätzlich <b>§ 223</b> durch die Hämatome ✓</li>
+        <li><b>II. Rechtswidrigkeit:</b> Rechtfertigungsgründe prüfen —
+        <b>Einwilligung</b>: liegt nicht vor, im Gegenteil, Frau Yilmaz widerspricht ausdrücklich ✗ ·
+        <b>Besondere Rechtfertigungsgründe (II. dd)</b>: <b>keine richterliche Genehmigung</b>, keine Anordnung
+        nach PsychKG ✗ · <b>Notstand</b>: eine akute Selbstgefährdung wurde <b>weder dokumentiert noch mit dem
+        Arzt abgesprochen</b>; es ging um <b>Praktikabilität</b>, nicht um eine gegenwärtige Gefahr ✗
+        → <b>rechtswidrig</b> ✓</li>
+        <li><b>III. Schuld:</b> schuldfähig ✓ · <b>Schuldform: Vorsatz.</b> Sabine <b>wusste</b>, dass sie
+        Frau Yilmaz gegen deren Willen festhält, und <b>wollte</b> dies. Die gute Absicht (Sturzprophylaxe)
+        beseitigt den Vorsatz <b>nicht</b>.</li>
+        <li><b>Konsequenz:</b> <b>Freiheitsstrafe bis zu fünf Jahren oder Geldstrafe</b>, in schweren Fällen
+        <b>Berufsverbot</b>; zivilrechtlich <b>Schmerzensgeld</b>; arbeitsrechtlich bis zur <b>fristlosen
+        Kündigung</b>.</li>
+      </ul>
+      <div class="goodbox" style="margin-bottom:0"><b>Schlusssatz:</b> „Sabine hat sich wegen <b>vorsätzlicher
+      Freiheitsberaubung nach § 239 StGB in Tateinheit mit vorsätzlicher Körperverletzung nach § 223 StGB</b>
+      strafbar gemacht.“</div>
+    </div>
+
+    <h3>Fall 4 — Thomas und die Verbrühung von Herrn Lange</h3>
+    <div class="card">
+      <p style="margin-top:0"><b>Sachverhalt:</b> Herr Lange ist nach einem Schlaganfall rechtsseitig gelähmt und
+      hat eine <b>Sensibilitätsstörung</b>. Pflegefachkraft <b>Thomas</b> testet die Wassertemperatur
+      <b>weder mit dem Thermometer noch am Unterarm</b>, dreht den Warmwasserhahn <b>weit auf</b> — Herr Lange
+      erleidet <b>zweitgradige Verbrühungen</b> an Rücken und Schultern.</p>
+      <ul class="clean">
+        <li><b>a) Gesetze:</b> <b>StGB</b> — <b>§ 223 Körperverletzung</b> (körperliche Misshandlung und
+        Gesundheitsschädigung). <b>BGB</b> — Verletzung der Hauptpflicht aus dem Behandlungsvertrag,
+        <b>§ 280</b> und <b>§ 823</b>. Ergänzend <b>PflBG</b> (fachgerechte Durchführung als
+        Vorbehaltstätigkeit).</li>
+        <li><b>I. Tatbestand:</b> Thomas müsste eine andere Person <b>körperlich misshandelt oder an der
+        Gesundheit geschädigt</b> haben. Hier: Verbrühungen 2. Grades ✓</li>
+        <li><b>II. Rechtswidrigkeit:</b> Die Einwilligung in die Körperpflege deckt <b>keine Verbrühung</b>.
+        Keine weiteren Rechtfertigungsgründe → <b>rechtswidrig</b> ✓</li>
+        <li><b>III. Schuld:</b> schuldfähig ✓ · <b>Schuldform: Fahrlässigkeit.</b> Thomas wollte den Schaden
+        nicht, hat aber die <b>im Verkehr erforderliche Sorgfalt außer Acht gelassen</b>: Die Kontrolle der
+        Wassertemperatur ist eine <b>Basismaßnahme</b>, und die <b>Sensibilitätsstörung war ihm bekannt</b>.
+        Da diese Sorgfalt <b>jedem eingeleuchtet</b> hätte, liegt <b>grobe Fahrlässigkeit</b> nahe.</li>
+        <li><b>Konsequenz:</b> <b>Geldstrafe</b> (§ 229 StGB), <b>Schadensersatz und Schmerzensgeld</b>,
+        arbeitsrechtlich <b>Abmahnung</b>, wegen grober Fahrlässigkeit <b>voller Regress</b> möglich.</li>
+      </ul>
+      <div class="goodbox" style="margin-bottom:0"><b>Schlusssatz:</b> „Thomas hat sich wegen <b>fahrlässiger
+      Körperverletzung nach §§ 223, 229 StGB</b> strafbar gemacht.“</div>
+    </div>
+
+    <h3>Fall 5 — Markus und das abgeschlossene Dienstzimmer</h3>
+    <div class="card">
+      <p style="margin-top:0"><b>Sachverhalt:</b> Frau König (25) ist wegen einer <b>depressiven Episode mit
+      Suizidgedanken</b> auf der psychiatrischen Akutstation. Sie fordert lautstark, aber <b>nicht aggressiv</b>,
+      entlassen zu werden. Pfleger <b>Markus</b> fühlt sich <b>genervt und überfordert</b>, ruft <b>nicht den
+      Arzt</b>, führt sie in ein Dienstzimmer, <b>schließt die Tür von außen ab</b> und lässt sie <b>eine
+      Stunde allein</b>, „damit Ruhe ist“. Sie klopft, ruft um Hilfe, bekommt <b>Panik</b> und <b>kratzt sich
+      die Arme blutig</b>.</p>
+      <ul class="clean">
+        <li><b>a) Gesetze:</b> <b>StGB</b> — <b>§ 239 Freiheitsberaubung</b> (Einsperren im Wortsinn!),
+        zusätzlich <b>§ 223</b> (die selbst zugefügten Verletzungen sind ihm zurechenbar) und
+        <b>§ 221 Aussetzung</b> (er lässt eine suizidgefährdete Patientin in hilfloser Lage trotz
+        <b>Obhutspflicht</b> allein). <b>GG Art. 2 Abs. 2</b> — Freiheit. Ergänzend <b>PsychKG NRW</b>
+        (weil nur dieses Gesetz eine Unterbringung erlauben würde).</li>
+        <li><b>I. Tatbestand § 239:</b> Markus müsste einen Menschen <b>eingesperrt</b> haben.
+        Hier: Er schloss die Tür <b>von außen ab</b> — das ist Einsperren im engsten Sinn ✓</li>
+        <li><b>II. Rechtswidrigkeit:</b> <b>Keine Einwilligung</b> ✗ · <b>kein richterlicher Beschluss</b>,
+        <b>keine Anordnung nach PsychKG</b> ✗ · <b>Notstand?</b> Sie war <b>nicht aggressiv</b>, es bestand
+        keine gegenwärtige Fremdgefahr; die Selbstgefährdung hätte durch <b>Arztruf und Betreuung</b>
+        abgewendet werden können — das Einsperren war <b>nicht erforderlich</b> und diente ausdrücklich der
+        eigenen Entlastung („damit Ruhe ist“) ✗ → <b>rechtswidrig</b> ✓</li>
+        <li><b>III. Schuld:</b> schuldfähig ✓ · <b>Schuldform: Vorsatz.</b> Markus <b>wusste</b>, dass er sie
+        einsperrt, und <b>wollte</b> genau das. Die Verletzungen sind <b>fahrlässig</b> verursacht
+        (vorhersehbare Folge bei einer suizidgefährdeten Patientin).</li>
+        <li><b>Konsequenz:</b> <b>Freiheitsstrafe bis zu fünf Jahren oder Geldstrafe</b>, ggf.
+        <b>Berufsverbot</b>; <b>fristlose Kündigung</b>; <b>Schmerzensgeld</b>; berufsrechtlich
+        <b>Widerruf der Erlaubnis</b> möglich.</li>
+      </ul>
+      <div class="goodbox" style="margin-bottom:0"><b>Schlusssatz:</b> „Markus hat sich wegen <b>vorsätzlicher
+      Freiheitsberaubung nach § 239 StGB</b> — in Tateinheit mit <b>fahrlässiger Körperverletzung</b> und
+      möglicher <b>Aussetzung nach § 221 StGB</b> — strafbar gemacht.“</div>
+    </div>
+  </section>
+
+  <section id="s25">
+    <h2><span class="n">25</span> Die 4 Fälle „Strafrecht — Zivilrecht — Arbeitsrecht“</h2>
+    <p class="lead">Bei diesen Fällen werden <b>alle drei Rechtsgebiete</b> abgefragt.</p>
+
+    <h3>Fall 1 — „Beruhigungsmittel“</h3>
+    <div class="card">
+      <p style="margin-top:0"><b>Sachverhalt:</b> Pflegefachkraft <b>M.</b> verabreicht der 78-jährigen
+      Patientin P. <b>gegen deren ausdrücklichen Willen</b> ein Beruhigungsmittel <b>per Injektion</b>,
+      um sie „ruhigzustellen“. Anschließend informiert M. den <b>Ehemann</b> telefonisch über die neue
+      <b>Demenz-Diagnose</b> — <b>ohne Einwilligung</b> der Patientin.</p>
+      <ul class="clean">
+        <li><b>Strafrecht:</b> <b>§ 223 Körperverletzung</b> — die Injektion ist ein <b>Heileingriff</b>,
+        also <b>immer</b> eine Körperverletzung; die Einwilligung fehlt, im Gegenteil, P. widerspricht
+        ausdrücklich → <b>rechtswidrig</b>, <b>vorsätzlich</b>. Zusätzlich kommt <b>§ 239
+        Freiheitsberaubung</b> in Betracht („chemische Fixierung“ durch Sedierung). Und <b>§ 203</b> —
+        die Diagnose ist ein Geheimnis, der Ehemann ist ohne Vollmacht ein <b>unbefugter Dritter</b>.</li>
+        <li><b>Zivilrecht:</b> Anspruch <b>aus Delikt § 823</b> gegen M. (Verletzung von Körper, Gesundheit,
+        Freiheit und Persönlichkeitsrecht) und <b>aus Vertrag § 280 i. V. m. § 278</b> gegen den Träger.
+        Folge: <b>Schmerzensgeld</b>.</li>
+        <li><b>Arbeitsrecht:</b> <b>Fristlose Kündigung</b> gut begründbar — es handelt sich um eine
+        <b>vorsätzliche</b> Zwangsbehandlung, also einen schweren Vertrauensbruch.</li>
+      </ul>
+    </div>
+
+    <h3>Fall 2 — „Die vergessene Tablette“</h3>
+    <div class="card">
+      <p style="margin-top:0"><b>Sachverhalt:</b> Pflegefachkraft <b>S.</b> vergisst das blutdrucksenkende
+      Medikament, <b>trägt die Gabe aber trotzdem im Dokumentationssystem ein</b>, „um keinen Ärger zu
+      bekommen“. Am nächsten Tag erzählt sie einer Kollegin beim Mittagessen von der <b>HIV-Erkrankung</b>
+      des Patienten — <b>vor anderen Kollegen</b>.</p>
+      <ul class="clean">
+        <li><b>Strafrecht:</b> Drei Punkte! <b>(1)</b> Das Vergessen selbst: <b>fahrlässig</b>; eine
+        Körperverletzung nur, wenn ein <b>Schaden</b> eingetreten ist. <b>(2)</b> Der falsche Eintrag:
+        <b>§ 267 Urkundenfälschung</b> — die Pflegedokumentation ist eine <b>Urkunde</b>, der Eintrag ist
+        <b>vorsätzlich</b> zur Täuschung erfolgt. Zusätzlich gefährlich, weil die nächste Schicht sich darauf
+        verlässt. <b>(3)</b> Das HIV-Gespräch: <b>§ 203</b>, <b>vorsätzlich</b>.</li>
+        <li><b>Zivilrecht:</b> Schadensersatz nur, soweit ein Schaden entstanden ist; für die
+        Schweigepflichtverletzung <b>Schmerzensgeld</b> wegen Verletzung des Persönlichkeitsrechts
+        (§ 823 BGB).</li>
+        <li><b>Arbeitsrecht:</b> Für das Vergessen allein → <b>Abmahnung</b>. Für die <b>vorsätzliche
+        Falschdokumentation</b> → <b>fristlose Kündigung</b>, weil das Vertrauensverhältnis zerstört ist.</li>
+      </ul>
+    </div>
+
+    <h3>Fall 3 — „Der Zwang zur Körperpflege“</h3>
+    <div class="card">
+      <p style="margin-top:0"><b>Sachverhalt:</b> Pflegekraft <b>T.</b> wird von der <b>Stationsleitung
+      angewiesen</b>, den bettlägerigen Patienten F. zu waschen. F. <b>wehrt sich heftig und schreit</b>.
+      T. und eine Kollegin <b>halten ihn fest</b> und führen die Ganzkörperwäsche <b>gegen seinen Willen</b>
+      durch. Später berichtet T. der <b>Tochter</b> telefonisch von den „schlechten hygienischen Zuständen“.</p>
+      <ul class="clean">
+        <li><b>Strafrecht:</b> <b>§ 223 Körperverletzung</b> (Festhalten und Waschen gegen den Willen —
+        die Einwilligung fehlt, F. widerspricht aktiv) und <b>§ 239 Freiheitsberaubung</b> (Festhalten).
+        <b>Vorsätzlich.</b> Zusätzlich <b>§ 203</b> gegenüber der Tochter — sie ist ohne Vollmacht eine
+        <b>unbefugte Dritte</b>.</li>
+        <li><b>Wichtig — die Anweisung der Stationsleitung:</b> Sie rechtfertigt <b>nichts</b>.
+        Eine <b>rechtswidrige Anweisung</b> muss die Pflegekraft <b>ablehnen</b>. Die Stationsleitung haftet
+        aber <b>mit</b> (§ 831 BGB, Anordnungsverantwortung).</li>
+        <li><b>Zivilrecht:</b> <b>§ 823</b> gegen T. und die Kollegin, <b>§ 280 / § 278</b> gegen den Träger →
+        <b>Schmerzensgeld</b>.</li>
+        <li><b>Arbeitsrecht:</b> <b>Abmahnung bis fristlose Kündigung</b>. Die Anweisung <b>mildert</b>,
+        entlastet aber nicht vollständig.</li>
+      </ul>
+      <div class="note" style="margin-bottom:0"><b>Wie wäre es richtig gewesen?</b> Waschung <b>abbrechen</b>,
+      Ursache des Widerstands suchen (Schmerz? Scham? Angst? Kälte?), später erneut versuchen, Alternativen
+      anbieten, <b>Arzt und Team informieren</b>, alles <b>dokumentieren</b>. Ein einzelner ausgelassener
+      Waschtag ist rechtlich <b>weniger schlimm</b> als eine Zwangsmaßnahme.</div>
+    </div>
+
+    <h3>Fall 4 — „Das Foto fürs Pflegeheim“</h3>
+    <div class="card">
+      <p style="margin-top:0"><b>Sachverhalt:</b> Pflegekraft <b>K.</b> fotografiert mit dem <b>privaten
+      Handy</b> den <b>Dekubitus</b> eines Patienten und schickt das Bild per <b>WhatsApp</b> an die
+      Pflegedienstleitung. <b>Der Patient wurde nicht gefragt und weiß nichts davon.</b></p>
+      <ul class="clean">
+        <li><b>Strafrecht:</b> <b>§ 203</b> — durch den Versand über einen <b>externen Messenger-Dienst</b>
+        wird das Geheimnis gegenüber einem Dritten offenbart. <b>Vorsätzlich.</b>
+        <span style="color:var(--ink-soft)">(Die Weitergabe an die PDL <b>innerhalb</b> des Teams wäre für sich
+        genommen kein Offenbaren — der Weg über WhatsApp und das private Gerät ist das Problem.)</span></li>
+        <li><b>Datenschutz:</b> Verstoß gegen die <b>DSGVO</b> — Gesundheitsdaten sind besonders sensibel;
+        es fehlen <b>Einwilligung</b>, <b>Zweckbindung</b> und <b>Datensicherheit</b>. Für die Einrichtung
+        drohen <b>Bußgelder</b>. Zusätzlich <b>Recht am eigenen Bild (KUG)</b>.</li>
+        <li><b>Zivilrecht:</b> <b>§ 823</b> — Verletzung des allgemeinen Persönlichkeitsrechts →
+        <b>Schmerzensgeld</b>; nach <b>Art. 82 DSGVO</b> auch ein eigener Schadensersatzanspruch.</li>
+        <li><b>Arbeitsrecht:</b> <b>Abmahnung</b>, bei Wiederholung <b>Kündigung</b>.</li>
+      </ul>
+      <div class="goodbox" style="margin-bottom:0"><b>Richtig wäre:</b> Fotos nur mit <b>dienstlichem Gerät</b>,
+      nur mit <b>Einwilligung</b> des Patienten (oder seines Vertreters), <b>Speicherung im geschützten
+      Dokumentationssystem</b> — <b>nie</b> über private Messenger.</div>
+    </div>
+  </section>
+
+  <section id="s26">
+    <h2><span class="n">26</span> Prüfungswissen kompakt</h2>
+
+    <h3>30 Merksätze</h3>
+    <ol class="merk">
+      <li><b>Ein Fehler — vier Verfahren:</b> Strafrecht · Zivilrecht · Arbeitsrecht · Berufsrecht.
+      Sie laufen <b>unabhängig voneinander</b>.</li>
+      <li><b>Strafrecht:</b> Staatsanwalt klagt an → StGB → Geldstrafe, Freiheitsstrafe, <b>Berufsverbot</b>.</li>
+      <li><b>Zivilrecht:</b> Patient klagt → BGB → <b>Schadensersatz und Schmerzensgeld</b>.</li>
+      <li><b>Arbeitsrecht:</b> Arbeitgeber rügt → BGB/KSchG → <b>Abmahnung, Kündigung</b>.</li>
+      <li><b>Berufsrecht:</b> Bezirksregierung überwacht → PflBG → <b>Rücknahme, Widerruf</b> des Titels.</li>
+      <li>Das <b>BGB</b> hat <b>5 Teile</b> — „von der Wiege bis zur Bahre“. <b>Teil 2</b> = Verträge und
+      Schadensersatz, <b>Teil 4</b> = Betreuung, Vorsorgevollmacht, Patientenverfügung, <b>Fixierungen</b>.</li>
+      <li>Das strafrechtliche Schema: <b>Tatbestand → Rechtswidrigkeit → Schuld</b>.</li>
+      <li><b>Rechtfertigungsgründe:</b> Einwilligung · Notwehr/Nothilfe · Notstand · besondere Gründe
+      (nur bei § 203 und § 239).</li>
+      <li><b>Einwilligung:</b> ausdrücklich (mündlich, schriftlich, schlüssig) oder <b>mutmaßlich</b>
+      (Patient bewusstlos). Nicht einwilligungsfähig: <b>unter 14 Jahren</b> und Geisteskranke.</li>
+      <li><b>Notwehr</b> = es gibt einen <b>Angreifer</b>. <b>Notstand</b> = es gibt eine <b>Gefahr</b>.</li>
+      <li><b>Schuldfähig</b> ist, wer <b>über 14 Jahre</b> alt und <b>nicht krankhaft seelisch gestört</b>
+      ist.</li>
+      <li><b>Vorsatz</b> = <b>Wissen und Wollen</b>. <b>Fahrlässigkeit</b> = Außerachtlassen der im Verkehr
+      erforderlichen Sorgfalt.</li>
+      <li><b>§ 223 Körperverletzung:</b> andere Person <b>körperlich misshandelt</b> oder <b>an der Gesundheit
+      geschädigt</b> — bis 5 Jahre.</li>
+      <li><b>Der Heileingriff ist IMMER eine Körperverletzung</b> — gerechtfertigt erst durch die
+      <b>Einwilligung</b>.</li>
+      <li><b>§ 239 Freiheitsberaubung:</b> einsperren oder <b>auf andere Weise der Freiheit berauben</b> —
+      bis 5 Jahre. In der Pflege: Bettgitter, Gurt, abgeschlossene Tür, sedierende Medikamente.</li>
+      <li><b>§ 203 Schweigepflicht:</b> Geheimnisträger + fremdes Geheimnis + im Rahmen der Berufsausübung +
+      offenbart — bis 1 Jahr.</li>
+      <li><b>§ 203 und § 223 sind Antragsdelikte</b> — der Verletzte muss Strafantrag stellen.</li>
+      <li>Die Schweigepflicht gilt <b>über den Tod hinaus</b> (postmortal).</li>
+      <li>Schon die <b>Identität des Patienten</b> und die <b>Tatsache der Behandlung</b> sind geheim.</li>
+      <li><b>Weitergabe im Team ist kein Offenbaren.</b> Eine <b>anonyme</b> Mitteilung auch nicht.
+      Ein <b>Nicken</b> dagegen schon.</li>
+      <li>Die <b>5 Befugnisse</b>: Einwilligung · mutmaßliche Einwilligung · gesetzliche Vorschriften ·
+      Notstand · Wahrnehmung berechtigter Interessen.</li>
+      <li><b>§ 138 StGB</b> gilt nur für <b>geplante</b> Straftaten — nicht für bereits geschehene.</li>
+      <li>Weitere Tatbestände: <b>§ 212</b> Totschlag · <b>§ 216</b> Tötung auf Verlangen · <b>§ 221</b>
+      Aussetzung · <b>§ 267</b> Urkundenfälschung · <b>§ 303</b> Sachbeschädigung · <b>§ 323 c</b>
+      unterlassene Hilfeleistung.</li>
+      <li><b>Unechte Unterlassungsdelikte:</b> Als Pflegekraft bist du <b>Garant</b> (aus Vertrag) —
+      auch <b>Nichtstun</b> kann strafbar sein.</li>
+      <li><b>Zivilrecht:</b> <b>§ 280 BGB</b> = aus Vertrag · <b>§ 823 BGB</b> = aus Delikt ·
+      <b>§ 278 BGB</b> = Erfüllungsgehilfe · <b>§ 831 BGB</b> = Auswahl/Anleitung/Überwachung.</li>
+      <li><b>Delegation:</b> <b>Anordnungs</b>verantwortung (Auswahl, Anleitung, Überwachung) →
+      <b>Übernahme</b>verantwortung (darf ich, kann ich?) → <b>Durchführungs</b>verantwortung.</li>
+      <li><b>Regress:</b> leichte Fahrlässigkeit = <b>keine Haftung</b> · mittlere = <b>Teilung</b> ·
+      grobe und Vorsatz = <b>volle Haftung</b>.</li>
+      <li><b>Instanzen Strafrecht:</b> Amtsgericht (bis 4 Jahre Straferwartung) → Landgericht (über 4 Jahre) →
+      OLG → BGH.</li>
+      <li><b>Instanzen Zivilrecht:</b> Amtsgericht (<b>bis 5.000 €</b>) → Landgericht (<b>über 5.000 €</b>) →
+      OLG → BGH. Berufung ab <b>600 € Beschwer</b>.</li>
+      <li><b>Berufung</b> = Tatsachen und Recht neu. <b>Revision</b> = nur Rechtsfehler.
+      <b>Sprungrevision</b> = eine Instanz überspringen.</li>
+    </ol>
+
+    <h3>Zahlen und Paragraphen auf einen Blick</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Zahl / §</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><b>§ 223 StGB</b></td><td>Körperverletzung — bis <b>5 Jahre</b></td></tr>
+          <tr><td><b>§ 239 StGB</b></td><td>Freiheitsberaubung — bis <b>5 Jahre</b></td></tr>
+          <tr><td><b>§ 203 StGB</b></td><td>Verletzung von Privatgeheimnissen — bis <b>1 Jahr</b></td></tr>
+          <tr><td><b>§ 138 StGB</b></td><td>Anzeige <b>geplanter</b> schwerer Straftaten</td></tr>
+          <tr><td><b>§ 280 BGB</b></td><td>Schadensersatz <b>aus Vertrag</b></td></tr>
+          <tr><td><b>§ 823 BGB</b></td><td>Schadensersatz <b>aus Delikt</b></td></tr>
+          <tr><td><b>§ 278 BGB</b></td><td>Haftung für den <b>Erfüllungsgehilfen</b></td></tr>
+          <tr><td><b>§ 831 BGB</b></td><td>Haftung für <b>Auswahl, Anleitung, Überwachung</b></td></tr>
+          <tr><td><b>§§ 2, 3 PflBG</b></td><td>Erlaubnis zur Titelführung / Rücknahme und Widerruf</td></tr>
+          <tr><td><b>14 Jahre</b></td><td>Grenze der Schuldfähigkeit und der Einwilligungsfähigkeit</td></tr>
+          <tr><td><b>4 Jahre</b></td><td>Straferwartung: Grenze zwischen Amts- und Landgericht</td></tr>
+          <tr><td><b>5.000 €</b></td><td>Streitwert: Grenze zwischen Amts- und Landgericht</td></tr>
+          <tr><td><b>600 €</b></td><td>Beschwer für die Berufung im Zivilrecht</td></tr>
+          <tr><td><b>6 Monate / 10 Arbeitnehmer</b></td><td>Voraussetzung des Kündigungsschutzes (KSchG)</td></tr>
+          <tr><td><b>6 Monate</b></td><td>Danach muss beim Ehegattennotvertretungsrecht ein Betreuer
+            bestellt werden</td></tr>
+          <tr><td><b>Januar 2023</b></td><td>Inkrafttreten des Ehegattennotvertretungsrechts</td></tr>
+          <tr><td><b>25. Mai 2018</b></td><td>Die DSGVO gilt</td></tr>
+          <tr><td><b>1980</b></td><td>Volkszählungsurteil → Recht auf informationelle Selbstbestimmung</td></tr>
+          <tr><td><b>SGB XI</b></td><td>Pflegeversicherung</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Typische Prüfungsfragen</h3>
+    <ul class="clean">
+      <li>Erklären Sie die <b>vier Rechtsgebiete</b>: Wer wird tätig, welche Grundlage, welche Konsequenz?</li>
+      <li>Nennen Sie die <b>drei Voraussetzungen der Strafbarkeit</b> und erklären Sie sie.</li>
+      <li>Welche <b>Rechtfertigungsgründe</b> gibt es? Erklären Sie Einwilligung und Notstand mit Beispiel.</li>
+      <li>Was ist der Unterschied zwischen <b>Vorsatz und Fahrlässigkeit</b>?</li>
+      <li>Nennen Sie die <b>Tatbestandsmerkmale</b> von § 223, § 239 und § 203.</li>
+      <li>Warum ist jeder <b>Heileingriff</b> eine Körperverletzung?</li>
+      <li>Wer ist <b>Geheimnisträger</b>, wer nicht?</li>
+      <li>Nennen Sie die <b>fünf Befugnisse</b> zum Offenbaren.</li>
+      <li>Unter welchen Voraussetzungen ist eine <b>Fixierung</b> zulässig?</li>
+      <li>Erklären Sie die <b>drei Delegationsebenen</b>.</li>
+      <li>Wie ist die <b>Arbeitnehmerhaftung</b> nach dem BAG abgestuft?</li>
+      <li>Prüfen Sie einen Anspruch <b>aus Vertrag</b> und <b>aus Delikt</b>.</li>
+      <li>Beschreiben Sie den <b>Instanzenzug</b> im Straf- und im Zivilrecht. Wo sind Gemeinsamkeiten,
+      wo Unterschiede?</li>
+      <li>Was ist beim Umgang mit <b>Medizinprodukten</b> (Rollator) zu beachten?</li>
+      <li>Nennen Sie die <b>Schutzziele der DSGVO</b> und die <b>Rechte betroffener Personen</b>.</li>
+    </ul>
+  </section>
+
+  <section id="s27">
+    <h2><span class="n">27</span> Quellen</h2>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Stephanie Welters, Rechtsanwältin:</b> <i>Ausbildungs- und berufsbezogene Rechte und
+        Pflichten</i>, CE 6 UE 1 — Unterrichtsskript (83 Folien).</li>
+        <li><b>Spicker Strafrecht</b> — Prüfungsschema und Tatbestände.</li>
+        <li><b>Spicker Zivilrecht</b> — Prüfungsschemata aus Vertrag und aus Delikt, Delegation und
+        Regress.</li>
+        <li><b>Relevante Gesetze, Verordnungen, Rechtsquellen</b> — Übersicht.</li>
+        <li><b>Instanzen Zivil- und Strafgerichte</b> — Schaubilder (gerichtsstand.net) sowie Übersicht der
+        Gerichtsbarkeiten.</li>
+        <li><b>Übungsfälle Strafrecht — Zivilrecht — Arbeitsrecht — Instanzen</b> (4 Fälle, mit Verweis auf
+        bpb.de „Gerichtsbesetzung“).</li>
+        <li><b>Übungsfälle für die Klausur</b> (5 Fälle mit Prüfungsfragen).</li>
+        <li><b>MPG-Schulungseinheit: Anwendung von Rollatoren</b> — Medizinprodukte in der Pflege.</li>
+      </ul>
+    </div>
+    <div class="warnbox"><b>Hinweis:</b> Die <b>Lösungen</b> zu den Übungsfällen und den 15 Fällen zur
+    Schweigepflicht sind <b>ausgearbeitete Vorschläge</b> nach den Schemata und Regeln aus den Skripten —
+    sie standen so nicht in den Unterlagen. Vergleiche sie mit der Besprechung im Unterricht, besonders bei
+    den Grenzfällen.</div>
+    <p style="text-align:center;color:var(--ink-soft);font-size:14px;margin-top:30px">
+      Lernmaterial für die Pflegeausbildung · CE 6 UE 1 · Niveau B1
+    </p>
+  </section>
+
+  </main>
+</div>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ nach oben</button>
+
+<script>
+const toc=document.getElementById('toc');
+const secs=[...document.querySelectorAll('main section')];
+secs.forEach(sec=>{
+  const h=sec.querySelector('h2');
+  const n=h.querySelector('.n').textContent.trim();
+  const t=h.textContent.replace(n,'').trim();
+  const a=document.createElement('a');
+  a.href='#'+sec.id;
+  a.innerHTML='<span class="n"></span>';
+  a.querySelector('.n').textContent=n;
+  a.appendChild(document.createTextNode(t));
+  toc.appendChild(a);
+});
+const q=document.getElementById('q'), hits=document.getElementById('hits');
+function clearMarks(){
+  document.querySelectorAll('main mark').forEach(m=>{
+    const p=m.parentNode; p.replaceChild(document.createTextNode(m.textContent),m); p.normalize();
+  });
+}
+function markIn(node,re){
+  if(node.nodeType===3){
+    const t=node.nodeValue; re.lastIndex=0; if(!re.test(t))return 0;
+    const frag=document.createDocumentFragment(); let last=0,c=0,m; re.lastIndex=0;
+    while((m=re.exec(t))!==null){
+      frag.appendChild(document.createTextNode(t.slice(last,m.index)));
+      const mk=document.createElement('mark'); mk.textContent=m[0]; frag.appendChild(mk);
+      last=m.index+m[0].length; c++;
+      if(m[0].length===0)re.lastIndex++;
+    }
+    frag.appendChild(document.createTextNode(t.slice(last)));
+    node.parentNode.replaceChild(frag,node); return c;
+  }
+  if(node.nodeType===1 && !['SCRIPT','STYLE','MARK'].includes(node.tagName)){
+    let c=0; [...node.childNodes].forEach(ch=>c+=markIn(ch,re)); return c;
+  }
+  return 0;
+}
+function run(){
+  const v=q.value.trim();
+  clearMarks();
+  if(v.length<2){secs.forEach(s=>s.classList.remove('hidden'));hits.textContent='';return;}
+  const esc=v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const re=new RegExp(esc,'gi');
+  let total=0, shown=0;
+  secs.forEach(s=>{
+    const has=re.test(s.textContent); re.lastIndex=0;
+    s.classList.toggle('hidden',!has);
+    if(has){shown++; total+=markIn(s,re);}
+  });
+  hits.textContent=total? total+' Treffer in '+shown+' Kapitel'+(shown>1?'n':'') : 'keine Treffer';
+}
+let tId; q.addEventListener('input',()=>{clearTimeout(tId);tId=setTimeout(run,180);});
+document.getElementById('reset').onclick=()=>{q.value='';run();q.focus();};
+</script>
