@@ -1,0 +1,1666 @@
+<title>Notfälle &amp; Erste Hilfe — Große Zusammenfassung</title>
+<style>
+  :root{
+    --paper:#f7f4f3;--paper-2:#eee9e7;--card:#fffdfc;--ink:#211c1b;--ink-soft:#544c4a;--line:#e0d8d5;
+    --accent:#b03a34;--accent-deep:#8c2b26;--accent-soft:#f6e3e1;
+    --a1:#4a6b8a;--a1bg:#dde6f0;--a2:#8a6d3b;--a2bg:#f2e8d5;--a3:#5d7a5f;--a3bg:#e2ede2;--a4:#6b5b95;--a4bg:#e8e3f0;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f9e5e1;--warn:#b5731a;--warnbg:#f8edda;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#191515;--paper-2:#120f0f;--card:#231e1e;--ink:#f2eeed;--ink-soft:#ada4a2;--line:#382f2f;
+    --accent:#e3897f;--accent-deep:#f0a79e;--accent-soft:#301e1c;
+    --a1:#7fa8d0;--a1bg:#18242f;--a2:#d0a95f;--a2bg:#2b2415;--a3:#8ab98d;--a3bg:#1a2b1c;--a4:#a998d4;--a4bg:#241f30;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#331b17;--warn:#d9a559;--warnbg:#2c2312;}}
+  :root[data-theme="dark"]{--paper:#191515;--paper-2:#120f0f;--card:#231e1e;--ink:#f2eeed;--ink-soft:#ada4a2;--line:#382f2f;--accent:#e3897f;--accent-deep:#f0a79e;--accent-soft:#301e1c;--a1:#7fa8d0;--a1bg:#18242f;--a2:#d0a95f;--a2bg:#2b2415;--a3:#8ab98d;--a3bg:#1a2b1c;--a4:#a998d4;--a4bg:#241f30;--good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#331b17;--warn:#d9a559;--warnbg:#2c2312;}
+  :root[data-theme="light"]{--paper:#f7f4f3;--paper-2:#eee9e7;--card:#fffdfc;--ink:#211c1b;--ink-soft:#544c4a;--line:#e0d8d5;--accent:#b03a34;--accent-deep:#8c2b26;--accent-soft:#f6e3e1;--a1:#4a6b8a;--a1bg:#dde6f0;--a2:#8a6d3b;--a2bg:#f2e8d5;--a3:#5d7a5f;--a3bg:#e2ede2;--a4:#6b5b95;--a4bg:#e8e3f0;--good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f9e5e1;--warn:#b5731a;--warnbg:#f8edda;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+  header.hero{padding:40px 20px 26px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.7rem,5vw,2.6rem);margin:0 0 10px;line-height:1.12;text-wrap:balance;}
+  header.hero p{max-width:62ch;margin:0 auto;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:7px;justify-content:center;margin-top:14px;}
+  .meta span{font-size:12.5px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 13px;}
+  .toolbar{position:sticky;top:0;z-index:40;display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+    background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:9px 16px;}
+  .toolbar input{flex:1 1 200px;font:inherit;font-size:14.5px;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:9px;padding:8px 13px;min-width:0;}
+  .toolbar input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .toolbar button{font:inherit;font-size:13.5px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);
+    border-radius:9px;padding:8px 13px;cursor:pointer;white-space:nowrap;}
+  .toolbar button:hover{border-color:var(--accent);color:var(--ink);}
+  .hits{font-family:var(--mono);font-size:12.5px;color:var(--accent-deep);white-space:nowrap;}
+  .layout{display:flex;max-width:1240px;margin:0 auto;align-items:flex-start;}
+  nav.toc{position:sticky;top:56px;align-self:flex-start;flex:0 0 262px;max-height:calc(100vh - 60px);overflow-y:auto;
+    padding:16px 10px 40px;border-right:1px solid var(--line);}
+  nav.toc a{display:block;text-decoration:none;color:var(--ink-soft);font-size:13.5px;padding:6px 10px;border-radius:8px;line-height:1.35;}
+  nav.toc a:hover{background:var(--paper-2);color:var(--ink);}
+  nav.toc a .n{font-family:var(--mono);font-size:11px;opacity:.7;margin-right:6px;}
+  main{flex:1 1 auto;min-width:0;padding:10px 26px 90px;}
+  section{margin-top:44px;scroll-margin-top:62px;}
+  section.hidden{display:none;}
+  h2{font-family:var(--serif);font-weight:600;font-size:1.55rem;margin:0 0 10px;display:flex;align-items:baseline;gap:11px;text-wrap:balance;}
+  h2 .n{font-family:var(--mono);font-size:.72rem;color:var(--accent);border:1px solid var(--line);border-radius:7px;padding:2px 8px;flex:0 0 auto;}
+  h3{font-family:var(--serif);font-weight:600;font-size:1.16rem;margin:24px 0 7px;}
+  h4{font-family:var(--serif);font-weight:600;font-size:1.02rem;margin:0 0 7px;}
+  .teil{margin:52px 0 0;padding:14px 18px;border-radius:12px;background:var(--accent-soft);border:1px solid var(--line);
+    font-family:var(--serif);font-size:1.25rem;font-weight:600;color:var(--accent-deep);text-align:center;}
+  .lead{color:var(--ink-soft);margin:0 0 14px;}
+  p{margin:.55em 0;}
+  mark{background:#ffe680;color:#1a1a1a;border-radius:3px;padding:0 2px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:17px 21px;margin:13px 0;}
+  .card.tight{padding:13px 17px;}
+  ul.clean{list-style:none;padding:0;margin:11px 0;}
+  ul.clean li{padding:6px 0 6px 24px;position:relative;border-bottom:1px dashed var(--line);}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean li::before{content:"→";position:absolute;left:2px;color:var(--accent);font-weight:700;}
+  ul.plain{margin:8px 0;padding-left:19px;} ul.plain li{margin:5px 0;}
+  .note{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  .warnbox{border-left:3px solid var(--warn);background:var(--warnbg);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  .badbox{border-left:3px solid var(--bad);background:var(--badbg);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  .goodbox{border-left:3px solid var(--good);background:var(--goodbg);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  .alarm{border:2px solid var(--bad);background:var(--badbg);border-radius:12px;padding:13px 17px;margin:14px 0;font-size:15px;}
+  .alarm h4{color:var(--bad);margin-top:0;}
+  blockquote{margin:12px 0;padding:10px 17px;border-left:3px solid var(--line);color:var(--ink-soft);font-style:italic;font-size:15px;}
+  blockquote cite{display:block;font-style:normal;font-size:12.5px;margin-top:5px;font-family:var(--mono);}
+  .scroll-x{overflow-x:auto;margin:11px 0;}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:460px;}
+  th,td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-soft);}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin:13px 0;}
+  @media (max-width:700px){.two{grid-template-columns:1fr;}}
+  .two .col{border-radius:12px;padding:13px 15px;border:1px solid var(--line);}
+  .two .c1{background:var(--a1bg);} .two .c2{background:var(--a3bg);}
+  .two ul{margin:0;padding-left:17px;} .two li{margin:5px 0;font-size:14.5px;}
+  .kette{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0;}
+  .kette b{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:7px 12px;font-size:14px;font-weight:600;}
+  .kette i{color:var(--accent);font-style:normal;font-weight:700;}
+  .abcd{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:13px 0;}
+  .abcd div{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--card);}
+  .abcd .l{font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--accent);line-height:1;}
+  .abcd b{display:block;margin:5px 0 3px;}
+  .abcd span{font-size:14px;color:var(--ink-soft);}
+  .zahl{display:flex;flex-wrap:wrap;gap:9px;margin:13px 0;}
+  .zahl div{flex:1 1 130px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--card);text-align:center;}
+  .zahl .v{font-family:var(--mono);font-size:1.45rem;font-weight:700;color:var(--accent);}
+  .zahl .k{font-size:13px;color:var(--ink-soft);margin-top:3px;}
+  .merk{counter-reset:m;list-style:none;padding:0;margin:13px 0;}
+  .merk li{counter-increment:m;position:relative;padding:8px 0 8px 38px;border-bottom:1px dashed var(--line);font-size:15px;}
+  .merk li:last-child{border-bottom:none;}
+  .merk li::before{content:counter(m);position:absolute;left:0;top:8px;font-family:var(--mono);font-size:11px;background:var(--accent-soft);color:var(--accent-deep);border-radius:6px;padding:2px 7px;}
+  .backtop{position:fixed;right:16px;bottom:16px;z-index:50;font:inherit;font-size:13px;color:var(--ink-soft);
+    background:var(--card);border:1px solid var(--line);border-radius:99px;padding:8px 14px;cursor:pointer;}
+  .backtop:hover{border-color:var(--accent);color:var(--ink);}
+  @media (max-width:900px){
+    .layout{display:block;}
+    nav.toc{position:static;flex:none;max-height:none;border-right:none;border-bottom:1px solid var(--line);
+      display:flex;flex-wrap:wrap;gap:3px;padding:10px 14px;}
+    nav.toc a{font-size:12.5px;padding:5px 9px;background:var(--card);border:1px solid var(--line);}
+    main{padding:10px 16px 80px;}
+  }
+  @media print{
+    .toolbar,nav.toc,.backtop{display:none;}
+    body{background:#fff;color:#000;font-size:10.5pt;}
+    section{page-break-inside:auto;margin-top:20px;}
+    h2{page-break-after:avoid;}
+    .card,.note,.warnbox,.badbox,.goodbox,.alarm,.merk,table{page-break-inside:avoid;}
+  }
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Basiskurs · Notfall &amp; Erste Hilfe · Psychiatrische Notfälle</p>
+  <h1>Notfälle &amp; Erste Hilfe — Große Zusammenfassung</h1>
+  <p>Beide Skripte von Toni Weidenbecher in einem Dokument: der Basiskurs (Herz, Lunge, ABCD, Apoplex,
+  Herzinfarkt, Lungenembolie, Reanimation, Krampfleiden, Bolus) und die psychiatrischen Notfälle
+  (Suizidalität, Delir, Erregungszustände, Recht, Deeskalation) — vollständig, in einfachem Deutsch (B1).</p>
+  <div class="meta">
+    <span>Dozent: Toni Weidenbecher</span>
+    <span>26 Kapitel</span>
+    <span>Niveau B1</span>
+    <span>mit Suche &amp; Druckansicht</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <input type="search" id="q" placeholder="🔎 Suchen … (z. B. Reanimation, Delir, ABCD, Rapport)" autocomplete="off">
+  <span class="hits" id="hits"></span>
+  <button id="reset">↺ alles zeigen</button>
+  <button onclick="window.print()">🖨️ Drucken / PDF</button>
+</div>
+
+<div class="layout">
+  <nav class="toc" id="toc"></nav>
+  <main id="main">
+
+  <section id="s1">
+    <h2><span class="n">1</span> Überblick</h2>
+    <p class="lead">Zwei Skripte, ein Dozent: <b>Toni Weidenbecher</b> — Notfallsanitäter, Ausbilder für Erste
+    Hilfe sowie Kommunikation/Deeskalation, ehemals Altenpfleger, NLP-Practitioner, FlightParamedic.</p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Skript</th><th>Inhalt</th></tr></thead>
+        <tbody>
+          <tr><td><b>BASIS — Notfall und Erste Hilfe</b></td>
+            <td>Grundwissen Herz und Lunge · Rettungskette · Fahrzeuge und Qualifikationen ·
+            <b>strukturiertes Abarbeiten eines Notfalls (ABCD)</b> · Erkrankungen (Apoplex, Angina Pectoris,
+            Herzinfarkt, Lungenembolie) · <b>Reanimation / AED</b> · Krampfleiden · Bolusgeschehen</td></tr>
+          <tr><td><b>Psychiatrische Notfälle und Zustände</b></td>
+            <td>Was ist Psychiatrie · Grundannahmen (NLP) · <b>Suizidalität</b> · Notfallbilder
+            (Erregungszustände, Angst/Panik, Bewusstseinsstörungen, Delir, Stupor, Drogen,
+            Psychopharmaka) · Depression und Schizophrenie · <b>Recht</b> (§ 32, § 34, Zwangseinweisung) ·
+            <b>Deeskalation und Rapport</b> · Selbstfürsorge</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><b>Der rote Faden:</b> Im Notfall arbeitest du <b>strukturiert</b> (ABCD) und
+    <b>symptomorientiert</b> — nicht nach Diagnose. Und in beiden Skripten steht derselbe erste Satz:
+    <b>Ruhe bewahren und Eigenschutz beachten.</b></div>
+  </section>
+
+  <div class="teil">Teil A · Basiskurs Notfall und Erste Hilfe</div>
+
+  <section id="s2">
+    <h2><span class="n">2</span> Die Rettungskette</h2>
+    <h3>Präklinisch (draußen)</h3>
+    <div class="kette">
+      <b>Notfall</b><i>→</i><b>Leitstelle</b><i>→</i><b>Rettungswagen</b><i>→</i><b>Notfallort</b><i>→</i>
+      <b>Transport</b><i>→</i><b>Klinik</b>
+    </div>
+    <h3>Innerklinisch (im Krankenhaus / Heim)</h3>
+    <div class="kette">
+      <b>Notfall</b><i>→</i><b>Rea-Alarm</b><i>→</i><b>Rea-Team</b><i>→</i><b>Notfallort</b><i>→</i>
+      <b>durch Intensiv + Arzt</b><i>→</i><b>Intensivstation</b>
+    </div>
+    <div class="goodbox"><b>Merke:</b> Die Kette ist nur so stark wie ihr schwächstes Glied. Als Pflegekraft
+    bist du fast immer das <b>erste</b> Glied — du entdeckst den Notfall und löst den Alarm aus.</div>
+  </section>
+
+  <section id="s3">
+    <h2><span class="n">3</span> Fahrzeuge und Qualifikationen</h2>
+    <h3>Die Fahrzeuge</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Fahrzeug</th><th>Wofür?</th></tr></thead>
+        <tbody>
+          <tr><td><b>KTW</b><br>Krankentransportwagen</td>
+            <td>Transport von <b>Kranken und eingeschränkten Patienten</b> zum Arzt, ins Krankenhaus oder zurück.
+            <b>Kleine medizinische Ausstattung</b> (O₂, Betreuung, Equipment). Auch
+            <b>First-Responder-Einsätze</b>.</td></tr>
+          <tr><td><b>RTW</b><br>Rettungswagen</td>
+            <td>Für Patienten mit einer <b>bereits bestehenden, zu erwartenden oder nicht auszuschließenden
+            Lebensgefahr</b>. Auch Intensivverlegungen.</td></tr>
+          <tr><td><b>NEF</b><br>Notarzteinsatzfahrzeug</td>
+            <td>Bringt bei Bedarf den <b>Notarzt</b> zur Einsatzstelle. Dient der <b>präklinischen Versorgung</b>
+            von Notfallpatienten, die speziell <b>ärztliche</b> Hilfe brauchen.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Die Qualifikationen</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Qualifikation</th><th>Einsatzbereich</th></tr></thead>
+        <tbody>
+          <tr><td><b>Sanitätshelfer</b></td><td>Sanitätsdienste</td></tr>
+          <tr><td><b>Rettungshelfer</b></td><td>Krankentransport</td></tr>
+          <tr><td><b>Rettungssanitäter</b></td><td>Krankentransport und Notfallrettung</td></tr>
+          <tr><td><b>Rettungsassistent</b></td><td>Notfallrettung und Notarzt-Fahrzeug — wird durch den
+          Notfallsanitäter ersetzt</td></tr>
+          <tr><td><b>Notfallsanitäter</b></td><td>Ersetzt zukünftig den Rettungsassistenten</td></tr>
+          <tr><td><b>Notarzt</b></td><td>NEF oder NAW</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><b>Das Equipment</b> ist im Skript in zwei Gruppen geteilt: <b>chirurgisch</b> (Verbände, Schienen,
+    Immobilisation) und <b>internistisch</b> (Medikamente, EKG, Beatmung).</p>
+  </section>
+
+  <section id="s4">
+    <h2><span class="n">4</span> Das Herz</h2>
+    <h3>Wo liegt es?</h3>
+    <ul class="clean">
+      <li>Etwa in der <b>Mitte des Brustkorbes</b>, im sogenannten <b>Mediastinum</b>.</li>
+      <li><b>Zwei Drittel</b> liegen <b>links</b> vom Brustbein, <b>ein Drittel rechts</b>.</li>
+      <li>Rechts und links wird es von den <b>Lungen</b> umgeben, vorne grenzt es an das <b>Brustbein</b>,
+      hinten an <b>Luft- und Speiseröhre</b>.</li>
+    </ul>
+
+    <h3>Wie groß ist es?</h3>
+    <p>Ungefähr so groß wie die <b>eigene Faust</b>.</p>
+
+    <h3>Aufbau und Art</h3>
+    <ul class="clean">
+      <li>Ein <b>Muskel aus 4 Hohlräumen</b>.</li>
+      <li>Die drei Wandschichten: <b>Endokard</b> (innen) · <b>Myokard</b> (Muskelschicht) ·
+      <b>Perikard</b> (Herzbeutel außen).</li>
+      <li><b>Rechte und linke Hälfte</b>, getrennt durch das <b>Septum</b> (Scheidewand).</li>
+      <li>Oben je ein <b>Vorhof (Atrium)</b>, unten je eine <b>Kammer (Ventrikel)</b>.</li>
+    </ul>
+
+    <h3>Leistung — das Reizleitungssystem</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Zentrum</th><th>Rang</th><th>Frequenz</th></tr></thead>
+        <tbody>
+          <tr><td><b>Sinusknoten</b></td><td><b>Primäres</b> Schrittmacherzentrum — höchste
+          Entladungsfrequenz</td><td><b>60–100</b>/min</td></tr>
+          <tr><td><b>AV-Knoten</b></td><td><b>Sekundäres</b> Schrittmacherzentrum — zweithöchste
+          Entladungsfrequenz</td><td><b>40–60</b>/min</td></tr>
+          <tr><td><b>Kammerersatzrhythmus</b><br>(ventrikuläre Erregungsbildung)</td>
+          <td><b>Tertiäres</b> Schrittmacherzentrum — <b>letzte Rückfallebene</b></td><td><b>20–40</b>/min</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="goodbox"><b>Prinzip:</b> Das schnellste Zentrum gibt den Takt an. Fällt es aus, übernimmt das
+    nächste — aber immer <b>langsamer</b>. Deshalb ist eine Bradykardie von 30/min ein Alarmzeichen: Da arbeitet
+    vermutlich schon die letzte Rückfallebene.</div>
+
+    <h3>Förderleistung</h3>
+    <div class="zahl">
+      <div><div class="v">5 L</div><div class="k">Blut pro Minute</div></div>
+      <div><div class="v">7000 L</div><div class="k">Blut pro Tag</div></div>
+      <div><div class="v">80 ml/kg</div><div class="k">Blutvolumen Kind</div></div>
+      <div><div class="v">55–65 ml/kg</div><div class="k">Blutvolumen Erwachsener</div></div>
+    </div>
+    <div class="note"><b>Hinweis:</b> Für den Erwachsenen findest du in vielen Lehrbüchern auch die Angabe
+    <b>ca. 70 ml/kg KG</b> (also 4–6 Liter). Für die Prüfung gilt der Wert aus deinem Skript — merk dir aber, dass
+    ein Erwachsener rund <b>5 Liter</b> Blut hat.</div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="n">5</span> Die Lunge</h2>
+    <h3>Was gehört zum Atmungssystem?</h3>
+    <div class="two">
+      <div class="col c1">
+        <h4>Oberer Atemweg</h4>
+        <ul><li>Nase</li><li>Rachen (<b>Pharynx</b>)</li><li>Kehlkopf (<b>Larynx</b>)</li></ul>
+      </div>
+      <div class="col c2">
+        <h4>Unterer Atemweg</h4>
+        <ul><li>Luftröhre (<b>Trachea</b>)</li><li>Hauptbronchien</li><li>Bronchien</li></ul>
+      </div>
+    </div>
+    <div class="warnbox"><b>Speiseröhre vs. Luftröhre:</b> Die <b>Trachea</b> liegt <b>vorn</b> (man fühlt die
+    Knorpelspangen), der <b>Ösophagus</b> liegt <b>dahinter</b>. Bei Schluckstörungen kann Nahrung in die Trachea
+    gelangen → <b>Aspiration</b>.</div>
+
+    <h3>Wie funktioniert sie?</h3>
+    <ul class="clean">
+      <li><b>Einatmung (Inspiration):</b> Mittels <b>Unterdruck</b> wird Luft in die Lunge gezogen.</li>
+      <li><b>Gasaustausch</b> in den <b>Bronchiolen und Alveolen</b> (Lungenbläschen) — dort wird Sauerstoff
+      ans Blut abgegeben und Kohlendioxid aufgenommen.</li>
+      <li><b>Ausatmung (Exspiration):</b> Durch <b>Überdruck</b> wird die verbrauchte Luft hinausbefördert.</li>
+    </ul>
+
+    <h3>Zusammensetzung der Luft</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Gas</th><th>Einatemluft</th><th>Ausatemluft</th></tr></thead>
+        <tbody>
+          <tr><td><b>Stickstoff N₂</b></td><td>78 %</td><td>78 %</td></tr>
+          <tr><td><b>Sauerstoff O₂</b></td><td><b>21 %</b></td><td><b>17 %</b></td></tr>
+          <tr><td><b>Kohlendioxid CO₂</b></td><td>0,003 %</td><td><b>4,03 %</b></td></tr>
+          <tr><td><b>Edelgase</b></td><td>0,97 %</td><td>0,97 %</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="goodbox"><b>Warum funktioniert die Atemspende?</b> Weil die Ausatemluft immer noch
+    <b>17 % Sauerstoff</b> enthält — genug, um einen Menschen zu versorgen. Stickstoff bleibt unverändert,
+    er wird nicht verbraucht.</div>
+    <div class="note">Kleiner Hinweis: Der CO₂-Gehalt der normalen Umgebungsluft wird meist mit
+    <b>ca. 0,04 %</b> angegeben. Wichtig für die Prüfung ist der Unterschied: <b>21 % → 17 % O₂</b> und
+    <b>fast nichts → ca. 4 % CO₂</b>.</div>
+  </section>
+
+  <section id="s6">
+    <h2><span class="n">6</span> Die Bewusstseinslage</h2>
+    <blockquote>Das Bewusstsein ist die <b>Gesamtheit aller psychischen Vorgänge</b> (Gedanken, Gefühle,
+    Wahrnehmungen), verbunden mit dem <b>Wissen um das eigene „Ich"</b> und die Subjektivität dieser
+    Vorgänge.</blockquote>
+    <h3>Ein wacher, orientierter Mensch …</h3>
+    <ul class="clean">
+      <li>ist <b>ansprechbar</b>,</li>
+      <li>ist <b>zeitlich, räumlich und zur eigenen Person orientiert</b>,</li>
+      <li>kann die <b>Situation einschätzen und folgerichtig handeln</b>.</li>
+    </ul>
+
+    <h3>Beobachtungskriterien — so überprüfst du es</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>Reagiert der Patient auf Ansprache <b>spontan</b> oder muss er <b>geweckt</b> werden?</li>
+        <li>Antwortet er <b>verständlich</b>?</li>
+        <li>Öffnet er die <b>Augen</b> und nimmt er <b>Blickkontakt</b> auf?</li>
+        <li>Weiß er seinen <b>Namen, sein Geburtsdatum, seine Adresse</b>? <span style="color:var(--ink-soft)">
+        (= Orientierung zur <b>Person</b>)</span></li>
+        <li>Kennt er den <b>Wochentag, die Tageszeit oder Jahreszeit</b>? <span style="color:var(--ink-soft)">
+        (= <b>zeitliche</b> Orientierung)</span></li>
+        <li>Weiß er, <b>wo</b> er sich befindet? <span style="color:var(--ink-soft)">
+        (= <b>räumliche</b> Orientierung)</span></li>
+        <li>Führt er nach Aufforderung <b>einfache Bewegungen</b> aus? <span style="color:var(--ink-soft)">
+        (= Reaktion auf Aufforderung)</span></li>
+      </ul>
+    </div>
+    <div class="note"><b>Merkhilfe:</b> Die vier Qualitäten der Orientierung sind
+    <b>Person · Ort · Zeit · Situation</b>. Sie fallen typischerweise in dieser Reihenfolge <b>rückwärts</b> aus:
+    zuerst die Zeit, zuletzt die eigene Person.</div>
+  </section>
+
+  <section id="s7">
+    <h2><span class="n">7</span> Welche Werte sind wichtig?</h2>
+    <div class="two">
+      <div class="col c1">
+        <h4>❤️ Herz</h4>
+        <ul>
+          <li><b>Herzfrequenz</b></li>
+          <li><b>Pulsqualität</b> (kräftig/schwach, regelmäßig/unregelmäßig)</li>
+          <li><b>Blutdruck</b></li>
+        </ul>
+      </div>
+      <div class="col c2">
+        <h4>🫁 Lunge</h4>
+        <ul>
+          <li><b>SpO₂</b> (Sauerstoffsättigung)</li>
+          <li><b>Atemfrequenz</b></li>
+        </ul>
+      </div>
+    </div>
+    <p>Dazu immer: die <b>Bewusstseinslage</b>.</p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Wert</th><th>Normbereich Erwachsener</th></tr></thead>
+        <tbody>
+          <tr><td>Herzfrequenz</td><td><b>60–100</b>/min</td></tr>
+          <tr><td>Blutdruck</td><td>ca. <b>120/80</b> mmHg (Hypertonie ab 140/90)</td></tr>
+          <tr><td>Atemfrequenz</td><td><b>12–20</b>/min</td></tr>
+          <tr><td>SpO₂</td><td><b>95–100 %</b> (bei COPD oft niedriger toleriert)</td></tr>
+          <tr><td>Blutzucker</td><td>nüchtern ca. <b>70–100 mg/dl</b> (3,9–5,6 mmol/l)</td></tr>
+          <tr><td>Temperatur</td><td>ca. <b>36,3–37,4 °C</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="s8">
+    <h2><span class="n">8</span> Verhalten im Notfall und das ABCD-Schema</h2>
+    <h3>Die drei ersten Schritte</h3>
+    <div class="two">
+      <div class="col c1">
+        <h4>1 · Ruhe bewahren</h4>
+        <p style="font-size:14.5px;margin:0"><b>Panik kann mehr Schaden verursachen!</b></p>
+      </div>
+      <div class="col c2">
+        <h4>2 · Situation erkennen</h4>
+        <p style="font-size:14.5px;margin:0"><b>Erst denken, dann handeln!</b></p>
+      </div>
+    </div>
+    <div class="card tight"><b>3 · Hilfe</b> — Notruf oder weniger? Entscheide, welche Hilfe du wirklich
+    brauchst: Kollegin, Arzt, Rea-Team oder 112.</div>
+
+    <h3>Strukturiertes Abarbeiten eines Notfalls</h3>
+    <div class="abcd">
+      <div><div class="l">A</div><b>Airway</b><span>Kontrolle der <b>Atemwege</b> — frei? Fremdkörper?
+      Zunge? Erbrochenes?</span></div>
+      <div><div class="l">B</div><b>Breathing</b><span>Kontrolle der <b>Atmung</b> — Atemfrequenz, Tiefe,
+      Geräusche, SpO₂, Zyanose</span></div>
+      <div><div class="l">C</div><b>Circulation</b><span>Kontrolle des <b>Kreislaufes</b> — Puls, Blutdruck,
+      Hautfarbe, Rekapzeit, Blutungen</span></div>
+      <div><div class="l">D</div><b>Disability</b><span>Kontrolle des <b>Bewusstseins</b> und der
+      <b>Neurologie</b> — Orientierung, Pupillen, Blutzucker, Lähmungen</span></div>
+    </div>
+    <div class="goodbox"><b>Die goldene Regel:</b> Immer in dieser <b>Reihenfolge</b> und <b>nie ein Problem
+    überspringen</b>. Ein Atemwegsproblem tötet in Minuten, ein Kreislaufproblem in Stunden. Deshalb kommt
+    <b>A vor B vor C vor D</b>.</div>
+  </section>
+
+  <section id="s9">
+    <h2><span class="n">9</span> Hypoxie und hypoxischer Hirnschaden</h2>
+    <blockquote><b>Hypoxie</b> = Minderversorgung des Körpers oder einzelner Körperabschnitte mit Sauerstoff
+    (O₂). Sie zeigt sich durch einen <b>verminderten Sauerstoffpartialdruck (pO₂)</b> im Blut und in den
+    Geweben.</blockquote>
+    <ul class="clean">
+      <li>Die <b>systemische Hypoxie</b> ist eine <b>lebensbedrohliche Störung</b>.</li>
+      <li>Wird die auslösende Störung nicht behoben, treten <b>Kreislaufstillstand, Bewusstseinsverlust und
+      Koma</b> ein.</li>
+      <li>Zugleich kann sie die <b>Folge einer zu spät oder nicht richtig erkannten Erkrankung</b> sein.</li>
+    </ul>
+    <div class="alarm">
+      <h4>Die Prüfungsfrage</h4>
+      <b>Nach wie vielen Minuten sterben die ersten Gehirnzellen irreparabel ab?</b><br>
+      <span style="font-family:var(--mono);font-size:1.4rem;font-weight:700;color:var(--bad)">3 Minuten</span><br>
+      Deshalb: <b>„Time is Brain"</b> — jede Sekunde ohne Herzdruckmassage kostet Hirnzellen.
+    </div>
+  </section>
+
+  <section id="s10">
+    <h2><span class="n">10</span> Apoplex — der Schlaganfall</h2>
+    <blockquote>Der Schlaganfall ist <b>keine einheitliche Erkrankung</b>. Der Oberbegriff „Schlaganfall",
+    auch <b>Apoplex</b> oder <b>Hirninsult</b> genannt, wird für eine <b>Vielzahl unterschiedlicher
+    Erkrankungen</b> verwendet, die verschiedene Ursachen haben und damit auch <b>unterschiedliche Therapien</b>
+    erfordern.</blockquote>
+    <div class="note">Die zwei Grundformen: <b>Ischämischer</b> Schlaganfall (Gefäß<b>verschluss</b>, ca. 80 %)
+    und <b>hämorrhagischer</b> Schlaganfall (Hirn<b>blutung</b>). Von außen sehen beide gleich aus — deshalb
+    darf man nie „blind" blutverdünnend behandeln.</div>
+
+    <h3>Symptome</h3>
+    <div class="two">
+      <div class="col c1">
+        <ul>
+          <li><b>Sehstörungen</b></li>
+          <li><b>Sprach- und Sprachverständnisstörungen</b></li>
+          <li><b>Lähmungen und Taubheitsgefühle</b></li>
+          <li><b>Seitenneigung</b> (durch Lähmung)</li>
+        </ul>
+      </div>
+      <div class="col c2">
+        <ul>
+          <li><b>Schwindel</b> mit Gangunsicherheit</li>
+          <li><b>Sehr starke Kopfschmerzen</b></li>
+          <li><b>Pupillendifferenz</b></li>
+          <li><b>Wesensveränderung</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Maßnahmen</h3>
+    <ul class="clean">
+      <li><b>Zügiges Reagieren</b> ist hier wichtig, um Folgeschäden zu vermeiden.</li>
+      <li><b>Achtung! Keine blinde Antikoagulation!</b> — es könnte eine <b>Hirnblutung</b> sein.</li>
+      <li><b>Patienten beruhigen</b>, um den O₂-Verbrauch zu reduzieren.</li>
+      <li><b>Vitalparameter erheben.</b></li>
+      <li><b>Entsprechendem Arzt melden!</b></li>
+    </ul>
+    <div class="goodbox"><b>Praxis-Tipp — FAST-Test:</b> <b>F</b>ace (bitten zu lächeln — hängt ein
+    Mundwinkel?) · <b>A</b>rms (beide Arme heben — sinkt einer ab?) · <b>S</b>peech (einen Satz nachsprechen —
+    verwaschen?) · <b>T</b>ime (Zeitpunkt notieren und sofort Hilfe holen!). Der <b>Zeitpunkt des Symptombeginns</b>
+    entscheidet über die Therapie — merke ihn dir immer.</div>
+  </section>
+
+  <section id="s11">
+    <h2><span class="n">11</span> Angina Pectoris</h2>
+    <p class="lead">Meist beruht die Durchblutungsstörung, die der Angina Pectoris zugrunde liegt, auf der
+    <b>Stenosierung (Verengung) einer Koronararterie</b>.</p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Form</th><th>Wann tritt der Schmerz auf?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Stabile AP</b></td><td>Brustschmerz <b>unter Belastung</b> — hört in Ruhe wieder auf</td></tr>
+          <tr><td><b>Instabile AP</b></td><td>Angina Pectoris, die <b>in Ruhe</b> auftritt</td></tr>
+          <tr><td><b>Präinfarktangina</b></td><td>Angina Pectoris <b>im Vorfeld eines Myokardinfarkts</b></td></tr>
+          <tr><td><b>Postinfarkt-Angina</b></td><td>Angina Pectoris, die <b>nach einem behandelten Herzinfarkt</b>
+          auftreten kann</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alarm"><h4>Alarmzeichen</h4>Eine <b>instabile</b> Angina Pectoris ist ein <b>Notfall</b>
+    (akutes Koronarsyndrom) — sie kann jederzeit in einen Herzinfarkt übergehen. Faustregel: Schmerz in Ruhe,
+    neu aufgetreten, stärker als sonst oder länger als sonst → <b>sofort melden</b>.</div>
+  </section>
+
+  <section id="s12">
+    <h2><span class="n">12</span> Herzinfarkt (Myokardinfarkt)</h2>
+    <blockquote>Unter einem <b>Infarkt</b> versteht man einen <b>umschriebenen Gewebsuntergang (Nekrose)</b>
+    infolge einer <b>Durchblutungsstörung (Ischämie)</b>, z. B. durch <b>Thromben</b>.</blockquote>
+
+    <h3>Symptome</h3>
+    <ul class="clean">
+      <li><b>Übelkeit</b> / Kreislaufbeschwerden</li>
+      <li><b>Angst</b> / <b>Kaltschweißigkeit</b></li>
+      <li><b>Engegefühl</b> in der Brust</li>
+      <li><b>Muskelschmerzen</b> (ausstrahlend: linker Arm, Schulter, Kiefer, Rücken, Oberbauch)</li>
+      <li><b>Atemnot</b> / <b>Zyanose</b></li>
+    </ul>
+    <div class="note"><b>Frage aus dem Skript: „AP und HI unterschiedlich?"</b><br>
+    Die <b>Symptome sind sehr ähnlich</b> — das ist genau das Problem. Der Unterschied:
+    Bei der stabilen AP hört der Schmerz <b>in Ruhe</b> oder nach <b>Nitro</b> auf, beim Infarkt <b>nicht</b>.
+    Beim Infarkt hält der Schmerz meist <b>länger als 20 Minuten</b> an, dazu kommen oft Todesangst,
+    Kaltschweißigkeit und Vernichtungsgefühl. <b>Endgültig unterscheiden kann man sie nur mit EKG und
+    Laborwerten (Troponin).</b></div>
+    <div class="warnbox"><b>Wichtig für die Pflege:</b> Frauen, ältere Menschen und Diabetiker haben oft
+    <b>untypische Symptome</b> — nur Übelkeit, Atemnot, Oberbauchschmerz oder plötzliche Schwäche
+    („stummer Infarkt"). Bei Diabetikern kann der Schmerz durch die Polyneuropathie ganz fehlen.</div>
+
+    <h3>Maßnahmen</h3>
+    <ul class="clean">
+      <li><b>Vitalparameter erheben</b></li>
+      <li><b>EKG schreiben</b></li>
+      <li><b>Wenn möglich Oberkörper hoch</b></li>
+      <li><b>ACHTUNG!!</b> Immer den <b>Allgemeinzustand</b> beachten und abwägen, ob der <b>Blutdruck ein
+      Aufrichten zulässt</b> oder nicht — <b>Gefahr der Synkope!</b></li>
+      <li><b>Beruhigend wirken</b> — erhöhter Stress fordert mehr O₂ und damit mehr Schädigung des Herzens</li>
+      <li><b>Keine Schocklage!</b> — Überlastung des Herzens möglich</li>
+      <li><b>Zügig einen Arzt aufsuchen</b> und genauere Diagnostik erbitten</li>
+      <li><b>Falls nötig: Reanimation</b></li>
+    </ul>
+    <div class="alarm"><h4>Zwei Dinge nie vergessen</h4>
+      <b>1. Keine Schocklage</b> (Beine hoch) beim Herzinfarkt — dabei fließt zusätzliches Blut zum Herzen zurück
+      und belastet das ohnehin geschädigte Herz.<br>
+      <b>2. Oberkörper hoch — aber nur, wenn der Blutdruck es zulässt.</b> Bei niedrigem RR droht sonst eine
+      Synkope.</div>
+  </section>
+
+  <section id="s13">
+    <h2><span class="n">13</span> Lungenembolie</h2>
+    <blockquote>Bei einer <b>Lungenembolie (LE)</b> sind die <b>Lungenarterien</b> partiell oder vollständig
+    durch <b>eingeschwemmte Blutgerinnsel</b> aus der peripheren venösen Strombahn <b>verlegt</b>.
+    In Ausnahmefällen können auch <b>Fetttröpfchen, Luft oder ein Fremdkörper</b> eine Lungenembolie
+    auslösen.</blockquote>
+    <p>Die Lungenembolie gehört zusammen mit der <b>tiefen Beinvenenthrombose</b> zu den
+    <b>venösen Thromboembolien</b>.</p>
+
+    <div class="warnbox"><b>CAVE — besonders betroffen sind Patienten mit:</b>
+      <ul class="plain" style="margin-bottom:0">
+        <li><b>Z. n. OP</b> (Zustand nach Operation)</li>
+        <li><b>langen sitzenden Aufenthalten</b> (Reisen, Rollstuhl)</li>
+        <li><b>Herzrhythmusstörungen</b></li>
+      </ul>
+    </div>
+
+    <h3>Symptome</h3>
+    <ul class="clean">
+      <li><b>Atemnot</b></li>
+      <li><b>Atemabhängiger Schmerz</b> (Schmerz beim Einatmen)</li>
+      <li><b>Tachykardien</b></li>
+      <li><b>Engegefühl</b></li>
+      <li><b>Fieber</b></li>
+      <li><b>Prä-/Synkopen</b> — meist <b>zuvor Atemnot</b></li>
+      <li><b>Bluthusten</b> (Hämoptyse)</li>
+    </ul>
+
+    <h3>Maßnahmen (Pflege)</h3>
+    <ul class="clean">
+      <li><b>Vitalparameter erheben</b></li>
+      <li><b>EKG schreiben</b></li>
+      <li>Für <b>möglichst wenig Belastung</b> des Patienten sorgen</li>
+      <li><b>Aufrecht setzen</b> und ggf. <b>enge Kleidung öffnen</b> (auch für die Psyche wichtig)</li>
+      <li><b>Patienten beruhigen</b></li>
+    </ul>
+    <h3>Ärztliche Maßnahmen</h3>
+    <ul class="clean">
+      <li><b>Massive O₂-Therapie</b></li>
+      <li><b>Zügige Antikoagulation</b> — <b>nach Ausschluss eines Aortenaneurysmas</b></li>
+    </ul>
+    <div class="badbox"><b>Absolute Regel:</b> Bei Verdacht auf Lungenembolie den Patienten <b>nicht mehr
+    aufstehen oder laufen lassen</b> — jede Anstrengung kann weitere Gerinnsel losreißen.
+    <b>Flachlagerung vermeiden, Oberkörper hoch.</b></div>
+
+    <h3>Das kleine Fazit der drei Erkrankungen</h3>
+    <div class="card">
+      <p style="margin-top:0"><b>Schlaganfall (Verschluss), Herzinfarkt und Lungenembolie sind Resultate eines
+      gleichen Ereignisses — nur in unterschiedlichen Organen.</b></p>
+      <p style="margin-bottom:0">In allen drei Fällen ist zuvor ein <b>Gefäßverschluss</b> im entsprechenden
+      Organ geschehen.</p>
+    </div>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Organ</th><th>Erkrankung</th><th>Was ist verstopft?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Gehirn</b></td><td>Apoplex (ischämisch)</td><td>Hirnarterie</td></tr>
+          <tr><td><b>Herz</b></td><td>Myokardinfarkt</td><td>Koronararterie</td></tr>
+          <tr><td><b>Lunge</b></td><td>Lungenembolie</td><td>Lungenarterie</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="goodbox">Das ist der wichtigste Merksatz des ganzen Kapitels — mit diesem einen Prinzip
+    verstehst du alle drei Krankheitsbilder auf einmal.</div>
+  </section>
+
+  <section id="s14">
+    <h2><span class="n">14</span> Reanimation und AED</h2>
+    <p class="lead"><b>Time is Brain</b> — jede Minute ohne Herzdruckmassage kostet Gehirn.</p>
+
+    <h3>Ein paar Zahlen (aus dem Skript)</h3>
+    <div class="zahl">
+      <div><div class="v">3 %</div><div class="k">fangen bei der <b>Ersthelfer</b>-Reanimation eigenständig
+      an zu atmen (3 von 100)</div></div>
+      <div><div class="v">30 %</div><div class="k">bekommt der <b>Rettungsdienst</b> im Rahmen der Reanimation
+      zurück (30 von 100)</div></div>
+      <div><div class="v">max. 1</div><div class="k">von 100 übersteht die Reanimation
+      <b>schadenfrei</b></div></div>
+    </div>
+    <div class="note">Diese Zahlen sind hart — aber sie zeigen genau, <b>warum sofort und ohne Pause gedrückt
+    werden muss</b>. Jede Verzögerung senkt die Chance weiter.</div>
+
+    <h3>Grundwissen — die Technik</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>Den <b>Brustkorb nach unten drücken</b></li>
+        <li><b>Drucktiefe: 5 cm</b></li>
+        <li><b>Frequenz: 100–120/min</b></li>
+        <li><b>Kompressionsdauer = Dekompressionsdauer</b> (gleich lang drücken und entlasten)</li>
+        <li><b>Verhältnis Kompression zu Beatmung: 30 : 2</b></li>
+        <li>Ist eine Beatmung <b>nicht möglich</b> → <b>kontinuierliche Druckmassage</b></li>
+        <li>Wenn möglich, <b>alle zwei Minuten abwechseln</b></li>
+        <li><b>Beatmung nur mit Beatmungsbeutel, wenn gelernt!</b> Sonst nur Kompression!</li>
+      </ul>
+    </div>
+    <div class="zahl">
+      <div><div class="v">5 cm</div><div class="k">Drucktiefe</div></div>
+      <div><div class="v">100–120</div><div class="k">Kompressionen pro Minute</div></div>
+      <div><div class="v">30 : 2</div><div class="k">Kompression : Beatmung</div></div>
+      <div><div class="v">2 min</div><div class="k">Helferwechsel</div></div>
+    </div>
+
+    <h3>Was ist zu beachten?</h3>
+    <ul class="clean">
+      <li><b>Keine Panik und Eigenschutz beachten!</b></li>
+      <li>Der <b>Untergrund muss geeignet sein</b> und darf nicht so weich sein, dass die Kompression darunter
+      leidet. <span style="color:var(--ink-soft)">(Im Pflegeheim heißt das: Reanimationsbrett unterlegen oder auf
+      den Boden.)</span></li>
+      <li>Der <b>Rücken bleibt beim Drücken durchgestreckt</b>; der Druck wird durch die <b>Bewegung der
+      Hüfte</b> erzeugt.</li>
+      <li>Der Untergrund muss bei der <b>Defibrillation trocken</b> sein.</li>
+      <li><b>Keine unnötigen Pausen!</b> Das Blut braucht <b>mehrere korrekte Kompressionen</b>, um wieder in
+      Bewegung zu kommen — sonst droht <b>Gerinnung</b>.</li>
+      <li><b>Wechsel der Partner so kurz wie möglich</b> halten (<b>anzählen!</b>).</li>
+      <li><b>Elektroden sind biphasisch</b> — die Anordnung ist nicht relevant, Hauptsache jeweils eine an der
+      angegebenen Position.</li>
+      <li><b>Der AED ist eine Hilfe, aber keine Rettung — Drücken geht immer vor.</b></li>
+    </ul>
+
+    <h3>AED — Automatischer Externer Defibrillator</h3>
+    <ul class="clean">
+      <li><b>Hohe Analysesicherheit</b> — weniger als <b>5 % Fehler</b></li>
+      <li><b>Akkubetrieben</b>, ca. <b>2–5 Jahre haltbar</b> (je nach Hersteller und Modell)</li>
+      <li><b>Automatisierte Energieabgabe</b></li>
+      <li>Ein <b>Vertauschen der Klebeelektroden</b> hat <b>keinen Einfluss</b> auf die Defibrillation</li>
+      <li>AED-Geräte haben eine <b>automatische digitale Dokumentation</b></li>
+    </ul>
+    <div class="alarm"><h4>Gefahr bei der Defibrillation!</h4>
+      <b>1000 V Spannung und 10 Ampere Stromstärke</b> können bei falscher Handhabung oder bei Nutzung am
+      lebenden Patienten einen <b>Stromunfall</b> verursachen.<br>
+      <b>EIGENSCHUTZ BEACHTEN!</b> Vor dem Schock laut rufen: „Alle weg vom Patienten!" — und selbst
+      zurücktreten.</div>
+  </section>
+
+  <section id="s15">
+    <h2><span class="n">15</span> Krampfleiden</h2>
+    <p class="lead">Krampfleiden können <b>vielerlei Herkunft</b> haben und <b>Gefahren als Folge</b>
+    nach sich ziehen.</p>
+
+    <h3>Mögliche Ursachen</h3>
+    <div class="two">
+      <div class="col c1">
+        <ul>
+          <li><b>Epilepsie</b></li>
+          <li><b>Hirndruck</b></li>
+          <li><b>Fieberkrampf</b></li>
+          <li><b>Hirnblutung</b></li>
+          <li><b>Hypoglykämie</b></li>
+        </ul>
+      </div>
+      <div class="col c2">
+        <ul>
+          <li><b>Eklampsie</b> (in der Schwangerschaft)</li>
+          <li><b>Psychogene Zustände</b></li>
+          <li><b>Hyperventilation</b> (im entfernten Sinne)</li>
+          <li><b>Sepsis</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Die drei wichtigsten Bilder</h3>
+    <div class="card">
+      <h4>Epilepsie</h4>
+      <p style="margin-top:0">Eine <b>vorübergehende Fehlfunktion des Gehirns</b> mit einem <b>vielfältigen
+      Erscheinungsbild</b>. Bei einem epileptischen Anfall geben <b>Nervenzellen zu viele Signale auf einmal</b>
+      ab. Dabei kann es zu Störungen <b>des Bewusstseins, von Bewegungen oder Wahrnehmungen</b> kommen.</p>
+      <h4>Fieberkrampf</h4>
+      <p>Eine <b>Überreaktion des Körpers auf einen Anstieg der Körpertemperatur</b>. Häufig haben die Patienten
+      (für gewöhnlich <b>Kinder</b>) einen <b>raschen Anstieg auf über 38,5 °C</b>.</p>
+      <h4>Hypoglykämie</h4>
+      <p style="margin-bottom:0">Von einer <b>Hypoglykämie</b> („Hypo", Unterzuckerung) spricht man, wenn die
+      Blutzuckerwerte <b>unter 3,5 mmol/l (63 mg/dl)</b> gesunken sind — <b>individuelle Unterschiede
+      möglich</b>. Eine Hypoglykämie kann <b>leicht oder schwer</b> ausgeprägt sein.</p>
+    </div>
+
+    <h3>Differenzialdiagnostik — die Prüfungstabelle</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Symptom</th><th>Epilepsie</th><th>Fieberkrampf</th><th>Hypoglykämie</th></tr></thead>
+        <tbody>
+          <tr><td><b>Ursache</b></td>
+            <td><b>Neurologisch</b></td>
+            <td><b>Starke Temperatursteigerung in kurzer Zeit</b></td>
+            <td><b>Stoffwechsel</b></td></tr>
+          <tr><td><b>Verhalten</b></td>
+            <td>meist <b>bewusstlos</b></td>
+            <td><b>wach, abwesend</b>, keine direkte Reaktion</td>
+            <td><b>aggressiv, desorientiert</b>, bewusstlos</td></tr>
+          <tr><td><b>Krampfart</b></td>
+            <td><b>still bis stark</b></td>
+            <td>meist <b>Streckkrampf</b></td>
+            <td><b>kein bis stark</b></td></tr>
+          <tr><td><b>Maßnahme<br>(praktisch)</b></td>
+            <td><b>Abschirmung</b>, <b>Umgebung sichern</b> (Verletzungen, Bettgitter)</td>
+            <td>für <b>kühle Umgebung</b> sorgen (Kleidung)</td>
+            <td><b>Blutzucker messen</b></td></tr>
+          <tr><td><b>Maßnahme<br>(Bekämpfung)</b></td>
+            <td><b>Muskelrelaxierung</b> (ärztlich)</td>
+            <td><b>Antipyretika</b>, <b>Wadenwickel</b>, Kühlen der Pulsstellen (<b>Femoralis, Radialis,
+            Carotis, Nacken</b>)</td>
+            <td><b>Kohlenhydrate oral</b> (Fruchtzucker, Brot …); <b>Glukose i. v. bei
+            Bewusstlosigkeit</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="badbox"><b>Die drei wichtigsten Regeln beim Krampfanfall:</b>
+      <ul class="plain" style="margin-bottom:0">
+        <li><b>Nichts in den Mund schieben</b> — kein Beißkeil, keine Finger!</li>
+        <li><b>Nicht festhalten</b> — nur die Umgebung entschärfen (Kanten polstern, Gegenstände wegräumen,
+        Kopf schützen).</li>
+        <li><b>Dauer messen!</b> Ein Anfall über <b>5 Minuten</b> oder mehrere Anfälle ohne Aufwachen dazwischen
+        = <b>Status epilepticus</b> → lebensbedrohlicher Notfall.</li>
+      </ul>
+    </div>
+    <div class="warnbox"><b>Bei Bewusstlosen niemals oral Zucker geben</b> — Aspirationsgefahr!
+    Dort gilt: <b>Glukose i. v.</b> durch den Arzt. Und: Nach einem Krampfanfall <b>immer Blutzucker messen</b> —
+    eine Hypoglykämie sieht oft aus wie ein epileptischer Anfall oder wie ein aggressiver, verwirrter Mensch.</div>
+  </section>
+
+  <section id="s16">
+    <h2><span class="n">16</span> Bolusgeschehen (Verschlucken / Fremdkörper)</h2>
+    <p class="lead">Der Algorithmus aus dem Skript. Alles beginnt mit einer <b>Ersteinschätzung</b>:
+    hustet der Mensch <b>effektiv</b> oder <b>ineffektiv</b>?</p>
+
+    <div class="two">
+      <div class="col c2">
+        <h4>✅ Effektives Husten</h4>
+        <p style="font-size:14.5px;margin:0"><b>Beobachten und unterstützend wirken.</b><br>
+        Der Mensch kann sprechen, atmen und kräftig husten — er befördert den Fremdkörper selbst heraus.
+        <b>Nicht</b> auf den Rücken schlagen, das kann den Bolus tiefer treiben. Zum Weiterhusten ermutigen und
+        dabeibleiben.</p>
+      </div>
+      <div class="col c1">
+        <h4>⚠️ Ineffektives Husten</h4>
+        <p style="font-size:14.5px;margin:0"><b>Alarm auslösen</b> — eintreffende Hilfe ruft das
+        <b>Rea-/Notfallteam</b>.<br>
+        <b>Bei Bewusstsein:</b> <b>Rückenschläge</b> oder <b>Heimlich-Manöver</b>.<br>
+        <b>Bei Bewusstlosigkeit:</b> <b>Reanimation</b>.</p>
+      </div>
+    </div>
+
+    <h3>Der Ablauf in Worten</h3>
+    <ol class="merk">
+      <li><b>Ersteinschätzung:</b> Hustet der Mensch effektiv oder ineffektiv?</li>
+      <li><b>Effektiv</b> → beobachten, zum Husten ermutigen, dabeibleiben.</li>
+      <li><b>Ineffektiv</b> → <b>Alarm auslösen</b>, Hilfe holen (Rea-/Notfallteam).</li>
+      <li><b>Noch bei Bewusstsein</b> → <b>5 Rückenschläge</b> zwischen die Schulterblätter (Oberkörper nach
+      vorn beugen), dann <b>5 Oberbauchkompressionen</b> (Heimlich-Manöver) — im Wechsel.</li>
+      <li><b>Wird bewusstlos</b> → hinlegen und sofort <b>mit der Reanimation beginnen</b>.</li>
+    </ol>
+    <div class="warnbox"><b>Nach jedem Heimlich-Manöver</b> muss der Mensch ärztlich untersucht werden —
+    es können innere Verletzungen entstanden sein. Bei <b>Säuglingen</b> wird <b>kein</b> Heimlich-Manöver
+    durchgeführt, sondern <b>Rückenschläge und Brustkorbkompressionen</b>.</div>
+  </section>
+
+  <div class="teil">Teil B · Psychiatrische Notfälle und Zustände</div>
+
+  <section id="s17">
+    <h2><span class="n">17</span> Was ist Psychiatrie?</h2>
+    <blockquote>Psychiatrie umfasst die <b>Erforschung, Diagnostik und Therapie psychischer Krankheiten</b> des
+    Menschen. Im <b>Zusammenwirken biologischer und psychosozialer Faktoren</b> und deren Auswirkungen auf das
+    <b>psychopathologische Erscheinungsbild</b> liegt das Wesen der Psychiatrie.</blockquote>
+    <div class="goodbox">Das zugrunde liegende Krankheitsmodell ist ein
+    <b>bio-psycho-soziales Krankheitsmodell</b>: <b>Körper</b> (Gene, Stoffwechsel, Hirn) +
+    <b>Psyche</b> (Erleben, Bewältigung) + <b>Soziales</b> (Familie, Arbeit, Wohnung) wirken zusammen.</div>
+
+    <h3>Die Fachgebiete im Überblick</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Fachgebiet</th><th>Womit beschäftigt es sich?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Psychiatrie und Psychotherapie</b></td><td>Erforschung, Diagnostik und Therapie psychischer
+          Krankheiten</td></tr>
+          <tr><td><b>Psychosomatische Medizin und Psychotherapie</b></td><td>Krankheiten und Leidenszustände, die
+          <b>vorrangig durch psychosoziale und psychosomatische Faktoren</b> mitbedingt bzw. geprägt
+          werden</td></tr>
+          <tr><td><b>Psychopharmakologie</b></td><td>Lehre von der <b>Beeinflussung seelischer Vorgänge durch
+          Psychopharmaka</b></td></tr>
+          <tr><td><b>Sozialpsychiatrie</b></td><td><b>Epidemiologie und Soziologie</b> seelischer
+          Krankheiten</td></tr>
+          <tr><td><b>Kinder- und Jugendpsychiatrie</b></td><td>Erforschung und Behandlung seelischer Störungen
+          <b>vom Säuglingsalter bis zur Adoleszenz</b></td></tr>
+          <tr><td><b>Neurologie</b></td><td>Lehre von den Erkrankungen des <b>zentralen, peripheren und
+          vegetativen Nervensystems</b></td></tr>
+          <tr><td><b>Psychologie</b></td><td>Lehre von den <b>normalen</b> seelischen Vorgängen. Die
+          <b>klinische Psychologie</b> beschäftigt sich auch mit den psychogenetisch erklärbaren
+          <b>krankhaften</b> seelischen Vorgängen</td></tr>
+          <tr><td><b>Psychopathologie</b></td><td>Lehre von den Krankheitszeichen des Seelischen</td></tr>
+          <tr><td><b>Biologische Psychiatrie</b></td><td>Körperliche Grundlagen psychischer Erkrankungen</td></tr>
+          <tr><td><b>Psychopharmakotherapie</b></td><td>Behandlung mit Psychopharmaka</td></tr>
+          <tr><td><b>Soziotherapie / psychosoziale Therapien</b></td><td>Behandlung über das soziale
+          Umfeld</td></tr>
+          <tr><td><b>Forensische Psychiatrie</b></td><td>Schnittstelle von Psychiatrie und Recht</td></tr>
+          <tr><td><b>Psychotherapie</b></td><td>Behandlung mit psychologischen Mitteln (Gespräch, Verhalten)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="s18">
+    <h2><span class="n">18</span> Grundannahmen — die Haltung</h2>
+    <p class="lead">Die Frage aus dem Skript: <i>„Welche Grundannahmen sind für uns zu Beginn wichtig, um mit
+    einem solchen Patienten zurechtzukommen?"</i> — Diese fünf Sätze sind das Fundament der ganzen Schulung.</p>
+
+    <div class="card">
+      <h4>1 · Die Landkarte ist nicht das Gebiet</h4>
+      <p style="margin-top:0">Wir alle haben <b>verschiedene Vorstellungen von der Welt</b>. Keine dieser
+      Vorstellungen stellt die Welt <b>vollständig und akkurat</b> dar. <b>Menschen reagieren auf ihre Abbildung
+      von der Realität, nicht auf die Realität selbst.</b></p>
+
+      <h4>2 · Es gibt keine richtigen und falschen Modelle der Welt</h4>
+      <p><b>Jeder sieht die Welt durch eine andere Brille.</b></p>
+
+      <h4>3 · Hinter jedem — auch noch so problematischem — Verhalten steckt eine gute Absicht</h4>
+      <p>Jedes Verhalten bezweckt im Leben des Betreffenden eine <b>positive Funktion</b>, unabhängig von
+      möglichen negativen Nebenwirkungen.</p>
+
+      <h4>4 · Menschen treffen innerhalb ihres Modells der Welt die beste ihnen subjektiv zur Verfügung
+      stehende Wahl</h4>
+      <p>Wenn Menschen <b>andere und angemessenere Möglichkeiten</b> zur Erfüllung ihrer Bedürfnisse hätten,
+      würden sie vieles von dem nicht tun, was manchmal <b>aus reiner Bosheit zu geschehen scheint</b>.</p>
+
+      <h4>5 · Für jedes Verhalten gibt es einen Kontext, in dem es sinnvoll oder nützlich sein kann</h4>
+      <p style="margin-bottom:0"><b>Gelernt ist gelernt</b> — dieses Verhalten hat irgendwann zum gewünschten
+      Erfolg geführt. Ziel ist, <b>zusätzlich</b> zu diesem Verhalten <b>mehr Wahlmöglichkeiten</b> zu
+      entwickeln.</p>
+    </div>
+    <div class="goodbox"><b>Was das praktisch bedeutet:</b> Wenn eine Bewohnerin schreit, ist die Frage nicht
+    „Wie bringe ich sie zum Schweigen?", sondern <b>„Was will sie damit erreichen?"</b> — und dann:
+    „Kann sie das auch anders bekommen?"</div>
+  </section>
+
+  <section id="s19">
+    <h2><span class="n">19</span> Suizidalität</h2>
+    <p class="lead">Die Leitfrage des Skripts: <i>„Kann man einen möglichen Suizid frühzeitig erkennen?"</i></p>
+    <div class="alarm"><h4>Die ehrliche Antwort</h4>
+      Es gibt <b>viele Faktoren, die „Sein oder Schein" sein können</b>. Ein Suizid <b>kann</b> sich vorher
+      ankündigen — <b>MUSS aber nicht unbedingt!</b></div>
+
+    <h3>Welche inneren emotionalen Wünsche stecken dahinter?</h3>
+    <p>Beispiele aus Argumentationen von Patienten, deren Versuch <b>nicht geglückt</b> ist oder die davon
+    <b>abgehalten</b> werden konnten:</p>
+    <div class="two">
+      <div class="col c1">
+        <ul>
+          <li><b>Todeswunsch</b></li>
+          <li><b>Wunsch nach Veränderung</b> im Leben</li>
+          <li><b>Hilferuf</b></li>
+          <li><b>Rache</b></li>
+          <li><b>Wunsch nach Ruhe</b></li>
+          <li><b>Wunsch nach Ablösung und Trennung</b></li>
+        </ul>
+      </div>
+      <div class="col c2">
+        <ul>
+          <li><b>Manipulation anderer</b></li>
+          <li><b>Enttäuschung, Wut</b></li>
+          <li><b>depressive Verstimmung</b></li>
+          <li><b>belastende Lebensereignisse</b></li>
+          <li><b>psychotische Motivation</b></li>
+        </ul>
+      </div>
+    </div>
+    <div class="goodbox"><b>Die wichtigste Erkenntnis:</b> Die wenigsten wollen wirklich <b>tot sein</b> —
+    die meisten wollen, dass <b>der Zustand aufhört</b>. Genau da setzt das Gespräch an.</div>
+
+    <h3>Das Krisenmodell der akuten Suizidalität</h3>
+    <div class="card tight">
+      Das „<b>Krisenmodell</b>" geht von einer <b>psychisch unauffälligen Persönlichkeit</b> aus.
+      <b>Suizidales Handeln resultiert aus einem nicht bewältigbar erscheinenden Lebensereignis.</b>
+      <div style="font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:8px">
+        Wolfersdorf M.: Suizidalität. In: Berger M. (Hrsg.): Psychische Erkrankungen. 2. Aufl. Elsevier,
+        München; 2004</div>
+    </div>
+    <div class="note">Das heißt: <b>Man muss nicht psychisch krank sein, um suizidal zu werden.</b> Ein einziges
+    Ereignis, das unlösbar erscheint, kann reichen. Deshalb betrifft es <b>jeden</b>.</div>
+
+    <h3>Suizidale Risikogruppen</h3>
+    <p>Aufgrund diverser Untersuchungen ist bekannt, dass die häufigsten Risikopopulationen — mit von 1 bis 5
+    <b>abnehmendem</b> Suizidrisiko — die folgenden sind:</p>
+    <ol class="merk">
+      <li><b>Depressive aller Arten</b></li>
+      <li><b>Alkohol-, Medikamenten- und Drogenabhängige</b></li>
+      <li><b>Alte und Vereinsamte</b></li>
+      <li><b>Personen, die durch eine Suizidankündigung auffallen</b></li>
+      <li><b>Personen, die einen Suizidversuch hinter sich haben</b></li>
+    </ol>
+
+    <h3>Betroffene Berufe</h3>
+    <div class="two">
+      <div class="col c1">
+        <ul><li>Ärzte</li><li><b>Pflegepersonal</b></li><li>Rettungsdienst (sowie Feuerwehr)</li>
+        <li>Polizisten</li><li>Soldaten</li></ul>
+      </div>
+      <div class="col c2">
+        <ul><li>Chemiker</li><li>Sozialarbeiter</li><li>Künstlerische Berufe</li><li>Landwirte</li>
+        <li>Seeleute</li></ul>
+      </div>
+    </div>
+    <div class="badbox"><b>Pflegepersonal steht auf dieser Liste ganz oben.</b> Das ist kein Zufall:
+    hohe Belastung, Zugang zu Medikamenten, Fachwissen, Schichtdienst und die Gewohnheit, eigene Bedürfnisse
+    hintanzustellen. → siehe Kapitel 25.</div>
+
+    <h3>Ein Beispiel aus dem echten Leben (aus dem Skript)</h3>
+    <div class="card">
+      <p style="margin-top:0">In der Nacht vom <b>26.12.22</b> hat sich ein Kollege des Rettungsdienstes das
+      Leben genommen. Er war <b>34 Jahre alt</b>, machte einen <b>primär fröhlichen Eindruck</b>, hat viel
+      gelacht, war immer sehr hilfsbereit und in vielen sozialen Kreisen aktiv (Rettungsdienst, Feuerwehr,
+      Tafel, Sport, Familie mit Kindern).</p>
+      <p>Aus seinem Abschiedsbrief ging hervor, dass er in der <b>Kindheit ein traumatisierendes Erlebnis</b>
+      erlitt, das ihn belastete und das er eigentlich „im Griff" zu haben glaubte. In Kombination mit
+      <b>Problemen in seiner Liebesbeziehung</b> und der Eigenschaft, <b>nur schwer bis gar nicht über eigene
+      Probleme zu sprechen</b>, hat es ihn überkommen — und er sah keinen Ausweg mehr.</p>
+      <p style="margin-bottom:0">Er hat in Form eines <b>Bildes einen Suizid angekündigt</b> und auf weitere
+      Nachfragen nicht mehr reagiert. Das Bild ging an seinen Bruder, einen engen Vertrauten, der ebenfalls im
+      Rettungsdienst arbeitet. Trotz aller Bemühungen von Rettungsdienst und Polizei (Handyortung) war es
+      <b>nicht möglich, ihn rechtzeitig zu finden</b>.</p>
+    </div>
+    <div class="alarm"><h4>Was man daraus lernt</h4>
+      <ul class="plain" style="margin-bottom:0">
+        <li><b>Ein fröhliches Auftreten schließt nichts aus.</b></li>
+        <li>Eine <b>Ankündigung</b> — auch indirekt, auch als Bild — ist <b>immer</b> ernst zu nehmen.</li>
+        <li><b>Reagiert jemand plötzlich nicht mehr</b>, ist das ein Alarmsignal.</li>
+        <li><b>Nicht über eigene Probleme sprechen zu können</b> ist selbst ein Risikofaktor.</li>
+      </ul>
+    </div>
+    <div class="goodbox"><b>Für die Praxis:</b> Sprich Suizidgedanken <b>direkt und ruhig</b> an —
+    <i>„Denken Sie manchmal daran, sich das Leben zu nehmen?"</i>. Das <b>bringt niemanden auf die Idee</b>,
+    sondern entlastet. Danach: <b>nicht allein lassen</b>, gefährliche Gegenstände sichern, Arzt informieren,
+    dokumentieren.</div>
+  </section>
+
+  <section id="s20">
+    <h2><span class="n">20</span> Die psychiatrischen Notfallbilder</h2>
+    <p class="lead">Die Erkrankungen können <b>jeden Komplex der Psychiatrie</b> betreffen. Daher wird in
+    Notfallsituationen in der Regel <b>sehr symptomorientiert gearbeitet und behandelt</b>. Allgemein handelt es
+    sich um <b>schwerwiegende akute Störungen des Denkens, der Stimmung, des Verhaltens oder des sozialen
+    Seins</b>.</p>
+    <div class="card tight">
+      <b>Die sieben Notfallbilder:</b> Erregungszustände · akute Suizidalität · Angst- und Panikstörungen ·
+      Bewusstseinsstörungen/Delir · Stupor und Katatonie · Drogennotfälle · psychopharmakainduzierte Notfälle
+    </div>
+
+    <h3>1 · Erregungszustände</h3>
+    <p><b>Hauptcharakteristika</b> sind eine meist <b>ziellose Steigerung von Antrieb und Psychomotorik</b>,
+    <b>affektive Enthemmung</b> und <b>Kontrollverlust</b>. Es kann zu ausgeprägter <b>Gereiztheit</b> und
+    <b>aggressiven Äußerungen bis hin zu unvermittelten Gewalttätigkeiten</b> kommen.</p>
+    <p>Erregungszustände können bei den <b>meisten psychischen Störungen</b> auftreten. Hauptursachen:</p>
+    <ul class="clean">
+      <li><b>manische, schizophrene Psychosen</b></li>
+      <li><b>Demenzen</b></li>
+      <li><b>Intoxikationen / Entzugssyndrome</b></li>
+      <li><b>Belastungsreaktionen</b></li>
+      <li><b>Persönlichkeitsstörungen</b></li>
+      <li><b>Minderbegabung</b></li>
+      <li><b>organische Grunderkrankungen</b> (hormonelle und Stoffwechselstörungen)</li>
+    </ul>
+
+    <h3>2 · Angst- und Panikstörungen</h3>
+    <ul class="clean">
+      <li>Ein <b>Notfall liegt vor</b>, wenn der Patient meint, <b>die Kontrolle über sich zu verlieren</b> oder
+      <b>lebensbedrohlich erkrankt zu sein</b>.</li>
+      <li>Es kommt zu <b>panikartigen Verhaltensweisen</b> mit <b>hochgradiger Erregung und Unruhe</b>.</li>
+      <li><b>Somatische Differenzialdiagnosen sind auszuschließen.</b></li>
+    </ul>
+    <div class="alarm"><h4>Cave!</h4><b>Nur weil ein Patient eine bekannte Störung hat, muss das nicht bedeuten,
+    dass nicht eventuell doch eine ernsthafte organische Erkrankung vorliegt!</b><br>
+    Eine Panikattacke und ein Herzinfarkt fühlen sich für den Betroffenen sehr ähnlich an — beides bringt
+    Engegefühl, Atemnot, Herzrasen und Todesangst. <b>Immer erst körperlich abklären.</b></div>
+
+    <h3>3 · Bewusstseinsstörungen</h3>
+    <ul class="clean">
+      <li>Sie umfassen eine <b>Vielzahl unterschiedlicher Symptome und Schweregrade</b> — von <b>leichter
+      Benommenheit</b> mit Bewusstseinstrübung bis zu <b>tiefer Bewusstlosigkeit</b>.</li>
+      <li><b>Ursachen</b> können <b>zerebral, zerebrovaskulär, kardiovaskulär, metabolisch, toxisch,
+      traumatisch oder psychisch</b> sein.</li>
+      <li>Nach der <b>zeitlichen Dauer</b> unterscheidet man:
+        <b>Synkope</b> (Sekunden bis Minuten) und <b>Koma</b> (Stunden bis Tage).</li>
+      <li><b>Synkopen</b> treten besonders bei <b>älteren Patienten</b> in der Allgemeinpraxis häufig auf und
+      können in der Regel <b>ambulant abgeklärt</b> werden.</li>
+    </ul>
+
+    <h3>4 · Delir</h3>
+    <p>Das <b>delirante Syndrom (Delir)</b> ist hauptsächlich gekennzeichnet durch:</p>
+    <ul class="clean">
+      <li><b>Desorientiertheit</b></li>
+      <li><b>Verkennung der Umgebung</b></li>
+      <li><b>halluzinatorische Erlebnisse</b> — vorwiegend <b>optisch</b></li>
+      <li><b>Unruhe bis hin zu starker Erregung</b></li>
+    </ul>
+    <p>Es handelt sich um eine <b>akute organische Psychose</b> — durch <b>Alkoholentzug</b>
+    („Delirium tremens"), <b>Medikamentenentzug</b>, <b>Allgemeinerkrankungen</b> und die <b>Einnahme zentral
+    wirksamer Pharmaka</b>.</p>
+    <h4>Hauptformen</h4>
+    <ul class="clean">
+      <li><b>(Alkohol-)Entzugsdelir</b></li>
+      <li><b>postoperatives Delir</b></li>
+      <li>durch <b>allgemeinmedizinische und hirnorganische Krankheiten</b> bedingtes Delir</li>
+      <li><b>pharmakogenes</b> Delir, z. B. <b>zentrales anticholinerges Delir</b></li>
+    </ul>
+    <div class="warnbox"><b>Delir ≠ Demenz.</b> Das Delir beginnt <b>plötzlich</b> (Stunden bis Tage),
+    schwankt im Tagesverlauf und ist <b>behandelbar/rückbildungsfähig</b>. Die Demenz beginnt <b>schleichend</b>
+    (Monate bis Jahre) und ist fortschreitend. <b>Ein Delir ist immer ein medizinischer Notfall</b> — dahinter
+    steckt fast immer eine körperliche Ursache (Infekt, Exsikkose, Schmerz, Harnverhalt, Medikament).</div>
+
+    <h3>5 · Stupor</h3>
+    <blockquote>Zustand einer <b>psychomotorischen Hemmung</b> mit unterschiedlich ausgeprägter <b>Bewegungs-
+    und Regungslosigkeit</b> (<b>Hypokatatonie</b>), in dem der Kranke <b>bei klarem Bewusstsein</b> ist und
+    <b>auf äußere Reize nicht reagiert</b>, <b>nicht spricht (Mutismus)</b>, <b>nicht trinkt und nicht isst</b>,
+    <b>Aufforderungen nicht nachgeht</b> — obwohl er sie <b>wahrnimmt und versteht</b>. Eine <b>Amnesie besteht
+    in der Regel nicht</b>.</blockquote>
+    <p><b>Psychiatrische Ursachen</b> sind <b>Schizophrenie, Depression</b> und der <b>psychogene
+    Stupor</b>.</p>
+    <div class="badbox"><b>Das Wichtigste für die Pflege:</b> Der Mensch <b>hört und versteht alles</b>.
+    Nie über ihn hinweg sprechen, nie „er kriegt ja nichts mit" sagen. Jede Handlung <b>ankündigen und
+    erklären</b>. Und: Er isst und trinkt nicht → <b>Exsikkose- und Thrombosegefahr</b>, deshalb medizinische
+    Überwachung nötig.</div>
+
+    <h3>6 · Drogennotfälle</h3>
+    <ul class="clean">
+      <li>Sie zeigen sich vorwiegend als <b>akute Intoxikationen</b> oder <b>Entzugserscheinungen</b> sowie als
+      <b>psychotische Reaktionen</b>, z. B. in Form eines „<b>Horrortrips</b>".</li>
+      <li>Das Erscheinungsbild kann sich auf vielfältige Weise zeigen: als <b>Bewusstseinsstörung</b>, als
+      <b>delirantes Syndrom</b> oder auch als <b>Erregungszustand</b>.</li>
+    </ul>
+    <div class="warnbox">Aus dem Skript: <b>Drogen haben verschiedene Wirkungen und können dynamische Situationen
+    verursachen, bei denen es schnell sehr sprunghaft werden kann</b> — <b>aufgedreht und plötzlich bewusstlos,
+    genauso umgekehrt</b>.</div>
+
+    <h3>7 · Psychopharmakainduzierte Notfälle</h3>
+    <p><b>Ursachen</b> sind <b>akzidentelle</b> (versehentliche) oder <b>suizidale Überdosierungen</b>,
+    <b>Nebenwirkungen</b> oder <b>Absetz-/Entzugssyndrome</b>.</p>
+    <h4>Wichtige Akutnebenwirkungen von Antipsychotika</h4>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Syndrom</th><th>Symptome</th><th>Therapie</th></tr></thead>
+        <tbody>
+          <tr><td><b>Frühdyskinesie</b></td>
+            <td>Plötzliche Bewegungsstörungen (Zungen-Schlund-Krämpfe, Blickkrampf, Verkrampfung von Nacken
+            und Rumpf)</td>
+            <td>Therapie mit <b>Anticholinergika</b></td></tr>
+          <tr><td><b>Malignes neuroleptisches Syndrom</b> ⚠️</td>
+            <td><b>Fieber, Tremor, Rigor, Bewusstseinsstörungen und vegetative Dysfunktionen</b></td>
+            <td><b>Sofortiges Absetzen</b> der Antipsychotika · <b>körpertemperatursenkende</b> und
+            <b>intensivmedizinische</b> Maßnahmen · Therapieversuch mit <b>dopaminergen Substanzen</b> und
+            <b>Muskelrelaxanzien</b> (z. B. <b>Dantrolen</b>)</td></tr>
+          <tr><td><b>Serotonin-Syndrom</b> ⚠️</td>
+            <td><b>Fieber, Tremor, Erregung, Desorientiertheit</b> — bei <b>(kontraindizierten!)
+            Medikamentenkombinationen</b></td>
+            <td><b>lebensbedrohlich</b> — sofort ärztlich</td></tr>
+          <tr><td><b>Anticholinerges Syndrom</b></td>
+            <td><b>Delirantes Bild</b> durch eine (relative) <b>Überdosierung</b> oder eine <b>Kombination
+            anticholinerg wirksamer Pharmaka</b></td>
+            <td>Therapie mit <b>Physostigmin</b></td></tr>
+          <tr><td><b>Kardiovaskuläre Störungen</b></td>
+            <td>Unter <b>trizyklischen Antidepressiva</b> und <b>Antipsychotika</b>. <b>Sturzrisiko durch
+            orthostatischen Kollaps</b></td>
+            <td>Kreislaufüberwachung, langsames Aufstehen, Sturzprophylaxe</td></tr>
+          <tr><td><b>Weitere</b></td>
+            <td><b>Harnsperre</b>, <b>(Sub-)Ileus</b>, <b>zerebrale Krampfanfälle</b></td>
+            <td>je nach Befund</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="alarm"><h4>Merke für die Prüfung</h4>
+      <b>Malignes neuroleptisches Syndrom</b> und <b>Serotonin-Syndrom</b> sehen sich sehr ähnlich —
+      beide mit <b>Fieber, Tremor und Bewusstseinsstörung</b>. Beide sind <b>lebensbedrohlich</b>.
+      Faustregel: <b>Fieber + Muskelsteifigkeit + Verwirrtheit bei einem Patienten mit Psychopharmaka
+      = sofort Arzt!</b></div>
+
+    <h3>Gibt es noch mehr gefährdete Vorerkrankungen?</h3>
+    <ul class="clean">
+      <li><b>manische, schizophrene Psychosen</b></li>
+      <li><b>Demenzen</b></li>
+      <li><b>Intelligenzminderung</b></li>
+      <li><b>Persönlichkeitsstörungen</b></li>
+      <li><b>Minderbegabung</b></li>
+      <li><b>organische Grunderkrankungen</b> (endokrine und Stoffwechselstörungen)</li>
+    </ul>
+    <p><b>Zwei Erkrankungen sind für uns besonders wichtig und kommen in jedem Alter vor</b> —
+    Depression und Schizophrenie (Kapitel 21 und 22).</p>
+  </section>
+
+  <section id="s21">
+    <h2><span class="n">21</span> Depression</h2>
+    <ul class="clean">
+      <li>Ein <b>Teil</b> der Depressiven kann <b>aufgrund des äußeren Aspektes erkannt</b> werden.</li>
+      <li>In anderen Fällen werden <b>(fast) ausschließlich körperliche Beschwerden geschildert</b> —
+      die <b>larvierte Depression</b> („maskierte" Depression). <b>Bei Verdacht muss die Symptomatik gezielt
+      exploriert werden.</b></li>
+    </ul>
+
+    <h3>Die Symptome</h3>
+    <div class="two">
+      <div class="col c1">
+        <ul>
+          <li><b>depressive Verstimmung / Niedergeschlagenheit</b></li>
+          <li><b>Antriebshemmung</b></li>
+          <li><b>Denkhemmung</b></li>
+          <li><b>Schlafstörungen</b></li>
+          <li><b>Interesse- und Initiativeverlust</b></li>
+        </ul>
+      </div>
+      <div class="col c2">
+        <ul>
+          <li><b>Entscheidungsunfähigkeit</b></li>
+          <li><b>Angst, Hoffnungslosigkeit</b></li>
+          <li><b>innere Unruhe</b></li>
+          <li><b>Grübeln</b></li>
+          <li><b>Vitalstörungen</b></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Das Suizidrisiko — die Zahlen</h3>
+    <div class="alarm">
+      <h4>Bei depressiven Patienten besteht ein ausgeprägtes Suizidrisiko</h4>
+      <ul class="plain" style="margin-bottom:0">
+        <li>Die <b>Suizidrate</b> liegt bei etwa <b>4 %</b> — das ist <b>ca. 30-mal höher</b> als in der
+        Durchschnittsbevölkerung.</li>
+        <li><b>15 %</b> der Patienten mit <b>schweren</b> depressiven Störungen begehen Suizid.</li>
+        <li><b>20 bis 60 %</b> weisen <b>Suizidversuche</b> in ihrer Krankheitsgeschichte auf.</li>
+        <li><b>40–80 %</b> leiden während einer Depression an <b>Suizidideen</b>.</li>
+      </ul>
+    </div>
+    <div class="warnbox"><b>Gefährlicher Moment:</b> Wenn die <b>Antriebshemmung sich löst</b> — z. B. wenige
+    Tage bis Wochen nach Beginn der antidepressiven Therapie —, kann die Stimmung noch tief sein, aber die
+    <b>Kraft zum Handeln ist zurück</b>. Das ist die Phase mit dem <b>höchsten Suizidrisiko</b>. Und:
+    Eine plötzliche, unerklärte <b>„Besserung"</b> oder auffällige <b>Ruhe</b> kann bedeuten, dass die
+    Entscheidung gefallen ist.</div>
+    <p>Aus dem Skript, mit Nachdruck: <b>„Es betrifft aber nicht nur die Erwachsenen!"</b> — auch Kinder und
+    Jugendliche erkranken an Depressionen.</p>
+  </section>
+
+  <section id="s22">
+    <h2><span class="n">22</span> Schizophrenie</h2>
+    <ul class="clean">
+      <li>Das <b>Durchleben akuter Psychosen</b></li>
+      <li>Patienten <b>hören Stimmen</b></li>
+      <li><b>Verfolgungswahn</b></li>
+      <li><b>Kompletter Verlust zur Wirklichkeit möglich</b></li>
+      <li>Verlauf: <b>phasenweise</b> oder <b>dauerhaft</b></li>
+      <li><b>Gestörte Affektivität</b> durch aufeinanderfolgend <b>stark wechselnde Gefühlssituationen</b></li>
+      <li><b>Gefühlsleere, starre Mimik, Teilnahmslosigkeit, Vermeiden von Augenkontakt</b></li>
+    </ul>
+    <div class="badbox"><b>Fälschlicherweise</b> wird oft ein Bezug zur „<b>gespaltenen Persönlichkeit</b>"
+    hergestellt. <b>Das ist falsch.</b> Schizophrenie hat <b>nichts</b> mit einer multiplen Persönlichkeit zu
+    tun. „Schizophrenie" bedeutet wörtlich „gespaltener Geist" und meint die <b>Spaltung zwischen Denken,
+    Fühlen und Wahrnehmen</b> — nicht mehrere Personen in einem Menschen.</div>
+    <div class="goodbox"><b>Umgang mit Wahn und Stimmen — die goldene Regel:</b>
+      <b>Nicht mitspielen und nicht wegdiskutieren.</b><br>
+      ❌ <i>„Da ist niemand, das bilden Sie sich ein."</i> → er fühlt sich nicht ernst genommen.<br>
+      ❌ <i>„Ja, ich höre die Stimmen auch."</i> → Lüge, und sie verstärkt den Wahn.<br>
+      ✅ <i>„Ich höre die Stimmen nicht — aber ich glaube Ihnen, dass Sie sie hören. Das macht Ihnen Angst,
+      oder?"</i> → das Gefühl wird anerkannt, die Realität bleibt klar.</div>
+  </section>
+
+  <section id="s23">
+    <h2><span class="n">23</span> Rechtliches Wissen</h2>
+
+    <h3>Notwehr — § 32 StGB</h3>
+    <div class="card tight">
+      <p style="margin-top:0"><b>Wer eine Tat begeht, die durch Notwehr geboten ist, handelt nicht
+      rechtswidrig.</b></p>
+      <p style="margin-bottom:0"><b>Notwehr</b> ist die <b>Verteidigung, die erforderlich ist</b>, um einen
+      <b>gegenwärtigen rechtswidrigen Angriff</b> von <b>sich oder einem anderen</b> abzuwenden.</p>
+    </div>
+    <div class="note">Drei Bedingungen: der Angriff muss <b>gegenwärtig</b> (jetzt, nicht vorbei, nicht erst
+    morgen), <b>rechtswidrig</b> und die Verteidigung <b>erforderlich</b> sein. Verteidigt man einen
+    <b>anderen</b>, spricht man von <b>Nothilfe</b>.</div>
+
+    <h3>Rechtfertigender Notstand — § 34 StGB</h3>
+    <div class="card tight">
+      <p style="margin-top:0">Wer in einer <b>gegenwärtigen, nicht anders abwendbaren Gefahr</b> für
+      <b>Leben, Leib, Freiheit, Ehre, Eigentum oder ein anderes Rechtsgut</b> eine Tat begeht, um die Gefahr von
+      sich oder einem anderen abzuwenden, <b>handelt nicht rechtswidrig</b> — wenn bei <b>Abwägung der
+      widerstreitenden Interessen</b>, namentlich der betroffenen Rechtsgüter und des Grades der ihnen drohenden
+      Gefahren, das <b>geschützte Interesse das beeinträchtigte wesentlich überwiegt</b>.</p>
+      <p style="margin-bottom:0">Dies gilt jedoch nur, soweit die Tat ein <b>angemessenes Mittel</b> ist,
+      die Gefahr abzuwenden.</p>
+    </div>
+    <div class="goodbox"><b>Unterschied einfach erklärt:</b> <b>§ 32 Notwehr</b> = es gibt einen <b>Angreifer</b>,
+    ich wehre <b>ihn</b> ab. <b>§ 34 Notstand</b> = es gibt eine <b>Gefahr</b> (kein Angreifer), und ich greife in
+    ein <b>fremdes Rechtsgut</b> ein, um sie abzuwenden — z. B. eine Tür aufbrechen, um einen Bewusstlosen zu
+    retten. Dabei muss das gerettete Gut <b>wesentlich wichtiger</b> sein als das beschädigte.</div>
+
+    <h3>Die Zwangseinweisung — UBG und PsychKG</h3>
+    <div class="card">
+      <p style="margin-top:0">Nach den <b>Unterbringungsgesetzen (UBG und PsychKG)</b> kann <b>gegen seinen
+      Willen</b> in einer <b>geschlossenen psychiatrischen Klinik</b> untergebracht werden, wer</p>
+      <ul class="plain">
+        <li>an einer <b>psychischen Krankheit</b> oder an einer <b>krankheitswertigen psychischen Störung</b>
+        leidet</li>
+        <li><b>und deswegen</b> eine <b>Gefahr für sich selbst</b> oder für die <b>öffentliche Sicherheit und
+        Ordnung</b> darstellt.</li>
+      </ul>
+      <p style="margin-bottom:0"><b>Zwischen den Unterbringungsgesetzen der verschiedenen Bundesländer bestehen
+      erhebliche Unterschiede.</b> (In NRW gilt das <b>PsychKG NRW</b>.)</p>
+    </div>
+
+    <h4>Ablauf in Aachen und Umgebung (aus dem Skript)</h4>
+    <ol class="merk">
+      <li><b>Rettungsdienst stellt die Problematik fest.</b></li>
+      <li><b>Nachforderung</b> von <b>NEF</b> (Notarzt), <b>Ordnungsamt</b> und <b>Polizei</b>.</li>
+      <li><b>Kontrolle durch Notarzt und Ordnungsamt</b>, ob die Unterbringung wirklich <b>indiziert</b> ist.</li>
+      <li><b>Auftrag an Polizei und Rettungsdienst</b>, den Patienten <b>unter Voranmeldung</b> ins Krankenhaus
+      zu transportieren.</li>
+      <li><b>Durchführung des Transportes unter Polizeibegleitung.</b></li>
+      <li><b>Innerhalb von 24 Stunden</b> muss ein <b>Richter</b> den Patienten sichten und entscheiden,
+      wie es weitergeht.</li>
+    </ol>
+    <div class="badbox"><b>Die zwei Voraussetzungen müssen BEIDE erfüllt sein:</b> psychische Krankheit
+    <b>UND</b> daraus folgende Gefahr. Eine psychische Erkrankung allein reicht <b>nicht</b>. Und:
+    Der <b>Richtervorbehalt innerhalb von 24 Stunden</b> ist die entscheidende rechtsstaatliche Sicherung —
+    merk dir diese Zahl.</div>
+  </section>
+
+  <section id="s24">
+    <h2><span class="n">24</span> Deeskalation, Rapport und Kommunikation</h2>
+
+    <h3>Was ist Voraussetzung für uns selbst?</h3>
+    <ul class="clean">
+      <li><b>Wertfrei sein.</b></li>
+      <li><b>Idealerweise mit sich selbst im Reinen sein.</b></li>
+      <li>Ein <b>Grundverständnis der Erkrankungen</b> haben.</li>
+      <li><b>Nicht lügen</b> und <b>immer mit offenen Karten spielen</b> (auch wenn manchmal etwas
+      verschleiert).</li>
+      <li><b>Rechtliches Wissen!</b></li>
+    </ul>
+    <div class="goodbox"><b>Der zentrale Satz:</b> „<b>Es ist nicht euer Ziel, den Patienten zu heilen —
+    es ist euer Ziel, den Patienten aus seinem Wahn herauszuholen.</b>"</div>
+
+    <h3>Mögliche Fallstricke von eurer Seite</h3>
+    <ul class="clean">
+      <li>Unser <b>Auftreten</b> kann schon von Beginn an entscheiden, <b>wie die gesamte Situation verlaufen
+      wird</b>.</li>
+      <li>Die <b>Worte</b>, die wir nutzen, können über die <b>Kooperation</b> des Patienten entscheiden.</li>
+      <li>Unsere <b>Körpersprache</b> sagt <b>deutlich mehr über uns aus</b>, als es uns lieb ist.</li>
+      <li><b>Blickführung</b> kann gerade bei <b>hyperaktiven, schizophrenen sowie depressiven</b> Patienten das
+      <b>Vertrauen</b> zu euch in Frage stellen.</li>
+      <li>Ein <b>Nicht-ernst-Nehmen</b> der Situation sowie <b>Verständnislosigkeit</b>.</li>
+      <li>Ein <b>Missachten des emotionalen Zustandes</b>.</li>
+      <li><b>Lügen.</b></li>
+    </ul>
+    <div class="warnbox">Aus dem Skript: Körperliche Auseinandersetzungen sind <b>sehr oft auch die Folge einer
+    zu starren Kommunikation, ausgelöst durch den Helfenden</b>. Und: <b>Wenn Eskalation im Vorfeld vermutet oder
+    für möglich gehalten wird, sollten IMMER weitere Hilfskräfte im direkten Umfeld sein</b> — wenigstens in
+    <b>Wortreichweite</b>.</div>
+
+    <h3>Rapport — ohne Medikamente und ohne Körperlichkeit</h3>
+    <div class="card">
+      <p style="margin-top:0"><b>Rapport</b> bedeutet, Menschen <b>auf ihrem Niveau anzusprechen</b> und
+      <b>deren Sprache zu verwenden</b>, um sie von Gedanken zu überzeugen, die sie nicht verstanden hätten,
+      wären sie in einer anderen Form dargestellt worden.</p>
+      <ul class="clean">
+        <li>Rapport ist die Fähigkeit, <b>die Welt eines Anderen zu betreten und zu ihm eine Brücke zu
+        bauen</b>.</li>
+        <li>Es ist die <b>Kunst, die Unterstützung und Mitarbeit des Patienten zu erhalten</b>, um ein
+        <b>gemeinsames Ziel</b> zu erreichen.</li>
+        <li>Rapport ist eine <b>Beziehung, gekennzeichnet durch Zustimmung, gleiche Richtung oder
+        Ähnlichkeit</b>.</li>
+        <li><b>Wenn der Rapport vorhanden ist, dann verschwindet der Widerstand.</b></li>
+        <li>Rapport bedeutet, einen <b>tiefen Kontakt zum Unbewussten des Anderen</b> aufzubauen.</li>
+      </ul>
+    </div>
+
+    <h3>Die vier Ebenen der Kommunikation</h3>
+    <p>Aus dem <b>NLP (Neurolinguistik)</b>: Es gibt <b>drei Ebenen zu bestreiten</b>, um zum höchsten Ziel,
+    der <b>vierten Ebene</b>, zu gelangen.</p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Ebene</th><th>Was heißt das?</th></tr></thead>
+        <tbody>
+          <tr><td><b>1 · Spiegeln</b></td>
+            <td><b>Körperliches Sich-Anpassen</b> an <b>Haltung, Gestik, Atmung, Mimik, Bewegungen oder
+            Gewichtsverlagerung, Muskeltonus</b> … Hier passt man sich <b>wie ein Spiegel</b> an.
+            <b>(Nicht übertreiben!)</b></td></tr>
+          <tr><td><b>2 · Pacing</b></td>
+            <td>Sich im <b>gesamten visuellen und auditiven Ausdrucksverhalten</b> an den anderen anpassen
+            (<b>nicht duplizieren!</b>). Die andere Person wird <b>dort abgeholt, wo sie steht</b>.
+            Bsp.: <b>Sprachtempo, Rhythmus, Tonlage</b> … Alles, was das Spiegeln beinhaltet, fällt hier auch
+            mit hinein.</td></tr>
+          <tr><td><b>3 · Matching</b></td>
+            <td>Ist <b>eine Ebene umfassender</b> und bezeichnet das <b>Angleichen an Sprachstile sowie
+            Sprachmuster</b>.</td></tr>
+          <tr><td><b>4 · Leading</b> 🎯</td>
+            <td>Nachdem man sich dem Patienten eine Weile angeglichen und den <b>Rapport hergestellt</b> hat,
+            kann man dazu übergehen, ihn zu <b>führen</b> — auf der Basis von Rapport und im Sinne des
+            <b>Win-Win-Prinzips</b> zu einem bestimmten <b>Ziel oder Ergebnis</b> hin.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="goodbox"><b>Die Reihenfolge ist Pflicht:</b> Erst <b>angleichen</b> (Spiegeln → Pacing →
+    Matching), dann <b>führen</b> (Leading). Wer sofort führen will, ohne Rapport aufgebaut zu haben,
+    erzeugt <b>Widerstand</b>.</div>
+
+    <h3>Grundannahmen 6–10 des NLP</h3>
+    <div class="card">
+      <h4>6 · Menschen haben bereits alle Ressourcen für jede gewünschte Veränderung in sich</h4>
+      <p style="margin-top:0">Ziel ist, diese Ressourcen <b>im richtigen Moment zur Verfügung zu haben</b> und
+      <b>optimal einzusetzen</b>.</p>
+      <h4>7 · Widerstand beim Patienten bedeutet mangelnde Flexibilität auf Seiten des Beraters</h4>
+      <p>Widerstand resultiert <b>nicht aus Bösartigkeit</b> des Gegenübers, sondern ist ein <b>Hinweis auf
+      fehlenden Rapport</b> — der durch (erneutes) Herstellen von Rapport ausgeräumt werden kann.</p>
+      <h4>8 · Die Bedeutung der Kommunikation liegt in der Reaktion, die man erhält</h4>
+      <p>Man kommuniziert, um eine <b>erwünschte Reaktion</b> zu erhalten. <b>Bleibt diese aus, so ist die
+      eigene Botschaft nicht angekommen.</b> Anstatt negativ zu reagieren, ist es sinnvoll, <b>das eigene
+      Verhalten zu ändern</b>.</p>
+      <h4>9 · Wenn etwas nicht funktioniert, tue etwas anderes</h4>
+      <p>Wenn wir <b>flexibel</b> sind, können wir <b>jede Reaktion als Ergebnis</b> und damit als <b>wertvolle
+      Information</b> ansehen.</p>
+      <h4>10 · In der Kommunikation gibt es keine Fehler, sondern nur Feedback</h4>
+      <p style="margin-bottom:0">Jede Reaktion und jedes Ergebnis kann als <b>Feedback</b> und als
+      <b>Möglichkeit zum Lernen</b> genutzt werden — sie geben Hinweise, ob ein Lösungsweg geeignet ist,
+      und laden dazu ein, <b>neue Wege zu suchen</b>.</p>
+    </div>
+
+    <h3>Eigene Erfahrungen — Vorsicht!</h3>
+    <ul class="clean">
+      <li>Die eigenen Erfahrungen sind <b>eure Landkarte, eure Werte und eure Moralvorstellungen</b>.
+      <b>Jeder sieht die Welt durch eine andere Brille.</b></li>
+      <li>Ihr solltet es <b>unbedingt vermeiden</b>, aus den <b>eigenen Werten zu schlussfolgern</b> und diese
+      eurem Patienten <b>aufzudrängen</b>.</li>
+      <li>Euer <b>Erfahrungspool</b> kann jedoch eine <b>grobe Orientierung</b> bieten.
+      <b>Die Landkarte ist nicht das Gebiet.</b></li>
+    </ul>
+
+    <h3>Worte und Körperhaltung — die Anteile</h3>
+    <div class="zahl">
+      <div><div class="v">55 %</div><div class="k"><b>Körpersprache</b><br>Mimik, Gestik</div></div>
+      <div><div class="v">45 %</div><div class="k"><b>Sprache</b><br>Tonfall, -lage, -höhe</div></div>
+      <div><div class="v">7 %</div><div class="k"><b>Inhalt</b><br>die reinen Worte</div></div>
+    </div>
+    <div class="note">So liest man die Zahlen: Von den <b>45 % Sprache</b> entfallen nur <b>7 %</b> auf den
+    <b>Inhalt</b> — der Rest ist <b>wie</b> etwas gesagt wird. Zusammen: <b>über 90 % der Wirkung kommt nicht
+    aus dem, was du sagst.</b></div>
+    <ul class="clean">
+      <li><b>Ein Großteil der Kommunikation ist bereits gelaufen, bevor wir den ersten Ton gesagt haben.</b></li>
+      <li>„<b>Man kann nicht nicht kommunizieren</b>" (<b>Paul Watzlawick</b>).</li>
+      <li><b>Sobald zwei Personen sich gegenseitig wahrnehmen können, kommunizieren sie miteinander</b> —
+      da <b>jedes Verhalten kommunikativen Charakter</b> hat.</li>
+    </ul>
+
+    <h3>Tools, die uns helfen</h3>
+    <div class="badbox">
+      <b>Die Wörter „Wieso, Weshalb, Warum, Aber" sind möglichst zu vermeiden!</b><br>
+      Diese lösen ein <b>Hinterfragen der Sinnigkeit</b> aus — und <b>nicht</b> unbedingt ein Interesse an den
+      Hintergründen der momentanen Situation.
+    </div>
+    <div class="goodbox">
+      <b>Wir wollen die Gründe und Ziele wissen — dann fragt auch aktiv nach diesen:</b><br>
+      ✅ „<b>Hat es einen Grund, dass Sie …?</b>“<br>
+      ✅ „<b>Was ist hier gerade Ihr Ziel?</b>“
+    </div>
+    <ul class="clean">
+      <li><b>Körperhaltung sollte immer stabil und aufrecht sein!</b> Wenn der Patient merkt, dass er
+      „geistig sowie körperlich" über euch steht — aus welchem Grund sollte er euch dann <b>Respekt
+      zollen</b>?</li>
+      <li><b>Gestik und Mimik:</b> <b>Blickführung, Handhaltung, Ruhe und Ausstrahlung</b> bewusst
+      einsetzen.</li>
+      <li><b>Gesprächsführung:</b> Achtet auf eine <b>klare sowie deutliche Aussprache</b>! <b>Ihr habt die
+      Leitung</b> und müsst diese auch mit Gerissenheit nutzen.</li>
+      <li><b>Wenn ein Patient euch zu nahe kommt oder Angst verursacht, dann sagt es.</b></li>
+    </ul>
+
+    <h3>Fazit</h3>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Kommunikation ist der „Schlüssel" zur Deeskalation.</b></li>
+        <li>Es gilt, <b>sorgsam mit den eigenen verbalen und nonverbalen Kommunikationsmitteln umzugehen</b>,
+        um die <b>Entstehung und Eskalation von Aggressionen und Gewalt zu verhindern oder zu
+        unterbrechen</b>.</li>
+        <li>Besonders wichtig ist — neben dem „<b>was ich sage</b>" (Inhalt) — darauf zu achten,
+        „<b>wie ich es sage</b>" (Sprache, Stimme, Mimik, Gestik) und <b>wie ich auftrete</b>.</li>
+      </ul>
+    </div>
+
+    <h3>Eigenschutz — immer!</h3>
+    <div class="alarm">
+      <h4>Immer auf den Eigenschutz achten!</h4>
+      <ul class="plain" style="margin-bottom:0">
+        <li>Euer Gegenüber kann in <b>1–1,5 Sekunden 3 Meter Distanz</b> überwinden und einen <b>Angriff</b>
+        ausüben.</li>
+        <li>Das heißt: Bei <b>Gewalttätigen / Aggressiven</b> sollte diese <b>Distanz mindestens eingehalten</b>
+        werden.</li>
+        <li><b>Messer</b> werden von <b>unglaublich vielen Personen „am Mann" getragen</b>.</li>
+        <li>Diese lassen sich <b>sehr leicht verstecken und unvermittelt einsetzen</b>.</li>
+        <li><b>Die Angriffsschwelle sinkt seit Jahren!!</b></li>
+      </ul>
+    </div>
+    <div class="note"><b>Praktisch:</b> Immer den <b>Fluchtweg im Rücken</b> haben, <b>nie zwischen Patient und
+    Tür</b> stehen lassen, <b>nichts</b> zwischen dir und dem Ausgang, Hände <b>sichtbar</b> halten,
+    <b>seitlich</b> statt frontal stehen — und <b>nie allein</b> in eine erwartbare Eskalation gehen.</div>
+  </section>
+
+  <section id="s25">
+    <h2><span class="n">25</span> Prävention und Selbstfürsorge</h2>
+    <p class="lead">Die Fragen aus dem Skript: <i>„Wen betrifft es?"</i> · <i>„Was ist Voraussetzung für uns
+    selbst?"</i> · <i>„Ist die eigene seelische Verfassung relevant?"</i> · <i>„Wie sieht es mit euch selbst aus?
+    Hattet ihr bereits Situationen/Einsätze, die ihr mit euch tragt?"</i></p>
+
+    <h3>Wen betrifft es?</h3>
+    <div class="card">
+      <ul class="clean">
+        <li>Man kann <b>nie sagen, wer welche Erlebnisse gemacht hat</b>, die einen im späteren Lauf des Lebens
+        „einholen" — obwohl man dachte, man hätte sie verarbeitet.</li>
+        <li>In Wirklichkeit <b>drücken wir viele belastende und schwere Situationen einfach auf die Seite und
+        ignorieren sie</b>. → Das Bild vom <b>sich füllenden Fass</b>.</li>
+        <li>Gerade in Berufen, in denen man viel mit <b>Schicksalsschlägen, Tod, Vergangenheit oder momentanen
+        Situationen der Patienten</b> zu tun hat, kann es durch <b>Stress, Bilder, Situationen und Geschichten
+        von Patienten</b> dazu kommen, dass wir uns damit <b>belasten</b>.</li>
+        <li>Zudem hat jeder noch ein <b>Privatleben</b>, das für jeden auf eigene Art eine <b>Belastung</b>
+        darstellen kann.</li>
+        <li><b>Bitte auch die persönliche Belastungsgrenze nicht vergessen!</b></li>
+      </ul>
+    </div>
+    <div class="goodbox"><b>Das Bild vom Fass:</b> Jede belastende Situation, die man „wegdrückt", ist ein
+    Becher Wasser ins Fass. Das Fass läuft nicht bei der schlimmsten Situation über — sondern bei irgendeiner.
+    Deshalb muss man es <b>regelmäßig leeren</b>: reden, Supervision, Nachbesprechung, PSNV.</div>
+
+    <h3>Was lernen wir aus dem Ganzen?</h3>
+    <blockquote>In einer kritischen Situation, die eine erfahrene Kollegin betraf:<br>
+    <b>Frage an die Pflegefachperson:</b> „Was würdest du beim Patienten tun?"<br>
+    <b>Antwort:</b> „Ja, das ist doch klar — <b>aber bei mir ist es etwas Anderes</b>."</blockquote>
+    <div class="alarm"><h4>Der Kernsatz des Skripts</h4>
+      <b>„Passt auf euch auf und hört auf euer Inneres!</b> Als Pflegefachpersonen sind wir oft dazu geneigt,
+      unsere eigene Situation nach hinten zu stellen und belasten uns immer weiter — gehen zur Arbeit, obwohl es
+      uns nicht gut geht."</div>
+    <div class="note"><b>Praktische Anlaufstellen:</b> Kollegiale Nachbesprechung im Team ·
+    <b>Supervision</b> · <b>PSNV</b> (Psychosoziale Notfallversorgung) und Kriseninterventionsteams ·
+    Betriebsarzt / betriebliches Eingliederungsmanagement · Hausarzt · und in der Krise:
+    <b>Telefonseelsorge 0800 111 0 111</b> oder <b>0800 111 0 222</b> (kostenlos, anonym, rund um die Uhr).</div>
+  </section>
+
+  <section id="s26">
+    <h2><span class="n">26</span> Prüfungswissen kompakt</h2>
+
+    <h3>30 Merksätze</h3>
+    <ol class="merk">
+      <li><b>Rettungskette:</b> Notfall → Leitstelle → RTW → Notfallort → Transport → Klinik.</li>
+      <li><b>KTW</b> = Transport · <b>RTW</b> = Lebensgefahr · <b>NEF</b> = bringt den Notarzt.</li>
+      <li>Das Herz liegt im <b>Mediastinum</b>, ⅔ links, ⅓ rechts, ist so groß wie die <b>eigene Faust</b>.</li>
+      <li>Wandschichten: <b>Endokard, Myokard, Perikard</b>. Vorhof = <b>Atrium</b>, Kammer = <b>Ventrikel</b>,
+      Trennwand = <b>Septum</b>.</li>
+      <li><b>Sinusknoten 60–100</b> · <b>AV-Knoten 40–60</b> · <b>Kammer 20–40</b>/min.</li>
+      <li>Das Herz fördert <b>ca. 5 Liter/min</b> und <b>7000 Liter/Tag</b>.</li>
+      <li>Oberer Atemweg: <b>Nase, Pharynx, Larynx</b>. Unterer: <b>Trachea, Hauptbronchien, Bronchien</b>.</li>
+      <li><b>Gasaustausch</b> in den <b>Bronchiolen/Alveolen</b>. Einatmung durch <b>Unterdruck</b>,
+      Ausatmung durch <b>Überdruck</b>.</li>
+      <li>Luft: <b>21 % O₂ ein</b> → <b>17 % O₂ aus</b>; CO₂ von fast null auf <b>ca. 4 %</b>.
+      Deshalb funktioniert die Atemspende.</li>
+      <li>Bewusstsein prüfen: <b>Person · Ort · Zeit · Situation</b>.</li>
+      <li><b>ABCD:</b> <b>A</b>irway · <b>B</b>reathing · <b>C</b>irculation · <b>D</b>isability —
+      immer in dieser Reihenfolge.</li>
+      <li>Bei Notfällen: <b>Ruhe bewahren</b> („Panik kann mehr Schaden verursachen") · <b>Situation
+      erkennen</b> („erst denken, dann handeln") · <b>Hilfe holen</b>.</li>
+      <li>Nach <b>3 Minuten</b> Hypoxie sterben die ersten Gehirnzellen irreparabel ab.</li>
+      <li>Beim <b>Apoplex</b>: <b>keine blinde Antikoagulation</b> — es könnte eine Hirnblutung sein.</li>
+      <li><b>Stabile AP</b> = Schmerz unter Belastung · <b>instabile AP</b> = Schmerz in Ruhe (Notfall).</li>
+      <li>Beim <b>Herzinfarkt</b>: Oberkörper hoch (wenn RR es zulässt), <b>keine Schocklage</b>, beruhigen,
+      EKG, Arzt.</li>
+      <li>Bei <b>Lungenembolie</b> Risikofaktoren: <b>Z. n. OP · langes Sitzen · Herzrhythmusstörungen</b>.
+      Typisch: Atemnot + <b>atemabhängiger Schmerz</b> + Tachykardie.</li>
+      <li><b>Apoplex, Herzinfarkt und Lungenembolie sind dasselbe Ereignis in drei Organen:</b> ein
+      Gefäßverschluss.</li>
+      <li><b>Reanimation: 5 cm tief · 100–120/min · 30 : 2 · Wechsel alle 2 Minuten.</b></li>
+      <li><b>Der AED ist eine Hilfe, keine Rettung — Drücken geht immer vor.</b> Keine unnötigen Pausen!</li>
+      <li>AED: Analysefehler <b>&lt; 5 %</b>, Akku <b>2–5 Jahre</b>, <b>1000 V und 10 A</b> →
+      <b>Eigenschutz!</b></li>
+      <li>Reanimationszahlen: <b>3 %</b> bei Ersthelfern · <b>30 %</b> beim Rettungsdienst ·
+      <b>max. 1 von 100</b> schadenfrei.</li>
+      <li><b>Krampfanfall:</b> nichts in den Mund, nicht festhalten, Umgebung sichern, <b>Dauer messen</b>,
+      danach <b>Blutzucker</b>.</li>
+      <li><b>Hypoglykämie &lt; 3,5 mmol/l (63 mg/dl)</b> — bei Bewusstsein orale Kohlenhydrate,
+      bei Bewusstlosigkeit <b>Glukose i. v.</b>.</li>
+      <li><b>Bolus:</b> effektives Husten → beobachten; ineffektives Husten → Alarm, Rückenschläge/Heimlich;
+      Bewusstlosigkeit → Reanimation.</li>
+      <li>Psychiatrie: <b>bio-psycho-soziales Krankheitsmodell</b>. Im Notfall <b>symptomorientiert</b>
+      arbeiten.</li>
+      <li><b>Suizid-Risikogruppen 1–5:</b> Depressive · Suchtkranke · Alte und Vereinsamte · Personen mit
+      Suizidankündigung · Personen nach Suizidversuch.</li>
+      <li>Depression: Suizidrate ca. <b>4 %</b> = <b>30-mal höher</b>; <b>15 %</b> der schwer Depressiven
+      begehen Suizid; <b>40–80 %</b> haben Suizidideen.</li>
+      <li><b>Delir</b> = akute organische Psychose, <b>optische</b> Halluzinationen, plötzlicher Beginn,
+      <b>behandelbar</b> — im Gegensatz zur Demenz.</li>
+      <li><b>Deeskalation:</b> Spiegeln → Pacing → Matching → <b>Leading</b>. „Wieso, weshalb, warum, aber"
+      vermeiden. <b>3 Meter Abstand.</b> Eigenschutz zuerst.</li>
+    </ol>
+
+    <h3>Zahlen auf einen Blick</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Zahl</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><b>60–100 / 40–60 / 20–40</b></td><td>Sinusknoten / AV-Knoten / Kammerersatzrhythmus</td></tr>
+          <tr><td><b>5 L/min · 7000 L/Tag</b></td><td>Förderleistung des Herzens</td></tr>
+          <tr><td><b>21 % → 17 %</b></td><td>Sauerstoff in Ein- und Ausatemluft</td></tr>
+          <tr><td><b>3 Minuten</b></td><td>bis die ersten Gehirnzellen absterben</td></tr>
+          <tr><td><b>5 cm</b></td><td>Drucktiefe bei der Reanimation</td></tr>
+          <tr><td><b>100–120/min</b></td><td>Kompressionsfrequenz</td></tr>
+          <tr><td><b>30 : 2</b></td><td>Kompression zu Beatmung</td></tr>
+          <tr><td><b>2 Minuten</b></td><td>Helferwechsel bei der Reanimation</td></tr>
+          <tr><td><b>&lt; 5 %</b></td><td>Fehlerquote des AED</td></tr>
+          <tr><td><b>2–5 Jahre</b></td><td>Haltbarkeit des AED-Akkus</td></tr>
+          <tr><td><b>1000 V / 10 A</b></td><td>Defibrillation — Gefahr, Eigenschutz!</td></tr>
+          <tr><td><b>3 % / 30 % / 1 von 100</b></td><td>Reanimationserfolg Ersthelfer / RD / schadenfrei</td></tr>
+          <tr><td><b>38,5 °C</b></td><td>typischer rascher Anstieg beim Fieberkrampf</td></tr>
+          <tr><td><b>3,5 mmol/l = 63 mg/dl</b></td><td>Grenze der Hypoglykämie</td></tr>
+          <tr><td><b>4 % / 30-mal / 15 % / 40–80 %</b></td><td>Suizidzahlen bei Depression</td></tr>
+          <tr><td><b>§ 32 / § 34 StGB</b></td><td>Notwehr / rechtfertigender Notstand</td></tr>
+          <tr><td><b>24 Stunden</b></td><td>Frist bis zur richterlichen Entscheidung bei der
+          Zwangseinweisung</td></tr>
+          <tr><td><b>1–1,5 Sek. / 3 Meter</b></td><td>Zeit, in der ein Angreifer die Distanz überwindet</td></tr>
+          <tr><td><b>55 % / 45 % / 7 %</b></td><td>Körpersprache / Sprache / Inhalt</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Typische Prüfungsfragen</h3>
+    <ul class="clean">
+      <li>Erklären Sie die <b>Rettungskette</b> — präklinisch und innerklinisch.</li>
+      <li>Nennen und erklären Sie das <b>ABCD-Schema</b>. Warum ist die Reihenfolge wichtig?</li>
+      <li>Beschreiben Sie das <b>Reizleitungssystem</b> des Herzens mit den Frequenzen.</li>
+      <li>Wie überprüfen Sie die <b>Bewusstseinslage</b>? Nennen Sie fünf Beobachtungskriterien.</li>
+      <li>Nennen Sie Symptome und Maßnahmen bei <b>Apoplex</b>, <b>Herzinfarkt</b> und <b>Lungenembolie</b>.
+      Was haben die drei gemeinsam?</li>
+      <li>Warum <b>keine Schocklage</b> beim Herzinfarkt?</li>
+      <li>Beschreiben Sie die <b>Reanimation</b> mit allen Zahlen. Was ist beim Untergrund zu beachten?</li>
+      <li>Unterscheiden Sie <b>Epilepsie, Fieberkrampf und Hypoglykämie</b> (Ursache, Verhalten, Krampfart,
+      Maßnahmen).</li>
+      <li>Erklären Sie den Ablauf beim <b>Bolusgeschehen</b>.</li>
+      <li>Was versteht man unter einem <b>Delir</b>? Nennen Sie die Hauptformen und den Unterschied zur
+      Demenz.</li>
+      <li>Welche <b>suizidalen Risikogruppen</b> gibt es? Wie sprechen Sie einen Menschen darauf an?</li>
+      <li>Erklären Sie <b>§ 32</b> und <b>§ 34 StGB</b> mit je einem Beispiel.</li>
+      <li>Unter welchen Voraussetzungen ist eine <b>Zwangseinweisung</b> möglich? Wie läuft sie ab?</li>
+      <li>Was bedeutet <b>Rapport</b>? Erklären Sie <b>Spiegeln, Pacing, Matching und Leading</b>.</li>
+      <li>Welche <b>Wörter</b> sollte man in der Deeskalation vermeiden — und was sagt man stattdessen?</li>
+      <li>Nennen Sie fünf <b>Fallstricke</b> im Umgang mit psychiatrischen Patienten.</li>
+      <li>Welche Regeln gelten für den <b>Eigenschutz</b>?</li>
+    </ul>
+  </section>
+
+  <section id="s27">
+    <h2><span class="n">27</span> Quellen</h2>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Toni Weidenbecher:</b> <i>Notfall und Erste-Hilfe — BasisKurs</i>, Unterrichtsskript.</li>
+        <li><b>Toni Weidenbecher:</b> <i>Psychiatrische Notfälle und Zustände</i>, Unterrichtsskript.</li>
+        <li><b>Wolfersdorf M.:</b> Suizidalität. In: Berger M. (Hrsg.): <i>Psychische Erkrankungen</i>.
+        2. Aufl. Elsevier, München 2004.</li>
+        <li><b>European Resuscitation Council:</b> Guidelines 2021 (cprguidelines.eu).</li>
+        <li>Weitere im Skript genannte Quellen: destatis.de (Sterbefälle Suizid) · Deutsche Schlaganfall-Hilfe ·
+        gelbe-liste.de (Lungenembolie) · gesundheit.gv.at (Epilepsie) · Deutsche Herzstiftung ·
+        Springer / SpringerLink · medilearn.de.</li>
+      </ul>
+    </div>
+    <p style="text-align:center;color:var(--ink-soft);font-size:14px;margin-top:30px">
+      Lernmaterial für die Pflegeausbildung · Dozent: Toni Weidenbecher · Niveau B1
+    </p>
+  </section>
+
+  </main>
+</div>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ nach oben</button>
+
+<script>
+const toc=document.getElementById('toc');
+const secs=[...document.querySelectorAll('main section')];
+secs.forEach(sec=>{
+  const h=sec.querySelector('h2');
+  const n=h.querySelector('.n').textContent.trim();
+  const t=h.textContent.replace(n,'').trim();
+  const a=document.createElement('a');
+  a.href='#'+sec.id;
+  a.innerHTML='<span class="n"></span>';
+  a.querySelector('.n').textContent=n;
+  a.appendChild(document.createTextNode(t));
+  toc.appendChild(a);
+});
+const q=document.getElementById('q'), hits=document.getElementById('hits');
+function clearMarks(){
+  document.querySelectorAll('main mark').forEach(m=>{
+    const p=m.parentNode; p.replaceChild(document.createTextNode(m.textContent),m); p.normalize();
+  });
+}
+function markIn(node,re){
+  if(node.nodeType===3){
+    const t=node.nodeValue; re.lastIndex=0; if(!re.test(t))return 0;
+    const frag=document.createDocumentFragment(); let last=0,c=0,m; re.lastIndex=0;
+    while((m=re.exec(t))!==null){
+      frag.appendChild(document.createTextNode(t.slice(last,m.index)));
+      const mk=document.createElement('mark'); mk.textContent=m[0]; frag.appendChild(mk);
+      last=m.index+m[0].length; c++;
+      if(m[0].length===0)re.lastIndex++;
+    }
+    frag.appendChild(document.createTextNode(t.slice(last)));
+    node.parentNode.replaceChild(frag,node); return c;
+  }
+  if(node.nodeType===1 && !['SCRIPT','STYLE','MARK'].includes(node.tagName)){
+    let c=0; [...node.childNodes].forEach(ch=>c+=markIn(ch,re)); return c;
+  }
+  return 0;
+}
+function run(){
+  const v=q.value.trim();
+  clearMarks();
+  if(v.length<2){secs.forEach(s=>s.classList.remove('hidden'));hits.textContent='';return;}
+  const esc=v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const re=new RegExp(esc,'gi');
+  let total=0, shown=0;
+  secs.forEach(s=>{
+    const has=re.test(s.textContent); re.lastIndex=0;
+    s.classList.toggle('hidden',!has);
+    if(has){shown++; total+=markIn(s,re);}
+  });
+  hits.textContent=total? total+' Treffer in '+shown+' Kapitel'+(shown>1?'n':'') : 'keine Treffer';
+}
+let tId; q.addEventListener('input',()=>{clearTimeout(tId);tId=setTimeout(run,180);});
+document.getElementById('reset').onclick=()=>{q.value='';run();q.focus();};
+</script>
