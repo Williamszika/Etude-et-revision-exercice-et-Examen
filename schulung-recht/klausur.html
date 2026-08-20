@@ -1,0 +1,1195 @@
+<title>Recht — Klausur in 3 Tagen</title>
+<style>
+  :root{
+    --paper:#f7f6f3;--paper-2:#edebe5;--card:#fffefb;--ink:#1c1a16;--ink-soft:#55514a;--line:#dcd8cf;
+    --accent:#8a6a2f;--accent-deep:#6b5121;--accent-soft:#f4ecda;
+    --sr:#b0407a;--srbg:#fae3ef;--zr:#3f6b7d;--zrbg:#deebf1;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f9e5e1;--warn:#b5731a;--warnbg:#f8edda;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root{
+    --paper:#181713;--paper-2:#121110;--card:#221f1a;--ink:#f1efe9;--ink-soft:#aaa49a;--line:#37332c;
+    --accent:#d8b46a;--accent-deep:#ecd196;--accent-soft:#2d2618;
+    --sr:#e08ab5;--srbg:#331a27;--zr:#8fbccd;--zrbg:#152730;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#321b17;--warn:#d9a559;--warnbg:#2c2312;}}
+  :root[data-theme="dark"]{--paper:#181713;--paper-2:#121110;--card:#221f1a;--ink:#f1efe9;--ink-soft:#aaa49a;--line:#37332c;--accent:#d8b46a;--accent-deep:#ecd196;--accent-soft:#2d2618;--sr:#e08ab5;--srbg:#331a27;--zr:#8fbccd;--zrbg:#152730;--good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#321b17;--warn:#d9a559;--warnbg:#2c2312;}
+  :root[data-theme="light"]{--paper:#f7f6f3;--paper-2:#edebe5;--card:#fffefb;--ink:#1c1a16;--ink-soft:#55514a;--line:#dcd8cf;--accent:#8a6a2f;--accent-deep:#6b5121;--accent-soft:#f4ecda;--sr:#b0407a;--srbg:#fae3ef;--zr:#3f6b7d;--zrbg:#deebf1;--good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f9e5e1;--warn:#b5731a;--warnbg:#f8edda;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+  header.hero{padding:42px 20px 28px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,5.5vw,2.7rem);margin:0 0 10px;line-height:1.1;}
+  header.hero p{max-width:56ch;margin:0 auto;color:var(--ink-soft);font-size:15.5px;}
+  .toolbar{position:sticky;top:0;z-index:40;display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+    background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);padding:9px 16px;}
+  .toolbar input{flex:1 1 200px;font:inherit;font-size:14.5px;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:9px;padding:8px 13px;min-width:0;}
+  .toolbar input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .toolbar button{font:inherit;font-size:13.5px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);
+    border-radius:9px;padding:8px 13px;cursor:pointer;white-space:nowrap;}
+  .toolbar button:hover{border-color:var(--accent);color:var(--ink);}
+  .hits{font-family:var(--mono);font-size:12.5px;color:var(--accent-deep);white-space:nowrap;}
+  .layout{display:flex;max-width:1180px;margin:0 auto;align-items:flex-start;}
+  nav.toc{position:sticky;top:56px;align-self:flex-start;flex:0 0 244px;max-height:calc(100vh - 60px);overflow-y:auto;
+    padding:16px 10px 40px;border-right:1px solid var(--line);}
+  nav.toc a{display:block;text-decoration:none;color:var(--ink-soft);font-size:13.5px;padding:6px 10px;border-radius:8px;line-height:1.35;}
+  nav.toc a:hover{background:var(--paper-2);color:var(--ink);}
+  nav.toc a .n{font-family:var(--mono);font-size:11px;opacity:.7;margin-right:6px;}
+  main{flex:1 1 auto;min-width:0;padding:10px 26px 90px;}
+  section{margin-top:44px;scroll-margin-top:62px;}
+  section.hidden{display:none;}
+  h2{font-family:var(--serif);font-weight:600;font-size:1.5rem;margin:0 0 10px;display:flex;align-items:baseline;gap:11px;}
+  h2 .n{font-family:var(--mono);font-size:.72rem;color:var(--accent);border:1px solid var(--line);border-radius:7px;padding:2px 8px;flex:0 0 auto;}
+  h3{font-family:var(--serif);font-weight:600;font-size:1.14rem;margin:26px 0 8px;}
+  h4{font-family:var(--serif);font-weight:600;font-size:1rem;margin:0 0 6px;}
+  .lead{color:var(--ink-soft);margin:0 0 14px;}
+  p{margin:.55em 0;}
+  mark{background:#ffe680;color:#1a1a1a;border-radius:3px;padding:0 2px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:17px 21px;margin:13px 0;}
+  ul.clean{list-style:none;padding:0;margin:11px 0;}
+  ul.clean li{padding:6px 0 6px 24px;position:relative;border-bottom:1px dashed var(--line);}
+  ul.clean li:last-child{border-bottom:none;}
+  ul.clean li::before{content:"→";position:absolute;left:2px;color:var(--accent);font-weight:700;}
+  ul.plain{margin:8px 0;padding-left:19px;} ul.plain li{margin:5px 0;}
+  .note{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  .warnbox{border-left:3px solid var(--warn);background:var(--warnbg);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  .badbox{border-left:3px solid var(--bad);background:var(--badbg);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  .goodbox{border-left:3px solid var(--good);background:var(--goodbg);border-radius:0 10px 10px 0;padding:11px 15px;margin:13px 0;font-size:15px;}
+  .scroll-x{overflow-x:auto;margin:11px 0;}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:440px;}
+  th,td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-soft);}
+
+  /* Schritt-Karten: das Herzstück */
+  .schritt{border:1px solid var(--line);border-radius:13px;margin:14px 0;overflow:hidden;background:var(--card);}
+  .schritt>.kopf{padding:11px 18px;font-family:var(--mono);font-size:11.5px;letter-spacing:.07em;
+    text-transform:uppercase;font-weight:700;}
+  .schritt.sr>.kopf{background:var(--srbg);color:var(--sr);}
+  .schritt.zr>.kopf{background:var(--zrbg);color:var(--zr);}
+  .schritt .teil{padding:14px 18px;border-top:1px solid var(--line);}
+  .schritt .teil:first-of-type{border-top:none;}
+  .schritt .lbl{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2);border-radius:5px;
+    padding:2px 8px;margin-bottom:7px;}
+  .schreib{background:var(--accent-soft);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;
+    padding:11px 15px;font-size:15px;line-height:1.65;}
+  .schreib .luecke{display:inline-block;min-width:80px;border-bottom:2px dotted var(--accent);
+    color:var(--accent-deep);font-style:italic;}
+  .bedeut{font-size:14.5px;color:var(--ink-soft);}
+  .bsp{background:var(--goodbg);border-left:3px solid var(--good);border-radius:0 8px 8px 0;
+    padding:11px 15px;font-size:14.5px;}
+
+  /* Wortkasten */
+  .wort{display:grid;grid-template-columns:auto 1fr;gap:0;border:1px solid var(--line);
+    border-radius:11px;overflow:hidden;margin:11px 0;}
+  .wort dt{background:var(--paper-2);padding:10px 14px;font-weight:600;font-size:14.5px;
+    border-bottom:1px solid var(--line);white-space:nowrap;}
+  .wort dd{margin:0;padding:10px 14px;font-size:14.5px;color:var(--ink-soft);border-bottom:1px solid var(--line);}
+  .wort dt:last-of-type,.wort dd:last-of-type{border-bottom:none;}
+  @media (max-width:620px){
+    .wort{grid-template-columns:1fr;}
+    .wort dt{border-bottom:none;padding-bottom:2px;white-space:normal;}
+  }
+
+  /* Musterlösung */
+  .muster{background:var(--card);border:2px solid var(--accent);border-radius:13px;padding:20px 24px;margin:16px 0;}
+  .muster h4{color:var(--accent-deep);font-size:1.05rem;}
+  .muster p{font-size:15px;}
+  .muster .rand{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.06em;
+    text-transform:uppercase;margin:18px 0 4px;}
+  .muster .rand:first-child{margin-top:0;}
+
+  /* Tagesplan */
+  .tag{border:1px solid var(--line);border-radius:13px;background:var(--card);margin:12px 0;overflow:hidden;}
+  .tag .th{background:var(--accent-soft);color:var(--accent-deep);padding:11px 18px;
+    font-family:var(--serif);font-weight:600;font-size:1.1rem;}
+  .tag .tb{padding:14px 18px;}
+  .tag ul{margin:0;padding-left:19px;} .tag li{margin:6px 0;font-size:15px;}
+
+  .merk{counter-reset:m;list-style:none;padding:0;margin:13px 0;}
+  .merk li{counter-increment:m;position:relative;padding:8px 0 8px 38px;border-bottom:1px dashed var(--line);font-size:15px;}
+  .merk li:last-child{border-bottom:none;}
+  .merk li::before{content:counter(m);position:absolute;left:0;top:8px;font-family:var(--mono);font-size:11px;background:var(--accent-soft);color:var(--accent-deep);border-radius:6px;padding:2px 7px;}
+  .backtop{position:fixed;right:16px;bottom:16px;z-index:50;font:inherit;font-size:13px;color:var(--ink-soft);
+    background:var(--card);border:1px solid var(--line);border-radius:99px;padding:8px 14px;cursor:pointer;}
+  .backtop:hover{border-color:var(--accent);color:var(--ink);}
+  @media (max-width:900px){
+    .layout{display:block;}
+    nav.toc{position:static;flex:none;max-height:none;border-right:none;border-bottom:1px solid var(--line);
+      display:flex;flex-wrap:wrap;gap:3px;padding:10px 14px;}
+    nav.toc a{font-size:12.5px;padding:5px 9px;background:var(--card);border:1px solid var(--line);}
+    main{padding:10px 16px 80px;}
+  }
+  @media print{
+    .toolbar,nav.toc,.backtop{display:none;}
+    body{background:#fff;color:#000;font-size:10.5pt;}
+    section{page-break-inside:auto;margin-top:18px;}
+    h2{page-break-after:avoid;}
+    .card,.note,.warnbox,.badbox,.goodbox,.merk,table,.schritt,.muster,.tag,.wort{page-break-inside:avoid;}
+  }
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 6 · UE 1 · Klausurvorbereitung</p>
+  <h1>Recht — Klausur in 3 Tagen</h1>
+  <p>Jede Zeile der beiden Spicker Schritt für Schritt erklärt: <b>was du schreibst</b>,
+  <b>was es bedeutet</b> und <b>ein Beispiel dazu</b>. Mit fertigen Satzbausteinen zum Abschreiben
+  und einem komplett ausformulierten Musterfall.</p>
+</header>
+
+<div class="toolbar">
+  <input type="search" id="q" placeholder="🔎 Suchen … (z. B. Obersatz, Vorsatz, § 823)" autocomplete="off">
+  <span class="hits" id="hits"></span>
+  <button id="reset">↺ alles zeigen</button>
+  <button onclick="window.print()">🖨️ Drucken / PDF</button>
+</div>
+
+<div class="layout">
+  <nav class="toc" id="toc"></nav>
+  <main id="main">
+
+  <section id="s1">
+    <h2><span class="n">1</span> Dein 3-Tage-Plan</h2>
+    <p class="lead">Nicht alles auf einmal. So teilst du es dir ein.</p>
+
+    <div class="tag">
+      <div class="th">📅 Tag 1 — Das Gerüst</div>
+      <div class="tb">
+        <ul>
+          <li>Kapitel <b>2</b> lesen: die <b>vier Rechtsgebiete</b>. Danach die Tabelle <b>auswendig
+          aufschreiben</b>, ohne zu schauen.</li>
+          <li>Kapitel <b>3 und 4</b>: das <b>Strafrecht-Schema</b> — jede Zeile.</li>
+          <li><b>Übung:</b> Schreib das leere Schema aus dem Kopf auf ein Blatt:
+          Obersatz → I. Tatbestand → II. Rechtswidrigkeit → III. Schuld → Ergebnis.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tag">
+      <div class="th">📅 Tag 2 — Anwenden</div>
+      <div class="tb">
+        <ul>
+          <li>Kapitel <b>5</b>: die <b>Tatbestände</b> (§§ 223, 203, 239 zuerst — die kommen am
+          häufigsten).</li>
+          <li>Kapitel <b>6</b>: der <b>komplette Musterfall</b> — einmal lesen, dann <b>selbst
+          abschreiben</b>.</li>
+          <li>Kapitel <b>7</b>: das <b>Zivilrecht-Schema</b> (aus Vertrag + aus Delikt).</li>
+          <li><b>Übung:</b> Nimm einen Fall aus Kapitel 9 und schreib die Lösung selbst — mit Blick
+          auf das Schema, aber ohne die Musterlösung.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="tag">
+      <div class="th">📅 Tag 3 — Sicher werden</div>
+      <div class="tb">
+        <ul>
+          <li>Kapitel <b>8</b>: Instanzen (kurz — das sind schnelle Punkte).</li>
+          <li>Kapitel <b>10</b>: die <b>häufigsten Fehler</b> lesen.</li>
+          <li>Kapitel <b>11</b>: den <b>Spickzettel</b> ausdrucken und durchgehen.</li>
+          <li><b>Übung:</b> Zwei Fälle aus Kapitel 9 <b>ohne Hilfsmittel</b> lösen, mit Uhr.</li>
+          <li>Abends: nur noch die <b>Satzbausteine</b> in Kapitel 4 und 7 wiederholen.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="goodbox"><b>Das Wichtigste:</b> In dieser Klausur bekommst du Punkte für das
+    <b>Schema</b> — nicht dafür, dass du das „richtige“ Ergebnis errätst. Wer alle Stufen sauber aufschreibt,
+    holt die meisten Punkte, auch wenn das Ergebnis am Ende anders ausfällt.</div>
+  </section>
+
+  <section id="s2">
+    <h2><span class="n">2</span> Erst verstehen: ein Fehler, vier Verfahren</h2>
+    <p class="lead">Stell dir vor, eine Pflegekraft macht einen Fehler. Vier verschiedene Leute können
+    <b>gleichzeitig</b> etwas gegen sie unternehmen. Das ist die Grundidee der ganzen Einheit.</p>
+
+    <div class="card">
+      <h4>⚖️ 1 · Der Staat bestraft dich — <span style="color:var(--sr)">Strafrecht</span></h4>
+      <p style="margin-top:0"><b>Wer?</b> Der <b>Staatsanwalt</b>. Er ermittelt und klagt an.<br>
+      <b>Womit?</b> Mit dem <b>StGB</b> — es muss ein <b>Straftatbestand</b> erfüllt sein.<br>
+      <b>Was passiert?</b> <b>Geldstrafe</b>, <b>Freiheitsstrafe</b> oder <b>Berufsverbot</b>.<br>
+      <b>Merke:</b> Hier geht es um <b>Schuld und Strafe</b>.</p>
+
+      <h4 style="margin-top:18px">💶 2 · Der Patient will Geld — <span style="color:var(--zr)">Zivilrecht</span></h4>
+      <p style="margin-top:0"><b>Wer?</b> Der <b>Patient</b> selbst. Er verklagt das Krankenhaus, das Heim,
+      den Pflegedienst, den Arzt, die Pflegekraft oder die Schülerin.<br>
+      <b>Womit?</b> Mit dem <b>BGB</b> — er braucht eine <b>Anspruchsgrundlage</b>:
+      <b>aus Vertrag</b> (§ 280) oder <b>aus Delikt</b> (§ 823).<br>
+      <b>Was passiert?</b> <b>Schadensersatz</b> und <b>Schmerzensgeld</b>.<br>
+      <b>Merke:</b> Hier geht es um <b>Geld</b>, nicht um Strafe.</p>
+
+      <h4 style="margin-top:18px">💼 3 · Dein Chef reagiert — Arbeitsrecht</h4>
+      <p style="margin-top:0"><b>Wer?</b> Der <b>Arbeitgeber</b> (KH, Heim, Pflegedienst). Er rügt die
+      Pflichtverletzung.<br>
+      <b>Womit?</b> Mit dem <b>Arbeitsvertrag</b> bzw. <b>Ausbildungsvertrag</b> — Gesetze: BGB,
+      <b>KSchG</b>, Tarifrecht.<br>
+      <b>Was passiert?</b> <b>Abmahnung</b> oder <b>Kündigung</b>.</p>
+
+      <h4 style="margin-top:18px">🎓 4 · Du verlierst deinen Titel — Berufsrecht</h4>
+      <p style="margin-top:0;margin-bottom:0"><b>Wer?</b> Die <b>Bezirksregierung</b>. Sie überwacht das
+      Pflegepersonal und die Schüler.<br>
+      <b>Womit?</b> Mit dem <b>PflBG</b> — es geht um einen <b>Verwaltungsakt</b>: die Erlaubnis, den Titel zu
+      führen (§ 2), oder die Prüfungszulassung.<br>
+      <b>Was passiert?</b> <b>Rücknahme</b> oder <b>Widerruf</b> des Titels (§ 3).</p>
+    </div>
+
+    <dl class="wort">
+      <dt>Rücknahme</dt>
+      <dd>Die Voraussetzungen haben <b>von Anfang an nicht vorgelegen</b>. Beispiel: Du hast bei der Bewerbung
+      ein Zeugnis gefälscht — du hättest den Titel nie bekommen dürfen.</dd>
+      <dt>Widerruf</dt>
+      <dd>Die Voraussetzungen sind <b>später weggefallen</b>. Beispiel: Du wirst nach Jahren wegen einer
+      schweren Straftat verurteilt — jetzt bist du nicht mehr „zuverlässig“.</dd>
+    </dl>
+
+    <div class="goodbox"><b>Der wichtigste Satz:</b> Die vier Verfahren laufen <b>unabhängig
+    voneinander</b>. Ein <b>Freispruch</b> im Strafverfahren heißt <b>nicht</b>, dass du kein Schmerzensgeld
+    zahlen musst oder nicht gekündigt werden kannst.</div>
+    <div class="note"><b>So merkst du es dir:</b> <b>Staat</b> straft · <b>Patient</b> will Geld ·
+    <b>Chef</b> kündigt · <b>Behörde</b> nimmt den Titel.</div>
+  </section>
+
+  <section id="s3">
+    <h2><span class="n">3</span> Strafrecht: die drei Stufen verstehen</h2>
+    <p class="lead">Bevor du das Schema auswendig lernst, musst du <b>verstehen</b>, warum es drei Stufen gibt.
+    Es sind drei Fragen, die <b>nacheinander</b> gestellt werden.</p>
+
+    <div class="card">
+      <h4>Stufe I — Tatbestand: „Steht das so im Gesetz?“</h4>
+      <p style="margin-top:0">Du vergleichst, <b>was passiert ist</b>, mit dem, <b>was im Gesetz steht</b>.
+      Passt es zusammen?<br>
+      <i>Beispiel: Im Gesetz steht „wer eine andere Person an der Gesundheit schädigt“. Die Pflegekraft hat
+      dem Patienten das falsche Medikament gegeben und er kam auf die Intensivstation. → Passt. ✓</i></p>
+
+      <h4 style="margin-top:20px">Stufe II — Rechtswidrigkeit: „Gab es trotzdem einen guten Grund?“</h4>
+      <p style="margin-top:0">Manchmal darf man etwas tun, was eigentlich verboten ist. Diese guten Gründe
+      heißen <b>Rechtfertigungsgründe</b>.<br>
+      <i>Beispiel: Eine Injektion ist eigentlich eine Körperverletzung. Aber der Patient hat
+      <b>eingewilligt</b> → er hat ja gesagt. Also ist es erlaubt.</i></p>
+      <div class="note" style="margin-bottom:0"><b>Wichtig:</b> Wenn ein Rechtfertigungsgrund vorliegt, ist
+      die Person <b>nicht strafbar</b> — die Prüfung ist zu Ende. Du schreibst aber trotzdem noch die
+      dritte Stufe hin, um zu zeigen, dass du das Schema kennst.</div>
+
+      <h4 style="margin-top:20px">Stufe III — Schuld: „Kann man ihr das vorwerfen?“</h4>
+      <p style="margin-top:0;margin-bottom:0">Zwei Fragen: Ist die Person überhaupt <b>schuldfähig</b>
+      (über 14, nicht krankhaft seelisch gestört)? Und <b>wie</b> hat sie gehandelt — mit <b>Absicht</b>
+      (Vorsatz) oder aus <b>Unachtsamkeit</b> (Fahrlässigkeit)?</p>
+    </div>
+
+    <h3>Die Wörter, die dich verwirren</h3>
+    <dl class="wort">
+      <dt>Obersatz</dt>
+      <dd>Der <b>erste Satz</b> deiner Antwort. Er sagt, <b>was du jetzt prüfen wirst</b>. Er steht immer im
+      <b>Konjunktiv</b>: „<b>könnte</b> … haben“. Denn du weißt noch nicht, ob es stimmt.</dd>
+      <dt>Tatbestand</dt>
+      <dd>Die <b>Bedingungen</b>, die das Gesetz aufzählt. Bei § 223: „andere Person“ + „körperlich
+      misshandelt oder an der Gesundheit geschädigt“. Alle müssen erfüllt sein.</dd>
+      <dt>Tatbestands­merkmal</dt>
+      <dd>Ein <b>einzelner Baustein</b> des Tatbestands. Du prüfst sie einen nach dem anderen.</dd>
+      <dt>rechtswidrig</dt>
+      <dd>„Gegen das Recht“. Eine Tat ist rechtswidrig, wenn sie der <b>Rechtsordnung widerspricht</b> — und
+      <b>kein</b> Rechtfertigungsgrund vorliegt.</dd>
+      <dt>Rechtfertigungs­grund</dt>
+      <dd>Ein <b>guter Grund</b>, der die Tat erlaubt: Einwilligung · Notwehr/Nothilfe · Notstand ·
+      besondere Gründe (nur bei § 203 und § 239).</dd>
+      <dt>Schuld</dt>
+      <dd>Der <b>persönliche Vorwurf</b>: „Du hättest es anders machen können und müssen.“</dd>
+      <dt>schuldfähig</dt>
+      <dd><b>Über 14 Jahre alt</b> und <b>nicht krankhaft seelisch gestört</b>. Sonst keine Strafe.</dd>
+      <dt>Vorsatz</dt>
+      <dd><b>Wissen und Wollen.</b> Du weißt, was du tust — und du willst es. <i>„Ich fixiere sie, obwohl sie
+      nein sagt.“</i></dd>
+      <dt>Fahrlässigkeit</dt>
+      <dd><b>Außerachtlassen der im Verkehr erforderlichen Sorgfalt.</b> Auf Deutsch: Du hast nicht so
+      sorgfältig gearbeitet, wie man es von dir erwarten darf. <i>„Ich habe die Doppelkontrolle vergessen.“</i></dd>
+      <dt>Rechtsgut</dt>
+      <dd>Etwas, das das Recht schützt: <b>Leben, Körper, Gesundheit, Freiheit, Eigentum</b>.</dd>
+      <dt>Antragsdelikt</dt>
+      <dd>Eine Straftat, die <b>nur verfolgt wird, wenn das Opfer einen Strafantrag stellt</b>.
+      Das gilt für <b>§ 203</b> und <b>§ 223</b>.</dd>
+    </dl>
+
+    <div class="badbox"><b>Der Satz, den alle vergessen — und der in fast jedem Fall vorkommt:</b><br>
+    Nach der Rechtsprechung ist der <b>Heileingriff immer eine Körperverletzung</b> — auch die OP, die
+    Behandlungspflege, die Bestrahlung, die Injektion. Er wird <b>erst durch die Einwilligung
+    gerechtfertigt</b>. Deshalb: <b>Keine Einwilligung = strafbar</b>, auch wenn die Maßnahme medizinisch
+    richtig war.</div>
+  </section>
+
+  <section id="s4">
+    <h2><span class="n">4</span> Strafrecht: das Schema mit fertigen Sätzen</h2>
+    <p class="lead">Jetzt Zeile für Zeile. <b>Grün</b> = das schreibst du hin. <b>Grau</b> = was es bedeutet.
+    <b>Grün-Kasten unten</b> = ein Beispiel.</p>
+
+    <div class="schritt sr">
+      <div class="kopf">Schritt 0 · Obersatz</div>
+      <div class="teil">
+        <span class="lbl">📝 Das schreibst du</span>
+        <div class="schreib">X könnte sich wegen <span class="luecke">Name der Straftat</span>
+        nach § <span class="luecke">Nr.</span> StGB strafbar gemacht haben.</div>
+      </div>
+      <div class="teil">
+        <span class="lbl">💡 Was das bedeutet</span>
+        <p class="bedeut" style="margin:0">Du kündigst an, was du prüfst. <b>„könnte“</b> — weil du es noch
+        nicht weißt. Nimm den <b>Namen aus dem Sachverhalt</b> statt X.</p>
+      </div>
+      <div class="teil">
+        <span class="lbl">✅ Beispiel</span>
+        <div class="bsp">Jana könnte sich wegen <b>Körperverletzung nach § 223 StGB</b> strafbar
+        gemacht haben.</div>
+      </div>
+    </div>
+
+    <div class="schritt sr">
+      <div class="kopf">Schritt 1 · I. Tatbestand</div>
+      <div class="teil">
+        <span class="lbl">📝 Das schreibst du</span>
+        <div class="schreib">
+          <b>I. Tatbestand</b><br>
+          a) Dann müsste X <span class="luecke">die Merkmale aus dem Gesetz</span> haben.<br>
+          b) Hier hat X <span class="luecke">was wirklich passiert ist</span>.<br>
+          → Der Tatbestand ist <b>erfüllt</b> / <b>nicht erfüllt</b>.
+        </div>
+      </div>
+      <div class="teil">
+        <span class="lbl">💡 Was das bedeutet</span>
+        <p class="bedeut" style="margin:0"><b>a)</b> ist die <b>Theorie</b> — du schreibst ab, was im Gesetz
+        steht (die Merkmale stehen in Kapitel 5).<br>
+        <b>b)</b> ist die <b>Praxis</b> — du schreibst, was im Fall passiert ist.<br>
+        Dann vergleichst du beides.</p>
+      </div>
+      <div class="teil">
+        <span class="lbl">✅ Beispiel</span>
+        <div class="bsp">a) Dann müsste Jana <b>eine andere Person körperlich misshandelt oder an der
+        Gesundheit geschädigt</b> haben.<br>
+        b) Hier hat Jana Herrn Schulz ein falsches, für ihn kontraindiziertes Medikament verabreicht.
+        Dadurch erlitt er <b>Herzrasen, einen Blutdruckabfall und eine schwere Kreislaufentgleisung</b>,
+        die intensivmedizinisch behandelt werden musste. Das ist eine <b>Gesundheitsschädigung</b>.<br>
+        → Der Tatbestand des § 223 StGB ist <b>erfüllt</b>.</div>
+      </div>
+      <div class="teil">
+        <span class="lbl">⚠️ Wenn es um Nichtstun geht</span>
+        <p class="bedeut" style="margin:0">Wenn X <b>nichts getan</b> hat (Klingel ignoriert, Sturz nicht
+        gemeldet), schreibst du zusätzlich:<br>
+        <i>„c) Dann müsste X durch <b>Nichtstun</b> …… Seine <b>Garantenstellung</b> ergibt sich aus dem
+        <b>Vertrag</b> (Arzt/Pflegekraft).“</i><br>
+        Garantenstellung kann sich ergeben aus: <b>Vertrag · Gesetz · Vertragsanstellung · vorangegangenes
+        gefährdendes Tun</b>.</p>
+      </div>
+    </div>
+
+    <div class="schritt sr">
+      <div class="kopf">Schritt 2 · II. Rechtswidrigkeit</div>
+      <div class="teil">
+        <span class="lbl">📝 Das schreibst du</span>
+        <div class="schreib">
+          <b>II. Rechtswidrigkeit</b><br>
+          a) X müsste auch <b>rechtswidrig</b> gehandelt haben. Die Rechtswidrigkeit entfällt, wenn
+          <b>Rechtfertigungsgründe</b> vorliegen. In Betracht kommt <span class="luecke">…</span><br>
+          b) Hier ist die Handlung des X durch <span class="luecke">nichts</span> gerechtfertigt.<br>
+          → X handelte <b>rechtswidrig</b>.
+        </div>
+      </div>
+      <div class="teil">
+        <span class="lbl">💡 Die vier Rechtfertigungsgründe — geh sie alle durch</span>
+        <div class="scroll-x" style="margin:0">
+          <table>
+            <thead><tr><th>Grund</th><th>Was heißt das?</th><th>Beispiel aus der Pflege</th></tr></thead>
+            <tbody>
+              <tr><td><b>aa) Einwilligung</b></td>
+                <td><b>Ausdrücklich</b>: mündlich, schriftlich oder durch <b>schlüssiges Handeln</b> (er hält
+                von selbst den Arm hin). <b>Mutmaßlich</b>: der Patient ist <b>bewusstlos</b> — dann wird
+                vermutet, <b>was ein vernünftiger Patient wünschen würde</b>.</td>
+                <td>Der Patient sagt Ja zur Injektion.<br>
+                <b>Achtung:</b> Nicht einwilligungsfähig sind Kinder <b>unter 14</b> und Geisteskranke.
+                Und: keine mutmaßliche Einwilligung, wenn eine <b>Patientenverfügung</b> dagegensteht!</td></tr>
+              <tr><td><b>bb) Notwehr / Nothilfe</b></td>
+                <td>Die <b>Verteidigung, die erforderlich ist</b>, um einen <b>gegenwärtigen, rechtswidrigen
+                Angriff</b> abzuwehren. <b>Notwehr</b> = ich verteidige mich, <b>Nothilfe</b> = ich verteidige
+                einen anderen.</td>
+                <td>Ein Patient schlägt zu, du hältst seinen Arm fest.<br>
+                <b>Merke:</b> Notwehr gegen Notwehr gibt es nicht.</td></tr>
+              <tr><td><b>cc) Notstand</b></td>
+                <td>Bei <b>gegenwärtiger Gefahr</b> für ein Rechtsgut darf in ein <b>anderes, weniger
+                gewichtiges</b> Rechtsgut eingegriffen werden — wenn es <b>erforderlich</b> ist.</td>
+                <td>Um das <b>Leben</b> zu retten, greifst du in die <b>Freiheit</b> ein.<br>
+                <b>Merke:</b> Das gerettete Gut muss <b>wichtiger</b> sein.</td></tr>
+              <tr><td><b>dd) Besondere Gründe</b></td>
+                <td><b>Nur bei § 203 und § 239!</b></td>
+                <td><b>§ 203</b>: gesetzliche Vorschriften (Personenstandsgesetz, Infektionsschutzgesetz,
+                KKG) · Wahrnehmung berechtigter Interessen · Nichtanzeige geplanter Straftaten<br>
+                <b>§ 239</b>: richterlicher Beschluss bei Betreuung · richterliche Anordnung nach
+                <b>PsychKG</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="teil">
+        <span class="lbl">✅ Beispiel</span>
+        <div class="bsp">a) Jana müsste auch rechtswidrig gehandelt haben. In Betracht kommt eine
+        <b>Einwilligung</b>. Herr Schulz hat jedoch nur in die Gabe seines <b>eigenen, richtigen</b>
+        Medikaments eingewilligt — nicht in die Gabe eines fremden, für ihn kontraindizierten Medikaments.
+        Notwehr und Notstand scheiden aus; der <b>Zeitdruck</b> stellt <b>keine gegenwärtige Gefahr</b> für ein
+        höherwertiges Rechtsgut dar.<br>
+        b) Die Handlung ist durch <b>nichts</b> gerechtfertigt. → Jana handelte <b>rechtswidrig</b>.</div>
+      </div>
+      <div class="teil">
+        <span class="lbl">🎯 Klausur-Trick</span>
+        <p class="bedeut" style="margin:0">Hier holst du die meisten Punkte, wenn du <b>alle</b> Gründe
+        <b>nennst</b> und jeweils <b>ein Wort</b> dazu schreibst, warum er nicht passt. Auch „scheidet aus“
+        ist eine Prüfung.</p>
+      </div>
+    </div>
+
+    <div class="schritt sr">
+      <div class="kopf">Schritt 3 · III. Schuld</div>
+      <div class="teil">
+        <span class="lbl">📝 Das schreibst du</span>
+        <div class="schreib">
+          <b>III. Schuld</b><br>
+          a) X müsste auch <b>schuldhaft</b> gehandelt haben.<br>
+          aa) X müsste <b>schuldfähig</b> sein. Dann müsste X <b>über 14 Jahre alt und nicht krankhaft
+          seelisch gestört</b> sein. Hier <span class="luecke">…</span><br>
+          b) In Betracht kommt <b>Vorsatz</b> oder <b>Fahrlässigkeit</b>.<br>
+          → X handelte <b>vorsätzlich</b> / <b>fahrlässig</b>.
+        </div>
+      </div>
+      <div class="teil">
+        <span class="lbl">💡 Vorsatz oder Fahrlässigkeit? So entscheidest du</span>
+        <div class="scroll-x" style="margin:0">
+          <table>
+            <thead><tr><th></th><th>Vorsatz</th><th>Fahrlässigkeit</th></tr></thead>
+            <tbody>
+              <tr><td><b>Definition</b></td><td><b>Wissen und Wollen</b></td>
+                <td><b>Außerachtlassen der im Verkehr erforderlichen Sorgfalt</b></td></tr>
+              <tr><td><b>Satzbaustein</b></td>
+                <td><i>„Dann müsste X mit Wissen und Wollen den Tatbestand erfüllt haben.
+                Hier <b>wusste</b> X …… und <b>wollte</b> X ……“</i></td>
+                <td><i>„Dann müsste X eine <b>Sorgfaltspflichtverletzung</b> begangen haben.
+                Hier hat X eine Pflicht verletzt, indem ……“</i></td></tr>
+              <tr><td><b>Kontrollfrage</b></td>
+                <td>Wollte sie genau das tun, was sie getan hat?</td>
+                <td>Was hätte man von einer <b>ordnungsgemäß arbeitenden Fachkraft</b> erwarten dürfen?</td></tr>
+              <tr><td><b>Typisch in der Pflege</b></td>
+                <td>Fixieren · gegen den Willen waschen · einsperren · ein Geheimnis erzählen ·
+                falsch dokumentieren</td>
+                <td>Tablette vergessen · Medikamente verwechseln · Wassertemperatur nicht prüfen ·
+                Doppelkontrolle weglassen</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="teil">
+        <span class="lbl">✅ Beispiel</span>
+        <div class="bsp">a) Jana müsste auch schuldhaft gehandelt haben.<br>
+        aa) Jana ist <b>über 14 Jahre alt und nicht krankhaft seelisch gestört</b>, also <b>schuldfähig</b>.<br>
+        b) In Betracht kommt Vorsatz oder Fahrlässigkeit. Jana <b>wollte</b> Herrn Schulz nicht schädigen —
+        Vorsatz scheidet aus. Sie hat jedoch die <b>im Verkehr erforderliche Sorgfalt außer Acht gelassen</b>,
+        indem sie auf die <b>vorgeschriebene Doppelkontrolle</b> bei Hochrisiko-Medikamenten verzichtete.
+        Von einer ordnungsgemäß arbeitenden Fachkraft ist zu erwarten, dass sie diese Kontrolle durchführt.<br>
+        → Jana handelte <b>fahrlässig</b>, und zwar wegen der Bedeutung der Doppelkontrolle sogar
+        <b>grob fahrlässig</b>.</div>
+      </div>
+    </div>
+
+    <div class="schritt sr">
+      <div class="kopf">Schritt 4 · Ergebnis</div>
+      <div class="teil">
+        <span class="lbl">📝 Das schreibst du</span>
+        <div class="schreib">X hat sich <b>(nicht)</b> wegen <b>(vorsätzlicher / fahrlässiger)</b>
+        <span class="luecke">Straftat</span> nach § <span class="luecke">Nr.</span> StGB strafbar gemacht.</div>
+      </div>
+      <div class="teil">
+        <span class="lbl">✅ Beispiel</span>
+        <div class="bsp">Jana hat sich wegen <b>fahrlässiger Körperverletzung nach §§ 223, 229 StGB</b>
+        strafbar gemacht.</div>
+      </div>
+      <div class="teil">
+        <span class="lbl">💡 Zusatz für die Frage nach der Konsequenz</span>
+        <p class="bedeut" style="margin:0"><b>§ 223</b> und <b>§ 239</b>: Freiheitsstrafe bis zu <b>fünf
+        Jahren</b> oder Geldstrafe. <b>§ 203</b>: bis zu <b>einem Jahr</b> oder Geldstrafe.
+        In schweren Fällen zusätzlich <b>Berufsverbot</b>.<br>
+        Bei <b>§ 203</b> und <b>§ 223</b> immer dazuschreiben: <b>Antragsdelikt</b> — die Verfolgung setzt
+        einen <b>Strafantrag des Verletzten</b> voraus.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="s5">
+    <h2><span class="n">5</span> Die Tatbestände — was du bei „Dann müsste X …“ einsetzt</h2>
+    <p class="lead">Lerne <b>die ersten drei</b> auswendig. Sie kommen in fast jedem Fall vor.</p>
+
+    <h3>⭐ Die drei wichtigsten</h3>
+
+    <div class="card">
+      <h4 style="color:var(--sr)">§ 223 StGB — Körperverletzung</h4>
+      <div class="schreib" style="margin-top:6px">Dann müsste X <b>eine andere Person</b> ·
+      <b>körperlich misshandelt</b> · <b>oder an der Gesundheit geschädigt</b> haben.</div>
+      <p style="font-size:14.5px;color:var(--ink-soft);margin-top:10px">
+      <b>körperlich misshandeln</b> = eine üble, unangemessene Behandlung, die das körperliche Wohlbefinden
+      mehr als nur unerheblich beeinträchtigt (schlagen, festhalten, verbrühen).<br>
+      <b>an der Gesundheit schädigen</b> = einen krankhaften Zustand hervorrufen oder verschlimmern
+      (falsches Medikament, Dekubitus, Sturzfolgen).</p>
+      <div class="badbox" style="margin-bottom:0"><b>Beachte:</b> Nach der Rechtsprechung ist der
+      <b>Heileingriff</b> (z. B. OP, Behandlungspflege, Bestrahlung, Injektion) <b>immer eine
+      Körperverletzung</b> — gerechtfertigt erst durch die <b>Einwilligung</b>.</div>
+    </div>
+
+    <div class="card">
+      <h4 style="color:var(--sr)">§ 203 StGB — Verletzung von Privatgeheimnissen</h4>
+      <div class="schreib" style="margin-top:6px">Dann müsste X <b>als Geheimnisträger</b> ·
+      <b>ein fremdes Geheimnis</b> · <b>das ihm im Rahmen seiner Berufsausübung anvertraut oder
+      bekanntgeworden ist</b> · <b>offenbart</b> haben.</div>
+      <p style="font-size:14.5px;color:var(--ink-soft);margin-top:10px">
+      <b>Geheimnisträger</b> = Heilberufe mit staatlicher Ausbildung (Pflegefachfrau/-mann,
+      Pflegefachassistenten, Physiotherapeuten, Hebammen, MTA/PTA, Notfallsanitäter, Ärzte, Apotheker) ·
+      <b>Gehilfen</b> (Bufdis, Praktikanten, Sekretärinnen, aushilfsweise Nachtwachen) ·
+      <b>Lernende</b> in einem Heilberuf.<br>
+      <b>KEINE</b> Geheimnisträger: Heilpraktiker, Küchen- und Reinigungspersonal, Boten, Chauffeure,
+      Handwerker, Pförtner.<br>
+      <b>Geheimnis</b> = jede Tatsache, die nur ein <b>begrenzter Personenkreis</b> kennt und an deren
+      Geheimhaltung der Patient ein <b>schutzwürdiges Interesse</b> hat.<br>
+      <b>Offenbaren</b> = jede Mitteilung an einen Dritten, der es <b>noch nicht oder noch nicht sicher</b>
+      kennt — <b>auch ein Nicken!</b></p>
+      <div class="goodbox" style="margin-bottom:0"><b>KEIN Offenbaren:</b> die <b>Weitergabe im Team</b> und
+      eine <b>anonyme</b> Mitteilung ohne Personenbezug.<br>
+      <b>Besondere Rechtfertigungsgründe (II. dd):</b> gesetzliche Vorschriften (Personenstandsgesetz,
+      Infektionsschutzgesetz, KKG) · Wahrnehmung berechtigter Interessen · Nichtanzeige geplanter
+      Straftaten.</div>
+    </div>
+
+    <div class="card">
+      <h4 style="color:var(--sr)">§ 239 StGB — Freiheitsberaubung</h4>
+      <div class="schreib" style="margin-top:6px">Dann müsste X <b>einen anderen Menschen</b> ·
+      <b>einsperren</b> · <b>oder auf andere Weise der Freiheit berauben</b>.</div>
+      <p style="font-size:14.5px;color:var(--ink-soft);margin-top:10px">
+      <b>„Auf andere Weise“</b> heißt in der Pflege: <b>Bettgitter · Bauchgurt · Fixierung · abgeschlossene
+      Tür · Trickschlösser · sedierende Medikamente</b> („chemische Fixierung“).</p>
+      <div class="goodbox" style="margin-bottom:0"><b>Besondere Rechtfertigungsgründe (II. dd):</b>
+      <b>richterlicher Beschluss</b> bei Menschen unter Betreuung · <b>richterliche Anordnung</b> bei
+      Unterbringung nach <b>PsychKG</b>.</div>
+    </div>
+
+    <h3>Die übrigen sechs — kurz</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>§</th><th>Name</th><th>„Dann müsste X …“</th></tr></thead>
+        <tbody>
+          <tr><td><b>212</b></td><td>Totschlag</td>
+            <td>einen <b>Menschen getötet</b> haben, <b>ohne Mörder zu sein</b></td></tr>
+          <tr><td><b>216</b></td><td>Tötung auf Verlangen</td>
+            <td>durch das <b>ausdrückliche und ernsthafte Verlangen des Getöteten</b> zur Tötung bestimmt
+            worden sein</td></tr>
+          <tr><td><b>221</b></td><td>Aussetzung</td>
+            <td>einen Menschen in eine <b>hilflose Lage versetzt</b> oder in hilfloser Lage <b>trotz Obhuts-
+            und Beistandspflicht im Stich gelassen</b> und ihn dadurch der <b>Gefahr des Todes oder einer
+            schweren Gesundheitsschädigung</b> ausgesetzt haben</td></tr>
+          <tr><td><b>267</b></td><td>Urkundenfälschung</td>
+            <td><b>zur Täuschung im Rechtsverkehr</b> eine <b>unechte Urkunde herstellen</b>, eine <b>echte
+            Urkunde verfälschen</b> oder <b>eine solche Urkunde gebrauchen</b><br>
+            <span style="color:var(--ink-soft)">→ In der Pflege: <b>falsche Einträge in die
+            Pflegedokumentation</b>. Die Doku ist eine Urkunde!</span></td></tr>
+          <tr><td><b>303</b></td><td>Sachbeschädigung</td>
+            <td>eine <b>fremde Sache beschädigt oder zerstört</b> haben</td></tr>
+          <tr><td><b>323 c</b></td><td>Unterlassene Hilfeleistung</td>
+            <td>bei einer <b>Notlage nicht Hilfe geleistet</b> haben, obwohl diese <b>erforderlich und
+            zumutbar</b> war</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="note"><b>Welcher Tatbestand bei welchem Fall?</b> — die schnelle Zuordnung:
+    <ul class="plain" style="margin-bottom:0">
+      <li>Etwas <b>am Körper</b> passiert (Wunde, Schmerz, Medikament, Hitze, Sturz) → <b>§ 223</b></li>
+      <li>Jemand <b>erzählt etwas</b> (Diagnose, Foto, Telefonat, Kaffeepause) → <b>§ 203</b></li>
+      <li>Jemand <b>kann nicht weg</b> (Gurt, Gitter, abgeschlossene Tür, Festhalten) → <b>§ 239</b></li>
+      <li>Etwas <b>falsch dokumentiert</b> → <b>§ 267</b></li>
+      <li>Jemand <b>hilft nicht</b> → <b>§ 323 c</b> (jedermann) oder <b>unechtes Unterlassungsdelikt</b>
+      (du als Garant)</li>
+    </ul></div>
+  </section>
+
+  <section id="s6">
+    <h2><span class="n">6</span> Ein kompletter Musterfall — so sieht deine Antwort aus</h2>
+    <p class="lead">Das ist der Fall „Sabine und die Fixierung“, <b>vollständig ausformuliert</b> — genau so,
+    wie du es in der Klausur schreiben kannst. Lies ihn einmal und schreib ihn dann einmal ab.</p>
+
+    <div class="card">
+      <h4>Der Sachverhalt</h4>
+      <p style="margin:0;font-size:15px">Frau Yilmaz, 82 Jahre alt, demenziell erkrankt, ist wegen einer
+      Lungenentzündung auf einer geriatrischen Station. Sie ist unruhig und versucht wiederholt aufzustehen.
+      Die Pflegefachfrau Sabine befürchtet einen nächtlichen Sturz und entscheidet <b>aus
+      Praktikabilitätsgründen allein</b>, die Patientin mit <b>Bauchgurt</b> im Bett zu fixieren. Eine
+      <b>richterliche Genehmigung liegt nicht vor</b>, eine akute Selbstgefährdung wird <b>weder dokumentiert
+      noch mit dem diensthabenden Arzt abgesprochen</b>. Frau Yilmaz wird über <b>mehrere Stunden</b> fixiert,
+      obwohl sie wiederholt äußert, sie wolle aufstehen und fühle sich eingesperrt. Am Morgen klagt sie über
+      <b>Schmerzen und Hämatome am Bauch</b> sowie starke Angstgefühle.</p>
+    </div>
+
+    <div class="muster">
+      <div class="rand">a) Zwei relevante Gesetze</div>
+      <p><b>1. Strafgesetzbuch (StGB).</b> Es ist einschlägig, weil das Verhalten von Sabine die Tatbestände
+      der <b>Freiheitsberaubung nach § 239 StGB</b> und der <b>Körperverletzung nach § 223 StGB</b> erfüllen
+      könnte. Das StGB regelt, wann ein Verhalten strafbar ist und welche Strafe droht.</p>
+      <p><b>2. Grundgesetz (GG).</b> Es ist einschlägig, weil durch die Fixierung das Grundrecht auf
+      <b>Freiheit der Person und körperliche Unversehrtheit (Art. 2 Abs. 2 GG)</b> sowie die
+      <b>Menschenwürde (Art. 1 Abs. 1 GG)</b> betroffen sind. Deshalb darf eine freiheitsentziehende Maßnahme
+      nur unter engen Voraussetzungen erfolgen.</p>
+      <p style="color:var(--ink-soft);font-size:14px"><i>(Ergänzend möglich: <b>BGB Teil 4</b> —
+      Betreuungsrecht mit der Genehmigung von Fixierungen · <b>WTG NRW</b> — Schutz der Würde und Rechte von
+      Heimbewohnern.)</i></p>
+
+      <div class="rand">b) Prüfung der Strafbarkeit</div>
+      <p><b>Obersatz:</b> Sabine könnte sich wegen <b>Freiheitsberaubung nach § 239 StGB</b> strafbar gemacht
+      haben.</p>
+
+      <p><b>I. Tatbestand</b><br>
+      a) Dann müsste Sabine einen <b>anderen Menschen eingesperrt</b> oder <b>auf andere Weise der Freiheit
+      beraubt</b> haben.<br>
+      b) Hier hat Sabine Frau Yilmaz mit einem <b>Bauchgurt</b> über <b>mehrere Stunden</b> im Bett fixiert.
+      Frau Yilmaz konnte das Bett nicht verlassen, obwohl sie es wiederholt wollte. Damit wurde ihr die
+      Fortbewegungsfreiheit „auf andere Weise“ entzogen.<br>
+      → Der Tatbestand des § 239 StGB ist <b>erfüllt</b>.</p>
+
+      <p><b>II. Rechtswidrigkeit</b><br>
+      a) Sabine müsste auch <b>rechtswidrig</b> gehandelt haben. Die Rechtswidrigkeit entfällt, wenn
+      Rechtfertigungsgründe vorliegen. In Betracht kommen:</p>
+      <ul class="plain">
+        <li><b>Einwilligung</b>: Sie liegt <b>nicht</b> vor. Im Gegenteil — Frau Yilmaz äußerte
+        <b>wiederholt</b>, sie wolle aufstehen.</li>
+        <li><b>Besondere Rechtfertigungsgründe:</b> Ein <b>richterlicher Beschluss</b> liegt <b>nicht</b> vor,
+        ebenso wenig eine Anordnung nach <b>PsychKG</b>.</li>
+        <li><b>Notstand</b>: Eine <b>akute Selbstgefährdung</b> wurde <b>weder dokumentiert noch ärztlich
+        abgesprochen</b>. Sabine handelte ausdrücklich <b>aus Praktikabilitätsgründen</b>. Damit fehlt es an
+        einer <b>gegenwärtigen Gefahr</b>, und die Maßnahme war auch nicht <b>erforderlich</b> — mildere
+        Mittel wie eine Sitzwache, ein Niedrigbett oder ein Sensormatte wären möglich gewesen.</li>
+      </ul>
+      <p>b) Die Handlung von Sabine ist somit durch <b>nichts</b> gerechtfertigt.<br>
+      → Sabine handelte <b>rechtswidrig</b>.</p>
+
+      <p><b>III. Schuld</b><br>
+      a) Sabine müsste auch <b>schuldhaft</b> gehandelt haben.<br>
+      aa) Sabine ist <b>über 14 Jahre alt</b> und <b>nicht krankhaft seelisch gestört</b>, also
+      <b>schuldfähig</b>.<br>
+      b) In Betracht kommt <b>Vorsatz</b> oder <b>Fahrlässigkeit</b>. Sabine <b>wusste</b>, dass sie Frau
+      Yilmaz gegen deren ausdrücklich erklärten Willen im Bett festhält, und sie <b>wollte</b> genau das.
+      Ihre gute Absicht — die Sturzprophylaxe — beseitigt den Vorsatz <b>nicht</b>; sie kann allenfalls bei der
+      Strafzumessung berücksichtigt werden.<br>
+      → Sabine handelte <b>vorsätzlich</b>.</p>
+
+      <p><b>Zusätzlich: § 223 StGB.</b> Durch die <b>Hämatome und Schmerzen am Bauch</b> hat Sabine Frau
+      Yilmaz auch <b>körperlich misshandelt und an der Gesundheit geschädigt</b>. Auch insoweit fehlt ein
+      Rechtfertigungsgrund, und Sabine handelte zumindest <b>fahrlässig</b> — die Verletzungen waren bei
+      stundenlanger Fixierung <b>vorhersehbar</b>.</p>
+
+      <div class="rand">Form der Schuld</div>
+      <p>Sabine handelte in Bezug auf die Freiheitsberaubung mit <b>Vorsatz</b>, weil sie um den
+      entgegenstehenden Willen der Patientin wusste und dennoch handeln wollte.</p>
+
+      <div class="rand">Mögliche strafrechtliche Konsequenz</div>
+      <p><b>Freiheitsstrafe bis zu fünf Jahren oder Geldstrafe</b> (§ 239 StGB). In schweren Fällen kommt
+      zusätzlich ein <b>Berufsverbot</b> in Betracht.</p>
+
+      <div class="rand">Schlusssatz</div>
+      <p style="margin-bottom:0"><b>Sabine hat sich wegen vorsätzlicher Freiheitsberaubung nach § 239 StGB in
+      Tateinheit mit Körperverletzung nach § 223 StGB strafbar gemacht.</b></p>
+    </div>
+
+    <div class="goodbox"><b>Wenn noch Zeit ist</b>, hänge zwei Sätze zu den anderen Rechtsgebieten an:<br>
+    <i>„<b>Zivilrechtlich</b> kann Frau Yilmaz gegen Sabine einen Anspruch aus <b>Delikt (§ 823 BGB)</b> und
+    gegen den Träger aus <b>Vertrag (§ 280 i. V. m. § 278 BGB)</b> auf <b>Schmerzensgeld</b> geltend machen.
+    <b>Arbeitsrechtlich</b> kommt wegen der vorsätzlichen Zwangsmaßnahme eine <b>fristlose Kündigung</b> in
+    Betracht.“</i></div>
+
+    <div class="warnbox"><b>Wann wäre die Fixierung erlaubt gewesen?</b> Nur bei
+    <b>(1) Einwilligung</b> des einwilligungsfähigen Patienten, <b>(2) richterlicher Genehmigung</b> bzw.
+    Anordnung nach PsychKG, oder <b>(3) im akuten Notfall</b> — dann aber nur <b>vorübergehend</b>, mit
+    <b>sofortiger ärztlicher Absprache</b>, <b>lückenloser Dokumentation</b> und <b>unverzüglicher Nachholung
+    der richterlichen Genehmigung</b>.</div>
+  </section>
+
+  <section id="s7">
+    <h2><span class="n">7</span> Zivilrecht: das Schema mit fertigen Sätzen</h2>
+    <p class="lead">Merkformel: <b>Wer — von wem — woraus — worauf?</b><br>
+    Es gibt <b>zwei Wege</b>. In der Klausur prüfst du am besten <b>beide</b>.</p>
+
+    <div class="note"><b>Warum zwei Wege?</b> Weil zwischen <b>Patient und Pflegekraft kein Vertrag</b>
+    besteht! Der Vertrag läuft mit dem <b>Träger</b> (Krankenhaus, Heim).<br>
+    → Gegen den <b>Träger</b>: <b>aus Vertrag UND aus Delikt</b>.<br>
+    → Gegen die <b>Pflegekraft</b>: <b>nur aus Delikt</b>.</div>
+
+    <h3>Weg A · Aus Vertrag (§ 280 BGB) — gegen den Träger</h3>
+
+    <div class="schritt zr">
+      <div class="kopf">Obersatz</div>
+      <div class="teil">
+        <div class="schreib">X könnte gegen Y (Träger) einen Anspruch <b>aus Vertrag</b> auf
+        <b>Schadensersatz</b> haben.</div>
+      </div>
+    </div>
+
+    <div class="schritt zr">
+      <div class="kopf">1 · Es muss ein Vertrag vorliegen</div>
+      <div class="teil">
+        <span class="lbl">📝 Das schreibst du</span>
+        <div class="schreib">Voraussetzung dafür ist, dass zwischen X und Y ein <b>Vertrag</b> vorliegt.
+        Hier liegt ein <span class="luecke">…</span> vor.</div>
+      </div>
+      <div class="teil">
+        <span class="lbl">💡 Welcher Vertrag? — such ihn im Sachverhalt</span>
+        <div class="scroll-x" style="margin:0">
+          <table>
+            <thead><tr><th>Wo spielt der Fall?</th><th>Vertrag</th></tr></thead>
+            <tbody>
+              <tr><td>Ambulanter Dienst</td><td><b>Pflegevertrag</b></td></tr>
+              <tr><td>Krankenhaus</td><td><b>totaler / gespaltener Krankenhausaufnahmevertrag</b></td></tr>
+              <tr><td>Heim</td><td><b>Heimvertrag</b></td></tr>
+              <tr><td>Arzt</td><td><b>Behandlungsvertrag</b></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="teil">
+        <span class="lbl">✅ Beispiel</span>
+        <div class="bsp">Hier liegt zwischen Frau Yilmaz und dem Krankenhaus ein
+        <b>Krankenhausaufnahmevertrag</b> vor.</div>
+      </div>
+    </div>
+
+    <div class="schritt zr">
+      <div class="kopf">2 · Eine Pflicht aus dem Vertrag muss verletzt sein</div>
+      <div class="teil">
+        <span class="lbl">📝 Das schreibst du</span>
+        <div class="schreib">Weitere Voraussetzung ist, dass eine <b>Verpflichtung aus dem Vertrag verletzt</b>
+        worden ist. In Betracht kommt eine <b>Hauptpflicht</b> / <b>Nebenpflicht</b>. Hier
+        <span class="luecke">…</span></div>
+      </div>
+      <div class="teil">
+        <span class="lbl">💡 Was ist was?</span>
+        <p class="bedeut" style="margin:0"><b>Hauptpflicht</b> = die eigentliche Leistung, für die man bezahlt
+        wird: pflegen, behandeln, Medikamente richtig geben.<br>
+        <b>Nebenpflicht</b> = alles drumherum, was man schützen muss: Aufklärung, Schweigepflicht,
+        <b>Verkehrssicherungspflicht</b> (rutschiger Boden, defektes Bett), Rücksicht auf die Würde.</p>
+      </div>
+    </div>
+
+    <div class="schritt zr">
+      <div class="kopf">3 · Die Pflichtverletzung muss schuldhaft sein</div>
+      <div class="teil">
+        <span class="lbl">📝 Das schreibst du — Variante a) eigenes Verschulden</span>
+        <div class="schreib">Hier hat Y (Träger) ein <b>Organisationsverschulden</b> / eine Verletzung der
+        <b>Verkehrssicherungspflicht</b> begangen, indem <span class="luecke">…</span></div>
+      </div>
+      <div class="teil">
+        <span class="lbl">📝 Variante b) Fremdverschulden — der häufigere Fall</span>
+        <div class="schreib">Hier hat der Mitarbeiter Z als <b>Erfüllungsgehilfe</b> eine Pflichtverletzung
+        begangen. In Betracht kommt:<br>
+        <b>aa) Vorsatz</b> (Wissen und Wollen) — Hier hat er vorsätzlich gehandelt, weil er <b>wusste</b> …
+        und <b>wollte</b> … <b>oder</b><br>
+        <b>bb) Fahrlässigkeit</b> (Außerachtlassen der im Verkehr erforderlichen Sorgfalt) — Hier hat er
+        fahrlässig gehandelt, weil … <i>(Was wäre von einer ordnungsgemäß arbeitenden Fachkraft zu erwarten
+        gewesen?)</i><br>
+        <b>c)</b> Dieses Verschulden von Z muss sich Y <b>wie eigenes Verschulden anrechnen lassen</b>
+        (§ 278 BGB).</div>
+      </div>
+      <div class="teil">
+        <span class="lbl">💡 Das Zauberwort</span>
+        <p class="bedeut" style="margin:0"><b>Erfüllungsgehilfe</b> = die Person, die für den Träger die
+        Vertragspflicht <b>erfüllt</b> — also <b>die Pflegekraft</b>. Nach <b>§ 278 BGB</b> haftet der Träger
+        für ihr Verschulden, <b>als hätte er selbst falsch gehandelt</b>. Das ist der Grund, warum der Patient
+        immer den Träger verklagen kann.</p>
+      </div>
+    </div>
+
+    <div class="schritt zr">
+      <div class="kopf">4 · X muss einen Schaden erlitten haben</div>
+      <div class="teil">
+        <span class="lbl">📝 Das schreibst du</span>
+        <div class="schreib">Außerdem muss X einen <b>Schaden</b> erlitten haben.<br>
+        a) In Betracht kommt ein <b>materieller Schaden</b> (mit Vermögenseinbuße, z. B.
+        <b>Behandlungskosten, Rehakosten, Lohnausfall</b>). Hier …<br>
+        b) In Betracht kommt ein <b>immaterieller Schaden</b> (<b>Schmerzen, Psyche, entgangene
+        Lebensfreude</b>). Hier …</div>
+      </div>
+      <div class="teil">
+        <span class="lbl">💡 Einfach gesagt</span>
+        <p class="bedeut" style="margin:0"><b>Materiell</b> = man kann es in Euro ausrechnen.
+        <b>Immateriell</b> = man kann es nicht ausrechnen (Schmerz, Angst, Trauer) → dafür gibt es
+        <b>Schmerzensgeld</b>.</p>
+      </div>
+    </div>
+
+    <div class="schritt zr">
+      <div class="kopf">Ergebnis</div>
+      <div class="teil">
+        <div class="schreib">X hat gegen Y (Träger) einen Anspruch <b>aus Vertrag</b> auf <b>Schadensersatz
+        und/oder Schmerzensgeld</b>.</div>
+      </div>
+    </div>
+
+    <h3 style="margin-top:34px">Weg B · Aus Delikt (§ 823 BGB) — gegen die Pflegekraft</h3>
+
+    <div class="schritt zr">
+      <div class="kopf">Obersatz</div>
+      <div class="teil">
+        <div class="schreib">X könnte gegen Z (Pflegekraft) einen Anspruch <b>aus Delikt</b> auf
+        <b>Schadensersatz</b> haben.</div>
+      </div>
+    </div>
+
+    <div class="schritt zr">
+      <div class="kopf">1 · Ein Rechtsgut muss verletzt sein</div>
+      <div class="teil">
+        <span class="lbl">📝 Das schreibst du</span>
+        <div class="schreib">Dann müsste Z ein <b>Rechtsgut</b> (das <b>Leben</b>, den <b>Körper</b>, die
+        <b>Gesundheit</b>, die <b>Freiheit</b>, das <b>Eigentum</b> …) des X <b>verletzt</b> haben. Hier
+        <span class="luecke">…</span></div>
+      </div>
+      <div class="teil">
+        <span class="lbl">💡 Merke</span>
+        <p class="bedeut" style="margin:0">Die <b>Freiheit</b> steht ausdrücklich mit drin! Deshalb ist eine
+        <b>Fixierung</b> nicht nur strafbar, sondern kostet auch <b>Schmerzensgeld</b>.</p>
+      </div>
+    </div>
+
+    <div class="schritt zr">
+      <div class="kopf">2 · Die Verletzung muss rechtswidrig sein</div>
+      <div class="teil">
+        <span class="lbl">📝 Das schreibst du</span>
+        <div class="schreib">Diese Rechtsgutverletzung müsste auch <b>rechtswidrig</b> erfolgt sein.
+        In Betracht kommen als <b>Rechtfertigungsgründe</b>:<br>
+        a) <b>Einwilligung</b> · b) <b>Notwehr</b> (Notwehr gegen Notwehr gibt es nicht) ·
+        c) <b>Notstand</b> — Hier …</div>
+      </div>
+      <div class="teil">
+        <span class="lbl">💡 Gute Nachricht</span>
+        <p class="bedeut" style="margin:0">Das sind <b>dieselben drei</b> wie im Strafrecht. Du kannst deine
+        Prüfung von dort <b>fast wörtlich übernehmen</b>.</p>
+      </div>
+    </div>
+
+    <div class="schritt zr">
+      <div class="kopf">3 · Die Verletzung muss schuldhaft sein</div>
+      <div class="teil">
+        <div class="schreib">Diese Rechtsgutverletzung musste <b>schuldhaft</b> erfolgt sein. In Betracht
+        kommt<br>
+        a) <b>Vorsatz</b> (Wissen und Wollen) <b>oder</b><br>
+        b) <b>Fahrlässigkeit</b> (Außerachtlassen der im Verkehr erforderlichen Sorgfalt).<br>
+        Hier hat Z vorsätzlich / fahrlässig <span class="luecke">…</span> (siehe oben)</div>
+      </div>
+    </div>
+
+    <div class="schritt zr">
+      <div class="kopf">4 · Schaden · Ergebnis</div>
+      <div class="teil">
+        <div class="schreib">X müsste auch einen <b>Schaden</b> erlitten haben.<br>
+        a) materieller Schaden · b) immaterieller Schaden (Schmerzen, Psyche)<br><br>
+        <b>Ergebnis:</b> X hat gegen Z einen Anspruch <b>aus Delikt</b> auf <b>Schadensersatz und/oder
+        Schmerzensgeld</b>.</div>
+      </div>
+    </div>
+
+    <div class="goodbox"><b>Kurz gemerkt — der ganze Unterschied:</b><br>
+    <b>Aus Vertrag</b>: Vertrag → Pflicht verletzt → schuldhaft (§ 278!) → Schaden.<br>
+    <b>Aus Delikt</b>: Rechtsgut verletzt → rechtswidrig → schuldhaft → Schaden.<br>
+    Beim <b>Delikt</b> brauchst du <b>keinen Vertrag</b> — deshalb geht es auch gegen die Pflegekraft.</div>
+  </section>
+
+  <section id="s8">
+    <h2><span class="n">8</span> Wer haftet, Delegation und Regress</h2>
+
+    <h3>Das Dreieck — wer hat mit wem einen Vertrag?</h3>
+    <div class="card">
+      <ul class="clean">
+        <li><b>Krankenhaus/Heim ↔ Patient</b> = <b>Krankenhausaufnahmevertrag</b> oder
+        <b>Heimvertrag</b></li>
+        <li><b>Krankenhaus/Heim ↔ Pflegekraft/Arzt</b> = <b>Arbeitsvertrag</b></li>
+        <li><b>Patient ↔ Pflegekraft</b> = <b>KEIN Vertrag</b> → nur <b>§ 823</b> möglich</li>
+        <li>Zwischen Träger und Mitarbeiter läuft danach der <b>Regress</b></li>
+      </ul>
+    </div>
+
+    <h3>Wer kann haftbar gemacht werden?</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Wer?</th><th>Wofür?</th><th>§</th></tr></thead>
+        <tbody>
+          <tr><td><b>Mitarbeiter / Schüler</b></td><td>bei <b>vorwerfbarem, fehlerhaftem Handeln</b></td>
+            <td><b>§ 823 BGB</b></td></tr>
+          <tr><td><b>Vorgesetzte / Praxisanleiter</b></td>
+            <td>bei <b>Anleitungs- und Überwachungsfehlern</b><br>bei <b>Organisationsverschulden</b></td>
+            <td><b>§ 831 BGB</b><br><b>§ 823 BGB</b></td></tr>
+          <tr><td><b>Träger</b></td>
+            <td>für <b>fremdes Verschulden</b><br>bei <b>Auswahl-, Anleitungs- und Überwachungsfehlern</b><br>
+            bei <b>Organisationsfehlern</b></td>
+            <td><b>§ 278 BGB</b><br><b>§ 831 BGB</b><br><b>§ 823 BGB</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Delegation — die drei Verantwortungen</h3>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Ebene</th><th>Wer trägt sie?</th><th>Was gehört dazu?</th></tr></thead>
+        <tbody>
+          <tr><td><b>Anordnungs­verantwortung</b></td><td>Wer <b>delegiert</b> (Arzt, Fachkraft, Leitung)</td>
+            <td><b>Auswahl</b> (ist die Person geeignet?) · <b>Anleitung</b> (wurde sie eingewiesen?) ·
+            <b>Überwachung</b> (wird kontrolliert?)</td></tr>
+          <tr><td><b>Übernahme­verantwortung</b></td><td>Die <b>qualifizierte Pflegeperson</b></td>
+            <td><b>Kann ich das? Darf ich das? Bin ich eingewiesen?</b> — Wenn nein: <b>ablehnen!</b></td></tr>
+          <tr><td><b>Durchführungs­verantwortung</b></td><td>Wer <b>ausführt</b></td>
+            <td><b>Sorgfältige, richtige Durchführung</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note"><b>Merkhilfe:</b> <b>A–Ü–D</b> — <b>A</b>nordnen (Auswahl, Anleitung, Überwachung) →
+    <b>Ü</b>bernehmen (darf ich?) → <b>D</b>urchführen (sorgfältig).</div>
+
+    <h3>Regress — wie viel zahlst du selbst?</h3>
+    <p><b>Regress</b> ist das <b>Einstehenmüssen eines Arbeitnehmers</b> für einen Schaden, den er
+    <b>bei seiner Arbeit</b> am Vermögen oder an der Person eines Dritten anrichtet.
+    Nach der Rechtsprechung des <b>BAG</b> ist die Haftung <b>beschränkt</b>:</p>
+    <div class="scroll-x">
+      <table>
+        <thead><tr><th>Verschulden</th><th>Was heißt das?</th><th>Beispiel</th><th>Du zahlst</th></tr></thead>
+        <tbody>
+          <tr><td><b>Leichte Fahrlässigkeit</b></td><td><b>geringfügige</b> Fehler</td>
+            <td>Das <b>Blutzuckermessgerät fällt</b> aus der Tasche und geht kaputt</td>
+            <td><b>gar nichts</b> ✅</td></tr>
+          <tr><td><b>Mittlere Fahrlässigkeit</b></td><td>die <b>erforderliche Sorgfalt</b> außer Acht
+            gelassen</td>
+            <td><b>Zeitvorgabe am Sterilisator falsch eingestellt</b> — Instrumente verschmelzen</td>
+            <td><b>einen Teil</b> — Quote nach Einzelfall ⚠️</td></tr>
+          <tr><td><b>Grobe Fahrlässigkeit</b></td>
+            <td>die Sorgfalt außer Acht gelassen, <b>die jedem eingeleuchtet hätte</b></td>
+            <td><b>Handytelefonat beim Autofahren</b>, <b>Rotlichtverstoß</b></td>
+            <td><b>alles</b> ❌</td></tr>
+          <tr><td><b>Vorsatz</b></td><td>Wissen und Wollen</td><td>—</td><td><b>alles</b> ❌</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="goodbox"><b>Ein Satz zum Merken:</b> <b>Leicht = 0 · mittel = geteilt · grob und Vorsatz =
+    100 %.</b> Das ist Arbeitnehmerschutz — der Chef trägt das normale Betriebsrisiko.</div>
+  </section>
+
+  <section id="s9">
+    <h2><span class="n">9</span> Instanzen — schnelle Punkte</h2>
+    <p class="lead">Das ist reines Auswendiglernen. Zwei Zahlen, zwei Wege.</p>
+
+    <div class="two" style="display:grid;grid-template-columns:1fr 1fr;gap:13px">
+      <div class="card" style="margin:0">
+        <h4 style="color:var(--sr)">⚖️ Strafrecht — die Zahl ist <b>4 Jahre</b></h4>
+        <p style="font-size:14.5px;margin:6px 0 0"><b>Bis 4 Jahre</b> Straferwartung → I. Instanz
+        <b>Amtsgericht</b> (Strafrichter / Schöffengericht)<br>
+        → Berufung zum <b>Landgericht</b> → Revision zum <b>Oberlandesgericht</b></p>
+        <p style="font-size:14.5px;margin:10px 0 0"><b>Über 4 Jahre</b> → I. Instanz <b>Landgericht</b>
+        (Strafkammer / Schwurgericht)<br>
+        → Revision zum <b>Bundesgerichtshof</b></p>
+        <p style="font-size:13.5px;color:var(--ink-soft);margin:10px 0 0"><b>Sprungrevision:</b> vom
+        Amtsgericht direkt zum OLG.</p>
+      </div>
+      <div class="card" style="margin:0">
+        <h4 style="color:var(--zr)">💶 Zivilrecht — die Zahl ist <b>5.000 €</b></h4>
+        <p style="font-size:14.5px;margin:6px 0 0"><b>Bis 5.000 €</b> Streitwert → I. Instanz
+        <b>Amtsgericht</b> (1 Richter)<br>
+        → Berufung <b>Landgericht</b> → Revision <b>OLG</b> → Revision <b>BGH</b></p>
+        <p style="font-size:14.5px;margin:10px 0 0"><b>Über 5.000 €</b> → I. Instanz <b>Landgericht</b>
+        (Kammer 1/3 Richter)<br>
+        → Berufung <b>OLG</b> (3 Richter) → Revision <b>BGH</b> (5 Richter)</p>
+        <p style="font-size:13.5px;color:var(--ink-soft);margin:10px 0 0"><b>Berufung</b> ab
+        <b>600 € Beschwer</b> oder wenn zugelassen.</p>
+      </div>
+    </div>
+
+    <dl class="wort">
+      <dt>Berufung</dt>
+      <dd>Der Fall wird <b>komplett neu verhandelt</b> — auch die <b>Tatsachen</b>. Neue Beweise sind
+      (begrenzt) möglich.</dd>
+      <dt>Revision</dt>
+      <dd>Es wird <b>nur geprüft, ob das Recht richtig angewendet</b> wurde. Die <b>Tatsachen stehen
+      fest</b>.</dd>
+      <dt>Sprungrevision</dt>
+      <dd>Man <b>überspringt eine Instanz</b> — geht direkt in die Revision, ohne Berufung.</dd>
+      <dt>Streitwert</dt>
+      <dd>Wie viel <b>Geld</b> gefordert wird.</dd>
+      <dt>Beschwer</dt>
+      <dd>Wie viel man durch das Urteil <b>verloren</b> hat.</dd>
+    </dl>
+
+    <div class="note"><b>Die Frage „Gemeinsamkeiten und Unterschiede?“</b><br>
+    <b>Gemeinsam:</b> dieselben Gerichte (AG → LG → OLG → BGH), dieselben Rechtsmittel (Berufung, Revision,
+    Sprungrevision), drei Instanzen, beide gehören zur <b>ordentlichen Gerichtsbarkeit</b>.<br>
+    <b>Unterschied:</b> Im Strafrecht klagt der <b>Staatsanwalt</b>, im Zivilrecht der <b>Patient</b>.
+    Die Zuständigkeit richtet sich einmal nach der <b>Straferwartung</b>, einmal nach dem
+    <b>Streitwert</b>.</div>
+
+    <div class="warnbox"><b>Nicht verwechseln:</b> Eine <b>Kündigungsschutzklage</b> läuft vor dem
+    <b>Arbeitsgericht</b> (nicht vor dem Amtsgericht!). Der Streit um deinen <b>Titel</b> läuft vor dem
+    <b>Verwaltungsgericht</b>. Die fünf Gerichtsbarkeiten: <b>ordentliche · Arbeits- · Verwaltungs- ·
+    Sozial- · Finanzgerichtsbarkeit</b>. Darüber steht das <b>Bundesverfassungsgericht</b>.</div>
+  </section>
+
+  <section id="s10">
+    <h2><span class="n">10</span> Die 10 häufigsten Fehler in der Klausur</h2>
+    <ol class="merk">
+      <li><b>Direkt das Ergebnis hinschreiben.</b> „Sabine ist strafbar.“ → Fast keine Punkte. Die Punkte
+      stecken im <b>Weg</b>, nicht im Ergebnis. <b>Immer alle drei Stufen aufschreiben.</b></li>
+      <li><b>Die Rechtswidrigkeit überspringen.</b> Viele schreiben Tatbestand und dann gleich Schuld.
+      Die zweite Stufe ist die, wo du am meisten zeigen kannst — <b>nenne alle Rechtfertigungsgründe</b>,
+      auch die, die nicht passen.</li>
+      <li><b>Vergessen, dass der Heileingriff eine Körperverletzung ist.</b> Jede Injektion, jede Wundpflege,
+      jede OP. <b>Ohne Einwilligung strafbar.</b></li>
+      <li><b>„Sie hat es doch gut gemeint.“</b> Die gute Absicht beseitigt <b>weder die Rechtswidrigkeit noch
+      den Vorsatz</b>. Sie zählt höchstens bei der Strafzumessung.</li>
+      <li><b>Vorsatz und Fahrlässigkeit verwechseln.</b> Frag dich: <b>Wollte sie genau das tun?</b>
+      Fixieren, waschen, erzählen = ja → <b>Vorsatz</b>. Vergessen, verwechseln = nein → <b>Fahrlässigkeit</b>.</li>
+      <li><b>Die Anweisung der Leitung als Rechtfertigung nehmen.</b> Eine <b>rechtswidrige Anweisung</b>
+      muss man <b>ablehnen</b>. Sie mildert, entlastet aber nicht.</li>
+      <li><b>Denken, Angehörige dürfen alles wissen.</b> Ehepartner und Kinder haben <b>kein automatisches
+      Auskunftsrecht</b>. Nur mit <b>Einwilligung</b>, <b>Vollmacht</b>, <b>Betreuung</b> oder seit 2023 mit
+      <b>ärztlicher Bescheinigung</b> (Ehegattennotvertretungsrecht).</li>
+      <li><b>Im Zivilrecht nur einen Weg prüfen.</b> Prüfe <b>beide</b>: aus Vertrag gegen den <b>Träger</b>,
+      aus Delikt gegen die <b>Pflegekraft</b>.</li>
+      <li><b>§ 278 und § 831 verwechseln.</b> <b>§ 278</b> = der Träger haftet für den <b>Erfüllungsgehilfen</b>
+      (aus Vertrag). <b>§ 831</b> = Haftung für <b>Auswahl, Anleitung, Überwachung</b>.</li>
+      <li><b>Keinen Schlusssatz schreiben.</b> Er kostet 10 Sekunden und bringt sichere Punkte:
+      <i>„X hat sich wegen (vorsätzlicher/fahrlässiger) …… nach § …… StGB strafbar gemacht.“</i></li>
+    </ol>
+
+    <div class="goodbox"><b>Zeitplan für die Klausur:</b> Erst <b>alle Aufgaben lesen</b> · dann bei jedem Fall
+    <b>die Schlüsselwörter markieren</b> (gegen den Willen · vergessen · erzählt · abgeschlossen · ohne
+    Genehmigung) · das <b>Schema als Gerüst hinschreiben</b> und dann die Lücken füllen.
+    So verlierst du nie den Faden.</div>
+  </section>
+
+  <section id="s11">
+    <h2><span class="n">11</span> Spickzettel — eine Seite zum Ausdrucken</h2>
+    <p class="lead">Das absolute Minimum. Wenn du nur das kannst, kommst du durch.</p>
+
+    <div class="card">
+      <h4>1 · Die vier Rechtsgebiete</h4>
+      <p style="font-size:14.5px;margin:4px 0 0"><b>Staatsanwalt</b> → StGB → Geldstrafe, Freiheitsstrafe,
+      Berufsverbot<br>
+      <b>Patient</b> → BGB (§ 280 Vertrag / § 823 Delikt) → Schadensersatz, Schmerzensgeld<br>
+      <b>Arbeitgeber</b> → Arbeitsvertrag, KSchG → Abmahnung, Kündigung<br>
+      <b>Bezirksregierung</b> → PflBG → Rücknahme, Widerruf des Titels</p>
+
+      <h4 style="margin-top:16px">2 · Strafrecht-Schema</h4>
+      <p style="font-size:14.5px;margin:4px 0 0">Obersatz: <i>„X könnte sich wegen … strafbar gemacht
+      haben.“</i><br>
+      <b>I. Tatbestand</b> — a) Dann müsste X … · b) Hier hat X …<br>
+      <b>II. Rechtswidrigkeit</b> — Einwilligung · Notwehr/Nothilfe · Notstand · besondere Gründe
+      (nur § 203 / § 239)<br>
+      <b>III. Schuld</b> — schuldfähig (über 14, nicht krankhaft seelisch gestört) · Vorsatz (Wissen und
+      Wollen) oder Fahrlässigkeit (Sorgfalt außer Acht)<br>
+      <b>Ergebnis</b> — <i>„X hat sich (nicht) wegen (vorsätzlicher/fahrlässiger) … nach § … StGB strafbar
+      gemacht.“</i></p>
+
+      <h4 style="margin-top:16px">3 · Die drei Tatbestände</h4>
+      <p style="font-size:14.5px;margin:4px 0 0"><b>§ 223</b> — andere Person <b>körperlich misshandelt</b>
+      oder <b>an der Gesundheit geschädigt</b> · bis 5 Jahre · <b>Heileingriff = immer KV!</b><br>
+      <b>§ 203</b> — als <b>Geheimnisträger</b> ein <b>fremdes Geheimnis</b>, im <b>Rahmen der
+      Berufsausübung</b> anvertraut/bekannt, <b>offenbart</b> · bis 1 Jahr · Team = kein Offenbaren<br>
+      <b>§ 239</b> — anderen Menschen <b>einsperren</b> oder <b>auf andere Weise der Freiheit berauben</b> ·
+      bis 5 Jahre · Gurt, Gitter, Tür, Sedierung</p>
+
+      <h4 style="margin-top:16px">4 · Zivilrecht</h4>
+      <p style="font-size:14.5px;margin:4px 0 0"><b>Aus Vertrag § 280</b> (gegen Träger):
+      Vertrag → Pflicht verletzt → schuldhaft (§ 278 Erfüllungsgehilfe) → Schaden<br>
+      <b>Aus Delikt § 823</b> (gegen Pflegekraft): Rechtsgut verletzt (Leben, Körper, Gesundheit,
+      <b>Freiheit</b>, Eigentum) → rechtswidrig → schuldhaft → Schaden<br>
+      <b>§ 831</b> = Auswahl, Anleitung, Überwachung</p>
+
+      <h4 style="margin-top:16px">5 · Regress</h4>
+      <p style="font-size:14.5px;margin:4px 0 0">leicht = <b>0 %</b> · mittel = <b>Teilung</b> ·
+      grob + Vorsatz = <b>100 %</b></p>
+
+      <h4 style="margin-top:16px">6 · Delegation</h4>
+      <p style="font-size:14.5px;margin:4px 0 0"><b>Anordnung</b> (Auswahl, Anleitung, Überwachung) →
+      <b>Übernahme</b> (darf ich?) → <b>Durchführung</b> (sorgfältig)</p>
+
+      <h4 style="margin-top:16px">7 · Instanzen</h4>
+      <p style="font-size:14.5px;margin:4px 0 0"><b>Strafrecht: 4 Jahre</b> · <b>Zivilrecht: 5.000 €</b> ·
+      Berufung ab <b>600 €</b> Beschwer<br>
+      AG → LG → OLG → BGH · <b>Berufung</b> = Tatsachen + Recht · <b>Revision</b> = nur Rechtsfehler</p>
+
+      <h4 style="margin-top:16px">8 · Zahlen</h4>
+      <p style="font-size:14.5px;margin:4px 0 0"><b>14 Jahre</b> Schuld-/Einwilligungsfähigkeit ·
+      <b>6 Monate + 10 Arbeitnehmer</b> Kündigungsschutz · <b>24 Stunden</b> Richter bei Zwangseinweisung ·
+      <b>Januar 2023</b> Ehegattennotvertretungsrecht · <b>SGB XI</b> = Pflegeversicherung</p>
+    </div>
+
+    <div class="goodbox" style="font-size:15.5px"><b>Und der eine Satz, der dich rettet, wenn du nicht
+    weiterweißt:</b><br>
+    <i>„Der Tatbestand ist erfüllt. Ein Rechtfertigungsgrund — insbesondere eine Einwilligung — liegt nicht
+    vor, sodass X rechtswidrig handelte. X ist schuldfähig und handelte vorsätzlich/fahrlässig.
+    X hat sich somit wegen … strafbar gemacht.“</i><br><br>
+    Damit hast du <b>alle drei Stufen</b> in vier Sätzen — und die Struktur-Punkte sind sicher.</div>
+
+    <p style="text-align:center;color:var(--ink-soft);font-size:14px;margin-top:30px">
+      Viel Erfolg bei der Klausur! 🍀<br>
+      CE 6 UE 1 · nach den Skripten von RAin Stephanie Welters · Niveau B1
+    </p>
+  </section>
+
+  </main>
+</div>
+<button class="backtop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ nach oben</button>
+
+<script>
+const toc=document.getElementById('toc');
+const secs=[...document.querySelectorAll('main section')];
+secs.forEach(sec=>{
+  const h=sec.querySelector('h2');
+  const n=h.querySelector('.n').textContent.trim();
+  const t=h.textContent.replace(n,'').trim();
+  const a=document.createElement('a');
+  a.href='#'+sec.id;
+  a.innerHTML='<span class="n"></span>';
+  a.querySelector('.n').textContent=n;
+  a.appendChild(document.createTextNode(t));
+  toc.appendChild(a);
+});
+const q=document.getElementById('q'), hits=document.getElementById('hits');
+function clearMarks(){
+  document.querySelectorAll('main mark').forEach(m=>{
+    const p=m.parentNode; p.replaceChild(document.createTextNode(m.textContent),m); p.normalize();
+  });
+}
+function markIn(node,re){
+  if(node.nodeType===3){
+    const t=node.nodeValue; re.lastIndex=0; if(!re.test(t))return 0;
+    const frag=document.createDocumentFragment(); let last=0,c=0,m; re.lastIndex=0;
+    while((m=re.exec(t))!==null){
+      frag.appendChild(document.createTextNode(t.slice(last,m.index)));
+      const mk=document.createElement('mark'); mk.textContent=m[0]; frag.appendChild(mk);
+      last=m.index+m[0].length; c++;
+      if(m[0].length===0)re.lastIndex++;
+    }
+    frag.appendChild(document.createTextNode(t.slice(last)));
+    node.parentNode.replaceChild(frag,node); return c;
+  }
+  if(node.nodeType===1 && !['SCRIPT','STYLE','MARK'].includes(node.tagName)){
+    let c=0; [...node.childNodes].forEach(ch=>c+=markIn(ch,re)); return c;
+  }
+  return 0;
+}
+function run(){
+  const v=q.value.trim();
+  clearMarks();
+  if(v.length<2){secs.forEach(s=>s.classList.remove('hidden'));hits.textContent='';return;}
+  const esc=v.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const re=new RegExp(esc,'gi');
+  let total=0, shown=0;
+  secs.forEach(s=>{
+    const has=re.test(s.textContent); re.lastIndex=0;
+    s.classList.toggle('hidden',!has);
+    if(has){shown++; total+=markIn(s,re);}
+  });
+  hits.textContent=total? total+' Treffer in '+shown+' Kapitel'+(shown>1?'n':'') : 'keine Treffer';
+}
+let tId; q.addEventListener('input',()=>{clearTimeout(tId);tId=setTimeout(run,180);});
+document.getElementById('reset').onclick=()=>{q.value='';run();q.focus();};
+</script>
