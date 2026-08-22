@@ -5,6 +5,8 @@
     --accent:#1f5f8b;--accent-deep:#164866;--accent-soft:#dce9f2;
     --verb:#1f5f8b;--verbbg:#dce9f2;--voc:#8a5a2b;--vocbg:#f3e6d5;--gram:#5c4a8a;--grambg:#e7e2f3;
     --say:#2f7d54;--saybg:#e3f0e7;--tr:#a83b5c;--trbg:#f6e0e6;
+    --dk:#6b4fa8;--dkbg:#e8e2f5;
+    --miss:#2f7d54;--missbg:#dff0e6;--extra:#bb4d3f;--extrabg:#f8e0dc;
     --good:#2f7d54;--gold:#b5731a;
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
     --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
@@ -14,9 +16,10 @@
     --paper:#121618;--paper-2:#0d1113;--card:#1a2023;--ink:#eef2f2;--ink-soft:#a4b0b2;--line:#2a3336;
     --accent:#6cb2dd;--accent-deep:#94cbef;--accent-soft:#14293a;
     --verb:#6cb2dd;--verbbg:#14293a;--voc:#d9a05b;--vocbg:#2d2416;--gram:#a99ae0;--grambg:#221d33;
-    --say:#6fc292;--saybg:#14281c;--tr:#e08aa0;--trbg:#2e1620;--good:#6fc292;--gold:#d9a559;}}
-  :root[data-theme="dark"]{--paper:#121618;--paper-2:#0d1113;--card:#1a2023;--ink:#eef2f2;--ink-soft:#a4b0b2;--line:#2a3336;--accent:#6cb2dd;--accent-deep:#94cbef;--accent-soft:#14293a;--verb:#6cb2dd;--verbbg:#14293a;--voc:#d9a05b;--vocbg:#2d2416;--gram:#a99ae0;--grambg:#221d33;--say:#6fc292;--saybg:#14281c;--tr:#e08aa0;--trbg:#2e1620;--good:#6fc292;--gold:#d9a559;}
-  :root[data-theme="light"]{--paper:#f5f3ee;--paper-2:#edeae2;--card:#fffdf9;--ink:#1c211f;--ink-soft:#4c5552;--line:#dcd7cc;--accent:#1f5f8b;--accent-deep:#164866;--accent-soft:#dce9f2;--verb:#1f5f8b;--verbbg:#dce9f2;--voc:#8a5a2b;--vocbg:#f3e6d5;--gram:#5c4a8a;--grambg:#e7e2f3;--say:#2f7d54;--saybg:#e3f0e7;--tr:#a83b5c;--trbg:#f6e0e6;--good:#2f7d54;--gold:#b5731a;}
+    --say:#6fc292;--saybg:#14281c;--tr:#e08aa0;--trbg:#2e1620;--good:#6fc292;--gold:#d9a559;
+    --dk:#b39ce8;--dkbg:#231d33;--miss:#6fc292;--missbg:#16291d;--extra:#e08a7c;--extrabg:#301b17;}}
+  :root[data-theme="dark"]{--paper:#121618;--paper-2:#0d1113;--card:#1a2023;--ink:#eef2f2;--ink-soft:#a4b0b2;--line:#2a3336;--accent:#6cb2dd;--accent-deep:#94cbef;--accent-soft:#14293a;--verb:#6cb2dd;--verbbg:#14293a;--voc:#d9a05b;--vocbg:#2d2416;--gram:#a99ae0;--grambg:#221d33;--say:#6fc292;--saybg:#14281c;--tr:#e08aa0;--trbg:#2e1620;--good:#6fc292;--gold:#d9a559;--dk:#b39ce8;--dkbg:#231d33;--miss:#6fc292;--missbg:#16291d;--extra:#e08a7c;--extrabg:#301b17;}
+  :root[data-theme="light"]{--paper:#f5f3ee;--paper-2:#edeae2;--card:#fffdf9;--ink:#1c211f;--ink-soft:#4c5552;--line:#dcd7cc;--accent:#1f5f8b;--accent-deep:#164866;--accent-soft:#dce9f2;--verb:#1f5f8b;--verbbg:#dce9f2;--voc:#8a5a2b;--vocbg:#f3e6d5;--gram:#5c4a8a;--grambg:#e7e2f3;--say:#2f7d54;--saybg:#e3f0e7;--tr:#a83b5c;--trbg:#f6e0e6;--good:#2f7d54;--gold:#b5731a;--dk:#6b4fa8;--dkbg:#e8e2f5;--miss:#2f7d54;--missbg:#dff0e6;--extra:#bb4d3f;--extrabg:#f8e0dc;}
   *{box-sizing:border-box;}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;}
   .wrap{max-width:800px;margin:0 auto;padding:0 20px 80px;}
@@ -44,6 +47,47 @@
     text-transform:uppercase;padding:3px 9px;border-radius:6px;margin-bottom:8px;}
   .k-verb{background:var(--verbbg);color:var(--verb);} .k-voc{background:var(--vocbg);color:var(--voc);} .k-gram{background:var(--grambg);color:var(--gram);}
   .k-say{background:var(--saybg);color:var(--say);} .k-tr{background:var(--trbg);color:var(--tr);}
+  .k-dk{background:var(--dkbg);color:var(--dk);}
+  /* Diktat */
+  .dk-intro{font-size:15px;color:var(--ink-soft);margin:2px 0 14px;}
+  .dk-panel{border:1px solid var(--line);border-radius:12px;background:var(--paper-2);padding:16px 18px;margin:12px 0;}
+  .dk-status{font-family:var(--mono);font-size:13px;color:var(--dk);background:var(--dkbg);
+    border-radius:999px;padding:6px 14px;display:inline-block;margin-bottom:12px;}
+  .dk-status.run{animation:dkpulse 1.4s ease-in-out infinite;}
+  @keyframes dkpulse{0%,100%{opacity:1;}50%{opacity:.55;}}
+  .dk-btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
+  .dkbtn{font:inherit;font-size:15px;color:#fff;background:var(--dk);border:none;border-radius:10px;
+    padding:11px 20px;cursor:pointer;}
+  .dkbtn:hover:not(:disabled){filter:brightness(1.08);}
+  .dkbtn:disabled{opacity:.45;cursor:default;}
+  .dkbtn.ghost{background:var(--card);color:var(--dk);border:1px solid var(--dk);}
+  .dk-area{width:100%;min-height:170px;font:inherit;font-size:16px;line-height:1.7;color:var(--ink);
+    background:var(--card);border:1px solid var(--line);border-radius:10px;padding:13px 15px;
+    margin-top:13px;resize:vertical;}
+  .dk-area:focus{outline:2px solid var(--dk);outline-offset:1px;}
+  .dk-count{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:6px;}
+  .dk-erg{margin-top:14px;padding:15px 17px;border-radius:11px;background:var(--dkbg);display:none;}
+  .dk-erg.show{display:block;}
+  .dk-erg .pct{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--dk);}
+  .dk-erg .note{font-size:14px;color:var(--ink-soft);margin-top:3px;}
+  .dk-orig{display:none;margin-top:14px;}
+  .dk-orig.show{display:block;}
+  .dk-orig h4{font-family:var(--serif);font-size:1.05rem;margin:16px 0 6px;}
+  .dk-text{font-family:var(--serif);font-size:1.12rem;line-height:1.75;background:var(--card);
+    border:1px solid var(--line);border-radius:11px;padding:15px 18px;}
+  .dk-diff{font-size:16px;line-height:1.95;background:var(--card);border:1px solid var(--line);
+    border-radius:11px;padding:15px 18px;}
+  .dk-diff .ok{color:var(--ink);}
+  .dk-diff .miss{background:var(--missbg);color:var(--miss);border-radius:4px;padding:1px 4px;font-weight:600;}
+  .dk-diff .extra{background:var(--extrabg);color:var(--extra);border-radius:4px;padding:1px 4px;
+    text-decoration:line-through;}
+  .dk-legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-soft);margin-top:9px;}
+  .dk-legend b{font-weight:600;}
+  .dk-satz{display:flex;gap:10px;align-items:flex-start;border-bottom:1px dashed var(--line);padding:9px 0;}
+  .dk-satz:last-child{border-bottom:none;}
+  .dk-satz button{flex:0 0 auto;font:inherit;font-size:13px;color:var(--dk);background:var(--card);
+    border:1px solid var(--dk);border-radius:8px;padding:5px 11px;cursor:pointer;}
+  .dk-satz .s{flex:1 1 auto;font-size:15px;}
   /* Satz zum Sprechen */
   .satz{font-family:var(--serif);font-size:1.35rem;line-height:1.45;margin:6px 0 4px;}
   .satz .stress{color:var(--say);font-weight:700;border-bottom:2px solid var(--say);}
@@ -197,6 +241,200 @@ function renderTrans(b,idx){
   h+='</div>';
   return h;
 }
+/* ---------- Diktat (alle zwei Tage) ---------- */
+let dkText='', dkSaetze=[], dkLaeuft=false;
+
+function dkStatus(txt,run){
+  const e=document.getElementById('dk-status');
+  if(!e)return;
+  e.textContent=txt;
+  e.classList.toggle('run',!!run);
+}
+/* Spricht den Text zweimal — normale Geschwindigkeit, kein Tempo-Regler */
+function dkStart(){
+  if(dkLaeuft)return;
+  if(!('speechSynthesis' in window)){
+    dkStatus('Dein Browser kann leider nicht vorlesen.',false);return;
+  }
+  dkLaeuft=true;
+  document.getElementById('dk-start').disabled=true;
+  const area=document.getElementById('dk-area');
+  if(area){area.disabled=false;}
+  let durchgang=0;
+  function lauf(){
+    durchgang++;
+    dkStatus('🔊 Durchgang '+durchgang+' von 2 — hör gut zu und schreib mit',true);
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(dkText);
+    u.lang='de-DE'; u.rate=1;
+    const v=window.speechSynthesis.getVoices().find(x=>x.lang&&x.lang.startsWith('de'));
+    if(v)u.voice=v;
+    u.onend=()=>{
+      if(durchgang<2){
+        dkStatus('⏸ Kurze Pause … gleich kommt Durchgang 2',true);
+        setTimeout(lauf,3500);
+      }else{
+        dkLaeuft=false;
+        document.getElementById('dk-start').disabled=false;
+        document.getElementById('dk-start').textContent='↻ Noch einmal hören';
+        dkStatus('✅ Fertig vorgelesen — schreib zu Ende, dann vergleichen',false);
+        const b=document.getElementById('dk-check'); if(b)b.disabled=false;
+      }
+    };
+    u.onerror=()=>{
+      dkLaeuft=false;
+      document.getElementById('dk-start').disabled=false;
+      dkStatus('Es gab ein Problem beim Vorlesen. Versuch es noch einmal.',false);
+    };
+    window.speechSynthesis.speak(u);
+  }
+  lauf();
+}
+/* Einzelnen Satz nachhören (nur in der Korrektur) */
+function dkSatz(i){
+  if(!('speechSynthesis' in window))return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(dkSaetze[i]);
+  u.lang='de-DE'; u.rate=1;
+  const v=window.speechSynthesis.getVoices().find(x=>x.lang&&x.lang.startsWith('de'));
+  if(v)u.voice=v;
+  window.speechSynthesis.speak(u);
+}
+/* Wörter vergleichen — LCS-Diff */
+function tokens(s){
+  return String(s).replace(/\s+/g,' ').trim().split(' ').filter(Boolean);
+}
+function norm(w){
+  return w.replace(/[.,;:!?»«"'„“()\-–—]/g,'').toLowerCase();
+}
+function dkDiff(orig,user){
+  const a=tokens(orig), b=tokens(user);
+  const n=a.length, m=b.length;
+  const dp=[];
+  for(let i=0;i<=n;i++){dp.push(new Array(m+1).fill(0));}
+  for(let i=n-1;i>=0;i--){
+    for(let j=m-1;j>=0;j--){
+      dp[i][j] = (norm(a[i])===norm(b[j])) ? dp[i+1][j+1]+1 : Math.max(dp[i+1][j],dp[i][j+1]);
+    }
+  }
+  const out=[]; let i=0,j=0,treffer=0;
+  while(i<n&&j<m){
+    if(norm(a[i])===norm(b[j])){
+      const exakt = a[i]===b[j];
+      out.push({t:'ok',w:a[i],exakt:exakt}); treffer++; i++; j++;
+    } else if(dp[i+1][j]>=dp[i][j+1]){
+      out.push({t:'miss',w:a[i]}); i++;
+    } else {
+      out.push({t:'extra',w:b[j]}); j++;
+    }
+  }
+  while(i<n){out.push({t:'miss',w:a[i]});i++;}
+  while(j<m){out.push({t:'extra',w:b[j]});j++;}
+  return {out:out,treffer:treffer,gesamt:n};
+}
+function dkPruefen(){
+  const area=document.getElementById('dk-area');
+  const user=area?area.value:'';
+  const r=dkDiff(dkText,user);
+  const pct=r.gesamt?Math.round(r.treffer/r.gesamt*100):0;
+
+  let h='';
+  r.out.forEach(o=>{
+    if(o.t==='ok')      h+='<span class="ok">'+esc(o.w)+'</span> ';
+    else if(o.t==='miss')h+='<span class="miss">'+esc(o.w)+'</span> ';
+    else                 h+='<span class="extra">'+esc(o.w)+'</span> ';
+  });
+  document.getElementById('dk-diffbox').innerHTML=h;
+
+  const note = pct>=95?'Ausgezeichnet! 🎉' : pct>=85?'Sehr gut! 👍' :
+               pct>=70?'Gut — schau dir die grünen Wörter genau an. 💪' :
+               pct>=50?'Solide. Hör dir die Sätze noch einmal einzeln an. 📘' :
+                       'Kein Problem — hör das Diktat noch einmal und schreib es neu. 🌱';
+  document.getElementById('dk-erg').innerHTML=
+    '<div class="pct">'+r.treffer+' / '+r.gesamt+' Wörtern richtig ('+pct+' %)</div>'+
+    '<div class="note">'+note+'</div>';
+  document.getElementById('dk-erg').classList.add('show');
+  document.getElementById('dk-orig').classList.add('show');
+  if(area)area.disabled=true;
+  const b=document.getElementById('dk-check'); if(b)b.disabled=true;
+  document.getElementById('dk-orig').scrollIntoView({behavior:'smooth',block:'start'});
+}
+function dkNeu(){
+  const area=document.getElementById('dk-area');
+  if(area){area.value='';area.disabled=false;}
+  document.getElementById('dk-erg').classList.remove('show');
+  document.getElementById('dk-orig').classList.remove('show');
+  document.getElementById('dk-check').disabled=false;
+  document.getElementById('dk-start').textContent='▶︎ Diktat starten';
+  dkStatus('Bereit — der Text wird zweimal vorgelesen.',false);
+  window.speechSynthesis && window.speechSynthesis.cancel();
+  dkLaeuft=false;
+  document.getElementById('dk-start').disabled=false;
+}
+function renderDiktat(b){
+  if(!b)return '';
+  /* akzeptiert beide Formen: b.text (ein Fließtext) oder b.saetze (Liste von Sätzen) */
+  let roh = b.text;
+  if(!roh && b.saetze && b.saetze.length) roh = b.saetze.join(' ');
+  if(!roh)return '';
+  dkText=String(roh).replace(/\*\*/g,'').replace(/\s+/g,' ').trim();
+  dkSaetze=(b.saetze&&b.saetze.length)
+    ? b.saetze.map(s=>String(s).replace(/\*\*/g,'').trim())
+    : dkText.split(/(?<=[.!?])\s+/).filter(s=>s.trim().length);
+  const hilfe = b.hilfe || b.wortschatzhilfe || [];
+  const woerter=tokens(dkText).length;
+
+  let h='<div class="block"><span class="kind k-dk">Diktat · Niveau B2</span>';
+  h+='<h3>'+bold(b.titel||'Diktat des Tages')+'</h3>';
+  h+='<p class="dk-intro">Der Text wird <b>zweimal</b> in <b>normaler Geschwindigkeit</b> vorgelesen. '+
+     'Schreib beim Zuhören mit. Danach siehst du den Originaltext und deine Korrektur.'+
+     ' <b>'+woerter+' Wörter.</b></p>';
+  if(b.fr)h+='<p class="fr">'+esc(b.fr)+'</p>';
+  if(hilfe.length){
+    h+='<div class="chips">'+hilfe.map(c=>'<span class="chip">'+bold(c)+'</span>').join('')+'</div>';
+  }
+
+  h+='<div class="dk-panel">';
+  h+='<div class="dk-status" id="dk-status">Bereit — der Text wird zweimal vorgelesen.</div>';
+  h+='<div class="dk-btns">'+
+     '<button class="dkbtn" id="dk-start" onclick="dkStart()">▶︎ Diktat starten</button>'+
+     '<button class="dkbtn ghost" id="dk-check" onclick="dkPruefen()">✅ Fertig — vergleichen</button>'+
+     '<button class="dkbtn ghost" onclick="dkNeu()">↺ Neu anfangen</button>'+
+     '</div>';
+  h+='<textarea class="dk-area" id="dk-area" placeholder="Hier schreibst du mit …" '+
+     'oninput="document.getElementById(\'dk-count\').textContent=this.value.trim()?'+
+     'this.value.trim().split(/\\s+/).length+\' Wörter geschrieben\':\'\'"></textarea>';
+  h+='<div class="dk-count" id="dk-count"></div>';
+  h+='<div class="dk-erg" id="dk-erg"></div>';
+  h+='</div>';
+
+  h+='<div class="dk-orig" id="dk-orig">';
+  h+='<h4>📄 Der Originaltext</h4>';
+  h+='<div class="dk-text">'+esc(dkText)+'</div>';
+  h+='<h4>🔍 Deine Korrektur</h4>';
+  h+='<div class="dk-diff" id="dk-diffbox"></div>';
+  h+='<div class="dk-legend">'+
+     '<span><b class="miss" style="background:var(--missbg);color:var(--miss);border-radius:4px;padding:1px 5px">grün</b>'+
+     ' = dieses Wort fehlt bei dir</span>'+
+     '<span><b class="extra" style="background:var(--extrabg);color:var(--extra);border-radius:4px;padding:1px 5px">rot</b>'+
+     ' = das hast du zu viel oder falsch geschrieben</span></div>';
+  h+='<h4>🔊 Sätze einzeln nachhören</h4><div>';
+  dkSaetze.forEach((s,i)=>{
+    h+='<div class="dk-satz"><button onclick="dkSatz('+i+')">🔊 '+(i+1)+'</button>'+
+       '<span class="s">'+esc(s)+'</span></div>';
+  });
+  h+='</div>';
+  if(b.erklaerung)h+='<div class="tipbox" style="margin-top:14px">'+bold(b.erklaerung)+'</div>';
+  if(b.fallen&&b.fallen.length){
+    h+='<h4>⚠️ Typische Fallen in diesem Diktat</h4><ul class="ex">'+
+       b.fallen.map(f=>'<li>'+bold(f)+'</li>').join('')+'</ul>';
+  }
+  h+='</div>';
+
+  h+='</div>';
+  return h;
+}
+
 let cur=0;
 const bar=document.getElementById('datebar');
 function fmtDate(iso){
@@ -221,7 +459,7 @@ function render(){
   document.getElementById('daySub').textContent='Lektion '+(LEKTIONEN.length-cur)+' · '+(l.thema||'Verb · Wortschatz · Grammatik');
   document.getElementById('content').innerHTML=
     renderBlock(l.verb,'verb',cur)+renderBlock(l.wortschatz,'voc',cur)+renderBlock(l.grammatik,'gram',cur)
-    +renderSay(l.aussprache,cur)+renderTrans(l.uebersetzung,cur);
+    +renderSay(l.aussprache,cur)+renderDiktat(l.diktat)+renderTrans(l.uebersetzung,cur);
   window.scrollTo({top:0,behavior:'smooth'});
 }
 document.getElementById('streak').textContent='📚 '+LEKTIONEN.length+' Lektion'+(LEKTIONEN.length>1?'en':'')+' gesammelt';
