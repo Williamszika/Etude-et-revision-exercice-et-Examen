@@ -55,6 +55,16 @@
     border-radius:999px;padding:6px 14px;display:inline-block;margin-bottom:12px;}
   .dk-status.run{animation:dkpulse 1.4s ease-in-out infinite;}
   @keyframes dkpulse{0%,100%{opacity:1;}50%{opacity:.55;}}
+  .dk-tempo{display:flex;gap:7px;flex-wrap:wrap;align-items:center;margin-bottom:12px;}
+  .dk-tempo .lab{font-size:13.5px;color:var(--ink-soft);margin-right:2px;}
+  .dk-tempo button{font:inherit;font-size:13.5px;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:999px;padding:6px 13px;cursor:pointer;}
+  .dk-tempo button:hover:not(:disabled){border-color:var(--dk);}
+  .dk-tempo button.sel{background:var(--dk);color:#fff;border-color:var(--dk);}
+  @media (prefers-color-scheme:dark){.dk-tempo button.sel{color:#191424;}}
+  :root[data-theme="dark"] .dk-tempo button.sel{color:#191424;}
+  :root[data-theme="light"] .dk-tempo button.sel{color:#fff;}
+  .dk-tempo button:disabled{opacity:.45;cursor:default;}
   .dk-btns{display:flex;gap:8px;flex-wrap:wrap;align-items:center;}
   .dkbtn{font:inherit;font-size:15px;color:#fff;background:var(--dk);border:none;border-radius:10px;
     padding:11px 20px;cursor:pointer;}
@@ -243,6 +253,22 @@ function renderTrans(b,idx){
 }
 /* ---------- Diktat (alle zwei Tage) ---------- */
 let dkText='', dkSaetze=[], dkLaeuft=false;
+/* Sprechtempo — voreingestellt: langsam. Wird im Browser gemerkt. */
+const DK_TEMPI=[
+  {k:'sehr', r:0.55, t:'🐌 sehr langsam'},
+  {k:'lang', r:0.70, t:'🐢 langsam'},
+  {k:'mit',  r:0.85, t:'🚶 mittel'},
+  {k:'norm', r:1.00, t:'🙋 normal'}
+];
+let dkRate=0.70;
+try{ const g=localStorage.getItem('dk-rate'); if(g) dkRate=parseFloat(g)||0.70; }catch(e){}
+function dkSetRate(r){
+  dkRate=r;
+  try{ localStorage.setItem('dk-rate',String(r)); }catch(e){}
+  document.querySelectorAll('.dk-tempo button').forEach(b=>{
+    b.classList.toggle('sel', Math.abs(parseFloat(b.dataset.r)-r)<0.001);
+  });
+}
 
 function dkStatus(txt,run){
   const e=document.getElementById('dk-status');
@@ -258,6 +284,7 @@ function dkStart(){
   }
   dkLaeuft=true;
   document.getElementById('dk-start').disabled=true;
+  document.querySelectorAll('.dk-tempo button').forEach(b=>b.disabled=true);
   const area=document.getElementById('dk-area');
   if(area){area.disabled=false;}
   let durchgang=0;
@@ -266,7 +293,7 @@ function dkStart(){
     dkStatus('🔊 Durchgang '+durchgang+' von 2 — hör gut zu und schreib mit',true);
     window.speechSynthesis.cancel();
     const u=new SpeechSynthesisUtterance(dkText);
-    u.lang='de-DE'; u.rate=1;
+    u.lang='de-DE'; u.rate=dkRate;
     const v=window.speechSynthesis.getVoices().find(x=>x.lang&&x.lang.startsWith('de'));
     if(v)u.voice=v;
     u.onend=()=>{
@@ -276,6 +303,7 @@ function dkStart(){
       }else{
         dkLaeuft=false;
         document.getElementById('dk-start').disabled=false;
+        document.querySelectorAll('.dk-tempo button').forEach(b=>b.disabled=false);
         document.getElementById('dk-start').textContent='↻ Noch einmal hören';
         dkStatus('✅ Fertig vorgelesen — schreib zu Ende, dann vergleichen',false);
         const b=document.getElementById('dk-check'); if(b)b.disabled=false;
@@ -284,6 +312,7 @@ function dkStart(){
     u.onerror=()=>{
       dkLaeuft=false;
       document.getElementById('dk-start').disabled=false;
+      document.querySelectorAll('.dk-tempo button').forEach(b=>b.disabled=false);
       dkStatus('Es gab ein Problem beim Vorlesen. Versuch es noch einmal.',false);
     };
     window.speechSynthesis.speak(u);
@@ -295,7 +324,7 @@ function dkSatz(i){
   if(!('speechSynthesis' in window))return;
   window.speechSynthesis.cancel();
   const u=new SpeechSynthesisUtterance(dkSaetze[i]);
-  u.lang='de-DE'; u.rate=1;
+  u.lang='de-DE'; u.rate=dkRate;
   const v=window.speechSynthesis.getVoices().find(x=>x.lang&&x.lang.startsWith('de'));
   if(v)u.voice=v;
   window.speechSynthesis.speak(u);
@@ -386,9 +415,9 @@ function renderDiktat(b){
 
   let h='<div class="block"><span class="kind k-dk">Diktat · Niveau B2</span>';
   h+='<h3>'+bold(b.titel||'Diktat des Tages')+'</h3>';
-  h+='<p class="dk-intro">Der Text wird <b>zweimal</b> in <b>normaler Geschwindigkeit</b> vorgelesen. '+
-     'Schreib beim Zuhören mit. Danach siehst du den Originaltext und deine Korrektur.'+
-     ' <b>'+woerter+' Wörter.</b></p>';
+  h+='<p class="dk-intro">Der Text wird <b>zweimal</b> vorgelesen. Stell dir vorher das <b>Tempo</b> ein — '+
+     'du kannst jederzeit langsamer machen. Schreib beim Zuhören mit. '+
+     'Danach siehst du den Originaltext und deine Korrektur. <b>'+woerter+' Wörter.</b></p>';
   if(b.fr)h+='<p class="fr">'+esc(b.fr)+'</p>';
   if(hilfe.length){
     h+='<div class="chips">'+hilfe.map(c=>'<span class="chip">'+bold(c)+'</span>').join('')+'</div>';
@@ -396,6 +425,9 @@ function renderDiktat(b){
 
   h+='<div class="dk-panel">';
   h+='<div class="dk-status" id="dk-status">Bereit — der Text wird zweimal vorgelesen.</div>';
+  h+='<div class="dk-tempo"><span class="lab">Tempo:</span>'+
+     DK_TEMPI.map(t=>'<button type="button" data-r="'+t.r+'" onclick="dkSetRate('+t.r+')">'+t.t+'</button>').join('')+
+     '</div>';
   h+='<div class="dk-btns">'+
      '<button class="dkbtn" id="dk-start" onclick="dkStart()">▶︎ Diktat starten</button>'+
      '<button class="dkbtn ghost" id="dk-check" onclick="dkPruefen()">✅ Fertig — vergleichen</button>'+
@@ -418,7 +450,8 @@ function renderDiktat(b){
      ' = dieses Wort fehlt bei dir</span>'+
      '<span><b class="extra" style="background:var(--extrabg);color:var(--extra);border-radius:4px;padding:1px 5px">rot</b>'+
      ' = das hast du zu viel oder falsch geschrieben</span></div>';
-  h+='<h4>🔊 Sätze einzeln nachhören</h4><div>';
+  h+='<h4>🔊 Sätze einzeln nachhören</h4>'+
+     '<p class="dk-intro" style="margin:0 0 8px">Im gewählten Tempo — du kannst es oben jederzeit ändern.</p><div>';
   dkSaetze.forEach((s,i)=>{
     h+='<div class="dk-satz"><button onclick="dkSatz('+i+')">🔊 '+(i+1)+'</button>'+
        '<span class="s">'+esc(s)+'</span></div>';
@@ -460,6 +493,7 @@ function render(){
   document.getElementById('content').innerHTML=
     renderBlock(l.verb,'verb',cur)+renderBlock(l.wortschatz,'voc',cur)+renderBlock(l.grammatik,'gram',cur)
     +renderSay(l.aussprache,cur)+renderDiktat(l.diktat)+renderTrans(l.uebersetzung,cur);
+  if(document.querySelector('.dk-tempo')) dkSetRate(dkRate);
   window.scrollTo({top:0,behavior:'smooth'});
 }
 document.getElementById('streak').textContent='📚 '+LEKTIONEN.length+' Lektion'+(LEKTIONEN.length>1?'en':'')+' gesammelt';
