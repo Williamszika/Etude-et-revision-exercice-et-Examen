@@ -5,7 +5,7 @@
     --accent:#1f5f8b;--accent-deep:#164866;--accent-soft:#dce9f2;
     --verb:#1f5f8b;--verbbg:#dce9f2;--voc:#8a5a2b;--vocbg:#f3e6d5;--gram:#5c4a8a;--grambg:#e7e2f3;
     --say:#2f7d54;--saybg:#e3f0e7;--tr:#a83b5c;--trbg:#f6e0e6;
-    --dk:#6b4fa8;--dkbg:#e8e2f5;
+    --dk:#6b4fa8;--dkbg:#e8e2f5;--sb:#0f6f6b;--sbbg:#dcefee;
     --miss:#2f7d54;--missbg:#dff0e6;--extra:#bb4d3f;--extrabg:#f8e0dc;
     --good:#2f7d54;--gold:#b5731a;
     --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
@@ -17,9 +17,9 @@
     --accent:#6cb2dd;--accent-deep:#94cbef;--accent-soft:#14293a;
     --verb:#6cb2dd;--verbbg:#14293a;--voc:#d9a05b;--vocbg:#2d2416;--gram:#a99ae0;--grambg:#221d33;
     --say:#6fc292;--saybg:#14281c;--tr:#e08aa0;--trbg:#2e1620;--good:#6fc292;--gold:#d9a559;
-    --dk:#b39ce8;--dkbg:#231d33;--miss:#6fc292;--missbg:#16291d;--extra:#e08a7c;--extrabg:#301b17;}}
-  :root[data-theme="dark"]{--paper:#121618;--paper-2:#0d1113;--card:#1a2023;--ink:#eef2f2;--ink-soft:#a4b0b2;--line:#2a3336;--accent:#6cb2dd;--accent-deep:#94cbef;--accent-soft:#14293a;--verb:#6cb2dd;--verbbg:#14293a;--voc:#d9a05b;--vocbg:#2d2416;--gram:#a99ae0;--grambg:#221d33;--say:#6fc292;--saybg:#14281c;--tr:#e08aa0;--trbg:#2e1620;--good:#6fc292;--gold:#d9a559;--dk:#b39ce8;--dkbg:#231d33;--miss:#6fc292;--missbg:#16291d;--extra:#e08a7c;--extrabg:#301b17;}
-  :root[data-theme="light"]{--paper:#f5f3ee;--paper-2:#edeae2;--card:#fffdf9;--ink:#1c211f;--ink-soft:#4c5552;--line:#dcd7cc;--accent:#1f5f8b;--accent-deep:#164866;--accent-soft:#dce9f2;--verb:#1f5f8b;--verbbg:#dce9f2;--voc:#8a5a2b;--vocbg:#f3e6d5;--gram:#5c4a8a;--grambg:#e7e2f3;--say:#2f7d54;--saybg:#e3f0e7;--tr:#a83b5c;--trbg:#f6e0e6;--good:#2f7d54;--gold:#b5731a;--dk:#6b4fa8;--dkbg:#e8e2f5;--miss:#2f7d54;--missbg:#dff0e6;--extra:#bb4d3f;--extrabg:#f8e0dc;}
+    --dk:#b39ce8;--dkbg:#231d33;--miss:#6fc292;--missbg:#16291d;--extra:#e08a7c;--extrabg:#301b17;--sb:#6cc4bf;--sbbg:#0f2726;}}
+  :root[data-theme="dark"]{--paper:#121618;--paper-2:#0d1113;--card:#1a2023;--ink:#eef2f2;--ink-soft:#a4b0b2;--line:#2a3336;--accent:#6cb2dd;--accent-deep:#94cbef;--accent-soft:#14293a;--verb:#6cb2dd;--verbbg:#14293a;--voc:#d9a05b;--vocbg:#2d2416;--gram:#a99ae0;--grambg:#221d33;--say:#6fc292;--saybg:#14281c;--tr:#e08aa0;--trbg:#2e1620;--good:#6fc292;--gold:#d9a559;--dk:#b39ce8;--dkbg:#231d33;--miss:#6fc292;--missbg:#16291d;--extra:#e08a7c;--extrabg:#301b17;--sb:#6cc4bf;--sbbg:#0f2726;}
+  :root[data-theme="light"]{--paper:#f5f3ee;--paper-2:#edeae2;--card:#fffdf9;--ink:#1c211f;--ink-soft:#4c5552;--line:#dcd7cc;--accent:#1f5f8b;--accent-deep:#164866;--accent-soft:#dce9f2;--verb:#1f5f8b;--verbbg:#dce9f2;--voc:#8a5a2b;--vocbg:#f3e6d5;--gram:#5c4a8a;--grambg:#e7e2f3;--say:#2f7d54;--saybg:#e3f0e7;--tr:#a83b5c;--trbg:#f6e0e6;--good:#2f7d54;--gold:#b5731a;--dk:#6b4fa8;--dkbg:#e8e2f5;--miss:#2f7d54;--missbg:#dff0e6;--extra:#bb4d3f;--extrabg:#f8e0dc;--sb:#0f6f6b;--sbbg:#dcefee;}
   *{box-sizing:border-box;}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;}
   .wrap{max-width:800px;margin:0 auto;padding:0 20px 80px;}
@@ -48,6 +48,43 @@
   .k-verb{background:var(--verbbg);color:var(--verb);} .k-voc{background:var(--vocbg);color:var(--voc);} .k-gram{background:var(--grambg);color:var(--gram);}
   .k-say{background:var(--saybg);color:var(--say);} .k-tr{background:var(--trbg);color:var(--tr);}
   .k-dk{background:var(--dkbg);color:var(--dk);}
+  .k-sb{background:var(--sbbg);color:var(--sb);}
+  /* Satzbau */
+  .sb-felder{overflow-x:auto;margin:12px 0;}
+  .sb-felder table{border-collapse:collapse;width:100%;min-width:520px;font-size:15px;}
+  .sb-felder th{background:var(--sbbg);color:var(--sb);font-family:var(--mono);font-size:11px;
+    letter-spacing:.05em;text-transform:uppercase;padding:8px 10px;border:1px solid var(--line);text-align:left;}
+  .sb-felder td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  .sb-felder td.vb{background:var(--sbbg);font-weight:700;color:var(--sb);white-space:nowrap;}
+  .sb-felder td.end{font-weight:700;color:var(--sb);white-space:nowrap;}
+  .sb-muster{list-style:none;padding:0;margin:12px 0;}
+  .sb-muster li{font-family:var(--mono);font-size:14px;background:var(--paper-2);border-left:3px solid var(--sb);
+    border-radius:0 8px 8px 0;padding:9px 13px;margin:7px 0;line-height:1.6;}
+  .sb-muster li b{color:var(--sb);}
+  .sb-umbau{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:13px 0;}
+  .sb-umbau .basis{background:var(--sbbg);padding:12px 15px;font-size:15.5px;}
+  .sb-umbau .basis .l{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--sb);margin-bottom:4px;}
+  .sb-form{display:grid;grid-template-columns:auto 1fr;gap:0;border-top:1px solid var(--line);}
+  .sb-form .typ{background:var(--paper-2);padding:10px 13px;font-size:13px;font-weight:600;color:var(--sb);
+    white-space:nowrap;border-right:1px solid var(--line);}
+  .sb-form .inh{padding:10px 13px;}
+  .sb-form .satz{font-size:15.5px;}
+  .sb-form .hw{display:block;font-size:13px;color:var(--ink-soft);margin-top:3px;}
+  @media (max-width:560px){
+    .sb-form{grid-template-columns:1fr;}
+    .sb-form .typ{border-right:none;border-bottom:1px dashed var(--line);}
+  }
+  .sb-sprech{background:var(--sbbg);border-radius:11px;padding:13px 16px;margin:13px 0;}
+  .sb-sprech h4{margin:0 0 8px;font-family:var(--serif);font-size:1.02rem;color:var(--sb);}
+  .sb-sprech ul{list-style:none;padding:0;margin:0;}
+  .sb-sprech li{padding:6px 0 6px 22px;position:relative;font-size:15px;border-bottom:1px dashed var(--line);}
+  .sb-sprech li:last-child{border-bottom:none;}
+  .sb-sprech li::before{content:"💬";position:absolute;left:0;font-size:12px;}
+  .sb-warn{border-left:3px solid var(--extra);background:var(--extrabg);border-radius:0 10px 10px 0;
+    padding:11px 15px;margin:12px 0;font-size:15px;}
+  .sb-warn .falsch{text-decoration:line-through;color:var(--extra);}
+  .sb-warn .richtig{color:var(--miss);font-weight:600;}
   /* Diktat */
   .dk-intro{font-size:15px;color:var(--ink-soft);margin:2px 0 14px;}
   .dk-panel{border:1px solid var(--line);border-radius:12px;background:var(--paper-2);padding:16px 18px;margin:12px 0;}
@@ -251,6 +288,69 @@ function renderTrans(b,idx){
   h+='</div>';
   return h;
 }
+/* ---------- Satzbau — wie baue ich einen Satz? ---------- */
+function renderSatzbau(b,idx){
+  if(!b||!b.titel)return '';
+  let h='<div class="block"><span class="kind k-sb">Satzbau des Tages · besser sprechen</span>';
+  h+='<h3>'+bold(b.titel)+'</h3>';
+  if(b.uebersetzung)h+='<p class="lit">'+esc(b.uebersetzung)+'</p>';
+  if(b.erklaerung)h+='<p>'+bold(b.erklaerung)+'</p>';
+  if(b.fr)h+='<p class="fr">'+esc(b.fr)+'</p>';
+
+  /* Satzfelder-Tabelle: zeigt, WO welches Wort steht */
+  if(b.felder&&b.felder.rows&&b.felder.rows.length){
+    h+='<div class="sb-felder"><table><thead><tr>'+
+       b.felder.head.map(x=>'<th>'+esc(x)+'</th>').join('')+'</tr></thead><tbody>';
+    b.felder.rows.forEach(r=>{
+      h+='<tr>'+r.map((c,i)=>{
+        const cls = (b.felder.verbspalte!=null && i===b.felder.verbspalte) ? ' class="vb"'
+                  : (b.felder.endspalte!=null && i===b.felder.endspalte) ? ' class="end"' : '';
+        return '<td'+cls+'>'+bold(c)+'</td>';
+      }).join('')+'</tr>';
+    });
+    h+='</tbody></table></div>';
+  }
+
+  /* Baupläne */
+  if(b.muster&&b.muster.length){
+    h+='<ul class="sb-muster">'+b.muster.map(m=>'<li>'+bold(m)+'</li>').join('')+'</ul>';
+  }
+
+  if(b.beispiele)h+=exList(b.beispiele);
+
+  /* Ein Inhalt — mehrere Satztypen */
+  if(b.umbau&&b.umbau.formen&&b.umbau.formen.length){
+    h+='<div class="sb-umbau">';
+    if(b.umbau.basis)h+='<div class="basis"><span class="l">Ein Gedanke — mehrere Satztypen</span>'+bold(b.umbau.basis)+'</div>';
+    b.umbau.formen.forEach(f=>{
+      h+='<div class="sb-form"><div class="typ">'+esc(f.typ)+'</div><div class="inh">'+
+         '<div class="satz">'+bold(f.satz)+'</div>'+
+         (f.hinweis?'<span class="hw">'+bold(f.hinweis)+'</span>':'')+'</div></div>';
+    });
+    h+='</div>';
+  }
+
+  /* Typischer Fehler */
+  if(b.fehler){
+    h+='<div class="sb-warn"><b>Typischer Fehler:</b> ';
+    if(b.fehler.falsch)h+='<span class="falsch">'+esc(b.fehler.falsch)+'</span> → ';
+    if(b.fehler.richtig)h+='<span class="richtig">'+esc(b.fehler.richtig)+'</span>';
+    if(b.fehler.warum)h+='<br>'+bold(b.fehler.warum);
+    h+='</div>';
+  }
+
+  /* Sofort benutzbare Satzanfänge */
+  if(b.sprechen&&b.sprechen.length){
+    h+='<div class="sb-sprech"><h4>Sofort benutzen — draußen, im Dienst, beim Einkaufen</h4><ul>'+
+       b.sprechen.map(s=>'<li>'+bold(s)+'</li>').join('')+'</ul></div>';
+  }
+
+  if(b.tipp)h+='<div class="tipbox">'+bold(b.tipp)+'</div>';
+  if(b.test)h+=testBlock(b.test,'sol-sb-'+idx);
+  h+='</div>';
+  return h;
+}
+
 /* ---------- Diktat (alle zwei Tage) ---------- */
 let dkText='', dkSaetze=[], dkLaeuft=false;
 /* Sprechtempo — voreingestellt: langsam. Wird im Browser gemerkt. */
@@ -492,7 +592,7 @@ function render(){
   document.getElementById('daySub').textContent='Lektion '+(LEKTIONEN.length-cur)+' · '+(l.thema||'Verb · Wortschatz · Grammatik');
   document.getElementById('content').innerHTML=
     renderBlock(l.verb,'verb',cur)+renderBlock(l.wortschatz,'voc',cur)+renderBlock(l.grammatik,'gram',cur)
-    +renderSay(l.aussprache,cur)+renderDiktat(l.diktat)+renderTrans(l.uebersetzung,cur);
+    +renderSatzbau(l.satzbau,cur)+renderSay(l.aussprache,cur)+renderDiktat(l.diktat)+renderTrans(l.uebersetzung,cur);
   if(document.querySelector('.dk-tempo')) dkSetRate(dkRate);
   window.scrollTo({top:0,behavior:'smooth'});
 }
