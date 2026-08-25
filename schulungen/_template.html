@@ -231,8 +231,13 @@ function karte(s){
     a.href = s.links.zusammenfassung; a.target = '_blank'; a.rel = 'noopener';
     btns.appendChild(a);
   }
+  if(s.links.faelle){
+    const a = el('a', (s.links.zusammenfassung || s.links.klausur) ? 'btn' : 'btn prim', '✍️ Übungsfälle');
+    a.href = s.links.faelle; a.target = '_blank'; a.rel = 'noopener';
+    btns.appendChild(a);
+  }
   if(s.links.schulung){
-    const a = el('a', (s.links.zusammenfassung || s.links.klausur) ? 'btn' : 'btn prim', '🎯 Interaktive Schulung');
+    const a = el('a', (s.links.zusammenfassung || s.links.klausur || s.links.faelle) ? 'btn' : 'btn prim', '🎯 Interaktive Schulung');
     a.href = s.links.schulung; a.target = '_blank'; a.rel = 'noopener';
     btns.appendChild(a);
   }

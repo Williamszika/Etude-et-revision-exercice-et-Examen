@@ -1,0 +1,1019 @@
+<title>Übungsfälle Jana und Leon</title>
+<style>
+:root{
+  --paper:#f7f6f3;--paper-2:#edebe5;--card:#fffefb;--ink:#1c1a16;--ink-soft:#55514a;--line:#dcd8cf;
+  --accent:#8a6a2f;--accent-deep:#6b5121;--accent-soft:#f4ecda;
+  --sr:#b0407a;--srbg:#fae3ef;--zr:#3f6b7d;--zrbg:#deebf1;
+  --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f9e5e1;--warn:#b5731a;--warnbg:#f8edda;
+  --you:#4a5d8a;--youbg:#e6eaf4;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#181713;--paper-2:#121110;--card:#221f1a;--ink:#f1efe9;--ink-soft:#aaa49a;--line:#37332c;
+  --accent:#d8b46a;--accent-deep:#ecd196;--accent-soft:#2d2618;
+  --sr:#e08ab5;--srbg:#331a27;--zr:#8fbccd;--zrbg:#152730;
+  --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#321b17;--warn:#d9a559;--warnbg:#2c2312;
+  --you:#9db0dd;--youbg:#1a1f2e;
+}}
+:root[data-theme="dark"]{
+  --paper:#181713;--paper-2:#121110;--card:#221f1a;--ink:#f1efe9;--ink-soft:#aaa49a;--line:#37332c;
+  --accent:#d8b46a;--accent-deep:#ecd196;--accent-soft:#2d2618;
+  --sr:#e08ab5;--srbg:#331a27;--zr:#8fbccd;--zrbg:#152730;
+  --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#321b17;--warn:#d9a559;--warnbg:#2c2312;
+  --you:#9db0dd;--youbg:#1a1f2e;
+}
+:root[data-theme="light"]{
+  --paper:#f7f6f3;--paper-2:#edebe5;--card:#fffefb;--ink:#1c1a16;--ink-soft:#55514a;--line:#dcd8cf;
+  --accent:#8a6a2f;--accent-deep:#6b5121;--accent-soft:#f4ecda;
+  --sr:#b0407a;--srbg:#fae3ef;--zr:#3f6b7d;--zrbg:#deebf1;
+  --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f9e5e1;--warn:#b5731a;--warnbg:#f8edda;
+  --you:#4a5d8a;--youbg:#e6eaf4;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:17px;line-height:1.65;-webkit-text-size-adjust:100%}
+.wrap{max-width:840px;margin:0 auto;padding:0 20px 90px}
+
+/* ---------- Kopf ---------- */
+header.top{background:var(--paper-2);border-bottom:1px solid var(--line);padding:34px 0 28px;margin-bottom:30px}
+header.top .wrap{padding-bottom:0}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep);
+  font-weight:700;margin:0 0 10px}
+h1{font-family:var(--serif);font-size:clamp(30px,6vw,42px);line-height:1.12;margin:0 0 12px;
+  text-wrap:balance;font-weight:600}
+.lead{margin:0 0 16px;color:var(--ink-soft);max-width:62ch}
+.quelle{font-size:13.5px;color:var(--ink-soft);border-left:3px solid var(--accent);padding-left:12px;
+  margin:18px 0 0}
+.themetoggle{position:fixed;top:12px;right:12px;z-index:60;background:var(--card);color:var(--ink);
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:13px;cursor:pointer;
+  font-family:var(--sans);box-shadow:0 2px 8px rgba(0,0,0,.09)}
+.themetoggle:hover{border-color:var(--accent)}
+
+/* ---------- Bausteine ---------- */
+section{margin:0 0 46px}
+h2{font-family:var(--serif);font-size:26px;margin:0 0 6px;font-weight:600;line-height:1.2}
+h2 .num{color:var(--accent);font-variant-numeric:tabular-nums}
+.h2sub{margin:0 0 20px;color:var(--ink-soft);font-size:15px}
+h3{font-size:17px;margin:26px 0 10px;font-weight:700}
+
+.werkzeug{display:grid;gap:14px}
+@media(min-width:720px){.werkzeug{grid-template-columns:1fr 1fr}}
+.wz{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.wz h4{margin:0 0 4px;font-size:15px;font-weight:700}
+.wz .fr{font-size:13px;color:var(--ink-soft);font-style:italic;margin:0 0 10px}
+.wz ol,.wz ul{margin:0;padding-left:20px;font-size:15px}
+.wz li{margin:5px 0}
+.wz.sr{border-left:4px solid var(--sr)}
+.wz.zr{border-left:4px solid var(--zr)}
+.wz.sch{border-left:4px solid var(--warn)}
+.wz.fo{border-left:4px solid var(--accent)}
+
+.formel{background:var(--accent-soft);border-radius:8px;padding:12px 14px;font-family:var(--serif);
+  font-size:15.5px;line-height:1.75;margin:10px 0 0}
+.luecke{background:var(--card);border-bottom:2px solid var(--accent);padding:1px 8px;border-radius:3px;
+  font-family:var(--sans);font-size:14px;color:var(--accent-deep);font-style:italic}
+
+/* ---------- Fall ---------- */
+.fall{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;
+  margin:0 0 20px}
+.fall > .kopf{background:var(--paper-2);border-bottom:1px solid var(--line);padding:14px 20px;
+  display:flex;flex-wrap:wrap;gap:10px;align-items:baseline}
+.fall > .kopf .nr{font-family:var(--serif);font-size:20px;font-weight:700}
+.fall > .kopf .wer{color:var(--ink-soft);font-size:15px}
+.fall > .kopf .tag{margin-left:auto;font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  font-weight:700;padding:3px 10px;border-radius:999px}
+.tag.f{background:var(--warnbg);color:var(--warn)}
+.tag.v{background:var(--badbg);color:var(--bad)}
+.sv{padding:18px 20px;font-family:var(--serif);font-size:16.5px;line-height:1.7}
+.sv p{margin:0 0 12px}
+.sv p:last-child{margin-bottom:0}
+
+.zerlegen{padding:0 20px 16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:8px;
+  padding:8px 14px;font-size:14px;font-family:var(--sans);cursor:pointer;font-weight:600}
+.btn:hover{border-color:var(--accent);color:var(--accent-deep)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn.on{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-deep)}
+.legende{display:none;flex-wrap:wrap;gap:8px;font-size:12.5px}
+.legende.on{display:flex}
+.legende span{padding:2px 9px;border-radius:999px;font-weight:600}
+.hl{font-weight:inherit;background:none;padding:0;border-radius:3px;transition:background .18s}
+.zeigen .hl{padding:1px 4px;margin:0 -1px;font-weight:600}
+.zeigen .hl[data-t="erfolg"]{background:var(--badbg);color:var(--bad)}
+.zeigen .hl[data-t="handlung"]{background:var(--srbg);color:var(--sr)}
+.zeigen .hl[data-t="sorgfalt"]{background:var(--warnbg);color:var(--warn)}
+.zeigen .hl[data-t="kausal"]{background:var(--zrbg);color:var(--zr)}
+.zeigen .hl[data-t="schuld"]{background:var(--goodbg);color:var(--good)}
+.lg-erfolg{background:var(--badbg);color:var(--bad)}
+.lg-handlung{background:var(--srbg);color:var(--sr)}
+.lg-sorgfalt{background:var(--warnbg);color:var(--warn)}
+.lg-kausal{background:var(--zrbg);color:var(--zr)}
+.lg-schuld{background:var(--goodbg);color:var(--good)}
+/* ---------- Aufgabe ---------- */
+.aufgabe{border-top:1px solid var(--line);padding:20px}
+.a-kopf{display:flex;gap:10px;align-items:baseline;margin:0 0 4px}
+.a-kopf .mark{font-family:var(--serif);font-weight:700;color:var(--accent);font-size:18px;
+  flex:0 0 auto;font-variant-numeric:tabular-nums}
+.a-kopf .txt{font-weight:700;font-size:16px}
+.a-hint{margin:0 0 12px;padding-left:28px;font-size:14px;color:var(--ink-soft);font-style:italic}
+
+.arbeit{padding-left:28px}
+.arbeit label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:700;color:var(--you);margin:0 0 6px}
+textarea{width:100%;min-height:92px;background:var(--youbg);border:1px solid var(--line);
+  border-left:3px solid var(--you);border-radius:8px;padding:11px 13px;font-family:var(--serif);
+  font-size:16px;line-height:1.6;color:var(--ink);resize:vertical}
+textarea:focus{outline:2px solid var(--you);outline-offset:1px}
+.arbeit .reihe{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.gespeichert{font-size:12.5px;color:var(--good);opacity:0;transition:opacity .3s}
+.gespeichert.on{opacity:1}
+
+.loesung{display:none;margin:16px 0 0 28px;border-left:3px solid var(--good);
+  background:var(--goodbg);border-radius:0 10px 10px 0;padding:14px 16px}
+.loesung.offen{display:block}
+.loesung > .lk{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--good);margin:0 0 10px}
+
+/* Schritte im Prüfungsschema */
+.schritt{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:13px 15px;
+  margin:0 0 10px}
+.schritt > .kopf{font-size:12.5px;letter-spacing:.07em;text-transform:uppercase;font-weight:700;
+  color:var(--accent-deep);margin:0 0 8px}
+.schreib{font-family:var(--serif);font-size:16px;line-height:1.7;background:var(--accent-soft);
+  border-radius:7px;padding:10px 12px;margin:0 0 9px}
+.bedeut{margin:0;font-size:15px;color:var(--ink-soft)}
+.bedeut + .bedeut{margin-top:7px}
+.lbl{display:block;font-size:11.5px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;
+  color:var(--ink-soft);margin:0 0 5px}
+.teil{margin:0 0 11px}
+.teil:last-child{margin-bottom:0}
+
+.gesetz{display:inline-block;font-family:var(--mono);font-size:13.5px;background:var(--paper-2);
+  border:1px solid var(--line);border-radius:5px;padding:1px 7px;white-space:nowrap}
+.ja{color:var(--good);font-weight:700}
+.nein{color:var(--bad);font-weight:700}
+
+.merk{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:0 9px 9px 0;
+  padding:12px 15px;margin:14px 0}
+.merk .mk{font-size:12px;letter-spacing:.09em;text-transform:uppercase;font-weight:700;
+  color:var(--warn);margin:0 0 6px}
+.merk p{margin:0;font-size:15px}
+.merk p + p{margin-top:8px}
+.fr-note{font-size:14px;color:var(--ink-soft);font-style:italic;margin:9px 0 0;
+  padding-left:11px;border-left:2px solid var(--line)}
+
+/* Tabellen */
+.tw{overflow-x:auto;margin:14px 0}
+table{border-collapse:collapse;width:100%;font-size:15px;min-width:480px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);
+  background:var(--paper-2);font-weight:700}
+tbody tr:last-child td{border-bottom:none}
+td.sr-c{color:var(--sr);font-weight:600}
+td.zr-c{color:var(--zr);font-weight:600}
+
+/* Checkliste */
+.check{list-style:none;padding:0;margin:0;display:grid;gap:9px}
+.check li{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:11px 14px;
+  display:flex;gap:11px;align-items:flex-start;font-size:15.5px;cursor:pointer}
+.check li:hover{border-color:var(--accent)}
+.check li input{margin:4px 0 0;flex:0 0 auto;width:17px;height:17px;accent-color:var(--good);cursor:pointer}
+.check li.fertig{background:var(--goodbg);border-color:var(--good)}
+.check li.fertig span{text-decoration:line-through;opacity:.65}
+
+.zurueck{display:flex;flex-wrap:wrap;gap:10px;margin:34px 0 0;padding-top:22px;
+  border-top:1px solid var(--line)}
+.zurueck a{color:var(--accent-deep);text-decoration:none;font-weight:600;font-size:14.5px;
+  border:1px solid var(--line);border-radius:8px;padding:8px 14px;background:var(--card)}
+.zurueck a:hover{border-color:var(--accent)}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  .themetoggle,.zerlegen,.arbeit .reihe,.zurueck{display:none}
+  body{background:#fff;font-size:12pt}
+  .loesung{display:block!important}
+  .fall,.wz,.schritt{break-inside:avoid;border:1px solid #bbb}
+  section{break-before:auto}
+}
+</style>
+
+<button class="themetoggle" id="tt" type="button">🌗 Ansicht</button>
+
+<header class="top">
+  <div class="wrap">
+    <p class="eyebrow">CE 06 UE 01 · Recht in der Pflege</p>
+    <h1>Übungsfälle Jana und Leon</h1>
+    <p class="lead">Fall 1 und Fall 2 aus dem Klausur-Übungsblatt — Schritt für Schritt.
+      Du schreibst zuerst selbst, dann vergleichst du mit der Musterlösung.
+      Die Antworten stehen so da, wie du sie in der Klausur aufschreiben sollst.</p>
+    <p class="quelle">Quelle: „Übungsfälle für die Klausur", Fall 1 und Fall 2 ·
+      Dozentin: RAin Stephanie Welters</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+<section id="werkzeug">
+  <h2><span class="num">§</span> Der Werkzeugkasten</h2>
+  <p class="h2sub">Diese vier Schemata brauchst du für <em>jeden</em> Fall. Lerne sie auswendig —
+    dann musst du im Fall nur noch einsetzen.</p>
+
+  <div class="werkzeug">
+
+    <div class="wz sr">
+      <h4>Strafrecht — die 3 Schritte</h4>
+      <p class="fr">Droit pénal : est-ce que la personne est punissable ?</p>
+      <ol>
+        <li><b>Tatbestand</b> — Steht das im Gesetz? (Was ist passiert, was verlangt der Paragraf?)</li>
+        <li><b>Rechtswidrigkeit</b> — Gibt es einen Rechtfertigungsgrund? (Einwilligung, Notstand, Notwehr)</li>
+        <li><b>Schuld</b> — Kann man ihr/ihm einen Vorwurf machen? (Vorsatz oder Fahrlässigkeit)</li>
+      </ol>
+      <p class="fr-note">Toujours dans cet ordre. Si l'étape 1 échoue, on s'arrête — pas besoin d'aller plus loin.</p>
+    </div>
+
+    <div class="wz zr">
+      <h4>Zivilrecht — die eine Frage</h4>
+      <p class="fr">Droit civil : qui obtient quoi, de qui, sur quelle base ?</p>
+      <div class="formel" style="background:var(--zrbg);font-size:16px">
+        <b>Wer</b> will <b>was</b> von <b>wem</b> <b>woraus</b>?
+      </div>
+      <ul style="margin-top:10px">
+        <li><b>Wer</b> = der Geschädigte (der Patient)</li>
+        <li><b>Was</b> = Schadensersatz, Schmerzensgeld</li>
+        <li><b>Von wem</b> = Pflegekraft? Träger? Beide?</li>
+        <li><b>Woraus</b> = aus welchem Paragrafen (Vertrag oder Delikt)</li>
+      </ul>
+    </div>
+
+    <div class="wz sch">
+      <h4>Die Schuldformen — von oben nach unten</h4>
+      <p class="fr">Les degrés de faute, du plus grave au plus léger.</p>
+      <ol>
+        <li><b>Absicht</b> — „Ich will genau das."</li>
+        <li><b>Direkter Vorsatz</b> — „Ich weiß sicher, dass es passiert."</li>
+        <li><b>Bedingter Vorsatz</b> — „Kann passieren — ist mir egal."</li>
+        <li><b>Bewusste Fahrlässigkeit</b> — „Kann passieren — wird schon gutgehen."</li>
+        <li><b>Unbewusste Fahrlässigkeit</b> — „Daran habe ich gar nicht gedacht."</li>
+      </ol>
+      <p class="fr-note">La ligne de séparation est entre 3 et 4 : « ça m'est égal » = intention ; « ça va aller » = négligence.</p>
+    </div>
+
+    <div class="wz fo">
+      <h4>Der Schlusssatz — immer gleich gebaut</h4>
+      <p class="fr">La phrase de conclusion : toujours la même structure.</p>
+      <div class="formel">
+        <span class="luecke">Name</span> hat sich wegen
+        <span class="luecke">Name der Straftat</span> gemäß
+        <span class="luecke">§ …</span> strafbar gemacht, da
+        <span class="luecke">der entscheidende Grund</span>;
+        Rechtfertigungs- oder Entschuldigungsgründe liegen nicht vor.
+      </div>
+      <p class="fr-note">Tu as déjà commencé à l'écrire sur ta feuille : « … hat sich wegen … ». C'est exactement ça.</p>
+    </div>
+
+  </div>
+</section>
+<section id="fall1">
+  <h2><span class="num">1</span> Fall 1 — die Medikamentenverwechslung</h2>
+  <p class="h2sub">Pflegefachfrau Jana · Fahrlässigkeitsdelikt</p>
+
+  <div class="fall">
+    <div class="kopf">
+      <span class="nr">Fall 1</span>
+      <span class="wer">Pflegefachfrau Jana · Herr Schulz</span>
+      <span class="tag f">fahrlässig</span>
+    </div>
+
+    <div class="sv" id="sv1">
+      <p>Die Pflegefachfrau Jana arbeitet im Frühdienst auf einer internistischen Station.
+        <b class="hl" data-t="sorgfalt">Wegen Zeitdrucks verzichtet sie auf die vorgeschriebene
+        Doppelkontrolle bei Hochrisiko-Medikamenten.</b>
+        <b class="hl" data-t="handlung">Sie verwechselt die Tabletten zweier Patienten und
+        verabreicht Herrn Schulz ein falsches, für ihn kontraindiziertes Medikament.</b>
+        Kurze Zeit später entwickelt Herr Schulz
+        <b class="hl" data-t="erfolg">Herzrasen, Blutdruckabfall</b> und muss auf die
+        Intensivstation verlegt werden. Dort wird ein medikamentöser Fehler festgestellt,
+        <b class="hl" data-t="kausal">der auf die Verwechslung bei der Gabe zurückzuführen ist.</b>
+        Herr Schulz erleidet <b class="hl" data-t="erfolg">eine vorübergehende schwere
+        Kreislaufentgleisung, die intensivmedizinisch behandelt werden muss.</b></p>
+    </div>
+
+    <div class="zerlegen">
+      <button class="btn" type="button" data-ziel="sv1">🔍 Sachverhalt zerlegen</button>
+      <div class="legende" id="lg1">
+        <span class="lg-sorgfalt">Sorgfaltspflichtverletzung</span>
+        <span class="lg-handlung">Tathandlung</span>
+        <span class="lg-erfolg">Erfolg / Schaden</span>
+        <span class="lg-kausal">Kausalität</span>
+      </div>
+    </div>
+
+    <!-- a) -->
+    <div class="aufgabe">
+      <div class="a-kopf"><span class="mark">a)</span>
+        <span class="txt">Nennen Sie zwei relevante Gesetze und begründen Sie kurz, warum sie einschlägig sind.</span></div>
+      <p class="a-hint">„Einschlägig" heißt: dieser Paragraf passt genau auf diesen Fall.
+        Nenne immer <b>Paragraf + Name + ein Satz Begründung</b>.</p>
+      <div class="arbeit">
+        <label for="t1a">Deine Antwort</label>
+        <textarea id="t1a" placeholder="1. § … StGB — …&#10;    weil …&#10;&#10;2. § … BGB — …&#10;    weil …"></textarea>
+        <div class="reihe">
+          <button class="btn zeig" type="button" data-ziel="l1a">Lösung zeigen</button>
+          <span class="gespeichert" data-fuer="t1a">gespeichert ✓</span>
+        </div>
+      </div>
+      <div class="loesung" id="l1a">
+        <p class="lk">Musterantwort</p>
+
+        <div class="schritt">
+          <div class="kopf">Gesetz 1 · Strafrecht</div>
+          <div class="teil"><span class="lbl">📝 Das schreibst du</span>
+            <div class="schreib"><span class="gesetz">§ 229 StGB</span> — <b>Fahrlässige Körperverletzung.</b>
+              Einschlägig, weil Jana durch die Missachtung der vorgeschriebenen Doppelkontrolle die
+              im Verkehr erforderliche Sorgfalt außer Acht gelassen und dadurch die Gesundheit
+              des Herrn Schulz geschädigt hat.</div></div>
+          <div class="teil"><span class="lbl">💡 Warum genau dieser Paragraf</span>
+            <p class="bedeut">Sie wollte den Schaden <b>nicht</b> — also nicht § 223 StGB
+              (vorsätzliche Körperverletzung), sondern der Fahrlässigkeits-Paragraf § 229 StGB.
+              Das ist die wichtigste Weiche in diesem Fall.</p></div>
+        </div>
+
+        <div class="schritt">
+          <div class="kopf">Gesetz 2 · Zivilrecht</div>
+          <div class="teil"><span class="lbl">📝 Das schreibst du</span>
+            <div class="schreib"><span class="gesetz">§ 823 Abs. 1 BGB</span> — <b>Schadensersatzpflicht
+              aus unerlaubter Handlung (Delikt).</b>
+              Einschlägig, weil Jana widerrechtlich und fahrlässig Körper und Gesundheit des
+              Herrn Schulz verletzt hat und ihm daraus ein Schaden entstanden ist.</div></div>
+          <div class="teil"><span class="lbl">💡 Warum genau dieser Paragraf</span>
+            <p class="bedeut">§ 823 BGB ist der Paragraf, den du auf deiner Feuille notiert hast:
+              <b>„wer von wem, woraus"</b>. Er gibt Herrn Schulz einen Anspruch auf
+              <b>Schadensersatz</b> und über <span class="gesetz">§ 253 Abs. 2 BGB</span>
+              zusätzlich auf <b>Schmerzensgeld</b>.</p></div>
+        </div>
+
+        <div class="merk">
+          <p class="mk">Weitere Paragrafen, die auch richtig wären</p>
+          <p><span class="gesetz">§ 280 Abs. 1 i.V.m. § 278 BGB</span> — der <b>Träger</b> haftet aus dem
+            Behandlungsvertrag für Jana als seine Erfüllungsgehilfin.<br>
+            <span class="gesetz">§ 831 BGB</span> — Haftung des Trägers für den Verrichtungsgehilfen
+            (aber mit Entlastungsmöglichkeit).<br>
+            <span class="gesetz">§ 4 PflBG</span> — die Arzneimittelgabe gehört zu den pflegerischen
+            Aufgaben; Jana muss nach dem <b>aktuellen Stand pflegewissenschaftlicher Erkenntnisse</b>
+            arbeiten, dazu gehört die Doppelkontrolle.</p>
+          <p class="fr-note">Il t'en faut seulement deux. Prends le § 229 StGB et le § 823 BGB :
+            un pénal, un civil. C'est la combinaison la plus sûre.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- b1) -->
+    <div class="aufgabe">
+      <div class="a-kopf"><span class="mark">b1)</span>
+        <span class="txt">Liegen die Voraussetzungen einer Straftat vor?</span></div>
+      <p class="a-hint">Hier gehst du die 3 Schritte durch: Tatbestand → Rechtswidrigkeit → Schuld.</p>
+      <div class="arbeit">
+        <label for="t1b1">Deine Antwort</label>
+        <textarea id="t1b1" placeholder="I. Tatbestand&#10;   – Erfolg: …&#10;   – Handlung: …&#10;   – Kausalität: …&#10;   – Sorgfaltspflichtverletzung: …&#10;&#10;II. Rechtswidrigkeit&#10;&#10;III. Schuld"></textarea>
+        <div class="reihe">
+          <button class="btn zeig" type="button" data-ziel="l1b1">Lösung zeigen</button>
+          <span class="gespeichert" data-fuer="t1b1">gespeichert ✓</span>
+        </div>
+      </div>
+      <div class="loesung" id="l1b1">
+        <p class="lk">Musterantwort · Prüfung des <span class="gesetz">§ 229 StGB</span></p>
+
+        <div class="schritt">
+          <div class="kopf">Schritt 1 · I. Tatbestand</div>
+          <div class="teil"><span class="lbl">📝 Das schreibst du</span>
+            <div class="schreib">
+              <b>1. Erfolg:</b> Herr Schulz erlitt Herzrasen, einen Blutdruckabfall und eine schwere
+              Kreislaufentgleisung mit intensivmedizinischer Behandlung. Damit liegt eine
+              <b>Gesundheitsschädigung</b> im Sinne des § 229 StGB vor. <span class="ja">(+)</span><br><br>
+              <b>2. Tathandlung:</b> Jana verabreichte Herrn Schulz ein falsches, für ihn
+              kontraindiziertes Medikament. <span class="ja">(+)</span><br><br>
+              <b>3. Kausalität:</b> Ohne die Verwechslung wäre die Kreislaufentgleisung nicht
+              eingetreten; der Fehler ist ausdrücklich auf die Verwechslung zurückzuführen.
+              Der Erfolg ist Jana daher objektiv zurechenbar. <span class="ja">(+)</span><br><br>
+              <b>4. Objektive Sorgfaltspflichtverletzung:</b> Jana hat die vorgeschriebene
+              <b>Doppelkontrolle bei Hochrisiko-Medikamenten</b> unterlassen und damit gegen den
+              anerkannten pflegerischen Standard verstoßen. <span class="ja">(+)</span><br><br>
+              <b>5. Vorhersehbarkeit und Vermeidbarkeit:</b> Für eine ausgebildete Pflegefachfrau war
+              vorhersehbar, dass eine Medikamentenverwechslung zu schweren gesundheitlichen Folgen
+              führen kann. Bei Einhaltung der Doppelkontrolle wäre der Fehler vermeidbar gewesen.
+              <span class="ja">(+)</span><br><br>
+              Der Tatbestand des § 229 StGB ist erfüllt.
+            </div></div>
+          <div class="teil"><span class="lbl">💡 Was das bedeutet</span>
+            <p class="bedeut">Beim <b>Fahrlässigkeitsdelikt</b> prüfst du im Tatbestand fünf Punkte statt
+              zwei. Die drei zusätzlichen — <b>Sorgfaltspflichtverletzung, Vorhersehbarkeit,
+              Vermeidbarkeit</b> — sind genau das, was Fahrlässigkeit ausmacht.</p>
+            <p class="fr-note">Retiens ces 3 mots : <b>Sorgfaltspflichtverletzung · Vorhersehbarkeit ·
+              Vermeidbarkeit</b>. Sans eux, une réponse sur la négligence est incomplète.</p></div>
+        </div>
+
+        <div class="schritt">
+          <div class="kopf">Schritt 2 · II. Rechtswidrigkeit</div>
+          <div class="teil"><span class="lbl">📝 Das schreibst du</span>
+            <div class="schreib">Rechtfertigungsgründe sind nicht ersichtlich. Eine Einwilligung
+              des Herrn Schulz in die Falschmedikation liegt nicht vor, ein rechtfertigender Notstand
+              nach § 34 StGB scheidet aus. <b>Der bloße Zeitdruck auf der Station rechtfertigt die
+              Missachtung eines Sicherheitsstandards nicht.</b> Die Tat ist rechtswidrig.</div></div>
+          <div class="teil"><span class="lbl">💡 Was das bedeutet</span>
+            <p class="bedeut">Der Satz mit dem Zeitdruck ist der <b>Punktebringer</b>. Der Sachverhalt
+              nennt den Zeitdruck ausdrücklich — der Prüfer will sehen, dass du ihn erkennst und
+              richtig einordnest: er erklärt das Verhalten, aber er entschuldigt es nicht.</p></div>
+        </div>
+
+        <div class="schritt">
+          <div class="kopf">Schritt 3 · III. Schuld</div>
+          <div class="teil"><span class="lbl">📝 Das schreibst du</span>
+            <div class="schreib">Jana ist schuldfähig. Entschuldigungsgründe liegen nicht vor.
+              Ihr war die Sorgfaltspflicht als examinierte Pflegefachfrau subjektiv bekannt und
+              die Einhaltung war ihr auch zumutbar. Sie handelte schuldhaft.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- b2) -->
+    <div class="aufgabe">
+      <div class="a-kopf"><span class="mark">b2)</span>
+        <span class="txt">Mit welcher Form der Schuld hat Jana gehandelt?</span></div>
+      <p class="a-hint">Nicht nur „fahrlässig" schreiben — sage <b>welche</b> Fahrlässigkeit und
+        begründe es mit einem Wort aus dem Sachverhalt.</p>
+      <div class="arbeit">
+        <label for="t1b2">Deine Antwort</label>
+        <textarea id="t1b2" placeholder="Jana handelte mit … , weil …"></textarea>
+        <div class="reihe">
+          <button class="btn zeig" type="button" data-ziel="l1b2">Lösung zeigen</button>
+          <span class="gespeichert" data-fuer="t1b2">gespeichert ✓</span>
+        </div>
+      </div>
+      <div class="loesung" id="l1b2">
+        <p class="lk">Musterantwort</p>
+        <div class="schritt">
+          <div class="teil"><span class="lbl">📝 Das schreibst du</span>
+            <div class="schreib">Jana handelte mit <b>bewusster Fahrlässigkeit</b>.
+              Sie hat auf die Doppelkontrolle <b>bewusst</b> verzichtet und dabei die Gefahr einer
+              Verwechslung erkannt, jedoch pflichtwidrig darauf vertraut, dass schon nichts passieren
+              werde. Ein <b>Vorsatz</b> — auch kein bedingter — liegt nicht vor, da sie den Eintritt
+              der Gesundheitsschädigung nicht billigend in Kauf genommen, sondern ihn gerade nicht
+              gewollt hat.</div></div>
+          <div class="teil"><span class="lbl">💡 Der entscheidende Unterschied</span>
+            <div class="tw"><table>
+              <thead><tr><th>Schuldform</th><th>Innere Haltung</th><th>Passt hier?</th></tr></thead>
+              <tbody>
+                <tr><td>Bedingter Vorsatz</td><td>„Kann passieren — <b>ist mir egal</b>."</td>
+                  <td class="sr-c">nein</td></tr>
+                <tr><td><b>Bewusste Fahrlässigkeit</b></td><td>„Kann passieren — <b>wird schon gutgehen</b>."</td>
+                  <td class="zr-c">ja ✓</td></tr>
+                <tr><td>Unbewusste Fahrlässigkeit</td><td>„Daran habe ich gar nicht gedacht."</td>
+                  <td class="sr-c">nein</td></tr>
+              </tbody></table></div>
+            <p class="bedeut">Warum <b>bewusst</b> und nicht unbewusst? Weil im Sachverhalt steht
+              „<b>verzichtet</b> sie auf die <b>vorgeschriebene</b> Doppelkontrolle". Wer verzichtet,
+              weiß, dass es die Regel gibt — also hat sie die Gefahr gesehen.</p>
+            <p class="fr-note">Le mot-clé dans le texte est <i>« verzichtet »</i>. Elle savait qu'il
+              fallait le faire. Donc : <b>bewusste</b> Fahrlässigkeit.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- b3) -->
+    <div class="aufgabe">
+      <div class="a-kopf"><span class="mark">b3)</span>
+        <span class="txt">Nennen Sie eine mögliche strafrechtliche Konsequenz für Jana.</span></div>
+      <p class="a-hint">Die Frage sagt <b>strafrechtlich</b> — also die Strafe aus dem Paragrafen.
+        Arbeitsrecht und Zivilrecht darfst du danach als „darüber hinaus" ergänzen.</p>
+      <div class="arbeit">
+        <label for="t1b3">Deine Antwort</label>
+        <textarea id="t1b3" placeholder="Nach § … StGB droht …"></textarea>
+        <div class="reihe">
+          <button class="btn zeig" type="button" data-ziel="l1b3">Lösung zeigen</button>
+          <span class="gespeichert" data-fuer="t1b3">gespeichert ✓</span>
+        </div>
+      </div>
+      <div class="loesung" id="l1b3">
+        <p class="lk">Musterantwort</p>
+        <div class="schritt">
+          <div class="teil"><span class="lbl">📝 Das schreibst du</span>
+            <div class="schreib">Nach <span class="gesetz">§ 229 StGB</span> droht Jana eine
+              <b>Freiheitsstrafe bis zu drei Jahren oder Geldstrafe</b>. Bei einer Ersttäterin ist
+              realistisch mit einer Geldstrafe oder einer Einstellung des Verfahrens gegen Auflage
+              nach § 153a StPO zu rechnen.</div></div>
+          <div class="teil"><span class="lbl">➕ Darüber hinaus (nicht strafrechtlich)</span>
+            <p class="bedeut"><b>Zivilrechtlich:</b> Schadensersatz und Schmerzensgeld an Herrn Schulz
+              (§ 823 Abs. 1, § 253 Abs. 2 BGB).<br>
+              <b>Arbeitsrechtlich:</b> Abmahnung, im Wiederholungsfall Kündigung.<br>
+              <b>Innerbetrieblicher Schadensausgleich:</b> Bei <b>mittlerer Fahrlässigkeit</b> wird
+              der Schaden zwischen Träger und Jana <b>quotiert</b> — sie zahlt also nur einen Teil.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Schlusssatz -->
+    <div class="aufgabe">
+      <div class="a-kopf"><span class="mark">✎</span>
+        <span class="txt">Formulieren Sie einen passenden Schlusssatz.</span></div>
+      <p class="a-hint">Ein einziger Satz. Benutze die Formel aus dem Werkzeugkasten.</p>
+      <div class="arbeit">
+        <label for="t1s">Deine Antwort</label>
+        <textarea id="t1s" style="min-height:70px" placeholder="Jana hat sich wegen … gemäß § … strafbar gemacht, da …"></textarea>
+        <div class="reihe">
+          <button class="btn zeig" type="button" data-ziel="l1s">Lösung zeigen</button>
+          <span class="gespeichert" data-fuer="t1s">gespeichert ✓</span>
+        </div>
+      </div>
+      <div class="loesung" id="l1s">
+        <p class="lk">Musterantwort</p>
+        <div class="schreib">Jana hat sich wegen <b>fahrlässiger Körperverletzung</b> gemäß
+          <span class="gesetz">§ 229 StGB</span> strafbar gemacht, da sie durch den bewussten Verzicht
+          auf die vorgeschriebene Doppelkontrolle die im Verkehr erforderliche Sorgfalt verletzt und
+          dadurch kausal eine erhebliche Gesundheitsschädigung des Herrn Schulz verursacht hat;
+          Rechtfertigungs- oder Entschuldigungsgründe liegen nicht vor.</div>
+        <p class="fr-note">Un seul souffle : <b>qui</b> — <b>quelle infraction</b> — <b>quel §</b> —
+          <b>pourquoi</b> — <b>pas de justification</b>. Rien de plus.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section id="fall2">
+  <h2><span class="num">2</span> Fall 2 — die Diagnose in der Kaffeepause</h2>
+  <p class="h2sub">Pflegefachkraft Leon · Vorsatzdelikt</p>
+
+  <div class="fall">
+    <div class="kopf">
+      <span class="nr">Fall 2</span>
+      <span class="wer">Pflegefachkraft Leon · Herr Becker</span>
+      <span class="tag v">vorsätzlich</span>
+    </div>
+
+    <div class="sv" id="sv2">
+      <p>Herr Becker liegt auf einer urologischen Station und wird wegen einer
+        <b class="hl" data-t="handlung">sexuell übertragbaren Erkrankung</b> behandelt.
+        Die Pflegefachkraft Leon
+        <b class="hl" data-t="sorgfalt">erfährt die genaue Diagnose im Rahmen der pflegerischen
+        Übergabe.</b> In der Kaffeepause
+        <b class="hl" data-t="handlung">berichtet Leon einer befreundeten Pflegekraft aus einer
+        anderen Abteilung sowie laut hörbar anderen Kolleginnen von der „peinlichen Diagnose"
+        von Herrn Becker, nennt seinen Namen und Zimmernummer.</b>
+        <b class="hl" data-t="kausal">Eine Angehörige eines anderen Patienten, die vor der offenen
+        Tür des Pausenraums wartet, hört die Angaben mit und erkennt Herrn Becker,</b>
+        da die Familien befreundet sind. Die Information verbreitet sich in der Nachbarschaft,
+        <b class="hl" data-t="erfolg">Herr Becker fühlt sich stigmatisiert und zutiefst in seiner
+        Intimsphäre verletzt.</b></p>
+    </div>
+
+    <div class="zerlegen">
+      <button class="btn" type="button" data-ziel="sv2">🔍 Sachverhalt zerlegen</button>
+      <div class="legende" id="lg2">
+        <span class="lg-sorgfalt">Woher er es weiß</span>
+        <span class="lg-handlung">Geheimnis + Offenbaren</span>
+        <span class="lg-kausal">Kenntnis Unbefugter</span>
+        <span class="lg-erfolg">Folge für den Patienten</span>
+      </div>
+    </div>
+
+    <!-- a) -->
+    <div class="aufgabe">
+      <div class="a-kopf"><span class="mark">a)</span>
+        <span class="txt">Nennen Sie zwei relevante Gesetze und begründen Sie kurz, warum sie einschlägig sind.</span></div>
+      <p class="a-hint">Ein Paragraf aus dem Strafrecht, einer aus dem Datenschutz — das ist hier
+        die stärkste Kombination.</p>
+      <div class="arbeit">
+        <label for="t2a">Deine Antwort</label>
+        <textarea id="t2a" placeholder="1. § … StGB — …&#10;    weil …&#10;&#10;2. Art. … DSGVO — …&#10;    weil …"></textarea>
+        <div class="reihe">
+          <button class="btn zeig" type="button" data-ziel="l2a">Lösung zeigen</button>
+          <span class="gespeichert" data-fuer="t2a">gespeichert ✓</span>
+        </div>
+      </div>
+      <div class="loesung" id="l2a">
+        <p class="lk">Musterantwort</p>
+
+        <div class="schritt">
+          <div class="kopf">Gesetz 1 · Strafrecht</div>
+          <div class="teil"><span class="lbl">📝 Das schreibst du</span>
+            <div class="schreib"><span class="gesetz">§ 203 Abs. 1 Nr. 1 StGB</span> —
+              <b>Verletzung von Privatgeheimnissen (Schweigepflicht).</b>
+              Einschlägig, weil Leon als Angehöriger eines Pflegeberufs mit staatlich geregelter
+              Ausbildung zum geschützten Täterkreis gehört und ein ihm in dieser Eigenschaft
+              bekannt gewordenes fremdes Geheimnis — die Diagnose des Herrn Becker —
+              unbefugt offenbart hat.</div></div>
+          <div class="teil"><span class="lbl">💡 Warum genau dieser Paragraf</span>
+            <p class="bedeut">§ 203 StGB ist der zentrale Schweigepflicht-Paragraf für Pflegeberufe.
+              Merke dir die drei Worte, die im Gesetz stehen: <b>fremdes Geheimnis</b> —
+              <b>anvertraut oder sonst bekannt geworden</b> — <b>unbefugt offenbart</b>.</p></div>
+        </div>
+
+        <div class="schritt">
+          <div class="kopf">Gesetz 2 · Datenschutz</div>
+          <div class="teil"><span class="lbl">📝 Das schreibst du</span>
+            <div class="schreib"><span class="gesetz">Art. 9 Abs. 1 DSGVO</span> —
+              <b>Verarbeitung besonderer Kategorien personenbezogener Daten.</b>
+              Einschlägig, weil Gesundheitsdaten und Daten zum Sexualleben besonders geschützt sind.
+              Ihre Weitergabe ist grundsätzlich verboten; eine Rechtsgrundlage nach Art. 9 Abs. 2 DSGVO
+              — insbesondere eine Einwilligung des Herrn Becker — lag nicht vor.</div></div>
+          <div class="teil"><span class="lbl">💡 Warum genau dieser Paragraf</span>
+            <p class="bedeut">Eine Diagnose ist nicht irgendein Datum. Die DSGVO nennt Gesundheitsdaten
+              ausdrücklich <b>„besondere Kategorien"</b> — für sie gilt ein Verbot mit
+              Erlaubnisvorbehalt: erlaubt nur, wenn es einen ausdrücklichen Grund gibt.</p></div>
+        </div>
+
+        <div class="merk">
+          <p class="mk">Weitere Paragrafen, die auch richtig wären</p>
+          <p><span class="gesetz">§ 823 Abs. 1 BGB i.V.m. § 253 Abs. 2 BGB</span> — Verletzung des
+            <b>allgemeinen Persönlichkeitsrechts</b> → Schmerzensgeld für Herrn Becker.<br>
+            <span class="gesetz">§ 241 Abs. 2 BGB</span> — die Verschwiegenheit ist eine
+            arbeitsvertragliche Nebenpflicht.<br>
+            <span class="gesetz">Art. 5 Abs. 1 lit. f DSGVO</span> — Grundsatz der Integrität
+            und Vertraulichkeit.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- b1) -->
+    <div class="aufgabe">
+      <div class="a-kopf"><span class="mark">b1)</span>
+        <span class="txt">Liegen die Voraussetzungen einer Straftat vor?</span></div>
+      <p class="a-hint">Bei § 203 StGB hat der Tatbestand <b>vier</b> Merkmale.
+        Gehe sie einzeln durch und hake sie ab.</p>
+      <div class="arbeit">
+        <label for="t2b1">Deine Antwort</label>
+        <textarea id="t2b1" placeholder="I. Tatbestand&#10;   1. Tauglicher Täter: …&#10;   2. Fremdes Geheimnis: …&#10;   3. In dieser Eigenschaft bekannt geworden: …&#10;   4. Unbefugtes Offenbaren: …&#10;   5. Vorsatz: …&#10;&#10;II. Rechtswidrigkeit&#10;&#10;III. Schuld"></textarea>
+        <div class="reihe">
+          <button class="btn zeig" type="button" data-ziel="l2b1">Lösung zeigen</button>
+          <span class="gespeichert" data-fuer="t2b1">gespeichert ✓</span>
+        </div>
+      </div>
+      <div class="loesung" id="l2b1">
+        <p class="lk">Musterantwort · Prüfung des <span class="gesetz">§ 203 Abs. 1 Nr. 1 StGB</span></p>
+
+        <div class="schritt">
+          <div class="kopf">Schritt 1 · I. Tatbestand</div>
+          <div class="teil"><span class="lbl">📝 Das schreibst du</span>
+            <div class="schreib">
+              <b>1. Tauglicher Täter:</b> Leon ist Pflegefachkraft und damit Angehöriger eines
+              Berufs mit <b>staatlich geregelter Ausbildung</b> im Gesundheitswesen
+              (§ 203 Abs. 1 Nr. 1 StGB). <span class="ja">(+)</span><br><br>
+              <b>2. Fremdes Geheimnis:</b> Die sexuell übertragbare Erkrankung des Herrn Becker ist
+              nur einem begrenzten Personenkreis bekannt, und Herr Becker hat ein erkennbares
+              Interesse an ihrer Geheimhaltung. <span class="ja">(+)</span><br><br>
+              <b>3. In dieser Eigenschaft bekannt geworden:</b> Leon erfuhr die Diagnose in der
+              <b>pflegerischen Übergabe</b>, also gerade wegen seiner beruflichen Stellung.
+              <span class="ja">(+)</span><br><br>
+              <b>4. Unbefugtes Offenbaren:</b> Leon gab die Diagnose mit <b>Namen und
+              Zimmernummer</b> an eine Pflegekraft einer <b>anderen Abteilung</b> weiter, die nicht
+              in die Behandlung eingebunden war, sowie laut hörbar an weitere Kolleginnen; zudem
+              nahm eine <b>Angehörige eines anderen Patienten</b> die Angaben wahr.
+              Eine Einwilligung des Herrn Becker lag nicht vor, eine gesetzliche Offenbarungsbefugnis
+              bestand nicht. <span class="ja">(+)</span><br><br>
+              <b>5. Vorsatz:</b> Leon wusste, dass es sich um eine Diagnose handelt, und wollte sie
+              weitergeben. Hinsichtlich der befreundeten Kollegin handelte er mit <b>direktem
+              Vorsatz</b>; hinsichtlich der Kenntnisnahme durch weitere Unbefugte handelte er
+              mindestens mit <b>bedingtem Vorsatz</b>, da er bei offener Tür und laut hörbarer
+              Sprache mit dem Mithören rechnete und dies billigend in Kauf nahm.
+              <span class="ja">(+)</span><br><br>
+              Der Tatbestand des § 203 Abs. 1 Nr. 1 StGB ist erfüllt.
+            </div></div>
+          <div class="teil"><span class="lbl">💡 Was das bedeutet</span>
+            <p class="bedeut">Der Satz „<b>Kollegin aus einer anderen Abteilung</b>" ist bewusst
+              im Sachverhalt versteckt. Innerhalb des Behandlungsteams darf man Informationen
+              weitergeben — das nennt man den <b>„Kreis der Schweigepflichtigen"</b>. Wer nicht an
+              der Behandlung beteiligt ist, gehört nicht dazu, auch wenn er im selben Haus arbeitet
+              und auch wenn er Pflegekraft ist.</p>
+            <p class="fr-note"><b>Le piège du cas :</b> beaucoup pensent « c'est une collègue, donc
+              c'est permis ». Non. Ce qui compte, ce n'est pas le métier — c'est de savoir si la
+              personne participe au soin de ce patient-là.</p></div>
+        </div>
+
+        <div class="schritt">
+          <div class="kopf">Schritt 2 · II. Rechtswidrigkeit</div>
+          <div class="teil"><span class="lbl">📝 Das schreibst du</span>
+            <div class="schreib">Rechtfertigungsgründe liegen nicht vor. Es bestand weder eine
+              Einwilligung des Herrn Becker noch eine gesetzliche Offenbarungspflicht — etwa nach
+              dem Infektionsschutzgesetz gegenüber dem Gesundheitsamt —, noch ein rechtfertigender
+              Notstand nach § 34 StGB. Ein Gespräch in der Kaffeepause dient keinem berechtigten
+              Interesse. Die Tat ist rechtswidrig.</div></div>
+        </div>
+
+        <div class="schritt">
+          <div class="kopf">Schritt 3 · III. Schuld</div>
+          <div class="teil"><span class="lbl">📝 Das schreibst du</span>
+            <div class="schreib">Leon ist voll schuldfähig. Entschuldigungsgründe sind nicht
+              ersichtlich. Die Schweigepflicht ist ihm aus seiner Ausbildung bekannt.
+              Er handelte schuldhaft.</div></div>
+        </div>
+
+        <div class="merk">
+          <p class="mk">Das musst du hier unbedingt schreiben</p>
+          <p><b>§ 203 StGB ist ein reines Vorsatzdelikt.</b> Eine <b>fahrlässige</b> Verletzung der
+            Schweigepflicht ist <span class="nein">nicht strafbar</span>. Wenn Leon die Diagnose
+            nur versehentlich laut gesagt hätte, gäbe es keine Strafbarkeit nach § 203 StGB —
+            wohl aber noch zivilrechtliche und arbeitsrechtliche Folgen.</p>
+          <p class="fr-note">C'est la grande différence avec le cas 1 : la négligence suffit pour
+            le § 229 StGB, mais pas pour le § 203 StGB.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- b2) -->
+    <div class="aufgabe">
+      <div class="a-kopf"><span class="mark">b2)</span>
+        <span class="txt">Mit welcher Form der Schuld hat Leon gehandelt?</span></div>
+      <p class="a-hint">Hier ist es <b>Vorsatz</b> — aber sage genau welcher, und trenne die
+        beiden Personengruppen.</p>
+      <div class="arbeit">
+        <label for="t2b2">Deine Antwort</label>
+        <textarea id="t2b2" placeholder="Leon handelte mit … , weil …"></textarea>
+        <div class="reihe">
+          <button class="btn zeig" type="button" data-ziel="l2b2">Lösung zeigen</button>
+          <span class="gespeichert" data-fuer="t2b2">gespeichert ✓</span>
+        </div>
+      </div>
+      <div class="loesung" id="l2b2">
+        <p class="lk">Musterantwort</p>
+        <div class="schritt">
+          <div class="teil"><span class="lbl">📝 Das schreibst du</span>
+            <div class="schreib">Leon handelte <b>vorsätzlich</b>.<br><br>
+              Gegenüber der befreundeten Pflegekraft aus der anderen Abteilung handelte er mit
+              <b>direktem Vorsatz</b>: Er wollte die Diagnose gerade dieser Person mitteilen und
+              wusste, dass sie nicht an der Behandlung beteiligt ist.<br><br>
+              Gegenüber den übrigen Kolleginnen und der wartenden Angehörigen handelte er
+              mindestens mit <b>bedingtem Vorsatz</b>: Wer in einem Pausenraum bei
+              <b>offener Tür laut hörbar</b> Namen und Zimmernummer nennt, erkennt die
+              Möglichkeit, dass Unbefugte mithören, und nimmt sie billigend in Kauf.</div></div>
+          <div class="teil"><span class="lbl">💡 Woran du das im Text erkennst</span>
+            <div class="tw"><table>
+              <thead><tr><th>Wort im Sachverhalt</th><th>Was es beweist</th></tr></thead>
+              <tbody>
+                <tr><td>„berichtet … einer befreundeten Pflegekraft"</td>
+                  <td>gewollte Mitteilung → <b>direkter Vorsatz</b></td></tr>
+                <tr><td>„laut hörbar"</td>
+                  <td>er nimmt Mithörer in Kauf → <b>bedingter Vorsatz</b></td></tr>
+                <tr><td>„vor der offenen Tür"</td>
+                  <td>die Gefahr war offensichtlich erkennbar</td></tr>
+                <tr><td>„nennt seinen Namen und Zimmernummer"</td>
+                  <td>die Person ist eindeutig bestimmbar → echtes Offenbaren</td></tr>
+              </tbody></table></div>
+            <p class="fr-note">Astuce d'examen : reprends littéralement les mots du texte
+              (« laut hörbar », « offene Tür ») dans ta réponse. Le correcteur voit tout de suite
+              que tu as travaillé le cas et pas récité une règle.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- b3) -->
+    <div class="aufgabe">
+      <div class="a-kopf"><span class="mark">b3)</span>
+        <span class="txt">Nennen Sie eine mögliche strafrechtliche Konsequenz für Leon.</span></div>
+      <p class="a-hint">Hier gibt es einen Zusatzpunkt, den fast alle vergessen — schau in die Lösung.</p>
+      <div class="arbeit">
+        <label for="t2b3">Deine Antwort</label>
+        <textarea id="t2b3" placeholder="Nach § … StGB droht …"></textarea>
+        <div class="reihe">
+          <button class="btn zeig" type="button" data-ziel="l2b3">Lösung zeigen</button>
+          <span class="gespeichert" data-fuer="t2b3">gespeichert ✓</span>
+        </div>
+      </div>
+      <div class="loesung" id="l2b3">
+        <p class="lk">Musterantwort</p>
+        <div class="schritt">
+          <div class="teil"><span class="lbl">📝 Das schreibst du</span>
+            <div class="schreib">Nach <span class="gesetz">§ 203 Abs. 1 StGB</span> droht Leon eine
+              <b>Freiheitsstrafe bis zu einem Jahr oder Geldstrafe</b>.
+              Zu beachten ist, dass es sich gemäß <span class="gesetz">§ 205 StGB</span> um ein
+              <b>Antragsdelikt</b> handelt: Die Tat wird nur verfolgt, wenn Herr Becker innerhalb
+              von drei Monaten einen <b>Strafantrag</b> stellt.</div></div>
+          <div class="teil"><span class="lbl">➕ Darüber hinaus (nicht strafrechtlich)</span>
+            <p class="bedeut"><b>Zivilrechtlich:</b> Schmerzensgeld wegen Verletzung des allgemeinen
+              Persönlichkeitsrechts (§ 823 Abs. 1 i.V.m. § 253 Abs. 2 BGB).<br>
+              <b>Datenschutzrechtlich:</b> Bußgeld gegen den Träger nach Art. 83 DSGVO;
+              Meldepflicht der Datenpanne nach Art. 33 DSGVO.<br>
+              <b>Arbeitsrechtlich:</b> Abmahnung, bei diesem Gewicht auch eine <b>fristlose
+              Kündigung</b> nach § 626 BGB.</p></div>
+        </div>
+        <div class="merk">
+          <p class="mk">Der vergessene Punkt</p>
+          <p>Das Wort <b>Antragsdelikt</b> (§ 205 StGB). Fast niemand schreibt es hin — und es ist
+            ein sicherer Extrapunkt. Es bedeutet: Die Staatsanwaltschaft wird <b>nicht von selbst</b>
+            tätig; Herr Becker muss die Verfolgung ausdrücklich beantragen.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Schlusssatz -->
+    <div class="aufgabe">
+      <div class="a-kopf"><span class="mark">✎</span>
+        <span class="txt">Formulieren Sie einen passenden Schlusssatz.</span></div>
+      <p class="a-hint">Gleiche Formel wie bei Fall 1 — nur die Straftat und der Paragraf ändern sich.</p>
+      <div class="arbeit">
+        <label for="t2s">Deine Antwort</label>
+        <textarea id="t2s" style="min-height:70px" placeholder="Leon hat sich wegen … gemäß § … strafbar gemacht, da …"></textarea>
+        <div class="reihe">
+          <button class="btn zeig" type="button" data-ziel="l2s">Lösung zeigen</button>
+          <span class="gespeichert" data-fuer="t2s">gespeichert ✓</span>
+        </div>
+      </div>
+      <div class="loesung" id="l2s">
+        <p class="lk">Musterantwort</p>
+        <div class="schreib">Leon hat sich wegen <b>Verletzung von Privatgeheimnissen</b> gemäß
+          <span class="gesetz">§ 203 Abs. 1 Nr. 1 StGB</span> strafbar gemacht, da er als Angehöriger
+          eines Pflegeberufs ein ihm in dieser Eigenschaft bekannt gewordenes fremdes Geheimnis
+          unbefugt und vorsätzlich gegenüber nicht in die Behandlung eingebundenen Personen
+          offenbart hat; Rechtfertigungs- oder Entschuldigungsgründe liegen nicht vor.
+          Die Tat wird gemäß <span class="gesetz">§ 205 StGB</span> nur auf Antrag des Verletzten
+          verfolgt.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="zivil">
+  <h2><span class="num">3</span> Und zivilrechtlich?</h2>
+  <p class="h2sub">Deine Notiz auf dem Blatt: <em>„wer von wem, woraus"</em> — hier ist die Antwort
+    für beide Fälle.</p>
+
+  <p>Die Prüfungsfragen fragen nach dem <b>Strafrecht</b>. Aber wenn im Fall ein
+    <b>Schaden</b> steht, kannst du am Ende einen Zusatzabsatz schreiben. Das ist immer die
+    gleiche Frage: <b>Wer will was von wem woraus?</b></p>
+
+  <div class="tw"><table>
+    <thead><tr><th>Wer</th><th>Was</th><th>Von wem</th><th>Woraus</th></tr></thead>
+    <tbody>
+      <tr><td>Herr Schulz<br><small>(Fall 1)</small></td>
+        <td>Schadensersatz<br>+ Schmerzensgeld</td>
+        <td>von <b>Jana</b></td>
+        <td class="zr-c"><span class="gesetz">§ 823 Abs. 1 BGB</span><br>
+          <small>Delikt — sie hat Körper und Gesundheit verletzt</small></td></tr>
+      <tr><td>Herr Schulz</td><td>dasselbe</td><td>vom <b>Träger</b></td>
+        <td class="zr-c"><span class="gesetz">§ 280 Abs. 1 i.V.m. § 278 BGB</span><br>
+          <small>Vertrag — Jana ist seine Erfüllungsgehilfin, er kann sich <b>nicht</b> entlasten</small></td></tr>
+      <tr><td>Herr Schulz</td><td>dasselbe</td><td>vom <b>Träger</b></td>
+        <td class="zr-c"><span class="gesetz">§ 831 BGB</span><br>
+          <small>Delikt — Jana ist seine Verrichtungsgehilfin, er <b>kann</b> sich entlasten,
+          wenn er sie sorgfältig ausgewählt und überwacht hat</small></td></tr>
+      <tr><td>Herr Becker<br><small>(Fall 2)</small></td>
+        <td>Schmerzensgeld</td><td>von <b>Leon</b></td>
+        <td class="zr-c"><span class="gesetz">§ 823 Abs. 1 i.V.m. § 253 Abs. 2 BGB</span><br>
+          <small>Verletzung des allgemeinen Persönlichkeitsrechts</small></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="merk">
+    <p class="mk">Der Regress — wer zahlt am Ende wirklich?</p>
+    <p>Erst zahlt in der Praxis der <b>Träger</b> (er ist versichert). Danach kann er sich das
+      Geld bei der Pflegekraft zurückholen — das heißt <b>Regress</b>. Wie viel, richtet sich nach
+      dem <b>innerbetrieblichen Schadensausgleich</b>:</p>
+    <p><b>Leichte Fahrlässigkeit</b> → die Pflegekraft zahlt <b>gar nichts</b>.<br>
+      <b>Mittlere Fahrlässigkeit</b> → der Schaden wird <b>geteilt</b> (Quote).<br>
+      <b>Grobe Fahrlässigkeit / Vorsatz</b> → die Pflegekraft zahlt in der Regel <b>alles</b>.</p>
+    <p class="fr-note">Applique-le : Jana = négligence moyenne à grave → partage.
+      Leon = intention → il paie tout.</p>
+  </div>
+</section>
+
+<section id="vergleich">
+  <h2><span class="num">4</span> Die zwei Fälle nebeneinander</h2>
+  <p class="h2sub">Wenn du nur eine Sache mit in die Klausur nimmst, dann diese Tabelle.</p>
+
+  <div class="tw"><table>
+    <thead><tr><th></th><th>Fall 1 · Jana</th><th>Fall 2 · Leon</th></tr></thead>
+    <tbody>
+      <tr><th>Straftat</th><td>Fahrlässige Körperverletzung</td><td>Verletzung von Privatgeheimnissen</td></tr>
+      <tr><th>Paragraf</th><td><span class="gesetz">§ 229 StGB</span></td>
+        <td><span class="gesetz">§ 203 Abs. 1 Nr. 1 StGB</span></td></tr>
+      <tr><th>Verletztes Rechtsgut</th><td>Körper und Gesundheit</td>
+        <td>Privatgeheimnis, Persönlichkeitsrecht</td></tr>
+      <tr><th>Schuldform</th><td class="zr-c">bewusste Fahrlässigkeit</td>
+        <td class="sr-c">Vorsatz (direkt + bedingt)</td></tr>
+      <tr><th>Reicht Fahrlässigkeit?</th><td class="ja">ja — genau darum geht es</td>
+        <td class="nein">nein — nur Vorsatz ist strafbar</td></tr>
+      <tr><th>Strafrahmen</th><td>bis 3 Jahre oder Geldstrafe</td><td>bis 1 Jahr oder Geldstrafe</td></tr>
+      <tr><th>Von Amts wegen?</th><td>ja, Offizialdelikt</td>
+        <td>nein — <b>Antragsdelikt</b> (§ 205 StGB)</td></tr>
+      <tr><th>Zweites Gesetz</th><td><span class="gesetz">§ 823 BGB</span></td>
+        <td><span class="gesetz">Art. 9 DSGVO</span></td></tr>
+      <tr><th>Schlüsselwort im Text</th><td>„<b>verzichtet</b> auf die Doppelkontrolle"</td>
+        <td>„<b>laut hörbar</b>", „<b>andere Abteilung</b>"</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="merk">
+    <p class="mk">Die eine Frage, die du dir bei jedem Fall zuerst stellst</p>
+    <p><b>Wollte die Person das Ergebnis — oder war sie nur unvorsichtig?</b><br>
+      Gewollt oder in Kauf genommen → <b>Vorsatz</b> → §§ 223, 203, 239 StGB.<br>
+      Nur unvorsichtig → <b>Fahrlässigkeit</b> → §§ 229, 222 StGB.</p>
+    <p class="fr-note">Réponds d'abord à cette question. Tout le reste en découle : le paragraphe,
+      la forme de faute, la peine.</p>
+  </div>
+</section>
+
+<section id="selbstkontrolle">
+  <h2><span class="num">5</span> Selbstkontrolle</h2>
+  <p class="h2sub">Hake ab, was du ohne Nachschauen kannst. Was offen bleibt, liest du nochmal.</p>
+  <ul class="check" id="ck">
+    <li><input type="checkbox"><span>Ich kann die <b>drei Schritte</b> der Strafrechtsprüfung
+      auswendig nennen.</span></li>
+    <li><input type="checkbox"><span>Ich kann die <b>fünf Punkte</b> im Tatbestand eines
+      Fahrlässigkeitsdelikts nennen (Erfolg, Handlung, Kausalität, Sorgfaltspflichtverletzung,
+      Vorhersehbarkeit/Vermeidbarkeit).</span></li>
+    <li><input type="checkbox"><span>Ich kann die <b>vier Merkmale</b> des § 203 StGB nennen
+      (Täter, fremdes Geheimnis, in dieser Eigenschaft, unbefugt offenbart).</span></li>
+    <li><input type="checkbox"><span>Ich kann <b>bedingten Vorsatz</b> von <b>bewusster
+      Fahrlässigkeit</b> unterscheiden und den Unterschied in einem Satz erklären.</span></li>
+    <li><input type="checkbox"><span>Ich weiß, dass § 203 StGB ein <b>Antragsdelikt</b> ist.</span></li>
+    <li><input type="checkbox"><span>Ich weiß, dass eine <b>fahrlässige</b> Schweigepflichtverletzung
+      nicht strafbar ist.</span></li>
+    <li><input type="checkbox"><span>Ich kann die Frage <b>„Wer will was von wem woraus?"</b>
+      für beide Fälle beantworten.</span></li>
+    <li><input type="checkbox"><span>Ich kann einen <b>Schlusssatz</b> in der richtigen Form
+      schreiben, ohne die Formel anzuschauen.</span></li>
+    <li><input type="checkbox"><span>Ich kenne die drei Stufen des <b>innerbetrieblichen
+      Schadensausgleichs</b>.</span></li>
+  </ul>
+
+  <div class="zurueck">
+    <a href="https://claude.ai/public/artifacts/bd667602-7598-478b-b0d7-c4aeb999c79e">📝 Klausurvorbereitung</a>
+    <a href="https://claude.ai/public/artifacts/56f4b6ba-ea38-4780-bd8b-1b6374e4ae14">📚 Große Zusammenfassung</a>
+    <a href="https://claude.ai/public/artifacts/65decd28-339d-4c03-b2c2-586ab5d273bb">🎯 Interaktive Schulung</a>
+    <a href="https://claude.ai/public/artifacts/70ca4043-134c-44a7-ae57-307f4df8b29c">📂 Alle Schulungen</a>
+  </div>
+</section>
+
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* Theme */
+  var tt=document.getElementById('tt');
+  try{ var g=localStorage.getItem('recht-theme'); if(g) document.documentElement.setAttribute('data-theme',g); }catch(e){}
+  tt.addEventListener('click',function(){
+    var r=document.documentElement, jetzt=r.getAttribute('data-theme');
+    var dunkel = jetzt ? jetzt==='dark'
+      : window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var neu = dunkel ? 'light' : 'dark';
+    r.setAttribute('data-theme',neu);
+    try{ localStorage.setItem('recht-theme',neu); }catch(e){}
+  });
+
+  /* Sachverhalt zerlegen */
+  document.querySelectorAll('.zerlegen .btn').forEach(function(b){
+    b.addEventListener('click',function(){
+      var sv=document.getElementById(b.dataset.ziel);
+      var lg=b.parentNode.querySelector('.legende');
+      var an=sv.classList.toggle('zeigen');
+      b.classList.toggle('on',an);
+      lg.classList.toggle('on',an);
+      b.textContent = an ? '🔍 Markierungen aus' : '🔍 Sachverhalt zerlegen';
+    });
+  });
+
+  /* Lösungen */
+  document.querySelectorAll('.btn.zeig').forEach(function(b){
+    b.addEventListener('click',function(){
+      var l=document.getElementById(b.dataset.ziel);
+      var offen=l.classList.toggle('offen');
+      b.textContent = offen ? 'Lösung verbergen' : 'Lösung zeigen';
+      b.classList.toggle('on',offen);
+    });
+  });
+
+  /* Antworten speichern */
+  document.querySelectorAll('textarea').forEach(function(ta){
+    var key='recht-faelle-'+ta.id;
+    try{ var v=localStorage.getItem(key); if(v) ta.value=v; }catch(e){}
+    var t=null;
+    ta.addEventListener('input',function(){
+      clearTimeout(t);
+      t=setTimeout(function(){
+        try{ localStorage.setItem(key,ta.value); }catch(e){}
+        var m=document.querySelector('.gespeichert[data-fuer="'+ta.id+'"]');
+        if(m){ m.classList.add('on'); setTimeout(function(){ m.classList.remove('on'); },1600); }
+      },600);
+    });
+  });
+
+  /* Checkliste */
+  document.querySelectorAll('#ck li').forEach(function(li,i){
+    var box=li.querySelector('input'), key='recht-faelle-ck'+i;
+    try{ if(localStorage.getItem(key)==='1'){ box.checked=true; li.classList.add('fertig'); } }catch(e){}
+    function sync(){
+      li.classList.toggle('fertig',box.checked);
+      try{ localStorage.setItem(key,box.checked?'1':'0'); }catch(e){}
+    }
+    box.addEventListener('change',sync);
+    li.addEventListener('click',function(ev){
+      if(ev.target!==box){ box.checked=!box.checked; sync(); }
+    });
+  });
+})();
+</script>
+
+
