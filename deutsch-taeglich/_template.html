@@ -62,9 +62,29 @@
   .zyklus{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;}
   .zyklus .thema{font-size:14.5px;color:var(--ink-soft);}
   .zyklus .thema b{color:var(--ink);}
-  .zy-punkte{display:flex;gap:4px;}
+  .zy-punkte{display:flex;gap:5px;}
   .zy-punkte i{width:26px;height:6px;border-radius:99px;background:var(--line);display:block;}
   .zy-punkte i.on{background:var(--tg);}
+  /* Zyklus-Tage anklickbar */
+  .zy-tage{display:flex;gap:5px;flex-wrap:wrap;width:100%;}
+  .zy-tage button{font:inherit;font-family:var(--mono);font-size:12px;color:var(--ink-soft);
+    background:var(--card);border:1px solid var(--line);border-radius:8px;padding:5px 10px;cursor:pointer;}
+  .zy-tage button:hover:not(:disabled){border-color:var(--tg);color:var(--ink);}
+  .zy-tage button:focus-visible{outline:2px solid var(--tg);outline-offset:2px;}
+  .zy-tage button.jetzt{background:var(--tg);border-color:var(--tg);color:var(--card);font-weight:700;}
+  .zy-tage button:disabled{opacity:.35;cursor:default;}
+  /* Tag-1-Material auf den Übungstagen */
+  details.tag1{margin:16px 0;border:1px solid var(--tg);border-radius:14px;background:var(--tgbg);
+    overflow:hidden;}
+  details.tag1>summary{cursor:pointer;list-style:none;padding:13px 18px;font-weight:700;font-size:15.5px;
+    color:var(--tg);display:flex;align-items:center;gap:9px;}
+  details.tag1>summary::-webkit-details-marker{display:none;}
+  details.tag1>summary::before{content:"▸";font-family:var(--mono);transition:transform .15s;}
+  details.tag1[open]>summary::before{content:"▾";}
+  details.tag1>summary .wann{margin-left:auto;font-family:var(--mono);font-size:11.5px;font-weight:400;
+    color:var(--ink-soft);}
+  details.tag1 .inhalt{padding:0 10px 8px;}
+  details.tag1 .inhalt .block{margin:10px 0;}
   .zy-phase{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.05em;
     text-transform:uppercase;color:var(--tg);background:var(--tgbg);border-radius:999px;padding:4px 12px;}
   /* Training */
@@ -88,6 +108,34 @@
   .auf .los.show{display:block;}
   .auf .los .l{font-size:15.5px;color:var(--miss);font-weight:600;}
   .auf .los .h{display:block;font-size:13.5px;color:var(--ink-soft);margin-top:4px;}
+  /* Antwortfeld mit Korrektur */
+  .auf.erledigt{border-color:var(--miss);background:var(--missbg);}
+  .antwort{margin:10px 0 0;}
+  .antwort textarea{width:100%;font:inherit;font-size:15.5px;line-height:1.55;color:var(--ink);
+    background:var(--card);border:1px solid var(--line);border-left:3px solid var(--tg);
+    border-radius:9px;padding:9px 12px;resize:vertical;min-height:52px;}
+  .antwort textarea:focus{outline:2px solid var(--tg);outline-offset:1px;}
+  .antwort .knoepfe{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px;}
+  .antwort button.pruef{color:var(--card);background:var(--tg);border-color:var(--tg);font-weight:700;}
+  .antwort button.pruef:hover{filter:brightness(1.08);}
+  .antwort button.leeren{color:var(--ink-soft);}
+  .urteil{margin-top:9px;font-size:14.5px;}
+  .urteil:empty{margin-top:0;}
+  .urteil .wert{font-weight:700;margin-bottom:6px;}
+  .urteil.gut .wert{color:var(--miss);}
+  .urteil.fast .wert{color:var(--gold);}
+  .urteil.schlecht .wert{color:var(--extra);}
+  .urteil.warn{color:var(--gold);}
+  .urteil.frei{color:var(--ink-soft);}
+  .urteil .vergleich{background:var(--card);border:1px solid var(--line);border-radius:9px;
+    padding:9px 12px;line-height:2;font-size:15.5px;}
+  .urteil .vergleich .ok{color:var(--ink);}
+  .urteil .vergleich .miss{background:var(--missbg);color:var(--miss);border-radius:4px;padding:1px 5px;font-weight:600;}
+  .urteil .vergleich .extra{background:var(--extrabg);color:var(--extra);border-radius:4px;padding:1px 5px;
+    text-decoration:line-through;}
+  .urteil .legende{margin-top:6px;font-size:12.5px;color:var(--ink-soft);}
+  .urteil .legende .miss{color:var(--miss);font-weight:600;}
+  .urteil .legende .extra{color:var(--extra);font-weight:600;}
   /* Dialog */
   .dlg{border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:13px 0;}
   .dlg .sit{background:var(--tgbg);color:var(--tg);padding:11px 15px;font-size:14.5px;font-weight:600;}
@@ -277,6 +325,8 @@ const LEKTIONEN = __DATA__;   // neueste zuerst
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function bold(s){return esc(s).replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>');}
+function attr(s){return esc(s).replace(/"/g,'&quot;');}
+function ohneStern(s){return String(s).replace(/\*\*/g,'').replace(/\*/g,'');}
 
 function exList(arr){
   if(!arr||!arr.length)return '';
@@ -375,11 +425,19 @@ function renderTraining(b,idx){
 
   auf.forEach((a,i)=>{
     const id='auf-'+idx+'-'+i;
-    h+='<div class="auf"><div class="kopf"><span class="nr">'+(i+1)+'</span>'+
+    h+='<div class="auf" id="box-'+id+'"><div class="kopf"><span class="nr">'+(i+1)+'</span>'+
        '<span class="typ">'+esc(TYPNAME[a.typ]||a.typ||'Aufgabe')+'</span></div>';
     const cls = a.typ==='korrigieren' ? ' class="falschsatz"' : (a.typ==='bauen'||a.typ==='ordnen') ? ' class="teile"' : '';
     h+='<div class="frage"><span'+cls+'>'+bold(a.frage)+'</span></div>';
-    h+='<button onclick="document.getElementById(\''+id+'\').classList.toggle(\'show\')">Lösung zeigen</button>';
+    /* Antwortfeld — sie schreibt selbst, dann prüfen */
+    h+='<div class="antwort">'+
+       '<textarea id="in-'+id+'" rows="2" data-nr="'+i+'" placeholder="Schreib deine Antwort …" '+
+       'data-los="'+attr(a.loesung||'')+'" data-frei="'+((a.typ==='frei'||a.typ==='antworten')?'1':'')+'"></textarea>'+
+       '<div class="knoepfe">'+
+       '<button class="pruef" onclick="pruefeAntwort(\''+id+'\')">✓ Prüfen</button>'+
+       '<button onclick="document.getElementById(\''+id+'\').classList.toggle(\'show\')">Lösung zeigen</button>'+
+       '<button class="leeren" onclick="leereAntwort(\''+id+'\')">Löschen</button>'+
+       '</div><div class="urteil" id="ur-'+id+'"></div></div>';
     h+='<div class="los" id="'+id+'"><span class="l">'+bold(a.loesung)+'</span>'+
        (a.hinweis?'<span class="h">💡 '+bold(a.hinweis)+'</span>':'')+'</div></div>';
   });
@@ -576,6 +634,60 @@ function dkDiff(orig,user){
   while(j<m){out.push({t:'extra',w:b[j]});j++;}
   return {out:out,treffer:treffer,gesamt:n};
 }
+/* ---------- Übungsantworten prüfen und speichern ---------- */
+let AKT_DATUM='';
+function tgKey(nr){ return 'tg-'+AKT_DATUM+'-'+nr; }
+function pruefeAntwort(id){
+  const ta=document.getElementById('in-'+id);
+  const ur=document.getElementById('ur-'+id);
+  const box=document.getElementById('box-'+id);
+  if(!ta||!ur)return;
+  const user=ta.value.trim();
+  if(!user){ ur.className='urteil warn'; ur.innerHTML='Schreib zuerst deine Antwort ins Feld.'; return; }
+  const los=ohneStern(ta.dataset.los||'');
+  if(ta.dataset.frei==='1'){
+    ur.className='urteil frei';
+    ur.innerHTML='<b>Freie Antwort</b> — hier gibt es mehrere richtige Möglichkeiten. '+
+                 'Vergleiche selbst mit dem Vorschlag unten.';
+    document.getElementById(id).classList.add('show');
+    if(box)box.classList.add('erledigt');
+    return;
+  }
+  const r=dkDiff(los,user);
+  const pct=r.gesamt?Math.round(r.treffer/r.gesamt*100):0;
+  let h='';
+  r.out.forEach(o=>{
+    if(o.t==='ok')       h+='<span class="ok">'+esc(o.w)+'</span> ';
+    else if(o.t==='miss')h+='<span class="miss">'+esc(o.w)+'</span> ';
+    else                 h+='<span class="extra">'+esc(o.w)+'</span> ';
+  });
+  const perfekt = pct===100 && r.out.every(o=>o.t==='ok');
+  ur.className='urteil '+(perfekt?'gut':(pct>=70?'fast':'schlecht'));
+  ur.innerHTML='<div class="wert">'+(perfekt?'✅ Richtig!':(pct>=70?'🟡 Fast — '+pct+' % stimmen':'🔴 Noch nicht — '+pct+' % stimmen'))+'</div>'+
+    '<div class="vergleich">'+h+'</div>'+
+    (perfekt?'':'<div class="legende"><span class="miss">grün</span> = fehlt bei dir &nbsp;·&nbsp; '+
+      '<span class="extra">rot</span> = steht zu viel oder falsch</div>');
+  if(box)box.classList.toggle('erledigt',perfekt);
+  if(!perfekt) document.getElementById(id).classList.add('show');
+}
+function leereAntwort(id){
+  const ta=document.getElementById('in-'+id), ur=document.getElementById('ur-'+id), box=document.getElementById('box-'+id);
+  if(ta){ ta.value=''; try{localStorage.removeItem(tgKey(ta.dataset.nr));}catch(e){} }
+  if(ur){ ur.className='urteil'; ur.innerHTML=''; }
+  if(box)box.classList.remove('erledigt');
+  const l=document.getElementById(id); if(l)l.classList.remove('show');
+}
+function tgWiederherstellen(){
+  document.querySelectorAll('.antwort textarea').forEach(ta=>{
+    const k=tgKey(ta.dataset.nr);
+    try{ const v=localStorage.getItem(k); if(v) ta.value=v; }catch(e){}
+    let t=null;
+    ta.addEventListener('input',()=>{
+      clearTimeout(t);
+      t=setTimeout(()=>{ try{ localStorage.setItem(k,ta.value); }catch(e){} },500);
+    });
+  });
+}
 function dkPruefen(){
   const area=document.getElementById('dk-area');
   const user=area?area.value:'';
@@ -713,6 +825,30 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowRight') bVor.click();
 });
 const PHASEN=['Verstehen','Erkennen','Anwenden','Vertiefen','Frei sprechen'];
+/* Index der Lektion, die im selben Zyklus Tag <t> ist — oder -1 */
+function zyklusTag(start,t){
+  if(!start)return -1;
+  for(let i=0;i<LEKTIONEN.length;i++){
+    const z=LEKTIONEN[i].zyklus;
+    if(z&&z.start===start&&z.tag===t)return i;
+  }
+  return -1;
+}
+/* Auf den Übungstagen: das ganze Material von Tag 1 zum Nachschlagen */
+function renderTag1(l){
+  const z=l.zyklus;
+  if(!z||!z.tag||z.tag<2)return '';
+  const j=zyklusTag(z.start,1);
+  if(j<0)return '';
+  const e=LEKTIONEN[j];
+  const inhalt = renderSatzbau(e.satzbau,'t1')
+    + renderBlock(e.verb,'verb','t1') + renderBlock(e.wortschatz,'voc','t1')
+    + renderBlock(e.grammatik,'gram','t1');
+  if(!inhalt)return '';
+  return '<details class="tag1" open><summary>📖 Das Material von Tag 1 — '+esc(z.thema||'')+
+    '<span class="wann">vom '+fmtDate(e.datum).kurz+'</span></summary>'+
+    '<div class="inhalt">'+inhalt+'</div></details>';
+}
 function render(){
   [...bar.children].forEach((b,i)=>b.classList.toggle('active',i===cur));
   const akt=bar.children[cur];
@@ -728,22 +864,36 @@ function render(){
   document.getElementById('wo').textContent =
     cur===0 ? 'Du bist bei der heutigen Lektion'
             : 'Du schaust '+(cur===1?'die Lektion von gestern':'eine ältere Lektion')+' an — '+fmtDate(l.datum).kurz;
-  /* Zyklus-Leiste: Tag X von 5 */
+  /* Zyklus-Leiste: Tag X von 5, jeder Tag anklickbar */
   const zEl=document.getElementById('zyklus');
   if(l.zyklus&&l.zyklus.tag){
     const z=l.zyklus, t=Math.min(5,Math.max(1,z.tag));
     let p='';
     for(let i=1;i<=5;i++)p+='<i class="'+(i<=t?'on':'')+'"></i>';
+    let tage='<div class="zy-tage">';
+    for(let i=1;i<=5;i++){
+      const j=zyklusTag(z.start,i);
+      tage+='<button type="button" data-i="'+j+'"'+(j<0?' disabled':'')+
+            (i===t?' class="jetzt"':'')+' title="'+attr(PHASEN[i-1])+'">Tag '+i+
+            (i===t?'':'')+'</button>';
+    }
+    tage+='</div>';
     zEl.innerHTML='<span class="zy-phase">Tag '+t+' / 5 · '+esc(z.phase||PHASEN[t-1]||'')+'</span>'+
                   '<span class="zy-punkte">'+p+'</span>'+
-                  (z.thema?'<span class="thema">Thema: <b>'+esc(z.thema)+'</b></span>':'');
+                  (z.thema?'<span class="thema">Thema: <b>'+esc(z.thema)+'</b></span>':'')+tage;
     zEl.style.display='flex';
+    zEl.querySelectorAll('.zy-tage button').forEach(b=>{
+      b.onclick=()=>{ const j=+b.dataset.i; if(j>=0){ cur=j; render(); } };
+    });
   } else { zEl.innerHTML=''; zEl.style.display='none'; }
+
+  AKT_DATUM=l.datum;
   document.getElementById('content').innerHTML=
     renderBlock(l.verb,'verb',cur)+renderBlock(l.wortschatz,'voc',cur)+renderBlock(l.grammatik,'gram',cur)
-    +renderSatzbau(l.satzbau,cur)+renderTraining(l.training,cur)
+    +renderSatzbau(l.satzbau,cur)+renderTag1(l)+renderTraining(l.training,cur)
     +renderSay(l.aussprache,cur)+renderDiktat(l.diktat)+renderTrans(l.uebersetzung,cur);
   if(document.querySelector('.dk-tempo')) dkSetRate(dkRate);
+  tgWiederherstellen();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 document.getElementById('streak').textContent='📚 '+LEKTIONEN.length+' Lektion'+(LEKTIONEN.length>1?'en':'')+' gesammelt';
