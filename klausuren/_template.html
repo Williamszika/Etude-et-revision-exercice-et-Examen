@@ -1,0 +1,277 @@
+<title>Mein Klausur-Protokoll</title>
+<style>
+:root{
+  --paper:#f6f5f1;--paper-2:#edebe4;--card:#fffefb;--ink:#1b1a17;--ink-soft:#56534c;--line:#dbd7ce;
+  --accent:#2f6b52;--accent-deep:#22513d;--accent-soft:#dfeee7;
+  --gold:#a8791f;--goldbg:#f7edd8;
+  --gut:#2f7d54;--gutbg:#e3f0e7;--fehl:#bb4d3f;--fehlbg:#f9e5e1;
+  --sr:#b0407a;--srbg:#fae3ef;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#141614;--paper-2:#0f110f;--card:#1c1f1c;--ink:#eef1ee;--ink-soft:#a3a9a3;--line:#2c312c;
+  --accent:#6ec39a;--accent-deep:#9adcbb;--accent-soft:#152820;
+  --gold:#d9a94f;--goldbg:#2c2413;
+  --gut:#6fc292;--gutbg:#14281c;--fehl:#e08a7c;--fehlbg:#321b17;
+  --sr:#e08ab5;--srbg:#331a27;
+}}
+:root[data-theme="dark"]{
+  --paper:#141614;--paper-2:#0f110f;--card:#1c1f1c;--ink:#eef1ee;--ink-soft:#a3a9a3;--line:#2c312c;
+  --accent:#6ec39a;--accent-deep:#9adcbb;--accent-soft:#152820;
+  --gold:#d9a94f;--goldbg:#2c2413;
+  --gut:#6fc292;--gutbg:#14281c;--fehl:#e08a7c;--fehlbg:#321b17;
+  --sr:#e08ab5;--srbg:#331a27;
+}
+:root[data-theme="light"]{
+  --paper:#f6f5f1;--paper-2:#edebe4;--card:#fffefb;--ink:#1b1a17;--ink-soft:#56534c;--line:#dbd7ce;
+  --accent:#2f6b52;--accent-deep:#22513d;--accent-soft:#dfeee7;
+  --gold:#a8791f;--goldbg:#f7edd8;
+  --gut:#2f7d54;--gutbg:#e3f0e7;--fehl:#bb4d3f;--fehlbg:#f9e5e1;
+  --sr:#b0407a;--srbg:#fae3ef;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16.5px;line-height:1.65;-webkit-text-size-adjust:100%}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px 80px}
+header.hero{background:var(--paper-2);border-bottom:1px solid var(--line);padding:40px 20px 30px;
+  text-align:center;margin-bottom:30px}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:clamp(1.9rem,6vw,2.7rem);margin:0 0 10px;font-weight:600;
+  line-height:1.12}
+header.hero p{max-width:54ch;margin:0 auto;color:var(--ink-soft);font-size:15.5px}
+.stats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.stats span{font-size:12.5px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);
+  border-radius:999px;padding:5px 14px}
+.stats b{color:var(--accent-deep);font-family:var(--mono)}
+.themetoggle{position:fixed;top:12px;right:12px;z-index:60;background:var(--card);color:var(--ink);
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:13px;cursor:pointer;
+  font-family:var(--sans);box-shadow:0 2px 8px rgba(0,0,0,.09)}
+h2{font-family:var(--serif);font-size:1.6rem;margin:40px 0 6px;font-weight:600}
+h3{font-size:17px;margin:26px 0 10px;font-weight:700}
+.sub{color:var(--ink-soft);font-size:15px;margin:0 0 18px}
+
+/* Klausur-Karte */
+.kl{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  margin:0 0 26px}
+.kl .top{background:var(--accent-soft);border-bottom:1px solid var(--line);padding:18px 22px;
+  display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.kl .top .wer{flex:1 1 220px;min-width:0}
+.kl .top h3{font-family:var(--serif);font-size:1.35rem;margin:0 0 3px;font-weight:600}
+.kl .top .meta{font-size:14px;color:var(--ink-soft);margin:0}
+.note{flex:0 0 auto;text-align:center;background:var(--card);border:2px solid var(--accent);
+  border-radius:14px;padding:9px 18px;min-width:104px}
+.note .zahl{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--accent-deep);
+  line-height:1;display:block}
+.note .lbl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);
+  display:block;margin-top:4px}
+.balken{height:9px;background:var(--paper-2);border-radius:99px;overflow:hidden;margin:14px 22px 0}
+.balken i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.punkte{padding:7px 22px 0;font-family:var(--mono);font-size:13px;color:var(--ink-soft)}
+.kl .body{padding:16px 22px 22px}
+.fazit{background:var(--gutbg);border-left:4px solid var(--gut);border-radius:0 10px 10px 0;
+  padding:12px 15px;margin:0 0 18px;font-size:15.5px}
+
+/* Fehler */
+.fehler{background:var(--fehlbg);border:1px solid var(--fehl);border-radius:12px;padding:15px 17px;
+  margin:0 0 13px}
+.fehler .kopf{display:flex;gap:10px;align-items:baseline;margin:0 0 9px;flex-wrap:wrap}
+.fehler .nr{font-family:var(--mono);font-weight:700;color:var(--fehl);font-size:14px}
+.fehler .minus{margin-left:auto;font-family:var(--mono);font-size:13px;font-weight:700;
+  color:var(--fehl);background:var(--card);border-radius:999px;padding:2px 10px}
+.fehler .fr{font-weight:700;font-size:15px;margin:0 0 10px}
+.zeile{margin:0 0 8px;font-size:15px}
+.zeile .tag{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:700;border-radius:5px;padding:1px 7px;margin-right:7px;vertical-align:1px}
+.tag.m{background:var(--fehl);color:var(--card)}
+.tag.r{background:var(--gut);color:var(--card)}
+.zeile.warum{color:var(--ink-soft);font-size:14.5px;padding-top:8px;border-top:1px dashed var(--fehl)}
+
+/* Lehre */
+.lehre{background:var(--goldbg);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
+  padding:14px 17px;margin:0 0 13px}
+.lehre h4{margin:0 0 6px;font-size:16px;color:var(--gold)}
+.lehre p{margin:0 0 9px;font-size:15px}
+.lehre .merk{font-family:var(--mono);font-size:13.5px;background:var(--card);border-radius:8px;
+  padding:9px 12px;margin:0}
+
+/* Fragenkatalog */
+details.frg{border:1px solid var(--line);border-radius:12px;background:var(--paper-2);margin:16px 0}
+details.frg>summary{cursor:pointer;list-style:none;padding:13px 18px;font-weight:700;font-size:15.5px;
+  display:flex;align-items:center;gap:9px}
+details.frg>summary::-webkit-details-marker{display:none}
+details.frg>summary::before{content:"▸";font-family:var(--mono);color:var(--accent)}
+details.frg[open]>summary::before{content:"▾"}
+details.frg>summary .anz{margin-left:auto;font-family:var(--mono);font-size:12px;font-weight:400;
+  color:var(--ink-soft)}
+.frgliste{padding:0 10px 10px}
+.f{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 15px;margin:8px 0}
+.f.miss{border-color:var(--fehl)}
+.f .fk{display:flex;gap:10px;align-items:baseline;margin:0 0 6px}
+.f .fn{font-family:var(--mono);font-weight:700;color:var(--accent);font-size:14px;flex:0 0 auto}
+.f .ff{font-weight:700;font-size:15px}
+.f .fp{margin-left:auto;font-family:var(--mono);font-size:12.5px;color:var(--gut);flex:0 0 auto}
+.f.miss .fp{color:var(--fehl)}
+.f .fa{margin:0;font-size:15px;color:var(--ink-soft);padding-left:2px}
+.f .fa b{color:var(--ink)}
+
+/* Fall */
+.fall{border:1px solid var(--accent);border-radius:14px;overflow:hidden;margin:20px 0 0}
+.fall .fkopf{background:var(--accent);color:var(--card);padding:12px 18px;font-weight:700;
+  display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.fall .fkopf .p{margin-left:auto;font-family:var(--mono);font-size:13px}
+.fall .sv{padding:16px 18px;font-family:var(--serif);font-size:16px;line-height:1.7;
+  border-bottom:1px solid var(--line);background:var(--paper-2)}
+.fall .auf{padding:15px 18px;border-bottom:1px dashed var(--line)}
+.fall .auf:last-child{border-bottom:none}
+.fall .auf .ak{display:flex;gap:10px;align-items:baseline;margin:0 0 8px;flex-wrap:wrap}
+.fall .auf .an{font-family:var(--serif);font-weight:700;color:var(--accent-deep);font-size:17px}
+.fall .auf .af{font-weight:700;font-size:15px;flex:1 1 200px}
+.fall .auf .ap{font-family:var(--mono);font-size:12.5px;color:var(--gut)}
+.fall .auf pre{margin:0;white-space:pre-wrap;font-family:var(--mono);font-size:13.5px;line-height:1.7;
+  background:var(--card);border:1px solid var(--line);border-radius:9px;padding:12px 14px;
+  overflow-x:auto}
+
+/* Methode */
+.meth{display:grid;gap:12px}
+@media(min-width:700px){.meth{grid-template-columns:1fr 1fr}}
+.ms{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 17px;
+  position:relative;padding-left:52px}
+.ms .n{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+  background:var(--accent);color:var(--card);font-family:var(--mono);font-weight:700;font-size:14px;
+  display:flex;align-items:center;justify-content:center}
+.ms h4{margin:0 0 5px;font-size:15.5px}
+.ms p{margin:0;font-size:14.5px;color:var(--ink-soft)}
+
+.mat{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+.mat a{font-size:14px;font-weight:600;text-decoration:none;color:var(--accent-deep);
+  background:var(--card);border:1px solid var(--line);border-radius:9px;padding:8px 14px}
+.mat a:hover{border-color:var(--accent)}
+footer{margin-top:48px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-soft);
+  font-size:13.5px;text-align:center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{.themetoggle{display:none}body{background:#fff}details.frg{border:1px solid #bbb}
+  details.frg>summary{display:none}.frgliste{padding:0}.kl,.f,.fall{break-inside:avoid}}
+</style>
+
+<button class="themetoggle" id="tt" type="button">🌗 Ansicht</button>
+
+<header class="hero">
+  <p class="eyebrow">Pflegeausbildung · 2. Lehrjahr · generalistisch</p>
+  <h1>Mein Klausur-Protokoll</h1>
+  <p>Jede geschriebene Klausur: was gefragt wurde, was ich konnte, wo die Punkte
+    verloren gingen und was ich daraus mitnehme. Für die nächste Klausur
+    und für die Zwischenprüfung.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="wrap">
+  <div id="liste"></div>
+
+  <h2>Die Methode, die funktioniert hat</h2>
+  <p class="sub">Sechs Schritte — für jedes Fach gleich.</p>
+  <div class="meth" id="meth"></div>
+
+  <footer>
+    Alles liegt im Repository <b>Etude-et-revision-exercice-et-Examen</b>.<br>
+    Neue Klausur eintragen in <code>klausuren/klausuren.json</code> — der Link bleibt derselbe.
+  </footer>
+</div>
+
+<script>
+const D = __DATA__;
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e;}
+
+const tt=document.getElementById('tt');
+try{const g=localStorage.getItem('kl-theme');if(g)document.documentElement.setAttribute('data-theme',g);}catch(e){}
+tt.onclick=()=>{const r=document.documentElement,j=r.getAttribute('data-theme');
+  const dunkel=j?j==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const neu=dunkel?'light':'dark';r.setAttribute('data-theme',neu);
+  try{localStorage.setItem('kl-theme',neu);}catch(e){}};
+
+document.getElementById('stats').innerHTML =
+  '<span><b>'+D.anzahl+'</b> Klausur'+(D.anzahl>1?'en':'')+'</span>'+
+  '<span>Schnitt <b>'+D.schnitt+' %</b></span>'+
+  '<span>Beste Note <b>'+esc(D.beste)+'</b></span>';
+
+const liste=document.getElementById('liste');
+D.klausuren.forEach(k=>{
+  const c=el('div','kl');
+  let h='<div class="top"><div class="wer">'+
+    '<h3>'+esc(k.titel)+' — '+esc(k.fach)+'</h3>'+
+    '<p class="meta">'+esc(k.ce||'')+' · '+esc(k.datum_de)+' · '+esc(k.dozent)+
+    (k.ort?' · '+esc(k.ort):'')+'</p></div>'+
+    '<div class="note"><span class="zahl">'+esc(k.note)+'</span><span class="lbl">Note</span></div></div>'+
+    '<div class="balken"><i style="width:'+k.prozent+'%"></i></div>'+
+    '<div class="punkte">'+k.punkte+' von '+k.max+' Punkten · '+k.prozent+' %'+
+    (k.form?' · '+esc(k.form):'')+'</div>'+
+    '<div class="body">';
+
+  if(k.fazit) h+='<div class="fazit">'+esc(k.fazit)+'</div>';
+
+  if(k.fehler&&k.fehler.length){
+    h+='<h3>Die verlorenen Punkte</h3>';
+    k.fehler.forEach(f=>{
+      h+='<div class="fehler"><div class="kopf"><span class="nr">'+esc(f.nr)+'</span>'+
+         '<span class="minus">− '+f.verloren+'</span></div>'+
+         '<p class="fr">'+esc(f.frage)+'</p>'+
+         '<p class="zeile"><span class="tag m">so hatte ich</span>'+esc(f.meins)+'</p>'+
+         '<p class="zeile"><span class="tag r">richtig</span>'+esc(f.richtig)+'</p>'+
+         (f.warum?'<p class="zeile warum">'+esc(f.warum)+'</p>':'')+'</div>';
+    });
+  }
+
+  if(k.lehre&&k.lehre.length){
+    h+='<h3>Was ich mitnehme</h3>';
+    k.lehre.forEach(l=>{
+      h+='<div class="lehre"><h4>'+esc(l.titel)+'</h4><p>'+esc(l.text)+'</p>'+
+         (l.merksatz?'<p class="merk">'+esc(l.merksatz)+'</p>':'')+'</div>';
+    });
+  }
+
+  if(k.fragen&&k.fragen.length){
+    h+='<details class="frg"><summary>Alle Fragen, die gestellt wurden'+
+       '<span class="anz">'+k.fragen.length+' Fragen</span></summary><div class="frgliste">';
+    k.fragen.forEach(f=>{
+      h+='<div class="f'+(f.fehler?' miss':'')+'"><div class="fk">'+
+         '<span class="fn">'+f.nr+'.</span><span class="ff">'+esc(f.frage)+'</span>'+
+         '<span class="fp">'+esc(f.p)+'</span></div>'+
+         '<p class="fa"><b>→</b> '+esc(f.antwort)+'</p></div>';
+    });
+    h+='</div></details>';
+  }
+
+  if(k.fall){
+    const fa=k.fall;
+    h+='<div class="fall"><div class="fkopf"><span>'+esc(fa.titel)+'</span>'+
+       '<span class="p">'+esc(fa.punkte||'')+'</span></div>'+
+       '<div class="sv">'+esc(fa.sachverhalt)+'</div>';
+    (fa.aufgaben||[]).forEach(a=>{
+      h+='<div class="auf"><div class="ak"><span class="an">'+esc(a.nr)+'</span>'+
+         '<span class="af">'+esc(a.frage)+'</span><span class="ap">'+esc(a.p||'')+'</span></div>'+
+         '<pre>'+esc(a.loesung)+'</pre></div>';
+    });
+    h+='</div>';
+  }
+
+  if(k.material&&k.material.length){
+    h+='<div class="mat">';
+    k.material.forEach(m=>{h+='<a href="'+m.url+'" target="_blank" rel="noopener">📄 '+esc(m.name)+'</a>';});
+    h+='</div>';
+  }
+
+  h+='</div>';
+  c.innerHTML=h;
+  liste.appendChild(c);
+});
+
+const meth=document.getElementById('meth');
+(D.methode||[]).forEach(m=>{
+  const s=el('div','ms');
+  s.innerHTML='<span class="n">'+esc(m.schritt)+'</span><h4>'+esc(m.titel)+'</h4><p>'+esc(m.text)+'</p>';
+  meth.appendChild(s);
+});
+</script>

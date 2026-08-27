@@ -1,0 +1,277 @@
+<title>Mein Klausur-Protokoll</title>
+<style>
+:root{
+  --paper:#f6f5f1;--paper-2:#edebe4;--card:#fffefb;--ink:#1b1a17;--ink-soft:#56534c;--line:#dbd7ce;
+  --accent:#2f6b52;--accent-deep:#22513d;--accent-soft:#dfeee7;
+  --gold:#a8791f;--goldbg:#f7edd8;
+  --gut:#2f7d54;--gutbg:#e3f0e7;--fehl:#bb4d3f;--fehlbg:#f9e5e1;
+  --sr:#b0407a;--srbg:#fae3ef;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#141614;--paper-2:#0f110f;--card:#1c1f1c;--ink:#eef1ee;--ink-soft:#a3a9a3;--line:#2c312c;
+  --accent:#6ec39a;--accent-deep:#9adcbb;--accent-soft:#152820;
+  --gold:#d9a94f;--goldbg:#2c2413;
+  --gut:#6fc292;--gutbg:#14281c;--fehl:#e08a7c;--fehlbg:#321b17;
+  --sr:#e08ab5;--srbg:#331a27;
+}}
+:root[data-theme="dark"]{
+  --paper:#141614;--paper-2:#0f110f;--card:#1c1f1c;--ink:#eef1ee;--ink-soft:#a3a9a3;--line:#2c312c;
+  --accent:#6ec39a;--accent-deep:#9adcbb;--accent-soft:#152820;
+  --gold:#d9a94f;--goldbg:#2c2413;
+  --gut:#6fc292;--gutbg:#14281c;--fehl:#e08a7c;--fehlbg:#321b17;
+  --sr:#e08ab5;--srbg:#331a27;
+}
+:root[data-theme="light"]{
+  --paper:#f6f5f1;--paper-2:#edebe4;--card:#fffefb;--ink:#1b1a17;--ink-soft:#56534c;--line:#dbd7ce;
+  --accent:#2f6b52;--accent-deep:#22513d;--accent-soft:#dfeee7;
+  --gold:#a8791f;--goldbg:#f7edd8;
+  --gut:#2f7d54;--gutbg:#e3f0e7;--fehl:#bb4d3f;--fehlbg:#f9e5e1;
+  --sr:#b0407a;--srbg:#fae3ef;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+  font-size:16.5px;line-height:1.65;-webkit-text-size-adjust:100%}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px 80px}
+header.hero{background:var(--paper-2);border-bottom:1px solid var(--line);padding:40px 20px 30px;
+  text-align:center;margin-bottom:30px}
+.eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--accent);margin:0 0 10px}
+h1{font-family:var(--serif);font-size:clamp(1.9rem,6vw,2.7rem);margin:0 0 10px;font-weight:600;
+  line-height:1.12}
+header.hero p{max-width:54ch;margin:0 auto;color:var(--ink-soft);font-size:15.5px}
+.stats{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:18px}
+.stats span{font-size:12.5px;color:var(--ink-soft);background:var(--card);border:1px solid var(--line);
+  border-radius:999px;padding:5px 14px}
+.stats b{color:var(--accent-deep);font-family:var(--mono)}
+.themetoggle{position:fixed;top:12px;right:12px;z-index:60;background:var(--card);color:var(--ink);
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-size:13px;cursor:pointer;
+  font-family:var(--sans);box-shadow:0 2px 8px rgba(0,0,0,.09)}
+h2{font-family:var(--serif);font-size:1.6rem;margin:40px 0 6px;font-weight:600}
+h3{font-size:17px;margin:26px 0 10px;font-weight:700}
+.sub{color:var(--ink-soft);font-size:15px;margin:0 0 18px}
+
+/* Klausur-Karte */
+.kl{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  margin:0 0 26px}
+.kl .top{background:var(--accent-soft);border-bottom:1px solid var(--line);padding:18px 22px;
+  display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+.kl .top .wer{flex:1 1 220px;min-width:0}
+.kl .top h3{font-family:var(--serif);font-size:1.35rem;margin:0 0 3px;font-weight:600}
+.kl .top .meta{font-size:14px;color:var(--ink-soft);margin:0}
+.note{flex:0 0 auto;text-align:center;background:var(--card);border:2px solid var(--accent);
+  border-radius:14px;padding:9px 18px;min-width:104px}
+.note .zahl{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--accent-deep);
+  line-height:1;display:block}
+.note .lbl{font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);
+  display:block;margin-top:4px}
+.balken{height:9px;background:var(--paper-2);border-radius:99px;overflow:hidden;margin:14px 22px 0}
+.balken i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.punkte{padding:7px 22px 0;font-family:var(--mono);font-size:13px;color:var(--ink-soft)}
+.kl .body{padding:16px 22px 22px}
+.fazit{background:var(--gutbg);border-left:4px solid var(--gut);border-radius:0 10px 10px 0;
+  padding:12px 15px;margin:0 0 18px;font-size:15.5px}
+
+/* Fehler */
+.fehler{background:var(--fehlbg);border:1px solid var(--fehl);border-radius:12px;padding:15px 17px;
+  margin:0 0 13px}
+.fehler .kopf{display:flex;gap:10px;align-items:baseline;margin:0 0 9px;flex-wrap:wrap}
+.fehler .nr{font-family:var(--mono);font-weight:700;color:var(--fehl);font-size:14px}
+.fehler .minus{margin-left:auto;font-family:var(--mono);font-size:13px;font-weight:700;
+  color:var(--fehl);background:var(--card);border-radius:999px;padding:2px 10px}
+.fehler .fr{font-weight:700;font-size:15px;margin:0 0 10px}
+.zeile{margin:0 0 8px;font-size:15px}
+.zeile .tag{display:inline-block;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:700;border-radius:5px;padding:1px 7px;margin-right:7px;vertical-align:1px}
+.tag.m{background:var(--fehl);color:var(--card)}
+.tag.r{background:var(--gut);color:var(--card)}
+.zeile.warum{color:var(--ink-soft);font-size:14.5px;padding-top:8px;border-top:1px dashed var(--fehl)}
+
+/* Lehre */
+.lehre{background:var(--goldbg);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
+  padding:14px 17px;margin:0 0 13px}
+.lehre h4{margin:0 0 6px;font-size:16px;color:var(--gold)}
+.lehre p{margin:0 0 9px;font-size:15px}
+.lehre .merk{font-family:var(--mono);font-size:13.5px;background:var(--card);border-radius:8px;
+  padding:9px 12px;margin:0}
+
+/* Fragenkatalog */
+details.frg{border:1px solid var(--line);border-radius:12px;background:var(--paper-2);margin:16px 0}
+details.frg>summary{cursor:pointer;list-style:none;padding:13px 18px;font-weight:700;font-size:15.5px;
+  display:flex;align-items:center;gap:9px}
+details.frg>summary::-webkit-details-marker{display:none}
+details.frg>summary::before{content:"▸";font-family:var(--mono);color:var(--accent)}
+details.frg[open]>summary::before{content:"▾"}
+details.frg>summary .anz{margin-left:auto;font-family:var(--mono);font-size:12px;font-weight:400;
+  color:var(--ink-soft)}
+.frgliste{padding:0 10px 10px}
+.f{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 15px;margin:8px 0}
+.f.miss{border-color:var(--fehl)}
+.f .fk{display:flex;gap:10px;align-items:baseline;margin:0 0 6px}
+.f .fn{font-family:var(--mono);font-weight:700;color:var(--accent);font-size:14px;flex:0 0 auto}
+.f .ff{font-weight:700;font-size:15px}
+.f .fp{margin-left:auto;font-family:var(--mono);font-size:12.5px;color:var(--gut);flex:0 0 auto}
+.f.miss .fp{color:var(--fehl)}
+.f .fa{margin:0;font-size:15px;color:var(--ink-soft);padding-left:2px}
+.f .fa b{color:var(--ink)}
+
+/* Fall */
+.fall{border:1px solid var(--accent);border-radius:14px;overflow:hidden;margin:20px 0 0}
+.fall .fkopf{background:var(--accent);color:var(--card);padding:12px 18px;font-weight:700;
+  display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+.fall .fkopf .p{margin-left:auto;font-family:var(--mono);font-size:13px}
+.fall .sv{padding:16px 18px;font-family:var(--serif);font-size:16px;line-height:1.7;
+  border-bottom:1px solid var(--line);background:var(--paper-2)}
+.fall .auf{padding:15px 18px;border-bottom:1px dashed var(--line)}
+.fall .auf:last-child{border-bottom:none}
+.fall .auf .ak{display:flex;gap:10px;align-items:baseline;margin:0 0 8px;flex-wrap:wrap}
+.fall .auf .an{font-family:var(--serif);font-weight:700;color:var(--accent-deep);font-size:17px}
+.fall .auf .af{font-weight:700;font-size:15px;flex:1 1 200px}
+.fall .auf .ap{font-family:var(--mono);font-size:12.5px;color:var(--gut)}
+.fall .auf pre{margin:0;white-space:pre-wrap;font-family:var(--mono);font-size:13.5px;line-height:1.7;
+  background:var(--card);border:1px solid var(--line);border-radius:9px;padding:12px 14px;
+  overflow-x:auto}
+
+/* Methode */
+.meth{display:grid;gap:12px}
+@media(min-width:700px){.meth{grid-template-columns:1fr 1fr}}
+.ms{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 17px;
+  position:relative;padding-left:52px}
+.ms .n{position:absolute;left:15px;top:14px;width:26px;height:26px;border-radius:50%;
+  background:var(--accent);color:var(--card);font-family:var(--mono);font-weight:700;font-size:14px;
+  display:flex;align-items:center;justify-content:center}
+.ms h4{margin:0 0 5px;font-size:15.5px}
+.ms p{margin:0;font-size:14.5px;color:var(--ink-soft)}
+
+.mat{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 0}
+.mat a{font-size:14px;font-weight:600;text-decoration:none;color:var(--accent-deep);
+  background:var(--card);border:1px solid var(--line);border-radius:9px;padding:8px 14px}
+.mat a:hover{border-color:var(--accent)}
+footer{margin-top:48px;padding-top:22px;border-top:1px solid var(--line);color:var(--ink-soft);
+  font-size:13.5px;text-align:center}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media print{.themetoggle{display:none}body{background:#fff}details.frg{border:1px solid #bbb}
+  details.frg>summary{display:none}.frgliste{padding:0}.kl,.f,.fall{break-inside:avoid}}
+</style>
+
+<button class="themetoggle" id="tt" type="button">🌗 Ansicht</button>
+
+<header class="hero">
+  <p class="eyebrow">Pflegeausbildung · 2. Lehrjahr · generalistisch</p>
+  <h1>Mein Klausur-Protokoll</h1>
+  <p>Jede geschriebene Klausur: was gefragt wurde, was ich konnte, wo die Punkte
+    verloren gingen und was ich daraus mitnehme. Für die nächste Klausur
+    und für die Zwischenprüfung.</p>
+  <div class="stats" id="stats"></div>
+</header>
+
+<div class="wrap">
+  <div id="liste"></div>
+
+  <h2>Die Methode, die funktioniert hat</h2>
+  <p class="sub">Sechs Schritte — für jedes Fach gleich.</p>
+  <div class="meth" id="meth"></div>
+
+  <footer>
+    Alles liegt im Repository <b>Etude-et-revision-exercice-et-Examen</b>.<br>
+    Neue Klausur eintragen in <code>klausuren/klausuren.json</code> — der Link bleibt derselbe.
+  </footer>
+</div>
+
+<script>
+const D = {"_hinweis": "Protokoll aller geschriebenen Klausuren. Neue Klausur: hier eintragen, dann python3 klausuren/build.py, dann veroeffentlichen. Der Link bleibt immer derselbe.", "klausuren": [{"id": "haftung-2026-08-27", "fach": "Recht in der Pflege", "titel": "Haftung", "ce": "CE 6 UE 1", "datum": "2026-08-27", "dozent": "RAin Stephanie Welters", "ort": "Aachen", "kurs": "25/28-1", "punkte": 83.5, "max": 86, "note": "1,15", "form": "Wissensfragen (20) + ein Fall mit vier Teilaufgaben", "dauer": "9 Seiten", "fazit": "97 %. Der Fall war fehlerfrei — genau das Schema, das wir geübt haben. Beide Fehler lagen bei den Wissensfragen, nicht beim Fall.", "fehler": [{"nr": "Frage 14", "verloren": 1, "frage": "Wann wird die Verletzung von Privatgeheimnissen strafrechtlich nur verfolgt?", "meins": "wenn eine Strafanzeige und ein Strafantrag vorliegt", "richtig": "Nur wenn ein Strafantrag des Verletzten vorliegt — § 203 StGB ist ein Antragsdelikt.", "warum": "Die Strafanzeige kann jeder stellen und sie reicht nicht. Nur der Verletzte selbst kann den Strafantrag stellen. Das Wort Strafanzeige war zu viel."}, {"nr": "Frage 11", "verloren": 1.5, "frage": "Tabelle: Rechtsgebiet — Gesetze (Abkuerzung und Langtext) — haftungsrechtliche Folgen", "meins": "Die Ueberschrift der dritten Spalte und die Gesetzesangabe beim Arbeitsrecht wurden korrigiert.", "richtig": "Strafrecht — StGB Strafgesetzbuch → Geldstrafe, Freiheitsstrafe, Berufsverbot · Zivilrecht — BGB Buergerliches Gesetzbuch → Schadensersatz, Schmerzensgeld · Arbeitsrecht — BGB, KSchG Kuendigungsschutzgesetz, Tarifvertrag → Abmahnung, Kuendigung · Berufsrecht — PflBG Pflegeberufegesetz, BO NRW Berufsordnung → Widerruf der Berufsurkunde, Verlust des Titels", "warum": "Bei den Gesetzen immer Abkuerzung UND ausgeschriebenen Namen hinschreiben, so wie die Frage es verlangt."}], "lehre": [{"titel": "„Bewusst in Kauf nehmen\" = bedingter Vorsatz", "text": "Im Fall stand: „Er nimmt dabei bewusst in Kauf, dass dies dem Patienten Schmerzen zufuegt.\" Das ist die Definition des bedingten Vorsatzes. Der richtige Schlusssatz lautet daher „wegen vorsaetzlicher Koerperverletzung\", nicht „wegen fahrlaessiger\". Der Punkt wurde diesmal trotzdem gegeben — beim naechsten Mal nicht darauf verlassen.", "merksatz": "bewusst / billigend in Kauf nehmen → bedingter Vorsatz · aus Routine, vergessen, verzichtet → Fahrlaessigkeit"}, {"titel": "Immer eine Entscheidung treffen", "text": "Die Frage lautete „Pruefen Sie beide und begruenden Sie ihre Entscheidung.\" Beide zu pruefen reicht nicht — am Ende muss ein Satz stehen, welche Form es ist und warum die andere ausscheidet.", "merksatz": "… handelte mit …, weil … . … scheidet aus, weil …"}, {"titel": "Schuldfaehig, nicht schuldbar", "text": "Das Wort heisst schuldfaehig (kann Schuld tragen) oder schuldhaft (hat schuldhaft gehandelt). Schuldbar gibt es nicht.", "merksatz": "Schuldfaehigkeit (+) ueber 14 Jahre alt und nicht krankhaft seelisch gestoert"}], "fragen": [{"nr": 1, "p": "3/3", "frage": "Nennen Sie die Tatbestandsmerkmale der Koerperverletzung.", "antwort": "an einer anderen Person · koerperlich misshandelt · oder an der Gesundheit geschaedigt haben"}, {"nr": 2, "p": "3/3", "frage": "Nennen Sie die drei Voraussetzungen der Strafbarkeit eines Taeters.", "antwort": "Tatbestand · Rechtswidrigkeit · Schuld"}, {"nr": 3, "p": "3/3", "frage": "Nennen Sie drei Tatbestaende aus dem StGB, aus denen eine Pflegefachkraft bestraft werden kann.", "antwort": "Koerperverletzung § 223 · Verletzung von Privatgeheimnissen § 203 · Freiheitsberaubung § 239"}, {"nr": 4, "p": "2/2", "frage": "Wie lautet im Strafrecht die Definition fuer Fahrlaessigkeit?", "antwort": "Eine Sorgfaltspflichtverletzung — das Ausserachtlassen der im Verkehr erforderlichen Sorgfalt."}, {"nr": 5, "p": "2/2", "frage": "Definieren Sie den Vorsatz.", "antwort": "Wenn der Taeter mit Wissen und Wollen handelt."}, {"nr": 6, "p": "3/3", "frage": "Nennen Sie drei allgemeine Rechtfertigungsgruende im Strafrecht.", "antwort": "Einwilligung · Notwehr / Nothilfe · Notstand"}, {"nr": 7, "p": "5/5", "frage": "Nennen Sie die 5 Tatbestandsmerkmale der Verletzung von Privatgeheimnissen.", "antwort": "als Geheimnistraeger · ein fremdes Geheimnis · das ihm im Rahmen seiner Berufsausuebung anvertraut · oder bekanntgeworden ist · offenbart haben"}, {"nr": 8, "p": "5/5", "frage": "Woraus kann sich die Befugnis zum Offenbaren eines Geheimnisses im Strafrecht ergeben? Nennen Sie 5 Moeglichkeiten.", "antwort": "Einwilligung · mutmassliche Einwilligung · Befugnis aufgrund gesetzlicher Vorschriften · Notstand · Wahrnehmung berechtigter Interessen"}, {"nr": 9, "p": "3/3", "frage": "Definieren Sie den Begriff des Geheimnisses im Sinne der Schweigepflicht (§ 203 StGB).", "antwort": "Jede Tatsache, die nur eine einzelne Person oder ein begrenzter Personenkreis kennt und an deren Geheimhaltung der Betroffene ein schutzwuerdiges Interesse hat."}, {"nr": 10, "p": "2/2", "frage": "Nennen Sie beide Anspruchsgrundlagen im Zivilrecht.", "antwort": "aus Vertrag · aus Delikt"}, {"nr": 11, "p": "10,5/12", "fehler": true, "frage": "Welche haftungsrechtlichen Konsequenzen koennen aus einem Fehlverhalten folgen? Rechtsgebiet, passende Gesetze (Abkuerzung und Langtext), haftungsrechtliche Folgen.", "antwort": "Strafrecht — StGB Strafgesetzbuch → Geldstrafe, Freiheitsstrafe, Berufsverbot · Zivilrecht — BGB Buergerliches Gesetzbuch → Schadensersatz, Schmerzensgeld · Arbeitsrecht — BGB, KSchG Kuendigungsschutzgesetz, Tarifvertrag → Abmahnung, Kuendigung · Berufsrecht — PflBG Pflegeberufegesetz, BO NRW → Widerruf der Berufsurkunde"}, {"nr": 12, "p": "4/4", "frage": "Nennen Sie 4 Berufsgruppen, die zum schweigepflichtigen Personenkreis (§ 203 StGB) gehoeren.", "antwort": "Aerzte · Pflegefachpersonen · Physiotherapeuten · Apotheker"}, {"nr": 13, "p": "1/1", "frage": "Nennen Sie eine Berufsgruppe, die NICHT zum schweigepflichtigen Personenkreis gehoert.", "antwort": "Reinigungspersonal"}, {"nr": 14, "p": "2/3", "fehler": true, "frage": "Wann wird die Verletzung von Privatgeheimnissen strafrechtlich nur verfolgt?", "antwort": "Nur wenn ein Strafantrag des Verletzten vorliegt — § 203 StGB ist ein Antragsdelikt."}, {"nr": 15, "p": "5/5", "frage": "Geben Sie 5 Beispiele fuer ein Geheimnis eines Bewohners aus der pflegerischen Praxis.", "antwort": "Diagnose · Anamnese · Prognose · Therapiemassnahme · Identitaet des Patienten · Medikamente"}, {"nr": 16, "p": "2/2", "frage": "Muss eine Pflegekraft vor Gericht ueber die Behandlung eines Pflegeempfaengers aussagen?", "antwort": "Grundsaetzlich nein — wegen des Zeugnisverweigerungsrechts aus beruflichen Gruenden."}, {"nr": 17, "p": "2/2", "frage": "Was bedeutet postmortale Schweigepflicht?", "antwort": "Die Schweigepflicht besteht ueber den Tod des Betroffenen hinaus."}, {"nr": 18, "p": "2/2", "frage": "Wann ist ein Taeter nicht schuldfaehig?", "antwort": "Wenn er unter 14 Jahre alt oder krankhaft seelisch gestoert ist."}, {"nr": 19, "p": "3/3", "frage": "Nennen Sie die Tatbestandsmerkmale der Freiheitsberaubung.", "antwort": "einen anderen Menschen · einsperren · oder auf andere Weise der Freiheit beraubt haben"}, {"nr": 20, "p": "3/3", "frage": "Nennen Sie die drei Delegationsebenen in der Pflege.", "antwort": "Anordnungsverantwortung · Uebernahmeverantwortung · Durchfuehrungsverantwortung"}], "fall": {"titel": "Fall 21 — Herr Wagner und Pflegefachmann Thomas", "punkte": "18/18", "sachverhalt": "Der 85-jaehrige Herr Wagner befindet sich nach einem schweren Sturz zur Mobilisation auf einer geriatrischen Station. Er leidet unter fortgeschrittener Demenz, ist zeitlich desorientiert und zeigt eine ausgepraegte motorische Unruhe. Beim abendlichen Anreichen des Abendessens verweigert Herr Wagner die Nahrungs- und Fluessigkeitsaufnahme, schlaegt nach dem Loeffel und versucht unruhig vom Stuhl aufzustehen. In der Spaetschicht herrscht auf der Station akuter Personalmangel. Der Pflegefachmann Thomas ist mit der Versorgung der verbleibenden Patienten voellig ueberlastet und fuehlt sich massiv gestresst. Er verliert durch die Verweigerungshaltung von Herrn Wagner die Geduld. Um die Situation schnell zu beenden und den Patienten zum Essen zu zwingen, greift Thomas grob nach dem Kiefer von Herrn Wagner, drueckt dessen Kopf mit Gewalt nach hinten und schiebt ihm den Loeffel mit dem heissen Essen tief in den Mund. Er nimmt dabei bewusst in Kauf, dass dies dem Patienten Schmerzen zufuegt und er sich verletzen koennte. Durch den heftigen, unkontrollierten Druck erleidet Herr Wagner schmerzhafte, sichtbare Haematome (Blutergueesse) im Gesichtsbereich sowie eine blutende Schleimhautverletzung im Mundraum. Herr Wagner weint vor Schmerzen. Thomas verlaesst daraufhin wortlos das Zimmer. Die Verletzungen fallen erst zwei Stunden spaeter der Nachtwache bei einem Kontrollgang auf.", "aufgaben": [{"nr": "a)", "p": "6/6", "frage": "Nennen Sie zwei fuer diesen Fall relevante Gesetze und begruenden Sie jeweils kurz, warum diese einschlaegig sind.", "loesung": "§ 223 StGB Koerperverletzung — einschlaegig, weil Thomas durch den heftigen, unkontrollierten Druck bei Herrn Wagner Haematome und eine blutende Schleimhautverletzung verursacht hat.\n§ 823 BGB Schadensersatz aus unerlaubter Handlung — einschlaegig, weil Herr Wagner durch die Verletzung von Koerper und Gesundheit einen Schaden erlitten hat und Schmerzensgeld verlangen kann."}, {"nr": "b) 1.", "p": "5/5", "frage": "Nennen Sie den Tatbestand und pruefen Sie, ob die Voraussetzungen der Straftat vorliegen.", "loesung": "Thomas koennte sich wegen Koerperverletzung gemaess § 223 StGB strafbar gemacht haben.\n\nTatbestand\n  an einer anderen Person (+) Herr Wagner\n  koerperlich misshandelt (+) grober Griff an den Kiefer, Kopf mit Gewalt nach hinten gedrueckt, Loeffel mit heissem Essen tief in den Mund\n  oder an der Gesundheit geschaedigt (+) Haematome im Gesicht, blutende Schleimhautverletzung im Mundraum, Schmerzen\n\nRechtswidrigkeit\n  Einwilligung (-) Herr Wagner verweigert die Nahrungsaufnahme und schlaegt nach dem Loeffel; eine mutmassliche Einwilligung scheidet aus, er ist bei Bewusstsein und aeussert seinen Willen\n  Notwehr (-) das Schlagen nach dem Loeffel ist kein rechtswidriger Angriff\n  Notstand (-) Personalmangel und Zeitdruck sind keine gegenwaertige Gefahr; die Nahrungsverweigerung an einem Abend begruendet keine akute Lebensgefahr\n  Die Handlung des Thomas ist durch nichts gerechtfertigt.\n\nSchuld\n  Schuldfaehigkeit (+) ueber 14 Jahre alt und nicht krankhaft seelisch gestoert"}, {"nr": "b) 2.", "p": "4/4", "frage": "Mit welcher Form der Schuld hat Thomas gehandelt? Pruefen Sie beide und begruenden Sie ihre Entscheidung.", "loesung": "Vorsatz (Wissen und Wollen) (+) Thomas wusste, dass er Herrn Wagner mit Gewalt zum Essen zwingt, und wollte es. Der Sachverhalt sagt ausdruecklich, dass er bewusst in Kauf nimmt, dem Patienten Schmerzen zuzufuegen — das ist bedingter Vorsatz.\n\nFahrlaessigkeit (-) scheidet aus. Zwar wollte Thomas die Verletzung nicht als Ziel, aber er hat sie billigend in Kauf genommen. Wer den Erfolg in Kauf nimmt, handelt vorsaetzlich, nicht fahrlaessig.\n\nEntscheidung: Thomas handelte mit bedingtem Vorsatz."}, {"nr": "b) 3.", "p": "2/2", "frage": "Nennen Sie eine moegliche strafrechtliche Konsequenz fuer Thomas.", "loesung": "Geldstrafe oder Freiheitsstrafe, dazu ein moegliches Berufsverbot."}, {"nr": "b) 4.", "p": "1/1", "frage": "Formulieren Sie einen passenden Schlusssatz zur rechtlichen Bewertung des Falles.", "loesung": "Thomas hat sich wegen vorsaetzlicher Koerperverletzung gemaess § 223 StGB strafbar gemacht, da er Herrn Wagner mit Gewalt zum Essen gezwungen und ihm dadurch Haematome und eine Schleimhautverletzung zugefuegt hat; Rechtfertigungs- oder Entschuldigungsgruende liegen nicht vor."}]}, "material": [{"name": "Alle neun Uebungsfaelle im Klausur-Aufbau", "url": "https://claude.ai/public/artifacts/a452d288-6abd-4cbc-bb39-18b375d581d1"}, {"name": "Klausurvorbereitung Recht", "url": "https://claude.ai/public/artifacts/bd667602-7598-478b-b0d7-c4aeb999c79e"}, {"name": "Grosse Zusammenfassung Recht", "url": "https://claude.ai/public/artifacts/56f4b6ba-ea38-4780-bd8b-1b6374e4ae14"}], "datum_de": "27. August 2026", "prozent": 97}], "methode": [{"schritt": "1", "titel": "Die Unterlagen der Dozentin sind das Gesetz", "text": "Nur Paragrafen und Formulierungen aus den Folien, den Spickern und den Uebungsblaettern verwenden. Nichts dazuerfinden, auch wenn es juristisch richtig waere — der Korrektor sucht seine eigenen Worte."}, {"schritt": "2", "titel": "Das Schema auswendig, nicht den Inhalt", "text": "Erst das leere Geruest lernen (Obersatz, die drei oder vier Schritte, die Abhakliste, der Schlusssatz). Der Inhalt kommt aus dem Sachverhalt, das Geruest kommt aus dem Kopf."}, {"schritt": "3", "titel": "Selbst schreiben, dann vergleichen", "text": "Nie die Musterloesung lesen und denken „das kann ich\". Erst in ein leeres Feld schreiben, dann aufdecken. Der Unterschied zwischen beiden ist die eigentliche Lernarbeit."}, {"schritt": "4", "titel": "Die Schluesselwoerter im Sachverhalt markieren", "text": "Jedes Wort im Fall steht dort mit Absicht: „bewusst in Kauf\", „aus Routine\", „verzichtet\", „allein entschieden\", „nicht aggressiv\", „laut hoerbar\". Sie sind die Antwort auf die Schuldfrage."}, {"schritt": "5", "titel": "Immer eine Entscheidung treffen", "text": "Wenn die Frage „pruefen Sie beide\" lautet, muss am Ende trotzdem ein klarer Satz stehen, welche Variante gilt und warum die andere ausscheidet."}, {"schritt": "6", "titel": "Nach der Klausur: hier eintragen", "text": "Punkte, Note, jede Frage die gestellt wurde, jeder verlorene Punkt und was daraus zu lernen ist. So wird jede Klausur zum Uebungsmaterial fuer die naechste und fuer die Zwischenpruefung."}], "anzahl": 1, "schnitt": 97, "beste": "1,15"};
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function el(t,c,x){const e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e;}
+
+const tt=document.getElementById('tt');
+try{const g=localStorage.getItem('kl-theme');if(g)document.documentElement.setAttribute('data-theme',g);}catch(e){}
+tt.onclick=()=>{const r=document.documentElement,j=r.getAttribute('data-theme');
+  const dunkel=j?j==='dark':window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const neu=dunkel?'light':'dark';r.setAttribute('data-theme',neu);
+  try{localStorage.setItem('kl-theme',neu);}catch(e){}};
+
+document.getElementById('stats').innerHTML =
+  '<span><b>'+D.anzahl+'</b> Klausur'+(D.anzahl>1?'en':'')+'</span>'+
+  '<span>Schnitt <b>'+D.schnitt+' %</b></span>'+
+  '<span>Beste Note <b>'+esc(D.beste)+'</b></span>';
+
+const liste=document.getElementById('liste');
+D.klausuren.forEach(k=>{
+  const c=el('div','kl');
+  let h='<div class="top"><div class="wer">'+
+    '<h3>'+esc(k.titel)+' — '+esc(k.fach)+'</h3>'+
+    '<p class="meta">'+esc(k.ce||'')+' · '+esc(k.datum_de)+' · '+esc(k.dozent)+
+    (k.ort?' · '+esc(k.ort):'')+'</p></div>'+
+    '<div class="note"><span class="zahl">'+esc(k.note)+'</span><span class="lbl">Note</span></div></div>'+
+    '<div class="balken"><i style="width:'+k.prozent+'%"></i></div>'+
+    '<div class="punkte">'+k.punkte+' von '+k.max+' Punkten · '+k.prozent+' %'+
+    (k.form?' · '+esc(k.form):'')+'</div>'+
+    '<div class="body">';
+
+  if(k.fazit) h+='<div class="fazit">'+esc(k.fazit)+'</div>';
+
+  if(k.fehler&&k.fehler.length){
+    h+='<h3>Die verlorenen Punkte</h3>';
+    k.fehler.forEach(f=>{
+      h+='<div class="fehler"><div class="kopf"><span class="nr">'+esc(f.nr)+'</span>'+
+         '<span class="minus">− '+f.verloren+'</span></div>'+
+         '<p class="fr">'+esc(f.frage)+'</p>'+
+         '<p class="zeile"><span class="tag m">so hatte ich</span>'+esc(f.meins)+'</p>'+
+         '<p class="zeile"><span class="tag r">richtig</span>'+esc(f.richtig)+'</p>'+
+         (f.warum?'<p class="zeile warum">'+esc(f.warum)+'</p>':'')+'</div>';
+    });
+  }
+
+  if(k.lehre&&k.lehre.length){
+    h+='<h3>Was ich mitnehme</h3>';
+    k.lehre.forEach(l=>{
+      h+='<div class="lehre"><h4>'+esc(l.titel)+'</h4><p>'+esc(l.text)+'</p>'+
+         (l.merksatz?'<p class="merk">'+esc(l.merksatz)+'</p>':'')+'</div>';
+    });
+  }
+
+  if(k.fragen&&k.fragen.length){
+    h+='<details class="frg"><summary>Alle Fragen, die gestellt wurden'+
+       '<span class="anz">'+k.fragen.length+' Fragen</span></summary><div class="frgliste">';
+    k.fragen.forEach(f=>{
+      h+='<div class="f'+(f.fehler?' miss':'')+'"><div class="fk">'+
+         '<span class="fn">'+f.nr+'.</span><span class="ff">'+esc(f.frage)+'</span>'+
+         '<span class="fp">'+esc(f.p)+'</span></div>'+
+         '<p class="fa"><b>→</b> '+esc(f.antwort)+'</p></div>';
+    });
+    h+='</div></details>';
+  }
+
+  if(k.fall){
+    const fa=k.fall;
+    h+='<div class="fall"><div class="fkopf"><span>'+esc(fa.titel)+'</span>'+
+       '<span class="p">'+esc(fa.punkte||'')+'</span></div>'+
+       '<div class="sv">'+esc(fa.sachverhalt)+'</div>';
+    (fa.aufgaben||[]).forEach(a=>{
+      h+='<div class="auf"><div class="ak"><span class="an">'+esc(a.nr)+'</span>'+
+         '<span class="af">'+esc(a.frage)+'</span><span class="ap">'+esc(a.p||'')+'</span></div>'+
+         '<pre>'+esc(a.loesung)+'</pre></div>';
+    });
+    h+='</div>';
+  }
+
+  if(k.material&&k.material.length){
+    h+='<div class="mat">';
+    k.material.forEach(m=>{h+='<a href="'+m.url+'" target="_blank" rel="noopener">📄 '+esc(m.name)+'</a>';});
+    h+='</div>';
+  }
+
+  h+='</div>';
+  c.innerHTML=h;
+  liste.appendChild(c);
+});
+
+const meth=document.getElementById('meth');
+(D.methode||[]).forEach(m=>{
+  const s=el('div','ms');
+  s.innerHTML='<span class="n">'+esc(m.schritt)+'</span><h4>'+esc(m.titel)+'</h4><p>'+esc(m.text)+'</p>';
+  meth.appendChild(s);
+});
+</script>
