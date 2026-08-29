@@ -1,0 +1,951 @@
+<title>Kulturelle Vielfalt und Vorurteile</title>
+<style>
+  :root{
+    --paper:#f4f5f1;--paper-2:#e9ebe3;--card:#fffffd;--ink:#1b1f19;--ink-soft:#4f564b;--line:#d8dccf;
+    --accent:#4a6b34;--accent-deep:#365024;--accent-soft:#e3ecd9;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;
+    --blue:#35618a;--bluebg:#dce7f1;--purple:#65488a;--purplebg:#eae1f4;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#141613;--paper-2:#0f110e;--card:#1e211b;--ink:#eef0eb;--ink-soft:#a9b0a2;--line:#31362c;
+    --accent:#a3c680;--accent-deep:#bcd99c;--accent-soft:#1f2a16;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;
+    --blue:#86b2d8;--bluebg:#15232e;--purple:#b79ada;--purplebg:#231a2e;}}
+  :root[data-theme="dark"]{
+    --paper:#141613;--paper-2:#0f110e;--card:#1e211b;--ink:#eef0eb;--ink-soft:#a9b0a2;--line:#31362c;
+    --accent:#a3c680;--accent-deep:#bcd99c;--accent-soft:#1f2a16;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;
+    --blue:#86b2d8;--bluebg:#15232e;--purple:#b79ada;--purplebg:#231a2e;}
+  :root[data-theme="light"]{
+    --paper:#f4f5f1;--paper-2:#e9ebe3;--card:#fffffd;--ink:#1b1f19;--ink-soft:#4f564b;--line:#d8dccf;
+    --accent:#4a6b34;--accent-deep:#365024;--accent-soft:#e3ecd9;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;
+    --blue:#35618a;--bluebg:#dce7f1;--purple:#65488a;--purplebg:#eae1f4;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding:46px 20px 30px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:0;z-index:30;background:var(--paper-2);border-bottom:1px solid var(--line);
+    padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding:0 18px 90px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:26px 0 8px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px 22px 18px;margin:16px 0;}
+  .card > :first-child{margin-top:0;}
+  .card > :last-child{margin-bottom:0;}
+  .lbl{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+
+  ul,ol{padding-left:1.2em;margin:10px 0;}
+  li{margin:6px 0;}
+  ul.tick{list-style:none;padding-left:0;}
+  ul.tick li{padding-left:1.7em;position:relative;}
+  ul.tick li::before{content:"▸";position:absolute;left:.35em;color:var(--accent);}
+
+  .tabelle{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:12px;}
+  table{border-collapse:collapse;width:100%;min-width:460px;background:var(--card);}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.land{font-weight:600;white-space:nowrap;}
+
+  .warn{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .info{background:var(--bluebg);border-left:4px solid var(--blue);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:10px;padding:15px 18px;margin:16px 0;}
+
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+  @media (max-width:640px){.zwei{grid-template-columns:1fr;}}
+
+  /* Handzeichen */
+  .gesten{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0;}
+  .geste{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:16px 14px;
+    text-align:center;cursor:pointer;font:inherit;color:var(--ink);}
+  .geste:hover,.geste:focus-visible{border-color:var(--accent);}
+  .geste:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .geste.sel{background:var(--accent-soft);border-color:var(--accent);}
+  .geste .ico{font-size:2.1rem;line-height:1.1;display:block;}
+  .geste .nm{font-size:14px;font-weight:600;display:block;margin-top:6px;}
+  #gestenbox{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;
+    background:var(--card);padding:18px 20px;margin-top:6px;min-height:120px;}
+  #gestenbox h4{font-family:var(--serif);font-size:1.1rem;margin:0 0 10px;}
+
+  /* Zwiebel */
+  .zw-wrap{display:grid;grid-template-columns:minmax(200px,1fr) 1.4fr;gap:18px;align-items:start;margin:18px 0;}
+  @media (max-width:660px){.zw-wrap{grid-template-columns:1fr;}}
+  .zw{display:grid;gap:6px;}
+  .zw button{font:inherit;font-size:14.5px;text-align:left;cursor:pointer;padding:11px 16px;
+    border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink);}
+  .zw button:hover{border-color:var(--accent);}
+  .zw button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .zw button.sel{background:var(--accent);color:var(--card);border-color:var(--accent);}
+  .zw button .s{font-family:var(--mono);font-size:10.5px;opacity:.75;display:block;}
+  #zwbox{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;
+    background:var(--card);padding:18px 20px;}
+  #zwbox h4{font-family:var(--serif);font-size:1.12rem;margin:0 0 8px;}
+
+  /* Balken Small Talk */
+  .bars{display:grid;gap:9px;margin:18px 0;}
+  .bar{display:grid;grid-template-columns:minmax(88px,auto) 1fr auto;gap:11px;align-items:center;}
+  .bar .l{font-size:14.5px;}
+  .bar .t{height:16px;border-radius:999px;background:var(--paper-2);overflow:hidden;}
+  .bar .t i{display:block;height:100%;background:var(--accent);border-radius:999px;}
+  .bar .v{font-family:var(--mono);font-size:13px;color:var(--ink-soft);
+    font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+  /* Quiz */
+  .q{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:18px 20px;margin:14px 0;}
+  .q .frg{font-weight:600;margin:0 0 10px;}
+  .q .opts{display:grid;gap:7px;}
+  .opt{display:block;width:100%;text-align:left;font-family:var(--sans);font-size:15.5px;
+    padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--paper);
+    color:var(--ink);cursor:pointer;}
+  .opt:hover:not(.aus){border-color:var(--accent);}
+  .opt:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  .opt.richtig{background:var(--goodbg);border-color:var(--good);}
+  .opt.falsch{background:var(--badbg);border-color:var(--bad);}
+  .q .erkl{display:none;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line);
+    font-size:15px;color:var(--ink-soft);}
+  .q .erkl.an{display:block;}
+  .punkte{font-family:var(--mono);font-size:13px;text-align:center;padding:14px;
+    border:1px solid var(--line);border-radius:12px;background:var(--paper-2);margin-top:18px;}
+
+  footer{border-top:1px solid var(--line);margin-top:70px;padding:30px 20px 50px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Dr. Ortrud Knauf · 29.05.2026 und 24.07.2026</p>
+  <h1>Kulturelle Vielfalt und Vorurteile</h1>
+  <p class="sub">Zwei Schulungen in einer Zusammenfassung: woran man kulturelle Vielfalt erkennt,
+    das Zwiebelmodell von Hofstede, wie Werte entstehen und was sie anrichten können — und
+    warum Vorurteile ein normaler Mechanismus des Gehirns sind, den man trotzdem überwinden muss.
+    <span class="fr">Tout ce qui est ici vient des deux présentations de Dr. Knauf.</span></p>
+  <div class="meta"><span>65 Folien</span><span>Handzeichen zum Anklicken</span>
+    <span>Zwiebelmodell interaktiv</span><span>14 Quizfragen</span></div>
+</header>
+
+<nav class="toc">
+  <a href="#anzeichen">Anzeichen</a>
+  <a href="#gesten">Handzeichen</a>
+  <a href="#lewis">Small Talk &amp; Lewis</a>
+  <a href="#kompetenz">Warum Kompetenz</a>
+  <a href="#kultur">Was ist Kultur</a>
+  <a href="#zwiebel">Zwiebelmodell</a>
+  <a href="#werte">Werte</a>
+  <a href="#laender">Werte im Vergleich</a>
+  <a href="#vorurteile">Vorurteile</a>
+  <a href="#feedback">Feedback-Kultur</a>
+  <a href="#auftraege">Arbeitsaufträge</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<main>
+
+<section id="anzeichen">
+  <h2>Woran erkennt man kulturelle Vielfalt?</h2>
+  <p class="lead">Frau Knauf beginnt genau hier — nicht mit einer Definition, sondern mit dem,
+    was du im Dienst tatsächlich siehst.</p>
+  <div class="card">
+    <ul class="tick">
+      <li>Gesichtsausdruck</li>
+      <li>Lachen</li>
+      <li>Verhalten</li>
+      <li>Körpersprache</li>
+      <li>Emotionen und Emotionalität</li>
+    </ul>
+  </div>
+  <div class="info">Alle fünf sind Dinge, die du <b>beobachtest</b> — nicht Dinge, die dir jemand
+    sagt. Genau deshalb ist die Verwechslungsgefahr mit einem Vorurteil so groß. Dazu unten mehr.</div>
+</section>
+
+<section id="gesten">
+  <h2>Dasselbe Zeichen, vier Bedeutungen</h2>
+  <p class="lead">Der Arbeitsauftrag von Frau Knauf lautete: „Erklären Sie die Bedeutung der
+    folgenden Handzeichen.“ Klick eines an — und schau dir an, wie unterschiedlich dieselbe
+    Handbewegung gelesen wird.</p>
+
+  <div class="gesten" id="gesten"></div>
+  <div id="gestenbox">
+    <h4>Klick ein Handzeichen an</h4>
+    <p>Jedes dieser vier Zeichen bedeutet je nach Land etwas völlig anderes — von „prima“ bis zur
+      schweren Beleidigung. Das ist der ganze Punkt der Übung.</p>
+  </div>
+
+  <div class="achtung"><b>Warum das keine Anekdote ist.</b> Eine Bewohnerin oder ein Kollege kann
+    dich mit einer Geste beleidigen, ohne es zu wollen — oder du sie. Die Geste ist nicht
+    „eindeutig“, sie ist nur in <em>deiner</em> Kultur eindeutig.</div>
+</section>
+
+<section id="lewis">
+  <h2>Small Talk, Vorträge und die drei Kulturtypen nach Lewis</h2>
+
+  <h3>Wie lange dauert die Eröffnungsphase?</h3>
+  <p>Aus dem Schaubild „Eröffnungsphase: Dauer des Smalltalks (in Minuten)“ in ihren Folien —
+    die Werte sind aus der Grafik abgelesen, also ungefähre Größenordnungen:</p>
+  <div class="bars" id="bars"></div>
+  <div class="info">Der Unterschied ist der eigentliche Lernpunkt: In Deutschland gilt langes
+    Vorgeplänkel als Zeitverschwendung, in Spanien und Italien wäre der sofortige Einstieg ins
+    Thema <b>unhöflich</b>. Beide halten sich für „normal“.</div>
+
+  <h3>Wodurch unterscheidet sich ein Vortrag?</h3>
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Land</th><th>Worauf es ankommt</th><th>Dauer</th></tr></thead>
+      <tbody>
+        <tr><td class="land">Deutschland</td>
+            <td>Solidität, Technik, Kontext, Struktur, Qualität, Handouts</td><td>60+ Min</td></tr>
+        <tr><td class="land">Arabisches Land / Südeuropa</td>
+            <td>Persönliche Geschichte, Lebendigkeit, Rhetorik — Gespräche werden weitergeführt</td>
+            <td>Kurzvortrag</td></tr>
+        <tr><td class="land">Australien</td>
+            <td>Kumpelhaft, entspannt, überzeugend, kreativ</td><td>30 Min</td></tr>
+        <tr><td class="land">USA</td>
+            <td>Humor, Witze, Selbstdarstellung, Angriffslust</td><td>20 Min</td></tr>
+        <tr><td class="land">Finnland</td>
+            <td>Modernität, Qualität, Technik, Bescheidenheit</td><td>45 Min</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Die drei Kulturtypen nach Lewis</h3>
+  <div class="zwei">
+    <div class="card"><span class="lbl">Linear-aktiv</span>
+      <p>Planung, Organisation in Ketten, Daten, <b>eine</b> Aktion nach der anderen.</p></div>
+    <div class="card"><span class="lbl">Multiaktiv</span>
+      <p>Lebhaft, gesprächsfreudig, individuelle Pläne, <b>mehrere</b> Aktionen gleichzeitig.</p></div>
+  </div>
+  <div class="card"><span class="lbl">Reaktiv</span>
+    <p>Höflichkeit, Respekt, Zuhören.</p></div>
+
+  <p>In ihren Folien zeigt Frau Knauf zwei Skalen aus Lewis (2000):</p>
+  <div class="zwei">
+    <div class="card">
+      <span class="lbl">Skala linear-aktiv → multiaktiv (Lewis 2000, S. 52)</span>
+      <p style="font-size:14.5px;line-height:1.75;">
+        <b>linear-aktiv oben:</b> 1. Deutsche, Schweizer · 2. (Weiße) US-Amerikaner ·
+        3. Skandinavier, Österreicher · 4. Briten, Kanadier, Neuseeländer ·
+        5. Australier, Südafrikaner (weiß) · 6. Holländer, Belgier ·
+        7. US-amerikanische Subkulturen (u. a. Juden, Italiener, Polen) ·
+        8. Franzosen, Belgier (Wallonen) · 9. Tschechen, Slowenen, Kroaten, Ungarn ·
+        10. Norditaliener · 11. Chilenen · 12. Russen, andere Slawen · 13. Portugiesen ·
+        14. Polynesier · 15. Spanier, Süditaliener, andere Mittelmeeranrainer ·
+        16. Inder, Pakistanis · 17. Lateinamerikaner, Araber, Afrikaner
+        <b>← multiaktiv unten</b></p>
+    </div>
+    <div class="card">
+      <span class="lbl">Skala der reaktiven Nationalitäten (Lewis 2000, S. 58)</span>
+      <p style="font-size:14.5px;line-height:1.75;">
+        <b>stark reaktiv oben:</b> 1. Japaner* · 2. Chinesen · 3. Taiwanesen ·
+        4. Chinesen aus Singapur, Hongkong* · 5. Finnen* · 6. Koreaner · 7. Türken⁺ ·
+        8. Vietnamesen, Kambodschaner, Laoten⁺ · 9. Malayen, Indonesier⁺ ·
+        10. Pazifische Insulaner (Fidschi, Tonga)⁺<br>
+        <b>gelegentlich reaktiv:</b> 11. Schweden* · 12. Briten*<br>
+        <span style="font-size:12.5px;">* linear-aktive Tendenzen beim Reagieren ·
+        ⁺ multiaktive Tendenzen beim Reagieren</span></p>
+    </div>
+  </div>
+  <div class="warn"><b>Vorsicht mit solchen Listen.</b> Sie ordnen ganzen Nationen eine
+    Eigenschaft zu. Genau das ist die Struktur eines Vorurteils. Frau Knauf behandelt beides in
+    derselben Reihe — nutz die Skalen als <b>Denkanstoß</b>, nie als Beschreibung eines einzelnen
+    Menschen, der vor dir steht.</div>
+</section>
+
+<section id="kompetenz">
+  <h2>Warum interkulturelle Kompetenz?</h2>
+  <p class="lead">Die Gründe, die Frau Knauf nennt — sechs Stück, und keiner davon ist
+    „weil es nett ist“.</p>
+  <div class="card">
+    <ul class="tick">
+      <li><b>Deutschlands Vergangenheit und Gegenwart</b> (Faschismus, Migranten)</li>
+      <li><b>Globalisierung</b> — Import von Arbeitskräften, Exportnation</li>
+      <li><b>Gesetze</b></li>
+      <li><b>Ethik</b></li>
+      <li><b>Demografische Entwicklung</b> — Geburtenrate, Fachkräftemangel</li>
+      <li><b>Multikulturalität im pflegerischen Bereich</b> — sowohl bei Mitarbeiterinnen und
+        Mitarbeitern als auch bei Patientinnen, Patienten und Bewohnern</li>
+    </ul>
+  </div>
+
+  <h3>Die vier Herausforderungen</h3>
+  <p>Frau Knauf ordnet sie als Steigerung — von Wissen zu Handeln:</p>
+  <div class="card">
+    <ol>
+      <li><b>Sprachkenntnisse</b></li>
+      <li><b>Kulturelles Wissen</b></li>
+      <li><b>Kulturelles Denken</b></li>
+      <li><b>Kulturelles Handeln</b></li>
+    </ol>
+    <p><b>Wenn wir uns diesen Herausforderungen nicht stellen, führt das gegebenenfalls zu:</b>
+      Konflikten · weniger Geschäftsabschlüssen, Kunden, Arbeitskräften · zusätzlichen Kosten.</p>
+  </div>
+
+  <h3>Die Zahlen aus ihren Folien</h3>
+  <div class="card">
+    <ul class="tick">
+      <li><b>11,2 Millionen Ausländerinnen und Ausländer</b> in der BRD registriert</li>
+      <li>Die Zahl stieg im Jahresverlauf um ca. <b>313 000 Personen (+2,9 %)</b> —
+        vergleichbarer Zuwachs wie 2018 (+2,7 %)</li>
+      <li>Gründe: rund <b>377 000 mehr Einreisen</b> als Abgänge ins Ausland, und knapp
+        <b>69 000 mehr Geburten als Sterbefälle</b> von Ausländerinnen und Ausländern</li>
+      <li>Quelle in ihren Folien: Statistisches Bundesamt 2019</li>
+    </ul>
+    <p>Dazu zeigt sie zwei Schaubilder: die <b>zusammengefasste Geburtenziffer deutscher und
+      ausländischer Frauen 1991–2017</b> (die Ziffer ausländischer Frauen liegt durchgehend
+      deutlich höher, Quelle BiB 2018) und die <b>ausländische Bevölkerung nach den zehn
+      häufigsten Staatsangehörigkeiten</b> (Stand 31.12.2019, Ausländerzentralregister /
+      Destatis 2020) — angeführt von der <b>Türkei</b>, danach Polen, Syrien, Rumänien und
+      Italien.</p>
+  </div>
+  <div class="info">Für die Pflege heißt das ganz konkret: Die Generation, die als Gastarbeiter
+    kam, ist jetzt die Generation, die pflegebedürftig wird. Das ist kein Zukunftsthema mehr.</div>
+</section>
+
+<section id="kultur">
+  <h2>Was ist Kultur?</h2>
+  <h3>Definition nach Hofstede</h3>
+  <div class="card">
+    <ul class="tick">
+      <li>Kultur entsteht aus bestimmten <b>Mustern des Denkens, Fühlens und Interagierens</b></li>
+      <li>Kultur wird vor allem durch <b>Symbole</b> (einschließlich Kunstwerke) erworben und
+        übertragen</li>
+      <li>Diese Symbole sind charakteristische Errungenschaften bestimmter Personengruppen</li>
+      <li>Das <b>Herz von Kultur</b> besteht aus traditionellen Ideen und den entsprechenden
+        <b>Werten</b>, die sie beinhalten</li>
+    </ul>
+  </div>
+
+  <h3>Die acht Ebenen von Kultur</h3>
+  <p>Ein Mensch gehört immer mehreren davon gleichzeitig an — das ist der Grund, warum
+    „die Türken“ oder „die Deutschen“ als Erklärung nie ausreicht.</p>
+  <div class="card">
+    <ol>
+      <li>Internationale Kultur</li>
+      <li>Nationale Kultur</li>
+      <li>Regionale bzw. lokale Kultur (Rheinland)</li>
+      <li>Persönliche Kultur</li>
+      <li>Geschlechtsspezifische Kultur</li>
+      <li>Generationenkultur</li>
+      <li>Organisationskultur</li>
+      <li>Firmenkultur</li>
+    </ol>
+  </div>
+  <div class="gut"><b>Prüfungsnah gedacht:</b> Eine 82-jährige Bewohnerin aus dem Rheinland und
+    ihre 24-jährige Enkelin teilen die nationale Kultur — aber nicht die Generationenkultur.
+    Zwischen einer deutschen und einer polnischen Pflegekraft auf derselben Station ist die
+    Organisationskultur womöglich die stärkste Gemeinsamkeit.</div>
+</section>
+
+<section id="zwiebel">
+  <h2>Das Zwiebelmodell nach Hofstede</h2>
+  <p class="lead">Von außen nach innen: Was man sofort sieht, liegt außen. Was eine Kultur
+    wirklich ausmacht, liegt innen und ist unsichtbar. Klick dich durch die Schichten.</p>
+
+  <div class="zw-wrap">
+    <div class="zw" id="zw"></div>
+    <div id="zwbox"></div>
+  </div>
+  <p>Frau Knauf ergänzt: <b>Rituale, Helden und Symbole sind durch bestimmte Ausdrücke und
+    Praktiken gekennzeichnet</b> — also durch das, was man beobachten kann. Die Werte und
+    Grundannahmen darunter kann man nur erschließen.</p>
+  <div class="card">
+    <span class="lbl">Ihr Arbeitsauftrag</span>
+    <p>„Entwickeln Sie ein Zwiebelmodell Deutschlands — alternativ: ein Zwiebelmodell des
+      Rheinlands.“</p>
+    <p style="margin-top:10px;">Tipp für das Rheinland: Symbole (Dom, Karnevalskappe,
+      Klenkes-Zeichen), Helden, Rituale (Karneval, Begrüßung mit Handschlag), Werte
+      (Geselligkeit) und Grundannahmen. Das ist eine typische Prüfungsaufgabe.</p>
+  </div>
+</section>
+
+<section id="werte">
+  <h2>Werte</h2>
+  <h3>Was ein Wert ist — nach Schwartz und Bilsky</h3>
+  <div class="card">
+    <ul class="tick">
+      <li>Etwas, <b>woran Menschen glauben</b> (mit emotionalem Bezug)</li>
+      <li>Bezug zu <b>erwünschten Zielen</b> mit entsprechendem Verhalten</li>
+      <li>Gehen über <b>spezifische Situationen und Handlungen hinaus</b></li>
+      <li>Basis zur Festlegung von <b>Standards</b> — Bewertung von Verhalten, Menschen und
+        Ereignissen</li>
+      <li>Sie stehen in einer <b>Reihenfolge von Wichtigkeit</b></li>
+    </ul>
+    <p style="margin-top:12px;"><b>Der Kernsatz aus ihrer Folie:</b> „Wertesysteme sind Prinzipien
+      und Regeln als Hilfestellung, um zwischen Alternativen zu wählen, Konflikte zu lösen und
+      Entscheidungen zu treffen.“</p>
+  </div>
+
+  <h3>Die Werte, bei denen Kulturen auseinandergehen</h3>
+  <div class="card">
+    <ul class="tick">
+      <li>Wert des Lebens</li>
+      <li>Patriotismus und Nationalismus</li>
+      <li>Ehe, Familie, Sex, Verhältnis von Kindern zu Eltern (Erziehung, Pflege im Alter)</li>
+      <li>Arbeit (Verpflichtung oder Erfüllung) versus Freizeit (Erholung, privates Glück)</li>
+      <li>Glücksvorstellungen</li>
+      <li>Freiheit versus Gleichheit</li>
+      <li>Religion</li>
+      <li>Wahrheit (objektiv-wissenschaftlich versus relativ-subjektiv)</li>
+      <li>Zuverlässigkeit versus flexible Einstellung, Zeitverständnis (Pünktlichkeit, Dauer)</li>
+      <li>Soziale Rechte und Verpflichtungen</li>
+    </ul>
+    <p style="margin-top:12px;"><b>Ihr Zusatz, den du nicht vergessen darfst:</b> „Auch
+      Unterschiede <em>innerhalb</em> eines Landes, zeitlicher Wandel.“</p>
+  </div>
+  <p>Zum Wert des Lebens zeigt sie eine Weltkarte der <b>Tötungsrate (Mordrate) weltweit</b>.</p>
+
+  <h3>Vorteile von Werten</h3>
+  <div class="card">
+    <ul class="tick">
+      <li>Werte sind <b>das Herz einer Kultur</b></li>
+      <li>Werte sind Grundlagen von Einstellungen und Verhalten</li>
+      <li>Werte geben Bedeutung und führen zu Regeln</li>
+      <li>Werte sind Voraussetzung für bestimmte Erwartungen — im Sinne von „Normalität“</li>
+      <li>Werte können einfach oder komplex sein (Migranten)</li>
+      <li>Werte können langlebig sein (USA: Freiheit und Gleichheit) oder sich wandeln
+        (Deutschland: Erziehung, Arbeitswelt im ökonomischen Wandel)</li>
+      <li>Werte werden erlernt — bewusst und unbewusst — und innerhalb von Gruppen geteilt
+        (Identität, Zugehörigkeit)</li>
+    </ul>
+  </div>
+
+  <h3>Nachteile und Probleme</h3>
+  <div class="card">
+    <ul class="tick">
+      <li>Verschiedene Werte unterschiedlicher Menschengruppen können zu <b>Konflikten</b> führen</li>
+      <li>Emotionale Gruppenbindung, kulturelle Vorurteile („natürlich“)</li>
+      <li>Bewusstsein der eigenen Werte entsteht erst bei <b>Konfrontation</b> mit anderen Werten
+        (Reisen, Migration) → Fremdes ist „seltsam“ (Überlebensinstinkt)</li>
+      <li>Zu viel Heterogenität kann den Gruppenzusammenhalt zerstören</li>
+      <li>Die Mehrheit neigt dazu, Minderheiten ihre Werte aufzudrängen („die haben sich
+        anzupassen“)</li>
+      <li><b>Je fundamentaler die Werte, desto härter die Konflikte</b></li>
+    </ul>
+    <p style="margin-top:12px;" class="gut" role="note"><b>Aber</b> — und damit endet ihre Folie:
+      „Vermischung und Konkurrenz von Werten kann für Menschen eine Bereicherung sein — wir
+      lernen voneinander.“</p>
+  </div>
+  <p>Zum Wandel der Werte zeigt sie eine Umfrage <b>„Veränderungen der Kindheit“</b>: 60-Jährige
+    und Ältere gegen 16- bis 29-Jährige. Bei „Ich bin ziemlich streng erzogen worden“ und „Wenn
+    ich als Kind etwas angestellt hatte, bekam ich eine Ohrfeige oder eine Tracht Prügel“ liegen
+    die Älteren weit vorn; bei „Ich hatte eine glückliche Kindheit“, „Meine Eltern haben mich oft
+    gelobt“ und „Meine Eltern haben respektiert, dass ich meine eigenen Bereiche hatte“ die
+    Jüngeren. <b>Werte wandeln sich also auch innerhalb einer einzigen Kultur.</b></p>
+</section>
+
+<section id="laender">
+  <h2>Derselbe Wert, verschiedene Länder</h2>
+  <p class="lead">Frau Knauf geht sechs Werte einzeln durch. Diese Beispiele lassen sich gut
+    abfragen — lern sie als Paare.</p>
+
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Wert</th><th>Land</th><th>Was dort darunter verstanden wird</th></tr></thead>
+      <tbody>
+        <tr><td class="land" rowspan="3">Patriotismus</td><td>USA</td><td>Sternenbanner, Flagge</td></tr>
+        <tr><td>Japan</td><td>Kaiser</td></tr>
+        <tr><td>Niederlande</td><td>Nicht wichtig — wenn überhaupt, dann regionaler Patriotismus</td></tr>
+
+        <tr><td class="land" rowspan="3">Glück</td><td>USA</td>
+            <td>Sehr hoher Wert des <b>individuellen</b> Glücks (ähnlich in vielen anderen
+              Ländern der westlichen Welt)</td></tr>
+        <tr><td>Japan</td><td><b>Pflicht statt Glück</b></td></tr>
+        <tr><td>Viele andere Länder</td><td>Glück entsteht durch <b>sozialen Zusammenhalt</b></td></tr>
+
+        <tr><td class="land" rowspan="2">Familie</td>
+            <td>Südeuropa, viele islamisch geprägte Länder</td>
+            <td>Hoher Wert familiärer Zusammengehörigkeit (Großfamilien),
+              <b>eigene Pflege der Eltern</b></td></tr>
+        <tr><td>Deutschland</td>
+            <td>Zunehmend Reduzierung auf die Kernfamilie, hohe Scheidungsraten mit
+              Alleinerziehenden, <b>Pflege eher durch Pflegefachkräfte</b></td></tr>
+
+        <tr><td class="land" rowspan="3">Sexualität</td><td>USA</td>
+            <td>Tabu — ebenso wie in vielen anderen Ländern und Kulturen der Welt,
+              gegebenenfalls sogar Bestrafung einzelner sexueller Praktiken</td></tr>
+        <tr><td>Japan</td><td>Keine moralische Einstellung</td></tr>
+        <tr><td>Belgien</td><td>Sexuelle Selbstverwirklichung als Wert, ebenso wie in vielen
+          anderen Ländern insbesondere der westlichen Welt</td></tr>
+
+        <tr><td class="land" rowspan="6">Wahrheit</td><td>China</td>
+            <td>Höflichkeit führt zu unbeständiger Wahrheit</td></tr>
+        <tr><td>Polynesien</td><td>Einfühlen führt zum Verschweigen von Wahrheit</td></tr>
+        <tr><td>Japan</td><td>Harmonie führt dazu, dass man Wahrheit schönredet</td></tr>
+        <tr><td>Italien</td><td>Familienloyalität macht Verhandlungen zur Wahrheit nötig</td></tr>
+        <tr><td>England</td><td>Tradition und Bedingungen führen zu ökonomischem Umgang mit
+          Wahrheit</td></tr>
+        <tr><td>Russland</td><td>Durch Akzeptanz von Unwahrheit pragmatische Anpassung der
+          Wahrheit („wranjo“ = flunkern)</td></tr>
+
+        <tr><td class="land" rowspan="5">Freiheit</td><td>USA</td>
+            <td>Freiheit der Firmengründung, Wirtschaftsliberalismus</td></tr>
+        <tr><td>Niederlande</td><td>Freie Gefühlsäußerungen</td></tr>
+        <tr><td>Viele westliche Länder</td><td>Freiheit der politischen Meinungsäußerung,
+          Bürgerrechte</td></tr>
+        <tr><td>Diktaturen</td><td>Freiheit als Leben außerhalb des Gefängnisses</td></tr>
+        <tr><td>Japan</td><td>Freies Leben ohne Gruppenzwänge</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gut"><b>Die Zeile, die für dich beruflich am wichtigsten ist:</b> „Familie“.
+    Wenn Angehörige darauf bestehen, die Grundpflege selbst zu übernehmen, ist das kein Misstrauen
+    gegen dich — es ist ein <b>Wert</b>. Und wenn eine deutsche Bewohnerin sagt, sie wolle ihren
+    Kindern „nicht zur Last fallen“, ist auch das ein Wert. Beides ist normal, nur eben nicht
+    dasselbe.</div>
+</section>
+
+<section id="vorurteile">
+  <h2>Vorurteile</h2>
+  <p class="lead">Die zweite Schulung, vom 24.07.2026. Sie beginnt mit einer Unterscheidung, die
+    ihr ganzes Argument trägt.</p>
+
+  <h3>Objektiv gegen subjektiv</h3>
+  <div class="zwei">
+    <div class="card" style="border-left:4px solid var(--blue);">
+      <span class="lbl" style="color:var(--blue);">Objektiv</span>
+      <ul class="tick">
+        <li>Wissenschaftlich nachweisbar</li>
+        <li>Unvoreingenommen</li>
+        <li>Nicht von Gefühlen und Vorurteilen bestimmt</li>
+        <li>Gegenständlich, wirklich, tatsächlich</li>
+        <li>Unabhängig vom Subjekt und seinem Bewusstsein existierend</li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:4px solid var(--purple);">
+      <span class="lbl" style="color:var(--purple);">Subjektiv</span>
+      <ul class="tick">
+        <li>Eigene, individuelle Wahrnehmung</li>
+        <li>Unsachlichkeit, Voreingenommenheit</li>
+        <li>Beeinflussung durch eigene Meinung, Gefühle, Interessen oder Vorurteile</li>
+      </ul>
+    </div>
+  </div>
+  <div class="achtung"><b>Ihr „Wichtig“-Kasten, wörtlich:</b> „Werte und Bewertungen sind
+    <b>immer</b> subjektiv bzw. durch eigene Wert- und Beurteilungsmaßstäbe geprägt!“<br>
+    Das heißt: Sobald du <em>bewertest</em>, bist du subjektiv. Beobachten kannst du objektiv —
+    bewerten nie.</div>
+
+  <h3>Was ein Vorurteil eigentlich ist</h3>
+  <div class="card">
+    <p>Frau Knauf verurteilt Vorurteile nicht — sie erklärt sie als Funktion des Gehirns:</p>
+    <ul class="tick">
+      <li><b>Unvermeidlicher Mechanismus</b> zwecks Selbstschutz und Verringerung der
+        Komplexität</li>
+      <li>Das Gehirn bildet einen <b>Durchschnitt</b> aus der Summe unserer Erfahrungen und
+        Eindrücke</li>
+      <li>Verhinderung von <b>Reiz- und Reflexionsüberflutung</b> in Entscheidungssituationen</li>
+      <li><b>Kategorisierung ermöglicht angemessene Reaktionen und macht Menschen
+        lebensfähig</b></li>
+    </ul>
+  </div>
+  <div class="info"><b>Der Satz, der in einer Klausur Punkte bringt:</b> Ein Vorurteil ist
+    zunächst kein moralischer Fehler, sondern eine <b>Abkürzung des Gehirns</b>. Es wird erst zum
+    Problem, wenn man es nicht bemerkt und nicht überprüft. Deshalb heißt der nächste Abschnitt
+    bei ihr „Überwindung“ und nicht „Vermeidung“.</div>
+
+  <h3>Weitere Ursachen für Vorurteile</h3>
+  <div class="card">
+    <ul class="tick">
+      <li><b>Gruppendruck</b></li>
+      <li><b>Soziale Ungleichheiten</b>, zum Beispiel Rationalisierung ökonomischer
+        Ungleichheiten</li>
+      <li><b>Erhöhung des eigenen Status</b>, vor allem bei geringem Selbstwert: die Abwertung
+        des Gegenübers dient der Selbsterhöhung</li>
+      <li><b>Sündenbocksuche</b>: Ersatzobjekte und -personen bei Frustrationen unbekannter oder
+        unlösbarer Ursachen</li>
+      <li><b>Fokussierung</b>: Wahrnehmung von Menschen nach den auffälligsten Merkmalen</li>
+    </ul>
+  </div>
+
+  <h3>Überwindung</h3>
+  <div class="card">
+    <ul class="tick">
+      <li><b>Hohe Professionalität</b> zur Bewusstmachung und Überwindung von Vorurteilen</li>
+      <li><b>Fremdes und nicht Nachvollziehbares fördert die Bildung von Vorurteilen</b> —
+        wer etwas nicht versteht, füllt die Lücke mit einem Vorurteil</li>
+    </ul>
+  </div>
+</section>
+
+<section id="feedback">
+  <h2>Ihr Lösungsvorschlag: die Feedback-Kultur</h2>
+  <p class="lead">Sieben Regeln. Sie funktionieren im Team genauso wie im Gespräch mit
+    Angehörigen — und sie sind fast wörtlich prüfbar.</p>
+
+  <div class="card">
+    <ol>
+      <li><b>Konfrontation</b> — mit Beobachtung und Beschreibung sachlicher Verhaltensweisen —
+        ermöglicht <b>ergebnisoffene Kommunikation</b></li>
+      <li><b>Konfrontation statt Kritik</b></li>
+      <li><b>Fokus auf das Problem statt auf die Person</b></li>
+      <li><b>Spezifische bzw. konkrete statt allgemeine Stellungnahme</b></li>
+      <li><b>Änderung statt Beschuldigung</b></li>
+      <li><b>Zukunft statt Vergangenheit</b></li>
+      <li><b>Gemeinsamer Vorteil statt eigener Vorteil</b></li>
+    </ol>
+  </div>
+
+  <div class="zwei">
+    <div class="card" style="border-left:4px solid var(--bad);">
+      <span class="lbl" style="color:var(--bad);">So nicht</span>
+      <p>„Du bist immer unzuverlässig. Bei euch ist das ja wohl normal, dass man zu spät
+        kommt.“</p>
+      <p style="font-size:14px;color:var(--ink-soft);margin-top:8px;">Person statt Problem ·
+        allgemein statt konkret · Beschuldigung · Vergangenheit · Vorurteil über eine
+        ganze Gruppe.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--good);">
+      <span class="lbl" style="color:var(--good);">So</span>
+      <p>„Heute Morgen hat die Übergabe zehn Minuten später angefangen, weil du noch nicht da
+        warst. Was können wir tun, damit das nächste Woche klappt?“</p>
+      <p style="font-size:14px;color:var(--ink-soft);margin-top:8px;">Beobachtung · konkret ·
+        Problem statt Person · Zukunft · gemeinsamer Vorteil · ergebnisoffen.</p>
+    </div>
+  </div>
+  <p class="fr">C'est exactement la même logique que « Beobachtung oder Vorurteil ? » : tu décris
+    ce que tu as <b>vu</b>, tu ne dis pas ce que la personne <b>est</b>.</p>
+</section>
+
+<section id="auftraege">
+  <h2>Ihre Arbeitsaufträge</h2>
+  <p class="lead">Die Aufgaben, die Frau Knauf in den Folien stellt — falls du sie abgeben
+    oder vorbereiten musst.</p>
+  <div class="card">
+    <ol>
+      <li>Beschreiben Sie das Bild im Zusammenhang mit kultureller Vielfalt.</li>
+      <li>Wie würden Sie kulturelle Vielfalt definieren?</li>
+      <li>An welchen Anzeichen erkennen Sie kulturelle Vielfalt?</li>
+      <li>Erklären Sie die Bedeutung der folgenden Handzeichen.</li>
+      <li>Wie lange dauert durchschnittlicher Small Talk in Japan, Deutschland, England,
+        Finnland, Spanien und Italien, den USA, Frankreich?</li>
+      <li>Wodurch unterscheidet sich ein Vortrag in Deutschland, einem arabischen Land bzw.
+        Südeuropa, Australien, den USA, Finnland?</li>
+      <li>Warum ist es wichtig, seine interkulturellen Kompetenzen zu verbessern?</li>
+      <li>Welches sind kulturelle Hauptgruppen (Mitarbeiter und Bewohner bzw. Patienten) im
+        pflegerischen Bereich in Deutschland?</li>
+      <li>Welche grundsätzlichen Probleme, Konflikte und Herausforderungen können sich aufgrund
+        kultureller Vielfalt Ihrer Meinung nach im pflegerischen Bereich ergeben?</li>
+      <li>Entwickeln Sie ein Zwiebelmodell Deutschlands — alternativ des Rheinlands.</li>
+      <li>Welche Vorteile haben Werte? Welche Probleme können im Zusammenhang mit Werten
+        entstehen?</li>
+      <li>Machen Sie den „Kultur-Test“.</li>
+      <li>Welche Werteveränderungen könnten sich in zunehmend globalen Gesellschaften ergeben?</li>
+    </ol>
+  </div>
+  <div class="warn"><b>Zwei Aufgaben kann ich nicht für dich beantworten.</b> Aufgabe 1 bezieht
+    sich auf ein Bild, das in der PDF nur als Grafik vorliegt, und der „Kultur-Test“ aus Aufgabe 12
+    ist in den Folien nicht enthalten. Frag im Unterricht danach oder schick ihn mir.</div>
+</section>
+
+<section id="quiz">
+  <h2>Quiz — vierzehn Fragen</h2>
+  <p class="lead">Alle Antworten stehen oben auf dieser Seite.</p>
+  <div id="quizraum"></div>
+  <div class="punkte" id="punkte">Noch keine Frage beantwortet.</div>
+</section>
+
+</main>
+
+<footer>
+  <p><b>Quellen:</b> „Kulturelle Vielfalt — Einführung“, 51 Folien, Dr. Ortrud Knauf, 29.05.2026 ·
+    „Vorurteile“, 14 Folien, Dr. Ortrud Knauf, 24.07.2026.<br>
+    Auf dieser Seite steht ausschließlich, was in diesen beiden Präsentationen steht.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Handzeichen ---------- */
+  var GESTEN = [
+    { ico:"👌", nm:"OK-Zeichen", tit:"Daumen und Zeigefinger bilden einen Kreis",
+      eintraege:[
+        ["Europa, Nordamerika","OK"],
+        ["Russland, Türkei, Brasilien, Mittelmeer","Sexuelle Beleidigung, Homosexualität"],
+        ["Tunesien, Frankreich, Belgien","Null, wertlos"],
+        ["Japan","Geld, Münzen"]
+      ]},
+    { ico:"👍", nm:"Daumen hoch", tit:"Daumen nach oben gestreckt",
+      eintraege:[
+        ["Europa","Eins, prima"],
+        ["Australien","Du kannst mich mal"],
+        ["Griechenland","Fuck off"],
+        ["Japan","Mann, fünf"],
+        ["Weltweit","Anhalter-Zeichen"]
+      ]},
+    { ico:"✌️", nm:"Victory-Zeichen", tit:"Zeige- und Mittelfinger gespreizt",
+      eintraege:[
+        ["Großbritannien, Neuseeland, Malta","Fuck off"],
+        ["Deutschland","Sieg (Victory)"],
+        ["Frankreich","Frieden"],
+        ["USA","Zwei"],
+        ["Welt (tief gehalten)","Zwei"],
+        ["Griechenland (tief gehalten)","Fahr zur Hölle"]
+      ]},
+    { ico:"🤏", nm:"Kleiner Finger", tit:"Der kleine Finger allein ausgestreckt",
+      eintraege:[
+        ["Japan","Frau"],
+        ["Bali","Schlecht"],
+        ["Mittelmeer","Kleines Glied"],
+        ["Südamerika","Dünn"],
+        ["Frankreich","Nimm mich nicht auf den Arm"],
+        ["Aachen","Klenkes-Zeichen"]
+      ]}
+  ];
+
+  var gRaum = document.getElementById("gesten");
+  var gBox  = document.getElementById("gestenbox");
+
+  GESTEN.forEach(function(g, i){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "geste";
+    var ic = document.createElement("span"); ic.className = "ico"; ic.textContent = g.ico;
+    var nm = document.createElement("span"); nm.className = "nm"; nm.textContent = g.nm;
+    b.appendChild(ic); b.appendChild(nm);
+    b.addEventListener("click", function(){
+      gRaum.querySelectorAll(".geste").forEach(function(x){ x.classList.remove("sel"); });
+      b.classList.add("sel");
+      zeigeGeste(g);
+    });
+    gRaum.appendChild(b);
+    if(i === 0){ /* nichts vorauswählen — die Neugier ist der Punkt */ }
+  });
+
+  function zeigeGeste(g){
+    gBox.textContent = "";
+    var h = document.createElement("h4");
+    h.textContent = g.nm + " — " + g.tit;
+    gBox.appendChild(h);
+
+    var wrap = document.createElement("div");
+    wrap.className = "tabelle";
+    var t = document.createElement("table");
+    var thead = document.createElement("thead");
+    var trh = document.createElement("tr");
+    ["Wo","Was es dort bedeutet"].forEach(function(x){
+      var th = document.createElement("th"); th.textContent = x; trh.appendChild(th);
+    });
+    thead.appendChild(trh); t.appendChild(thead);
+
+    var tb = document.createElement("tbody");
+    g.eintraege.forEach(function(e){
+      var tr = document.createElement("tr");
+      var td1 = document.createElement("td"); td1.className = "land"; td1.textContent = e[0];
+      var td2 = document.createElement("td"); td2.textContent = e[1];
+      tr.appendChild(td1); tr.appendChild(td2); tb.appendChild(tr);
+    });
+    t.appendChild(tb); wrap.appendChild(t); gBox.appendChild(wrap);
+  }
+
+  /* ---------- Small Talk Balken ---------- */
+  var TALK = [
+    ["Deutschland", 2], ["USA", 2], ["Finnland", 2.5],
+    ["England", 10], ["Frankreich", 14], ["Japan", 17], ["Spanien / Italien", 30]
+  ];
+  var bRaum = document.getElementById("bars");
+  TALK.forEach(function(t){
+    var row = document.createElement("div"); row.className = "bar";
+    var l = document.createElement("span"); l.className = "l"; l.textContent = t[0];
+    var track = document.createElement("span"); track.className = "t";
+    var fill = document.createElement("i"); fill.style.width = (t[1] / 30 * 100) + "%";
+    track.appendChild(fill);
+    var v = document.createElement("span"); v.className = "v";
+    v.textContent = "ca. " + String(t[1]).replace(".", ",") + " Min";
+    row.appendChild(l); row.appendChild(track); row.appendChild(v);
+    bRaum.appendChild(row);
+  });
+
+  /* ---------- Zwiebelmodell ---------- */
+  var SCHICHTEN = [
+    { n:"Symbole", s:"ganz außen · sofort sichtbar",
+      t:"Worte, Gesten, Bilder, Gegenstände.",
+      bsp:"Ein Kopftuch, ein Kreuz an der Wand, das Klenkes-Zeichen, ein Wort in einer fremden Sprache. Das Erste, was du wahrnimmst — und das, was am leichtesten missverstanden wird." },
+    { n:"Helden", s:"sichtbar",
+      t:"Menschen mit Eigenschaften, die für die Gesellschaft sehr wertvoll sind.",
+      bsp:"Wen eine Kultur bewundert, verrät, was sie für wichtig hält. Frag eine Bewohnerin, wen sie als Kind bewundert hat — das ist Biografiearbeit und Kulturarbeit zugleich." },
+    { n:"Rituale", s:"sichtbar",
+      t:"Gemeinschaftliche Aktivitäten, die innerhalb einer Kultur sozial bedeutsam sind — zum Beispiel Begrüßung, Respekt.",
+      bsp:"Händeschütteln, das Gebet vor dem Essen, der Sonntagsgottesdienst, die feste Kaffeezeit um 15 Uhr. Rituale zu stören tut mehr weh, als man denkt." },
+    { n:"Werte und Normen", s:"innen · nicht mehr sichtbar",
+      t:"Erwartungen, die auf den Grundannahmen aufbauen.",
+      bsp:"Ob man seine Eltern selbst pflegt. Ob Pünktlichkeit wichtiger ist als das Gespräch. Ob Glück individuell ist oder aus der Gemeinschaft kommt. Werte siehst du nicht — du merkst sie erst, wenn jemand sie verletzt." },
+    { n:"Grundannahmen", s:"der Kern · unbewusst",
+      t:"Natur des Menschen, Beziehung zwischen Menschen und Ähnliches.",
+      bsp:"Ist der Mensch von Natur aus gut? Ist der Einzelne wichtiger als die Gruppe? Diese Annahmen hinterfragt niemand — sie fühlen sich nicht wie Meinungen an, sondern wie die Wirklichkeit." }
+  ];
+
+  var zwRaum = document.getElementById("zw");
+  var zwBox  = document.getElementById("zwbox");
+
+  SCHICHTEN.forEach(function(sch, i){
+    var b = document.createElement("button");
+    b.type = "button";
+    b.appendChild(document.createTextNode(sch.n));
+    var s = document.createElement("span"); s.className = "s"; s.textContent = sch.s;
+    b.appendChild(s);
+    b.addEventListener("click", function(){
+      zwRaum.querySelectorAll("button").forEach(function(x){ x.classList.remove("sel"); });
+      b.classList.add("sel");
+      zeigeSchicht(sch);
+    });
+    zwRaum.appendChild(b);
+    if(i === 0){ b.classList.add("sel"); }
+  });
+
+  function zeigeSchicht(sch){
+    zwBox.textContent = "";
+    var h = document.createElement("h4"); h.textContent = sch.n;
+    var p1 = document.createElement("p"); p1.innerHTML = "";
+    p1.appendChild(document.createTextNode(sch.t));
+    var p2 = document.createElement("p");
+    p2.style.cssText = "color:var(--ink-soft);font-size:15px;margin-bottom:0;";
+    p2.appendChild(document.createTextNode(sch.bsp));
+    zwBox.appendChild(h); zwBox.appendChild(p1); zwBox.appendChild(p2);
+  }
+  zeigeSchicht(SCHICHTEN[0]);
+
+  /* ---------- Quiz ---------- */
+  var FRAGEN = [
+    { f:"An welchen Anzeichen erkennt man laut Frau Knauf kulturelle Vielfalt?",
+      o:["Gesichtsausdruck, Lachen, Verhalten, Körpersprache, Emotionalität",
+         "Staatsangehörigkeit, Sprache, Religion",
+         "Kleidung, Essen, Musik",
+         "Nur an der Sprache"],
+      r:0, e:"Die fünf Anzeichen sind Gesichtsausdruck, Lachen, Verhalten, Körpersprache und Emotionen bzw. Emotionalität — alles Dinge, die man beobachtet." },
+    { f:"Was bedeutet das OK-Zeichen in Russland, der Türkei, Brasilien und im Mittelmeerraum?",
+      o:["Eine sexuelle Beleidigung","OK, alles in Ordnung","Null, wertlos","Geld"],
+      r:0, e:"In Europa und Nordamerika heißt es OK, in Tunesien, Frankreich und Belgien „null, wertlos“, in Japan „Geld“ — und in Russland, der Türkei, Brasilien und am Mittelmeer ist es eine sexuelle Beleidigung." },
+    { f:"Was bedeutet der ausgestreckte kleine Finger in Aachen?",
+      o:["Das Klenkes-Zeichen","Frau","Schlecht","Nimm mich nicht auf den Arm"],
+      r:0, e:"In Japan bedeutet er „Frau“, auf Bali „schlecht“, in Südamerika „dünn“, in Frankreich „nimm mich nicht auf den Arm“ — und in Aachen ist es das Klenkes-Zeichen." },
+    { f:"In welchem Land dauert der Small Talk zu Beginn eines Gesprächs am längsten?",
+      o:["Spanien und Italien","Deutschland","Finnland","USA"],
+      r:0, e:"Laut dem Schaubild dauert er in Spanien und Italien etwa 30 Minuten, in Deutschland, Finnland und den USA dagegen nur wenige Minuten." },
+    { f:"Worauf kommt es bei einem Vortrag in den USA an — und wie lange dauert er?",
+      o:["Humor, Witze, Selbstdarstellung, Angriffslust — etwa 20 Minuten",
+         "Solidität, Technik, Struktur, Handouts — über 60 Minuten",
+         "Bescheidenheit und Modernität — 45 Minuten",
+         "Persönliche Geschichten — Kurzvortrag"],
+      r:0, e:"Deutschland: Solidität, Technik, Struktur, Handouts, 60+ Minuten. USA: Humor, Witze, Selbstdarstellung, Angriffslust, 20 Minuten. Finnland: Modernität, Qualität, Technik, Bescheidenheit, 45 Minuten." },
+    { f:"Welche drei Kulturtypen unterscheidet Lewis?",
+      o:["Linear-aktiv, multiaktiv, reaktiv",
+         "Individuell, kollektiv, gemischt",
+         "Westlich, östlich, südlich",
+         "Monotheistisch, polytheistisch, atheistisch"],
+      r:0, e:"Linear-aktiv: Planung, Organisation, Daten, eine Aktion. Multiaktiv: lebhaft, gesprächsfreudig, mehrere Aktionen. Reaktiv: Höflichkeit, Respekt, Zuhören." },
+    { f:"Was besteht laut Hofstede aus dem „Herz von Kultur“?",
+      o:["Traditionelle Ideen und die Werte, die sie beinhalten",
+         "Sprache und Schrift",
+         "Gesetze und Regeln",
+         "Kunstwerke"],
+      r:0, e:"Kultur entsteht aus Mustern des Denkens, Fühlens und Interagierens; sie wird über Symbole übertragen; und ihr Herz besteht aus traditionellen Ideen und den entsprechenden Werten." },
+    { f:"Welche Schicht liegt im Zwiebelmodell ganz außen?",
+      o:["Symbole","Grundannahmen","Werte","Rituale"],
+      r:0, e:"Von außen nach innen: Symbole, Helden, Rituale, Werte und Normen, und im Kern die Grundannahmen. Rituale, Helden und Symbole sind durch bestimmte Ausdrücke und Praktiken gekennzeichnet — also sichtbar." },
+    { f:"Wie viele Ebenen von Kultur nennt Frau Knauf?",
+      o:["Acht","Drei","Fünf","Zwölf"],
+      r:0, e:"Internationale, nationale, regionale bzw. lokale, persönliche, geschlechtsspezifische, Generationen-, Organisations- und Firmenkultur." },
+    { f:"Wie unterscheidet sich der Wert „Familie“ zwischen Südeuropa und Deutschland?",
+      o:["Südeuropa: Großfamilie und eigene Pflege der Eltern — Deutschland: Kernfamilie, Pflege eher durch Pflegefachkräfte",
+         "Es gibt keinen Unterschied",
+         "In Deutschland ist die Großfamilie wichtiger",
+         "In Südeuropa übernimmt der Staat die Pflege"],
+      r:0, e:"In Südeuropa und vielen islamisch geprägten Ländern hat familiäre Zusammengehörigkeit einen hohen Wert, die Eltern werden selbst gepflegt. In Deutschland Reduzierung auf die Kernfamilie, hohe Scheidungsraten und Pflege eher durch Pflegefachkräfte." },
+    { f:"Was ist ein Vorurteil laut Frau Knauf in erster Linie?",
+      o:["Ein unvermeidlicher Mechanismus zum Selbstschutz und zur Verringerung von Komplexität",
+         "Ein moralischer Fehler",
+         "Eine bewusste Entscheidung",
+         "Eine Folge schlechter Erziehung"],
+      r:0, e:"Das Gehirn bildet einen Durchschnitt aus unseren Erfahrungen und verhindert damit Reiz- und Reflexionsüberflutung. Kategorisierung ermöglicht angemessene Reaktionen und macht Menschen lebensfähig. Zum Problem wird ein Vorurteil erst, wenn man es nicht überprüft." },
+    { f:"Was bedeutet „Sündenbocksuche“ als Ursache für Vorurteile?",
+      o:["Ersatzobjekte und -personen bei Frustrationen unbekannter oder unlösbarer Ursachen",
+         "Die Suche nach dem tatsächlich Schuldigen",
+         "Wahrnehmung von Menschen nach den auffälligsten Merkmalen",
+         "Anpassung an die Gruppenmeinung"],
+      r:0, e:"Die Wahrnehmung nach auffälligsten Merkmalen heißt bei ihr „Fokussierung“, die Anpassung an die Gruppe „Gruppendruck“. Die Sündenbocksuche sucht Ersatzobjekte bei Frustrationen, deren Ursache man nicht kennt oder nicht lösen kann." },
+    { f:"Welcher Satz gehört zur Feedback-Kultur, die Frau Knauf vorschlägt?",
+      o:["Konfrontation statt Kritik, Fokus auf das Problem statt auf die Person",
+         "Kritik muss deutlich und persönlich sein",
+         "Man sollte Konflikte am besten vermeiden",
+         "Vergangenes muss vollständig aufgearbeitet werden"],
+      r:0, e:"Ihre Regeln: Konfrontation statt Kritik · Problem statt Person · konkret statt allgemein · Änderung statt Beschuldigung · Zukunft statt Vergangenheit · gemeinsamer Vorteil statt eigener Vorteil." },
+    { f:"Was gilt laut ihrer Folie IMMER als subjektiv?",
+      o:["Werte und Bewertungen","Wissenschaftliche Messungen","Beobachtungen","Gesetze"],
+      r:0, e:"Wörtlich: „Werte und Bewertungen sind immer subjektiv bzw. durch eigene Wert- und Beurteilungsmaßstäbe geprägt.“ Beobachten kannst du sachlich — bewerten nie." }
+  ];
+
+  var raum = document.getElementById("quizraum");
+  var anzeige = document.getElementById("punkte");
+  var beantwortet = 0, richtig = 0;
+
+  // Antworten mischen, damit die richtige nicht immer an derselben Stelle steht
+  function mischen(liste, richtigerIndex){
+    var paare = liste.map(function(t, j){ return { t: t, ok: j === richtigerIndex }; });
+    for(var i = paare.length - 1; i > 0; i--){
+      var k = Math.floor(Math.random() * (i + 1));
+      var tmp = paare[i]; paare[i] = paare[k]; paare[k] = tmp;
+    }
+    return paare;
+  }
+
+  FRAGEN.forEach(function(fr, i){
+    var box = document.createElement("div"); box.className = "q";
+    var titel = document.createElement("p"); titel.className = "frg";
+    titel.textContent = (i + 1) + ". " + fr.f;
+    box.appendChild(titel);
+
+    var opts = document.createElement("div"); opts.className = "opts";
+    var erkl = document.createElement("div"); erkl.className = "erkl"; erkl.textContent = fr.e;
+
+    mischen(fr.o, fr.r).forEach(function(paar){
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "opt"; b.textContent = paar.t;
+      if(paar.ok) b.dataset.ok = "1";
+      b.addEventListener("click", function(){
+        if(box.dataset.fertig === "1") return;
+        box.dataset.fertig = "1";
+        beantwortet++;
+        if(paar.ok) richtig++;
+        opts.querySelectorAll(".opt").forEach(function(x){ x.classList.add("aus"); });
+        b.classList.add(paar.ok ? "richtig" : "falsch");
+        if(!paar.ok) opts.querySelector('.opt[data-ok="1"]').classList.add("richtig");
+        erkl.classList.add("an");
+        anzeige.textContent = richtig + " von " + beantwortet + " richtig · "
+          + FRAGEN.length + " Fragen insgesamt";
+      });
+      opts.appendChild(b);
+    });
+
+    box.appendChild(opts); box.appendChild(erkl); raum.appendChild(box);
+  });
+})();
+</script>

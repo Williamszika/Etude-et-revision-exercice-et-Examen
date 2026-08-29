@@ -430,6 +430,16 @@
   var anzeige = document.getElementById("punkte");
   var beantwortet = 0, richtig = 0;
 
+  // Antworten mischen, damit die richtige nicht immer an derselben Stelle steht
+  function mischen(liste, richtigerIndex){
+    var paare = liste.map(function(t, j){ return { t: t, ok: j === richtigerIndex }; });
+    for(var i = paare.length - 1; i > 0; i--){
+      var k = Math.floor(Math.random() * (i + 1));
+      var tmp = paare[i]; paare[i] = paare[k]; paare[k] = tmp;
+    }
+    return paare;
+  }
+
   FRAGEN.forEach(function(fr, i){
     var box = document.createElement("div");
     box.className = "q";
@@ -445,19 +455,20 @@
     erkl.className = "erkl";
     erkl.textContent = fr.e;
 
-    fr.o.forEach(function(text, j){
+    mischen(fr.o, fr.r).forEach(function(paar){
       var b = document.createElement("button");
       b.type = "button";
       b.className = "opt";
-      b.textContent = text;
+      b.textContent = paar.t;
+      if(paar.ok) b.dataset.ok = "1";
       b.addEventListener("click", function(){
         if(box.dataset.fertig === "1") return;
         box.dataset.fertig = "1";
         beantwortet++;
-        if(j === fr.r) richtig++;
+        if(paar.ok) richtig++;
         opts.querySelectorAll(".opt").forEach(function(x){ x.classList.add("aus"); });
-        b.classList.add(j === fr.r ? "richtig" : "falsch");
-        if(j !== fr.r) opts.children[fr.r].classList.add("richtig");
+        b.classList.add(paar.ok ? "richtig" : "falsch");
+        if(!paar.ok) opts.querySelector('.opt[data-ok="1"]').classList.add("richtig");
         erkl.classList.add("an");
         anzeige.textContent = richtig + " von " + beantwortet + " richtig · "
           + FRAGEN.length + " Fragen insgesamt";

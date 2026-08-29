@@ -1,0 +1,1196 @@
+<title>Fünf Religionen am Pflegebett</title>
+<style>
+  :root{
+    --paper:#f5f3f0;--paper-2:#ebe7e1;--card:#fffefc;--ink:#1e1c19;--ink-soft:#55504a;--line:#ded7cd;
+    --accent:#8a6a2f;--accent-deep:#6a4f1d;--accent-soft:#f0e7d6;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;
+    --blue:#35618a;--bluebg:#dce7f1;
+    --chr:#5b7fa8;--chrbg:#e0e9f2;
+    --isl:#2f7d6a;--islbg:#dcefea;
+    --jud:#5b6fa8;--judbg:#e2e5f4;
+    --bud:#a8703f;--budbg:#f4e6d8;
+    --hin:#a84f6a;--hinbg:#f6e0e6;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#161412;--paper-2:#11100e;--card:#201e1a;--ink:#f0ede8;--ink-soft:#b0a99f;--line:#35312a;
+    --accent:#d3b374;--accent-deep:#e6c990;--accent-soft:#2a2213;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;
+    --blue:#86b2d8;--bluebg:#15232e;
+    --chr:#93b6d9;--chrbg:#17242f;
+    --isl:#6fc4b0;--islbg:#122824;
+    --jud:#98a4dd;--judbg:#1a1d2f;
+    --bud:#dda878;--budbg:#2c2015;
+    --hin:#dd90a6;--hinbg:#2e171f;}}
+  :root[data-theme="dark"]{
+    --paper:#161412;--paper-2:#11100e;--card:#201e1a;--ink:#f0ede8;--ink-soft:#b0a99f;--line:#35312a;
+    --accent:#d3b374;--accent-deep:#e6c990;--accent-soft:#2a2213;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;
+    --blue:#86b2d8;--bluebg:#15232e;
+    --chr:#93b6d9;--chrbg:#17242f;
+    --isl:#6fc4b0;--islbg:#122824;
+    --jud:#98a4dd;--judbg:#1a1d2f;
+    --bud:#dda878;--budbg:#2c2015;
+    --hin:#dd90a6;--hinbg:#2e171f;}
+  :root[data-theme="light"]{
+    --paper:#f5f3f0;--paper-2:#ebe7e1;--card:#fffefc;--ink:#1e1c19;--ink-soft:#55504a;--line:#ded7cd;
+    --accent:#8a6a2f;--accent-deep:#6a4f1d;--accent-soft:#f0e7d6;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;
+    --blue:#35618a;--bluebg:#dce7f1;
+    --chr:#5b7fa8;--chrbg:#e0e9f2;
+    --isl:#2f7d6a;--islbg:#dcefea;
+    --jud:#5b6fa8;--judbg:#e2e5f4;
+    --bud:#a8703f;--budbg:#f4e6d8;
+    --hin:#a84f6a;--hinbg:#f6e0e6;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding:46px 20px 30px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:0;z-index:30;background:var(--paper-2);border-bottom:1px solid var(--line);
+    padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);background:var(--card);}
+
+  main{max-width:62rem;margin:0 auto;padding:0 18px 90px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:26px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.05rem;font-weight:600;margin:20px 0 6px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px 22px 18px;margin:16px 0;}
+  .card > :first-child{margin-top:0;}
+  .card > :last-child{margin-bottom:0;}
+  .lbl{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+
+  ul,ol{padding-left:1.2em;margin:10px 0;}
+  li{margin:5px 0;}
+  ul.tick{list-style:none;padding-left:0;}
+  ul.tick li{padding-left:1.7em;position:relative;}
+  ul.tick li::before{content:"▸";position:absolute;left:.35em;color:var(--rel,var(--accent));}
+
+  .tabelle{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:12px;}
+  table{border-collapse:collapse;width:100%;min-width:600px;background:var(--card);}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;
+    font-size:14.5px;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.thema{font-weight:600;white-space:nowrap;}
+
+  .warn{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .info{background:var(--bluebg);border-left:4px solid var(--blue);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:10px;padding:15px 18px;margin:16px 0;}
+
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+  @media (max-width:660px){.zwei{grid-template-columns:1fr;}}
+
+  /* Religionsblöcke */
+  .rel{border:1px solid var(--line);border-radius:16px;background:var(--card);margin:22px 0;
+    overflow:hidden;border-left:5px solid var(--rel);}
+  .rel > .kopf{padding:16px 22px;background:var(--relbg);display:flex;flex-wrap:wrap;
+    align-items:baseline;gap:12px;border-bottom:1px solid var(--line);}
+  .rel > .kopf h3{margin:0;font-size:1.4rem;color:var(--rel);}
+  .rel > .kopf .tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+    color:var(--ink-soft);}
+  .rel > .inhalt{padding:6px 22px 20px;}
+  .rel .lbl{color:var(--rel);}
+  .rel .card{border-left:3px solid var(--rel);}
+
+  details.mehr{margin:12px 0;border:1px solid var(--line);border-radius:10px;background:var(--paper);}
+  details.mehr > summary{cursor:pointer;list-style:none;padding:11px 16px;font-size:14.5px;
+    color:var(--ink-soft);display:flex;align-items:center;gap:9px;}
+  details.mehr > summary::-webkit-details-marker{display:none;}
+  details.mehr > summary::before{content:"＋";font-family:var(--mono);font-weight:700;color:var(--rel,var(--accent));}
+  details.mehr[open] > summary::before{content:"－";}
+  details.mehr > summary:focus-visible{outline:2px solid var(--accent);outline-offset:-2px;border-radius:10px;}
+  details.mehr .rumpf{padding:0 16px 14px;}
+
+  /* Vergleichsfilter */
+  .filter{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0 4px;}
+  .filter button{font:inherit;font-size:13.5px;padding:7px 14px;border-radius:999px;
+    border:1px solid var(--line);background:var(--card);color:var(--ink-soft);cursor:pointer;}
+  .filter button:hover{border-color:var(--accent);color:var(--ink);}
+  .filter button.sel{background:var(--accent);border-color:var(--accent);color:var(--card);}
+  .filter button:focus-visible{outline:2px solid var(--accent-deep);outline-offset:2px;}
+
+  /* Quiz */
+  .q{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:18px 20px;margin:14px 0;}
+  .q .frg{font-weight:600;margin:0 0 10px;}
+  .q .opts{display:grid;gap:7px;}
+  .opt{display:block;width:100%;text-align:left;font-family:var(--sans);font-size:15.5px;
+    padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--paper);
+    color:var(--ink);cursor:pointer;}
+  .opt:hover:not(.aus){border-color:var(--accent);}
+  .opt:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  .opt.richtig{background:var(--goodbg);border-color:var(--good);}
+  .opt.falsch{background:var(--badbg);border-color:var(--bad);}
+  .q .erkl{display:none;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line);
+    font-size:15px;color:var(--ink-soft);}
+  .q .erkl.an{display:block;}
+  .punkte{font-family:var(--mono);font-size:13px;text-align:center;padding:14px;
+    border:1px solid var(--line);border-radius:12px;background:var(--paper-2);margin-top:18px;}
+
+  footer{border-top:1px solid var(--line);margin-top:70px;padding:30px 20px 50px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Dr. Ortrud Knauf · 22.07.2026 · 88 Folien</p>
+  <h1>Fünf Religionen am Pflegebett</h1>
+  <p class="sub">Christentum, Islam, Judentum, Buddhismus, Hinduismus — jeweils entlang derselben
+    acht Fragen: Glaubenspraxis, Sprache, Bekleidung, Pflege, Essen, Sterben und Tod,
+    Tagesstruktur, Kommunikation. Kein Länderwissen, sondern das, was am Bett konkret anders ist.
+    <span class="fr">Tout vient de la présentation de Dr. Knauf — rien d'ajouté.</span></p>
+  <div class="meta"><span>5 Religionen</span><span>8 Vergleichsachsen</span>
+    <span>Vergleichstabelle mit Filter</span><span>16 Quizfragen</span></div>
+</header>
+
+<nav class="toc">
+  <a href="#achsen">Die acht Achsen</a>
+  <a href="#christentum">Christentum</a>
+  <a href="#islam">Islam</a>
+  <a href="#judentum">Judentum</a>
+  <a href="#buddhismus">Buddhismus</a>
+  <a href="#hinduismus">Hinduismus</a>
+  <a href="#vergleich">Vergleich</a>
+  <a href="#fazit">Fazit</a>
+  <a href="#auftraege">Arbeitsaufträge</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<main>
+
+<section id="achsen">
+  <h2>Die acht Achsen</h2>
+  <p class="lead">Frau Knauf geht jede Religion nach demselben Raster durch. Wenn du dieses
+    Raster im Kopf hast, kannst du in einer Prüfung jede Religion strukturiert abarbeiten —
+    und im Dienst weißt du, welche Fragen du überhaupt stellen musst.</p>
+  <div class="card">
+    <ol>
+      <li>Religiöse Sozialisation und Glaubenspraxis</li>
+      <li>Sprache</li>
+      <li>Bekleidung</li>
+      <li>Pflege</li>
+      <li>Essgewohnheiten</li>
+      <li>Umgang mit Sterben und Tod</li>
+      <li>Tagesstruktur und Aktivitäten</li>
+      <li>Kommunikation</li>
+    </ol>
+  </div>
+  <p>Die fünf Weltreligionen sind Christentum, Islam, Judentum, Buddhismus und Hinduismus.
+    Zusätzlich nennt sie <b>religiöse Untergruppen und Strömungen</b> sowie
+    <b>Atheismus, Esoterik und Sekten</b>.</p>
+</section>
+
+<!-- ================= CHRISTENTUM ================= -->
+<section id="christentum">
+  <div class="rel" style="--rel:var(--chr);--relbg:var(--chrbg);">
+    <div class="kopf"><h3>Christentum</h3>
+      <span class="tag">monotheistisch · Ergänzung: Atheismus</span></div>
+    <div class="inhalt">
+
+      <h4>Glaubenspraxis</h4>
+      <ul class="tick">
+        <li><b>Bibel</b> als Grundlage — Altes Testament („Zehn Gebote“) und das zentrale Neue
+          Testament, aufgezeichnet von den vier Evangelisten <b>Matthäus, Markus, Lukas,
+          Johannes</b></li>
+        <li>Leben des <b>Jesus von Nazareth</b> (Gottes Sohn), am Kreuz gestorben, um die
+          Menschheit zu erlösen</li>
+        <li>Glaube an <b>Auferstehung und ewiges Leben</b></li>
+        <li>Christliche Werte: <b>Gewaltlosigkeit, Menschenliebe, Barmherzigkeit,
+          Gerechtigkeit</b> (Bergpredigt)</li>
+        <li>Besondere Bedeutung des <b>Sonntags</b></li>
+      </ul>
+
+      <details class="mehr">
+        <summary>Die christlichen Feiertage im Jahreslauf — zum Aufklappen</summary>
+        <div class="rumpf">
+          <p>Frau Knauf merkt an, dass sie zum Teil heidnischen Ursprungs sind.</p>
+          <ul class="tick">
+            <li>Neujahr (1. Januar), Heilige Drei Könige (6. Januar)</li>
+            <li>Karneval mit Aschermittwoch (Beginn der Fastenzeit)</li>
+            <li>Palmsonntag (Beginn der Karwoche), Gründonnerstag (Letztes Abendmahl),
+              Karfreitag (Kreuzigung)</li>
+            <li>Ostersonntag · Himmelfahrt (40 Tage nach Ostern) · Pfingsten (50 Tage nach
+              Ostern) · Fronleichnam (60 Tage nach Ostern)</li>
+            <li>Mariä Himmelfahrt (im August, nicht überall)</li>
+            <li>Erntedank (meist erster Sonntag im Oktober), Reformationstag und Halloween
+              (31. Oktober)</li>
+            <li>Allerheiligen (1. November), Allerseelen (2. November)</li>
+            <li>St. Martin (11. November)</li>
+            <li>Volkstrauertag (2. Sonntag vor dem 1. Advent), Buß- und Bettag (evangelisch,
+              3. Sonntag im November), Totensonntag (1. Sonntag vor dem 1. Advent)</li>
+            <li>4 Adventssonntage, Nikolaus (6. Dezember), Weihnachten (24.–26. Dezember)</li>
+          </ul>
+        </div>
+      </details>
+
+      <h4>Sprache</h4>
+      <ul class="tick">
+        <li>Da dies die vorherrschende Glaubensrichtung in Deutschland ist, wird die deutsche
+          Sprache in der Regel sehr gut beherrscht</li>
+        <li>Wichtig bei der <b>älteren Generation</b>: häufig noch starke <b>regionale
+          Dialekte</b>. Hochdeutsch: Region um Hannover</li>
+        <li>Hauptdialekte: Berlinerisch, Hamburgerisch bzw. Norddeutsch, Bayrisch, Sächsisch,
+          Rheinländisch, Badisch, Saarländisch, Pfälzisch</li>
+        <li>Ausnahmen: italienische, griechische, spanische und osteuropäische Gastarbeiter
+          (vielfach eingebürgert) — dazu viele osteuropäische Pflegefachkräfte</li>
+      </ul>
+
+      <h4>Pflege</h4>
+      <ul class="tick">
+        <li>Intimbereich beim Waschen anderer Körperteile <b>bedecken</b></li>
+        <li>Für ausreichend <b>Wärme</b> sorgen: Fenster, Heizung, zeitnah abtrocknen, mit
+          Handtüchern abdecken</li>
+        <li>Individuelle Vorlieben und Abneigungen</li>
+        <li>Berücksichtigung des <b>Schamgefühls</b></li>
+      </ul>
+
+      <h4>Essgewohnheiten</h4>
+      <ul class="tick">
+        <li>Innerhalb Europas nationale und regionale Unterschiede</li>
+        <li><b>Südeuropa:</b> meist süßes Frühstück mit Fettgebäck (Spanien) und Joghurt
+          (Griechenland); sonst Fisch, Muscheln, Gemüse und Obst</li>
+        <li><b>Nordeuropa:</b> eher salziges Frühstück mit Käse, Wurst und Ei</li>
+        <li><b>Strenge Katholiken essen am Freitag nur Fisch</b></li>
+        <li><b>Deutschland:</b> Mittagessen als Hauptmahlzeit mit vielen Fleischgerichten — in
+          anderen Ländern eher Zwischenmahlzeit (kalte Salate, Salzgebäck)</li>
+        <li>Nachmittags Kaffee und Kuchen (England: eher Tee)</li>
+        <li>Abendessen ab 18 Uhr — in Südeuropa erst 21 Uhr</li>
+      </ul>
+
+      <h4>Sterben und Tod</h4>
+      <ul class="tick">
+        <li>Der Tod steht für <b>Endlichkeit, Sündhaftigkeit, Vorbereitung auf das ewige Leben,
+          Erlösung und Auferstehung</b></li>
+        <li><b>Krankensalbung</b> als Bußsakrament für Katholiken und Orthodoxe bei schwerer
+          Krankheit — zwecks Sündenvergebung und ewigem Leben</li>
+        <li><b>Priester frühzeitig informieren</b>: Salbung mit geweihtem Öl auf einem
+          Wattebausch an den fünf Sinnen</li>
+        <li><b>Sterbephase:</b> ruhige Körperpflege, Schweigen, leise Musik, Vorlesen,
+          gegebenenfalls religiöse Rituale, Fenster öffnen („Seelenfenster“), Tisch mit weißer
+          Tischdecke, Kreuz, zwei Kerzen und kleiner Schale mit Weihwasser</li>
+        <li><b>Nach dem Tod:</b> Kondolenzbuch, Foto mit schwarzem Rahmen und Kerzen mit
+          Lebensdaten, Nachttisch mit Kerze, leuchtendem Stein und Kreuz, Rosenblätter auf dem
+          Sterbebett; gegebenenfalls als Pflegekraft den Sarg bis zum Auto begleiten und an der
+          Beerdigung teilnehmen, Abschiedsfeier</li>
+      </ul>
+
+      <h4>Tagesstruktur, Aktivitäten und Kommunikation</h4>
+      <ul class="tick">
+        <li>Christliche Feste organisieren, Besuch einer Kirche, christliche Kulturvereine
+          einladen</li>
+        <li>Zur Begrüßung ist es üblich, <b>die Hand zu geben</b> — es sei denn aus hygienischen
+          Gründen</li>
+        <li><b>Berührungen</b> gelten als Zeichen von Nähe und menschlicher Verbundenheit, auch
+          zwischen Männern und Frauen</li>
+        <li>Man blickt Menschen bei der Ansprache <b>direkt an</b> — Wegschauen wirkt
+          „unehrlich“ — und kommuniziert offen zwischen den Geschlechtern</li>
+        <li>Ältere Menschen bieten jüngeren das „Du“ an</li>
+        <li>Tagesstruktur und Aktivitäten richten sich nach den physischen, psychischen und
+          emotionalen Möglichkeiten sowie den individuellen Wünschen</li>
+      </ul>
+
+      <div class="achtung"><b>Wichtig beim Umgang — und hier wird es heikel.</b>
+        Das Verweigern von Händeschütteln (außer aus hygienischen Gründen, etwa wegen Covid),
+        von direktem Anschauen sowie Kommunikationsscheu — besonders zwischen den Geschlechtern —
+        ist in diesem Kontext <b>kulturell problematisch</b>. Es kann als grundsätzliche Ablehnung
+        zwischenmenschlichen Kontakts, als Unehrlichkeit, gegebenenfalls sogar als
+        <b>feindselige Provokation</b> interpretiert werden.
+        <br><br>Genau hier stoßen zwei Religionen dieser Schulung aufeinander: Bei strengen
+        Muslimen und bei orthodoxen Juden ist das Nicht-Händeschütteln zwischen den Geschlechtern
+        die <em>korrekte</em> Form. Was in der einen Kultur Respekt ist, wirkt in der anderen wie
+        eine Beleidigung. Wenn du eine Prüfungsfrage zu interkulturellen Konflikten bekommst,
+        ist das dein bestes Beispiel.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ISLAM ================= -->
+<section id="islam">
+  <div class="rel" style="--rel:var(--isl);--relbg:var(--islbg);">
+    <div class="kopf"><h3>Islam</h3><span class="tag">monotheistisch</span></div>
+    <div class="inhalt">
+
+      <h4>Die fünf Säulen des Islam</h4>
+      <div class="card">
+        <ol>
+          <li><b>Glaubensbekenntnis:</b> Es gibt keinen Gott außer Allah, und Mohammed ist sein
+            Prophet</li>
+          <li><b>Gebet fünfmal täglich</b> auf sauberem Gebetsteppich</li>
+          <li><b>Fasten an Ramadan</b> — auch als Solidarität mit Hungrigen, Spenden; jedes Jahr
+            zeitliche Verschiebung wegen des Mondkalenders</li>
+          <li><b>Hadsch</b> — Pilgerfahrt nach Mekka einmal im Leben</li>
+          <li><b>Zakkat</b> (Almosengeben) — bei Entstehung des Islam gab es kein Sozialsystem</li>
+        </ol>
+      </div>
+      <ul class="tick">
+        <li>Grundlage ist der <b>Koran</b></li>
+        <li>Selbstbefriedigung und Homosexualität sind verboten</li>
+        <li><b>Rituelle Reinheit:</b> Entfernung der Vorhaut aus rituellen Gründen (umstritten) ·
+          Vorbereitung auf die Begegnung mit Gott im Gebet · <b>äußere Reinheit als Symbol für
+          innere Reinheit</b> — daraus folgt alles Weitere zur Pflege</li>
+      </ul>
+
+      <details class="mehr">
+        <summary>Fasten und Pflichtgebet im Detail</summary>
+        <div class="rumpf">
+          <p><b>Fasten:</b> Während des Monats Ramadan zwischen Morgendämmerung und
+            Sonnenuntergang keine feste und flüssige Nahrung, kein Rauchen, kein Sex. Am Ende
+            steht ein dreitägiges Ramadan-Fest. Sinn: das Beherrschen von Leidenschaften und
+            Begierden. <b>Kranke, Schwangere und Frauen während der Regelblutung sind von der
+            Fastenpflicht entbunden</b> — die Grenzen sind im Koran unklar.</p>
+          <p style="margin-top:10px;"><b>Pflichtgebet fünfmal täglich, ohne Störung:</b> rituelle
+            Waschung vor dem Gebet · Sauberkeit von Teppich und Gebetsraum · <b>Kranke beten
+            liegend oder sitzend</b> · besondere Bedeutung des Freitagsgebets.</p>
+        </div>
+      </details>
+
+      <h4>Sprache</h4>
+      <ul class="tick">
+        <li>Die <b>ältere Generation wird jetzt pflegebedürftig</b> — sie spricht oft kaum
+          oder nur gebrochenes Deutsch</li>
+        <li>Selbst in der Folgegeneration gegebenenfalls nur schlechte Deutschkenntnisse, wenn
+          zum Beispiel eine Frau mit niedrigem Bildungsstand aus der Türkei eingeheiratet hat</li>
+        <li>Schlechte Deutschkenntnisse der Ehefrau können auf die Kinder abfärben, die dann
+          gegebenenfalls <b>in keiner Sprache wirklich zuhause</b> sind</li>
+      </ul>
+
+      <h4>Bekleidung</h4>
+      <ul class="tick">
+        <li>Basis sind Koran, Sunna und gesellschaftliche Traditionen</li>
+        <li>Spezielle Bekleidungs- und Umgangsformen zwischen nicht verwandten und unverheirateten
+          Frauen und Männern</li>
+        <li>Der Körper hat eine besondere Stellung: <b>Schutz vor Blicken durch Fremde</b></li>
+        <li><b>Frauen:</b> Verhüllung außer Hände, Füße und Gesicht</li>
+        <li><b>Männer:</b> Verhüllung zumindest des Körpers zwischen Nabel und Knie, besser mehr</li>
+        <li>Kleider bei beiden nicht durchscheinend oder zu eng</li>
+        <li>In der Wohnung Schuhe ausziehen</li>
+      </ul>
+
+      <h4>Pflege — der wichtigste Abschnitt für deinen Dienst</h4>
+      <ul class="tick">
+        <li>In vielen Ländern ist Pflege beschränkt auf <b>ärztliche Assistenz</b>; die
+          <b>Grundpflege übernehmen Angehörige</b></li>
+        <li>Intimsphäre ist zentral: <b>fremde Hilfe bei der Pflege ist grundsätzlich
+          problematisch</b></li>
+        <li>Beim Waschen wird <b>immer ein Teil bedeckt</b>, Genitalien müssen verborgen werden —
+          Schutz vor Blicken</li>
+        <li>Selbst im Krankheits- oder Pflegefall gegebenenfalls <b>keine Entkleidung vor
+          gegengeschlechtlichen Ärzten oder Pflegern</b></li>
+        <li>Betroffene bemühen sich, sich selbst zurückzunehmen — <b>das führt im Krankheitsfall
+          zu Unwohlsein und Leid</b></li>
+        <li>Zur Grundhygiene gehören auch Nägel, das Rasieren von Körperhaaren (außer Kopfhaar
+          und Bart) und Bartpflege</li>
+        <li><b>Waschung nur unter fließendem Wasser</b> — im Bett deshalb Pflege mit Krug und
+          Waschschüssel durchführen</li>
+        <li>Blut, Urin und Stuhlgang sind <b>unrein</b>: Wasserkanne zur Reinigung nach der
+          Toilette, dezente Entsorgung der Ausscheidungen</li>
+      </ul>
+
+      <div class="card">
+        <span class="lbl">Zwei Arten von Waschungen laut ritueller Reinheit</span>
+        <div class="zwei">
+          <div>
+            <p><b>1. Ganzwaschung (Vollbad)</b> nach:</p>
+            <ul><li>Wochenbett</li><li>Menstruation</li><li>sexuellen Ergüssen</li>
+              <li>vor dem Freitagsgebet</li>
+              <li>ärztlichen Untersuchungen im Intimbereich</li></ul>
+          </div>
+          <div>
+            <p><b>2. Teilwaschung:</b></p>
+            <ul><li>Fünfmal täglich vor dem Pflichtgebet: Hände, Unterarme, Mund, Zähne, Nase,
+              Gesicht, Ohren, Füße bis über die Knöchel</li>
+              <li>nach Tiefschlaf</li>
+              <li>nach Berührung mit unreinen Stoffen wie Stuhlgang, Urin oder Blut</li></ul>
+          </div>
+        </div>
+        <p style="margin-top:12px;" class="warn" role="note"><b>Der Satz, den viele Pflegekräfte
+          nicht wissen:</b> „Waschlappen ist unhygienisch, stattdessen Reinigung mit der linken
+          Hand.“ Wenn du mit dem Waschlappen kommst, machst du aus deiner Sicht alles richtig —
+          und tust aus Sicht der Bewohnerin das Gegenteil von sauber.</p>
+      </div>
+
+      <h4>Essgewohnheiten</h4>
+      <ul class="tick">
+        <li>Händewaschung vor und nach dem Essen, <b>Essen mit der rechten Hand</b></li>
+        <li><b>Kein Schweinefleisch</b> — auch nichts, was daneben liegt</li>
+        <li>Gegebenenfalls nur <b>geschächtetes Fleisch</b> (nach islamischen Ritualen
+          geschlachtet) ohne Blut</li>
+        <li>Alternative: vegetarische Kost frei von tierischen Fetten</li>
+        <li><b>Kein Alkohol</b> — auch nicht in Speisen, und <b>keine flüssigen Arzneien mit
+          Alkohol</b></li>
+        <li>Bei Medikamenten gelten Sonderregeln, gegebenenfalls <b>Halal-Medikamente</b>;
+          <b>keine aus Schwein gewonnenen Präparate oder Arzneibestandteile</b>, zum Beispiel
+          Gelatine</li>
+        <li>Schwarzer Tee muss „schwarz“ sein</li>
+        <li><b>Ein Mann darf einer Frau nicht anreichen</b></li>
+      </ul>
+      <div class="info">Das mit der <b>Gelatine</b> ist die Falle im Alltag: Sie steckt in
+        Kapselhüllen und in manchen Nahrungsergänzungen. Frag bei neuen Medikamenten in der
+        Apotheke nach — das ist eine konkrete pflegerische Handlung, die du in einer Klausur
+        nennen kannst.</div>
+
+      <h4>Sterben und Tod</h4>
+      <p><b>Im Sterbeprozess:</b></p>
+      <ul class="tick">
+        <li>Gespräche über den Tod sind gegebenenfalls schwierig, <b>keine Trauer am
+          Sterbebett</b></li>
+        <li>Die sterbende Person sollte <b>nie allein sein</b> — Familie und möglichst auch ein
+          Imam</li>
+        <li>Der Sterbende gibt Rechenschaft ab und bittet um Vergebung</li>
+        <li>Sterbende <b>auf die rechte Seite drehen, Gesicht nach Mekka</b> für die fünf
+          täglichen Gebete (mit Waschung), Glaubensbekenntnis mit erhobenem rechtem Zeigefinger,
+          Bittgebet — entsprechende <b>Bettstellung nach Südosten</b></li>
+      </ul>
+      <p><b>Nach dem Tod:</b></p>
+      <ul class="tick">
+        <li><b>Totenwaschung</b>, innerhalb von <b>24 Stunden</b> in Seidentücher gewickelt ins
+          Grab legen, Begräbnis Richtung Mekka</li>
+        <li>Glaube ans Jenseits, Gebete durch Angehörige und Imam</li>
+        <li>Gefühle werden bei sehr gläubigen Muslimen nicht gezeigt, meist aber laute Klagen</li>
+        <li>Versorgung und Berührung in der Regel durch <b>Angehörige gleichen Geschlechts</b>,
+          Blickrichtung des Kopfes nach Mekka</li>
+        <li><b>Erdbestattung</b> — keine Verbrennung — innerhalb von 24 Stunden</li>
+        <li>Eigener Friedhofsbereich, zum Beispiel in <b>Aachen auf der Hüls</b></li>
+        <li>Spezialversicherung für die Beerdigung in der Heimat</li>
+      </ul>
+
+      <h4>Tagesstruktur und Aktivitäten</h4>
+      <ul class="tick">
+        <li><b>Sonnenkalender statt Mondkalender</b>, entsprechend verschiebt sich Neujahr</li>
+        <li><b>Der Islam prägt alle Lebensbereiche</b></li>
+        <li>Fünfmal täglich Pflichtgebet im Andachtsraum</li>
+        <li><b>Krankenbesuch ist Pflicht des Moslems</b></li>
+        <li><b>Angebotenes muss angenommen werden</b> (Höflichkeit)</li>
+        <li>Islamische Feste organisieren, Besuch einer Moschee organisieren, islamische
+          Kulturvereine einladen</li>
+        <li>Angebote auf Tauglichkeit prüfen, individuelle Wünsche beachten</li>
+        <li>Interkulturelle Angebote: Lieder, Gedichte, Märchen, Kino, Besuchsdienst, mediterrane
+          Märkte — gegebenenfalls ein „kultureller Aktivitätsschwerpunkt“</li>
+        <li>Gegebenenfalls <b>Hauptmahlzeit am Abend erwärmen</b> (Südländer)</li>
+        <li>Aufsteh-, Körperpflege- und Ernährungsrituale beachten</li>
+        <li><b>Man kann nicht sagen: „Lassen Sie das Schweinefleisch auf dem Teller!“</b></li>
+        <li>Kulturell tolerante Tischnachbarn und gegebenenfalls Zimmernachbarn</li>
+      </ul>
+
+      <h4>Kommunikation</h4>
+      <ul class="tick">
+        <li>Missverständnisse durch Sprachbehinderung; Probleme auch beim Ausfüllen von
+          Formularen — Stammblatt, Biografiebogen, Anamnese, Indexe, Protokolle</li>
+        <li><b>Schmerz wird oft laut geäußert</b></li>
+        <li>Strenge Muslime geben dem anderen Geschlecht nicht die Hand</li>
+        <li><b>Je mehr Kommunikation und Information, desto besser</b></li>
+        <li>Individuelle Bedürfnisse und Gewohnheiten möglichst im Beisein von Angehörigen mit
+          gutem Deutsch erfassen</li>
+        <li>Falls keine zweisprachigen Angehörigen: gegebenenfalls eine „zuständige“
+          Muttersprachler-Fachkraft oder ein <b>Dolmetscher</b> bei wichtigen Gesprächen</li>
+        <li><b>Bezugspflegekräfte</b> sollten zumindest einzelne Grußworte in der entsprechenden
+          Sprache lernen sowie Schlüsselwörter wie Essen, Seife, Medikament, „Wie geht es
+          Ihnen?“</li>
+        <li>Nonverbale Kommunikation beachten und selbst nutzen — auch <b>Bilder und
+          Piktogramme</b></li>
+        <li>Zurückhaltung, Respekt, Interesse, Akzeptanz, Selbstreflexion und die Fähigkeit zum
+          <b>Perspektivwechsel</b>; Beachtung von Körpersprache, Tonfall und kulturspezifischen
+          Kommunikationsstilen — gegebenenfalls Schulungen</li>
+      </ul>
+
+      <div class="gut"><b>Wichtig beim Umgang — die fünf Punkte, die sie hervorhebt:</b>
+        <ul class="tick" style="margin-top:8px;">
+          <li>Intimsphäre wahren — <b>das Händeschütteln vorher besprechen</b></li>
+          <li>Über die <b>Risiken des Fastens</b> aufklären</li>
+          <li>Bei der Pflege: Wertschätzung, Empathie, Respekt, Neugier, Sensibilität</li>
+          <li>Pflege, besonders das Waschen, möglichst durch <b>gleichgeschlechtliche
+            Pflegekräfte</b></li>
+          <li>Fünf tägliche Pflichtgebete berücksichtigen: im Gebetsraum <b>christliche Symbole
+            entfernen</b> oder einen eigenen Raum mit Waschbecken zur Verfügung stellen; den
+            Bewohnerraum so auswählen, dass viele Besucher — auch abends — möglich sind</li>
+        </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= JUDENTUM ================= -->
+<section id="judentum">
+  <div class="rel" style="--rel:var(--jud);--relbg:var(--judbg);">
+    <div class="kopf"><h3>Judentum</h3><span class="tag">monotheistisch</span></div>
+    <div class="inhalt">
+
+      <h4>Glaubenspraxis</h4>
+      <ul class="tick">
+        <li>Zentrales Buch ist das <b>Alte Testament</b></li>
+        <li>Besondere Bedeutung des <b>Samstags</b> — Sabbat von Freitagabend bis
+          Samstagabend</li>
+        <li><b>Arbeitsverbot einschließlich Hausarbeit.</b> Bei orthodoxen Juden werden weder
+          Lichter noch elektrische Klingeln genutzt — <b>dringend notwendige medizinische
+          Maßnahmen sind aber erlaubt</b></li>
+        <li><b>Schabbat:</b> Samstag als heiliger Ruhetag, spezielle Gebete, Tora-Lernen,
+          drei Schabbat-Mahlzeiten</li>
+      </ul>
+
+      <details class="mehr">
+        <summary>Die jüdischen Feste — zum Aufklappen</summary>
+        <div class="rumpf">
+          <ul class="tick">
+            <li><b>Rosch Haschana</b> — Neujahrsfest im Herbst, Tag der Buße und Umkehr zu Gott</li>
+            <li><b>Jom Kippur</b> — der strengste Feiertag, 10 Tage nach Rosch Haschana; Tag der
+              Buße und Vergebung, Ende der Reuezeit, Versöhnung nach Streit</li>
+            <li><b>Sukkot</b> — Laubhüttenfest, 4 Tage nach Jom Kippur, siebentägige fröhliche
+              Feier, oft in selbstgebauter Laubhütte; Erinnerung an die 40-jährige
+              Wüstenwanderung</li>
+            <li><b>Pessach</b> — Wallfahrtsfest zum Auszug aus Ägypten, Fest der ungesäuerten
+              Brote, Dauer 7 Tage, Beginn am christlichen Gründonnerstag vor Ostern</li>
+            <li><b>Schawuot</b> — Offenbarung Gottes mit den 10 Geboten am Berg Sinai, 50 Tage
+              nach Pessach</li>
+            <li><b>Chanukka</b> — Lichterfest mit neunarmigem Chanukka-Leuchter: eine Kerze jeden
+              Tag, die 9. Kerze wird zum Anzünden der 8 verwendet; Wiedereinweihung des
+              2. Jüdischen Tempels in Jerusalem 165 vor Christus</li>
+          </ul>
+        </div>
+      </details>
+
+      <h4>Sprache und Bekleidung</h4>
+      <ul class="tick">
+        <li>Ein Teil der jüdischen Mitbürger sind <b>deutsche Muttersprachler</b></li>
+        <li>Es gibt viele jüdische Menschen, die aus <b>Russland</b> (zum Beispiel Kasachstan)
+          immigriert sind und kein oder nur gebrochenes Deutsch sprechen</li>
+        <li>Sprachliche Vermittlung über Angehörige, eine Pflegefachkraft mit gleichem
+          sprachlichem Hintergrund, sonst Dolmetscher</li>
+        <li><b>Strenggläubige Juden:</b> Kippa oder Hut als Kopfbedeckung; verheiratete Frauen
+          mit kurzem und bedecktem Haar</li>
+      </ul>
+
+      <h4>Pflege</h4>
+      <ul class="tick">
+        <li><b>Sehr individuell</b>, auch entsprechend der religiösen Ausrichtung</li>
+        <li>Die jüdische Familie pflegt den Kranken und betet für ihn — im orthodoxen Judentum
+          <b>Übernahme der Grundpflege durch die Familie</b></li>
+        <li><b>Händewaschung als religiöser Ritus</b> nach dem Aufstehen, vor und nach jeder
+          Mahlzeit sowie vor jedem Gebet</li>
+        <li><b>Frauen</b> dürfen nie ohne Kleidung liegen oder stehen, immer Kopfbedeckung (bei
+          strenger Religionsausübung); rituelles Bad („Mikwe“) nach Geburt und Menstruation;
+          Waschungen gleichgeschlechtlich</li>
+        <li><b>Männer</b> nie ohne Kleidung liegen oder stehen; Waschungen von beiden
+          Geschlechtern; durchgängig Kopfbedeckung („Kippa“); der <b>Bart wird weder gewaschen
+          noch nass rasiert</b></li>
+        <li>Bettlägrige wünschen häufiges Händewaschen</li>
+        <li><b>Keine Körperpflege während des Sabbat</b> — außer bei grober Verschmutzung und aus
+          wichtigen gesundheitlichen Gründen</li>
+      </ul>
+
+      <h4>Essgewohnheiten — Kaschrut</h4>
+      <ul class="tick">
+        <li>Durch die Diaspora sind die Vorschriften sehr verbindend</li>
+        <li>Unterscheidung der Lebensmittel zwischen <b>koscher</b> (erlaubt), <b>treife</b>
+          (nicht erlaubt) und <b>parve</b> (neutral)</li>
+        <li><b>Schächten</b> = Verbot des Blutgenusses, das Blut gilt als Sitz der Seele</li>
+        <li>Unterschied zwischen <b>säkularen</b> Juden (zum Teil völlige Nichtbeachtung) und
+          <b>orthodoxen</b> Juden (strikteste Einhaltung)</li>
+        <li><b>Koscher:</b> Wiederkäuer mit gespaltenen Hufen — Rinder, Schafe, Ziegen, Damwild;
+          domestiziertes Geflügel; Fische mit Schuppen und Flossen</li>
+        <li><b>Nicht koscher:</b> Schwein, Kamel, Pferd; keine Gelatine</li>
+        <li><b>Parve (neutral):</b> Obst, Gemüse, Getreide, Eier, Honig</li>
+        <li><b>Keine Vermischung:</b> Fleisch und Fisch, Fleisch und Milch</li>
+        <li>Zertifizierung für Wein, Traubensaft, Milch</li>
+        <li>Besondere Vorschriften für Pessach: nur <b>Matzemehl</b> (ungesäuertes Brot)</li>
+      </ul>
+
+      <h4>Sterben und Tod</h4>
+      <ul class="tick">
+        <li>Im Sterbeprozess: <b>Glaubensbekenntnis (Schma Israel)</b>, Psalmengebet, dem
+          Sterbenden ein Blatt mit Psalmen anbieten, tägliche Hebräischgebete mit <b>Blick nach
+          Israel</b>, <b>Kaddisch</b> (Sterbegebet)</li>
+        <li><b>Möglichst kein Therapieabbruch — keine Lebensverkürzung</b></li>
+        <li><b>Das Diesseits ist wichtig:</b> entsprechend Nahrungsaufnahme, gegebenenfalls in
+          Gesprächen klären; häufig Hühnersuppe als Angebot. Trauer beschränkt auf die
+          Angehörigen</li>
+        <li>Feiern des Schabbat, Anzünden einer Kerze, Pessachfest beachten; Besuch des
+          <b>Rabbi</b> organisieren</li>
+      </ul>
+      <p><b>Nach dem Tod:</b></p>
+      <ul class="tick">
+        <li><b>Feder über Mund und Nase für 8 Minuten</b>, um die Atemtätigkeit zu prüfen;
+          Verschließen von Augen und Mund durch die Kinder</li>
+        <li><b>Den Toten nicht allein lassen</b>, Totenklage</li>
+        <li>Information des jüdischen Beerdigungsvereins (<b>Chewra Kaddischa</b>)</li>
+        <li>Leichenwaschung und -kleidung durch ein Familienmitglied oder die jüdische Gemeinde —
+          mit den <b>Füßen Richtung Tür auf dem Boden</b></li>
+        <li><b>An einem Feiertag oder am Sabbat den Körper nicht bewegen</b></li>
+        <li>In der Regel schnelle <b>Erdbestattung</b></li>
+      </ul>
+
+      <h4>Tagesstruktur und Kommunikation</h4>
+      <ul class="tick">
+        <li><b>Dreimal täglich Gebet</b>, idealerweise mit Gemeindemitgliedern in einem
+          separaten Raum</li>
+        <li><b>Kreuz aus dem Zimmer entfernen</b></li>
+        <li>Gegebenenfalls jüdische Feste organisieren: Schawuot, Chanukka, Pessach,
+          Rosch Haschana</li>
+        <li>Besuch einer Synagoge organisieren, jüdische Kulturvereine einladen</li>
+        <li>Jüdische Seniorenheime gibt es in <b>Köln, Frankfurt und Düsseldorf</b></li>
+      </ul>
+
+      <div class="achtung"><b>Wichtig beim Umgang:</b>
+        <ul class="tick" style="margin-top:8px;">
+          <li>Besondere Berücksichtigung der <b>deutsch-jüdischen Geschichte und des
+            Holocaust</b></li>
+          <li>Am Sabbat <b>häufiger nach Bewohnern bzw. Patienten schauen</b> — gegebenenfalls
+            besteht ein Klingelverbot, das heißt, die Person kann dich nicht rufen</li>
+          <li>Gegebenenfalls auf Pflege am Sabbat verzichten</li>
+          <li>Bettlägrigen häufig Händewaschen anbieten — rituelle Bedeutung, etwa nach dem
+            Aufstehen und vor jeder Mahlzeit</li>
+        </ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BUDDHISMUS ================= -->
+<section id="buddhismus">
+  <div class="rel" style="--rel:var(--bud);--relbg:var(--budbg);">
+    <div class="kopf"><h3>Buddhismus</h3><span class="tag">nicht-theistisch</span></div>
+    <div class="inhalt">
+
+      <h4>Glaubenspraxis</h4>
+      <ul class="tick">
+        <li><b>Keine Götter</b> — entscheidend ist der <b>Meditationsweg Buddhas</b></li>
+        <li>Der Buddhismus ist aus dem <b>Hinduismus</b> entstanden</li>
+        <li>Grundlegende Schriften: <b>Lehrreden (Sutras)</b> des Buddha, die disziplinarischen
+          Schriften (<b>Vinaya</b>) und die scholastischen bzw. philosophischen Texte
+          (<b>Abhidhamma</b>)</li>
+        <li>Viele Parallelen zum Christentum, etwa <b>Gewaltlosigkeit und Nächstenliebe</b> —
+          aber anstelle des Erlösers Jesus tritt die <b>Selbsterlösung durch Meditation</b></li>
+        <li>Viele Buddhisten waren früher Christen; relativ problemlose Integration im Alltag</li>
+        <li>Vor Ort: <b>Buddhistisches Zentrum in Aachen</b> (Oppenhoffallee), Hauptzentrum in
+          <b>Düsseldorf</b> (auch für Japaner / Zen-Buddhismus), <b>Kamalashila-Institut</b> in
+          Langenfeld in der Eifel</li>
+      </ul>
+
+      <h4>Pflege und Essen</h4>
+      <ul class="tick">
+        <li><b>Gleichgeschlechtliche Pflege ist Pflicht</b> — im Westen zum Teil auch liberaler
+          gehandhabt</li>
+        <li><b>Füße sind unrein</b> und sollten nie auf eine Statue, einen Altar oder Buddhas
+          Bild zeigen</li>
+        <li>Die meisten Buddhisten sind <b>Vegetarier</b> — aus Respekt vor Tieren</li>
+      </ul>
+      <div class="info">Das mit den Füßen ist eine Kleinigkeit, die im Zimmer sofort zählt:
+        Achte darauf, wie das Bett zur Statue oder zum Bild steht. Das kostet dich nichts und
+        zeigt, dass du es verstanden hast.</div>
+
+      <h4>Sterbeprozess</h4>
+      <ul class="tick">
+        <li><b>Positive, ruhige Atmosphäre</b> — der Tod ist Teil des normalen Lebenskreises</li>
+        <li><b>Waschung anbieten</b> vor der Meditation und nach Ausscheidungen</li>
+        <li><b>Ruhepausen für die Meditation</b>, Bilder und Statuen in Sichtweite</li>
+        <li><b>Sitzende Haltung oder Rechtsseitenlage</b> — das fördert den Energiefluss</li>
+        <li><b>Fragen, ob sedierende Medikamente erwünscht sind</b></li>
+        <li>Eine <b>buddhistische Kontaktperson</b> dazuholen</li>
+        <li>Therapieabbruch idealerweise bei <b>Neu- oder Vollmond</b></li>
+      </ul>
+
+      <h4>Nach dem Tod</h4>
+      <ul class="tick">
+        <li><b>30 Minuten Ruhe für den inneren Sterbeprozess</b> — ohne Berührung, bei offenem
+          Fenster, gegebenenfalls bis zu <b>3 Tage</b></li>
+        <li><b>Berührung zunächst an der Schädeldecke</b> (Fontanelle), Einwickeln in ein Laken,
+          Totenwache durch Buddhisten</li>
+        <li>Meist <b>Feuerbestattung</b>, mit Verteilung der Asche im Ganges oder einem anderen
+          Fluss</li>
+        <li><b>Autopsien und Organspenden sind in der Regel unproblematisch</b></li>
+      </ul>
+      <div class="gut">Die 30 Minuten ohne Berührung sind der Punkt, an dem sich buddhistische
+        und christliche Praxis am deutlichsten unterscheiden. Im christlichen Kontext ist die
+        rasche, würdevolle Versorgung des Leichnams das Richtige — hier ist es das <b>Warten</b>.
+        Frag die Angehörigen, bevor du anfängst.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HINDUISMUS ================= -->
+<section id="hinduismus">
+  <div class="rel" style="--rel:var(--hin);--relbg:var(--hinbg);">
+    <div class="kopf"><h3>Hinduismus</h3><span class="tag">polytheistisch</span></div>
+    <div class="inhalt">
+
+      <h4>Glaubenspraxis</h4>
+      <ul class="tick">
+        <li>Vorwiegend in Indien, auf Basis der <b>Bhagavadgita</b> (berühmtester Text) und der
+          <b>Veden</b> (Schriften)</li>
+        <li><b>Drittgrößte Weltreligion</b> nach Christentum und Islam, mit vielfältigen
+          Vorstellungswelten über 4000 Jahre</li>
+        <li>Bekannteste Götter (von 330 Millionen): <b>Brahma</b> (Schöpfer),
+          <b>Vishnu/Krishna</b> (Erhalter) und <b>Shiva</b> (Zerstörer)</li>
+        <li>Religiöse Experten bzw. Lehrer: <b>Gurus, Pandits</b></li>
+        <li>Viele jährliche Feste: <b>Mahashivaratri</b> (die Nacht Shivas), <b>Durgapuja</b>
+          (das Fest der Göttin Durga), <b>Diwali</b> (Lichterfest)</li>
+        <li><b>Ewiger Zyklus der Wiedergeburt (Samsara)</b>, der nur durch das Erreichen des
+          <b>Moksha</b> durchbrochen werden kann</li>
+        <li><b>4 Kasten, lebenslänglich bindend:</b> Gelehrte, Krieger, Händler und Hirten,
+          dienende Kaste</li>
+      </ul>
+
+      <h4>Pflege</h4>
+      <ul class="tick">
+        <li>Gegebenenfalls <b>sehr unterschiedliche Pflegepraxis</b></li>
+        <li><b>Starkes Schamgefühl</b>, gegebenenfalls gleichgeschlechtliche Pflege</li>
+        <li><b>Große Bedeutung der Körperpflege</b>, zum Beispiel tägliche
+          Ganzkörperwaschung — <b>aber Badewasser gilt gegebenenfalls als unrein</b></li>
+        <li>Alte und kranke Menschen werden in der Regel <b>durch Angehörige versorgt</b></li>
+        <li>Krankheit, Unfall und Leid gelten gegebenenfalls als <b>Bestrafung für früheres
+          Fehlverhalten</b> (Kastenwesen)</li>
+      </ul>
+      <div class="warn"><b>Der Widerspruch, den du kennen musst:</b> tägliche
+        Ganzkörperwaschung ist wichtig — <em>aber</em> stehendes Badewasser kann als unrein
+        gelten. Das heißt praktisch: fließendes Wasser oder frisches Wasser, nicht die
+        Wanne. Dieselbe Logik wie beim Islam.</div>
+
+      <h4>Essen</h4>
+      <ul class="tick">
+        <li><b>Regelmäßige Mundpflege nach jedem Essen</b></li>
+        <li>Gegebenenfalls Vegetarier oder Veganer; <b>Rindfleisch ist tabu</b> — die
+          „heilige Kuh“</li>
+      </ul>
+
+      <h4>Sterbeprozess</h4>
+      <ul class="tick">
+        <li>Der Sterbende trinkt nach Möglichkeit <b>Wasser aus dem Fluss Ganges</b> und
+          wiederholt dabei den Namen Gottes</li>
+        <li><b>Totenwaschung</b> als Reinigung der Seele</li>
+        <li>Unterschiedliche Zeremonien je nach Kaste und Region</li>
+        <li>Nach dem Tod <b>Feuerbestattung</b> mit gesungenen Gebeten (<b>Mantras</b>), später
+          wird die Asche im Fluss verstreut</li>
+        <li><b>Durch die Äußerung von Trauer erhofft man „Karmapunkte“</b></li>
+        <li>Gute Taten entscheiden über die Art der Wiedergeburt in Abhängigkeit vom
+          <b>Karma</b> — idealerweise als Mensch in möglichst hoher Kaste, auf dem Weg zur
+          Befreiung (Moksha)</li>
+      </ul>
+      <div class="info">Merk dir den Gegensatz zum Islam: Dort <b>keine Trauer am Sterbebett</b>,
+        im Hinduismus <b>bringt geäußerte Trauer Karmapunkte</b>. Wenn eine Familie laut trauert
+        und eine andere schweigt, ist beides richtig — nur eben in verschiedenen Kontexten.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VERGLEICH ================= -->
+<section id="vergleich">
+  <h2>Der Vergleich auf einen Blick</h2>
+  <p class="lead">Dieselbe Frage, fünfmal beantwortet. Filter nach der Religion, die dich gerade
+    interessiert.</p>
+
+  <div class="filter" id="filter"></div>
+  <div class="tabelle">
+    <table id="vgl">
+      <thead><tr><th>Frage</th><th>Christentum</th><th>Islam</th><th>Judentum</th>
+        <th>Buddhismus</th><th>Hinduismus</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <p style="font-size:14px;color:var(--ink-soft);">Wo ein Feld leer bleibt, steht dazu nichts in
+    den Folien von Frau Knauf — ich ergänze nichts aus anderen Quellen.</p>
+</section>
+
+<!-- ================= FAZIT ================= -->
+<section id="fazit">
+  <h2>Ihr Fazit</h2>
+  <p class="lead">Die letzten Folien ordnen alles noch einmal in zwei große Gruppen. Das ist die
+    Struktur, mit der du eine offene Prüfungsfrage beantworten kannst.</p>
+
+  <div class="zwei">
+    <div class="card" style="border-left:4px solid var(--jud);">
+      <span class="lbl" style="color:var(--jud);">Monotheistische und „lineare“ Religionen</span>
+      <p><b>Judentum → Christentum → Islam</b></p>
+      <ul class="tick">
+        <li>Besondere Verbundenheit durch das gemeinsame <b>Alte Testament</b> und zum Teil auch
+          das Neue Testament bzw. die Person Jesu</li>
+        <li>Die menschliche Existenz ist durch <b>Einmaligkeit und Einzigartigkeit</b> definiert,
+          mit klarem Startpunkt (Geburt) und Endpunkt (Tod)</li>
+        <li>Leben nach dem Tod im <b>„Paradies“</b></li>
+      </ul>
+    </div>
+    <div class="card" style="border-left:4px solid var(--hin);">
+      <span class="lbl" style="color:var(--hin);">Nicht-theistische / polytheistische und
+        „zirkuläre“ Religionen</span>
+      <p><b>Buddhismus</b> (nicht-theistisch) · <b>Hinduismus</b> (polytheistisch)</p>
+      <ul class="tick">
+        <li>Die menschliche Existenz ist durch den <b>ewigen Kreislauf der Wiedergeburt</b>
+          definiert</li>
+        <li><b>Nirwana als Endziel</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Vier Ausprägungen von Weltanschauungen</h3>
+  <div class="card">
+    <ol>
+      <li><b>Laissez-faire / atheistisch</b> — gegebenenfalls mit rein kulturellem
+        Religionsverständnis</li>
+      <li><b>Liberal</b></li>
+      <li><b>Konservativ</b></li>
+      <li><b>Fundamentalistisch / extremistisch</b>, einschließlich Sekten</li>
+    </ol>
+    <p><b>Das ist der wichtigste Punkt der ganzen Schulung:</b> Die Religion allein sagt dir
+      nichts über den Menschen vor dir. Zwei Muslime, zwei Juden, zwei Christen können auf
+      diesen vier Stufen völlig unterschiedlich stehen. <b>Frag immer die Person selbst.</b></p>
+  </div>
+
+  <h3>Merkmale von Sekten</h3>
+  <div class="card">
+    <ul class="tick">
+      <li>Klar bestimmtes Weltbild mit <b>Selbstüberhöhung</b> im Vergleich zu Menschen außerhalb
+        der Sekte</li>
+      <li>Festes Regelwerk zum korrekten Verhalten, gegebenenfalls mit „Aufstiegsmöglichkeiten“
+        innerhalb der Hierarchie</li>
+      <li><b>Charismatische Führung</b></li>
+      <li>Gezieltes <b>Anwerben von (jungen) Menschen in Krisen</b></li>
+      <li>Schaffen radikaler <b>Abhängigkeiten mit Ausbeutungstendenz</b></li>
+      <li><b>Emotionale Abhängigkeit</b> in doppeltem Sinn → <b>finanzielle Abhängigkeit</b></li>
+    </ul>
+    <p>Als Beispiele für Organisationen mit sektenähnlichen Merkmalen im Christentum nennt sie:
+      <b>Zeugen Jehovas, Scientology, Opus Dei</b>.</p>
+  </div>
+</section>
+
+<!-- ================= AUFTRÄGE ================= -->
+<section id="auftraege">
+  <h2>Ihre Arbeitsaufträge</h2>
+  <div class="card">
+    <ol>
+      <li>Stellen Sie eigene kulturelle Vorlieben und Abneigungen vor.</li>
+      <li>Erarbeiten Sie kulturelle Gemeinsamkeiten und Unterschiede.</li>
+      <li>Präsentieren Sie kulturspezifische Pflegeheime — zum Beispiel das türkische Pflegeheim
+        in Berlin-Kreuzberg, jüdische Seniorenhäuser in Köln, Aachen und Düsseldorf, das
+        jüdisch-christliche Seniorenprojekt in Frankfurt, kulturspezifische Pflegedienste.</li>
+      <li>Recherchieren Sie: www.maisonbilobahuis.de</li>
+      <li>Entwickeln Sie ein kulturell durchmischtes Pflegeheim.</li>
+      <li>Welche kulturellen Konflikte könnte es dort geben und wie würden Sie damit umgehen?
+        → Rollenspiele</li>
+    </ol>
+  </div>
+  <div class="gut"><b>Für Aufgabe 6 hast du das Material schon.</b> Die drei stärksten Konflikte
+    aus ihren eigenen Folien:
+    <ol style="margin-top:8px;">
+      <li><b>Händeschütteln.</b> Im christlich geprägten Kontext ist das Verweigern
+        „kulturell problematisch“ und kann als feindselige Provokation gelesen werden — bei
+        strengen Muslimen und orthodoxen Juden ist genau das die korrekte Form.</li>
+      <li><b>Wer die Grundpflege macht.</b> Im Islam, im orthodoxen Judentum und im Hinduismus
+        übernehmen das die Angehörigen. Für eine Einrichtung, die nach Leistungskomplexen
+        arbeitet, ist das erst einmal ein Problem — für die Familie ist es eine Pflicht.</li>
+      <li><b>Das gemeinsame Essen.</b> Kein Schweinefleisch, kein Rindfleisch, koscher, vegetarisch
+        — an einem Tisch. Ihr eigener Vorschlag lautet: kulturell tolerante Tischnachbarn
+        auswählen.</li>
+    </ol></div>
+</section>
+
+<section id="quiz">
+  <h2>Quiz — sechzehn Fragen</h2>
+  <p class="lead">Alle Antworten stehen oben auf dieser Seite.</p>
+  <div id="quizraum"></div>
+  <div class="punkte" id="punkte">Noch keine Frage beantwortet.</div>
+</section>
+
+</main>
+
+<footer>
+  <p><b>Quelle:</b> „Interkulturelle Pflege“, 88 Folien, Dr. Ortrud Knauf, 22.07.2026.<br>
+    Auf dieser Seite steht ausschließlich, was in dieser Präsentation steht.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Vergleichstabelle ---------- */
+  var RELIGIONEN = ["Christentum","Islam","Judentum","Buddhismus","Hinduismus"];
+
+  var ZEILEN = [
+    ["Gottesbild",
+      "Monotheistisch",
+      "Monotheistisch",
+      "Monotheistisch",
+      "Nicht-theistisch — keine Götter, sondern der Meditationsweg Buddhas",
+      "Polytheistisch — Brahma, Vishnu/Krishna, Shiva"],
+    ["Grundlage",
+      "Bibel: Altes und Neues Testament",
+      "Koran, Sunna",
+      "Altes Testament, Tora",
+      "Sutras, Vinaya, Abhidhamma",
+      "Bhagavadgita, Veden"],
+    ["Heiliger Tag",
+      "Sonntag",
+      "Freitag(sgebet)",
+      "Sabbat, Freitagabend bis Samstagabend",
+      "",
+      ""],
+    ["Gebet",
+      "",
+      "Fünfmal täglich, mit ritueller Waschung; Kranke beten liegend oder sitzend",
+      "Dreimal täglich, idealerweise mit Gemeindemitgliedern in separatem Raum",
+      "Meditation — Ruhepausen einplanen, Bilder und Statuen in Sichtweite",
+      ""],
+    ["Wer pflegt",
+      "Pflegekräfte",
+      "Grundpflege durch Angehörige; fremde Hilfe grundsätzlich problematisch",
+      "Familie pflegt und betet; im orthodoxen Judentum Grundpflege durch die Familie",
+      "",
+      "Alte und kranke Menschen in der Regel durch Angehörige"],
+    ["Gleichgeschlechtliche Pflege",
+      "",
+      "Möglichst — besonders beim Waschen",
+      "Waschungen bei Frauen gleichgeschlechtlich",
+      "Pflicht — im Westen zum Teil liberaler",
+      "Gegebenenfalls, wegen starken Schamgefühls"],
+    ["Waschen",
+      "Intimbereich bedecken, für Wärme sorgen, Schamgefühl beachten",
+      "Nur unter fließendem Wasser — im Bett Krug und Waschschüssel; kein Waschlappen, Reinigung mit der linken Hand; immer einen Teil bedeckt lassen",
+      "Händewaschen als Ritus nach dem Aufstehen, vor und nach jeder Mahlzeit, vor jedem Gebet; keine Körperpflege am Sabbat",
+      "Waschung anbieten vor Meditation und nach Ausscheidungen",
+      "Große Bedeutung, tägliche Ganzkörperwaschung — Badewasser gilt gegebenenfalls als unrein"],
+    ["Essen — verboten oder besonders",
+      "Strenge Katholiken freitags nur Fisch",
+      "Kein Schweinefleisch, kein Alkohol (auch nicht in Arzneien), keine Gelatine vom Schwein, Essen mit der rechten Hand",
+      "Koscher / treife / parve; kein Blut; keine Vermischung von Fleisch und Milch bzw. Fleisch und Fisch; kein Schwein; an Pessach nur Matzemehl",
+      "Die meisten Buddhisten sind Vegetarier",
+      "Rindfleisch tabu; oft Vegetarier oder Veganer; Mundpflege nach jedem Essen"],
+    ["Fasten",
+      "Fastenzeit ab Aschermittwoch",
+      "Ramadan von Morgendämmerung bis Sonnenuntergang; Kranke und Schwangere sind entbunden",
+      "Jom Kippur als strengster Feiertag",
+      "",
+      ""],
+    ["Am Sterbebett",
+      "Ruhige Körperpflege, Schweigen, leise Musik, Fenster öffnen, Krankensalbung durch den Priester",
+      "Nie allein lassen, keine Trauer am Sterbebett, auf die rechte Seite drehen, Gesicht nach Mekka (Bett nach Südosten)",
+      "Schma Israel, Psalmengebet, Kaddisch, Blick nach Israel; möglichst kein Therapieabbruch",
+      "Positive ruhige Atmosphäre, sitzende Haltung oder Rechtsseitenlage, fragen ob Sedierung erwünscht ist",
+      "Wasser aus dem Ganges, Wiederholen des Namens Gottes"],
+    ["Trauer zeigen",
+      "Üblich",
+      "Keine Trauer am Sterbebett; bei sehr Gläubigen werden Gefühle nicht gezeigt, meist aber laute Klagen",
+      "Totenklage; Trauer beschränkt auf die Angehörigen",
+      "",
+      "Geäußerte Trauer bringt „Karmapunkte“"],
+    ["Nach dem Tod",
+      "Kondolenzbuch, Kerzen, Kreuz, Rosenblätter, Abschiedsfeier; gegebenenfalls Sarg begleiten",
+      "Totenwaschung, in Seidentücher gewickelt, Erdbestattung innerhalb von 24 Stunden Richtung Mekka",
+      "Feder über Mund und Nase für 8 Minuten, Toten nicht allein lassen, Chewra Kaddischa informieren, Füße Richtung Tür, schnelle Erdbestattung",
+      "30 Minuten ohne Berührung, gegebenenfalls bis zu 3 Tage; Berührung zuerst an der Schädeldecke; meist Feuerbestattung",
+      "Totenwaschung, Feuerbestattung mit Mantras, Asche im Fluss"],
+    ["Bestattungsart",
+      "",
+      "Erdbestattung — keine Verbrennung",
+      "Erdbestattung",
+      "Meist Feuerbestattung",
+      "Feuerbestattung"],
+    ["Symbole im Zimmer",
+      "Kreuz, zwei Kerzen, Weihwasser",
+      "Im Gebetsraum christliche Symbole entfernen oder eigenen Raum mit Waschbecken stellen",
+      "Kreuz aus dem Zimmer entfernen",
+      "Füße nie auf Statue, Altar oder Buddhas Bild zeigen lassen",
+      ""],
+    ["Kontaktperson von außen",
+      "Priester",
+      "Imam",
+      "Rabbi, Chewra Kaddischa",
+      "Buddhistische Kontaktperson",
+      "Guru, Pandit"],
+    ["Vor Ort in der Region",
+      "",
+      "Eigener Friedhofsbereich in Aachen auf der Hüls",
+      "Jüdische Seniorenheime in Köln, Frankfurt und Düsseldorf",
+      "Buddhistisches Zentrum Aachen (Oppenhoffallee), Hauptzentrum Düsseldorf, Kamalashila-Institut in Langenfeld/Eifel",
+      ""]
+  ];
+
+  var tbody = document.querySelector("#vgl tbody");
+  ZEILEN.forEach(function(z){
+    var tr = document.createElement("tr");
+    z.forEach(function(zelle, j){
+      var td = document.createElement("td");
+      if(j === 0){ td.className = "thema"; }
+      else { td.dataset.rel = RELIGIONEN[j - 1]; }
+      td.textContent = zelle || "—";
+      if(!zelle && j > 0) td.style.color = "var(--ink-soft)";
+      tr.appendChild(td);
+    });
+    tbody.appendChild(tr);
+  });
+
+  var filterRaum = document.getElementById("filter");
+  var aktiv = null;
+
+  function setzeFilter(rel, knopf){
+    aktiv = rel;
+    filterRaum.querySelectorAll("button").forEach(function(b){ b.classList.remove("sel"); });
+    knopf.classList.add("sel");
+    var tab = document.getElementById("vgl");
+    RELIGIONEN.forEach(function(r, i){
+      var zeig = !rel || rel === r;
+      tab.querySelectorAll("thead th")[i + 1].hidden = !zeig;
+      tab.querySelectorAll('td[data-rel="' + r + '"]').forEach(function(td){ td.hidden = !zeig; });
+    });
+    tab.style.minWidth = rel ? "0" : "";
+  }
+
+  [["Alle", null]].concat(RELIGIONEN.map(function(r){ return [r, r]; })).forEach(function(p, i){
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = p[0];
+    b.addEventListener("click", function(){ setzeFilter(p[1], b); });
+    filterRaum.appendChild(b);
+    if(i === 0) b.classList.add("sel");
+  });
+
+  /* ---------- Quiz ---------- */
+  var FRAGEN = [
+    { f:"Nach welchen acht Achsen geht Frau Knauf jede Religion durch?",
+      o:["Glaubenspraxis, Sprache, Bekleidung, Pflege, Essgewohnheiten, Sterben und Tod, Tagesstruktur, Kommunikation",
+         "Geschichte, Gründer, Schriften, Feste, Gebete, Speisen, Kleidung, Länder",
+         "Gott, Mensch, Welt, Tod, Zeit, Raum, Sprache, Kunst",
+         "Anamnese, Diagnose, Planung, Durchführung, Evaluation, Dokumentation, Beratung, Anleitung"],
+      r:0, e:"Dieses Raster wiederholt sich bei allen fünf Religionen — es ist der Schlüssel zur Struktur der ganzen Schulung." },
+    { f:"Welche Religionen sind laut ihrem Fazit die „linearen“?",
+      o:["Judentum, Christentum, Islam","Buddhismus und Hinduismus",
+         "Nur Christentum","Alle fünf"],
+      r:0, e:"Die monotheistischen und „linearen“ Religionen sind Judentum, Christentum und Islam: Existenz mit klarem Startpunkt (Geburt) und Endpunkt (Tod), danach das Paradies. Buddhismus und Hinduismus sind „zirkulär“ — ewiger Kreislauf der Wiedergeburt mit Nirwana als Endziel." },
+    { f:"Was sind die fünf Säulen des Islam?",
+      o:["Glaubensbekenntnis, Gebet, Fasten, Hadsch, Zakkat",
+         "Gebet, Fasten, Almosen, Reinheit, Koran",
+         "Koran, Sunna, Moschee, Imam, Mekka",
+         "Glaube, Liebe, Hoffnung, Reinheit, Pilgerfahrt"],
+      r:0, e:"Glaubensbekenntnis, fünfmal tägliches Gebet, Fasten an Ramadan, die Pilgerfahrt Hadsch einmal im Leben und Zakkat, das Almosengeben — bei Entstehung des Islam gab es kein Sozialsystem." },
+    { f:"Womit soll eine muslimische Bewohnerin im Bett gewaschen werden?",
+      o:["Mit Krug und Waschschüssel, weil nur fließendes Wasser gilt",
+         "Mit einem Waschlappen und Seife",
+         "Mit Feuchttüchern",
+         "Mit dem Duschstuhl"],
+      r:0, e:"Waschung nur unter fließendem Wasser — im Bett deshalb mit Krug und Waschschüssel. Und ausdrücklich: „Waschlappen ist unhygienisch, stattdessen Reinigung mit der linken Hand.“" },
+    { f:"Wer ist im Islam von der Fastenpflicht während des Ramadan entbunden?",
+      o:["Kranke, Schwangere und Frauen während der Regelblutung",
+         "Nur Kinder","Niemand","Nur Menschen über 80"],
+      r:0, e:"Frau Knauf merkt dazu an, dass die Grenzen im Koran unklar sind. Deshalb gehört „über die Risiken des Fastens aufklären“ zu ihren Punkten unter „Wichtig beim Umgang“." },
+    { f:"In welche Richtung wird ein muslimischer Sterbender gedreht?",
+      o:["Auf die rechte Seite, Gesicht nach Mekka — Bettstellung nach Südosten",
+         "Auf die linke Seite, Gesicht zum Fenster",
+         "Auf den Rücken, flach","Sitzend, Blick nach Osten"],
+      r:0, e:"Auf die rechte Seite drehen, Gesicht nach Mekka für die fünf täglichen Gebete, Glaubensbekenntnis mit erhobenem rechtem Zeigefinger — die Bettstellung also nach Südosten." },
+    { f:"Wann ist ein verstorbener Muslim zu bestatten?",
+      o:["Erdbestattung innerhalb von 24 Stunden, keine Verbrennung",
+         "Feuerbestattung innerhalb von 3 Tagen",
+         "Erdbestattung nach 8 Tagen",
+         "Es gibt keine Vorgabe"],
+      r:0, e:"Totenwaschung, innerhalb von 24 Stunden in Seidentücher gewickelt ins Grab, Begräbnis Richtung Mekka. In Aachen gibt es dafür einen eigenen Friedhofsbereich auf der Hüls." },
+    { f:"Was gilt am jüdischen Sabbat für orthodoxe Juden?",
+      o:["Arbeitsverbot einschließlich Hausarbeit, keine Lichter und keine elektrischen Klingeln — dringend notwendige medizinische Maßnahmen sind aber erlaubt",
+         "Vollständiges Verbot jeder medizinischen Behandlung",
+         "Nur ein Fastengebot",
+         "Es gelten keine besonderen Regeln"],
+      r:0, e:"Deshalb steht bei ihr unter „Wichtig beim Umgang“: am Sabbat häufiger nach den Bewohnern schauen, weil gegebenenfalls ein Klingelverbot besteht und die Person dich gar nicht rufen kann." },
+    { f:"Was bedeuten koscher, treife und parve?",
+      o:["Erlaubt, nicht erlaubt, neutral","Fleisch, Fisch, Milch",
+         "Rein, unrein, gesegnet","Täglich, festtäglich, verboten"],
+      r:0, e:"Parve ist neutral: Obst, Gemüse, Getreide, Eier, Honig. Nicht koscher sind zum Beispiel Schwein, Kamel, Pferd und Gelatine. Und es gilt: keine Vermischung von Fleisch und Milch sowie Fleisch und Fisch." },
+    { f:"Was geschieht im Judentum unmittelbar nach dem Tod?",
+      o:["Eine Feder wird für 8 Minuten über Mund und Nase gehalten, der Tote wird nicht allein gelassen",
+         "Der Leichnam wird sofort gewaschen und angezogen",
+         "Der Leichnam bleibt 3 Tage unberührt",
+         "Es wird sofort eine Feuerbestattung veranlasst"],
+      r:0, e:"Feder über Mund und Nase für 8 Minuten zur Prüfung der Atemtätigkeit, Verschließen von Augen und Mund durch die Kinder, den Toten nicht allein lassen, Totenklage. Danach wird der jüdische Beerdigungsverein Chewra Kaddischa informiert." },
+    { f:"Was ist im Buddhismus nach dem Tod zu beachten?",
+      o:["30 Minuten Ruhe ohne Berührung bei offenem Fenster, gegebenenfalls bis zu 3 Tage",
+         "Sofortige Totenwaschung durch die Familie",
+         "Erdbestattung innerhalb von 24 Stunden",
+         "Der Leichnam wird sofort in ein Laken gewickelt"],
+      r:0, e:"30 Minuten Ruhe für den inneren Sterbeprozess ohne Berührung, bei offenem Fenster, gegebenenfalls bis zu drei Tage. Die Berührung erfolgt zunächst an der Schädeldecke, dann Einwickeln in ein Laken und Totenwache durch Buddhisten." },
+    { f:"Was gilt im Buddhismus als unrein?",
+      o:["Die Füße — sie sollen nie auf Statue, Altar oder Buddhas Bild zeigen",
+         "Die linke Hand","Blut und Urin","Stehendes Badewasser"],
+      r:0, e:"Blut, Urin und Stuhlgang als unrein und die Reinigung mit der linken Hand gehören zum Islam; das unreine Badewasser zum Hinduismus. Im Buddhismus sind es die Füße." },
+    { f:"Wie viele Kasten nennt Frau Knauf im Hinduismus — und wie lange binden sie?",
+      o:["Vier, lebenslänglich bindend","Drei, wechselbar",
+         "Sieben, lebenslänglich bindend","Vier, nur bis zur Heirat"],
+      r:0, e:"Gelehrte, Krieger, Händler und Hirten, dienende Kaste — lebenslänglich bindend. Krankheit, Unfall und Leid gelten gegebenenfalls als Bestrafung für früheres Fehlverhalten." },
+    { f:"Warum kann geäußerte Trauer im Hinduismus erwünscht sein?",
+      o:["Man erhofft sich dadurch „Karmapunkte“",
+         "Um die Angehörigen zu entlasten",
+         "Weil es die Wiedergeburt verhindert",
+         "Aus Höflichkeit gegenüber dem Pflegepersonal"],
+      r:0, e:"Genau umgekehrt zum Islam, wo am Sterbebett keine Trauer gezeigt wird. Gute Taten entscheiden über die Art der Wiedergeburt in Abhängigkeit vom Karma." },
+    { f:"Warum kann das Verweigern des Händeschüttelns im christlich geprägten Kontext problematisch wirken?",
+      o:["Es kann als Ablehnung zwischenmenschlichen Kontakts, als Unehrlichkeit oder sogar als feindselige Provokation interpretiert werden",
+         "Es ist gesetzlich verboten",
+         "Es gilt als hygienisch bedenklich",
+         "Es spielt keine Rolle"],
+      r:0, e:"Berührungen gelten hier als Zeichen von Nähe und Verbundenheit, auch zwischen Männern und Frauen, und man blickt einander direkt an. Bei strengen Muslimen und orthodoxen Juden ist das Gegenteil die korrekte Form — deshalb ihr Rat: das Händeschütteln vorher besprechen." },
+    { f:"Welche vier Ausprägungen von Weltanschauungen unterscheidet sie im Fazit?",
+      o:["Laissez-faire bzw. atheistisch, liberal, konservativ, fundamentalistisch bzw. extremistisch",
+         "Monotheistisch, polytheistisch, nicht-theistisch, atheistisch",
+         "Westlich, östlich, traditionell, modern",
+         "Praktizierend, nicht praktizierend, konvertiert, ausgetreten"],
+      r:0, e:"Das ist der wichtigste Punkt: Die Religionszugehörigkeit allein sagt nichts über den Menschen vor dir. Zwei Angehörige derselben Religion können auf diesen vier Stufen völlig unterschiedlich stehen." }
+  ];
+
+  function mischen(liste, richtigerIndex){
+    var paare = liste.map(function(t, j){ return { t: t, ok: j === richtigerIndex }; });
+    for(var i = paare.length - 1; i > 0; i--){
+      var k = Math.floor(Math.random() * (i + 1));
+      var tmp = paare[i]; paare[i] = paare[k]; paare[k] = tmp;
+    }
+    return paare;
+  }
+
+  var raum = document.getElementById("quizraum");
+  var anzeige = document.getElementById("punkte");
+  var beantwortet = 0, richtig = 0;
+
+  FRAGEN.forEach(function(fr, i){
+    var box = document.createElement("div"); box.className = "q";
+    var titel = document.createElement("p"); titel.className = "frg";
+    titel.textContent = (i + 1) + ". " + fr.f;
+    box.appendChild(titel);
+
+    var opts = document.createElement("div"); opts.className = "opts";
+    var erkl = document.createElement("div"); erkl.className = "erkl"; erkl.textContent = fr.e;
+
+    mischen(fr.o, fr.r).forEach(function(paar){
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "opt"; b.textContent = paar.t;
+      if(paar.ok) b.dataset.ok = "1";
+      b.addEventListener("click", function(){
+        if(box.dataset.fertig === "1") return;
+        box.dataset.fertig = "1";
+        beantwortet++;
+        if(paar.ok) richtig++;
+        opts.querySelectorAll(".opt").forEach(function(x){ x.classList.add("aus"); });
+        b.classList.add(paar.ok ? "richtig" : "falsch");
+        if(!paar.ok) opts.querySelector('.opt[data-ok="1"]').classList.add("richtig");
+        erkl.classList.add("an");
+        anzeige.textContent = richtig + " von " + beantwortet + " richtig · "
+          + FRAGEN.length + " Fragen insgesamt";
+      });
+      opts.appendChild(b);
+    });
+
+    box.appendChild(opts); box.appendChild(erkl); raum.appendChild(box);
+  });
+})();
+</script>

@@ -4,23 +4,8 @@ Hier landen die PDFs, die noch zu keiner Schulung verarbeitet wurden.
 Sobald eine Schulung daraus gebaut ist, wandern sie nach
 `schulung-<thema>/quellen/` und werden hier gelöscht.
 
-## Noch offen — 4 Dateien
+## Noch offen — 1 Datei
 
-### Block 1 — Kultur und Vielfalt (Dr. Ortrud Knauf) · 153 Seiten
-| Datei | Seiten | Datum |
-|---|---|---|
-| `KulturelleVielfaltEinfuehrung.pdf` | 51 | 29.05.2026 |
-| `Vorurteile.pdf` | 14 | 24.07.2026 |
-| `InterkulturellePflege.pdf` | 88 | 22.07.2026 |
-
-Wenig extrahierbarer Text — Folien mit vielen Bildern und Schaubildern.
-Müssen seitenweise als Bild gelesen werden. Daraus sollen zwei Zusammenfassungen
-entstehen: **Kulturelle Vielfalt** (Einführung + Vorurteile) und
-**Interkulturelle Pflege** (fünf Weltreligionen). Achtung: es gibt bereits die
-Schulung `schulung-kultursensible-pflege` von Herrn Perleberg — Knauf ist eine
-eigene Reihe und soll nicht damit vermischt werden.
-
-### Block 4 — Psychiatrie · 1 Seite
 | Datei | Seiten | Art |
 |---|---|---|
 | `AA_Schizophrenie.pdf` | 1 | Arbeitsauftrag zur Vorbereitung auf den Film „Hirngespinster" |
@@ -33,13 +18,13 @@ Es braucht entweder die Folien der Dozentin oder den Film.
 
 ## Erledigt
 
-### Block 2 — Haut → `schulung-neurodermitis/quellen/`
+### Haut → `schulung-neurodermitis/quellen/`
 | Datei | Wohin | Ergebnis |
 |---|---|---|
 | `Erregersteckbrief_Kraetze.pdf` | `rki-erregersteckbrief-kraetze-skabies.pdf` | neue Seite **Krätze im Pflegeheim** |
 | `Diagnostik_und_Therapie_der_Neurodermitis.pdf` | war schon als `fachartikel-diagnostik-therapie-neurodermitis.pdf` vorhanden — Duplikat entfernt | — |
 
-### Block 3 — Herz und Kreislauf, CE 05 UE 1 (Frau Küppers) → `schulung-herz-kreislauf/quellen/`
+### Herz und Kreislauf, CE 05 UE 1 (Frau Küppers) → `schulung-herz-kreislauf/quellen/`
 | Datei | Wohin |
 |---|---|
 | `Hyper_Hypotonie_Arbeitsauftrag.pdf` | `ce05-ue01-hyper-hypotonie-arbeitsauftrag-kueppers.pdf` |
@@ -58,6 +43,28 @@ alle acht Aufgaben zum Selberschreiben mit Korrektur.
    aus Novaheal einzusetzen sind — es wurde nichts erfunden.
 2. Das **Arbeitsblatt zur arteriellen Hypotonie** fehlt. Auf Seite 3 des
    Arbeitsauftrags steht nur der Verweis und ein QR-Code.
+
+### Kultur und Vielfalt (Dr. Ortrud Knauf) → zwei neue Schulungen
+| Datei | Wohin |
+|---|---|
+| `KulturelleVielfaltEinfuehrung.pdf` | `schulung-kulturelle-vielfalt/quellen/knauf-kulturelle-vielfalt-einfuehrung.pdf` |
+| `Vorurteile.pdf` | `schulung-kulturelle-vielfalt/quellen/knauf-vorurteile.pdf` |
+| `InterkulturellePflege.pdf` | `schulung-interkulturelle-pflege/quellen/knauf-interkulturelle-pflege.pdf` |
+
+Ergebnis: **Kulturelle Vielfalt und Vorurteile** (65 Folien) und
+**Fünf Religionen am Pflegebett** (88 Folien).
+
+Die Folien sind bildlastig; die Grafiken wurden seitenweise als Bild gelesen
+(Small-Talk-Diagramm, beide Lewis-Skalen, Zwiebelmodell, Geburtenziffer,
+ausländische Bevölkerung nach Staatsangehörigkeit, Tötungsrate, Erziehung).
+Die Small-Talk-Minuten sind aus dem Balkendiagramm **abgelesen** und auf der
+Seite ausdrücklich als ungefähre Werte gekennzeichnet.
+
+**Zwei Lücken:** Der „Kultur-Test" aus Arbeitsauftrag 12 ist in den Folien nicht
+enthalten, und Arbeitsauftrag 1 bezieht sich auf ein Bild ohne Text.
+
+Hinweis: Die Knauf-Reihe ist **nicht** dasselbe wie `schulung-kultursensible-pflege`
+von Herrn Perleberg (CE 09 UE 1, LSBTI). Beide bestehen nebeneinander.
 
 ### Bereits vorher vorhanden — nicht doppelt abgelegt
 Diese wurden erneut geschickt, liegen aber schon in `schulung-recht/quellen/`:
