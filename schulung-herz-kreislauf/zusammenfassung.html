@@ -1,0 +1,1120 @@
+<title>Der Fall Frau Krause</title>
+<style>
+  :root{
+    --paper:#f7f3f2;--paper-2:#efe8e7;--card:#fffdfc;--ink:#211a1a;--ink-soft:#584c4b;--line:#e2d5d3;
+    --accent:#a8394a;--accent-deep:#7f2635;--accent-soft:#f3e0e3;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;
+    --blue:#3a6b90;--bluebg:#dde8f0;--purple:#6a4a80;--purplebg:#ece1f2;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#171313;--paper-2:#110e0e;--card:#211b1b;--ink:#f1eaea;--ink-soft:#b3a4a3;--line:#362c2c;
+    --accent:#e08a98;--accent-deep:#f0aab5;--accent-soft:#2c171c;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;
+    --blue:#84b0d4;--bluebg:#16242e;--purple:#bb9ad4;--purplebg:#241a2c;}}
+  :root[data-theme="dark"]{
+    --paper:#171313;--paper-2:#110e0e;--card:#211b1b;--ink:#f1eaea;--ink-soft:#b3a4a3;--line:#362c2c;
+    --accent:#e08a98;--accent-deep:#f0aab5;--accent-soft:#2c171c;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;
+    --blue:#84b0d4;--bluebg:#16242e;--purple:#bb9ad4;--purplebg:#241a2c;}
+  :root[data-theme="light"]{
+    --paper:#f7f3f2;--paper-2:#efe8e7;--card:#fffdfc;--ink:#211a1a;--ink-soft:#584c4b;--line:#e2d5d3;
+    --accent:#a8394a;--accent-deep:#7f2635;--accent-soft:#f3e0e3;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;
+    --blue:#3a6b90;--bluebg:#dde8f0;--purple:#6a4a80;--purplebg:#ece1f2;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding:46px 20px 30px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:62ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;padding:5px 11px;
+    border:1px solid var(--line);border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:0;z-index:30;background:var(--paper-2);border-bottom:1px solid var(--line);
+    padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;
+    text-decoration:none;color:var(--ink-soft);padding:6px 12px;border-radius:999px;
+    border:1px solid transparent;white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding:0 18px 90px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.22rem;font-weight:600;margin:26px 0 8px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:22px 22px 20px;margin:16px 0;}
+  .card > :first-child{margin-top:0;}
+  .card > :last-child{margin-bottom:0;}
+
+  .lbl{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+
+  /* Fallbeispiel */
+  .fall{background:var(--accent-soft);border:1px solid var(--line);border-left:4px solid var(--accent);
+    border-radius:12px;padding:22px;margin:18px 0;}
+  .fall p{margin:0 0 12px;}
+  .fall p:last-child{margin-bottom:0;}
+  .vitals{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:16px 0 0;}
+  .vit{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+  .vit .n{font-family:var(--mono);font-size:1.35rem;font-weight:600;line-height:1.15;
+    font-variant-numeric:tabular-nums;display:block;}
+  .vit .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-soft);display:block;margin-top:3px;}
+  .vit.hoch .n{color:var(--bad);}
+
+  /* Aufgabe */
+  .auf{border:1px solid var(--line);border-radius:14px;background:var(--card);
+    margin:20px 0;overflow:hidden;}
+  .auf > .kopf{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px;
+    padding:15px 20px;background:var(--paper-2);border-bottom:1px solid var(--line);}
+  .auf > .kopf .nr{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;font-weight:600;
+    color:var(--card);background:var(--accent);padding:4px 10px;border-radius:999px;}
+  .auf > .kopf .ti{font-family:var(--serif);font-size:1.1rem;font-weight:600;}
+  .auf .body{padding:20px;}
+  .frage{margin:0 0 14px;}
+  .frage .q{display:block;margin-bottom:8px;}
+  .frage .mk{font-family:var(--mono);font-weight:600;color:var(--accent-deep);margin-right:6px;}
+  textarea{width:100%;min-height:110px;resize:vertical;font-family:var(--sans);font-size:15.5px;
+    line-height:1.55;padding:12px 14px;border:1px solid var(--line);border-radius:10px;
+    background:var(--paper);color:var(--ink);}
+  textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  .gespeichert{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--good);
+    opacity:0;transition:opacity .25s;display:inline-block;margin-top:5px;}
+  .gespeichert.an{opacity:1;}
+  @media (prefers-reduced-motion:reduce){.gespeichert{transition:none;}}
+
+  .btn{font-family:var(--mono);font-size:12px;letter-spacing:.06em;cursor:pointer;
+    padding:9px 16px;border-radius:999px;border:1px solid var(--accent);
+    background:transparent;color:var(--accent-deep);}
+  .btn:hover,.btn:focus-visible{background:var(--accent);color:var(--card);}
+  .btn:focus-visible{outline:2px solid var(--accent-deep);outline-offset:2px;}
+
+  .loesung{display:none;margin-top:16px;border-top:1px dashed var(--line);padding-top:16px;}
+  .loesung.offen{display:block;}
+  .loesung h4{font-family:var(--serif);font-size:1.02rem;margin:18px 0 6px;}
+  .loesung h4:first-child{margin-top:0;}
+
+  .quelle{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;color:var(--ink-soft);
+    background:var(--paper-2);border:1px solid var(--line);border-radius:6px;
+    padding:2px 7px;display:inline-block;margin-top:6px;}
+
+  .warn{background:var(--warnbg);border:1px solid var(--warn);border-left:4px solid var(--warn);
+    border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .warn strong{color:var(--warn);}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+  .info{background:var(--bluebg);border-left:4px solid var(--blue);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+
+  ul,ol{padding-left:1.2em;margin:10px 0;}
+  li{margin:6px 0;}
+  ul.tick{list-style:none;padding-left:0;}
+  ul.tick li{padding-left:1.7em;position:relative;}
+  ul.tick li::before{content:"▸";position:absolute;left:.35em;color:var(--accent);}
+
+  .tabelle{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:12px;}
+  table{border-collapse:collapse;width:100%;min-width:480px;background:var(--card);}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;
+    font-size:15px;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+  /* Flussdiagramm kurzfristige Regulation */
+  .fluss{display:grid;gap:12px;margin:18px 0;}
+  .fl-reihe{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .fl{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:var(--card);}
+  .fl .t{font-weight:600;display:block;margin-bottom:3px;}
+  .fl .d{font-size:14px;color:var(--ink-soft);}
+  .fl.mitte{grid-column:1/-1;text-align:center;background:var(--accent-soft);border-color:var(--accent);}
+  .fl.hoch{border-color:var(--bad);}
+  .fl.tief{border-color:var(--blue);}
+  .pfeil{text-align:center;color:var(--ink-soft);font-size:18px;line-height:1;}
+  @media (max-width:560px){.fl-reihe{grid-template-columns:1fr;}}
+
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+  @media (max-width:640px){.zwei{grid-template-columns:1fr;}}
+
+  footer{border-top:1px solid var(--line);margin-top:70px;padding:30px 20px 50px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  footer a{color:var(--accent-deep);}
+  .fr{font-style:italic;color:var(--ink-soft);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 05 · UE 1 · Frau Küppers</p>
+  <h1>Der Fall Frau Krause</h1>
+  <p class="sub">Der komplette Arbeitsauftrag zur arteriellen Hypertonie — Aufgabe für Aufgabe.
+    Du schreibst zuerst selbst, dann klappst du die Korrektur auf.
+    <span class="fr">Tu écris d'abord, la correction vient après. Tout ce qui est écrit ici vient de
+    tes propres documents — rien n'est inventé.</span></p>
+  <div class="meta">
+    <span>8 Aufgaben</span><span>4 Quellen</span><span>Antworten werden gespeichert</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#fall">Der Fall</a>
+  <a href="#aufgaben">Die Aufgaben</a>
+  <a href="#regulation">Regulation</a>
+  <a href="#langzeit">24-Stunden-Messung</a>
+  <a href="#notfall">Entgleisung / Notfall</a>
+  <a href="#luecken">Was fehlt</a>
+</nav>
+
+<main>
+
+<!-- ================= DER FALL ================= -->
+<section id="fall">
+  <h2>Der Fall</h2>
+  <p class="lead">Wortlaut aus dem Arbeitsauftrag von Frau Küppers. Lies ihn zweimal — beim zweiten Mal
+    markierst du alles, was mit dem Blutdruck zu tun haben könnte.</p>
+
+  <div class="fall">
+    <span class="lbl">Fallbeispiel · Arterielle Hypertonie</span>
+    <p>Es ist früher Morgen im Wohnbereich eines Pflegeheims. Sie betreten das Zimmer von
+      Frau Krause, einer 82-jährigen Bewohnerin mit Pflegegrad drei.</p>
+    <p>Frau Krause sitzt bereits im Sessel, doch ihr Verhalten wirkt anders als sonst. Sie hält
+      sich mit einer Hand an der Sessellehne fest, als würde sie zusätzlichen Halt benötigen.
+      Ihr Gesicht ist leicht gerötet und sie atmet etwas schneller als gewohnt. Als Sie die
+      Bewohnerin begrüßen, reagiert Frau Krause gereizt und unruhig. Sie berichtet, dass sie
+      kaum geschlafen habe und dass es ihr heute „überhaupt nicht gut“ gehe. Ein
+      Druckgefühl im Kopf mache ihr zu schaffen und sie fühle sich sehr erschöpft.</p>
+    <p>Sie beobachten, dass die adipöse Bewohnerin (BMI 30,4) sich beim Versuch
+      aufzustehen unsicher bewegt und stärker als sonst nach Halt sucht. Auf Nachfrage
+      erklärt Frau Krause, dass sie ihre morgendlichen Blutdruckmedikamente noch nicht
+      eingenommen habe, weil sie erst frühstücken wollte. Sie erwähnt außerdem, dass sie
+      am Vorabend Streit mit ihrer Tochter hatte und sich darüber sehr geärgert habe. Die
+      Trinkmenge des Vortags lag bei etwa einem Liter, Schmerzen verneint sie.</p>
+    <p>Frau Krause wirkt angespannt und überfordert. Da bei ihr ein Diabetes mellitus bekannt
+      ist, führen Sie anschließend eine BZ-Kontrolle durch, die keine Auffälligkeiten zeigt.</p>
+
+    <div class="vitals">
+      <div class="vit hoch"><span class="n">198/112</span><span class="k">mmHg · RR</span></div>
+      <div class="vit"><span class="n">96</span><span class="k">S/Min · Puls</span></div>
+      <div class="vit"><span class="n">22</span><span class="k">AZ/Min · Atmung</span></div>
+      <div class="vit"><span class="n">96 %</span><span class="k">SpO₂</span></div>
+    </div>
+  </div>
+
+  <div class="info">
+    <strong>Zwei Zahlen, die du sofort im Kopf haben musst.</strong> Dein Artikel zur
+    Langzeitmessung nennt als optimal <b>&lt; 120 / &lt; 80 mmHg</b>. Das Patientenblatt der
+    AWMF nennt als Schwelle für eine <b>Blutdruck-Entgleisung: über 180 systolisch <em>und</em>
+    über 110 diastolisch</b>. Frau Krause liegt mit 198/112 über beiden Werten.
+  </div>
+</section>
+
+<!-- ================= AUFGABEN ================= -->
+<section id="aufgaben">
+  <h2>Die Aufgaben</h2>
+  <p class="lead">Acht Aufgaben, genau in der Reihenfolge des Arbeitsauftrags. Schreib in das Feld,
+    <b>bevor</b> du die Korrektur aufklappst — sonst lernst du nichts. Deine Texte bleiben im Browser
+    gespeichert, auch wenn du die Seite schließt.</p>
+
+  <!-- Aufgabe 1 -->
+  <div class="auf">
+    <div class="kopf"><span class="nr">Aufgabe 1</span>
+      <span class="ti">Grade der Hypertonie und das Stadium von Frau Krause</span></div>
+    <div class="body">
+      <p class="frage"><span class="q">Beschreiben Sie mit Hilfe von Novaheal die Grade der
+        Hypertonie und bestimmen Sie das Stadium von Frau Krause.</span></p>
+      <textarea id="hk1" placeholder="Die Grade nach Novaheal … Frau Krause liegt mit 198/112 mmHg bei …"></textarea>
+      <span class="gespeichert" data-fuer="hk1">gespeichert ✓</span>
+      <p><button class="btn zeig" data-ziel="l1">Korrektur zeigen</button></p>
+
+      <div class="loesung" id="l1">
+        <div class="warn">
+          <strong>Achtung — diese Tabelle steht nicht in deinen PDFs.</strong>
+          Die Gradeinteilung (Grad 1 / 2 / 3) steht bei dir auf <b>Novaheal</b>. Ich habe keinen
+          Zugriff darauf und erfinde dir keine Zahlen. Öffne den Artikel und schreib die Tabelle
+          selbst ab — dann hast du sie garantiert richtig.
+        </div>
+        <h4>Was du aus deinen eigenen Unterlagen schon sicher sagen kannst</h4>
+        <ul class="tick">
+          <li><b>Optimal: &lt; 120 mmHg systolisch / &lt; 80 mmHg diastolisch.</b>
+            <span class="quelle">Langzeit-Blutdruckmessung, ESC-Leitlinie 2018</span></li>
+          <li><b>Normal: &lt; 130 / &lt; 85 mmHg.</b>
+            <span class="quelle">dieselbe Quelle</span></li>
+          <li>„Höhere Werte gehören stets unter ärztliche Kontrolle.“</li>
+          <li>Frau Krause liegt mit <b>198/112 mmHg</b> weit über allen genannten Grenzen — beide
+            Werte sind erhöht, nicht nur einer.</li>
+        </ul>
+        <h4>So baust du den Satz</h4>
+        <p>„Frau Krause hat einen Blutdruck von 198/112 mmHg. Damit liegt sie sowohl systolisch
+          als auch diastolisch deutlich über dem optimalen Bereich von unter 120/80 mmHg und über
+          dem normalen Bereich von unter 130/85 mmHg. Nach der Einteilung auf Novaheal entspricht
+          das dem Grad <em>…</em>“ — und hier setzt du die Zahl aus Novaheal ein.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aufgabe 2 -->
+  <div class="auf">
+    <div class="kopf"><span class="nr">Aufgabe 2</span>
+      <span class="ti">Blutdruckregulation auf den Fall anwenden</span></div>
+    <div class="body">
+      <p class="frage"><span class="q"><span class="mk">a)</span> Wenden Sie Ihr Wissen zur
+        Blutdruckregulation auf den Fall an: Beschreiben Sie mithilfe der Begriffe
+        „Pressorezeptoren, Sympathikus/Parasympathikus und Vasodilatation“, wie der Körper
+        von Frau Krause versucht, den Blutdruck kurzfristig zu regulieren.</span></p>
+      <textarea id="hk2a" placeholder="Die Pressorezeptoren sitzen … sie melden … über den … an das …"></textarea>
+      <span class="gespeichert" data-fuer="hk2a">gespeichert ✓</span>
+
+      <p class="frage" style="margin-top:20px;"><span class="q"><span class="mk">b)</span>
+        Erklären Sie, warum der Körper von Frau Krause den hohen Blutdruck nicht ausreichend
+        ausgleichen kann und warum dadurch Stresssymptome wie schneller Puls oder Tachypnoe
+        entstehen.</span></p>
+      <textarea id="hk2b" placeholder="Obwohl der Parasympathikus gegensteuert, …"></textarea>
+      <span class="gespeichert" data-fuer="hk2b">gespeichert ✓</span>
+
+      <p class="frage" style="margin-top:20px;"><span class="q"><span class="mk">c)</span>
+        Erläutern Sie, warum die Kopfschmerzen von Frau Krause sowohl eine Ursache als auch
+        eine Folge ihres erhöhten Blutdrucks sein können.</span></p>
+      <textarea id="hk2c" placeholder="Als Folge: … Als Ursache: …"></textarea>
+      <span class="gespeichert" data-fuer="hk2c">gespeichert ✓</span>
+
+      <p><button class="btn zeig" data-ziel="l2">Korrektur zeigen</button></p>
+
+      <div class="loesung" id="l2">
+        <h4>a) Der Weg — genau so steht er auf deiner Folie</h4>
+        <ol>
+          <li><b>Pressorezeptoren</b> sitzen in den <b>großen elastischen Arterien</b>. Sie
+            registrieren den aktuellen Blutdruck, indem sie die <b>Dehnung der Arterienwand</b>
+            aufnehmen. Bei Frau Krause ist diese Dehnung durch 198/112 mmHg sehr stark.</li>
+          <li>Sie leiten das Signal über <b>Nervenfasern des IX. Hirnnervs</b>
+            (N. glossopharyngeus) weiter. Die <b>Volumenrezeptoren im rechten Vorhof</b> melden
+            über den <b>X. Hirnnerv</b> (N. vagus) zusätzlich das aktuelle Blutvolumen.</li>
+          <li>Ziel ist das <b>verlängerte Mark</b> (Medulla oblongata) — dort sitzt das
+            <b>Kreislaufzentrum</b>.</li>
+          <li>Weil der Blutdruck <b>hoch</b> ist, wird der <b>Nervus vagus</b>
+            (= Parasympathikus) stimuliert. Er bewirkt zweierlei:
+            <ul>
+              <li><b>Senkung des HZV</b> (Herzzeitvolumen)</li>
+              <li><b>Senkung des TPR</b> (totaler peripherer Widerstand) durch
+                <b>Gefäßerweiterung = Vasodilatation</b> in Haut und Organen</li>
+            </ul>
+          </li>
+          <li>Ergebnis beider Wege: <b>Blutdrucksenkung</b>.</li>
+        </ol>
+        <p>Vasodilatation heißt auf deiner Folie zur Vasomotorik: Weitstellung des Gefäßes →
+          Entspannung der Muskularis → Lumenvergrößerung → Organdurchblutung ↑. Genau das
+          Gegenteil der Vasokonstriktion.</p>
+        <span class="quelle">Regulation des Blutdrucks, Folien 3 und 4</span>
+
+        <h4>b) Warum es trotzdem nicht reicht</h4>
+        <p>Zwei Gründe, beide direkt aus dem Fall belegbar:</p>
+        <ul class="tick">
+          <li><b>Der Gegenspieler ist gleichzeitig aktiv.</b> Frau Krause hatte am Vorabend
+            Streit mit ihrer Tochter und hat sich sehr geärgert, sie hat kaum geschlafen und
+            wirkt angespannt. Ärger und Stress treiben den <b>Sympathikus</b> nach oben —
+            und der Sympathikus macht genau das Umgekehrte: <b>Erhöhung des HZV</b> und
+            <b>Steigerung des TPR durch Gefäßverengung</b>. Der Vagus zieht nach unten, der
+            Sympathikus zieht nach oben. Das Ergebnis ist eine Pattsituation auf hohem Niveau.
+            Das AWMF-Blatt nennt Stress und seelische Probleme ausdrücklich als Ursachen für
+            einen entgleisten Blutdruck.</li>
+          <li><b>Die eigentliche Bremse fehlt.</b> Frau Krause hat ihre morgendlichen
+            Blutdruckmedikamente noch nicht eingenommen. Das AWMF-Blatt nennt als
+            <em>häufigsten</em> Grund für eine Entgleisung: „dass Patientinnen oder Patienten
+            ihre blutdrucksenkenden Medikamente nicht regelmäßig einnehmen oder weglassen“.</li>
+        </ul>
+        <p>Und daher kommen die Stresssymptome: die Sympathikusaktivierung <em>ist</em> die
+          Erhöhung des HZV. Ein erhöhtes HZV zeigt sich am <b>Puls 96 S/Min</b>. Die
+          <b>Tachypnoe mit 22 AZ/Min</b> gehört zur selben Stressreaktion. Wichtig für deine
+          Argumentation: die Sättigung ist mit <b>96 % normal</b> — die schnelle Atmung kommt
+          also nicht von einem Sauerstoffmangel, sondern von der Anspannung.</p>
+        <p>Denk außerdem daran, dass die Folie den Titel <b>„Kurzfristige Regulation“</b> trägt.
+          Dieses System ist für kurze Anpassungen gebaut, nicht dafür, einen dauerhaft zu hohen
+          Blutdruck auf Normalwert zu ziehen.</p>
+        <span class="quelle">Folie 3 · AWMF nvl-009 · Fallbeispiel</span>
+
+        <h4>c) Kopfschmerz — Folge und Ursache zugleich</h4>
+        <div class="zwei">
+          <div class="card">
+            <span class="lbl">Als Folge</span>
+            <p>Das AWMF-Patientenblatt listet <b>Kopfschmerz</b> ausdrücklich als Hinweis auf
+              eine Blutdruck-Entgleisung bei sehr hohem Blutdruck — zusammen mit rotem Kopf oder
+              roten Wangen, Schwindel und Übelkeit. Frau Krause beschreibt genau das:
+              ein „Druckgefühl im Kopf“, und ihr Gesicht ist gerötet.</p>
+          </div>
+          <div class="card">
+            <span class="lbl">Als Ursache</span>
+            <p>Dasselbe Blatt zählt unter den Ursachen einer Entgleisung auch
+              <b>Schmerzen</b> auf: „Auch Stress, seelische Probleme, Alkohol, Drogen oder
+              Schmerzen können den Blutdruck in die Höhe treiben.“ Schmerz aktiviert den
+              Sympathikus — und der steigert HZV und peripheren Widerstand.</p>
+          </div>
+        </div>
+        <p><b>Der Satz, den die Aufgabe hören will:</b> „Es entsteht ein Kreislauf. Der hohe
+          Blutdruck verursacht das Druckgefühl im Kopf, und der Schmerz selbst treibt über den
+          Sympathikus den Blutdruck weiter nach oben. Deshalb ist es pflegerisch so wichtig,
+          diesen Kreis zu durchbrechen — durch Ruhe, Entspannung und Ablenkung.“</p>
+        <div class="warn"><strong>Aufpassen:</strong> Im Fall steht „Schmerzen verneint sie“.
+          Frau Krause bezeichnet das Druckgefühl also selbst nicht als Schmerz. Schreib das dazu —
+          es zeigt, dass du den Fall genau gelesen hast.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aufgabe 3 -->
+  <div class="auf">
+    <div class="kopf"><span class="nr">Aufgabe 3</span>
+      <span class="ti">Primäre und sekundäre Hypertonie</span></div>
+    <div class="body">
+      <p class="frage"><span class="q">Bei der Entstehung eines Bluthochdrucks wird die
+        „primäre“ und „sekundäre“ Hypertonie unterschieden. Stellen Sie den Unterschied mit
+        eigenen Worten dar und begründen Sie, warum Frau Krause in die „primäre“ Form
+        klassifiziert wird.</span></p>
+      <textarea id="hk3" placeholder="Primär bedeutet … sekundär bedeutet … Frau Krause gehört zur primären Form, weil …"></textarea>
+      <span class="gespeichert" data-fuer="hk3">gespeichert ✓</span>
+      <p><button class="btn zeig" data-ziel="l3">Korrektur zeigen</button></p>
+
+      <div class="loesung" id="l3">
+        <div class="warn"><strong>Die Definition steht auf Novaheal, nicht in deinen PDFs.</strong>
+          Schreib die genaue Formulierung dort ab. Was hier steht, ist der <em>Rahmen</em> und
+          vor allem die <em>Begründung am Fall</em> — die ist der eigentliche Punkt der Aufgabe.</div>
+
+        <h4>Was deine Unterlagen dazu hergeben</h4>
+        <p>Der Artikel zur Langzeitmessung nennt als eine Indikation ausdrücklich den
+          <b>„Verdacht auf eine sekundäre Hypertonie“</b>. Daraus folgt schon die Logik: Die
+          sekundäre Form ist die, bei der man <em>eine andere Ursache sucht und findet</em> —
+          eine zugrundeliegende Erkrankung. Die primäre Form ist die, bei der man keine einzelne
+          auslösende Erkrankung findet.
+          <span class="quelle">Langzeit-Blutdruckmessung</span></p>
+
+        <h4>Die Begründung am Fall — hier holst du die Punkte</h4>
+        <p>Zeig, dass im Fallbeispiel <b>keine</b> auslösende Grunderkrankung benannt wird:</p>
+        <ul class="tick">
+          <li>Der Diabetes mellitus ist bekannt, aber die <b>BZ-Kontrolle zeigt keine
+            Auffälligkeiten</b> — der Diabetes erklärt den aktuellen Wert nicht.</li>
+          <li>Es wird keine Nieren-, Schilddrüsen- oder Hormonerkrankung genannt.</li>
+          <li>Was stattdessen im Fall steht, sind <b>Risikofaktoren und auslösende Umstände</b>:
+            Alter 82 Jahre, Adipositas mit BMI 30,4, Ärger und Streit am Vorabend, kaum Schlaf,
+            eine Trinkmenge von nur etwa einem Liter — und die nicht eingenommenen
+            Blutdruckmedikamente.</li>
+          <li>Dass Frau Krause bereits <b>dauerhaft Blutdruckmedikamente</b> nimmt, zeigt: die
+            Hypertonie besteht seit Längerem und ist nicht die frische Folge einer neu
+            aufgetretenen Erkrankung.</li>
+        </ul>
+        <p><b>Schlusssatz:</b> „Da im Fallbeispiel keine ursächliche Grunderkrankung genannt wird,
+          sondern mehrere typische Risikofaktoren zusammenkommen, wird Frau Krause der primären
+          Hypertonie zugeordnet.“</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aufgabe 4 -->
+  <div class="auf">
+    <div class="kopf"><span class="nr">Aufgabe 4</span>
+      <span class="ti">Beobachtungen, Vergleich, Maßnahmen</span></div>
+    <div class="body">
+      <p class="frage"><span class="q"><span class="mk">a)</span> Identifizieren Sie die im
+        Fallbeispiel genannten Beobachtungen, die auf eine Veränderung des Blutdrucks hinweisen.
+        Priorisieren Sie anschließend die drei wichtigsten für die unmittelbare pflegerische
+        Einschätzung. Begründen Sie Ihre Auswahl.</span></p>
+      <textarea id="hk4a" placeholder="Alle Beobachtungen: … Die drei wichtigsten: 1. … weil …"></textarea>
+      <span class="gespeichert" data-fuer="hk4a">gespeichert ✓</span>
+
+      <p class="frage" style="margin-top:20px;"><span class="q"><span class="mk">b)</span>
+        Vergleichen Sie Ihre Beobachtungen mit den in Novaheal aufgeführten typischen Symptomen
+        einer Hypertonie. Ergänzen Sie Beschwerden, die bei Frau Krause NICHT auftreten.</span></p>
+      <textarea id="hk4b" placeholder="Bei Frau Krause treten NICHT auf: …"></textarea>
+      <span class="gespeichert" data-fuer="hk4b">gespeichert ✓</span>
+
+      <p class="frage" style="margin-top:20px;"><span class="q"><span class="mk">c)</span>
+        Nennen Sie drei unmittelbare pflegerische Maßnahmen, die Sie bei Frau Krause aufgrund
+        ihrer aktuellen Blutdruckwerte und Symptome durchführen würden. Begründen Sie jede
+        Maßnahme.</span></p>
+      <textarea id="hk4c" placeholder="1. Maßnahme … Begründung: …"></textarea>
+      <span class="gespeichert" data-fuer="hk4c">gespeichert ✓</span>
+
+      <p><button class="btn zeig" data-ziel="l4">Korrektur zeigen</button></p>
+
+      <div class="loesung" id="l4">
+        <h4>a) Alle Beobachtungen aus dem Text</h4>
+        <div class="tabelle">
+          <table>
+            <thead><tr><th>Was du siehst oder hörst</th><th>Wozu es gehört</th></tr></thead>
+            <tbody>
+              <tr><td>Gesicht leicht gerötet</td><td>Zeichen der Entgleisung („roter Kopf oder Wangen“)</td></tr>
+              <tr><td>Druckgefühl im Kopf</td><td>Zeichen der Entgleisung („Kopfschmerz“)</td></tr>
+              <tr><td>Atmet schneller als gewohnt · <span class="num">22 AZ/Min</span></td><td>Stressreaktion, Tachypnoe</td></tr>
+              <tr><td>Gereizt, unruhig, angespannt, überfordert</td><td>Sympathikusaktivierung</td></tr>
+              <tr><td>Kaum geschlafen, sehr erschöpft</td><td>Allgemeinbefinden verändert</td></tr>
+              <tr><td>Unsicher beim Aufstehen, sucht stärker nach Halt</td><td>Sturzgefahr</td></tr>
+              <tr><td class="num">RR 198/112 mmHg</td><td>der Messwert selbst</td></tr>
+              <tr><td class="num">Puls 96 S/Min</td><td>erhöhtes HZV</td></tr>
+              <tr><td class="num">SpO₂ 96 %</td><td>unauffällig — wichtig als Ausschluss</td></tr>
+              <tr><td>Blutdruckmedikamente nicht eingenommen</td><td>häufigste Ursache der Entgleisung</td></tr>
+              <tr><td>Streit mit der Tochter, sehr geärgert</td><td>Ursache: Stress, seelische Probleme</td></tr>
+              <tr><td>Trinkmenge Vortag ca. 1 Liter</td><td>Flüssigkeitshaushalt</td></tr>
+              <tr><td>Adipositas, BMI 30,4 · 82 Jahre</td><td>Risikofaktoren</td></tr>
+              <tr><td>BZ-Kontrolle unauffällig</td><td>Ausschluss einer anderen Ursache</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h4>Die drei wichtigsten — mit Begründung</h4>
+        <ol>
+          <li><b>Der Blutdruckwert 198/112 mmHg.</b> Er liegt über der Schwelle des
+            AWMF-Patientenblatts von 180 systolisch <em>und</em> 110 diastolisch. Damit ist die
+            Situation formal eine Blutdruck-Entgleisung und braucht sofort eine Entscheidung.</li>
+          <li><b>Druckgefühl im Kopf zusammen mit dem geröteten Gesicht.</b> Beides sind die im
+            Patientenblatt genannten Anzeichen. Sie sagen dir: Der Wert ist nicht nur eine Zahl,
+            die Bewohnerin hat auch Beschwerden dazu.</li>
+          <li><b>Die unsichere Bewegung beim Aufstehen.</b> Das ist die einzige Beobachtung, aus
+            der unmittelbar eine <em>Gefahr</em> entsteht: Frau Krause kann stürzen. Alles andere
+            beobachtest du, hier musst du handeln.</li>
+        </ol>
+        <p>Wenn du eine vierte nennen willst: Puls 96 und Atemfrequenz 22 zusammen zeigen die
+          Stressreaktion — und bei normaler Sättigung von 96 % kannst du eine
+          Sauerstoffproblematik als Erklärung ausschließen.</p>
+
+        <h4>b) Was bei Frau Krause NICHT auftritt</h4>
+        <div class="warn"><strong>Die volle Symptomliste steht auf Novaheal.</strong> Ergänze
+          sie von dort. Aus den PDFs, die du hier hast, lässt sich Folgendes sicher sagen:</div>
+        <p>Das AWMF-Blatt nennt vier Anzeichen einer Entgleisung. Zwei treffen zu, zwei nicht:</p>
+        <div class="tabelle">
+          <table>
+            <thead><tr><th>Anzeichen laut AWMF</th><th>bei Frau Krause</th></tr></thead>
+            <tbody>
+              <tr><td>Roter Kopf oder Wangen</td><td><b>ja</b> — Gesicht leicht gerötet</td></tr>
+              <tr><td>Kopfschmerz</td><td><b>ja</b> — Druckgefühl im Kopf</td></tr>
+              <tr><td>Schwindel</td><td><b>nicht dokumentiert</b> — sie sucht Halt, aber
+                Schwindel wird nirgends genannt. Das musst du erfragen!</td></tr>
+              <tr><td>Übelkeit</td><td><b>nein</b> — kommt im Fall nicht vor</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Und <b>keines</b> der Notfallzeichen ist vorhanden: keine Atemnot, keine starke
+          Brustenge, keine Verwirrtheit, keine Lähmungen, keine Seh- oder Sprechstörungen,
+          kein Krampfanfall, keine Bewusstlosigkeit. Diesen Satz brauchst du in Aufgabe 8b
+          wieder — schreib ihn dir schon jetzt auf.</p>
+        <span class="quelle">AWMF nvl-009, Patienteninformation Bluthochdruck</span>
+
+        <h4>c) Drei pflegerische Maßnahmen</h4>
+        <ol>
+          <li><b>Frau Krause sitzen lassen, Ruhe schaffen, beruhigen und ablenken.</b><br>
+            <em>Begründung:</em> Das Patientenblatt schreibt genau das vor — „Wichtig ist, dass
+            Sie ruhig bleiben. Versuchen Sie, sich zu entspannen und an etwas anderes zu denken,
+            um sich abzulenken.“ Der Ärger vom Vorabend hält den Sympathikus oben; Ruhe nimmt
+            diesen Antrieb weg. Gleichzeitig verhinderst du das unsichere Aufstehen und damit
+            einen Sturz.</li>
+          <li><b>Nach etwa 30 Minuten erneut Blutdruck messen.</b><br>
+            <em>Begründung:</em> Wörtlich im Patientenblatt: „Nach etwa 30 Minuten sollten Sie
+            Ihren Blutdruck nochmals messen.“ Dazu passt der Grundsatz aus deinem Artikel zur
+            Langzeitmessung: Ein einzelner erhöhter Wert bedeutet noch keine Diagnose — man
+            braucht wiederholte Messungen.</li>
+          <li><b>Ärztin oder Arzt informieren, besonders wegen der nicht eingenommenen
+            Medikamente.</b><br>
+            <em>Begründung:</em> Das Patientenblatt sagt: Wenn die Werte nicht besser werden oder
+            die Beschwerden anhalten, Arztpraxis anrufen oder aufsuchen — „dann kann Ihre Ärztin
+            oder Ihr Arzt Ihre Medikamente anpassen“. Die ausgelassene Morgendosis ist der
+            wahrscheinlichste Auslöser und du darfst die Einnahme nicht eigenmächtig
+            entscheiden.</li>
+        </ol>
+        <div class="gut"><b>Die vierte, die du immer dazuschreiben kannst:</b> engmaschig auf die
+          Notfallzeichen beobachten (Atemnot, Brustenge, Verwirrtheit, Lähmungen, Seh- oder
+          Sprechstörungen, Krampfanfall, Bewusstlosigkeit). Treten sie auf, ist es kein
+          Beobachten mehr, sondern <b>112</b>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aufgabe 5 -->
+  <div class="auf">
+    <div class="kopf"><span class="nr">Aufgabe 5</span>
+      <span class="ti">Warum diese Diagnostik?</span></div>
+    <div class="body">
+      <p class="frage"><span class="q">Lesen Sie sich die Diagnoseverfahren auf Novaheal durch.
+        Erklären Sie anschließend präzise, warum bei einer Hypertonie die aufgeführten
+        Laborparameter bestimmt werden (bitte einzeln aufführen!), warum eine Dopplersonografie
+        der hirnversorgenden Gefäße stattfindet und warum eine Echographie durchgeführt
+        wird.</span></p>
+      <textarea id="hk5" placeholder="Laborparameter: … Dopplersonografie: … Echographie: …"></textarea>
+      <span class="gespeichert" data-fuer="hk5">gespeichert ✓</span>
+      <p><button class="btn zeig" data-ziel="l5">Korrektur zeigen</button></p>
+
+      <div class="loesung" id="l5">
+        <div class="warn"><strong>Die Liste der Laborparameter steht auf Novaheal.</strong>
+          Ich kenne sie nicht und schreibe dir keine erfundenen Werte hin. Hol sie dir dort und
+          gehe sie <em>einzeln</em> durch — die Aufgabe verlangt das ausdrücklich.</div>
+
+        <h4>Der rote Faden für alle drei Verfahren</h4>
+        <p>Dein Artikel zur Langzeitmessung liefert die Begründung, die über allem steht:
+          „Der arterielle Bluthochdruck zählt zu den <b>Risikofaktoren für die Entstehung von
+          Herz-Kreislauf-Erkrankungen</b>“, und die Messung „erlaubt Rückschlüsse auf die
+          <b>Leistungsverhältnisse von Herz und Kreislauf</b>“. Das AWMF-Blatt sagt, welche
+          Organe der hohe Druck schädigen kann: <b>Gehirn, Herz, Lunge, Nieren</b> — mit
+          Schlaganfall, Herzinfarkt, Rissen in der Hauptschlagader, Gehirnblutungen, Wasser in
+          der Lunge und Nierenproblemen als möglichen Folgen.</p>
+        <p>Daraus folgt: Man untersucht, <b>ob diese Organe schon Schaden genommen haben</b> —
+          und ob es eine behandelbare Ursache gibt (sekundäre Hypertonie).</p>
+
+        <div class="zwei">
+          <div class="card">
+            <span class="lbl">Dopplersonografie der hirnversorgenden Gefäße</span>
+            <p>Das <b>Gehirn</b> steht im AWMF-Blatt an erster Stelle der gefährdeten Organe,
+              Schlaganfall und Gehirnblutung sind ausdrücklich genannt. Die hirnversorgenden
+              Gefäße sind der Weg dorthin. Mit dem Doppler schaut man, ob der dauerhaft hohe
+              Druck diese Gefäße bereits verändert hat — also ob ein Schlaganfallrisiko besteht,
+              bevor etwas passiert.</p>
+          </div>
+          <div class="card">
+            <span class="lbl">Echographie</span>
+            <p>Das <b>Herz</b> ist das zweite genannte Organ, Herzinfarkt und Wasser in der Lunge
+              sind mögliche Folgen. Der Herzmuskel arbeitet bei Hypertonie dauerhaft gegen einen
+              erhöhten Widerstand — deine Folie nennt das die <b>erhöhte Nachlast</b> beim
+              Frank-Starling-Mechanismus. Die Echographie zeigt, wie das Herz damit
+              zurechtkommt.</p>
+          </div>
+        </div>
+        <p><b>Für die Laborparameter</b> gilt derselbe Gedanke: Jeder einzelne Wert steht
+          entweder für ein <em>gefährdetes Organ</em> (allen voran die Nieren, die im AWMF-Blatt
+          genannt sind) oder für eine <em>mögliche Ursache</em> der Hypertonie. Wenn du sie aus
+          Novaheal abschreibst, ordne jeden Wert einer dieser beiden Fragen zu — dann ist deine
+          Antwort „präzise“, wie es die Aufgabe verlangt.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aufgabe 6 -->
+  <div class="auf">
+    <div class="kopf"><span class="nr">Aufgabe 6</span>
+      <span class="ti">Die 24-Stunden-Messung in einfacher Sprache erklären</span></div>
+    <div class="body">
+      <p class="frage"><span class="q">Frau Krause soll zur Abklärung ihrer Hypertonie eine
+        „24-Stunden-Blutdruckmessung“ durchführen. Erklären Sie der Bewohnerin in einfacher
+        Sprache, wie dieses Verfahren durchgeführt wird und welche Aussagekraft es hat. Nehmen
+        Sie dazu bitte den Artikel auf Ilias (und nur diesen!) zur Hilfe.</span></p>
+      <textarea id="hk6" placeholder="Frau Krause, Sie bekommen ein kleines Gerät …"></textarea>
+      <span class="gespeichert" data-fuer="hk6">gespeichert ✓</span>
+      <p><button class="btn zeig" data-ziel="l6">Korrektur zeigen</button></p>
+
+      <div class="loesung" id="l6">
+        <div class="gut"><b>Diese Aufgabe kannst du komplett aus deinen Unterlagen lösen.</b>
+          Der Artikel „Langzeit Blutdruckmessung“ ist genau der Ilias-Artikel, den Frau Küppers
+          meint. Alles unten steht dort.</div>
+
+        <h4>Ein Vorschlag, wie du mit Frau Krause sprichst</h4>
+        <div class="card">
+          <p>„Frau Krause, Ihr Blutdruck war heute Morgen sehr hoch. Ein einzelner hoher Wert
+            bedeutet aber noch nicht, dass Sie dauerhaft zu hohen Blutdruck haben. Der Blutdruck
+            schwankt nämlich über den Tag — schon eine kleine Anstrengung oder Ärger können ihn
+            nach oben treiben. Deshalb möchte die Ärztin ihn einen ganzen Tag lang beobachten.</p>
+          <p>Sie bekommen dafür ein kleines Gerät. Eine Manschette kommt um Ihren linken Oberarm,
+            und ein kleines Aufnahmegerät wird an Ihrem Gürtel befestigt. Das Gerät misst
+            automatisch — tagsüber alle 15 Minuten, nachts alle 30 Minuten. Über 24 Stunden
+            kommen ungefähr 60 Messungen zusammen.</p>
+          <p>Wenn die Manschette stramm wird, halten Sie den Arm bitte ruhig und möglichst auf
+            Herzhöhe. Ansonsten leben Sie ganz normal weiter — das ist wichtig, denn es soll ja
+            unter echten Bedingungen gemessen werden. Nur duschen oder baden dürfen Sie nicht,
+            das Gerät ist nicht wasserdicht.</p>
+          <p>Dazu bekommen Sie ein kleines Protokoll. Da tragen Sie ein, was Sie wann gemacht
+            haben — wann Sie sich angestrengt haben, wann Sie sich aufgeregt haben, wann Sie
+            geruht und wann Sie Ihre Medikamente genommen haben. Damit sieht die Ärztin
+            später, warum der Blutdruck an einer Stelle hoch war.</p>
+          <p>Am Ende werden die Werte am Computer ausgelesen und als Kurve dargestellt. Man
+            sieht dann Ihren Durchschnittswert, den höchsten und den niedrigsten Wert des Tages.
+            Das sagt viel mehr aus als eine einzelne Messung.“</p>
+        </div>
+
+        <h4>Die Aussagekraft — das ist der zweite Teil der Frage</h4>
+        <ul class="tick">
+          <li>Sie erlaubt eine <b>differenziertere Beurteilung</b> als eine Einzelmessung, weil
+            sie die tagesrhythmischen Schwankungen berücksichtigt.</li>
+          <li>Sie zeigt <b>Blutdruckspitzen, Schwankungen und Blutdruckabfälle</b> objektiv.</li>
+          <li>Sie schließt eine <b>Weißkittelhypertonie</b> („Praxishochdruck“) aus.</li>
+          <li>Sie zeigt, ob der <b>Tag-Nacht-Rhythmus</b> stimmt. Normal ist ein nächtlicher
+            Abfall von <b>10 bis 15 Prozent</b>. Bleibt er aus, ist das ein Befund.</li>
+          <li>Sie dient der <b>Erfolgskontrolle der Blutdruckbehandlung</b> im Tagesverlauf —
+            bei Frau Krause besonders interessant, weil sie ja bereits Medikamente nimmt.</li>
+          <li><b>Die Diagnose:</b> Ab einem Durchschnitt von <b>≥ 130 mmHg systolisch und
+            80 mmHg diastolisch</b> in der Gesamtauswertung wird eine arterielle Hypertonie
+            diagnostiziert.</li>
+        </ul>
+        <p class="fr">Petit piège : la question demande <b>deux</b> choses — <em>comment</em> ça
+          se passe et <em>ce que ça permet de dire</em>. Beaucoup d'élèves n'écrivent que la
+          première partie.</p>
+        <span class="quelle">Langzeit Blutdruckmessung (24-Stunden-Blutdruckmessung)</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aufgabe 7 -->
+  <div class="auf">
+    <div class="kopf"><span class="nr">Aufgabe 7</span>
+      <span class="ti">Was Frau Krause selbst tun kann · Antihypertensiva</span></div>
+    <div class="body">
+      <p class="frage"><span class="q">Nennen Sie drei Beispiele dafür, wie Frau Krause selbst
+        dazu beitragen kann, ihren Blutdruck langfristig zu senken. Beziehen Sie die „Planung der
+        Pflegemaßnahmen“ auf Novaheal mit ein.</span></p>
+      <textarea id="hk7a" placeholder="1. … 2. … 3. …"></textarea>
+      <span class="gespeichert" data-fuer="hk7a">gespeichert ✓</span>
+
+      <p class="frage" style="margin-top:20px;"><span class="q">Wiederholen Sie, wie die auf
+        Novaheal genannten Antihypertensiva wirken und warum diese zur Behandlung einer
+        Hypertonie eingesetzt werden.</span></p>
+      <textarea id="hk7b" placeholder="Die Antihypertensiva greifen an … "></textarea>
+      <span class="gespeichert" data-fuer="hk7b">gespeichert ✓</span>
+
+      <p><button class="btn zeig" data-ziel="l7">Korrektur zeigen</button></p>
+
+      <div class="loesung" id="l7">
+        <h4>Drei Beispiele, die direkt in deinen Unterlagen stehen</h4>
+        <p>Das AWMF-Patientenblatt hat einen eigenen Abschnitt „Was kann ich vorher tun?“ — dort
+          stehen genau drei Punkte, und alle drei passen auf Frau Krause:</p>
+        <ol>
+          <li><b>Die blutdrucksenkenden Medikamente regelmäßig und wie verordnet einnehmen und
+            sie nicht eigenmächtig weglassen.</b> Bei Frau Krause der wichtigste Punkt
+            überhaupt — sie hat die Morgendosis heute noch nicht genommen. Hier setzt du
+            konkret an: gemeinsam einen festen Zeitpunkt in ihren Morgenablauf legen, damit die
+            Einnahme nicht mehr vom Frühstück abhängt.</li>
+          <li><b>Den Blutdruck regelmäßig selbst messen.</b> So merkt sie Veränderungen früh und
+            kann selbst reagieren, statt zu warten, bis es ihr „überhaupt nicht gut“ geht.</li>
+          <li><b>An einer Schulung teilnehmen.</b> Wörtlich im Blatt: „Dort lernen Sie einen
+            Notfall zu erkennen und was dann zu tun ist.“ Das ist echte Selbstbefähigung.</li>
+        </ol>
+        <span class="quelle">AWMF nvl-009, Abschnitt „Was kann ich vorher tun?“</span>
+
+        <div class="warn"><strong>Was du selbst noch prüfen musst.</strong> Der Fall bietet
+          weitere Ansatzpunkte — Adipositas mit BMI 30,4, die geringe Trinkmenge von einem Liter,
+          der Umgang mit Ärger und Stress, der schlechte Schlaf. Das sind naheliegende
+          Pflegemaßnahmen, <em>aber sie stehen nicht in den PDFs, die du mir gegeben hast</em>.
+          Prüfe unter „Planung der Pflegemaßnahmen“ auf Novaheal nach, wie es dort formuliert
+          ist, und nimm die Formulierung von dort. Ich erfinde dir hier keine Empfehlung.</div>
+
+        <h4>Antihypertensiva — die Angriffspunkte, die deine Folien zeigen</h4>
+        <div class="warn"><strong>Die Wirkstoffgruppen stehen auf Novaheal.</strong> Namen und
+          Wirkstoffe hole dir von dort. Was deine Folien dir liefern, ist das <em>Warum</em> —
+          und damit verstehst du jede Gruppe sofort.</div>
+        <p>Aus deinen Folien ergeben sich drei Stellschrauben, an denen ein Blutdruck überhaupt
+          gesenkt werden kann:</p>
+        <ul class="tick">
+          <li><b>Das Herzzeitvolumen (HZV).</b> Auf Folie 3: Wird der Vagus stimuliert, sinkt das
+            HZV und damit der Blutdruck. Ein Medikament, das die Herzarbeit dämpft, macht
+            dasselbe.</li>
+          <li><b>Der totale periphere Widerstand (TPR).</b> Ebenfalls Folie 3: Gefäßerweiterung
+            in Haut und Organen senkt den TPR — <b>Vasodilatation</b>. Ein Medikament, das
+            die Gefäße weit stellt, senkt den Widerstand.</li>
+          <li><b>Das Blutvolumen.</b> Deine Folie zum <b>RAAS</b> zeigt die Kette:
+            Renin → Angiotensinogen → Angiotensin I → <b>ACE</b> → Angiotensin II → und daraus
+            Vasokonstriktion, Durst, ADH ↑ und Aldosteron ↑ → Blutdruck steigt, Blutvolumen
+            steigt. Jedes Glied dieser Kette ist ein möglicher Angriffspunkt — deshalb heißt
+            eine ganze Medikamentengruppe nach dem ACE.</li>
+        </ul>
+        <p>Und die Gegenrichtung steht auch auf deinen Folien: <b>ANP und BNP</b> werden bei
+          erhöhter Vorhofdehnung ausgeschüttet, führen zu vermehrter Natrium- und
+          Chloridausscheidung in der Niere, Wasser folgt osmotisch, das Plasmavolumen sinkt und
+          damit der Blutdruck. Zusätzlich: Reninausschüttung ↓, Vasodilatation in den Arteriolen,
+          Hemmung des Durstgefühls, Hemmung der ADH-Ausschüttung. Das ist der körpereigene
+          Blutdrucksenker — und die Blaupause für Medikamente, die über die Niere wirken.</p>
+        <span class="quelle">Regulation des Blutdrucks, Folien 3, 8 und 11</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Aufgabe 8 -->
+  <div class="auf">
+    <div class="kopf"><span class="nr">Aufgabe 8</span>
+      <span class="ti">Hypertensive Entgleisung oder hypertensiver Notfall?</span></div>
+    <div class="body">
+      <p class="frage"><span class="q"><span class="mk">a)</span> Erklären Sie kurz die beiden
+        Formen und nennen Sie die drei wichtigsten Unterschiede.</span></p>
+      <textarea id="hk8a" placeholder="Eine hypertensive Entgleisung ist … Ein hypertensiver Notfall ist … Die drei Unterschiede: …"></textarea>
+      <span class="gespeichert" data-fuer="hk8a">gespeichert ✓</span>
+
+      <p class="frage" style="margin-top:20px;"><span class="q"><span class="mk">b)</span>
+        Entscheiden Sie, ob der Blutdruckwert von Frau Krause (198/112 mmHg) eher einer
+        hypertensiven Entgleisung oder einem hypertensiven Notfall entspricht. Beziehen Sie
+        dabei auch ihre Symptome ein.</span></p>
+      <textarea id="hk8b" placeholder="Bei Frau Krause handelt es sich um … weil …"></textarea>
+      <span class="gespeichert" data-fuer="hk8b">gespeichert ✓</span>
+
+      <p><button class="btn zeig" data-ziel="l8">Korrektur zeigen</button></p>
+
+      <div class="loesung" id="l8">
+        <div class="gut"><b>Auch diese Aufgabe kannst du vollständig aus deinen Unterlagen
+          beantworten.</b> Das AWMF-Patientenblatt behandelt genau diese beiden Formen.</div>
+
+        <h4>a) Die beiden Formen</h4>
+        <div class="tabelle">
+          <table>
+            <thead><tr><th></th><th>Hypertensive Entgleisung</th><th>Hypertensiver Notfall</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><b>Der Wert</b></td>
+                <td class="num">oberer Wert über 180 mmHg <em>und</em> unterer Wert über 110 mmHg</td>
+                <td>ebenfalls stark erhöht — der Wert allein entscheidet nicht</td>
+              </tr>
+              <tr>
+                <td><b>Organschaden</b></td>
+                <td>Bei kurzer Dauer <b>keine Hinweise</b>, dass Organe geschädigt werden</td>
+                <td>Der hohe Druck <b>schädigt Gehirn und weitere Organe</b> — Herz, Lunge, Nieren</td>
+              </tr>
+              <tr>
+                <td><b>Anzeichen</b></td>
+                <td>roter Kopf oder Wangen · Kopfschmerz · Schwindel · Übelkeit</td>
+                <td>Atemnot · starke Brustenge · Verwirrtheit · Lähmungen · Seh- oder
+                    Sprechstörungen · Krampfanfälle · Bewusstlosigkeit</td>
+              </tr>
+              <tr>
+                <td><b>Mögliche Folgen</b></td>
+                <td>—</td>
+                <td>Schlaganfall · Herzinfarkt · Risse in der Hauptschlagader · Gehirnblutungen ·
+                    Wasser in der Lunge · Nierenprobleme</td>
+              </tr>
+              <tr>
+                <td><b>Was zu tun ist</b></td>
+                <td>Ruhe bewahren, entspannen, ablenken · nach ca. 30 Minuten erneut messen ·
+                    keine Besserung → Arztpraxis · bei Unsicherheit <b>116 117</b></td>
+                <td>Behandlung im Krankenhaus · sofort <b>112</b> rufen oder rufen lassen</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><b>Die drei wichtigsten Unterschiede</b>, wenn du sie in drei Sätzen nennen sollst:</p>
+        <ol>
+          <li><b>Organschaden ja oder nein.</b> Das ist das eigentliche Unterscheidungsmerkmal —
+            nicht die Höhe des Wertes. Wörtlich: „Eine Blutdruck-Entgleisung ist in der Regel
+            eine ernste Situation, aber kein Notfall. Anders ist es, wenn der stark erhöhte
+            Blutdruck das Gehirn und weitere Organe schädigt.“</li>
+          <li><b>Die Art der Beschwerden.</b> Bei der Entgleisung Kopf- und Kreislaufzeichen;
+            beim Notfall neurologische Ausfälle und Atem- oder Herzbeschwerden.</li>
+          <li><b>Die Konsequenz.</b> Entgleisung: abwarten, nachmessen, gegebenenfalls
+            Arztpraxis. Notfall: sofort Rettungsdienst und Krankenhaus.</li>
+        </ol>
+        <span class="quelle">AWMF nvl-009</span>
+
+        <h4>b) Die Entscheidung bei Frau Krause</h4>
+        <p><b>Es handelt sich um eine hypertensive Entgleisung, nicht um einen hypertensiven
+          Notfall.</b> So begründest du es:</p>
+        <ul class="tick">
+          <li><b>Der Wert erfüllt die Definition der Entgleisung.</b> 198 mmHg liegt über 180,
+            112 mmHg liegt über 110. Beide Bedingungen sind erfüllt.</li>
+          <li><b>Ihre Symptome sind genau die Entgleisungszeichen.</b> Gerötetes Gesicht =
+            „roter Kopf oder Wangen“. Druckgefühl im Kopf = „Kopfschmerz“.</li>
+          <li><b>Kein einziges Notfallzeichen liegt vor.</b> Keine Atemnot — die Sättigung ist
+            mit 96 % normal. Keine Brustenge, keine Verwirrtheit — sie ist gereizt und unruhig,
+            aber orientiert und berichtet zusammenhängend. Keine Lähmungen, keine Seh- oder
+            Sprechstörungen, kein Krampfanfall, keine Bewusstlosigkeit.</li>
+          <li>Das Blatt sagt dazu ausdrücklich: „Treten keine schwerwiegenden Beschwerden auf,
+            handelt es sich sehr wahrscheinlich um eine Blutdruck-Entgleisung.“</li>
+        </ul>
+        <div class="warn"><strong>Das gehört unbedingt in deine Antwort.</strong> Zwei Befunde
+          musst du trotzdem nennen und im Auge behalten: die <b>Tachypnoe mit 22 AZ/Min</b> und
+          die <b>Unsicherheit beim Aufstehen</b>. Beide sind für sich noch keine Notfallzeichen —
+          die Sättigung ist normal, und sie ist nicht bewusstseinsgetrübt. Aber wenn daraus
+          Atemnot oder eine Verwirrtheit wird, kippt die Einschätzung sofort in Richtung Notfall.
+          Wer das dazuschreibt, zeigt, dass er nicht nur einordnet, sondern auch beobachtet.</div>
+        <p>Und der pflegerische Schluss: Ruhe schaffen, nach 30 Minuten nachmessen, ärztliche
+          Rücksprache wegen der ausgelassenen Medikamente — bei Unsicherheit der ärztliche
+          Bereitschaftsdienst unter <b>116 117</b>, bei Notfallzeichen sofort <b>112</b>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= REGULATION ================= -->
+<section id="regulation">
+  <h2>Die Regulation zum Nachschlagen</h2>
+  <p class="lead">Alles aus den elf Folien von Frau Küppers, geordnet. Wenn du in einer Aufgabe
+    nicht weiterkommst, liegt die Antwort fast immer hier.</p>
+
+  <h3>Kurzfristige Regulation — der Weg vom Rezeptor zum Gefäß</h3>
+  <div class="fluss">
+    <div class="fl-reihe">
+      <div class="fl"><span class="t">Volumenrezeptoren</span>
+        <span class="d">im rechten Vorhof · registrieren das aktuelle <b>Blutvolumen</b> ·
+          Nervenfasern des <b>X. Hirnnervs</b> (N. vagus)</span></div>
+      <div class="fl"><span class="t">Pressorezeptoren</span>
+        <span class="d">in den großen elastischen Arterien · registrieren den aktuellen
+          <b>Blutdruck</b>, indem sie die Dehnung der Arterienwand aufnehmen ·
+          Nervenfasern des <b>IX. Hirnnervs</b> (N. glossopharyngeus)</span></div>
+    </div>
+    <div class="pfeil">↓</div>
+    <div class="fl-reihe">
+      <div class="fl mitte"><span class="t">Verlängertes Mark des Gehirns</span>
+        <span class="d">Medulla oblongata — Sitz des <b>Kreislaufzentrums</b></span></div>
+    </div>
+    <div class="pfeil">↓</div>
+    <div class="fl-reihe">
+      <div class="fl hoch"><span class="t">Hoher Blutdruck → Nervus vagus wird stimuliert</span>
+        <span class="d">Senkung des HZV · Senkung des TPR durch Gefäß<b>erweiterung</b> in Haut
+          und Organen <br>⇒ <b>Blutdrucksenkung</b></span></div>
+      <div class="fl tief"><span class="t">Niedriger Blutdruck → Nervus sympathikus wird stimuliert</span>
+        <span class="d">Erhöhung des HZV · Steigerung des TPR durch Gefäß<b>verengung</b> in Haut
+          und Organen <br>⇒ <b>Blutdrucksteigerung</b></span></div>
+    </div>
+  </div>
+  <p><b>TPR</b> = totaler peripherer Widerstand. <b>HZV</b> = Herzzeitvolumen.</p>
+
+  <h3>Vasomotorik — die zwei Wörter, die du nie verwechseln darfst</h3>
+  <div class="zwei">
+    <div class="card">
+      <span class="lbl">Vasokonstriktion</span>
+      <p><b>Engstellung</b> des Gefäßes</p>
+      <ul><li>Kontraktion der Muskularis</li><li>Lumeneinengung</li>
+        <li>Organdurchblutung ↓</li></ul>
+    </div>
+    <div class="card">
+      <span class="lbl">Vasodilatation</span>
+      <p><b>Weitstellung</b> des Gefäßes</p>
+      <ul><li>Entspannung der Muskularis</li><li>Lumenvergrößerung</li>
+        <li>Organdurchblutung ↑</li></ul>
+    </div>
+  </div>
+  <p class="fr">Astuce mémoire : <b>konstrikt</b>ion → « constriction », ça serre.
+    <b>dilat</b>ation → « dilatation », ça s'ouvre. Même racine qu'en français.</p>
+
+  <h3>Lokale Regulationsmechanismen</h3>
+  <p>Das Signal kommt hier aus der <b>Umgebung des Gefäßes</b>, nicht aus dem Gehirn.</p>
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Auslöser</th><th>Wirkung</th></tr></thead>
+      <tbody>
+        <tr><td>Stoffwechselendprodukte</td><td>Vasodilatation</td></tr>
+        <tr><td>Chemische Substanzen</td><td>Vasodilatation oder Vasokonstriktion</td></tr>
+        <tr><td>Humoral-hormonell</td><td>Vasodilatation oder Vasokonstriktion</td></tr>
+        <tr><td>Myogene Autoregulation</td><td>RR ↑ im Gefäß = Vasokonstriktion, um die
+          Durchblutung konstant zu halten — in Niere, Gehirn und Venen der unteren
+          Extremität, <b>nicht</b> in der Lunge</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Dazu die Regel von der Organdurchblutungs-Folie: Die Organdurchblutung richtet sich
+    <b>1.</b> nach dem Bedarf an Sauerstoff und <b>2.</b> nach der Menge der abzutransportierenden
+    Stoffwechselprodukte. Bei aktivem Bewegungssystem werden die Arteriolen der Skelettmuskulatur
+    weit gestellt — durch den <b>Sympathicus</b> und durch Hormone wie Noradrenalin. Bei aktivem
+    Verdauungssystem werden die Arteriolen der Verdauungsorgane weit gestellt — durch den
+    <b>Parasympathicus</b> und durch gefäßaktive Substanzen wie Bradykinin und Kallidin. In beiden
+    Fällen bleibt eine <b>Mindestdurchblutung</b> des jeweils anderen Systems erhalten.</p>
+
+  <h3>Frank-Starling-Mechanismus</h3>
+  <div class="card">
+    <ul class="tick">
+      <li>Kurzfristige Anpassung der <b>Herzleistung an den venösen Rückfluss</b></li>
+      <li>Beruht auf der Kontraktionsfähigkeit des Herzmuskels in Abhängigkeit von dessen
+        <b>Vordehnung</b></li>
+      <li>Spielt eine Rolle bei erhöhter <b>Vorlast</b> oder erhöhter <b>Nachlast</b></li>
+    </ul>
+    <p>Für Frau Krause relevant: Ein dauerhaft hoher Blutdruck bedeutet eine erhöhte
+      <b>Nachlast</b> — das Herz muss gegen einen höheren Widerstand auswerfen. Genau deshalb
+      wird in Aufgabe 5 eine Echographie gemacht.</p>
+  </div>
+
+  <h3>ANP und BNP — der körpereigene Blutdrucksenker</h3>
+  <div class="card">
+    <p><b>Reiz für die Freisetzung:</b> vor allem eine erhöhte Vorhofdehnung
+      (Blutvolumen ↑).</p>
+    <p><b>Reaktion des Körpers:</b> erhöhte Natrium- und Chloridausschüttung über die Niere.</p>
+    <p><b>Folge:</b> Wasser folgt osmotisch → Plasmavolumen ↓ → RR ↓ (Aldosteronantagonist).</p>
+    <p><b>Zusätzlich:</b></p>
+    <ul><li>Reninausschüttung der Niere ↓</li><li>Vasodilatation in Arteriolen</li>
+      <li>im Hypothalamus Hemmung des Durstgefühls</li>
+      <li>in der Hypophyse Hemmung der ADH-Ausschüttung</li></ul>
+  </div>
+
+  <h3>Langfristige Regulation — das RAAS</h3>
+  <p>Renin-Angiotensin-Aldosteron-System. Es wird <b>bei zu niedrigem</b> Blutdruck angeworfen —
+    das ist wichtig, damit du es nicht falsch herum erzählst.</p>
+  <div class="card">
+    <p><b>Drei Auslöser für die Reninausschüttung aus der Niere:</b></p>
+    <ul><li>Stimulation der sympathischen Nierennerven</li>
+      <li>Blutdruckabfall, niedriger Blutdruck</li>
+      <li>niedrige Na⁺-Konzentration im Blut, niedriges Blutvolumen</li></ul>
+    <p><b>Die Kette:</b></p>
+    <p style="font-family:var(--mono);font-size:14px;line-height:1.9;">
+      Renin + Angiotensinogen → <b>Angiotensin I</b><br>
+      Angiotensin I + <b>ACE</b> (Angiotensin-converting-Enzym) → <b>Angiotensin II</b></p>
+    <p><b>Angiotensin II wirkt an vier Stellen:</b></p>
+    <ul><li><b>Vasokonstriktion</b></li><li><b>Durst</b></li>
+      <li><b>ADH (Adiuretin) ↑</b></li><li><b>Aldosteron ↑</b></li></ul>
+    <p><b>Ergebnis:</b> Blutdruck steigt · im Blut Na⁺-Konzentration ↑ und K⁺-Konzentration ↓ ·
+      Blutvolumen steigt.</p>
+  </div>
+
+  <h3>Mechanische Herzaktion (Herzzyklus)</h3>
+  <div class="zwei">
+    <div class="card"><span class="lbl">Systole — Kontraktionsphase</span>
+      <ol><li>Anspannungsphase</li><li>Austreibungsphase</li></ol></div>
+    <div class="card"><span class="lbl">Diastole — Erschlaffungsphase</span>
+      <ol><li>Entspannungsphase</li><li>Füllungsphase</li></ol></div>
+  </div>
+  <p>Der Zusammenhang mit der Messung steht in deinem Langzeit-Artikel: Zum Zeitpunkt der
+    <b>Systole</b> erreicht der arterielle Druck sein <b>Maximum</b>, zum Zeitpunkt der
+    <b>Diastole</b> sein <b>Minimum</b>. Deshalb misst man zwei Werte.</p>
+</section>
+
+<!-- ================= LANGZEIT ================= -->
+<section id="langzeit">
+  <h2>Die 24-Stunden-Messung — alle Zahlen</h2>
+  <p class="lead">Aus dem Ilias-Artikel. Diese Zahlen kommen erfahrungsgemäß gern in der
+    Klausur vor.</p>
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Was</th><th>Wert</th></tr></thead>
+      <tbody>
+        <tr><td>Optimaler Blutdruck in Ruhe</td><td class="num">&lt; 120 / &lt; 80 mmHg</td></tr>
+        <tr><td>Normal (ESC 2018)</td><td class="num">&lt; 130 / &lt; 85 mmHg</td></tr>
+        <tr><td>Diagnose Hypertonie im 24-h-Durchschnitt</td><td class="num">≥ 130 / 80 mmHg</td></tr>
+        <tr><td>Feststellung einer arteriellen Hypertonie</td>
+            <td>nach mindestens <b>dreimaliger</b> Messung an <b>zwei</b> Tagen</td></tr>
+        <tr><td>Messintervall tagsüber</td><td class="num">alle 15 Minuten</td></tr>
+        <tr><td>Messintervall nachts</td><td class="num">alle 30 Minuten</td></tr>
+        <tr><td>Messungen in 24 Stunden</td><td class="num">ungefähr 60</td></tr>
+        <tr><td>Physiologischer nächtlicher Blutdruckabfall</td><td class="num">10 bis 15 %</td></tr>
+        <tr><td>Manschette</td><td>linker Oberarm · Aufnahmegerät am Gürtel</td></tr>
+        <tr><td>Nicht erlaubt</td><td>duschen und baden — das Gerät ist nicht wasserdicht</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <h3>Wann ist sie angezeigt?</h3>
+  <ul class="tick">
+    <li>zur Differentialdiagnose der Hypertonie</li>
+    <li>Ausschluss einer Weißkittelhypertonie beim Arztbesuch („Praxishochdruck“)</li>
+    <li>Bewertung und Erfolgskontrolle der Blutdruckbehandlung im Tagesverlauf</li>
+    <li>Verdacht auf Morgenhochdruck</li>
+    <li>Verdacht auf eine sekundäre Hypertonie</li>
+    <li>Verdacht auf eine hypertensive Schwangerschaftserkrankung</li>
+    <li>zur freiwilligen Vorsorgeuntersuchung</li>
+    <li>Verdacht auf einen gestörten Tag-Nacht-Rhythmus</li>
+  </ul>
+  <div class="info"><b>Das Tätigkeitsprotokoll nicht vergessen.</b> Der Patient trägt körperliche
+    Tätigkeiten, emotionale Belastungen, Ruhephasen, Medikamenteneinnahmen und die jeweilige
+    Uhrzeit ein. Damit lassen sich später Zusammenhänge zwischen Blutdruckerhöhung und
+    Anstrengung zeigen. Bei Frau Krause wäre der Streit mit der Tochter genau so ein Eintrag.</div>
+</section>
+
+<!-- ================= NOTFALL ================= -->
+<section id="notfall">
+  <h2>Entgleisung oder Notfall — die Kurzkarte</h2>
+  <p class="lead">Das AWMF-Patientenblatt auf einen Blick. Diese Unterscheidung ist der Kern von
+    Aufgabe 8 — und im Dienst rettet sie Zeit.</p>
+
+  <div class="zwei">
+    <div class="card" style="border-left:4px solid var(--warn);">
+      <span class="lbl" style="color:var(--warn);">Blutdruck-Entgleisung</span>
+      <p><b>Über 180 systolisch <em>und</em> über 110 diastolisch</b>, bei kurzer Dauer keine
+        Hinweise auf Organschäden. „Eine ernste Situation, aber kein Notfall.“</p>
+      <p><b>Anzeichen:</b> roter Kopf oder Wangen · Kopfschmerz · Schwindel · Übelkeit</p>
+      <p><b>Tun:</b> Ruhe bewahren, entspannen, ablenken. Nach etwa 30 Minuten erneut messen.
+        Keine Besserung oder anhaltende Beschwerden → Arztpraxis anrufen oder aufsuchen.</p>
+      <p><b>Unsicher?</b> Ärztlicher Bereitschaftsdienst <b>116 117</b></p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--bad);">
+      <span class="lbl" style="color:var(--bad);">Hypertensiver Notfall</span>
+      <p>Der stark erhöhte Blutdruck <b>schädigt das Gehirn und weitere Organe</b> — Herz, Lunge,
+        Nieren. Mögliche Folgen: Schlaganfall, Herzinfarkt, Risse in der Hauptschlagader,
+        Gehirnblutungen, Wasser in der Lunge, Nierenprobleme.</p>
+      <p><b>Anzeichen:</b> Atemnot · starke Brustenge · Verwirrtheit · Lähmungen · Seh- oder
+        Sprechstörungen · Krampfanfälle · Bewusstlosigkeit</p>
+      <p><b>Tun:</b> Behandlung im Krankenhaus.</p>
+      <p><b>Sofort:</b> Rettungsdienst <b>112</b> rufen oder rufen lassen.</p>
+    </div>
+  </div>
+
+  <h3>Ursachen einer Entgleisung</h3>
+  <ul class="tick">
+    <li><b>Häufigster Grund:</b> blutdrucksenkende Medikamente werden nicht regelmäßig eingenommen
+      oder weggelassen</li>
+    <li>Stress · seelische Probleme</li>
+    <li>Alkohol · Drogen</li>
+    <li>Schmerzen</li>
+    <li>andere Medikamente · Hormonstörungen</li>
+  </ul>
+  <div class="info"><b>Merksatz aus dem Blatt:</b> „Wenn der Blutdruck plötzlich 180 zu 110 mmHg
+    übersteigt, bewahren Sie Ruhe und messen nach einer halben Stunde erneut. Bei starken
+    Beschwerden, großer Unsicherheit oder in der Schwangerschaft holen Sie sofort ärztliche
+    Hilfe.“ Besonders <b>Schwangere</b> brauchen bei so hohen Werten rasch ärztliche Hilfe.</div>
+</section>
+
+<!-- ================= LÜCKEN ================= -->
+<section id="luecken">
+  <h2>Was in deinen Unterlagen fehlt</h2>
+  <p class="lead">Damit du nicht suchst, was nicht da ist — und damit du weißt, wo du selbst
+    nachschlagen musst.</p>
+
+  <div class="warn">
+    <p><b>1. Novaheal.</b> Der Arbeitsauftrag verweist an sechs Stellen auf Novaheal-Artikel.
+      Ich habe keinen Zugriff darauf. Betroffen sind: die <b>Gradeinteilung der Hypertonie</b>
+      (Aufgabe 1), die <b>vollständige Symptomliste</b> (Aufgabe 4b), die
+      <b>Laborparameter der Diagnostik</b> (Aufgabe 5), die <b>Planung der Pflegemaßnahmen</b>
+      (Aufgabe 7) und die <b>Antihypertensiva</b> (Aufgabe 7). Für jede dieser Stellen findest
+      du oben den Rahmen und die Begründung — die Zahlen und Namen setzt du aus Novaheal ein.</p>
+    <p><b>2. Das Arbeitsblatt zur arteriellen Hypotonie.</b> Auf Seite 3 des Arbeitsauftrags steht
+      nur: „Lesen Sie den Artikel … und beantworten Sie bitte anschließend folgendes
+      Arbeitsblatt“ — darunter ein QR-Code. <b>Das Arbeitsblatt selbst ist nicht in der PDF.</b>
+      Schick es mir, sobald du es hast, dann bearbeiten wir den Hypotonie-Teil genauso wie
+      diesen hier.</p>
+  </div>
+
+  <div class="gut"><b>Was vollständig da ist:</b> die kurz- und langfristige Blutdruckregulation
+    (11 Folien), die 24-Stunden-Messung (kompletter Fachtext) und die Unterscheidung von
+    Entgleisung und Notfall (AWMF-Patientenblatt). Damit sind die Aufgaben 2, 6 und 8 vollständig
+    lösbar, und für 3, 4 und 5 hast du die tragende Begründung.</div>
+</section>
+
+</main>
+
+<footer>
+  <p><b>Quellen — alles auf dieser Seite stammt aus diesen vier Dokumenten:</b><br>
+    CE 05 UE 1 Hyper- und Hypotonie, Arbeitsauftrag (Frau Küppers) ·
+    Regulation des Blutdrucks, 11 Folien (Frau Küppers) ·
+    Langzeit Blutdruckmessung (24-Stunden-Blutdruckmessung) ·
+    Bluthochdruck — Was tun, wenn der Blutdruck plötzlich viel zu hoch ist?
+    (AWMF-Registernr. nvl-009, NVL-Programm 2023)</p>
+  <p style="margin-top:14px;">Deine Antworten bleiben in diesem Browser gespeichert.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  // Korrektur ein- und ausklappen
+  document.querySelectorAll(".btn.zeig").forEach(function(b){
+    b.addEventListener("click", function(){
+      var z = document.getElementById(b.dataset.ziel);
+      if(!z) return;
+      var offen = z.classList.toggle("offen");
+      b.textContent = offen ? "Korrektur ausblenden" : "Korrektur zeigen";
+    });
+  });
+
+  // Antworten speichern
+  var PREFIX = "blutdruck-krause-";
+  document.querySelectorAll("textarea[id]").forEach(function(t){
+    var key = PREFIX + t.id;
+    try {
+      var alt = localStorage.getItem(key);
+      if(alt !== null) t.value = alt;
+    } catch(e){}
+
+    var marke = document.querySelector('.gespeichert[data-fuer="' + t.id + '"]');
+    var timer = null;
+    t.addEventListener("input", function(){
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        try { localStorage.setItem(key, t.value); } catch(e){ return; }
+        if(!marke) return;
+        marke.classList.add("an");
+        setTimeout(function(){ marke.classList.remove("an"); }, 1400);
+      }, 450);
+    });
+  });
+})();
+</script>

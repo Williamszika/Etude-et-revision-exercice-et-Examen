@@ -241,6 +241,12 @@ function karte(s){
     a.href = s.links.schulung; a.target = '_blank'; a.rel = 'noopener';
     btns.appendChild(a);
   }
+  (s.zusatz || []).forEach(z => {
+    if(!z || !z.url || !z.label) return;
+    const a = el('a', btns.children.length ? 'btn' : 'btn prim', z.label);
+    a.href = z.url; a.target = '_blank'; a.rel = 'noopener';
+    btns.appendChild(a);
+  });
   const g = el('a', 'btn ghost', '📁 Ordner im Repo');
   g.href = s.repo_ordner; g.target = '_blank'; g.rel = 'noopener';
   btns.appendChild(g);

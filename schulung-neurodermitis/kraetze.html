@@ -1,0 +1,473 @@
+<title>Krätze im Pflegeheim</title>
+<style>
+  :root{
+    --paper:#f6f4ef;--paper-2:#ede9e1;--card:#fffdfa;--ink:#1f1e19;--ink-soft:#54524a;--line:#ded8cb;
+    --accent:#7a6a2e;--accent-deep:#5b4e1e;--accent-soft:#eee9d5;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;
+    --blue:#3a6b90;--bluebg:#dde8f0;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#161612;--paper-2:#11110e;--card:#20201a;--ink:#efeee7;--ink-soft:#aeaba0;--line:#34342b;
+    --accent:#cbbc78;--accent-deep:#e0d394;--accent-soft:#282413;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;
+    --blue:#84b0d4;--bluebg:#16242e;}}
+  :root[data-theme="dark"]{
+    --paper:#161612;--paper-2:#11110e;--card:#20201a;--ink:#efeee7;--ink-soft:#aeaba0;--line:#34342b;
+    --accent:#cbbc78;--accent-deep:#e0d394;--accent-soft:#282413;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;
+    --blue:#84b0d4;--bluebg:#16242e;}
+  :root[data-theme="light"]{
+    --paper:#f6f4ef;--paper-2:#ede9e1;--card:#fffdfa;--ink:#1f1e19;--ink-soft:#54524a;--line:#ded8cb;
+    --accent:#7a6a2e;--accent-deep:#5b4e1e;--accent-soft:#eee9d5;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;
+    --blue:#3a6b90;--bluebg:#dde8f0;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding:46px 20px 30px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:62ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:0;z-index:30;background:var(--paper-2);border-bottom:1px solid var(--line);
+    padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);background:var(--card);}
+
+  main{max-width:58rem;margin:0 auto;padding:0 18px 90px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:26px 0 8px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px 22px 18px;margin:16px 0;}
+  .card > :first-child{margin-top:0;}
+  .card > :last-child{margin-bottom:0;}
+  .lbl{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+
+  .zahlen{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:18px 0;}
+  .z{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 16px;}
+  .z .n{font-family:var(--mono);font-size:1.4rem;font-weight:600;line-height:1.15;display:block;
+    color:var(--accent-deep);font-variant-numeric:tabular-nums;}
+  .z .k{font-size:14px;color:var(--ink-soft);display:block;margin-top:5px;}
+
+  .tabelle{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:12px;}
+  table{border-collapse:collapse;width:100%;min-width:460px;background:var(--card);}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+  ul,ol{padding-left:1.2em;margin:10px 0;}
+  li{margin:6px 0;}
+  ul.tick{list-style:none;padding-left:0;}
+  ul.tick li{padding-left:1.7em;position:relative;}
+  ul.tick li::before{content:"▸";position:absolute;left:.35em;color:var(--accent);}
+
+  .warn{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+  .info{background:var(--bluebg);border-left:4px solid var(--blue);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+  .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+  @media (max-width:640px){.zwei{grid-template-columns:1fr;}}
+
+  /* Quiz */
+  .q{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:18px 20px;margin:14px 0;}
+  .q .frg{font-weight:600;margin:0 0 10px;}
+  .q .opts{display:grid;gap:7px;}
+  .opt{display:block;width:100%;text-align:left;font-family:var(--sans);font-size:15.5px;
+    padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--paper);
+    color:var(--ink);cursor:pointer;}
+  .opt:hover:not(.aus){border-color:var(--accent);}
+  .opt:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  .opt.richtig{background:var(--goodbg);border-color:var(--good);}
+  .opt.falsch{background:var(--badbg);border-color:var(--bad);}
+  .q .erkl{display:none;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line);
+    font-size:15px;color:var(--ink-soft);}
+  .q .erkl.an{display:block;}
+  .punkte{font-family:var(--mono);font-size:13px;text-align:center;padding:14px;
+    border:1px solid var(--line);border-radius:12px;background:var(--paper-2);margin-top:18px;}
+
+  footer{border-top:1px solid var(--line);margin-top:70px;padding:30px 20px 50px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 05 · Menschen mit Hauterkrankungen pflegen</p>
+  <h1>Krätze im Pflegeheim</h1>
+  <p class="sub">Skabies — der Erregersteckbrief des Robert Koch-Instituts, geordnet für die
+    Pflege. Warum gerade Pflegeeinrichtungen betroffen sind, was du bei der Körperpflege tun
+    musst und was das Infektionsschutzgesetz vorschreibt.
+    <span class="fr">Tout ce qui est ici vient du document RKI, rien d'autre.</span></p>
+  <div class="meta"><span>RKI · Stand März 2024</span><span>10 Quizfragen</span></div>
+</header>
+
+<nav class="toc">
+  <a href="#was">Was ist das</a>
+  <a href="#uebertragung">Übertragung</a>
+  <a href="#zeichen">Krankheitszeichen</a>
+  <a href="#zeiten">Zeiten</a>
+  <a href="#behandlung">Behandlung</a>
+  <a href="#hygiene">Wäsche und Hygiene</a>
+  <a href="#recht">Infektionsschutzgesetz</a>
+  <a href="#schutz">Selbstschutz</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<main>
+
+<section id="was">
+  <h2>Was ist Krätze?</h2>
+  <p class="lead">Medizinisch <b>Skabies</b>. Eine ansteckende Hautkrankheit des Menschen,
+    verursacht durch die <b>Skabiesmilbe</b> — also kein Bakterium und kein Virus, sondern ein
+    Parasit.</p>
+
+  <div class="zahlen">
+    <div class="z"><span class="n">0,2–0,5 mm</span><span class="k">Größe der Milbe — kaum mit
+      bloßem Auge sichtbar</span></div>
+    <div class="z"><span class="n">4–8 Wochen</span><span class="k">Lebenszeit der weiblichen
+      Milbe in der Haut</span></div>
+    <div class="z"><span class="n">2 Tage</span><span class="k">überleben Milben ohne Wirt in
+      Kleidung oder Bettwäsche</span></div>
+  </div>
+
+  <div class="card">
+    <p>Die <b>weiblichen Milben graben sich in die obere Hautschicht ein</b> und legen dort über
+      ihre Lebenszeit ihre Eier ab. Der Milbenbefall verursacht <b>erst nach einiger Zeit</b>
+      Hautreaktionen — das ist der Grund, warum Skabies so lange unbemerkt bleiben kann.</p>
+  </div>
+
+  <div class="achtung"><b>Warum das für dich beruflich zentral ist.</b> Wörtlich im RKI-Text:
+    „Besonders dort, wo Menschen auf engem Raum zusammenleben, können sich Skabiesmilben
+    verbreiten. Daher kommt es gelegentlich zu Krankheitshäufungen, <b>vor allem in
+    Gemeinschafts- oder Pflegeeinrichtungen</b>.“ Und: Wer sich ansteckt, sind meist Familie,
+    Wohngemeinschaft — „sowie wenn pflegebedürftige Personen betroffen sind, deren Betreuungs-
+    und <b>Pflegepersonen</b>“.</div>
+
+  <h3>Zwei Formen, die du auseinanderhalten musst</h3>
+  <div class="zwei">
+    <div class="card">
+      <span class="lbl">Gewöhnliche Skabies</span>
+      <p>Übertragung nur bei <b>länger andauerndem Hautkontakt</b> — als Maßgabe gelten
+        <b>fünf bis zehn Minuten</b>.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--bad);">
+      <span class="lbl" style="color:var(--bad);">Scabies crustosa · Borkenkrätze</span>
+      <p><b>Hoch ansteckende Form mit starker Krustenbildung.</b> Die Anzahl der Milben auf der
+        Haut ist sehr hoch — deshalb kann hier <b>schon ein kurzer Hautkontakt</b> zur Ansteckung
+        führen, und auch die Übertragung über Kleidung und Bettwäsche wird möglich. Tritt vor
+        allem bei <b>Menschen mit einer Abwehrschwäche</b> auf.</p>
+    </div>
+  </div>
+</section>
+
+<section id="uebertragung">
+  <h2>Wie wird sie übertragen?</h2>
+
+  <h3>Von Mensch zu Mensch</h3>
+  <p>Vor allem bei <b>länger andauerndem Hautkontakt</b> (fünf bis zehn Minuten):</p>
+  <ul class="tick">
+    <li>beim gemeinsamen Spielen</li>
+    <li>beim Kuscheln</li>
+    <li><b>bei Hilfe bei der Körperpflege</b> — genau dein Arbeitsalltag</li>
+    <li>beim Schlafen in einem Bett</li>
+    <li>beim Geschlechtsverkehr</li>
+  </ul>
+  <div class="gut"><b>Was <em>nicht</em> reicht:</b> „Kurzes Händeschütteln oder eine kurze
+    Umarmung führen in der Regel nicht zu einer Übertragung.“ Das ist wichtig für das Gespräch mit
+    verunsicherten Angehörigen und Kolleginnen — und für die Bewohnerin selbst, die sonst
+    isoliert wird, obwohl sie es nicht müsste.</div>
+
+  <h3>Über Kleidung und Gegenstände</h3>
+  <p>Ohne Wirt überleben die Milben noch etwa <b>zwei Tage</b> in Kleidung oder Bettwäsche.
+    Die Übertragung über gemeinsam genutzte Bettwäsche, Decken, Polster oder Kleidung ist aber
+    <b>selten</b>. <b>Ausnahme:</b> bei Scabies crustosa ist sie wegen der großen Milbenzahl
+    möglich.</p>
+</section>
+
+<section id="zeichen">
+  <h2>Welche Krankheitszeichen?</h2>
+
+  <div class="card">
+    <p><b>Die ersten Anzeichen:</b> Brennen der Haut und <b>Juckreiz, der bei Bettwärme besonders
+      stark ausgeprägt ist</b>. Der Juckreiz kann sich sogar auf Hautregionen ausbreiten, die
+      gar nicht direkt befallen sind.</p>
+  </div>
+  <div class="info"><b>„Bei Bettwärme besonders stark“ — das ist das Leitsymptom.</b> Wenn eine
+    Bewohnerin dir sagt, sie könne nachts vor Jucken nicht schlafen, tagsüber sei es besser,
+    dann denk an Skabies.</div>
+
+  <h3>Wo am Körper?</h3>
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Bei Erwachsenen befallen</th><th>Zusätzlich bei Säuglingen und Kleinkindern</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Zwischenräume von <b>Fingern und Fußzehen</b> · Handgelenke · Knöchel · Achseln ·
+            Ellenbogen · Brustwarzen · Genitalien</td>
+          <td>Kopfhaut · Gesicht · Fußsohlen</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Was du auf der Haut siehst</h3>
+  <ul class="tick">
+    <li><b>Typisch: feine, unregelmäßige Linien in der Haut</b> — das sind die
+      <b>Milbengänge</b>.</li>
+    <li>Nach einiger Zeit: stecknadelgroße <b>Bläschen</b>, gerötete erhabene <b>Knötchen</b>
+      oder <b>Pusteln</b>.</li>
+    <li>Hautstellen, die beim Kratzen verletzt wurden, können sich <b>eitrig entzünden</b>.</li>
+    <li>Bei längerem Befall: ein großflächiger <b>allergischer Hautausschlag</b> als Reaktion auf
+      die Ausscheidungen der Milben.</li>
+  </ul>
+
+  <div class="warn"><b>Die Falle bei gepflegten Menschen.</b> Wörtlich: „Bei Personen, die eine
+    intensive Körperpflege betreiben, können die Hautveränderungen und der Milbenbefall durch die
+    Anwendung von Kosmetika <b>lange unbemerkt bleiben</b>.“ Und: „Unbehandelt verläuft die
+    Skabies häufig chronisch.“</div>
+</section>
+
+<section id="zeiten">
+  <h2>Wann bricht sie aus, wie lange ist man ansteckend?</h2>
+  <div class="zahlen">
+    <div class="z"><span class="n">2–5 Wochen</span><span class="k">bis zu den Beschwerden bei der
+      <b>ersten</b> Ansteckung</span></div>
+    <div class="z"><span class="n">1–4 Tage</span><span class="k">bis zu den Beschwerden bei einer
+      <b>Wieder</b>ansteckung</span></div>
+  </div>
+  <div class="achtung"><b>Der Satz, den du dir merken musst:</b> „Skabies ist ansteckend,
+    <b>schon bevor Betroffene Krankheitszeichen haben</b> und solange sich Skabiesmilben auf der
+    Haut befinden.“ Deshalb funktioniert reines Abwarten nicht — und deshalb werden enge
+    Kontaktpersonen mitbehandelt, auch ohne Symptome.</div>
+  <p><b>Wer ist gefährdet?</b> Skabies kommt weltweit vor und betrifft <b>Menschen jeden
+    Alters</b>. Es ist keine Frage von Armut oder mangelnder Hygiene — dieses Vorurteil solltest
+    du im Gespräch mit Angehörigen ausräumen können.</p>
+</section>
+
+<section id="behandlung">
+  <h2>Behandlung</h2>
+  <ul class="tick">
+    <li>Bei Krankheitszeichen oder Verdacht <b>umgehend Ärztin oder Arzt aufsuchen</b>.</li>
+    <li>Es gibt wirksame Medikamente, sogenannte <b>Skabizide</b>. In der Regel als
+      <b>Cremes oder Salben</b> auf die Haut. In bestimmten Fällen auch <b>Tabletten</b> zum
+      Einnehmen.</li>
+    <li>Erkrankte sollten vorübergehend <b>längere direkte Hautkontakte vermeiden</b>, um andere
+      zu schützen.</li>
+  </ul>
+
+  <h3>Ab wann nicht mehr ansteckend?</h3>
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Situation</th><th>In der Regel nicht mehr ansteckend</th></tr></thead>
+      <tbody>
+        <tr><td>Nach abgeschlossener <b>äußerlicher</b> Behandlung</td><td>direkt danach</td></tr>
+        <tr><td>Nach <b>Einnahme der Tabletten</b></td><td class="num">nach 24 Stunden</td></tr>
+        <tr><td><b>Scabies crustosa</b></td><td>oft ist eine <b>wiederholte</b> Behandlung nötig,
+          bis die Erkrankten nicht mehr ansteckend sind</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warn"><b>Der Juckreiz hört nicht sofort auf.</b> „Der Juckreiz kann nach Behandlung
+    noch für <b>ein bis zwei Wochen</b> anhalten.“ Das musst du der Bewohnerin und den Angehörigen
+    erklären — sonst denken alle, die Behandlung habe nicht gewirkt.</div>
+</section>
+
+<section id="hygiene">
+  <h2>Wäsche, Gegenstände, Möbel</h2>
+  <p class="lead">Diese Zahlen fragt man in der Klausur gern einzeln ab.</p>
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Was</th><th>Wie</th></tr></thead>
+      <tbody>
+        <tr><td>Kleidung, Unterwäsche, Handtücher, Bettwäsche</td>
+            <td>waschen bei <b class="num">mindestens 50 °C</b></td></tr>
+        <tr><td>Gegenstände mit längerem Körperkontakt, die nicht gewaschen oder gereinigt werden
+            können — zum Beispiel Schuhe oder Plüschtiere</td>
+            <td><b class="num">3 Tage</b> bei <b class="num">mindestens 21 °C</b> trocken in
+            <b>verschlossenen Plastiksäcken</b> lagern</td></tr>
+        <tr><td>Polstermöbel</td>
+            <td>mit dem <b>Staubsauger</b> reinigen — oder <b class="num">mindestens 2 Tage</b>
+            nicht benutzen</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="achtung"><b>Bei Scabies crustosa reicht das nicht.</b> Wörtlich: „Bei Scabies
+    crustosa sind <b>weiterreichende Maßnahmen</b> erforderlich. Bitte lassen Sie sich bei Ihrem
+    Arzt oder Ihrer Ärztin oder beim <b>Gesundheitsamt</b> beraten.“</div>
+</section>
+
+<section id="recht">
+  <h2>Was das Infektionsschutzgesetz vorschreibt</h2>
+  <p class="lead">Hier verbindet sich dieses Thema mit deinem Recht-Unterricht. Der RKI-Text
+    nennt das <b>Infektionsschutzgesetz</b> ausdrücklich.</p>
+
+  <div class="card">
+    <span class="lbl">Die Kette der Pflichten</span>
+    <ol>
+      <li><b>Betretungsverbot.</b> Kinder und Erwachsene, die erkrankt sind <b>oder bei denen der
+        Verdacht besteht</b>, dürfen Gemeinschaftseinrichtungen wie Schulen oder Kindergärten
+        vorübergehend <b>nicht besuchen oder dort tätig sein</b>. Der Verdacht genügt — man muss
+        nicht auf die Diagnose warten.</li>
+      <li><b>Meldepflicht der Betroffenen.</b> Sie müssen die Gemeinschaftseinrichtung über die
+        Erkrankung <b>und auch über den Verdacht</b> informieren.</li>
+      <li><b>Weitermeldung der Einrichtung.</b> Die Gemeinschaftseinrichtung informiert das
+        <b>zuständige Gesundheitsamt</b> über die Erkrankung bzw. den Verdacht.</li>
+      <li><b>Wer die Rückkehr erlaubt.</b> Das <b>Gesundheitsamt</b> oder die behandelnde Ärztin
+        bzw. der behandelnde Arzt legt fest, wann Betroffene die Einrichtung wieder besuchen oder
+        dort tätig sein dürfen. <b>Nicht</b> die Einrichtung selbst und nicht die betroffene
+        Person.</li>
+    </ol>
+  </div>
+  <div class="info"><b>Wo du dich informierst:</b> das <b>örtliche Gesundheitsamt</b> — „dort
+    liegen weitere Informationen zur aktuellen Situation und große Erfahrung im Umgang mit der
+    Krankheit vor“. Fachinformationen beim Robert Koch-Institut (www.rki.de/skabies), allgemeine
+    Infektionsschutz-Informationen bei der Bundeszentrale für gesundheitliche Aufklärung
+    (www.infektionsschutz.de).</div>
+</section>
+
+<section id="schutz">
+  <h2>Wie schütze ich mich selbst?</h2>
+  <div class="warn"><b>Der ehrliche erste Satz des RKI:</b> „Schutzmaßnahmen im Vorfeld sind in
+    der Regel <b>kaum möglich</b>, da Skabiesmilben bereits unbemerkt vor Beginn der Beschwerden
+    übertragen werden können.“ Es gibt also keine Prophylaxe im eigentlichen Sinn — nur richtiges
+    Verhalten, sobald etwas bekannt ist.</div>
+
+  <div class="card">
+    <span class="lbl">Wenn Kontakt unvermeidbar ist — zum Beispiel bei der Pflege</span>
+    <ul class="tick">
+      <li><b>Langärmlige Kleidung</b> tragen</li>
+      <li><b>Einmalhandschuhe</b> tragen</li>
+      <li>Anschließend <b>Hände und Arme gründlich waschen</b></li>
+      <li>Insbesondere die <b>Fingernägel</b> gründlich reinigen</li>
+    </ul>
+  </div>
+  <p>Ansonsten gilt: längere direkte Hautkontakte zu Erkrankten vermeiden.</p>
+
+  <div class="achtung"><b>Enge Kontaktpersonen werden mitbehandelt.</b> „Enge Kontaktpersonen von
+    Erkrankten, das heißt Personen, die großflächigen, längeren Hautkontakt mit einer erkrankten
+    Person hatten, sollten <b>ebenfalls behandelt werden, auch wenn sie keine Krankheitszeichen
+    zeigen</b>.“ Wenn du eine Bewohnerin mit Skabies gepflegt hast, gehörst du dazu.</div>
+</section>
+
+<section id="quiz">
+  <h2>Quiz — zehn Fragen</h2>
+  <p class="lead">Alle Antworten stehen oben. Klick eine Antwort an, die Begründung erscheint
+    sofort.</p>
+  <div id="quizraum"></div>
+  <div class="punkte" id="punkte">Noch keine Frage beantwortet.</div>
+</section>
+
+</main>
+
+<footer>
+  <p><b>Quelle:</b> Krätze (Skabies) — Informationen über Krankheitserreger beim Menschen,
+    Informationen für Bürgerinnen und Bürger, Robert Koch-Institut, Stand März 2024.<br>
+    Auf dieser Seite steht ausschließlich, was in diesem Dokument steht.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var FRAGEN = [
+    { f:"Wodurch wird die Krätze verursacht?",
+      o:["Durch die Skabiesmilbe","Durch ein Bakterium","Durch einen Pilz","Durch ein Virus"],
+      r:0, e:"Skabies ist eine durch die Skabiesmilbe verursachte ansteckende Hautkrankheit des Menschen — also ein Parasit, kein Erreger im Sinne von Bakterium oder Virus." },
+    { f:"Wie lange muss ein Hautkontakt bei der gewöhnlichen Skabies etwa dauern, damit eine Übertragung wahrscheinlich wird?",
+      o:["Fünf bis zehn Minuten","Wenige Sekunden","Etwa eine Stunde","Einen ganzen Tag"],
+      r:0, e:"Als Maßgabe gelten fünf bis zehn Minuten. Kurzes Händeschütteln oder eine kurze Umarmung führen in der Regel nicht zu einer Übertragung." },
+    { f:"Welches Symptom ist besonders typisch und wann ist es am stärksten?",
+      o:["Juckreiz, besonders stark bei Bettwärme","Fieber, besonders am Morgen","Husten, besonders nachts","Schwindel beim Aufstehen"],
+      r:0, e:"Brennen der Haut und Juckreiz, der bei Bettwärme besonders stark ausgeprägt ist, sind häufig die ersten Anzeichen." },
+    { f:"Was sind die typischen feinen, unregelmäßigen Linien in der Haut?",
+      o:["Milbengänge","Kratzspuren","Blutgefäße","Narben"],
+      r:0, e:"Typisch sind feine, unregelmäßige Linien in der Haut — dabei handelt es sich um Milbengänge, die in der Haut sichtbar sind." },
+    { f:"Nach welcher Zeit treten die Beschwerden bei einer ERSTEN Ansteckung auf?",
+      o:["Nach zwei bis fünf Wochen","Nach ein bis vier Tagen","Sofort","Nach etwa sechs Monaten"],
+      r:0, e:"Bei einer ersten Ansteckung treten die Beschwerden erst nach zwei bis fünf Wochen auf. Bei einer Wiederansteckung dagegen schon nach ein bis vier Tagen." },
+    { f:"Ist eine erkrankte Person schon vor dem Auftreten der Krankheitszeichen ansteckend?",
+      o:["Ja","Nein, erst mit den ersten Hautveränderungen","Nur bei Scabies crustosa","Nur bei Kindern"],
+      r:0, e:"Skabies ist ansteckend, schon bevor Betroffene Krankheitszeichen haben, und solange sich Skabiesmilben auf der Haut befinden. Deshalb werden enge Kontaktpersonen auch ohne Symptome mitbehandelt." },
+    { f:"Bei welcher Temperatur sollen Kleidung, Handtücher und Bettwäsche gewaschen werden?",
+      o:["Mindestens 50 °C","Mindestens 30 °C","Mindestens 90 °C","Die Temperatur spielt keine Rolle"],
+      r:0, e:"Kleidung, Unterwäsche sowie Handtücher und Bettwäsche von Erkrankten sollten bei mindestens 50 °C gewaschen werden." },
+    { f:"Wie lange lagert man Schuhe oder Plüschtiere, die nicht gewaschen werden können?",
+      o:["3 Tage bei mindestens 21 °C in verschlossenen Plastiksäcken","24 Stunden im Gefrierfach","Eine Woche an der frischen Luft","Sie müssen entsorgt werden"],
+      r:0, e:"Gegenstände mit längerem Körperkontakt, die nicht gewaschen oder gereinigt werden können, sollten für drei Tage bei mindestens 21 °C in verschlossenen Plastiksäcken trocken gelagert werden." },
+    { f:"Wer legt fest, wann Betroffene eine Gemeinschaftseinrichtung wieder besuchen dürfen?",
+      o:["Das Gesundheitsamt oder die behandelnde Ärztin bzw. der behandelnde Arzt","Die Einrichtungsleitung","Die betroffene Person selbst","Die Angehörigen"],
+      r:0, e:"Das Gesundheitsamt oder die behandelnde Ärztin bzw. der behandelnde Arzt legt fest, wann Betroffene die Gemeinschaftseinrichtung wieder besuchen oder dort tätig sein dürfen." },
+    { f:"Was gilt bei der Scabies crustosa (Borkenkrätze)?",
+      o:["Schon ein kurzer Hautkontakt kann zur Ansteckung führen","Sie ist weniger ansteckend als die gewöhnliche Form","Sie muss nicht behandelt werden","Sie betrifft nur Kinder"],
+      r:0, e:"Bei dieser hoch ansteckenden Form mit starker Krustenbildung ist die Anzahl der Milben auf der Haut sehr hoch, sodass hier auch ein kurzer Hautkontakt zur Ansteckung führen kann. Sie tritt vor allem bei Menschen mit einer Abwehrschwäche auf." }
+  ];
+
+  var raum = document.getElementById("quizraum");
+  var anzeige = document.getElementById("punkte");
+  var beantwortet = 0, richtig = 0;
+
+  FRAGEN.forEach(function(fr, i){
+    var box = document.createElement("div");
+    box.className = "q";
+
+    var titel = document.createElement("p");
+    titel.className = "frg";
+    titel.textContent = (i + 1) + ". " + fr.f;
+    box.appendChild(titel);
+
+    var opts = document.createElement("div");
+    opts.className = "opts";
+    var erkl = document.createElement("div");
+    erkl.className = "erkl";
+    erkl.textContent = fr.e;
+
+    fr.o.forEach(function(text, j){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "opt";
+      b.textContent = text;
+      b.addEventListener("click", function(){
+        if(box.dataset.fertig === "1") return;
+        box.dataset.fertig = "1";
+        beantwortet++;
+        if(j === fr.r) richtig++;
+        opts.querySelectorAll(".opt").forEach(function(x){ x.classList.add("aus"); });
+        b.classList.add(j === fr.r ? "richtig" : "falsch");
+        if(j !== fr.r) opts.children[fr.r].classList.add("richtig");
+        erkl.classList.add("an");
+        anzeige.textContent = richtig + " von " + beantwortet + " richtig · "
+          + FRAGEN.length + " Fragen insgesamt";
+      });
+      opts.appendChild(b);
+    });
+
+    box.appendChild(opts);
+    box.appendChild(erkl);
+    raum.appendChild(box);
+  });
+})();
+</script>
