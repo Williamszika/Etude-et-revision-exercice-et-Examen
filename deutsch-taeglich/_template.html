@@ -62,6 +62,8 @@
   .zyklus{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;}
   .zyklus .thema{font-size:14.5px;color:var(--ink-soft);}
   .zyklus .thema b{color:var(--ink);}
+  .zyklus .thema .nr{font-family:var(--mono);font-style:normal;font-size:11.5px;color:var(--tg);
+    background:var(--tgbg);border-radius:999px;padding:2px 8px;margin-left:5px;}
   .zy-punkte{display:flex;gap:5px;}
   .zy-punkte i{width:26px;height:6px;border-radius:99px;background:var(--line);display:block;}
   .zy-punkte i.on{background:var(--tg);}
@@ -88,6 +90,13 @@
   .zy-phase{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.05em;
     text-transform:uppercase;color:var(--tg);background:var(--tgbg);border-radius:999px;padding:4px 12px;}
   /* Training */
+  .stufe{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:0 0 12px;}
+  .stufe .lbl{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--tg);background:var(--tgbg);border-radius:999px;padding:3px 10px;}
+  .stufe .bal{display:flex;gap:3px;}
+  .stufe .bal i{width:18px;height:7px;border-radius:99px;background:var(--line);display:block;}
+  .stufe .bal i.on{background:var(--tg);}
+  .stufe .nm{font-size:13px;color:var(--ink-soft);font-style:italic;}
   .tg-ziel{background:var(--tgbg);border-radius:11px;padding:13px 16px;margin:10px 0 14px;font-size:15px;}
   .tg-ziel b{color:var(--tg);}
   .auf{border:1px solid var(--line);border-radius:11px;background:var(--paper-2);padding:12px 15px;margin:9px 0;}
@@ -419,6 +428,13 @@ function renderTraining(b,idx){
   if(!auf.length && !b.dialog && !(b.alltag&&b.alltag.length))return '';
   let h='<div class="block"><span class="kind k-tg">Training · '+esc(b.phase||'Üben')+'</span>';
   h+='<h3>'+bold(b.titel||'Training')+'</h3>';
+  /* Schwierigkeitsstufe 1 bis 5 */
+  const st=Math.min(5,Math.max(1, b.stufe || (l_stufe()||1)));
+  const NAMEN=['ganz leicht','leicht','mittel','schwer','am schwersten'];
+  let bl='';
+  for(let i=1;i<=5;i++) bl+='<i class="'+(i<=st?'on':'')+'"></i>';
+  h+='<div class="stufe"><span class="lbl">Stufe '+st+' von 5</span>'+
+     '<span class="bal">'+bl+'</span><span class="nm">'+NAMEN[st-1]+'</span></div>';
   if(b.thema)h+='<p class="lit">Thema: '+esc(b.thema)+'</p>';
   if(b.ziel)h+='<div class="tg-ziel"><b>Ziel heute:</b> '+bold(b.ziel)+'</div>';
   if(b.fr)h+='<p class="fr">'+esc(b.fr)+'</p>';
@@ -824,7 +840,9 @@ document.addEventListener('keydown',e=>{
   if(e.key==='ArrowLeft') bZurueck.click();
   if(e.key==='ArrowRight') bVor.click();
 });
-const PHASEN=['Verstehen','Erkennen','Anwenden','Vertiefen','Frei sprechen'];
+const PHASEN=['Verstehen und erste Übungen','Erkennen','Anwenden','Verbinden','Frei sprechen'];
+let AKT_TAG=1;
+function l_stufe(){ return AKT_TAG; }
 /* Index der Lektion, die im selben Zyklus Tag <t> ist — oder -1 */
 function zyklusTag(start,t){
   if(!start)return -1;
@@ -880,7 +898,8 @@ function render(){
     tage+='</div>';
     zEl.innerHTML='<span class="zy-phase">Tag '+t+' / 5 · '+esc(z.phase||PHASEN[t-1]||'')+'</span>'+
                   '<span class="zy-punkte">'+p+'</span>'+
-                  (z.thema?'<span class="thema">Thema: <b>'+esc(z.thema)+'</b></span>':'')+tage;
+                  (z.thema?'<span class="thema">Thema: <b>'+esc(z.thema)+'</b>'+
+                    (z.nr&&z.gesamt?' <i class="nr">'+z.nr+' von '+z.gesamt+'</i>':'')+'</span>':'')+tage;
     zEl.style.display='flex';
     zEl.querySelectorAll('.zy-tage button').forEach(b=>{
       b.onclick=()=>{ const j=+b.dataset.i; if(j>=0){ cur=j; render(); } };
@@ -888,6 +907,7 @@ function render(){
   } else { zEl.innerHTML=''; zEl.style.display='none'; }
 
   AKT_DATUM=l.datum;
+  AKT_TAG=(l.zyklus&&l.zyklus.tag)?Math.min(5,Math.max(1,l.zyklus.tag)):1;
   document.getElementById('content').innerHTML=
     renderBlock(l.verb,'verb',cur)+renderBlock(l.wortschatz,'voc',cur)+renderBlock(l.grammatik,'gram',cur)
     +renderSatzbau(l.satzbau,cur)+renderTag1(l)+renderTraining(l.training,cur)
