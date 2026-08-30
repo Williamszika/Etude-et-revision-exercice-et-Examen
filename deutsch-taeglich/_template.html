@@ -59,6 +59,16 @@
   .k-sb{background:var(--sbbg);color:var(--sb);}
   .k-tg{background:var(--tgbg);color:var(--tg);}
   .k-telc{background:var(--extrabg);color:var(--extra);}
+  .k-probe{background:var(--tr);color:var(--card);}
+  .pr-kasten{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--tr);
+    border-radius:14px;padding:22px 24px;margin:18px 0;}
+  .pr-kasten h3{font-family:var(--serif);font-size:1.3rem;margin:12px 0 8px;}
+  .pr-kasten p{margin:8px 0;}
+  .pr-btn{font-family:var(--mono);font-size:12px;letter-spacing:.05em;cursor:pointer;
+    margin-top:12px;padding:9px 16px;border-radius:999px;border:1px solid var(--line);
+    background:transparent;color:var(--ink-soft);}
+  .pr-btn:hover,.pr-btn:focus-visible{border-color:var(--tr);color:var(--tr);}
+  .pr-btn:focus-visible{outline:2px solid var(--tr);outline-offset:2px;}
   .telc-teil{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 4px;}
   .telc-teil span{font-family:var(--mono);font-size:11px;letter-spacing:.05em;padding:4px 10px;
     border-radius:999px;background:var(--paper-2);color:var(--ink-soft);border:1px solid var(--line);}
@@ -499,6 +509,49 @@ function renderTraining(b,idx,opt){
   return h;
 }
 
+/* ---------- Probeprüfung: bleibt bis Samstag 22:00 verschlossen ---------- */
+function renderProbe(b,idx){
+  if(!b)return '';
+  const inner=renderTraining(b,idx,{telc:true,kls:'k-probe',
+      badge:'Probeprüfung · Samstag 22:00'+(b.punkte?' · '+b.punkte+' Punkte':'')});
+  if(!inner)return '';
+  return '<div class="pr-huelle" id="pr-huelle">'+
+         '<div class="pr-schloss" id="pr-schloss"></div>'+
+         '<div class="pr-inhalt" id="pr-inhalt" hidden>'+inner+'</div></div>';
+}
+
+function probeSchloss(){
+  const s=document.getElementById('pr-schloss'), i=document.getElementById('pr-inhalt');
+  if(!s||!i)return;
+  const jetzt=new Date();
+  const offen = jetzt.getDay()===6 && jetzt.getHours()>=22;
+  function auf(){ i.hidden=false; s.hidden=true; }
+  if(offen){ auf(); return; }
+  /* Wann ist der nächste Samstag 22:00? */
+  const ziel=new Date(jetzt);
+  ziel.setHours(22,0,0,0);
+  let d=(6-jetzt.getDay()+7)%7;
+  if(d===0 && jetzt.getHours()>=22) d=7;
+  ziel.setDate(ziel.getDate()+d);
+  const mins=Math.max(0,Math.round((ziel-jetzt)/60000));
+  const std=Math.floor(mins/60), rest=mins%60;
+  const wann = std>=24 ? Math.floor(std/24)+' Tage und '+(std%24)+' Stunden'
+                       : (std>0? std+' Stunden und '+rest+' Minuten' : rest+' Minuten');
+  s.hidden=false;
+  s.innerHTML='<div class="pr-kasten">'+
+    '<span class="kind k-probe">Probeprüfung · noch verschlossen</span>'+
+    '<h3>🔒 Die Probeprüfung öffnet Samstag um 22:00</h3>'+
+    '<p class="fr">L\'examen blanc s\'ouvre samedi à 22h00. Ne l\'ouvre pas avant : '+
+    'la valeur de l\'exercice vient du fait que tu le découvres en conditions réelles.</p>'+
+    '<p><b>Noch '+wann+'.</b></p>'+
+    '<p>Nimm dir dann <b>ungestörte Zeit</b>, ein Blatt Papier und eine Uhr. Der Schriftliche '+
+    'Ausdruck läuft <b>30 Minuten</b> — genau wie in der Prüfung.</p>'+
+    '<button type="button" class="pr-btn" id="pr-auf">Ich weiß, was ich tue — trotzdem öffnen</button>'+
+    '</div>';
+  const b=document.getElementById('pr-auf');
+  if(b) b.onclick=auf;
+}
+
 /* ---------- Satzbau — wie baue ich einen Satz? ---------- */
 function renderSatzbau(b,idx){
   if(!b||!b.titel)return '';
@@ -906,7 +959,35 @@ function render(){
             : 'Du schaust '+(cur===1?'die Lektion von gestern':'eine ältere Lektion')+' an — '+fmtDate(l.datum).kurz;
   /* Zyklus-Leiste: Tag X von 5, jeder Tag anklickbar */
   const zEl=document.getElementById('zyklus');
-  if(l.zyklus&&l.zyklus.tag){
+  if(l.zyklus&&l.zyklus.woche){
+    /* ---- Wochenrhythmus telc B2 ---- */
+    const z=l.zyklus;
+    const W=['Mo','Di','Mi','Do','Fr','Sa','So'];
+    const FOKUS=['Leseverstehen','Hörverstehen','Sprachbausteine','Schriftlicher Ausdruck',
+                 'Mündlicher Ausdruck','Probeprüfung','Auswertung'];
+    let heute=W.indexOf(String(z.tag||'').slice(0,2));
+    if(heute<0) heute=0;
+    /* Fortschrittspunkte = Wochen bis zur Prüfung */
+    const gw=z.gesamt||16;
+    let p='';
+    for(let i=1;i<=gw;i++)p+='<i class="'+(i<=(z.woche||1)?'on':'')+'"></i>';
+    let tage='<div class="zy-tage">';
+    for(let i=0;i<7;i++){
+      tage+='<button type="button" disabled'+(i===heute?' class="jetzt"':'')+
+            ' title="'+attr(FOKUS[i])+'">'+W[i]+'</button>';
+    }
+    tage+='</div>';
+    zEl.innerHTML='<span class="zy-phase">'+esc(z.tag||W[heute])+' · '+
+                    esc(z.fokus||FOKUS[heute])+'</span>'+
+                  '<span class="zy-punkte">'+p+'</span>'+
+                  (z.thema?'<span class="thema">Thema: <b>'+esc(z.thema)+'</b>'+
+                    (z.themaNr?' <i class="nr">T'+z.themaNr+' von 16</i>':'')+'</span>':'')+
+                  '<span class="thema">Woche <b>'+(z.woche||1)+'</b> von '+gw+
+                    (z.bisPruefung?' <i class="nr">noch '+z.bisPruefung+' Tage</i>':'')+'</span>'+
+                  tage;
+    zEl.style.display='flex';
+  } else if(l.zyklus&&l.zyklus.tag){
+    /* ---- altes Schema: 13 Themen x 5 Tage ---- */
     const z=l.zyklus, t=Math.min(5,Math.max(1,z.tag));
     let p='';
     for(let i=1;i<=5;i++)p+='<i class="'+(i<=t?'on':'')+'"></i>';
@@ -935,7 +1016,9 @@ function render(){
     +renderSatzbau(l.satzbau,cur)+renderTag1(l)+renderTraining(l.training,cur)
     +renderTraining(l.telc,'telc'+cur,{telc:true,kls:'k-telc',
         badge:'telc Deutsch B2 · Prüfungstraining'})
+    +renderProbe(l.probe,'probe'+cur)
     +renderSay(l.aussprache,cur)+renderDiktat(l.diktat)+renderTrans(l.uebersetzung,cur);
+  probeSchloss();
   if(document.querySelector('.dk-tempo')) dkSetRate(dkRate);
   tgWiederherstellen();
   window.scrollTo({top:0,behavior:'smooth'});

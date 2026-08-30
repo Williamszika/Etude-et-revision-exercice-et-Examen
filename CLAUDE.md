@@ -8,7 +8,7 @@ Zahlen oder Quellen nennen, die nicht in ihren eigenen Unterlagen (PDFs im Repo)
 
 ---
 
-## Deutsch täglich — tägliche Routine um 5:30
+## Deutsch täglich — Routine 5:30 täglich, Probeprüfung Samstag 22:00
 
 Diese Anweisung gilt **immer** und hat Vorrang vor älteren Routine-Texten.
 
@@ -71,11 +71,15 @@ Nur `python3 deutsch-taeglich/build.py` ausführen, veröffentlichen, fertig.
 ### Ablauf
 
 1. `ls deutsch-taeglich/lektionen/`, die **neueste** Lektion lesen.
-   Ihr Block `zyklus` sagt, wo wir stehen: `{thema, nr, gesamt: 13, tag, phase, start}`.
-2. Neuen Zustand berechnen:
-   - `tag < 5` → gleiches Thema, `tag + 1`
-   - `tag = 5` → nächstes Thema (`nr + 1`), `tag = 1`, neues `start` = heute
-   - nach Thema 13 → wieder Thema 1, aber mit anderen Beispielen und anderem Wortschatz
+   Ihr Block `zyklus` sagt, wo wir stehen: `{woche, gesamt: 16, thema, themaNr, tag, fokus,
+   start, bisPruefung}`.
+2. Neuen Zustand aus dem **heutigen Datum** berechnen — nicht hochzählen, sondern rechnen:
+   - `woche` = ganze Wochen seit dem 31.08.2026, plus 1
+   - `tag` = heutiger Wochentag auf Deutsch, `fokus` = der Subtest dieses Tages (Tabelle unten)
+   - `thema` und `themaNr` = das telc-Thema dieser Woche (Tabelle unten)
+   - `bisPruefung` = Tage bis zum 01.02.2027
+   - Ab Woche 17 (21.12.2026): **Endspurt**, `thema` = „Endspurt · Prüfungstraining",
+     `themaNr` weglassen
 3. `deutsch-taeglich/lektionen/<YYYY-MM-DD>.json` schreiben — Struktur **exakt** wie in
    der neuesten vorhandenen Lektion (gleiche Block- und Feldnamen, nur neuer Inhalt).
 4. `python3 deutsch-taeglich/build.py`
@@ -84,94 +88,154 @@ Nur `python3 deutsch-taeglich/build.py` ausführen, veröffentlichen, fertig.
    und derselben `url`.
 6. `git add -A && git commit && git pull --rebase origin <branch> && git push -u origin <branch>`
 
-### Die 13 Themen, in dieser Reihenfolge — alle B1/B2
+### Der Wochenrhythmus — kein Grammatik-Zyklus mehr
 
-| Nr | Thema | Niveau |
-|----|-------|--------|
-| 1 | Satzbau: Verb auf Platz 2 und Satzklammer | B1 — Fundament |
-| 2 | Nebensätze: weil, obwohl, damit, dass, wenn/als, seit | B1/B2 |
-| 3 | Relativsätze — auch mit Präposition und mit was/wo | B2 |
-| 4 | Konnektoren: kausal, konzessiv, konsekutiv, final, adversativ | B2 |
-| 5 | Zweiteilige Konnektoren: zwar…aber, je…desto, weder…noch, nicht nur…sondern auch | B2 |
-| 6 | Passiv in allen Zeiten und mit Modalverben | B2 |
-| 7 | Passiversatzformen: sein + zu, sich lassen, -bar, man | B2 |
-| 8 | Konjunktiv II: Höflichkeit, Wunsch, Irreales, Vergangenheit | B1/B2 |
-| 9 | Konjunktiv I und indirekte Rede — Übergabe, Bericht, Zitat | B2 |
-| 10 | Verben mit festen Präpositionen + da-/wo-Komposita | B2 |
-| 11 | Nominalisierung und Verbalisierung — Nominalstil der Dokumentation | B2 |
-| 12 | Partizipien als Adjektive und erweiterte Partizipialattribute | B2 |
-| 13 | Subjektive Modalverben und Vermutungen: soll, will, muss, dürfte, könnte | B2 |
+**Die alten 13 Grammatikthemen sind abgeschafft.** Deutsch täglich folgt jetzt der Prüfung
+selbst. Jede Woche gehört **einem der 16 telc-Themen aus Anhang T**, und jeder Wochentag
+gehört **einem Subtest**:
 
-Start: **30.08.2026 = Thema 1, Tag 1.** 13 Themen × 5 Tage = 65 Tage → Runde 1 endet am
-**02.11.2026**. Danach Runde 2 mit denselben Themen, aber schwereren Texten und mehr
-Prüfungsformat, bis Anfang Januar 2027. Januar und Februar: reines Prüfungstraining.
+| Tag | Fokus | Warum |
+|-----|-------|-------|
+| **Montag** | Leseverstehen | 25 % — ein Text im Prüfungsformat, Teil 1, 2 oder 3 im Wechsel |
+| **Dienstag** | Hörverstehen | 25 % — Diktat als Hörtext, dazu **Richtig-Falsch-Aufgaben** |
+| **Mittwoch** | Sprachbausteine | 10 % — Grammatik der Woche + Lexik, beides im Lückentext |
+| **Donnerstag** | Schriftlicher Ausdruck | 15 % — halbformelle E-Mail, Redemittel und Leitpunkte |
+| **Freitag** | Mündlicher Ausdruck | 25 % — Teil 1, 2 oder 3 im Wechsel |
+| **Samstag 22:00** | **Probeprüfung** | eigene Routine, siehe unten |
+| **Sonntag** | Auswertung und Wiederholung | Fehler der Woche, Wortschatz nachziehen, leichter Tag |
 
-### Der Block `telc` — in jeder Lektion
+Der Block `zyklus` sieht ab Woche 1 so aus:
 
-Struktur exakt wie der Block `training` (gleiche Feldnamen: `titel`, `ziel`, `fr`, `aufgaben`
-mit `typ`/`frage`/`loesung`/`hinweis`, `tipp`), plus zwei eigene Felder:
+```json
+"zyklus": {"woche": 1, "gesamt": 16, "thema": "Angaben zur eigenen Person",
+           "themaNr": 1, "tag": "Montag", "fokus": "Leseverstehen",
+           "start": "2026-08-31", "bisPruefung": 154}
+```
 
-- `teile` — Liste der trainierten Prüfungsteile, aus:
-  `Leseverstehen`, `Sprachbausteine`, `Hörverstehen`, `Schriftlicher Ausdruck`,
-  `Mündlicher Ausdruck`. Zwei bis drei pro Tag reichen.
-- `pruefungsziel` — ein bis zwei Sätze: **warum** die Grammatik des Tages in der Prüfung zählt.
-- optional `text` — ein kurzer Lesetext, wenn Leseverstehen trainiert wird.
+`bisPruefung` = Tage bis zum 01.02.2027, jeden Tag neu ausrechnen.
 
-Welche Teile an welchem Tag:
+### Die 16 Wochen — ein telc-Thema pro Woche
 
-| Tag | Schwerpunkt im telc-Block |
-|-----|---------------------------|
-| 1 | **Sprachbausteine Teil 1** — die Regel des Tages als Multiple-Choice-Lückentext mit **drei Optionen**, Inputtext eine halbformelle E-Mail |
-| 2 | **Sprachbausteine Teil 2** (Lexik-Zuordnung) + **Leseverstehen Teil 2** (Multiple-Choice, drei Optionen) |
-| 3 | **Schriftlicher Ausdruck** — Sätze und Redemittel für die halbformelle E-Mail, ein Leitpunkt pro Aufgabe |
-| 4 | **Leseverstehen Teil 1 oder 3** (Zuordnung) + **Schriftlicher Ausdruck**: eine vollständige E-Mail zu vier Leitpunkten, mindestens 150 Wörter, 30 Minuten mit Uhr |
-| 5 | **Mündlicher Ausdruck** — Teil 1 über Erfahrungen sprechen, Teil 2 Diskussion über einen kontroversen Text, Teil 3 gemeinsam etwas planen |
+Start: **Montag, 31.08.2026.** Reihenfolge = Anhang T des Handbuchs.
+
+| Woche | Zeitraum | Thema |
+|---|---|---|
+| 1 | 31.08.–06.09. | T1 Angaben zur eigenen Person |
+| 2 | 07.09.–13.09. | T2 Der menschliche Körper, Gesundheit und Körperpflege |
+| 3 | 14.09.–20.09. | T3 Wohnen |
+| 4 | 21.09.–27.09. | T4 Orte |
+| 5 | 28.09.–04.10. | T5 Tägliches Leben |
+| 6 | 05.10.–11.10. | T6 Essen und Trinken |
+| 7 | 12.10.–18.10. | T7 Erziehung, Ausbildung, Lernen |
+| 8 | 19.10.–25.10. | T8 Arbeit und Beruf |
+| 9 | 26.10.–01.11. | T9 Geschäfte, Handel, Konsum |
+| 10 | 02.11.–08.11. | T10 Dienstleistungen |
+| 11 | 09.11.–15.11. | T11 Natur und Umwelt |
+| 12 | 16.11.–22.11. | T12 Reise und Verkehr |
+| 13 | 23.11.–29.11. | T13 Freizeit und Unterhaltung |
+| 14 | 30.11.–06.12. | T14 Medien und moderne Informationstechniken |
+| 15 | 07.12.–13.12. | T15 Gesellschaft, Staat, Regierung |
+| 16 | 14.12.–20.12. | T16 Beziehungen zu anderen Menschen und Kulturen |
+
+Ab **21.12.2026** bis zur Prüfung: **Endspurt**, sechs Wochen. Keine neuen Themen mehr,
+sondern ganze Prüfungsteile unter Zeit, Wiederholung der schwächsten Subtests laut den
+Probeprüfungen, und jede Woche eine vollständige E-Mail in 30 Minuten mit Uhr.
+
+**Wichtig:** Pflegebeispiele sind erlaubt und sogar prüfungskonform, aber sie dürfen die Woche
+nicht kapern. In der Woche „Natur und Umwelt" geht es um Natur und Umwelt — nicht um die
+Station. Sie braucht Wortschatz aus **allen sechzehn** Bereichen, besonders für die Diskussion
+in Teil 2 der Mündlichen Prüfung.
+
+### Grammatik — jetzt Mittwochsthema, nicht mehr Rückgrat
+
+Die B2-Grammatik läuft weiter, aber als **Sprachbausteine-Thema des Mittwochs**, eines pro
+Woche, in dieser Reihenfolge:
+
+1. Verbstellung und Satzklammer · 2. Nebensätze (weil, obwohl, damit, dass, wenn/als) ·
+3. Relativsätze, auch mit Präposition und was/wo · 4. Konnektoren (kausal, konzessiv,
+konsekutiv, final, adversativ) · 5. Zweiteilige Konnektoren · 6. Passiv in allen Zeiten und
+mit Modalverben · 7. Passiversatzformen (sein + zu, sich lassen, -bar, man) ·
+8. Konjunktiv II · 9. Konjunktiv I und indirekte Rede · 10. Verben mit festen Präpositionen
+und da-/wo-Komposita · 11. Nominalisierung und Verbalisierung · 12. Partizipien als Adjektive
+und erweiterte Partizipialattribute · 13. Subjektive Modalverben und Vermutungen ·
+14. n-Deklination und Adjektivdeklination · 15. Infinitivsätze mit zu, um…zu, ohne…zu,
+statt…zu · 16. Temporale Konnektoren und Zeitenfolge (nachdem, bevor, während, seit, sobald).
+
+Außerdem gilt an jedem Tag: Grammatikfehler in ihren freien Texten werden **korrigiert und
+benannt**, egal welcher Wochentag ist. „Formale Richtigkeit" wird beim Schreiben und beim
+Sprechen mitbewertet.
+
+### Die Probeprüfung — Samstag 22:00
+
+**Die 5:30-Routine schreibt sie mit.** Ist heute ein **Samstag**, bekommt die Lektion einen
+zusätzlichen Block `probe` (Struktur wie `telc`, plus die Felder `punkte` für die erreichbare
+Punktzahl und `dauer` für die Bearbeitungszeit). An allen anderen Tagen: keinen `probe`-Block
+schreiben.
+
+Die Seite **verschließt den Block bis Samstag 22:00 Uhr** und zeigt bis dahin nur einen Kasten
+mit Countdown. Das ist Absicht: Die Probeprüfung soll unter echten Bedingungen entdeckt werden.
+Es gibt einen Knopf zum vorzeitigen Öffnen, aber die Voreinstellung ist zu.
+
+Aufbau einer Probeprüfung — **verkleinert, aber im echten Format und mit echten Punktwerten**:
+
+| Teil | Aufgaben | Punkte |
+|---|---|---|
+| Leseverstehen | 2 Zuordnungen (5 P) + 2 Multiple-Choice mit 3 Optionen (5 P) | 20 |
+| Sprachbausteine | 4 Multiple-Choice Grammatik + 4 Lexik-Zuordnungen (1,5 P) | 12 |
+| Hörverstehen | Diktattext + 4 **Richtig-Falsch**-Aufgaben (5 P) | 20 |
+| Schriftlicher Ausdruck | eine halbformelle E-Mail, **vier Leitpunkte**, mindestens 150 Wörter, **30 Minuten mit Uhr** | 45 |
+| Mündlicher Ausdruck | eine Aufgabe aus Teil 1, 2 oder 3, laut vorsprechen | 25 |
+| **gesamt** | | **122** |
+
+Am Ende jeder Probeprüfung: die **60-%-Marke** nennen (73 von 122) und daran erinnern, dass
+in der echten Prüfung **beide** Teile getrennt 60 % brauchen. Die Themen der Probeprüfung
+kommen aus der Woche, die gerade zu Ende geht, plus Wiederholung aus früheren Wochen.
+
+Alle vier Wochen (Woche 4, 8, 12, 16 und dann im Endspurt jede Woche) statt der kleinen
+Probeprüfung einen **kompletten Subtest in Originallänge** aus dem Übungstest in
+`deutsch-taeglich/telc-quellen/uebungstest/` — mit der echten Audiodatei fürs Hörverstehen.
+
+### Die Blöcke `telc` und `probe`
+
+Beide haben die Struktur des Blocks `training` (Feldnamen `titel`, `ziel`, `fr`, `aufgaben`
+mit `typ`/`frage`/`loesung`/`hinweis`, `tipp`), plus:
+
+- `teile` — welche Prüfungsteile trainiert werden, aus: `Leseverstehen`, `Sprachbausteine`,
+  `Hörverstehen`, `Schriftlicher Ausdruck`, `Mündlicher Ausdruck`.
+- `pruefungsziel` — ein bis zwei Sätze: was heute genau geübt wird und wofür es Punkte gibt.
+- optional `text` — der Lese- oder Hörtext, wenn einer gebraucht wird.
+- nur in `probe`: `punkte` (erreichbare Punktzahl) und `dauer`.
+
+Der `telc`-Block trägt jetzt den **Schwerpunkt des Tages** — er ist nicht mehr ein Anhängsel
+des Trainings, sondern der Hauptteil. Der `training`-Block bleibt für Grammatik- und
+Wortschatzübungen, die auf den Tagesfokus vorbereiten.
 
 **Wichtig, weil ich es einmal falsch hatte:**
 - Der Schriftliche Ausdruck ist **kein formeller Brief an die Praxisanleiterin**, sondern eine
   **halbformelle E-Mail an eine Firma, Person oder ein Büro als Antwort auf eine Anzeige**,
-  mit **vier Leitpunkten** und **mindestens 150 Wörtern**. Genau diese Textsorte üben.
+  mit **vier Leitpunkten** und **mindestens 150 Wörtern**.
 - Die Mündliche Prüfung enthält **keine Präsentation**. Die drei Teile sind
-  *Über Erfahrungen sprechen*, *Diskussion*, *Gemeinsam etwas planen* — immer als Gespräch
-  zu zweit, nicht als Vortrag.
-- Die Sprachbausteine sind nur **10 %**. Lesen, Hören und Sprechen sind je 25 %, zusammen 75 %.
-  Deshalb dürfen sich die telc-Blöcke **nicht** auf Lückentexte beschränken.
+  *Über Erfahrungen sprechen*, *Diskussion*, *Gemeinsam etwas planen* — Gespräch zu zweit.
+- Die Aufgabentypen im Hörverstehen sind **alle Richtig-Falsch**.
+- Multiple-Choice hat in dieser Prüfung immer **genau drei Optionen**.
 
-**Hörverstehen** kann die Seite nicht abspielen. Ersatz: der bestehende **Diktat**-Block
-(zweimal vorgelesen, Tempo einstellbar) zählt als Hörtraining — im telc-Block darauf verweisen
-und regelmäßig auf die echte Audiodatei in `deutsch-taeglich/telc-quellen/uebungstest/`
-hinweisen, statt Audio auf der Seite zu behaupten. Die Aufgabentypen im Hörverstehen sind
-**alle Richtig-Falsch** — also auch im Training Richtig-Falsch-Aufgaben zum Diktattext stellen.
-
-### Die 5 Tage eines Themas
-
-Feld `phase` im Block `zyklus`, Feld `stufe` im Block `training`.
-
-| Tag | phase | stufe | Anspruch |
-|-----|-------|-------|----------|
-| 1 | Verstehen und erste Übungen | 1 | ganz leicht — Regel erklären, sehr einfache Lücken, Wörter ordnen |
-| 2 | Erkennen | 2 | leicht — Fehler finden und korrigieren, richtige Form auswählen |
-| 3 | Anwenden | 3 | mittel — eigene Sätze bilden, umformen |
-| 4 | Verbinden | 4 | schwer — längere Sätze, Thema mit früheren Themen kombinieren |
-| 5 | Frei sprechen | 5 | am schwersten — ganze Übergabe / Gespräch / Bericht frei schreiben, ohne Vorlage |
-
-**Jeder** Tag hat: Mini-Kurs mit Erklärung **und** Übungen mit Lückenfeldern **und**
-Korrektur zu jeder einzelnen Aufgabe. Die Schwierigkeit steigt jeden Tag spürbar an.
+**Hörverstehen** kann die Seite nicht abspielen. Der **Diktat**-Block (zweimal vorgelesen,
+Tempo einstellbar) ist das tägliche Hörtraining — dazu Richtig-Falsch-Aufgaben zum Diktattext
+stellen. Regelmäßig auf die echte Audiodatei in
+`deutsch-taeglich/telc-quellen/uebungstest/` hinweisen, statt Audio auf der Seite zu behaupten.
 
 ### Pflichtinhalt jeder Lektion
 
-Verb des Tages (mit Konjugation und Bedeutung) · Wortschatz-Block (Redemittel) ·
-Grammatik-Block · **telc-Block** · Aussprache-Block · Diktat · 5 Übersetzungssätze FR→DE ·
-3 Alltag-Missionen.
+Verb des Tages (mit Konjugation und Bedeutung) · Wortschatz-Block (Redemittel **zum Thema der
+Woche**) · Grammatik-Block · **telc-Block mit dem Tagesfokus** · Aussprache-Block · Diktat ·
+5 Übersetzungssätze FR→DE · 3 Alltag-Missionen. Am Samstag zusätzlich der Block `probe`.
 
-**Verben und Wortschatz auf B2-Niveau wählen.** Kein A2-Grundwortschatz mehr. Gut sind
-Verben mit fester Präposition (*sich kümmern um*, *hinweisen auf*, *bestehen auf*,
-*verzichten auf*, *achten auf*, *sich beziehen auf*), Verben des Berichtens
-(*schildern*, *einschätzen*, *veranlassen*, *nachvollziehen*, *begründen*) und
-Nominalisierungen, die in der Dokumentation vorkommen.
+**Verben und Wortschatz auf B2-Niveau wählen** und **zum Wochenthema passend**. Kein
+A2-Grundwortschatz. Gut sind Verben mit fester Präposition (*sich kümmern um*, *hinweisen auf*,
+*bestehen auf*, *verzichten auf*, *achten auf*, *sich beziehen auf*), Verben des Berichtens
+und Argumentierens (*schildern*, *einschätzen*, *veranlassen*, *nachvollziehen*, *begründen*,
+*abwägen*, *einräumen*) und Nominalisierungen.
 
-Alle Beispiele aus dem echten Pflegealltag: Übergabe, Visite, Dokumentation,
-Angehörige, Vitalzeichen, Medikamente, Lagerung, Sturz, Schmerz, Aufnahme, Entlassung.
 Typische Fehler französischsprachiger Lernender ausdrücklich zeigen und korrigieren.
 
 ### Archiv
