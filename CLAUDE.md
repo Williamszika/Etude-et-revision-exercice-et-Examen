@@ -23,10 +23,40 @@ Prüfung **telc Deutsch B2** im **Februar 2027**. Daraus folgt:
 - Die Beispiele bleiben aus dem Pflegealltag (siehe unten). Das passt auch dann, wenn sie sich
   später für **telc Deutsch B2 Pflege** entscheidet.
 
-**Nicht erfinden:** Genaue Prüfungsdauer, Punktzahlen, Anzahl der Aufgaben pro Teil und
-Bestehensgrenzen **nirgends behaupten**, solange kein Übungstest oder keine Prüfungsordnung
-im Repo liegt. Trainiert werden die fünf Kompetenzen — Leseverstehen, Sprachbausteine,
-Hörverstehen, Schriftlicher Ausdruck, Mündlicher Ausdruck — nicht erfundene Formalia.
+### Das offizielle Prüfungsformat — Quelle im Repo
+
+Das **Handbuch telc Deutsch B2** (telc gGmbH, 8. Auflage 2019) und der **Übungstest 1** samt
+Audio liegen in `deutsch-taeglich/telc-quellen/`. **Alle Angaben zur Prüfung nur von dort
+nehmen — nichts schätzen.** Referenzseite: `deutsch-taeglich/pruefung.html`
+(`https://claude.ai/code/artifact/46864e04-1000-4201-8cf3-d76d6c889c1d`).
+
+**300 Punkte gesamt** — Schriftliche Prüfung 225 (75 %), Mündliche Prüfung 75 (25 %).
+
+| Subtest | Teile und Aufgabentypen | Zeit | Punkte | Anteil |
+|---|---|---|---|---|
+| 1 Leseverstehen | T1 Globalverstehen 5 Zuordnungen (5 P/Item) · T2 Detailverstehen 5 Multiple-Choice mit 3 Optionen (5 P) · T3 Selektives Verstehen 10 Zuordnungen (2,5 P) | 90 Min zusammen mit Subtest 2 | 75 | 25 % |
+| 2 Sprachbausteine | T1 **Grammatik** 10 Multiple-Choice, 3 Optionen, Inputtext ist eine halbformelle/informelle **E-Mail oder ein Brief** (1,5 P) · T2 **Lexik** 10 Zuordnungen im Lückentext, Inputtext Zeitungsartikel (1,5 P) | — | 30 | 10 % |
+| 3 Hörverstehen | T1 5 Richtig-Falsch (5 P) · T2 10 Richtig-Falsch (2,5 P) · T3 5 Richtig-Falsch (5 P) | ca. 20 Min | 75 | 25 % |
+| 4 Schriftlicher Ausdruck | **eine halbformelle E-Mail** an Firma/Person/Büro als **Antwort auf eine Anzeige**, **vier Leitpunkte**, eine Aufgabe aus zwei zur Wahl, **mindestens 150 Wörter** | 30 Min | 45 | 15 % |
+| 5 Mündlicher Ausdruck | T1 **Über Erfahrungen sprechen** (7 Themen zur Wahl, eines zu Hause vorbereitet, Monolog + Dialog) · T2 **Diskussion** über einen kontroversen Zeitungsartikel · T3 **Gemeinsam etwas planen** — je ca. 5 Min, je 25 P, Paarprüfung | 20 Min Vorbereitung, ca. 15 bzw. 25 Min | 75 | 25 % |
+
+**Bestehen:** in **beiden** Prüfungsteilen getrennt 60 % — **135 von 225** schriftlich **und**
+**45 von 75** mündlich. Noten: 270–300 sehr gut · 240–269,5 gut · 210–239,5 befriedigend ·
+180–209,5 ausreichend · 0–179,5 nicht bestanden.
+
+**Bewertungskriterien Schreiben:** 1. Berücksichtigung der Leitpunkte · 2. Kommunikative
+Gestaltung · 3. Formale Richtigkeit.
+**Bewertungskriterien Sprechen:** 1. Ausdrucksfähigkeit · 2. Aufgabenbewältigung ·
+3. Formale Richtigkeit · 4. Aussprache und Intonation.
+
+**Die 16 Prüfungsthemen (Anhang T):** Angaben zur eigenen Person · Der menschliche Körper,
+Gesundheit und Körperpflege · Wohnen · Orte · Tägliches Leben · Essen und Trinken · Erziehung,
+Ausbildung, Lernen · Arbeit und Beruf · Geschäfte, Handel, Konsum · Dienstleistungen · Natur und
+Umwelt · Reise und Verkehr · Freizeit und Unterhaltung · Medien und moderne Informationstechniken ·
+Gesellschaft, Staat, Regierung · Beziehungen zu anderen Menschen und Kulturen.
+
+Pflegebeispiele sind **prüfungskonform** (Themen 2 und 8), aber die Lektionen müssen auch die
+anderen vierzehn Themen streifen — besonders für die Diskussion in Teil 2 der Mündlichen Prüfung.
 
 Artifact-URL (nie ändern): `https://claude.ai/code/artifact/e499dbe3-e198-410a-94d3-9393e6b27c84`
 Favicon: 🇩🇪 — beim Republish **nicht** mitschicken.
@@ -91,19 +121,27 @@ Welche Teile an welchem Tag:
 
 | Tag | Schwerpunkt im telc-Block |
 |-----|---------------------------|
-| 1 | Sprachbausteine — die Regel im Lückentext-Format |
-| 2 | Sprachbausteine + Leseverstehen — Fehler im Text finden |
-| 3 | Schriftlicher Ausdruck — Sätze für einen formellen Brief |
-| 4 | Leseverstehen + Schriftlicher Ausdruck — längerer Text, eigene Formulierung |
-| 5 | Mündlicher Ausdruck — Präsentation, Meinung, Diskussion, Aushandeln |
+| 1 | **Sprachbausteine Teil 1** — die Regel des Tages als Multiple-Choice-Lückentext mit **drei Optionen**, Inputtext eine halbformelle E-Mail |
+| 2 | **Sprachbausteine Teil 2** (Lexik-Zuordnung) + **Leseverstehen Teil 2** (Multiple-Choice, drei Optionen) |
+| 3 | **Schriftlicher Ausdruck** — Sätze und Redemittel für die halbformelle E-Mail, ein Leitpunkt pro Aufgabe |
+| 4 | **Leseverstehen Teil 1 oder 3** (Zuordnung) + **Schriftlicher Ausdruck**: eine vollständige E-Mail zu vier Leitpunkten, mindestens 150 Wörter, 30 Minuten mit Uhr |
+| 5 | **Mündlicher Ausdruck** — Teil 1 über Erfahrungen sprechen, Teil 2 Diskussion über einen kontroversen Text, Teil 3 gemeinsam etwas planen |
+
+**Wichtig, weil ich es einmal falsch hatte:**
+- Der Schriftliche Ausdruck ist **kein formeller Brief an die Praxisanleiterin**, sondern eine
+  **halbformelle E-Mail an eine Firma, Person oder ein Büro als Antwort auf eine Anzeige**,
+  mit **vier Leitpunkten** und **mindestens 150 Wörtern**. Genau diese Textsorte üben.
+- Die Mündliche Prüfung enthält **keine Präsentation**. Die drei Teile sind
+  *Über Erfahrungen sprechen*, *Diskussion*, *Gemeinsam etwas planen* — immer als Gespräch
+  zu zweit, nicht als Vortrag.
+- Die Sprachbausteine sind nur **10 %**. Lesen, Hören und Sprechen sind je 25 %, zusammen 75 %.
+  Deshalb dürfen sich die telc-Blöcke **nicht** auf Lückentexte beschränken.
 
 **Hörverstehen** kann die Seite nicht abspielen. Ersatz: der bestehende **Diktat**-Block
-(zweimal vorgelesen, Tempo einstellbar) zählt als Hörtraining — im telc-Block darauf
-verweisen, statt Audio zu behaupten.
-
-Der Schriftliche Ausdruck übt immer **formelle Briefe und E-Mails** aus dem Berufsleben:
-an die Praxisanleiterin, die Schule, die Pflegedienstleitung, eine Krankenkasse, einen
-Fortbildungsanbieter. Redemittel jedes Mal mitgeben.
+(zweimal vorgelesen, Tempo einstellbar) zählt als Hörtraining — im telc-Block darauf verweisen
+und regelmäßig auf die echte Audiodatei in `deutsch-taeglich/telc-quellen/uebungstest/`
+hinweisen, statt Audio auf der Seite zu behaupten. Die Aufgabentypen im Hörverstehen sind
+**alle Richtig-Falsch** — also auch im Training Richtig-Falsch-Aufgaben zum Diktattext stellen.
 
 ### Die 5 Tage eines Themas
 
@@ -157,3 +195,12 @@ Fahrlässigkeit wird erst in **III. Schuld** entschieden.
 
 Alle Artifact-Links bleiben stabil. Für eine bestehende Seite **nie** eine neue URL
 anlegen — immer denselben `file_path` bzw. dieselbe `url` verwenden.
+
+---
+
+## Prüfungsplan telc B2 — eigene Seite
+
+`deutsch-taeglich/pruefung.html` → `https://claude.ai/code/artifact/46864e04-1000-4201-8cf3-d76d6c889c1d`
+Favicon 🎯. Enthält das offizielle Format mit allen Punkten, die Bestehensgrenze, die Notenskala,
+die 16 Themen und den Plan bis Februar 2027. Bei jeder Änderung am Prüfungsformat **zuerst hier**
+nachsehen und diese Seite mitpflegen.
