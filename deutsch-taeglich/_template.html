@@ -58,6 +58,13 @@
   .k-dk{background:var(--dkbg);color:var(--dk);}
   .k-sb{background:var(--sbbg);color:var(--sb);}
   .k-tg{background:var(--tgbg);color:var(--tg);}
+  .k-telc{background:var(--extrabg);color:var(--extra);}
+  .telc-teil{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 4px;}
+  .telc-teil span{font-family:var(--mono);font-size:11px;letter-spacing:.05em;padding:4px 10px;
+    border-radius:999px;background:var(--paper-2);color:var(--ink-soft);border:1px solid var(--line);}
+  .telc-teil span.an{background:var(--extra);color:var(--card);border-color:var(--extra);}
+  .telc-ziel{border-left:3px solid var(--extra);background:var(--extrabg);border-radius:0 10px 10px 0;
+    padding:11px 15px;margin:10px 0;font-size:15px;}
   /* Zyklus-Anzeige unter dem Datum */
   .zyklus{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;}
   .zyklus .thema{font-size:14.5px;color:var(--ink-soft);}
@@ -422,22 +429,37 @@ const TYPNAME={
   ordnen:'In die richtige Reihenfolge',
   antworten:'Antworte selbst'
 };
-function renderTraining(b,idx){
+/* Die telc-Prüfungsteile, die wir trainieren */
+const TELC_TEILE=['Leseverstehen','Sprachbausteine','Hörverstehen','Schriftlicher Ausdruck','Mündlicher Ausdruck'];
+
+function renderTraining(b,idx,opt){
   if(!b)return '';
+  opt=opt||{};
   const auf=b.aufgaben||[];
   if(!auf.length && !b.dialog && !(b.alltag&&b.alltag.length))return '';
-  let h='<div class="block"><span class="kind k-tg">Training · '+esc(b.phase||'Üben')+'</span>';
+  let h='<div class="block"><span class="kind '+(opt.kls||'k-tg')+'">'+
+        esc(opt.badge||('Training · '+(b.phase||'Üben')))+'</span>';
   h+='<h3>'+bold(b.titel||'Training')+'</h3>';
-  /* Schwierigkeitsstufe 1 bis 5 */
-  const st=Math.min(5,Math.max(1, b.stufe || (l_stufe()||1)));
-  const NAMEN=['ganz leicht','leicht','mittel','schwer','am schwersten'];
-  let bl='';
-  for(let i=1;i<=5;i++) bl+='<i class="'+(i<=st?'on':'')+'"></i>';
-  h+='<div class="stufe"><span class="lbl">Stufe '+st+' von 5</span>'+
-     '<span class="bal">'+bl+'</span><span class="nm">'+NAMEN[st-1]+'</span></div>';
+  if(opt.telc){
+    /* Welche telc-Teile heute drankommen */
+    const dran=(b.teile||[]).map(x=>String(x).toLowerCase());
+    h+='<div class="telc-teil">'+TELC_TEILE.map(t=>
+        '<span class="'+(dran.some(d=>t.toLowerCase().indexOf(d)>=0||d.indexOf(t.toLowerCase())>=0)?'an':'')+'">'
+        +esc(t)+'</span>').join('')+'</div>';
+    if(b.pruefungsziel)h+='<div class="telc-ziel"><b>Warum das in der Prüfung zählt:</b> '+bold(b.pruefungsziel)+'</div>';
+  } else {
+    /* Schwierigkeitsstufe 1 bis 5 */
+    const st=Math.min(5,Math.max(1, b.stufe || (l_stufe()||1)));
+    const NAMEN=['ganz leicht','leicht','mittel','schwer','am schwersten'];
+    let bl='';
+    for(let i=1;i<=5;i++) bl+='<i class="'+(i<=st?'on':'')+'"></i>';
+    h+='<div class="stufe"><span class="lbl">Stufe '+st+' von 5</span>'+
+       '<span class="bal">'+bl+'</span><span class="nm">'+NAMEN[st-1]+'</span></div>';
+  }
   if(b.thema)h+='<p class="lit">Thema: '+esc(b.thema)+'</p>';
   if(b.ziel)h+='<div class="tg-ziel"><b>Ziel heute:</b> '+bold(b.ziel)+'</div>';
   if(b.fr)h+='<p class="fr">'+esc(b.fr)+'</p>';
+  if(b.text)h+='<div class="tipbox" style="border-left-color:var(--extra)">'+bold(b.text)+'</div>';
 
   auf.forEach((a,i)=>{
     const id='auf-'+idx+'-'+i;
@@ -911,6 +933,8 @@ function render(){
   document.getElementById('content').innerHTML=
     renderBlock(l.verb,'verb',cur)+renderBlock(l.wortschatz,'voc',cur)+renderBlock(l.grammatik,'gram',cur)
     +renderSatzbau(l.satzbau,cur)+renderTag1(l)+renderTraining(l.training,cur)
+    +renderTraining(l.telc,'telc'+cur,{telc:true,kls:'k-telc',
+        badge:'telc Deutsch B2 · Prüfungstraining'})
     +renderSay(l.aussprache,cur)+renderDiktat(l.diktat)+renderTrans(l.uebersetzung,cur);
   if(document.querySelector('.dk-tempo')) dkSetRate(dkRate);
   tgWiederherstellen();

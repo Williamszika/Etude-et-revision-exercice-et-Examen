@@ -12,6 +12,22 @@ Zahlen oder Quellen nennen, die nicht in ihren eigenen Unterlagen (PDFs im Repo)
 
 Diese Anweisung gilt **immer** und hat Vorrang vor älteren Routine-Texten.
 
+### Das Ziel: telc Deutsch B2 im Februar 2027
+
+Deutsch täglich ist **kein allgemeiner Sprachkurs mehr**, sondern die Vorbereitung auf die
+Prüfung **telc Deutsch B2** im **Februar 2027**. Daraus folgt:
+
+- Alle Themen liegen auf **B1/B2-Niveau**. Reine A2-Themen (einfache Fragen, Imperativ,
+  Komparativ) gehören nicht mehr als eigenes Thema hierher — sie laufen in den Beispielen mit.
+- **Jede** Lektion hat zusätzlich einen Block `telc` — Prüfungstraining im Prüfungsformat.
+- Die Beispiele bleiben aus dem Pflegealltag (siehe unten). Das passt auch dann, wenn sie sich
+  später für **telc Deutsch B2 Pflege** entscheidet.
+
+**Nicht erfinden:** Genaue Prüfungsdauer, Punktzahlen, Anzahl der Aufgaben pro Teil und
+Bestehensgrenzen **nirgends behaupten**, solange kein Übungstest oder keine Prüfungsordnung
+im Repo liegt. Trainiert werden die fünf Kompetenzen — Leseverstehen, Sprachbausteine,
+Hörverstehen, Schriftlicher Ausdruck, Mündlicher Ausdruck — nicht erfundene Formalia.
+
 Artifact-URL (nie ändern): `https://claude.ai/code/artifact/e499dbe3-e198-410a-94d3-9393e6b27c84`
 Favicon: 🇩🇪 — beim Republish **nicht** mitschicken.
 Branch: `claude/nursing-exam-prep-workflow-gvn5u0`
@@ -38,25 +54,56 @@ Nur `python3 deutsch-taeglich/build.py` ausführen, veröffentlichen, fertig.
    und derselben `url`.
 6. `git add -A && git commit && git pull --rebase origin <branch> && git push -u origin <branch>`
 
-### Die 13 Themen, in dieser Reihenfolge
+### Die 13 Themen, in dieser Reihenfolge — alle B1/B2
 
-| Nr | Thema |
-|----|-------|
-| 1 | Verb auf Platz 2 |
-| 2 | Verb ans Ende im Nebensatz |
-| 3 | Fragen bilden |
-| 4 | Imperativ und höfliche Bitte |
-| 5 | Konjunktiv II |
-| 6 | Relativsätze |
-| 7 | Passiv mit Modalverben |
-| 8 | Indirekte Rede |
-| 9 | Partizipien als Adjektive |
-| 10 | Nominalisierung |
-| 11 | Kausale und konzessive Konnektoren |
-| 12 | Futur I |
-| 13 | Komparativ und Superlativ |
+| Nr | Thema | Niveau |
+|----|-------|--------|
+| 1 | Satzbau: Verb auf Platz 2 und Satzklammer | B1 — Fundament |
+| 2 | Nebensätze: weil, obwohl, damit, dass, wenn/als, seit | B1/B2 |
+| 3 | Relativsätze — auch mit Präposition und mit was/wo | B2 |
+| 4 | Konnektoren: kausal, konzessiv, konsekutiv, final, adversativ | B2 |
+| 5 | Zweiteilige Konnektoren: zwar…aber, je…desto, weder…noch, nicht nur…sondern auch | B2 |
+| 6 | Passiv in allen Zeiten und mit Modalverben | B2 |
+| 7 | Passiversatzformen: sein + zu, sich lassen, -bar, man | B2 |
+| 8 | Konjunktiv II: Höflichkeit, Wunsch, Irreales, Vergangenheit | B1/B2 |
+| 9 | Konjunktiv I und indirekte Rede — Übergabe, Bericht, Zitat | B2 |
+| 10 | Verben mit festen Präpositionen + da-/wo-Komposita | B2 |
+| 11 | Nominalisierung und Verbalisierung — Nominalstil der Dokumentation | B2 |
+| 12 | Partizipien als Adjektive und erweiterte Partizipialattribute | B2 |
+| 13 | Subjektive Modalverben und Vermutungen: soll, will, muss, dürfte, könnte | B2 |
 
-Start: **30.08.2026 = Thema 1, Tag 1.**
+Start: **30.08.2026 = Thema 1, Tag 1.** 13 Themen × 5 Tage = 65 Tage → Runde 1 endet am
+**02.11.2026**. Danach Runde 2 mit denselben Themen, aber schwereren Texten und mehr
+Prüfungsformat, bis Anfang Januar 2027. Januar und Februar: reines Prüfungstraining.
+
+### Der Block `telc` — in jeder Lektion
+
+Struktur exakt wie der Block `training` (gleiche Feldnamen: `titel`, `ziel`, `fr`, `aufgaben`
+mit `typ`/`frage`/`loesung`/`hinweis`, `tipp`), plus zwei eigene Felder:
+
+- `teile` — Liste der trainierten Prüfungsteile, aus:
+  `Leseverstehen`, `Sprachbausteine`, `Hörverstehen`, `Schriftlicher Ausdruck`,
+  `Mündlicher Ausdruck`. Zwei bis drei pro Tag reichen.
+- `pruefungsziel` — ein bis zwei Sätze: **warum** die Grammatik des Tages in der Prüfung zählt.
+- optional `text` — ein kurzer Lesetext, wenn Leseverstehen trainiert wird.
+
+Welche Teile an welchem Tag:
+
+| Tag | Schwerpunkt im telc-Block |
+|-----|---------------------------|
+| 1 | Sprachbausteine — die Regel im Lückentext-Format |
+| 2 | Sprachbausteine + Leseverstehen — Fehler im Text finden |
+| 3 | Schriftlicher Ausdruck — Sätze für einen formellen Brief |
+| 4 | Leseverstehen + Schriftlicher Ausdruck — längerer Text, eigene Formulierung |
+| 5 | Mündlicher Ausdruck — Präsentation, Meinung, Diskussion, Aushandeln |
+
+**Hörverstehen** kann die Seite nicht abspielen. Ersatz: der bestehende **Diktat**-Block
+(zweimal vorgelesen, Tempo einstellbar) zählt als Hörtraining — im telc-Block darauf
+verweisen, statt Audio zu behaupten.
+
+Der Schriftliche Ausdruck übt immer **formelle Briefe und E-Mails** aus dem Berufsleben:
+an die Praxisanleiterin, die Schule, die Pflegedienstleitung, eine Krankenkasse, einen
+Fortbildungsanbieter. Redemittel jedes Mal mitgeben.
 
 ### Die 5 Tage eines Themas
 
@@ -76,8 +123,14 @@ Korrektur zu jeder einzelnen Aufgabe. Die Schwierigkeit steigt jeden Tag spürba
 ### Pflichtinhalt jeder Lektion
 
 Verb des Tages (mit Konjugation und Bedeutung) · Wortschatz-Block (Redemittel) ·
-Grammatik-Block · Aussprache-Block · Diktat · 5 Übersetzungssätze FR→DE ·
+Grammatik-Block · **telc-Block** · Aussprache-Block · Diktat · 5 Übersetzungssätze FR→DE ·
 3 Alltag-Missionen.
+
+**Verben und Wortschatz auf B2-Niveau wählen.** Kein A2-Grundwortschatz mehr. Gut sind
+Verben mit fester Präposition (*sich kümmern um*, *hinweisen auf*, *bestehen auf*,
+*verzichten auf*, *achten auf*, *sich beziehen auf*), Verben des Berichtens
+(*schildern*, *einschätzen*, *veranlassen*, *nachvollziehen*, *begründen*) und
+Nominalisierungen, die in der Dokumentation vorkommen.
 
 Alle Beispiele aus dem echten Pflegealltag: Übergabe, Visite, Dokumentation,
 Angehörige, Vitalzeichen, Medikamente, Lagerung, Sturz, Schmerz, Aufnahme, Entlassung.
