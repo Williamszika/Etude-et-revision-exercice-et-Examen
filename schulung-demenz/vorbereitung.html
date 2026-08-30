@@ -1,0 +1,702 @@
+<title>Demenz-Vorbereitungsblatt</title>
+<style>
+  :root{
+    --paper:#f3f4f6;--paper-2:#e7e9ee;--card:#fdfdff;--ink:#1a1c22;--ink-soft:#4e5361;--line:#d5d8e0;
+    --accent:#43507e;--accent-deep:#2f3a63;--accent-soft:#e0e4f0;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;
+    --blue:#35618a;--bluebg:#dce7f1;--rot:#a8394a;--rotbg:#f3e0e3;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#131419;--paper-2:#0e0f13;--card:#1c1e26;--ink:#eceef4;--ink-soft:#a5abbb;--line:#2f323d;
+    --accent:#9aa8dd;--accent-deep:#b6c1ec;--accent-soft:#1c2136;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;
+    --blue:#86b2d8;--bluebg:#15232e;--rot:#e08a98;--rotbg:#2c171c;}}
+  :root[data-theme="dark"]{
+    --paper:#131419;--paper-2:#0e0f13;--card:#1c1e26;--ink:#eceef4;--ink-soft:#a5abbb;--line:#2f323d;
+    --accent:#9aa8dd;--accent-deep:#b6c1ec;--accent-soft:#1c2136;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#2e1a16;--warn:#d9a559;--warnbg:#2c2312;
+    --blue:#86b2d8;--bluebg:#15232e;--rot:#e08a98;--rotbg:#2c171c;}
+  :root[data-theme="light"]{
+    --paper:#f3f4f6;--paper-2:#e7e9ee;--card:#fdfdff;--ink:#1a1c22;--ink-soft:#4e5361;--line:#d5d8e0;
+    --accent:#43507e;--accent-deep:#2f3a63;--accent-soft:#e0e4f0;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f7e3de;--warn:#b5731a;--warnbg:#f7ecd9;
+    --blue:#35618a;--bluebg:#dce7f1;--rot:#a8394a;--rotbg:#f3e0e3;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding:44px 20px 28px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:0;z-index:30;background:var(--paper-2);border-bottom:1px solid var(--line);
+    padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);background:var(--card);}
+
+  main{max-width:58rem;margin:0 auto;padding:0 18px 90px;}
+  section{padding-top:50px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:26px 0 8px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px 22px 18px;margin:16px 0;}
+  .card > :first-child{margin-top:0;}
+  .card > :last-child{margin-bottom:0;}
+  .lbl{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+
+  .quelle{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:var(--ink-soft);
+    background:var(--paper-2);border:1px solid var(--line);border-radius:6px;
+    padding:2px 8px;display:inline-block;margin-top:8px;}
+
+  ul,ol{padding-left:1.2em;margin:10px 0;}
+  li{margin:5px 0;}
+  ul.tick{list-style:none;padding-left:0;}
+  ul.tick li{padding-left:1.7em;position:relative;}
+  ul.tick li::before{content:"▸";position:absolute;left:.35em;color:var(--accent);}
+
+  .tabelle{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:12px;}
+  table{border-collapse:collapse;width:100%;min-width:440px;background:var(--card);}
+  th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.de{font-weight:600;white-space:nowrap;}
+  td.fr{font-style:italic;color:var(--ink-soft);}
+
+  .warn{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .info{background:var(--bluebg);border-left:4px solid var(--blue);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:10px;padding:15px 18px;margin:16px 0;}
+
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+  @media (max-width:640px){.zwei{grid-template-columns:1fr;}}
+
+  /* Mitschreibfelder */
+  .feld{margin:14px 0;}
+  .feld > label{display:block;font-weight:600;margin-bottom:7px;font-size:15.5px;}
+  .feld > label .hint{display:block;font-weight:400;font-size:14px;color:var(--ink-soft);
+    margin-top:2px;}
+  textarea{width:100%;min-height:84px;resize:vertical;font-family:var(--sans);font-size:15.5px;
+    line-height:1.55;padding:11px 13px;border:1px solid var(--line);border-radius:10px;
+    background:var(--paper);color:var(--ink);}
+  textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  .gespeichert{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--good);
+    opacity:0;transition:opacity .25s;display:inline-block;margin-top:4px;}
+  .gespeichert.an{opacity:1;}
+  @media (prefers-reduced-motion:reduce){.gespeichert{transition:none;}}
+
+  .werkzeug{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:18px 0 4px;}
+  .btn{font-family:var(--mono);font-size:12px;letter-spacing:.05em;cursor:pointer;
+    padding:9px 16px;border-radius:999px;border:1px solid var(--accent);
+    background:transparent;color:var(--accent-deep);}
+  .btn:hover,.btn:focus-visible{background:var(--accent);color:var(--card);}
+  .btn:focus-visible{outline:2px solid var(--accent-deep);outline-offset:2px;}
+  .zaehler{font-family:var(--mono);font-size:12px;color:var(--ink-soft);}
+
+  footer{border-top:1px solid var(--line);margin-top:70px;padding:30px 20px 50px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Vorbereitung · Pflege dementiell veränderter Menschen</p>
+  <h1>Demenz-Vorbereitungsblatt</h1>
+  <p class="sub">Du hast die Folien noch nicht — der Unterricht ist erst morgen. Aber du hast
+    schon <b>sehr viel</b> in deinen eigenen Unterlagen, was morgen fallen wird. Oben steht,
+    was du schon sicher weißt. Unten sind die Felder, in die du morgen mitschreibst.
+    <span class="fr">En haut : ce que tu sais déjà, avec la source. En bas : les cases à remplir
+    demain.</span></p>
+  <div class="meta"><span>10 Anknüpfungspunkte aus deinen Unterlagen</span>
+    <span>Vokabelliste DE → FR</span><span>Mitschreib-Raster</span>
+    <span>8 Fragen an die Dozentin</span></div>
+</header>
+
+<nav class="toc">
+  <a href="#plan">Der Plan</a>
+  <a href="#weisst">Das weißt du schon</a>
+  <a href="#delir">Delir gegen Demenz</a>
+  <a href="#recht">Recht: Fixierung</a>
+  <a href="#alltag">Essen, Kontinenz, Wärme</a>
+  <a href="#vokabeln">Vokabeln</a>
+  <a href="#raster">Mitschreib-Raster</a>
+  <a href="#fragen">Fragen an die Dozentin</a>
+  <a href="#ehrlich">Was hier nicht steht</a>
+</nav>
+
+<main>
+
+<section id="plan">
+  <h2>Der Plan für heute Abend</h2>
+  <p class="lead">Zwanzig Minuten reichen. Mehr brauchst du nicht.</p>
+  <div class="card">
+    <ol>
+      <li><b>Lies den Abschnitt „Das weißt du schon".</b> Das sind vier deiner eigenen Tafelbilder
+        und Folien. Du kennst den Stoff — dir ist nur nicht klar, dass er zu morgen gehört.</li>
+      <li><b>Geh die Vokabelliste durch.</b> Das ist dein eigentliches Problem morgen: nicht der
+        Inhalt, sondern die Geschwindigkeit auf Deutsch. Wenn du die Wörter vorher einmal gesehen
+        hast, kommst du mit.</li>
+      <li><b>Schau dir die acht Fragen an die Dozentin an</b> und such dir zwei aus, die du
+        wirklich stellst. Wer eine Frage stellt, bleibt wach — und du bekommst die Antwort in
+        genau der Form, die in der Klausur gefragt wird.</li>
+      <li><b>Morgen:</b> Diese Seite auf dem Handy offen lassen und in die Felder tippen.
+        Alles wird automatisch gespeichert. Danach schickst du mir die Folien und wir bauen die
+        richtige Zusammenfassung.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="weisst">
+  <h2>Das weißt du schon — aus deinen eigenen Unterlagen</h2>
+  <p class="lead">Vier Tafelbilder und Folien, die du bereits hast. Jedes davon ist ein Baustein
+    des Themas Demenz. Wenn die Dozentin morgen eines davon aufruft, kannst du antworten.</p>
+
+  <div class="card">
+    <span class="lbl">Baustein 1 · Orientierungsstörung</span>
+    <p><b>Definition:</b> „Einschränkungen im Wissen über <b>Zeit, Ort, Situation und eigene
+      Person</b>. Sie zeigen sich im Verhalten und in den Antworten des Patienten."</p>
+    <p><b>Art der Bewusstseinsstörung: qualitativ</b> — die Person ist wach, aber versteht ihre
+      Umgebung nicht richtig. Es geht um eine Veränderung der <em>Wahrnehmung</em>, nicht um die
+      Wachheit selbst.</p>
+    <p><b>Verwirrtheitsprophylaxe:</b> „Maßnahmen zu ergreifen, damit Menschen nicht verwirrt oder
+      orientierungslos werden. → Ziel: <b>Sicherheit geben, Angst verhindern</b>."</p>
+    <p><b>Die vier Orientierungshilfen:</b></p>
+    <div class="tabelle">
+      <table>
+        <thead><tr><th>Art</th><th>Hilfe</th></tr></thead>
+        <tbody>
+          <tr><td class="de">Zeitlich</td><td>große Uhr</td></tr>
+          <tr><td class="de">Örtlich</td><td>Türschilder</td></tr>
+          <tr><td class="de">Situativ</td><td>Abläufe erklären</td></tr>
+          <tr><td class="de">Persönlich</td><td>mit Namen ansprechen</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="quelle">dein Tafelbild „Orientierungsstörung"</span>
+    <div class="gut" style="margin-top:14px;"><b>Das ist deine stärkste Karte für morgen.</b>
+      Die vier Orientierungshilfen sind pflegerische Maßnahmen bei Demenz — nur unter einem
+      anderen Namen. Wenn die Dozentin nach Maßnahmen fragt, hast du schon vier.</div>
+  </div>
+
+  <div class="card">
+    <span class="lbl">Baustein 2 · Wahrnehmungsstörung</span>
+    <p>„Eine Beeinträchtigung der <b>Aufnahme, Verarbeitung oder Interpretation von
+      Sinneseindrücken</b>."</p>
+    <div class="zwei">
+      <div><p><b>Halluzination</b> — Sinneswahrnehmung <b>ohne äußeren Reiz</b>.<br>
+        Betroffen sein können: Sehen · Hören · Riechen · Schmecken · Fühlen.</p></div>
+      <div><p><b>Illusion</b> — ein <b>realer Reiz</b> wird <b>falsch interpretiert</b>.</p></div>
+    </div>
+    <p>Beides gehört zu den <b>qualitativen</b> Bewusstseinsstörungen — im Unterschied zu den
+      quantitativen: Somnolenz, Sopor, Koma.</p>
+    <span class="quelle">dein Tafelbild „Wahrnehmungsstörung"</span>
+    <div class="info" style="margin-top:14px;">Der Unterschied Halluzination / Illusion wird
+      morgen fast sicher vorkommen. <b>Merkhilfe:</b> Der Bademantel am Haken, den jemand für
+      einen Menschen hält — das ist eine <b>Illusion</b> (ein realer Reiz, falsch gedeutet).
+      Die Person, die niemand sonst sieht — das ist eine <b>Halluzination</b>.</div>
+  </div>
+
+  <div class="card">
+    <span class="lbl">Baustein 3 · Denkstörungen</span>
+    <div class="zwei">
+      <div><p><b>Formale Denkstörungen</b> — mit Störungen des <b>Gedankengangs</b>.
+        Beispiel: Gedankenabreißen. Sie betreffen die <b>Struktur</b> des Denkens. (Qualitativ)</p></div>
+      <div><p><b>Inhaltliche Denkstörungen</b> — mit gestörtem <b>Gedankeninhalt</b>.
+        Beispiel: Phobie, übertriebene Angst vor bestimmten Situationen oder Objekten.
+        (Qualitativ)</p></div>
+    </div>
+    <span class="quelle">dein Tafelbild „Denkstörungen"</span>
+  </div>
+
+  <div class="card">
+    <span class="lbl">Baustein 4 · Erregungszustände — und Demenz steht ausdrücklich dabei</span>
+    <p>„Hauptcharakteristika von Erregungszuständen sind eine meist <b>ziellose Steigerung von
+      Antrieb und Psychomotorik, affektive Enthemmung und Kontrollverlust</b>. Es kann zu
+      ausgeprägter Gereiztheit und aggressiven Äußerungen bis hin zu unvermittelten
+      Gewalttätigkeiten kommen."</p>
+    <p><b>Hauptursachen:</b> manische und schizophrene Psychosen · <b>Demenzen</b> ·
+      Intoxikationen und Entzugssyndrome.</p>
+    <span class="quelle">Psychiatrische Notfälle, Toni Weidenbecher</span>
+    <div class="gut" style="margin-top:14px;"><b>Und du hast auch schon die Antwort darauf.</b>
+      In derselben Schulung steht die Deeskalation — ausdrücklich <b>„ohne Medikamente und
+      Körperlichkeit"</b>. Das Ziel heißt <b>Rapport</b>: „die Fähigkeit, die Welt eines Anderen
+      zu betreten und zu ihm eine Brücke zu bauen. Wenn der Rapport vorhanden ist, dann
+      verschwindet der Widerstand."
+      <p style="margin:10px 0 0;"><b>Die vier Stufen:</b>
+        <b>Spiegeln</b> → <b>Pacing</b> (sich im visuellen und auditiven Ausdrucksverhalten
+        anpassen, „die andere Person dort abholen, wo sie steht" — Sprachtempo, Rhythmus,
+        Tonlage) → <b>Matching</b> (Angleichen an Sprachstile und Sprachmuster) →
+        <b>Leading</b> (nach hergestelltem Rapport führen, im Sinne des Win-Win-Prinzips).</p>
+      <p style="margin:10px 0 0;">Wenn morgen die Frage kommt, wie man mit herausforderndem
+        Verhalten umgeht, ist das deine Antwort — und sie kommt aus deiner eigenen Schulung.</p></div>
+  </div>
+</section>
+
+<section id="delir">
+  <h2>Delir gegen Demenz — die klassische Prüfungsfrage</h2>
+  <p class="lead">Diese Unterscheidung kommt in fast jeder Klausur vor. Die Delir-Seite hast du
+    komplett; die Demenz-Seite füllst du morgen aus.</p>
+
+  <div class="card">
+    <span class="lbl">Delir — das hast du schwarz auf weiß</span>
+    <p>„Das <b>delirante Syndrom (Delir)</b> ist hauptsächlich durch <b>Desorientiertheit,
+      Verkennung der Umgebung, halluzinatorische Erlebnisse (vorwiegend optisch) und Unruhe bis
+      hin zu starker Erregung</b> gekennzeichnet. Es handelt sich dabei um eine <b>akute
+      organische Psychose</b>, durch Alkoholentzug („Delirium tremens"), Medikamentenentzug,
+      Allgemeinerkrankungen und Einnahme zentral wirksamer Pharmaka."</p>
+    <p><b>Hauptformen:</b></p>
+    <ul class="tick">
+      <li>(Alkohol-)Entzugsdelir</li>
+      <li>postoperatives Delir</li>
+      <li>durch allgemeinmedizinische und hirnorganische Krankheiten bedingtes Delir</li>
+      <li>pharmakogenes Delir, zum Beispiel zentrales anticholinerges Delir</li>
+    </ul>
+    <span class="quelle">Psychiatrische Notfälle, Toni Weidenbecher</span>
+  </div>
+
+  <div class="feld">
+    <label for="d1">Morgen ausfüllen: Wie unterscheidet die Dozentin Delir und Demenz?
+      <span class="hint">Achte besonders auf: Beginn (akut oder schleichend?), Verlauf,
+        Bewusstsein, Umkehrbarkeit. Schreib ihre Worte auf, nicht meine.</span></label>
+    <textarea id="d1" placeholder="Delir: … / Demenz: …"></textarea>
+    <span class="gespeichert" data-fuer="d1">gespeichert ✓</span>
+  </div>
+  <div class="warn"><b>Das Wort, das du morgen hören wirst und das du kennen musst:</b>
+    Ein Delir kann bei einem Menschen mit Demenz <em>zusätzlich</em> auftreten. Frag nach, wie
+    man das im Dienst erkennt — das ist eine gute Frage und sie zeigt, dass du mitdenkst.</div>
+</section>
+
+<section id="recht">
+  <h2>Recht: die Fixierung — du hast den Fall schon geschrieben</h2>
+  <p class="lead">Freiheitsentziehende Maßnahmen sind <em>das</em> rechtliche Thema der
+    Demenzpflege. Und du hast dazu bereits eine vollständige Musterlösung in deinen Unterlagen —
+    aus dem Recht-Unterricht von Frau Welters.</p>
+
+  <div class="card">
+    <span class="lbl">§ 239 StGB Freiheitsberaubung — Wortlaut aus deinen Folien</span>
+    <p>„Wer einen Menschen <b>einsperrt</b> oder <b>auf andere Weise der Freiheit beraubt</b>,
+      wird mit Freiheitsstrafe bis zu fünf Jahren oder mit Geldstrafe bestraft."</p>
+    <span class="quelle">CE 6 UE 1, RAin Stephanie Welters</span>
+  </div>
+
+  <div class="card">
+    <span class="lbl">Der Fall Frau Yilma — aus der offiziellen Musterlösung</span>
+    <p>Pflegefachfrau Sabine fixiert Frau Yilma mit einem <b>Bauchgurt</b>, ohne Genehmigung.
+      Die Musterlösung deiner Dozentin prüft so:</p>
+    <ul class="tick">
+      <li>Einen anderen Menschen <b>(+)</b> — Frau Yilma</li>
+      <li>Einsperren <b>(−)</b> — laut Sachverhalt nicht eingesperrt</li>
+      <li>Oder auf andere Weise der Freiheit berauben <b>(+)</b> — mit Bauchgurt fixiert</li>
+      <li><b>Schuld: Vorsatz (+)</b> — „Sabine wusste, dass sie keine Genehmigung für die
+        Fixierung oder einen anderen Rechtfertigungsgrund hat, und wollte ihr dennoch die
+        Freiheit nehmen, um sich die Pflege zu erleichtern"</li>
+      <li><b>Konsequenz:</b> Geldstrafe</li>
+      <li><b>Schlusssatz:</b> „Sabine hat sich wegen <b>vorsätzlicher Freiheitsberaubung</b>
+        strafbar gemacht."</li>
+    </ul>
+    <p><b>Die vier Gesetze, die die Musterlösung nennt:</b></p>
+    <div class="tabelle">
+      <table>
+        <thead><tr><th>Gesetz</th><th>Warum einschlägig</th></tr></thead>
+        <tbody>
+          <tr><td class="de">StGB</td><td>Freiheitsberaubung durch die Fixierung; Körperverletzung
+            wegen Schmerzen, Hämatomen und Ängsten</td></tr>
+          <tr><td class="de">GG</td><td>Die Würde des Menschen ist unverletzlich — gegen ihren
+            Willen fixiert, obwohl sie mehrmals geäußert hat, dies nicht zu wollen; Recht auf
+            Freiheit, da ihr die Möglichkeit der Fortbewegung genommen wird</td></tr>
+          <tr><td class="de">PflBG</td><td>Sorgfaltspflicht der Pflegekraft, die übertragenen
+            Aufgaben so durchzuführen, dass keine Rechte der Pflegeempfänger verletzt werden</td></tr>
+          <tr><td class="de">BGB</td><td>Durch die Verletzungen Anspruch auf Schmerzensgeld aus
+            Delikt</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <span class="quelle">Übungsfälle für die Klausur — Musterlösung</span>
+  </div>
+
+  <div class="card">
+    <span class="lbl">Und wer genehmigt eine Fixierung?</span>
+    <p>In deiner Übersicht der relevanten Gesetze steht unter <b>BGB Teil 4, Betreuungsrecht</b>
+      ausdrücklich: „Betreuer, Aufgabenkreise, <b>Genehmigung von Fixierungen</b>,
+      Vorsorgevollmacht, Patientenverfügung, Sorgerecht, Unterhalt,
+      Ehegattennotvertretungsrecht."</p>
+    <span class="quelle">Relevante Gesetze, Verordnungen, Rechtsquellen</span>
+  </div>
+
+  <div class="feld">
+    <label for="d2">Morgen ausfüllen: Was sagt die Dozentin zu freiheitsentziehenden Maßnahmen?
+      <span class="hint">Wer darf sie anordnen? Wer genehmigt? Was gilt im Notfall? Welche
+        Alternativen nennt sie? Nur ihre Angaben eintragen.</span></label>
+    <textarea id="d2" placeholder="Anordnung: … Genehmigung: … Alternativen: …"></textarea>
+    <span class="gespeichert" data-fuer="d2">gespeichert ✓</span>
+  </div>
+  <div class="achtung"><b>Achtung — dein häufigster Fehler.</b> In der Klausur Haftung hast du
+    einmal „fahrlässiger" geschrieben, wo „vorsätzlicher" hingehörte. Bei einer Fixierung ist es
+    fast immer <b>Vorsatz</b>: Wer jemanden anschnallt, weiß, was er tut und will es. Der
+    Schlusssatz lautet dann „wegen <b>vorsätzlicher</b> Freiheitsberaubung".</div>
+</section>
+
+<section id="alltag">
+  <h2>Essen, Kontinenz, Wärme — sechs Stellen in deinen Unterlagen</h2>
+  <p class="lead">Überall dort, wo Demenz in deinen bisherigen PDFs auftaucht, geht es um
+    <b>Folgen im Pflegealltag</b>. Genau das wird morgen behandelt.</p>
+
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Wo</th><th>Was dort steht</th></tr></thead>
+      <tbody>
+        <tr><td class="de">MNA — Frage E<br><span style="font-weight:400;font-size:13px;color:var(--ink-soft);">Neuropsychologische Probleme</span></td>
+            <td><b>0 Punkte</b> = schwere Demenz oder Depression · <b>1 Punkt</b> = leichte
+              Demenz · <b>2 Punkte</b> = keine psychologischen Probleme</td></tr>
+        <tr><td class="de">Mangelernährung</td>
+            <td>Demenz steht unter <b>„Nichtessen können"</b> — kognitive Einschränkungen — und
+              zugleich unter den Erkrankungen, die zu Mangelernährung führen</td></tr>
+        <tr><td class="de">PEMU</td>
+            <td>„<b>Kognitive Überforderung</b> (z. B. durch Demenzerkrankung; weiß nichts mit
+              Essen anzufangen, vergisst zu schlucken)". Beobachtung dazu: „Führt Speisen und
+              Getränke nur <b>nach verbaler Aufforderung und durch Nachahmung</b> zum Mund"</td></tr>
+        <tr><td class="de">Risikofaktoren<br>Harninkontinenz</td>
+            <td>„z. B. bei postoperativem bzw. posttraumatischem <b>Delir, Demenz</b>"</td></tr>
+        <tr><td class="de">Stuhlinkontinenz</td>
+            <td>„Psychische Faktoren (z. B. <b>Demenz</b>, Trauma)"</td></tr>
+        <tr><td class="de">Pflege bei Fieber</td>
+            <td>Wärmflaschen können Verbrennungen verursachen — „besonders gefährdet sind
+              Säuglinge und Kleinkinder und PflegeempfängerInnen mit Sensibilitätsstörungen oder
+              <b>demenzieller Erkrankung</b>"</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="gut"><b>Warum das eine gute Vorbereitung ist:</b> Wenn morgen die Frage kommt
+    „Welche Auswirkungen hat eine Demenz auf den Pflegealltag?", hast du sechs belegte Antworten
+    — Ernährung, Flüssigkeit, Harnkontinenz, Stuhlkontinenz, Sicherheit bei Wärmeanwendungen und
+    das Erkennen im Assessment. Und du kannst sagen, woher du das hast.</div>
+</section>
+
+<section id="vokabeln">
+  <h2>Die Vokabeln für morgen</h2>
+  <p class="lead">Dein eigentliches Problem morgen ist nicht der Inhalt, sondern das Tempo auf
+    Deutsch. Diese Wörter fallen in fast jedem Unterricht zu diesem Thema. Lies sie einmal durch —
+    dann erkennst du sie im Redefluss wieder.
+    <span class="fr">Ce sont des mots à reconnaître, pas des définitions du cours. Ce que la prof
+    en dit exactement, tu l'écris demain.</span></p>
+
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Deutsch</th><th>Auf Französisch</th><th>Wo es dir begegnen wird</th></tr></thead>
+      <tbody>
+        <tr><td class="de">dementiell verändert</td><td class="fr">atteint de démence</td>
+            <td>Die Formulierung im Titel — bewusst gewählt statt „dement"</td></tr>
+        <tr><td class="de">die Demenz</td><td class="fr">la démence</td><td>—</td></tr>
+        <tr><td class="de">das Delir</td><td class="fr">le délire, l'état confusionnel aigu</td>
+            <td>Steht schon in deiner Notfall-Schulung</td></tr>
+        <tr><td class="de">die Desorientiertheit</td><td class="fr">la désorientation</td>
+            <td>Zeit, Ort, Situation, eigene Person</td></tr>
+        <tr><td class="de">die Verwirrtheit</td><td class="fr">la confusion</td>
+            <td>Verwirrtheits<b>prophylaxe</b> steht auf deinem Tafelbild</td></tr>
+        <tr><td class="de">das Kurzzeitgedächtnis</td><td class="fr">la mémoire à court terme</td>
+            <td>Gegenstück: das Langzeitgedächtnis</td></tr>
+        <tr><td class="de">die Merkfähigkeit</td><td class="fr">la capacité de mémorisation</td>
+            <td>—</td></tr>
+        <tr><td class="de">kognitiv</td><td class="fr">cognitif</td>
+            <td>„kognitive Einschränkungen", „kognitive Überforderung" — beides in deinen PDFs</td></tr>
+        <tr><td class="de">herausforderndes Verhalten</td>
+            <td class="fr">comportement difficile / défi comportemental</td>
+            <td>Der heutige Fachbegriff statt „aggressives Verhalten"</td></tr>
+        <tr><td class="de">der Erregungszustand</td><td class="fr">l'état d'agitation</td>
+            <td>Definiert in deiner Notfall-Schulung, mit Demenz als Ursache</td></tr>
+        <tr><td class="de">die Weglauftendenz / die Hinlauftendenz</td>
+            <td class="fr">la tendance à la déambulation, à partir</td>
+            <td>Beide Wörter existieren — frag nach, welches sie benutzt und warum</td></tr>
+        <tr><td class="de">die Biografiearbeit</td><td class="fr">le travail biographique</td>
+            <td>Kam schon in der Schulung zur kultursensiblen Pflege vor</td></tr>
+        <tr><td class="de">die Validation</td><td class="fr">la validation</td>
+            <td>Ein Name für eine Methode — schreib morgen auf, wie sie sie definiert</td></tr>
+        <tr><td class="de">die Milieugestaltung</td><td class="fr">l'aménagement de l'environnement</td>
+            <td>—</td></tr>
+        <tr><td class="de">die Tagesstrukturierung</td><td class="fr">la structuration de la journée</td>
+            <td>—</td></tr>
+        <tr><td class="de">die Ressourcen</td><td class="fr">les ressources, ce qui reste possible</td>
+            <td>Kennst du aus der Pflegeplanung</td></tr>
+        <tr><td class="de">die Fixierung</td><td class="fr">la contention</td>
+            <td>§ 239 StGB — du hast den Fall Frau Yilma schon</td></tr>
+        <tr><td class="de">die freiheitsentziehende Maßnahme (FEM)</td>
+            <td class="fr">mesure privative de liberté</td>
+            <td>Die Abkürzung FEM wird sie wahrscheinlich benutzen</td></tr>
+        <tr><td class="de">das Bettgitter</td><td class="fr">la barrière de lit</td>
+            <td>Klassisches Beispiel bei FEM</td></tr>
+        <tr><td class="de">der Betreuer / die Betreuerin</td>
+            <td class="fr">le tuteur / la tutrice (mandataire judiciaire)</td>
+            <td>BGB Teil 4, Betreuungsrecht — steht in deiner Gesetzesübersicht</td></tr>
+        <tr><td class="de">die Patientenverfügung</td><td class="fr">les directives anticipées</td>
+            <td>Ebenfalls BGB Teil 4</td></tr>
+        <tr><td class="de">die Vorsorgevollmacht</td><td class="fr">la procuration de prévoyance</td>
+            <td>Ebenfalls BGB Teil 4</td></tr>
+        <tr><td class="de">die Angehörigen</td><td class="fr">les proches, la famille</td>
+            <td>Angehörigen<b>beratung</b>, Angehörigen<b>arbeit</b></td></tr>
+        <tr><td class="de">die Überforderung</td><td class="fr">le dépassement, la surcharge</td>
+            <td>Sowohl bei der Bewohnerin als auch bei den Angehörigen</td></tr>
+        <tr><td class="de">die Halluzination / die Illusion</td>
+            <td class="fr">l'hallucination / l'illusion</td>
+            <td>Steht auf deinem Tafelbild Wahrnehmungsstörung</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warn"><b>Nimm diese Liste als Ohren, nicht als Wissen.</b> Sie hilft dir, die
+    Wörter im Redefluss zu erkennen. Was deine Dozentin damit genau meint — <b>Validation</b>
+    zum Beispiel — schreibst du morgen selbst auf. Ich schreibe dir hier keine Definition hin,
+    die sie vielleicht anders formuliert.</div>
+</section>
+
+<section id="raster">
+  <h2>Dein Mitschreib-Raster für morgen</h2>
+  <p class="lead">Öffne diese Seite morgen auf dem Handy und tipp in die Felder. Alles wird
+    automatisch im Browser gespeichert — auch wenn du die Seite schließt.
+    <span class="fr">Ouvre cette page demain en cours et remplis les cases.</span></p>
+
+  <div class="werkzeug">
+    <button class="btn" id="alles-leeren" type="button">Alle Felder leeren</button>
+    <span class="zaehler" id="zaehler"></span>
+  </div>
+
+  <div class="card">
+    <div class="feld">
+      <label for="m1">1. Wie definiert die Dozentin Demenz?
+        <span class="hint">Wortlaut mitschreiben, wenn möglich. Definitionen sind
+          Klausurfragen.</span></label>
+      <textarea id="m1" placeholder="Demenz ist …"></textarea>
+      <span class="gespeichert" data-fuer="m1">gespeichert ✓</span>
+    </div>
+
+    <div class="feld">
+      <label for="m2">2. Welche Formen oder Arten nennt sie? Und welche ist die häufigste?
+        <span class="hint">Notier auch Zahlen und Prozentangaben, falls sie welche nennt.</span></label>
+      <textarea id="m2" placeholder="Formen: … Häufigste: …"></textarea>
+      <span class="gespeichert" data-fuer="m2">gespeichert ✓</span>
+    </div>
+
+    <div class="feld">
+      <label for="m3">3. Welche Stadien oder Verläufe beschreibt sie?
+        <span class="hint">Wie viele Stadien? Wie heißen sie? Was ist in jedem typisch?</span></label>
+      <textarea id="m3" placeholder="Stadium 1 … Stadium 2 … Stadium 3 …"></textarea>
+      <span class="gespeichert" data-fuer="m3">gespeichert ✓</span>
+    </div>
+
+    <div class="feld">
+      <label for="m4">4. Welche Symptome und Anzeichen zählt sie auf?
+        <span class="hint">Achte darauf, ob sie zwischen frühen und späten Zeichen
+          unterscheidet.</span></label>
+      <textarea id="m4" placeholder="Frühe Zeichen: … Späte Zeichen: …"></textarea>
+      <span class="gespeichert" data-fuer="m4">gespeichert ✓</span>
+    </div>
+
+    <div class="feld">
+      <label for="m5">5. Welche Diagnostik oder welche Tests nennt sie?
+        <span class="hint">Namen und Abkürzungen genau aufschreiben — die werden gern
+          abgefragt.</span></label>
+      <textarea id="m5" placeholder="Tests: … Wer führt sie durch: …"></textarea>
+      <span class="gespeichert" data-fuer="m5">gespeichert ✓</span>
+    </div>
+
+    <div class="feld">
+      <label for="m6">6. Welche pflegerischen Maßnahmen und Konzepte nennt sie?
+        <span class="hint">Hier gehören Namen wie Validation, Biografiearbeit, Milieugestaltung
+          hin — mit <em>ihrer</em> Erklärung dazu.</span></label>
+      <textarea id="m6" placeholder="Konzept: … heißt: … Beispiel: …"></textarea>
+      <span class="gespeichert" data-fuer="m6">gespeichert ✓</span>
+    </div>
+
+    <div class="feld">
+      <label for="m7">7. Wie geht man mit herausforderndem Verhalten um?
+        <span class="hint">Vergleich mit deiner Deeskalation aus der Notfall-Schulung:
+          Spiegeln → Pacing → Matching → Leading. Sagt sie etwas anderes?</span></label>
+      <textarea id="m7" placeholder="Ihr Vorgehen: … Unterschied zur Deeskalation: …"></textarea>
+      <span class="gespeichert" data-fuer="m7">gespeichert ✓</span>
+    </div>
+
+    <div class="feld">
+      <label for="m8">8. Was sagt sie zu Angehörigen?
+        <span class="hint">Beratung, Belastung, Einbeziehung, Selbsthilfegruppen …</span></label>
+      <textarea id="m8" placeholder="Angehörige: …"></textarea>
+      <span class="gespeichert" data-fuer="m8">gespeichert ✓</span>
+    </div>
+
+    <div class="feld">
+      <label for="m9">9. Nennt sie ein Fallbeispiel? Schreib es mit.
+        <span class="hint">Fallbeispiele aus dem Unterricht kommen oft fast unverändert in die
+          Klausur.</span></label>
+      <textarea id="m9" placeholder="Der Fall: … Die Aufgabe dazu: …"></textarea>
+      <span class="gespeichert" data-fuer="m9">gespeichert ✓</span>
+    </div>
+
+    <div class="feld">
+      <label for="m10">10. Was habe ich NICHT verstanden?
+        <span class="hint">Das wichtigste Feld. Schreib jedes Wort auf, das du nicht kennst —
+          wir gehen sie danach zusammen durch.</span></label>
+      <textarea id="m10" placeholder="Unbekannte Wörter: … Unklare Stellen: …"></textarea>
+      <span class="gespeichert" data-fuer="m10">gespeichert ✓</span>
+    </div>
+
+    <div class="feld">
+      <label for="m11">11. Gibt es einen Arbeitsauftrag oder eine Hausaufgabe?
+        <span class="hint">Abgabetermin und genaue Fragestellung.</span></label>
+      <textarea id="m11" placeholder="Auftrag: … Bis wann: …"></textarea>
+      <span class="gespeichert" data-fuer="m11">gespeichert ✓</span>
+    </div>
+
+    <div class="feld">
+      <label for="m12">12. Kommt das in die Klausur? Was hat sie dazu gesagt?
+        <span class="hint">Achte auf Sätze wie „das sollten Sie sich merken" oder „das ist
+          prüfungsrelevant". Notier sie sofort.</span></label>
+      <textarea id="m12" placeholder="Sie hat gesagt: …"></textarea>
+      <span class="gespeichert" data-fuer="m12">gespeichert ✓</span>
+    </div>
+  </div>
+</section>
+
+<section id="fragen">
+  <h2>Acht Fragen an die Dozentin</h2>
+  <p class="lead">Such dir zwei aus. Alle acht knüpfen an etwas an, das du <b>schon</b> gelernt
+    hast — deshalb sind es gute Fragen und keine Verlegenheitsfragen.</p>
+
+  <div class="card">
+    <ol>
+      <li><b>„Wie unterscheide ich im Dienst ein Delir von einer Demenz — und was mache ich,
+        wenn beides zusammenkommt?"</b><br>
+        <span style="color:var(--ink-soft);font-size:15px;">Anknüpfung: das Delir aus deiner
+        Notfall-Schulung.</span></li>
+      <li><b>„Die vier Orientierungshilfen — große Uhr, Türschilder, Abläufe erklären, mit Namen
+        ansprechen — reichen die bei einer fortgeschrittenen Demenz noch?"</b><br>
+        <span style="color:var(--ink-soft);font-size:15px;">Anknüpfung: dein Tafelbild
+        Orientierungsstörung.</span></li>
+      <li><b>„Halluzination oder Illusion — wie reagiere ich richtig, wenn eine Bewohnerin etwas
+        sieht, das nicht da ist?"</b><br>
+        <span style="color:var(--ink-soft);font-size:15px;">Anknüpfung: dein Tafelbild
+        Wahrnehmungsstörung.</span></li>
+      <li><b>„Wer darf eine freiheitsentziehende Maßnahme anordnen und wer muss sie genehmigen?
+        Und was gilt, wenn es eilt?"</b><br>
+        <span style="color:var(--ink-soft);font-size:15px;">Anknüpfung: § 239 StGB und das
+        Betreuungsrecht im BGB, beides aus dem Recht-Unterricht.</span></li>
+      <li><b>„Welche Alternativen zur Fixierung gibt es konkret?"</b><br>
+        <span style="color:var(--ink-soft);font-size:15px;">Diese Antwort brauchst du sowohl hier
+        als auch im Recht.</span></li>
+      <li><b>„Wie erkenne ich, dass jemand mit Demenz Schmerzen hat, wenn er es nicht sagen
+        kann?"</b><br>
+        <span style="color:var(--ink-soft);font-size:15px;">Praktisch und fast sicher
+        klausurrelevant.</span></li>
+      <li><b>„Bei der Ernährung steht in unseren Unterlagen ‚kognitive Überforderung — vergisst
+        zu schlucken'. Was tue ich da konkret?"</b><br>
+        <span style="color:var(--ink-soft);font-size:15px;">Anknüpfung: PEMU und
+        Mangelernährung.</span></li>
+      <li><b>„Was können Sie uns zur Beratung der Angehörigen mitgeben?"</b><br>
+        <span style="color:var(--ink-soft);font-size:15px;">Beratung ist eine
+        Vorbehaltsaufgabe — solche Fragen kommen in der Zwischenprüfung gern.</span></li>
+    </ol>
+  </div>
+  <div class="info"><b>Ein praktischer Tipp.</b> Wenn du im Unterricht ein Wort nicht verstehst,
+    frag nicht nach der Bedeutung, sondern <b>nach der Schreibweise</b>: „Können Sie das Wort
+    bitte anschreiben?" Dann hast du es korrekt im Heft und kannst es abends nachschlagen —
+    und du unterbrichst den Unterricht kaum.</div>
+</section>
+
+<section id="ehrlich">
+  <h2>Was hier absichtlich nicht steht</h2>
+  <div class="achtung">
+    <p>Auf dieser Seite steht <b>keine einzige inhaltliche Aussage über Demenz</b>, die nicht in
+      deinen eigenen Unterlagen belegt ist. Du hast gesagt: nichts erfinden. Also habe ich
+      <b>nicht</b> geschrieben:</p>
+    <ul class="tick" style="margin-top:10px;">
+      <li>keine Definition von Demenz</li>
+      <li>keine Formen und keine Häufigkeitsangaben</li>
+      <li>keine Stadien und keine Verlaufsmodelle</li>
+      <li>keine Testnamen und keine Punktwerte</li>
+      <li>keine Pflegekonzepte mit Erklärung — die Namen stehen nur in der Vokabelliste, damit du
+        sie morgen <em>erkennst</em>, nicht damit du sie glaubst</li>
+      <li>keine Zahlen, keine Paragraphen und keine Leitlinien, die nicht aus deinen PDFs
+        stammen</li>
+    </ul>
+    <p style="margin-top:12px;">All das steht morgen auf ihren Folien. <b>Schick sie mir danach</b>
+      — dann baue ich die richtige Zusammenfassung, so wie bei Recht, Blutdruck und den anderen.
+      Und dein Mitschreib-Raster von oben fließt mit ein.</p>
+  </div>
+  <div class="gut"><b>Was du dagegen sicher mitnimmst:</b> vier eigene Tafelbilder und Folien,
+    eine vollständige Musterlösung zur Fixierung, die Deeskalation in vier Stufen, sechs belegte
+    Auswirkungen auf den Pflegealltag und rund 25 Vokabeln. Damit gehst du morgen nicht als
+    Anfängerin rein.</div>
+</section>
+
+</main>
+
+<footer>
+  <p><b>Belege für alles auf dieser Seite:</b> Tafelbilder Orientierungsstörung,
+    Wahrnehmungsstörung und Denkstörungen · Psychiatrische Notfälle (Toni Weidenbecher) ·
+    CE 6 UE 1 Rechte und Pflichten (RAin Stephanie Welters) · Übungsfälle für die Klausur,
+    Musterlösung · Relevante Gesetze, Verordnungen, Rechtsquellen · MNA · Mangelernährung ·
+    PEMU · Risikofaktoren Inkontinenz · Stuhlinkontinenz · Pflege bei Fieber.</p>
+  <p style="margin-top:12px;">Deine Notizen bleiben in diesem Browser gespeichert.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var PREFIX = "demenz-vorbereitung-";
+
+  var felder = Array.prototype.slice.call(document.querySelectorAll("textarea[id]"));
+
+  function zaehle(){
+    var voll = felder.filter(function(t){ return t.value.trim().length > 0; }).length;
+    var z = document.getElementById("zaehler");
+    if(z) z.textContent = voll + " von " + felder.length + " Feldern ausgefüllt";
+  }
+
+  felder.forEach(function(t){
+    var key = PREFIX + t.id;
+    try {
+      var alt = localStorage.getItem(key);
+      if(alt !== null) t.value = alt;
+    } catch(e){}
+
+    var marke = document.querySelector('.gespeichert[data-fuer="' + t.id + '"]');
+    var timer = null;
+    t.addEventListener("input", function(){
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        try { localStorage.setItem(key, t.value); } catch(e){ return; }
+        zaehle();
+        if(!marke) return;
+        marke.classList.add("an");
+        setTimeout(function(){ marke.classList.remove("an"); }, 1400);
+      }, 450);
+    });
+  });
+
+  var leeren = document.getElementById("alles-leeren");
+  if(leeren){
+    leeren.addEventListener("click", function(){
+      if(!window.confirm("Wirklich alle Felder leeren? Das lässt sich nicht rückgängig machen.")) return;
+      felder.forEach(function(t){
+        t.value = "";
+        try { localStorage.removeItem(PREFIX + t.id); } catch(e){}
+      });
+      zaehle();
+    });
+  }
+
+  zaehle();
+})();
+</script>
