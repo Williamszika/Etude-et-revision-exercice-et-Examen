@@ -442,12 +442,23 @@
 
 <section id="plan">
   <h2>Mein Plan bis Februar 2027</h2>
-  <p class="lead">Aus 13 Grammatikthemen × 5 Tagen ergibt sich das hier von selbst.</p>
+  <p class="lead">Eine Woche pro telc-Thema, ein Subtest pro Wochentag, jeden Samstag um 22:00 eine Probeprüfung.</p>
+  <div class="tabelle"><table><thead><tr><th>Tag</th><th>Fokus</th><th class="n">Anteil an der Prüfung</th></tr></thead><tbody><tr><td><b>Montag</b></td><td>Leseverstehen</td><td class="n">25 %</td></tr><tr><td><b>Dienstag</b></td><td>Hörverstehen</td><td class="n">25 %</td></tr><tr><td><b>Mittwoch</b></td><td>Sprachbausteine + Grammatik der Woche</td><td class="n">10 %</td></tr><tr><td><b>Donnerstag</b></td><td>Schriftlicher Ausdruck</td><td class="n">15 %</td></tr><tr><td><b>Freitag</b></td><td>Mündlicher Ausdruck</td><td class="n">25 %</td></tr><tr><td><b>Samstag 22:00</b></td><td><b>Probeprüfung</b> — 122 Punkte im echten Format</td><td class="n">alles</td></tr><tr><td><b>Sonntag</b></td><td>Auswertung, Fehler der Woche, Wortschatz</td><td class="n">—</td></tr></tbody></table></div>
   <div class="plan" id="plan"></div>
-  <div class="info"><b>Warum zwei Runden?</b> In Runde 1 lernst du die Struktur — jedes Thema in
-    fünf Stufen von ganz leicht bis frei formulieren. In Runde 2 kommen dieselben 13 Themen
-    wieder, aber mit schwereren Texten und mehr Prüfungsformat. Was du beim ersten Mal nur
-    verstanden hast, sitzt beim zweiten Mal.</div>
+  <div class="info"><b>Warum diese Aufteilung?</b> Die Tage folgen der Gewichtung: Lesen, Hören
+    und Sprechen bekommen je einen eigenen Tag, weil sie je 25 % zählen. Die Sprachbausteine
+    teilen sich den Mittwoch mit der Grammatik der Woche — sie sind nur 10 %, aber die Grammatik
+    zahlt über „formale Richtigkeit“ auch beim Schreiben und Sprechen ein.
+    <p style="margin:10px 0 0;">Die Wochenthemen sind <b>die 16 offiziellen Themen aus Anhang T
+    des Handbuchs</b>, in der Reihenfolge des Handbuchs. Nach der letzten Themenwoche bleiben
+    sechs Wochen Endspurt.</p></div>
+  <div class="gut"><b>Die Probeprüfung bleibt bis Samstag 22:00 verschlossen.</b> Auf der Seite
+    „Deutsch täglich“ siehst du bis dahin nur einen Countdown. Das ist Absicht — der Wert der
+    Übung kommt daher, dass du sie unter echten Bedingungen zum ersten Mal siehst. Es gibt einen
+    Knopf zum vorzeitigen Öffnen, aber benutz ihn nicht.
+    <p style="margin:10px 0 0;"><b>122 Punkte</b>, verteilt wie in der echten Prüfung:
+    Leseverstehen 20 · Sprachbausteine 12 · Hörverstehen 20 · Schriftlicher Ausdruck 45 ·
+    Mündlicher Ausdruck 25. Die 60-%-Marke liegt bei <b>73 Punkten</b>.</p></div>
 </section>
 
 <section id="korrektur">
@@ -552,23 +563,7 @@
   });
 
   /* ---- Plan bis Februar ---- */
-  var THEMENLISTE=[
-    'Satzbau: Verb auf Platz 2 und Satzklammer',
-    'Nebensätze: weil, obwohl, damit, dass, wenn/als',
-    'Relativsätze — auch mit Präposition und was/wo',
-    'Konnektoren: kausal, konzessiv, konsekutiv, final, adversativ',
-    'Zweiteilige Konnektoren: zwar…aber, je…desto, weder…noch',
-    'Passiv in allen Zeiten und mit Modalverben',
-    'Passiversatzformen: sein + zu, sich lassen, -bar, man',
-    'Konjunktiv II: Höflichkeit, Wunsch, Irreales',
-    'Konjunktiv I und indirekte Rede',
-    'Verben mit festen Präpositionen + da-/wo-Komposita',
-    'Nominalisierung und Verbalisierung',
-    'Partizipien als Adjektive und Partizipialattribute',
-    'Subjektive Modalverben und Vermutungen'
-  ];
-  var MON=['Januar','Februar','März','April','Mai','Juni','Juli','August',
-           'September','Oktober','November','Dezember'];
+  var WOCHENTHEMEN=THEMEN;   /* die 16 Themen aus Anhang T, gleiche Reihenfolge */
   function dat(d){ return ('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.'; }
 
   var plan=document.getElementById('plan');
@@ -583,33 +578,36 @@
     p.appendChild(d); p.appendChild(w); plan.appendChild(p);
   }
 
-  var start=new Date(2026,7,30); /* 30.08.2026 */
-  var d1=new Date(start), d2=new Date(start);
-  d2.setDate(d2.getDate()+64);
-  zeile(dat(d1)+'–'+dat(d2)+'26','Runde 1 — die 13 Themen',
-        'Jedes Thema fünf Tage: Tag 1 ganz leicht bis Tag 5 frei formulieren. Dazu jeden Tag ein telc-Block.');
+  var start=new Date(2026,7,31);   /* Montag, 31.08.2026 */
+  var heute=new Date(); heute.setHours(0,0,0,0);
+  var w16=new Date(start); w16.setDate(w16.getDate()+16*7-1);
 
-  THEMENLISTE.forEach(function(t,i){
-    var a=new Date(start); a.setDate(a.getDate()+i*5);
-    var b=new Date(a); b.setDate(b.getDate()+4);
+  zeile(dat(start)+'26 – '+dat(w16)+'26','16 Themenwochen',
+        'Jede Woche eines der 16 offiziellen telc-Themen. Jeden Samstag um 22:00 eine Probeprüfung.');
+
+  WOCHENTHEMEN.forEach(function(t,i){
+    var a=new Date(start); a.setDate(a.getDate()+i*7);
+    var b=new Date(a); b.setDate(b.getDate()+6);
+    var sa=new Date(a); sa.setDate(sa.getDate()+5);
     var p=document.createElement('div'); p.className='pz';
-    p.style.marginLeft='14px'; p.style.background='transparent';
-    p.style.borderStyle='dashed';
-    var dd=document.createElement('div'); dd.className='d'; dd.textContent=dat(a)+'–'+dat(b);
+    p.style.marginLeft='14px'; p.style.background='transparent'; p.style.borderStyle='dashed';
+    var vorbei = b < heute, laeuft = a<=heute && heute<=b;
+    if(vorbei) p.style.opacity='.5';
+    if(laeuft){ p.style.borderStyle='solid'; p.style.borderColor='var(--accent)';
+                p.style.background='var(--accent-soft)'; }
+    var dd=document.createElement('div'); dd.className='d';
+    dd.textContent='W'+(i+1)+' · '+dat(a)+'–'+dat(b);
     var ww=document.createElement('div'); ww.className='w';
-    var sp=document.createElement('span'); sp.textContent=(i+1)+'. '+t;
+    var sp=document.createElement('span');
+    sp.textContent='T'+(i+1)+' '+t+'  ·  Probe Sa '+dat(sa);
     ww.appendChild(sp);
     p.appendChild(dd); p.appendChild(ww); plan.appendChild(p);
   });
 
-  var r2a=new Date(d2); r2a.setDate(r2a.getDate()+1);
-  var r2b=new Date(r2a); r2b.setDate(r2b.getDate()+64);
-  zeile(dat(r2a)+'26–'+dat(r2b)+'27','Runde 2 — dieselben 13 Themen, schwerer',
-        'Längere Texte, mehr Prüfungsformat, mehr freies Schreiben und Sprechen.');
-  var r3a=new Date(r2b); r3a.setDate(r3a.getDate()+1);
-  zeile(dat(r3a)+'27 – Prüfung','Endspurt — reines Prüfungstraining',
-        'Ganze Übungstests unter Zeit. Jede Woche eine komplette E-Mail in 30 Minuten und ein Hörtest.',true);
+  var ea=new Date(w16); ea.setDate(ea.getDate()+1);
+  zeile(dat(ea)+'26 – 31.01.27','Endspurt — sechs Wochen',
+        'Keine neuen Themen. Ganze Subtests in Originallänge aus dem Übungstest, jede Woche eine vollständige E-Mail in 30 Minuten, und gezielt der schwächste Subtest aus den Probeprüfungen.',true);
   zeile('Februar 2027','Prüfung telc Deutsch B2',
-        'Schriftlich mindestens 135 von 225, mündlich mindestens 45 von 75.',true);
+        'Schriftlich mindestens 135 von 225 und mündlich mindestens 45 von 75 — beide Hürden einzeln.',true);
 })();
 </script>
