@@ -1,0 +1,939 @@
+<title>Blutgruppen und Transfusion</title>
+<style>
+  :root{
+    --paper:#f6f3f3;--paper-2:#ece7e7;--card:#fffdfd;--ink:#1e1a1a;--ink-soft:#524b4b;--line:#ded4d4;
+    --accent:#8e2438;--accent-deep:#6b1728;--accent-soft:#f3dfe3;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;
+    --blue:#35618a;--bluebg:#dce7f1;--plasma:#a8821a;--plasmabg:#f6ecd2;--thrombo:#6b4fa8;--thrombobg:#e8e2f5;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#171313;--paper-2:#110e0e;--card:#211b1b;--ink:#f1eaea;--ink-soft:#b2a4a4;--line:#372c2c;
+    --accent:#e0899b;--accent-deep:#f0a9b8;--accent-soft:#2e161d;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --blue:#86b2d8;--bluebg:#15232e;--plasma:#d9bb63;--plasmabg:#2b2413;--thrombo:#b39ce8;--thrombobg:#231d33;}}
+  :root[data-theme="dark"]{
+    --paper:#171313;--paper-2:#110e0e;--card:#211b1b;--ink:#f1eaea;--ink-soft:#b2a4a4;--line:#372c2c;
+    --accent:#e0899b;--accent-deep:#f0a9b8;--accent-soft:#2e161d;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --blue:#86b2d8;--bluebg:#15232e;--plasma:#d9bb63;--plasmabg:#2b2413;--thrombo:#b39ce8;--thrombobg:#231d33;}
+  :root[data-theme="light"]{
+    --paper:#f6f3f3;--paper-2:#ece7e7;--card:#fffdfd;--ink:#1e1a1a;--ink-soft:#524b4b;--line:#ded4d4;
+    --accent:#8e2438;--accent-deep:#6b1728;--accent-soft:#f3dfe3;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;
+    --blue:#35618a;--bluebg:#dce7f1;--plasma:#a8821a;--plasmabg:#f6ecd2;--thrombo:#6b4fa8;--thrombobg:#e8e2f5;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding:46px 20px 30px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:0;z-index:30;background:var(--paper-2);border-bottom:1px solid var(--line);
+    padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding:0 18px 90px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:26px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.05rem;font-weight:600;margin:18px 0 6px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px 22px 18px;margin:16px 0;}
+  .card > :first-child{margin-top:0;}
+  .card > :last-child{margin-bottom:0;}
+  .lbl{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+  .quelle{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);background:var(--paper-2);
+    border:1px solid var(--line);border-radius:6px;padding:2px 8px;display:inline-block;margin-top:8px;}
+
+  ul,ol{padding-left:1.2em;margin:10px 0;}
+  li{margin:5px 0;}
+  ul.tick{list-style:none;padding-left:0;}
+  ul.tick li{padding-left:1.7em;position:relative;}
+  ul.tick li::before{content:"▸";position:absolute;left:.35em;color:var(--accent);}
+
+  .tabelle{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:12px;}
+  table{border-collapse:collapse;width:100%;min-width:480px;background:var(--card);}
+  th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+  .warn{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .info{background:var(--bluebg);border-left:4px solid var(--blue);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:10px;padding:15px 18px;margin:16px 0;}
+
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+  @media (max-width:660px){.zwei{grid-template-columns:1fr;}}
+
+  /* Blutgruppen-Rechner */
+  .bg-wahl{display:flex;flex-wrap:wrap;gap:7px;margin:14px 0;}
+  .bg-wahl button{font-family:var(--mono);font-size:15px;font-weight:700;cursor:pointer;
+    min-width:58px;padding:11px 14px;border-radius:11px;border:1px solid var(--line);
+    background:var(--card);color:var(--ink);}
+  .bg-wahl button:hover{border-color:var(--accent);}
+  .bg-wahl button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .bg-wahl button.sel{background:var(--accent);border-color:var(--accent);color:var(--card);}
+  .schalter{display:flex;gap:7px;margin:14px 0 6px;flex-wrap:wrap;align-items:center;}
+  .schalter .k{font-size:14px;color:var(--ink-soft);margin-right:4px;}
+  .schalter button{font-family:var(--mono);font-size:12.5px;cursor:pointer;padding:7px 14px;
+    border-radius:999px;border:1px solid var(--line);background:var(--card);color:var(--ink-soft);}
+  .schalter button.sel{background:var(--accent-deep);border-color:var(--accent-deep);color:var(--card);}
+  .schalter button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  #bg-ergebnis{border:1px solid var(--line);border-left:5px solid var(--accent);border-radius:13px;
+    background:var(--card);padding:20px 22px;margin-top:10px;min-height:150px;}
+  #bg-ergebnis h4{margin-top:0;}
+  .pillen{display:flex;flex-wrap:wrap;gap:7px;margin:10px 0 0;}
+  .pille{font-family:var(--mono);font-size:14px;font-weight:700;padding:8px 14px;border-radius:9px;
+    background:var(--accent-soft);color:var(--accent-deep);border:1px solid var(--accent);}
+  .pille.uni{background:var(--good);color:var(--card);border-color:var(--good);}
+
+  /* Bedside-Trainer */
+  .bs-karte{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:340px;margin:16px 0;}
+  .bs-feld{border:2px solid var(--line);border-radius:12px;padding:18px 12px;text-align:center;
+    background:var(--card);}
+  .bs-feld .t{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;color:var(--ink-soft);
+    display:block;margin-bottom:10px;}
+  .bs-tropfen{width:52px;height:52px;border-radius:50%;margin:0 auto;background:#c0392b;}
+  .bs-feld.klumpt .bs-tropfen{background:
+    radial-gradient(circle at 30% 30%,#7b1a12 0 22%,transparent 23%),
+    radial-gradient(circle at 70% 40%,#7b1a12 0 20%,transparent 21%),
+    radial-gradient(circle at 45% 72%,#7b1a12 0 24%,transparent 25%),
+    #c0392b;}
+  .bs-feld.klumpt{border-color:var(--bad);}
+  .bs-feld .z{font-family:var(--mono);font-size:11.5px;margin-top:10px;display:block;}
+  .bs-feld.klumpt .z{color:var(--bad);font-weight:700;}
+  .bs-feld .z::after{content:"keine Verklumpung";}
+  .bs-feld.klumpt .z::after{content:"VERKLUMPT";}
+
+  /* Quiz */
+  .q{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:18px 20px;margin:14px 0;}
+  .q .frg{font-weight:600;margin:0 0 10px;}
+  .q .opts{display:grid;gap:7px;}
+  .opt{display:block;width:100%;text-align:left;font-family:var(--sans);font-size:15.5px;
+    padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--paper);
+    color:var(--ink);cursor:pointer;}
+  .opt:hover:not(.aus){border-color:var(--accent);}
+  .opt:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  .opt.richtig{background:var(--goodbg);border-color:var(--good);}
+  .opt.falsch{background:var(--badbg);border-color:var(--bad);}
+  .q .erkl{display:none;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line);
+    font-size:15px;color:var(--ink-soft);}
+  .q .erkl.an{display:block;}
+  .punkte{font-family:var(--mono);font-size:13px;text-align:center;padding:14px;
+    border:1px solid var(--line);border-radius:12px;background:var(--paper-2);margin-top:18px;}
+  .btn{font-family:var(--mono);font-size:12px;letter-spacing:.05em;cursor:pointer;
+    padding:9px 16px;border-radius:999px;border:1px solid var(--accent);
+    background:transparent;color:var(--accent-deep);}
+  .btn:hover,.btn:focus-visible{background:var(--accent);color:var(--card);}
+  .btn:focus-visible{outline:2px solid var(--accent-deep);outline-offset:2px;}
+
+  footer{border-top:1px solid var(--line);margin-top:70px;padding:30px 20px 50px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 05 · UE 6 · Sabrina van de Kamp</p>
+  <h1>Blutgruppen und Transfusion</h1>
+  <p class="sub">Die ganze Präsentation „Erkrankungen des Blut- und Immunsystems“ geordnet:
+    AB0, Rhesus, Kell und HLA, die Herstellung der Konserven mit allen Zahlen, und der
+    Bedside-Test. Mit einem Verträglichkeitsrechner, an dem du dich selbst abfragen kannst.
+    <span class="fr">Tout vient de la présentation de Frau van de Kamp — rien d'ajouté.</span></p>
+  <div class="meta"><span>66 Folien</span><span>Verträglichkeitsrechner</span>
+    <span>Bedside-Trainer</span><span>20 Quizfragen</span></div>
+</header>
+
+<nav class="toc">
+  <a href="#grund">Grundlagen</a>
+  <a href="#ab0">AB0-System</a>
+  <a href="#rechner">Der Rechner</a>
+  <a href="#rhesus">Rhesus</a>
+  <a href="#kell">Kell und HLA</a>
+  <a href="#herstellung">Herstellung</a>
+  <a href="#produkte">Die Produkte</a>
+  <a href="#labor">Labor</a>
+  <a href="#bedside">Bedside-Test</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<main>
+
+<section id="grund">
+  <h2>Grundlagen</h2>
+
+  <div class="card">
+    <span class="lbl">Definition</span>
+    <p style="font-family:var(--serif);font-size:1.15rem;">„Unter einer <b>Bluttransfusion</b>
+      versteht man die <b>intravenöse Gabe von menschlichen Blutbestandteilen</b>.“</p>
+    <span class="quelle">I care: 497</span>
+  </div>
+
+  <h3>Geschichte</h3>
+  <div class="card">
+    <ul class="tick">
+      <li><b>1901</b> entdeckte <b>Karl Landsteiner</b> (Wiener Arzt) die Blutgruppen</li>
+      <li><b>1937</b> entdeckte Landsteiner zusammen mit <b>Wiener</b> das Rhesussystem</li>
+      <li>Bis ins <b>19. Jahrhundert</b> verliefen Bluttransfusionen meist <b>tödlich</b></li>
+      <li>Damals wurde Blut <b>direkt von Mensch zu Mensch</b> übertragen — so wurde das
+        Problem der Gerinnung umgangen</li>
+      <li>Transfusion mittels <b>Konserve erst 1914</b> möglich, durch Zusatz von
+        <b>Natriumcitrat</b></li>
+      <li>Früher wurde das Blut in <b>Glasflaschen</b> abgefüllt — Kontaminationsrisiko hoch</li>
+    </ul>
+  </div>
+  <div class="info">Der rote Faden der Geschichte ist <b>die Gerinnung</b>. Direkt von Mensch zu
+    Mensch: kein Gerinnungsproblem, aber tödlich, weil man die Blutgruppen nicht kannte. Konserve:
+    Blutgruppen bekannt, aber das Blut gerinnt — bis das Citrat kommt. Merk dir <b>Citrat</b>,
+    es kommt bei der Herstellung wieder.</div>
+
+  <h3>Wo sitzt der Unterschied?</h3>
+  <div class="card">
+    <ul class="tick">
+      <li>Der Unterschied der Blutgruppen liegt auf der <b>Erythrozytenoberfläche</b> — der
+        Oberfläche der roten Blutkörperchen</li>
+      <li>Dort befinden sich <b>Glykoproteine</b> → die <b>Blutgruppen-Antigene</b></li>
+      <li>Ebenso auf der Thrombozyten- und Leukozytenoberfläche
+        <ul><li><b>Thrombozyten</b> = Blutplättchen, wichtigste Aufgabe: Blutgerinnung</li>
+          <li><b>Leukozyten</b> = weiße Blutkörperchen, wichtiger Teil des Immunsystems</li></ul></li>
+    </ul>
+    <p><b>Es gibt verschiedene Systeme:</b></p>
+    <div class="tabelle">
+      <table>
+        <thead><tr><th>System</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><b>AB0-System</b></td><td><b>Hohe Relevanz!</b></td></tr>
+          <tr><td><b>Rhesus-System</b></td><td><b>Hohe Relevanz!</b></td></tr>
+          <tr><td>Kell-System</td><td>drittes System</td></tr>
+          <tr><td>HLA-System</td><td>Leukozytenantigene</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>Antigen und Antikörper</h3>
+  <div class="card">
+    <p style="font-family:var(--serif);font-size:1.08rem;"><b>Antigene</b> sind Substanzen, die
+      der menschliche Organismus <b>als fremd erkennt</b> und mithilfe des Immunsystems bekämpft.
+      <b>Antikörper</b> sind sogenannte <b>Immunglobuline</b>, die beim Kontakt mit Antigenen vom
+      Immunsystem gebildet werden. Sie haben die Aufgabe, Antigene entweder zu
+      <b>neutralisieren</b> oder für die weitere Immunabwehr zu <b>markieren</b>.</p>
+    <span class="quelle">I care: 497</span>
+  </div>
+  <div class="zwei">
+    <div class="card">
+      <span class="lbl">Antikörper — genauer</span>
+      <p><b>y-förmige Glykoproteine</b>, die von aktivierten <b>B-Lymphozyten</b> (spezialisierte
+        weiße Blutkörperchen) gebildet und ins <b>Plasma</b> sezerniert werden.</p>
+      <p style="margin-top:8px;color:var(--ink-soft);"><b>Einfacher:</b> Werden vom Immunsystem
+        zur Abwehr gebildet.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--bad);">
+      <span class="lbl" style="color:var(--bad);">Antikörper-Funktion in der Transfusionsmedizin</span>
+      <p><b>Agglutination</b> = <b>Verklumpung</b>.</p>
+      <p>Passiert zum Beispiel dann, wenn <b>nicht kompatible Blutgruppen aufeinandertreffen</b>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="ab0">
+  <h2>Das AB0-System</h2>
+  <p class="lead">Vier Gruppen. Jede steht für eine andere <b>Kohlenhydratkette</b> an der
+    Erythrozytenmembran. Die Kette bindet an das Glykolipid <b>Ceramid</b>.</p>
+
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Blutgruppe</th><th>Antigen auf dem Erythrozyten</th>
+        <th>Antikörper im Plasma</th></tr></thead>
+      <tbody>
+        <tr><td><b>A</b></td><td>Antigen A — <b>N-Acetyl-D-Galaktosamin</b></td>
+            <td>Antikörper gegen <b>B</b></td></tr>
+        <tr><td><b>B</b></td><td>Antigen B — <b>D-Galaktose</b></td>
+            <td>Antikörper gegen <b>A</b></td></tr>
+        <tr><td><b>AB</b></td><td>Antigen A <b>und</b> B</td><td><b>keine</b></td></tr>
+        <tr><td><b>0</b></td><td><b>kein</b> Antigen</td>
+            <td>Antikörper gegen <b>A und B</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gut"><b>Die Regel, die alles erklärt.</b> Wörtlich aus den Folien: „Im Laufe des
+    <b>ersten Lebensjahres</b> entwickeln sich im Plasma <b>Antikörper gegen die
+    Antigeneigenschaft, die sich <em>nicht</em> auf der Oberfläche der körpereigenen Erythrozyten
+    befindet</b>. Ein Mensch mit Blutgruppe A hat also Antikörper gegen Blutgruppe B.“
+    <p style="margin:10px 0 0;">Wenn du das verstanden hast, musst du die Tabelle oben nie
+    auswendig lernen — du leitest sie jedes Mal neu ab. <b>Was ich nicht habe, dagegen habe ich
+    Antikörper.</b></p></div>
+
+  <div class="achtung"><b>Was bei einer Verwechslung passiert:</b> „Wird eine Blutgruppe mit
+    einer anderen Blutgruppe vermischt, kommt es zu einer <b>Verklumpung (Agglutination)</b> →
+    Blutzelle löst sich auf (<b>Hämolyse</b>).“ Und: „<b>Agglutination stellt einen
+    Transfusionszwischenfall dar.</b>“
+    <p style="margin:10px 0 0;"><b>Grundsätzlich gilt: Blut aus der gleichen Blutgruppe
+    verwenden.</b></p></div>
+
+  <h3>Die zwei Konservenarten — und warum der Unterschied alles ändert</h3>
+  <div class="zwei">
+    <div class="card">
+      <span class="lbl">Vollblutkonserve</span>
+      <p>Das gespendete Blut wird <b>nicht weiter verarbeitet</b>. Es findet <b>keine
+        Komponententrennung</b> statt. Komponenten sind zum Beispiel Erythrozyten, Thrombozyten
+        und Plasma.</p>
+      <p><b>Im militärischen Bereich.</b></p>
+      <p style="margin-top:8px;"><b>Empfangen: nur die gleiche Blutgruppe.</b> BG A kann nur
+        BG A empfangen, BG B nur BG B und so weiter.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--accent);">
+      <span class="lbl">Erythrozytenkonzentrat (EK)</span>
+      <p><b>Antikörper sind herausgefiltert</b> — in einem EK sind also <b>niemals</b>
+        Antikörper. <b>Antigene sind weiterhin vorhanden.</b></p>
+      <p><b>Im klinischen Bereich</b> — höhere Relevanz für dich.</p>
+      <p style="margin-top:8px;">Daher andere Empfängermöglichkeiten: <b>BG 0 = Universalspender</b>
+        (in Notfällen bei unbekannter BG), <b>BG AB = Universalempfänger</b>.</p>
+    </div>
+  </div>
+  <div class="warn"><b>Das ist die häufigste Verwechslung in der Klausur.</b> „Universalspender 0“
+    und „Universalempfänger AB“ gelten <b>nur beim Erythrozytenkonzentrat</b> — weil dort die
+    Antikörper herausgefiltert sind. Bei der <b>Vollblutkonserve</b> gilt das <b>nicht</b>:
+    dort nur die gleiche Blutgruppe. Wenn eine Frage nach „Universalspender“ fragt, prüfe zuerst,
+    welche Konservenart gemeint ist.</div>
+</section>
+
+<section id="rechner">
+  <h2>Der Verträglichkeitsrechner</h2>
+  <p class="lead">Alle Angaben stammen aus den Tabellen der Präsentation. Wähl eine Blutgruppe,
+    stell oben ein, ob du mit oder ohne Rhesus rechnest und ob du <b>empfangen</b> oder
+    <b>spenden</b> willst. <span class="fr">Entraîne-toi : dis la réponse à voix haute
+    <em>avant</em> de cliquer.</span></p>
+
+  <div class="schalter">
+    <span class="k">System:</span>
+    <button type="button" id="s-ab0" class="sel">nur AB0</button>
+    <button type="button" id="s-rh">AB0 + Rhesus</button>
+  </div>
+  <div class="schalter">
+    <span class="k">Richtung:</span>
+    <button type="button" id="s-emp" class="sel">kann empfangen von …</button>
+    <button type="button" id="s-spe">kann spenden an …</button>
+  </div>
+
+  <div class="bg-wahl" id="bg-wahl"></div>
+  <div id="bg-ergebnis"></div>
+
+  <div class="info"><b>Betrachtet wird hier ausschließlich das Erythrozytenkonzentrat.</b>
+    So steht es auch in der Erläuterung auf den Folien. Für Vollblut gilt: gleiche Blutgruppe.</div>
+</section>
+
+<section id="rhesus">
+  <h2>Das Rhesus-System</h2>
+  <div class="card">
+    <ul class="tick">
+      <li>Die Rhesus-Eigenschaft ist das <b>zweitwichtigste Merkmal</b>, das es im Rahmen der
+        Blutgruppen zu beachten gilt</li>
+      <li>Das Rhesus-System kennt <b>5 Antigene</b>, davon ist das <b>Antigen D am stärksten
+        wirksam</b></li>
+      <li>Besitzt der Erythrozyt die Rhesus-Eigenschaft D → <b>Rhesus-positiv (D-positiv)</b></li>
+      <li>Besitzt er sie nicht → <b>Rhesus-negativ (D-negativ)</b></li>
+    </ul>
+  </div>
+
+  <h3>Die Besonderheit — hier liegt der ganze Unterschied zum AB0-System</h3>
+  <div class="card" style="border-left:4px solid var(--accent);">
+    <ul class="tick">
+      <li><b>Antikörper werden nur nach Kontakt gebildet.</b></li>
+      <li>Ersttransfusion mit Rh-positivem Blut bei Rh-negativen Patienten →
+        <b>komplikationsfrei</b></li>
+      <li>Erst <b>nach</b> diesem Kontakt bildet der Körper Antikörper gegen den Rhesus-Faktor</li>
+      <li>Bei <b>erneuter</b> Rh-positiver Transfusion → <b>heftige Komplikation</b>: die
+        Anti-D-Antikörper reagieren mit dem Antigen</li>
+    </ul>
+  </div>
+  <div class="achtung"><b>Merken — wörtlich von der Folie „Merken“:</b>
+    <ul class="tick" style="margin-top:8px;">
+      <li>Rhesus-negativ hat <b>erst nach Kontakt</b> mit Rh-positivem Blut Antikörper gegen den
+        Rhesusfaktor</li>
+      <li>Rhesus-positives Blut hat <b>keine</b> Rhesus-Antikörper</li>
+      <li>→ <b>Rhesus-negative Menschen dürfen IMMER NUR Rhesus-negatives Blut erhalten</b></li>
+      <li>→ <b>Rhesus-positive Menschen können negatives und positives Blut erhalten</b>, da in
+        keinem Fall Antikörper gebildet werden</li>
+    </ul></div>
+  <div class="gut"><b>Der Vergleich, der es festmacht.</b> Beim <b>AB0-System</b> sind die
+    Antikörper <b>von Anfang an da</b> — sie entstehen im ersten Lebensjahr, ganz ohne Kontakt.
+    Beim <b>Rhesus-System</b> entstehen sie <b>erst durch Kontakt</b>. Deshalb ist die erste
+    falsche Rhesus-Transfusion harmlos und die zweite gefährlich — während bei AB0 schon die
+    erste Verwechslung einen Transfusionszwischenfall auslöst.</div>
+  <div class="info">In den Folien folgen zwei YouTube-Verweise: einer zum AB0- und Rhesus-System,
+    einer zu <b>Rhesus-System und Schwangerschaft</b> (Mutter / Baby). Der Schwangerschaftsteil
+    baut genau auf dieser Regel auf — Kontakt zuerst, Antikörper danach.</div>
+</section>
+
+<section id="kell">
+  <h2>Kell-System und HLA-System</h2>
+
+  <div class="card">
+    <span class="lbl">Das Kell-System — das dritte Blutgruppensystem</span>
+    <p>Die wichtigsten Antigene sind <b>K und k</b> (dominant, rezessiv).</p>
+    <div class="tabelle">
+      <table>
+        <thead><tr><th class="n">Anteil</th><th>Typ</th><th>Darf erhalten</th></tr></thead>
+        <tbody>
+          <tr><td class="n">92 %</td><td><b>Kell-negativ (kk)</b></td>
+              <td>sollten nur <b>Kell-negatives</b> Blut erhalten</td></tr>
+          <tr><td class="n">7,8 %</td><td><b>mischerbig (Kk)</b></td>
+              <td>können <b>positives und negatives</b> Blut erhalten</td></tr>
+          <tr><td class="n">0,2 %</td><td><b>reinerbig Kell-positiv (KK)</b></td>
+              <td>sollten nur <b>Kell-positives</b> Blut erhalten</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="tick">
+      <li><b>99,8 %</b> können mit Kell-negativem Blut versorgt werden</li>
+      <li>Krankenhäuser müssen <b>trotzdem beides</b> zur Verfügung haben</li>
+      <li>Bildung von Kell-Antikörpern häufig bei <b>Massivtransfusionen</b>, wenn ein
+        Kell-negativer Empfänger Kell-positives Blut erhält</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <span class="lbl">Das HLA-System</span>
+    <ul class="tick">
+      <li><b>Humane Leukozytenantigene</b> sind in der Zellmembran verankerte Glykoproteine und
+        zählen zu den Immunglobulinen</li>
+      <li>Sie sind der <b>Identitätsausweis der Körperzellen</b> — fremdes HLA wird bekämpft</li>
+      <li>Transfundiert man Blut mit Leukozyten und Thrombozyten, kann es zur
+        <b>Antikörperbildung gegen HLA</b> kommen</li>
+      <li>Bei erneuter Transfusion würden die Leukozyten und Thrombozyten <b>zerstört</b></li>
+      <li>Folge: <b>febrile Reaktion</b></li>
+      <li>Die Reaktion auf HLA ist auch die Ursache für die <b>Abstoßung transplantierter
+        Organe</b></li>
+    </ul>
+  </div>
+  <div class="info">Das HLA-System erklärt, warum bei der Herstellung des
+    Erythrozytenkonzentrats die <b>Leukozytendepletion</b> gemacht wird — dazu unten mehr.
+    Kein HLA im Beutel, keine HLA-Reaktion.</div>
+</section>
+
+<section id="herstellung">
+  <h2>Herstellung — von der Spende zum Produkt</h2>
+
+  <div class="card">
+    <span class="lbl">Was aus einer Vollblutkonserve gewonnen wird</span>
+    <ul class="tick">
+      <li><b>Erythrozytenkonzentrat</b></li>
+      <li><b>Therapeutisches Plasma</b></li>
+      <li><b>Thrombozytenkonzentrat</b></li>
+    </ul>
+    <p>Die Verabreichung von Vollblutkonserven erfolgt <b>nur noch im militärischen Bereich</b>.</p>
+    <p><b>Vorteil der Separation:</b> spezifische Lagerung der Produkte · gezielte Therapie des
+      Patienten.</p>
+  </div>
+
+  <h3>Das System — der Beutel</h3>
+  <div class="card">
+    <ul class="tick">
+      <li>Spenderblut wird in <b>geschlossenen PVC-Beuteln</b> gesammelt</li>
+      <li>Die Beutel sind vorgefüllt mit ca. <b>70 ml Antikoagulanzlösung</b> —
+        <b>CPD: Citrat-Phosphat-Dextrose</b></li>
+      <li>Wird mit <b>500 ml Vollblut</b> vermischt</li>
+    </ul>
+    <div class="tabelle">
+      <table>
+        <thead><tr><th>Bestandteil</th><th>Aufgabe</th></tr></thead>
+        <tbody>
+          <tr><td><b>Citrat</b></td><td>bindet <b>Kalzium</b> → hebt die Gerinnung auf</td></tr>
+          <tr><td><b>Phosphat</b></td><td>dient der <b>pH-Stabilisierung</b></td></tr>
+          <tr><td><b>Glukose</b> (Dextrose)</td><td>dient als <b>Energielieferant</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="fr">Souviens-toi de <b>CPD</b> : c'est le mot-clé, et les trois lettres sont les
+      trois substances. Et c'est le même citrate qu'en 1914.</p>
+  </div>
+
+  <h3>Der Spendevorgang</h3>
+  <div class="card">
+    <ul class="tick">
+      <li>Schon beim Spenden wird extrem auf die <b>zweifelsfreie Zuordnung von Spender, Spende
+        und allen Proberöhrchen</b> geachtet</li>
+      <li>Der <b>Fragebogen</b> muss gewissenhaft ausgefüllt werden — <b>Medikamentenangabe!</b></li>
+      <li>Die Einnahme <b>gerinnungshemmender Medikamente</b> verhindert die Herstellung von
+        <b>Thrombozytenkonzentraten</b> — die werden vorwiegend bei Gerinnungsstörungen
+        eingesetzt</li>
+    </ul>
+  </div>
+
+  <h3>Komponententrennung</h3>
+  <div class="card">
+    <ul class="tick">
+      <li>Durch <b>Zentrifugalkraft</b> wird das Blut in feste und flüssige Bestandteile
+        unterteilt</li>
+      <li><b>Erythrozyten</b> erscheinen <b>rot</b>, <b>Leukozyten und Thrombozyten
+        (Buffy-Coat)</b> <b>grau-rot</b>, <b>Plasma gelb</b></li>
+      <li>Nachfolgend werden diese separiert — jedes Produkt hat eine <b>eigene
+        Verarbeitungskette</b></li>
+    </ul>
+  </div>
+</section>
+
+<section id="produkte">
+  <h2>Die Produkte — mit allen Zahlen</h2>
+  <p class="lead">Diese Zahlen werden gern einzeln abgefragt. Lern sie als Dreiergruppe:
+    <b>Menge — Lagerung — Haltbarkeit</b>.</p>
+
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Produkt</th><th class="n">Menge</th><th>Lagerung</th>
+        <th class="n">Haltbarkeit</th></tr></thead>
+      <tbody>
+        <tr><td><b>Erythrozytenkonzentrat</b><br><span style="color:var(--ink-soft);font-size:13.5px;">keine Antikörper</span></td>
+            <td class="n">ca. 285 ml</td>
+            <td>konstant <b>+2 °C bis +6 °C</b>, <b>kein Rütteln</b> — sonst setzt die Hämolyse
+              schneller ein</td>
+            <td class="n"><b>42–49 Tage</b></td></tr>
+        <tr><td><b>Plasma</b><br><span style="color:var(--ink-soft);font-size:13.5px;">keine Antigene</span></td>
+            <td class="n">ca. 200–250 ml</td>
+            <td>zügiges Einfrieren auf <b>−30 °C</b>, sonst werden die Gerinnungsfaktoren
+              kompromittiert</td>
+            <td class="n"><b>4 Monate Quarantäne</b></td></tr>
+        <tr><td><b>Thrombozytenkonzentrat</b></td>
+            <td class="n">ca. 200–300 ml</td>
+            <td>aus dem <b>Buffy Coat</b>, mit Additivlösung vermischt</td>
+            <td class="n"><b>4 Tage</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="zwei">
+    <div class="card">
+      <span class="lbl">Erythrozytenkonzentrat — Leukozytendepletion</span>
+      <p><b>Heraussieben von Leukozyten und Thrombozyten.</b></p>
+      <ul class="tick">
+        <li>Minimierung von <b>Transfusionsreaktionen</b></li>
+        <li>Verringerung von <b>Infektionsrisiken</b> — insbesondere <b>Cytomegalievirus</b>,
+          das durch Leukozyten übertragen wird und bei immunsupprimierten Menschen
+          Organschäden hervorrufen kann</li>
+      </ul>
+      <p>Die filtrierten EKs werden mittels <b>Schweißzange steril</b> vom Restsystem getrennt.
+        Am EK verbleiben separierte, aber <b>unverwechselbar verbundene</b>, mit Blut gefüllte
+        Schläuche.</p>
+      <p><b>Bestrahlte EKs</b> enthalten gar keine Leukozyten mehr — für immunsupprimierte
+        Patienten.</p>
+    </div>
+    <div class="card" style="border-left:4px solid var(--plasma);">
+      <span class="lbl" style="color:var(--plasma);">Plasma — warum 4 Monate Quarantäne</span>
+      <p>Nach vier Monaten muss der Spender <b>noch einmal eine Probe abgeben</b> — zum
+        Ausschluss von Viren, die zum Spendezeitpunkt eventuell noch zu niedrig konzentriert
+        waren.</p>
+      <p>So wird effektiv eine Infektion mit <b>HIV</b>, <b>HCV (Hepatitis C)</b> oder
+        <b>HBV (Hepatitis B)</b> verhindert.</p>
+    </div>
+  </div>
+
+  <div class="card" style="border-left:4px solid var(--thrombo);">
+    <span class="lbl" style="color:var(--thrombo);">Thrombozytenkonzentrat — die Besonderheit</span>
+    <p>Eine Spende hat in der Regel <b>nicht genug Thrombozyten</b>, deswegen werden
+      <b>4 Spenden vereint</b> — dafür ist ein großer Spenderpool erforderlich.</p>
+    <p><b>Die Qualität lässt sich visuell beurteilen:</b> beim Schwenken bilden sich
+      <b>Schlieren</b>, ohne dass eine Verklumpung auftritt.</p>
+  </div>
+
+  <h3>Weitere Präparate</h3>
+  <div class="card">
+    <h4>Gerinnungsfaktoren</h4>
+    <p>Proteinbestandteile des Blutes, dienen der Blutgerinnung, werden aus <b>Plasma</b>
+      gewonnen. Enthalten einzelne oder mehrere Gerinnungsfaktoren:</p>
+    <ul class="tick">
+      <li>Humanfibrinogen</li>
+      <li>Fraktion 1 nach Crohn</li>
+      <li>Faktor-VIII-Präparate</li>
+      <li>Faktor-IX-Konzentrat</li>
+      <li>Prothrombinkomplexkonzentrat (<b>PPSB</b>)</li>
+      <li>Faktor-XIII-Konzentrat</li>
+    </ul>
+    <h4>Onkotische Plasmapräparate</h4>
+    <ul class="tick"><li>Humanalbumin</li><li>Plasmaproteinlösung</li></ul>
+    <h4>Immunglobuline</h4>
+    <p>Enthalten alle Globuline des menschlichen Plasmas.</p>
+    <h4>Granulozytenkonzentrat</h4>
+    <p>Einsatz bei <b>leukopenischen</b> Patienten.</p>
+  </div>
+</section>
+
+<section id="labor">
+  <h2>Feststellung des Blutbedarfs im Labor</h2>
+  <div class="card">
+    <h4>Kleines Blutbild</h4>
+    <ul class="tick">
+      <li><b>Hämoglobingehalt</b> der Erythrozyten (Hb)</li>
+      <li><b>Erythrozytenzahl</b></li>
+      <li><b>Hämatokrit</b> — Zellanteil des Blutes an der Gesamtmenge</li>
+      <li><b>MCH</b> — mittlerer Hämoglobingehalt der Blutkörperchen</li>
+      <li><b>MCV</b> — mittleres Erythrozyteneinzelvolumen</li>
+      <li>Sättigungsindex</li>
+      <li>Thrombozyten</li>
+      <li>Leukozyten</li>
+    </ul>
+    <h4>Weitere Untersuchungen</h4>
+    <ul class="tick">
+      <li><b>Differentialblutbild</b> — Anzahl und Verteilung der Leukozyten im Blut</li>
+      <li><b>Gesamteiweiß</b> — <b>6–8 g/dl</b></li>
+      <li><b>Elektrophorese</b> — Bestimmung der Verteilung von Albuminen und Globulinen
+        <ul><li><b>Albumin:</b> wichtigstes Eiweiß für den kolloidosmotischen Druck im
+          Blutplasma</li>
+          <li><b>Globuline:</b> Plasmaprotein, z. B. Fibrinogen</li></ul></li>
+    </ul>
+  </div>
+</section>
+
+<section id="bedside">
+  <h2>Der Bedside-Test</h2>
+  <div class="achtung"><b>„Letzte Sicherheitskontrolle vor der Transfusion.“</b> Diesen Satz
+    solltest du wörtlich können — er ist die Definition.</div>
+
+  <div class="card">
+    <ul class="tick">
+      <li><b>Blutentnahme am Patienten</b></li>
+      <li>Das Blut wird auf einer <b>speziellen Karte</b> mit <b>Anti-A- und Anti-B-Serum</b>
+        gemischt</li>
+      <li>Das <b>Ergebnis des Tests wird dokumentiert</b></li>
+    </ul>
+    <div class="tabelle">
+      <table>
+        <thead><tr><th>Beobachtung</th><th>Blutgruppe</th></tr></thead>
+        <tbody>
+          <tr><td>Verklumpt das Blut im <b>Anti-A-Feld</b></td><td><b>BG A</b></td></tr>
+          <tr><td>Verklumpt das Blut im <b>Anti-B-Feld</b></td><td><b>BG B</b></td></tr>
+          <tr><td><b>Kein</b> Feld verklumpt</td><td><b>BG 0</b></td></tr>
+          <tr><td><b>Beide</b> Felder verklumpen</td><td><b>BG AB</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3>Bedside-Trainer</h3>
+  <p>Klick auf „Neue Karte“, sag die Blutgruppe laut — dann prüf nach.</p>
+  <div class="bs-karte">
+    <div class="bs-feld" id="bs-a"><span class="t">Anti-A</span>
+      <div class="bs-tropfen"></div><span class="z"></span></div>
+    <div class="bs-feld" id="bs-b"><span class="t">Anti-B</span>
+      <div class="bs-tropfen"></div><span class="z"></span></div>
+  </div>
+  <p><button class="btn" id="bs-neu" type="button">Neue Karte</button>
+     <button class="btn" id="bs-loesung" type="button">Blutgruppe zeigen</button></p>
+  <div id="bs-ergebnis" class="card" style="display:none;"></div>
+
+  <div class="warn"><b>Denk logisch, nicht auswendig.</b> Das Anti-A-Serum enthält Antikörper
+    gegen A. Es verklumpt also nur, wenn <b>Antigen A</b> da ist. Verklumpung im Anti-A-Feld
+    heißt darum: der Patient <b>hat</b> Antigen A. Genau deshalb bedeutet „kein Feld verklumpt“
+    die Blutgruppe <b>0</b> — kein Antigen.</div>
+</section>
+
+<section id="quiz">
+  <h2>Quiz — zwanzig Fragen</h2>
+  <p class="lead">Alle Antworten stehen oben.</p>
+  <div id="quizraum"></div>
+  <div class="punkte" id="punkte">Noch keine Frage beantwortet.</div>
+</section>
+
+</main>
+
+<footer>
+  <p><b>Quelle:</b> „Erkrankungen des Blut- und Immunsystems“, CE 05 UE 6, Sabrina van de Kamp,
+    66 Folien.<br>
+    Die Präsentation nennt selbst als Quellen: I care · www.blutspendedienst.com ·
+    Hämotherapie 33/2019 · amboss.com · Transfusionsgesetz (TFG) · Pflege Heute, 7. Auflage ·
+    Menche, Nicole: Biologie Anatomie Physiologie, © 2023.<br>
+    Auf dieser Seite steht ausschließlich, was in dieser Präsentation steht.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* =========== Verträglichkeitsrechner =========== */
+  /* Alle Listen wörtlich aus den Tabellen der Präsentation (Erythrozytenkonzentrat). */
+  var AB0_EMP = { 'A':['0','A'], 'B':['0','B'], 'AB':['0','A','B','AB'], '0':['0'] };
+  var AB0_SPE = { 'A':['A','AB'], 'B':['B','AB'], 'AB':['AB'], '0':['A','B','AB','0'] };
+
+  var RH_EMP = {
+    'A+' :['0-','0+','A-','A+'],
+    'A-' :['0-','A-'],
+    'B+' :['0-','0+','B-','B+'],
+    'B-' :['0-','B-'],
+    'AB+':['0-','0+','A-','A+','B-','B+','AB-','AB+'],
+    'AB-':['0-','A-','B-','AB-'],
+    '0+' :['0-','0+'],
+    '0-' :['0-']
+  };
+  var RH_SPE = {
+    'A+' :['AB+','A+'],
+    'A-' :['AB+','AB-','A+','A-'],
+    'B+' :['AB+','B+'],
+    'B-' :['AB+','AB-','B+','B-'],
+    'AB+':['AB+'],
+    'AB-':['AB+','AB-'],
+    '0+' :['AB+','A+','B+','0+'],
+    '0-' :['AB+','AB-','A+','A-','B+','B-','0+','0-']
+  };
+
+  var mitRh = false, richtungEmp = true, gewaehlt = null;
+  var wahl = document.getElementById('bg-wahl');
+  var erg  = document.getElementById('bg-ergebnis');
+
+  function gruppen(){ return mitRh
+    ? ['A+','A-','B+','B-','AB+','AB-','0+','0-']
+    : ['A','B','AB','0']; }
+
+  function baueWahl(){
+    wahl.textContent = '';
+    gruppen().forEach(function(g){
+      var b = document.createElement('button');
+      b.type = 'button'; b.textContent = g;
+      if(g === gewaehlt) b.classList.add('sel');
+      b.addEventListener('click', function(){ gewaehlt = g; baueWahl(); zeige(); });
+      wahl.appendChild(b);
+    });
+  }
+
+  function zeige(){
+    erg.textContent = '';
+    if(!gewaehlt){
+      var p0 = document.createElement('p');
+      p0.textContent = 'Wähl oben eine Blutgruppe aus.';
+      erg.appendChild(p0);
+      return;
+    }
+    var liste = mitRh ? (richtungEmp ? RH_EMP[gewaehlt] : RH_SPE[gewaehlt])
+                      : (richtungEmp ? AB0_EMP[gewaehlt] : AB0_SPE[gewaehlt]);
+
+    var h = document.createElement('h4');
+    h.textContent = 'Blutgruppe ' + gewaehlt + ' '
+      + (richtungEmp ? 'kann Erythrozytenkonzentrat empfangen von:'
+                     : 'kann Erythrozytenkonzentrat spenden an:');
+    erg.appendChild(h);
+
+    var box = document.createElement('div'); box.className = 'pillen';
+    liste.forEach(function(g){
+      var s = document.createElement('span'); s.className = 'pille'; s.textContent = g;
+      box.appendChild(s);
+    });
+    erg.appendChild(box);
+
+    var n = document.createElement('p');
+    n.style.cssText = 'margin-top:12px;color:var(--ink-soft);font-size:15px;';
+    n.textContent = liste.length + ' Möglichkeit' + (liste.length > 1 ? 'en' : '') + '.';
+    erg.appendChild(n);
+
+    /* Hinweise, wie sie in der Präsentation stehen */
+    var hinweis = '';
+    if(richtungEmp && (gewaehlt === 'AB' || gewaehlt === 'AB+'))
+      hinweis = 'Universalempfänger — kann alle Blutgruppen empfangen.';
+    if(!richtungEmp && (gewaehlt === '0' || gewaehlt === '0-'))
+      hinweis = 'Universalspender — dieses Blut kann jeder Mensch empfangen, daher sehr begehrt. '
+              + 'In Notfällen, wenn die Blutgruppe unbekannt ist, wird BG 0 verwendet.';
+    if(hinweis){
+      var k = document.createElement('div');
+      k.className = 'gut'; k.style.marginBottom = '0';
+      k.appendChild(document.createTextNode(hinweis));
+      erg.appendChild(k);
+      box.querySelectorAll('.pille').forEach(function(x){ x.classList.add('uni'); });
+    }
+    if(mitRh && gewaehlt.charAt(gewaehlt.length-1) === '-' && richtungEmp){
+      var r = document.createElement('div');
+      r.className = 'achtung'; r.style.marginBottom = '0';
+      r.innerHTML = '<b>Rhesus-negativ:</b> darf <b>immer nur Rhesus-negatives</b> Blut erhalten. '
+                  + 'Deshalb steht hier kein einziges „+“.';
+      erg.appendChild(r);
+    }
+  }
+
+  function umschalten(id1, id2, setzen){
+    var a = document.getElementById(id1), b = document.getElementById(id2);
+    a.addEventListener('click', function(){ setzen(true);  a.classList.add('sel'); b.classList.remove('sel'); baueWahl(); zeige(); });
+    b.addEventListener('click', function(){ setzen(false); b.classList.add('sel'); a.classList.remove('sel'); baueWahl(); zeige(); });
+  }
+  umschalten('s-ab0','s-rh', function(v){ mitRh = !v; gewaehlt = null; });
+  umschalten('s-emp','s-spe', function(v){ richtungEmp = v; });
+
+  baueWahl(); zeige();
+
+  /* =========== Bedside-Trainer =========== */
+  var bsA = document.getElementById('bs-a'), bsB = document.getElementById('bs-b');
+  var bsErg = document.getElementById('bs-ergebnis');
+  var aktuell = null;
+
+  function neueKarte(){
+    var a = Math.random() < 0.5, b = Math.random() < 0.5;
+    bsA.classList.toggle('klumpt', a);
+    bsB.classList.toggle('klumpt', b);
+    aktuell = a && b ? 'AB' : a ? 'A' : b ? 'B' : '0';
+    bsErg.style.display = 'none';
+    bsErg.textContent = '';
+  }
+  document.getElementById('bs-neu').addEventListener('click', neueKarte);
+  document.getElementById('bs-loesung').addEventListener('click', function(){
+    if(!aktuell) return;
+    var erklaerung = {
+      'A' :'Nur das Anti-A-Feld verklumpt → der Patient hat Antigen A → Blutgruppe A.',
+      'B' :'Nur das Anti-B-Feld verklumpt → der Patient hat Antigen B → Blutgruppe B.',
+      'AB':'Beide Felder verklumpen → der Patient hat Antigen A und B → Blutgruppe AB.',
+      '0' :'Kein Feld verklumpt → der Patient hat kein Antigen → Blutgruppe 0.'
+    }[aktuell];
+    bsErg.textContent = '';
+    var h = document.createElement('h4'); h.style.marginTop = '0';
+    h.textContent = 'Blutgruppe ' + aktuell;
+    var p = document.createElement('p'); p.style.marginBottom = '0';
+    p.textContent = erklaerung;
+    bsErg.appendChild(h); bsErg.appendChild(p);
+    bsErg.style.display = 'block';
+  });
+  neueKarte();
+
+  /* =========== Quiz =========== */
+  var FRAGEN = [
+    { f:"Wie lautet die Definition der Bluttransfusion?",
+      o:["Die intravenöse Gabe von menschlichen Blutbestandteilen",
+         "Die Übertragung von Blut von Tier auf Mensch",
+         "Die subkutane Gabe von Blutprodukten",
+         "Die Entnahme von Blut zur Untersuchung"],
+      r:0, e:"Wörtlich nach I care, Seite 497: „Unter einer Bluttransfusion versteht man die intravenöse Gabe von menschlichen Blutbestandteilen.“" },
+    { f:"Wer entdeckte 1901 die Blutgruppen?",
+      o:["Karl Landsteiner","Wiener","Robert Koch","Rudolf Virchow"],
+      r:0, e:"Karl Landsteiner, ein Wiener Arzt. 1937 entdeckte er zusammen mit Wiener das Rhesussystem." },
+    { f:"Wodurch wurde 1914 die Transfusion mittels Konserve möglich?",
+      o:["Durch den Zusatz von Natriumcitrat","Durch die Erfindung der Glasflasche",
+         "Durch die Entdeckung des Rhesusfaktors","Durch die Zentrifuge"],
+      r:0, e:"Bis dahin wurde Blut direkt von Mensch zu Mensch übertragen, um das Gerinnungsproblem zu umgehen. Das Citrat löst genau dieses Problem — es bindet Kalzium." },
+    { f:"Wo liegt der Unterschied der Blutgruppen?",
+      o:["Auf der Erythrozytenoberfläche","Im Blutplasma","Im Knochenmark","In den Leukozyten"],
+      r:0, e:"Dort befinden sich Glykoproteine, die Blutgruppen-Antigene. Ebenso auf der Thrombozyten- und Leukozytenoberfläche." },
+    { f:"Welches Antigen trägt die Blutgruppe A?",
+      o:["N-Acetyl-D-Galaktosamin","D-Galaktose","Ceramid","Kein Antigen"],
+      r:0, e:"Antigen A ist N-Acetyl-D-Galaktosamin, Antigen B ist D-Galaktose. Beide sind Kohlenhydratketten, die an das Glykolipid Ceramid binden." },
+    { f:"Welche Antikörper hat ein Mensch mit Blutgruppe A?",
+      o:["Antikörper gegen B","Antikörper gegen A","Antikörper gegen A und B","Keine Antikörper"],
+      r:0, e:"Die Regel: Im Laufe des ersten Lebensjahres entwickeln sich Antikörper gegen die Antigeneigenschaft, die NICHT auf den eigenen Erythrozyten sitzt. Was ich nicht habe, dagegen habe ich Antikörper." },
+    { f:"Welche Blutgruppe hat gar keine Antikörper im Plasma?",
+      o:["AB","0","A","B"],
+      r:0, e:"AB hat beide Antigene, also keine Antikörper. Blutgruppe 0 hat kein Antigen und deshalb Antikörper gegen A und B." },
+    { f:"Was ist eine Agglutination?",
+      o:["Eine Verklumpung durch Antigen-Antikörper-Reaktion","Die Auflösung der Blutzelle",
+         "Die Trennung der Blutbestandteile","Die Bildung von Antikörpern"],
+      r:0, e:"Die Agglutination ist die Verklumpung. Danach löst sich die Blutzelle auf — das ist die Hämolyse. Eine Agglutination stellt einen Transfusionszwischenfall dar." },
+    { f:"Wer darf eine VOLLBLUTKONSERVE empfangen?",
+      o:["Nur die gleiche Blutgruppe","Jede Blutgruppe, wenn der Spender 0 ist",
+         "Blutgruppe AB von allen","Alle Rhesus-positiven"],
+      r:0, e:"Bei der Vollblutkonserve findet keine Komponententrennung statt, die Antikörper sind also noch drin. Deshalb gilt: BG A nur von A, BG B nur von B usw. Universalspender und -empfänger gelten NUR beim Erythrozytenkonzentrat." },
+    { f:"Was ist im Erythrozytenkonzentrat NICHT enthalten?",
+      o:["Antikörper","Antigene","Erythrozyten","Additivlösung"],
+      r:0, e:"„Antikörper sind herausgefiltert. In einem EK sind also niemals Antikörper. Antigene sind weiterhin vorhanden.“ Genau daraus ergeben sich die anderen Empfängermöglichkeiten." },
+    { f:"Welche Blutgruppe gilt beim Erythrozytenkonzentrat als Universalspender?",
+      o:["0","AB","A","B"],
+      r:0, e:"BG 0 hat keine Antigene — dieses Blut kann jeder empfangen, daher sehr begehrt. In Notfällen, wenn die Blutgruppe unbekannt ist, wird BG 0 verwendet. Universalempfänger ist AB." },
+    { f:"Wie viele Antigene kennt das Rhesus-System, und welches ist am stärksten wirksam?",
+      o:["5 Antigene, am stärksten das Antigen D","2 Antigene, am stärksten das Antigen C",
+         "4 Antigene, am stärksten das Antigen K","3 Antigene, am stärksten das Antigen E"],
+      r:0, e:"Besitzt der Erythrozyt die Eigenschaft D, ist er Rhesus-positiv; besitzt er sie nicht, Rhesus-negativ. Der Rhesus ist das zweitwichtigste Merkmal nach AB0." },
+    { f:"Was passiert bei der ERSTEN Transfusion von Rh-positivem Blut an einen Rh-negativen Patienten?",
+      o:["Sie verläuft komplikationsfrei, danach werden Antikörper gebildet",
+         "Es kommt sofort zur Agglutination",
+         "Der Patient bildet keine Antikörper",
+         "Es kommt zur febrilen Reaktion"],
+      r:0, e:"Beim Rhesus-System werden Antikörper NUR nach Kontakt gebildet. Erst bei einer erneuten Rh-positiven Transfusion kommt es zur heftigen Komplikation. Das ist der große Unterschied zum AB0-System, wo die Antikörper von Anfang an da sind." },
+    { f:"Welche Regel gilt für Rhesus-negative Menschen?",
+      o:["Sie dürfen immer nur Rhesus-negatives Blut erhalten",
+         "Sie dürfen positives und negatives Blut erhalten",
+         "Sie dürfen nur beim ersten Mal positives Blut erhalten",
+         "Sie dürfen nur Vollblut erhalten"],
+      r:0, e:"Rhesus-positive Menschen können dagegen negatives und positives Blut erhalten, da in keinem Fall Antikörper gebildet werden." },
+    { f:"Wie viel Prozent der Menschen sind Kell-negativ (kk)?",
+      o:["92 %","7,8 %","0,2 %","99,8 %"],
+      r:0, e:"92 % Kell-negativ (kk), 7,8 % mischerbig (Kk), 0,2 % reinerbig Kell-positiv (KK). Insgesamt 99,8 % können mit Kell-negativem Blut versorgt werden — trotzdem müssen Krankenhäuser beides vorhalten." },
+    { f:"Was ist die Folge einer Antikörperbildung gegen HLA?",
+      o:["Eine febrile Reaktion","Eine Hämolyse","Eine Thrombose","Eine Hypotonie"],
+      r:0, e:"HLA sind der Identitätsausweis der Körperzellen. Bei erneuter Transfusion würden Leukozyten und Thrombozyten zerstört. Die HLA-Reaktion ist auch die Ursache für die Abstoßung transplantierter Organe." },
+    { f:"Wofür stehen die drei Buchstaben in CPD?",
+      o:["Citrat, Phosphat, Dextrose","Calcium, Plasma, Dextrose",
+         "Citrat, Protein, Dextran","Calcium, Phosphat, Dextrose"],
+      r:0, e:"Citrat bindet Kalzium und hebt die Gerinnung auf, Phosphat dient der pH-Stabilisierung, Glukose ist der Energielieferant. Die Beutel sind mit ca. 70 ml davon vorgefüllt und werden mit 500 ml Vollblut vermischt." },
+    { f:"Wie wird ein Erythrozytenkonzentrat gelagert und wie lange ist es haltbar?",
+      o:["Konstant +2 bis +6 °C, kein Rütteln, haltbar 42–49 Tage",
+         "Bei −30 °C eingefroren, haltbar 4 Monate",
+         "Bei Raumtemperatur, haltbar 4 Tage",
+         "Bei +2 bis +6 °C, haltbar 4 Tage"],
+      r:0, e:"Kein Rütteln, weil sonst die Hämolyse schneller einsetzt. Die −30 °C und 4 Monate gehören zum Plasma, die 4 Tage zum Thrombozytenkonzentrat." },
+    { f:"Warum wird Plasma vier Monate in Quarantäne gelagert?",
+      o:["Weil der Spender danach noch einmal eine Probe abgeben muss, um Viren auszuschließen",
+         "Weil die Gerinnungsfaktoren so lange reifen müssen",
+         "Weil es erst dann tiefgefroren werden kann",
+         "Weil die Antikörper erst dann abgebaut sind"],
+      r:0, e:"Die Viren waren zum Spendezeitpunkt eventuell noch zu niedrig konzentriert. So wird eine Infektion mit HIV, HCV oder HBV effektiv verhindert." },
+    { f:"Beim Bedside-Test verklumpt kein Feld. Welche Blutgruppe liegt vor?",
+      o:["0","A","B","AB"],
+      r:0, e:"Kein Feld verklumpt = kein Antigen = Blutgruppe 0. Verklumpt Anti-A: BG A. Verklumpt Anti-B: BG B. Verklumpen beide: BG AB. Der Bedside-Test ist die letzte Sicherheitskontrolle vor der Transfusion, das Ergebnis wird dokumentiert." }
+  ];
+
+  function mischen(liste, richtigerIndex){
+    var paare = liste.map(function(t, j){ return { t: t, ok: j === richtigerIndex }; });
+    for(var i = paare.length - 1; i > 0; i--){
+      var k = Math.floor(Math.random() * (i + 1));
+      var tmp = paare[i]; paare[i] = paare[k]; paare[k] = tmp;
+    }
+    return paare;
+  }
+
+  var raum = document.getElementById("quizraum");
+  var anzeige = document.getElementById("punkte");
+  var beantwortet = 0, richtig = 0;
+
+  FRAGEN.forEach(function(fr, i){
+    var box = document.createElement("div"); box.className = "q";
+    var titel = document.createElement("p"); titel.className = "frg";
+    titel.textContent = (i + 1) + ". " + fr.f;
+    box.appendChild(titel);
+
+    var opts = document.createElement("div"); opts.className = "opts";
+    var erkl = document.createElement("div"); erkl.className = "erkl"; erkl.textContent = fr.e;
+
+    mischen(fr.o, fr.r).forEach(function(paar){
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "opt"; b.textContent = paar.t;
+      if(paar.ok) b.dataset.ok = "1";
+      b.addEventListener("click", function(){
+        if(box.dataset.fertig === "1") return;
+        box.dataset.fertig = "1";
+        beantwortet++;
+        if(paar.ok) richtig++;
+        opts.querySelectorAll(".opt").forEach(function(x){ x.classList.add("aus"); });
+        b.classList.add(paar.ok ? "richtig" : "falsch");
+        if(!paar.ok) opts.querySelector('.opt[data-ok="1"]').classList.add("richtig");
+        erkl.classList.add("an");
+        anzeige.textContent = richtig + " von " + beantwortet + " richtig · "
+          + FRAGEN.length + " Fragen insgesamt";
+      });
+      opts.appendChild(b);
+    });
+
+    box.appendChild(opts); box.appendChild(erkl); raum.appendChild(box);
+  });
+})();
+</script>
