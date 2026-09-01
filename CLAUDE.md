@@ -219,10 +219,27 @@ Wortschatzübungen, die auf den Tagesfokus vorbereiten.
 - Die Aufgabentypen im Hörverstehen sind **alle Richtig-Falsch**.
 - Multiple-Choice hat in dieser Prüfung immer **genau drei Optionen**.
 
-**Hörverstehen** kann die Seite nicht abspielen. Der **Diktat**-Block (zweimal vorgelesen,
-Tempo einstellbar) ist das tägliche Hörtraining — dazu Richtig-Falsch-Aufgaben zum Diktattext
-stellen. Regelmäßig auf die echte Audiodatei in
-`deutsch-taeglich/telc-quellen/uebungstest/` hinweisen, statt Audio auf der Seite zu behaupten.
+**Hörverstehen — die Seite spielt jetzt selbst ab.** Steht im `telc`-Block `Hörverstehen` in
+`teile`, rendert die Vorlage **über den Aufgaben** einen Hörtext-Player: zweimal vorgelesen,
+Tempo wählbar, der Text bleibt verborgen, bis sie ihn aufklappt. Der Player nimmt `telc.text`,
+und wenn es den nicht gibt, den **Diktattext**. Deshalb an Hörverstehen-Tagen:
+Richtig-Falsch-Aufgaben zum Diktattext stellen und den Text **nicht** zusätzlich in `telc.text`
+wiederholen — sonst steht er doppelt da.
+
+Die **echte telc-Originalaufnahme** liegt auf einer eigenen Seite:
+`deutsch-taeglich/hoerverstehen.html` →
+`https://claude.ai/code/artifact/fb2c751b-a84b-42e6-b19a-1bfc6fc6d4b3` (Favicon 🎧).
+Sie enthält das Audio des Übungstests 1, die zwanzig Originalaufgaben, die Auswertung nach den
+echten Punktwerten (75) und die Transkription. Gebaut wird sie mit
+`python3 deutsch-taeglich/build-hoerverstehen.py` aus `hoerverstehen-src.html` und
+`telc-quellen/uebungstest/hoerverstehen-web.mp3`; die erzeugte Datei ist 7 MB groß und steht in
+`.gitignore` — **vor jedem Publish dieser Seite erst neu bauen.**
+
+**Und noch etwas, das schiefgegangen ist:** Am 31.08. und am 01.09. lag die Lektion nur auf der
+veröffentlichten Seite, nicht im Repo. Ein Build hätte sie gelöscht. Deshalb **vor** dem Build
+prüfen, ob die neueste Lektion im Artifact neuer ist als die neueste Datei in `lektionen/` —
+und wenn ja, sie erst aus dem Artifact zurückholen. Und: **immer committen und pushen**, nicht
+nur veröffentlichen.
 
 ### Pflichtinhalt jeder Lektion
 
