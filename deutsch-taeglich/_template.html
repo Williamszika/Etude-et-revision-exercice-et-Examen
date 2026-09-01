@@ -75,6 +75,25 @@
   .telc-teil span.an{background:var(--extra);color:var(--card);border-color:var(--extra);}
   .telc-ziel{border-left:3px solid var(--extra);background:var(--extrabg);border-radius:0 10px 10px 0;
     padding:11px 15px;margin:10px 0;font-size:15px;}
+  /* Hörtext im telc-Block — erst hören, dann antworten */
+  .hoerbox{border:1.5px solid var(--extra);border-radius:12px;background:var(--extrabg);
+    padding:14px 16px;margin:14px 0 18px;}
+  .hoerbox .hv-kopf{font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--extra);margin-bottom:8px;}
+  .hoerbox .hv-stand{font-size:14px;color:var(--ink-soft);margin:8px 0 0;min-height:1.3em;}
+  .hoerbox .hv-reihe{display:flex;flex-wrap:wrap;gap:9px;align-items:center;}
+  .hoerbox button{font-family:inherit;font-size:14.5px;font-weight:600;padding:9px 16px;
+    border-radius:9px;border:1.5px solid var(--extra);background:var(--extra);color:var(--card);
+    cursor:pointer;}
+  .hoerbox button.ghost{background:transparent;color:var(--extra);}
+  .hoerbox button:focus-visible{outline:2px solid var(--extra);outline-offset:2px;}
+  .hoerbox select{font-family:inherit;font-size:14px;padding:8px 10px;border-radius:9px;
+    border:1px solid var(--line);background:var(--card);color:var(--ink);}
+  .hoerbox .hv-text{display:none;margin-top:12px;border-top:1px dashed var(--extra);
+    padding-top:12px;font-size:15px;line-height:1.65;}
+  .hoerbox .hv-text.offen{display:block;}
+  .hoerbox .hv-echt{font-size:13.5px;color:var(--ink-soft);margin:10px 0 0;}
+  .hoerbox .hv-echt a{color:var(--extra);}
   /* Zyklus-Anzeige unter dem Datum */
   .zyklus{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 16px;}
   .zyklus .thema{font-size:14.5px;color:var(--ink-soft);}
@@ -398,6 +417,72 @@ function speak(txt,rate){
   if(v)u.voice=v;
   window.speechSynthesis.speak(u);
 }
+/* ---------- Hörtext im telc-Block: erst hören, dann antworten ---------- */
+const HV_ECHT='https://claude.ai/code/artifact/fb2c751b-a84b-42e6-b19a-1bfc6fc6d4b3';
+let hvLauf=false;
+function hoerBox(txt,id){
+  const rein=String(txt||'').replace(/\*\*/g,'').replace(/\s+/g,' ').trim();
+  if(!rein)return '';
+  let h='<div class="hoerbox" id="'+id+'" data-text="'+attr(rein)+'">';
+  h+='<div class="hv-kopf">Hörtext · zweimal · erst hören, dann antworten</div>';
+  h+='<div class="hv-reihe">'+
+     '<button type="button" class="hv-play" onclick="hvSprich(\''+id+'\')">▶︎ Hörtext abspielen</button>'+
+     '<select class="hv-tempo" aria-label="Tempo">'+
+     '<option value="0.7">sehr langsam</option>'+
+     '<option value="0.85" selected>langsam</option>'+
+     '<option value="1">normal</option>'+
+     '<option value="1.15">Prüfungstempo</option></select>'+
+     '<button type="button" class="ghost hv-zeig" onclick="hvText(\''+id+'\')">Text anzeigen (erst nach dem Hören!)</button>'+
+     '</div>';
+  h+='<p class="hv-stand">Bereit. Der Text wird zweimal vorgelesen — dazwischen eine kurze Pause.</p>';
+  h+='<div class="hv-text">'+bold(rein)+'</div>';
+  h+='<p class="hv-echt">Mit der <b>echten telc-Aufnahme</b> üben: '+
+     '<a href="'+HV_ECHT+'" target="_blank" rel="noopener">Hörverstehen Übungstest 1</a> — '+
+     'Originalaudio, zwanzig Originalaufgaben, Transkription.</p>';
+  h+='</div>';
+  return h;
+}
+function hvSprich(id){
+  const box=document.getElementById(id); if(!box)return;
+  const knopf=box.querySelector('.hv-play'), stand=box.querySelector('.hv-stand');
+  const txt=box.dataset.text||''; if(!txt)return;
+  if(!('speechSynthesis' in window)){
+    stand.textContent='Dieser Browser kann nicht vorlesen. Klapp den Text auf und lies ihn dir selbst laut vor.';
+    return;
+  }
+  if(hvLauf){
+    hvLauf=false; window.speechSynthesis.cancel();
+    knopf.textContent='▶︎ Hörtext abspielen'; stand.textContent='Abgebrochen.';
+    return;
+  }
+  const rate=parseFloat(box.querySelector('.hv-tempo').value)||0.85;
+  hvLauf=true; knopf.textContent='■ Stopp';
+  let durchgang=0;
+  const einmal=function(){
+    if(!hvLauf)return;
+    durchgang++;
+    stand.textContent=(durchgang===1?'Erstes Hören …':'Zweites Hören …');
+    window.speechSynthesis.cancel();
+    const u=new SpeechSynthesisUtterance(txt);
+    u.lang='de-DE'; u.rate=rate;
+    const v=window.speechSynthesis.getVoices().find(x=>x.lang&&x.lang.startsWith('de'));
+    if(v)u.voice=v;
+    u.onend=function(){
+      if(!hvLauf)return;
+      if(durchgang<2){ stand.textContent='Kurze Pause …'; setTimeout(einmal,1800); return; }
+      hvLauf=false; knopf.textContent='▶︎ Noch einmal hören';
+      stand.textContent='Fertig. Jetzt die Aufgaben beantworten — den Text erst danach aufklappen.';
+    };
+    window.speechSynthesis.speak(u);
+  };
+  einmal();
+}
+function hvText(id){
+  const box=document.getElementById(id); if(!box)return;
+  const t=box.querySelector('.hv-text'), b=box.querySelector('.hv-zeig');
+  const offen=t.classList.toggle('offen');
+  b.textContent=offen?'Text wieder verstecken':'Text anzeigen (erst nach dem Hören!)';
+}
 function renderSay(b,idx){
   if(!b)return '';
   let h='<div class="block"><span class="kind k-say">Satz des Tages · zum Aussprechen</span>';
@@ -469,7 +554,12 @@ function renderTraining(b,idx,opt){
   if(b.thema)h+='<p class="lit">Thema: '+esc(b.thema)+'</p>';
   if(b.ziel)h+='<div class="tg-ziel"><b>Ziel heute:</b> '+bold(b.ziel)+'</div>';
   if(b.fr)h+='<p class="fr">'+esc(b.fr)+'</p>';
-  if(b.text)h+='<div class="tipbox" style="border-left-color:var(--extra)">'+bold(b.text)+'</div>';
+  /* Hörverstehen: der Text wird gehört, nicht gelesen — Player vor die Aufgaben */
+  const hoert = opt.telc && ((b.teile||[]).some(x=>/h[öo]rverstehen/i.test(String(x)))
+                             || /h[öo]rverstehen/i.test(String(b.titel||'')));
+  const htext = b.text || (hoert ? (opt.hoertext||'') : '');
+  if(hoert && htext) h+=hoerBox(htext,'hv-'+idx);
+  else if(b.text) h+='<div class="tipbox" style="border-left-color:var(--extra)">'+bold(b.text)+'</div>';
 
   auf.forEach((a,i)=>{
     const id='auf-'+idx+'-'+i;
@@ -510,9 +600,9 @@ function renderTraining(b,idx,opt){
 }
 
 /* ---------- Probeprüfung: bleibt bis Samstag 22:00 verschlossen ---------- */
-function renderProbe(b,idx){
+function renderProbe(b,idx,hoertext){
   if(!b)return '';
-  const inner=renderTraining(b,idx,{telc:true,kls:'k-probe',
+  const inner=renderTraining(b,idx,{telc:true,kls:'k-probe',hoertext:hoertext||'',
       badge:'Probeprüfung · Samstag 22:00'+(b.punkte?' · '+b.punkte+' Punkte':'')});
   if(!inner)return '';
   return '<div class="pr-huelle" id="pr-huelle">'+
@@ -1011,12 +1101,18 @@ function render(){
 
   AKT_DATUM=l.datum;
   AKT_TAG=(l.zyklus&&l.zyklus.tag)?Math.min(5,Math.max(1,l.zyklus.tag)):1;
+  /* Fällt im telc-Block kein eigener Hörtext an, dient der Diktattext als Hörtext */
+  let hoertext='';
+  if(l.diktat){
+    hoertext = l.diktat.text ||
+      ((l.diktat.saetze && l.diktat.saetze.length) ? l.diktat.saetze.join(' ') : '');
+  }
   document.getElementById('content').innerHTML=
     renderBlock(l.verb,'verb',cur)+renderBlock(l.wortschatz,'voc',cur)+renderBlock(l.grammatik,'gram',cur)
     +renderSatzbau(l.satzbau,cur)+renderTag1(l)+renderTraining(l.training,cur)
-    +renderTraining(l.telc,'telc'+cur,{telc:true,kls:'k-telc',
+    +renderTraining(l.telc,'telc'+cur,{telc:true,kls:'k-telc',hoertext:hoertext,
         badge:'telc Deutsch B2 · Prüfungstraining'})
-    +renderProbe(l.probe,'probe'+cur)
+    +renderProbe(l.probe,'probe'+cur,hoertext)
     +renderSay(l.aussprache,cur)+renderDiktat(l.diktat)+renderTrans(l.uebersetzung,cur);
   probeSchloss();
   if(document.querySelector('.dk-tempo')) dkSetRate(dkRate);

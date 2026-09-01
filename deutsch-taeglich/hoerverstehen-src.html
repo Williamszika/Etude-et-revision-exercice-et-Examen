@@ -1,0 +1,636 @@
+<title>Hörverstehen Übungstest 1</title>
+<style>
+  :root{
+    --paper:#f4f5f7;--paper-2:#e7eaef;--card:#ffffff;--ink:#1a1d23;--ink-soft:#525a68;--line:#d5d9e1;
+    --accent:#2f5d50;--accent-deep:#224539;--accent-soft:#dcece6;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;
+    --plus:#2f7d54;--minus:#bb4d3f;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#12151a;--paper-2:#0d1014;--card:#1b1f26;--ink:#eceef4;--ink-soft:#a3abba;--line:#2d323d;
+    --accent:#7fc0ac;--accent-deep:#9ed4c2;--accent-soft:#152621;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --plus:#6fc292;--minus:#e08a7c;}}
+  :root[data-theme="dark"]{
+    --paper:#12151a;--paper-2:#0d1014;--card:#1b1f26;--ink:#eceef4;--ink-soft:#a3abba;--line:#2d323d;
+    --accent:#7fc0ac;--accent-deep:#9ed4c2;--accent-soft:#152621;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --plus:#6fc292;--minus:#e08a7c;}
+  :root[data-theme="light"]{
+    --paper:#f4f5f7;--paper-2:#e7eaef;--card:#ffffff;--ink:#1a1d23;--ink-soft:#525a68;--line:#d5d9e1;
+    --accent:#2f5d50;--accent-deep:#224539;--accent-soft:#dcece6;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;
+    --plus:#2f7d54;--minus:#bb4d3f;}
+
+  *{box-sizing:border-box;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;
+    line-height:1.6;margin:0;}
+  main{max-width:56rem;margin:0 auto;padding:0 20px 80px;}
+  header.hero{background:var(--accent-soft);border-bottom:1px solid var(--line);
+    padding:44px 20px 34px;text-align:center;}
+  header.hero .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-size:2.1rem;line-height:1.18;margin:0 0 10px;}
+  header.hero .sub{color:var(--ink-soft);margin:0;max-width:38rem;margin-inline:auto;}
+  h2{font-family:var(--serif);font-size:1.5rem;margin:44px 0 6px;color:var(--accent-deep);}
+  h3{font-family:var(--serif);font-size:1.16rem;margin:26px 0 6px;}
+  .lead{color:var(--ink-soft);margin:0 0 18px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+
+  .karte{border:1px solid var(--line);border-radius:14px;background:var(--card);
+    padding:20px 22px;margin:18px 0;}
+  .warn{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+  .info{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+
+  .player{position:sticky;top:0;z-index:5;background:var(--card);border:1px solid var(--line);
+    border-radius:14px;padding:16px 18px;margin:22px 0;box-shadow:0 2px 14px rgba(0,0,0,.07);}
+  .player audio{width:100%;display:block;margin-top:8px;}
+  .player .titel{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--accent-deep);}
+
+  .teil{border:1px solid var(--line);border-radius:14px;background:var(--card);margin:22px 0;
+    overflow:hidden;}
+  .teil > .kopf{background:var(--paper-2);border-bottom:1px solid var(--line);padding:14px 20px;}
+  .teil > .kopf .nr{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;font-weight:700;
+    color:var(--accent-deep);display:block;}
+  .teil > .kopf .ti{font-family:var(--serif);font-size:1.18rem;font-weight:600;}
+  .teil > .kopf .anw{margin:8px 0 0;font-size:14.5px;color:var(--ink-soft);}
+  .teil > .body{padding:8px 20px 20px;}
+
+  .item{border-bottom:1px solid var(--line);padding:15px 0;display:flex;gap:14px;
+    align-items:flex-start;flex-wrap:wrap;}
+  .item:last-child{border-bottom:none;}
+  .item .num{font-family:var(--mono);font-weight:700;color:var(--accent-deep);min-width:2.2em;
+    padding-top:3px;}
+  .item .txt{flex:1 1 16rem;}
+  .wahl{display:flex;gap:8px;flex-shrink:0;}
+  .wahl button{font-family:var(--mono);font-size:16px;font-weight:700;width:46px;height:40px;
+    border:1.5px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink-soft);
+    cursor:pointer;line-height:1;}
+  .wahl button:hover{border-color:var(--accent);}
+  .wahl button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .wahl button[aria-pressed="true"][data-w="+"]{background:var(--plus);border-color:var(--plus);
+    color:#fff;}
+  .wahl button[aria-pressed="true"][data-w="-"]{background:var(--minus);border-color:var(--minus);
+    color:#fff;}
+  .item.richtig{background:var(--goodbg);}
+  .item.falsch{background:var(--badbg);}
+  .item .marke{flex-basis:100%;font-family:var(--mono);font-size:12px;letter-spacing:.05em;
+    display:none;padding-left:calc(2.2em + 14px);}
+  .item.richtig .marke,.item.falsch .marke{display:block;}
+  .item.richtig .marke{color:var(--good);}
+  .item.falsch .marke{color:var(--bad);}
+
+  .btn{font-family:var(--sans);font-size:15px;font-weight:600;padding:11px 20px;border-radius:10px;
+    border:1.5px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer;}
+  .btn.leise{background:transparent;color:var(--accent-deep);}
+  .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .knopfreihe{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:22px 0;}
+
+  .ergebnis{display:none;}
+  .ergebnis.an{display:block;}
+  .punkte{font-family:var(--serif);font-size:2.3rem;font-weight:600;line-height:1.1;}
+  table{border-collapse:collapse;width:100%;margin:14px 0;font-size:15px;}
+  th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;
+    text-transform:uppercase;}
+  .tabwrap{overflow-x:auto;}
+
+  .skript{display:none;margin-top:14px;border-top:1px dashed var(--line);padding-top:14px;
+    font-size:15.5px;}
+  .skript.offen{display:block;}
+  .skript p{margin:0 0 12px;}
+  .skript .sprecher{font-weight:600;color:var(--accent-deep);}
+  .skript .mark{font-family:var(--mono);font-weight:700;color:var(--accent-deep);}
+  .quelle{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);background:var(--paper-2);
+    border-radius:6px;padding:3px 8px;display:inline-block;margin-top:10px;}
+
+  footer{border-top:1px solid var(--line);margin-top:70px;padding:30px 20px 50px;text-align:center;
+    color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">telc Deutsch B2 · Übungstest 1 · Subtest 3</p>
+  <h1>Hörverstehen mit dem echten Audio</h1>
+  <p class="sub">Die Originalaufnahme von telc, die zwanzig Originalaufgaben und danach die
+    Transkription zum Mitlesen. 75 Punkte — ein Viertel der schriftlichen Prüfung.</p>
+</header>
+
+<main>
+
+  <div class="player">
+    <span class="titel">Originalaufnahme · 18:28 · läuft ohne Pause durch</span>
+    <audio controls preload="metadata" src="data:audio/mpeg;base64,__AUDIO__">
+      Dein Browser kann kein Audio abspielen. Nimm die MP3-Datei aus
+      deutsch-taeglich/telc-quellen/uebungstest/.
+    </audio>
+  </div>
+
+  <div class="warn"><b>So machst du es richtig.</b> In der Prüfung hörst du jeden Text
+    <b>nur einmal</b>, und die Aufnahme wird <b>nicht angehalten</b>. Also: Play drücken und
+    durchlaufen lassen — auch wenn du eine Aussage verpasst. Erst danach auswerten, und erst
+    <b>ganz zum Schluss</b> die Transkription aufklappen. Wenn du beim ersten Mal pausierst,
+    übst du etwas, das es in der Prüfung nicht gibt.
+    <span class="fr">Une seule écoute, sans pause. Le texte écrit, c'est pour après.</span></div>
+
+  <div class="info"><b>Punkte.</b> Teil 1: fünf Aussagen zu je 5 Punkten. Teil 2: zehn Aussagen zu
+    je 2,5 Punkten. Teil 3: fünf Aussagen zu je 5 Punkten. Zusammen <b>75 Punkte</b> —
+    <b>25 % der schriftlichen Prüfung</b>. Deine Antworten bleiben im Browser gespeichert.</div>
+
+  <!-- ================= TEIL 1 ================= -->
+  <div class="teil" id="teil1">
+    <div class="kopf">
+      <span class="nr">Hörverstehen Teil 1 · Aufgaben 41–45 · je 5 Punkte</span>
+      <span class="ti">Eine Nachrichtensendung</span>
+      <p class="anw">Sie hören nun eine Nachrichtensendung. Dazu sollen Sie fünf Aufgaben lösen.
+        Sie hören die Nachrichtensendung nur einmal. Entscheiden Sie beim Hören, ob die Aussagen
+        41–45 richtig oder falsch sind. <b>PLUS (+) = richtig, MINUS (–) = falsch.</b>
+        Lesen Sie jetzt die Aufgaben 41–45. Sie haben dazu 30 Sekunden Zeit.</p>
+    </div>
+    <div class="body" data-fragen>
+      <div class="item" data-nr="41" data-loesung="+">
+        <span class="num">41</span>
+        <span class="txt">Laut BILD AM SONNTAG können in Zukunft nur Mieter, aber nicht Vermieter
+          bestimmte Mietverträge schneller kündigen.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="42" data-loesung="+">
+        <span class="num">42</span>
+        <span class="txt">In bestimmten Bundesländern sollen Wohnhäuser abgerissen werden, weil sie
+          unbewohnt sind.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="43" data-loesung="+">
+        <span class="num">43</span>
+        <span class="txt">Sowohl die Waldbrände als auch die Hitzewelle in Griechenland sind zu
+          Ende.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="44" data-loesung="-">
+        <span class="num">44</span>
+        <span class="txt">In Kanada mussten die Bergungsarbeiten nach einem Tornado wegen erneuter
+          Unwetterwarnungen eingestellt werden.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="45" data-loesung="-">
+        <span class="num">45</span>
+        <span class="txt">Bei einem Fährunglück in der Nähe von Gibraltar gab es nur
+          Sachschaden.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+
+      <p><button class="btn leise zeig" data-ziel="s1" type="button">Transkription
+        zeigen</button></p>
+      <div class="skript" id="s1">
+        <p><span class="mark">41</span> Mieter können künftig ihren Mietvertrag für die Wohnung
+          schneller als bisher kündigen. Das berichtet die BILD AM SONNTAG. Danach plane die
+          Bundesregierung die maximale Kündigungsfrist auch für langjährige Mieter von 12 auf 6
+          Monate herabzusetzen. Für Vermieter ändere sich dagegen nichts. Sie müssten auch
+          weiterhin nach 10 Jahren eine Kündigungsfrist von einem Jahr einhalten.</p>
+        <p><span class="mark">42</span> In Ostdeutschland stehen immer mehr Wohnungen leer. Vor
+          allem in den Plattenbauten wächst das Überangebot – einem Bericht des
+          Nachrichtenmagazins „Der Spiegel“ zufolge – dramatisch. Das Blatt zitiert eine Studie,
+          nach der in den kommenden Jahren über eine Million Wohnungen abgerissen werden müssten.
+          Das könne bis zu acht Milliarden Euro kosten. Die Betriebskosten für alle im Osten
+          ungenutzten Wohnungen belaufen sich nach der Untersuchung auf jährlich rund 1,3
+          Milliarden Euro.</p>
+        <p><span class="mark">43</span> Wenige Stunden vor Beginn eines Elefantenrennens in
+          Hoppegarten bei Berlin haben Tierschützer vor der Galopp-Rennbahn gegen die
+          Veranstaltung protestiert. Rund 50 Mitglieder verschiedener Vereine forderten auf
+          Transparenten das Rennen noch zu stoppen. Auf einem Plakat stand „Tiere zum Vergnügen –
+          Kein Vergnügen für Tiere“. Am Nachmittag sollen bei dem ersten europäischen
+          Elefantenrennen 14 Tiere in sechs Läufen an den Start gehen. Tierschützer erklärten, ein
+          Rennen laufe der Natur der Elefanten zuwider.</p>
+        <p>Alle Waldbrände in Griechenland sind gelöscht. Dies berichtet der griechische Rundfunk.
+          Auch die Hitzewelle ist vorbei. In den nächsten sechs Tagen werde das Thermometer in
+          Griechenland nicht mehr als 32 Grad zeigen. Nach einer vorläufigen Bilanz des
+          Innenministeriums in Athen kamen drei Menschen ums Leben, mehrere Tausend Tiere
+          verendeten. Zerstört sind rund 10.000 Hektar Wald, Busch und Ackerland sowie mindestens
+          100 Häuser, zahlreiche Gewächshäuser und Ställe. Die Regierung in Athen versprach, allen
+          Bürgern zu helfen. Sie sollen Erdbebenopfern gleichgestellt werden und günstige Kredite
+          erhalten.</p>
+        <p><span class="mark">44</span> Nach dem Tornado auf einem Campingplatz in Kanada ist die
+          Zahl der Toten auf neun gestiegen. Durch den Wirbelsturm kamen fünf Frauen, drei Männer
+          und ein Kind ums Leben. 130 Menschen wurden verletzt und etwa 400 Campingwagen zerstört.
+          Die Bergungsarbeiten wurden fortgesetzt. Der Tornado war mit einer Geschwindigkeit von
+          300 Kilometern pro Stunde über den Platz gefegt.</p>
+        <p><span class="mark">45</span> Bei Gibraltar in Südspanien sind zwei Fähren
+          zusammengestoßen. Dabei wurden fünf Menschen getötet, 18 wurden verletzt. Die Polizei
+          teilte mit, alle Opfer seien Marokkaner. Die beiden Fähren verkehrten auf der Route
+          Algier und Tanger. Zur Zeit des Unglücks war es neblig.</p>
+        <p>Das waren die Nachrichten. Und nun zum Wetter: …</p>
+        <span class="quelle">telc gGmbH · Übungstest 1 · Hörtexte S. 48</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TEIL 2 ================= -->
+  <div class="teil" id="teil2">
+    <div class="kopf">
+      <span class="nr">Hörverstehen Teil 2 · Aufgaben 46–55 · je 2,5 Punkte</span>
+      <span class="ti">Ein Rundfunk-Interview</span>
+      <p class="anw">Sie hören ein Rundfunk-Interview. Dazu sollen Sie zehn Aufgaben lösen. Sie
+        hören dieses Interview nur einmal. Entscheiden Sie beim Hören, ob die Aussagen 46–55
+        richtig oder falsch sind. Lesen Sie jetzt die Aufgaben 46–55. Sie haben dazu 60 Sekunden
+        Zeit.</p>
+    </div>
+    <div class="body" data-fragen>
+      <div class="item" data-nr="46" data-loesung="+">
+        <span class="num">46</span>
+        <span class="txt">Auf dem Gipfel der Zugspitze liegt ungefähr ein Meter Schnee.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="47" data-loesung="-">
+        <span class="num">47</span>
+        <span class="txt">Man kann derzeit auf der Zugspitze Ski fahren.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="48" data-loesung="-">
+        <span class="num">48</span>
+        <span class="txt">Auch in Garmisch-Partenkirchen selbst hat es geschneit.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="49" data-loesung="+">
+        <span class="num">49</span>
+        <span class="txt">In der kommenden Woche erwartet man für die Zugspitzregion freundliches
+          Wetter.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="50" data-loesung="+">
+        <span class="num">50</span>
+        <span class="txt">Am Sonntag wird ein Gottesdienst auf einer Bergstation abgehalten.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="51" data-loesung="-">
+        <span class="num">51</span>
+        <span class="txt">Die Zugspitze kann man momentan wegen des Nebels nicht erkennen.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="52" data-loesung="+">
+        <span class="num">52</span>
+        <span class="txt">Die Urlauber in Garmisch-Partenkirchen haben bei jedem Wetter genügend
+          Möglichkeiten zur Freizeitgestaltung.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="53" data-loesung="-">
+        <span class="num">53</span>
+        <span class="txt">Herr Werner erwartet keine Wetterbesserung.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="54" data-loesung="+">
+        <span class="num">54</span>
+        <span class="txt">Auch in früheren Jahren hat es im Juni und August geschneit.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="55" data-loesung="+">
+        <span class="num">55</span>
+        <span class="txt">Herr Werner ist mit seinem Arbeitsplatz zufrieden.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+
+      <p><button class="btn leise zeig" data-ziel="s2" type="button">Transkription
+        zeigen</button></p>
+      <div class="skript" id="s2">
+        <p><span class="sprecher">Interviewerin:</span> Liebe Hörerinnen und Hörer, wenn es Ihnen
+          aufgrund der hochsommerlichen Temperaturen hier bei uns im Norden ein bisschen zu warm
+          geworden ist, dann haben wir jetzt eine richtige kleine Abkühlung für Sie. Bei mir am
+          Telefon ist Herr Werner aus Garmisch-Partenkirchen. Herr Werner arbeitet bei der
+          Bayerischen Zugspitzbahn. Und er ist gerade an seinem Arbeitsplatz auf der Bergstation.
+          Hallo, Herr Werner. Sie werden’s kaum glauben, aber hier in Hamburg sind’s knapp 30
+          Grad. Wie ist denn das Wetter bei Ihnen?</p>
+        <p><span class="sprecher">Herr Werner:</span> Ja, grüß Gott, liebe Hörer, liebe Frau
+          Bitsch. Kalt isses. Hier auf dem Zugspitzgipfel haben wir circa ein Meter Schnee, etwas
+          weiter unten liegt ein dreiviertel Meter. Höchste Wintersaison zurzeit. Allerdings ohne
+          Skibetrieb muss ich sagen, gell.</p>
+        <p><span class="sprecher">Interviewerin:</span> Aha, Wintersport ist also nicht
+          möglich.</p>
+        <p><span class="sprecher">Herr Werner:</span> Nein, dafür reicht’s dann doch noch
+          nicht.</p>
+        <p><span class="sprecher">Interviewerin:</span> Wie sieht’s denn in Garmisch-Partenkirchen
+          aus? Liegt da denn auch etwas Schnee oder nur oben?</p>
+        <p><span class="sprecher">Herr Werner:</span> Nein, die Schneefallgrenze liegt circa bei
+          2000 Meter. Darunter ist alles grün. Das ist schön. Man kann wunderbar laufen, wenn es
+          nicht regnet.</p>
+        <p><span class="sprecher">Interviewerin:</span> Also regnen tut’s auch noch?</p>
+        <p><span class="sprecher">Herr Werner:</span> Ja, zwischendurch regnet’s immer wieder mal.
+          Damit die Leute nicht übermütig werden, gell, regnet’s herunten halt ein bissel.</p>
+        <p><span class="sprecher">Interviewerin:</span> Bei uns im Norden sind ja die
+          Wetterprognosen für die kommenden Wochen sehr gut. Es soll sommerlich bleiben. Haben Sie
+          sich erkundigt, wie es bei Ihnen werden wird?</p>
+        <p><span class="sprecher">Herr Werner:</span> Ab Montag soll’s besser werden. Wir hoffen
+          allerdings schon, dass wir am Sonntag besseres Wetter bekommen. Denn an der Bergstation
+          der Alpschützbahn tritt der Tridentiner Bergchor auf. Da wird eine Messe gefeiert und
+          wir hoffen natürlich auf einigermaßen schönes Wetter.</p>
+        <p><span class="sprecher">Interviewerin:</span> Eine Messe?</p>
+        <p><span class="sprecher">Herr Werner:</span> Ja, ein Gottesdienst, und da wollen wir den
+          Herrgott auch ein kleines bisschen um besseres Wetter bitten.</p>
+        <p><span class="sprecher">Interviewerin:</span> Herr Werner, können Sie mal versuchen zu
+          beschreiben, wie die Landschaft bei Ihnen im Moment aussieht? Ist es eher so eine
+          Zuckerbäckerlandschaft, wenn Sie so auf die Gipfel schauen, oder ist alles verhangen im
+          Nebel? Sieht man die Zugspitze?</p>
+        <p><span class="sprecher">Herr Werner:</span> Die Zugspitze sieht man zurzeit, wenn ich
+          aus meinem Bürofenster rausschaue. Die Zugspitze ist tief verschneit. Der Wettersteingrat
+          ist auch verschneit. Aber wie gesagt, weiter unten ist alles grün und es ist wirklich
+          gut zum Anschauen.</p>
+        <p><span class="sprecher">Interviewerin:</span> Was sagen eigentlich die Feriengäste zum
+          schlechten Wetter in den Bergen? Maulen die eigentlich schon kräftig herum oder sagen
+          die sich „Na ja, wir machen was draus“?</p>
+        <p><span class="sprecher">Herr Werner:</span> Na, das ist Gott sei Dank in
+          Garmisch-Partenkirchen so, dass es genügend Alternativen gibt. Wir haben ja unheimlich
+          viel zu bieten; und das schätzen die Leute: Es gibt ein Schwimmbad, es gibt ein
+          Eisstadion, wo die Leute Schlittschuh laufen können. Zurzeit fahren Sie auch gern rauf
+          nach Oberammergau zu den Passionsspielen. Es gibt 200 Kilometer Wanderwege. Also,
+          genügend Alternativen, wo man auch bei Schlechtwetter was machen kann. Es gibt dreimal
+          täglich Kurkonzerte und so. Es wird den Leuten nicht langweilig. Das ist wichtig.</p>
+        <p><span class="sprecher">Interviewerin:</span> Aber das Problem ist natürlich, dass man
+          das alles im Regen machen muss. Aber wenn die Sonne scheinen würde, wäre es ein bisschen
+          schöner, nicht?</p>
+        <p><span class="sprecher">Herr Werner:</span> Absolut richtig, Frau Bitsch, absolut.</p>
+        <p><span class="sprecher">Interviewerin:</span> Ja, Herr Werner, und wie geht’s Ihnen?
+          Schlägt der Schnee oder der Regen aufs Gemüt? Man hat jetzt nicht unbedingt den Eindruck
+          bei Ihnen.</p>
+        <p><span class="sprecher">Herr Werner:</span> Na, das schlägt nicht aufs Gemüt, nur,
+          wenn’s mal ein bisschen schneit. Es ist jedes Jahr irgendwann einmal so, dass ein länger
+          anhaltendes Tief da ist und da muss man einfach durch und hinterher kommt mit Sicherheit
+          wieder die Sonne. Der Sommer kommt ja noch, da bin ich ganz optimistisch.</p>
+        <p><span class="sprecher">Interviewerin:</span> Also, das heißt, es hat Sie auch nicht
+          besonders überrascht, dass es jetzt Neuschnee gegeben hat? Das ist keine einzigartige
+          Situation?</p>
+        <p><span class="sprecher">Herr Werner:</span> Nein, wir hatten im Juni heuer durchgehend
+          schönes Wetter. Und irgendwann holt uns das schlechte Wetter wieder mal ein.</p>
+        <p><span class="sprecher">Interviewerin:</span> Und so in den vergangenen Jahren, wenn Sie
+          zurückblicken, gab es da auch mal im Juli schon Neuschnee?</p>
+        <p><span class="sprecher">Herr Werner:</span> Nein, im Juli nicht. Aber dafür im Juno und
+          im August. Das gab’s also immer wieder mal.</p>
+        <p><span class="sprecher">Interviewerin:</span> Und was tun Sie ganz genau, um bei dem
+          Wetter bei Laune zu bleiben?</p>
+        <p><span class="sprecher">Herr Werner:</span> Mei, wissen Sie. Ich mache meine Arbeit hier
+          oben. Und ich möchte mich überhaupt nicht beklagen. Das ist doch herrlich hier auf dem
+          Gipfel: Ein Geschenk vom lieben Gott ist das. Da möchte ich mit keinem tauschen, der da
+          drunten in irgendeinem Büro hockt.</p>
+        <p><span class="sprecher">Interviewerin:</span> Neuschnee auf der Zugspitze im Juli, Herr
+          Werner, herzlichen Dank. Das hat uns Mut gemacht für die Tage, wenn’s hier bei uns wieder
+          mal kalt und schmuddelig ist.</p>
+        <p><span class="sprecher">Herr Werner:</span> Ja bitte. Viele Grüße an die Hörer, gell.</p>
+        <p><span class="sprecher">Interviewerin:</span> Das war Herr Werner vom verschneiten
+          Zugspitzgipfel. Wir machen weiter mit Musik.</p>
+        <span class="quelle">telc gGmbH · Übungstest 1 · Hörtexte S. 49</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= TEIL 3 ================= -->
+  <div class="teil" id="teil3">
+    <div class="kopf">
+      <span class="nr">Hörverstehen Teil 3 · Aufgaben 56–60 · je 5 Punkte</span>
+      <span class="ti">Fünf kurze Ansagen</span>
+      <p class="anw">Sie hören jetzt fünf kurze Texte. Dazu sollen Sie fünf Aufgaben lösen. Sie
+        hören diese Ansagen nur einmal. Entscheiden Sie beim Hören, ob die Aussagen 56–60 richtig
+        oder falsch sind.</p>
+    </div>
+    <div class="body" data-fragen>
+      <div class="item" data-nr="56" data-loesung="-">
+        <span class="num">56</span>
+        <span class="txt">Der Software-Service von Macrohard steht rund um die Uhr zur
+          Verfügung.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="57" data-loesung="-">
+        <span class="num">57</span>
+        <span class="txt">Für das Konzert mit Romano Castelli gibt es noch Karten ab 200
+          Euro.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="58" data-loesung="+">
+        <span class="num">58</span>
+        <span class="txt">Über den neuen Tarif von T-Upline können Sie sich im Internet
+          informieren.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="59" data-loesung="-">
+        <span class="num">59</span>
+        <span class="txt">Weil das Schwerpunktthema „Japan“ lautet, treten im Park des Museums für
+          Völkerkunde in diesem Jahr nur japanische Musiker auf.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+      <div class="item" data-nr="60" data-loesung="+">
+        <span class="num">60</span>
+        <span class="txt">Bei dem Festival gibt es nicht nur folkloristische Unterhaltung, sondern
+          auch kulinarische Spezialitäten.</span>
+        <span class="wahl"></span><span class="marke"></span>
+      </div>
+
+      <p><button class="btn leise zeig" data-ziel="s3" type="button">Transkription
+        zeigen</button></p>
+      <div class="skript" id="s3">
+        <p><span class="mark">56</span> Sehr geehrte Kundin, sehr geehrter Kunde, Sie haben den
+          Macrohard Software Service in Central Europe Deutschland angerufen. Sie rufen uns
+          außerhalb der Geschäftszeiten an. Sie erreichen uns von Montag bis Freitag von 8–18 Uhr
+          sowie Samstag von 9–17 Uhr. Wir bedanken uns für Ihren Anruf. Ihr Macrohard Software
+          Service.</p>
+        <p><span class="mark">57</span> Am Sonntag gastiert der junge Startenor Romano Castelli im
+          Aschaffenburger Schloss Johannisburg. Wer Lust hat auf den Mann mit der außergewöhnlichen
+          Stimme – Restkarten gibt es noch an der Abendkasse. Allerdings müssen die Fans bei
+          Eintrittspreisen bis zu 100 Euro für Ihren Klassik-Genuss doch gehörig in die Tasche
+          greifen.</p>
+        <p><span class="mark">58</span> Herzlich willkommen im T-Upline Service Center. Am neuen
+          Tarif „T-Upline Flat“ interessiert? Tarifwechsel ab sofort nutzen. Infos auf unserer
+          Homepage im Servicebereich unter www.upline.de. Ist Ihr Anschluss gesperrt, haben Sie Ihr
+          Passwort vergessen oder möchten Sie Ihre Kundendaten ändern, können Sie sich direkt an
+          den Auftragsservice wenden, erreichbar unter der Fax-Nummer 0800-330 50 00.</p>
+        <p><span class="mark">59</span> Und nun unser Wochenendtipp. Diesmal schicken wir Sie zum
+          Museumsuferfest. Ist es nun ein Treffen der Kulturen oder die längste Frittenbude der
+          Stadt? Wie immer kommt es ganz auf Sie selbst an, was Sie aus dem reichhaltigen Angebot
+          an Kultur, Film und Gastronomie machen. Mehr als 300 Veranstaltungen konkurrieren in
+          diesem Jahr um Aufmerksamkeit. Viele davon zum Thema „Japan“, das sich wie ein roter
+          Faden durch die Darbietungen zieht. Zwei andere Höhepunkte sind der Weltgarten im Park
+          des Museums für Völkerkunde. Hier ist Musik aus aller Welt zu hören, live und vom
+          Plattenteller. Und im kommunalen Kino läuft nonstop das Zeichentrickprogramm mit der
+          Kultfigur „La Linea“. Ansonsten: Lassen Sie sich einfach treiben.</p>
+        <p><span class="mark">60</span> Jede Menge Musik gibt’s bei folgendem Festival: In guter
+          alter Tradition findet auch dieses Jahr wieder im Schlosspark Freudenberg das Festival
+          „Folklore im Garten“ statt. Fast ein Vierteljahrhundert besteht es nun und wartet auch
+          diesmal mit einem bunten, abwechslungsreichen Programm auf. Über 180 Künstler an drei
+          Tagen für zehn Euro auf vier Spielstätten. Neben Musik, Kabarett und Literatur gibt es
+          außerdem auch jede Menge Stände mit internationalen Spezialitäten und kulinarischen
+          Schmankerln aus Hessen beim 24. Festival im Garten im Schlosspark Freudenberg in
+          Wiesbaden. Heute und morgen ab 14.00 Uhr.</p>
+        <span class="quelle">telc gGmbH · Übungstest 1 · Hörtexte S. 49</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="knopfreihe">
+    <button class="btn" id="auswerten" type="button">Auswerten</button>
+    <button class="btn leise" id="zuruecksetzen" type="button">Alles zurücksetzen</button>
+  </div>
+
+  <div class="ergebnis karte" id="ergebnis">
+    <h2 style="margin-top:0;">Dein Ergebnis</h2>
+    <p class="punkte" id="gesamt"></p>
+    <p id="urteil"></p>
+    <div class="tabwrap">
+      <table>
+        <thead><tr><th>Teil</th><th>Richtig</th><th>Punkte pro Aufgabe</th><th>Punkte</th></tr></thead>
+        <tbody id="tabelle"></tbody>
+      </table>
+    </div>
+    <div class="info"><b>Zur Einordnung.</b> Das Hörverstehen bringt <b>75 von 225 Punkten</b> der
+      schriftlichen Prüfung. Bestanden ist die schriftliche Prüfung ab <b>135 von 225</b> — nicht
+      pro Subtest, sondern zusammen. Trotzdem gilt: Wer hier unter der Hälfte bleibt, muss es in
+      Lesen und Sprachbausteinen wieder aufholen, und das ist schwer.</div>
+    <div class="gut"><b>Und jetzt der wichtigste Schritt.</b> Klapp bei jedem Teil die
+      <b>Transkription</b> auf und suche <b>nur die Stellen</b>, bei denen du falsch lagst. Lies
+      den Satz, der die Antwort enthält, laut vor. Genau dieser Satz ist der Grund, warum die
+      Aussage richtig oder falsch war — und beim nächsten Mal erkennst du die Formulierung
+      wieder.
+      <span class="fr">Ne relis pas tout : uniquement les passages où tu t'es trompée.</span></div>
+  </div>
+
+  <div class="warn"><b>Woher das kommt.</b> Audio, Aufgaben, Lösungsschlüssel und Transkription
+    stammen alle aus <b>telc Deutsch B2, Übungstest 1</b> (telc gGmbH, Frankfurt a. M., 2019) —
+    aus deinen eigenen Unterlagen im Repo. Die Tonspur wurde nur verkleinert, damit sie in diese
+    Seite passt; gekürzt oder verändert wurde nichts. Das Original in voller Qualität liegt in
+    <span style="font-family:var(--mono);font-size:13px;">deutsch-taeglich/telc-quellen/uebungstest/</span>.</div>
+
+</main>
+
+<footer>
+  telc Deutsch B2 · Übungstest 1 · Subtest 3 Hörverstehen · 75 Punkte
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var SPEICHER = 'telc-hv-ut1-';
+
+  /* ---------- Antwortknöpfe bauen ---------- */
+  document.querySelectorAll('.item').forEach(function(item){
+    var wahl = item.querySelector('.wahl');
+    ['+','-'].forEach(function(w){
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.dataset.w = w;
+      b.textContent = w === '+' ? '+' : '–';
+      b.setAttribute('aria-pressed','false');
+      b.setAttribute('aria-label', (w === '+' ? 'richtig' : 'falsch') +
+        ' für Aufgabe ' + item.dataset.nr);
+      b.addEventListener('click', function(){ setzen(item, w); });
+      wahl.appendChild(b);
+    });
+    /* gespeicherte Antwort laden */
+    var alt = null;
+    try { alt = localStorage.getItem(SPEICHER + item.dataset.nr); } catch(e){}
+    if(alt === '+' || alt === '-') setzen(item, alt, true);
+  });
+
+  function setzen(item, w, still){
+    item.dataset.antwort = w;
+    item.querySelectorAll('.wahl button').forEach(function(b){
+      b.setAttribute('aria-pressed', b.dataset.w === w ? 'true' : 'false');
+    });
+    item.classList.remove('richtig','falsch');
+    item.querySelector('.marke').textContent = '';
+    if(!still){
+      try { localStorage.setItem(SPEICHER + item.dataset.nr, w); } catch(e){}
+    }
+  }
+
+  /* ---------- Transkription auf- und zuklappen ---------- */
+  document.querySelectorAll('.btn.zeig').forEach(function(b){
+    b.addEventListener('click', function(){
+      var z = document.getElementById(b.dataset.ziel);
+      if(!z) return;
+      var offen = z.classList.toggle('offen');
+      b.textContent = offen ? 'Transkription ausblenden' : 'Transkription zeigen';
+    });
+  });
+
+  /* ---------- Auswerten ---------- */
+  var TEILE = [
+    {id:'teil1', name:'Teil 1 · Nachrichten', wert:5},
+    {id:'teil2', name:'Teil 2 · Interview',   wert:2.5},
+    {id:'teil3', name:'Teil 3 · Ansagen',     wert:5}
+  ];
+
+  function zahl(n){
+    return (Math.round(n * 10) / 10).toString().replace('.', ',');
+  }
+
+  document.getElementById('auswerten').addEventListener('click', function(){
+    var gesamt = 0, zeilen = '', offen = 0;
+    TEILE.forEach(function(t){
+      var items = document.querySelectorAll('#' + t.id + ' .item');
+      var treffer = 0;
+      items.forEach(function(item){
+        var a = item.dataset.antwort;
+        var l = item.dataset.loesung;
+        item.classList.remove('richtig','falsch');
+        var marke = item.querySelector('.marke');
+        if(!a){
+          offen++;
+          marke.textContent = 'nicht beantwortet — richtig wäre: ' + (l === '+' ? '+' : '–');
+          item.classList.add('falsch');
+          return;
+        }
+        if(a === l){
+          treffer++;
+          item.classList.add('richtig');
+          marke.textContent = 'richtig · ' + zahl(t.wert) + ' Punkte';
+        } else {
+          item.classList.add('falsch');
+          marke.textContent = 'falsch · richtig wäre: ' + (l === '+' ? '+' : '–');
+        }
+      });
+      var p = treffer * t.wert;
+      gesamt += p;
+      zeilen += '<tr><td>' + t.name + '</td><td>' + treffer + ' von ' + items.length +
+        '</td><td>' + zahl(t.wert) + '</td><td><b>' + zahl(p) + '</b></td></tr>';
+    });
+
+    document.getElementById('tabelle').innerHTML = zeilen;
+    document.getElementById('gesamt').textContent = zahl(gesamt) + ' von 75 Punkten';
+
+    var prozent = gesamt / 75 * 100;
+    var text;
+    if(prozent >= 80)      text = 'Sehr stark. Auf diesem Niveau trägt dich das Hörverstehen durch die ganze schriftliche Prüfung.';
+    else if(prozent >= 60) text = 'Über 60 % — das ist die Marke, die in der echten Prüfung für den schriftlichen Teil insgesamt zählt. Weiter so.';
+    else if(prozent >= 40) text = 'Noch nicht genug. Geh die falschen Aufgaben in der Transkription durch, laut, Satz für Satz.';
+    else                   text = 'Das war zu viel auf einmal. Mach den Test in ein paar Tagen noch einmal — vorher Teil 2 einzeln üben, der ist am längsten.';
+    if(offen) text += ' (' + offen + ' Aufgabe' + (offen === 1 ? '' : 'n') +
+      ' hast du nicht beantwortet — in der Prüfung immer raten, Falschantworten kosten nichts.)';
+    document.getElementById('urteil').textContent = text;
+
+    var box = document.getElementById('ergebnis');
+    box.classList.add('an');
+    box.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+
+  /* ---------- Zurücksetzen ---------- */
+  document.getElementById('zuruecksetzen').addEventListener('click', function(){
+    document.querySelectorAll('.item').forEach(function(item){
+      delete item.dataset.antwort;
+      item.classList.remove('richtig','falsch');
+      item.querySelector('.marke').textContent = '';
+      item.querySelectorAll('.wahl button').forEach(function(b){
+        b.setAttribute('aria-pressed','false');
+      });
+      try { localStorage.removeItem(SPEICHER + item.dataset.nr); } catch(e){}
+    });
+    document.getElementById('ergebnis').classList.remove('an');
+    document.querySelectorAll('.skript.offen').forEach(function(s){ s.classList.remove('offen'); });
+    document.querySelectorAll('.btn.zeig').forEach(function(b){
+      b.textContent = 'Transkription zeigen';
+    });
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+})();
+</script>
