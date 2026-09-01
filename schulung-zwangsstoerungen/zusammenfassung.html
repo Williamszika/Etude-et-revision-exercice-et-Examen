@@ -1,0 +1,1244 @@
+<title>Zwangsstörungen verstehen</title>
+<style>
+  :root{
+    --paper:#f3f4f6;--paper-2:#e6e9ee;--card:#fdfdff;--ink:#191c22;--ink-soft:#4d5361;--line:#d4d8e1;
+    --accent:#37527e;--accent-deep:#253c63;--accent-soft:#dfe5f1;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;
+    --gedanke:#6a4a8a;--gedankebg:#eae1f4;--handlung:#0f6f6b;--handlungbg:#dcefee;
+    --kreis:#a8394a;--kreisbg:#f3e0e3;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#131519;--paper-2:#0e1013;--card:#1c1f26;--ink:#ecEEF4;--ink-soft:#a4abbb;--line:#2e323d;
+    --accent:#94a6d6;--accent-deep:#b3c1e8;--accent-soft:#1b2135;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --gedanke:#b79ada;--gedankebg:#231a2e;--handlung:#6cc4bf;--handlungbg:#0f2726;
+    --kreis:#e08a98;--kreisbg:#2c171c;}}
+  :root[data-theme="dark"]{
+    --paper:#131519;--paper-2:#0e1013;--card:#1c1f26;--ink:#eceef4;--ink-soft:#a4abbb;--line:#2e323d;
+    --accent:#94a6d6;--accent-deep:#b3c1e8;--accent-soft:#1b2135;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --gedanke:#b79ada;--gedankebg:#231a2e;--handlung:#6cc4bf;--handlungbg:#0f2726;
+    --kreis:#e08a98;--kreisbg:#2c171c;}
+  :root[data-theme="light"]{
+    --paper:#f3f4f6;--paper-2:#e6e9ee;--card:#fdfdff;--ink:#191c22;--ink-soft:#4d5361;--line:#d4d8e1;
+    --accent:#37527e;--accent-deep:#253c63;--accent-soft:#dfe5f1;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;
+    --gedanke:#6a4a8a;--gedankebg:#eae1f4;--handlung:#0f6f6b;--handlungbg:#dcefee;
+    --kreis:#a8394a;--kreisbg:#f3e0e3;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding:46px 20px 30px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:0;z-index:30;background:var(--paper-2);border-bottom:1px solid var(--line);
+    padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding:0 18px 90px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:26px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.05rem;font-weight:600;margin:18px 0 6px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px 22px 18px;margin:16px 0;}
+  .card > :first-child{margin-top:0;}
+  .card > :last-child{margin-bottom:0;}
+  .lbl{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+  .quelle{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);background:var(--paper-2);
+    border:1px solid var(--line);border-radius:6px;padding:2px 8px;display:inline-block;margin-top:8px;}
+
+  ul,ol{padding-left:1.2em;margin:10px 0;}
+  li{margin:5px 0;}
+  ul.tick{list-style:none;padding-left:0;}
+  ul.tick li{padding-left:1.7em;position:relative;}
+  ul.tick li::before{content:"▸";position:absolute;left:.35em;color:var(--accent);}
+
+  .tabelle{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:12px;}
+  table{border-collapse:collapse;width:100%;min-width:480px;background:var(--card);}
+  th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+  .warn{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .info{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:10px;padding:15px 18px;margin:16px 0;}
+
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+  @media (max-width:660px){.zwei{grid-template-columns:1fr;}}
+
+  .fall{background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--accent);
+    border-radius:12px;padding:18px 20px;margin:16px 0;}
+  .fall .who{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:8px;}
+  .fall p{margin:0 0 10px;}
+  .fall p:last-child{margin-bottom:0;}
+  .zitat{font-family:var(--serif);font-size:1.08rem;font-style:italic;
+    border-left:3px solid var(--accent);padding-left:14px;margin:12px 0;color:var(--ink);}
+
+  /* Leiter Handlung -> Ritual -> Zwang */
+  .leiter{display:grid;gap:10px;margin:18px 0;}
+  .stufe{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:16px 18px;
+    border-left:5px solid var(--f,var(--accent));}
+  .stufe .n{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--f,var(--accent));display:block;margin-bottom:5px;}
+  .stufe b{display:block;font-family:var(--serif);font-size:1.12rem;margin-bottom:5px;}
+
+  /* Teufelskreis */
+  .kreis{display:grid;gap:0;margin:18px 0;}
+  .kr{border:1px solid var(--line);border-left:5px solid var(--kreis);background:var(--card);
+    border-radius:12px;padding:14px 18px;cursor:pointer;}
+  .kr:hover{border-color:var(--kreis);}
+  .kr .nr{font-family:var(--mono);font-size:11px;color:var(--kreis);font-weight:700;
+    letter-spacing:.1em;display:block;margin-bottom:4px;}
+  .kr b{display:block;margin-bottom:3px;}
+  .kr .d{font-size:15px;color:var(--ink-soft);display:none;}
+  .kr.auf .d{display:block;}
+  .kr-pfeil{text-align:center;color:var(--kreis);font-size:20px;line-height:1.4;}
+
+  /* Sortierspiel */
+  .sort-frage{border:1px solid var(--line);border-radius:12px;background:var(--card);
+    padding:20px 22px;margin:16px 0;}
+  .sort-frage .txt{font-size:1.05rem;margin:0 0 14px;}
+  .sort-knoepfe{display:flex;flex-wrap:wrap;gap:8px;}
+  .sort-knoepfe button{font:inherit;font-size:14.5px;cursor:pointer;padding:10px 16px;
+    border-radius:10px;border:1px solid var(--line);background:var(--paper);color:var(--ink);}
+  .sort-knoepfe button:hover:not(:disabled){border-color:var(--accent);}
+  .sort-knoepfe button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .sort-knoepfe button.richtig{background:var(--goodbg);border-color:var(--good);}
+  .sort-knoepfe button.falsch{background:var(--badbg);border-color:var(--bad);}
+  .sort-erkl{display:none;margin-top:13px;padding-top:12px;border-top:1px dashed var(--line);
+    font-size:15px;color:var(--ink-soft);}
+  .sort-erkl.an{display:block;}
+  .zaehler{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);margin-top:10px;}
+
+  /* Quiz */
+  .q{border:1px solid var(--line);border-radius:12px;background:var(--card);padding:18px 20px;margin:14px 0;}
+  .q .frg{font-weight:600;margin:0 0 10px;}
+  .q .opts{display:grid;gap:7px;}
+  .opt{display:block;width:100%;text-align:left;font-family:var(--sans);font-size:15.5px;
+    padding:10px 14px;border:1px solid var(--line);border-radius:9px;background:var(--paper);
+    color:var(--ink);cursor:pointer;}
+  .opt:hover:not(.aus){border-color:var(--accent);}
+  .opt:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  .opt.richtig{background:var(--goodbg);border-color:var(--good);}
+  .opt.falsch{background:var(--badbg);border-color:var(--bad);}
+  .q .erkl{display:none;margin-top:11px;padding-top:11px;border-top:1px dashed var(--line);
+    font-size:15px;color:var(--ink-soft);}
+  .q .erkl.an{display:block;}
+  .punkte{font-family:var(--mono);font-size:13px;text-align:center;padding:14px;
+    border:1px solid var(--line);border-radius:12px;background:var(--paper-2);margin-top:18px;}
+  .btn{font-family:var(--mono);font-size:12px;letter-spacing:.05em;cursor:pointer;
+    padding:9px 16px;border-radius:999px;border:1px solid var(--accent);
+    background:transparent;color:var(--accent-deep);}
+  .btn:hover,.btn:focus-visible{background:var(--accent);color:var(--card);}
+  .btn:focus-visible{outline:2px solid var(--accent-deep);outline-offset:2px;}
+
+  footer{border-top:1px solid var(--line);margin-top:70px;padding:30px 20px 50px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 11 · UE 5 · Anja Funke</p>
+  <h1>Zwangsstörungen verstehen</h1>
+  <p class="sub">Von der ganz normalen Handlung bis zur Zwangsstörung — der Weg, den deine
+    Dozentin geht. Mit den Fallbeispielen aus den Artikeln, dem Teufelskreis, der die ganze
+    Erkrankung erklärt, und dem, was für dich als Pflegekraft daraus folgt.
+    <span class="fr">Tout vient de tes cinq documents. Rien n'est ajouté.</span></p>
+  <div class="meta"><span>5 Quellen</span><span>4 Fallbeispiele</span>
+    <span>Sortierspiel</span><span>18 Quizfragen</span></div>
+</header>
+
+<nav class="toc">
+  <a href="#leiter">Handlung bis Zwang</a>
+  <a href="#definition">Definition</a>
+  <a href="#gedanken">Gedanke oder Handlung</a>
+  <a href="#inhalte">Die Inhalte</a>
+  <a href="#kreis">Der Teufelskreis</a>
+  <a href="#entstehung">Entstehung</a>
+  <a href="#diagnostik">Diagnostik</a>
+  <a href="#therapie">Therapie</a>
+  <a href="#pflege">Pflegerische Begleitung</a>
+  <a href="#station">Alltag auf Station</a>
+  <a href="#kinder">Kinder und Jugendliche</a>
+  <a href="#quiz">Quiz</a>
+</nav>
+
+<main>
+
+<section id="leiter">
+  <h2>Von der Handlung zum Zwang</h2>
+  <p class="lead">Deine Dozentin fängt nicht bei der Krankheit an, sondern bei dir. Das ist der
+    Schlüssel: Zwischen dem, was jeder Mensch tut, und einer Zwangsstörung liegt kein Abgrund,
+    sondern eine Leiter.</p>
+
+  <div class="leiter">
+    <div class="stufe" style="--f:var(--good);">
+      <span class="n">Stufe 1</span><b>Handlung</b>
+      <p>„<b>Bewusst</b> ausgeführte Tat.“</p>
+    </div>
+    <div class="stufe" style="--f:var(--handlung);">
+      <span class="n">Stufe 2</span><b>Ritual</b>
+      <p>„<b>Wiederholtes, immer gleichbleibendes, regelmäßiges Vorgehen nach einer festgelegten
+        Ordnung</b>; Zeremoniell.“</p>
+    </div>
+    <div class="stufe" style="--f:var(--warn);">
+      <span class="n">Stufe 3</span><b>Zwang</b>
+      <p>„<b>Unfreiwillige</b> Gedanken oder Handlungen, die als <b>unangenehm</b> empfunden
+        werden“ · „Starker Drang in jemandem, innerer Zwang“ · „Starker Einfluss, dem sich
+        jemand <b>nicht entziehen kann</b>“ · „Das Beherrschtsein von Vorstellungen,
+        Handlungsimpulsen <b>gegen den bewussten Willen</b>“.</p>
+    </div>
+    <div class="stufe" style="--f:var(--bad);">
+      <span class="n">Stufe 4</span><b>Zwangsstörung</b>
+      <p>Die Erkrankung — siehe unten.</p>
+    </div>
+  </div>
+
+  <div class="info"><b>Ihre Fragen an dich, aus den Folien:</b> Welche Handlungen führst du
+    <em>gewohnheitsmäßig</em> durch — bewusst oder unbewusst? Welche, weil du sie <em>gerne</em>
+    machst? Welche, weil deine <em>Haltung</em> oder die <em>Gesellschaft</em> es fordert? Wie
+    <em>gewissenhaft</em> führst du sie durch? Welche Handlungen sind zu <b>Ritualen</b>
+    geworden?
+    <p style="margin:10px 0 0;">Beantworte das für dich selbst, bevor du weiterliest. Danach
+    verstehst du den Unterschied besser als aus jeder Definition.</p></div>
+
+  <div class="card">
+    <span class="lbl">Und noch eine Bedeutung von „Zwang“</span>
+    <p>Ihre Folie listet auch die <b>nicht-medizinischen</b> Bedeutungen auf: Einwirken von außen
+      und Androhung von Gewalt · Beschränkung der eigenen Freiheit („tun Sie sich keinen Zwang
+      an“) · <b>von gesellschaftlichen Normen ausgeübter Druck</b> auf menschliches Verhalten
+      (Mode, Gruppenzwang, Impfzwang) · <b>Sachzwänge</b>, also unabänderliche Gegebenheiten
+      (technische Zwänge).</p>
+    <p>Dazu ihre Frage: <b>„Wer zwingt uns?“</b></p>
+    <span class="quelle">Zwangsstörungen CE 11 UE 5, Anja Funke</span>
+  </div>
+</section>
+
+<section id="definition">
+  <h2>Was ist eine Zwangsstörung?</h2>
+  <div class="card" style="border-left:4px solid var(--accent);">
+    <p style="font-family:var(--serif);font-size:1.12rem;">Zwangsstörungen (<b>OCD</b> =
+      obsessive-compulsive disorder) sind <b>psychische Erkrankungen</b>, die durch
+      <b>Zwangsgedanken und/oder Zwangshandlungen</b> gekennzeichnet sind.</p>
+    <p>Betroffene erleben <b>unwillkürliche, intrusive</b> — unerwünschte und quälende —
+      <b>Gedanken, die Angst oder Unbehagen auslösen</b>, und versuchen, diese durch
+      <b>rituelle Handlungen oder mentale Strategien zu neutralisieren</b>.</p>
+    <span class="quelle">Funke</span>
+  </div>
+
+  <h3>Die ICD-10-Kriterien — altersunabhängig</h3>
+  <div class="card">
+    <p><b>Für eine eindeutige Diagnose sollen wenigstens zwei Wochen lang an den meisten Tagen</b>
+      Zwangsgedanken oder -handlungen oder beides nachweisbar sein; sie müssen <b>quälend</b>
+      sein oder die normalen Aktivitäten <b>stören</b>.</p>
+    <p><b>Die Zwangssymptome müssen folgende Merkmale aufweisen:</b></p>
+    <ol>
+      <li>Sie müssen als <b>eigene</b> Gedanken oder Impulse für den Patienten erkennbar sein.</li>
+      <li>Wenigstens einem dieser Gedanken oder einer Handlung muss noch — wenn auch erfolglos —
+        <b>Widerstand</b> geleistet werden, selbst wenn sich der Patient gegen andere nicht länger
+        wehrt.</li>
+      <li>Der Gedanke oder die Handlungsausführung dürfen <b>nicht an sich angenehm</b> sein
+        (einfache Erleichterung von Spannung und Angst wird nicht als angenehm in diesem Sinn
+        betrachtet).</li>
+      <li>Die Gedanken, Vorstellungen oder Impulse müssen sich in <b>unangenehmer Weise
+        wiederholen</b>.</li>
+    </ol>
+    <span class="quelle">ICD-10, zitiert in Walitza et al., Dtsch Arztebl Int 2011</span>
+  </div>
+
+  <div class="gut"><b>Merk dir Kriterium 1 und 2.</b> Sie unterscheiden den Zwang von zwei
+    anderen Krankheitsbildern:
+    <ul class="tick" style="margin-top:8px;">
+      <li><b>Eigene</b> Gedanken → nicht von außen auferlegt. Das grenzt gegen die
+        <b>Gedankeneingebung</b> ab, die zur Schizophrenie gehört.</li>
+      <li><b>Widerstand</b> und Leidensdruck → der Zwang ist <b>Ich-dyston</b>, er fühlt sich
+        fremd an. Das grenzt gegen die <b>zwanghafte Persönlichkeitsstörung</b> ab, die
+        Ich-synton erlebt wird.</li>
+    </ul></div>
+
+  <div class="card">
+    <span class="lbl">Wie häufig?</span>
+    <ul class="tick">
+      <li>In der jüngsten in Deutschland durchgeführten epidemiologischen Studie war die
+        Zwangsstörung die <b>vierthäufigste psychische Störung</b> — „was möglicherweise den
+        einen oder anderen überrascht haben dürfte“.</li>
+      <li>Trotzdem: „immer noch <b>häufig verheimlichte</b> Erkrankungen“ mit
+        <b>niedrigen Behandlungsraten</b>. „Aufgrund von <b>Scham und Verheimlichung</b> wird die
+        Störung sogar <b>innerhalb von Behandlungssettings oft nicht diagnostiziert</b>.“</li>
+      <li>Deshalb: „<b>Ein gezieltes Nachfragen</b> nach Symptomen einer Zwangsstörung sollte zu
+        einer gründlichen Erstexploration gehören.“</li>
+      <li>Erste Symptome zeigen sich meist schon <b>in Kindheit und Jugend</b>. Häufigster
+        Manifestationszeitraum: <b>zwischen dem 18. und 25. Lebensjahr</b>.</li>
+      <li>Bei Erwachsenen sind <b>Männer und Frauen ungefähr gleich häufig</b> betroffen.</li>
+    </ul>
+    <span class="quelle">Voderholzer, Der Nervenarzt 2022 · Funke</span>
+  </div>
+  <div class="achtung"><b>Das ist deine wichtigste pflegerische Erkenntnis aus diesem Absatz.</b>
+    Menschen mit Zwängen erzählen von sich aus <b>nichts</b> — aus Scham. Selbst in der Klinik
+    wird die Störung deshalb oft übersehen. Wenn du nicht <em>fragst</em>, erfährst du es nicht.</div>
+</section>
+
+<section id="gedanken">
+  <h2>Zwangsgedanke oder Zwangshandlung?</h2>
+  <p class="lead">Diese Unterscheidung ist die Frage 1 des Arbeitsauftrags deiner Dozentin.</p>
+
+  <div class="zwei">
+    <div class="card" style="border-left:4px solid var(--gedanke);">
+      <span class="lbl" style="color:var(--gedanke);">Zwangsgedanken</span>
+      <p>Gedanken, die <b>aufpeitschen</b> und als <b>unangenehm</b> empfunden werden.</p>
+      <p><b>Vier Merkmale, die erfüllt sein müssen:</b></p>
+      <ol>
+        <li>Gedanken, Vorstellungen und Bilder, die ins Bewusstsein <b>„einschießen“</b> und
+          <b>schwer abgestellt</b> werden können, auch wenn die Person sie als <b>sinnlos und
+          unangemessen</b> erachtet. Sie lösen oft <b>Angst oder Unbehagen</b> aus.</li>
+        <li>Die Person erkennt, dass sie ein <b>Produkt des eigenen Geistes</b> sind — nicht von
+          außen auferlegt wie bei der Gedankeneingebung.</li>
+        <li>Die Gedanken sind <b>unerwünscht</b>, lösen <b>inneren Widerstand</b> aus und können
+          schwer kontrolliert werden.</li>
+        <li>Die Gedanken sind <b>übertriebene Sorgen</b> über reale Lebensprobleme.</li>
+      </ol>
+    </div>
+    <div class="card" style="border-left:4px solid var(--handlung);">
+      <span class="lbl" style="color:var(--handlung);">Zwangshandlungen</span>
+      <p>Die <b>Rituale</b>, mit denen der Betroffene versucht, sich zu beruhigen.</p>
+      <p><b>Und der Punkt, den fast alle übersehen:</b> Es gibt auch <b>nicht sichtbare</b>
+        Zwangshandlungen. „<b>Kognitive Rituale</b> zählen zu den nicht sichtbaren
+        Zwangshandlungen, da sie <b>ausschließlich im Kopf</b> stattfinden.“</p>
+      <p>„Häufig findet sich eine <b>Durchmischung</b> von Zwangsgedanken und
+        Zwangshandlungen.“</p>
+    </div>
+  </div>
+  <div class="warn"><b>Warum das für dich praktisch wichtig ist:</b> Wenn du nur auf sichtbare
+    Rituale achtest — Waschen, Kontrollieren —, übersiehst du die Menschen, deren Zwang komplett
+    im Kopf abläuft. Die wirken von außen ruhig und sind trotzdem schwer belastet.</div>
+
+  <h3>Sortierspiel: Was ist das?</h3>
+  <p>Ordne jede Situation zu. <span class="fr">Dis ta réponse à voix haute avant de cliquer.</span></p>
+  <div id="sortraum"></div>
+  <div class="zaehler" id="sortzaehler"></div>
+</section>
+
+<section id="inhalte">
+  <h2>Die Inhalte der Zwangsgedanken</h2>
+  <p class="lead">„Zwangsgedanken drehen sich oft um Themen wie <b>Ansteckung, Verschmutzung,
+    Gewalt, Beziehung, Sexualität und Religion</b>.“</p>
+
+  <div class="achtung"><b>Der Satz, der dich als Pflegekraft entlastet — wörtlich aus dem
+    Artikel:</b>
+    <p class="zitat" style="margin-bottom:0;">„Für Außenstehende können sich die Inhalte zum Teil
+      absurd und schockierend anhören. <b>Das Thema der Gedanken ist jedoch nicht wichtig.</b>
+      Die Therapieverfahren bleiben prinzipiell immer gleich, egal, um welchen Inhalt es sich
+      handelt.“</p>
+    <p style="margin:12px 0 0;">Du musst also <b>nicht</b> erschrecken, wenn jemand dir von
+      Gedanken an Gewalt oder an sexuelle Inhalte erzählt. Ein Zwangsgedanke ist keine Absicht.
+      Genau deshalb steht in den Folien deiner Dozentin: <b>„Zwangsinhalte nicht bewerten.“</b></p></div>
+
+  <h3>Angst vor Ansteckung und Verschmutzung</h3>
+  <div class="fall">
+    <span class="who">Fallbeispiel · Frau Korzepa, 45 Jahre, Unternehmensberaterin, alleinstehend</span>
+    <p>Sie leidet unter der Zwangsbefürchtung, sich mit <b>HIV</b> anstecken zu können bzw. die
+      Erkrankung zu übertragen und einer nahestehenden Person zu schaden — etwa ihrer Nichte,
+      die sie sehr liebt.</p>
+    <p>Um mögliches Unheil abzuwenden, <b>scannt sie immer ihre Umgebung ab</b> nach
+      Besonderheiten, die sie mit Blut und Sperma assoziiert: gebrauchte Kondome, Taschentücher,
+      Spritzen. Entdeckt sie einen Fleck auf dem Asphalt, springen ihre Alarmglocken an. Sie
+      gerät in <b>starke Anspannung bis hin zu Panik</b>.</p>
+    <p class="zitat">„Oh Gott, ich bin vielleicht in Berührung mit diesem braunen Fleck auf dem
+      Asphalt gekommen, das könnte getrocknetes Blut sein, darin könnten HIV-Viren sein, das ist
+      sehr gefährlich!“</p>
+    <p>— selbst wenn der Punkt <b>zwei Meter entfernt</b> ist und ihr klar ist, dass sie ihn
+      nicht berührt hat. „Trotzdem <b>fühlt es sich so an</b>, als habe sich etwas auf sie
+      übertragen.“</p>
+    <p>Zu Hause müssen alle Kleider und die Handtasche sofort gewaschen werden. Sie verzichtet
+      längst auf teure Taschen, weil diese durch das Waschen kaputtgehen. Regelmäßig lässt sie
+      beim Hausarzt ihr Blut auf HIV testen — <b>das Warten auf das Ergebnis löst zusätzlichen
+      Stress aus</b>. Kurzfristig beruhigt sie ein negativer Test, nach ein paar Tagen ist die
+      Unsicherheit wieder da.</p>
+    <p><b>Sie leidet darunter, dass sie sich von ihrer Nichte distanzieren muss.</b></p>
+  </div>
+  <div class="info">Achte auf zwei Dinge in diesem Fall: Erstens, das <b>Wissen hilft nicht</b> —
+    sie <em>weiß</em>, dass sie den Fleck nicht berührt hat, und trotzdem fühlt es sich anders
+    an. Zweitens, der <b>HIV-Test ist selbst schon eine Zwangshandlung</b>: er beruhigt kurz und
+    die Unsicherheit kommt zurück. Genau das ist der Teufelskreis weiter unten.</div>
+
+  <h3>Aggressive Zwangsgedanken und Zwangsimpulse</h3>
+  <div class="card">
+    <p>Sie können sich mit <b>Bildern gewalttätigen Inhalts</b> beschäftigen, mit der
+      Befürchtung, jemanden <b>versehentlich zu vergiften</b> (Haushaltsmittel, Medikamente,
+      giftige Pflanzen) oder jemanden <b>versehentlich angefahren</b> zu haben.</p>
+    <p><b>„Aggressive Zwangsimpulse können auch gegen die eigene Person gerichtet sein.“</b></p>
+  </div>
+  <div class="fall">
+    <span class="who">Fallbeispiel · Frau Käser, 32 Jahre, Krankenschwester, glücklich verheiratet</span>
+    <p>Ein lebensfroher Mensch, keine depressive Episode. Auf dem Weg zur Arbeit bekam sie am
+      Bahnsteig plötzlich Angst — ein <b>gedanklicher Impuls, sie könne vor den einfahrenden Zug
+      springen</b>. Sie bekam Panik, kehrte sofort um und ging nach Hause. Sie musste weinen und
+      fühlte sich verunsichert.</p>
+    <p class="zitat">„Was, wenn ich irgendwann durchdrehe und mich wirklich mal vor den Zug
+      werfe? Ich möchte doch gar nicht sterben, lebe gerne. Oder möchte ich unbewusst vielleicht
+      doch? Was hat das zu bedeuten? Was ist los mit mir?“</p>
+    <p>Die Zwangsgedanken nehmen stetig zu. Aus Angst, dem Impuls nachgeben zu können,
+      <b>meidet sie inzwischen Bahnhöfe, Hochhäuser und Brücken</b>. Am liebsten ist sie mit
+      ihrem Mann oder Freunden unterwegs, da sie sich dann sicher fühlt.</p>
+  </div>
+  <div class="achtung"><b>Dieser Fall ist der wichtigste für dich — und er wird am häufigsten
+    falsch verstanden.</b> Frau Käser ist <b>nicht suizidal</b>. Sie will leben. Der Gedanke ist
+    ein <b>Zwangsgedanke</b>, kein Wunsch — er löst gerade deshalb solche Panik aus, weil er ihrem
+    Willen völlig widerspricht (Ich-dyston). Wer das verwechselt, reagiert falsch.
+    <p style="margin:10px 0 0;">Beachte auch, was daraus geworden ist: <b>Vermeidungsverhalten</b>.
+      Bahnhöfe, Hochhäuser, Brücken. Der Zwang schrumpft ihr Leben zusammen, ohne dass eine
+      einzige sichtbare Handlung nötig wäre.</p></div>
+
+  <h3>Sexuelle und religiöse Zwangsgedanken</h3>
+  <div class="card">
+    <p><b>Sexuelle Zwangsgedanken:</b> der Gedanke an gewalttätigen Sex, an „unnatürliche
+      sexuelle Praktiken“ oder der Impuls, Bekannte oder Unbekannte sexuell anzufallen.</p>
+    <p><b>Religiöse Zwangsgedanken:</b> zum Beispiel der Gedanke „Gott sei verflucht“ oder
+      obszöne Vorstellungen mit Heiligen.</p>
+    <p><b>Ansteckung und Verschmutzung, weitere Inhalte:</b> der Gedanke, mit Kot oder Urin in
+      Kontakt zu kommen und diese weiter zu übertragen; oder mit Sperma in Kontakt zu kommen und
+      jemanden damit ohne Geschlechtsakt zu schwängern.</p>
+  </div>
+
+  <h3>Kontrollzwänge</h3>
+  <div class="fall">
+    <span class="who">Fallbeispiel · Herr Starke, 25 Jahre, Sozialpädagoge, WG</span>
+    <p>Seit er von zu Hause ausgezogen ist, haben sich seine Zwänge <b>massiv verstärkt</b>.
+      Alle elektrischen Geräte sind schrecklich für ihn. Er hat Angst, den Herd oder Teekocher
+      nicht ausgemacht zu haben und <b>verantwortlich, gar schuldig für einen Brand</b> zu sein.</p>
+    <p>Jeden Abend kontrolliert er, ob der Herd aus ist, alle Fenster geschlossen sind, die
+      Wasserhähne zugedreht und alle elektrischen Geräte ausgeschaltet sind.
+      <b>Das kann 30 Minuten bis zwei Stunden dauern.</b></p>
+    <p>Er <b>schämt sich</b> für seine Zwänge, deshalb wartet er, bis alle Mitbewohner im Bett
+      sind. Die Wohnung und seine Arbeitsstelle verlässt er <b>niemals als Letzter</b>, damit er
+      nicht für ein mögliches Unglück verantwortlich sein kann. Unterwegs geht er in Gedanken
+      immer wieder durch, ob er alles kontrolliert hat.</p>
+    <p>Seine Zwangshandlungen kosten enorm viel Kraft und Zeit. Deshalb <b>vermeidet er
+      elektrische Geräte, wenn er allein ist. Den Herd nutzt er gar nicht mehr.</b></p>
+  </div>
+  <div class="card">
+    <span class="lbl">Was Kontrollzwänge kennzeichnet</span>
+    <p>„Betroffene <b>vertrauen ihrer Wahrnehmung nicht mehr</b>, stehen unter starker Anspannung
+      und haben Angst, dass im nächsten Moment etwas Schlimmes passieren könnte. Sie befürchten,
+      etwas übersehen zu haben, das zur <b>Katastrophe</b> führen wird.“</p>
+    <p><b>Weitere Beispiele:</b></p>
+    <ul class="tick">
+      <li>Kontrollieren, ob man <b>jemanden verletzt</b> hat, ohne es zu bemerken. Andere bitten
+        zu bestätigen, dass alles in Ordnung ist, oder anrufen, um zu fragen, wie es ihnen
+        geht.</li>
+      <li>Überprüfen, ob man <b>sich selbst</b> nicht verletzt hat. Nach Blut und Verletzungen
+        suchen. Häufige Arztbesuche, um sich bestätigen zu lassen, dass man unverletzt ist.</li>
+      <li>Überprüfen, ob sich <b>etwas Furchtbares ereignet</b> hat: Zeitungen nach Katastrophen
+        durchforsten, die man glaubt selbst verursacht zu haben; andere fragen, ob man nicht
+        einen Unfall verursacht hat.</li>
+    </ul>
+  </div>
+
+  <h3>Wasch- und Reinigungszwänge — besonders häufig</h3>
+  <div class="card">
+    <p>Betroffene <b>ekeln sich</b> vor eigenen und/oder fremden Sekreten wie Urin, Kot, Blut,
+      Speichel und Sperma oder schlichtweg vor Schmutz. Sie haben <b>Angst vor ansteckenden
+      Krankheiten</b> wie HIV oder Hepatitis sowie die Sorge, mit giftigen Substanzen in Kontakt
+      zu kommen.</p>
+    <p><b>Was du an der Haut siehst:</b> „Die langen Waschrituale hinterlassen oft sichtbare
+      Spuren. <b>Trockene Hände mit blutigen Stellen bis hin zu Hautekzemen</b> sind nicht
+      selten. Die Hände sehen oft <b>unnatürlich blassweiß bis rosarot</b> gefärbt aus.“</p>
+    <p><b>Wozu Wasch- und Reinigungszwänge zählen:</b></p>
+    <ul class="tick">
+      <li><b>Händewaschen</b>, das unverhältnismäßig viel Zeit in Anspruch nimmt oder mit einem
+        bestimmten Ritual verbunden ist</li>
+      <li>Übertriebene oder mit Ritualen verbundene Gewohnheiten beim <b>Duschen, Baden,
+        Zähneputzen, Kämmen und Schminken</b> oder beim Benutzen der Toilette</li>
+      <li>Zwanghafte Gewohnheiten bei der <b>Reinigung im Haushalt</b> — Wasserhähne, Toiletten,
+        Fußböden, Küchentische, Küchenutensilien</li>
+    </ul>
+  </div>
+  <div class="warn"><b>Die finanzielle Seite, an die niemand denkt.</b> „Es ist nicht
+    außergewöhnlich, dass Zwangsstörungen einen <b>hohen Verbrauch von Materialien</b> mit sich
+    bringen“ — große Mengen Waschmittel, Haushaltstücher, WC-Rollen. Das führt zu
+    <b>einschneidenden finanziellen Belastungen</b>. Auffällig hoher Wasser- und Stromverbrauch
+    kann bei der Hausverwaltung Aufmerksamkeit erregen. <b>Bei finanziellen Problemen kann
+    sozialarbeiterische Hilfe sinnvoll sein.</b></div>
+
+  <h3>Zwänge sind nicht auf bestimmte Themen beschränkt</h3>
+  <div class="card">
+    <p>Sie können sich auf alles beziehen: das <b>exzessive Erstellen von Listen</b> über
+      Alltagsdinge, den <b>Drang zu reden, zu fragen</b>, Dinge <b>anzufassen, anzutippen oder
+      zu reiben</b>, oder auf Rituale, die <b>Blinzeln oder Anstarren</b> beinhalten.</p>
+    <p><b>Wiederholungszwänge</b> können sich zum Beispiel auf das <b>Lesen</b> beziehen: einzelne
+      Sätze und Abschnitte werden so lange gelesen, <b>bis es sich richtig anfühlt</b>.</p>
+  </div>
+  <div class="gut"><b>Eine sehr konkrete pflegerische Anweisung aus dem Artikel:</b>
+    „Fragen Sie davon betroffene Zwangspatienten grundsätzlich, ob das <b>Lesen, Schreiben oder
+    Ausfüllen von Formularen</b> durch den Zwang eingeschränkt ist. Manchmal reicht es, wenn man
+    Betroffenen dafür <b>länger Zeit</b> lässt. Es kann wichtig sein, Informationen
+    <b>im Gespräch</b> zu vermitteln und darauf zu verzichten, Arbeitsblätter und Lektüren
+    mitzugeben.“
+    <p style="margin:10px 0 0;">Denk daran bei jedem Aufnahmebogen, Biografiebogen und
+      Anamnesebogen.</p></div>
+
+  <h3>Kombination von Zwängen</h3>
+  <div class="card">
+    <p>„In der Praxis beobachtet man, dass <b>die meisten Betroffenen nicht nur an einem Zwang,
+      sondern einer Kombination von mehreren Zwängen</b> leiden. Dabei können die Zwänge
+      unterschiedlich stark ausgeprägt sein und sich <b>im Laufe der Zeit verändern</b>.
+      Beispielsweise kann ein Kontrollzwang über die Jahre schwächer werden, ein Waschzwang neu
+      dazukommen.“</p>
+    <span class="quelle">Typische Zwänge, Irena Mikic, Heilberufe 6.2023</span>
+  </div>
+</section>
+
+<section id="kreis">
+  <h2>Der Teufelskreis — das Herzstück</h2>
+  <p class="lead">Wenn du nur <em>eine</em> Sache aus dieser Schulung mitnimmst, dann diese. Sie
+    erklärt, warum die Erkrankung nicht von selbst aufhört — und warum die wichtigste
+    Pflegeregel lautet: <b>Rituale nicht verstärken</b>. Klick jeden Schritt an.</p>
+
+  <div class="kreis" id="kreis"></div>
+
+  <div class="achtung" style="margin-top:20px;"><b>Der entscheidende Satz, wörtlich:</b>
+    „<b>Kurzfristig erlebte Erleichterung verstärkt das Verhalten</b>, die Gedanken werden als
+    noch wichtiger angesehen, was zu einer weiteren Stabilisierung der ständigen Beschäftigung
+    mit dem Gedanken führt. Der Betroffene ist in einem <b>Teufelskreis aus aufdringlichen
+    Gedanken und Widerstandsversuchen</b> — auch sogenanntes <b>Neutralisieren</b>, zum Beispiel
+    mit Zwangshandlungen — <b>gefangen</b>.“
+    <p style="margin:10px 0 0;">Und: „Der Versuch, die aufdringlichen Gedanken <b>nicht zu denken
+      oder zu unterdrücken</b>, hat aber einen <b>gegenteiligen Effekt</b>, er <b>erhöht</b> die
+      Beschäftigung mit den aufdringlichen Gedanken.“</p>
+    <span class="quelle">Walitza et al., Dtsch Arztebl Int 2011</span></div>
+
+  <div class="gut"><b>Daraus folgt die ganze Therapie.</b> Wenn kurzfristige Erleichterung den
+    Zwang füttert, dann muss man genau diese Erleichterung <b>weglassen</b> — die Angst aushalten,
+    bis sie von selbst sinkt. Das ist die <b>Exposition mit Reaktionsverhinderung</b>. Und daraus
+    folgt auch deine Rolle: Jedes Mal, wenn du eine Rückversicherung gibst („Nein, da war nichts
+    auf dem Boden“), gibst du kurzfristige Erleichterung — und fütterst den Kreis.</div>
+
+  <div class="warn"><b>Und bei Kindern kommen die Eltern dazu.</b> „In das Zwangsverhalten
+    betroffener Kinder sind Bezugspersonen, meist insbesondere die Eltern, <b>sehr oft
+    einbezogen</b> — zum Beispiel indem sie Fragen bei einem Frage- und Kontrollzwang
+    beantworten, Waschzwängen unbegrenzt Raum geben, auch um <b>aggressiven Reaktionen des Kindes
+    aus dem Weg zu gehen</b>. <b>Ungewollt erhalten sie damit den Teufelskreis aufrecht.</b>“</div>
+</section>
+
+<section id="entstehung">
+  <h2>Entstehung</h2>
+  <div class="card">
+    <p><b>Multifaktoriell</b> — deine Dozentin nennt fünf Erklärungsmodelle:</p>
+    <ul class="tick">
+      <li>Biologisches Modell</li>
+      <li>Psychoanalytisches Modell</li>
+      <li>Lerntheoretisches Modell</li>
+      <li>Gesellschaftskritisches Modell</li>
+      <li>Systemisches Modell</li>
+    </ul>
+    <p>Dazu das <b>Vulnerabilitäts-Stress-Modell</b>.</p>
+    <p><b>Beginn</b> typischerweise im Jugend- oder frühen Erwachsenenalter.
+      <b>Männer und Frauen ungefähr gleich häufig</b> betroffen.</p>
+    <span class="quelle">Funke</span>
+  </div>
+
+  <h3>Was die Artikel dazu ergänzen</h3>
+  <div class="zwei">
+    <div class="card">
+      <span class="lbl">Neurobiologisch</span>
+      <ul class="tick">
+        <li>Das Erkrankungsrisiko für <b>erstgradig Verwandte</b> ist <b>3- bis 12-mal höher</b>
+          als in der Allgemeinbevölkerung.</li>
+        <li><b>Je früher der Beginn, desto häufiger</b> sind auch erstgradig Verwandte
+          betroffen.</li>
+        <li>Heritabilität bei Kindern <b>0,45–0,65</b>, bei Erwachsenen <b>0,27–0,47</b>.</li>
+        <li>Je später der Beginn, umso mehr Gewicht erhalten <b>Umweltbedingungen und
+          Traumata</b>.</li>
+        <li>Befunde sprechen für eine <b>Dysfunktion in der Informationsverarbeitung</b>
+          innerhalb <b>kortiko-striato-thalamo-kortikaler Kreisläufe</b>.</li>
+        <li>Bei Zwangsstörungen liegen <b>charakteristische und relativ spezifische</b>
+          neurobiologische Veränderungen vor, die sich von denen der <b>Angststörungen
+          unterscheiden</b> — deshalb sind sie im DSM-5 <b>nicht mehr bei den Angststörungen</b>,
+          sondern eine eigene Kategorie.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="lbl">Metakognitiv-behavioral</span>
+      <p>Den Zwangsstörungen liegen <b>dysfunktionale Interpretationsmuster</b> zugrunde, die
+        Patienten als Reaktion auf <b>eigentlich normale aufdringliche negative Gedanken</b>
+        zeigen.</p>
+      <p>Sie führen zu einer <b>verstärkten Wahrnehmung von Gefahr und persönlicher
+        Verantwortung</b> und zu dem Drang, die als quälend erlebten Gedanken durch
+        Vermeidungsverhalten zu beenden.</p>
+      <p style="margin-top:10px;"><b>Merk dir „eigentlich normale“.</b> Aufdringliche negative
+        Gedanken hat jeder Mensch. Der Unterschied liegt nicht im Gedanken, sondern in dem,
+        was man aus ihm macht.</p>
+    </div>
+  </div>
+
+  <div class="info"><b>PANDAS — Zwangssymptome durch Infektionen.</b> Zwangssymptome, die in
+    engem Zusammenhang mit Infektionen durch <b>beta-hämolysierende Streptokokken</b> auftreten,
+    werden unter <b>PANDAS</b> beschrieben (pediatric autoimmune neuropsychiatric disorders
+    associated with streptococcal infections). Ursache scheint eine <b>Kreuzreaktion</b> von
+    Antikörpern gegen die Basalganglien zu sein. Die Prävalenz ist unbekannt. Die Symptome
+    beginnen <b>plötzlich</b>, oft sehr ausgeprägt, und bilden sich zwischen den Episoden wieder
+    zurück.</div>
+</section>
+
+<section id="diagnostik">
+  <h2>Diagnostik</h2>
+  <div class="card">
+    <h4>Anamnese</h4>
+    <ul class="tick">
+      <li>Psychopathologischer Befund</li>
+      <li><b>Dauer</b> und <b>Art</b> der Zwangsgedanken und -handlungen</li>
+      <li><b>Ausmaß der Beeinträchtigung</b></li>
+    </ul>
+    <h4>Differentialdiagnostik und Komorbidität</h4>
+    <ul class="tick">
+      <li><b>Depression</b></li>
+      <li><b>Angststörung</b></li>
+      <li><b>Persönlichkeitsstörung</b></li>
+    </ul>
+    <h4>Schweregrad — die Skalen</h4>
+    <ul class="tick">
+      <li>Obsessive-Compulsive Inventory (1977)</li>
+      <li>Hamburger Zwangsinventar (1983)</li>
+      <li><b>Yale-Brown Obsessive Compulsive Scale (1991)</b></li>
+      <li>Padua Zwangsfragebogen (1995)</li>
+    </ul>
+    <p>Sie „erheben die <b>Art der Gedanken</b>, die <b>Gefühle</b>, die durch diese Gedanken
+      entstehen, den <b>Grad der Beeinträchtigung</b> und die
+      <b>Bewältigungsstrategien</b>“.</p>
+    <span class="quelle">Funke</span>
+  </div>
+
+  <h3>Die Y-BOCS — so sieht sie aus</h3>
+  <div class="card">
+    <p>Deine Unterlage zeigt zwei Kategorien der Symptom-Checkliste. Zu jedem Punkt wird
+      angekreuzt: <b>gegenwärtig</b> und <b>früher</b>.</p>
+    <div class="zwei">
+      <div>
+        <p><b>Aggressive Zwangsgedanken</b></p>
+        <ul style="font-size:14.5px;">
+          <li>Befürchtungen, sich selbst zu verletzen</li>
+          <li>Befürchtungen, andere zu verletzen</li>
+          <li>Gewalttätige oder schreckenerregende Vorstellungen</li>
+          <li>Befürchtungen, obszöne Gedanken oder Beleidigungen laut von sich zu geben</li>
+          <li>Befürchtungen, etwas Peinliches zu tun</li>
+          <li>Befürchtungen, aufgrund unkontrollierbarer Impulse zu handeln (z. B. auf eine
+            nahestehende Person mit dem Messer einzustechen)</li>
+          <li>Befürchtungen, einen Diebstahl zu begehen</li>
+          <li>Befürchtungen, andere zu verletzen, weil man nicht aufmerksam genug ist
+            (z. B. jemand unbemerkt mit dem Auto angefahren zu haben und dann durch das
+            Weiterfahren Fahrerflucht begangen zu haben)</li>
+          <li>Befürchtungen, dafür verantwortlich zu sein, dass etwas Schreckliches passiert
+            (z. B. Feuer, Einbruch)</li>
+          <li>Sonstiges</li>
+        </ul>
+      </div>
+      <div>
+        <p><b>Zwangsgedanken, die sich auf Verschmutzung beziehen</b></p>
+        <ul style="font-size:14.5px;">
+          <li>Sorgen über oder Ekel in Bezug auf körperliche Ausscheidungen (z. B. Urin, Fäzes,
+            Speichel)</li>
+          <li>Sorgen über Schmutz oder Keime</li>
+          <li>Exzessive Sorgen über Verunreinigungen in der Umgebung (z. B. Asbest, Strahlen,
+            giftige Abfallstoffe)</li>
+          <li>Exzessive Sorgen über Dinge im Haushalt (z. B. Reinigungsmittel, Lösungsmittel)</li>
+          <li>Exzessive Sorgen über bestimmte Tiere (z. B. Insekten)</li>
+          <li>Sich durch klebrige Substanzen oder andere Rückstände beunruhigt fühlen</li>
+          <li>Sorgen darüber, aufgrund von Verschmutzung oder Verkeimung krank zu werden</li>
+          <li>Sorgen darüber, andere dadurch krank zu machen, dass man Keime oder
+            Verschmutzungen weitergibt (aggressive Komponente)</li>
+          <li>Keine Sorgen über Konsequenzen einer Verschmutzung außer derjenigen, welche Gefühle
+            dadurch ausgelöst werden</li>
+          <li>Sonstiges</li>
+        </ul>
+      </div>
+    </div>
+    <span class="quelle">Yale-Brown Obsessive Compulsive Scale, deine Unterlage</span>
+  </div>
+  <div class="info">Schau dir die Liste genau an: Fast jeder Punkt taucht in den Fallbeispielen
+    oben wieder auf. Frau Korzepa steht in der rechten Spalte, Frau Käser in der linken, Herr
+    Starke beim vorletzten Punkt links („dafür verantwortlich zu sein, dass etwas Schreckliches
+    passiert“).</div>
+</section>
+
+<section id="therapie">
+  <h2>Therapie</h2>
+
+  <div class="card" style="border-left:4px solid var(--good);">
+    <span class="lbl" style="color:var(--good);">1. Wahl</span>
+    <p style="font-family:var(--serif);font-size:1.15rem;"><b>Kognitive Verhaltenstherapie mit
+      Exposition und Reaktionsmanagement (KVT + ERM)</b></p>
+    <p>„Die KVT mit Exposition und Reaktionsmanagement ist die Therapie mit der <b>größten
+      Effektstärke</b>.“</p>
+    <span class="quelle">Funke · Voderholzer, Der Nervenarzt 2022</span>
+  </div>
+
+  <div class="card">
+    <span class="lbl">Weitere Bausteine</span>
+    <ul class="tick">
+      <li><b>Pharmakotherapie:</b> Selektive Serotonin-Wiederaufnahmehemmer (<b>SSRI</b>)</li>
+      <li><b>Kombinationstherapie</b></li>
+      <li><b>Tiefe Hirnstimulation</b></li>
+    </ul>
+    <p><b>Weitere therapeutische Ansätze:</b> Psychoedukation · Selbsthilfegruppen ·
+      Angehörigenberatung.</p>
+    <span class="quelle">Funke</span>
+  </div>
+
+  <h3>Wie die Exposition funktioniert</h3>
+  <div class="card">
+    <p>„Hierbei setzt sich der Patient <b>Angst auslösenden Situationen und Zwangsgedanken
+      aus</b>. Ein Ausweichen oder aktives Vermeiden durch neutralisierende Zwangshandlungen
+      <b>wird verhindert</b>. Der Patient lernt, dass die ausgelösten unangenehmen emotionalen
+      Reaktionen <b>zunehmend schwächer werden</b> und auch <b>ohne Zwangshandlungen bewältigt
+      werden können</b>.“</p>
+    <ul class="tick">
+      <li>Zu bevorzugen ist die <b>Exposition in der Realität</b>; bei einigen Zwangsformen sind
+        zusätzlich <b>Imaginationsübungen</b> erforderlich.</li>
+      <li>Begonnen werden sollte in der Regel mit einer <b>mittelschweren</b> Situation, damit
+        Vermeidungsverhalten nicht gefördert wird.</li>
+      <li>Die Anfangssituation soll <b>gut kontrollierbar</b> und im vertrauten, Sicherheit
+        bietenden Therapieraum durchführbar sein — und für den Patienten <b>praktisch
+        relevant</b>.</li>
+      <li>„Ein vorsichtiges <b>stufenweises</b> Vorgehen ist <b>genauso wirksam</b> wie ein rasch
+        konfrontatives.“ Kinder und Jugendliche wählen in der Regel das weniger belastende,
+        länger dauernde graduierte Vorgehen.</li>
+      <li><b>Auch bei reinen Zwangsgedanken</b> ist eine Exposition möglich — etwa indem die
+        Gedanken auf einen Tonträger aufgesprochen und anschließend abgehört werden. Die
+        <b>Neutralisierungsgedanken müssen dabei unterlassen</b> werden.</li>
+    </ul>
+    <span class="quelle">Walitza et al. 2011</span>
+  </div>
+
+  <div class="warn"><b>Das Problem, das der Nervenarzt-Artikel benennt.</b> „Besonders kritisch
+    ist, dass die Therapieform mit der größten Effektstärke, die KVT mit Exposition und
+    Reaktionsmanagement, <b>immer noch zu selten und vor allem zu wenig intensiv zur Anwendung
+    kommt</b>, obwohl sie in nationalen und internationalen Leitlinien ausdrücklich empfohlen
+    wird.“ Und: Bei Befragungen von Betroffenen wird diese Therapiemethode <b>im Vergleich zu
+    anderen Therapieformen am besten bewertet</b>.</div>
+
+  <h3>Verlauf und Prognose</h3>
+  <div class="card">
+    <ul class="tick">
+      <li><b>Frühe Diagnose und Behandlung verbessern die Prognose</b></li>
+      <li><b>Rückfälle sind häufig</b></li>
+      <li><b>Langfristige Nachsorge erforderlich</b></li>
+    </ul>
+    <span class="quelle">Funke</span>
+  </div>
+</section>
+
+<section id="pflege">
+  <h2>Pflegerische Begleitung</h2>
+  <p class="lead">Drei Folien deiner Dozentin — und der Teil, der in deiner Klausur am
+    wahrscheinlichsten drankommt. Lern sie als drei Blöcke: <b>Grundvoraussetzung — Ziele —
+    Maßnahmen</b>.</p>
+
+  <div class="card" style="border-left:4px solid var(--accent);">
+    <span class="lbl">Grundvoraussetzung</span>
+    <ul class="tick">
+      <li><b>Empathie</b></li>
+      <li><b>Klare Regeln</b></li>
+      <li><b>Angehörige einbeziehen</b></li>
+      <li><b>Rituale nicht verstärken</b></li>
+      <li><b>Zwangsinhalte nicht bewerten</b></li>
+    </ul>
+  </div>
+
+  <div class="card" style="border-left:4px solid var(--good);">
+    <span class="lbl" style="color:var(--good);">Ziele</span>
+    <ul class="tick">
+      <li><b>Sicherheit</b></li>
+      <li><b>Selbstbestimmung</b></li>
+      <li><b>Stabilisierung</b></li>
+      <li><b>Förderung der Bewältigungsstrategien</b></li>
+      <li><b>Vernetzung mit therapeutischen Angeboten</b></li>
+    </ul>
+  </div>
+
+  <div class="card" style="border-left:4px solid var(--handlung);">
+    <span class="lbl" style="color:var(--handlung);">Maßnahmen</span>
+    <ul class="tick">
+      <li><b>Anamnese</b></li>
+      <li><b>Patientenbeobachtung</b></li>
+      <li><b>Beziehungsgestaltung</b></li>
+      <li><b>Kommunikation</b></li>
+      <li><b>Psychoedukation</b></li>
+      <li><b>Alltagsförderung / Alltagsstruktur / Routine</b></li>
+      <li><b>Förderung der Selbstwirksamkeit</b></li>
+      <li><b>Angehörigenarbeit</b></li>
+      <li><b>Interdisziplinäre Zusammenarbeit</b></li>
+    </ul>
+    <span class="quelle">Funke</span>
+  </div>
+
+  <div class="achtung"><b>Die zwei Punkte, die du erklären können musst.</b>
+    <p style="margin:10px 0 0;"><b>„Rituale nicht verstärken“</b> — weil kurzfristige
+      Erleichterung den Teufelskreis füttert. Konkret: keine Rückversicherung geben, nicht bei
+      der Zwangshandlung helfen, nicht bestätigen, dass alles sauber oder ausgeschaltet ist.</p>
+    <p style="margin:10px 0 0;"><b>„Zwangsinhalte nicht bewerten“</b> — weil das Thema der
+      Gedanken nicht wichtig ist und weil Scham der Hauptgrund ist, warum niemand davon erzählt.
+      Wer bei einem aggressiven oder sexuellen Zwangsgedanken erschrickt, bekommt nie wieder
+      einen zu hören.</p></div>
+
+  <div class="gut"><b>Und der Widerspruch, den du aushalten musst.</b> Die Folie sagt
+    „Rituale nicht verstärken“ <em>und</em> „Selbstbestimmung“ <em>und</em> „Empathie“. Das heißt
+    nicht, dem Patienten das Ritual zu verbieten — das wäre keine Selbstbestimmung. Es heißt:
+    du <b>beteiligst dich nicht</b> daran, und du sagst das freundlich und offen. Wie das klingt,
+    steht im nächsten Abschnitt.</div>
+</section>
+
+<section id="station">
+  <h2>Der Alltag auf Station</h2>
+  <p class="lead">Der praktischste Abschnitt der ganzen Unterlagen — und der einzige, der zeigt,
+    wie man tatsächlich spricht.</p>
+
+  <div class="card">
+    <p>„Im stationären Behandlungssetting führen Zwangsstörungen immer wieder zu Problemen,
+      welche die <b>Organisation und das Miteinander</b> betreffen können.“</p>
+    <p><b>Der typische Konflikt:</b> das <b>Badezimmer</b> muss geteilt werden, und eine Person
+      blockiert es aufgrund der Zwangserkrankung lange. „Die Organisationsabläufe,
+      Therapieprogramme und Essenszeiten können durch ausgeprägte <b>Duschrituale</b> gestört
+      werden und auch <b>Pflegende an ihre Grenzen bringen</b>.“</p>
+    <p>„Der Betroffene ist gefordert, sich mit seinen bestehenden Zwängen in einen stationären
+      Ablauf <b>einzufügen</b>. Dafür ist es nötig, <b>Lösungen zu finden</b>.“</p>
+  </div>
+
+  <div class="card" style="border-left:4px solid var(--good);">
+    <span class="lbl" style="color:var(--good);">Der Mustersatz — lern ihn auswendig</span>
+    <p class="zitat">„Ich kann verstehen, dass es für Sie schwierig ist, das Bad rechtzeitig zu
+      verlassen, weil <b>der Zwang</b> Sie so lange aufhält. Gleichzeitig hat Ihr Zimmernachbar
+      das Bedürfnis, das Bad zu nutzen. <b>Haben Sie eine Idee, was wir da machen können?</b>“</p>
+    <p><b>Warum dieser Satz so gut ist — drei Bausteine:</b></p>
+    <ol>
+      <li><b>Verständnis zeigen</b>, ohne das Verhalten gutzuheißen.</li>
+      <li><b>Der Zwang</b> hält sie auf — nicht „Sie brauchen zu lange“. Das trennt die Person
+        von der Erkrankung.</li>
+      <li>Die <b>Lösung wird erfragt, nicht vorgegeben</b> — das ist Selbstbestimmung und
+        Förderung der Selbstwirksamkeit in einem Satz.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <p><b>Eine mögliche Lösung</b> könnte ein <b>Zeitplan für die Badnutzung</b> sein.</p>
+    <p>„<b>Nicht immer lässt sich ein Kompromiss finden.</b> Dann sollte man <b>gemeinsam mit dem
+      Patienten Alternativen</b> überlegen.“ Der Patient mit dem Waschzwang könnte beispielsweise
+      eine Klinik suchen, in der er ein <b>Einzelzimmer</b> bekommen könnte.</p>
+    <span class="quelle">Typische Zwänge, Irena Mikic</span>
+  </div>
+</section>
+
+<section id="kinder">
+  <h2>Zwangsstörungen bei Kindern und Jugendlichen</h2>
+
+  <div class="card">
+    <span class="lbl">Die Zahlen</span>
+    <div class="tabelle">
+      <table>
+        <thead><tr><th>Was</th><th class="n">Wert</th></tr></thead>
+        <tbody>
+          <tr><td>Prävalenz im Kindes- und Jugendalter</td><td class="n">1–3 %</td></tr>
+          <tr><td>Haben die Störung bis zum Alter von 10 Jahren entwickelt</td><td class="n">etwa 20 %</td></tr>
+          <tr><td>Erste Behandlung im Durchschnitt mit</td><td class="n">13 Jahren</td></tr>
+          <tr><td>… das ist nach Symptombeginn im Mittel</td><td class="n">2 Jahre</td></tr>
+          <tr><td>Komorbidität</td><td class="n">68–100 %</td></tr>
+          <tr><td>Persistenz des Vollbildes (Metaanalyse)</td><td class="n">41 %</td></tr>
+          <tr><td>… inklusive subklinischer Ausprägung</td><td class="n">60 %</td></tr>
+          <tr><td>Reinigungszwänge (eigene Studien der Autoren)</td><td class="n">60 %</td></tr>
+          <tr><td>Kontrollzwänge (eigene Studien)</td><td class="n">40 %</td></tr>
+          <tr><td>Geschlecht im Kindesalter</td><td class="n">Jungen etwas häufiger, 3:2</td></tr>
+          <tr><td>Ab dem Jugendalter</td><td>keine bedeutsamen Geschlechtsunterschiede mehr</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Delorme et al. gehen von einer <b>bimodalen Verteilung</b> aus: ein Gipfel im
+      <b>11. Lebensjahr</b> und ein zweites Maximum im <b>frühen Erwachsenenalter</b>.</p>
+    <p><b>Häufigste Komorbiditäten:</b> Angststörungen, depressive Störungen, Ticstörungen,
+      ADHS — mit zunehmendem Alter auch Persönlichkeitsstörungen. „Je schwergradiger die
+      Zwangserkrankung, umso wahrscheinlicher sind Komorbiditäten.“</p>
+    <span class="quelle">Walitza et al., Dtsch Arztebl Int 2011; 108(11): 173–9</span>
+  </div>
+
+  <div class="info"><b>Wichtiger Unterschied zu Erwachsenen:</b> Nach DSM-IV kann bei Kindern
+    <b>sowohl die Einsicht in die Unsinnigkeit als auch der Widerstand</b> gegen die Symptomatik
+    <b>fehlen</b>. Erwarte also bei einem Kind nicht dieselbe Distanz zum Zwang wie bei einem
+    Erwachsenen.</div>
+
+  <h3>Abgrenzungen — was es sonst sein könnte</h3>
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Abzugrenzen gegen</th><th>Der Unterschied</th></tr></thead>
+      <tbody>
+        <tr><td><b>Subklinisches Zwangsverhalten</b></td>
+            <td>im Bereich der Norm liegende Handlungen, die die Entwicklung des Kindes
+              <b>nicht einschränken</b></td></tr>
+        <tr><td><b>Das Ritual</b></td>
+            <td>hilft dem Kind, Erfahrungen zu verarbeiten und Sicherheit zu erlangen —
+              <b>stabilisierende, nicht belastende</b> Handlungen</td></tr>
+        <tr><td><b>Zwanghafte Persönlichkeitsstörung</b></td>
+            <td>wird als <b>Ich-synton</b> erlebt; charakteristische Zwangshandlungen und
+              -gedanken <b>fehlen</b></td></tr>
+        <tr><td><b>Schizophrene oder wahnhafte Störungen</b></td>
+            <td>Merkmal der Zwangsstörung ist die <b>Ich-Dystonie</b> und die <b>Fähigkeit zur
+              Realitätsprüfung</b></td></tr>
+        <tr><td><b>Autistische Störungen</b></td>
+            <td>Zwangssymptome werden dort meist als <b>Ich-synton</b> erlebt und sind
+              <b>nicht mit Unbehagen</b> assoziiert</td></tr>
+        <tr><td><b>Tics</b></td>
+            <td>bei Tics steht <b>körperliche Anspannung</b> im Vordergrund; die Handlungen sind
+              <b>nicht zweckgerichtet</b>, nicht mit Befürchtungen verbunden und lassen sich
+              <b>kaum willentlich unterdrücken</b></td></tr>
+        <tr><td><b>Stereotypien</b></td>
+            <td>werden als <b>angenehm</b> erlebt — zur Stimulation bei Reizmangel oder zur
+              Ablenkung bei Überlastung</td></tr>
+        <tr><td><b>Rigidität bei ADHS</b></td>
+            <td>Versuch, <b>Kontrolle über das innere Chaos</b> der eigenen Gedankenwelt zu
+              erreichen</td></tr>
+        <tr><td><b>Depressive Grübeleien</b></td>
+            <td>sind <b>Ich-synton</b>; der Inhalt bezieht sich ausschließlich auf zentrale
+              Aspekte der anderen Störung</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="gut"><b>Ein Wort, das dir alles erspart: Ich-dyston.</b> Es heißt „passt nicht zu
+    mir, fühlt sich fremd an, ich wehre mich dagegen“. Das ist <b>der</b> Marker der
+    Zwangsstörung. Ich-<b>syn</b>ton heißt umgekehrt „gehört zu mir“ — das findest du bei der
+    zwanghaften Persönlichkeitsstörung, bei Autismus und bei depressiven Grübeleien.</div>
+
+  <h3>Die Kasuistik aus dem Artikel</h3>
+  <div class="fall">
+    <span class="who">Fallbeispiel · Patientin, 10 Jahre, stationäre Kinder- und Jugendpsychiatrie</span>
+    <p>Aufnahme auf Wunsch der Eltern. Sie berichtete, dass sie <b>nach dem Tod ihres
+      Großvaters</b> begann, <b>in die Luft zu pusten</b>: Außerhalb des familiären Grundstücks
+      habe sie nicht an ihn denken dürfen. Alle Gedanken an ihre Familie in einer außerfamiliären
+      Umgebung würden „weggepustet“ werden.</p>
+    <p>Später musste sie sich immer die <b>Hände waschen</b>, wenn sie fremde Personen oder
+      Gegenstände von fremden Personen, die ihr unsympathisch waren, berührt hatte. Inzwischen
+      müsse sie sich nicht mehr waschen, sondern lediglich <b>trocken abstreifen</b>.</p>
+    <p>Später erklärte sie, dass es beim Abstreifen <b>nicht der Schmutz</b> sei, der sie belaste
+      — es sei „<b>Schmutz, den man nicht sähe</b>“, nämlich <b>das Fremde</b>, das sie
+      „verekeln“ würde.</p>
+    <p>Nach Angaben der Eltern habe die Patientin durch ihr Verhalten <b>zunehmend Freunde
+      verloren</b>. Durch ihre Rituale sei auch ihre <b>Schulleistung schlechter</b> geworden.</p>
+    <p><b>Behandlungsplan:</b> Informationen über die Zwangserkrankung vermitteln ·
+      <b>Konfrontationsübungen mit Reaktionsverhinderung</b> — zum Beispiel „verekelte“
+      Gegenstände anfassen, ohne die Möglichkeit zum Abstreifen zu haben · <b>Elterngespräche</b>,
+      um den Autonomieprozess der Tochter zu unterstützen · <b>soziale Kompetenzübungen</b>, um
+      Wünsche und Aggressionen situativ angemessen ausdrücken zu können.</p>
+    <p><b>Verlauf:</b> deutliche Verbesserung, aber <b>keine vollständige Remission</b>.
+      Prognostisch ungünstig waren die <b>lange Erkrankungsdauer vor Diagnosestellung</b> sowie
+      die <b>initiale Symptomschwere</b>.</p>
+  </div>
+
+  <div class="card">
+    <span class="lbl">Kernaussagen des Artikels</span>
+    <ul class="tick">
+      <li>Die Zwangsstörung ist bereits im Kindes- und Jugendalter eine <b>relativ häufige, sehr
+        belastende</b> Störung.</li>
+      <li>Bei den Ursachen sind <b>psychologische, neurobiologische und genetische</b> Faktoren
+        beteiligt.</li>
+      <li>Behandlung der Wahl ist die <b>Exposition mit Reaktionsverhinderung</b>, gegebenenfalls
+        ergänzt durch kognitive Interventionen und <b>Einbindung der Familie</b>.</li>
+      <li>Bei der medikamentösen Behandlung sind <b>SSRIs erste Wahl</b>.</li>
+      <li><b>Je früher die Behandlung erfolgt, umso günstiger ist der Verlauf.</b></li>
+    </ul>
+  </div>
+
+  <div class="warn"><b>Zahlen zur Medikation, falls gefragt wird.</b> Effektstärke von SSRIs und
+    Clomipramin gegenüber Placebo: <b>0,46</b> — hochsignifikant, aber nur mittelgradig. Die
+    <b>kognitiv-behavioralen Interventionen</b> erreichen dagegen eine mittlere Effektstärke von
+    <b>1,55</b> (individuell 1,77, mit stärkerem Familieneinbezug 1,88). Wirkungseintritt von
+    SSRIs und Clomipramin erst nach <b>4–10 Wochen</b>; die Beurteilung des Effekts <b>nicht vor
+    8–12 Wochen</b>. Ein Absetzversuch ist auch bei guter Symptomreduktion <b>nicht vor Ablauf von
+    sechs Monaten</b> sinnvoll. <b>Fluvoxamin</b> ist ab dem Alter von <b>acht Jahren</b> für
+    Zwangsstörungen zugelassen.</div>
+
+  <div class="info"><b>Neu im ICD-11.</b> Die Zwangsspektrumsstörungen, die in der ICD-10 „nur
+    unzureichend beschrieben waren“, sind im ICD-11 in einem eigenen Diagnosekapitel
+    <b>„Zwangsstörungen oder verwandte Störungen“ (ICD-11 6B2x)</b> berücksichtigt. Im
+    vergangenen Jahr erschien erstmals eine <b>S3-Leitlinie Zwangsstörungen des Kindes- und
+    Jugendalters</b> für den deutschsprachigen Raum.</div>
+</section>
+
+<section id="quiz">
+  <h2>Quiz — achtzehn Fragen</h2>
+  <p class="lead">Alle Antworten stehen oben auf dieser Seite.</p>
+  <div id="quizraum"></div>
+  <div class="punkte" id="punkte">Noch keine Frage beantwortet.</div>
+</section>
+
+</main>
+
+<footer>
+  <p><b>Die fünf Quellen dieser Seite:</b><br>
+    „Zwangsstörungen“, CE 11 UE 5, Anja Funke (17 Folien) ·
+    Irena Mikic: „Typische Zwänge — ein Überblick“, Heilberufe 6.2023 ·
+    Ulrich Voderholzer: „Zwangsstörungen und Zwangsspektrumsstörungen“, Der Nervenarzt 7/2022 ·
+    Walitza S. et al.: „Zwangsstörung im Kindes- und Jugendalter“, Dtsch Arztebl Int 2011;
+    108(11): 173–9 ·
+    Yale-Brown Obsessive Compulsive Scale (Symptom-Checkliste, Auszug).<br>
+    Auf dieser Seite steht ausschließlich, was in diesen fünf Dokumenten steht.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Teufelskreis ---------- */
+  var KREIS = [
+    { t:"Ein aufdringlicher Gedanke schießt ins Bewusstsein",
+      d:"Solche Gedanken hat jeder Mensch — der Artikel nennt sie „eigentlich normale aufdringliche negative Gedanken“. Bis hierhin ist nichts krankhaft." },
+    { t:"Ein dysfunktionales Interpretationsmuster greift",
+      d:"Der Gedanke wird nicht als Zufall abgetan, sondern als bedeutsam gedeutet. Das führt zu einer „verstärkten Wahrnehmung von Gefahr und persönlicher Verantwortung“. Frau Käser: „Was hat das zu bedeuten? Was ist los mit mir?“" },
+    { t:"Angst und Anspannung steigen",
+      d:"Der Gedanke löst Angst oder Unbehagen aus. Bei Frau Korzepa: „starke Anspannung bis hin zu Panik“." },
+    { t:"Der Versuch, den Gedanken zu unterdrücken",
+      d:"„Der Versuch, die aufdringlichen Gedanken nicht zu denken oder zu unterdrücken, hat aber einen gegenteiligen Effekt, er erhöht die Beschäftigung mit den aufdringlichen Gedanken.“ Der Kreis dreht sich schon hier schneller." },
+    { t:"Neutralisieren: die Zwangshandlung oder das kognitive Ritual",
+      d:"Waschen, Kontrollieren, den HIV-Test machen lassen, in die Luft pusten — oder ein Ritual, das nur im Kopf abläuft. Auch Vermeidung gehört hierher: Bahnhöfe meiden, den Herd nicht mehr benutzen." },
+    { t:"Kurzfristige Erleichterung",
+      d:"Die Anspannung sinkt — für einen Moment. Genau das ist die Falle." },
+    { t:"Das Verhalten wird verstärkt, der Gedanke wichtiger",
+      d:"„Kurzfristig erlebte Erleichterung verstärkt das Verhalten, die Gedanken werden als noch wichtiger angesehen, was zu einer weiteren Stabilisierung der ständigen Beschäftigung mit dem Gedanken führt.“ Bei Frau Korzepa: nach ein paar Tagen ist die Unsicherheit wieder da — und der nächste Test wird nötig." }
+  ];
+  var kr = document.getElementById('kreis');
+  KREIS.forEach(function(s, i){
+    var d = document.createElement('div'); d.className = 'kr';
+    var n = document.createElement('span'); n.className = 'nr'; n.textContent = 'Schritt ' + (i+1);
+    var b = document.createElement('b'); b.textContent = s.t;
+    var t = document.createElement('span'); t.className = 'd'; t.textContent = s.d;
+    d.appendChild(n); d.appendChild(b); d.appendChild(t);
+    d.addEventListener('click', function(){ d.classList.toggle('auf'); });
+    kr.appendChild(d);
+    var p = document.createElement('div'); p.className = 'kr-pfeil';
+    p.textContent = i < KREIS.length - 1 ? '↓' : '↺  zurück zu Schritt 1 — der Kreis schließt sich';
+    if(i === KREIS.length - 1) p.style.cssText = 'font-family:var(--mono);font-size:13px;padding:10px 0;';
+    kr.appendChild(p);
+  });
+
+  /* ---------- Sortierspiel ---------- */
+  var SORT = [
+    { t:"Herr Starke kontrolliert jeden Abend 30 Minuten bis zwei Stunden lang Herd, Fenster, Wasserhähne und Geräte.",
+      a:"Zwangshandlung",
+      e:"Eine sichtbare Zwangshandlung — ein Kontrollritual. Beachte den Zeitaufwand: das ist das Merkmal, das es von einer normalen Kontrolle unterscheidet." },
+    { t:"Frau Käser hat am Bahnsteig plötzlich den Impuls, sie könne vor den Zug springen. Sie will das nicht und bekommt Panik.",
+      a:"Zwangsgedanke",
+      e:"Ein aggressiver Zwangsimpuls gegen die eigene Person. Er ist Ich-dyston — er widerspricht ihrem Willen völlig, und genau deshalb löst er Panik aus. Das ist keine Suizidalität." },
+    { t:"Herr Starke geht unterwegs in Gedanken immer wieder durch, ob er zu Hause alles kontrolliert hat.",
+      a:"Zwangshandlung",
+      e:"Ein kognitives Ritual — eine nicht sichtbare Zwangshandlung, weil sie ausschließlich im Kopf stattfindet. Von außen sieht man gar nichts." },
+    { t:"Frau Korzepa denkt: „Das könnte getrocknetes Blut sein, darin könnten HIV-Viren sein.“",
+      a:"Zwangsgedanke",
+      e:"Ein Zwangsgedanke zum Thema Ansteckung und Verschmutzung. Sie weiß, dass sie den Fleck nicht berührt hat — das Wissen hilft nicht." },
+    { t:"Frau Korzepa lässt regelmäßig beim Hausarzt ihr Blut auf HIV testen.",
+      a:"Zwangshandlung",
+      e:"Auch das ist eine Zwangshandlung: Rückversicherung. Sie beruhigt kurzfristig, und nach ein paar Tagen ist die Unsicherheit zurück — genau der Teufelskreis." },
+    { t:"Ein Kind legt jeden Abend seine Kuscheltiere in derselben Reihenfolge ins Bett und schläft danach ruhig ein.",
+      a:"Ritual",
+      e:"Ein Ritual, das dem Kind hilft, Erfahrungen zu verarbeiten und Sicherheit zu erlangen — eine stabilisierende, nicht belastende Handlung. Genau so grenzt der Artikel es vom Zwang ab." },
+    { t:"Du putzt dir jeden Morgen die Zähne, ohne darüber nachzudenken.",
+      a:"Handlung",
+      e:"Eine gewohnheitsmäßig ausgeführte Handlung. Kein Leidensdruck, kein Widerstand, keine Angst — nichts davon ist erfüllt." },
+    { t:"Die 10-jährige Patientin streift Gegenstände trocken ab, nachdem sie etwas Fremdes berührt hat.",
+      a:"Zwangshandlung",
+      e:"Eine Zwangshandlung. Bemerkenswert: es geht ihr nicht um Schmutz, sondern um „Schmutz, den man nicht sähe“ — das Fremde." }
+  ];
+  var sortRaum = document.getElementById('sortraum');
+  var sortZ = document.getElementById('sortzaehler');
+  var sGesamt = 0, sRichtig = 0;
+  var LABELS = ["Handlung","Ritual","Zwangsgedanke","Zwangshandlung"];
+
+  SORT.forEach(function(f){
+    var box = document.createElement('div'); box.className = 'sort-frage';
+    var p = document.createElement('p'); p.className = 'txt'; p.textContent = f.t;
+    var kn = document.createElement('div'); kn.className = 'sort-knoepfe';
+    var er = document.createElement('div'); er.className = 'sort-erkl'; er.textContent = f.e;
+    LABELS.forEach(function(l){
+      var b = document.createElement('button'); b.type = 'button'; b.textContent = l;
+      b.addEventListener('click', function(){
+        if(box.dataset.fertig === '1') return;
+        box.dataset.fertig = '1';
+        sGesamt++;
+        var ok = l === f.a;
+        if(ok) sRichtig++;
+        kn.querySelectorAll('button').forEach(function(x){
+          x.disabled = true;
+          if(x.textContent === f.a) x.classList.add('richtig');
+        });
+        if(!ok) b.classList.add('falsch');
+        er.classList.add('an');
+        sortZ.textContent = sRichtig + ' von ' + sGesamt + ' richtig · ' + SORT.length + ' Aufgaben';
+      });
+      kn.appendChild(b);
+    });
+    box.appendChild(p); box.appendChild(kn); box.appendChild(er);
+    sortRaum.appendChild(box);
+  });
+
+  /* ---------- Quiz ---------- */
+  var FRAGEN = [
+    { f:"Wie definiert die Folie den Begriff „Ritual“?",
+      o:["Wiederholtes, immer gleichbleibendes, regelmäßiges Vorgehen nach einer festgelegten Ordnung",
+         "Eine bewusst ausgeführte Tat",
+         "Eine unfreiwillige Handlung gegen den Willen",
+         "Eine Handlung, die man gerne macht"],
+      r:0, e:"„Bewusst ausgeführte Tat“ ist die Definition der Handlung. Der Zwang ist unfreiwillig und wird als unangenehm empfunden. Das Ritual liegt dazwischen." },
+    { f:"Wofür steht die Abkürzung OCD?",
+      o:["Obsessive-compulsive disorder","Obsessive control disorder",
+         "Organic compulsive disorder","Obsessive cognitive disorder"],
+      r:0, e:"Zwangsstörungen sind psychische Erkrankungen, die durch Zwangsgedanken und/oder Zwangshandlungen gekennzeichnet sind." },
+    { f:"Wie lange müssen die Symptome nach ICD-10 mindestens bestehen?",
+      o:["Wenigstens zwei Wochen an den meisten Tagen","Wenigstens sechs Monate",
+         "Wenigstens drei Tage","Es gibt keine Zeitvorgabe"],
+      r:0, e:"Und sie müssen quälend sein oder die normalen Aktivitäten stören." },
+    { f:"Was sind kognitive Rituale?",
+      o:["Nicht sichtbare Zwangshandlungen, die ausschließlich im Kopf stattfinden",
+         "Zwangsgedanken über Zahlen",
+         "Gedächtnisübungen in der Therapie",
+         "Die Gedanken vor dem Einschlafen"],
+      r:0, e:"Deshalb kannst du Menschen mit Zwangsstörung übersehen, wenn du nur auf sichtbare Rituale wie Waschen oder Kontrollieren achtest." },
+    { f:"Warum ist es wichtig zu wissen, dass Zwangsgedanken ein Produkt des eigenen Geistes sind?",
+      o:["Weil das gegen die Gedankeneingebung abgrenzt, die zur Schizophrenie gehört",
+         "Weil man sie dann leichter abstellen kann",
+         "Weil sie dann harmloser sind",
+         "Weil sie dann nicht behandelt werden müssen"],
+      r:0, e:"Der Betroffene erkennt, dass die Gedanken aus ihm selbst kommen — nicht von außen auferlegt. Das ist ein ICD-10-Kriterium." },
+    { f:"Was bedeutet „Ich-dyston“?",
+      o:["Der Zwang fühlt sich fremd an, die Person wehrt sich dagegen",
+         "Der Zwang gehört für die Person zu ihr selbst",
+         "Die Person hat keine Einsicht in ihre Erkrankung",
+         "Der Zwang ist angenehm"],
+      r:0, e:"Ich-dyston ist der Marker der Zwangsstörung. Ich-synton dagegen findet man bei der zwanghaften Persönlichkeitsstörung, bei autistischen Störungen und bei depressiven Grübeleien." },
+    { f:"Was sagen die Unterlagen über den INHALT der Zwangsgedanken?",
+      o:["Das Thema der Gedanken ist nicht wichtig — die Therapieverfahren bleiben gleich",
+         "Aggressive Inhalte müssen anders behandelt werden als Waschzwänge",
+         "Religiöse Inhalte haben die beste Prognose",
+         "Der Inhalt bestimmt die Medikamentenwahl"],
+      r:0, e:"Genau darum steht in den Folien „Zwangsinhalte nicht bewerten“. Für Außenstehende können die Inhalte absurd und schockierend klingen — das ändert nichts an der Behandlung." },
+    { f:"Frau Käser hat den Impuls, vor den Zug zu springen. Was liegt vor?",
+      o:["Ein aggressiver Zwangsgedanke gegen die eigene Person",
+         "Akute Suizidalität","Eine depressive Episode","Eine Psychose"],
+      r:0, e:"Sie ist ausdrücklich als lebensfroher Mensch ohne depressive Episode beschrieben und sagt selbst, sie wolle nicht sterben. Der Gedanke widerspricht ihrem Willen — deshalb die Panik." },
+    { f:"Was ist der zentrale Mechanismus im Teufelskreis der Zwangsstörung?",
+      o:["Kurzfristig erlebte Erleichterung verstärkt das Verhalten",
+         "Die Angst wird durch das Ritual dauerhaft beseitigt",
+         "Der Gedanke verschwindet nach dem Ritual",
+         "Die Zwangshandlung wirkt nur bei sichtbaren Zwängen"],
+      r:0, e:"Die Erleichterung hält nur kurz. Danach wird der Gedanke als noch wichtiger angesehen, und die Beschäftigung mit ihm stabilisiert sich weiter." },
+    { f:"Was passiert, wenn man versucht, aufdringliche Gedanken zu unterdrücken?",
+      o:["Die Beschäftigung mit ihnen nimmt zu","Sie verschwinden",
+         "Sie werden schwächer","Es hat keinen Effekt"],
+      r:0, e:"Wörtlich im Artikel: Der Versuch hat einen gegenteiligen Effekt, er erhöht die Beschäftigung mit den aufdringlichen Gedanken." },
+    { f:"Welche Therapie ist erste Wahl?",
+      o:["Kognitive Verhaltenstherapie mit Exposition und Reaktionsmanagement",
+         "Pharmakotherapie mit SSRI","Tiefe Hirnstimulation","Psychoanalyse"],
+      r:0, e:"Sie hat die größte Effektstärke — bei Kindern und Jugendlichen 1,55 im Mittel, gegenüber 0,46 für SSRIs und Clomipramin. Trotzdem kommt sie laut Nervenarzt-Artikel immer noch zu selten zur Anwendung." },
+    { f:"Was geschieht bei der Exposition mit Reaktionsverhinderung?",
+      o:["Der Patient setzt sich der Angst aus, und die Zwangshandlung wird verhindert",
+         "Der Patient führt die Zwangshandlung unter Anleitung aus",
+         "Der Patient vermeidet die auslösenden Situationen",
+         "Der Patient bekommt zusätzlich ein Medikament"],
+      r:0, e:"Der Patient lernt dabei, dass die unangenehmen Reaktionen von selbst schwächer werden und auch ohne Zwangshandlung bewältigt werden können." },
+    { f:"Welche fünf Grundvoraussetzungen nennt die Folie zur pflegerischen Begleitung?",
+      o:["Empathie, klare Regeln, Angehörige einbeziehen, Rituale nicht verstärken, Zwangsinhalte nicht bewerten",
+         "Sicherheit, Selbstbestimmung, Stabilisierung, Bewältigung, Vernetzung",
+         "Anamnese, Beobachtung, Kommunikation, Psychoedukation, Angehörigenarbeit",
+         "Empathie, Kontrolle, Struktur, Medikation, Dokumentation"],
+      r:0, e:"Die zweite Liste sind die Ziele, die dritte die Maßnahmen. Alle drei stehen auf getrennten Folien — lern sie als drei Blöcke." },
+    { f:"Warum sollen Rituale nicht verstärkt werden?",
+      o:["Weil kurzfristige Erleichterung den Teufelskreis füttert",
+         "Weil sie zu viel Zeit kosten",
+         "Weil sie andere Patienten stören",
+         "Weil sie gegen die Stationsordnung verstoßen"],
+      r:0, e:"Konkret heißt das: keine Rückversicherung geben, nicht bei der Zwangshandlung helfen, nicht bestätigen, dass alles sauber oder ausgeschaltet ist." },
+    { f:"Was ist an dem Mustersatz „…weil der Zwang Sie so lange aufhält“ besonders?",
+      o:["Er trennt die Person von der Erkrankung",
+         "Er verbietet dem Patienten das Ritual",
+         "Er verschweigt das Problem",
+         "Er gibt die Lösung vor"],
+      r:0, e:"Der Satz zeigt Verständnis, ohne das Verhalten gutzuheißen, benennt den Zwang als Ursache statt die Person, und fragt die Lösung ab, statt sie vorzugeben." },
+    { f:"Wie hoch ist die Prävalenz der Zwangsstörung im Kindes- und Jugendalter?",
+      o:["1 bis 3 %","10 bis 15 %","unter 0,1 %","etwa 25 %"],
+      r:0, e:"Etwa 20 % aller Betroffenen haben die Störung schon bis zum Alter von 10 Jahren entwickelt. Die erste Behandlung erfolgt im Durchschnitt erst mit 13 Jahren — also im Mittel zwei Jahre nach Symptombeginn." },
+    { f:"Wodurch unterscheidet sich ein Tic von einer Zwangshandlung?",
+      o:["Bei Tics steht körperliche Anspannung im Vordergrund; sie sind nicht zweckgerichtet und nicht mit Befürchtungen verbunden",
+         "Tics sind immer sichtbar, Zwangshandlungen nie",
+         "Tics treten nur bei Kindern auf",
+         "Tics werden als angenehm erlebt"],
+      r:0, e:"Und Tics lassen sich kaum willentlich unterdrücken. Als angenehm erlebt werden dagegen Stereotypien, etwa bei autistischen Störungen." },
+    { f:"Warum wird die Zwangsstörung auch in Behandlungssettings oft nicht diagnostiziert?",
+      o:["Wegen Scham und Verheimlichung — deshalb gehört gezieltes Nachfragen zur Erstexploration",
+         "Weil es keine geeigneten Testverfahren gibt",
+         "Weil sie zu selten vorkommt",
+         "Weil die Symptome zu offensichtlich sind"],
+      r:0, e:"In der jüngsten deutschen epidemiologischen Studie war die Zwangsstörung die vierthäufigste psychische Störung — und wird trotzdem übersehen, weil Betroffene aus Scham nichts erzählen." }
+  ];
+
+  function mischen(liste, richtigerIndex){
+    var paare = liste.map(function(t, j){ return { t: t, ok: j === richtigerIndex }; });
+    for(var i = paare.length - 1; i > 0; i--){
+      var k = Math.floor(Math.random() * (i + 1));
+      var tmp = paare[i]; paare[i] = paare[k]; paare[k] = tmp;
+    }
+    return paare;
+  }
+
+  var raum = document.getElementById("quizraum");
+  var anzeige = document.getElementById("punkte");
+  var beantwortet = 0, richtig = 0;
+
+  FRAGEN.forEach(function(fr, i){
+    var box = document.createElement("div"); box.className = "q";
+    var titel = document.createElement("p"); titel.className = "frg";
+    titel.textContent = (i + 1) + ". " + fr.f;
+    box.appendChild(titel);
+
+    var opts = document.createElement("div"); opts.className = "opts";
+    var erkl = document.createElement("div"); erkl.className = "erkl"; erkl.textContent = fr.e;
+
+    mischen(fr.o, fr.r).forEach(function(paar){
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "opt"; b.textContent = paar.t;
+      if(paar.ok) b.dataset.ok = "1";
+      b.addEventListener("click", function(){
+        if(box.dataset.fertig === "1") return;
+        box.dataset.fertig = "1";
+        beantwortet++;
+        if(paar.ok) richtig++;
+        opts.querySelectorAll(".opt").forEach(function(x){ x.classList.add("aus"); });
+        b.classList.add(paar.ok ? "richtig" : "falsch");
+        if(!paar.ok) opts.querySelector('.opt[data-ok="1"]').classList.add("richtig");
+        erkl.classList.add("an");
+        anzeige.textContent = richtig + " von " + beantwortet + " richtig · "
+          + FRAGEN.length + " Fragen insgesamt";
+      });
+      opts.appendChild(b);
+    });
+
+    box.appendChild(opts); box.appendChild(erkl); raum.appendChild(box);
+  });
+})();
+</script>
