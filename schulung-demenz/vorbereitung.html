@@ -83,6 +83,23 @@
   .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;padding:15px 18px;margin:16px 0;}
   .info{background:var(--bluebg);border-left:4px solid var(--blue);border-radius:10px;padding:15px 18px;margin:16px 0;}
   .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  details.mu{margin:14px 0 0;border:1px solid var(--line);border-radius:11px;background:var(--card);
+    padding:12px 16px;}
+  details.mu > summary{cursor:pointer;list-style:none;font-weight:600;color:var(--accent-deep);
+    display:flex;align-items:center;gap:9px;}
+  details.mu > summary::-webkit-details-marker{display:none;}
+  details.mu > summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.mu[open] > summary::before{content:"－";}
+  details.mu > *:not(summary){margin-top:11px;}
+  .vier{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));margin:18px 0;}
+  .vier .a{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;
+    background:var(--card);padding:15px 17px;}
+  .vier .a h4{margin:0 0 3px;font-size:1.06rem;color:var(--accent-deep);}
+  .vier .a .u{font-size:14px;color:var(--ink-soft);display:block;margin-bottom:9px;}
+  .vier .a ul{margin:0;padding-left:1.15em;font-size:15px;}
+  .vier .a li{margin-bottom:6px;}
+  .zit{font-style:italic;border-left:3px solid var(--accent);padding-left:15px;margin:14px 0;}
+  .gross{font-family:var(--serif);font-size:1.22rem;line-height:1.4;}
 
   .zwei{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
   @media (max-width:640px){.zwei{grid-template-columns:1fr;}}
@@ -117,19 +134,22 @@
 <header class="hero">
   <p class="eyebrow">Vorbereitung · Demenz im Krankenhaus</p>
   <h1>Demenz-Vorbereitungsblatt</h1>
-  <p class="sub">Du hast die Folien noch nicht — der Unterricht ist erst morgen. Aber du hast
-    schon <b>sehr viel</b> in deinen eigenen Unterlagen, was morgen fallen wird, und einiges davon
-    ist sogar ausdrücklich auf das Krankenhaus gemünzt. Oben steht, was du schon sicher weißt.
-    Unten sind die Felder, in die du morgen mitschreibst.
-    <span class="fr">En haut : ce que tu sais déjà, avec la source. En bas : les cases à remplir
-    demain.</span></p>
-  <div class="meta"><span>Schwerpunkt Krankenhaus</span>
-    <span>12 Anknüpfungspunkte aus deinen Unterlagen</span>
-    <span>Vokabelliste DE → FR</span><span>Mitschreib-Raster</span>
-    <span>9 Fragen an die Dozentin</span></div>
+  <p class="sub"><b>Jetzt mit den Folien.</b> Oben steht der Unterricht selbst — die vier
+    Ansatzpunkte der demenzsensiblen Pflege, die Fallfortsetzung in der Nacht, Demenz oder Delir
+    und der Arbeitsauftrag. Darunter bleibt alles stehen, was du vorher vorbereitet hattest.
+    <span class="fr">En haut : le cours. En dessous : ta préparation, elle reste.</span></p>
+  <div class="meta"><span>Zwei Doppelstunden</span><span>Vier Ansatzpunkte</span>
+    <span>Demenz oder Delir</span><span>Arbeitsauftrag mit Musterlösung</span>
+    <span>Vokabelliste DE → FR</span></div>
 </header>
 
 <nav class="toc">
+  <a href="#unterricht">Der Unterricht</a>
+  <a href="#verstehen">Verhalten verstehen</a>
+  <a href="#vier">Die vier Ansatzpunkte</a>
+  <a href="#antwort">Was antworten Sie?</a>
+  <a href="#nacht">Die Nacht · Delir</a>
+  <a href="#auftrag2">★ Arbeitsauftrag</a>
   <a href="#plan">Der Plan</a>
   <a href="#fall">Fall Herr Werner</a>
   <a href="#khs">Warum Krankenhaus</a>
@@ -144,6 +164,464 @@
 </nav>
 
 <main>
+
+<section id="unterricht">
+  <h2>Der Unterricht — worum es geht</h2>
+  <p class="lead">Zwei Doppelstunden. Schwerpunkt laut Titelfolie:
+    <b>Perspektivwechsel · demenzsensible Pflege · Delir erkennen</b>.</p>
+
+  <div class="card">
+    <p class="gross" style="margin-top:0;">Was erlebt ein Mensch mit Demenz, wenn er plötzlich
+      Patient im Krankenhaus wird?</p>
+    <p><b>Die vier Lernziele:</b></p>
+    <ul>
+      <li>Besondere Belastungen eines Krankenhausaufenthalts für Menschen mit Demenz
+        <b>verstehen</b></li>
+      <li>Verhalten <b>aus der Perspektive der betroffenen Person</b> betrachten</li>
+      <li>Pflegerische Handlungsmöglichkeiten für eine demenzsensible Versorgung
+        <b>ableiten</b></li>
+      <li>Akute Veränderungen wahrnehmen und <b>an ein mögliches Delir denken</b></li>
+    </ul>
+    <span class="quelle">Demenz im Krankenhaus, Folien 1–2</span>
+  </div>
+
+  <h3>Was man auf Station beobachtet</h3>
+  <p>Die Folie sammelt zuerst eure eigenen Erfahrungen. Menschen mit Demenz im Krankenhaus:</p>
+  <div class="card">
+    <ul>
+      <li>zeigen sich <b>ängstlich</b></li>
+      <li><b>klingeln häufig</b></li>
+      <li><b>fragen häufig nach</b></li>
+      <li><b>verweigern</b> Medikamente oder notwendige Untersuchungen</li>
+      <li>sind <b>unruhig</b></li>
+    </ul>
+  </div>
+
+  <h3>Woran könnte das liegen? — die Leitsymptome</h3>
+  <div class="card">
+    <ul>
+      <li><b>Vergesslichkeit</b> — daraus folgt: immer wieder nachfragen</li>
+      <li><b>Orientierungsstörung</b>, und zwar in vier Richtungen:
+        <b>zeitlich · örtlich · situativ · zur Person</b></li>
+    </ul>
+    <p class="zit">„Gewohnte Umgebung, gewohnte Abläufe und Personen sind besonders wichtig,
+      wenn es mir schwerfällt, mich zu orientieren und neue Situationen kognitiv zu erfassen.“</p>
+    <span class="quelle">Folie 4</span>
+  </div>
+
+  <div class="gut"><b>Der ganze Kurs steckt in diesem einen Zusammenhang.</b> Links stehen die
+    Verhaltensweisen, über die sich das Personal beschwert. Rechts stehen zwei Symptome. Und die
+    linke Spalte ist nichts anderes als die <b>logische Folge</b> der rechten: Wer vergisst, muss
+    nachfragen. Wer nicht weiß, wo er ist, wird unruhig und ängstlich. Wer nicht versteht, was mit
+    ihm geschieht, wehrt sich.
+    <span class="fr">Le comportement n'est pas le problème — c'est la conséquence.</span></div>
+</section>
+
+<section id="verstehen">
+  <h2>„Schwieriger Patient“ — oder herausgeforderter Mensch?</h2>
+
+  <div class="card">
+    <p class="gross" style="margin-top:0;">Verhalten entsteht nicht im luftleeren Raum.</p>
+    <ul>
+      <li>Demenzbedingte Einschränkungen treffen auf eine <b>fremde und komplexe Umgebung</b>.</li>
+      <li><b>Schmerz, Angst, fehlende Orientierung</b> und <b>unverstandene Handlungen</b> können
+        Verhalten beeinflussen.</li>
+    </ul>
+    <p>Und daraus zieht die Folie die Konsequenz, die den Titel dieser Doppelstunde trägt:</p>
+    <div class="achtung" style="margin-bottom:0;">
+      <p style="margin:0 0 8px;">Die zentrale Frage lautet <b>nicht</b>:
+        <em>„Wie stoppen wir das Verhalten?“</em></p>
+      <p class="gross" style="margin:0;"><b>Sondern: „Was braucht dieser Mensch in dieser
+        Situation?“</b></p>
+    </div>
+    <span class="quelle">Folien 9–10</span>
+  </div>
+
+  <div class="warn"><b>Genau daran scheitert die Übergabe am Ende deines Fallbeispiels.</b>
+    <em>„Der Herr Werner ist heute wirklich schwierig. Er klingelt ständig und versteht einfach
+    nicht, dass er im Bett bleiben muss.“</em> — <em>„Er hat eben Demenz. Da kann man
+    wahrscheinlich nicht viel machen.“</em> Beide Sätze stellen die <b>erste</b> Frage. Keiner
+    stellt die zweite. Diese zwei Sätze stehen nicht zufällig auf einer eigenen Folie: Sie sind
+    das, was du widerlegen sollst.</div>
+
+  <h3>Die vier Auswertungsfragen zum Fall</h3>
+  <p>So steht der Arbeitsauftrag zur Fallauswertung auf Folie 8:</p>
+  <div class="card">
+    <ul>
+      <li>Welche Situationen lösen vermutlich <b>Angst, Unsicherheit oder Überforderung</b> aus?</li>
+      <li>Welche <b>Bedürfnisse</b> könnten hinter seinem Verhalten stehen?</li>
+      <li>Welche <b>Bedingungen des Krankenhauses</b> verstärken seine Schwierigkeiten?</li>
+      <li>Welche <b>Reaktionen der Mitarbeitenden</b> sind hilfreich — welche eher nicht?</li>
+    </ul>
+  </div>
+</section>
+
+<section id="vier">
+  <h2>Demenzsensible Pflege — die vier Ansatzpunkte</h2>
+  <p class="lead">Das ist das Herzstück der zweiten Doppelstunde. Wenn du in der Klausur oder in
+    der Prüfung nach demenzsensibler Pflege gefragt wirst, <b>gliederst du deine Antwort nach
+    diesen vieren</b>.</p>
+
+  <div class="vier">
+    <div class="a">
+      <h4>1 · Orientierung</h4>
+      <span class="u">Umgebung und Abläufe verständlicher machen</span>
+      <ul>
+        <li>wiederholt erklären, <b>wo</b> die Person ist und <b>was als Nächstes</b> geschieht</li>
+        <li>Informationen <b>sichtbar</b> und verständlich anbieten</li>
+        <li>möglichst <b>verlässliche Abläufe und Bezugspersonen</b> schaffen</li>
+        <li><b>unnötige Reize</b> und häufige <b>Ortswechsel vermeiden</b></li>
+        <li><b>Brille, Hörgerät</b> und andere Hilfsmittel verfügbar machen</li>
+        <li><b>vertraute Gegenstände oder Fotos</b> nutzen, wenn dies hilfreich ist</li>
+      </ul>
+    </div>
+
+    <div class="a">
+      <h4>2 · Kommunikation</h4>
+      <span class="u">Sicherheit geben und Verstehen ermöglichen — „weniger erklären, besser
+        erreichen“</span>
+      <ul>
+        <li><b>Kontakt herstellen</b>, Blickkontakt ermöglichen, <b>sich vorstellen</b></li>
+        <li><b>kurze, konkrete Sätze</b> und <b>jeweils eine Information</b></li>
+        <li><b>Zeit</b> zum Verstehen und Antworten lassen</li>
+        <li>Informationen <b>ruhig wiederholen</b>, statt auf das <b>Erinnern zu bestehen</b></li>
+        <li><b>Gefühle</b> hinter einer Aussage wahrnehmen und ernst nehmen</li>
+        <li>Prinzipien der <b>Integrativen Validation</b> übertragen</li>
+      </ul>
+    </div>
+
+    <div class="a">
+      <h4>3 · Biografie und Angehörige</h4>
+      <span class="u">Vertrautes Wissen gezielt nutzen — „Angehörige sind nicht nur Besuch“</span>
+      <ul>
+        <li>Welche <b>Gewohnheiten</b> geben Sicherheit?</li>
+        <li>Was <b>beruhigt oder verunsichert</b> die Person?</li>
+        <li>Wie äußert sie normalerweise <b>Schmerzen</b> oder andere Bedürfnisse?</li>
+        <li>Welche <b>Themen, Personen oder Tätigkeiten</b> sind vertraut?</li>
+        <li>Welche Informationen sollten <b>alle beteiligten Mitarbeitenden</b> kennen?</li>
+      </ul>
+    </div>
+
+    <div class="a">
+      <h4>4 · Körperliche Bedürfnisse</h4>
+      <span class="u">Schmerz, Hunger, Durst, Ausscheidung, Schlaf beachten</span>
+      <ul>
+        <li><b>Schmerz</b></li>
+        <li><b>Hunger und Durst</b></li>
+        <li><b>Harndrang, Obstipation</b> oder andere Ausscheidungsprobleme</li>
+        <li><b>Schlafmangel und Erschöpfung</b></li>
+        <li><b>Infektionen</b> oder andere akute Erkrankungen</li>
+        <li><b>Nebenwirkungen</b> bzw. Veränderungen der Medikation</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="achtung"><p class="gross" style="margin:0;"><b>Nicht jedes auffällige Verhalten ist
+    unmittelbar „die Demenz“.</b></p>
+    <p style="margin:9px 0 0;">Dieser Satz steht wörtlich unter dem vierten Ansatzpunkt — und er
+    ist die Brücke zum Delir weiter unten. Herr Werner hat eine <b>hüftnahe Fraktur</b>. Wenn er
+    unruhig wird, ist die erste Frage nicht „wie beruhige ich ihn“, sondern: <b>hat er
+    Schmerzen? Muss er zur Toilette? Hat er getrunken?</b></p></div>
+  <span class="quelle">Folien 11–15</span>
+</section>
+
+<section id="antwort">
+  <h2>Was antworten Sie Herrn Werner?</h2>
+  <p class="lead">Eine eigene Folie, eine einzige Frage. Genau die Sorte Frage, die mündlich
+    gestellt wird.</p>
+
+  <div class="card">
+    <p class="gross" style="margin:0;">„Wo ist meine Frau? Ich muss nach Hause!“</p>
+  </div>
+
+  <p>Beantworte die drei Fragen der Folie selbst, bevor du aufklappst.</p>
+  <textarea id="w1" placeholder="Wenig hilfreich wäre … / Demenzsensibel wäre … / Er braucht gerade …"></textarea>
+  <span class="gespeichert" data-fuer="w1">gespeichert ✓</span>
+
+  <details class="mu"><summary>Musterantwort ansehen</summary>
+
+    <h4>Welche Antwort wäre fachlich wenig hilfreich?</h4>
+    <ul>
+      <li><em>„Das habe ich Ihnen doch eben schon gesagt.“</em> — das besteht auf dem Erinnern,
+        und genau das kann er nicht. Die Folie sagt: <b>ruhig wiederholen statt auf das Erinnern
+        zu bestehen</b>.</li>
+      <li><em>„Sie sind hier im Krankenhaus, Sie sind gestürzt, Sie haben eine Fraktur, Sie werden
+        morgen operiert und dürfen deshalb nicht aufstehen.“</em> — fünf Informationen auf einmal.
+        Verlangt ist: <b>kurze, konkrete Sätze und jeweils eine Information</b>.</li>
+      <li><em>„Ihre Frau kommt gleich.“</em> — eine Beruhigung, die nicht stimmt. In zehn Minuten
+        fragt er wieder, und dann stimmt sie immer noch nicht.</li>
+      <li>Ihn allein lassen und die Klingel weiter läuten lassen, weil er „ständig klingelt“.</li>
+    </ul>
+
+    <h4>Wie könnte eine demenzsensible Reaktion aussehen?</h4>
+    <ul>
+      <li><b>Kontakt herstellen:</b> ins Zimmer kommen, sich auf Augenhöhe setzen, Blickkontakt,
+        <b>sich vorstellen</b> — jedes Mal neu, auch wenn man vor zehn Minuten schon da war.</li>
+      <li><b>Das Gefühl aufgreifen, nicht den Sachverhalt korrigieren:</b>
+        <em>„Sie vermissen Ihre Frau.“</em> Das ist der Punkt, an dem die
+        <b>Integrative Validation</b> ansetzt.</li>
+      <li><b>Eine Information, ruhig:</b> <em>„Ihre Frau kommt morgen früh wieder.“</em></li>
+      <li><b>Zeit lassen</b> — nicht sofort nachschieben, sondern die Antwort ankommen lassen.</li>
+      <li><b>Orientierung anbieten, sichtbar:</b> einen Zettel ans Bett —
+        <em>„Ihre Frau kommt morgen um 9 Uhr“</em> — oder ein Foto seiner Frau in Sichtweite.</li>
+      <li>Und beim nächsten Klingeln: <b>dasselbe noch einmal, ohne Ungeduld</b>. Für ihn ist es
+        das erste Mal.</li>
+    </ul>
+
+    <h4>Was könnte Herr Werner in diesem Moment eigentlich brauchen?</h4>
+    <ul>
+      <li><b>Sicherheit und Beziehung</b> — er ist allein an einem Ort, den er nicht erkennt.</li>
+      <li><b>Orientierung</b> — er weiß nicht, wo er ist; er sagt es sogar selbst:
+        <em>„Ich bin doch gar nicht im Krankenhaus.“</em></li>
+      <li>Und möglicherweise etwas ganz Körperliches: <b>Schmerzen</b> in der frakturierten Hüfte,
+        <b>Harndrang</b>, <b>Durst</b>. Das ist der vierte Ansatzpunkt — und der wird bei
+        klingelnden Patienten am häufigsten übersehen.</li>
+    </ul>
+    <div class="gut"><b>Merksatz für die mündliche Prüfung.</b> „Ich korrigiere nicht seine
+      Wirklichkeit, ich beantworte sein Gefühl — und ich prüfe, ob hinter der Unruhe ein
+      körperliches Bedürfnis steckt.“</div>
+  </details>
+  <span class="quelle">Folien 12–13, 15</span>
+</section>
+
+<section id="nacht">
+  <h2>Die Fallfortsetzung — Herr Werner in der Nacht</h2>
+
+  <div class="card">
+    <ul>
+      <li>Herr Werner wirkt <b>plötzlich deutlich unruhiger</b> als am Nachmittag.</li>
+      <li>Er <b>ruft nach Personen, die nicht im Zimmer sind</b>.</li>
+      <li>Seine <b>Aufmerksamkeit schwankt stark</b>; zeitweise lässt er sich kaum ansprechen.</li>
+      <li>Später ist er <b>ungewöhnlich schläfrig</b>.</li>
+      <li>Am nächsten Morgen wirkt er <b>erneut stark unruhig und desorientiert</b>.</li>
+    </ul>
+    <span class="quelle">Folie 16</span>
+  </div>
+
+  <p>Die Folie danach stellt genau zwei Fragen: <em>„Welches typische Demenzsymptom erklärt diese
+    plötzliche Veränderung?“</em> und <em>„Oder müssen wir an etwas anderes denken?“</em></p>
+
+  <div class="warn"><b>Die Antwort ist: keines.</b> Kein Demenzsymptom erklärt eine
+    <b>plötzliche</b> Veränderung innerhalb weniger Stunden. Genau daran erkennst du, dass hier
+    etwas anderes im Spiel ist.</div>
+
+  <h3>Demenz oder Delir — so steht es auf der Folie</h3>
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Demenz</th><th>Delir</th></tr></thead>
+      <tbody>
+        <tr><td>meist <b>schleichender</b> Beginn</td><td><b>akuter</b> Beginn</td></tr>
+        <tr><td><b>längerfristiger</b> Verlauf</td><td>häufig <b>schwankender</b> Verlauf</td></tr>
+        <tr><td>kognitive Einschränkungen bestehen <b>dauerhaft</b></td>
+            <td><b>Aufmerksamkeit und Bewusstsein</b> können deutlich verändert sein</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><b>Und der Satz darunter:</b> „Ein Delir kann <b>zusätzlich</b> zu einer bestehenden Demenz
+    auftreten.“ Es ist also kein Entweder-oder.</p>
+
+  <div class="gut"><b>Lies jetzt die Fallfortsetzung noch einmal.</b> Alle drei Merkmale der
+    rechten Spalte stehen darin: <b>akuter Beginn</b> („plötzlich deutlich unruhiger“),
+    <b>schwankender Verlauf</b> (unruhig → kaum ansprechbar → ungewöhnlich schläfrig → morgens
+    wieder unruhig) und <b>veränderte Aufmerksamkeit</b> („Aufmerksamkeit schwankt stark“). Dazu
+    das Rufen nach Personen, die nicht da sind. <b>Das ist das Muster, an dem du ein Delir
+    erkennst.</b></div>
+
+  <h3>Die wichtige Konsequenz für die Pflege</h3>
+  <div class="achtung">
+    <p class="gross" style="margin:0 0 10px;">Eine plötzliche Veränderung darf nicht einfach mit
+      <em>„Er hat eben Demenz“</em> erklärt werden.</p>
+    <ul style="margin-bottom:0;">
+      <li>Veränderungen <b>aufmerksam beobachten und beschreiben</b></li>
+      <li><b>körperliche Ursachen mitdenken</b></li>
+      <li>Informationen <b>im Team weitergeben</b></li>
+      <li>eine <b>zeitnahe medizinische Abklärung veranlassen</b></li>
+    </ul>
+  </div>
+  <p>Damit schließt sich der Kreis zur Folie ganz am Anfang: Der Satz der Kollegin bei der
+    Übergabe — <em>„Er hat eben Demenz. Da kann man wahrscheinlich nicht viel machen.“</em> — ist
+    nicht nur unfreundlich. Er ist <b>gefährlich</b>, weil er eine akute Verschlechterung
+    unsichtbar macht.</p>
+  <span class="quelle">Folien 16–19</span>
+</section>
+
+<section id="auftrag2">
+  <h2>★ Der Arbeitsauftrag</h2>
+  <p class="lead">Fünf Schritte, so wie sie auf der Folie stehen. Schreib zuerst selbst — die
+    Musterlösung ist darunter eingeklappt.
+    <span class="fr">Écris d'abord. La correction est en dessous, repliée.</span></p>
+
+  <div class="card">
+    <p style="margin-top:0;"><b>Herr Werner demenzsensibel versorgen</b></p>
+    <ol>
+      <li>Wählen Sie eine <b>problematische Situation</b> aus dem Fall.</li>
+      <li>Beschreiben Sie die Situation zunächst <b>aus Sicht von Herrn Werner</b>.</li>
+      <li>Formulieren Sie ein <b>pflegerisches Ziel</b>.</li>
+      <li>Entwickeln Sie <b>konkrete Maßnahmen</b> zu <b>Orientierung, Kommunikation, Umgebung
+        und Sicherheit</b>.</li>
+      <li><b>Begründen Sie</b> Ihre Maßnahmen.</li>
+    </ol>
+    <span class="quelle">Folie 20</span>
+  </div>
+
+  <h3>1 · Die Situation, die ich wähle</h3>
+  <textarea id="w2" placeholder="Ich wähle die Situation: … (Zeile / Abschnitt im Fall)"></textarea>
+  <span class="gespeichert" data-fuer="w2">gespeichert ✓</span>
+
+  <h3>2 · Aus Sicht von Herrn Werner</h3>
+  <textarea id="w3" placeholder="Ich bin … Ich weiß nicht … Ich sehe … Ich fühle …"></textarea>
+  <span class="gespeichert" data-fuer="w3">gespeichert ✓</span>
+
+  <h3>3 · Das pflegerische Ziel</h3>
+  <textarea id="w4" placeholder="Herr Werner … (aktives Verb, messbar, mit Zeitangabe)"></textarea>
+  <span class="gespeichert" data-fuer="w4">gespeichert ✓</span>
+
+  <h3>4 und 5 · Maßnahmen und Begründungen</h3>
+  <textarea id="w5" style="min-height:180px" placeholder="Orientierung: … weil …&#10;Kommunikation: … weil …&#10;Umgebung: … weil …&#10;Sicherheit: … weil …"></textarea>
+  <span class="gespeichert" data-fuer="w5">gespeichert ✓</span>
+
+  <details class="mu"><summary>Musterlösung ansehen</summary>
+
+    <h4>1 · Die gewählte Situation</h4>
+    <p>Der Nachmittag auf der unfallchirurgischen Station: Kurz nachdem seine Frau gegangen ist,
+      klingelt Herr Werner immer wieder, fragt nach ihr, sagt <em>„Ich bin doch gar nicht im
+      Krankenhaus“</em> — und <b>versucht zweimal aufzustehen, obwohl er sein rechtes Bein nicht
+      belasten darf</b>.</p>
+    <p><b>Warum diese Situation?</b> Weil hier alles zusammenkommt: Orientierungsverlust,
+      Beziehungsabbruch, ein echtes Sicherheitsrisiko bei frischer hüftnaher Fraktur — und die
+      Bewertung des Teams als „schwierig“.</p>
+
+    <h4>2 · Aus seiner Sicht</h4>
+    <p class="zit">Ich wache auf und weiß nicht, wo ich bin. Der Raum ist fremd, das Bett ist
+      fremd, es riecht anders als zu Hause. Meine Frau war eben noch da — jetzt ist sie weg, und
+      niemand hat mir gesagt, warum. Mein Bein tut weh, aber ich weiß nicht mehr, wieso. Fremde
+      Menschen kommen herein, reden schnell und gehen wieder. Ich möchte nur nach Hause, dorthin,
+      wo ich weiß, wie alles geht. Also stehe ich auf und gehe los.</p>
+    <div class="gut"><b>Das ist der Perspektivwechsel, um den es in beiden Doppelstunden geht.</b>
+      Aus dieser Sicht ist das Aufstehen keine Uneinsichtigkeit, sondern <b>das Vernünftigste, was
+      er tun kann</b>. Seine Frau ist verschwunden, er ist an einem fremden Ort, es tut weh — er
+      geht nach Hause. Wer das einmal so gedacht hat, sagt nie wieder „er versteht einfach
+      nicht“.</div>
+
+    <h4>3 · Das pflegerische Ziel</h4>
+    <ul>
+      <li><b>Nahziel:</b> Herr Werner <b>bleibt</b> bis zur Operation <b>sturzfrei</b> und
+        <b>ruft</b> nach einer Pflegekraft, bevor er aufsteht.</li>
+      <li><b>Nahziel:</b> Er <b>äußert</b> bis zum Abend, dass er sich sicher fühlt, oder zeigt
+        durch ruhigeres Verhalten, dass die Unruhe abnimmt.</li>
+      <li><b>Fernziel:</b> Er <b>orientiert sich</b> mithilfe vertrauter Gegenstände und
+        wiederkehrender Abläufe im Zimmer.</li>
+    </ul>
+
+    <h4>4 · Die Maßnahmen — nach den vier Ansatzpunkten</h4>
+    <div class="tabelle">
+      <table>
+        <thead><tr><th style="width:22%">Bereich</th><th style="width:40%">Maßnahme</th>
+          <th style="width:38%">Begründung</th></tr></thead>
+        <tbody>
+          <tr><td><b>Orientierung</b></td>
+            <td><ul style="margin:0;padding-left:1.1em;">
+              <li>Bei jedem Betreten ruhig sagen, <b>wo</b> er ist und <b>was als Nächstes</b>
+                geschieht.</li>
+              <li>Gut sichtbar am Bett: <b>„Ihre Frau kommt morgen früh“</b>, dazu Datum und
+                Uhrzeit.</li>
+              <li><b>Foto der Ehefrau</b> und vertraute Gegenstände von zu Hause ins Blickfeld.</li>
+              <li><b>Feste Bezugspflegekraft</b> pro Schicht, keine unnötigen Zimmerwechsel.</li>
+              <li><b>Brille und Hörgerät</b> anlegen und in Reichweite lassen.</li>
+            </ul></td>
+            <td>Er kann sich Gesagtes nicht merken — <b>Sichtbares</b> bleibt, gesprochene
+              Information nicht. Vertraute Dinge und Menschen ersetzen die Orientierung, die ihm
+              fehlt. Ohne Brille und Hörgerät verliert er den letzten Zugang zur Umgebung.</td></tr>
+
+          <tr><td><b>Kommunikation</b></td>
+            <td><ul style="margin:0;padding-left:1.1em;">
+              <li>Sich <b>jedes Mal neu vorstellen</b>, auf Augenhöhe, mit Blickkontakt.</li>
+              <li><b>Ein Satz, eine Information.</b> Danach warten.</li>
+              <li>Das <b>Gefühl aufgreifen</b>: „Sie vermissen Ihre Frau“ — statt zu korrigieren.</li>
+              <li>Beim wiederholten Klingeln <b>ruhig wiederholen</b>, ohne Ungeduld.</li>
+              <li>Keine Testfragen nach Datum und Ort ohne Grund.</li>
+            </ul></td>
+            <td>„Weniger erklären — besser erreichen“. Auf das Erinnern zu bestehen erzeugt genau
+              die Reaktion aus der Notaufnahme: <em>„Was wollen Sie denn dauernd von mir?“</em>
+              Testfragen führen ihm sein Defizit vor und erzeugen Abwehr.</td></tr>
+
+          <tr><td><b>Umgebung</b></td>
+            <td><ul style="margin:0;padding-left:1.1em;">
+              <li><b>Reize reduzieren</b>: Tür schließen, Alarme leiser, Zimmer möglichst ruhig.</li>
+              <li>Gleichbleibende <b>Anordnung der Dinge</b>, nichts umräumen.</li>
+              <li>Nachts <b>gedämpftes Licht</b> statt völliger Dunkelheit.</li>
+              <li>Tagesablauf möglichst an seine <b>Gewohnheiten</b> anpassen — Aufstehen gegen
+                7 Uhr, Zeitung nach dem Frühstück.</li>
+            </ul></td>
+            <td>Seine Frau berichtet ausdrücklich, dass er unruhig wird, <b>„wenn etwas anders
+              abläuft als gewohnt oder wenn mehrere Menschen gleichzeitig auf ihn einreden“</b>.
+              Die Notaufnahme mit Telefonen, Signaltönen und vorbeilaufenden Mitarbeitenden ist
+              das genaue Gegenteil.</td></tr>
+
+          <tr><td><b>Sicherheit</b></td>
+            <td><ul style="margin:0;padding-left:1.1em;">
+              <li><b>Häufige, geplante Präsenz</b> statt Warten auf die Klingel — lieber alle
+                zwanzig Minuten kurz hineinschauen.</li>
+              <li><b>Toilettengang aktiv anbieten</b>, nicht abwarten.</li>
+              <li><b>Schmerz gezielt einschätzen</b> und Bedarfsmedikation prüfen.</li>
+              <li>Bett in <b>niedrigster Position</b>, Klingel und Getränk in Reichweite, Weg
+                frei, feste Schuhe.</li>
+              <li>Bei Aufstehversuchen <b>begleiten statt festhalten</b>.</li>
+            </ul></td>
+            <td>Er darf das Bein nicht belasten und ist bereits zweimal aufgestanden — das Risiko
+              ist real. Wer <b>vorher</b> da ist, muss nicht <b>hinterher</b> festhalten. Und der
+              vierte Ansatzpunkt sagt: hinter der Unruhe können <b>Schmerz oder Harndrang</b>
+              stehen; bei frischer hüftnaher Fraktur ist Schmerz das Naheliegendste.</td></tr>
+
+          <tr><td><b>Biografie und Angehörige</b></td>
+            <td><ul style="margin:0;padding-left:1.1em;">
+              <li>Die Ehefrau gezielt befragen: Tagesablauf, was beruhigt, wie er Schmerzen
+                äußert.</li>
+              <li>Diese Angaben <b>dokumentieren und im Team weitergeben</b>.</li>
+              <li><b>Feste Besuchszeit</b> vereinbaren und sie ihm sichtbar hinschreiben.</li>
+              <li>Telefonkontakt zur Frau ermöglichen.</li>
+            </ul></td>
+            <td>„Angehörige sind nicht nur Besuch — sie können wichtige Informationen liefern.“
+              Seine Frau weiß bereits alles, was der Station fehlt: den festen Tagesablauf und den
+              Auslöser seiner Unruhe. <b>Sie ist die beste Informationsquelle im ganzen
+              Fall.</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warn"><b>Und der Satz, mit dem du deine Lösung abschließt.</b> „Wenn Herr Werner
+      in der Nacht <b>plötzlich</b> anders wird — akut, schwankend, mit veränderter
+      Aufmerksamkeit —, dann ist das <b>nicht</b> seine Demenz. Dann denke ich an ein
+      <b>Delir</b>, beobachte und beschreibe genau, denke an körperliche Ursachen, gebe es im Team
+      weiter und veranlasse eine <b>zeitnahe medizinische Abklärung</b>.“ Damit hast du beide
+      Doppelstunden in einem Satz.</div>
+  </details>
+</section>
+
+<section id="mitnehmen">
+  <h2>Ergebnissicherung</h2>
+  <p class="lead">Die beiden Abschlussfolien — auswendig lernbar, und genau so prüfbar.</p>
+
+  <div class="card">
+    <p style="margin-top:0;"><b>Was braucht ein Mensch mit Demenz im Krankenhaus?</b></p>
+    <ul>
+      <li>Orientierung</li>
+      <li>Sicherheit und Beziehung</li>
+      <li>verständliche Kommunikation</li>
+      <li>möglichst vertraute Strukturen</li>
+      <li>Beachtung individueller Bedürfnisse</li>
+      <li>aufmerksame Beobachtung bei Veränderungen</li>
+    </ul>
+  </div>
+
+  <div class="gut">
+    <p class="gross" style="margin:0;"><b>Verhalten verstehen. Bedürfnisse erkennen.
+      Umgebung und Pflege anpassen.</b></p>
+    <p style="margin:11px 0 0;">Und bei plötzlichen Veränderungen:
+      <b>nicht vorschnell die Demenz verantwortlich machen.</b></p>
+  </div>
+  <span class="quelle">Folien 21–22</span>
+</section>
 
 <section id="plan">
   <h2>Der Plan für heute Abend</h2>
@@ -871,8 +1349,8 @@
 </section>
 
 <section id="fragen">
-  <h2>Neun Fragen an die Dozentin</h2>
-  <p class="lead">Such dir zwei aus. Alle neun knüpfen an etwas an, das du <b>schon</b> gelernt
+  <h2>Elf Fragen an die Dozentin</h2>
+  <p class="lead">Such dir zwei aus. Alle elf knüpfen an etwas an, das du <b>schon</b> gelernt
     hast — deshalb sind es gute Fragen und keine Verlegenheitsfragen.</p>
 
   <div class="card">
