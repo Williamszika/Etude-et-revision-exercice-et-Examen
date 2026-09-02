@@ -1,4 +1,6 @@
-# Unterlagen zur Zwischenprüfung — 1. April 2027
+# Zwischenprüfung — 1. April 2027
+
+Die PDFs liegen in `quellen/`.
 
 Quelle aller Angaben auf der Seite
 `schulung-zwischenpruefung/ablauf.html`
