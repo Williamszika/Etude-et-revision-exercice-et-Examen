@@ -50,9 +50,19 @@ for w in weitere:
     w["datum_de"] = de_datum(w["datum"])
     w["repo_ordner"] = f"{repo}/tree/{branch}/{w['ordner']}"
 
+# Alle Kurs-PDFs — erzeugt von kurs-pdfs-bauen.py, hier nur verlinkt
+kurs = {"gruppen": [], "anzahl": 0, "anzahl_aa": 0}
+kurs_datei = ROOT / "kurs-pdfs.json"
+if kurs_datei.exists():
+    kurs = json.loads(kurs_datei.read_text(encoding="utf-8"))
+    for g in kurs["gruppen"]:
+        for d in g["dateien"]:
+            d["url"] = f"{repo}/blob/{branch}/{d['pfad']}"
+
 payload = {
     "schulungen": schulungen,
     "weitere": weitere,
+    "kurs": kurs,
     "faecher": sorted({s["fach"] for s in schulungen}),
     "anzahl_pdf": sum(len(s.get("quellen", [])) for s in schulungen),
     "stand": max(s["datum"] for s in schulungen),
@@ -63,4 +73,5 @@ blob = json.dumps(payload, ensure_ascii=False).replace("</", "<\\/")
 out = TPL.replace("__DATA__", blob)
 (ROOT / "index.html").write_text(out, encoding="utf-8")
 print(f"OK  {len(schulungen)} Schulungen, {len(weitere)} weitere Lernmittel, "
-      f"{payload['anzahl_pdf']} Quellen-PDFs -> schulungen/index.html")
+      f"{payload['anzahl_pdf']} Quellen-PDFs, {kurs['anzahl']} Kurs-PDFs "
+      f"({kurs['anzahl_aa']} Arbeitsaufträge) -> schulungen/index.html")

@@ -93,6 +93,44 @@
   details.q a{color:var(--accent-deep);text-decoration:none;border-bottom:1px solid transparent;}
   details.q a:hover{border-bottom-color:var(--accent);}
 
+  /* Alle Kurs-PDFs */
+  .kurs{margin-top:52px;}
+  .kurs-lead{color:var(--ink-soft);font-size:15px;margin:6px 0 16px;max-width:70ch;}
+  .kurs-werkzeug{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px;}
+  .kurs-werkzeug input{flex:1 1 220px;font:inherit;font-size:14.5px;color:var(--ink);
+    background:var(--card);border:1px solid var(--line);border-radius:9px;padding:9px 13px;min-width:0;}
+  .kurs-werkzeug input:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  details.kg{border:1px solid var(--line);border-radius:13px;background:var(--card);
+    margin-bottom:10px;overflow:hidden;}
+  details.kg.hidden{display:none;}
+  details.kg > summary{cursor:pointer;list-style:none;padding:13px 17px;display:flex;
+    align-items:center;gap:11px;flex-wrap:wrap;}
+  details.kg > summary::-webkit-details-marker{display:none;}
+  details.kg > summary .ic{font-size:1.25rem;line-height:1;}
+  details.kg > summary .ti{font-family:var(--serif);font-weight:600;font-size:1.1rem;flex:1;
+    min-width:0;}
+  details.kg > summary .n{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);
+    background:var(--paper-2);border-radius:999px;padding:3px 10px;white-space:nowrap;}
+  details.kg[open] > summary{border-bottom:1px solid var(--line);background:var(--paper-2);}
+  .kg-body{padding:6px 17px 14px;}
+  .kd{display:flex;gap:11px;align-items:flex-start;padding:9px 0;
+    border-bottom:1px dashed var(--line);}
+  .kd:last-child{border-bottom:none;}
+  .kd.hidden{display:none;}
+  .kd.sub{padding-left:26px;border-left:2px solid var(--accent-soft);margin-left:6px;}
+  .kd .ico{font-size:13px;line-height:1.7;flex:0 0 auto;}
+  .kd .txt{flex:1;min-width:0;}
+  .kd .txt a{color:var(--ink);text-decoration:none;border-bottom:1px solid transparent;
+    font-size:15px;}
+  .kd .txt a:hover{border-bottom-color:var(--accent);color:var(--accent-deep);}
+  .kd .meta2{display:block;font-family:var(--mono);font-size:11px;color:var(--ink-soft);
+    margin-top:3px;word-break:break-all;}
+  .kd .tag{font-family:var(--mono);font-size:10px;letter-spacing:.06em;border-radius:999px;
+    padding:2px 8px;margin-right:6px;white-space:nowrap;}
+  .kd .tag.aa{background:var(--warnbg);color:var(--warn);}
+  .kd .tag.ce{background:var(--accent-soft);color:var(--accent-deep);}
+  .kd .tag.txt2{background:var(--paper-2);color:var(--ink-soft);}
+
   .weitere{margin-top:48px;}
   .wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:13px;margin-top:14px;}
   .wcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:17px 19px;
@@ -142,6 +180,22 @@
     <div class="wgrid" id="wgrid"></div>
   </div>
 
+  <div class="kurs" id="kurs">
+    <div class="monat"><h2>Alle Kurs-PDFs</h2><div class="li"></div>
+      <span class="cnt" id="kurs-cnt"></span></div>
+    <p class="kurs-lead">Jedes Dokument aus dem Unterricht, nach den dreizehn Themen des
+      Lern-Hubs geordnet. <b>Arbeitsaufträge stehen direkt unter dem Dokument, zu dem sie
+      gehören</b> und sind mit ★ markiert. Klick auf ein Thema, um es aufzuklappen.</p>
+    <div class="kurs-werkzeug">
+      <input type="search" id="kq" placeholder="🔎 PDF suchen … (Titel, Dateiname, CE/UE)"
+             autocomplete="off">
+      <button class="chip" id="k-aa" type="button">nur Arbeitsaufträge</button>
+      <button class="chip" id="k-auf" type="button">alle aufklappen</button>
+      <span class="hits" id="k-hits"></span>
+    </div>
+    <div id="kliste"></div>
+  </div>
+
   <div class="info" id="info"></div>
 
   <footer>
@@ -159,12 +213,19 @@ document.getElementById('stats').innerHTML =
   '<span><b>' + D.schulungen.length + '</b> Schulungen</span>' +
   '<span><b>' + D.schulungen.filter(s=>s.links.zusammenfassung).length + '</b> große Zusammenfassungen</span>' +
   '<span><b>' + D.anzahl_pdf + '</b> Quellen-PDFs</span>' +
+  ((D.kurs && D.kurs.anzahl)
+    ? '<span><b>' + D.kurs.anzahl + '</b> Kurs-PDFs · <b>' + D.kurs.anzahl_aa +
+      '</b> Arbeitsaufträge</span>' : '') +
   '<span>Stand: <b>' + D.stand_de + '</b></span>';
 
 document.getElementById('info').innerHTML =
   '<b>So wächst diese Seite:</b> Jede neue Schulung wird in <code>schulungen/schulungen.json</code> ' +
   'eingetragen und mit <code>python3 schulungen/build.py</code> neu gebaut. ' +
   'Der <b>Link zu dieser Seite bleibt immer derselbe</b> — neue Schulungen erscheinen automatisch oben. ' +
+  '<br><br><b>Die Liste „Alle Kurs-PDFs"</b> wird mit ' +
+  '<code>python3 schulungen/kurs-pdfs-bauen.py</code> erzeugt — aus ' +
+  '<code>Wissen/00-themenkarte.md</code> und den Wissen-Dateien. Titel, Kurskennung und die ' +
+  'Einstufung als Arbeitsauftrag stehen dort, nichts davon ist erfunden. ' +
   '<br><br><b>Deutsch täglich hat einen eigenen Link</b> und ist hier bewusst nicht enthalten.';
 
 /* ---- Filter-Chips ---- */
@@ -340,5 +401,85 @@ D.weitere.forEach(w => {
   wg.appendChild(a);
 });
 if (!D.weitere.length) document.getElementById('weitere').style.display = 'none';
+
+/* ---- Alle Kurs-PDFs ---- */
+const K = (D.kurs && D.kurs.gruppen) ? D.kurs.gruppen : [];
+if (!K.length) {
+  document.getElementById('kurs').style.display = 'none';
+} else {
+  document.getElementById('kurs-cnt').textContent =
+    D.kurs.anzahl + ' Dokumente · ' + D.kurs.anzahl_aa + ' Arbeitsaufträge';
+
+  const kliste = document.getElementById('kliste');
+  const kAlle = [];
+
+  K.forEach(g => {
+    const det = el('details', 'kg');
+    const sum = el('summary');
+    sum.appendChild(el('span', 'ic', g.icon));
+    sum.appendChild(el('span', 'ti', g.nr + '. ' + g.titel));
+    sum.appendChild(el('span', 'n', g.dateien.length + ' Dok.'));
+    det.appendChild(sum);
+
+    const body = el('div', 'kg-body');
+    g.dateien.forEach(d => {
+      const row = el('div', 'kd' + (d.gehoert_zu ? ' sub' : ''));
+      row.appendChild(el('span', 'ico', d.aa ? '★' : (d.nur_text ? '📝' : '📄')));
+      const txt = el('div', 'txt');
+      const a = el('a', null, d.titel);
+      a.href = d.url; a.target = '_blank'; a.rel = 'noopener';
+      txt.appendChild(a);
+      const meta = el('span', 'meta2');
+      if (d.aa) meta.appendChild(el('span', 'tag aa', 'ARBEITSAUFTRAG'));
+      if (d.ce) meta.appendChild(el('span', 'tag ce', d.ce));
+      if (d.nur_text) meta.appendChild(el('span', 'tag txt2', 'NUR TEXTFASSUNG'));
+      meta.appendChild(document.createTextNode(
+        d.pfad + (d.gehoert_zu ? '  ·  gehört zu ' + d.gehoert_zu : '')));
+      txt.appendChild(meta);
+      row.appendChild(txt);
+      body.appendChild(row);
+      kAlle.push({
+        row: row, det: det, aa: !!d.aa,
+        such: (d.titel + ' ' + d.datei + ' ' + d.ce + ' ' + d.pfad + ' ' + g.titel).toLowerCase()
+      });
+    });
+    det.appendChild(body);
+    kliste.appendChild(det);
+  });
+
+  let kText = '', nurAA = false;
+  function kRender(){
+    let n = 0;
+    kAlle.forEach(o => {
+      const zeig = (!kText || o.such.indexOf(kText) !== -1) && (!nurAA || o.aa);
+      o.row.classList.toggle('hidden', !zeig);
+      if (zeig) n++;
+    });
+    K.forEach((g, i) => {
+      const det = kliste.children[i];
+      const sichtbar = kAlle.some(o => o.det === det && !o.row.classList.contains('hidden'));
+      det.classList.toggle('hidden', !sichtbar);
+      if (sichtbar && (kText || nurAA)) det.open = true;
+    });
+    document.getElementById('k-hits').textContent =
+      (kText || nurAA) ? n + ' von ' + kAlle.length : '';
+  }
+
+  document.getElementById('kq').addEventListener('input', e => {
+    kText = e.target.value.trim().toLowerCase(); kRender();
+  });
+  document.getElementById('k-aa').addEventListener('click', function(){
+    nurAA = !nurAA;
+    this.classList.toggle('sel', nurAA);
+    this.textContent = nurAA ? 'alle Dokumente zeigen' : 'nur Arbeitsaufträge';
+    kRender();
+  });
+  document.getElementById('k-auf').addEventListener('click', function(){
+    const zu = [...kliste.children].some(d => !d.open);
+    [...kliste.children].forEach(d => { d.open = zu; });
+    this.textContent = zu ? 'alle zuklappen' : 'alle aufklappen';
+  });
+  kRender();
+}
 
 </script>
