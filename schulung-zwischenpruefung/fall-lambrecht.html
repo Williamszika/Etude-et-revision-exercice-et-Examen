@@ -1,0 +1,833 @@
+<title>Fall Herr Lambrecht</title>
+<style>
+  :root{
+    --paper:#f5f4f0;--paper-2:#e9e7e0;--card:#fffefb;--ink:#1b1e1c;--ink-soft:#535a56;--line:#d9d5cb;
+    --accent:#2c5f4f;--accent-deep:#1e4638;--accent-soft:#dcece5;
+    --akt:#a8394a;--aktbg:#f5e0e3;--pot:#8a5a12;--potbg:#f7ecd7;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#131614;--paper-2:#0e100f;--card:#1c211e;--ink:#ecefeb;--ink-soft:#a3aca7;--line:#2d3431;
+    --accent:#82c2ab;--accent-deep:#a0d6c1;--accent-soft:#14261f;
+    --akt:#e08a98;--aktbg:#2c171c;--pot:#dcae63;--potbg:#2b2114;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;}}
+  :root[data-theme="dark"]{
+    --paper:#131614;--paper-2:#0e100f;--card:#1c211e;--ink:#ecefeb;--ink-soft:#a3aca7;--line:#2d3431;
+    --accent:#82c2ab;--accent-deep:#a0d6c1;--accent-soft:#14261f;
+    --akt:#e08a98;--aktbg:#2c171c;--pot:#dcae63;--potbg:#2b2114;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;}
+  :root[data-theme="light"]{
+    --paper:#f5f4f0;--paper-2:#e9e7e0;--card:#fffefb;--ink:#1b1e1c;--ink-soft:#535a56;--line:#d9d5cb;
+    --accent:#2c5f4f;--accent-deep:#1e4638;--accent-soft:#dcece5;
+    --akt:#a8394a;--aktbg:#f5e0e3;--pot:#8a5a12;--potbg:#f7ecd7;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;}
+
+  *{box-sizing:border-box;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;
+    line-height:1.6;margin:0;}
+  main{max-width:58rem;margin:0 auto;padding:0 18px 80px;}
+  header.hero{background:var(--accent-soft);border-bottom:1px solid var(--line);
+    padding:42px 20px 32px;text-align:center;}
+  header.hero .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-size:2.05rem;line-height:1.16;margin:0 0 11px;}
+  header.hero .sub{color:var(--ink-soft);margin:0 auto;max-width:39rem;}
+
+  nav.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px 0 6px;}
+  nav.chips a{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-decoration:none;
+    color:var(--accent-deep);background:var(--paper-2);border:1px solid var(--line);
+    border-radius:999px;padding:6px 13px;}
+  nav.chips a:hover{background:var(--accent-soft);}
+
+  h2{font-family:var(--serif);font-size:1.5rem;margin:50px 0 8px;color:var(--accent-deep);
+    scroll-margin-top:16px;}
+  h3{font-family:var(--serif);font-size:1.16rem;margin:26px 0 6px;}
+  h4{font-size:1rem;margin:18px 0 5px;color:var(--accent-deep);}
+  .lead{color:var(--ink-soft);margin:0 0 18px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  p{margin:0 0 12px;}
+
+  .karte{border:1px solid var(--line);border-radius:14px;background:var(--card);
+    padding:19px 21px;margin:18px 0;}
+  .warn{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;
+    padding:14px 17px;margin:15px 0;}
+  .info{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px;
+    padding:14px 17px;margin:15px 0;}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;
+    padding:14px 17px;margin:15px 0;}
+  .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:10px;
+    padding:14px 17px;margin:15px 0;}
+
+  .fall{border:1px solid var(--line);border-radius:14px;background:var(--card);padding:8px 0;
+    margin:18px 0;font-size:15.5px;}
+  .z{display:flex;gap:14px;padding:2px 20px;}
+  .z .n{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);min-width:2.1em;
+    text-align:right;padding-top:4px;flex-shrink:0;}
+  .z .t{flex:1;}
+  .z.ab{background:var(--accent-soft);}
+  .z.ab .n{color:var(--accent-deep);font-weight:700;}
+  .z.zitat .t{font-style:italic;}
+  .marker{background:var(--potbg);border-radius:4px;padding:0 3px;box-decoration-break:clone;
+    -webkit-box-decoration-break:clone;}
+
+  .schritt{border:1px solid var(--line);border-radius:14px;background:var(--card);margin:20px 0;
+    overflow:hidden;}
+  .schritt > .kopf{background:var(--paper-2);border-bottom:1px solid var(--line);padding:14px 20px;}
+  .schritt > .kopf .nr{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;font-weight:700;
+    color:var(--accent);display:block;}
+  .schritt > .kopf .ti{font-family:var(--serif);font-size:1.24rem;font-weight:600;}
+  .schritt > .body{padding:18px 20px;}
+
+  textarea{width:100%;min-height:120px;resize:vertical;font-family:var(--sans);font-size:15.5px;
+    line-height:1.55;padding:11px 13px;border:1px solid var(--line);border-radius:10px;
+    background:var(--paper);color:var(--ink);}
+  textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  .gespeichert{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--good);
+    opacity:0;transition:opacity .25s;display:inline-block;margin-top:5px;}
+  .gespeichert.an{opacity:1;}
+  @media (prefers-reduced-motion:reduce){.gespeichert{transition:none;}}
+
+  .btn{font-family:var(--sans);font-size:14.5px;font-weight:600;padding:10px 17px;border-radius:9px;
+    border:1.5px solid var(--accent);background:var(--accent);color:var(--card);cursor:pointer;}
+  .btn.leise{background:transparent;color:var(--accent-deep);}
+  .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .loesung{display:none;margin-top:16px;border-top:1px dashed var(--line);padding-top:16px;}
+  .loesung.offen{display:block;}
+  .loesung h4:first-child{margin-top:0;}
+
+  .prob{border:1px solid var(--line);border-radius:11px;padding:12px 15px;margin-bottom:9px;
+    background:var(--paper);}
+  .prob.a{border-left:4px solid var(--akt);}
+  .prob.p{border-left:4px solid var(--pot);}
+  .prob .lbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;border-radius:999px;
+    padding:2px 8px;margin-right:8px;}
+  .prob.a .lbl{background:var(--aktbg);color:var(--akt);}
+  .prob.p .lbl{background:var(--potbg);color:var(--pot);}
+  .prob .bg{display:block;font-size:14.5px;color:var(--ink-soft);margin-top:5px;}
+  .prob .bg b{color:var(--ink);}
+
+  .tabwrap{overflow-x:auto;margin:14px 0;}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:44rem;}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.05em;
+    text-transform:uppercase;}
+  td ul{margin:0;padding-left:1.15em;}
+  td li{margin-bottom:5px;}
+  .pk{font-family:var(--mono);font-weight:700;color:var(--accent);}
+
+  ul.tick{padding-left:0;list-style:none;}
+  ul.tick li{padding-left:1.7em;position:relative;margin-bottom:7px;}
+  ul.tick li::before{content:"▸";position:absolute;left:.35em;color:var(--accent);}
+  .quelle{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);background:var(--paper-2);
+    border-radius:6px;padding:3px 8px;display:inline-block;margin-top:8px;}
+  footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 20px 50px;text-align:center;
+    color:var(--ink-soft);font-size:14px;}
+  a{color:var(--accent-deep);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 01 · UE 10 · Frau Nix</p>
+  <h1>Herr Lambrecht — Linksherzinsuffizienz</h1>
+  <p class="sub">Problemanalyse, Gewichtung, Pflegeplanung nach PE(S)R. Genau die Aufgabe, die
+    dich in der Zwischenprüfung erwartet — nur mit drei Problemen statt vier.</p>
+</header>
+
+<main>
+
+<nav class="chips">
+  <a href="#fall">Der Fall</a>
+  <a href="#auftrag">Die Aufgabe</a>
+  <a href="#sammeln">1 · Informationen</a>
+  <a href="#analyse">2 · Problemanalyse</a>
+  <a href="#gewichten">3 · Die drei wichtigsten</a>
+  <a href="#planung">4 · Die Pflegeplanung</a>
+  <a href="#hinweis">Was von mir ist</a>
+</nav>
+
+<h2 id="fall">Der Fall</h2>
+<p class="lead">Die grün hinterlegten Zeilen sind deine <b>Ausgangslage</b> — ab Zeile 25, wie in
+  der Aufgabenstellung verlangt.</p>
+
+<div class="fall">
+  <div class="z"><span class="n">1</span><span class="t">Herr Lambrecht, 76 Jahre alt, wurde mit
+    massiver Ruhedyspnoe, Asthma cardiale und Zyanose sowie</span></div>
+  <div class="z"><span class="n">2</span><span class="t">einem auskultatorischen Brodeln über der
+    Lunge in die internistische Notfallaufnahme mit dem RTW</span></div>
+  <div class="z"><span class="n">3</span><span class="t">eingeliefert. Er hat einen Blutdruck von
+    90/50 mmHg, einen Puls von 120 Schlägen/Min und wiegt 64</span></div>
+  <div class="z"><span class="n">4</span><span class="t">kg bei einer Größe von 175 cm. Zudem ist
+    bei dem Patienten eine KHK bekannt.</span></div>
+  <div class="z"><span class="n">5</span><span class="t">Herr Lambrecht berichtet dem aufnehmenden
+    Gesundheits- und Krankenpfleger Roland unter großer</span></div>
+  <div class="z"><span class="n">6</span><span class="t">Anstrengung, dass er in den letzten
+    Wochen nachts immer sehr häufig auf die Toilette gehen musste</span></div>
+  <div class="z"><span class="n">7</span><span class="t">und außerdem sehr müde und schlapp sei.
+    Sein Sohn, der bei der Aufnahme anwesend ist berichtet</span></div>
+  <div class="z"><span class="n">8</span><span class="t">weiterhin:</span></div>
+  <div class="z zitat"><span class="n">9</span><span class="t">„Mein Vater lebt seit dem Tod
+    meiner Mutter vor drei Jahren alleine in seiner großen Wohnung. Er</span></div>
+  <div class="z zitat"><span class="n">10</span><span class="t">kommt kaum raus, weil es keinen
+    Aufzug in dem Mietshaus gibt. Früher war er Lackierer in einer</span></div>
+  <div class="z zitat"><span class="n">11</span><span class="t">großen Kfz-Werkstatt, dass hat ihm
+    Freude bereitet. Er hat immer geraucht, sein Leben lang, eine</span></div>
+  <div class="z zitat"><span class="n">12</span><span class="t">Schachtel am Tag.</span></div>
+  <div class="z zitat"><span class="n">13</span><span class="t">In letzter Zeit hat er ganz schön
+    abgebaut. Früher war er immer ordentlich gekleidet, frisiert und</span></div>
+  <div class="z zitat"><span class="n">14</span><span class="t">rasiert, aber Sie sehen ja, wie er
+    jetzt aussieht und seine Wohnung ist auch nicht besser. Wenn ich</span></div>
+  <div class="z zitat"><span class="n">15</span><span class="t">ihm keine Putzhilfe besorgt hätte,
+    dann würde seine Wohnung völlig verwahrlosen. Aber ich kann</span></div>
+  <div class="z zitat"><span class="n">16</span><span class="t">einfach nicht immer nach ihm
+    schauen, ich wohne zu weit weg und habe auch Familie und einen</span></div>
+  <div class="z zitat"><span class="n">17</span><span class="t">Beruf...“</span></div>
+  <div class="z"><span class="n">18</span><span class="t">Bei Herrn Lambrecht wird eine
+    dekompensierte Linksherzinsuffizienz diagnostiziert und er wird zur</span></div>
+  <div class="z"><span class="n">19</span><span class="t">Überwachung auf die Station 3 B
+    aufgenommen. Der Patient erhält einen ZVK in die V. jugularis</span></div>
+  <div class="z"><span class="n">20</span><span class="t">interna, an den sofort 40 mg Lasix®
+    (Furosemid, Schleifendiuretikum) auf 2 ml / h über einen</span></div>
+  <div class="z"><span class="n">21</span><span class="t">Perfusor angeschlossen wird. Der
+    Stationsarzt verordnet zudem 2 l / min Sauerstoff über eine</span></div>
+  <div class="z"><span class="n">22</span><span class="t">Sauerstoffbrille sowie absolute
+    Bettruhe. Er darf täglich einen Liter Flüssigkeit zu sich nehmen und</span></div>
+  <div class="z"><span class="n">23</span><span class="t">soll natriumarme Kost erhalten. Einen
+    Dauerkatheter zur Bilanzierung lehnt Herr Lambrecht</span></div>
+  <div class="z"><span class="n">24</span><span class="t">kategorisch ab.</span></div>
+
+  <div class="z ab"><span class="n">25</span><span class="t">Herr Lambrecht ist sehr unglücklich
+    mit seiner aktuellen Situation: <em>„Pfleger Roland, muss ich denn</em></span></div>
+  <div class="z ab"><span class="n">26</span><span class="t"><em>wirklich hierbleiben? Können Sie
+    mir nicht was spritzen und mich wieder nach Hause schicken? Ich</em></span></div>
+  <div class="z ab"><span class="n">27</span><span class="t"><em>will nicht hier
+    sein...“</em></span></div>
+  <div class="z ab"><span class="n">28</span><span class="t">Nach drei Tagen hat sich der Zustand
+    von Herr Lambrecht stabilisiert. Er benötigt nicht länger den</span></div>
+  <div class="z ab"><span class="n">29</span><span class="t">ZVK, bekommt das Lasix® oral und
+    zusätzlich eine Tablette Digimerck® 0,1 mg (Digitalis,</span></div>
+  <div class="z ab"><span class="n">30</span><span class="t">Herzglykosid). Den Sauerstoff bekommt
+    er bei Bedarf. Allerdings hat er weiterhin eine</span></div>
+  <div class="z ab"><span class="n">31</span><span class="t">Trinkmengenbeschränkung von 1 l / Tag.
+    Der Patient ist zwar immer noch <span class="marker">sehr schwach</span>, kann aber zu</span></div>
+  <div class="z ab"><span class="n">32</span><span class="t">den Mahlzeiten <span class="marker">mit
+    Hilfe des Pflegepersonals in einen Stuhl mobilisiert</span> werden. Dabei entwickelt er</span></div>
+  <div class="z ab"><span class="n">33</span><span class="t">zeitweise eine <span class="marker">Belastungsdyspnoe
+    mit leichter Zyanose</span>.</span></div>
+  <div class="z ab"><span class="n">34</span><span class="t">Trotzdem es merklich aufwärts geht,
+    wirkt Herr Lambrecht eher <span class="marker">apathisch und in sich gekehrt</span>. Als</span></div>
+  <div class="z ab"><span class="n">35</span><span class="t">Pfleger Roland ihn morgens pflegen
+    möchte reagiert Herr Lambrecht sehr unwirsch:</span></div>
+  <div class="z ab zitat"><span class="n">36</span><span class="t">„Lassen Sie mich in Frieden! Ich
+    will doch bloß in Ruhe gelassen werden. Ich wünschte, ich wäre zu</span></div>
+  <div class="z ab zitat"><span class="n">37</span><span class="t">Hause, <span class="marker">da
+    interessiert es auch keinen, wenn ich sterbe</span>...“</span></div>
+</div>
+
+<h2 id="auftrag">Die Aufgabenstellung — wörtlich</h2>
+<div class="karte">
+  <p>„Führen Sie eine <b>vollständige Problemanalyse</b> durch, indem Sie <b>alle aktuellen und
+    potentiellen Pflegeprobleme</b> von Herrn Lambrecht aufführen und <b>begründen</b>. Nehmen Sie
+    als Ausgangslage für die Pflegeplanung die Situation aus dem Fallbeispiel <b>ab Zeile
+    25</b>.“</p>
+  <p>„Entscheiden Sie aus fachlicher Sicht, welches die <b>drei wichtigsten</b> Pflegeprobleme
+    sind. Hierbei ist es <b>unabhängig, ob dies aktuelle oder potentielle</b> Pflegeprobleme sind.
+    Relevant ist die <b>Schwere bzw. Ausprägung</b> des Problems bzw. das <b>Risiko</b> eines
+    potentiellen Pflegeproblems.“</p>
+  <p style="margin-bottom:0;">„Mit den drei wichtigsten Pflegeproblemen von Herrn Lambrecht
+    erstellen Sie eine <b>Pflegeplanung nach dem PE(S)R Schema</b>. Nutzen Sie hierfür die
+    Vordrucke auf ILISAS.“</p>
+</div>
+
+<div class="info"><b>Das ist die Zwischenprüfung im Kleinen.</b> Vergleiche: Dort verlangt man
+  ebenfalls eine <em>vollständige Problemanalyse mit allen aktuellen und potentiellen
+  Pflegeproblemen</em> und danach eine ausführliche Planung — nur zu den <b>vier</b> wichtigsten
+  statt zu drei, und mit einem echten Menschen statt einem Text. <b>Wenn du diese Aufgabe kannst,
+  kannst du den ersten Prüfungstag.</b>
+  <span class="fr">Traite ce cas comme une répétition générale, pas comme un devoir de plus.</span></div>
+
+<div class="warn"><b>Ein Punkt, den du mit Frau Nix klären solltest.</b> „Ab Zeile 25“ umfasst
+  wörtlich <b>alles von Zeile 25 bis 37</b> — also die Unzufriedenheit bei der Aufnahme
+  <em>und</em> die Situation nach drei Tagen. Ich habe die Musterlösung so gebaut: Der
+  <b>aktuelle Zustand ist der von Tag 3</b> (Zeilen 28–37), die Zeilen 25–27 gehören als
+  Vorgeschichte und als Beleg für sein Erleben dazu. Die Zeilen 1–24 darfst du weiter für
+  <b>Ursachen (E)</b> heranziehen — Bettruhe, Rauchen, Wohnsituation, die abgelehnte
+  Bilanzierung. Frag trotzdem nach, ob sie es genauso meint.</div>
+
+<h2 id="sammeln">Schritt 1 · Die Informationen sortieren</h2>
+<p class="lead">Bevor du ein einziges Problem aufschreibst: Was steht überhaupt im Text? Sortiere
+  es nach den ABEDL. Erst wenn du das getan hast, siehst du die Probleme von selbst.</p>
+
+<div class="schritt">
+  <div class="kopf"><span class="nr">SCHRITT 1</span>
+    <span class="ti">Was der Text hergibt — nach ABEDL</span></div>
+  <div class="body">
+    <p>Schreib zuerst selbst, was du findest. Danach vergleichen.</p>
+    <textarea id="s1" placeholder="ABEDL 1 Kommunizieren: … / ABEDL 2 Bewegen: … / ABEDL 3 Vitale Funktionen: … "></textarea>
+    <span class="gespeichert" data-fuer="s1">gespeichert ✓</span>
+    <p style="margin-top:12px;"><button class="btn leise zeig" data-ziel="l1" type="button">Vergleichen</button></p>
+
+    <div class="loesung" id="l1">
+      <div class="tabwrap">
+        <table>
+          <thead><tr><th>ABEDL</th><th>Was im Text steht</th><th>Zeile</th></tr></thead>
+          <tbody>
+            <tr><td><b>1 Kommunizieren ★</b></td>
+                <td>Spricht, äußert sich klar. Aber: „Lassen Sie mich in Frieden“, wirkt apathisch
+                    und in sich gekehrt, reagiert unwirsch. Berichtet bei Aufnahme „unter großer
+                    Anstrengung“.</td><td>5, 34–36</td></tr>
+            <tr><td><b>2 Sich bewegen ★</b></td>
+                <td>Sehr schwach; Mobilisation in den Stuhl <b>nur mit Hilfe</b>, nur zu den
+                    Mahlzeiten. Vorher absolute Bettruhe.</td><td>22, 31–32</td></tr>
+            <tr><td><b>3 Vitale Funktionen ★</b></td>
+                <td><b>Belastungsdyspnoe mit leichter Zyanose</b> bei Mobilisation. Sauerstoff bei
+                    Bedarf. Bei Aufnahme RR 90/50, Puls 120, Ruhedyspnoe, Brodeln.
+                    Dekompensierte Linksherzinsuffizienz, KHK, lebenslang Raucher.</td>
+                <td>1–4, 30, 33</td></tr>
+            <tr><td><b>4 Sich pflegen</b></td>
+                <td>Lehnt die Morgenpflege ab. Vor der Aufnahme bereits „abgebaut“ — früher
+                    ordentlich gekleidet, frisiert und rasiert, jetzt nicht mehr.</td>
+                <td>13–14, 35–36</td></tr>
+            <tr><td><b>5 Essen und Trinken</b></td>
+                <td><b>Trinkmenge 1 l/Tag</b>, natriumarme Kost. 64 kg bei 175 cm.
+                    Zur Nahrungsaufnahme wird er mobilisiert.</td><td>3–4, 22–23, 31–32</td></tr>
+            <tr><td><b>6 Ausscheiden</b></td>
+                <td>Vor Aufnahme nachts sehr häufig zur Toilette. <b>Dauerkatheter zur
+                    Bilanzierung kategorisch abgelehnt</b> — unter Diuretikatherapie.</td>
+                <td>6, 23–24</td></tr>
+            <tr><td><b>7 Sich kleiden</b></td>
+                <td>Indirekt: früher immer ordentlich gekleidet, jetzt nicht mehr.</td>
+                <td>13–14</td></tr>
+            <tr><td><b>8 Ruhen und Schlafen</b></td>
+                <td>Nykturie vor der Aufnahme; „sehr müde und schlapp“.</td><td>6–7</td></tr>
+            <tr><td><b>9 Sich beschäftigen</b></td>
+                <td>Früher Lackierer, „das hat ihm Freude bereitet“. Kommt kaum raus.</td>
+                <td>10–11</td></tr>
+            <tr><td><b>10 Sich als Mann fühlen</b></td>
+                <td>Rasur und Frisur waren ihm wichtig — Teil seines Selbstbildes.</td>
+                <td>13–14</td></tr>
+            <tr><td><b>11 Für Sicherheit sorgen</b></td>
+                <td>Neue Medikation Lasix® oral + Digimerck®. Wohnung ohne Aufzug, allein
+                    lebend.</td><td>9–10, 29–30</td></tr>
+            <tr><td><b>12 Soziale Bereiche</b></td>
+                <td>Witwer seit 3 Jahren, lebt allein. Sohn wohnt weit weg, hat Familie und Beruf,
+                    kann nicht regelmäßig kommen. Putzhilfe organisiert.</td><td>9, 15–17</td></tr>
+            <tr><td><b>13 Existenzielle Erfahrungen ★</b></td>
+                <td>Tod der Ehefrau vor 3 Jahren. „Ich will nicht hier sein“ ·
+                    <b>„da interessiert es auch keinen, wenn ich sterbe“</b> · apathisch, in sich
+                    gekehrt.</td><td>9, 25–27, 34–37</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="gut"><b>Sieh dir an, wo die Sterne stehen.</b> ABEDL 1, 2, 3 und 13 sind
+        genau die vier, in denen bei Herrn Lambrecht am meisten steht. Genau das meint dein
+        Übersichtsblatt mit „fokussieren, da sie häufig prioritär verursachend sind“.</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="analyse">Schritt 2 · Die vollständige Problemanalyse</h2>
+<p class="lead">Alle Probleme, aktuelle <b>und</b> potentielle, jedes mit Begründung. Denk an die
+  Definition von deinem Blatt: ein Problem liegt vor, wenn Veränderungen sich auf die
+  <b>Selbständigkeit</b> auswirken — oder wenn die <b>Gefahr</b> besteht, dass aus einer
+  Einschränkung eine Schädigung oder eine weitere Einschränkung entsteht.</p>
+
+<div class="schritt">
+  <div class="kopf"><span class="nr">SCHRITT 2</span>
+    <span class="ti">Alle aktuellen und potentiellen Pflegeprobleme</span></div>
+  <div class="body">
+    <textarea id="s2" style="min-height:220px" placeholder="AKTUELL:&#10;1. …  Begründung: …&#10;&#10;POTENTIELL:&#10;1. Gefahr … durch/wegen … Begründung: …"></textarea>
+    <span class="gespeichert" data-fuer="s2">gespeichert ✓</span>
+    <p style="margin-top:12px;"><button class="btn leise zeig" data-ziel="l2" type="button">Vergleichen</button></p>
+
+    <div class="loesung" id="l2">
+      <h4>Aktuelle Pflegeprobleme</h4>
+
+      <div class="prob a"><span class="lbl">AKTUELL</span><b>Belastungsdyspnoe mit Zyanose bei
+        jeder Mobilisation</b>
+        <span class="bg"><b>Begründung:</b> Er entwickelt „zeitweise eine Belastungsdyspnoe mit
+          leichter Zyanose“, sobald er in den Stuhl mobilisiert wird (Z. 32–33). Die Zyanose zeigt,
+          dass die Sauerstoffversorgung nicht mehr ausreicht. Ursache ist die dekompensierte
+          Linksherzinsuffizienz bei bekannter KHK und langjährigem Nikotinkonsum.</span></div>
+
+      <div class="prob a"><span class="lbl">AKTUELL</span><b>Hochgradige Schwäche mit
+        eingeschränkter Mobilität — Selbständigkeit beim Transfer aufgehoben</b>
+        <span class="bg"><b>Begründung:</b> „Der Patient ist zwar immer noch sehr schwach, kann
+          aber zu den Mahlzeiten mit Hilfe des Pflegepersonals in einen Stuhl mobilisiert werden“
+          (Z. 31–32). Er kann den Transfer also nicht allein. Vorher bestand absolute Bettruhe
+          (Z. 22).</span></div>
+
+      <div class="prob a"><span class="lbl">AKTUELL</span><b>Selbstpflegedefizit bei der
+        Körperpflege — verstärkt durch Ablehnung</b>
+        <span class="bg"><b>Begründung:</b> Er lehnt die Morgenpflege ab (Z. 35–36) und ist
+          körperlich zu schwach, sie allein durchzuführen. Schon vor der Aufnahme hatte er „ganz
+          schön abgebaut“; früher war er „immer ordentlich gekleidet, frisiert und rasiert“
+          (Z. 13–14). Es geht ihm also nicht nur um Hygiene, sondern um ein verlorenes
+          Selbstbild.</span></div>
+
+      <div class="prob a"><span class="lbl">AKTUELL</span><b>Antriebslosigkeit, sozialer Rückzug
+        und Hoffnungslosigkeit mit Äußerung eines Todeswunsches</b>
+        <span class="bg"><b>Begründung:</b> „wirkt eher apathisch und in sich gekehrt“ (Z. 34) und
+          sagt: <em>„Ich wünschte, ich wäre zu Hause, da interessiert es auch keinen, wenn ich
+          sterbe...“</em> (Z. 36–37). Dazu die Vorgeschichte: Tod der Ehefrau vor drei Jahren,
+          Alleinleben, kaum Sozialkontakte, Verlust der Selbständigkeit.</span></div>
+
+      <div class="prob a"><span class="lbl">AKTUELL</span><b>Ablehnung pflegerischer Maßnahmen —
+        eingeschränkte Mitwirkung am Pflegeprozess</b>
+        <span class="bg"><b>Begründung:</b> „Lassen Sie mich in Frieden! Ich will doch bloß in
+          Ruhe gelassen werden“ (Z. 36). Auch der Dauerkatheter wurde „kategorisch“ abgelehnt
+          (Z. 23–24). Das ist sein gutes Recht — pflegerisch ist es trotzdem ein Problem, weil
+          notwendige Maßnahmen dadurch nicht stattfinden.</span></div>
+
+      <div class="prob a"><span class="lbl">AKTUELL</span><b>Belastung durch die
+        Flüssigkeitsbeschränkung von 1 Liter pro Tag</b>
+        <span class="bg"><b>Begründung:</b> Die Beschränkung besteht weiter (Z. 30–31), gleichzeitig
+          erhält er ein Diuretikum. Er muss die Menge selbst einhalten und über den Tag
+          einteilen.</span></div>
+
+      <div class="prob a"><span class="lbl">AKTUELL</span><b>Erschwerte Flüssigkeitsbilanzierung
+        bei abgelehntem Dauerkatheter</b>
+        <span class="bg"><b>Begründung:</b> Unter Diuretikatherapie ist die Bilanz die zentrale
+          Verlaufskontrolle; der Katheter dazu wurde abgelehnt (Z. 23–24). Die Bilanz muss also
+          auf anderem Weg gelingen — und Herr Lambrecht muss dabei mitmachen.</span></div>
+
+      <div class="prob a"><span class="lbl">AKTUELL</span><b>Fehlende soziale Unterstützung im
+        Alltag</b>
+        <span class="bg"><b>Begründung:</b> Witwer seit drei Jahren, lebt allein in einer Wohnung
+          ohne Aufzug; der Sohn wohnt weit weg und kann „einfach nicht immer nach ihm schauen“
+          (Z. 9–17). Das ist jetzt schon ein Problem — und es entscheidet über die
+          Entlassung.</span></div>
+
+      <h4>Potentielle Pflegeprobleme</h4>
+
+      <div class="prob p"><span class="lbl">POTENTIELL</span><b>Sturzgefahr</b>
+        <span class="bg"><b>Risikofaktoren:</b> hochgradige Schwäche (Z. 31), Belastungsdyspnoe
+          mit Zyanose beim Aufstehen (Z. 33), Hypotonie bei Aufnahme 90/50 mmHg (Z. 3),
+          Diuretikatherapie mit gehäuftem Harndrang und Nykturie in der Vorgeschichte (Z. 6),
+          fremde Umgebung, Alter 76 Jahre.</span></div>
+
+      <div class="prob p"><span class="lbl">POTENTIELL</span><b>Dekubitusgefahr</b>
+        <span class="bg"><b>Risikofaktoren:</b> überwiegende Bettlägerigkeit (vorher absolute
+          Bettruhe, Z. 22), nur kurze Mobilisation zu den Mahlzeiten, hochgradige Schwäche mit
+          wenig Eigenbewegung, reduzierter Allgemein- und Ernährungszustand, ödembedingt
+          vorgeschädigtes Gewebe bei Herzinsuffizienz.</span></div>
+
+      <div class="prob p"><span class="lbl">POTENTIELL</span><b>Pneumoniegefahr</b>
+        <span class="bg"><b>Risikofaktoren:</b> Immobilität und flache Atmung, Dyspnoe,
+          lebenslanger Nikotinkonsum von einer Schachtel täglich (Z. 11–12), Stauung im
+          Lungenkreislauf bei Linksherzinsuffizienz, Alter.</span></div>
+
+      <div class="prob p"><span class="lbl">POTENTIELL</span><b>Thrombosegefahr</b>
+        <span class="bg"><b>Risikofaktoren:</b> Immobilität und Bettruhe, Herzinsuffizienz mit
+          verlangsamtem Blutfluss, Alter, Entwässerung unter Diuretikum.</span></div>
+
+      <div class="prob p"><span class="lbl">POTENTIELL</span><b>Gefahr einer Störung des
+        Flüssigkeits- und Elektrolythaushalts</b>
+        <span class="bg"><b>Risikofaktoren:</b> Diuretikatherapie (Z. 29) bei gleichzeitiger
+          Trinkmengenbeschränkung von 1 l/Tag (Z. 30–31), erschwerte Bilanzierung ohne
+          Dauerkatheter, zusätzlich Digitalis — dessen Wirkung ist von den Elektrolyten
+          abhängig.</span></div>
+
+      <div class="prob p"><span class="lbl">POTENTIELL</span><b>Obstipationsgefahr</b>
+        <span class="bg"><b>Risikofaktoren:</b> Immobilität, geringe Trinkmenge, verminderte
+          Nahrungsaufnahme, ungewohnte Umgebung, fehlende Intimsphäre beim Ausscheiden.</span></div>
+
+      <div class="prob p"><span class="lbl">POTENTIELL</span><b>Gefahr der Mangelernährung</b>
+        <span class="bg"><b>Risikofaktoren:</b> Apathie und Antriebslosigkeit, natriumarme Kost
+          (Z. 23) schmeckt fade, Erschöpfung beim Essen durch Belastungsdyspnoe, Gewicht 64 kg bei
+          175 cm (Z. 3–4), Sohn berichtet vom „Abbauen“ zu Hause (Z. 13).</span></div>
+
+      <div class="prob p"><span class="lbl">POTENTIELL</span><b>Soor- und Parotitisgefahr</b>
+        <span class="bg"><b>Risikofaktoren:</b> reduzierte Trinkmenge, Sauerstoffgabe über
+          Sauerstoffbrille (Z. 21, 30) mit Austrocknung der Schleimhäute, verminderte
+          Nahrungsaufnahme und dadurch weniger Kautätigkeit, abgelehnte Mundpflege.</span></div>
+
+      <div class="prob p"><span class="lbl">POTENTIELL</span><b>Kontrakturengefahr</b>
+        <span class="bg"><b>Risikofaktoren:</b> Immobilität, wenig Eigenbewegung, Schwäche.</span></div>
+
+      <div class="prob p"><span class="lbl">POTENTIELL</span><b>Gefahr der Selbstgefährdung bei
+        geäußertem Todeswunsch</b>
+        <span class="bg"><b>Risikofaktoren:</b> die Äußerung „da interessiert es auch keinen, wenn
+          ich sterbe“ (Z. 37), Apathie und Rückzug, Verlust der Ehefrau, Vereinsamung, plötzlicher
+          Verlust der Selbständigkeit. <b>Dieses Problem darf nicht unter den Tisch fallen:
+          Es gehört angesprochen, beobachtet und im Team sowie dem Arzt mitgeteilt.</b></span></div>
+
+      <div class="prob p"><span class="lbl">POTENTIELL</span><b>Gefahr einer erneuten kardialen
+        Dekompensation</b>
+        <span class="bg"><b>Risikofaktoren:</b> mangelndes Wissen über die neue Medikation
+          (Z. 29–30), Trinkmengen- und Kostvorgaben, die zu Hause allein einzuhalten sind,
+          fehlende Kontrolle durch Angehörige, Ablehnung von Maßnahmen.</span></div>
+
+      <div class="prob p"><span class="lbl">POTENTIELL</span><b>Gefahr der sozialen Isolation nach
+        der Entlassung</b>
+        <span class="bg"><b>Risikofaktoren:</b> Wohnung im Mietshaus <b>ohne Aufzug</b> (Z. 10) bei
+          nun deutlich reduzierter Belastbarkeit, alleinlebend, Sohn weit entfernt, kaum
+          Kontakte.</span></div>
+
+      <div class="warn"><b>Zwei Dinge, die den Unterschied machen.</b> Erstens: Bei den
+        potentiellen Problemen habe ich <b>keine Symptome</b> hingeschrieben, sondern
+        <b>Risikofaktoren</b> — genau so, wie es deine Vorlage verlangt. Zweitens: Jede Begründung
+        hat eine <b>Zeilenangabe</b>. Frau Nix verlangt ausdrücklich, dass du begründest; ein Beleg
+        aus dem Text ist die stärkste Begründung, die es gibt.</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="gewichten">Schritt 3 · Die drei wichtigsten — und warum</h2>
+
+<div class="schritt">
+  <div class="kopf"><span class="nr">SCHRITT 3</span>
+    <span class="ti">Gewichtung aus fachlicher Sicht</span></div>
+  <div class="body">
+    <p>Maßstab laut Aufgabe: <b>Schwere bzw. Ausprägung</b> beim aktuellen Problem,
+      <b>Risiko</b> beim potentiellen. Aktuell oder potentiell spielt <b>keine</b> Rolle.</p>
+    <textarea id="s3" placeholder="1. … weil …&#10;2. … weil …&#10;3. … weil …"></textarea>
+    <span class="gespeichert" data-fuer="s3">gespeichert ✓</span>
+    <p style="margin-top:12px;"><button class="btn leise zeig" data-ziel="l3" type="button">Vergleichen</button></p>
+
+    <div class="loesung" id="l3">
+      <div class="prob a"><span class="lbl">1 · AKTUELL</span><b>Belastungsdyspnoe mit Zyanose</b>
+        <span class="bg">Es betrifft die <b>vitale Funktion Atmung</b> — ABEDL 3, einer der drei
+          Fokusbereiche. Die Zyanose ist ein sichtbares Zeichen dafür, dass die
+          Sauerstoffversorgung nicht ausreicht. Und es ist der <b>Deckel auf allem anderen</b>:
+          Solange jede Bewegung ihn in Atemnot bringt, kann er weder mobilisiert werden noch
+          essen, sich pflegen oder an irgendetwas teilnehmen.</span></div>
+
+      <div class="prob a"><span class="lbl">2 · AKTUELL</span><b>Antriebslosigkeit und
+        Hoffnungslosigkeit mit Todeswunsch, verbunden mit der Ablehnung der Pflege</b>
+        <span class="bg">ABEDL 13 — und auf deinem Blatt steht dazu ausdrücklich: <b>„hat einen
+          Einfluss auf alle anderen ABEDLs“</b>. Genau das sieht man hier: Er lehnt die
+          Körperpflege ab, er will nicht hier sein, er wirkt apathisch, obwohl es ihm körperlich
+          besser geht. <b>Jede Maßnahme, die du planst, scheitert an dieser Haltung, wenn du sie
+          nicht zuerst angehst.</b> Der geäußerte Todeswunsch macht es zusätzlich dringlich.</span></div>
+
+      <div class="prob p"><span class="lbl">3 · POTENTIELL</span><b>Sturzgefahr</b>
+        <span class="bg">Hier ist das <b>Risiko</b> am höchsten, und es kommt aus mehreren
+          Richtungen gleichzeitig: hochgradige Schwäche, Belastungsdyspnoe und Zyanose beim
+          Aufstehen, Hypotonie bei Aufnahme, Diuretikum mit vermehrtem Harndrang, Nykturie in der
+          Vorgeschichte, fremde Umgebung, 76 Jahre. Ein Sturz würde die gerade erreichte
+          Stabilisierung sofort zunichtemachen.</span></div>
+
+      <div class="info"><b>Wenn du dich anders entschieden hast, ist das nicht automatisch
+        falsch.</b> Verteidigen lässt sich statt der Sturzgefahr auch die <b>Dekubitusgefahr</b>
+        (überwiegende Bettlägerigkeit, reduzierter Allgemeinzustand) oder die <b>Gefahr einer
+        Störung des Flüssigkeits- und Elektrolythaushalts</b> (Diuretikum plus Digitalis plus
+        Trinkmengenbeschränkung plus abgelehnte Bilanzierung — die Kombination ist wirklich
+        heikel). <b>Was zählt, ist deine Begründung, nicht meine Auswahl.</b> Aber: Die Atmung
+        gehört immer zuerst, und ABEDL 13 kannst du bei diesem Fall nicht weglassen, ohne den
+        Menschen zu übersehen.</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="planung">Schritt 4 · Die Pflegeplanung nach PE(S)R</h2>
+<p class="lead">Drei Formulare. Denk an die Regeln von deinem Blatt: Ziele <b>SMART</b>, positiv
+  und mit <b>aktiven Verben</b>; Maßnahmen mit den <b>W-Fragen</b> — wer, was, wie und womit,
+  wann, wie oft; und jede Maßnahme braucht eine <b>Begründung</b>.</p>
+
+<div class="schritt">
+  <div class="kopf"><span class="nr">PROBLEM 1 · AKTUELL</span>
+    <span class="ti">Belastungsdyspnoe mit Zyanose</span></div>
+  <div class="body">
+    <textarea id="s4" style="min-height:180px" placeholder="P: …&#10;E: …&#10;S: …&#10;R: …&#10;Ziel: …&#10;Maßnahmen: …&#10;Begründung: …"></textarea>
+    <span class="gespeichert" data-fuer="s4">gespeichert ✓</span>
+    <p style="margin-top:12px;"><button class="btn leise zeig" data-ziel="l4" type="button">Vergleichen</button></p>
+
+    <div class="loesung" id="l4">
+      <div class="tabwrap"><table>
+        <thead><tr><th style="width:26%">Pflegeproblem</th><th style="width:22%">Pflegeziel</th>
+          <th style="width:28%">Pflegemaßnahmen</th><th style="width:24%">Begründung</th></tr></thead>
+        <tbody><tr>
+          <td>
+            <p><span class="pk">P</span> Herr Lambrecht entwickelt bei jeder körperlichen
+              Belastung Atemnot mit leichter Zyanose.</p>
+            <p><span class="pk">E</span> Dekompensierte Linksherzinsuffizienz bei bekannter KHK;
+              langjähriger Nikotinkonsum von einer Schachtel täglich.</p>
+            <p><span class="pk">S</span> Belastungsdyspnoe und leichte Zyanose beim Transfer in
+              den Stuhl (Z. 33); bei Aufnahme Ruhedyspnoe, Brodeln, Puls 120/Min.</p>
+            <p style="margin-bottom:0;"><span class="pk">R</span> Er kann mit Hilfe in den Stuhl
+              mobilisiert werden; er kann seine Beschwerden mitteilen; Sauerstoff steht bei Bedarf
+              zur Verfügung; er ist wach und orientiert.</p>
+          </td>
+          <td>
+            <p><b>Nahziel:</b> Herr Lambrecht sitzt bis zum Ende der Woche zu jeder Hauptmahlzeit
+              mindestens 20 Minuten im Stuhl und <b>atmet dabei ruhig</b>, ohne sichtbare
+              Zyanose.</p>
+            <p style="margin-bottom:0;"><b>Fernziel:</b> Er <b>bewältigt</b> den Weg zum
+              Waschbecken bis zur Entlassung ohne Atemnot.</p>
+          </td>
+          <td><ul>
+            <li><b>Wer:</b> 1 PFK. <b>Was:</b> Oberkörperhochlagerung. <b>Wie:</b> Unterstützung
+              mit Kissen und Bettrücken. <b>Wann/wie oft:</b> dauerhaft, bei jeder
+              Positionierung.</li>
+            <li><b>Wer:</b> 1 PFK. <b>Was:</b> Mobilisation in den Stuhl. <b>Wie:</b> teilweise
+              Übernahme, in Etappen mit Sitzpause an der Bettkante. <b>Wann:</b> zu den drei
+              Hauptmahlzeiten.</li>
+            <li><b>Wer:</b> 1 PFK. <b>Was:</b> Atembeobachtung. <b>Wie:</b> Atemfrequenz, Hautfarbe
+              an Lippen und Nagelbett, Anstrengung. <b>Wann:</b> vor, während und nach jeder
+              Mobilisation.</li>
+            <li><b>Wer:</b> 1 PFK. <b>Was:</b> Sauerstoff nach ärztlicher Anordnung.
+              <b>Wie/womit:</b> Sauerstoffbrille. <b>Wann:</b> bei Bedarf.</li>
+            <li><b>Wer:</b> 1 PFK. <b>Was:</b> Anleitung zur Atemerleichterung.
+              <b>Wie:</b> Anleitung zu Lippenbremse und atemerleichternder Sitzhaltung.
+              <b>Wann:</b> vor der Mobilisation.</li>
+            <li><b>Wer:</b> PFK und Arzt. <b>Was:</b> Weitergabe. <b>Was genau:</b> Zunahme der
+              Dyspnoe, Zyanose in Ruhe, Gewichtszunahme. <b>Wann:</b> sofort.</li>
+          </ul></td>
+          <td><ul>
+            <li>Die aufrechte Position entlastet die Atmung und vermindert die Stauung im
+              Lungenkreislauf.</li>
+            <li>Belastung in Etappen hält den Sauerstoffbedarf niedrig und macht die Grenze
+              sichtbar, bevor die Zyanose auftritt.</li>
+            <li>Die Zyanose ist das Zeichen, an dem er selbst nichts merkt — nur die Beobachtung
+              erkennt sie rechtzeitig.</li>
+            <li>Sauerstoff ist ärztlich angeordnet (Z. 21, 30) und darf nur so verabreicht
+              werden.</li>
+            <li>Wer weiß, wie er die Luftnot beeinflussen kann, gerät weniger in Panik — und Panik
+              verstärkt die Atemnot.</li>
+            <li>Eine erneute Dekompensation kündigt sich an; früh erkannt ist sie behandelbar.</li>
+          </ul></td>
+        </tr></tbody>
+      </table></div>
+    </div>
+  </div>
+</div>
+
+<div class="schritt">
+  <div class="kopf"><span class="nr">PROBLEM 2 · AKTUELL</span>
+    <span class="ti">Antriebslosigkeit, Rückzug, Todeswunsch — und die abgelehnte Pflege</span></div>
+  <div class="body">
+    <textarea id="s5" style="min-height:180px" placeholder="P: …&#10;E: …&#10;S: …&#10;R: …&#10;Ziel: …&#10;Maßnahmen: …&#10;Begründung: …"></textarea>
+    <span class="gespeichert" data-fuer="s5">gespeichert ✓</span>
+    <p style="margin-top:12px;"><button class="btn leise zeig" data-ziel="l5" type="button">Vergleichen</button></p>
+
+    <div class="loesung" id="l5">
+      <div class="tabwrap"><table>
+        <thead><tr><th style="width:26%">Pflegeproblem</th><th style="width:22%">Pflegeziel</th>
+          <th style="width:28%">Pflegemaßnahmen</th><th style="width:24%">Begründung</th></tr></thead>
+        <tbody><tr>
+          <td>
+            <p><span class="pk">P</span> Herr Lambrecht zieht sich zurück, lehnt pflegerische
+              Maßnahmen ab und äußert einen Todeswunsch.</p>
+            <p><span class="pk">E</span> Tod der Ehefrau vor drei Jahren, Alleinleben mit kaum
+              Außenkontakten, plötzlicher Verlust der Selbständigkeit durch die Erkrankung,
+              ungewollter Krankenhausaufenthalt.</p>
+            <p><span class="pk">S</span> Wirkt apathisch und in sich gekehrt (Z. 34); reagiert
+              unwirsch: <em>„Lassen Sie mich in Frieden!“</em> (Z. 36); <em>„Ich wünschte, ich
+              wäre zu Hause, da interessiert es auch keinen, wenn ich sterbe...“</em> (Z. 36–37);
+              vorher: <em>„Ich will nicht hier sein“</em> (Z. 27).</p>
+            <p style="margin-bottom:0;"><span class="pk">R</span> <b>Er spricht aus, wie es ihm
+              geht</b> — das ist die größte Ressource in diesem Fall. Er hat einen Sohn, der sich
+              kümmert. Er hatte einen Beruf, der ihm Freude bereitet hat (Lackierer). Früher legte
+              er Wert auf sein Äußeres.</p>
+          </td>
+          <td>
+            <p><b>Nahziel:</b> Herr Lambrecht <b>spricht</b> innerhalb der nächsten drei Tage in
+              einem Gespräch darüber, was ihn belastet.</p>
+            <p><b>Nahziel:</b> Er <b>lässt</b> bis Ende der Woche die Körperpflege zu und
+              <b>übernimmt</b> dabei mindestens einen Teil selbst.</p>
+            <p style="margin-bottom:0;"><b>Fernziel:</b> Er <b>benennt</b> bis zur Entlassung
+              mindestens eine Sache, auf die er sich zu Hause freut.</p>
+          </td>
+          <td><ul>
+            <li><b>Wer:</b> 1 PFK, möglichst immer dieselbe Bezugsperson. <b>Was:</b> geplantes
+              Gespräch. <b>Wie:</b> in Ruhe, im Sitzen auf Augenhöhe, offene Fragen, den
+              Todeswunsch <b>ansprechen statt überhören</b>. <b>Wann/wie oft:</b> täglich, etwa
+              15 Minuten, zu einer festen Zeit.</li>
+            <li><b>Wer:</b> PFK. <b>Was:</b> Weitergabe der Äußerung an Arzt und Team,
+              Dokumentation im Wortlaut. <b>Wann:</b> noch am selben Tag.</li>
+            <li><b>Wer:</b> 1 PFK. <b>Was:</b> Körperpflege. <b>Wie:</b> Anleitung und teilweise
+              Übernahme, er wählt Zeitpunkt und Reihenfolge; Rasur anbieten. <b>Wann:</b> nach
+              seinem Wunsch, nicht nach dem Stationsplan.</li>
+            <li><b>Wer:</b> PFK. <b>Was:</b> Ablehnung akzeptieren und später erneut anbieten.
+              <b>Wie:</b> ohne Vorwurf, mit Begründung, warum es wichtig ist. <b>Wie oft:</b>
+              mindestens ein zweites Angebot am selben Tag.</li>
+            <li><b>Wer:</b> PFK. <b>Was:</b> Biografiearbeit. <b>Wie:</b> an seinen Beruf als
+              Lackierer anknüpfen, nach der Werkstatt fragen. <b>Wann:</b> im täglichen
+              Gespräch.</li>
+            <li><b>Wer:</b> PFK. <b>Was:</b> Einbeziehung des Sohnes. <b>Wie:</b> Besuchszeiten
+              absprechen, Telefonkontakt ermöglichen. <b>Wann:</b> nach Rücksprache mit Herrn
+              Lambrecht.</li>
+            <li><b>Wer:</b> Arzt, Sozialdienst, ggf. Seelsorge. <b>Was:</b> Hinzuziehen nach
+              ärztlicher Anordnung bzw. auf seinen Wunsch.</li>
+          </ul></td>
+          <td><ul>
+            <li>Eine feste Bezugsperson und ein fester Zeitpunkt schaffen Verlässlichkeit; wer
+              seinen Kummer aussprechen darf, ist damit nicht mehr allein.</li>
+            <li>Eine Äußerung über den eigenen Tod darf niemals allein bei der Pflegenden bleiben
+              — die Einschätzung liegt beim Arzt, die Beobachtung beim ganzen Team.</li>
+            <li>Selbst über den Ablauf zu bestimmen gibt ihm ein Stück Kontrolle zurück; genau die
+              hat er durch die Erkrankung verloren.</li>
+            <li>Eine Ablehnung ist sein Recht. Ein zweites Angebot respektiert sie und hält
+              trotzdem die Tür offen.</li>
+            <li>Erinnerungen an eine Zeit, in der er stark und gebraucht war, stärken das
+              Selbstwertgefühl.</li>
+            <li>Der Sohn ist seine einzige enge Bezugsperson; er selbst sagt, er sei niemandem
+              wichtig — das lässt sich widerlegen.</li>
+          </ul></td>
+        </tr></tbody>
+      </table></div>
+      <div class="achtung"><b>Warum ich den Todeswunsch nicht in einen Nebensatz gepackt habe.</b>
+        Ein Satz wie <em>„da interessiert es auch keinen, wenn ich sterbe“</em> ist der wichtigste
+        Satz im ganzen Fallbeispiel. Ihn zu übergehen wäre der schwerste Fehler, den man in dieser
+        Aufgabe machen kann. Du musst ihn <b>nicht deuten</b> und du stellst keine Diagnose — du
+        <b>sprichst ihn an, dokumentierst ihn wörtlich und gibst ihn weiter</b>. Genau das schreibst
+        du in die Planung.</div>
+    </div>
+  </div>
+</div>
+
+<div class="schritt">
+  <div class="kopf"><span class="nr">PROBLEM 3 · POTENTIELL</span>
+    <span class="ti">Sturzgefahr</span></div>
+  <div class="body">
+    <div class="warn" style="margin-top:0;"><b>Aufgepasst — hier gilt die andere Vorlage.</b>
+      Kein <b>S</b>. Stattdessen: <b>pflegerelevante Informationen</b>, <b>individuelle
+      Risikofaktoren</b> und <b>Assessment / Gefährdungsgrad</b>.</div>
+    <textarea id="s6" style="min-height:180px" placeholder="P: Gefahr …&#10;E: pflegerelevante Informationen / Risikofaktoren / Assessment …&#10;R: …&#10;Ziel: …&#10;Maßnahmen: …&#10;Begründung: …"></textarea>
+    <span class="gespeichert" data-fuer="s6">gespeichert ✓</span>
+    <p style="margin-top:12px;"><button class="btn leise zeig" data-ziel="l6" type="button">Vergleichen</button></p>
+
+    <div class="loesung" id="l6">
+      <div class="tabwrap"><table>
+        <thead><tr><th style="width:26%">Pflegeproblem</th><th style="width:22%">Pflegeziel</th>
+          <th style="width:28%">Pflegemaßnahmen</th><th style="width:24%">Begründung</th></tr></thead>
+        <tbody><tr>
+          <td>
+            <p><span class="pk">P</span> Es besteht die Gefahr, dass Herr Lambrecht stürzt und
+              sich dabei verletzt.</p>
+            <p><span class="pk">E</span> <b>Pflegerelevante Informationen:</b> dekompensierte
+              Linksherzinsuffizienz, KHK, 76 Jahre, Therapie mit Furosemid und Digitalis,
+              Trinkmengenbeschränkung, fremde Umgebung.</p>
+            <p><b>Individuelle Risikofaktoren:</b> hochgradige Schwäche (Z. 31); Transfer nur mit
+              Hilfe möglich (Z. 32); Belastungsdyspnoe mit Zyanose beim Aufstehen (Z. 33);
+              Hypotonie bei Aufnahme 90/50 mmHg (Z. 3); vermehrter Harndrang unter Diuretikum,
+              Nykturie in der Vorgeschichte (Z. 6); Ablehnung von Hilfe (Z. 36).</p>
+            <p style="margin-bottom:0;"><b>Assessment / Gefährdungsgrad:</b>
+              <span style="color:var(--bad)">→ hier trägst du das Ergebnis des in deiner
+              Einrichtung hinterlegten Sturzrisiko-Assessments ein.</span></p>
+            <p style="margin-bottom:0;"><span class="pk">R</span> Er ist wach und orientiert,
+              kann sich mitteilen und klingeln; er kann mit Hilfe sitzen und stehen; der Sohn ist
+              erreichbar.</p>
+          </td>
+          <td>
+            <p><b>Nahziel:</b> Herr Lambrecht <b>stürzt nicht</b> — als Zustand formuliert:
+              Er <b>bleibt</b> während des gesamten Aufenthalts <b>sturzfrei</b>.</p>
+            <p><b>Nahziel:</b> Er <b>klingelt</b> ab sofort vor jedem Aufstehen und
+              <b>wartet</b>, bis eine Pflegekraft da ist.</p>
+            <p style="margin-bottom:0;"><b>Fernziel:</b> Er <b>benennt</b> bis zur Entlassung drei
+              eigene Sturzrisiken und <b>nennt</b> je eine Maßnahme dagegen.</p>
+          </td>
+          <td><ul>
+            <li><b>Wer:</b> 1 PFK. <b>Was:</b> Sturzrisiko einschätzen. <b>Womit:</b> das in der
+              Einrichtung hinterlegte Assessmentinstrument. <b>Wann/wie oft:</b> bei Aufnahme und
+              bei jeder Zustandsänderung.</li>
+            <li><b>Wer:</b> 1 PFK. <b>Was:</b> Transfer. <b>Wie:</b> teilweise Übernahme,
+              schrittweise mit Sitzpause an der Bettkante. <b>Wann:</b> bei jedem Aufstehen.</li>
+            <li><b>Wer:</b> PFK. <b>Was:</b> Umgebung sichern. <b>Wie:</b> Klingel und Getränk in
+              Reichweite, Weg frei, Licht nachts an, feste Schuhe. <b>Wann:</b> bei jedem
+              Verlassen des Zimmers.</li>
+            <li><b>Wer:</b> PFK. <b>Was:</b> Toilettengang begleiten. <b>Wie:</b> aktives Angebot,
+              nicht abwarten. <b>Wann/wie oft:</b> nach dem in der Einrichtung festgelegten
+              Rhythmus, besonders nachts und nach der Diuretikagabe.</li>
+            <li><b>Wer:</b> PFK. <b>Was:</b> Kreislaufkontrolle. <b>Wie:</b> Blutdruck im Liegen
+              und im Sitzen, nach Schwindel fragen. <b>Wann:</b> vor dem ersten Aufstehen am
+              Morgen.</li>
+            <li><b>Wer:</b> PFK. <b>Was:</b> Beratung. <b>Wie:</b> Herrn Lambrecht und seinem Sohn
+              erklären, warum er klingeln soll. <b>Wie oft:</b> im täglichen Gespräch
+              wiederholen.</li>
+          </ul></td>
+          <td><ul>
+            <li>Der Gefährdungsgrad gehört laut deiner Vorlage in die Spalte E — ohne Assessment
+              ist das potentielle Problem nicht vollständig beschrieben.</li>
+            <li>Die Sitzpause deckt eine Kreislaufreaktion auf, bevor er steht.</li>
+            <li>Die meisten Stürze passieren auf dem Weg zur Toilette und nachts; eine erreichbare
+              Klingel ersetzt den Alleingang.</li>
+            <li>Unter Diuretikum kommt der Harndrang plötzlich — wer warten muss, geht allein.</li>
+            <li>Bei einem Ausgangswert von 90/50 mmHg ist die Kreislaufreaktion beim Aufstehen das
+              nächstliegende Sturzrisiko.</li>
+            <li>Er lehnt Hilfe ab. Eine Maßnahme, die er nicht versteht, wird er nicht
+              mitmachen — Beratung ist hier keine Zugabe, sondern die Voraussetzung.</li>
+          </ul></td>
+        </tr></tbody>
+      </table></div>
+
+      <div class="info"><b>Zum Ziel „stürzt nicht“.</b> Dein SMART-Blatt verlangt <b>positive
+        Formulierung mit aktiven Verben</b>. „Der Patient stürzt nicht“ ist negativ. Deshalb
+        oben: <b>„bleibt sturzfrei“</b> als Zustand, und daneben ein Ziel, das er selbst
+        <b>tut</b> — <b>klingeln und warten</b>. Das zweite ist das bessere Ziel, weil es messbar
+        ist und weil er es beeinflussen kann.</div>
+    </div>
+  </div>
+</div>
+
+<h2 id="hinweis">Was aus deinen Unterlagen stammt — und was von mir</h2>
+<div class="warn">
+  <p><b>Aus deinen Unterlagen:</b> der Falltext und die Aufgabenstellung (CE 01 UE 10, Frau Nix);
+    die PE(S)R-Systematik, die dreizehn ABEDL mit den Sternen, die SMART-Regeln, die W-Fragen und
+    die fünf Hilfeformen (Übersichtsblatt Pflegeplanung); der Aufbau der beiden Vorlagen für
+    aktuelle und potentielle Probleme.</p>
+  <p><b>Von mir:</b> die Auswahl und Formulierung der Probleme, die Gewichtung, die Ziele,
+    Maßnahmen und Begründungen. Das ist pflegerische Argumentation aus dem Falltext — <b>keine
+    Musterlösung deiner Dozentin</b>. Wenn Frau Nix eine eigene Lösung austeilt, gilt ihre.</p>
+  <p style="margin-bottom:0;"><b>Was ich bewusst offen gelassen habe:</b> das
+    <b>Assessmentinstrument</b> und der <b>Gefährdungsgrad</b> beim Sturzrisiko, die
+    <b>Kontrollintervalle</b> und die Inhalte der <b>Expertenstandards</b>. Diese Angaben stehen
+    in keiner deiner Unterlagen, und ich erfinde sie nicht — die kommen aus dem
+    Qualitätsmanagement deiner Einrichtung. Genau darauf darf dich deine Praxisanleiterin
+    hinweisen; das ist in der Zwischenprüfung ausdrücklich ihre Aufgabe.</p>
+</div>
+
+<div class="gut"><b>Wenn du deine eigene Fassung geschrieben hast, schick sie mir.</b> Ich
+  korrigiere sie so, wie am zweiten Prüfungstag gefragt wird: Ist die Ursache wirklich eine
+  Ursache? Steht bei einem potentiellen Problem versehentlich ein Symptom? Ist das Ziel aktiv,
+  messbar und terminiert? Passt die Hilfeform zur Ressource? Und: Trägt jede Maßnahme eine
+  Begründung?
+  <span class="fr">Écris d'abord ta version. La correction vaut dix fois plus quand elle porte
+  sur tes phrases à toi.</span></div>
+
+<span class="quelle">Fallbeispiel Herr Lambrecht · CE 01 UE 10 · Frau Nix ·
+  Pflegeplanung PE(S)R · Vorlagen aktuelle und potentielle Pflegeprobleme</span>
+
+</main>
+
+<footer>
+  <a href="https://claude.ai/code/artifact/2e1db357-3e32-4a56-9356-3e4fde3d5c88"
+     target="_blank" rel="noopener">Ablauf der Zwischenprüfung</a> ·
+  <a href="https://claude.ai/code/artifact/5f2d11f0-0e52-46e9-a01b-aa460a59d33c"
+     target="_blank" rel="noopener">Gesprächsleitfaden</a><br>
+  Deine Texte bleiben nur in diesem Browser.
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  document.querySelectorAll('.btn.zeig').forEach(function(b){
+    b.addEventListener('click', function(){
+      var z = document.getElementById(b.dataset.ziel);
+      if(!z) return;
+      var offen = z.classList.toggle('offen');
+      b.textContent = offen ? 'Musterlösung ausblenden' : 'Vergleichen';
+    });
+  });
+
+  var PRE = 'fall-lambrecht-';
+  document.querySelectorAll('textarea[id]').forEach(function(t){
+    var key = PRE + t.id;
+    try { var alt = localStorage.getItem(key); if(alt !== null) t.value = alt; } catch(e){}
+    var marke = document.querySelector('.gespeichert[data-fuer="' + t.id + '"]');
+    var timer = null;
+    t.addEventListener('input', function(){
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        try { localStorage.setItem(key, t.value); } catch(e){ return; }
+        if(!marke) return;
+        marke.classList.add('an');
+        setTimeout(function(){ marke.classList.remove('an'); }, 1400);
+      }, 450);
+    });
+  });
+})();
+</script>

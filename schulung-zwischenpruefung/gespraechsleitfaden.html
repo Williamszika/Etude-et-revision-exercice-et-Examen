@@ -1,0 +1,662 @@
+<title>Gesprächsleitfaden Pflegebedarf</title>
+<style>
+  :root{
+    --paper:#f5f4f0;--paper-2:#e9e7e0;--card:#fffefb;--ink:#1b1e1c;--ink-soft:#535a56;--line:#d9d5cb;
+    --accent:#2c5f4f;--accent-deep:#1e4638;--accent-soft:#dcece5;
+    --stern:#8a4a2b;--sternbg:#f5e4d7;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#131614;--paper-2:#0e100f;--card:#1c211e;--ink:#ecefeb;--ink-soft:#a3aca7;--line:#2d3431;
+    --accent:#82c2ab;--accent-deep:#a0d6c1;--accent-soft:#14261f;
+    --stern:#dda172;--sternbg:#2b1e14;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;}}
+  :root[data-theme="dark"]{
+    --paper:#131614;--paper-2:#0e100f;--card:#1c211e;--ink:#ecefeb;--ink-soft:#a3aca7;--line:#2d3431;
+    --accent:#82c2ab;--accent-deep:#a0d6c1;--accent-soft:#14261f;
+    --stern:#dda172;--sternbg:#2b1e14;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;}
+  :root[data-theme="light"]{
+    --paper:#f5f4f0;--paper-2:#e9e7e0;--card:#fffefb;--ink:#1b1e1c;--ink-soft:#535a56;--line:#d9d5cb;
+    --accent:#2c5f4f;--accent-deep:#1e4638;--accent-soft:#dcece5;
+    --stern:#8a4a2b;--sternbg:#f5e4d7;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;}
+
+  *{box-sizing:border-box;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;
+    line-height:1.6;margin:0;}
+  main{max-width:54rem;margin:0 auto;padding:0 18px 80px;}
+  header.hero{background:var(--accent-soft);border-bottom:1px solid var(--line);
+    padding:42px 20px 32px;text-align:center;}
+  header.hero .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-size:2.05rem;line-height:1.16;margin:0 0 11px;}
+  header.hero .sub{color:var(--ink-soft);margin:0 auto;max-width:38rem;}
+
+  h2{font-family:var(--serif);font-size:1.5rem;margin:48px 0 8px;color:var(--accent-deep);
+    scroll-margin-top:16px;}
+  h3{font-family:var(--serif);font-size:1.16rem;margin:26px 0 6px;}
+  .lead{color:var(--ink-soft);margin:0 0 18px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  p{margin:0 0 12px;}
+
+  .karte{border:1px solid var(--line);border-radius:14px;background:var(--card);
+    padding:19px 21px;margin:18px 0;}
+  .warn{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;
+    padding:14px 17px;margin:15px 0;}
+  .info{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px;
+    padding:14px 17px;margin:15px 0;}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;
+    padding:14px 17px;margin:15px 0;}
+  .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:10px;
+    padding:14px 17px;margin:15px 0;}
+
+  .leiste{position:sticky;top:0;z-index:6;background:var(--card);border:1px solid var(--line);
+    border-radius:0 0 13px 13px;border-top:none;padding:11px 15px;margin:0 0 6px;
+    display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+    box-shadow:0 2px 12px rgba(0,0,0,.06);}
+  .leiste .zaehler{font-family:var(--mono);font-size:12.5px;color:var(--accent-deep);
+    margin-right:auto;}
+  .btn{font-family:var(--sans);font-size:14px;font-weight:600;padding:9px 15px;border-radius:9px;
+    border:1.5px solid var(--accent);background:var(--accent);color:var(--card);cursor:pointer;}
+  .btn.leise{background:transparent;color:var(--accent-deep);}
+  .btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .marke{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--good);
+    opacity:0;transition:opacity .25s;}
+  .marke.an{opacity:1;}
+  @media (prefers-reduced-motion:reduce){.marke{transition:none;}}
+
+  .abedl{border:1px solid var(--line);border-radius:14px;background:var(--card);margin:16px 0;
+    overflow:hidden;}
+  .abedl > .kopf{background:var(--paper-2);border-bottom:1px solid var(--line);padding:13px 18px;
+    display:flex;gap:11px;align-items:baseline;flex-wrap:wrap;}
+  .abedl > .kopf .nr{font-family:var(--mono);font-size:13px;font-weight:700;color:var(--accent);}
+  .abedl > .kopf .ti{font-family:var(--serif);font-size:1.14rem;font-weight:600;}
+  .abedl > .kopf .stern{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+    background:var(--sternbg);color:var(--stern);border-radius:999px;padding:3px 9px;}
+  .abedl > .body{padding:6px 18px 16px;}
+  .abedl .zweck{font-size:14.5px;color:var(--ink-soft);margin:11px 0 4px;}
+
+  .frage{display:flex;gap:11px;align-items:flex-start;padding:10px 0;
+    border-bottom:1px solid var(--line);}
+  .frage:last-of-type{border-bottom:none;}
+  .frage input[type=checkbox]{width:19px;height:19px;margin-top:3px;flex-shrink:0;
+    accent-color:var(--accent);cursor:pointer;}
+  .frage .txt{flex:1;}
+  .frage .txt .q{display:block;}
+  .frage.ab .txt .q{opacity:.5;text-decoration:line-through;}
+  .zielt{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;border-radius:999px;
+    padding:2px 8px;margin-left:7px;white-space:nowrap;
+    background:var(--accent-soft);color:var(--accent-deep);}
+  .zielt.r{background:var(--goodbg);color:var(--good);}
+  .zielt.e{background:var(--warnbg);color:var(--warn);}
+  .zielt.s{background:var(--badbg);color:var(--bad);}
+
+  textarea{width:100%;min-height:62px;resize:vertical;font-family:var(--sans);font-size:15px;
+    line-height:1.5;padding:9px 11px;border:1px solid var(--line);border-radius:9px;
+    background:var(--paper);color:var(--ink);margin-top:7px;}
+  textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+
+  ul.tick{padding-left:0;list-style:none;}
+  ul.tick li{padding-left:1.7em;position:relative;margin-bottom:7px;}
+  ul.tick li::before{content:"▸";position:absolute;left:.35em;color:var(--accent);}
+  .quelle{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);background:var(--paper-2);
+    border-radius:6px;padding:3px 8px;display:inline-block;margin-top:8px;}
+  footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 20px 50px;text-align:center;
+    color:var(--ink-soft);font-size:14px;}
+  a{color:var(--accent-deep);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Zwischenprüfung · 1. Prüfungstag · Kompetenzbereiche I.2 und II.1</p>
+  <h1>Fragen an den Bewohner oder Patienten</h1>
+  <p class="sub">Der Leitfaden für das Gespräch, aus dem deine Pflegeplanung entsteht.
+    Geordnet nach den dreizehn ABEDL deiner Schule. Hak ab, was du gefragt hast, und schreib die
+    Antwort gleich daneben.</p>
+</header>
+
+<main>
+
+<div class="leiste">
+  <span class="zaehler" id="zaehler">0 von 0 Fragen gestellt</span>
+  <button class="btn" id="export" type="button">Alle Notizen kopieren</button>
+  <button class="btn leise" id="leeren" type="button">Alles löschen</button>
+  <span class="marke" id="marke"></span>
+</div>
+
+<div class="info"><b>Wozu dieses Gespräch dient — und warum es doppelt zählt.</b> Deine Unterlagen
+  verlangen, dass du „in einem strukturierten Gespräch die <b>Probleme, Wünsche und
+  Ressourcen</b>“ ermittelst, damit der Bewohner „in die Planung der Pflege mit einbezogen werden
+  kann“. Am zweiten Prüfungstag wirst du dann zu <b>Kompetenzbereich II</b> gefragt: zur
+  individuellen Situation, zu seinen <b>Äußerungen über sein subjektives Erleben</b> und zu
+  seiner <b>Beteiligung am Pflegeprozess</b>. Das Gespräch ist also nicht nur Vorarbeit — es ist
+  selbst Prüfungsstoff.</div>
+
+<div class="gut"><b>Schreib die Antworten wörtlich mit, wo du kannst.</b> Ein Satz wie
+  <em>„Ich mag nicht mehr aufstehen, es tut so weh im Rücken“</em> ist in der mündlichen Prüfung
+  Gold wert: Er belegt, dass du wirklich mit ihm gesprochen hast, und er liefert dir gleichzeitig
+  das <b>Symptom</b> und die <b>Ursache</b> für dein PE(S)R.
+  <span class="fr">Note ses phrases mot pour mot. Une citation vaut dix résumés.</span></div>
+
+<h2>Die vier Fragen hinter jeder Frage</h2>
+<p class="lead">Egal welches Thema — du suchst immer dieselben vier Dinge. Präg dir das ein, dann
+  brauchst du keinen Zettel mehr.</p>
+<div class="karte">
+  <p><b>Wobei brauchen Sie Unterstützung?</b> <span class="zielt">→ P · das Problem</span></p>
+  <p><b>Seit wann ist das so, und wodurch kam es?</b> <span class="zielt e">→ E · die Ursache</span></p>
+  <p><b>Wie zeigt sich das im Alltag?</b> <span class="zielt s">→ S · das Symptom</span></p>
+  <p style="margin-bottom:0;"><b>Was können Sie dabei noch selbst?</b>
+    <span class="zielt r">→ R · die Ressource</span></p>
+</div>
+<div class="warn"><b>Die vierte Frage ist die, die alle vergessen.</b> Ohne Ressource ist deine
+  Planung unvollständig — und deine Maßnahme wird falsch. Wer noch selbst das Gesicht waschen
+  kann, bekommt <b>Anleitung</b> oder <b>teilweise Übernahme</b>, nicht die vollständige
+  Übernahme. Frag also in <em>jedem</em> Bereich: <b>Was geht noch?</b></div>
+
+<h2>Vorher: Wie du das Gespräch eröffnest</h2>
+<div class="abedl">
+  <div class="kopf"><span class="nr">0</span><span class="ti">Einstieg und Erlaubnis</span></div>
+  <div class="body" data-block="einstieg">
+    <p class="zweck">Drei Sätze, dann bist du drin. Sag, wer du bist, was du vorhast und wie
+      lange es dauert.</p>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Guten Morgen, Frau/Herr …, ich bin … und in der Ausbildung hier. Ich möchte gern besser
+      verstehen, wie Ihr Tag abläuft und wobei Sie Unterstützung brauchen. Hätten Sie jetzt
+      etwa zwanzig Minuten Zeit für mich?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Ist es für Sie in Ordnung, wenn ich mir dabei ein paar Notizen mache?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wenn Ihnen eine Frage zu persönlich ist, sagen Sie es einfach — dann lassen wir sie
+      aus.“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Sitzen Sie bequem? Soll ich lauter sprechen?“</span>
+      <span class="zielt">→ und gleichzeitig ein Test für ABEDL 1</span></span></div>
+    <textarea placeholder="Notizen zum Einstieg …"></textarea>
+  </div>
+</div>
+
+<h2>Die dreizehn ABEDL</h2>
+<p class="lead">Die Reihenfolge stammt vom Übersichtsblatt deiner Schule. Die drei mit Stern sind
+  die, auf die du <b>fokussieren</b> sollst — sie verursachen oft die Probleme in allen anderen
+  Bereichen.</p>
+
+<div class="abedl">
+  <div class="kopf"><span class="nr">1</span><span class="ti">Kommunizieren können</span>
+    <span class="stern">FOKUS ★</span></div>
+  <div class="body" data-block="abedl1">
+    <p class="zweck">Hören, Sehen, Sprechen, Verstehen, Orientierung. Wenn hier etwas klemmt,
+      klemmt es überall.</p>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Verstehen Sie mich gut, oder soll ich langsamer sprechen?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Tragen Sie ein Hörgerät oder eine Brille? Haben Sie sie gerade dabei?“</span>
+      <span class="zielt r">→ R Hilfsmittel</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Fällt es Ihnen manchmal schwer, das richtige Wort zu finden?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Können Sie mir sagen, welcher Wochentag heute ist und wo wir hier gerade sind?“</span>
+      <span class="zielt">→ Orientierung, ganz beiläufig</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wenn Sie etwas brauchen — wie machen Sie sich dann bemerkbar?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Welche Sprache sprechen Sie zu Hause am liebsten?“</span></span></div>
+    <textarea placeholder="Antworten, möglichst wörtlich …"></textarea>
+  </div>
+</div>
+
+<div class="abedl">
+  <div class="kopf"><span class="nr">2</span><span class="ti">Sich bewegen können</span>
+    <span class="stern">FOKUS ★</span></div>
+  <div class="body" data-block="abedl2">
+    <p class="zweck">Aufstehen, gehen, Transfer, Hilfsmittel, Stürze. Der Bereich, aus dem die
+      meisten potentiellen Probleme kommen.</p>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wie kommen Sie morgens aus dem Bett — allein oder mit Hilfe?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wie weit können Sie gehen, ohne stehen zu bleiben? Bis zum Bad? Bis auf den Flur?“</span>
+      <span class="zielt r">→ R, ganz konkret</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Benutzen Sie einen Rollator, einen Stock oder den Rollstuhl?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Sind Sie in letzter Zeit einmal gestürzt oder beinahe gestürzt? Wann war das, und was ist
+      passiert?“</span> <span class="zielt e">→ E für die Sturzgefahr</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Haben Sie manchmal Angst hinzufallen?“</span> <span class="zielt s">→ S, subjektiv</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wie oft am Tag stehen Sie auf? Was bringt Sie dazu aufzustehen?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Können Sie sich im Bett allein drehen?“</span></span></div>
+    <textarea placeholder="Antworten, möglichst wörtlich …"></textarea>
+  </div>
+</div>
+
+<div class="abedl">
+  <div class="kopf"><span class="nr">3</span>
+    <span class="ti">Vitale Funktionen aufrecht erhalten</span>
+    <span class="stern">FOKUS ★</span></div>
+  <div class="body" data-block="abedl3">
+    <p class="zweck">Atmung, Kreislauf, Temperatur, Schmerz. Vieles steht in der Akte — hier
+      fragst du nach dem <b>Erleben</b>.</p>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Bekommen Sie manchmal schlecht Luft? Wann — im Liegen, beim Gehen, nachts?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Haben Sie Schmerzen? Wo genau, und wie stark auf einer Skala von 0 bis 10?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wann sind die Schmerzen am schlimmsten? Was macht sie besser?“</span>
+      <span class="zielt e">→ E und R zugleich</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wird Ihnen schnell schwindelig, zum Beispiel beim Aufstehen?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Frieren Sie oft, oder ist Ihnen eher zu warm?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Sagen Sie es uns, wenn es Ihnen nicht gut geht — oder behalten Sie das eher für
+      sich?“</span></span></div>
+    <textarea placeholder="Antworten, möglichst wörtlich …"></textarea>
+  </div>
+</div>
+
+<div class="abedl">
+  <div class="kopf"><span class="nr">4</span><span class="ti">Sich pflegen können</span></div>
+  <div class="body" data-block="abedl4">
+    <p class="zweck">Körperpflege, Mund, Haut, Haare. Hier entscheidest du später die
+      <b>Hilfeform</b> — frag deshalb genau, was noch selbst geht.</p>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Waschen Sie sich lieber am Waschbecken oder duschen Sie?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Was können Sie beim Waschen noch selbst — Gesicht, Oberkörper, Beine?“</span>
+      <span class="zielt r">→ R, Teil für Teil</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wobei brauchen Sie dabei Hilfe?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wie machen Sie die Zahnpflege? Haben Sie eine Prothese?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Juckt Ihre Haut irgendwo, oder ist sie sehr trocken?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Zu welcher Tageszeit möchten Sie sich am liebsten waschen?“</span>
+      <span class="zielt">→ Wunsch, gehört in die Maßnahme</span></span></div>
+    <textarea placeholder="Antworten, möglichst wörtlich …"></textarea>
+  </div>
+</div>
+
+<div class="abedl">
+  <div class="kopf"><span class="nr">5</span><span class="ti">Essen und Trinken können</span></div>
+  <div class="body" data-block="abedl5">
+    <p class="zweck">Appetit, Schlucken, Menge, Vorlieben, Gewicht.</p>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Schmeckt Ihnen das Essen hier? Was mögen Sie am liebsten?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Haben Sie Appetit? Hat sich das in letzter Zeit verändert?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Verschlucken Sie sich manchmal beim Essen oder Trinken?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wie viel trinken Sie am Tag ungefähr? Was trinken Sie gern?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Können Sie allein essen, oder brauchen Sie Hilfe beim Schneiden?“</span>
+      <span class="zielt r">→ R</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Gibt es Speisen, die Sie aus religiösen oder persönlichen Gründen nicht essen?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Ist Ihre Kleidung in letzter Zeit weiter geworden?“</span>
+      <span class="zielt s">→ S für Gewichtsverlust, ohne es direkt zu fragen</span></span></div>
+    <textarea placeholder="Antworten, möglichst wörtlich …"></textarea>
+  </div>
+</div>
+
+<div class="abedl">
+  <div class="kopf"><span class="nr">6</span><span class="ti">Ausscheiden können</span></div>
+  <div class="body" data-block="abedl6">
+    <p class="zweck">Heikles Thema. Frag ruhig, sachlich und ohne Umschweife — Verlegenheit
+      überträgt sich.</p>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Kommen Sie rechtzeitig zur Toilette, oder geht manchmal etwas daneben?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Müssen Sie nachts aufstehen? Wie oft?“</span>
+      <span class="zielt e">→ E für Sturzgefahr und Schlafmangel</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Benutzen Sie Einlagen oder eine Vorlage?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wie ist der Stuhlgang — regelmäßig? Nehmen Sie etwas dafür?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Schaffen Sie den Weg zur Toilette allein?“</span> <span class="zielt r">→ R</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Belastet Sie das? Trinken Sie deswegen weniger?“</span>
+      <span class="zielt">→ subjektives Erleben, Kompetenzbereich II</span></span></div>
+    <textarea placeholder="Antworten, möglichst wörtlich …"></textarea>
+  </div>
+</div>
+
+<div class="abedl">
+  <div class="kopf"><span class="nr">7</span><span class="ti">Sich kleiden können</span></div>
+  <div class="body" data-block="abedl7">
+    <p class="zweck">An- und Auskleiden, Auswahl, Selbstbestimmung.</p>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Ziehen Sie sich selbst an? Was fällt dabei schwer — Knöpfe, Strümpfe, Schuhe?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Suchen Sie Ihre Kleidung selbst aus?“</span>
+      <span class="zielt r">→ R Selbstbestimmung</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Was tragen Sie am liebsten? Ist Ihnen wichtig, wie Sie aussehen?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Haben Sie feste Schuhe mit rutschfester Sohle?“</span>
+      <span class="zielt">→ Sturzprophylaxe</span></span></div>
+    <textarea placeholder="Antworten, möglichst wörtlich …"></textarea>
+  </div>
+</div>
+
+<div class="abedl">
+  <div class="kopf"><span class="nr">8</span><span class="ti">Ruhen und Schlafen können</span></div>
+  <div class="body" data-block="abedl8">
+    <p class="zweck">Ein- und Durchschlafen, Rituale, Ursachen für Unruhe.</p>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wie schlafen Sie hier? Schlafen Sie durch?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Was weckt Sie auf — Schmerzen, Geräusche, die Toilette, Gedanken?“</span>
+      <span class="zielt e">→ E</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wann gehen Sie normalerweise ins Bett, und wann stehen Sie auf?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Haben Sie ein Ritual vor dem Schlafen — Radio, Beten, Lesen, ein Licht an?“</span>
+      <span class="zielt r">→ R, gehört in die Maßnahme</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Halten Sie tagsüber ein Schläfchen?“</span></span></div>
+    <textarea placeholder="Antworten, möglichst wörtlich …"></textarea>
+  </div>
+</div>
+
+<div class="abedl">
+  <div class="kopf"><span class="nr">9</span><span class="ti">Sich beschäftigen können</span></div>
+  <div class="body" data-block="abedl9">
+    <p class="zweck">Tagesstruktur, Interessen, Langeweile. Aus diesem Bereich kommen die
+      schönsten Ressourcen.</p>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wie sieht ein normaler Tag bei Ihnen aus, von morgens bis abends?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Was machen Sie gern? Was haben Sie früher gern gemacht?“</span>
+      <span class="zielt r">→ R und Biografie</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wird Ihnen manchmal langweilig?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Gehen Sie zu den Angeboten hier mit? Warum ja, warum nicht?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wenn Sie sich etwas für morgen wünschen dürften — was wäre das?“</span></span></div>
+    <textarea placeholder="Antworten, möglichst wörtlich …"></textarea>
+  </div>
+</div>
+
+<div class="abedl">
+  <div class="kopf"><span class="nr">10</span>
+    <span class="ti">Sich als Mann oder Frau fühlen</span></div>
+  <div class="body" data-block="abedl10">
+    <p class="zweck">Nähe, Identität, Rolle, Selbstbild. <b>Erst fragen, wenn Vertrauen da
+      ist</b> — sonst überspringen und im Gespräch später darauf zurückkommen.</p>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Ist es Ihnen wichtig, gepflegt auszusehen? Was gehört für Sie dazu — Rasur, Frisur,
+      Schmuck, Parfum?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Ist es Ihnen lieber, wenn bei der Körperpflege eine Frau oder ein Mann hilft?“</span>
+      <span class="zielt">→ gehört direkt in die Maßnahme</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Fehlt Ihnen manchmal Nähe — jemand, der einfach da ist?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Hat sich für Sie etwas verändert, seit Sie Hilfe brauchen?“</span></span></div>
+    <textarea placeholder="Antworten, möglichst wörtlich …"></textarea>
+  </div>
+</div>
+
+<div class="abedl">
+  <div class="kopf"><span class="nr">11</span><span class="ti">Für Sicherheit sorgen</span></div>
+  <div class="body" data-block="abedl11">
+    <p class="zweck">Umgebung, Medikamente, Notruf, Selbsteinschätzung von Gefahren.</p>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Fühlen Sie sich hier sicher?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Erreichen Sie die Klingel von Ihrem Bett und von Ihrem Sessel aus?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Kennen Sie Ihre Medikamente? Wissen Sie, wofür sie sind?“</span>
+      <span class="zielt r">→ R Wissen</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Nehmen Sie Ihre Tabletten selbst ein oder werden sie Ihnen gegeben?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Gibt es etwas in Ihrem Zimmer, das Sie stört oder wo Sie hängenbleiben?“</span></span></div>
+    <textarea placeholder="Antworten, möglichst wörtlich …"></textarea>
+  </div>
+</div>
+
+<div class="abedl">
+  <div class="kopf"><span class="nr">12</span>
+    <span class="ti">Soziale Bereiche des Lebens sichern</span></div>
+  <div class="body" data-block="abedl12">
+    <p class="zweck">Angehörige, Kontakte, Rollen, Einsamkeit. Deckt sich mit den
+      <b>biografischen Daten</b> der Fallvorstellung.</p>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wer besucht Sie? Wie oft?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Haben Sie Kinder, Enkel? Wo leben sie?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Mit wem hier haben Sie Kontakt?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Was haben Sie beruflich gemacht?“</span>
+      <span class="zielt r">→ Biografie und oft eine große Ressource</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Fühlen Sie sich manchmal einsam?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wer trifft Entscheidungen für Sie, wenn Sie es nicht können? Gibt es eine
+      Betreuung?“</span></span></div>
+    <textarea placeholder="Antworten, möglichst wörtlich …"></textarea>
+  </div>
+</div>
+
+<div class="abedl">
+  <div class="kopf"><span class="nr">13</span>
+    <span class="ti">Mit existenziellen Erfahrungen des Lebens umgehen können</span>
+    <span class="stern">FOKUS ★</span></div>
+  <div class="body" data-block="abedl13">
+    <p class="zweck">Verluste, Krisen, Ängste, Glaube, Hoffnung. Auf dem Blatt deiner Schule
+      steht dazu: <b>„hat einen Einfluss auf alle anderen ABEDLs“.</b> Zum Schluss fragen, ruhig,
+      und dann <b>zuhören ohne zu unterbrechen</b>.</p>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Was war für Sie der größte Einschnitt in Ihrem Leben?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wie geht es Ihnen damit, dass Sie jetzt Hilfe brauchen?“</span>
+      <span class="zielt">→ das subjektive Erleben, wörtlich mitschreiben</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Was gibt Ihnen Kraft, wenn es Ihnen schlecht geht?“</span>
+      <span class="zielt r">→ Widerstandsressourcen · Salutogenese, Kompetenzbereich V</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Ist Ihnen Ihr Glaube wichtig? Möchten Sie, dass wir daran denken?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wovor haben Sie Angst?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Worauf freuen Sie sich?“</span></span></div>
+    <textarea placeholder="Antworten, möglichst wörtlich …"></textarea>
+  </div>
+</div>
+
+<h2>Zum Schluss: die Beteiligung</h2>
+<div class="info">Diese vier Fragen sind der <b>Kern von Kompetenzbereich II</b> — „Beteiligung
+  an seinem Pflegeprozess“. Ohne sie ist das Gespräch eine Befragung; mit ihnen ist es eine
+  gemeinsame Planung. Lass sie nicht weg, auch wenn die Zeit knapp wird.</div>
+
+<div class="abedl">
+  <div class="kopf"><span class="nr">✓</span><span class="ti">Gemeinsam planen</span></div>
+  <div class="body" data-block="beteiligung">
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Wenn Sie an all das denken, was wir besprochen haben — <b>was ist Ihnen am
+      wichtigsten</b>, dass wir es zuerst angehen?“</span>
+      <span class="zielt">→ deine Gewichtung der vier Probleme</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „<b>Was möchten Sie in den nächsten zwei Wochen erreichen?</b>“</span>
+      <span class="zielt">→ dein Nahziel, mit seinen Worten</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Ich schlage vor, wir machen es so: … Wäre das für Sie in Ordnung, oder hätten Sie es
+      lieber anders?“</span> <span class="zielt">→ Zustimmung zur Maßnahme</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Habe ich etwas Wichtiges vergessen zu fragen?“</span></span></div>
+    <div class="frage"><input type="checkbox"><span class="txt"><span class="q">
+      „Vielen Dank, dass Sie sich Zeit genommen haben. Ich schreibe das jetzt auf, und ich sage
+      Ihnen Bescheid, was wir daraus machen.“</span></span></div>
+    <textarea placeholder="Was ist ihm oder ihr am wichtigsten? Wörtlich …"></textarea>
+  </div>
+</div>
+
+<h2>Was du <em>nicht</em> fragst</h2>
+<div class="karte">
+  <p>Nicht alles kommt aus dem Gespräch. Diese Dinge holst du dir aus der Akte, aus der Übergabe
+    oder aus der Beobachtung — und wenn du sie trotzdem fragst, verlierst du kostbare
+    Gesprächszeit:</p>
+  <ul class="tick">
+    <li><b>Medikamentenplan</b> und <b>medizinische Diagnosen</b> — zwei der fünf Dokumente,
+      die du abgibst; die kommen aus der Dokumentation.</li>
+    <li><b>Vitalwerte, Laborwerte, Pflegegrad</b> — Akte.</li>
+    <li><b>Assessments und Skalen</b> — die führst du selbst durch bzw. übernimmst sie aus der
+      Einrichtung. Deine Praxisanleiterin darf dich auf die hinterlegten Standards und
+      Expertenstandards hinweisen; das ist ausdrücklich ihre Aufgabe als Tutorin.</li>
+    <li><b>Hautzustand, Mobilität im Vollzug, Ernährungszustand</b> — <b>beobachten</b>, während
+      du pflegst. Das Gespräch ergänzt die Beobachtung, es ersetzt sie nicht.</li>
+  </ul>
+</div>
+
+<div class="warn"><b>Was hier <em>nicht</em> aus deinen Unterlagen stammt.</b> Die Struktur — die
+  dreizehn ABEDL, der Stern auf 1, 2, 3 und 13, PE(S)R, die Hilfeformen, die Vorgabe „Probleme,
+  Wünsche und Ressourcen“ und der Kompetenzbereich II — steht so in deinen Dokumenten.
+  <b>Die Formulierung der einzelnen Fragen ist von mir</b>, nicht von deiner Schule. Nimm sie als
+  Vorschlag und sprich sie so um, wie du wirklich redest. Ein auswendig gelernter Fragebogen
+  klingt im Gespräch sofort falsch.</div>
+
+<span class="quelle">Pflegeplanung PE(S)R · Gestaltung und Durchführung der Zwischenprüfung 2026 ·
+  Struktur Vorstellung Pflegebedürftiger im Krankenhaus</span>
+
+</main>
+
+<footer>
+  Gesprächsleitfaden zur Zwischenprüfung · <a
+    href="https://claude.ai/code/artifact/2e1db357-3e32-4a56-9356-3e4fde3d5c88"
+    target="_blank" rel="noopener">zurück zum Ablauf der Prüfung</a><br>
+  Deine Häkchen und Notizen bleiben nur in diesem Browser.
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var PRE = 'zp-leitfaden-';
+  var marke = document.getElementById('marke');
+
+  function melden(txt){
+    if(!marke) return;
+    marke.textContent = txt;
+    marke.classList.add('an');
+    setTimeout(function(){ marke.classList.remove('an'); }, 1800);
+  }
+
+  /* --- jeder Frage eine stabile Kennung geben --- */
+  var fragen = [];
+  document.querySelectorAll('.abedl > .body').forEach(function(body){
+    var block = body.dataset.block || 'x';
+    var i = 0;
+    body.querySelectorAll('.frage').forEach(function(f){
+      i++;
+      f.dataset.key = block + '-' + i;
+      fragen.push(f);
+    });
+    var ta = body.querySelector('textarea');
+    if(ta) ta.dataset.key = block + '-notiz';
+  });
+
+  function zaehlen(){
+    var an = fragen.filter(function(f){ return f.classList.contains('ab'); }).length;
+    var el = document.getElementById('zaehler');
+    if(el) el.textContent = an + ' von ' + fragen.length + ' Fragen gestellt';
+  }
+
+  /* --- Häkchen --- */
+  fragen.forEach(function(f){
+    var box = f.querySelector('input[type=checkbox]');
+    var key = PRE + f.dataset.key;
+    var alt = null;
+    try { alt = localStorage.getItem(key); } catch(e){}
+    if(alt === '1'){ box.checked = true; f.classList.add('ab'); }
+    box.addEventListener('change', function(){
+      f.classList.toggle('ab', box.checked);
+      try {
+        if(box.checked) localStorage.setItem(key, '1');
+        else localStorage.removeItem(key);
+      } catch(e){}
+      zaehlen();
+    });
+  });
+  zaehlen();
+
+  /* --- Notizfelder --- */
+  document.querySelectorAll('textarea[data-key]').forEach(function(t){
+    var key = PRE + t.dataset.key;
+    try { var alt = localStorage.getItem(key); if(alt !== null) t.value = alt; } catch(e){}
+    var timer = null;
+    t.addEventListener('input', function(){
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        try { localStorage.setItem(key, t.value); } catch(e){}
+      }, 400);
+    });
+  });
+
+  /* --- alles als Text kopieren --- */
+  document.getElementById('export').addEventListener('click', function(){
+    var zeilen = [];
+    document.querySelectorAll('.abedl').forEach(function(box){
+      var kopf = box.querySelector('.kopf');
+      var body = box.querySelector('.body');
+      if(!kopf || !body) return;
+      var nr = kopf.querySelector('.nr');
+      var ti = kopf.querySelector('.ti');
+      var ta = body.querySelector('textarea');
+      var notiz = ta ? ta.value.trim() : '';
+      var offen = [];
+      body.querySelectorAll('.frage').forEach(function(f){
+        if(!f.classList.contains('ab')){
+          offen.push('    offen: ' + f.querySelector('.q').textContent.replace(/\s+/g,' ').trim());
+        }
+      });
+      if(!notiz && !offen.length) return;
+      zeilen.push('== ' + (nr ? nr.textContent + ' ' : '') + (ti ? ti.textContent : ''));
+      if(notiz) zeilen.push(notiz);
+      if(offen.length) zeilen.push(offen.join('\n'));
+      zeilen.push('');
+    });
+    var txt = zeilen.join('\n').trim();
+    if(!txt){ melden('noch nichts notiert'); return; }
+
+    var ok = function(){ melden('kopiert ✓'); };
+    var alt = function(){
+      var h = document.createElement('textarea');
+      h.value = txt; h.setAttribute('readonly','');
+      h.style.position = 'fixed'; h.style.opacity = '0';
+      document.body.appendChild(h); h.select();
+      var gut = false;
+      try { gut = document.execCommand('copy'); } catch(e){ gut = false; }
+      document.body.removeChild(h);
+      gut ? ok() : melden('Kopieren nicht möglich');
+    };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(ok, alt);
+    } else { alt(); }
+  });
+
+  /* --- alles löschen --- */
+  document.getElementById('leeren').addEventListener('click', function(){
+    fragen.forEach(function(f){
+      f.classList.remove('ab');
+      f.querySelector('input[type=checkbox]').checked = false;
+      try { localStorage.removeItem(PRE + f.dataset.key); } catch(e){}
+    });
+    document.querySelectorAll('textarea[data-key]').forEach(function(t){
+      t.value = '';
+      try { localStorage.removeItem(PRE + t.dataset.key); } catch(e){}
+    });
+    zaehlen();
+    melden('zurückgesetzt');
+  });
+})();
+</script>
