@@ -1,0 +1,657 @@
+<title>Projekt EZIA</title>
+<style>
+  :root{
+    --paper:#f4f5f3;--paper-2:#e8eae5;--card:#fffefc;--ink:#1b1e1b;--ink-soft:#535a53;--line:#d8d5cc;
+    --accent:#4a6b3f;--accent-deep:#35502c;--accent-soft:#e2ecdc;
+    --tag:#8a5a2b;--tagbg:#f5e5d4;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#131612;--paper-2:#0e100d;--card:#1c211b;--ink:#ecefe9;--ink-soft:#a3aca1;--line:#2d342b;
+    --accent:#93c185;--accent-deep:#aed6a0;--accent-soft:#172613;
+    --tag:#dda172;--tagbg:#2b1e14;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;}}
+  :root[data-theme="dark"]{
+    --paper:#131612;--paper-2:#0e100d;--card:#1c211b;--ink:#ecefe9;--ink-soft:#a3aca1;--line:#2d342b;
+    --accent:#93c185;--accent-deep:#aed6a0;--accent-soft:#172613;
+    --tag:#dda172;--tagbg:#2b1e14;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;}
+  :root[data-theme="light"]{
+    --paper:#f4f5f3;--paper-2:#e8eae5;--card:#fffefc;--ink:#1b1e1b;--ink-soft:#535a53;--line:#d8d5cc;
+    --accent:#4a6b3f;--accent-deep:#35502c;--accent-soft:#e2ecdc;
+    --tag:#8a5a2b;--tagbg:#f5e5d4;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;}
+
+  *{box-sizing:border-box;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;
+    line-height:1.62;margin:0;}
+  main{max-width:56rem;margin:0 auto;padding:0 18px 80px;}
+  header.hero{background:var(--accent-soft);border-bottom:1px solid var(--line);
+    padding:44px 20px 34px;text-align:center;}
+  header.hero .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-size:2.1rem;line-height:1.16;margin:0 0 11px;}
+  header.hero .sub{color:var(--ink-soft);margin:0 auto;max-width:40rem;}
+
+  nav.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px 0 6px;}
+  nav.chips a{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-decoration:none;
+    color:var(--accent-deep);background:var(--paper-2);border:1px solid var(--line);
+    border-radius:999px;padding:6px 13px;}
+  nav.chips a:hover{background:var(--accent-soft);}
+
+  h2{font-family:var(--serif);font-size:1.55rem;margin:50px 0 8px;color:var(--accent-deep);
+    scroll-margin-top:16px;}
+  h3{font-family:var(--serif);font-size:1.18rem;margin:26px 0 6px;}
+  h4{font-size:1rem;margin:18px 0 5px;color:var(--accent-deep);}
+  .lead{color:var(--ink-soft);margin:0 0 18px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  p{margin:0 0 12px;}
+
+  .karte{border:1px solid var(--line);border-radius:14px;background:var(--card);
+    padding:19px 21px;margin:18px 0;}
+  .warn{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+  .info{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+  .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:12px;
+    padding:18px 21px;margin:18px 0;}
+  .achtung h3{margin-top:0;color:var(--bad);}
+
+  .tag{border:1px solid var(--line);border-radius:14px;background:var(--card);margin:14px 0;
+    overflow:hidden;}
+  .tag > .kopf{background:var(--paper-2);border-bottom:1px solid var(--line);padding:12px 18px;
+    display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;}
+  .tag > .kopf .d{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--accent);}
+  .tag > .kopf .t{font-family:var(--serif);font-size:1.1rem;font-weight:600;flex:1;min-width:0;}
+  .tag > .kopf .ds{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+    background:var(--tagbg);color:var(--tag);border-radius:999px;padding:3px 9px;}
+  .tag > .body{padding:14px 18px;}
+
+  ul.tick{padding-left:0;list-style:none;}
+  ul.tick li{padding-left:1.7em;position:relative;margin-bottom:7px;}
+  ul.tick li::before{content:"▸";position:absolute;left:.35em;color:var(--accent);}
+  ol{padding-left:1.35em;} ol li{margin-bottom:8px;}
+
+  .tf{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:12px;
+    background:var(--card);padding:14px 17px;margin-bottom:11px;}
+  .tf .n{font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--accent);}
+  .tf .t{font-family:var(--serif);font-size:1.08rem;font-weight:600;margin-left:8px;}
+  .tf p{margin:7px 0 0;font-size:15px;color:var(--ink-soft);}
+
+  .tabwrap{overflow-x:auto;margin:14px 0;}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:32rem;}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.05em;
+    text-transform:uppercase;}
+
+  textarea{width:100%;min-height:110px;resize:vertical;font-family:var(--sans);font-size:15.5px;
+    line-height:1.55;padding:11px 13px;border:1px solid var(--line);border-radius:10px;
+    background:var(--paper);color:var(--ink);}
+  textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  .gespeichert{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;color:var(--good);
+    opacity:0;transition:opacity .25s;display:inline-block;margin-top:5px;}
+  .gespeichert.an{opacity:1;}
+  @media (prefers-reduced-motion:reduce){.gespeichert{transition:none;}}
+  label.feld{display:block;font-weight:600;margin:16px 0 6px;}
+  label.feld .h{display:block;font-weight:400;font-size:14.5px;color:var(--ink-soft);margin-top:2px;}
+
+  .quelle{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);background:var(--paper-2);
+    border-radius:6px;padding:3px 8px;display:inline-block;margin-top:8px;}
+  footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 20px 50px;text-align:center;
+    color:var(--ink-soft);font-size:14px;}
+  a{color:var(--accent-deep);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 09 · UE 3 · Haus Cadenbach, Aachen · 04.–11.09.2026</p>
+  <h1>Projekt EZIA</h1>
+  <p class="sub">Pflegeprozessgestaltung und ein individuelles Aktivitätsangebot für einen
+    Pflegeempfänger. Der Ablauf, die Aufgabe, die Methode der Analyse — und ein Werkzeug, mit dem
+    du deinen Fragenkatalog selbst baust.</p>
+</header>
+
+<main>
+
+<nav class="chips">
+  <a href="#datenschutz">⚠ Datenschutz zuerst</a>
+  <a href="#was">Worum es geht</a>
+  <a href="#ablauf">Der Ablauf, Tag für Tag</a>
+  <a href="#haus">Die Einrichtung</a>
+  <a href="#aufgabe">Die Aufgabe</a>
+  <a href="#methode">Die Methode der Analyse</a>
+  <a href="#sis">Die SIS</a>
+  <a href="#katalog">Mein Fragenkatalog</a>
+  <a href="#angebot">Das individuelle Angebot</a>
+</nav>
+
+<section id="datenschutz">
+<h2>⚠ Bevor du irgendetwas ablegst — Datenschutz</h2>
+
+<div class="achtung">
+  <h3>Die Unterlagen der Bewohnerin dürfen nicht in dieses Repository.</h3>
+  <p>Zwei der Dateien, die du geschickt hast — die <b>Pflegeüberleitung mit SIS und Biografie</b>
+    und die <b>komplette Dokumentation</b> — enthalten den <b>vollen Namen, das Geburtsdatum, die
+    Anschrift, ein Foto, die Versichertennummer, die Diagnosen und die Medikation</b> einer
+    lebenden Person. Dazu Namen, Adressen und <b>Handynummern der Angehörigen</b> und aller
+    behandelnden Ärztinnen und Ärzte.</p>
+  <p><b>Dieses Repository ist auf GitHub öffentlich.</b> Alles, was hier abgelegt wird, ist im
+    Internet lesbar. Deshalb habe ich diese beiden Dateien <b>nicht</b> gespeichert und
+    <b>nichts daraus</b> auf diese Seite geschrieben — kein Name, kein Datum, keine Diagnose.</p>
+  <p style="margin-bottom:0;">Das ist keine Vorsicht von mir aus Prinzip, sondern genau der Stoff
+    aus deinem Recht-Unterricht: die <b>Schweigepflicht nach § 203 StGB</b> und der
+    <b>Datenschutz</b>. Beides steht in den Folien von Frau Welters, und im Einstiegsfall dort
+    macht sich Pflegefachkraft Paul strafbar, weil er einer Angehörigen am Telefon Auskunft gibt.
+    Unterlagen ins Internet zu laden wäre derselbe Fehler, nur größer.</p>
+</div>
+
+<div class="warn"><b>Was du stattdessen tust.</b>
+  <ul class="tick" style="margin-bottom:0;">
+    <li>Die Dokumentation bleibt <b>auf der Station</b>, in Papierform oder im System der
+      Einrichtung. Du arbeitest dort damit.</li>
+    <li>Für deinen Analysebericht benutzt du <b>keinen Namen</b>, sondern ein Kürzel — genau wie
+      deine Dozentin, die im Arbeitsauftrag konsequent <b>„Frau G.“</b> schreibt.</li>
+    <li>Kein Foto, keine Anschrift, keine Versichertennummer, keine Telefonnummern von
+      Angehörigen im Bericht. Nichts davon brauchst du für die Pflege.</li>
+    <li>Fotos der Unterlagen nicht auf dem privaten Handy behalten und nicht weiterschicken.</li>
+    <li>Wenn du willst, dass ich dir bei der Analyse ihrer Unterlagen helfe: <b>frag mich hier im
+      Chat</b>. Dort bleibt es zwischen uns — ins Repository kommt es nicht.</li>
+  </ul>
+</div>
+
+<div class="info"><b>Und wenn deine Dozentin die Unterlagen so ausgeteilt hat?</b> Dann ist das
+  ihre Entscheidung und ihre Verantwortung für den Unterricht. Deine Verantwortung fängt da an,
+  wo du die Unterlagen <b>weitergibst oder ablegst</b>. Frag sie ruhig, wie sie es mit den Kopien
+  gehalten haben möchte — das ist eine gute, professionelle Frage.</div>
+</section>
+
+<section id="was">
+<h2>Worum es geht</h2>
+<p class="lead">Die Zielsetzung steht wörtlich auf Folie 2 der Projektpräsentation.</p>
+<div class="karte">
+  <p style="font-family:var(--serif);font-size:1.15rem;margin:0;"><b>Pflegeprozessgestaltung und
+    Erstellung/Durchführung eines individuellen Angebots einer Aktivität für einen
+    Pflegeempfänger.</b></p>
+</div>
+<p>Zwei Dinge also, und sie hängen zusammen: Du <b>analysierst</b> einen Menschen gründlich — und
+  aus dieser Analyse heraus <b>planst und machst</b> du etwas mit ihm, das zu ihm passt. Das
+  Angebot ist nicht Beschäftigung um der Beschäftigung willen, sondern das <b>Ergebnis</b> deiner
+  Informationssammlung.</p>
+<div class="gut"><b>Warum dieses Projekt für die Zwischenprüfung Gold wert ist.</b> Es ist genau
+  dieselbe Bewegung: <b>Informationen sammeln → Bedarf erkennen → planen → begründen</b>. Nur
+  endet es hier in einer Aktivität statt in einer schriftlichen Pflegeplanung. Wer im September
+  einen Fragenkatalog aufbauen und einen Menschen strukturiert befragen kann, steht im April
+  ruhiger da.
+  <span class="fr">C'est la même démarche qu'à la Zwischenprüfung, en plus court.</span></div>
+</section>
+
+<section id="ablauf">
+<h2>Der Ablauf, Tag für Tag</h2>
+<p class="lead">DS = Doppelstunde. Ab dem 09.09. läuft es im Schichtdienst, jeweils Früh- und
+  Spätschicht.</p>
+
+<div class="tag">
+  <div class="kopf"><span class="d">Fr 04.09.</span>
+    <span class="t">Ankommen und erste Informationssammlung</span></div>
+  <div class="body">
+    <ul class="tick">
+      <li><b>1. DS:</b> Vorstellung der Einrichtung, Abläufe, Leitbild, Organisation,
+        Leitung / PDL / PA und Praxiskoordination.</li>
+      <li><b>2. und 3. DS:</b> <b>im Zweierteam</b>, mit Unterstützung der Lehrkräfte und
+        <b>anhand des Fragenkataloges</b>: umfassende Informationssammlung und
+        Pflegeprozessgestaltung zum Pflegeempfänger.</li>
+      <li><b>4. DS:</b> Vorstellung des Betreuungsteams und theoretischer Input:
+        <b>individuelle Aktivitäten planen</b>.</li>
+      <li><b>Im Anschluss an den Ausbildungstag:</b> Einkleidung aller Auszubildenden, die
+        <b>keine Dienstkleidung</b> haben.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="tag">
+  <div class="kopf"><span class="d">Mo 07.09.<br>Di 08.09.</span>
+    <span class="t">Fragenkatalog fertigstellen</span></div>
+  <div class="body">
+    <ul class="tick">
+      <li><b>3. und 4. DS:</b> weiter im Zweierteam, mit den Lehrkräften und anhand des
+        Fragenkataloges.</li>
+      <li>Am <b>08.09. selbständig</b>: Fertigstellung des <b>speziellen Fragenkatalogs an den
+        eigenen Pflegeempfänger</b>.</li>
+    </ul>
+    <div class="info" style="margin-bottom:0;"><b>Das ist der Kern der ganzen Woche.</b> Bis hier
+      hast du den Menschen noch nicht kennengelernt — du arbeitest nur mit der Dokumentation. Der
+      Fragenkatalog ist das, was aus dem Lesen entsteht: <b>alles, was die Papiere offen
+      lassen.</b></div>
+  </div>
+</div>
+
+<div class="tag">
+  <div class="kopf"><span class="d">Mi 09.09.</span>
+    <span class="t">Erstes Kennenlernen</span><span class="ds">FD und SD</span></div>
+  <div class="body">
+    <ul class="tick">
+      <li>Übergabe · Rundgang Station</li>
+      <li>Gestaltung des Pflegeprozesses <b>über die gesamte Schicht</b></li>
+      <li>Erstes Kennenlernen des Pflegeempfängers</li>
+      <li><b>Fragenkatalog vervollständigen:</b> Frühschicht <b>10:30–11:30</b>,
+        Spätschicht <b>15:30–16:30</b></li>
+    </ul>
+  </div>
+</div>
+
+<div class="tag">
+  <div class="kopf"><span class="d">Do 10.09.</span>
+    <span class="t">Das Angebot planen</span><span class="ds">FD und SD</span></div>
+  <div class="body">
+    <ul class="tick">
+      <li>Übergabe · Pflegeprozess über die gesamte Schicht</li>
+      <li><b>Planung des individuellen Angebotes:</b> FD 10:30–11:30, SD 15:30–16:30</li>
+      <li><b>Cave: Klärung Materialbedarf!</b></li>
+    </ul>
+    <div class="warn" style="margin-bottom:0;"><b>Das „Cave" steht nicht umsonst da.</b> Wenn dir
+      am Donnerstag auffällt, dass dir etwas fehlt, hast du noch einen Tag. Fällt es dir am
+      Freitag auf, hast du keinen mehr.</div>
+  </div>
+</div>
+
+<div class="tag">
+  <div class="kopf"><span class="d">Fr 11.09.</span>
+    <span class="t">Durchführung und Evaluation</span><span class="ds">FD und SD</span></div>
+  <div class="body">
+    <ul class="tick">
+      <li>Übergabe · Pflegeprozess über die gesamte Schicht</li>
+      <li><b>Durchführung des individuellen Angebotes:</b> FD 10:30–11:30, SD 15:30–16:30</li>
+      <li><b>Evaluation Feedbackbogen:</b> ca. 12:30 Uhr bzw. ca. 20:00 Uhr</li>
+    </ul>
+  </div>
+</div>
+<span class="quelle">Projekt EZIA CE 09 UE 3 — Ablauffolien 3–8</span>
+</section>
+
+<section id="haus">
+<h2>Die Einrichtung — worauf du am ersten Tag achtest</h2>
+<p class="lead">Die Vorstellungsfolien geben die Gliederung vor. Nutze sie als Mitschreib-Raster:
+  Wer nach dem ersten Tag weiß, wen er fragen kann, spart sich die ganze Woche über Zeit.</p>
+
+<div class="tabwrap">
+  <table>
+    <thead><tr><th>Thema</th><th>Was dahinter steht</th></tr></thead>
+    <tbody>
+      <tr><td><b>Unsere Einrichtung</b></td>
+        <td>Träger · Geschichte des Hauses · <b>Leitbild und Werte</b> · Besonderheiten</td></tr>
+      <tr><td><b>Unsere Bewohner</b></td>
+        <td>Altersstruktur · Pflegegrad · <b>Multimorbidität</b> ·
+          <b>biografieorientierte Pflege</b></td></tr>
+      <tr><td><b>Häufige Krankheitsbilder</b></td>
+        <td><b>Demenz · Diabetes mellitus · Herzinsuffizienz · Apoplex · Parkinson</b></td></tr>
+      <tr><td><b>Aufbau des Hauses</b></td>
+        <td>Wohnbereiche · Zimmerstruktur · Gemeinschaftsräume · Garten und Außenanlage</td></tr>
+      <tr><td><b>Berufsgruppen</b></td>
+        <td>Einrichtungsleitung · PDL · <b>Praxisanleitung</b> · Pflegefachkräfte ·
+          Hauswirtschaft · Sozialer Dienst und Betreuungsassistenten · Wohnbereichsleitung ·
+          Qualitätsmanagement · Praxiskoordination · Verwaltung ·
+          BGM und Unternehmenskommunikation</td></tr>
+      <tr><td><b>Pflege und Dokumentation</b></td>
+        <td><b>SIS · Maßnahmenplanung · Biografiearbeit · Expertenstandards ·
+          individuelle Prophylaxen</b></td></tr>
+      <tr><td><b>Sozialer Dienst / Betreuung</b></td>
+        <td>Integration und Biografie · Einzel- und Gruppenangebote, Feiern, Veranstaltungen ·
+          Förderung der Selbstständigkeit und Krisenintervention · interdisziplinäre
+          Zusammenarbeit und Dokumentation · Anleitung FSJ/BFD und Praktikum ·
+          <b>Angehörigenarbeit</b> · Ehrenamtskoordination</td></tr>
+      <tr><td><b>Organisatorisches</b></td>
+        <td>Dienstzeiten · Namensschilder · Spinde und Schlüssel · <b>Dienstkleidung</b> ·
+          Krankmeldung · Ansprechpartner</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="gut"><b>Drei Zeilen, die für dein Projekt entscheidend sind.</b>
+  <b>„Biografieorientierte Pflege"</b> und <b>„Biografiearbeit"</b> stehen zweimal auf den Folien —
+  das ist die Haltung des Hauses und zugleich der Schlüssel zu deinem Angebot. Und der
+  <b>Soziale Dienst mit den Betreuungsassistenten</b> ist die Berufsgruppe, die genau das täglich
+  macht: <b>frag sie</b>, was bei deinem Pflegeempfänger schon einmal funktioniert hat. Das ist
+  keine Schwäche, das ist interprofessionelles Arbeiten — Kompetenzbereich III.</div>
+<span class="quelle">Haus Cadenbach — Vorstellung der Einrichtung</span>
+</section>
+
+<section id="aufgabe">
+<h2>Die Aufgabe — wörtlich</h2>
+<div class="karte">
+  <p style="margin-top:0;"><b>Erstellen Sie einen umfassenden Analysebericht über</b></p>
+  <ol>
+    <li><b>Pflege- und Lebenssituation</b></li>
+    <li><b>Medizinische Vorgaben und Therapien</b></li>
+    <li><b>Patientenverfügung und Behandlungswünsche</b></li>
+    <li><b>Vitalzeichen / Flüssigkeitsbilanz oder sonstiges</b></li>
+  </ol>
+  <p><b>Erstellen Sie im zweiten Schritt einen Fragenkatalog</b>, den Sie mit Hilfe der
+    Pflegefachkraft oder des Pflegeempfängers beantworten können. Es werden sich Fragen für Sie
+    aus der Dokumentation ergeben.</p>
+  <p style="margin-bottom:0;"><b>Ziel:</b> Systematisch den Pflegebedarf, Risiken und die
+    Umsetzung der medizinischen und pflegerischen Vorgaben eines Pflegeempfängers abzuleiten und
+    daraus einen <b>klaren, handlungsorientierten Pflegeprozess</b> zu gewinnen.</p>
+  <span class="quelle">Verfahrensanweisung „Analyse des Pflegeempfängers", CBG</span>
+</div>
+<div class="info"><b>Lies den letzten Satz noch einmal.</b> Nicht „alles abschreiben", sondern
+  <b>ableiten</b>. Die Dokumentation ist der Rohstoff; der Analysebericht ist das, was du daraus
+  machst. Und der Fragenkatalog ist der Beweis, dass du beim Lesen <b>mitgedacht</b> hast.</div>
+</section>
+
+<section id="methode">
+<h2>Die Methode — wie deine Dozentin liest</h2>
+<p class="lead">Das Wertvollste am Arbeitsauftrag ist nicht das Beispiel, sondern die
+  <b>Denkbewegung</b>: aus jeder Angabe in den Papieren wird eine Frage. Diese Bewegung kannst du
+  auf jeden Menschen anwenden.</p>
+
+<div class="warn"><b>Hinweis.</b> Hier steht die <b>Methode</b>, mit neutralen Beispielen — keine
+  Angaben aus den Unterlagen der Bewohnerin. Warum, steht ganz <a href="#datenschutz">oben</a>.</div>
+
+<h3>Schritt 1 · Pflegeüberleitungsbogen</h3>
+<p>Deine Dozentin sagt es direkt: <b>„Markieren Sie sich wichtige Informationen mit Aussagekraft!
+  Notieren Sie sich auf einem Zettel bereits erste Gedanken."</b> Also nicht lesen, sondern
+  <b>markieren und mitdenken</b>. Jede Zeile bekommt eine Frage:</p>
+<div class="tabwrap">
+  <table>
+    <thead><tr><th>Was im Bogen steht</th><th>Die Frage, die du dazu stellst</th></tr></thead>
+    <tbody>
+      <tr><td>Pflegegrad</td><td>Was bedeutet dieser Grad konkret? Passt er zu dem, was ich
+        sehe?</td></tr>
+      <tr><td>Nationalität und Sprache</td><td>Besondere Riten? Wie ist das
+        <b>Sprachverständnis</b>? Verstehe ich sie, versteht sie mich?</td></tr>
+      <tr><td>Liste der behandelnden Ärzte</td><td>Welche <b>Fachrichtungen</b>? Mehrere Termine
+        beim selben Fachgebiet heißt: dort liegt ein Problem.</td></tr>
+      <tr><td>Letzter Krankenhausaufenthalt</td><td>Wie lange her? <b>Grund der Einweisung?</b>
+        „Akuter Notfall" allein sagt gar nichts.</td></tr>
+      <tr><td>Familienstand</td><td>Verwitwet — seit wann? War es eine glückliche Ehe? Das
+        entscheidet, ob Erinnerung tröstet oder wehtut.</td></tr>
+      <tr><td>Vollmacht und Patientenverfügung</td><td><b>Was steht drin?</b>
+        <b>Für welche Bereiche</b> gilt die Vollmacht? Wer ist bevollmächtigt?</td></tr>
+      <tr><td>Konfession</td><td>Auffälligkeiten hier ruhig erfragen — Glaube oder sein Fehlen
+        gehört zur Biografie.</td></tr>
+      <tr><td>Körpergröße und Gewicht</td><td>Geben ungefähr Auskunft über die <b>Statur</b>.</td></tr>
+      <tr><td>Obstipationsrisiko, letzter Stuhlgang</td><td><b>Einschätzung des Zeitintervalls</b>
+        vornehmen — nicht nur zur Kenntnis nehmen.</td></tr>
+      <tr><td>Kostform</td><td>„Vollkost" heißt: keine Einschränkungen. Stimmt das mit dem
+        überein, was sie wirklich isst?</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="achtung" style="border-radius:10px;padding:15px 18px;">
+  <p style="margin:0;"><b>Der wichtigste Satz der ganzen Anleitung:</b> „Es ist viel als
+    beeinträchtigt angekreuzt, <b>jedoch keine genaueren Angaben</b>."</p>
+  <p style="margin:9px 0 0;">Ein Kreuz ist keine Information. „Selbstversorgung beeinträchtigt" —
+    <b>wobei genau?</b> Braucht sie nur Hilfe beim Zubereiten der Nahrung, oder beim Essen selbst?
+    <b>Jedes Kreuz ohne Erklärung ist eine Frage für deinen Katalog.</b></p>
+</div>
+
+<h4>Und dann: kritisch denken</h4>
+<ul class="tick">
+  <li>Wenn jemand <b>viel Zuwendung und Sicherheit</b> braucht: Aufforderungen in
+    <b>kurzen, prägnanten Sätzen</b> — <b>kein Zutexten!</b></li>
+  <li>Daran denken, <b>Orientierung zu schaffen</b>, etwa mit <b>ROT — Realitätsorientierungs­training</b>.</li>
+  <li>Auf <b>Mimik und Gestik</b> achten, um überhaupt nachfragen zu können.</li>
+  <li>Unklar bleibt oft die <b>Lautstärke der Ansprache</b> — fragen.</li>
+  <li>Nimmt sie die <b>Medikation selbst</b> ein, oder muss ich die Einnahme überwachen?</li>
+  <li>Was heißt <b>„körpernahe Hilfsmittel"</b>? Zahnprothese? Hörgerät? Brille für Nähe oder
+    Ferne?</li>
+</ul>
+
+<h3>Schritt 2 · Die Erkrankungen</h3>
+<ul class="tick">
+  <li><b>Übersetze dir die Krankheitsbilder, die du nicht kennst.</b></li>
+  <li><b>Streiche</b>, was zum jetzigen Zeitpunkt <b>keinen pflegerischen Mehrwert</b> mehr hat —
+    ein abgeheilter Infekt von vor Jahren gehört nicht in die aktuelle Planung.</li>
+  <li>Zu jeder verbleibenden Diagnose eine Frage: <b>Wie zeigt sich das?</b> Schmerzen?
+    Einschränkungen? Und <b>was folgt daraus für mich</b>?</li>
+  <li>Feststellungen treffen statt nur lesen — Beispiele der Dozentin:
+    bei <b>kardialen Arrhythmien den Puls immer eine volle Minute</b> messen;
+    bei <b>Hallux valgus zusammen mit Diabetes mellitus</b> auf <b>drückendes Schuhwerk</b>
+    achten.</li>
+  <li><b>Widersprüche suchen:</b> Wie passt die geplante Mobilisation zu einer Herzinsuffizienz
+    mit Beschwerden schon bei leichter Belastung? Warum wird bei Mangelzuständen die
+    <b>Ernährung nicht angepasst</b>?</li>
+</ul>
+<div class="gut"><b>Das ist der Ton, der eine gute Note bringt.</b> Nicht „Frau X hat die Diagnose
+  Y", sondern: <b>„Diagnose Y bedeutet für die Pflege Z — und hier steht dazu nichts, das frage
+  ich nach."</b></div>
+
+<h3>Schritt 3 · Medikamentenplan</h3>
+<ul class="tick">
+  <li>Kontrolliere, <b>welche Medikamente zu den Krankheitsbildern passen und welche nicht</b>.</li>
+  <li><b>Trage die Wirkstoffklasse in den Plan ein.</b></li>
+  <li>Beschäftige dich mit <b>häufigen Nebenwirkungen</b> und <b>Besonderheiten bei der
+    Verabreichung</b> — nüchtern? Abstand zu bestimmten Getränken? Uhrzeit?</li>
+  <li>Frag nach <b>Kontrollen</b>, die zu einem Medikament gehören: Welcher Wert, wie oft, wann
+    zuletzt gemessen und mit welchem Ergebnis?</li>
+  <li><b>Gibt es ein Präparat ohne passende Diagnose?</b> Auch das ist eine Frage.</li>
+  <li>Und umgekehrt: Kann ein Symptom, das als „Verstimmung" oder „Unruhe" dokumentiert ist,
+    <b>Ausdruck einer Erkrankung oder Nebenwirkung</b> sein?</li>
+</ul>
+
+<h3>Schritt 4 · Die zusätzliche Dokumentation</h3>
+<ul class="tick">
+  <li><b>Vitalwerteblatt:</b> Liegen Werte im Grenzbereich? Geht aus der Dokumentation hervor,
+    <b>wie oft</b> gemessen wird?</li>
+  <li><b>Flüssigkeitsmanagement:</b> Nicht nur die Summe ansehen, sondern die
+    <b>Verteilung über den Tag</b>. Der Grundsatz lautet: <b>Flüssigkeitsmengen über den Tag
+    verteilt anbieten.</b> Große Mengen am Vormittag und stundenlang nichts am Nachmittag sind
+    ein Befund, kein Zufall.</li>
+  <li>Wird die <b>geplante Trinkmenge</b> eingehalten, deutlich unterschritten oder deutlich
+    überschritten?</li>
+  <li>Bei Ödemneigung: Gibt es <b>Gewichtskontrollen</b> oder das <b>Messen der betroffenen
+    Extremitäten</b>? Wenn nicht — warum nicht?</li>
+</ul>
+<span class="quelle">Verfahrensanweisung „Analyse des Pflegeempfängers", CBG — Methode</span>
+</section>
+
+<section id="sis">
+<h2>Die SIS — das Instrument, mit dem hier dokumentiert wird</h2>
+<p class="lead">Auf den Folien des Hauses steht die Dokumentation in dieser Reihenfolge:
+  <b>SIS · Maßnahmenplanung · Biografiearbeit · Expertenstandards · individuelle Prophylaxen</b>.
+  Die SIS ist der Einstieg — und sie beginnt mit einer Frage an den Menschen selbst.</p>
+
+<div class="karte">
+  <p style="font-family:var(--serif);font-size:1.16rem;margin:0;">
+    <b>„Was bewegt Sie im Augenblick? Was brauchen Sie? Was können wir für Sie tun?"</b></p>
+  <p style="margin:10px 0 0;color:var(--ink-soft);">Der erste Abschnitt der SIS ist die
+    <b>Sicht der pflegebedürftigen Person</b> — in ihren eigenen Worten. Nicht deine
+    Einschätzung.</p>
+</div>
+
+<h3>Die sechs Themenfelder</h3>
+<div class="tf"><span class="n">TF 1</span><span class="t">Kognitive und kommunikative
+  Fähigkeiten</span>
+  <p>Verstehen, sich mitteilen, Orientierung in Zeit, Ort, Situation und zur Person.</p></div>
+<div class="tf"><span class="n">TF 2</span><span class="t">Mobilität und Beweglichkeit</span>
+  <p>Aufstehen, gehen, Transfer, Hilfsmittel, Wege innerhalb und außerhalb des Zimmers.</p></div>
+<div class="tf"><span class="n">TF 3</span><span class="t">Krankheitsbezogene Anforderungen und
+  Belastungen</span>
+  <p>Medikamente, Kontrollen, Messungen, Therapien, ärztliche Anordnungen — und wer sie
+    umsetzt.</p></div>
+<div class="tf"><span class="n">TF 4</span><span class="t">Selbstversorgung</span>
+  <p>Körperpflege, Kleidung, Essen und Trinken, Ausscheidung — und jeweils: was noch selbst
+    geht.</p></div>
+<div class="tf"><span class="n">TF 5</span><span class="t">Leben in sozialen Beziehungen</span>
+  <p>Kontakte, Angehörige, Tagesstruktur, Teilnahme am Leben im Haus.</p></div>
+<div class="tf"><span class="n">TF 6</span><span class="t">Wohnen und Häuslichkeit</span>
+  <p>Das Zimmer, vertraute Gegenstände, Sicherheit in der Umgebung.</p></div>
+
+<h3>Und danach die erste fachliche Einschätzung</h3>
+<p>Zu jedem Themenfeld wird eingeschätzt, ob eines dieser <b>Risiken und Phänomene</b> vorliegt —
+  jeweils <b>Ja / Nein / weitere Einschätzung notwendig</b>:</p>
+<div class="tabwrap">
+  <table><tbody><tr>
+    <td><b>Dekubitus</b></td><td><b>Sturz</b></td><td><b>Inkontinenz</b></td>
+    <td><b>Schmerz</b></td><td><b>Ernährung</b></td><td><b>sonstiges Risiko</b></td>
+  </tr></tbody></table>
+</div>
+<div class="info"><b>Der Zusammenhang, den du im Kopf haben musst.</b> Die SIS ersetzt nicht die
+  Pflegeplanung — sie ist der <b>Einstieg</b> in sie. Aus der Sicht der Person und den sechs
+  Themenfeldern entsteht die <b>Maßnahmenplanung</b>, und aus den angekreuzten Risiken entstehen
+  die <b>individuellen Prophylaxen</b> und der Bezug zu den <b>Expertenstandards</b>. Genau diese
+  Kette solltest du in deinem Analysebericht sichtbar machen.</div>
+
+<div class="gut"><b>Die Brücke zur Zwischenprüfung.</b> Die sechs Themenfelder der SIS und die
+  dreizehn ABEDL deiner Pflegeplanung sind zwei Raster für dasselbe. Wenn du hier in SIS-Feldern
+  denkst und im April in ABEDL, verlierst du nichts — <b>du übersetzt nur</b>. TF 1 ist
+  ABEDL 1, TF 2 ist ABEDL 2, TF 4 verteilt sich auf ABEDL 4 bis 7, TF 5 auf ABEDL 12.</div>
+<span class="quelle">SIS® stationär — Struktur des Formulars · Haus Cadenbach, Pflege und Dokumentation</span>
+</section>
+
+<section id="katalog">
+<h2>Mein Fragenkatalog</h2>
+<p class="lead">Bau ihn hier auf, während du liest. Die Felder speichern automatisch im Browser.
+  <b>Keine Namen eintragen</b> — schreib „B." oder „Frau X.", so wie es deine Dozentin
+  vormacht.</p>
+
+<label class="feld" for="q1">a) Pflege- und Lebenssituation — was bleibt offen?
+  <span class="h">Jedes Kreuz ohne Erklärung, jede Angabe ohne Zahl, jede Formulierung, die du
+    nicht in eine Handlung übersetzen kannst.</span></label>
+<textarea id="q1" placeholder="Was genau ist bei der Selbstversorgung beeinträchtigt? …"></textarea>
+<span class="gespeichert" data-fuer="q1">gespeichert ✓</span>
+
+<label class="feld" for="q2">b) Medizinische Vorgaben und Therapien
+  <span class="h">Diagnosen, die du nachschlagen musst · Medikamente ohne passende Diagnose ·
+    Besonderheiten bei der Verabreichung · fällige Kontrollen.</span></label>
+<textarea id="q2" placeholder="Diagnose … bedeutet für die Pflege … / Wirkstoffklasse … / Wann zuletzt kontrolliert?"></textarea>
+<span class="gespeichert" data-fuer="q2">gespeichert ✓</span>
+
+<label class="feld" for="q3">c) Patientenverfügung und Behandlungswünsche
+  <span class="h">Was steht drin? Für welche Bereiche gilt die Vollmacht? Wer ist
+    bevollmächtigt und wie ist er erreichbar? Ist das dem Team bekannt?</span></label>
+<textarea id="q3" placeholder="Vollmacht gilt für … / In der Verfügung steht … / Fragen dazu: …"></textarea>
+<span class="gespeichert" data-fuer="q3">gespeichert ✓</span>
+
+<label class="feld" for="q4">d) Vitalzeichen, Flüssigkeitsbilanz oder sonstiges
+  <span class="h">Werte im Grenzbereich · Messhäufigkeit · Verteilung der Trinkmenge über den Tag
+    · fehlende Gewichtskontrollen.</span></label>
+<textarea id="q4" placeholder="Auffällig ist … / Es fehlt … / Ich frage nach: …"></textarea>
+<span class="gespeichert" data-fuer="q4">gespeichert ✓</span>
+
+<label class="feld" for="q5">Fragen an die <b>Pflegefachkraft</b>
+  <span class="h">Alles, was nur jemand beantworten kann, der die Person täglich pflegt.</span></label>
+<textarea id="q5" placeholder="1. … 2. … 3. …"></textarea>
+<span class="gespeichert" data-fuer="q5">gespeichert ✓</span>
+
+<label class="feld" for="q6">Fragen an den <b>Pflegeempfänger</b> selbst
+  <span class="h">Offene Fragen, in kurzen Sätzen, eine nach der anderen. Die vier
+    SIS-Einstiegsfragen sind ein guter Anfang.</span></label>
+<textarea id="q6" placeholder="Was bewegt Sie im Augenblick? / Was brauchen Sie? / Was können wir für Sie tun? / …"></textarea>
+<span class="gespeichert" data-fuer="q6">gespeichert ✓</span>
+
+<div class="gut"><b>Für die Fragen an die Person selbst</b> kannst du direkt den
+  <a href="https://claude.ai/code/artifact/5f2d11f0-0e52-46e9-a01b-aa460a59d33c" target="_blank"
+     rel="noopener">Gesprächsleitfaden</a> benutzen, den wir für die Zwischenprüfung gebaut haben —
+  82 Fragen nach den ABEDL, mit den vier Leitfragen P / E / S / R dahinter. Er passt hier
+  eins zu eins.</div>
+</section>
+
+<section id="angebot">
+<h2>Das individuelle Angebot</h2>
+<p class="lead">Die Anforderungen stehen auf Folie 9 — sie sind kurz, aber jede einzelne ist eine
+  Falle, wenn man sie überliest.</p>
+
+<div class="karte">
+  <ul class="tick" style="margin:0;">
+    <li><b>Maximal 1 Stunde.</b></li>
+    <li><b>Abwechslung ruhiger und Aktivitätsphasen.</b></li>
+    <li><b>Unterscheidung der Aktivität zwischen Früh- und Spätschicht</b> — Absprache am
+      2. Tag in der Übergabe.</li>
+    <li><b>Kontrolle vorhandenes Material</b> · Rücksprache mit dem Betreuungsteam oder der
+      Pflegefachkraft · oder selbstständige Materialbeschaffung.</li>
+    <li><b>Cave: Unverträglichkeiten und Allergien beachten!</b> Zum Beispiel bei der Arbeit mit
+      ätherischen Ölen.</li>
+  </ul>
+</div>
+
+<div class="warn"><b>Die zwei Punkte, an denen es meistens schiefgeht.</b>
+  <p style="margin:9px 0 0;"><b>„Abwechslung ruhiger und Aktivitätsphasen"</b> heißt: eine Stunde
+  am Stück dasselbe ist <b>nicht</b> erlaubt. Plane in Blöcken — ankommen und begrüßen, aktive
+  Phase, Pause mit einem Getränk, zweite Phase, Ausklang. Und bei einem alten, erschöpfbaren
+  Menschen ist die Pause keine Zugabe, sondern der Teil, der es überhaupt möglich macht.</p>
+  <p style="margin:9px 0 0;"><b>„Unterscheidung zwischen Früh- und Spätschicht"</b> heißt: Du
+  brauchst <b>zwei verschiedene Ideen</b>, und die Absprache dazu läuft am zweiten Tag in der
+  Übergabe. Am Nachmittag ist derselbe Mensch müder als am Vormittag — das allein rechtfertigt
+  schon zwei unterschiedliche Angebote.</p></div>
+
+<div class="info"><b>Wo dein Angebot herkommt.</b> Nicht aus einer Ideenliste im Internet, sondern
+  aus <b>deiner Biografiearbeit</b>. Was hat dieser Mensch <b>beruflich</b> gemacht? Was hat er
+  <b>gern gelesen, gehört, gesungen</b>? Ist er <b>gern in Gesellschaft</b> oder lieber allein?
+  <b>Sportlich? Gesundheitsbewusst? Tagmensch?</b> — Genau diese Punkte fragt der Biografiebogen
+  des Hauses ab. Wenn dein Angebot an eine dieser Antworten anknüpft, ist es
+  <b>individuell</b>. Sonst ist es Beschäftigung.</div>
+
+<label class="feld" for="a1">Was ich über ihn oder sie weiß, das ein Angebot tragen könnte
+  <span class="h">Beruf · Interessen früher · Musik · Lesen · Gesellschaft oder allein ·
+    Sprache · was Freude macht · was ihn ärgert.</span></label>
+<textarea id="a1" placeholder="Beruf: … / Mag: … / Mag nicht: … / Sprache: …"></textarea>
+<span class="gespeichert" data-fuer="a1">gespeichert ✓</span>
+
+<label class="feld" for="a2">Mein Angebot für die <b>Frühschicht</b> (10:30–11:30)
+  <span class="h">Ablauf in Blöcken, mit den ruhigen Phasen dazwischen. Und: welches Material?</span></label>
+<textarea id="a2" placeholder="10:30 ankommen … / 10:40 aktive Phase … / 11:00 Pause … / Material: …"></textarea>
+<span class="gespeichert" data-fuer="a2">gespeichert ✓</span>
+
+<label class="feld" for="a3">Mein Angebot für die <b>Spätschicht</b> (15:30–16:30)
+  <span class="h">Bewusst anders als am Vormittag. Was ist am Nachmittag realistisch?</span></label>
+<textarea id="a3" placeholder="15:30 … / 15:45 … / 16:10 … / Material: …"></textarea>
+<span class="gespeichert" data-fuer="a3">gespeichert ✓</span>
+
+<label class="feld" for="a4">Materialbedarf und Sicherheitsfragen
+  <span class="h">Was ist da, was muss ich besorgen, bei wem frage ich — und:
+    <b>Unverträglichkeiten und Allergien geprüft?</b></span></label>
+<textarea id="a4" placeholder="Vorhanden: … / Besorgen: … / Gefragt bei: … / Allergien geprüft am …"></textarea>
+<span class="gespeichert" data-fuer="a4">gespeichert ✓</span>
+
+<label class="feld" for="a5">Begründung — warum genau dieses Angebot für diesen Menschen
+  <span class="h">Der Satz, den du sagen wirst, wenn dich jemand fragt „warum das?“.</span></label>
+<textarea id="a5" placeholder="Ich habe das gewählt, weil aus der Biografie hervorgeht, dass …"></textarea>
+<span class="gespeichert" data-fuer="a5">gespeichert ✓</span>
+
+<label class="feld" for="a6">Nach der Durchführung: Evaluation (Feedbackbogen ca. 12:30 / 20:00)
+  <span class="h">Was hat funktioniert? Woran habe ich das gemerkt? Was würde ich ändern?</span></label>
+<textarea id="a6" placeholder="Gelungen: … / Woran ich es gemerkt habe: … / Beim nächsten Mal: …"></textarea>
+<span class="gespeichert" data-fuer="a6">gespeichert ✓</span>
+</section>
+
+<div class="warn"><b>Woher alles auf dieser Seite stammt.</b> Ablauf, Termine und die
+  Anforderungen an die Aktivität: aus den <b>Projektfolien EZIA CE 09 UE 3</b>. Die Gliederung der
+  Einrichtung: aus der <b>Vorstellungsfolien von Haus Cadenbach</b>. Aufgabenstellung, Ziel und
+  die Analysemethode: aus der <b>Verfahrensanweisung „Analyse des Pflegeempfängers"</b>. Der
+  Aufbau der SIS: aus dem <b>Formular selbst</b>. Beides Letztere habe ich <b>nur in ihrer
+  Struktur</b> wiedergegeben — ohne eine einzige Angabe über die Bewohnerin.</div>
+
+</main>
+
+<footer>
+  Projekt EZIA · CE 09 UE 3 · Haus Cadenbach Aachen · 04.–11.09.2026<br>
+  Deine Notizen bleiben nur in diesem Browser. Trag hier keine Namen ein.
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var PRE = 'ezia-';
+  document.querySelectorAll('textarea[id]').forEach(function(t){
+    var key = PRE + t.id;
+    try { var alt = localStorage.getItem(key); if(alt !== null) t.value = alt; } catch(e){}
+    var marke = document.querySelector('.gespeichert[data-fuer="' + t.id + '"]');
+    var timer = null;
+    t.addEventListener('input', function(){
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        try { localStorage.setItem(key, t.value); } catch(e){ return; }
+        if(!marke) return;
+        marke.classList.add('an');
+        setTimeout(function(){ marke.classList.remove('an'); }, 1400);
+      }, 450);
+    });
+  });
+})();
+</script>
