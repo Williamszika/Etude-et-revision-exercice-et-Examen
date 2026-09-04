@@ -87,6 +87,25 @@
     background:var(--le);border-radius:6px;padding:2px 8px;}
   .le-schritt .fr2{font-size:15.5px;font-weight:600;margin:8px 0 2px;}
   .le-schritt .hw{font-size:13.5px;color:var(--ink-soft);margin-bottom:4px;}
+  .op{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.08em;
+    text-transform:uppercase;border-radius:5px;padding:2px 8px;}
+  .op-nennen{background:var(--paper-2);color:var(--ink-soft);}
+  .op-erklaeren{background:var(--verbbg);color:var(--verb);}
+  .op-erlaeutern{background:var(--sbbg);color:var(--sb);}
+  .op-begruenden{background:var(--extrabg);color:var(--extra);}
+  details.opbox{margin:12px 0;border:1px solid var(--line);border-radius:11px;
+    background:var(--card);overflow:hidden;}
+  details.opbox>summary{cursor:pointer;list-style:none;padding:11px 15px;font-weight:600;
+    font-size:14.5px;color:var(--le);display:flex;align-items:center;gap:8px;}
+  details.opbox>summary::-webkit-details-marker{display:none;}
+  details.opbox>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.opbox[open]>summary::before{content:"－";}
+  details.opbox .inh{padding:0 15px 13px;}
+  .optab{width:100%;border-collapse:collapse;font-size:14.5px;}
+  .optab td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;}
+  .optab td:first-child{white-space:nowrap;width:1%;}
+  .kon-satz{font-family:var(--serif);font-size:1.02rem;background:var(--card);
+    border-left:3px solid var(--le);border-radius:0 8px 8px 0;padding:9px 13px;margin:0 0 8px;}
   .k-probe{background:var(--tr);color:var(--card);}
   .pr-kasten{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--tr);
     border-radius:14px;padding:22px 24px;margin:18px 0;}
@@ -518,15 +537,37 @@ function renderLesen(b,idx){
     h+='</div></div>';
   });
 
-  /* Schritt 3: Verständnisfragen */
+  /* Schritt 3: Verständnisfragen mit Operatoren */
   if(b.fragen&&b.fragen.length){
     h+='<div class="le-schritt"><span class="nr">Schritt 3</span>'+
-       '<p class="fr2">Verständnisfragen — antworte in ganzen Sätzen.</p>';
+       '<p class="fr2">Verständnisfragen — antworte in ganzen Sätzen.</p>'+
+       '<p class="hw">Das <b>erste Wort</b> jeder Frage sagt dir, <b>was für eine Antwort</b> '+
+       'verlangt ist. Genau diese Wörter stehen auch in deinen Pflege-Klausuren.</p>';
+    h+='<details class="opbox"><summary>Was die vier Aufgabenwörter genau verlangen</summary>'+
+       '<div class="inh"><table class="optab"><tbody>'+
+       '<tr><td><span class="op op-nennen">Nennen · Beschreiben</span></td>'+
+       '<td>Sag, <b>was da ist</b>. Aufzählen, wiedergeben. Keine Gründe, keine Bewertung.</td></tr>'+
+       '<tr><td><span class="op op-erklaeren">Erklären</span></td>'+
+       '<td>Sag, <b>wie etwas funktioniert</b> oder <b>was es bedeutet</b> — so, dass jemand '+
+       'ohne Vorwissen es versteht. Meist mit einem Beispiel.</td></tr>'+
+       '<tr><td><span class="op op-erlaeutern">Erläutern</span></td>'+
+       '<td>Erklären <b>und am Text belegen</b>. Immer mit einer Stelle aus dem Text: '+
+       '<em>„Das sieht man daran, dass …“</em></td></tr>'+
+       '<tr><td><span class="op op-begruenden">Begründen</span></td>'+
+       '<td>Sag <b>warum</b>. Antwort <b>immer</b> mit <b>weil</b>, <b>da</b>, <b>denn</b> '+
+       'oder <b>deshalb</b> — ohne diese Wörter hast du nicht begründet.</td></tr>'+
+       '</tbody></table>'+
+       '<p style="font-size:14px;color:var(--ink-soft);margin:10px 0 0;">Wenn deine Schule eine '+
+       'eigene Operatorenliste austeilt, gilt ihre. Das hier ist die übliche Bedeutung.</p>'+
+       '</div></details>';
     b.fragen.forEach((f,i)=>{
       const fid=id+'-f'+i;
+      const op=(f.operator||'Verständnisfrage');
+      const opk={'Begründen':'op-begruenden','Erläutern':'op-erlaeutern','Erklären':'op-erklaeren',
+                 'Nennen':'op-nennen','Beschreiben':'op-nennen'}[op]||'op-nennen';
       h+='<div class="auf" style="background:var(--card)"><div class="kopf">'+
          '<span class="nr" style="background:var(--le)">'+(i+1)+'</span>'+
-         '<span class="typ">Verständnisfrage</span></div>';
+         '<span class="op '+opk+'">'+esc(op)+'</span></div>';
       h+='<div class="frage">'+bold(f.frage)+'</div>';
       h+='<div class="antwort"><textarea rows="2" data-nr="lesen-f'+i+'" '+
          'placeholder="Antworte in einem ganzen Satz …"></textarea>'+
@@ -538,8 +579,30 @@ function renderLesen(b,idx){
     h+='</div>';
   }
 
-  if(b.erklaeren){
+  /* Schritt 4: Konnektoren im Text */
+  if(b.konnektoren&&b.konnektoren.aufgaben&&b.konnektoren.aufgaben.length){
     h+='<div class="le-schritt"><span class="nr">Schritt 4</span>'+
+       '<p class="fr2">Die Konnektoren im Text</p>';
+    if(b.konnektoren.einleitung)h+='<p class="hw">'+bold(b.konnektoren.einleitung)+'</p>';
+    b.konnektoren.aufgaben.forEach((k,i)=>{
+      const kid=id+'-k'+i;
+      h+='<div class="auf" style="background:var(--card)"><div class="kopf">'+
+         '<span class="nr" style="background:var(--le)">'+(i+1)+'</span>'+
+         '<span class="typ">'+esc(k.typ||'Konnektor')+'</span></div>';
+      if(k.satz)h+='<p class="kon-satz">'+bold(k.satz)+'</p>';
+      h+='<div class="frage">'+bold(k.frage)+'</div>';
+      h+='<div class="antwort"><textarea rows="2" data-nr="lesen-k'+i+'" '+
+         'placeholder="Schreib den ganzen Satz, nicht nur das Wort …"></textarea>'+
+         '<div class="knoepfe"><button type="button" onclick="leZeig(\''+kid+'\',this)">'+
+         'Musterantwort zeigen</button></div>'+
+         '<div class="los" id="'+kid+'"><span class="l">'+bold(k.loesung)+'</span>'+
+         (k.hinweis?'<span class="h">💡 '+bold(k.hinweis)+'</span>':'')+'</div></div></div>';
+    });
+    h+='</div>';
+  }
+
+  if(b.erklaeren){
+    h+='<div class="le-schritt"><span class="nr">Schritt 5</span>'+
        '<p class="fr2">'+bold(b.erklaeren.frage||'Erklär den Text jemandem, der ihn nicht gelesen hat.')+'</p>';
     if(b.erklaeren.hinweis)h+='<p class="hw">'+bold(b.erklaeren.hinweis)+'</p>';
     h+='<div class="antwort"><textarea rows="4" data-nr="lesen-erkl" '+

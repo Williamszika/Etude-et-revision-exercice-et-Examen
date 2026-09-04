@@ -257,9 +257,29 @@ selbst formuliert: **nacherzählen, zusammenfassen, erklären.**
 | `redemittel` | Satzanfänge, mit denen sie beginnen kann |
 | `nacherzaehlen` | `{frage, hinweis, platzhalter, muster}` — „Was ist passiert?" |
 | `hauptaussage` | `{frage, hinweis, platzhalter, muster}` — „Wovon handelt der Text?" |
-| `fragen` | 5–6 × `{frage, loesung, hinweis}` — Verständnisfragen |
+| `fragen` | 5–6 × `{operator, frage, loesung, hinweis}` — siehe Operatoren unten |
+| `konnektoren` | `{einleitung, aufgaben:[{typ, satz, frage, loesung, hinweis}]}` — 5–6 Aufgaben |
 | `erklaeren` | `{frage, hinweis, muster}` — den Text laut in 30 Sekunden erklären |
 | `tipp` | Bezug zum Prüfungsteil des Tages |
+
+**Die Fragen benutzen die Operatoren, die auch in ihren Pflege-Klausuren stehen.** Feld
+`operator`, erlaubte Werte: **Nennen**, **Beschreiben**, **Erklären**, **Erläutern**,
+**Begründen**. Die Vorlage färbt sie ein und zeigt darüber einen ausklappbaren Kasten, der
+erklärt, was jedes Wort verlangt. Pro Text möglichst **alle vier Stufen** vorkommen lassen,
+in dieser Reihenfolge: erst *Nennen*, dann *Begründen*, *Erklären*, *Erläutern*.
+
+Und die Musterlösung muss **vormachen**, was der Operator verlangt:
+- **Begründen** → im Musterantwort-Text steht sichtbar **weil / da / denn / deshalb**.
+- **Erläutern** → die Musterantwort **belegt am Text**: *„Das sieht man daran, dass …“* oder
+  ein wörtliches Zitat.
+- **Erklären** → verständliche Erklärung **plus eigenes Beispiel**.
+- **Nennen** → wirklich nur aufzählen, keine Begründung.
+
+**Der Block `konnektoren`** nimmt die Konnektoren, die **wirklich im Text vorkommen**, und lässt
+sie umformen: *aber → obwohl*, *statt … zu → nicht … sondern*, dazu immer einmal die Dreierregel
+**weil / denn / deshalb** am selben Inhalt, damit der Unterschied in der **Verbstellung** sichtbar
+wird. Das ist gleichzeitig das Training für **Sprachbausteine Teil 1**. In der Lösung immer den
+**ganzen Satz** schreiben, nie nur das Konnektor-Wort.
 
 **Die Textsorte richtet sich nach dem Tagesfokus:** Montag eine **Erzählung oder Reportage**
 (Leseverstehen), Dienstag ein **Bericht** (passt zum Hörverstehen), Mittwoch ein Text mit viel
