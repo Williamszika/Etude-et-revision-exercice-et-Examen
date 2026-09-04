@@ -1,0 +1,642 @@
+<title>Die Kette</title>
+<style>
+  :root{
+    --paper:#f4f4f7;--paper-2:#e9e9f0;--card:#fefeff;--ink:#1a1b22;--ink-soft:#4e5060;--line:#d7d8e2;
+    --accent:#4a3f8a;--accent-deep:#372c6d;--accent-soft:#e4e1f3;
+    --s1:#2f6f8b;--s1bg:#dceaf1;--s2:#8a5a2b;--s2bg:#f4e6d6;--s3:#2f7d54;--s3bg:#e2f0e7;
+    --s4:#8a3f6b;--s4bg:#f3e0ec;--s5:#a3651a;--s5bg:#f9ecd6;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#131319;--paper-2:#0e0e13;--card:#1c1c25;--ink:#eceef4;--ink-soft:#a5a7b8;--line:#2f303c;
+    --accent:#a49ae0;--accent-deep:#bcb4ee;--accent-soft:#1e1b33;
+    --s1:#86bcd8;--s1bg:#152530;--s2:#dda172;--s2bg:#2b1e14;--s3:#6fc292;--s3bg:#14281c;
+    --s4:#dd93bf;--s4bg:#2c1724;--s5:#dda862;--s5bg:#2d2415;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;}}
+  :root[data-theme="dark"]{
+    --paper:#131319;--paper-2:#0e0e13;--card:#1c1c25;--ink:#eceef4;--ink-soft:#a5a7b8;--line:#2f303c;
+    --accent:#a49ae0;--accent-deep:#bcb4ee;--accent-soft:#1e1b33;
+    --s1:#86bcd8;--s1bg:#152530;--s2:#dda172;--s2bg:#2b1e14;--s3:#6fc292;--s3bg:#14281c;
+    --s4:#dd93bf;--s4bg:#2c1724;--s5:#dda862;--s5bg:#2d2415;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;}
+  :root[data-theme="light"]{
+    --paper:#f4f4f7;--paper-2:#e9e9f0;--card:#fefeff;--ink:#1a1b22;--ink-soft:#4e5060;--line:#d7d8e2;
+    --accent:#4a3f8a;--accent-deep:#372c6d;--accent-soft:#e4e1f3;
+    --s1:#2f6f8b;--s1bg:#dceaf1;--s2:#8a5a2b;--s2bg:#f4e6d6;--s3:#2f7d54;--s3bg:#e2f0e7;
+    --s4:#8a3f6b;--s4bg:#f3e0ec;--s5:#a3651a;--s5bg:#f9ecd6;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;}
+
+  *{box-sizing:border-box;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16.5px;
+    line-height:1.62;margin:0;}
+  main{max-width:56rem;margin:0 auto;padding:0 18px 80px;}
+  header.hero{background:var(--accent-soft);border-bottom:1px solid var(--line);
+    padding:44px 20px 32px;text-align:center;}
+  header.hero .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-size:2.15rem;line-height:1.14;margin:0 0 11px;}
+  header.hero .sub{color:var(--ink-soft);margin:0 auto;max-width:40rem;font-size:15.5px;}
+
+  nav.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px 0 6px;}
+  nav.chips a{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-decoration:none;
+    color:var(--accent-deep);background:var(--paper-2);border:1px solid var(--line);
+    border-radius:999px;padding:6px 13px;}
+  nav.chips a:hover{background:var(--accent-soft);}
+
+  h2{font-family:var(--serif);font-size:1.55rem;margin:48px 0 8px;color:var(--accent-deep);
+    scroll-margin-top:16px;}
+  h3{font-family:var(--serif);font-size:1.16rem;margin:26px 0 6px;}
+  h4{font-size:1rem;margin:18px 0 5px;color:var(--accent-deep);}
+  .lead{color:var(--ink-soft);margin:0 0 18px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  p{margin:0 0 12px;}
+
+  .karte{border:1px solid var(--line);border-radius:14px;background:var(--card);
+    padding:19px 21px;margin:18px 0;}
+  .warn{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+  .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+  .info{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px;
+    padding:15px 18px;margin:16px 0;}
+
+  /* Die Kette */
+  .kette{counter-reset:kt;margin:18px 0;}
+  .glied{display:flex;gap:15px;align-items:flex-start;border:1px solid var(--line);
+    border-radius:13px;background:var(--card);padding:15px 18px;margin-bottom:10px;
+    position:relative;}
+  .glied .z{font-family:var(--mono);font-size:16px;font-weight:700;color:var(--card);
+    border-radius:50%;width:34px;height:34px;flex-shrink:0;display:flex;align-items:center;
+    justify-content:center;}
+  .glied.g1 .z{background:var(--s1);} .glied.g2 .z{background:var(--s2);}
+  .glied.g3 .z{background:var(--s3);} .glied.g4 .z{background:var(--s4);}
+  .glied.g5 .z{background:var(--s5);}
+  .glied .i{flex:1;min-width:0;}
+  .glied .q{font-family:var(--serif);font-size:1.14rem;font-weight:600;margin:0 0 5px;}
+  .glied .w{font-size:15px;color:var(--ink-soft);margin:0;}
+  .glied .w b{color:var(--ink);}
+
+  /* Durchgerechnetes Beispiel */
+  .rechnung{border:1px solid var(--line);border-radius:13px;overflow:hidden;margin:16px 0;
+    background:var(--card);}
+  .rechnung .satz{background:var(--accent-soft);padding:14px 18px;font-family:var(--serif);
+    font-size:1.15rem;}
+  .rechnung .zeile{display:grid;grid-template-columns:auto 1fr;border-top:1px solid var(--line);}
+  .rechnung .zeile .s{padding:11px 14px;font-family:var(--mono);font-size:11.5px;font-weight:700;
+    white-space:nowrap;border-right:1px solid var(--line);display:flex;align-items:center;gap:7px;}
+  .rechnung .zeile.z1 .s{background:var(--s1bg);color:var(--s1);}
+  .rechnung .zeile.z2 .s{background:var(--s2bg);color:var(--s2);}
+  .rechnung .zeile.z3 .s{background:var(--s3bg);color:var(--s3);}
+  .rechnung .zeile.z4 .s{background:var(--s4bg);color:var(--s4);}
+  .rechnung .zeile.z5 .s{background:var(--s5bg);color:var(--s5);}
+  .rechnung .zeile .a{padding:11px 14px;font-size:15px;}
+  @media (max-width:560px){
+    .rechnung .zeile{grid-template-columns:1fr;}
+    .rechnung .zeile .s{border-right:none;border-bottom:1px dashed var(--line);}
+  }
+  .erg{background:var(--goodbg);padding:13px 18px;border-top:1px solid var(--line);
+    font-family:var(--serif);font-size:1.15rem;color:var(--good);font-weight:600;}
+
+  .tabwrap{overflow-x:auto;margin:14px 0;}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:30rem;}
+  th,td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--ink-soft);}
+  td.k{font-weight:700;white-space:nowrap;}
+  td.hl{background:var(--accent-soft);font-weight:700;}
+
+  /* Satzbaukasten */
+  .kasten{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);
+    border-radius:12px;overflow:hidden;margin:14px 0;font-size:14.5px;}
+  @media (max-width:640px){.kasten{grid-template-columns:1fr;}}
+  .kasten > div{padding:12px 14px;border-right:1px solid var(--line);}
+  .kasten > div:last-child{border-right:none;}
+  @media (max-width:640px){.kasten > div{border-right:none;border-bottom:1px solid var(--line);}}
+  .kasten .h{font-family:var(--mono);font-size:10px;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:5px;}
+  .kasten .v{background:var(--accent-soft);}
+  .kasten .beispiel{font-style:italic;color:var(--ink-soft);display:block;margin-top:5px;
+    font-size:13.5px;}
+
+  /* Stufen */
+  .stufe{border:1px solid var(--line);border-radius:14px;background:var(--card);margin:16px 0;
+    overflow:hidden;}
+  .stufe > .kopf{background:var(--paper-2);border-bottom:1px solid var(--line);padding:13px 18px;
+    display:flex;gap:12px;align-items:baseline;flex-wrap:wrap;}
+  .stufe > .kopf .n{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent);}
+  .stufe > .kopf .t{font-family:var(--serif);font-size:1.14rem;font-weight:600;flex:1;min-width:0;}
+  .stufe > .kopf .d{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);
+    background:var(--card);border:1px solid var(--line);border-radius:999px;padding:3px 10px;}
+  .stufe > .body{padding:16px 18px;}
+  .stufe .ziel{font-size:14.5px;color:var(--ink-soft);margin:0 0 12px;}
+
+  .drill{border:1px solid var(--line);border-radius:11px;background:var(--paper-2);
+    padding:12px 15px;margin:9px 0;}
+  .drill .q{font-size:15.5px;margin-bottom:7px;}
+  .drill textarea{width:100%;font:inherit;font-size:15.5px;line-height:1.5;color:var(--ink);
+    background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:9px;padding:9px 12px;resize:vertical;min-height:44px;}
+  .drill textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  .drill button{font:inherit;font-size:13px;color:var(--accent-deep);background:var(--card);
+    border:1px solid var(--line);border-radius:8px;padding:5px 12px;cursor:pointer;margin-top:8px;}
+  .drill button:hover{border-color:var(--accent);}
+  .drill .los{display:none;margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);}
+  .drill .los.show{display:block;}
+  .drill .los .l{font-weight:600;color:var(--good);}
+  .drill .los .h{display:block;font-size:13.5px;color:var(--ink-soft);margin-top:4px;}
+
+  .plan .w{display:flex;gap:14px;align-items:flex-start;border-bottom:1px solid var(--line);
+    padding:13px 0;}
+  .plan .w:last-child{border-bottom:none;}
+  .plan .w .z{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent-deep);
+    background:var(--accent-soft);border-radius:8px;padding:5px 11px;white-space:nowrap;}
+  .plan .w .i{flex:1;}
+
+  .quelle{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);background:var(--paper-2);
+    border-radius:6px;padding:3px 8px;display:inline-block;margin-top:8px;}
+  footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 20px 50px;text-align:center;
+    color:var(--ink-soft);font-size:14px;}
+  a{color:var(--accent-deep);}
+  code{font-family:var(--mono);font-size:13.5px;background:var(--paper-2);border-radius:5px;
+    padding:1px 6px;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Deutsch täglich · Deklination lernen, nicht nachschlagen</p>
+  <h1>Die Kette</h1>
+  <p class="sub">Fünf Fragen, immer in derselben Reihenfolge. Wer die Kette beherrscht, muss
+    keine Tabelle auswendig können — die Tabelle ergibt sich von selbst.</p>
+</header>
+
+<main>
+
+<nav class="chips">
+  <a href="#warum">Warum Tabellen nicht helfen</a>
+  <a href="#kette">Die fünf Glieder</a>
+  <a href="#rechnen">Zweimal durchgerechnet</a>
+  <a href="#tabellen">Die zwei Tabellen</a>
+  <a href="#adjektiv">Das Adjektiv</a>
+  <a href="#satzbau">Der Satzbaukasten</a>
+  <a href="#stufen">Sieben Stufen üben</a>
+  <a href="#methode">Wie ich das übe</a>
+</nav>
+
+<section id="warum">
+<h2>Warum du die Tabellen kennst und trotzdem Fehler machst</h2>
+<p class="lead">Das ist kein Wissensproblem. Du <b>kennst</b> die Tabelle. Das Problem ist der
+  <b>Moment</b>, in dem du sie brauchst.</p>
+
+<div class="achtung">
+  <p style="margin-top:0;">Beim Sprechen und Schreiben passiert Folgendes: Du willst sagen
+    <em>„Ich arbeite in der ambulanten Pflege“</em> — und du denkst an <b>den Inhalt</b>. Die
+    Endung entsteht nebenbei, aus dem Gefühl. Und das Gefühl ist französisch: Im Französischen
+    ändert sich am Substantiv nichts, egal welche Rolle es im Satz hat.</p>
+  <p style="margin-bottom:0;">Deshalb kommt <s>in Ambulante Pflege</s> heraus — nicht weil du die
+    Dativtabelle nicht kennst, sondern weil du sie <b>in diesem Moment gar nicht befragt hast</b>.</p>
+</div>
+
+<div class="gut"><b>Die Lösung ist keine bessere Tabelle, sondern ein fester Ablauf.</b> Etwas,
+  das jedes Mal automatisch anspringt, wenn ein Nomen kommt — so wie du beim Blutdruckmessen
+  nicht mehr nachdenkst, sondern die Schritte in fester Reihenfolge machst. Genau das ist
+  <b>die Kette</b>.
+  <span class="fr">Ce n'est pas un problème de connaissance, c'est un problème d'automatisme.
+  On n'apprend pas un tableau : on apprend une procédure.</span></div>
+</section>
+
+<section id="kette">
+<h2>Die fünf Glieder der Kette</h2>
+<p class="lead">Immer diese Reihenfolge. Nie eine Frage überspringen — <b>jede</b> baut auf der
+  vorigen auf.</p>
+
+<div class="kette">
+  <div class="glied g1"><span class="z">1</span><div class="i">
+    <p class="q">Wer bestimmt hier?</p>
+    <p class="w">Zwei Kandidaten, mehr gibt es nicht: eine <b>Präposition</b> (in, mit, bei,
+      für …) oder das <b>Verb</b>. Wenn eine Präposition da ist, gewinnt <b>immer sie</b>.
+      Unterstreiche sie, bevor du weitermachst.</p></div></div>
+
+  <div class="glied g2"><span class="z">2</span><div class="i">
+    <p class="q">Welchen Fall verlangt der Bestimmer?</p>
+    <p class="w">Bei der Präposition: aus der Liste. Bei Wechselpräpositionen die eine Frage —
+      <b>Wo? → Dativ · Wohin? → Akkusativ</b>. Beim Verb: das direkte Objekt ist
+      <b>Akkusativ</b>, der Empfänger ist <b>Dativ</b> (<em>Ich gebe <b>der Schwester</b> den
+      Plan</em>).</p></div></div>
+
+  <div class="glied g3"><span class="z">3</span><div class="i">
+    <p class="q">Welches Genus hat das Nomen?</p>
+    <p class="w"><b>der, die oder das?</b> Wenn du es nicht weißt, hast du hier ein anderes
+      Problem und musst es nachschlagen — die Kette bricht an dieser Stelle. Bei Komposita:
+      das <b>letzte</b> Wort entscheidet.</p></div></div>
+
+  <div class="glied g4"><span class="z">4</span><div class="i">
+    <p class="q">Also welcher Artikel?</p>
+    <p class="w">Jetzt erst schaust du in die Tabelle — und du weißt schon <b>Zeile und
+      Spalte</b>: Fall aus Schritt 2, Genus aus Schritt 3. Es gibt nur noch <b>ein</b> mögliches
+      Feld.</p></div></div>
+
+  <div class="glied g5"><span class="z">5</span><div class="i">
+    <p class="q">Und die Adjektivendung?</p>
+    <p class="w">Eine einzige Frage: <b>Zeigt der Artikel den Fall schon deutlich?</b>
+      Wenn ja → das Adjektiv macht sich klein: <b>-e</b> oder <b>-en</b>. Wenn nein (bei
+      <em>ein</em>, <em>mein</em>, <em>kein</em> im Nominativ und Neutrum) → das Adjektiv muss
+      <b>einspringen</b> und die Endung des Artikels tragen.</p></div></div>
+</div>
+
+<div class="info"><b>Am Anfang dauert das zehn Sekunden pro Nomen. Das ist normal und richtig.</b>
+  Nach drei bis vier Wochen läuft die Kette unbewusst und du merkst sie nicht mehr — genau so, wie
+  du irgendwann aufgehört hast, beim Autofahren über das Kuppeln nachzudenken. Wer die Kette
+  überspringt, um schneller zu sein, übt seinen Fehler weiter ein.</div>
+</section>
+
+<section id="rechnen">
+<h2>Zweimal langsam durchgerechnet</h2>
+<p class="lead">Genau deine beiden Fehlersätze — aber diesmal mit der Kette.</p>
+
+<h3>Beispiel 1 — dein Klassiker</h3>
+<div class="rechnung">
+  <div class="satz">Ich arbeite ______ ______ ambulant___ Pflege.</div>
+  <div class="zeile z1"><div class="s">1 · Bestimmer</div>
+    <div class="a">Die Präposition <b>in</b>. Sie ist da, also entscheidet sie — nicht das Verb
+      <em>arbeiten</em>.</div></div>
+  <div class="zeile z2"><div class="s">2 · Fall</div>
+    <div class="a"><b>in</b> ist eine Wechselpräposition. Die Frage: <em>Wo</em> arbeite ich?
+      Keine Bewegung von A nach B → <b>Dativ</b>.</div></div>
+  <div class="zeile z3"><div class="s">3 · Genus</div>
+    <div class="a"><b>die</b> Pflege — feminin. (Endung <b>-e</b>, und Pflege ist ohnehin ein Wort,
+      das du täglich benutzt.)</div></div>
+  <div class="zeile z4"><div class="s">4 · Artikel</div>
+    <div class="a">Dativ + feminin → <b>der</b>. Das ist die Stelle, an der es sich falsch
+      <em>anfühlt</em>, weil <em>der</em> nach Maskulinum aussieht. Es ist trotzdem richtig.</div></div>
+  <div class="zeile z5"><div class="s">5 · Adjektiv</div>
+    <div class="a">Zeigt <b>der</b> den Fall deutlich? <b>Ja.</b> Also macht sich das Adjektiv
+      klein — und Dativ ist nie <em>-e</em>, also <b>-en</b>: <b>ambulanten</b>.</div></div>
+  <div class="erg">Ich arbeite <b>in der ambulanten</b> Pflege.</div>
+</div>
+
+<h3>Beispiel 2 — dieselbe Kette, anderes Ergebnis</h3>
+<div class="rechnung">
+  <div class="satz">Ich kümmere mich um ______ neu___ Bewohner.</div>
+  <div class="zeile z1"><div class="s">1 · Bestimmer</div>
+    <div class="a">Die Präposition <b>um</b> — sie gehört fest zum Verb <em>sich kümmern um</em>.</div></div>
+  <div class="zeile z2"><div class="s">2 · Fall</div>
+    <div class="a"><b>um</b> steht in der Liste „immer Akkusativ“. Keine Wo/Wohin-Frage nötig.</div></div>
+  <div class="zeile z3"><div class="s">3 · Genus</div>
+    <div class="a"><b>der</b> Bewohner — maskulin. (Endung <b>-er</b> bei Personen.)</div></div>
+  <div class="zeile z4"><div class="s">4 · Artikel</div>
+    <div class="a">Akkusativ + maskulin → <b>den</b>. Das ist das <b>einzige</b> Feld der ganzen
+      Tabelle, in dem sich im Akkusativ etwas ändert.</div></div>
+  <div class="zeile z5"><div class="s">5 · Adjektiv</div>
+    <div class="a">Zeigt <b>den</b> den Fall deutlich? <b>Ja</b> → klein → <b>-en</b>:
+      <b>neuen</b>.</div></div>
+  <div class="erg">Ich kümmere mich <b>um den neuen</b> Bewohner.</div>
+</div>
+
+<div class="gut"><b>Sieh dir an, wo die beiden Ketten sich unterschieden haben:</b> nur bei
+  Schritt 2 und 3. Schritt 1, 4 und 5 liefen identisch. <b>Deshalb lohnt es sich, die Kette zu
+  üben und nicht Einzelsätze auswendig zu lernen</b> — dieselben fünf Fragen tragen jeden Satz,
+  den du je bauen wirst.</div>
+</section>
+
+<section id="tabellen">
+<h2>Die zwei Tabellen — mehr brauchst du nicht</h2>
+
+<h3>Tabelle A · der bestimmte Artikel</h3>
+<div class="tabwrap"><table>
+  <thead><tr><th></th><th>maskulin</th><th>feminin</th><th>neutrum</th><th>Plural</th></tr></thead>
+  <tbody>
+    <tr><td class="k">Nominativ</td><td>der</td><td>die</td><td>das</td><td>die</td></tr>
+    <tr><td class="k">Akkusativ</td><td class="hl">den</td><td>die</td><td>das</td><td>die</td></tr>
+    <tr><td class="k">Dativ</td><td class="hl">dem</td><td class="hl">der</td><td class="hl">dem</td>
+      <td class="hl">den …-n</td></tr>
+    <tr><td class="k">Genitiv</td><td>des …-s</td><td>der</td><td>des …-s</td><td>der</td></tr>
+  </tbody>
+</table></div>
+
+<div class="warn"><b>Lern die Tabelle nicht als Ganzes — lern die vier gefärbten Felder.</b>
+  Alles Weiße ist gleich wie im Nominativ, also nichts Neues. Es bleiben:
+  <b>den</b> (Akk. mask.) · <b>dem / der / dem</b> (Dativ) · <b>den …-n</b> (Dativ Plural).
+  <p style="margin:9px 0 0;"><b>Der eine Satz, der den Dativ speichert:</b>
+    <em>„<b>dem</b> Mann, <b>der</b> Frau, <b>dem</b> Kind, <b>den</b> Leuten.“</em>
+    Sprich ihn dir laut vor, bis er wie ein Lied klingt. Wenn du im Satz stockst, sag ihn
+    innerlich auf und nimm das passende Stück heraus.</p></div>
+
+<h3>Tabelle B · die Präpositionen</h3>
+<div class="tabwrap"><table>
+  <thead><tr><th>immer Dativ</th><th>immer Akkusativ</th><th>Wo? → Dativ · Wohin? → Akkusativ</th></tr></thead>
+  <tbody><tr>
+    <td><b>aus · bei · mit · nach · seit · von · zu</b><br>
+      <span style="color:var(--ink-soft);font-size:13.5px;">dazu: außer, gegenüber</span></td>
+    <td><b>durch · für · gegen · ohne · um</b><br>
+      <span style="color:var(--ink-soft);font-size:13.5px;">dazu: bis, entlang</span></td>
+    <td><b>in · an · auf · über · unter · vor · hinter · neben · zwischen</b></td>
+  </tr></tbody>
+</table></div>
+<div class="info"><b>Die sieben Dativ-Präpositionen als Reihe lernen:</b>
+  <b>aus – bei – mit – nach – seit – von – zu</b>. Das ist alphabetisch und geht in einem Atemzug.
+  Und für die Akkusativ-Seite: <b>durch – für – gegen – ohne – um</b>. Zwei kurze Reihen, fünf
+  Minuten Arbeit — und danach ist Schritt 2 der Kette bei den meisten Sätzen erledigt, ohne
+  Nachdenken.</div>
+</section>
+
+<section id="adjektiv">
+<h2>Das Adjektiv — eine einzige Frage</h2>
+<p class="lead">Hier hören die meisten auf und lernen drei Tabellen auswendig. Das ist nicht
+  nötig. Es gibt <b>eine</b> Frage.</p>
+
+<div class="karte">
+  <p style="font-family:var(--serif);font-size:1.2rem;margin:0;">
+    <b>Zeigt der Artikel den Fall schon deutlich?</b></p>
+</div>
+
+<h3>Fall A · Ja, der Artikel zeigt es (der, die, das, den, dem, meine, diese …)</h3>
+<p>Dann muss das Adjektiv nichts mehr leisten. Es nimmt nur noch <b>-e</b> oder <b>-en</b>:</p>
+<div class="tabwrap"><table>
+  <thead><tr><th>Wann <b>-e</b>?</th><th>Wann <b>-en</b>?</th></tr></thead>
+  <tbody><tr>
+    <td><b>Nur in fünf Feldern:</b><br>
+      Nominativ Singular alle drei Genera<br>
+      <em>der gut<b>e</b> Plan · die gut<b>e</b> Pflege · das gut<b>e</b> Team</em><br>
+      und Akkusativ feminin + neutrum<br>
+      <em>die gut<b>e</b> Pflege · das gut<b>e</b> Team</em></td>
+    <td><b>In allen anderen Fällen — also fast immer.</b><br>
+      Jeder Dativ, jeder Genitiv, jeder Plural, und der Akkusativ maskulin.<br>
+      <em>in der ambulant<b>en</b> Pflege · um den neu<b>en</b> Bewohner ·
+        mit den alt<b>en</b> Kollegen</em></td>
+  </tr></tbody>
+</table></div>
+<div class="gut"><b>Praktische Konsequenz:</b> Wenn du unsicher bist und der Artikel steht,
+  ist <b>-en</b> die deutlich wahrscheinlichere Wahl. Rate nicht <em>-e</em>, rate <b>-en</b>.</div>
+
+<h3>Fall B · Nein, der Artikel zeigt nichts (ein, mein, kein — in drei Feldern)</h3>
+<p><em>ein</em> hat in drei Feldern <b>keine Endung</b>, und dort weiß man nicht, welcher Fall
+  gemeint ist. Dann muss das Adjektiv <b>einspringen</b> und die Endung tragen, die eigentlich
+  der Artikel hätte:</p>
+<div class="tabwrap"><table>
+  <thead><tr><th>Feld</th><th>Artikel zeigt nichts</th><th>Adjektiv springt ein</th></tr></thead>
+  <tbody>
+    <tr><td class="k">Nominativ maskulin</td><td>ein __ Plan</td>
+      <td>ein gut<b>er</b> Plan <em>(wie de<b>r</b>)</em></td></tr>
+    <tr><td class="k">Nominativ neutrum</td><td>ein __ Team</td>
+      <td>ein gut<b>es</b> Team <em>(wie da<b>s</b>)</em></td></tr>
+    <tr><td class="k">Akkusativ neutrum</td><td>ein __ Team</td>
+      <td>ein gut<b>es</b> Team <em>(wie da<b>s</b>)</em></td></tr>
+  </tbody>
+</table></div>
+<div class="info"><b>Merksatz:</b> <em>„Wenn der Artikel schweigt, muss das Adjektiv reden.“</em>
+  Überall sonst — auch nach <em>ein</em> — gilt wieder Fall A mit <b>-e</b> oder <b>-en</b>:
+  <em>eine gut<b>e</b> Pflege · mit einem gut<b>en</b> Plan · für eine gut<b>e</b> Betreuung</em>.</div>
+
+<div class="warn"><b>Und dein Fehler <s>meinen Geld</s> war gar kein Adjektivfehler.</b> Es ist
+  <b>das</b> Geld. Neutrum hat im Akkusativ dieselbe Form wie im Nominativ, also <b>mein</b> Geld.
+  Die Kette hätte dich bei <b>Schritt 3</b> gerettet — nicht bei Schritt 5. <b>Deshalb ist die
+  Reihenfolge so wichtig.</b> Wer mit der Endung anfängt, hat den Fehler schon gemacht.</div>
+</section>
+
+<section id="satzbau">
+<h2>Der Satzbaukasten — wo die Teile hingehören</h2>
+<p class="lead">Die Deklination sagt dir, <b>wie</b> ein Teil aussieht. Der Baukasten sagt dir,
+  <b>wo</b> er steht. Beides zusammen ist ein richtiger Satz.</p>
+
+<div class="kasten">
+  <div><span class="h">Position 1</span><b>Ein einziges Element</b>
+    <span class="beispiel">Subjekt, oder eine Zeitangabe, oder ein ganzer Nebensatz — aber nur
+      eines davon.</span></div>
+  <div class="v"><span class="h">Position 2</span><b>Das konjugierte Verb</b>
+    <span class="beispiel">Immer. Ohne Ausnahme. Auch wenn Position 1 fünf Wörter lang ist.</span></div>
+  <div><span class="h">Mittelfeld</span><b>Te – Ka – Mo – Lo</b>
+    <span class="beispiel">Temporal (wann) · Kausal (warum) · Modal (wie) · Lokal (wo)</span></div>
+  <div><span class="h">Satzende</span><b>Der Rest des Verbs</b>
+    <span class="beispiel">Partizip, Infinitiv oder die trennbare Vorsilbe.</span></div>
+</div>
+
+<div class="rechnung">
+  <div class="satz">Ich <b>habe</b> gestern wegen des Notfalls mit meiner Kollegin im Frühdienst
+    <b>getauscht</b>.</div>
+  <div class="zeile z1"><div class="s">Position 1</div><div class="a"><b>Ich</b></div></div>
+  <div class="zeile z2"><div class="s">Position 2</div><div class="a"><b>habe</b></div></div>
+  <div class="zeile z3"><div class="s">Te · wann</div><div class="a">gestern</div></div>
+  <div class="zeile z3"><div class="s">Ka · warum</div><div class="a">wegen des Notfalls
+    <em>(Genitiv — <b>wegen</b> bestimmt)</em></div></div>
+  <div class="zeile z4"><div class="s">Mo · wie</div><div class="a">mit meiner Kollegin
+    <em>(Dativ — <b>mit</b> bestimmt)</em></div></div>
+  <div class="zeile z5"><div class="s">Lo · wo</div><div class="a">im Frühdienst
+    <em>(Dativ — <b>in dem</b> = im, Frage: Wo?)</em></div></div>
+  <div class="zeile z1"><div class="s">Satzende</div><div class="a"><b>getauscht</b></div></div>
+  <div class="erg">Drei Präpositionen, drei Fälle — jede über die Kette ausgerechnet.</div>
+</div>
+
+<div class="info"><b>Zwei Objekte im selben Satz?</b> Sind beide Nomen, kommt der <b>Dativ zuerst</b>:
+  <em>Ich gebe <b>der Schwester</b> <b>den Plan</b>.</em> Ist eines ein Pronomen, kommt das
+  <b>Pronomen zuerst</b>: <em>Ich gebe <b>ihn</b> der Schwester.</em>
+  <span class="fr">Nom avant nom : datif d'abord. Pronom en jeu : pronom d'abord.</span></div>
+</section>
+
+<section id="stufen">
+<h2>Sieben Stufen — eine Entscheidung nach der anderen</h2>
+<p class="lead">Der eigentliche Grund, warum Üben bisher wenig gebracht hat: Du hast <b>alle fünf
+  Entscheidungen gleichzeitig</b> treffen müssen. Hier trainierst du <b>eine</b> pro Stufe.
+  Erst wenn eine Stufe leicht fällt, gehst du zur nächsten.</p>
+
+<div class="stufe"><div class="kopf"><span class="n">Stufe 1</span>
+  <span class="t">Nur den Bestimmer finden</span><span class="d">Tag 1–3</span></div>
+  <div class="body">
+    <p class="ziel">Keine Endungen. Nur: <b>Welches Wort entscheidet über den Fall?</b></p>
+    <div class="drill"><p class="q">Nenne in jedem Satz den Bestimmer:<br>
+      a) Ich spreche mit der Praxisanleiterin. · b) Sie wartet auf den Arzt. ·
+      c) Ich gebe der Bewohnerin die Tabletten.</p>
+      <textarea rows="2" data-nr="s1"></textarea>
+      <button type="button" onclick="zeig('l-s1',this)">Lösung</button>
+      <div class="los" id="l-s1"><span class="l">a) <b>mit</b> · b) <b>auf</b> (fest zu
+        <em>warten auf</em>) · c) <b>kein</b> Bestimmerwort — hier entscheidet das <b>Verb
+        geben</b>: Empfänger im Dativ, Sache im Akkusativ.</span>
+        <span class="h">Merke: Ist eine Präposition da, gewinnt sie. Ist keine da, schau aufs
+          Verb.</span></div></div></div></div>
+
+<div class="stufe"><div class="kopf"><span class="n">Stufe 2</span>
+  <span class="t">Nur den Fall nennen</span><span class="d">Tag 4–7</span></div>
+  <div class="body">
+    <p class="ziel">Immer noch keine Endungen. Nur: <b>Dativ oder Akkusativ?</b></p>
+    <div class="drill"><p class="q">Welcher Fall?<br>
+      a) für ___ Patienten · b) bei ___ Übergabe · c) ohne ___ Hilfsmittel ·
+      d) nach ___ Frühdienst · e) Ich lege den Plan auf ___ Tisch. · f) Der Plan liegt auf ___ Tisch.</p>
+      <textarea rows="2" data-nr="s2"></textarea>
+      <button type="button" onclick="zeig('l-s2',this)">Lösung</button>
+      <div class="los" id="l-s2"><span class="l">a) Akkusativ · b) Dativ · c) Akkusativ ·
+        d) Dativ · e) <b>Akkusativ</b> (Wohin?) · f) <b>Dativ</b> (Wo?)</span>
+        <span class="h">e) und f) sind dasselbe Wort <em>auf</em> — nur die Frage entscheidet.
+          <b>legen</b> = Bewegung, <b>liegen</b> = Zustand.</span></div></div></div></div>
+
+<div class="stufe"><div class="kopf"><span class="n">Stufe 3</span>
+  <span class="t">Nur das Genus nennen</span><span class="d">Tag 8–10</span></div>
+  <div class="body">
+    <p class="ziel">Ohne Fall, ohne Endung. Nur: <b>der, die oder das?</b></p>
+    <div class="drill"><p class="q">Genus?<br>
+      Übergabe · Dienstplan · Medikament · Bewohnerin · Praktikum · Wochenende ·
+      Blutdruckmessung · Verlust</p>
+      <textarea rows="2" data-nr="s3"></textarea>
+      <button type="button" onclick="zeig('l-s3',this)">Lösung</button>
+      <div class="los" id="l-s3"><span class="l"><b>die</b> Übergabe · <b>der</b> Dienstplan ·
+        <b>das</b> Medikament · <b>die</b> Bewohnerin · <b>das</b> Praktikum · <b>das</b>
+        Wochenende · <b>die</b> Blutdruckmessung · <b>der</b> Verlust</span>
+        <span class="h">Sechs davon verraten sich über die Endung oder über das letzte Wort des
+          Kompositums. Nur <em>Verlust</em> und <em>Medikament</em> musst du wissen — und
+          <em>-ment</em> ist ja auch eine Regel.</span></div></div></div></div>
+
+<div class="stufe"><div class="kopf"><span class="n">Stufe 4</span>
+  <span class="t">Artikel einsetzen — Schritt 1 bis 4 zusammen</span><span class="d">Tag 11–17</span></div>
+  <div class="body">
+    <p class="ziel">Jetzt läuft die halbe Kette. <b>Noch kein Adjektiv.</b></p>
+    <div class="drill"><p class="q">Setze den Artikel ein:<br>
+      a) Ich spreche mit ___ Praxisanleiterin. · b) Ich kümmere mich um ___ Bewohner. ·
+      c) Nach ___ Frühdienst gehe ich nach Hause. · d) Ich gebe ___ Schwester ___ Plan.</p>
+      <textarea rows="3" data-nr="s4"></textarea>
+      <button type="button" onclick="zeig('l-s4',this)">Lösung</button>
+      <div class="los" id="l-s4"><span class="l">a) mit <b>der</b> Praxisanleiterin ·
+        b) um <b>den</b> Bewohner · c) nach <b>dem</b> Frühdienst ·
+        d) Ich gebe <b>der</b> Schwester <b>den</b> Plan.</span>
+        <span class="h">d) ist die wichtigste: <b>zwei</b> Objekte, Dativ zuerst. Wer bekommt?
+          Die Schwester. Was? Den Plan.</span></div></div></div></div>
+
+<div class="stufe"><div class="kopf"><span class="n">Stufe 5</span>
+  <span class="t">Die Adjektivendung dazu — die ganze Kette</span><span class="d">Tag 18–24</span></div>
+  <div class="body">
+    <p class="ziel">Alle fünf Glieder. Sprich jeden Schritt <b>laut</b> mit, bevor du schreibst.</p>
+    <div class="drill"><p class="q">a) Ich arbeite in ___ ambulant___ Pflege.<br>
+      b) Ich kümmere mich um ___ neu___ Bewohner.<br>
+      c) Sie spricht mit ___ neu___ Kollegin.<br>
+      d) Das ist ___ gut___ Plan. <em>(unbestimmt!)</em></p>
+      <textarea rows="4" data-nr="s5"></textarea>
+      <button type="button" onclick="zeig('l-s5',this)">Lösung</button>
+      <div class="los" id="l-s5"><span class="l">a) in <b>der ambulanten</b> Pflege ·
+        b) um <b>den neuen</b> Bewohner · c) mit <b>der neuen</b> Kollegin ·
+        d) Das ist <b>ein guter</b> Plan.</span>
+        <span class="h">d) ist der Sonderfall: <em>ein</em> zeigt nichts (Nominativ maskulin),
+          also springt das Adjektiv ein → <b>-er</b> wie bei <em>de<b>r</b></em>.</span></div></div></div></div>
+
+<div class="stufe"><div class="kopf"><span class="n">Stufe 6</span>
+  <span class="t">Ganze Sätze bauen — Kette plus Baukasten</span><span class="d">Tag 25–30</span></div>
+  <div class="body">
+    <p class="ziel">Jetzt kommt die Wortstellung dazu. Erst die Teile deklinieren, dann in die
+      Reihenfolge Te–Ka–Mo–Lo bringen.</p>
+    <div class="drill"><p class="q">Bau einen Satz aus diesen Teilen:<br>
+      ich · gestern · wegen der Erkältung · mit meiner Kollegin · getauscht · haben</p>
+      <textarea rows="2" data-nr="s6"></textarea>
+      <button type="button" onclick="zeig('l-s6',this)">Lösung</button>
+      <div class="los" id="l-s6"><span class="l">Ich <b>habe</b> gestern wegen der Erkältung mit
+        meiner Kollegin <b>getauscht</b>.</span>
+        <span class="h">Position 1 <em>ich</em> · Position 2 <em>habe</em> · dann Te (gestern),
+          Ka (wegen der Erkältung), Mo (mit meiner Kollegin) · Satzende <em>getauscht</em>.</span></div></div>
+    <div class="drill"><p class="q">Derselbe Satz, aber beginn mit <b>Gestern</b>. Was ändert sich?</p>
+      <textarea rows="2" data-nr="s6b"></textarea>
+      <button type="button" onclick="zeig('l-s6b',this)">Lösung</button>
+      <div class="los" id="l-s6b"><span class="l"><b>Gestern habe ich</b> wegen der Erkältung mit
+        meiner Kollegin getauscht.</span>
+        <span class="h">Nur eins ändert sich: <em>gestern</em> besetzt Position 1, deshalb rutscht
+          <em>ich</em> hinter das Verb. <b>Die Deklination bleibt völlig gleich.</b></span></div></div></div></div>
+
+<div class="stufe"><div class="kopf"><span class="n">Stufe 7</span>
+  <span class="t">Eigene Sätze über den eigenen Tag</span><span class="d">ab Tag 31 · für immer</span></div>
+  <div class="body">
+    <p class="ziel">Das ist die einzige Stufe, die nie aufhört. Fünf Sätze über <b>deinen</b>
+      Dienst — und bei jedem Nomen die Kette laut mitlaufen lassen.</p>
+    <div class="drill"><p class="q">Schreib fünf Sätze über deinen letzten Dienst. In jedem Satz
+      muss mindestens <b>eine Präposition mit Artikel und Adjektiv</b> vorkommen.</p>
+      <textarea rows="6" data-nr="s7"></textarea>
+      <button type="button" onclick="zeig('l-s7',this)">Beispiel ansehen</button>
+      <div class="los" id="l-s7"><span class="l">1. Heute habe ich <b>mit der neuen Kollegin</b>
+        im Frühdienst gearbeitet. 2. Ich habe mich <b>um den unruhigen Bewohner</b> aus Zimmer
+        zwölf gekümmert. 3. <b>Nach der Übergabe</b> habe ich die Blutdruckwerte dokumentiert.
+        4. <b>Bei der ambulanten Tour</b> war ich zum ersten Mal allein. 5. Ich lege großen Wert
+        <b>auf eine ruhige Ansprache</b>.</span>
+        <span class="h">Schick mir deine fünf Sätze — ich korrigiere sie und sage dir bei jedem
+          Fehler, an welchem <b>Glied der Kette</b> es gehakt hat. Das ist die eigentliche
+          Übung.</span></div></div></div></div>
+</section>
+
+<section id="methode">
+<h2>Wie ich das übe — die Methode</h2>
+
+<div class="karte">
+  <div class="plan">
+    <div class="w"><span class="z">10 Min</span><div class="i">
+      <b>Jeden Tag, nicht am Wochenende zwei Stunden.</b> Deklination ist ein Automatismus, kein
+      Wissen. Automatismen entstehen durch <b>häufige kurze</b> Wiederholung, nicht durch lange
+      Sitzungen.</div></div>
+    <div class="w"><span class="z">laut</span><div class="i">
+      <b>Immer laut sprechen, auch beim Schreiben.</b> Die Endungen müssen ins Ohr, nicht nur ins
+      Auge. <em>„in — Wo? — Dativ — die Pflege — der — ambulanten“</em> — erst laut, dann
+      schreiben.</div></div>
+    <div class="w"><span class="z">1 Stufe</span><div class="i">
+      <b>Nie zwei Stufen gleichzeitig.</b> Solange Stufe 2 noch anstrengt, hat Stufe 5 keinen
+      Sinn. Lieber drei Tage länger auf einer Stufe bleiben.</div></div>
+    <div class="w"><span class="z">3 Zeilen</span><div class="i">
+      <b>Jedes neue Wort mit Artikel und Beispielsatz.</b> Nie <em>„Pflege = les soins“</em>,
+      sondern:<br>
+      <code>die Pflege → in der Pflege (Dativ) → „Ich arbeite in der ambulanten Pflege.“</code></div></div>
+    <div class="w"><span class="z">Heft</span><div class="i">
+      <b>Ein Fehlerheft, kein Vokabelheft.</b> Jeden Fehler eintragen — aber nicht nur die
+      Korrektur, sondern <b>an welchem Glied der Kette</b> es gehakt hat. Nach zwei Wochen siehst
+      du schwarz auf weiß, ob dein Problem Schritt 2 (Fall) oder Schritt 3 (Genus) ist. Meistens
+      ist es Schritt 3.</div></div>
+    <div class="w"><span class="z">täglich</span><div class="i">
+      <b>Der Deklinations-Block in Deutsch täglich.</b> Ab heute steht in jeder Tageslektion eine
+      Übung, die genau diese Kette an drei Sätzen durchspielt. Das ist deine tägliche
+      Wiederholung — du musst dir nichts selbst ausdenken.</div></div>
+  </div>
+</div>
+
+<div class="achtung"><b>Was nicht funktioniert — und warum ich es sage.</b> Die Tabellen
+  abschreiben, sie an die Wand hängen, sie „durchlesen“. Das fühlt sich nach Arbeit an und
+  verändert nichts, weil du beim Sprechen keine Zeit hast, an eine Wand zu denken. Was wirkt, ist
+  einzig: <b>an echten Sätzen, laut, in kleinen Portionen, jeden Tag</b> — und danach die Fehler
+  korrigiert bekommen. Alles andere ist Beschäftigung.</div>
+
+<div class="gut"><b>Woran du merkst, dass es wirkt.</b> Nicht daran, dass du keine Fehler mehr
+  machst — sondern daran, dass du <b>beim Sprechen selbst merkst</b>, dass da eben etwas falsch
+  war. Dieses „huch, das war Dativ“ mitten im Satz ist das erste Zeichen. Von da bis zur richtigen
+  Form ist es kurz.
+  <span class="fr">Le premier signe de progrès n'est pas l'absence de fautes : c'est de les
+  entendre toi-même.</span></div>
+</section>
+
+<span class="quelle">Methode auf Grundlage ihrer eigenen Fehler · Regeln und Tabellen zur
+  Deklination und Wortstellung</span>
+
+</main>
+
+<footer>
+  <a href="https://claude.ai/code/artifact/e499dbe3-e198-410a-94d3-9393e6b27c84"
+     target="_blank" rel="noopener">Deutsch täglich</a> ·
+  <a href="https://claude.ai/code/artifact/3e941e25-cfd8-4cdc-99f6-3671b2f03365"
+     target="_blank" rel="noopener">🧭 Meine sieben Baustellen</a><br>
+  Deine Antworten bleiben nur in diesem Browser.
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var PRE = 'dekl-';
+  window.zeig = function(id, btn){
+    var el = document.getElementById(id);
+    if(!el) return;
+    var offen = el.classList.toggle('show');
+    if(btn) btn.textContent = offen ? 'Lösung ausblenden' : 'Lösung';
+  };
+  document.querySelectorAll('.drill textarea[data-nr]').forEach(function(t){
+    var key = PRE + t.dataset.nr;
+    try { var alt = localStorage.getItem(key); if(alt !== null) t.value = alt; } catch(e){}
+    var timer = null;
+    t.addEventListener('input', function(){
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        try { localStorage.setItem(key, t.value); } catch(e){}
+      }, 450);
+    });
+  });
+})();
+</script>

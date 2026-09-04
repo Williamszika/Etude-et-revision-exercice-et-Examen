@@ -343,11 +343,46 @@ Regel ist und nicht jedes Mal ein neuer Zufall.
 Seite: *Pflegeung* (es heißt *die Pflege*), *Altum* (gemeint war *das Altertum*) und *System*
 als Beleg für die Endung *-tum* (es endet auf *-em*). Solche Beispiele nie ungeprüft übernehmen.
 
+### Der Block `deklination` — die Kette, jeden Tag an drei Sätzen
+
+Sie hat gesagt: **„pas d'ajouter comme cela, mais m'apprendre à étudier cela … afin que je ne
+fasse plus les mêmes erreurs."** Eine Nachschlageseite reicht nicht — es braucht **tägliche
+Wiederholung eines festen Verfahrens**. Deshalb hat jede Lektion einen Block `deklination`.
+
+Das Verfahren heißt **die Kette**, fünf Fragen in fester Reihenfolge. Eigene Seite:
+`deutsch-taeglich/deklination.html` →
+`https://claude.ai/code/artifact/aa4ffaa4-f1c0-4b44-85df-86b5bcd70ed1` (Favicon ⛓️).
+
+1. **Wer bestimmt?** Präposition oder Verb — Präposition gewinnt immer.
+2. **Welcher Fall?** Liste, bzw. bei Wechselpräpositionen die Frage Wo? / Wohin?
+3. **Welches Genus?** der/die/das — bei Komposita entscheidet das letzte Wort.
+4. **Welcher Artikel?** Erst jetzt in die Tabelle, Zeile und Spalte stehen schon fest.
+5. **Welche Endung?** Zeigt der Artikel den Fall? Ja → **-e/-en**. Nein → Adjektiv springt ein.
+
+**Aufbau des Blocks:** `{titel, stufe, fr, saetze:[{luecke, bestimmer, fall, genus, artikel,
+adjektiv, loesung, hinweis}], tipp}` — **genau drei Sätze**, nicht mehr. Die Vorlage zeigt die
+Lückenaufgabe, ein Schreibfeld und darunter eingeklappt **die ganze Kette Glied für Glied**,
+nicht nur die Lösung. Der Sinn ist, dass sie sieht, **an welchem Glied** es gehakt hat.
+
+**Auswahl der Sätze:** mindestens einer mit **Wechselpräposition** (Wo?/Wohin?), einer mit
+einer festen Dativpräposition (*mit, bei, nach, von, zu*), und regelmäßig einer mit **zwei
+Objekten** (*Ich gebe der Schwester den Plan* — Dativ vor Akkusativ). Inhalt aus dem
+Wochenthema, Wortschatz aus dem Pflegealltag.
+
+**Die sieben Übungsstufen** auf der Seite trainieren je **eine** Entscheidung: 1 Bestimmer
+finden · 2 Fall nennen · 3 Genus nennen · 4 Artikel setzen · 5 Adjektivendung · 6 ganzen Satz
+bauen · 7 eigene Sätze. Das Feld `stufe` im Block sagt, wo sie gerade steht — die Sätze des
+Tages sollen zu dieser Stufe passen und nicht darüber hinausgehen.
+
+**Und wenn sie freie Texte schickt:** jeden Deklinationsfehler dem **Kettenglied** zuordnen —
+„Das war Glied 3: es heißt *das* Wochenende." So sieht sie das Muster statt einer Fehlerliste.
+
 ### Pflichtinhalt jeder Lektion
 
 Verb des Tages (mit Konjugation und Bedeutung) · Wortschatz-Block (Redemittel **zum Thema der
-Woche**) · Grammatik-Block · **`lesen`-Block mit 200-Wörter-Text** · **telc-Block mit dem
-Tagesfokus** · Aussprache-Block · Diktat · 5 Übersetzungssätze FR→DE · 3 Alltag-Missionen.
+Woche**) · Grammatik-Block · **`deklination`-Block mit drei Kettensätzen** ·
+**`lesen`-Block mit 200-Wörter-Text** · **telc-Block mit dem Tagesfokus** · Aussprache-Block ·
+Diktat · 5 Übersetzungssätze FR→DE · 3 Alltag-Missionen.
 Am Samstag zusätzlich der Block `probe`.
 
 **Verben und Wortschatz auf B2-Niveau wählen** und **zum Wochenthema passend**. Kein
