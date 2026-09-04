@@ -258,6 +258,8 @@ selbst formuliert: **nacherzählen, zusammenfassen, erklären.**
 | `nacherzaehlen` | `{frage, hinweis, platzhalter, muster}` — „Was ist passiert?" |
 | `hauptaussage` | `{frage, hinweis, platzhalter, muster}` — „Wovon handelt der Text?" |
 | `fragen` | 5–6 × `{operator, frage, loesung, hinweis}` — siehe Operatoren unten |
+| `wortschatz` | `{einleitung, woerter:[{wort, niveau, fr, imText}], aufgabe:{frage, hinweis, muster}}` |
+| `grammatik` | `{einleitung, punkte:[{name, regel, imText, aufgabe, loesung, hinweis}]}` — 4 Punkte |
 | `konnektoren` | `{einleitung, aufgaben:[{typ, satz, frage, loesung, hinweis}]}` — 5–6 Aufgaben |
 | `erklaeren` | `{frage, hinweis, muster}` — den Text laut in 30 Sekunden erklären |
 | `tipp` | Bezug zum Prüfungsteil des Tages |
@@ -274,6 +276,20 @@ Und die Musterlösung muss **vormachen**, was der Operator verlangt:
   ein wörtliches Zitat.
 - **Erklären** → verständliche Erklärung **plus eigenes Beispiel**.
 - **Nennen** → wirklich nur aufzählen, keine Begründung.
+
+**Der Block `wortschatz` — sie hat gesagt, sie will hier Grammatik und Wortschatz B1/B2 lernen,
+nicht nur verstehen.** Also 12–14 Wörter aus dem Text als Tabelle: `wort` mit Artikel und
+Stammformen bei unregelmäßigen Verben, `niveau` mit **B1** oder **B2** (die Vorlage färbt es),
+`fr` die französische Bedeutung, `imText` **der Satz aus dem Text**, in dem das Wort steht — ein
+Wort allein bleibt nicht hängen. Dazu eine `aufgabe`: fünf **eigene** Sätze bilden, über sie
+selbst und nicht über die Figur des Textes, bevorzugt mit den B2-Wörtern.
+
+**Der Block `grammatik`** nennt **vier Strukturen, die wirklich in diesem Text stehen** —
+nicht irgendeine Grammatik. Je Punkt: `name`, `regel` (kurz, in eigenen Worten), `imText` (die
+Stelle), `aufgabe` (umformen oder ergänzen) und `loesung`. Gut geeignet sind die Klassiker, an
+denen Französischsprachige scheitern: Nebensatz auf Position 1, Plusquamperfekt,
+Infinitiv mit *zu* bei trennbaren Verben, Adjektivendungen, Kasus nach Präposition,
+Passiv, Konjunktiv II.
 
 **Der Block `konnektoren`** nimmt die Konnektoren, die **wirklich im Text vorkommen**, und lässt
 sie umformen: *aber → obwohl*, *statt … zu → nicht … sondern*, dazu immer einmal die Dreierregel

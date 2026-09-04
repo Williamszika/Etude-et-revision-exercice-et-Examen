@@ -106,6 +106,17 @@
   .optab td:first-child{white-space:nowrap;width:1%;}
   .kon-satz{font-family:var(--serif);font-size:1.02rem;background:var(--card);
     border-left:3px solid var(--le);border-radius:0 8px 8px 0;padding:9px 13px;margin:0 0 8px;}
+  .wtab{width:100%;border-collapse:collapse;font-size:14.5px;min-width:36rem;}
+  .wtab th{background:var(--lebg);color:var(--le);font-family:var(--mono);font-size:10.5px;
+    letter-spacing:.06em;text-transform:uppercase;padding:8px 10px;border:1px solid var(--line);
+    text-align:left;}
+  .wtab td{border:1px solid var(--line);padding:8px 10px;vertical-align:top;background:var(--card);}
+  .wtab td.wt-w{font-weight:700;white-space:nowrap;}
+  .wtab td.wt-fr{color:var(--ink-soft);font-style:italic;}
+  .wtab td.wt-t{font-size:14px;}
+  .nv{font-family:var(--mono);font-size:10px;font-weight:700;border-radius:5px;padding:2px 7px;}
+  .nv-b1{background:var(--saybg);color:var(--say);}
+  .nv-b2{background:var(--grambg);color:var(--gram);}
   .k-probe{background:var(--tr);color:var(--card);}
   .pr-kasten{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--tr);
     border-radius:14px;padding:22px 24px;margin:18px 0;}
@@ -516,15 +527,18 @@ function renderLesen(b,idx){
        b.redemittel.map(r=>'<li>'+bold(r)+'</li>').join('')+'</ul></div>';
   }
 
-  /* Schritt 1 und 2: nacherzählen und Hauptaussage */
+  /* Die Schritte werden fortlaufend gezählt, damit keine Lücke entsteht */
+  let sn=0; const schritt=()=>'Schritt '+(++sn);
+
+  /* nacherzählen und Hauptaussage */
   const schritte=[
-    {o:b.nacherzaehlen, nr:'Schritt 1', standard:'Was ist passiert? Erzähl den Text mit deinen eigenen Worten nach.'},
-    {o:b.hauptaussage,  nr:'Schritt 2', standard:'Wovon handelt der Text? Fass die Hauptaussage in zwei Sätzen zusammen.'}
+    {o:b.nacherzaehlen, standard:'Was ist passiert? Erzähl den Text mit deinen eigenen Worten nach.'},
+    {o:b.hauptaussage,  standard:'Wovon handelt der Text? Fass die Hauptaussage in zwei Sätzen zusammen.'}
   ];
   schritte.forEach((s,i)=>{
     if(!s.o)return;
     const fid=id+'-s'+(i+1), lid=fid+'-l';
-    h+='<div class="le-schritt"><span class="nr">'+s.nr+'</span>';
+    h+='<div class="le-schritt"><span class="nr">'+schritt()+'</span>';
     h+='<p class="fr2">'+bold(s.o.frage||s.standard)+'</p>';
     if(s.o.hinweis)h+='<p class="hw">'+bold(s.o.hinweis)+'</p>';
     h+='<div class="antwort"><textarea rows="4" data-nr="lesen-s'+(i+1)+'" '+
@@ -539,7 +553,7 @@ function renderLesen(b,idx){
 
   /* Schritt 3: Verständnisfragen mit Operatoren */
   if(b.fragen&&b.fragen.length){
-    h+='<div class="le-schritt"><span class="nr">Schritt 3</span>'+
+    h+='<div class="le-schritt"><span class="nr">'+schritt()+'</span>'+
        '<p class="fr2">Verständnisfragen — antworte in ganzen Sätzen.</p>'+
        '<p class="hw">Das <b>erste Wort</b> jeder Frage sagt dir, <b>was für eine Antwort</b> '+
        'verlangt ist. Genau diese Wörter stehen auch in deinen Pflege-Klausuren.</p>';
@@ -579,9 +593,66 @@ function renderLesen(b,idx){
     h+='</div>';
   }
 
-  /* Schritt 4: Konnektoren im Text */
+  /* Wortschatz aus dem Text — lernen, nicht nur nachschlagen */
+  if(b.wortschatz&&b.wortschatz.woerter&&b.wortschatz.woerter.length){
+    h+='<div class="le-schritt"><span class="nr">'+schritt()+'</span>'+
+       '<p class="fr2">Der Wortschatz aus dem Text</p>';
+    if(b.wortschatz.einleitung)h+='<p class="hw">'+bold(b.wortschatz.einleitung)+'</p>';
+    h+='<div class="scroll-x"><table class="wtab"><thead><tr>'+
+       '<th>Wort</th><th>Niveau</th><th>Auf Französisch</th><th>So steht es im Text</th>'+
+       '</tr></thead><tbody>';
+    b.wortschatz.woerter.forEach(w=>{
+      const nv=(w.niveau||'B2');
+      h+='<tr><td class="wt-w">'+bold(w.wort)+'</td>'+
+         '<td><span class="nv nv-'+esc(nv.toLowerCase())+'">'+esc(nv)+'</span></td>'+
+         '<td class="wt-fr">'+esc(w.fr||'')+'</td>'+
+         '<td class="wt-t">'+bold(w.imText||'')+'</td></tr>';
+    });
+    h+='</tbody></table></div>';
+    if(b.wortschatz.aufgabe){
+      const wid=id+'-w';
+      h+='<div class="auf" style="background:var(--card)"><div class="frage">'+
+         bold(b.wortschatz.aufgabe.frage)+'</div>';
+      if(b.wortschatz.aufgabe.hinweis)h+='<p class="hw">'+bold(b.wortschatz.aufgabe.hinweis)+'</p>';
+      h+='<div class="antwort"><textarea rows="5" data-nr="lesen-wort" '+
+         'placeholder="1. … 2. … 3. … 4. … 5. …"></textarea>';
+      if(b.wortschatz.aufgabe.muster){
+        h+='<div class="knoepfe"><button type="button" onclick="leZeig(\''+wid+'\',this)">'+
+           'Musterantwort zeigen</button></div>'+
+           '<div class="los" id="'+wid+'"><span class="l">'+bold(b.wortschatz.aufgabe.muster)+'</span></div>';
+      }
+      h+='</div></div>';
+    }
+    h+='</div>';
+  }
+
+  /* Grammatik im Text — die Strukturen benennen und üben */
+  if(b.grammatik&&b.grammatik.punkte&&b.grammatik.punkte.length){
+    h+='<div class="le-schritt"><span class="nr">'+schritt()+'</span>'+
+       '<p class="fr2">Die Grammatik im Text</p>';
+    if(b.grammatik.einleitung)h+='<p class="hw">'+bold(b.grammatik.einleitung)+'</p>';
+    b.grammatik.punkte.forEach((g,i)=>{
+      const gid=id+'-g'+i;
+      h+='<div class="auf" style="background:var(--card)"><div class="kopf">'+
+         '<span class="nr" style="background:var(--le)">'+(i+1)+'</span>'+
+         '<span class="typ">'+esc(g.name||'Struktur')+'</span></div>';
+      if(g.regel)h+='<div class="tipbox" style="margin:6px 0 8px;border-left-color:var(--le);'+
+        'background:var(--lebg)">'+bold(g.regel)+'</div>';
+      if(g.imText)h+='<p class="kon-satz">'+bold(g.imText)+'</p>';
+      h+='<div class="frage">'+bold(g.aufgabe)+'</div>';
+      h+='<div class="antwort"><textarea rows="2" data-nr="lesen-g'+i+'" '+
+         'placeholder="Schreib den ganzen Satz …"></textarea>'+
+         '<div class="knoepfe"><button type="button" onclick="leZeig(\''+gid+'\',this)">'+
+         'Musterantwort zeigen</button></div>'+
+         '<div class="los" id="'+gid+'"><span class="l">'+bold(g.loesung)+'</span>'+
+         (g.hinweis?'<span class="h">💡 '+bold(g.hinweis)+'</span>':'')+'</div></div></div>';
+    });
+    h+='</div>';
+  }
+
+  /* Konnektoren im Text */
   if(b.konnektoren&&b.konnektoren.aufgaben&&b.konnektoren.aufgaben.length){
-    h+='<div class="le-schritt"><span class="nr">Schritt 4</span>'+
+    h+='<div class="le-schritt"><span class="nr">'+schritt()+'</span>'+
        '<p class="fr2">Die Konnektoren im Text</p>';
     if(b.konnektoren.einleitung)h+='<p class="hw">'+bold(b.konnektoren.einleitung)+'</p>';
     b.konnektoren.aufgaben.forEach((k,i)=>{
@@ -602,7 +673,7 @@ function renderLesen(b,idx){
   }
 
   if(b.erklaeren){
-    h+='<div class="le-schritt"><span class="nr">Schritt 5</span>'+
+    h+='<div class="le-schritt"><span class="nr">'+schritt()+'</span>'+
        '<p class="fr2">'+bold(b.erklaeren.frage||'Erklär den Text jemandem, der ihn nicht gelesen hat.')+'</p>';
     if(b.erklaeren.hinweis)h+='<p class="hw">'+bold(b.erklaeren.hinweis)+'</p>';
     h+='<div class="antwort"><textarea rows="4" data-nr="lesen-erkl" '+
