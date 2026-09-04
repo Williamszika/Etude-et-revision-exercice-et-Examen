@@ -241,11 +241,49 @@ prüfen, ob die neueste Lektion im Artifact neuer ist als die neueste Datei in `
 und wenn ja, sie erst aus dem Artifact zurückholen. Und: **immer committen und pushen**, nicht
 nur veröffentlichen.
 
+### Der Block `lesen` — jeden Tag ein Text von 200 Wörtern
+
+Sie hat ausdrücklich darum gebeten: **„Je n'arrive pas à m'exprimer clairement."** Deshalb hat
+**jede** Lektion einen Block `lesen` — ein Text, den sie liest, und danach drei Dinge, die sie
+selbst formuliert: **nacherzählen, zusammenfassen, erklären.**
+
+| Feld | Inhalt |
+|---|---|
+| `titel` | Überschrift des Textes |
+| `quelle` | optional, eine Zeile |
+| `fr` | französische Anleitung, wie sie vorgehen soll |
+| `text` | **ungefähr 200 Wörter**, B2, Absätze mit Leerzeile getrennt |
+| `hilfe` | Vokabelchips `**Wort** — traduction` (10–12 Stück) |
+| `redemittel` | Satzanfänge, mit denen sie beginnen kann |
+| `nacherzaehlen` | `{frage, hinweis, platzhalter, muster}` — „Was ist passiert?" |
+| `hauptaussage` | `{frage, hinweis, platzhalter, muster}` — „Wovon handelt der Text?" |
+| `fragen` | 5–6 × `{frage, loesung, hinweis}` — Verständnisfragen |
+| `erklaeren` | `{frage, hinweis, muster}` — den Text laut in 30 Sekunden erklären |
+| `tipp` | Bezug zum Prüfungsteil des Tages |
+
+**Die Textsorte richtet sich nach dem Tagesfokus:** Montag eine **Erzählung oder Reportage**
+(Leseverstehen), Dienstag ein **Bericht** (passt zum Hörverstehen), Mittwoch ein Text mit viel
+**Grammatik der Woche**, Donnerstag ein **Brief oder eine Anzeige** (Schriftlicher Ausdruck),
+Freitag ein Text mit einer **Meinung oder einem Konflikt** (Diskussion, Mündlich Teil 2),
+Sonntag ein **leichter Text** zur Wiederholung.
+
+**Wichtig:** Der Text braucht eine **Handlung** — etwas, das passiert und das man nacherzählen
+kann. Eine reine Sachbeschreibung taugt für „Was ist passiert?" nicht. Das Thema kommt aus dem
+Wochenthema, das Vokabular aus der laufenden Woche.
+
+Die Seite zählt die Wörter selbst und zeigt sie im Etikett an. Der Text kann vorgelesen werden
+(Tempo wählbar). Ihre Antworten werden im Browser gespeichert; die Musterantworten sind
+eingeklappt.
+
+**Und in der Antwort an sie immer erwähnen:** Sie soll ihre Antworten schicken — sie werden
+korrigiert (Inhalt, Satzbau, Wortwahl), nicht nur gelobt.
+
 ### Pflichtinhalt jeder Lektion
 
 Verb des Tages (mit Konjugation und Bedeutung) · Wortschatz-Block (Redemittel **zum Thema der
-Woche**) · Grammatik-Block · **telc-Block mit dem Tagesfokus** · Aussprache-Block · Diktat ·
-5 Übersetzungssätze FR→DE · 3 Alltag-Missionen. Am Samstag zusätzlich der Block `probe`.
+Woche**) · Grammatik-Block · **`lesen`-Block mit 200-Wörter-Text** · **telc-Block mit dem
+Tagesfokus** · Aussprache-Block · Diktat · 5 Übersetzungssätze FR→DE · 3 Alltag-Missionen.
+Am Samstag zusätzlich der Block `probe`.
 
 **Verben und Wortschatz auf B2-Niveau wählen** und **zum Wochenthema passend**. Kein
 A2-Grundwortschatz. Gut sind Verben mit fester Präposition (*sich kümmern um*, *hinweisen auf*,
