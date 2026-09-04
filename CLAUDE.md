@@ -314,6 +314,35 @@ eingeklappt.
 **Und in der Antwort an sie immer erwähnen:** Sie soll ihre Antworten schicken — sie werden
 korrigiert (Inhalt, Satzbau, Wortwahl), nicht nur gelobt.
 
+### Ihre sieben Baustellen — die Fehler, die wirklich vorkommen
+
+Eigene Seite: `deutsch-taeglich/fehler.html` →
+`https://claude.ai/code/artifact/3e941e25-cfd8-4cdc-99f6-3671b2f03365` (Favicon 🧭), verlinkt
+im Fuß von Deutsch täglich. Aus der Auswertung aller bisherigen Korrekturen, nach Priorität:
+
+| Nr. | Baustelle | Typische Fehler |
+|---|---|---|
+| **1** | **Kasus** (rot) | *in Ambulante Pflege* · *bei deine Freundin* · *mit meine Chefin* |
+| **2** | **Genus** (rot) | *meinen Geld* · *die Verlust* · *den nächsten Wochenende* |
+| 3 | Verbstellung (orange) | *weil morgen, ich Dienst habe* · fehlendes Komma vor dem Nebensatz |
+| 4 | Falsche Freunde (orange) | *planieren* · *einen Termin nehmen* · *evident* · *adaptieren* |
+| 5 | Komposita (gelb) | *Pflege dienst* · *Praxis Besuch* · *Dienst Plan* |
+| 6 | Siezen (gelb) | *ich schicke ihr* statt *Ihnen* · *mit ihnen* statt *mit Ihnen* |
+| 7 | Feste Präpositionen (gelb) | *warten auf* + Akk., *fragen nach* + Dativ … |
+
+**Daraus folgt für jede Tageslektion:** Der Block `grammatik` im `lesen`-Teil und die
+Korrekturaufgaben im `training` sollen **bevorzugt Baustelle 1 und 2 treffen** — Kasus und
+Genus sind zusammen über die Hälfte ihrer Fehler, und ohne richtiges Genus ist kein richtiger
+Kasus möglich. Die anderen fünf laufen im Wechsel mit.
+
+**Und wenn sie freie Texte schickt:** Fehler nicht nur korrigieren, sondern **der Baustelle
+zuordnen** — „Das ist Baustelle 1: *bei* verlangt immer Dativ." So sieht sie, dass es dieselbe
+Regel ist und nicht jedes Mal ein neuer Zufall.
+
+**Drei Beispiele der ursprünglichen Fehlerliste waren falsch** und stehen korrigiert auf der
+Seite: *Pflegeung* (es heißt *die Pflege*), *Altum* (gemeint war *das Altertum*) und *System*
+als Beleg für die Endung *-tum* (es endet auf *-em*). Solche Beispiele nie ungeprüft übernehmen.
+
 ### Pflichtinhalt jeder Lektion
 
 Verb des Tages (mit Konjugation und Bedeutung) · Wortschatz-Block (Redemittel **zum Thema der

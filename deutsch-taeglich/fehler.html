@@ -1,0 +1,700 @@
+<title>Meine sieben Baustellen</title>
+<style>
+  :root{
+    --paper:#f5f3ee;--paper-2:#edeae2;--card:#fffdf9;--ink:#1c211f;--ink-soft:#4c5552;--line:#dcd7cc;
+    --accent:#1f5f8b;--accent-deep:#164866;--accent-soft:#dce9f2;
+    --rot:#b1413a;--rotbg:#f7e2df;--orange:#a3651a;--orangebg:#f9ecd6;--gelb:#8a7a1e;--gelbbg:#f4f1d8;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#121618;--paper-2:#0d1113;--card:#1a2023;--ink:#eef2f2;--ink-soft:#a4b0b2;--line:#2a3336;
+    --accent:#6cb2dd;--accent-deep:#94cbef;--accent-soft:#14293a;
+    --rot:#e58a83;--rotbg:#31191a;--orange:#dda862;--orangebg:#2d2415;--gelb:#d3c96a;--gelbbg:#282613;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;}}
+  :root[data-theme="dark"]{
+    --paper:#121618;--paper-2:#0d1113;--card:#1a2023;--ink:#eef2f2;--ink-soft:#a4b0b2;--line:#2a3336;
+    --accent:#6cb2dd;--accent-deep:#94cbef;--accent-soft:#14293a;
+    --rot:#e58a83;--rotbg:#31191a;--orange:#dda862;--orangebg:#2d2415;--gelb:#d3c96a;--gelbbg:#282613;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;}
+  :root[data-theme="light"]{
+    --paper:#f5f3ee;--paper-2:#edeae2;--card:#fffdf9;--ink:#1c211f;--ink-soft:#4c5552;--line:#dcd7cc;
+    --accent:#1f5f8b;--accent-deep:#164866;--accent-soft:#dce9f2;
+    --rot:#b1413a;--rotbg:#f7e2df;--orange:#a3651a;--orangebg:#f9ecd6;--gelb:#8a7a1e;--gelbbg:#f4f1d8;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;}
+
+  *{box-sizing:border-box;}
+  body{background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16.5px;
+    line-height:1.62;margin:0;}
+  main{max-width:56rem;margin:0 auto;padding:0 18px 80px;}
+  header.hero{background:var(--accent-soft);border-bottom:1px solid var(--line);
+    padding:44px 20px 32px;text-align:center;}
+  header.hero .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-size:2.1rem;line-height:1.15;margin:0 0 11px;}
+  header.hero .sub{color:var(--ink-soft);margin:0 auto;max-width:40rem;font-size:15.5px;}
+
+  nav.chips{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:22px 0 6px;}
+  nav.chips a{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-decoration:none;
+    color:var(--accent-deep);background:var(--paper-2);border:1px solid var(--line);
+    border-radius:999px;padding:6px 13px;}
+  nav.chips a:hover{background:var(--accent-soft);}
+
+  h2{font-family:var(--serif);font-size:1.5rem;margin:46px 0 8px;scroll-margin-top:16px;}
+  h3{font-family:var(--serif);font-size:1.14rem;margin:24px 0 6px;}
+  .lead{color:var(--ink-soft);margin:0 0 18px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  p{margin:0 0 12px;}
+
+  .bau{border:1px solid var(--line);border-radius:14px;background:var(--card);margin:18px 0;
+    overflow:hidden;}
+  .bau > .kopf{padding:15px 20px;border-bottom:1px solid var(--line);display:flex;gap:12px;
+    align-items:baseline;flex-wrap:wrap;}
+  .bau.r > .kopf{background:var(--rotbg);}
+  .bau.o > .kopf{background:var(--orangebg);}
+  .bau.g > .kopf{background:var(--gelbbg);}
+  .bau > .kopf .nr{font-family:var(--mono);font-size:13px;font-weight:700;}
+  .bau.r > .kopf .nr{color:var(--rot);} .bau.o > .kopf .nr{color:var(--orange);}
+  .bau.g > .kopf .nr{color:var(--gelb);}
+  .bau > .kopf .ti{font-family:var(--serif);font-size:1.24rem;font-weight:600;flex:1;min-width:0;}
+  .bau > .kopf .pri{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+    border-radius:999px;padding:3px 10px;white-space:nowrap;}
+  .bau.r > .kopf .pri{background:var(--rot);color:var(--card);}
+  .bau.o > .kopf .pri{background:var(--orange);color:var(--card);}
+  .bau.g > .kopf .pri{background:var(--gelb);color:var(--card);}
+  .bau > .body{padding:18px 20px;}
+
+  .paar{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);
+    border-radius:10px;overflow:hidden;margin:9px 0;}
+  @media (max-width:560px){.paar{grid-template-columns:1fr;}}
+  .paar > div{padding:10px 13px;}
+  .paar .f{background:var(--badbg);}
+  .paar .r2{background:var(--goodbg);border-left:1px solid var(--line);}
+  @media (max-width:560px){.paar .r2{border-left:none;border-top:1px solid var(--line);}}
+  .paar .lbl{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.07em;
+    text-transform:uppercase;margin-bottom:3px;}
+  .paar .f .lbl{color:var(--bad);} .paar .r2 .lbl{color:var(--good);}
+  .paar .f .s{text-decoration:line-through;color:var(--bad);}
+  .paar .r2 .s{font-weight:600;color:var(--good);}
+  .paar .wa{display:block;font-size:13.5px;color:var(--ink-soft);margin-top:4px;}
+
+  .tabwrap{overflow-x:auto;margin:14px 0;}
+  table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:30rem;}
+  th,td{border:1px solid var(--line);padding:8px 11px;text-align:left;vertical-align:top;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--ink-soft);}
+  td.k{font-weight:700;white-space:nowrap;}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 11px 11px 0;
+    padding:14px 17px;margin:14px 0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;
+    padding:14px 17px;margin:14px 0;}
+  .warn{background:var(--orangebg);border-left:4px solid var(--orange);border-radius:10px;
+    padding:14px 17px;margin:14px 0;}
+  .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:10px;
+    padding:14px 17px;margin:14px 0;}
+
+  .drill{border:1px solid var(--line);border-radius:11px;background:var(--paper-2);
+    padding:12px 15px;margin:9px 0;}
+  .drill .q{font-size:15.5px;margin-bottom:7px;}
+  .drill textarea{width:100%;font:inherit;font-size:15.5px;line-height:1.5;color:var(--ink);
+    background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:9px;padding:9px 12px;resize:vertical;min-height:46px;}
+  .drill textarea:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+  .drill button{font:inherit;font-size:13px;color:var(--accent-deep);background:var(--card);
+    border:1px solid var(--line);border-radius:8px;padding:5px 12px;cursor:pointer;margin-top:8px;}
+  .drill button:hover{border-color:var(--accent);}
+  .drill .los{display:none;margin-top:9px;padding-top:9px;border-top:1px dashed var(--line);}
+  .drill .los.show{display:block;}
+  .drill .los .l{font-weight:600;color:var(--good);}
+  .drill .los .h{display:block;font-size:13.5px;color:var(--ink-soft);margin-top:4px;}
+
+  .plan{counter-reset:pl;}
+  .plan .w{display:flex;gap:14px;align-items:flex-start;border-bottom:1px solid var(--line);
+    padding:13px 0;}
+  .plan .w:last-child{border-bottom:none;}
+  .plan .w .z{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--accent-deep);
+    background:var(--accent-soft);border-radius:8px;padding:5px 11px;white-space:nowrap;}
+  .plan .w .i{flex:1;}
+
+  .haken{display:flex;gap:10px;align-items:center;margin-top:12px;font-size:14.5px;
+    color:var(--ink-soft);}
+  .haken input{width:19px;height:19px;accent-color:var(--good);cursor:pointer;}
+  .zaehler{font-family:var(--mono);font-size:13px;color:var(--accent-deep);
+    background:var(--accent-soft);border-radius:999px;padding:6px 15px;display:inline-block;}
+
+  .quelle{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);background:var(--paper-2);
+    border-radius:6px;padding:3px 8px;display:inline-block;margin-top:8px;}
+  footer{border-top:1px solid var(--line);margin-top:64px;padding:28px 20px 50px;text-align:center;
+    color:var(--ink-soft);font-size:14px;}
+  a{color:var(--accent-deep);}
+  code{font-family:var(--mono);font-size:13.5px;background:var(--paper-2);border-radius:5px;
+    padding:1px 6px;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Deutsch täglich · meine Fehleranalyse</p>
+  <h1>Meine sieben Baustellen</h1>
+  <p class="sub">Die Fehler, die bei mir <b>immer wieder</b> vorkommen — nach Priorität geordnet.
+    Systematische Fehler sind gute Fehler: Man kann sie gezielt abstellen.</p>
+  <p style="margin-top:14px;"><span class="zaehler" id="zaehler"></span></p>
+</header>
+
+<main>
+
+<nav class="chips">
+  <a href="#korrektur">⚠ Drei Korrekturen</a>
+  <a href="#b1">1 · Kasus</a>
+  <a href="#b2">2 · Artikel</a>
+  <a href="#b3">3 · Verbstellung</a>
+  <a href="#b4">4 · Falsche Freunde</a>
+  <a href="#b5">5 · Komposita</a>
+  <a href="#b6">6 · Siezen</a>
+  <a href="#b7">7 · Feste Präpositionen</a>
+  <a href="#plan">Der Plan</a>
+  <a href="#gewohnheit">Die Gewohnheit</a>
+</nav>
+
+<section id="korrektur">
+<h2>⚠ Drei Beispiele aus deiner Liste stimmen nicht</h2>
+<div class="achtung">
+  <p style="margin-top:0;">Bevor du das hier lernst — in der Liste, die du mir geschickt hast,
+    stehen <b>drei erfundene Wörter</b>. Lern sie nicht, sie existieren nicht:</p>
+  <div class="tabwrap"><table>
+    <thead><tr><th>In deiner Liste</th><th>Das Problem</th><th>Richtige Beispiele</th></tr></thead>
+    <tbody>
+      <tr><td><s>die Pflegeung</s></td>
+        <td>Es heißt <b>die Pflege</b> — ohne <b>-ung</b>. Das Wort „Pflegeung“ gibt es nicht.</td>
+        <td><b>die Wohnung · die Erfahrung · die Betreuung · die Verordnung</b></td></tr>
+      <tr><td><s>das Altum</s></td>
+        <td>Gemeint war wohl <b>das Altertum</b>. „Altum“ existiert nicht.</td>
+        <td><b>-tum:</b> das Eigentum · das Wachstum · das Altertum</td></tr>
+      <tr><td><s>das System</s> als Beispiel für <b>-tum</b></td>
+        <td><b>System</b> endet auf <b>-em</b>, nicht auf -tum. Es ist zwar <b>das</b> System,
+          aber es belegt diese Regel nicht.</td>
+        <td><b>-um:</b> das Datum · das Zentrum · das Museum · das Praktikum</td></tr>
+    </tbody>
+  </table></div>
+  <p style="margin-bottom:0;">Alles andere in deiner Liste ist richtig — und die Fehleranalyse
+    selbst ist gut. Die Tabellen unten sind korrigiert.</p>
+</div>
+</section>
+
+<!-- ===================== 1 ===================== -->
+<div class="bau r" id="b1">
+  <div class="kopf"><span class="nr">Baustelle 1</span>
+    <span class="ti">Die Fälle — Nominativ, Akkusativ, Dativ</span>
+    <span class="pri">HÖCHSTE PRIORITÄT</span></div>
+  <div class="body">
+    <p class="lead">Das ist der Fehler, der bei dir <b>am häufigsten</b> vorkommt. Und er ist
+      teuer: In der Prüfung zählt „formale Richtigkeit“ beim Schreiben <b>und</b> beim Sprechen.</p>
+
+    <h3>Was ich schreibe — und was richtig ist</h3>
+    <div class="paar"><div class="f"><span class="lbl">so schreibe ich</span>
+      <span class="s">in Ambulante Pflege</span></div>
+      <div class="r2"><span class="lbl">richtig</span><span class="s">in der ambulanten Pflege</span>
+      <span class="wa"><b>in</b> + Ort ohne Bewegung → <b>Dativ</b>. <i>die</i> Pflege wird im
+        Dativ zu <b>der</b>, das Adjektiv bekommt <b>-en</b>.</span></div></div>
+
+    <div class="paar"><div class="f"><span class="lbl">so schreibe ich</span>
+      <span class="s">bei deine Freundin</span></div>
+      <div class="r2"><span class="lbl">richtig</span><span class="s">bei deiner Freundin</span>
+      <span class="wa"><b>bei</b> verlangt <b>immer</b> Dativ. <i>deine</i> → <b>deiner</b>.</span></div></div>
+
+    <div class="paar"><div class="f"><span class="lbl">so schreibe ich</span>
+      <span class="s">mit meine Chefin</span></div>
+      <div class="r2"><span class="lbl">richtig</span><span class="s">mit meiner Chefin</span>
+      <span class="wa"><b>mit</b> verlangt <b>immer</b> Dativ. Femininer Dativ endet auf
+        <b>-er</b> — genau wie bei <i>bei</i>.</span></div></div>
+
+    <div class="paar"><div class="f"><span class="lbl">so schreibe ich</span>
+      <span class="s">den nächsten Wochenende</span></div>
+      <div class="r2"><span class="lbl">richtig</span><span class="s">das nächste Wochenende</span>
+      <span class="wa">Es heißt <b>das</b> Wochenende (neutrum). Hier liegt der Fehler beim
+        <b>Genus</b> — siehe Baustelle 2.</span></div></div>
+
+    <h3>Die vier Fragen, die den Fall entscheiden</h3>
+    <div class="tabwrap"><table>
+      <thead><tr><th>Fall</th><th>Frage</th><th>maskulin</th><th>feminin</th><th>neutrum</th>
+        <th>Plural</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Nominativ</td><td>Wer? Was?</td><td>der</td><td>die</td><td>das</td>
+          <td>die</td></tr>
+        <tr><td class="k">Akkusativ</td><td>Wen? Was?</td><td><b>den</b></td><td>die</td>
+          <td>das</td><td>die</td></tr>
+        <tr><td class="k">Dativ</td><td>Wem?</td><td><b>dem</b></td><td><b>der</b></td>
+          <td><b>dem</b></td><td><b>den</b> …-n</td></tr>
+        <tr><td class="k">Genitiv</td><td>Wessen?</td><td><b>des</b> …-s</td><td>der</td>
+          <td><b>des</b> …-s</td><td>der</td></tr>
+      </tbody>
+    </table></div>
+    <div class="merk"><span class="t">Der Trick, der die Hälfte deiner Fehler löst</span>
+      <b>Nur der Maskulinum ändert sich im Akkusativ</b> (der → den). Femininum, Neutrum und
+      Plural sehen im Akkusativ <b>genauso aus</b> wie im Nominativ. Wenn du also unsicher bist:
+      Akkusativ ist selten das Problem — <b>Dativ</b> ist es.</div>
+
+    <h3>Die Präpositionen — auswendig, ohne Nachdenken</h3>
+    <div class="tabwrap"><table>
+      <thead><tr><th>immer Dativ</th><th>immer Akkusativ</th><th>Dativ <em>oder</em> Akkusativ</th></tr></thead>
+      <tbody><tr>
+        <td><b>bei · mit · nach · von · zu · seit · aus · außer · gegenüber</b></td>
+        <td><b>durch · für · gegen · ohne · um · bis · entlang</b></td>
+        <td><b>in · an · auf · über · unter · vor · hinter · neben · zwischen</b></td>
+      </tr></tbody>
+    </table></div>
+    <div class="merk"><span class="t">Die Wechselpräpositionen — eine einzige Frage</span>
+      <b>Wo?</b> → keine Bewegung von A nach B → <b>Dativ</b>.
+      <b>Wohin?</b> → Bewegung mit Ziel → <b>Akkusativ</b>.
+      <p style="margin:8px 0 0;">Ich arbeite <b>in der</b> ambulanten Pflege. <em>(Wo? Dativ)</em>
+      · Ich gehe <b>in die</b> ambulante Pflege. <em>(Wohin? Akkusativ)</em></p></div>
+
+    <h3>Üben</h3>
+    <div class="drill"><p class="q">1. Ergänze: „Ich arbeite seit einem Jahr ______ ______
+      ambulanten Pflege.“</p>
+      <textarea rows="1" data-nr="k1"></textarea>
+      <button type="button" onclick="zeig('l-k1',this)">Lösung</button>
+      <div class="los" id="l-k1"><span class="l">Ich arbeite seit einem Jahr <b>in der</b>
+        ambulanten Pflege.</span><span class="h">Wo? → Dativ. <i>die</i> Pflege → <b>der</b>,
+        Adjektiv auf <b>-en</b>.</span></div></div>
+
+    <div class="drill"><p class="q">2. Ergänze: „Ich spreche morgen ______ ______ Praxisanleiterin.“
+      (mit / meine)</p>
+      <textarea rows="1" data-nr="k2"></textarea>
+      <button type="button" onclick="zeig('l-k2',this)">Lösung</button>
+      <div class="los" id="l-k2"><span class="l">Ich spreche morgen <b>mit meiner</b>
+        Praxisanleiterin.</span><span class="h"><b>mit</b> → immer Dativ → feminin <b>-er</b>.</span></div></div>
+
+    <div class="drill"><p class="q">3. Ergänze: „Ich kümmere mich um ______ Patienten und gebe
+      ______ Schwester den Plan.“</p>
+      <textarea rows="1" data-nr="k3"></textarea>
+      <button type="button" onclick="zeig('l-k3',this)">Lösung</button>
+      <div class="los" id="l-k3"><span class="l">Ich kümmere mich um <b>den</b> Patienten und gebe
+        <b>der</b> Schwester den Plan.</span><span class="h"><b>um</b> → Akkusativ (<i>den</i>).
+        <b>geben</b> hat zwei Objekte: <b>wem</b> → Dativ (<i>der Schwester</i>), <b>was</b> →
+        Akkusativ (<i>den Plan</i>).</span></div></div>
+
+    <div class="drill"><p class="q">4. Wo? oder Wohin? „Ich lege die Akte ______ ______ Tisch.“
+      / „Die Akte liegt ______ ______ Tisch.“</p>
+      <textarea rows="2" data-nr="k4"></textarea>
+      <button type="button" onclick="zeig('l-k4',this)">Lösung</button>
+      <div class="los" id="l-k4"><span class="l">Ich lege die Akte <b>auf den</b> Tisch. <em>(Wohin?
+        Akkusativ)</em> · Die Akte liegt <b>auf dem</b> Tisch. <em>(Wo? Dativ)</em></span>
+        <span class="h">Merkhilfe: <b>legen/stellen/setzen</b> = Bewegung → Akkusativ ·
+        <b>liegen/stehen/sitzen</b> = Zustand → Dativ.</span></div></div>
+
+    <div class="drill"><p class="q">5. Korrigiere: „Ich fahre nach die Arbeit zu meine Familie.“</p>
+      <textarea rows="1" data-nr="k5"></textarea>
+      <button type="button" onclick="zeig('l-k5',this)">Lösung</button>
+      <div class="los" id="l-k5"><span class="l">Ich fahre <b>nach der</b> Arbeit <b>zu meiner</b>
+        Familie.</span><span class="h">Zwei Dativ-Präpositionen in einem Satz: <b>nach</b> und
+        <b>zu</b>. Beide feminin → <b>-er</b>.</span></div></div>
+
+    <div class="haken"><input type="checkbox" id="ok1"><label for="ok1">Diese Baustelle sitzt —
+      ich mache den Fehler nicht mehr.</label></div>
+  </div>
+</div>
+
+<!-- ===================== 2 ===================== -->
+<div class="bau r" id="b2">
+  <div class="kopf"><span class="nr">Baustelle 2</span>
+    <span class="ti">Der Artikel — der, die oder das</span>
+    <span class="pri">HÖCHSTE PRIORITÄT</span></div>
+  <div class="body">
+    <p class="lead">Ein falsches Genus zieht <b>alles</b> mit: Artikel, Adjektivendung, Pronomen.
+      Ein Fehler wird zu drei Fehlern.</p>
+
+    <div class="paar"><div class="f"><span class="lbl">so schreibe ich</span>
+      <span class="s">meinen Geld</span></div>
+      <div class="r2"><span class="lbl">richtig</span><span class="s">mein Geld</span>
+      <span class="wa">Es heißt <b>das</b> Geld → neutrum → im Akkusativ bleibt es <b>mein</b>.</span></div></div>
+    <div class="paar"><div class="f"><span class="lbl">so schreibe ich</span>
+      <span class="s">die Verlust</span></div>
+      <div class="r2"><span class="lbl">richtig</span><span class="s">der Verlust</span>
+      <span class="wa">Verlust ist <b>maskulin</b>.</span></div></div>
+
+    <h3>Die Endungen, die das Genus verraten</h3>
+    <div class="tabwrap"><table>
+      <thead><tr><th>Endung</th><th>Genus</th><th>Beispiele aus deinem Alltag</th></tr></thead>
+      <tbody>
+        <tr><td class="k">-ung</td><td><b>die</b></td>
+          <td>die Wohn<b>ung</b> · die Erfahr<b>ung</b> · die Betreu<b>ung</b> ·
+            die Verordn<b>ung</b> · die Bewer<b>bung</b></td></tr>
+        <tr><td class="k">-heit / -keit</td><td><b>die</b></td>
+          <td>die Gesund<b>heit</b> · die Krank<b>heit</b> · die Möglich<b>keit</b> ·
+            die Zuverlässig<b>keit</b></td></tr>
+        <tr><td class="k">-ion</td><td><b>die</b></td>
+          <td>die Stat<b>ion</b> · die Funkt<b>ion</b> · die Informat<b>ion</b> ·
+            die Dokumentat<b>ion</b></td></tr>
+        <tr><td class="k">-schaft</td><td><b>die</b></td>
+          <td>die Wissen<b>schaft</b> · die Gesell<b>schaft</b> · die Bereit<b>schaft</b></td></tr>
+        <tr><td class="k">-e</td><td><b>die</b> (meistens)</td>
+          <td>die Pfleg<b>e</b> · die Spritz<b>e</b> · die Wund<b>e</b> · die Sprach<b>e</b></td></tr>
+        <tr><td class="k">-ment</td><td><b>das</b></td>
+          <td>das Doku<b>ment</b> · das Medika<b>ment</b> · das Instru<b>ment</b></td></tr>
+        <tr><td class="k">-um</td><td><b>das</b></td>
+          <td>das Dat<b>um</b> · das Zentr<b>um</b> · das Praktik<b>um</b> · das Muse<b>um</b></td></tr>
+        <tr><td class="k">-tum</td><td><b>das</b></td>
+          <td>das Eigen<b>tum</b> · das Wachs<b>tum</b> · das Alter<b>tum</b></td></tr>
+        <tr><td class="k">-chen / -lein</td><td><b>das</b></td>
+          <td>das Mäd<b>chen</b> · das Bröt<b>chen</b> — <b>immer</b> neutrum, auch bei
+            Personen</td></tr>
+        <tr><td class="k">-er (Person)</td><td><b>der</b></td>
+          <td>der Pfleg<b>er</b> · der Lackier<b>er</b> · der Betreu<b>er</b> ·
+            der Bewohn<b>er</b></td></tr>
+        <tr><td class="k">-ling</td><td><b>der</b></td>
+          <td>der Säug<b>ling</b> · der Lehr<b>ling</b> · der Pfleg<b>ling</b></td></tr>
+        <tr><td class="k">-or</td><td><b>der</b></td>
+          <td>der Dokt<b>or</b> · der Monit<b>or</b> · der Fakt<b>or</b></td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="warn"><b>Das Komposita-Gesetz — es rettet dich sehr oft.</b> Bei einem
+      zusammengesetzten Wort bestimmt <b>immer das letzte Wort</b> das Genus:
+      <b>das</b> Wochen<b>ende</b> (das Ende) · <b>der</b> Dienst<b>plan</b> (der Plan) ·
+      <b>die</b> Kranken<b>pflege</b> (die Pflege) · <b>der</b> Blut<b>druck</b> (der Druck).
+      <span class="fr">Le dernier mot commande. Toujours.</span></div>
+
+    <h3>Üben</h3>
+    <div class="drill"><p class="q">1. der, die oder das? — Wohnung · Medikament · Station ·
+      Verlust · Pfleger · Praktikum · Möglichkeit · Wochenende</p>
+      <textarea rows="2" data-nr="a1"></textarea>
+      <button type="button" onclick="zeig('l-a1',this)">Lösung</button>
+      <div class="los" id="l-a1"><span class="l"><b>die</b> Wohnung · <b>das</b> Medikament ·
+        <b>die</b> Station · <b>der</b> Verlust · <b>der</b> Pfleger · <b>das</b> Praktikum ·
+        <b>die</b> Möglichkeit · <b>das</b> Wochenende</span>
+        <span class="h">Sieben davon verraten sich über die Endung. Nur <i>Verlust</i> musst du
+          einfach wissen.</span></div></div>
+
+    <div class="drill"><p class="q">2. Welches Genus haben diese Komposita — und warum?
+      Nachtdienst · Pflegeplanung · Krankenhaus · Blutdruckmessung</p>
+      <textarea rows="2" data-nr="a2"></textarea>
+      <button type="button" onclick="zeig('l-a2',this)">Lösung</button>
+      <div class="los" id="l-a2"><span class="l"><b>der</b> Nachtdienst (der Dienst) ·
+        <b>die</b> Pflegeplanung (die Planung, <b>-ung</b>) · <b>das</b> Krankenhaus (das Haus) ·
+        <b>die</b> Blutdruckmessung (die Messung, <b>-ung</b>)</span>
+        <span class="h">Immer nur das <b>letzte</b> Wort anschauen — der Rest ist egal.</span></div></div>
+
+    <div class="haken"><input type="checkbox" id="ok2"><label for="ok2">Diese Baustelle sitzt.</label></div>
+  </div>
+</div>
+
+<!-- ===================== 3 ===================== -->
+<div class="bau o" id="b3">
+  <div class="kopf"><span class="nr">Baustelle 3</span>
+    <span class="ti">Die Stellung des Verbs</span><span class="pri">WICHTIG</span></div>
+  <div class="body">
+    <div class="paar"><div class="f"><span class="lbl">so schreibe ich</span>
+      <span class="s">weil morgen, ich Dienst habe</span></div>
+      <div class="r2"><span class="lbl">richtig</span><span class="s">weil ich morgen Dienst habe</span>
+      <span class="wa">Nach <b>weil</b> kommt <b>sofort das Subjekt</b>, kein Komma dazwischen —
+        und das Verb geht ganz ans Ende.</span></div></div>
+    <div class="paar"><div class="f"><span class="lbl">so schreibe ich</span>
+      <span class="s">ich frage ob sie jemanden suchen</span></div>
+      <div class="r2"><span class="lbl">richtig</span><span class="s">Ich frage, ob sie jemanden suchen.</span>
+      <span class="wa">Hier ist es fast richtig — aber das <b>Komma vor <i>ob</i></b> fehlt. Vor
+        jedem Nebensatz steht im Deutschen ein Komma.</span></div></div>
+
+    <div class="merk"><span class="t">Die Wörter, die das Verb ans Ende schicken</span>
+      <b>weil · wenn · als · dass · ob · obwohl · damit · während · bevor · nachdem · seit ·
+      sobald · falls · da</b>
+      <p style="margin:8px 0 0;">Und alle <b>Fragewörter</b>, wenn sie einen Nebensatz einleiten:
+        <i>wie, wo, was, wer, warum</i> — „Ich weiß nicht, <b>wo</b> der Plan <b>liegt</b>.“</p></div>
+
+    <div class="warn"><b>Die drei Wörter, die es NICHT tun.</b> <b>und · aber · denn · sondern ·
+      oder</b> verbinden zwei <b>Hauptsätze</b> — sie zählen nicht mit, das Verb bleibt auf
+      Position 2. Das ist der Unterschied zwischen <b>weil</b> (Verb ans Ende) und <b>denn</b>
+      (Verb auf Position 2) — inhaltlich dasselbe, grammatisch das Gegenteil.</div>
+
+    <div class="merk"><span class="t">Nebensatz auf Position 1</span>
+      <b>Wenn du Zeit hast, komme ich.</b> — Der ganze Nebensatz besetzt Position 1, deshalb
+      steht <b>komme</b> sofort danach, <b>vor</b> dem Subjekt.
+      <p style="margin:8px 0 0;">Falsch wäre: <s>Wenn du Zeit hast, ich komme.</s></p></div>
+
+    <h3>Üben</h3>
+    <div class="drill"><p class="q">1. Verbinde mit <b>weil</b>: „Ich kann nicht kommen. Ich habe
+      morgen Frühdienst.“</p>
+      <textarea rows="1" data-nr="v1"></textarea>
+      <button type="button" onclick="zeig('l-v1',this)">Lösung</button>
+      <div class="los" id="l-v1"><span class="l">Ich kann nicht kommen, <b>weil</b> ich morgen
+        Frühdienst <b>habe</b>.</span><span class="h">Zeitangabe <i>morgen</i> steht <b>nach</b>
+        dem Subjekt, nicht davor. Das Verb ganz ans Ende.</span></div></div>
+
+    <div class="drill"><p class="q">2. Dieselbe Aussage mit <b>denn</b> und mit <b>deshalb</b>.</p>
+      <textarea rows="2" data-nr="v2"></textarea>
+      <button type="button" onclick="zeig('l-v2',this)">Lösung</button>
+      <div class="los" id="l-v2"><span class="l"><b>denn:</b> Ich kann nicht kommen, <b>denn</b>
+        ich <b>habe</b> morgen Frühdienst. · <b>deshalb:</b> Ich habe morgen Frühdienst,
+        <b>deshalb kann</b> ich nicht kommen.</span>
+        <span class="h">Drei Wörter, drei Verbstellungen: <b>weil</b> → Ende · <b>denn</b> →
+          Position 2 · <b>deshalb</b> → besetzt Position 1, Verb kommt direkt danach.</span></div></div>
+
+    <div class="drill"><p class="q">3. Stell um, beginn mit dem Nebensatz: „Ich rufe dich an, wenn
+      ich Feierabend habe.“</p>
+      <textarea rows="1" data-nr="v3"></textarea>
+      <button type="button" onclick="zeig('l-v3',this)">Lösung</button>
+      <div class="los" id="l-v3"><span class="l"><b>Wenn</b> ich Feierabend <b>habe</b>,
+        <b>rufe</b> ich dich <b>an</b>.</span><span class="h">Zwei Dinge auf einmal: <i>rufe</i>
+        springt vor das Subjekt, und die Vorsilbe <b>an</b> bleibt am Satzende.</span></div></div>
+
+    <div class="haken"><input type="checkbox" id="ok3"><label for="ok3">Diese Baustelle sitzt.</label></div>
+  </div>
+</div>
+
+<!-- ===================== 4 ===================== -->
+<div class="bau o" id="b4">
+  <div class="kopf"><span class="nr">Baustelle 4</span>
+    <span class="ti">Falsche Freunde — wörtlich aus dem Französischen</span>
+    <span class="pri">WICHTIG</span></div>
+  <div class="body">
+    <div class="tabwrap"><table>
+      <thead><tr><th>Meine Version</th><th>Richtig</th><th>Warum</th></tr></thead>
+      <tbody>
+        <tr><td><s>planieren</s></td><td><b>planen</b></td>
+          <td><i>planieren</i> heißt <b>einebnen</b> (mit dem Bagger).</td></tr>
+        <tr><td><s>einen Termin nehmen</s></td><td><b>einen Termin vereinbaren</b> ·
+          <b>ausmachen</b></td><td>Man <i>nimmt</i> im Deutschen keinen Termin.</td></tr>
+        <tr><td><s>Das ist evident.</s></td><td><b>offensichtlich · klar · eindeutig</b></td>
+          <td><i>evident</i> gibt es, klingt aber sehr gehoben und selten.</td></tr>
+        <tr><td><s>adaptieren</s></td><td><b>anpassen</b></td>
+          <td><i>adaptieren</i> benutzt man fast nur für Filme und Bücher.</td></tr>
+        <tr><td><s>eventuell</s> für <i>éventuellement</i></td><td><b>vielleicht · möglicherweise</b></td>
+          <td><b>Die klassische Falle:</b> deutsch <i>eventuell</i> = vielleicht. Es heißt
+            <b>nicht</b> „le cas échéant“.</td></tr>
+        <tr><td><s>sensibel</s> für <i>sensible</i></td><td><b>vernünftig · sinnvoll</b></td>
+          <td>Deutsch <i>sensibel</i> = empfindlich, nicht „raisonnable“.</td></tr>
+        <tr><td><s>Ich bin bereit.</s> für <i>je suis prêt</i></td><td>stimmt — aber Vorsicht:</td>
+          <td><i>bereits</i> mit -s heißt <b>schon</b>. Ein Buchstabe, andere Bedeutung.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="gut"><b>Wie du sie findest, bevor die Prüferin sie findet.</b> Wenn dir ein
+      deutsches Wort verdächtig <b>französisch</b> vorkommt, ist es meistens entweder falsch oder
+      viel zu gehoben. Nimm im Zweifel das <b>einfachere deutsche Wort</b> — <i>anpassen</i> statt
+      <i>adaptieren</i>, <i>klar</i> statt <i>evident</i>. In der Prüfung zählt Verständlichkeit,
+      nicht Eleganz.</div>
+    <div class="haken"><input type="checkbox" id="ok4"><label for="ok4">Diese Baustelle sitzt.</label></div>
+  </div>
+</div>
+
+<!-- ===================== 5 ===================== -->
+<div class="bau g" id="b5">
+  <div class="kopf"><span class="nr">Baustelle 5</span>
+    <span class="ti">Komposita — ein Wort, nicht zwei</span><span class="pri">LEICHT ZU FIXEN</span></div>
+  <div class="body">
+    <div class="tabwrap"><table>
+      <thead><tr><th>Meine Version</th><th>Richtig</th></tr></thead>
+      <tbody>
+        <tr><td><s>Pflege dienst</s></td><td><b>der Pflegedienst</b></td></tr>
+        <tr><td><s>Praxis Besuch</s></td><td><b>der Praxisbesuch</b></td></tr>
+        <tr><td><s>Dienst Plan</s></td><td><b>der Dienstplan</b></td></tr>
+        <tr><td><s>Blutdruck Messung</s></td><td><b>die Blutdruckmessung</b></td></tr>
+      </tbody>
+    </table></div>
+    <div class="merk"><span class="t">Die Regel ist wirklich so einfach</span>
+      Zwei Nomen, die zusammengehören → <b>ein Wort</b>. Immer.
+      Und das <b>letzte</b> Wort bestimmt den Artikel.
+      <p style="margin:8px 0 0;">Manchmal steht ein <b>Fugen-s</b> dazwischen:
+        Arbeit<b>s</b>platz · Pflege… nein: <b>Arbeitsplatz, Krankheitsbild, Berufsalltag</b>.
+        Das lernt man Wort für Wort — aber die Trennung ist <b>nie</b> richtig.</p></div>
+    <div class="haken"><input type="checkbox" id="ok5"><label for="ok5">Diese Baustelle sitzt.</label></div>
+  </div>
+</div>
+
+<!-- ===================== 6 ===================== -->
+<div class="bau g" id="b6">
+  <div class="kopf"><span class="nr">Baustelle 6</span>
+    <span class="ti">Siezen — Sie, Ihnen, Ihr mit großem Anfangsbuchstaben</span>
+    <span class="pri">LEICHT ZU FIXEN</span></div>
+  <div class="body">
+    <div class="tabwrap"><table>
+      <thead><tr><th>Meine Version</th><th>Richtig</th><th>Regel</th></tr></thead>
+      <tbody>
+        <tr><td><s>ich schicke ihr die Unterlagen</s></td><td><b>ich schicke Ihnen die Unterlagen</b></td>
+          <td><i>ihr</i> (klein) = <b>à elle</b>. <b>Ihnen</b> (groß) = <b>à vous</b>.</td></tr>
+        <tr><td><s>mit ihnen</s></td><td><b>mit Ihnen</b></td>
+          <td>Höflichkeitsform → <b>immer</b> groß.</td></tr>
+        <tr><td><s>sie können mich erreichen</s></td><td><b>Sie können mich erreichen</b></td>
+          <td>Ohne großes S bedeutet es <b>sie</b> = elle/ils.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="achtung"><b>Warum das mehr ist als Rechtschreibung.</b> Im Schriftlichen Ausdruck
+      schreibst du eine <b>halbformelle E-Mail an eine Firma oder ein Büro</b> — dort kommt
+      <i>Sie / Ihnen / Ihr</i> in fast jedem Satz vor. Ein kleines <i>sie</i> ändert die Bedeutung
+      und fällt unter „formale Richtigkeit“. Das sind Punkte, die du geschenkt bekommst, wenn du
+      einmal darauf achtest.</div>
+    <div class="drill"><p class="q">Korrigiere: „sehr geehrte frau müller, ich schicke ihr meine
+      unterlagen und freue mich, wenn ich von ihnen höre.“</p>
+      <textarea rows="2" data-nr="s1"></textarea>
+      <button type="button" onclick="zeig('l-s1',this)">Lösung</button>
+      <div class="los" id="l-s1"><span class="l">Sehr geehrte Frau Müller, ich schicke <b>Ihnen</b>
+        meine Unterlagen und freue mich, wenn ich von <b>Ihnen</b> höre.</span>
+        <span class="h">Drei Sachen: alle <b>Nomen</b> groß, die <b>Anrede</b> groß, und
+        <b>Ihnen</b> zweimal groß.</span></div></div>
+    <div class="haken"><input type="checkbox" id="ok6"><label for="ok6">Diese Baustelle sitzt.</label></div>
+  </div>
+</div>
+
+<!-- ===================== 7 ===================== -->
+<div class="bau g" id="b7">
+  <div class="kopf"><span class="nr">Baustelle 7</span>
+    <span class="ti">Verben mit fester Präposition</span><span class="pri">AUSWENDIG</span></div>
+  <div class="body">
+    <p class="lead">Diese Verbindungen kann man nicht ableiten — man lernt sie als <b>Einheit</b>.
+      Merk sie dir nie als Verb allein, sondern immer als <b>Verb + Präposition + Fall</b>.</p>
+    <div class="tabwrap"><table>
+      <thead><tr><th>Verb</th><th>Fall</th><th>Beispiel</th></tr></thead>
+      <tbody>
+        <tr><td class="k">fragen <b>nach</b></td><td>Dativ</td>
+          <td>Ich frage <b>nach den</b> Schmerzen.</td></tr>
+        <tr><td class="k">warten <b>auf</b></td><td>Akkusativ</td>
+          <td>Ich warte <b>auf die</b> Antwort.</td></tr>
+        <tr><td class="k">sich kümmern <b>um</b></td><td>Akkusativ</td>
+          <td>Ich kümmere mich <b>um den</b> Patienten.</td></tr>
+        <tr><td class="k">verzichten <b>auf</b></td><td>Akkusativ</td>
+          <td>Sie verzichtet <b>auf die</b> Maßnahme.</td></tr>
+        <tr><td class="k">haften <b>für</b></td><td>Akkusativ</td>
+          <td>Sie haftet <b>für den</b> Schaden.</td></tr>
+        <tr><td class="k">zurückführen <b>auf</b></td><td>Akkusativ</td>
+          <td>Es ist <b>auf einen</b> Fehler zurückzuführen.</td></tr>
+        <tr><td class="k">zurückgreifen <b>auf</b></td><td>Akkusativ</td>
+          <td>Ich greife <b>auf meine</b> Erfahrung zurück.</td></tr>
+        <tr><td class="k">Wert legen <b>auf</b></td><td>Akkusativ</td>
+          <td>Ich lege Wert <b>auf</b> Zuverlässigkeit.</td></tr>
+        <tr><td class="k">achten <b>auf</b></td><td>Akkusativ</td>
+          <td>Ich achte <b>auf die</b> Hautfarbe.</td></tr>
+        <tr><td class="k">hinweisen <b>auf</b></td><td>Akkusativ</td>
+          <td>Sie weist <b>auf das</b> Risiko hin.</td></tr>
+        <tr><td class="k">teilnehmen <b>an</b></td><td>Dativ</td>
+          <td>Ich nehme <b>an der</b> Übergabe teil.</td></tr>
+        <tr><td class="k">sich bewerben <b>um</b></td><td>Akkusativ</td>
+          <td>Ich bewerbe mich <b>um eine</b> Stelle.</td></tr>
+        <tr><td class="k">bestehen <b>aus</b> / <b>auf</b></td><td>Dativ / Dativ</td>
+          <td>Das Team besteht <b>aus</b> fünf Personen. · Sie besteht <b>auf ihrem</b> Recht.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="merk"><span class="t">Die Frage dazu bildest du mit wo(r)-</span>
+      warten auf → <b>Worauf</b> wartest du? · fragen nach → <b>Wonach</b> fragst du? ·
+      teilnehmen an → <b>Woran</b> nimmst du teil?
+      <p style="margin:8px 0 0;">Bei <b>Personen</b> aber mit Präposition + Fragewort:
+        <b>Auf wen</b> wartest du? · <b>Um wen</b> kümmerst du dich?</p></div>
+    <div class="drill"><p class="q">Ergänze die Präposition und den Artikel: „Ich achte ____
+      ____ Atmung, warte ____ ____ Arzt und nehme ____ ____ Übergabe teil.“</p>
+      <textarea rows="2" data-nr="p1"></textarea>
+      <button type="button" onclick="zeig('l-p1',this)">Lösung</button>
+      <div class="los" id="l-p1"><span class="l">Ich achte <b>auf die</b> Atmung, warte
+        <b>auf den</b> Arzt und nehme <b>an der</b> Übergabe teil.</span>
+        <span class="h">Zweimal <b>auf</b> + Akkusativ, einmal <b>an</b> + Dativ. Und
+        <i>teilnehmen</i> ist trennbar: <b>teil</b> bleibt am Ende.</span></div></div>
+    <div class="haken"><input type="checkbox" id="ok7"><label for="ok7">Diese Baustelle sitzt.</label></div>
+  </div>
+</div>
+
+<section id="plan">
+<h2>Der Plan — sechs Wochen, in dieser Reihenfolge</h2>
+<div class="karte" style="border:1px solid var(--line);border-radius:14px;background:var(--card);padding:18px 21px;">
+  <div class="plan">
+    <div class="w"><span class="z">Woche 1–2</span><div class="i">
+      <b>Die Fälle.</b> Die Artikeltabelle auswendig. Die Dativ-Präpositionen
+      (<i>bei, mit, nach, von, zu, seit, aus, außer</i>) so lernen, dass sie ohne Nachdenken
+      kommen. Jeden Tag fünf eigene Sätze mit Dativ.</div></div>
+    <div class="w"><span class="z">Woche 3–4</span><div class="i">
+      <b>Das Genus.</b> Die Endungstabelle lernen. Ab jetzt <b>jedes</b> neue Wort mit Artikel
+      notieren — nie wieder ein Wort ohne <i>der/die/das</i>.</div></div>
+    <div class="w"><span class="z">Woche 5–6</span><div class="i">
+      <b>Die Verbstellung.</b> Nebensätze mit <i>weil, wenn, dass, ob</i> üben. Und jeden Tag
+      einmal die Dreierregel <b>weil / denn / deshalb</b> am selben Satz durchspielen.</div></div>
+    <div class="w"><span class="z">durchgehend</span><div class="i">
+      <b>Der Fachwortschatz.</b> Läuft weiter über den täglichen Lesetext — da machst du gute
+      Fortschritte, das muss nicht extra geübt werden.</div></div>
+  </div>
+</div>
+<div class="gut"><b>Warum diese Reihenfolge und keine andere.</b> Baustelle 1 und 2 hängen
+  zusammen: Ohne das richtige <b>Genus</b> kannst du den <b>Fall</b> gar nicht richtig bilden.
+  Deshalb kommen sie zuerst — und deshalb bringt es wenig, mit den Präpositionen aus Baustelle 7
+  anzufangen, solange <i>der/die/das</i> noch wackelt.</div>
+</section>
+
+<section id="gewohnheit">
+<h2>Die eine Gewohnheit</h2>
+<div class="merk" style="font-size:1.05rem;">
+  <span class="t">Für jedes neue Wort drei Dinge notieren</span>
+  <p style="margin:0 0 8px;"><b>Artikel + Wort + ein Beispielsatz mit Fall.</b></p>
+  <p style="margin:0;font-family:var(--mono);font-size:14.5px;line-height:1.9;">
+    die Pflege → in <b>der</b> Pflege <em>(Dativ)</em><br>
+    → „Ich arbeite in der ambulanten Pflege.“</p>
+</div>
+<p>Diese eine Gewohnheit räumt <b>Baustelle 1 und 2 gleichzeitig</b> ab — und das sind zusammen
+  über die Hälfte deiner Fehler. Ein Wort ohne Artikel zu lernen heißt, es zweimal lernen zu
+  müssen.</p>
+<div class="gut"><b>Und zum Schluss, weil es stimmt:</b> Deine Sätze sind seit dem Frühjahr
+  deutlich länger und komplexer geworden. Die Fehler, die übrig sind, sind
+  <b>systematisch</b> — also nicht Pech, sondern Regeln, die noch nicht sitzen. Systematische
+  Fehler verschwinden mit gezielter Übung. Genau dafür ist diese Seite da.
+  <span class="fr">Des fautes systématiques, ça se corrige. Ce sont les meilleures fautes à
+  avoir.</span></div>
+</section>
+
+<span class="quelle">Fehleranalyse aus den bisherigen Korrekturen · Regeln und Beispiele ergänzt ·
+  drei fehlerhafte Beispiele der Ausgangsliste korrigiert</span>
+
+</main>
+
+<footer>
+  <a href="https://claude.ai/code/artifact/e499dbe3-e198-410a-94d3-9393e6b27c84"
+     target="_blank" rel="noopener">Deutsch täglich</a> ·
+  <a href="https://claude.ai/code/artifact/46864e04-1000-4201-8cf3-d76d6c889c1d"
+     target="_blank" rel="noopener">Prüfungsplan telc B2</a><br>
+  Deine Antworten und Häkchen bleiben nur in diesem Browser.
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var PRE = 'fehler-';
+
+  window.zeig = function(id, btn){
+    var el = document.getElementById(id);
+    if(!el) return;
+    var offen = el.classList.toggle('show');
+    if(btn) btn.textContent = offen ? 'Lösung ausblenden' : 'Lösung';
+  };
+
+  document.querySelectorAll('.drill textarea[data-nr]').forEach(function(t){
+    var key = PRE + t.dataset.nr;
+    try { var alt = localStorage.getItem(key); if(alt !== null) t.value = alt; } catch(e){}
+    var timer = null;
+    t.addEventListener('input', function(){
+      clearTimeout(timer);
+      timer = setTimeout(function(){
+        try { localStorage.setItem(key, t.value); } catch(e){}
+      }, 450);
+    });
+  });
+
+  var boxen = Array.prototype.slice.call(
+    document.querySelectorAll('.haken input[type=checkbox]'));
+  function zaehlen(){
+    var n = boxen.filter(function(b){ return b.checked; }).length;
+    var z = document.getElementById('zaehler');
+    if(!z) return;
+    z.textContent = n === boxen.length
+      ? 'Alle ' + boxen.length + ' Baustellen sitzen 🎉'
+      : n + ' von ' + boxen.length + ' Baustellen sitzen';
+  }
+  boxen.forEach(function(b){
+    var key = PRE + b.id;
+    try { if(localStorage.getItem(key) === '1') b.checked = true; } catch(e){}
+    b.addEventListener('change', function(){
+      try {
+        if(b.checked) localStorage.setItem(key, '1');
+        else localStorage.removeItem(key);
+      } catch(e){}
+      zaehlen();
+    });
+  });
+  zaehlen();
+})();
+</script>
