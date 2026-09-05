@@ -8,9 +8,24 @@ Zahlen oder Quellen nennen, die nicht in ihren eigenen Unterlagen (PDFs im Repo)
 
 ---
 
-## Deutsch täglich — Routine 5:30 täglich, Probeprüfung Samstag 22:00
+## Deutsch täglich — Lektionen Mo · Mi · Fr, Probeprüfung Samstag 22:00
 
 Diese Anweisung gilt **immer** und hat Vorrang vor älteren Routine-Texten.
+
+**Die Routine läuft weiter jeden Morgen um 5:30**, aber sie schreibt **nicht mehr jeden Tag eine
+neue Lektion.** Die Nutzerin hat darum gebeten: *„Le deutsch Täglich sera chaque deux jour et non
+chaque jour. Cela me permettra de mieux étudier."* Also:
+
+| Wochentag | Was die 5:30-Routine tut |
+|---|---|
+| **Montag, Mittwoch, Freitag** | **Neue Lektion schreiben**, bauen, veröffentlichen, committen |
+| **Samstag** | **Nur den `probe`-Block** — eine schlanke Lektion mit `zyklus` + `probe`, sonst nichts |
+| **Dienstag, Donnerstag, Sonntag** | **Übungstag — keine neue Datei.** Nur `build.py`, veröffentlichen, fertig |
+
+An einem Übungstag also: **keine** Datei in `lektionen/` anlegen, **nichts** überschreiben. Die
+Seite zeigt an diesen Tagen von selbst einen Übungstag-Kasten mit dem, was sie mit der letzten
+Lektion machen soll. Trotzdem bauen und veröffentlichen, damit der Kasten und der Countdown
+aktuell sind.
 
 ### Das Ziel: telc Deutsch B2 im Februar 2027
 
@@ -62,26 +77,34 @@ Artifact-URL (nie ändern): `https://claude.ai/code/artifact/e499dbe3-e198-410a-
 Favicon: 🇩🇪 — beim Republish **nicht** mitschicken.
 Branch: `claude/nursing-exam-prep-workflow-gvn5u0`
 
-### Regel 0 — nichts überschreiben
+### Regel 0 — nichts überschreiben, und an Übungstagen gar nichts schreiben
 
-Wenn `deutsch-taeglich/lektionen/<HEUTIGES-DATUM>.json` **schon existiert**:
-diese Datei **nicht** anfassen und keine neue Lektion schreiben.
-Nur `python3 deutsch-taeglich/build.py` ausführen, veröffentlichen, fertig.
+Zwei Fälle, in denen **keine** neue Lektion entsteht:
+
+- **Heute ist Dienstag, Donnerstag oder Sonntag** → Übungstag. Keine Datei anlegen.
+- `deutsch-taeglich/lektionen/<HEUTIGES-DATUM>.json` **existiert schon** → diese Datei
+  **nicht** anfassen.
+
+In beiden Fällen: nur `python3 deutsch-taeglich/build.py` ausführen, veröffentlichen, fertig.
 
 ### Ablauf
 
 1. `ls deutsch-taeglich/lektionen/`, die **neueste** Lektion lesen.
    Ihr Block `zyklus` sagt, wo wir stehen: `{woche, gesamt: 16, thema, themaNr, tag, fokus,
    start, bisPruefung}`.
-2. Neuen Zustand aus dem **heutigen Datum** berechnen — nicht hochzählen, sondern rechnen:
+2. Wochentag prüfen. **Dienstag, Donnerstag, Sonntag → direkt zu Schritt 4** (nur bauen und
+   veröffentlichen). Sonst weiter.
+3. Neuen Zustand aus dem **heutigen Datum** berechnen — nicht hochzählen, sondern rechnen:
    - `woche` = ganze Wochen seit dem 31.08.2026, plus 1
-   - `tag` = heutiger Wochentag auf Deutsch, `fokus` = der Subtest dieses Tages (Tabelle unten)
+   - `tag` = heutiger Wochentag auf Deutsch, `fokus` = der Subtest dieser Lektion
+     (Rotation, siehe unten)
    - `thema` und `themaNr` = das telc-Thema dieser Woche (Tabelle unten)
    - `bisPruefung` = Tage bis zum 01.02.2027
    - Ab Woche 17 (21.12.2026): **Endspurt**, `thema` = „Endspurt · Prüfungstraining",
      `themaNr` weglassen
-3. `deutsch-taeglich/lektionen/<YYYY-MM-DD>.json` schreiben — Struktur **exakt** wie in
-   der neuesten vorhandenen Lektion (gleiche Block- und Feldnamen, nur neuer Inhalt).
+   Dann `deutsch-taeglich/lektionen/<YYYY-MM-DD>.json` schreiben — Struktur **exakt** wie in
+   der neuesten vorhandenen **Lektion vom gleichen Typ** (Mo/Mi/Fr-Lektion bzw. Samstag), gleiche
+   Block- und Feldnamen, nur neuer Inhalt.
 4. `python3 deutsch-taeglich/build.py`
 5. Veröffentlichen: erst `Artifact` mit `action:"read"` auf die URL oben (sonst wird der
    Publish als veraltet abgelehnt), dann publish mit `file_path deutsch-taeglich/index.html`
@@ -91,18 +114,34 @@ Nur `python3 deutsch-taeglich/build.py` ausführen, veröffentlichen, fertig.
 ### Der Wochenrhythmus — kein Grammatik-Zyklus mehr
 
 **Die alten 13 Grammatikthemen sind abgeschafft.** Deutsch täglich folgt jetzt der Prüfung
-selbst. Jede Woche gehört **einem der 16 telc-Themen aus Anhang T**, und jeder Wochentag
-gehört **einem Subtest**:
+selbst. Jede Woche gehört **einem der 16 telc-Themen aus Anhang T**. Die Woche hat **drei
+Lektionstage, einen Prüfungstag und drei Übungstage**:
 
-| Tag | Fokus | Warum |
-|-----|-------|-------|
-| **Montag** | Leseverstehen | 25 % — ein Text im Prüfungsformat, Teil 1, 2 oder 3 im Wechsel |
-| **Dienstag** | Hörverstehen | 25 % — Diktat als Hörtext, dazu **Richtig-Falsch-Aufgaben** |
-| **Mittwoch** | Sprachbausteine | 10 % — Grammatik der Woche + Lexik, beides im Lückentext |
-| **Donnerstag** | Schriftlicher Ausdruck | 15 % — halbformelle E-Mail, Redemittel und Leitpunkte |
-| **Freitag** | Mündlicher Ausdruck | 25 % — Teil 1, 2 oder 3 im Wechsel |
-| **Samstag 22:00** | **Probeprüfung** | eigene Routine, siehe unten |
-| **Sonntag** | Auswertung und Wiederholung | Fehler der Woche, Wortschatz nachziehen, leichter Tag |
+| Tag | Was passiert |
+|-----|--------------|
+| **Montag** | **Lektion** — Subtest aus der Rotation |
+| **Dienstag** | **Übungstag** — die Lektion von Montag vertiefen, nichts Neues |
+| **Mittwoch** | **Lektion** — nächster Subtest der Rotation |
+| **Donnerstag** | **Übungstag** — die Lektion von Mittwoch vertiefen |
+| **Freitag** | **Lektion** — nächster Subtest der Rotation |
+| **Samstag 22:00** | **Probeprüfung** — schlanke Lektion, nur `zyklus` + `probe` |
+| **Sonntag** | **Übungstag** — Auswertung der Probeprüfung, Fehler der Woche, Wortschatz nachziehen |
+
+**Die Fokus-Rotation.** Weil es nur drei Lektionstage gibt, aber fünf Subtests, ist der Fokus
+**nicht mehr an den Wochentag gebunden**, sondern läuft im Kreis weiter. Reihenfolge:
+
+`Leseverstehen → Hörverstehen → Sprachbausteine → Schriftlicher Ausdruck → Mündlicher Ausdruck`
+
+Rechenregel — nicht raten, ausrechnen:
+
+```
+n = (woche - 1) * 3 + i        # i = 0 für Montag, 1 für Mittwoch, 2 für Freitag
+fokus = REIHE[n mod 5]         # REIHE = die fünf Subtests oben
+```
+
+Woche 1 also Mo Leseverstehen · Mi Hörverstehen · Fr Sprachbausteine, Woche 2 Mo Schriftlicher
+Ausdruck · Mi Mündlicher Ausdruck · Fr Leseverstehen, und so weiter. Nach fünf Wochen hat jeder
+Subtest an jedem Wochentag einmal gestanden — kein Subtest fällt hinten runter.
 
 Der Block `zyklus` sieht ab Woche 1 so aus:
 
@@ -112,7 +151,18 @@ Der Block `zyklus` sieht ab Woche 1 so aus:
            "start": "2026-08-31", "bisPruefung": 154}
 ```
 
-`bisPruefung` = Tage bis zum 01.02.2027, jeden Tag neu ausrechnen.
+`bisPruefung` = Tage bis zum 01.02.2027, an jedem Lektionstag neu ausrechnen.
+
+### Die Übungstage — Dienstag, Donnerstag, Sonntag
+
+Kein neuer Stoff. Die Seite zeigt an diesen Tagen von selbst einen Kasten mit vier Aufgaben zur
+**letzten** Lektion — die Kette laut an den drei Sätzen, den `lesen`-Text noch einmal in
+30 Sekunden erklären, die fünf eigenen Sätze aus dem `wortschatz`-Block schreiben, und die
+falschen Antworten des Vortags der passenden **Baustelle** zuordnen. Das ist der Sinn der
+Umstellung: sie hat gesagt, täglich neuer Stoff lasse ihr keine Zeit zum Lernen.
+
+**Wenn sie an einem Übungstag etwas schickt**, wird es korrigiert wie immer — Deklinationsfehler
+dem **Kettenglied**, alles andere der **Baustelle** zuordnen.
 
 ### Die 16 Wochen — ein telc-Thema pro Woche
 
@@ -146,10 +196,11 @@ nicht kapern. In der Woche „Natur und Umwelt" geht es um Natur und Umwelt — 
 Station. Sie braucht Wortschatz aus **allen sechzehn** Bereichen, besonders für die Diskussion
 in Teil 2 der Mündlichen Prüfung.
 
-### Grammatik — jetzt Mittwochsthema, nicht mehr Rückgrat
+### Grammatik — Thema der Woche, nicht mehr Rückgrat
 
-Die B2-Grammatik läuft weiter, aber als **Sprachbausteine-Thema des Mittwochs**, eines pro
-Woche, in dieser Reihenfolge:
+Die B2-Grammatik läuft weiter, aber als **Grammatik der Woche** — eine pro Woche, in jeder
+Lektion der Woche im `grammatik`-Block, und im Schwerpunkt an dem Lektionstag, dessen Fokus
+**Sprachbausteine** ist. Reihenfolge:
 
 1. Verbstellung und Satzklammer · 2. Nebensätze (weil, obwohl, damit, dass, wenn/als) ·
 3. Relativsätze, auch mit Präposition und was/wo · 4. Konnektoren (kausal, konzessiv,
@@ -162,15 +213,17 @@ und erweiterte Partizipialattribute · 13. Subjektive Modalverben und Vermutunge
 statt…zu · 16. Temporale Konnektoren und Zeitenfolge (nachdem, bevor, während, seit, sobald).
 
 Außerdem gilt an jedem Tag: Grammatikfehler in ihren freien Texten werden **korrigiert und
-benannt**, egal welcher Wochentag ist. „Formale Richtigkeit" wird beim Schreiben und beim
-Sprechen mitbewertet.
+benannt**, egal welcher Wochentag ist — auch an Übungstagen. „Formale Richtigkeit" wird beim
+Schreiben und beim Sprechen mitbewertet.
 
 ### Die Probeprüfung — Samstag 22:00
 
-**Die 5:30-Routine schreibt sie mit.** Ist heute ein **Samstag**, bekommt die Lektion einen
-zusätzlichen Block `probe` (Struktur wie `telc`, plus die Felder `punkte` für die erreichbare
-Punktzahl und `dauer` für die Bearbeitungszeit). An allen anderen Tagen: keinen `probe`-Block
-schreiben.
+**Die 5:30-Routine schreibt sie am Samstagmorgen mit.** Die Samstagsdatei ist **keine volle
+Lektion**: sie enthält nur `datum`, `thema`, `zyklus` (mit `tag: "Samstag"`,
+`fokus: "Probeprüfung"`) und den Block `probe` — Struktur wie `telc`, plus die Felder `punkte`
+für die erreichbare Punktzahl und `dauer` für die Bearbeitungszeit. **Kein** `verb`, `lesen`,
+`deklination`, `diktat` und so weiter — der Samstag gehört der Prüfung, nicht neuem Stoff.
+An allen anderen Tagen: keinen `probe`-Block schreiben.
 
 Die Seite **verschließt den Block bis Samstag 22:00 Uhr** und zeigt bis dahin nur einen Kasten
 mit Countdown. Das ist Absicht: Die Probeprüfung soll unter echten Bedingungen entdeckt werden.
@@ -297,11 +350,11 @@ sie umformen: *aber → obwohl*, *statt … zu → nicht … sondern*, dazu imme
 wird. Das ist gleichzeitig das Training für **Sprachbausteine Teil 1**. In der Lösung immer den
 **ganzen Satz** schreiben, nie nur das Konnektor-Wort.
 
-**Die Textsorte richtet sich nach dem Tagesfokus:** Montag eine **Erzählung oder Reportage**
-(Leseverstehen), Dienstag ein **Bericht** (passt zum Hörverstehen), Mittwoch ein Text mit viel
-**Grammatik der Woche**, Donnerstag ein **Brief oder eine Anzeige** (Schriftlicher Ausdruck),
-Freitag ein Text mit einer **Meinung oder einem Konflikt** (Diskussion, Mündlich Teil 2),
-Sonntag ein **leichter Text** zur Wiederholung.
+**Die Textsorte richtet sich nach dem Fokus der Lektion**, nicht mehr nach dem Wochentag:
+Leseverstehen → **Erzählung oder Reportage** · Hörverstehen → **Bericht** · Sprachbausteine →
+Text mit viel **Grammatik der Woche** · Schriftlicher Ausdruck → **Brief oder Anzeige** ·
+Mündlicher Ausdruck → Text mit einer **Meinung oder einem Konflikt** (Diskussion, Mündlich
+Teil 2).
 
 **Wichtig:** Der Text braucht eine **Handlung** — etwas, das passiert und das man nacherzählen
 kann. Eine reine Sachbeschreibung taugt für „Was ist passiert?" nicht. Das Thema kommt aus dem
@@ -377,13 +430,15 @@ Tages sollen zu dieser Stufe passen und nicht darüber hinausgehen.
 **Und wenn sie freie Texte schickt:** jeden Deklinationsfehler dem **Kettenglied** zuordnen —
 „Das war Glied 3: es heißt *das* Wochenende." So sieht sie das Muster statt einer Fehlerliste.
 
-### Pflichtinhalt jeder Lektion
+### Pflichtinhalt jeder Lektion (Montag, Mittwoch, Freitag)
 
 Verb des Tages (mit Konjugation und Bedeutung) · Wortschatz-Block (Redemittel **zum Thema der
 Woche**) · Grammatik-Block · **`deklination`-Block mit drei Kettensätzen** ·
-**`lesen`-Block mit 200-Wörter-Text** · **telc-Block mit dem Tagesfokus** · Aussprache-Block ·
-Diktat · 5 Übersetzungssätze FR→DE · 3 Alltag-Missionen.
-Am Samstag zusätzlich der Block `probe`.
+**`lesen`-Block mit 200-Wörter-Text** · **telc-Block mit dem Fokus der Lektion** ·
+Aussprache-Block · Diktat · 5 Übersetzungssätze FR→DE · 3 Alltag-Missionen.
+
+**Am Samstag nur** `zyklus` + `probe` — sonst nichts.
+**Am Dienstag, Donnerstag und Sonntag gar keine Datei.**
 
 **Verben und Wortschatz auf B2-Niveau wählen** und **zum Wochenthema passend**. Kein
 A2-Grundwortschatz. Gut sind Verben mit fester Präposition (*sich kümmern um*, *hinweisen auf*,
