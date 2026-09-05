@@ -440,7 +440,7 @@
 </style>
 
 <header class="hero">
-  <p class="eyebrow">Deutsch lernen · Niveau B2 · Montag · Mittwoch · Freitag</p>
+  <p class="eyebrow">Deutsch lernen · Niveau B2 · jeden zweiten Tag</p>
   <h1>Deutsch täglich</h1>
   <p>Jeden zweiten Tag eine neue Lektion: ein <b>Verb</b>, ein <b>Wort oder ein Ausdruck</b>,
   ein <b>Grammatik-Thema</b>, ein <b>Text</b> und ein <b>Prüfungsteil</b>.
@@ -474,8 +474,8 @@
       <a href="https://claude.ai/code/artifact/fb2c751b-a84b-42e6-b19a-1bfc6fc6d4b3"
          target="_blank" rel="noopener" style="color:var(--accent-deep);">🎧 Hörverstehen</a>
     </p>
-    Deutsch täglich · neue Lektion <b>montags, mittwochs und freitags</b> um 5:30 (Berlin) ·
-    <b>samstags 22:00</b> die Probeprüfung · dienstags, donnerstags und sonntags <b>Übungstag</b> ·
+    Deutsch täglich · neue Lektion <b>jeden zweiten Tag</b> um 5:30 (Berlin), seit dem 05.09.2026 ·
+    <b>samstags 22:00</b> die Probeprüfung · die Tage dazwischen sind <b>Übungstage</b> ·
     Erklärungen auf Deutsch (B2) mit französischer Hilfe für schwere Stellen.
   </footer>
 </div>
@@ -1403,21 +1403,32 @@ function renderTag1(l){
     '<span class="wann">vom '+fmtDate(e.datum).kurz+'</span></summary>'+
     '<div class="inhalt">'+inhalt+'</div></details>';
 }
-/* ---------- Übungstag: Dienstag, Donnerstag, Sonntag ---------- */
+/* ---------- Übungstag: jeder Tag zwischen zwei Lektionen ---------- */
 /* Kein neuer Stoff. Stattdessen vier feste Aufgaben zur letzten Lektion. */
-const UEBUNGSTAGE={2:'Dienstag',4:'Donnerstag',0:'Sonntag'};
+const WOCHENTAGE=['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
 function heuteISO(){
   const d=new Date();
   return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+
          String(d.getDate()).padStart(2,'0');
 }
+/* Datum als lokale Mitternacht — ohne Zeitzonenverschiebung */
+function alsDatum(iso){
+  const t=String(iso||'').split('-');
+  if(t.length!==3) return null;
+  return new Date(+t[0],+t[1]-1,+t[2]);
+}
 function renderUebungstag(l){
-  /* nur auf der neuesten Lektion, nur an einem Übungstag, nur wenn die Lektion
-     nicht von heute ist */
+  /* nur auf der neuesten Lektion, und nur wenn sie nicht von heute ist:
+     dann liegt heute zwischen zwei Lektionen */
   if(cur!==0||!l) return '';
-  const tag=UEBUNGSTAGE[new Date().getDay()];
-  if(!tag) return '';
   if(l.datum===heuteISO()) return '';
+  const heute=alsDatum(heuteISO()), dat=alsDatum(l.datum);
+  if(!heute||!dat||heute<dat) return '';   /* Datum in der Zukunft: kein Kasten */
+  /* Nur an echten Übungstagen — an einem Lektionstag, an dem die Lektion noch fehlt,
+     wäre „Heute ist Übungstag" schlicht falsch. */
+  const start=alsDatum((l.zyklus&&l.zyklus.start)||'');
+  if(start && Math.round((heute-start)/86400000)%2===0) return '';
+  const tag=WOCHENTAGE[heute.getDay()];
 
   const auf=[];
   if(l.deklination&&(l.deklination.saetze||[]).length){
@@ -1454,9 +1465,9 @@ function renderUebungstag(l){
   let h='<section class="uetag">'+
     '<div class="kopf"><h3>Heute ist Übungstag</h3>'+
     '<span class="k-ue">'+esc(tag)+' · kein neuer Stoff</span></div>'+
-    '<p class="warum">Neue Lektionen kommen <b>montags, mittwochs und freitags</b>. '+
+    '<p class="warum">Neue Lektionen kommen <b>jeden zweiten Tag</b>. '+
     'Heute wird nichts Neues gelernt, sondern die Lektion vom '+fmtDate(l.datum).kurz+
-    ' gefestigt.</p>'+
+    ' gefestigt. Die nächste Lektion ist morgen.</p>'+
     '<p class="fr">Aujourd’hui, rien de nouveau : tu reprends la leçon '+
     'précédente. C’est pour cela que nous sommes passés à une '+
     'leçon tous les deux jours — pour te laisser le temps d’apprendre.</p>'+
@@ -1495,33 +1506,44 @@ function render(){
   if(l.zyklus&&l.zyklus.woche){
     /* ---- Wochenrhythmus telc B2 ---- */
     const z=l.zyklus;
-    const W=['Mo','Di','Mi','Do','Fr','Sa','So'];
-    /* Mo, Mi, Fr = Lektion (Fokus aus der Rotation, steht in z.fokus).
-       Di, Do, So = Übungstag. Sa = Probeprüfung. */
-    const ART=['Lektion','Übungstag','Lektion','Übungstag','Lektion','Probeprüfung','Übungstag'];
-    let heute=W.indexOf(String(z.tag||'').slice(0,2));
-    if(heute<0) heute=0;
-    const FOKUS=ART.map((a,i)=> a==='Lektion'
-      ? (i===heute ? (z.fokus||'Lektion') : 'Lektion — Subtest aus der Rotation')
-      : a);
+    const W=['So','Mo','Di','Mi','Do','Fr','Sa'];
+    const REIHE=['Leseverstehen','Hörverstehen','Sprachbausteine',
+                 'Schriftlicher Ausdruck','Mündlicher Ausdruck'];
+    /* Der Zyklus folgt nicht mehr der Kalenderwoche: Lektionstag ist jeder zweite Tag
+       ab z.start. Die Leiste zeigt deshalb die nächsten sieben Tage ab dieser Lektion. */
+    const dLek=alsDatum(l.datum), dStart=alsDatum(z.start), TAG=86400000;
     /* Fortschrittspunkte = Wochen bis zur Prüfung */
     const gw=z.gesamt||16;
     let p='';
     for(let i=1;i<=gw;i++)p+='<i class="'+(i<=(z.woche||1)?'on':'')+'"></i>';
     let tage='<div class="zy-tage">';
     for(let i=0;i<7;i++){
-      const kls=(i===heute?'jetzt ':'')+(ART[i]==='Übungstag'?'uebung':
-                (ART[i]==='Probeprüfung'?'probetag':'lektionstag'));
+      let art='Übungstag', lbl='', tip='';
+      const d=dLek?new Date(dLek):null;
+      if(d){
+        d.setDate(d.getDate()+i);
+        lbl=W[d.getDay()]+' '+String(d.getDate()).padStart(2,'0')+'.';
+        const diff=dStart?Math.round((d-dStart)/TAG):(i%2===0?0:1);
+        if(diff>=0&&diff%2===0){
+          art='Lektion';
+          const nr=diff/2+1;
+          tip='Lektion '+nr+' · '+REIHE[(nr-1)%5];
+        } else if(d.getDay()===6){ art='Probeprüfung'; tip='Probeprüfung, 22:00'; }
+        else tip='Übungstag — die letzte Lektion festigen';
+      } else { lbl=W[(i+1)%7]; }
+      const kls=(i===0?'jetzt ':'')+(art==='Übungstag'?'uebung':
+                (art==='Probeprüfung'?'probetag':'lektionstag'));
       tage+='<button type="button" disabled class="'+kls+'"'+
-            ' title="'+attr(W[i]+' · '+FOKUS[i])+'">'+W[i]+'</button>';
+            ' title="'+attr(lbl+' · '+tip)+'">'+esc(lbl)+'</button>';
     }
     tage+='</div>';
-    zEl.innerHTML='<span class="zy-phase">'+esc(z.tag||W[heute])+' · '+
-                    esc(z.fokus||FOKUS[heute])+'</span>'+
+    zEl.innerHTML='<span class="zy-phase">'+esc(z.tag||'')+' · '+
+                    esc(z.fokus||'Lektion')+'</span>'+
                   '<span class="zy-punkte">'+p+'</span>'+
                   (z.thema?'<span class="thema">Thema: <b>'+esc(z.thema)+'</b>'+
                     (z.themaNr?' <i class="nr">T'+z.themaNr+' von 16</i>':'')+'</span>':'')+
                   '<span class="thema">Woche <b>'+(z.woche||1)+'</b> von '+gw+
+                    (z.lektion?' · Lektion <b>'+z.lektion+'</b>':'')+
                     (z.bisPruefung?' <i class="nr">noch '+z.bisPruefung+' Tage</i>':'')+'</span>'+
                   tage;
     zEl.style.display='flex';

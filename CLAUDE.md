@@ -8,24 +8,36 @@ Zahlen oder Quellen nennen, die nicht in ihren eigenen Unterlagen (PDFs im Repo)
 
 ---
 
-## Deutsch täglich — Lektionen Mo · Mi · Fr, Probeprüfung Samstag 22:00
+## Deutsch täglich — jeden zweiten Tag eine Lektion, Start 05.09.2026
 
 Diese Anweisung gilt **immer** und hat Vorrang vor älteren Routine-Texten.
 
-**Die Routine läuft weiter jeden Morgen um 5:30**, aber sie schreibt **nicht mehr jeden Tag eine
-neue Lektion.** Die Nutzerin hat darum gebeten: *„Le deutsch Täglich sera chaque deux jour et non
-chaque jour. Cela me permettra de mieux étudier."* Also:
+**Die Routine läuft weiter jeden Morgen um 5:30**, aber sie schreibt **nicht jeden Tag eine
+neue Lektion.** Zwei Wünsche der Nutzerin liegen dahinter:
 
-| Wochentag | Was die 5:30-Routine tut |
+> *„Le deutsch Täglich sera chaque deux jour et non chaque jour. Cela me permettra de mieux
+> étudier."* — und danach: *„le deutsch Täglich doit commencer aujourd'hui et les autres
+> précédents à effacer."*
+
+Deshalb wurde am **05.09.2026** neu angefangen. Alle früheren Lektionen sind aus `lektionen/`
+entfernt (sie stehen weiterhin in der Git-Historie, falls sie doch zurück sollen).
+
+**Der Rhythmus — nach Datum, nicht nach Wochentag:**
+
+| Fall | Was die 5:30-Routine tut |
 |---|---|
-| **Montag, Mittwoch, Freitag** | **Neue Lektion schreiben**, bauen, veröffentlichen, committen |
-| **Samstag** | **Nur den `probe`-Block** — eine schlanke Lektion mit `zyklus` + `probe`, sonst nichts |
-| **Dienstag, Donnerstag, Sonntag** | **Übungstag — keine neue Datei.** Nur `build.py`, veröffentlichen, fertig |
+| **`(heute − 05.09.2026)` ist gerade** | **Neue Lektion schreiben**, bauen, veröffentlichen, committen |
+| **Es ist Samstag** (und kein Lektionstag) | **Nur den `probe`-Block** — schlanke Datei mit `zyklus` + `probe` |
+| **alle übrigen Tage** | **Übungstag — keine neue Datei.** Nur `build.py`, veröffentlichen, fertig |
 
-An einem Übungstag also: **keine** Datei in `lektionen/` anlegen, **nichts** überschreiben. Die
-Seite zeigt an diesen Tagen von selbst einen Übungstag-Kasten mit dem, was sie mit der letzten
-Lektion machen soll. Trotzdem bauen und veröffentlichen, damit der Kasten und der Countdown
-aktuell sind.
+Ist ein Samstag zugleich Lektionstag, bekommt die volle Lektion zusätzlich den `probe`-Block.
+An einem Übungstag: **keine** Datei in `lektionen/` anlegen, **nichts** überschreiben. Die Seite
+zeigt an diesen Tagen von selbst einen Übungstag-Kasten mit dem, was sie mit der letzten Lektion
+machen soll. Trotzdem bauen und veröffentlichen, damit Kasten und Countdown aktuell sind.
+
+Die ersten Lektionstage: **05.09. · 07.09. · 09.09. · 11.09. · 13.09. · 15.09. · 17.09. …**
+Weil 2 und 7 teilerfremd sind, wandert der Lektionstag durch die ganze Woche — das ist Absicht
+und beabsichtigt kein festes Wochentagsmuster.
 
 ### Das Ziel: telc Deutsch B2 im Februar 2027
 
@@ -81,7 +93,8 @@ Branch: `claude/nursing-exam-prep-workflow-gvn5u0`
 
 Zwei Fälle, in denen **keine** neue Lektion entsteht:
 
-- **Heute ist Dienstag, Donnerstag oder Sonntag** → Übungstag. Keine Datei anlegen.
+- **`(heute − 05.09.2026)` ist ungerade und heute ist kein Samstag** → Übungstag. Keine Datei
+  anlegen.
 - `deutsch-taeglich/lektionen/<HEUTIGES-DATUM>.json` **existiert schon** → diese Datei
   **nicht** anfassen.
 
@@ -91,20 +104,23 @@ In beiden Fällen: nur `python3 deutsch-taeglich/build.py` ausführen, veröffen
 
 1. `ls deutsch-taeglich/lektionen/`, die **neueste** Lektion lesen.
    Ihr Block `zyklus` sagt, wo wir stehen: `{woche, gesamt: 16, thema, themaNr, tag, fokus,
-   start, bisPruefung}`.
-2. Wochentag prüfen. **Dienstag, Donnerstag, Sonntag → direkt zu Schritt 4** (nur bauen und
-   veröffentlichen). Sonst weiter.
-3. Neuen Zustand aus dem **heutigen Datum** berechnen — nicht hochzählen, sondern rechnen:
-   - `woche` = ganze Wochen seit dem 31.08.2026, plus 1
-   - `tag` = heutiger Wochentag auf Deutsch, `fokus` = der Subtest dieser Lektion
-     (Rotation, siehe unten)
+   start, bisPruefung, lektion}`.
+2. **Rechnen, nicht raten** — `d = (heute − 2026-09-05).days`:
+   - `d` gerade → **Lektionstag**, weiter mit Schritt 3
+   - `d` ungerade und heute Samstag → **nur Probeprüfung**, schlanke Datei (siehe unten)
+   - sonst → **Übungstag**, direkt zu Schritt 4
+3. Neuen Zustand aus dem **heutigen Datum** berechnen:
+   - `lektion` = `d / 2 + 1` (die wievielte Lektion überhaupt)
+   - `woche` = `d // 7 + 1`
+   - `tag` = heutiger Wochentag auf Deutsch
+   - `fokus` = `REIHE[(lektion − 1) mod 5]` (Rotation, siehe unten)
    - `thema` und `themaNr` = das telc-Thema dieser Woche (Tabelle unten)
    - `bisPruefung` = Tage bis zum 01.02.2027
-   - Ab Woche 17 (21.12.2026): **Endspurt**, `thema` = „Endspurt · Prüfungstraining",
+   - Ab Woche 17 (26.12.2026): **Endspurt**, `thema` = „Endspurt · Prüfungstraining",
      `themaNr` weglassen
    Dann `deutsch-taeglich/lektionen/<YYYY-MM-DD>.json` schreiben — Struktur **exakt** wie in
-   der neuesten vorhandenen **Lektion vom gleichen Typ** (Mo/Mi/Fr-Lektion bzw. Samstag), gleiche
-   Block- und Feldnamen, nur neuer Inhalt.
+   der neuesten vorhandenen **Lektion vom gleichen Typ** (volle Lektion bzw. reine
+   Probeprüfung), gleiche Block- und Feldnamen, nur neuer Inhalt.
 4. `python3 deutsch-taeglich/build.py`
 5. Veröffentlichen: erst `Artifact` mit `action:"read"` auf die URL oben (sonst wird der
    Publish als veraltet abgelehnt), dann publish mit `file_path deutsch-taeglich/index.html`
@@ -114,46 +130,35 @@ In beiden Fällen: nur `python3 deutsch-taeglich/build.py` ausführen, veröffen
 ### Der Wochenrhythmus — kein Grammatik-Zyklus mehr
 
 **Die alten 13 Grammatikthemen sind abgeschafft.** Deutsch täglich folgt jetzt der Prüfung
-selbst. Jede Woche gehört **einem der 16 telc-Themen aus Anhang T**. Die Woche hat **drei
-Lektionstage, einen Prüfungstag und drei Übungstage**:
+selbst. Jede Woche gehört **einem der 16 telc-Themen aus Anhang T**, und **jede zweite Kalender-
+tag** ist ein Lektionstag. Eine Woche enthält also mal drei, mal vier Lektionen — je nachdem,
+wie die Tage fallen.
 
-| Tag | Was passiert |
-|-----|--------------|
-| **Montag** | **Lektion** — Subtest aus der Rotation |
-| **Dienstag** | **Übungstag** — die Lektion von Montag vertiefen, nichts Neues |
-| **Mittwoch** | **Lektion** — nächster Subtest der Rotation |
-| **Donnerstag** | **Übungstag** — die Lektion von Mittwoch vertiefen |
-| **Freitag** | **Lektion** — nächster Subtest der Rotation |
-| **Samstag 22:00** | **Probeprüfung** — schlanke Lektion, nur `zyklus` + `probe` |
-| **Sonntag** | **Übungstag** — Auswertung der Probeprüfung, Fehler der Woche, Wortschatz nachziehen |
-
-**Die Fokus-Rotation.** Weil es nur drei Lektionstage gibt, aber fünf Subtests, ist der Fokus
-**nicht mehr an den Wochentag gebunden**, sondern läuft im Kreis weiter. Reihenfolge:
+**Die Fokus-Rotation.** Der Fokus hängt **nicht am Wochentag**, sondern an der **Nummer der
+Lektion**, und läuft im Kreis:
 
 `Leseverstehen → Hörverstehen → Sprachbausteine → Schriftlicher Ausdruck → Mündlicher Ausdruck`
 
-Rechenregel — nicht raten, ausrechnen:
-
 ```
-n = (woche - 1) * 3 + i        # i = 0 für Montag, 1 für Mittwoch, 2 für Freitag
-fokus = REIHE[n mod 5]         # REIHE = die fünf Subtests oben
+lektion = (heute - 2026-09-05).days / 2 + 1
+fokus   = REIHE[(lektion - 1) mod 5]
 ```
 
-Woche 1 also Mo Leseverstehen · Mi Hörverstehen · Fr Sprachbausteine, Woche 2 Mo Schriftlicher
-Ausdruck · Mi Mündlicher Ausdruck · Fr Leseverstehen, und so weiter. Nach fünf Wochen hat jeder
-Subtest an jedem Wochentag einmal gestanden — kein Subtest fällt hinten runter.
+Lektion 1 (05.09.) Leseverstehen · 2 (07.09.) Hörverstehen · 3 (09.09.) Sprachbausteine ·
+4 (11.09.) Schriftlicher Ausdruck · 5 (13.09.) Mündlicher Ausdruck · 6 (15.09.) wieder
+Leseverstehen. Jeder Subtest kommt gleich oft dran, keiner fällt hinten runter.
 
-Der Block `zyklus` sieht ab Woche 1 so aus:
+Der Block `zyklus` sieht ab Lektion 1 so aus:
 
 ```json
 "zyklus": {"woche": 1, "gesamt": 16, "thema": "Angaben zur eigenen Person",
-           "themaNr": 1, "tag": "Montag", "fokus": "Leseverstehen",
-           "start": "2026-08-31", "bisPruefung": 154}
+           "themaNr": 1, "tag": "Samstag", "fokus": "Leseverstehen",
+           "start": "2026-09-05", "bisPruefung": 149, "lektion": 1}
 ```
 
 `bisPruefung` = Tage bis zum 01.02.2027, an jedem Lektionstag neu ausrechnen.
 
-### Die Übungstage — Dienstag, Donnerstag, Sonntag
+### Die Übungstage — die Tage zwischen zwei Lektionen
 
 Kein neuer Stoff. Die Seite zeigt an diesen Tagen von selbst einen Kasten mit vier Aufgaben zur
 **letzten** Lektion — die Kette laut an den drei Sätzen, den `lesen`-Text noch einmal in
@@ -166,28 +171,29 @@ dem **Kettenglied**, alles andere der **Baustelle** zuordnen.
 
 ### Die 16 Wochen — ein telc-Thema pro Woche
 
-Start: **Montag, 31.08.2026.** Reihenfolge = Anhang T des Handbuchs.
+Start: **Samstag, 05.09.2026.** Reihenfolge = Anhang T des Handbuchs. Eine „Woche" sind hier
+sieben Tage ab dem Starttag, nicht Montag bis Sonntag.
 
 | Woche | Zeitraum | Thema |
 |---|---|---|
-| 1 | 31.08.–06.09. | T1 Angaben zur eigenen Person |
-| 2 | 07.09.–13.09. | T2 Der menschliche Körper, Gesundheit und Körperpflege |
-| 3 | 14.09.–20.09. | T3 Wohnen |
-| 4 | 21.09.–27.09. | T4 Orte |
-| 5 | 28.09.–04.10. | T5 Tägliches Leben |
-| 6 | 05.10.–11.10. | T6 Essen und Trinken |
-| 7 | 12.10.–18.10. | T7 Erziehung, Ausbildung, Lernen |
-| 8 | 19.10.–25.10. | T8 Arbeit und Beruf |
-| 9 | 26.10.–01.11. | T9 Geschäfte, Handel, Konsum |
-| 10 | 02.11.–08.11. | T10 Dienstleistungen |
-| 11 | 09.11.–15.11. | T11 Natur und Umwelt |
-| 12 | 16.11.–22.11. | T12 Reise und Verkehr |
-| 13 | 23.11.–29.11. | T13 Freizeit und Unterhaltung |
-| 14 | 30.11.–06.12. | T14 Medien und moderne Informationstechniken |
-| 15 | 07.12.–13.12. | T15 Gesellschaft, Staat, Regierung |
-| 16 | 14.12.–20.12. | T16 Beziehungen zu anderen Menschen und Kulturen |
+| 1 | 05.09.–11.09. | T1 Angaben zur eigenen Person |
+| 2 | 12.09.–18.09. | T2 Der menschliche Körper, Gesundheit und Körperpflege |
+| 3 | 19.09.–25.09. | T3 Wohnen |
+| 4 | 26.09.–02.10. | T4 Orte |
+| 5 | 03.10.–09.10. | T5 Tägliches Leben |
+| 6 | 10.10.–16.10. | T6 Essen und Trinken |
+| 7 | 17.10.–23.10. | T7 Erziehung, Ausbildung, Lernen |
+| 8 | 24.10.–30.10. | T8 Arbeit und Beruf |
+| 9 | 31.10.–06.11. | T9 Geschäfte, Handel, Konsum |
+| 10 | 07.11.–13.11. | T10 Dienstleistungen |
+| 11 | 14.11.–20.11. | T11 Natur und Umwelt |
+| 12 | 21.11.–27.11. | T12 Reise und Verkehr |
+| 13 | 28.11.–04.12. | T13 Freizeit und Unterhaltung |
+| 14 | 05.12.–11.12. | T14 Medien und moderne Informationstechniken |
+| 15 | 12.12.–18.12. | T15 Gesellschaft, Staat, Regierung |
+| 16 | 19.12.–25.12. | T16 Beziehungen zu anderen Menschen und Kulturen |
 
-Ab **21.12.2026** bis zur Prüfung: **Endspurt**, sechs Wochen. Keine neuen Themen mehr,
+Ab **26.12.2026** bis zur Prüfung: **Endspurt**, gut fünf Wochen. Keine neuen Themen mehr,
 sondern ganze Prüfungsteile unter Zeit, Wiederholung der schwächsten Subtests laut den
 Probeprüfungen, und jede Woche eine vollständige E-Mail in 30 Minuten mit Uhr.
 
@@ -218,12 +224,16 @@ Schreiben und beim Sprechen mitbewertet.
 
 ### Die Probeprüfung — Samstag 22:00
 
-**Die 5:30-Routine schreibt sie am Samstagmorgen mit.** Die Samstagsdatei ist **keine volle
-Lektion**: sie enthält nur `datum`, `thema`, `zyklus` (mit `tag: "Samstag"`,
-`fokus: "Probeprüfung"`) und den Block `probe` — Struktur wie `telc`, plus die Felder `punkte`
-für die erreichbare Punktzahl und `dauer` für die Bearbeitungszeit. **Kein** `verb`, `lesen`,
-`deklination`, `diktat` und so weiter — der Samstag gehört der Prüfung, nicht neuem Stoff.
+**Die 5:30-Routine schreibt sie am Samstagmorgen mit.** Ist der Samstag **kein** Lektionstag,
+ist die Samstagsdatei **keine volle Lektion**: sie enthält nur `datum`, `thema`, `zyklus` (mit
+`tag: "Samstag"`, `fokus: "Probeprüfung"`) und den Block `probe` — Struktur wie `telc`, plus die
+Felder `punkte` für die erreichbare Punktzahl und `dauer` für die Bearbeitungszeit. **Kein**
+`verb`, `lesen`, `deklination`, `diktat` und so weiter. Fällt ein Samstag **auf** einen
+Lektionstag, bekommt die volle Lektion den `probe`-Block zusätzlich.
 An allen anderen Tagen: keinen `probe`-Block schreiben.
+
+**Die erste Probeprüfung ist der 12.09.2026.** Am Starttag 05.09. gab es bewusst keine — es war
+noch nichts da, was man hätte prüfen können.
 
 Die Seite **verschließt den Block bis Samstag 22:00 Uhr** und zeigt bis dahin nur einen Kasten
 mit Countdown. Das ist Absicht: Die Probeprüfung soll unter echten Bedingungen entdeckt werden.
@@ -294,7 +304,7 @@ prüfen, ob die neueste Lektion im Artifact neuer ist als die neueste Datei in `
 und wenn ja, sie erst aus dem Artifact zurückholen. Und: **immer committen und pushen**, nicht
 nur veröffentlichen.
 
-### Der Block `lesen` — jeden Tag ein Text von 200 Wörtern
+### Der Block `lesen` — in jeder Lektion ein Text von 200 Wörtern
 
 Sie hat ausdrücklich darum gebeten: **„Je n'arrive pas à m'exprimer clairement."** Deshalb hat
 **jede** Lektion einen Block `lesen` — ein Text, den sie liest, und danach drei Dinge, die sie
@@ -396,11 +406,12 @@ Regel ist und nicht jedes Mal ein neuer Zufall.
 Seite: *Pflegeung* (es heißt *die Pflege*), *Altum* (gemeint war *das Altertum*) und *System*
 als Beleg für die Endung *-tum* (es endet auf *-em*). Solche Beispiele nie ungeprüft übernehmen.
 
-### Der Block `deklination` — die Kette, jeden Tag an drei Sätzen
+### Der Block `deklination` — die Kette, in jeder Lektion an drei Sätzen
 
 Sie hat gesagt: **„pas d'ajouter comme cela, mais m'apprendre à étudier cela … afin que je ne
-fasse plus les mêmes erreurs."** Eine Nachschlageseite reicht nicht — es braucht **tägliche
-Wiederholung eines festen Verfahrens**. Deshalb hat jede Lektion einen Block `deklination`.
+fasse plus les mêmes erreurs."** Eine Nachschlageseite reicht nicht — es braucht **regelmäßige
+Wiederholung eines festen Verfahrens**. Deshalb hat jede Lektion einen Block `deklination`, und
+an den Übungstagen dazwischen werden dieselben drei Sätze noch einmal laut durchgegangen.
 
 Das Verfahren heißt **die Kette**, fünf Fragen in fester Reihenfolge. Eigene Seite:
 `deutsch-taeglich/deklination.html` →
@@ -430,15 +441,15 @@ Tages sollen zu dieser Stufe passen und nicht darüber hinausgehen.
 **Und wenn sie freie Texte schickt:** jeden Deklinationsfehler dem **Kettenglied** zuordnen —
 „Das war Glied 3: es heißt *das* Wochenende." So sieht sie das Muster statt einer Fehlerliste.
 
-### Pflichtinhalt jeder Lektion (Montag, Mittwoch, Freitag)
+### Pflichtinhalt jeder Lektion (an jedem Lektionstag)
 
 Verb des Tages (mit Konjugation und Bedeutung) · Wortschatz-Block (Redemittel **zum Thema der
 Woche**) · Grammatik-Block · **`deklination`-Block mit drei Kettensätzen** ·
 **`lesen`-Block mit 200-Wörter-Text** · **telc-Block mit dem Fokus der Lektion** ·
 Aussprache-Block · Diktat · 5 Übersetzungssätze FR→DE · 3 Alltag-Missionen.
 
-**Am Samstag nur** `zyklus` + `probe` — sonst nichts.
-**Am Dienstag, Donnerstag und Sonntag gar keine Datei.**
+**An einem Samstag, der kein Lektionstag ist:** nur `zyklus` + `probe` — sonst nichts.
+**An allen übrigen Tagen gar keine Datei.**
 
 **Verben und Wortschatz auf B2-Niveau wählen** und **zum Wochenthema passend**. Kein
 A2-Grundwortschatz. Gut sind Verben mit fester Präposition (*sich kümmern um*, *hinweisen auf*,
@@ -453,6 +464,12 @@ Typische Fehler französischsprachiger Lernender ausdrücklich zeigen und korrig
 Die 13 Lektionen vom 17.08.–29.08.2026 (altes Schema) liegen in
 `deutsch-taeglich/archiv-alt/` mit einer README-Tabelle. Sie gehören **nicht**
 zurück in `lektionen/`, außer die Nutzerin bittet ausdrücklich darum.
+
+Die fünf Lektionen vom **30.08.–04.09.2026** hat die Nutzerin am 05.09. ausdrücklich löschen
+lassen (*„les autres précédents à effacer"*). Sie liegen **nicht** mehr im Arbeitsbaum, sind
+aber über die Git-Historie erreichbar:
+`git show 4e8d6dc:deutsch-taeglich/lektionen/2026-09-04.json`. Nur zurückholen, wenn sie
+ausdrücklich darum bittet.
 
 ---
 

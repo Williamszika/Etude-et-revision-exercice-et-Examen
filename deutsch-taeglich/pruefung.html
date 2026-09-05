@@ -445,23 +445,10 @@
 
 <section id="plan">
   <h2>Mein Plan bis Februar 2027</h2>
-  <p class="lead">Eine Woche pro telc-Thema, eine neue Lektion jeden zweiten Tag, jeden Samstag um 22:00 eine Probeprüfung.</p>
-  <div class="tabelle"><table><thead><tr><th>Tag</th><th>Was passiert</th><th class="n">Neuer Stoff?</th></tr></thead><tbody><tr><td><b>Montag</b></td><td><b>Lektion</b> — ein Subtest aus der Rotation</td><td class="n">ja</td></tr><tr><td><b>Dienstag</b></td><td>Übungstag — die Lektion von Montag vertiefen</td><td class="n">nein</td></tr><tr><td><b>Mittwoch</b></td><td><b>Lektion</b> — nächster Subtest der Rotation</td><td class="n">ja</td></tr><tr><td><b>Donnerstag</b></td><td>Übungstag — die Lektion von Mittwoch vertiefen</td><td class="n">nein</td></tr><tr><td><b>Freitag</b></td><td><b>Lektion</b> — nächster Subtest der Rotation</td><td class="n">ja</td></tr><tr><td><b>Samstag 22:00</b></td><td><b>Probeprüfung</b> — 122 Punkte im echten Format</td><td class="n">Prüfung</td></tr><tr><td><b>Sonntag</b></td><td>Übungstag — Auswertung, Fehler der Woche, Wortschatz</td><td class="n">nein</td></tr></tbody></table></div>
+  <p class="lead">Neustart am 05.09.2026. Eine Woche pro telc-Thema, eine neue Lektion jeden zweiten Tag, jeden Samstag um 22:00 eine Probeprüfung.</p>
+  <div class="tabelle"><table><thead><tr><th>Tag</th><th>Was passiert</th><th class="n">Neuer Stoff?</th></tr></thead><tbody><tr><td><b>Lektionstag</b><br>jeder zweite Tag ab 05.09.</td><td><b>Neue Lektion</b> — ein Subtest aus der Rotation, dazu Verb, Wortschatz, Grammatik, die Kette und ein Text von 200 Wörtern</td><td class="n">ja</td></tr><tr><td><b>Übungstag</b><br>der Tag dazwischen</td><td>Nichts Neues. Die Lektion von gestern festigen: die Kette laut, den Text ohne hinzusehen erklären, die fünf eigenen Sätze schreiben, die Fehler der Baustelle zuordnen</td><td class="n">nein</td></tr><tr><td><b>Samstag 22:00</b></td><td><b>Probeprüfung</b> — 122 Punkte im echten Format. Fällt sie auf einen Lektionstag, kommt sie zur Lektion dazu</td><td class="n">Prüfung</td></tr></tbody></table></div>
   <div class="plan" id="planliste"></div>
-  <div class="info"><b>Warum jeden zweiten Tag?</b> Weil täglich neuer Stoff keine Zeit zum
-    Lernen lässt. Neue Lektionen kommen <b>montags, mittwochs und freitags</b>; dienstags,
-    donnerstags und sonntags wird nichts Neues gelernt, sondern das Alte gefestigt — die Kette
-    laut an denselben drei Sätzen, der Text noch einmal ohne hinzusehen erklärt, die fünf eigenen
-    Sätze geschrieben, die Fehler der Baustelle zugeordnet.
-    <p style="margin:10px 0 0;"><b>Der Fokus rotiert.</b> Es gibt fünf Subtests, aber nur drei
-    Lektionstage — deshalb hängt der Fokus nicht mehr am Wochentag, sondern läuft im Kreis:
-    Leseverstehen → Hörverstehen → Sprachbausteine → Schriftlicher Ausdruck → Mündlicher
-    Ausdruck → wieder von vorn. Nach fünf Wochen hat jeder Subtest an jedem Wochentag einmal
-    gestanden, und keiner fällt hinten runter. Die Grammatik der Woche läuft in jeder Lektion
-    mit — sie zahlt über „formale Richtigkeit“ auch beim Schreiben und Sprechen ein.</p>
-    <p style="margin:10px 0 0;">Die Wochenthemen sind <b>die 16 offiziellen Themen aus Anhang T
-    des Handbuchs</b>, in der Reihenfolge des Handbuchs. Nach der letzten Themenwoche bleiben
-    sechs Wochen Endspurt.</p></div>
+  <div class="info"><b>Warum jeden zweiten Tag?</b> Weil täglich neuer Stoff keine Zeit zum Lernen lässt. Am <b>05.09.2026</b> wurde deshalb neu angefangen: neue Lektion jeden zweiten Tag — <b>05.09. · 07.09. · 09.09. · 11.09. …</b> — und dazwischen ein Übungstag, an dem nichts Neues gelernt, sondern das Alte gefestigt wird.<p style="margin:10px 0 0;"><b>Der Fokus rotiert nach Lektionsnummer</b>, nicht nach Wochentag: Leseverstehen → Hörverstehen → Sprachbausteine → Schriftlicher Ausdruck → Mündlicher Ausdruck → wieder von vorn. Jeder Subtest kommt gleich oft dran, keiner fällt hinten runter. Die Grammatik der Woche läuft in jeder Lektion mit — sie zahlt über „formale Richtigkeit“ auch beim Schreiben und Sprechen ein.</p>
   <div class="gut"><b>Die Probeprüfung bleibt bis Samstag 22:00 verschlossen.</b> Auf der Seite
     „Deutsch täglich“ siehst du bis dahin nur einen Countdown. Das ist Absicht — der Wert der
     Übung kommt daher, dass du sie unter echten Bedingungen zum ersten Mal siehst. Es gibt einen
@@ -582,9 +569,14 @@
              'Schriftlicher Ausdruck','Mündlicher Ausdruck'];
   var KURZ={'Leseverstehen':'LV','Hörverstehen':'HV','Sprachbausteine':'SB',
             'Schriftlicher Ausdruck':'SA','Mündlicher Ausdruck':'MA'};
+  /* Lektionen dieser Woche: jeder zweite Tag ab dem Start */
   function fokusDerWoche(woche){
-    var t=['Mo','Mi','Fr'], out=[];
-    for(var i=0;i<3;i++) out.push(t[i]+' '+KURZ[REIHE[((woche-1)*3+i)%5]]);
+    var W=['So','Mo','Di','Mi','Do','Fr','Sa'], out=[];
+    for(var t=(woche-1)*7; t<woche*7; t++){
+      if(t%2) continue;                       /* nur Lektionstage */
+      var d=new Date(start); d.setDate(d.getDate()+t);
+      out.push(W[d.getDay()]+' '+KURZ[REIHE[(t/2)%5]]);
+    }
     return out.join(' · ');
   }
   function zeile(zeit,titel,text,stark){
@@ -598,12 +590,12 @@
     p.appendChild(d); p.appendChild(w); plan.appendChild(p);
   }
 
-  var start=new Date(2026,7,31);   /* Montag, 31.08.2026 */
+  var start=new Date(2026,8,5);   /* Samstag, 05.09.2026 — Neustart */
   var heute=new Date(); heute.setHours(0,0,0,0);
   var w16=new Date(start); w16.setDate(w16.getDate()+16*7-1);
 
   zeile(dat(start)+'26 – '+dat(w16)+'26','16 Themenwochen',
-        'Jede Woche eines der 16 offiziellen telc-Themen. Lektionen Mo · Mi · Fr, '+
+        'Jede Woche eines der 16 offiziellen telc-Themen. Eine Lektion jeden zweiten Tag, '+
         'jeden Samstag um 22:00 eine Probeprüfung. LV Leseverstehen · HV Hörverstehen · '+
         'SB Sprachbausteine · SA Schriftlicher Ausdruck · MA Mündlicher Ausdruck.');
 
@@ -627,8 +619,8 @@
   });
 
   var ea=new Date(w16); ea.setDate(ea.getDate()+1);
-  zeile(dat(ea)+'26 – 31.01.27','Endspurt — sechs Wochen',
-        'Keine neuen Themen. Ganze Subtests in Originallänge aus dem Übungstest, jede Woche eine vollständige E-Mail in 30 Minuten, und gezielt der schwächste Subtest aus den Probeprüfungen.',true);
+  zeile(dat(ea)+'26 – 31.01.27','Endspurt',
+        'Gut fünf Wochen. Keine neuen Themen. Ganze Subtests in Originallänge aus dem Übungstest, jede Woche eine vollständige E-Mail in 30 Minuten, und gezielt der schwächste Subtest aus den Probeprüfungen.',true);
   zeile('Februar 2027','Prüfung telc Deutsch B2',
         'Schriftlich mindestens 135 von 225 und mündlich mindestens 45 von 75 — beide Hürden einzeln.',true);
 })();
