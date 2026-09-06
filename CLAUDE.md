@@ -158,13 +158,32 @@ Der Block `zyklus` sieht ab Lektion 1 so aus:
 
 `bisPruefung` = Tage bis zum 01.02.2027, an jedem Lektionstag neu ausrechnen.
 
-### Die Übungstage — die Tage zwischen zwei Lektionen
+### Die Übungstage — ein eigener Tag, und nur Übungen
 
-Kein neuer Stoff. Die Seite zeigt an diesen Tagen von selbst einen Kasten mit vier Aufgaben zur
-**letzten** Lektion — die Kette laut an den drei Sätzen, den `lesen`-Text noch einmal in
-30 Sekunden erklären, die fünf eigenen Sätze aus dem `wortschatz`-Block schreiben, und die
-falschen Antworten des Vortags der passenden **Baustelle** zuordnen. Das ist der Sinn der
-Umstellung: sie hat gesagt, täglich neuer Stoff lasse ihr keine Zeit zum Lernen.
+Sie hat sich beschwert, als der Übungstag noch ein Kasten **über** der Lektion vom Vortag war:
+*„On ne peut pas migrer entre la leçon de hier et les exercices d'aujourd'hui. Et les exercices
+doivent être que les exercices et non de leçon."* Beides ist behoben — **ohne dass eine Datei
+für den Übungstag entsteht.** Die Vorlage baut ihn selbst.
+
+**Ein Übungstag ist ein eigener Tag.** `baueTage()` im Template geht vom ältesten Lektionsdatum
+bis heute und legt für jeden Tag ohne Lektionsdatei einen Eintrag `{typ:'uebung', datum, l}` an,
+wobei `l` die **letzte vorangegangene Lektion** ist. Daraus folgt:
+
+- In der Datumsleiste steht der Übungstag als **eigener Knopf** (gestrichelt, mit ✎).
+  Zwischen Lektion und Übungstag wird ganz normal hin- und hergeblättert.
+- `AKT_DATUM` ist das Datum **des Übungstags**, nicht das der Lektion. Ihre Antworten von heute
+  liegen also unter eigenen `localStorage`-Schlüsseln — sie fängt wirklich mit leeren Feldern an.
+
+**Und es sind nur Übungen.** `renderUebungstagSeite(l, datum)` zeigt ausschließlich:
+`deklination` · `lesen` **mit `{nurUebungen:true}`** · `training` · `telc` · `diktat` ·
+`uebersetzung`. **Nicht** dabei: `verb`, `wortschatz`, `grammatik`, `aussprache` — das ist
+Lernstoff und gehört dem Lektionstag.
+
+Das Flag `nurUebungen` in `renderLesen` lässt nur die Aufgaben stehen: der Text steht
+**zugeklappt** in einem `<details>` („erst aufklappen, wenn du nicht weiterkommst"), und
+Vokabelchips, Redemittel, die **Wortschatztabelle**, die Einleitungen, die Grammatik-`regel`,
+`imText` und der `tipp` fallen weg. Die *Aufgaben* aus `wortschatz`, `grammatik` und
+`konnektoren` bleiben.
 
 **Wenn sie an einem Übungstag etwas schickt**, wird es korrigiert wie immer — Deklinationsfehler
 dem **Kettenglied**, alles andere der **Baustelle** zuordnen.

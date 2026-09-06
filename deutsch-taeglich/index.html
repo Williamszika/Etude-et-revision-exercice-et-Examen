@@ -37,6 +37,8 @@
     background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer;white-space:nowrap;}
   .datebar button:hover{border-color:var(--accent);color:var(--ink);}
   .datebar button.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .datebar button.ue-tab{border-color:var(--ue);color:var(--ue);border-style:dashed;}
+  .datebar button.ue-tab.active{background:var(--ue);border-color:var(--ue);color:var(--card);border-style:solid;}
   @media (prefers-color-scheme:dark){.datebar button.active{color:#08202e;}}
   :root[data-theme="dark"] .datebar button.active{color:#08202e;} :root[data-theme="light"] .datebar button.active{color:#fff;}
   /* Blättern: gestern / morgen */
@@ -595,30 +597,41 @@ function leZeig(id,btn){
   const offen=el.classList.toggle('show');
   if(btn)btn.textContent=offen?'Musterantwort ausblenden':'Musterantwort zeigen';
 }
-function renderLesen(b,idx){
+/* opt.nurUebungen = Übungstag: nur die Aufgaben, kein Lernstoff.
+   Der Text bleibt zugeklappt, Wortschatztabelle und Regeln fallen weg. */
+function renderLesen(b,idx,opt){
   if(!b||!b.text)return '';
+  opt=opt||{};
+  const nur=!!opt.nurUebungen;
   const roh=String(b.text).replace(/\*\*/g,'').replace(/\s+/g,' ').trim();
   const woerter=roh.split(/\s+/).filter(Boolean).length;
   const id='le-'+idx;
-  let h='<div class="block"><span class="kind k-lesen">Lesen und verstehen · '+woerter+' Wörter</span>';
+  let h='<div class="block"><span class="kind k-lesen">'+
+        (nur?'Übungen zum Text':'Lesen und verstehen · '+woerter+' Wörter')+'</span>';
   h+='<h3>'+bold(b.titel||'Text des Tages')+'</h3>';
-  if(b.quelle)h+='<p class="lit">'+esc(b.quelle)+'</p>';
-  if(b.fr)h+='<p class="fr">'+esc(b.fr)+'</p>';
+  if(!nur&&b.quelle)h+='<p class="lit">'+esc(b.quelle)+'</p>';
+  if(!nur&&b.fr)h+='<p class="fr">'+esc(b.fr)+'</p>';
 
-  h+='<div id="'+id+'" data-text="'+attr(roh)+'">';
-  h+='<div class="le-kopf"><span class="wz">'+woerter+' Wörter · zuerst lesen, dann zumachen</span>'+
+  const kopf='<div class="le-kopf"><span class="wz">'+woerter+
+     ' Wörter · zuerst lesen, dann zumachen</span>'+
      '<button type="button" class="le-play" onclick="leSprich(\''+id+'\')">▶︎ Text vorlesen</button>'+
      '<select class="le-tempo" aria-label="Tempo">'+
      '<option value="0.75">langsam</option><option value="0.9" selected>normal</option>'+
      '<option value="1.05">schnell</option></select></div>';
-  h+='<div class="lesetext">'+String(b.text).split(/\n\s*\n/)
+  const korpus='<div class="lesetext">'+String(b.text).split(/\n\s*\n/)
        .map(a=>'<p>'+bold(a.trim())+'</p>').join('')+'</div>';
-  h+='</div>';
+  if(nur){
+    h+='<details class="opbox"><summary>Den Text noch einmal — erst aufklappen, '+
+       'wenn du nicht weiterkommst</summary><div class="inh">'+
+       '<div id="'+id+'" data-text="'+attr(roh)+'">'+kopf+korpus+'</div></div></details>';
+  } else {
+    h+='<div id="'+id+'" data-text="'+attr(roh)+'">'+kopf+korpus+'</div>';
+  }
 
-  if(b.hilfe&&b.hilfe.length){
+  if(!nur&&b.hilfe&&b.hilfe.length){
     h+='<div class="chips">'+b.hilfe.map(c=>'<span class="chip">'+bold(c)+'</span>').join('')+'</div>';
   }
-  if(b.redemittel&&b.redemittel.length){
+  if(!nur&&b.redemittel&&b.redemittel.length){
     h+='<div class="le-red"><h4>Damit fängst du an</h4><ul>'+
        b.redemittel.map(r=>'<li>'+bold(r)+'</li>').join('')+'</ul></div>';
   }
@@ -689,11 +702,13 @@ function renderLesen(b,idx){
     h+='</div>';
   }
 
-  /* Wortschatz aus dem Text — lernen, nicht nur nachschlagen */
-  if(b.wortschatz&&b.wortschatz.woerter&&b.wortschatz.woerter.length){
+  /* Wortschatz aus dem Text — am Übungstag nur die Aufgabe, ohne Tabelle */
+  const wsTab=b.wortschatz&&b.wortschatz.woerter&&b.wortschatz.woerter.length;
+  if(wsTab||(b.wortschatz&&b.wortschatz.aufgabe)){
     h+='<div class="le-schritt"><span class="nr">'+schritt()+'</span>'+
-       '<p class="fr2">Der Wortschatz aus dem Text</p>';
-    if(b.wortschatz.einleitung)h+='<p class="hw">'+bold(b.wortschatz.einleitung)+'</p>';
+       '<p class="fr2">'+(nur?'Fünf eigene Sätze':'Der Wortschatz aus dem Text')+'</p>';
+    if(!nur&&b.wortschatz.einleitung)h+='<p class="hw">'+bold(b.wortschatz.einleitung)+'</p>';
+    if(!nur&&wsTab){
     h+='<div class="scroll-x"><table class="wtab"><thead><tr>'+
        '<th>Wort</th><th>Niveau</th><th>Auf Französisch</th><th>So steht es im Text</th>'+
        '</tr></thead><tbody>';
@@ -705,6 +720,7 @@ function renderLesen(b,idx){
          '<td class="wt-t">'+bold(w.imText||'')+'</td></tr>';
     });
     h+='</tbody></table></div>';
+    }
     if(b.wortschatz.aufgabe){
       const wid=id+'-w';
       h+='<div class="auf" style="background:var(--card)"><div class="frage">'+
@@ -726,15 +742,15 @@ function renderLesen(b,idx){
   if(b.grammatik&&b.grammatik.punkte&&b.grammatik.punkte.length){
     h+='<div class="le-schritt"><span class="nr">'+schritt()+'</span>'+
        '<p class="fr2">Die Grammatik im Text</p>';
-    if(b.grammatik.einleitung)h+='<p class="hw">'+bold(b.grammatik.einleitung)+'</p>';
+    if(!nur&&b.grammatik.einleitung)h+='<p class="hw">'+bold(b.grammatik.einleitung)+'</p>';
     b.grammatik.punkte.forEach((g,i)=>{
       const gid=id+'-g'+i;
       h+='<div class="auf" style="background:var(--card)"><div class="kopf">'+
          '<span class="nr" style="background:var(--le)">'+(i+1)+'</span>'+
          '<span class="typ">'+esc(g.name||'Struktur')+'</span></div>';
-      if(g.regel)h+='<div class="tipbox" style="margin:6px 0 8px;border-left-color:var(--le);'+
+      if(!nur&&g.regel)h+='<div class="tipbox" style="margin:6px 0 8px;border-left-color:var(--le);'+
         'background:var(--lebg)">'+bold(g.regel)+'</div>';
-      if(g.imText)h+='<p class="kon-satz">'+bold(g.imText)+'</p>';
+      if(!nur&&g.imText)h+='<p class="kon-satz">'+bold(g.imText)+'</p>';
       h+='<div class="frage">'+bold(g.aufgabe)+'</div>';
       h+='<div class="antwort"><textarea rows="2" data-nr="lesen-g'+i+'" '+
          'placeholder="Schreib den ganzen Satz …"></textarea>'+
@@ -750,7 +766,7 @@ function renderLesen(b,idx){
   if(b.konnektoren&&b.konnektoren.aufgaben&&b.konnektoren.aufgaben.length){
     h+='<div class="le-schritt"><span class="nr">'+schritt()+'</span>'+
        '<p class="fr2">Die Konnektoren im Text</p>';
-    if(b.konnektoren.einleitung)h+='<p class="hw">'+bold(b.konnektoren.einleitung)+'</p>';
+    if(!nur&&b.konnektoren.einleitung)h+='<p class="hw">'+bold(b.konnektoren.einleitung)+'</p>';
     b.konnektoren.aufgaben.forEach((k,i)=>{
       const kid=id+'-k'+i;
       h+='<div class="auf" style="background:var(--card)"><div class="kopf">'+
@@ -783,7 +799,7 @@ function renderLesen(b,idx){
     h+='</div></div>';
   }
 
-  if(b.tipp)h+='<div class="tipbox">'+bold(b.tipp)+'</div>';
+  if(!nur&&b.tipp)h+='<div class="tipbox">'+bold(b.tipp)+'</div>';
   h+='</div>';
   return h;
 }
@@ -1355,21 +1371,52 @@ function fmtDate(iso){
   const dt=new Date(+y,+m-1,+d);
   return {kurz:d+'.'+m+'.', lang:tage[dt.getDay()]+', '+d+'.'+m+'.'+y};
 }
-function tagName(i){ return i===0?'Heute':(i===1?'Gestern':fmtDate(LEKTIONEN[i].datum).kurz); }
+/* ---------- Die Tage: Lektionstage und Übungstage als eigene Einträge ----------
+   Ein Übungstag ist ein Tag für sich: eigener Knopf in der Leiste, eigene
+   Antworten, und nur Übungen — nie der Lernstoff der Lektion davor. */
+let TAGE=[];
+function isoVon(d){
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+
+         String(d.getDate()).padStart(2,'0');
+}
+function baueTage(){
+  const out=[];
+  if(!LEKTIONEN.length) return out;
+  const nachDatum={};
+  LEKTIONEN.forEach(l=>{ nachDatum[l.datum]=l; });
+  const erste=alsDatum(LEKTIONEN[LEKTIONEN.length-1].datum);
+  let ende=alsDatum(LEKTIONEN[0].datum);
+  const heute=alsDatum(heuteISO());
+  if(erste===null||ende===null) return LEKTIONEN.map(l=>({typ:'lektion',datum:l.datum,l:l}));
+  if(heute&&heute>ende) ende=heute;
+  let letzte=null;
+  for(let d=new Date(erste); d<=ende; d.setDate(d.getDate()+1)){
+    const iso=isoVon(d);
+    if(nachDatum[iso]){ letzte=nachDatum[iso]; out.push({typ:'lektion',datum:iso,l:letzte}); }
+    else if(letzte){ out.push({typ:'uebung',datum:iso,l:letzte}); }
+  }
+  return out.reverse();          /* neueste zuerst */
+}
+function tagName(i){
+  const e=TAGE[i]; if(!e) return '';
+  return i===0?'Heute':(i===1?'Gestern':fmtDate(e.datum).kurz);
+}
 function buildBar(){
   bar.innerHTML='';
-  LEKTIONEN.forEach((l,i)=>{
+  TAGE.forEach((e,i)=>{
     const b=document.createElement('button');
-    b.textContent = i===0 ? 'Heute · '+fmtDate(l.datum).kurz
-                  : i===1 ? 'Gestern · '+fmtDate(l.datum).kurz
-                  : fmtDate(l.datum).kurz;
+    const kurz=fmtDate(e.datum).kurz;
+    b.textContent=(e.typ==='uebung'?'✎ ':'')+
+      (i===0?'Heute · '+kurz : i===1?'Gestern · '+kurz : kurz);
+    b.title=e.typ==='uebung'?'Übungstag — nur Übungen':'Lektion';
+    if(e.typ==='uebung') b.classList.add('ue-tab');
     b.onclick=()=>{cur=i;render();};
     bar.appendChild(b);
   });
 }
 /* zurück = ein Tag früher = höherer Index (die Liste ist neueste zuerst) */
 const bZurueck=document.getElementById('zurueck'), bVor=document.getElementById('vor');
-bZurueck.onclick=()=>{ if(cur<LEKTIONEN.length-1){ cur++; render(); } };
+bZurueck.onclick=()=>{ if(cur<TAGE.length-1){ cur++; render(); } };
 bVor.onclick=()=>{ if(cur>0){ cur--; render(); } };
 document.addEventListener('keydown',e=>{
   if(e.target.tagName==='TEXTAREA'||e.target.tagName==='INPUT') return;
@@ -1417,91 +1464,61 @@ function alsDatum(iso){
   if(t.length!==3) return null;
   return new Date(+t[0],+t[1]-1,+t[2]);
 }
-function renderUebungstag(l){
-  /* nur auf der neuesten Lektion, und nur wenn sie nicht von heute ist:
-     dann liegt heute zwischen zwei Lektionen */
-  if(cur!==0||!l) return '';
-  if(l.datum===heuteISO()) return '';
-  const heute=alsDatum(heuteISO()), dat=alsDatum(l.datum);
-  if(!heute||!dat||heute<dat) return '';   /* Datum in der Zukunft: kein Kasten */
-  /* Nur an echten Übungstagen — an einem Lektionstag, an dem die Lektion noch fehlt,
-     wäre „Heute ist Übungstag" schlicht falsch. */
-  const start=alsDatum((l.zyklus&&l.zyklus.start)||'');
-  if(start && Math.round((heute-start)/86400000)%2===0) return '';
-  const tag=WOCHENTAGE[heute.getDay()];
-
-  const auf=[];
-  if(l.deklination&&(l.deklination.saetze||[]).length){
-    auf.push(['Die Kette laut — an denselben drei Sätzen',
-      'Nicht wieder aufschreiben, sondern <b>sprechen</b>: für jeden Satz die fünf Fragen '+
-      'der Reihe nach laut beantworten — Bestimmer, Fall, Genus, Artikel, Endung. '+
-      'Wenn du irgendwo stockst, weißt du, an welchem Glied es hakt.']);
-  }
-  if(l.lesen&&l.lesen.text){
-    auf.push(['Den Text „'+esc(l.lesen.titel||'')+'" noch einmal — ohne hinzusehen erklären',
-      'Erst still lesen, dann das Blatt zuklappen und den Text in <b>30 Sekunden</b> laut '+
-      'erklären. Beim zweiten Mal geht es leichter — genau darum gibt es diesen Tag.']);
-  }
-  if(l.lesen&&l.lesen.wortschatz&&l.lesen.wortschatz.aufgabe){
-    auf.push(['Die fünf eigenen Sätze schreiben',
-      'Über <b>dich</b>, nicht über die Figur aus dem Text, und bevorzugt mit den '+
-      '<b>B2-Wörtern</b>. Schreib sie unten ins Feld und schick sie mir — ich korrigiere '+
-      'sie, ich lobe sie nicht nur.']);
-  }
-  if(l.probe){
-    auf.push(['Die Probeprüfung von gestern auswerten',
-      'Punkte zusammenzählen und mit der <b>60-%-Marke</b> vergleichen. Nicht die richtigen '+
-      'Antworten anschauen — nur die falschen, und zu jeder aufschreiben, <b>warum</b> sie '+
-      'falsch war.']);
-  }
-  auf.push(['Die Fehler von gestern der Baustelle zuordnen',
-    'Nimm deine falschen Antworten und schreib zu jeder die Nummer dazu: 1 Kasus · 2 Genus · '+
-    '3 Verbstellung · 4 falscher Freund · 5 Kompositum · 6 Siezen · 7 feste Präposition. '+
-    'Wenn dieselbe Nummer dreimal auftaucht, ist das dein Thema für heute — '+
-    '<a href="https://claude.ai/code/artifact/3e941e25-cfd8-4cdc-99f6-3671b2f03365" '+
-    'target="_blank" rel="noopener" style="color:var(--ue);font-weight:600;">'+
-    'die sieben Baustellen</a>.']);
-
+/* Der Diktattext dient als Hörtext, wenn der telc-Block keinen eigenen hat */
+function hoertextVon(l){
+  if(!l||!l.diktat) return '';
+  return l.diktat.text ||
+    ((l.diktat.saetze && l.diktat.saetze.length) ? l.diktat.saetze.join(' ') : '');
+}
+/* Die ganze Seite eines Übungstags: NUR Übungen zur Lektion davor.
+   Kein Verb, kein Wortschatz, keine Grammatikerklärung, keine Aussprache —
+   die stehen weiterhin unter ihrem eigenen Tag in der Leiste oben. */
+function renderUebungstagSeite(l,datum){
+  if(!l) return '';
+  const d=alsDatum(datum), tag=d?WOCHENTAGE[d.getDay()]:'';
   let h='<section class="uetag">'+
-    '<div class="kopf"><h3>Heute ist Übungstag</h3>'+
-    '<span class="k-ue">'+esc(tag)+' · kein neuer Stoff</span></div>'+
-    '<p class="warum">Neue Lektionen kommen <b>jeden zweiten Tag</b>. '+
-    'Heute wird nichts Neues gelernt, sondern die Lektion vom '+fmtDate(l.datum).kurz+
-    ' gefestigt. Die nächste Lektion ist morgen.</p>'+
-    '<p class="fr">Aujourd’hui, rien de nouveau : tu reprends la leçon '+
-    'précédente. C’est pour cela que nous sommes passés à une '+
-    'leçon tous les deux jours — pour te laisser le temps d’apprendre.</p>'+
-    '<ol class="ueliste">';
-  auf.forEach(a=>{
-    h+='<li><div class="was">'+a[0]+'</div><div class="wie">'+a[1]+'</div></li>';
-  });
-  h+='</ol>';
-  h+='<div class="antwort" style="margin-top:14px"><textarea rows="6" data-nr="uetag" '+
-     'placeholder="Deine fünf eigenen Sätze — und alles, was du heute noch üben '+
-     'willst …"></textarea></div>';
-  h+='<div class="woher"><b>Schick mir, was hier steht.</b> Jeder Deklinationsfehler '+
-     'bekommt sein <b>Kettenglied</b>, jeder andere Fehler seine <b>Baustelle</b> — '+
-     'damit du siehst, dass es immer dieselbe Regel ist und nicht jedes Mal ein neuer '+
-     'Zufall.</div>'+
-     '</section>';
+    '<div class="kopf"><h3>Übungstag</h3>'+
+    '<span class="k-ue">'+esc(tag)+' · nur Übungen</span></div>'+
+    '<p class="warum">Heute gibt es <b>keine neue Lektion</b>. Was hier steht, sind '+
+    '<b>nur die Aufgaben</b> zur Lektion vom '+fmtDate(l.datum).kurz+' — ohne den Lernstoff. '+
+    'Die nächste Lektion kommt morgen.</p>'+
+    '<p class="fr">Aujourd’hui : rien de nouveau, <b>que des exercices</b>. Refais-les sans '+
+    'rouvrir la leçon d’hier — c’est en cherchant que ça rentre. Tes réponses d’aujourd’hui '+
+    'sont enregistrées à part de celles d’hier, donc tu pars d’une page blanche.</p>'+
+    '<div class="woher">Die Lektion selbst steht weiter unter <b>'+fmtDate(l.datum).kurz+
+    '</b> in der Leiste ganz oben — aber schau erst dort nach, wenn du wirklich nicht '+
+    'weiterkommst. <b>Schick mir deine Antworten.</b> Jeder Deklinationsfehler bekommt sein '+
+    '<b>Kettenglied</b>, jeder andere Fehler seine <b>Baustelle</b>.</div>'+
+    '</section>';
+  h+=renderDeklination(l.deklination,'ue');
+  h+=renderLesen(l.lesen,'ue',{nurUebungen:true});
+  h+=renderTraining(l.training,'ue');
+  h+=renderTraining(l.telc,'uetelc',{telc:true,kls:'k-telc',hoertext:hoertextVon(l),
+      badge:'telc Deutsch B2 · Prüfungstraining'});
+  h+=renderDiktat(l.diktat);
+  h+=renderTrans(l.uebersetzung,'ue');
   return h;
 }
 function render(){
   [...bar.children].forEach((b,i)=>b.classList.toggle('active',i===cur));
   const akt=bar.children[cur];
   if(akt&&akt.scrollIntoView) akt.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
-  const l=LEKTIONEN[cur];
-  document.getElementById('dayTitle').textContent=fmtDate(l.datum).lang;
-  document.getElementById('daySub').textContent='Lektion '+(LEKTIONEN.length-cur)+' · '+(l.thema||'Verb · Wortschatz · Grammatik');
+  const eintrag=TAGE[cur]; if(!eintrag) return;
+  const l=eintrag.l, ueb=eintrag.typ==='uebung';
+  document.getElementById('dayTitle').textContent=fmtDate(eintrag.datum).lang;
+  const nr=(l.zyklus&&l.zyklus.lektion)||(LEKTIONEN.indexOf(l)>=0?LEKTIONEN.length-LEKTIONEN.indexOf(l):1);
+  document.getElementById('daySub').textContent = ueb
+    ? 'Übungstag · nur Übungen zur Lektion '+nr+' vom '+fmtDate(l.datum).kurz
+    : 'Lektion '+nr+' · '+(l.thema||'Verb · Wortschatz · Grammatik');
   /* Blätter-Leiste */
-  bZurueck.disabled = cur>=LEKTIONEN.length-1;
+  bZurueck.disabled = cur>=TAGE.length-1;
   bVor.disabled = cur<=0;
   bZurueck.textContent = bZurueck.disabled ? '‹ Anfang' : '‹ '+tagName(cur+1);
   bVor.textContent = bVor.disabled ? 'Heute ›' : tagName(cur-1)+' ›';
   document.getElementById('wo').textContent =
-    cur===0 ? 'Du bist bei der heutigen Lektion'
-            : 'Du schaust '+(cur===1?'die Lektion von gestern':'eine ältere Lektion')+' an — '+fmtDate(l.datum).kurz;
-  /* Zyklus-Leiste: Tag X von 5, jeder Tag anklickbar */
+    cur===0 ? (ueb?'Heute ist Übungstag — nur Übungen':'Du bist bei der heutigen Lektion')
+            : (ueb?'Übungstag vom ':'Lektion vom ')+fmtDate(eintrag.datum).kurz;
+  /* Zyklus-Leiste */
   const zEl=document.getElementById('zyklus');
   if(l.zyklus&&l.zyklus.woche){
     /* ---- Wochenrhythmus telc B2 ---- */
@@ -1511,7 +1528,7 @@ function render(){
                  'Schriftlicher Ausdruck','Mündlicher Ausdruck'];
     /* Der Zyklus folgt nicht mehr der Kalenderwoche: Lektionstag ist jeder zweite Tag
        ab z.start. Die Leiste zeigt deshalb die nächsten sieben Tage ab dieser Lektion. */
-    const dLek=alsDatum(l.datum), dStart=alsDatum(z.start), TAG=86400000;
+    const dLek=alsDatum(eintrag.datum), dStart=alsDatum(z.start), TAG=86400000;
     /* Fortschrittspunkte = Wochen bis zur Prüfung */
     const gw=z.gesamt||16;
     let p='';
@@ -1526,8 +1543,8 @@ function render(){
         const diff=dStart?Math.round((d-dStart)/TAG):(i%2===0?0:1);
         if(diff>=0&&diff%2===0){
           art='Lektion';
-          const nr=diff/2+1;
-          tip='Lektion '+nr+' · '+REIHE[(nr-1)%5];
+          const ln=diff/2+1;
+          tip='Lektion '+ln+' · '+REIHE[(ln-1)%5];
         } else if(d.getDay()===6){ art='Probeprüfung'; tip='Probeprüfung, 22:00'; }
         else tip='Übungstag — die letzte Lektion festigen';
       } else { lbl=W[(i+1)%7]; }
@@ -1537,8 +1554,9 @@ function render(){
             ' title="'+attr(lbl+' · '+tip)+'">'+esc(lbl)+'</button>';
     }
     tage+='</div>';
-    zEl.innerHTML='<span class="zy-phase">'+esc(z.tag||'')+' · '+
-                    esc(z.fokus||'Lektion')+'</span>'+
+    zEl.innerHTML='<span class="zy-phase">'+
+                    esc(ueb?(WOCHENTAGE[(alsDatum(eintrag.datum)||new Date()).getDay()]+
+                             ' · Übungstag'):((z.tag||'')+' · '+(z.fokus||'Lektion')))+'</span>'+
                   '<span class="zy-punkte">'+p+'</span>'+
                   (z.thema?'<span class="thema">Thema: <b>'+esc(z.thema)+'</b>'+
                     (z.themaNr?' <i class="nr">T'+z.themaNr+' von 16</i>':'')+'</span>':'')+
@@ -1570,19 +1588,16 @@ function render(){
     });
   } else { zEl.innerHTML=''; zEl.style.display='none'; }
 
-  AKT_DATUM=l.datum;
-  AKT_TAG=(l.zyklus&&l.zyklus.tag)?Math.min(5,Math.max(1,l.zyklus.tag)):1;
-  /* Fällt im telc-Block kein eigener Hörtext an, dient der Diktattext als Hörtext */
-  let hoertext='';
-  if(l.diktat){
-    hoertext = l.diktat.text ||
-      ((l.diktat.saetze && l.diktat.saetze.length) ? l.diktat.saetze.join(' ') : '');
-  }
-  document.getElementById('content').innerHTML=
-    renderUebungstag(l)
-    +renderBlock(l.verb,'verb',cur)+renderBlock(l.wortschatz,'voc',cur)+renderBlock(l.grammatik,'gram',cur)
+  /* Die Antworten hängen am angezeigten Tag: Übungstag und Lektion haben
+     getrennte Felder, damit sie am Übungstag wirklich neu anfängt. */
+  AKT_DATUM=eintrag.datum;
+  AKT_TAG=1;
+  const hoertext=hoertextVon(l);
+  document.getElementById('content').innerHTML = ueb
+    ? renderUebungstagSeite(l,eintrag.datum)
+    : renderBlock(l.verb,'verb',cur)+renderBlock(l.wortschatz,'voc',cur)+renderBlock(l.grammatik,'gram',cur)
     +renderSatzbau(l.satzbau,cur)+renderDeklination(l.deklination,cur)+renderLesen(l.lesen,cur)
-    +renderTag1(l)+renderTraining(l.training,cur)
+    +renderTraining(l.training,cur)
     +renderTraining(l.telc,'telc'+cur,{telc:true,kls:'k-telc',hoertext:hoertext,
         badge:'telc Deutsch B2 · Prüfungstraining'})
     +renderProbe(l.probe,'probe'+cur,hoertext)
@@ -1592,6 +1607,8 @@ function render(){
   tgWiederherstellen();
   window.scrollTo({top:0,behavior:'smooth'});
 }
-document.getElementById('streak').textContent='📚 '+LEKTIONEN.length+' Lektion'+(LEKTIONEN.length>1?'en':'')+' gesammelt';
+TAGE=baueTage();
+document.getElementById('streak').textContent='📚 '+LEKTIONEN.length+' Lektion'+
+  (LEKTIONEN.length>1?'en':'')+' gesammelt';
 buildBar();render();
 </script>
