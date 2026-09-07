@@ -500,9 +500,41 @@ ausdrücklich darum bittet.
 
 ---
 
+## Pflegeplanung — eigene Seite, fünf Lerntage
+
+`schulung-pflegeplanung/planung.html` → `https://claude.ai/code/artifact/d1d757ad-782d-4350-bcce-1337702a922f`
+Favicon 📋. Auf ihren Wunsch vom 07.09.: *„Je veux que on creer un autre lien uniquement pour les
+Pflegeplannung … et que on sexerce a ecrire les Pflegeplannung."*
+
+Aufbau: **eine Spalte pro Tag**, jeweils mit den **Fragen, die man sich stellt**, einem
+ausgearbeiteten Beispiel und Übungen mit Schreibfeld und eingeklappter Lösung.
+Tag 1 Problem finden (ABEDL, aktuell/potentiell) · Tag 2 P E (S) R · Tag 3 Ziel (SMART,
+Nah-/Fernziel) · Tag 4 Maßnahmen (W-Fragen, fünf Hilfeformen) · Tag 5 Begründung.
+Krankheitsthemen aus ihren eigenen Unterlagen: Thrombose · Sturz · Haut · Thromboseprophylaxe ·
+Linksherzinsuffizienz. Danach Tag 6–10 je eine ganze Planung, **ab Tag 11 Prüfungsaufgaben**.
+
+**Quellen — nur diese:** `schulung-zwischenpruefung/quellen/pflegeplanung-pesr.pdf` (das Blatt der
+Dozentin mit ABEDL, PE(S)R, SMART, W-Fragen, Hilfeformen), `PDFs/102-pflegeplanung.pdf`
+(Foliensatz CE02 UE2, 6-Schritt-Modell nach Fiechter und Meier, Beispiel Thrombose), die beiden
+leeren Vorlagen, `Wissen/109-thrombose.md`, `Wissen/015-sturzprophylaxe.md`,
+`Wissen/064-expertenstandard-sturzprophylaxe.md`.
+
+**Wichtig — die Spalte 4 ist auf ihrem Blatt leer.** Das Blatt nennt die Überschrift „Begründung
+der Pflegemaßnahmen", gibt aber keine Anleitung dazu. Die vier Begründungsquellen auf der Seite
+(Expertenstandard · Prophylaxe · Diagnose · medikamentöse Therapie) sind **abgeleitet** aus dem
+gelb markierten Kasten „Bitte zusätzlich berücksichtigen!". Das steht auf der Seite ausdrücklich
+so drin, mit der Bitte, es bei der Dozentin zu prüfen. **Nicht als gesichert darstellen.**
+
+Für die Prüfungsaufgaben ab Tag 11 fehlen noch die **Vorlage der Fallvorstellung für die
+stationäre und ambulante Langzeitpflege** und das **Beurteilungsprotokoll Teil 1 —
+Planungsbeurteilung**. Ohne sie keine Bewertungspunkte erfinden.
+
+---
+
 ## Schulungen und Klausuren
 
 - `schulungen/` — Übersichtsseite, gebaut aus `schulungen.json` + `_template.html`
+- `schulung-pflegeplanung/` — Pflegeplanung in fünf Tagen (siehe oben)
 - `klausuren/` — Klausur-Protokoll, gebaut aus `klausuren.json` + `build.py`
 - `schulung-recht/uebungsfaelle.html` — neun Übungsfälle im Schema der Dozentin
 

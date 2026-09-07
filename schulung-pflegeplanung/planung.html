@@ -1,0 +1,1000 @@
+<title>Pflegeplanung in fünf Tagen</title>
+<style>
+  :root{
+    --paper:#f5f3ee;--paper-2:#eceae3;--card:#fffdf9;--ink:#1d211f;--ink-soft:#565f5c;--line:#dad5ca;
+    --accent:#2a5f92;--accent-deep:#1d4a75;--accent-soft:#dde8f2;
+    /* Die vier Spalten der Pflegeplanung — überall dieselbe Farbe */
+    --p:#a8432c;--pbg:#f7e3dd;
+    --z:#1f6f5c;--zbg:#dcefe8;
+    --m:#2a5f92;--mbg:#dde8f2;
+    --b:#6b4a9e;--bbg:#e8e1f5;
+    --warn:#a8700f;--warnbg:#f9ecd6;
+    --good:#1f6f5c;--goodbg:#dcefe8;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#14181a;--paper-2:#0f1315;--card:#1c2225;--ink:#eef1f1;--ink-soft:#a2adad;--line:#2e3639;
+    --accent:#7bb6e0;--accent-deep:#9ecdf0;--accent-soft:#16293a;
+    --p:#e29383;--pbg:#331d18;
+    --z:#7cc7ae;--zbg:#14291f;
+    --m:#7bb6e0;--mbg:#16293a;
+    --b:#b7a2e6;--bbg:#241d33;
+    --warn:#dcae5e;--warnbg:#2d2314;
+    --good:#7cc7ae;--goodbg:#14291f;}}
+  :root[data-theme="dark"]{
+    --paper:#14181a;--paper-2:#0f1315;--card:#1c2225;--ink:#eef1f1;--ink-soft:#a2adad;--line:#2e3639;
+    --accent:#7bb6e0;--accent-deep:#9ecdf0;--accent-soft:#16293a;
+    --p:#e29383;--pbg:#331d18;
+    --z:#7cc7ae;--zbg:#14291f;
+    --m:#7bb6e0;--mbg:#16293a;
+    --b:#b7a2e6;--bbg:#241d33;
+    --warn:#dcae5e;--warnbg:#2d2314;
+    --good:#7cc7ae;--goodbg:#14291f;}
+  :root[data-theme="light"]{
+    --paper:#f5f3ee;--paper-2:#eceae3;--card:#fffdf9;--ink:#1d211f;--ink-soft:#565f5c;--line:#dad5ca;
+    --accent:#2a5f92;--accent-deep:#1d4a75;--accent-soft:#dde8f2;
+    --p:#a8432c;--pbg:#f7e3dd;
+    --z:#1f6f5c;--zbg:#dcefe8;
+    --m:#2a5f92;--mbg:#dde8f2;
+    --b:#6b4a9e;--bbg:#e8e1f5;
+    --warn:#a8700f;--warnbg:#f9ecd6;
+    --good:#1f6f5c;--goodbg:#dcefe8;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  /* ---------- Kopf: das Formular selbst ---------- */
+  header.hero{border-bottom:1px solid var(--line);background:var(--paper-2);padding:38px 18px 0;}
+  .hero-in{max-width:62rem;margin:0 auto;}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-soft);margin:0 0 10px;}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,5.5vw,2.7rem);
+    margin:0 0 10px;line-height:1.08;text-wrap:balance;}
+  .hero p.sub{max-width:60ch;margin:0 0 22px;color:var(--ink-soft);font-size:15.5px;}
+  .formkopf{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);
+    border-bottom:none;border-radius:12px 12px 0 0;overflow:hidden;background:var(--card);}
+  .formkopf > div{padding:13px 14px 16px;border-left:1px solid var(--line);}
+  .formkopf > div:first-child{border-left:none;}
+  .formkopf .sp{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;margin-bottom:5px;}
+  .formkopf .nm{font-family:var(--serif);font-size:1.02rem;font-weight:600;line-height:1.2;}
+  .formkopf .fr{display:block;font-size:12.5px;color:var(--ink-soft);margin-top:4px;font-style:italic;}
+  .k-p .sp,.k-p .nm{color:var(--p);} .k-p{background:var(--pbg);}
+  .k-z .sp,.k-z .nm{color:var(--z);} .k-z{background:var(--zbg);}
+  .k-m .sp,.k-m .nm{color:var(--m);} .k-m{background:var(--mbg);}
+  .k-b .sp,.k-b .nm{color:var(--b);} .k-b{background:var(--bbg);}
+  @media (max-width:720px){.formkopf{grid-template-columns:repeat(2,1fr);}
+    .formkopf > div:nth-child(3){border-left:none;}
+    .formkopf > div:nth-child(n+3){border-top:1px solid var(--line);}}
+
+  nav.toc{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--line);
+    padding:8px 12px;display:flex;gap:5px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 11px;border-radius:7px;border:1px solid transparent;white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--ink);border-color:var(--line);background:var(--card);}
+
+  main{max-width:62rem;margin:0 auto;padding:0 18px 100px;}
+  section{padding-top:46px;}
+  h2{font-family:var(--serif);font-size:clamp(1.4rem,3.6vw,1.95rem);font-weight:600;
+    margin:0 0 6px;line-height:1.15;text-wrap:balance;}
+  h3{font-family:var(--serif);font-size:1.16rem;font-weight:600;margin:24px 0 8px;}
+  h4{font-size:.95rem;margin:18px 0 6px;}
+  .lead{color:var(--ink-soft);margin:0 0 20px;max-width:64ch;}
+  p{margin:.65em 0;} ul,ol{padding-left:1.15em;margin:9px 0;} li{margin:4px 0;}
+
+  /* ---------- Tageskopf ---------- */
+  .tagkopf{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:0 0 4px;}
+  .tagnr{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.12em;
+    text-transform:uppercase;padding:5px 11px;border-radius:999px;}
+  .sp-chip{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.08em;
+    padding:5px 11px;border-radius:999px;border:1px solid currentColor;}
+  .thema-chip{font-size:13px;color:var(--ink-soft);}
+  .thema-chip b{color:var(--ink);}
+  .t-p .tagnr{background:var(--pbg);color:var(--p);} .t-p .sp-chip{color:var(--p);}
+  .t-z .tagnr{background:var(--zbg);color:var(--z);} .t-z .sp-chip{color:var(--z);}
+  .t-m .tagnr{background:var(--mbg);color:var(--m);} .t-m .sp-chip{color:var(--m);}
+  .t-b .tagnr{background:var(--bbg);color:var(--b);} .t-b .sp-chip{color:var(--b);}
+  .t-p h2{color:var(--p);} .t-z h2{color:var(--z);}
+  .t-m h2{color:var(--m);} .t-b h2{color:var(--b);}
+
+  /* ---------- Bausteine ---------- */
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:14px 0;}
+  .karte > :first-child{margin-top:0;} .karte > :last-child{margin-bottom:0;}
+  .lbl{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-soft);margin:0 0 9px;}
+
+  /* Die Fragen, die man sich stellt — das Herz jeder Etappe */
+  .fragen{border-left:4px solid var(--sp,var(--accent));background:var(--spbg,var(--accent-soft));
+    border-radius:0 12px 12px 0;padding:16px 20px;margin:14px 0;}
+  .fragen h4{margin:0 0 10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--sp,var(--accent));}
+  .fragen ol{list-style:none;counter-reset:fr;padding:0;margin:0;}
+  .fragen ol li{counter-increment:fr;position:relative;padding:8px 0 8px 34px;
+    border-top:1px dashed var(--line);}
+  .fragen ol li:first-child{border-top:none;}
+  .fragen ol li::before{content:counter(fr);position:absolute;left:0;top:9px;width:22px;height:22px;
+    border-radius:50%;background:var(--card);color:var(--sp,var(--accent));border:1px solid currentColor;
+    font-family:var(--mono);font-size:11px;font-weight:700;display:flex;align-items:center;
+    justify-content:center;}
+  .fragen .frage{font-weight:600;}
+  .fragen .warum{display:block;color:var(--ink-soft);font-size:14.5px;margin-top:2px;}
+
+  /* Zitat aus ihrem Blatt */
+  .quelle{border:1px dashed var(--line);border-radius:10px;background:var(--paper-2);
+    padding:13px 16px;margin:14px 0;font-size:15px;}
+  .quelle .woher{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;}
+  .quelle q{font-style:italic;}
+
+  /* Ehrlicher Hinweis, wo das Blatt schweigt */
+  .luecke{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:14px 0;font-size:15px;}
+  .luecke b{color:var(--warn);}
+
+  .gut{border-left:4px solid var(--good);background:var(--goodbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:14px 0;font-size:15px;}
+
+  /* Tabellen */
+  .tab{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:11px;}
+  table{border-collapse:collapse;width:100%;min-width:34rem;background:var(--card);}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:14.8px;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
+  tbody tr:last-child td{border-bottom:none;}
+
+  /* ABEDL-Raster */
+  .abedl{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:7px;margin:14px 0;}
+  .ab{display:flex;gap:9px;align-items:baseline;background:var(--card);border:1px solid var(--line);
+    border-radius:9px;padding:9px 12px;font-size:14.5px;}
+  .ab b{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);flex:0 0 1.4em;}
+  .ab.stern{border-color:var(--p);background:var(--pbg);}
+  .ab.stern b{color:var(--p);}
+
+  /* Musterzeile im Formularlook */
+  .zeile{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);
+    border-radius:11px;overflow:hidden;margin:14px 0;background:var(--card);}
+  .zeile > div{padding:13px 14px;border-left:1px solid var(--line);font-size:14.5px;}
+  .zeile > div:first-child{border-left:none;}
+  .zeile.zwei{grid-template-columns:1fr 1fr;}
+  .zeile .sp{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;
+    text-transform:uppercase;margin-bottom:6px;}
+  .zeile .z-p .sp{color:var(--p);} .zeile .z-z .sp{color:var(--z);}
+  .zeile .z-m .sp{color:var(--m);} .zeile .z-b .sp{color:var(--b);}
+  .zeile dl{margin:0;} .zeile dt{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);margin-top:7px;}
+  .zeile dt:first-child{margin-top:0;} .zeile dd{margin:1px 0 0;}
+  @media (max-width:820px){.zeile{grid-template-columns:1fr;}
+    .zeile > div{border-left:none;border-top:1px solid var(--line);}
+    .zeile > div:first-child{border-top:none;}}
+
+  /* Übungen */
+  .ueb{border:1px solid var(--line);border-radius:12px;background:var(--paper-2);
+    padding:15px 18px;margin:12px 0;}
+  .ueb .kopf{display:flex;gap:10px;align-items:center;margin-bottom:8px;}
+  .ueb .nr{font-family:var(--mono);font-size:10.5px;font-weight:700;color:var(--card);
+    background:var(--sp,var(--accent));border-radius:6px;padding:3px 9px;}
+  .ueb .typ{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--ink-soft);}
+  .ueb .frage{font-size:15.5px;}
+  .ueb .falsch{color:var(--p);font-style:italic;}
+  textarea{width:100%;font:inherit;font-size:15.5px;line-height:1.55;color:var(--ink);
+    background:var(--card);border:1px solid var(--line);border-left:3px solid var(--sp,var(--accent));
+    border-radius:9px;padding:9px 12px;resize:vertical;min-height:56px;margin-top:10px;}
+  textarea:focus{outline:2px solid var(--sp,var(--accent));outline-offset:1px;}
+  .knoepfe{display:flex;gap:7px;flex-wrap:wrap;margin-top:9px;}
+  button.zeig{font:inherit;font-size:13px;color:var(--sp,var(--accent));background:var(--card);
+    border:1px solid var(--line);border-radius:8px;padding:6px 13px;cursor:pointer;}
+  button.zeig:hover{border-color:var(--sp,var(--accent));}
+  button.zeig:focus-visible{outline:2px solid var(--sp,var(--accent));outline-offset:2px;}
+  .los{display:none;margin-top:10px;padding-top:10px;border-top:1px dashed var(--line);}
+  .los.show{display:block;}
+  .los .l{font-size:15.5px;color:var(--good);font-weight:600;}
+  .los .h{display:block;font-size:14px;color:var(--ink-soft);margin-top:5px;}
+
+  details.mehr{border:1px solid var(--line);border-radius:11px;background:var(--card);
+    margin:14px 0;overflow:hidden;}
+  details.mehr > summary{cursor:pointer;list-style:none;padding:12px 16px;font-weight:600;
+    font-size:14.8px;color:var(--sp,var(--accent));display:flex;align-items:center;gap:9px;}
+  details.mehr > summary::-webkit-details-marker{display:none;}
+  details.mehr > summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.mehr[open] > summary::before{content:"－";}
+  details.mehr .inh{padding:0 16px 14px;}
+
+  .plan{display:grid;gap:8px;margin:14px 0;}
+  .pz{display:grid;grid-template-columns:minmax(6.5rem,auto) 1fr;gap:14px;padding:12px 15px;
+    background:var(--card);border:1px solid var(--line);border-radius:11px;}
+  .pz .d{font-family:var(--mono);font-size:12px;color:var(--accent-deep);font-variant-numeric:tabular-nums;}
+  .pz .w b{display:block;margin-bottom:2px;} .pz .w span{font-size:14.5px;color:var(--ink-soft);}
+  @media (max-width:560px){.pz{grid-template-columns:1fr;gap:3px;}}
+
+  footer{border-top:1px solid var(--line);margin-top:70px;padding:28px 18px 60px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  footer a{color:var(--accent-deep);}
+  code{font-family:var(--mono);font-size:.9em;background:var(--paper-2);border-radius:4px;padding:1px 5px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;transition:none!important;}}
+</style>
+
+<header class="hero">
+  <div class="hero-in">
+    <p class="eyebrow">Zwischenprüfung 01.04.2027 · nach dem Blatt deiner Dozentin</p>
+    <h1>Pflegeplanung in fünf Tagen</h1>
+    <p class="sub">Vier Spalten, eine pro Tag, jede mit den Fragen, die du dir dabei stellst.
+      Danach fünf Tage üben, dann Prüfungsaufgaben.
+      <span style="font-style:italic;">Quatre colonnes, une par jour — avec, pour chacune, les
+      questions exactes à se poser. Ensuite cinq jours d'entraînement, puis des sujets d'examen.</span></p>
+    <div class="formkopf">
+      <div class="k-p"><span class="sp">Spalte 1</span><span class="nm">Pflegeproblem</span>
+        <span class="fr">Was ist los — und warum?</span></div>
+      <div class="k-z"><span class="sp">Spalte 2</span><span class="nm">Pflegeziel</span>
+        <span class="fr">Wo soll er/sie hin?</span></div>
+      <div class="k-m"><span class="sp">Spalte 3</span><span class="nm">Pflegemaßnahmen</span>
+        <span class="fr">Wer tut was, wie oft?</span></div>
+      <div class="k-b"><span class="sp">Spalte 4</span><span class="nm">Begründung</span>
+        <span class="fr">Warum gerade das?</span></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#grundlagen">Grundlagen</a>
+  <a href="#tag1">Tag 1 · Problem finden</a>
+  <a href="#tag2">Tag 2 · PE(S)R</a>
+  <a href="#tag3">Tag 3 · Ziel</a>
+  <a href="#tag4">Tag 4 · Maßnahmen</a>
+  <a href="#tag5">Tag 5 · Begründung</a>
+  <a href="#ueben">Tag 6–10 · Üben</a>
+  <a href="#pruefung">Ab Tag 11 · Prüfung</a>
+  <a href="#quellen">Quellen</a>
+</nav>
+
+<main>
+
+<section id="grundlagen">
+  <h2>Wo die Pflegeplanung hingehört</h2>
+  <p class="lead">Bevor die vier Spalten kommen: Die Pflegeplanung ist nur <em>ein Teil</em> von etwas
+    Größerem — dem Pflegeprozess.</p>
+
+  <div class="karte">
+    <span class="lbl">Das 6-Schritt-Modell nach Fiechter und Meier</span>
+    <ol>
+      <li>Informationssammlung</li>
+      <li><b>Erkennen von Problemen</b> &nbsp;→&nbsp; <span style="color:var(--p);font-weight:600;">Spalte 1</span></li>
+      <li><b>Festlegen der Pflegeziele</b> &nbsp;→&nbsp; <span style="color:var(--z);font-weight:600;">Spalte 2</span></li>
+      <li><b>Planung der Pflegemaßnahmen</b> &nbsp;→&nbsp; <span style="color:var(--m);font-weight:600;">Spalte 3</span></li>
+      <li>Durchführung der Pflege</li>
+      <li>Beurteilung der Wirkung der Pflege auf den Patienten</li>
+    </ol>
+    <p style="margin-top:12px;color:var(--ink-soft);font-size:14.8px;">Die Schritte 2 bis 4 sind das,
+      was du aufschreibst. Schritt 1 hast du vorher gemacht, Schritt 5 und 6 kommen danach — der
+      Prozess ist ein <b>Kreislauf</b> und kann nie beendet werden, weil im Verlauf neue Probleme
+      entstehen.</p>
+  </div>
+
+  <div class="quelle">
+    <span class="woher">Aus deinem Foliensatz CE02 UE2, Folie 3</span>
+    <q>Einer Pflegeplanung steht ein Pflegeproblem voran.</q> — Das ist die wichtigste Regel der
+    ganzen Seite. Ohne Problem gibt es kein Ziel, ohne Ziel keine Maßnahme, ohne Maßnahme keine
+    Begründung. Die vier Spalten hängen in dieser Reihenfolge aneinander.
+  </div>
+
+  <h3>Was auf deinem Blatt zusätzlich steht</h3>
+  <p>Ganz oben, gelb markiert: <b>Bitte zusätzlich berücksichtigen!</b></p>
+  <div class="tab"><table>
+    <thead><tr><th>Was</th><th>Wozu du es brauchst</th></tr></thead>
+    <tbody>
+      <tr><td><b>Prophylaxen</b></td><td>liefern die <span style="color:var(--m)">Maßnahmen</span> bei potentiellen Problemen</td></tr>
+      <tr><td><b>Expertenstandards</b></td><td>liefern die <span style="color:var(--b)">Begründung</span> — sie sagen, was fachlich gefordert ist</td></tr>
+      <tr><td><b>Diagnosen</b></td><td>liefern die <span style="color:var(--p)">Ursachen (E)</span> im Problem</td></tr>
+      <tr><td><b>Medikamentöse Therapie</b></td><td>liefert Ursachen <em>und</em> Begründungen (Nebenwirkungen, Wirkeintritt)</td></tr>
+    </tbody>
+  </table></div>
+  <p style="color:var(--ink-soft);font-size:14.8px;">Merk dir diese vier Zeilen — sie sind der
+    Schlüssel zu Tag 5, wo es um die Begründungen geht.</p>
+</section>
+
+<!-- ══════════════════ TAG 1 ══════════════════ -->
+<section id="tag1" class="t-p" style="--sp:var(--p);--spbg:var(--pbg);">
+  <div class="tagkopf">
+    <span class="tagnr">Tag 1</span>
+    <span class="sp-chip">Spalte 1 · Problem</span>
+    <span class="thema-chip">Krankheitsthema: <b>Thrombose</b></span>
+  </div>
+  <h2>Das Problem finden</h2>
+  <p class="lead">Nicht „was fällt mir auf?“, sondern zwei feste Prüffragen und ein Raster mit
+    13 Feldern. Damit findest du Probleme systematisch statt zufällig.</p>
+
+  <div class="quelle">
+    <span class="woher">Wörtlich von deinem Blatt „Pflegeplanung“</span>
+    <q>Pflegeprobleme sind vorhanden: Wenn Veränderungen (psych./phys.) sich auf die Selbständigkeit
+    auswirken. Wenn die Gefahr besteht, dass aus einer Einschränkung eine Schädigung entsteht oder
+    sich weitere Einschränkungen entwickeln.</q>
+  </div>
+
+  <div class="fragen">
+    <h4>Die Fragen, die du dir stellst</h4>
+    <ol>
+      <li><span class="frage">Wirkt sich diese Veränderung auf die <b>Selbständigkeit</b> aus?</span>
+        <span class="warum">Wenn ja → es ist ein <b>aktuelles</b> Problem. Es ist schon da.</span></li>
+      <li><span class="frage">Besteht die <b>Gefahr</b>, dass daraus eine Schädigung entsteht?</span>
+        <span class="warum">Wenn ja → es ist ein <b>potentielles</b> Problem. Es ist noch nicht da,
+        aber es droht.</span></li>
+      <li><span class="frage">In welchem <b>ABEDL</b> steht das?</span>
+        <span class="warum">Geh das Raster von 1 bis 13 durch. So findest du auch das, wonach du
+        nicht gesucht hast.</span></li>
+      <li><span class="frage">Was sagen <b>Diagnosen</b> und <b>Medikamente</b> dazu?</span>
+        <span class="warum">Sie stehen im Fallbeispiel und nennen dir Probleme, die du sonst
+        übersiehst.</span></li>
+    </ol>
+  </div>
+
+  <h3>Das ABEDL-Raster — deine Suchliste</h3>
+  <p>Die vier rot markierten Felder haben einen Stern. Auf deinem Blatt steht dazu:
+    <em>„fokussieren, da sie häufig prioritär verursachend sind für Pflegeprobleme auch in den
+    anderen ABEDLs“</em>. Fang also immer bei diesen vieren an.</p>
+  <div class="abedl">
+    <div class="ab stern"><b>1</b><span>Kommunizieren können ★</span></div>
+    <div class="ab stern"><b>2</b><span>Sich bewegen können ★</span></div>
+    <div class="ab stern"><b>3</b><span>Vitale Funktionen aufrecht erhalten ★</span></div>
+    <div class="ab"><b>4</b><span>Sich pflegen können</span></div>
+    <div class="ab"><b>5</b><span>Essen und Trinken können</span></div>
+    <div class="ab"><b>6</b><span>Ausscheiden können</span></div>
+    <div class="ab"><b>7</b><span>Sich kleiden können</span></div>
+    <div class="ab"><b>8</b><span>Ruhen und Schlafen können</span></div>
+    <div class="ab"><b>9</b><span>Sich beschäftigen können</span></div>
+    <div class="ab"><b>10</b><span>Sich als Mann / Frau fühlen</span></div>
+    <div class="ab"><b>11</b><span>Für Sicherheit sorgen</span></div>
+    <div class="ab"><b>12</b><span>Soziale Bereiche des Lebens sichern</span></div>
+    <div class="ab stern"><b>13</b><span>Mit existenziellen Erfahrungen des Lebens umgehen können ★</span></div>
+  </div>
+
+  <h3>Aktuell oder potentiell — das Beispiel aus deinem eigenen Unterricht</h3>
+  <div class="tab"><table>
+    <thead><tr><th>Am Beispiel der Thrombose</th><th>Problem</th><th>Erkennst du daran</th></tr></thead>
+    <tbody>
+      <tr><td><b>Aktuell</b></td><td>Bewegungseinschränkung</td>
+          <td>Sie ist <b>schon da</b> und schränkt die Selbständigkeit ein.</td></tr>
+      <tr><td><b>Potentiell</b></td><td>Thrombosegefahr</td>
+          <td>Sie ist <b>noch nicht da</b> — aber die Bewegungseinschränkung kann sie auslösen.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="gut"><b>Der Zusammenhang ist die halbe Note.</b> Das potentielle Problem entsteht
+    fast immer <em>aus</em> dem aktuellen. Wenn du beide findest und den Zusammenhang benennen
+    kannst, hast du verstanden, worum es geht. In deinen Folien zur Virchow-Trias steht genau
+    dieser Weg: <b>verlangsamter Blutfluss</b> durch <b>Immobilität</b> → Thrombose.</div>
+
+  <h3>Übungen</h3>
+  <div class="karte" style="border-left:4px solid var(--p);">
+    <span class="lbl">Fallbeispiel für Tag 1 — aus deinem Thrombose-Material gebaut</span>
+    <p><b>Frau K., 78 Jahre, Pflegeheim.</b> Seit einer Oberschenkelfraktur vor fünf Tagen liegt
+    sie überwiegend im Bett; aufstehen kann sie nur mit zwei Pflegepersonen und starken Schmerzen.
+    Sie trinkt nach eigenen Angaben „wenig, damit ich nachts nicht muss“. In der Diagnoseliste
+    stehen Herzinsuffizienz und Varikosis. Sie erzählt gern und viel, kennt ihre Medikamente und
+    kann die Klingel selbstständig benutzen. Die rechte Wade ist seit gestern etwas wärmer und
+    umfangreicher als die linke.</p>
+  </div>
+
+  <div class="ueb">
+    <div class="kopf"><span class="nr">1</span><span class="typ">Prüffrage 1 anwenden</span></div>
+    <div class="frage">Nenne <b>zwei aktuelle</b> Pflegeprobleme von Frau K. und schreib zu jedem
+      das ABEDL dazu.</div>
+    <textarea data-id="t1-1" rows="3" placeholder="1. … (ABEDL …)  2. … (ABEDL …)"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t1-1">Lösung zeigen</button></div>
+    <div class="los" id="l-t1-1"><span class="l">Bewegungseinschränkung (ABEDL 2 – Sich bewegen
+      können) · verminderte Flüssigkeitsaufnahme (ABEDL 5 – Essen und Trinken können).</span>
+      <span class="h">Beide wirken sich auf die Selbständigkeit aus — Prüffrage 1 ist erfüllt.
+      Auch möglich: Schmerzen (ABEDL 13) und der Wadenbefund als Symptom eines schon beginnenden
+      Geschehens.</span></div>
+  </div>
+
+  <div class="ueb">
+    <div class="kopf"><span class="nr">2</span><span class="typ">Prüffrage 2 anwenden</span></div>
+    <div class="frage">Nenne <b>ein potentielles</b> Problem und schreib in einem Satz, <b>woraus</b>
+      es entsteht.</div>
+    <textarea data-id="t1-2" rows="3" placeholder="Potentielles Problem: … Es entsteht aus …"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t1-2">Lösung zeigen</button></div>
+    <div class="los" id="l-t1-2"><span class="l">Thrombosegefahr. Sie entsteht aus der
+      Bewegungseinschränkung (verlangsamter Blutfluss) und der verminderten Trinkmenge
+      (Exsikkose → erhöhte Gerinnungsneigung).</span>
+      <span class="h">Das sind zwei der drei Seiten der Virchow-Trias aus deinen Folien. Die dritte
+      (Gefäßwandschäden) ist über die Varikosis ebenfalls angelegt.</span></div>
+  </div>
+
+  <div class="ueb">
+    <div class="kopf"><span class="nr">3</span><span class="typ">Diagnosen auswerten</span></div>
+    <div class="frage">Welche <b>zwei Diagnosen</b> aus dem Fallbeispiel erhöhen das Thromboserisiko —
+      und über welche Seite der Virchow-Trias jeweils?</div>
+    <textarea data-id="t1-3" rows="3" placeholder="… wirkt über … · … wirkt über …"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t1-3">Lösung zeigen</button></div>
+    <div class="los" id="l-t1-3"><span class="l">Herzinsuffizienz → verlangsamter Blutfluss.
+      Varikosis → Gefäßwandschäden.</span>
+      <span class="h">Genau dafür steht auf deinem Blatt „Diagnosen — bitte zusätzlich
+      berücksichtigen“. Im Frowein-TVT-Score aus deinen Folien geben beide übrigens Punkte.</span></div>
+  </div>
+
+  <div class="ueb">
+    <div class="kopf"><span class="nr">4</span><span class="typ">Das Raster durchgehen</span></div>
+    <div class="frage">Geh das ABEDL-Raster von 1 bis 13 durch und notiere jedes Feld, in dem bei
+      Frau K. etwas steht. Beim Rest schreibst du nichts.</div>
+    <textarea data-id="t1-4" rows="4" placeholder="ABEDL 2: … · ABEDL 5: … · ABEDL … "></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t1-4">Lösung zeigen</button></div>
+    <div class="los" id="l-t1-4"><span class="l">2 Sich bewegen · 3 Vitale Funktionen (Wade, Kreislauf)
+      · 5 Essen und Trinken · 6 Ausscheiden (sie trinkt weniger wegen des nächtlichen Toilettengangs)
+      · 13 Existenzielle Erfahrungen (Schmerz, Angst vor dem Aufstehen).</span>
+      <span class="h">Vier der fünf Felder sind Stern-ABEDLs. Genau deshalb sagt dein Blatt, dass man
+      dort anfangen soll.</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════ TAG 2 ══════════════════ -->
+<section id="tag2" class="t-p" style="--sp:var(--p);--spbg:var(--pbg);">
+  <div class="tagkopf">
+    <span class="tagnr">Tag 2</span>
+    <span class="sp-chip">Spalte 1 · P E (S) R</span>
+    <span class="thema-chip">Krankheitsthema: <b>Sturzgefahr</b></span>
+  </div>
+  <h2>Das Problem aufschreiben — P E (S) R</h2>
+  <p class="lead">Gestern hast du Probleme <em>gefunden</em>. Heute schreibst du sie so auf, wie es
+    dein Blatt verlangt: vier Zeilen, immer in derselben Reihenfolge.</p>
+
+  <div class="fragen">
+    <h4>Die vier Fragen — sie stehen wörtlich auf deinem Blatt</h4>
+    <ol>
+      <li><span class="frage">P (Problem) — <b>Was ist das Problem?</b></span>
+        <span class="warum">Ein Satz. Der Zustand, nicht die Ursache.</span></li>
+      <li><span class="frage">E (Entstehung / Ursachen) — <b>Warum hat er das?</b></span>
+        <span class="warum">Hier kommen Diagnosen, Medikamente und Lebensumstände hinein.</span></li>
+      <li><span class="frage">(S) (Symptome) — <b>Wie zeigt sich das Problem?</b></span>
+        <span class="warum">Was man <em>sieht, misst, hört</em>. <b>Nicht bei potentiellen
+        Problemen</b> — dort gibt es noch nichts zu sehen.</span></li>
+      <li><span class="frage">R (Ressource) — <b>Was kann der Klient noch, inkl. Hilfsmittel?</b></span>
+        <span class="warum">Immer etwas Positives. Ohne Ressource keine machbare Maßnahme.</span></li>
+    </ol>
+  </div>
+
+  <div class="luecke"><b>Die Klammer um das (S) ist eine Prüfungsfalle.</b> Auf deinem Blatt steht
+    ausdrücklich <em>„*nicht bei pot. Problemen“</em>. Ein potentielles Problem ist noch nicht
+    eingetreten — also kann es keine Symptome haben. Wer bei „Sturzgefahr“ Symptome schreibt, hat
+    aktuelles und potentielles Problem verwechselt. Das ist der häufigste Fehler überhaupt.</div>
+
+  <h3>So sieht es fertig aus — Thema Sturz</h3>
+  <div class="zeile zwei">
+    <div class="z-p"><span class="sp">Aktuelles Problem</span>
+      <dl>
+        <dt>P</dt><dd>Frau K. kann nicht sicher allein gehen.</dd>
+        <dt>E</dt><dd>Oberschenkelfraktur vor 5 Tagen, Schmerzen, Kraftverlust nach Bettruhe.</dd>
+        <dt>S</dt><dd>Braucht zwei Pflegepersonen zum Aufstehen, hält sich an Möbeln fest,
+          Gangbild unsicher.</dd>
+        <dt>R</dt><dd>Kann die Klingel selbstständig benutzen, ist orientiert, akzeptiert den
+          Rollator.</dd>
+      </dl></div>
+    <div class="z-p"><span class="sp">Potentielles Problem</span>
+      <dl>
+        <dt>P</dt><dd>Es besteht Sturzgefahr.</dd>
+        <dt>E</dt><dd>Gangunsicherheit nach Fraktur, Schmerzmittel, nächtliche Toilettengänge,
+          ungewohnte Umgebung seit dem Heimeinzug.</dd>
+        <dt>(S)</dt><dd style="color:var(--warn);font-weight:600;">— entfällt, weil noch kein Sturz
+          eingetreten ist.</dd>
+        <dt>R</dt><dd>Nutzt den Rollator, ruft nach Hilfe, trägt feste Schuhe.</dd>
+      </dl></div>
+  </div>
+
+  <h3>Woher die Ursachen kommen — die drei Hauptgruppen</h3>
+  <p>Dein Arbeitsblatt zur Sturzprophylaxe verlangt genau diese Einteilung. Sie ist dein Werkzeug
+    für das <b>E</b>:</p>
+  <div class="tab"><table>
+    <thead><tr><th>Hauptgruppe</th><th>Frag dich</th></tr></thead>
+    <tbody>
+      <tr><td><b>personenbezogen</b></td><td>Was bringt der Mensch selbst mit? (Gang, Balance, Sehen,
+        Inkontinenz, Sturzangst, frühere Stürze)</td></tr>
+      <tr><td><b>medikamentenbezogen</b></td><td>Was nimmt er ein? (mehrere Medikamente gleichzeitig,
+        Wirkung auf Kreislauf und Wachheit)</td></tr>
+      <tr><td><b>umgebungsbezogen</b></td><td>Wie ist es um ihn herum? (Stolperfallen, Beleuchtung,
+        fehlende Haltegriffe, kurzfristige Veränderung der Umgebung)</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Übungen</h3>
+  <div class="ueb">
+    <div class="kopf"><span class="nr">1</span><span class="typ">Fehler finden</span></div>
+    <div class="frage">Was ist an dieser Formulierung falsch?<br>
+      <span class="falsch">„P: Sturzgefahr. E: Frau K. ist alt. S: Sie ist zweimal gestürzt.
+      R: keine.“</span></div>
+    <textarea data-id="t2-1" rows="3" placeholder="Drei Fehler: …"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t2-1">Lösung zeigen</button></div>
+    <div class="los" id="l-t2-1"><span class="l">Drei Fehler. (1) Bei einem <b>potentiellen</b>
+      Problem darf kein <b>S</b> stehen — und wenn sie schon gestürzt ist, ist es kein potentielles
+      Problem mehr. (2) „ist alt“ ist keine Ursache, sondern eine Zuschreibung; gefordert sind
+      personen-, medikamenten- und umgebungsbezogene Faktoren. (3) <b>„R: keine“</b> gibt es nicht —
+      jeder Mensch kann noch etwas, und ohne Ressource kannst du keine Maßnahme planen.</span></div>
+  </div>
+
+  <div class="ueb">
+    <div class="kopf"><span class="nr">2</span><span class="typ">Selbst schreiben</span></div>
+    <div class="frage">Schreib das <b>aktuelle</b> Problem „Bewegungseinschränkung“ von Frau K. als
+      vollständiges P E S R. Vier Zeilen.</div>
+    <textarea data-id="t2-2" rows="5" placeholder="P: …&#10;E: …&#10;S: …&#10;R: …"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t2-2">Vorschlag zeigen</button></div>
+    <div class="los" id="l-t2-2"><span class="l">P: Frau K. kann sich seit der Fraktur nicht mehr
+      selbstständig fortbewegen.<br>E: Oberschenkelfraktur vor fünf Tagen, Schmerzen beim Belasten,
+      Kraftverlust durch fünf Tage überwiegende Bettruhe.<br>S: Aufstehen nur mit zwei
+      Pflegepersonen möglich, äußert Schmerzen beim Belasten, verlässt das Bett von sich aus nicht.<br>
+      R: Kann im Bett selbstständig die Position wechseln, benutzt die Klingel, ist motiviert,
+      wieder zu laufen.</span>
+      <span class="h">Freie Antwort — vergleich Zeile für Zeile. Prüf besonders: Steht im E wirklich
+      ein <em>Warum</em> und nicht noch einmal das Problem?</span></div>
+  </div>
+
+  <div class="ueb">
+    <div class="kopf"><span class="nr">3</span><span class="typ">Ressourcen sammeln</span></div>
+    <div class="frage">Finde <b>drei</b> Ressourcen von Frau K. — eine körperliche, eine geistige,
+      und eine, die ein <b>Hilfsmittel</b> ist.</div>
+    <textarea data-id="t2-3" rows="3" placeholder="körperlich: … · geistig: … · Hilfsmittel: …"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t2-3">Lösung zeigen</button></div>
+    <div class="los" id="l-t2-3"><span class="l">Körperlich: kann die Klingel drücken und die
+      Position im Bett verändern. Geistig: ist orientiert, kennt ihre Medikamente, erzählt gern.
+      Hilfsmittel: Rollator, den sie akzeptiert.</span>
+      <span class="h">Dein Blatt sagt ausdrücklich <em>„was kann der Klient noch / inkl.
+      Hilfsmittel“</em> — das Hilfsmittel gehört mit in die Ressourcenzeile.</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════ TAG 3 ══════════════════ -->
+<section id="tag3" class="t-z" style="--sp:var(--z);--spbg:var(--zbg);">
+  <div class="tagkopf">
+    <span class="tagnr">Tag 3</span>
+    <span class="sp-chip">Spalte 2 · Ziel</span>
+    <span class="thema-chip">Krankheitsthema: <b>Haut — Intertrigo und IAD</b></span>
+  </div>
+  <h2>Das Ziel schreiben — S M A R T</h2>
+  <p class="lead">Ein Ziel beschreibt nicht, was <em>du</em> tust. Es beschreibt, wie es
+    <em>dem Menschen</em> nach einer bestimmten Zeit geht.</p>
+
+  <div class="quelle">
+    <span class="woher">Wörtlich von deinem Blatt</span>
+    <q>Pflegeziele beschreiben Verhalten / Zustand / Wissen / Können / Wollen, das nach einer
+    bestimmten Zeit erreicht werden soll.</q>
+  </div>
+
+  <div class="fragen">
+    <h4>Die fünf Fragen, die du dir bei jedem Ziel stellst</h4>
+    <ol>
+      <li><span class="frage">S — spezifisch: <b>Worum geht es, was genau?</b></span>
+        <span class="warum">Konkret und unmissverständlich. „Es geht ihr besser“ ist kein Ziel.</span></li>
+      <li><span class="frage">M — messbar: <b>Woran erkenne ich später, ob es erreicht ist?</b></span>
+        <span class="warum">So formulieren, dass man es später prüfen kann. Eine Zahl, eine Menge,
+        eine beobachtbare Handlung.</span></li>
+      <li><span class="frage">A — akzeptabel: <b>Ist es positiv und aktiv formuliert?</b></span>
+        <span class="warum">Aktive Verben verwenden. Kein „nicht“, kein „kein“.</span></li>
+      <li><span class="frage">R — realistisch: <b>Ist das für diesen Menschen machbar?</b></span>
+        <span class="warum">Prüf es gegen die Ressourcen aus Spalte 1.</span></li>
+      <li><span class="frage">T — terminiert: <b>Bis wann?</b></span>
+        <span class="warum">Ein Zeitpunkt gehört ins Ziel hinein, nicht daneben.</span></li>
+    </ol>
+  </div>
+
+  <h3>Nahziel und Fernziel</h3>
+  <p>Dein Blatt nennt beide. Der Unterschied ist nur die Zeit — und damit das, was realistisch ist.</p>
+  <div class="tab"><table>
+    <thead><tr><th></th><th>Zeitraum</th><th>Beispiel Hautproblem</th></tr></thead>
+    <tbody>
+      <tr><td><b>Nahziel</b></td><td>Tage bis wenige Wochen</td>
+        <td>Die Hautfalten unter der Brust sind ab dem 14.09. bei jeder Kontrolle trocken.</td></tr>
+      <tr><td><b>Fernziel</b></td><td>Wochen bis Monate</td>
+        <td>Frau K. führt die Hautkontrolle bis zum 30.10. selbstständig durch und meldet Rötungen
+          von sich aus.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="gut"><b>Der Trick für das A.</b> Schreib das Ziel immer mit dem Menschen als Subjekt
+    und einem aktiven Verb: <em>Frau K. <b>trinkt</b> …</em>, <em>Frau K. <b>hält</b> …</em>,
+    <em>Die Haut <b>ist</b> …</em>. Sobald „Die Pflegekraft …“ am Anfang steht, hast du eine
+    Maßnahme geschrieben, kein Ziel.</div>
+
+  <h3>Übungen</h3>
+  <div class="ueb">
+    <div class="kopf"><span class="nr">1</span><span class="typ">Fehler finden</span></div>
+    <div class="frage">Welcher SMART-Buchstabe fehlt jeweils?<br>
+      a) <span class="falsch">„Frau K. bekommt keine wunde Haut mehr.“</span><br>
+      b) <span class="falsch">„Die Pflegekraft cremt die Hautfalten ein.“</span><br>
+      c) <span class="falsch">„Es geht Frau K. bald besser.“</span></div>
+    <textarea data-id="t3-1" rows="3" placeholder="a) … b) … c) …"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t3-1">Lösung zeigen</button></div>
+    <div class="los" id="l-t3-1"><span class="l">a) <b>A</b> — negativ formuliert („keine“). Besser:
+      „Die Haut in den Leistenfalten ist intakt und trocken.“ b) <b>A</b> und im Grunde die ganze
+      Spalte — das ist eine <em>Maßnahme</em>, kein Ziel; das Subjekt muss der Mensch sein.
+      c) <b>S</b>, <b>M</b> und <b>T</b> zugleich — „besser“ ist nicht spezifisch, nicht messbar,
+      und „bald“ ist kein Termin.</span></div>
+  </div>
+
+  <div class="ueb">
+    <div class="kopf"><span class="nr">2</span><span class="typ">Umschreiben</span></div>
+    <div class="frage">Mach aus <span class="falsch">„Frau K. soll nicht mehr so wenig trinken.“</span>
+      ein SMART-Ziel. Alle fünf Buchstaben müssen erfüllt sein.</div>
+    <textarea data-id="t3-2" rows="3" placeholder="Frau K. …"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t3-2">Vorschlag zeigen</button></div>
+    <div class="los" id="l-t3-2"><span class="l">„Frau K. trinkt ab dem 14.09.2026 täglich
+      mindestens 1500 ml, verteilt über den Tag, und dokumentiert die Menge gemeinsam mit der
+      Pflegekraft im Trinkprotokoll.“</span>
+      <span class="h">S: Trinkmenge. M: 1500 ml, Protokoll. A: aktives Verb „trinkt“, positiv.
+      R: mit ihrer Ressource (orientiert, kooperativ) machbar. T: ab dem 14.09.</span></div>
+  </div>
+
+  <div class="ueb">
+    <div class="kopf"><span class="nr">3</span><span class="typ">Selbst schreiben</span></div>
+    <div class="frage">Schreib zu dem <b>potentiellen</b> Problem „Sturzgefahr“ von gestern ein
+      <b>Nahziel</b> und ein <b>Fernziel</b>.</div>
+    <textarea data-id="t3-3" rows="4" placeholder="Nahziel: …&#10;Fernziel: …"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t3-3">Vorschlag zeigen</button></div>
+    <div class="los" id="l-t3-3"><span class="l">Nahziel: „Frau K. benutzt ab sofort bei jedem
+      Verlassen des Bettes den Rollator und ruft vorher über die Klingel nach Hilfe — überprüfbar
+      täglich bis zum 20.09.“<br>Fernziel: „Frau K. geht bis zum 31.10.2026 die Strecke von ihrem
+      Zimmer zum Speisesaal mit dem Rollator und ohne personelle Hilfe.“</span>
+      <span class="h">Beachte: Bei einem potentiellen Problem heißt das Ziel nie „sie stürzt nicht“
+      — das wäre wieder negativ. Beschreib stattdessen das <em>Verhalten</em>, das den Sturz
+      verhindert.</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════ TAG 4 ══════════════════ -->
+<section id="tag4" class="t-m" style="--sp:var(--m);--spbg:var(--mbg);">
+  <div class="tagkopf">
+    <span class="tagnr">Tag 4</span>
+    <span class="sp-chip">Spalte 3 · Maßnahmen</span>
+    <span class="thema-chip">Krankheitsthema: <b>Thromboseprophylaxe</b></span>
+  </div>
+  <h2>Die Maßnahmen schreiben — die W-Fragen</h2>
+  <p class="lead">Eine Maßnahme ist erst vollständig, wenn eine andere Pflegekraft sie ohne
+    Rückfrage genauso ausführen könnte. Dafür gibt es fünf Fragen.</p>
+
+  <div class="fragen">
+    <h4>Die W-Fragen — wörtlich von deinem Blatt</h4>
+    <ol>
+      <li><span class="frage">WER?</span>
+        <span class="warum">1 bzw. 2 PFK / PFA / PP — also: eine oder zwei Pflegefachkräfte,
+        Pflegefachassistenten oder Pflegepersonen.</span></li>
+      <li><span class="frage">WAS?</span><span class="warum">Die Art der Maßnahme.</span></li>
+      <li><span class="frage">WIE und WOMIT?</span>
+        <span class="warum">Der Inhalt <b>und die Hilfeform</b> — siehe die fünf Stufen unten.</span></li>
+      <li><span class="frage">WANN?</span><span class="warum">Der Umfang: zu welcher Zeit.</span></li>
+      <li><span class="frage">WIE OFT?</span><span class="warum">Der Umfang: in welcher Häufigkeit.</span></li>
+    </ol>
+  </div>
+
+  <h3>Die fünf Hilfeformen</h3>
+  <p>Sie stehen auf deinem Blatt unter „WIE UND WOMIT“ und sind nach <b>steigender Übernahme</b>
+    geordnet. Die Hilfeform gehört <em>in</em> die Maßnahme hinein — sie sagt, wie viel der Mensch
+    noch selbst macht.</p>
+  <div class="tab"><table>
+    <thead><tr><th>Stufe</th><th>Hilfeform</th><th>Beispiel Thromboseprophylaxe</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td><b>Beaufsichtigung</b></td><td>1 PP beobachtet Frau K. beim selbstständigen
+        Fußkreisen und korrigiert nur bei Bedarf.</td></tr>
+      <tr><td>2</td><td><b>Anleitung</b></td><td>1 PFK zeigt und erklärt die Fußwippe und den
+        Fußsohlendruck und lässt sie nachmachen.</td></tr>
+      <tr><td>3</td><td><b>Unterstützung</b></td><td>1 PP hilft beim Anziehen der
+        Kompressionsstrümpfe; Frau K. zieht sie bis zur Wade selbst hoch.</td></tr>
+      <tr><td>4</td><td><b>Teilweise Übernahme</b></td><td>1 PP übernimmt die Bewegungsübungen des
+        rechten Beins, das linke bewegt Frau K. selbst.</td></tr>
+      <tr><td>5</td><td><b>Vollständige Übernahme</b></td><td>2 PP führen die passiven
+        Bewegungsübungen beider Beine durch.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="gut"><b>Wähl die Hilfeform aus der Ressource.</b> Was in Spalte 1 unter <b>R</b>
+    steht, entscheidet die Stufe. Wer den Rollator akzeptiert und motiviert ist, braucht
+    <em>Anleitung</em>, nicht <em>vollständige Übernahme</em>. Eine zu hohe Stufe nimmt
+    Selbständigkeit weg — und genau das ist laut deinem Blatt die Definition eines Pflegeproblems.</div>
+
+  <h3>So sieht eine vollständige Maßnahme aus</h3>
+  <div class="karte" style="border-left:4px solid var(--m);">
+    <p style="margin:0;font-size:15.5px;"><b>1 PFK</b> <span style="color:var(--ink-soft)">(wer)</span>
+      <b>leitet Frau K. zu Bewegungsübungen im Bett an</b> <span style="color:var(--ink-soft)">(was)</span>
+      — <b>Füße kreisen, beugen und strecken, Fußsohlendruck gegen das Bettende, jeweils 10-mal;
+      Anleitung mit Vormachen</b> <span style="color:var(--ink-soft)">(wie und womit + Hilfeform)</span>
+      — <b>morgens nach der Körperpflege und nachmittags nach dem Kaffee</b>
+      <span style="color:var(--ink-soft)">(wann)</span> — <b>2-mal täglich</b>
+      <span style="color:var(--ink-soft)">(wie oft)</span>.</p>
+  </div>
+  <p style="color:var(--ink-soft);font-size:14.8px;">Die Übungen selbst stammen aus deinem
+    Thrombose-Foliensatz: Füße kreisen, beugen und strecken, Fußwippe, Zehen spreizen und einkrallen,
+    Anspannen der Oberschenkelmuskulatur, Fußsohlendruck.</p>
+
+  <h3>Übungen</h3>
+  <div class="ueb">
+    <div class="kopf"><span class="nr">1</span><span class="typ">Ergänzen</span></div>
+    <div class="frage">Welche W-Fragen fehlen?<br>
+      <span class="falsch">„Kompressionsstrümpfe anziehen.“</span></div>
+    <textarea data-id="t4-1" rows="3" placeholder="Es fehlen: …"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t4-1">Lösung zeigen</button></div>
+    <div class="los" id="l-t4-1"><span class="l">Es fehlen <b>alle fünf bis auf WAS</b>: wer es tut,
+      wie und mit welcher Hilfeform, wann und wie oft. Vollständig etwa: „1 PP unterstützt Frau K.
+      morgens vor dem Aufstehen beim Anziehen der Kompressionsstrümpfe der Klasse II — Frau K. zieht
+      bis zur Wade selbst, die PP zieht über das Knie — täglich, vor dem ersten Aufstehen.“</span>
+      <span class="h">Faustregel: Wenn deine Maßnahme kürzer als eine Zeile ist, fehlt fast immer
+      etwas.</span></div>
+  </div>
+
+  <div class="ueb">
+    <div class="kopf"><span class="nr">2</span><span class="typ">Hilfeform wählen</span></div>
+    <div class="frage">Frau K. ist orientiert, motiviert und kann im Bett selbst die Position
+      wechseln. Welche <b>Hilfeform</b> wählst du für die Bewegungsübungen — und warum nicht die
+      Stufe darüber?</div>
+    <textarea data-id="t4-2" rows="3" placeholder="Hilfeform: … weil …"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t4-2">Lösung zeigen</button></div>
+    <div class="los" id="l-t4-2"><span class="l">Stufe 2, <b>Anleitung</b> — später Stufe 1,
+      Beaufsichtigung. Nicht Stufe 4 oder 5, weil sie die Bewegung selbst ausführen kann; eine
+      Übernahme würde ihr die vorhandene Ressource wegnehmen und die Muskel-Venen-Pumpe gerade
+      nicht aktivieren.</span>
+      <span class="h">Der zweite Halbsatz ist schon fast eine Begründung — genau darum geht es
+      morgen.</span></div>
+  </div>
+
+  <div class="ueb">
+    <div class="kopf"><span class="nr">3</span><span class="typ">Selbst schreiben</span></div>
+    <div class="frage">Schreib <b>zwei vollständige Maßnahmen</b> zum Ziel „Frau K. trinkt täglich
+      mindestens 1500 ml“. Alle fünf W-Fragen müssen drin sein.</div>
+    <textarea data-id="t4-3" rows="5" placeholder="1. …&#10;2. …"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t4-3">Vorschlag zeigen</button></div>
+    <div class="los" id="l-t4-3"><span class="l">1. „1 PP stellt Frau K. morgens nach der
+      Körperpflege eine gefüllte 1,5-l-Karaffe mit ihrem Lieblingsgetränk in Greifnähe auf den
+      Nachttisch und erinnert sie bei jedem Zimmerbesuch ans Trinken — täglich, mindestens 6-mal
+      am Tag.“<br>2. „1 PFK führt gemeinsam mit Frau K. ein Trinkprotokoll, trägt die Menge nach
+      jeder Mahlzeit ein und bespricht das Ergebnis mit ihr — täglich um 18 Uhr.“</span>
+      <span class="h">Freie Antwort. Prüf beide Sätze gegen die fünf W-Fragen: Ist wirklich jede
+      beantwortet?</span></div>
+  </div>
+</section>
+
+<!-- ══════════════════ TAG 5 ══════════════════ -->
+<section id="tag5" class="t-b" style="--sp:var(--b);--spbg:var(--bbg);">
+  <div class="tagkopf">
+    <span class="tagnr">Tag 5</span>
+    <span class="sp-chip">Spalte 4 · Begründung</span>
+    <span class="thema-chip">Krankheitsthema: <b>Linksherzinsuffizienz — Herr Lambrecht</b></span>
+  </div>
+  <h2>Die Begründung schreiben</h2>
+  <p class="lead">Die letzte Spalte beantwortet eine einzige Frage: <b>Warum gerade diese Maßnahme
+    und keine andere?</b></p>
+
+  <div class="luecke"><b>Ehrlich gesagt:</b> Diese Spalte ist auf deinem Blatt zwar überschrieben
+    („Begründung der Pflegemaßnahmen“), aber <b>inhaltlich leer</b> — anders als die drei anderen
+    Spalten steht dort keine Anleitung. Was hier folgt, ist deshalb <b>abgeleitet</b> aus dem, was
+    dein Blatt oben gelb markiert: <em>Prophylaxen · Expertenstandards · Diagnosen · medikamentöse
+    Therapie.</em> Genau diese vier sind die Quellen, aus denen eine Begründung schöpft.
+    <b>Frag deine Dozentin, ob sie es genauso haben will</b> — bevor du es in der Prüfung so
+    schreibst.</div>
+
+  <div class="fragen">
+    <h4>Die vier Fragen — eine pro Quelle</h4>
+    <ol>
+      <li><span class="frage">Welcher <b>Expertenstandard</b> fordert das?</span>
+        <span class="warum">Die stärkste Begründung, weil sie fachlich verbindlich ist.
+        Beispiel: Der Expertenstandard Sturzprophylaxe verlangt, dass jeder Mensch mit erhöhtem
+        Sturzrisiko eine Sturzprophylaxe erhält, um Stürze weitestgehend zu verhindern und
+        Sturzfolgen zu minimieren.</span></li>
+      <li><span class="frage">Welche <b>Prophylaxe</b> ist das — und wie wirkt sie?</span>
+        <span class="warum">Nenn den Wirkweg, nicht nur den Namen. „Bewegungsübungen aktivieren
+        die Muskel-Venen-Pumpe und fördern den Rückstrom zum Herzen.“</span></li>
+      <li><span class="frage">Welche <b>Diagnose</b> macht das nötig?</span>
+        <span class="warum">Der Bezug zum konkreten Menschen. „Bei bestehender Herzinsuffizienz ist
+        der venöse Rückstrom ohnehin verlangsamt.“</span></li>
+      <li><span class="frage">Welche <b>Medikamente</b> spielen mit?</span>
+        <span class="warum">Wirkung, Nebenwirkung, Zeitpunkt. „Das Diuretikum wird morgens gegeben,
+        damit die vermehrte Ausscheidung nicht in die Nacht fällt.“</span></li>
+    </ol>
+  </div>
+
+  <div class="gut"><b>Der Satzbau, der immer funktioniert:</b>
+    <em>„… , weil / da …“</em> oder <em>„… , um … zu …“</em>.<br>
+    Eine Begründung ohne <b>weil</b>, <b>da</b>, <b>denn</b>, <b>deshalb</b> oder <b>um … zu</b>
+    ist keine Begründung — dasselbe gilt beim Operator <b>Begründen</b> in deinen Klausuren.</div>
+
+  <h3>Eine ganze Zeile, vier Spalten — Herr Lambrecht</h3>
+  <p>Aus deinem Fallbeispiel: Herr Lambrecht, Linksherzinsuffizienz.</p>
+  <div class="zeile">
+    <div class="z-p"><span class="sp">Problem</span>
+      <dl><dt>P</dt><dd>Herr Lambrecht ist bei geringer Belastung kurzatmig.</dd>
+        <dt>E</dt><dd>Linksherzinsuffizienz mit Rückstau in den Lungenkreislauf.</dd>
+        <dt>S</dt><dd>Atemnot beim Waschen am Waschbecken, muss Pausen einlegen, schläft mit
+          erhöhtem Oberkörper.</dd>
+        <dt>R</dt><dd>Kennt seine Belastungsgrenze, meldet sich rechtzeitig, sitzt gern auf.</dd></dl></div>
+    <div class="z-z"><span class="sp">Ziel</span>
+      <dl><dt>Nahziel</dt><dd>Herr Lambrecht führt die Körperpflege bis zum 14.09. sitzend und mit
+        zwei Pausen ohne Atemnot durch.</dd>
+        <dt>Fernziel</dt><dd>Er teilt seine Tagesaktivitäten bis zum 31.10. selbstständig so ein,
+          dass keine Atemnot auftritt.</dd></dl></div>
+    <div class="z-m"><span class="sp">Maßnahmen</span>
+      <dl><dt>1</dt><dd>1 PP unterstützt ihn morgens bei der Körperpflege am Waschbecken im Sitzen,
+        mit geplanten Pausen nach dem Oberkörper und nach den Beinen — täglich.</dd>
+        <dt>2</dt><dd>1 PFK leitet ihn zur Oberkörperhochlagerung und zur Lippenbremse an —
+          täglich, und bei jeder Atemnot.</dd></dl></div>
+    <div class="z-b"><span class="sp">Begründung</span>
+      <dl><dt>zu 1</dt><dd>Sitzen und Pausen senken den Sauerstoffbedarf, <b>weil</b> weniger
+        Muskelarbeit nötig ist; so bleibt die Belastung unter seiner Schwelle.</dd>
+        <dt>zu 2</dt><dd>Die Oberkörperhochlagerung entlastet den Lungenkreislauf, <b>da</b> Blut
+          in die untere Körperhälfte absackt und der Rückstau abnimmt.</dd></dl></div>
+  </div>
+
+  <h3>Übungen</h3>
+  <div class="ueb">
+    <div class="kopf"><span class="nr">1</span><span class="typ">Quelle erkennen</span></div>
+    <div class="frage">Aus welcher der vier Quellen stammt jede dieser Begründungen?<br>
+      a) „… weil die Muskel-Venen-Pumpe den Rückstrom zum Herzen fördert.“<br>
+      b) „… weil bei bestehender Varikosis die Gefäßwand vorgeschädigt ist.“<br>
+      c) „… weil jeder Mensch mit erhöhtem Sturzrisiko eine Sturzprophylaxe erhalten soll.“<br>
+      d) „… weil das Diuretikum die Ausscheidung vermehrt und deshalb morgens gegeben wird.“</div>
+    <textarea data-id="t5-1" rows="3" placeholder="a) … b) … c) … d) …"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t5-1">Lösung zeigen</button></div>
+    <div class="los" id="l-t5-1"><span class="l">a) Prophylaxe · b) Diagnose · c) Expertenstandard
+      · d) medikamentöse Therapie.</span>
+      <span class="h">Das sind genau die vier Punkte, die auf deinem Blatt gelb markiert sind. Wenn
+      du sie in dieser Reihenfolge durchgehst, findest du zu fast jeder Maßnahme eine
+      Begründung.</span></div>
+  </div>
+
+  <div class="ueb">
+    <div class="kopf"><span class="nr">2</span><span class="typ">Fehler finden</span></div>
+    <div class="frage">Warum ist das keine Begründung?<br>
+      <span class="falsch">„Bewegungsübungen sind wichtig für die Thromboseprophylaxe.“</span></div>
+    <textarea data-id="t5-2" rows="3" placeholder="Weil …"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t5-2">Lösung zeigen</button></div>
+    <div class="los" id="l-t5-2"><span class="l">Der Satz <em>behauptet</em> nur, er erklärt nichts.
+      Es fehlt der <b>Wirkweg</b> und ein Bindewort. Richtig: „Bewegungsübungen beugen einer
+      Thrombose vor, <b>weil</b> sie die Muskel-Venen-Pumpe aktivieren und dadurch den verlangsamten
+      venösen Rückstrom beschleunigen — genau die Seite der Virchow-Trias, die bei Immobilität
+      betroffen ist.“</span></div>
+  </div>
+
+  <div class="ueb">
+    <div class="kopf"><span class="nr">3</span><span class="typ">Selbst schreiben</span></div>
+    <div class="frage">Begründe die Maßnahme <b>„1 PP unterstützt Frau K. morgens beim Anziehen der
+      Kompressionsstrümpfe“</b>. Nutz mindestens <b>zwei</b> der vier Quellen.</div>
+    <textarea data-id="t5-3" rows="4" placeholder="…, weil … Außerdem …, da …"></textarea>
+    <div class="knoepfe"><button type="button" class="zeig" data-los="l-t5-3">Vorschlag zeigen</button></div>
+    <div class="los" id="l-t5-3"><span class="l">„Der Kompressionsstrumpf verengt den
+      Venenquerschnitt und beschleunigt dadurch den venösen Rückstrom — er wirkt also gegen den
+      verlangsamten Blutfluss, eine der drei Seiten der Virchow-Trias (Prophylaxe). Bei Frau K. ist
+      das besonders nötig, <b>weil</b> Herzinsuffizienz und Varikosis zwei weitere Seiten der Trias
+      betreffen (Diagnosen). Morgens vor dem ersten Aufstehen, <b>da</b> die Beine dann noch nicht
+      angeschwollen sind.“</span>
+      <span class="h">Freie Antwort. Prüf: Steht ein <b>weil</b>, <b>da</b> oder <b>um … zu</b>
+      drin? Und erklärst du den <em>Weg</em>, nicht nur den Namen der Maßnahme?</span></div>
+  </div>
+
+  <div class="karte" style="border-left:4px solid var(--b);margin-top:22px;">
+    <span class="lbl">Die Abschlussaufgabe von Tag 5</span>
+    <p>Schreib eine <b>vollständige Pflegeplanung</b> für Herrn Lambrecht — ein aktuelles und ein
+      potentielles Problem, jeweils alle vier Spalten. Nimm dir eine Stunde und schick sie mir.</p>
+    <textarea data-id="t5-abschluss" rows="8" placeholder="Aktuelles Problem&#10;P: … E: … S: … R: …&#10;Ziel: …&#10;Maßnahmen: …&#10;Begründung: …&#10;&#10;Potentielles Problem&#10;P: … E: … R: … (kein S!)"></textarea>
+  </div>
+</section>
+
+<!-- ══════════════════ TAGE 6–10 ══════════════════ -->
+<section id="ueben">
+  <h2>Tag 6 bis 10 — jeden Tag eine ganze Planung</h2>
+  <p class="lead">Ab jetzt kein neuer Stoff mehr. Jeden Tag ein Thema, jeden Tag alle vier Spalten,
+    jeden Tag ein aktuelles <em>und</em> ein potentielles Problem. Alle fünf Themen stehen in
+    deinen eigenen Unterlagen.</p>
+  <div class="plan">
+    <div class="pz"><div class="d">Tag 6</div><div class="w"><b>Harninkontinenz</b>
+      <span>Inkontinenzformen, Risikofaktoren, ableitende Versorgung. Achte auf das potentielle
+      Problem, das fast immer daraus folgt: Hautschädigung und Sturzgefahr.</span></div></div>
+    <div class="pz"><div class="d">Tag 7</div><div class="w"><b>Mangelernährung und Exsikkose</b>
+      <span>Screening, Flüssigkeitsbedarf, Aspirationsgefahr als potentielles Problem.</span></div></div>
+    <div class="pz"><div class="d">Tag 8</div><div class="w"><b>Demenz — Herr Werner</b>
+      <span>Hier liegen die Probleme in ABEDL 1, 11 und 13. Die Ressourcen zu finden ist die
+      eigentliche Übung.</span></div></div>
+    <div class="pz"><div class="d">Tag 9</div><div class="w"><b>Obstipation</b>
+      <span>Stuhlbeobachtung, Laxanzien. Gute Gelegenheit für Begründungen aus der medikamentösen
+      Therapie.</span></div></div>
+    <div class="pz"><div class="d">Tag 10</div><div class="w"><b>Orientierungsstörung und
+      Sturzgefahr</b> <span>Zwei Probleme, die sich gegenseitig verstärken — schreib den
+      Zusammenhang ausdrücklich ins E.</span></div></div>
+  </div>
+  <div class="gut"><b>Wie du dich selbst kontrollierst.</b> Nach jeder Planung gehst du die vier
+    Spalten noch einmal von rechts nach links: Passt jede Begründung zu ihrer Maßnahme? Führt jede
+    Maßnahme wirklich zu diesem Ziel? Erfüllt jedes Ziel alle fünf SMART-Buchstaben? Und steht bei
+    einem potentiellen Problem wirklich <b>kein S</b>?</div>
+</section>
+
+<!-- ══════════════════ AB TAG 11 ══════════════════ -->
+<section id="pruefung">
+  <h2>Ab Tag 11 — Aufgaben im Prüfungsformat</h2>
+  <p class="lead">Erst jetzt kommen Aufgaben, wie sie in der Prüfung gestellt werden: ein
+    Fallbeispiel, das du noch nie gesehen hast, unter Zeit.</p>
+  <div class="tab"><table>
+    <thead><tr><th>Was sich ab Tag 11 ändert</th><th>Wie du übst</th></tr></thead>
+    <tbody>
+      <tr><td>Das Fallbeispiel ist neu</td><td>Du liest es einmal, markierst Diagnosen und
+        Medikamente, gehst dann das ABEDL-Raster durch.</td></tr>
+      <tr><td>Die Zeit ist begrenzt</td><td>Mit Uhr arbeiten. Erst wenn eine vollständige Zeile in
+        der Zeit steht, kommt die zweite dazu.</td></tr>
+      <tr><td>Es gibt keine Vorlagen daneben</td><td>P E (S) R, SMART und die W-Fragen müssen
+        auswendig sitzen. Deshalb kommen sie zehn Tage lang jeden Tag vor.</td></tr>
+      <tr><td>Du musst mündlich dazu sprechen</td><td>Jede Planung einmal laut vorstellen — die
+        Struktur der Fallvorstellung steht auf der Seite zur Zwischenprüfung.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="luecke"><b>Was mir für die Prüfungsaufgaben noch fehlt.</b> Damit die Aufgaben ab
+    Tag 11 wirklich dem Prüfungsformat entsprechen, brauche ich von dir zwei Dokumente, die du
+    noch nicht geschickt hast: die <b>Vorlage der Fallvorstellung für die stationäre und ambulante
+    Langzeitpflege</b> und das <b>Beurteilungsprotokoll Teil 1 — Planungsbeurteilung</b>. Ohne sie
+    kenne ich die genauen Bewertungspunkte nicht — und geraten wird hier nichts.</div>
+</section>
+
+<section id="quellen">
+  <h2>Woher alles kommt</h2>
+  <div class="karte">
+    <p style="margin-top:0;"><b>Für Struktur und Formulierung</b> — alles auf dieser Seite außer
+      Spalte 4:</p>
+    <ul>
+      <li><code>pflegeplanung-pesr.pdf</code> — das Blatt „Pflegeplanung“ deiner Dozentin:
+        ABEDL, PE(S)R, SMART, W-Fragen, Hilfeformen</li>
+      <li><code>102-pflegeplanung.pdf</code> — Foliensatz CE02 UE2: Pflegeprozessmodell nach
+        Fiechter und Meier, aktuelles/potentielles Problem am Beispiel Thrombose</li>
+      <li><code>vorlage-aktuelle-pflegeprobleme.pdf</code> und
+        <code>vorlage-potentielle-pflegeprobleme.pdf</code> — die leeren Tabellen</li>
+    </ul>
+    <p><b>Für die Krankheitsthemen:</b></p>
+    <ul>
+      <li>Thrombose — Foliensatz CE02/UE02: Virchow-Trias, Symptome der TVT, Frowein-TVT-Score,
+        allgemeine Thromboseprophylaxe</li>
+      <li>Sturz — Arbeitsblatt Sturzprophylaxe mit den drei Hauptgruppen der Risikofaktoren;
+        Expertenstandard Sturzprophylaxe in der Pflege, 2. Aktualisierung 2022 (DNQP)</li>
+      <li>Linksherzinsuffizienz — <code>fallbeispiel-herr-lambrecht-linksherzinsuffizienz.pdf</code></li>
+    </ul>
+    <p style="margin-bottom:0;color:var(--ink-soft);font-size:14.5px;">Die Fallbeispiele „Frau K.“
+      auf dieser Seite sind <b>Übungsfälle</b>, aus den Inhalten deiner Unterlagen gebaut — keine
+      echten Personen. Aus deinem Rechtsunterricht: § 203 StGB, Schweigepflicht. Echte Bewohnerdaten
+      gehören nie auf eine Seite im Netz.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p><b>Zwischenprüfung am 01.04.2027.</b> Diese Seite deckt Teil 1 ab, die schriftliche Planung.<br>
+    Für Ablauf und Fallvorstellung: <a href="https://claude.ai/code/artifact/2e1db357-3e32-4a56-9356-3e4fde3d5c88"
+    target="_blank" rel="noopener">📋 Zwischenprüfung — Ablauf</a> ·
+    <a href="https://claude.ai/code/artifact/5f2d11f0-0e52-46e9-a01b-aa460a59d33c"
+    target="_blank" rel="noopener">💬 Gesprächsleitfaden</a> ·
+    <a href="https://claude.ai/code/artifact/cf5bfd6d-72ce-4a69-a226-41dfdbd0f9c1"
+    target="_blank" rel="noopener">🫀 Herr Lambrecht</a></p>
+  <p style="margin-top:14px;">Es gibt schon eine ältere Seite zur Pflegeplanung — dort stehen
+    Krohwinkel, die ABEDL mit ihren Prophylaxen und das Fallbeispiel Herr Wagner:
+    <a href="https://claude.ai/code/artifact/e7b944ee-0965-48b4-8e24-837ed5450542"
+    target="_blank" rel="noopener">📋 Pflegeplanung schreiben</a>. Diese Seite hier ersetzt sie
+    nicht, sondern übt das Schreiben ein.</p>
+  <p style="margin-top:14px;">Deine Antworten bleiben in diesem Browser gespeichert.
+    Schick sie mir — ich korrigiere Inhalt und Formulierung, nicht nur das Fachliche.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  /* Lösungen aufklappen */
+  document.querySelectorAll("button.zeig").forEach(function(b){
+    var zu = b.textContent;                       /* z. B. "Lösung zeigen" */
+    var auf = zu.replace("zeigen", "verbergen");
+    b.setAttribute("aria-expanded", "false");
+    b.addEventListener("click", function(){
+      var el = document.getElementById(b.dataset.los);
+      if(!el) return;
+      var offen = el.classList.toggle("show");
+      b.textContent = offen ? auf : zu;
+      b.setAttribute("aria-expanded", offen ? "true" : "false");
+    });
+  });
+  /* Antworten im Browser behalten */
+  document.querySelectorAll("textarea[data-id]").forEach(function(ta){
+    var key = "pp-" + ta.dataset.id, t = null;
+    try { var v = localStorage.getItem(key); if(v) ta.value = v; } catch(e){}
+    ta.addEventListener("input", function(){
+      clearTimeout(t);
+      t = setTimeout(function(){ try { localStorage.setItem(key, ta.value); } catch(e){} }, 400);
+    });
+  });
+})();
+</script>
