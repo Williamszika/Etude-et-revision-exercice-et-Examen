@@ -102,6 +102,12 @@ In beiden Fällen: nur `python3 deutsch-taeglich/build.py` ausführen, veröffen
 
 ### Ablauf
 
+0. **Zuerst retten, dann arbeiten.** Das ist der Fehler, der bisher am häufigsten passiert ist
+   (31.08., 01.09., 02.–04.09., 05.09., 07.09.): Die Routine veröffentlicht eine Lektion, aber
+   sie committet sie nie — beim nächsten Build ist sie weg. Also **vor allem anderen**:
+   `Artifact action:"read"` auf die Deutsch-täglich-URL, `const LEKTIONEN` aus der gespeicherten
+   Datei ziehen und **jede** Lektion, deren Datum nicht in `lektionen/` liegt, dort als JSON
+   anlegen. Erst danach weitermachen.
 1. `ls deutsch-taeglich/lektionen/`, die **neueste** Lektion lesen.
    Ihr Block `zyklus` sagt, wo wir stehen: `{woche, gesamt: 16, thema, themaNr, tag, fokus,
    start, bisPruefung, lektion}`.
@@ -126,6 +132,8 @@ In beiden Fällen: nur `python3 deutsch-taeglich/build.py` ausführen, veröffen
    Publish als veraltet abgelehnt), dann publish mit `file_path deutsch-taeglich/index.html`
    und derselben `url`.
 6. `git add -A && git commit && git pull --rebase origin <branch> && git push -u origin <branch>`
+   — **dieser Schritt gehört dazu, er ist nicht optional.** Eine Lektion, die nur veröffentlicht und
+   nicht committet ist, gilt als verloren. Der Lauf ist erst fertig, wenn `git status` sauber ist.
 
 ### Der Wochenrhythmus — kein Grammatik-Zyklus mehr
 
