@@ -8,7 +8,7 @@ Zahlen oder Quellen nennen, die nicht in ihren eigenen Unterlagen (PDFs im Repo)
 
 ---
 
-## Deutsch täglich — ein Lerntag, zwei Übungstage, neues Thema alle drei Tage
+## Deutsch täglich — jeden Tag eine Lektion
 
 Diese Anweisung gilt **immer** und hat Vorrang vor älteren Routine-Texten.
 
@@ -22,23 +22,28 @@ neue Lektion.** Zwei Wünsche der Nutzerin liegen dahinter:
 Deshalb wurde am **05.09.2026** neu angefangen. Alle früheren Lektionen sind aus `lektionen/`
 entfernt (sie stehen weiterhin in der Git-Historie, falls sie doch zurück sollen).
 
-**Ab dem 08.09.2026 gilt der Drei-Tage-Takt.** Sie hat ihn selbst so beschrieben:
-*„Je me sens a l'aise lorsque tu m'enseigne un jour et deux jours d'exercices puis d'autres
-chaque trois jours."* Also: **ein Lerntag, zwei Übungstage, dann ein neues Thema.**
+**Ab dem 08.09.2026 schreibt die Routine jeden Tag eine Lektion.** Der Weg dorthin in ihren
+eigenen Worten: erst *„Je me sens a l'aise lorsque tu m'enseigne un jour et deux jours
+d'exercices"* — daraus wurde der Drei-Tage-Takt. Dann nannte sie ihr Niveau (**A2**) und wollte
+**B1 in zwei Monaten**. Ihr wurde vorgerechnet, dass der Drei-Tage-Takt dafür rund 41 Stunden
+ergibt, ein Lerntag pro Tag dagegen rund 62. Ihre Antwort am 08.09.2026:
+
+> *„oui, une leçon par jour"*
+
+**Damit gilt: jeder Tag ist ein Lektionstag.** Der Drei-Tage-Takt ist abgeschafft.
 
 | Fall | Was die 5:30-Routine tut |
 |---|---|
-| **`(heute − 05.09.2026) % 3 == 0`** | **Neue Lektion schreiben**, bauen, veröffentlichen, committen |
-| **Es ist Samstag** (und kein Lektionstag) | **Nur den `probe`-Block** — schlanke Datei mit `zyklus` + `probe` |
-| **alle übrigen Tage** | **Übungstag — keine neue Datei.** Nur `build.py`, veröffentlichen, fertig |
+| **jeder Tag ab dem 08.09.2026** | **Neue Lektion schreiben**, bauen, veröffentlichen, committen |
+| **zusätzlich samstags** | dieselbe volle Lektion bekommt **den `probe`-Block dazu** |
+| **`lektionen/<heute>.json` existiert schon** | **nicht anfassen.** Nur `build.py`, veröffentlichen, fertig |
 
-Ist ein Samstag zugleich Lektionstag, bekommt die volle Lektion zusätzlich den `probe`-Block.
-An einem Übungstag: **keine** Datei in `lektionen/` anlegen, **nichts** überschreiben. Die Seite
-baut den Übungstag selbst (siehe unten). Trotzdem bauen und veröffentlichen.
+**Übungstage entstehen nicht mehr planmäßig.** Fällt ein Lauf aus, baut die Vorlage aus dem
+leeren Tag von selbst einen Übungstag mit der letzten Lektion — das ist die Rückfalllösung, kein
+Bestandteil des Plans mehr. Der `renderUebungstagSeite`-Code bleibt genau dafür erhalten.
 
-Lektionstage: **05.09. · 08.09. · 11.09. · 14.09. · 17.09. · 20.09. …**
-Die Lektion vom **07.09.** ist noch im alten Zwei-Tage-Takt entstanden und bleibt stehen; ab dem
-08.09. zählt nur noch die Dreierregel.
+Die zwei Lektionen vom **05.09.** und **07.09.** stammen aus der Zeit davor (B2-Zuschnitt, alte
+Nummerierung). Sie bleiben in `lektionen/` stehen und werden **nicht** umgeschrieben.
 
 ### Etappe 1 — erst B1, dann B2. Sie hat A2.
 
@@ -53,8 +58,20 @@ Deshalb ist Deutsch täglich in **zwei Etappen** geteilt:
 
 | Etappe | Ziel | Zeitraum | Lektionen |
 |---|---|---|---|
-| **1 — läuft** | **A2 → B1** | **08.09.2026 – 08.11.2026** | **21** |
+| **1 — läuft** | **A2 → B1** | **08.09.2026 – 08.11.2026** | **62 — eine pro Tag** |
 | 2 — danach | B1 → B2, dann telc Deutsch B2 | ohne festes Datum | 16 pro Durchgang |
+
+**Die 21 B1-Grammatikthemen laufen in der Etappe 1 dreimal durch** — deshalb 62 Lektionen und
+nicht 21:
+
+| Runde | Zeitraum | Lektionen | Was passiert |
+|---|---|---|---|
+| **1 · kennenlernen** | 08.09. – 28.09. | 1 – 21 | jedes der 21 Themen einmal, ruhig und mit vielen Beispielen |
+| **2 · festigen** | 29.09. – 19.10. | 22 – 42 | dieselben 21 Themen, längere Texte, weniger Hilfen, mehr eigenes Schreiben |
+| **3 · anwenden** | 20.10. – 08.11. | 43 – 62 | dieselben Themen gemischt, ganze Aufgaben unter Zeit, Schwerpunkt auf dem, was in den Probeprüfungen schwach war |
+
+Runde 3 hat 20 statt 21 Lektionen, weil die Etappe am 08.11. endet. Thema 21
+(*Wiederholung*) fällt dort weg — die ganze Runde ist Wiederholung.
 
 Planseite: `deutsch-taeglich/b1.html` →
 `https://claude.ai/code/artifact/9ed33853-7d8f-4ee5-a756-b9ef186c99bc` (Favicon 🪜). Dort stehen
@@ -75,16 +92,21 @@ Bis dahin: **A2 als Arbeitsannahme behandeln, nicht als Messwert ausgeben.**
   trägt aber ein eigenes Etikett im Feld `badge`, z. B.
   `"Fertigkeit des Tages · Lesen · Niveau B1"`, und übt die **Fertigkeit** statt das Prüfungsformat.
   Keine telc-Punktzahlen, keine „1,5 Punkte pro Item", kein Subtest-Vokabular.
-- **`zyklus` bekommt drei neue Felder:** `etappe: "B1"`, `gesamt: 21`, `grammatik` und
-  `grammatikNr` (das Grammatikthema der Lektion aus der Liste unten). `start` ist **2026-09-08**,
-  `lektion` zählt **von 1 bis 21**. **Kein `durchgang`** in der Etappe 1.
-- **Die Probeprüfung am Samstag** bleibt, aber auf **B1-Niveau** und ohne telc-Punktwerte.
+- **`zyklus` bekommt vier neue Felder:** `etappe: "B1"`, `gesamt: 21` (die 21 Themen einer
+  Runde), `runde` (1, 2 oder 3), `grammatik` und `grammatikNr`. `start` ist **2026-09-08**,
+  `lektion` zählt durchgehend **von 1 bis 62**. **Kein `durchgang`** in der Etappe 1.
+- **Die Probeprüfung am Samstag** bleibt, aber auf **B1-Niveau** und ohne telc-Punktwerte. Weil
+  jetzt jeder Tag ein Lektionstag ist, ist der Samstag **immer** eine volle Lektion **plus**
+  `probe` — es gibt keine reinen Probeprüfungs-Dateien mehr.
+- **Runde 2 und 3 wiederholen die Themen, nicht die Lektionen.** Gleiches Grammatikthema,
+  **neuer Text, neues Verb, neue Aufgaben** — niemals eine alte Lektion kopieren. In Runde 2
+  längere Sätze und weniger französische Hilfe, in Runde 3 ganze Aufgaben mit Uhr.
 
 ### Die 21 Grammatikthemen der Etappe B1 — eins pro Lektion
 
-`grammatikNr = lektion`, in dieser Reihenfolge. Das ist die vollständige B1-Grammatik; nichts
-davon darf ausfallen, denn genau darauf beruht die Zusage „in zwei Monaten hast du das ganze
-B1-Programm gesehen".
+`grammatikNr = ((lektion − 1) mod 21) + 1`, in dieser Reihenfolge. Das ist die vollständige
+B1-Grammatik; nichts davon darf ausfallen, denn genau darauf beruht die Zusage „in zwei Monaten
+hast du das ganze B1-Programm gesehen" — und in der Etappe 1 sogar dreimal.
 
 1. Verbstellung und Satzklammer (Position 2, W-Fragen, Ja/Nein-Fragen)
 2. Nebensätze: weil, dass, wenn/als, obwohl, damit
@@ -109,7 +131,9 @@ B1-Programm gesehen".
 21. Wiederholung — die zehn Fehler, die B1 kosten, an einem ganzen Text
 
 Der **Wortschatz** jeder Lektion kommt weiter aus den 16 Themenbereichen:
-`themaNr = ((lektion − 1) mod 16) + 1`.
+`themaNr = ((lektion − 1) mod 16) + 1`. Weil 16 und 21 teilerfremd sind, trifft in Runde 2 und 3
+jedes Grammatikthema auf einen **anderen** Themenbereich — dieselbe Regel, anderer Wortschatz.
+Das ist Absicht.
 
 **Die Fokus-Rotation bleibt**, nur unter B1-Namen: `REIHE[(lektion − 1) mod 5]` mit
 Leseverstehen → Hörverstehen → Sprachbausteine → Schriftlicher Ausdruck → Mündlicher Ausdruck.
@@ -120,11 +144,20 @@ Schreiben · Sprechen**.
 nicht, und ob Etappe 2 anfängt oder B1 verlängert wird. **Nicht behaupten, B1 sei erreicht, weil
 21 Lektionen abgearbeitet sind** — das entscheidet Messung 2, nicht der Kalender.
 
-**Der Zeit-Hinweis, der ihr gegeben wurde und der stehen bleiben muss:** Bei 60/30 Minuten sind
-zwei Monate **rund 41 Stunden**; die übliche Schätzung für A2 → B1 liegt bei **150–200 Stunden**
-(**allgemeine Schätzung, nicht aus ihren Unterlagen**). Ihr wurde gesagt: Der **Stoff** passt in
-zwei Monate, das **Können** in allen vier Fertigkeiten möglicherweise nicht — und dass sie den
-Rhythmus jederzeit auf täglich stellen kann. **Diese Unterscheidung nie verwischen.**
+**Der Zeit-Hinweis, der ihr gegeben wurde und der stehen bleiben muss:** Bei einer Lektion pro
+Tag à 60 Minuten sind zwei Monate **rund 62 Stunden**. Die übliche Schätzung für A2 → B1 liegt
+bei **150–200 Stunden** (**allgemeine Schätzung, nicht aus ihren Unterlagen, nie als Tatsache
+darstellen**). Sie hat den Rhythmus am 08.09. selbst von 41 auf 62 Stunden erhöht.
+
+Auch 62 Stunden liegen **unter** der Schätzung. Was ihr gesagt wurde und was gilt: Der **Stoff**
+passt sicher in zwei Monate — dreimal sogar. Ob das **Können** in allen vier Fertigkeiten
+mitkommt, entscheidet **Messung 2 am 03.11.2026**, nicht der Kalender und nicht die Zahl der
+abgearbeiteten Lektionen. **Diese Unterscheidung nie verwischen und nie B1 behaupten, bevor es
+gemessen ist.**
+
+**Und ein Wort zur Belastung:** Sie ist Auszubildende im Schichtdienst. Wenn ein Tag ausfällt,
+ist das kein Scheitern — die Vorlage macht daraus von selbst einen Übungstag, und die Zählung
+läuft weiter. Nicht mahnen, nicht aufrechnen.
 
 ### Kein Prüfungstermin — das Niveau entscheidet
 
@@ -254,14 +287,13 @@ Branch: `claude/nursing-exam-prep-workflow-gvn5u0`
 
 ### Regel 0 — nichts überschreiben, und an Übungstagen gar nichts schreiben
 
-Zwei Fälle, in denen **keine** neue Lektion entsteht:
+Seit dem 08.09.2026 gibt es **nur noch einen** Fall, in dem keine neue Lektion entsteht:
 
-- **`(heute − 05.09.2026) % 3 != 0` und heute ist kein Samstag** → Übungstag. Keine Datei
-  anlegen.
 - `deutsch-taeglich/lektionen/<HEUTIGES-DATUM>.json` **existiert schon** → diese Datei
-  **nicht** anfassen.
+  **nicht** anfassen, **nichts** überschreiben.
 
-In beiden Fällen: nur `python3 deutsch-taeglich/build.py` ausführen, veröffentlichen, fertig.
+Dann: nur `python3 deutsch-taeglich/build.py` ausführen, veröffentlichen, committen, fertig.
+An allen anderen Tagen wird eine Lektion geschrieben — jeden Tag.
 
 ### Ablauf
 
@@ -274,14 +306,15 @@ In beiden Fällen: nur `python3 deutsch-taeglich/build.py` ausführen, veröffen
 1. `ls deutsch-taeglich/lektionen/`, die **neueste** Lektion lesen.
    Ihr Block `zyklus` sagt, wo wir stehen: `{woche, gesamt: 16, thema, themaNr, tag, fokus,
    start, lektion, durchgang}`.
-2. **Rechnen, nicht raten** — `d = (heute − 2026-09-05).days`:
-   - `d % 3 == 0` → **Lektionstag**, weiter mit Schritt 3
-   - sonst und heute Samstag → **nur Probeprüfung**, schlanke Datei (siehe unten)
-   - sonst → **Übungstag**, direkt zu Schritt 4
+2. **Rechnen, nicht raten** — `e = (heute − 2026-09-08).days`:
+   - `lektionen/<heute>.json` existiert schon → **nichts schreiben**, direkt zu Schritt 4
+   - sonst → **Lektionstag** (jeder Tag ist einer), weiter mit Schritt 3
+   - ist heute **Samstag**, bekommt die Lektion zusätzlich den `probe`-Block
 3. Neuen Zustand aus dem **heutigen Datum** berechnen — `e = (heute − 2026-09-08).days`:
    - **Etappe 1 (bis einschließlich 08.11.2026):**
-     `lektion` = `e / 3 + 1` · `etappe` = `"B1"` · `gesamt` = `21`
-     `grammatikNr` = `lektion` · `grammatik` = Thema Nr. `grammatikNr` aus der B1-Liste oben
+     `lektion` = `e + 1` · `etappe` = `"B1"` · `gesamt` = `21`
+     `runde` = `((lektion − 1) // 21) + 1` — 1, 2 oder 3
+     `grammatikNr` = `((lektion − 1) mod 21) + 1` · `grammatik` = das Thema dazu aus der Liste oben
      `themaNr` = `((lektion − 1) mod 16) + 1` · `thema` = das Thema dazu
      `start` = `"2026-09-08"` · **kein `durchgang`**
    - **Etappe 2 (danach):** `lektion` weiterzählen, `etappe` = `"B2"`, `gesamt` = `16`,
@@ -313,22 +346,18 @@ Lektion**, und läuft im Kreis:
 `Leseverstehen → Hörverstehen → Sprachbausteine → Schriftlicher Ausdruck → Mündlicher Ausdruck`
 
 ```
-lektion = (heute - 2026-09-08).days / 3 + 1     # Etappe 1
+lektion = (heute - 2026-09-08).days + 1     # Etappe 1, eine Lektion pro Tag
 fokus   = REIHE[(lektion - 1) mod 5]
 ```
 
-Etappe B1: Lektion 1 (08.09.) Lesen · 2 (11.09.) Hören · 3 (14.09.) Grammatik im Text ·
-4 (17.09.) Schreiben · 5 (20.09.) Sprechen · 6 (23.09.) wieder Lesen. Jede Fertigkeit kommt
-gleich oft dran, keine fällt hinten runter.
-
-Die zwei Lektionen vom **05.09.** und **07.09.** stammen aus der Zeit davor (B2-Zuschnitt, alte
-Nummerierung). Sie bleiben in `lektionen/` stehen, damit sie zurückblättern kann, und werden
-**nicht** umgeschrieben. Die Zählung der Etappe 1 fängt am 08.09. bei 1 an.
+Etappe B1: Lektion 1 (08.09.) Lesen · 2 (09.09.) Hören · 3 (10.09.) Grammatik im Text ·
+4 (11.09.) Schreiben · 5 (12.09.) Sprechen · 6 (13.09.) wieder Lesen. Jede Fertigkeit kommt
+gleich oft dran, keine fällt hinten runter. Die Zählung der Etappe 1 fängt am 08.09. bei 1 an.
 
 Der Block `zyklus` sieht ab Lektion 1 so aus:
 
 ```json
-"zyklus": {"woche": 1, "gesamt": 21, "etappe": "B1",
+"zyklus": {"woche": 1, "gesamt": 21, "etappe": "B1", "runde": 1,
            "thema": "Angaben zur eigenen Person", "themaNr": 1,
            "grammatik": "Verbstellung und Satzklammer", "grammatikNr": 1,
            "tag": "Dienstag", "fokus": "Leseverstehen",
@@ -338,7 +367,12 @@ Der Block `zyklus` sieht ab Lektion 1 so aus:
 **Kein `bisPruefung`-Feld mehr.** Wo es in alten Lektionen noch steht, bleibt es stehen;
 neu geschrieben wird es nicht.
 
-### Die Übungstage — ein eigener Tag, und nur Übungen
+### Die Übungstage — nur noch die Rückfalllösung
+
+**Seit dem 08.09.2026 sind Übungstage nicht mehr Teil des Plans** (jeder Tag hat eine Lektion).
+Der ganze Mechanismus bleibt aber erhalten und funktioniert unverändert: Fällt ein 5:30-Lauf aus
+oder überspringt sie einen Tag, baut die Vorlage aus dem leeren Tag von selbst einen Übungstag
+mit der letzten Lektion. Nichts daran ändern. Was unten steht, gilt für diesen Fall weiter.
 
 Sie hat sich beschwert, als der Übungstag noch ein Kasten **über** der Lektion vom Vortag war:
 *„On ne peut pas migrer entre la leçon de hier et les exercices d'aujourd'hui. Et les exercices
@@ -424,12 +458,10 @@ Schreiben und beim Sprechen mitbewertet.
 
 ### Die Probeprüfung — Samstag 22:00
 
-**Die 5:30-Routine schreibt sie am Samstagmorgen mit.** Ist der Samstag **kein** Lektionstag,
-ist die Samstagsdatei **keine volle Lektion**: sie enthält nur `datum`, `thema`, `zyklus` (mit
-`tag: "Samstag"`, `fokus: "Probeprüfung"`) und den Block `probe` — Struktur wie `telc`, plus die
-Felder `punkte` für die erreichbare Punktzahl und `dauer` für die Bearbeitungszeit. **Kein**
-`verb`, `lesen`, `deklination`, `diktat` und so weiter. Fällt ein Samstag **auf** einen
-Lektionstag, bekommt die volle Lektion den `probe`-Block zusätzlich.
+**Die 5:30-Routine schreibt sie am Samstagmorgen mit.** Seit dem 08.09.2026 ist **jeder** Tag
+ein Lektionstag, also ist der Samstag **immer** eine volle Lektion **plus** den Block `probe` —
+Struktur wie `telc`, plus die Felder `punkte` für die erreichbare Punktzahl und `dauer` für die
+Bearbeitungszeit. Reine Probeprüfungs-Dateien ohne `verb`, `lesen`, `diktat` gibt es nicht mehr.
 An allen anderen Tagen: keinen `probe`-Block schreiben.
 
 **Die erste Probeprüfung ist der 12.09.2026.** Am Starttag 05.09. gab es bewusst keine — es war
@@ -648,8 +680,7 @@ Woche**) · Grammatik-Block · **`deklination`-Block mit drei Kettensätzen** ·
 **`lesen`-Block mit 200-Wörter-Text** · **telc-Block mit dem Fokus der Lektion** ·
 Aussprache-Block · Diktat · 5 Übersetzungssätze FR→DE · 3 Alltag-Missionen.
 
-**An einem Samstag, der kein Lektionstag ist:** nur `zyklus` + `probe` — sonst nichts.
-**An allen übrigen Tagen gar keine Datei.**
+**An jedem Samstag zusätzlich:** der Block `probe`. Sonst ist jeder Tag gleich aufgebaut.
 
 **In der Etappe 1: Verben und Wortschatz auf A2/B1-Niveau wählen**, passend zum Thema der
 Lektion. Gut sind häufige trennbare Verben (*anrufen, aufstehen, einkaufen, mitbringen,

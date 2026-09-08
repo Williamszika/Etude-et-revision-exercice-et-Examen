@@ -444,12 +444,12 @@
 </style>
 
 <header class="hero">
-  <p class="eyebrow">Etappe 1 · Niveau B1 · ein Lerntag, zwei Übungstage</p>
+  <p class="eyebrow">Etappe 1 · Niveau B1 · jeden Tag eine Lektion</p>
   <h1>Deutsch täglich</h1>
-  <p>Der Weg von <b>A2</b> zu <b>B1</b> in <b>21 Lektionen</b>. Alle drei Tage eine neue Lektion:
-  ein <b>Verb</b>, ein <b>Ausdruck</b>, ein <b>Grammatik-Thema der B1-Liste</b>, ein <b>Text</b>
-  und eine <b>Fertigkeit</b> — Lesen, Hören, Sprechen, Schreiben.
-  Dazwischen <b>zwei Übungstage</b> — dann wird nichts Neues gelernt, sondern das Alte gefestigt.</p>
+  <p>Der Weg von <b>A2</b> zu <b>B1</b> — <b>jeden Tag eine Lektion</b>: ein <b>Verb</b>, ein
+  <b>Ausdruck</b>, ein <b>Grammatik-Thema der B1-Liste</b>, ein <b>Text</b> und eine
+  <b>Fertigkeit</b> — Lesen, Hören, Sprechen, Schreiben.
+  Die 21 B1-Themen laufen <b>dreimal</b> durch: erst kennenlernen, dann festigen, dann anwenden.</p>
   <span class="streak" id="streak"></span>
 </header>
 
@@ -482,8 +482,8 @@
       <a href="https://claude.ai/code/artifact/fb2c751b-a84b-42e6-b19a-1bfc6fc6d4b3"
          target="_blank" rel="noopener" style="color:var(--accent-deep);">🎧 Hörverstehen</a>
     </p>
-    Deutsch täglich · neue Lektion <b>alle drei Tage</b> um 5:30 (Berlin) ·
-    <b>samstags 22:00</b> die Probeprüfung · die Tage dazwischen sind <b>Übungstage</b> ·
+    Deutsch täglich · neue Lektion <b>jeden Tag</b> um 5:30 (Berlin) ·
+    <b>samstags 22:00</b> zusätzlich die Probeprüfung ·
     <a href="https://claude.ai/code/artifact/ea512258-b4a4-47d8-8959-12d7cd441bf9"
        target="_blank" rel="noopener" style="color:var(--accent-deep);">📏 Einstufungstest</a> ·
     Erklärungen auf Deutsch (B1) mit französischer Hilfe für schwere Stellen.
@@ -1542,7 +1542,8 @@ function render(){
     const REIHE=['Leseverstehen','Hörverstehen','Sprachbausteine',
                  'Schriftlicher Ausdruck','Mündlicher Ausdruck'];
     /* Der Zyklus folgt nicht der Kalenderwoche: Lektionstag ist jeder dritte Tag ab
-       z.start (ein Lerntag, zwei Übungstage). Die Leiste zeigt die nächsten sieben Tage. */
+       z.start ist jeder Tag ein Lektionstag. Die Leiste zeigt die nächsten sieben Tage.
+       Fällt ein Tag doch aus, baut die Vorlage von selbst einen Übungstag daraus. */
     const dLek=alsDatum(eintrag.datum), dStart=alsDatum(z.start), TAG=86400000;
     /* Fortschrittspunkte = die Lektionen einer Etappe (B1: 21) bzw. die 16 Themen */
     const gw=z.gesamt||16;
@@ -1557,11 +1558,11 @@ function render(){
       if(d){
         d.setDate(d.getDate()+i);
         lbl=W[d.getDay()]+' '+String(d.getDate()).padStart(2,'0')+'.';
-        const diff=dStart?Math.round((d-dStart)/TAG):(i%3===0?0:1);
-        if(diff>=0&&diff%3===0){
+        const diff=dStart?Math.round((d-dStart)/TAG):i;
+        if(diff>=0){
           art='Lektion';
-          const ln=(z.lektion||1)+(diff-dLekDiff)/3;
-          tip='Lektion '+ln+' · '+REIHE[(ln-1)%5];
+          const ln=(z.lektion||1)+(diff-dLekDiff);
+          tip='Lektion '+ln+' · '+REIHE[(ln-1)%5]+(d.getDay()===6?' · dazu die Probeprüfung':'');
         } else if(d.getDay()===6){ art='Probeprüfung'; tip='Probeprüfung, 22:00'; }
         else tip='Übungstag — die letzte Lektion festigen';
       } else { lbl=W[(i+1)%7]; }
@@ -1581,8 +1582,9 @@ function render(){
                   (z.grammatik?'<span class="thema">Grammatik: <b>'+esc(z.grammatik)+'</b>'+
                     (z.grammatikNr?' <i class="nr">G'+z.grammatikNr+' von '+gw+'</i>':'')+'</span>':'')+
                   '<span class="thema">'+
-                    (z.lektion?'Lektion <b>'+z.lektion+'</b> von '+gw
+                    (z.lektion?'Lektion <b>'+z.lektion+'</b>'
                               :'Woche <b>'+(z.woche||1)+'</b> von '+gw)+
+                    (z.runde?' <i class="nr">Runde '+z.runde+' von 3</i>':'')+
                     (z.durchgang?' <i class="nr">Durchgang '+z.durchgang+'</i>':'')+'</span>'+
                   tage;
     zEl.style.display='flex';

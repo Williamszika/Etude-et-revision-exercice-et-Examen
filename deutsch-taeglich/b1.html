@@ -102,6 +102,16 @@
     .lek{grid-template-columns:3.2rem 1fr;}
     .lek .dt{grid-column:2;} .lek .gr{grid-column:1 / -1;} .lek .fk{grid-column:1 / -1;justify-self:start;}
   }
+  .runde-wahl{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 6px;}
+  .runde-wahl button{font:inherit;font-size:14px;font-weight:600;color:var(--ink-soft);
+    background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 15px;
+    cursor:pointer;text-align:left;line-height:1.3;}
+  .runde-wahl button:hover{border-color:var(--b1);color:var(--ink);}
+  .runde-wahl button:focus-visible{outline:2px solid var(--b1);outline-offset:2px;}
+  .runde-wahl button.an{background:var(--b1);border-color:var(--b1);color:var(--card);}
+  .runde-wahl button small{display:block;font-weight:400;font-size:12px;opacity:.8;}
+  .lek .rd{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;
+    color:var(--b1);background:var(--b1bg);border-radius:5px;padding:2px 7px;margin-left:7px;}
   .legende{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;}
   .legende span{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.05em;
     border-radius:6px;padding:4px 10px;color:var(--card);}
@@ -120,10 +130,10 @@
 <header class="hero">
   <p class="eyebrow">Deutsch täglich · Etappe 1 · 08.09.2026 – 08.11.2026</p>
   <h1>Der Weg zu B1</h1>
-  <p class="sub">Du hast gesagt: <em>„je connais mon niveau, j'ai le A2 … apprends-moi le B1
-    pendant 2 mois."</em> Das ist dieser Plan. <b>21 Lektionen</b>, jede dritte Tag eine, und
-    dazwischen zwei Übungstage. Die vollständige B1-Grammatik, der B1-Wortschatz und alle vier
-    Fertigkeiten — Lesen, Hören, Schreiben, Sprechen.</p>
+  <p class="sub">Du hast gesagt: <em>„j'ai le A2 … apprends-moi le B1 pendant 2 mois"</em> — und
+    dann: <em>„oui, une leçon par jour."</em> Das ist dieser Plan. <b>62 Lektionen, eine pro
+    Tag</b>: die 21 B1-Grammatikthemen laufen <b>dreimal</b> durch — erst kennenlernen, dann
+    festigen, dann anwenden. Dazu der B1-Wortschatz und alle vier Fertigkeiten.</p>
   <div class="leiter">
     <div class="st-a2"><b>A2</b><span>dein Start<br>08.09.2026</span></div>
     <div class="st-b1"><b>B1</b><span>das Ziel dieser Etappe<br>08.11.2026</span></div>
@@ -151,35 +161,40 @@
     <table>
       <thead><tr><th>Was</th><th class="n">Zahl</th><th>Woher</th></tr></thead>
       <tbody>
-        <tr><td>Dein Rhythmus: 60 Min Lerntag + 2 × 30 Min Übungstag</td>
-            <td class="n">2 h / 3 Tage</td><td>deine Festlegung vom 08.09.</td></tr>
-        <tr><td>In zwei Monaten (61 Tage)</td><td class="n">≈ 41 h</td><td>gerechnet</td></tr>
+        <tr><td><b>Dein Rhythmus: jeden Tag eine Lektion, 60 Minuten</b></td>
+            <td class="n">1 h / Tag</td><td>deine Entscheidung vom 08.09.: <em>„une leçon par jour"</em></td></tr>
+        <tr><td><b>In zwei Monaten (62 Tage)</b></td><td class="n">≈ 62 h</td><td>gerechnet</td></tr>
         <tr><td>Übliche Schätzung für A2 → B1</td><td class="n">150 – 200 h</td>
             <td><b>allgemeine Schätzung, nicht aus deinen Unterlagen</b></td></tr>
-        <tr><td>Wenn du täglich 60 Minuten machst</td><td class="n">≈ 61 h</td><td>gerechnet</td></tr>
-        <tr><td>Wenn du täglich 90 Minuten machst</td><td class="n">≈ 91 h</td><td>gerechnet</td></tr>
+        <tr><td>Zum Vergleich: der alte Drei-Tage-Takt</td><td class="n">≈ 41 h</td>
+            <td>abgelöst am 08.09.</td></tr>
+        <tr><td>Wenn du an manchen Tagen 90 Minuten schaffst</td><td class="n">bis ≈ 93 h</td>
+            <td>gerechnet</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="warn"><b>Was das bedeutet — und was nicht.</b>
-    <p style="margin:8px 0 0;"><b>Der Stoff passt.</b> Die B1-Grammatik ist eine
-    <em>abzählbare Liste</em>: 21 Themen. In 21 Lektionen kommt jedes davon dran, keins wird
-    weggelassen. Nach zwei Monaten <b>kennst</b> du das ganze B1-Programm. Das verspreche ich dir,
-    und du kannst es unten Zeile für Zeile nachprüfen.</p>
-    <p style="margin:10px 0 0;"><b>Was ich nicht verspreche:</b> dass 41 Stunden reichen, damit es
-    in allen vier Fertigkeiten <em>sitzt</em>. Kennen und Können sind zwei verschiedene Dinge —
-    besonders beim Hören und beim Sprechen, wo nur Wiederholung hilft.
+    <p style="margin:8px 0 0;"><b>Der Stoff passt — dreimal sogar.</b> Die B1-Grammatik ist eine
+    <em>abzählbare Liste</em>: 21 Themen. Mit einer Lektion pro Tag kommt jedes Thema in zwei
+    Monaten <b>dreimal</b> dran, jedes Mal mit neuem Text, neuem Verb und neuen Aufgaben. Nichts
+    wird weggelassen. Das verspreche ich dir, und du kannst es unten Zeile für Zeile nachprüfen.</p>
+    <p style="margin:10px 0 0;"><b>Was ich nicht verspreche:</b> dass auch 62 Stunden reichen,
+    damit es in allen vier Fertigkeiten <em>sitzt</em>. 62 liegt näher an der Schätzung als 41,
+    aber immer noch darunter. Kennen und Können sind zwei verschiedene Dinge — besonders beim
+    Hören und beim Sprechen, wo nur Wiederholung hilft.
     <span class="fr">Connaître et savoir faire, ce n'est pas la même chose. En deux mois tu auras
-    vu tout le B1 ; qu'il soit <em>acquis</em> dans les quatre compétences, seule la mesure le
-    dira.</span></p>
+    vu tout le B1 trois fois ; qu'il soit <em>acquis</em> dans les quatre compétences, seule la
+    mesure du 3 novembre le dira.</span></p>
   </div>
 
-  <div class="gut"><b>Der Hebel liegt bei dir.</b> Wenn du willst, dass das B1 in zwei Monaten
-    nicht nur gesehen, sondern <b>gekonnt</b> ist, sag mir ein Wort — dann mache ich aus
-    „ein Lerntag, zwei Übungstage“ einen <b>Lerntag jeden Tag</b>. Das sind 61 statt 41 Stunden,
-    und die 21 Lektionen liegen dann in <b>drei Wochen</b> statt in zwei Monaten, mit sechs Wochen
-    reinem Üben dahinter. Ich ändere nichts von allein — du hast diesen Rhythmus selbst gewählt.</div>
+  <div class="gut"><b>Du hast den Hebel schon gezogen.</b> Am 08.09. hast du von „ein Lerntag,
+    zwei Übungstage“ auf <b>eine Lektion pro Tag</b> umgestellt — das sind <b>21 Stunden mehr</b>
+    in denselben zwei Monaten, und statt einmal geht die B1-Grammatik jetzt <b>dreimal</b> durch.
+    <p style="margin:10px 0 0;"><b>Und wenn ein Tag ausfällt?</b> Dann fällt er aus. Du arbeitest
+    im Schichtdienst — das ist eingeplant, nicht ein Versagen. Die Seite macht aus dem leeren Tag
+    von selbst einen Übungstag mit der letzten Lektion, und am nächsten Morgen geht es normal
+    weiter. Ich rechne dir nichts vor und mahne dich nicht.</p></div>
 </section>
 
 <section id="kann">
@@ -208,7 +223,7 @@
       <li>einen Vorschlag machen und auf einen Vorschlag antworten</li>
       <li>sagen, was man will und warum, ohne mittendrin abzubrechen</li></ul></div>
     <div class="k" style="--kf:var(--sb);"><h4>Grammatik und Wortschatz</h4><ul>
-      <li>die 21 Grammatikthemen unten — <b>alle</b></li>
+      <li>die 21 Grammatikthemen unten — <b>alle</b>, und jedes dreimal</li>
       <li>rund <b>2400 Wörter</b> aktiv (A2 sind rund 1300)</li>
       <li>Kasus und Genus sicher: deine Baustelle 1 und 2</li>
       <li>Verben mit fester Präposition — die häufigsten 40</li></ul></div>
@@ -225,10 +240,12 @@
 </section>
 
 <section id="lektionen">
-  <h2>Die 21 Lektionen</h2>
-  <p class="lead">Jede dritte Tag eine, ab heute. Jede Lektion bringt <b>ein</b> Grammatikthema,
+  <h2>Die 62 Lektionen</h2>
+  <p class="lead">Eine pro Tag, ab heute. Jede Lektion bringt <b>ein</b> Grammatikthema,
     <b>ein</b> Wortschatzthema und <b>eine</b> Fertigkeit im Schwerpunkt. Die Fertigkeiten
-    rotieren, damit keine hinten runterfällt.</p>
+    rotieren, damit keine hinten runterfällt — und weil 16 Wortschatzthemen auf 21
+    Grammatikthemen treffen, bekommt jede Regel in jeder Runde einen <b>anderen</b> Wortschatz.</p>
+  <div class="runde-wahl" id="rundeWahl"></div>
   <div class="legende">
     <span style="background:var(--le);">LV Lesen</span>
     <span style="background:var(--ho);">HV Hören</span>
@@ -255,30 +272,32 @@
 </section>
 
 <section id="tag">
-  <h2>Ein Lerntag, zwei Übungstage</h2>
-  <p class="lead">Der Rhythmus, den du selbst gewählt hast — und was in den 60 bzw. 30 Minuten
-    wirklich passiert.</p>
+  <h2>Jeden Tag eine Lektion</h2>
+  <p class="lead">Was in den 60 Minuten wirklich passiert — und warum das Üben jetzt <em>in</em>
+    der Lektion steckt statt an eigenen Übungstagen.</p>
   <div class="tabelle"><table>
-    <thead><tr><th>Tag</th><th>Was drin ist</th><th class="n">Zeit</th></tr></thead>
+    <thead><tr><th>Wann</th><th>Was drin ist</th><th class="n">Zeit</th></tr></thead>
     <tbody>
-      <tr><td><b>Lerntag</b><br><span class="fr">tous les 3 jours</span></td>
+      <tr><td><b>Jeden Morgen 5:30</b><br><span class="fr">une leçon par jour</span></td>
         <td>Verb des Tages mit voller Konjugation · Ausdruck des Tages · das Grammatikthema der
           Lektion · <b>die Kette</b> an drei Sätzen (Deklination Schritt für Schritt) · ein
-          <b>Text von 200 Wörtern</b> mit Fragen, Wortschatztabelle und Konnektorenübungen ·
+          <b>Text von 150–200 Wörtern</b> mit Fragen, Wortschatztabelle und Konnektorenübungen ·
           die <b>Fertigkeit des Tages</b> · Aussprache · <b>Diktat</b> · 5 Übersetzungen
           FR→DE · 3 Alltagsmissionen</td><td class="n">60 Min</td></tr>
-      <tr><td><b>Übungstag 1</b><br><span class="fr">le lendemain</span></td>
-        <td><b>Nichts Neues.</b> Nur Übungen: die Kette laut, die Textaufgaben ohne den Text,
-          das Training, die Fertigkeit, das Diktat noch einmal, die Übersetzungen.
-          Eigene Antwortfelder — du fängst wirklich leer an.</td><td class="n">30 Min</td></tr>
-      <tr><td><b>Übungstag 2</b><br><span class="fr">le surlendemain</span></td>
-        <td>Dasselbe noch einmal — und <b>das ist der Sinn</b>. Beim zweiten Mal merkst du,
-          was wirklich sitzt und was nur bekannt vorkam.</td><td class="n">30 Min</td></tr>
-      <tr><td><b>Samstag 22:00</b></td>
-        <td>Probeprüfung im echten Format, damit du unter Zeit arbeitest. In der Etappe B1 auf
-          B1-Niveau.</td><td class="n">—</td></tr>
+      <tr><td><b>Jeden Samstag</b></td>
+        <td>Dieselbe Lektion, <b>plus die Probeprüfung</b> — ab 22:00 freigeschaltet, im echten
+          Format und unter Zeit, auf B1-Niveau.</td><td class="n">+ 45 Min</td></tr>
+      <tr><td><b>Wenn ein Tag ausfällt</b><br><span class="fr">service, fatigue, imprévu</span></td>
+        <td>Die Seite baut aus dem leeren Tag von selbst einen <b>Übungstag</b>: nur die Aufgaben
+          der letzten Lektion, mit leeren Feldern. Kein neuer Stoff, kein Rückstand, keine
+          Mahnung.</td><td class="n">30 Min</td></tr>
     </tbody>
   </table></div>
+  <div class="info"><b>Wo ist das Üben geblieben?</b> Es steckt jetzt in den <b>Runden</b>. Statt
+    dieselbe Lektion zweimal zu wiederholen, kommt dasselbe Grammatikthema drei Wochen später
+    wieder — mit einem anderen Text, einem anderen Verb und anderen Aufgaben. Das ist die bessere
+    Wiederholung: Du musst die Regel neu anwenden statt eine bekannte Antwort zu erinnern.
+    <span class="fr">La répétition espacée est plus efficace que la répétition immédiate.</span></div>
   <div class="gut"><b>Was du jedes Mal tun musst, damit es wirkt:</b> <b>schick mir deine
     Antworten.</b> Ich korrigiere sie — jeden Deklinationsfehler ordne ich dem <b>Kettenglied</b>
     zu (1 Bestimmer · 2 Fall · 3 Genus · 4 Artikel · 5 Endung), jeden anderen seiner
@@ -295,6 +314,11 @@
       <tr><td class="n">08.09.2026</td><td>Einstufungstest, Messung 1</td>
         <td>Dein Startpunkt in Zahlen. Du sagst A2 — der Test zeigt, ob das für alle fünf
           Fertigkeiten gilt oder ob eine davon schon höher oder niedriger liegt.</td></tr>
+      <tr><td class="n">28.09.2026</td><td>Ende von Runde 1</td>
+        <td>Alle 21 Grammatikthemen einmal gesehen. Kurze Zwischenbilanz: was war leicht, was
+          nicht — daraus wird Runde 2 gewichtet.</td></tr>
+      <tr><td class="n">19.10.2026</td><td>Ende von Runde 2</td>
+        <td>Zweiter Durchgang fertig. Ab hier nur noch anwenden.</td></tr>
       <tr><td class="n">03.11.2026</td><td>Einstufungstest, Messung 2</td>
         <td>Nach acht Wochen. Genau dieselben Aufgaben — nur so sind die Zahlen vergleichbar.</td></tr>
       <tr><td class="n">08.11.2026</td><td>Ende der Etappe 1</td>
@@ -321,7 +345,7 @@
         target="_blank" rel="noopener">🧭 Meine sieben Baustellen</a> ·
      <a href="https://claude.ai/code/artifact/46864e04-1000-4201-8cf3-d76d6c889c1d"
         target="_blank" rel="noopener">🎯 Prüfungsplan B2</a></p>
-  <p>Etappe 1 · Niveau B1 · 08.09.2026 – 08.11.2026 · 21 Lektionen ·
+  <p>Etappe 1 · Niveau B1 · 08.09.2026 – 08.11.2026 · 62 Lektionen · drei Runden ·
     <span class="fr">Les estimations d'heures sur cette page sont des ordres de grandeur
     généraux, pas des données de tes documents.</span></p>
 </footer>
@@ -398,26 +422,68 @@
 
   var heute=new Date(); heute.setHours(0,0,0,0);
   var liste=document.getElementById('lekliste');
+  var wahl=document.getElementById('rundeWahl');
 
-  GRAMMATIK.forEach(function(g,i){
-    var d=new Date(START); d.setDate(d.getDate()+i*3);
-    var f=REIHE[i%5];
-    var row=document.createElement('div');
-    row.className='lek'+(d.getTime()===heute.getTime()?' heute':(d<heute?' vorbei':''));
+  var GESAMT=62;                          /* 08.09.2026 bis 08.11.2026 */
+  var RUNDEN=[
+    ['Runde 1 · kennenlernen','Lektion 1–21 · 08.09. – 28.09.'],
+    ['Runde 2 · festigen','Lektion 22–42 · 29.09. – 19.10.'],
+    ['Runde 3 · anwenden','Lektion 43–62 · 20.10. – 08.11.']
+  ];
 
-    var nr=document.createElement('div'); nr.className='nr'; nr.textContent='L'+(i+1);
-    var dt=document.createElement('div'); dt.className='dt'; dt.textContent=dat(d);
-    var gr=document.createElement('div'); gr.className='gr';
-    var b=document.createElement('b'); b.textContent=g[0];
-    var it=document.createElement('i');
-    it.textContent='Wortschatz: '+THEMEN[i%16];
-    gr.appendChild(b); gr.appendChild(it);
-    var fk=document.createElement('div'); fk.className='fk';
-    fk.style.background=f[2]; fk.textContent=f[0]+' '+f[1];
+  function rundeVon(i){ return Math.floor(i/21)+1; }   /* i = Index ab 0 */
 
-    row.appendChild(nr); row.appendChild(dt); row.appendChild(gr); row.appendChild(fk);
-    liste.appendChild(row);
+  function zeichne(nurRunde){
+    liste.textContent='';
+    for(var i=0;i<GESAMT;i++){
+      var r=rundeVon(i);
+      if(nurRunde && r!==nurRunde) continue;
+      var d=new Date(START); d.setDate(d.getDate()+i);
+      var g=GRAMMATIK[i%21], f=REIHE[i%5];
+      var row=document.createElement('div');
+      row.className='lek'+(d.getTime()===heute.getTime()?' heute':(d<heute?' vorbei':''));
+
+      var nr=document.createElement('div'); nr.className='nr'; nr.textContent='L'+(i+1);
+      var dt=document.createElement('div'); dt.className='dt'; dt.textContent=dat(d);
+      var gr=document.createElement('div'); gr.className='gr';
+      var b=document.createElement('b'); b.textContent=g[0];
+      if(!nurRunde){
+        var rd=document.createElement('span'); rd.className='rd'; rd.textContent='R'+r;
+        b.appendChild(rd);
+      }
+      var it=document.createElement('i');
+      it.textContent='Wortschatz: '+THEMEN[i%16]+(d.getDay()===6?'  ·  dazu die Probeprüfung':'');
+      gr.appendChild(b); gr.appendChild(it);
+      var fk=document.createElement('div'); fk.className='fk';
+      fk.style.background=f[2]; fk.textContent=f[0]+' '+f[1];
+
+      row.appendChild(nr); row.appendChild(dt); row.appendChild(gr); row.appendChild(fk);
+      liste.appendChild(row);
+    }
+  }
+
+  var knoepfe=[];
+  function setzeRunde(r){
+    knoepfe.forEach(function(k,j){
+      var an=(j===0?0:j)===r;
+      k.classList.toggle('an',an);
+      k.setAttribute('aria-pressed',an?'true':'false');
+    });
+    zeichne(r);
+  }
+  [['Alle 62 Lektionen','08.09. – 08.11.2026']].concat(RUNDEN).forEach(function(x,j){
+    var k=document.createElement('button');
+    k.type='button';
+    k.appendChild(document.createTextNode(x[0]));
+    var sm=document.createElement('small'); sm.textContent=x[1]; k.appendChild(sm);
+    k.addEventListener('click',function(){ setzeRunde(j===0?0:j); });
+    knoepfe.push(k); wahl.appendChild(k);
   });
+
+  /* beim Öffnen: die Runde zeigen, in der wir gerade sind */
+  var tageSeitStart=Math.round((heute-START)/TAG);
+  var startRunde=(tageSeitStart>=0&&tageSeitStart<GESAMT)?rundeVon(tageSeitStart):0;
+  setzeRunde(startRunde);
 
   var tb=document.getElementById('gramtab');
   GRAMMATIK.forEach(function(g,i){
