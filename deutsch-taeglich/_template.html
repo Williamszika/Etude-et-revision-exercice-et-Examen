@@ -1531,10 +1531,11 @@ function render(){
     /* Der Zyklus folgt nicht der Kalenderwoche: Lektionstag ist jeder dritte Tag ab
        z.start (ein Lerntag, zwei Übungstage). Die Leiste zeigt die nächsten sieben Tage. */
     const dLek=alsDatum(eintrag.datum), dStart=alsDatum(z.start), TAG=86400000;
-    /* Fortschrittspunkte = Wochen bis zur Prüfung */
+    /* Fortschrittspunkte = die 16 Themen eines Durchgangs */
     const gw=z.gesamt||16;
     let p='';
-    for(let i=1;i<=gw;i++)p+='<i class="'+(i<=(z.woche||1)?'on':'')+'"></i>';
+    const imDg=((z.lektion||1)-1)%16+1;
+    for(let i=1;i<=gw;i++)p+='<i class="'+(i<=imDg?'on':'')+'"></i>';
     let tage='<div class="zy-tage">';
     for(let i=0;i<7;i++){
       let art='Übungstag', lbl='', tip='';
@@ -1562,9 +1563,9 @@ function render(){
                   '<span class="zy-punkte">'+p+'</span>'+
                   (z.thema?'<span class="thema">Thema: <b>'+esc(z.thema)+'</b>'+
                     (z.themaNr?' <i class="nr">T'+z.themaNr+' von 16</i>':'')+'</span>':'')+
-                  '<span class="thema">Woche <b>'+(z.woche||1)+'</b> von '+gw+
-                    (z.lektion?' · Lektion <b>'+z.lektion+'</b>':'')+
-                    (z.bisPruefung?' <i class="nr">noch '+z.bisPruefung+' Tage</i>':'')+'</span>'+
+                  '<span class="thema">'+
+                    (z.lektion?'Lektion <b>'+z.lektion+'</b>':'Woche <b>'+(z.woche||1)+'</b> von '+gw)+
+                    (z.durchgang?' <i class="nr">Durchgang '+z.durchgang+'</i>':'')+'</span>'+
                   tage;
     zEl.style.display='flex';
   } else if(l.zyklus&&l.zyklus.tag){

@@ -40,20 +40,42 @@ Lektionstage: **05.09. · 08.09. · 11.09. · 14.09. · 17.09. · 20.09. …**
 Die Lektion vom **07.09.** ist noch im alten Zwei-Tage-Takt entstanden und bleibt stehen; ab dem
 08.09. zählt nur noch die Dreierregel.
 
-### Der Plan bis zur Prüfung — drei Durchgänge
+### Kein Prüfungstermin — das Niveau entscheidet
 
-146 Tage vom 08.09.2026 bis zum 01.02.2027 = **48 Lektionstage und 98 Übungstage.**
+**Am 08.09.2026 hat sie den Februartermin gestrichen.** Sie ist **nicht angemeldet** und will es
+erst, wenn sie so weit ist:
 
-| Durchgang | Zeitraum | Inhalt |
-|---|---|---|
-| **1** | 08.09. – 19.10. | die 16 telc-Themen zum ersten Mal, mit den 16 B2-Grammatikthemen |
-| **2** | 20.10. – 06.12. | dieselben 16 Themen, härter, durchgehend im Prüfungsformat |
-| **Endspurt** | 07.12. – 23.01. | ganze Prüfungsteile unter Zeit, gezielt die schwächsten Subtests |
-| Reserve | 24.01. – 01.02. | acht Tage Puffer vor der Prüfung |
+> *„et annuler l'objectif de l'examen, Je ne me suis pas encore inscris. C'est toi qui me diras
+> si je peux m'inscrire pour passer l'examen ou non selon mon niveau."*
 
-**Ein Thema pro Lektion, nicht mehr pro Woche.** Ab Lektion 3 gilt: `themaNr = lektion − 1`
-(Lektion 1 und 2 hatten beide T1). Ebenso `grammatikNr = lektion − 1` — Thema und Grammatik
-rücken gemeinsam vor. Der `fokus` rotiert weiter nach `REIHE[(lektion − 1) mod 5]`.
+Daraus folgt für alles in diesem Abschnitt:
+
+- **Kein Countdown mehr.** Das Feld `bisPruefung` wird in neuen Lektionen **weggelassen**; die
+  Vorlage zeigt es nur noch, wenn es dasteht. Keine Seite darf „noch X Tage bis zur Prüfung"
+  anzeigen.
+- **Keine Endspurt-Phase**, keine Termin-Tabelle, kein „bis Februar".
+- Statt Datum zählt der **Durchgang**: Durchgang 1 = die 16 Themen zum ersten Mal (16 Lektionen),
+  Durchgang 2 = dieselben Themen härter, Durchgang 3 = ganze Prüfungsteile unter Zeit. Ein
+  Durchgang dauert 16 Lektionen = 48 Tage, egal wann er anfängt.
+- Das Feld `zyklus` bekommt dafür `durchgang` (1, 2, 3 …) statt `bisPruefung`.
+
+### Die Anmeldung — wann ich sie freigebe
+
+Sie hat mir diese Entscheidung ausdrücklich übertragen. Die Regel, damit sie überprüfbar bleibt
+und nicht Gefühlssache ist:
+
+**Anmelden erst, wenn der Einstufungstest in zwei aufeinanderfolgenden Messungen bei allen fünf
+Fertigkeiten B2 zeigt** — Lesen, Hören, Sprachbausteine, Schreiben und Sprechen. Zwei Messungen,
+weil eine einzelne gute Messung ein Zufall sein kann.
+
+**Gemessen wird alle acht Wochen** mit `deutsch-taeglich/einstufung.html`. Jede Messung wird in
+`deutsch-taeglich/einstufungen.json` festgehalten (Datum, fünf Ergebnisse, eine Zeile Kommentar),
+damit die Entwicklung sichtbar ist und die Prognose auf echten Zahlen beruht statt auf einer
+Tabelle aus dem Internet.
+
+**Bis dahin gilt: keine Zahl behaupten, die nicht gemessen ist.** Wenn sie fragt, wie lange es
+noch dauert, wird gerechnet — mit ihren letzten beiden Messungen — und offen gesagt, wie unsicher
+die Rechnung ist.
 
 ### Ihre vier Festlegungen vom 08.09.2026
 
@@ -90,10 +112,11 @@ gegen ihre teuerste Schwäche: **Hörverstehen und Mündlicher Ausdruck sind zus
 Punkten.** Deshalb steht das Diktat **in jeder Lektion und an jedem Übungstag** — an Übungstagen
 rendert die Vorlage es ohnehin mit.
 
-### Das Ziel: telc Deutsch B2 im Februar 2027
+### Das Ziel: das Niveau B2, dann die Prüfung telc Deutsch B2
 
-Deutsch täglich ist **kein allgemeiner Sprachkurs mehr**, sondern die Vorbereitung auf die
-Prüfung **telc Deutsch B2** im **Februar 2027**. Daraus folgt:
+Deutsch täglich ist **kein allgemeiner Sprachkurs mehr**, sondern der Weg zum Niveau **B2** in
+allen vier Fertigkeiten — und erst danach zur Prüfung **telc Deutsch B2**. **Ein Prüfungstermin
+steht nicht fest und wird nicht gesetzt.** Daraus folgt:
 
 - Alle Themen liegen auf **B1/B2-Niveau**. Reine A2-Themen (einfache Fragen, Imperativ,
   Komparativ) gehören nicht mehr als eigenes Thema hierher — sie laufen in den Beispielen mit.
@@ -161,7 +184,7 @@ In beiden Fällen: nur `python3 deutsch-taeglich/build.py` ausführen, veröffen
    anlegen. Erst danach weitermachen.
 1. `ls deutsch-taeglich/lektionen/`, die **neueste** Lektion lesen.
    Ihr Block `zyklus` sagt, wo wir stehen: `{woche, gesamt: 16, thema, themaNr, tag, fokus,
-   start, bisPruefung, lektion}`.
+   start, lektion, durchgang}`.
 2. **Rechnen, nicht raten** — `d = (heute − 2026-09-05).days`:
    - `d % 3 == 0` → **Lektionstag**, weiter mit Schritt 3
    - sonst und heute Samstag → **nur Probeprüfung**, schlanke Datei (siehe unten)
@@ -173,9 +196,8 @@ In beiden Fällen: nur `python3 deutsch-taeglich/build.py` ausführen, veröffen
    - `tag` = heutiger Wochentag auf Deutsch
    - `fokus` = `REIHE[(lektion − 1) mod 5]` (Rotation, siehe unten)
    - `thema` und `themaNr` = das telc-Thema dieser Woche (Tabelle unten)
-   - `bisPruefung` = Tage bis zum 01.02.2027
-   - Ab Woche 17 (26.12.2026): **Endspurt**, `thema` = „Endspurt · Prüfungstraining",
-     `themaNr` weglassen
+   - `durchgang` = `((lektion − 1) // 16) + 1` — Durchgang 1, 2, 3 …
+   - **Kein `bisPruefung`.** Es gibt keinen Termin.
    Dann `deutsch-taeglich/lektionen/<YYYY-MM-DD>.json` schreiben — Struktur **exakt** wie in
    der neuesten vorhandenen **Lektion vom gleichen Typ** (volle Lektion bzw. reine
    Probeprüfung), gleiche Block- und Feldnamen, nur neuer Inhalt.
@@ -190,9 +212,9 @@ In beiden Fällen: nur `python3 deutsch-taeglich/build.py` ausführen, veröffen
 ### Der Wochenrhythmus — kein Grammatik-Zyklus mehr
 
 **Die alten 13 Grammatikthemen sind abgeschafft.** Deutsch täglich folgt jetzt der Prüfung
-selbst. Jede Woche gehört **einem der 16 telc-Themen aus Anhang T**, und **jede zweite Kalender-
-tag** ist ein Lektionstag. Eine Woche enthält also mal drei, mal vier Lektionen — je nachdem,
-wie die Tage fallen.
+selbst. **Jede Lektion gehört einem der 16 telc-Themen aus Anhang T** — `themaNr = lektion − 1`,
+gedeckelt auf 16 — und **jeder dritte Kalendertag** ist ein Lektionstag. Das Thema hängt also an
+der **Lektionsnummer**, nicht mehr an der Kalenderwoche.
 
 **Die Fokus-Rotation.** Der Fokus hängt **nicht am Wochentag**, sondern an der **Nummer der
 Lektion**, und läuft im Kreis:
@@ -213,10 +235,11 @@ Der Block `zyklus` sieht ab Lektion 1 so aus:
 ```json
 "zyklus": {"woche": 1, "gesamt": 16, "thema": "Angaben zur eigenen Person",
            "themaNr": 1, "tag": "Samstag", "fokus": "Leseverstehen",
-           "start": "2026-09-05", "bisPruefung": 149, "lektion": 1}
+           "start": "2026-09-05", "lektion": 1, "durchgang": 1}
 ```
 
-`bisPruefung` = Tage bis zum 01.02.2027, an jedem Lektionstag neu ausrechnen.
+**Kein `bisPruefung`-Feld mehr.** Wo es in alten Lektionen noch steht, bleibt es stehen;
+neu geschrieben wird es nicht.
 
 ### Die Übungstage — ein eigener Tag, und nur Übungen
 
@@ -272,9 +295,10 @@ sieben Tage ab dem Starttag, nicht Montag bis Sonntag.
 | 15 | 12.12.–18.12. | T15 Gesellschaft, Staat, Regierung |
 | 16 | 19.12.–25.12. | T16 Beziehungen zu anderen Menschen und Kulturen |
 
-Ab **26.12.2026** bis zur Prüfung: **Endspurt**, gut fünf Wochen. Keine neuen Themen mehr,
-sondern ganze Prüfungsteile unter Zeit, Wiederholung der schwächsten Subtests laut den
-Probeprüfungen, und jede Woche eine vollständige E-Mail in 30 Minuten mit Uhr.
+**Die Datumsspalte ist nur noch eine Erinnerung an Durchgang 1.** Seit dem 08.09. hängt das Thema
+an der **Lektionsnummer**, nicht am Datum: `themaNr = lektion − 1`. Nach Lektion 17 fängt
+Durchgang 2 mit T1 wieder an, härter — und Durchgang 3 besteht aus ganzen Prüfungsteilen unter
+Zeit, jedes Mal eine vollständige E-Mail in 30 Minuten mit Uhr.
 
 **Wichtig:** Pflegebeispiele sind erlaubt und sogar prüfungskonform, aber sie dürfen die Woche
 nicht kapern. In der Woche „Natur und Umwelt" geht es um Natur und Umwelt — nicht um die
@@ -333,7 +357,7 @@ Am Ende jeder Probeprüfung: die **60-%-Marke** nennen (73 von 122) und daran er
 in der echten Prüfung **beide** Teile getrennt 60 % brauchen. Die Themen der Probeprüfung
 kommen aus der Woche, die gerade zu Ende geht, plus Wiederholung aus früheren Wochen.
 
-Alle vier Wochen (Woche 4, 8, 12, 16 und dann im Endspurt jede Woche) statt der kleinen
+Alle vier Probeprüfungen einmal (also jede vierte) statt der kleinen
 Probeprüfung einen **kompletten Subtest in Originallänge** aus dem Übungstest in
 `deutsch-taeglich/telc-quellen/uebungstest/` — mit der echten Audiodatei fürs Hörverstehen.
 
@@ -604,5 +628,5 @@ anlegen — immer denselben `file_path` bzw. dieselbe `url` verwenden.
 
 `deutsch-taeglich/pruefung.html` → `https://claude.ai/code/artifact/46864e04-1000-4201-8cf3-d76d6c889c1d`
 Favicon 🎯. Enthält das offizielle Format mit allen Punkten, die Bestehensgrenze, die Notenskala,
-die 16 Themen und den Plan bis Februar 2027. Bei jeder Änderung am Prüfungsformat **zuerst hier**
+die 16 Themen und die Anmeldekriterien. Bei jeder Änderung am Prüfungsformat **zuerst hier**
 nachsehen und diese Seite mitpflegen.
