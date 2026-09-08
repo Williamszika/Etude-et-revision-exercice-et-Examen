@@ -1,0 +1,437 @@
+<title>Der Weg zu B1</title>
+<style>
+  :root{
+    --paper:#f4f2ec;--paper-2:#eae7de;--card:#fffdf8;--ink:#1b201e;--ink-soft:#4b5450;--line:#dad5c9;
+    --a2:#a8722c;--a2bg:#f6ead7;--b1:#1a7068;--b1bg:#dcefec;--b2:#40449b;--b2bg:#e3e3f5;
+    --accent:#1a7068;--accent-deep:#125049;--accent-soft:#dcefec;
+    --good:#2f7d54;--goodbg:#e3f0e7;--warn:#b5731a;--warnbg:#faead8;--bad:#bb4d3f;--badbg:#f8e0dc;
+    --le:#1f5f8b;--ho:#6b4fa8;--sb:#0f6f6b;--sa:#a35a12;--ma:#a83b5c;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111614;--paper-2:#0c100f;--card:#19201e;--ink:#eef2f0;--ink-soft:#a2b0ac;--line:#28332f;
+    --a2:#d9a05b;--a2bg:#2d2416;--b1:#6cc4bf;--b1bg:#0f2726;--b2:#a9a4e8;--b2bg:#1f1d33;
+    --accent:#6cc4bf;--accent-deep:#8ad6d1;--accent-soft:#0f2726;
+    --good:#6fc292;--goodbg:#14281c;--warn:#d9a559;--warnbg:#2e2114;--bad:#e08a7c;--badbg:#301b17;
+    --le:#6cb2dd;--ho:#b39ce8;--sb:#6cc4bf;--sa:#e0a565;--ma:#e08aa0;}}
+  :root[data-theme="dark"]{
+    --paper:#111614;--paper-2:#0c100f;--card:#19201e;--ink:#eef2f0;--ink-soft:#a2b0ac;--line:#28332f;
+    --a2:#d9a05b;--a2bg:#2d2416;--b1:#6cc4bf;--b1bg:#0f2726;--b2:#a9a4e8;--b2bg:#1f1d33;
+    --accent:#6cc4bf;--accent-deep:#8ad6d1;--accent-soft:#0f2726;
+    --good:#6fc292;--goodbg:#14281c;--warn:#d9a559;--warnbg:#2e2114;--bad:#e08a7c;--badbg:#301b17;
+    --le:#6cb2dd;--ho:#b39ce8;--sb:#6cc4bf;--sa:#e0a565;--ma:#e08aa0;}
+  :root[data-theme="light"]{
+    --paper:#f4f2ec;--paper-2:#eae7de;--card:#fffdf8;--ink:#1b201e;--ink-soft:#4b5450;--line:#dad5c9;
+    --a2:#a8722c;--a2bg:#f6ead7;--b1:#1a7068;--b1bg:#dcefec;--b2:#40449b;--b2bg:#e3e3f5;
+    --accent:#1a7068;--accent-deep:#125049;--accent-soft:#dcefec;
+    --good:#2f7d54;--goodbg:#e3f0e7;--warn:#b5731a;--warnbg:#faead8;--bad:#bb4d3f;--badbg:#f8e0dc;
+    --le:#1f5f8b;--ho:#6b4fa8;--sb:#0f6f6b;--sa:#a35a12;--ma:#a83b5c;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding:46px 20px 30px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:62ch;margin:0 auto 22px;color:var(--ink-soft);font-size:15.5px;}
+
+  /* Leiter A2 → B1 → B2 */
+  .leiter{display:flex;justify-content:center;gap:0;align-items:stretch;max-width:640px;
+    margin:0 auto;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card);}
+  .leiter div{flex:1;padding:13px 10px;text-align:center;border-right:1px solid var(--line);}
+  .leiter div:last-child{border-right:none;}
+  .leiter b{display:block;font-family:var(--mono);font-size:1.35rem;line-height:1;margin-bottom:5px;}
+  .leiter span{font-size:12.5px;color:var(--ink-soft);}
+  .leiter .st-a2{background:var(--a2bg);} .leiter .st-a2 b{color:var(--a2);}
+  .leiter .st-b1{background:var(--b1bg);} .leiter .st-b1 b{color:var(--b1);}
+  .leiter .st-b2 b{color:var(--b2);}
+
+  nav.toc{position:sticky;top:0;z-index:30;background:var(--paper-2);border-bottom:1px solid var(--line);
+    padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding:0 18px 90px;}
+  section{padding-top:50px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:26px 0 8px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px 18px;margin:16px 0;}
+  .card > :first-child{margin-top:0;} .card > :last-child{margin-bottom:0;}
+  .lbl{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+
+  ul,ol{padding-left:1.2em;margin:10px 0;} li{margin:5px 0;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+
+  .tabelle{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:12px;}
+  table{border-collapse:collapse;width:100%;min-width:560px;background:var(--card);}
+  th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.n,th.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+  .warn{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .info{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:10px;padding:15px 18px;margin:16px 0;}
+
+  /* Die 21 Lektionen */
+  .lekliste{display:grid;gap:8px;margin:18px 0;}
+  .lek{display:grid;grid-template-columns:3.2rem 5.6rem 1fr auto;gap:13px;align-items:baseline;
+    background:var(--card);border:1px solid var(--line);border-radius:11px;padding:11px 15px;}
+  .lek .nr{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--b1);}
+  .lek .dt{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);font-variant-numeric:tabular-nums;}
+  .lek .gr{font-size:15px;}
+  .lek .gr i{display:block;font-style:normal;font-size:13px;color:var(--ink-soft);margin-top:1px;}
+  .lek .fk{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.05em;
+    border-radius:6px;padding:3px 8px;white-space:nowrap;color:var(--card);}
+  .lek.heute{border-color:var(--b1);border-width:2px;background:var(--b1bg);}
+  .lek.vorbei{opacity:.5;}
+  @media (max-width:640px){
+    .lek{grid-template-columns:3.2rem 1fr;}
+    .lek .dt{grid-column:2;} .lek .gr{grid-column:1 / -1;} .lek .fk{grid-column:1 / -1;justify-self:start;}
+  }
+  .legende{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;}
+  .legende span{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.05em;
+    border-radius:6px;padding:4px 10px;color:var(--card);}
+
+  .kann{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:16px 0;}
+  .kann .k{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--kf);
+    border-radius:12px;padding:14px 17px;}
+  .kann .k h4{margin:0 0 6px;font-family:var(--serif);font-size:1.06rem;color:var(--kf);}
+  .kann .k ul{margin:0;padding-left:1.1em;font-size:14.5px;}
+
+  footer{border-top:1px solid var(--line);margin-top:70px;padding:30px 20px 50px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  footer a{color:var(--accent-deep);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Deutsch täglich · Etappe 1 · 08.09.2026 – 08.11.2026</p>
+  <h1>Der Weg zu B1</h1>
+  <p class="sub">Du hast gesagt: <em>„je connais mon niveau, j'ai le A2 … apprends-moi le B1
+    pendant 2 mois."</em> Das ist dieser Plan. <b>21 Lektionen</b>, jede dritte Tag eine, und
+    dazwischen zwei Übungstage. Die vollständige B1-Grammatik, der B1-Wortschatz und alle vier
+    Fertigkeiten — Lesen, Hören, Schreiben, Sprechen.</p>
+  <div class="leiter">
+    <div class="st-a2"><b>A2</b><span>dein Start<br>08.09.2026</span></div>
+    <div class="st-b1"><b>B1</b><span>das Ziel dieser Etappe<br>08.11.2026</span></div>
+    <div class="st-b2"><b>B2</b><span>Etappe 2, danach<br>ohne festes Datum</span></div>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#ehrlich">Die ehrliche Rechnung</a>
+  <a href="#kann">Was B1 heißt</a>
+  <a href="#lektionen">Die 21 Lektionen</a>
+  <a href="#grammatik">Die B1-Grammatik</a>
+  <a href="#tag">Ein Lerntag, zwei Übungstage</a>
+  <a href="#messung">Die Messung</a>
+</nav>
+
+<main>
+
+<section id="ehrlich">
+  <h2>Die ehrliche Rechnung — bevor wir anfangen</h2>
+  <p class="lead">Ich sage dir das einmal, klar, und dann arbeiten wir. Du sollst wissen, worauf
+    du dich einlässt — nicht, damit du aufhörst, sondern damit du entscheidest.</p>
+
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Was</th><th class="n">Zahl</th><th>Woher</th></tr></thead>
+      <tbody>
+        <tr><td>Dein Rhythmus: 60 Min Lerntag + 2 × 30 Min Übungstag</td>
+            <td class="n">2 h / 3 Tage</td><td>deine Festlegung vom 08.09.</td></tr>
+        <tr><td>In zwei Monaten (61 Tage)</td><td class="n">≈ 41 h</td><td>gerechnet</td></tr>
+        <tr><td>Übliche Schätzung für A2 → B1</td><td class="n">150 – 200 h</td>
+            <td><b>allgemeine Schätzung, nicht aus deinen Unterlagen</b></td></tr>
+        <tr><td>Wenn du täglich 60 Minuten machst</td><td class="n">≈ 61 h</td><td>gerechnet</td></tr>
+        <tr><td>Wenn du täglich 90 Minuten machst</td><td class="n">≈ 91 h</td><td>gerechnet</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warn"><b>Was das bedeutet — und was nicht.</b>
+    <p style="margin:8px 0 0;"><b>Der Stoff passt.</b> Die B1-Grammatik ist eine
+    <em>abzählbare Liste</em>: 21 Themen. In 21 Lektionen kommt jedes davon dran, keins wird
+    weggelassen. Nach zwei Monaten <b>kennst</b> du das ganze B1-Programm. Das verspreche ich dir,
+    und du kannst es unten Zeile für Zeile nachprüfen.</p>
+    <p style="margin:10px 0 0;"><b>Was ich nicht verspreche:</b> dass 41 Stunden reichen, damit es
+    in allen vier Fertigkeiten <em>sitzt</em>. Kennen und Können sind zwei verschiedene Dinge —
+    besonders beim Hören und beim Sprechen, wo nur Wiederholung hilft.
+    <span class="fr">Connaître et savoir faire, ce n'est pas la même chose. En deux mois tu auras
+    vu tout le B1 ; qu'il soit <em>acquis</em> dans les quatre compétences, seule la mesure le
+    dira.</span></p>
+  </div>
+
+  <div class="gut"><b>Der Hebel liegt bei dir.</b> Wenn du willst, dass das B1 in zwei Monaten
+    nicht nur gesehen, sondern <b>gekonnt</b> ist, sag mir ein Wort — dann mache ich aus
+    „ein Lerntag, zwei Übungstage“ einen <b>Lerntag jeden Tag</b>. Das sind 61 statt 41 Stunden,
+    und die 21 Lektionen liegen dann in <b>drei Wochen</b> statt in zwei Monaten, mit sechs Wochen
+    reinem Üben dahinter. Ich ändere nichts von allein — du hast diesen Rhythmus selbst gewählt.</div>
+</section>
+
+<section id="kann">
+  <h2>Was B1 konkret heißt</h2>
+  <p class="lead">Damit „B1“ nicht ein Wort bleibt: Das hier musst du am 08.11. können. Es ist die
+    Messlatte, an der ich dich am Ende prüfe.</p>
+  <div class="kann">
+    <div class="k" style="--kf:var(--le);"><h4>Lesen</h4><ul>
+      <li>einen Zeitungsartikel über ein Alltagsthema verstehen</li>
+      <li>einen persönlichen Brief verstehen, auch Gefühle und Wünsche darin</li>
+      <li>eine Gebrauchsanweisung oder einen Aushang verstehen</li>
+      <li>Texte von 300–400 Wörtern ohne Wörterbuch im Groben erfassen</li></ul></div>
+    <div class="k" style="--kf:var(--ho);"><h4>Hören</h4><ul>
+      <li>eine langsam und deutlich gesprochene Nachricht verstehen</li>
+      <li>bei einem Gespräch über Alltagsthemen folgen können</li>
+      <li>eine Ansage, eine Anweisung, einen Telefonanruf verstehen</li>
+      <li>ein Diktat von 60–80 Wörtern richtig mitschreiben</li></ul></div>
+    <div class="k" style="--kf:var(--sa);"><h4>Schreiben</h4><ul>
+      <li>eine E-Mail von 80–120 Wörtern schreiben, halbformell oder privat</li>
+      <li>eine Erfahrung zusammenhängend erzählen</li>
+      <li>die eigene Meinung mit <em>weil</em> und <em>deshalb</em> begründen</li>
+      <li>eine Beschwerde, eine Bitte, eine Entschuldigung formulieren</li></ul></div>
+    <div class="k" style="--kf:var(--ma);"><h4>Sprechen</h4><ul>
+      <li>ohne Vorbereitung über Arbeit, Familie, Gesundheit, Freizeit sprechen</li>
+      <li>etwas erzählen, was passiert ist — in der richtigen Zeitform</li>
+      <li>einen Vorschlag machen und auf einen Vorschlag antworten</li>
+      <li>sagen, was man will und warum, ohne mittendrin abzubrechen</li></ul></div>
+    <div class="k" style="--kf:var(--sb);"><h4>Grammatik und Wortschatz</h4><ul>
+      <li>die 21 Grammatikthemen unten — <b>alle</b></li>
+      <li>rund <b>2400 Wörter</b> aktiv (A2 sind rund 1300)</li>
+      <li>Kasus und Genus sicher: deine Baustelle 1 und 2</li>
+      <li>Verben mit fester Präposition — die häufigsten 40</li></ul></div>
+    <div class="k" style="--kf:var(--b1);"><h4>Und das Wichtigste</h4><ul>
+      <li>weiterreden, wenn ein Wort fehlt, statt zu stoppen</li>
+      <li>einen Fehler selbst hören und korrigieren</li>
+      <li>einen Satz zu Ende bauen — Verb am richtigen Platz</li></ul></div>
+  </div>
+  <div class="info"><b>Woher diese Liste kommt:</b> Sie beschreibt das, was auf B1-Niveau
+    allgemein erwartet wird, in meinen eigenen Worten und auf deinen Alltag zugeschnitten.
+    <b>Sie steht so in keinem deiner PDFs</b> — anders als das telc-B2-Format auf der
+    Prüfungsplan-Seite, das Zeile für Zeile aus deinem Handbuch stammt. Ich sage dir das, weil
+    hier nichts als gesichert gelten soll, was es nicht ist.</div>
+</section>
+
+<section id="lektionen">
+  <h2>Die 21 Lektionen</h2>
+  <p class="lead">Jede dritte Tag eine, ab heute. Jede Lektion bringt <b>ein</b> Grammatikthema,
+    <b>ein</b> Wortschatzthema und <b>eine</b> Fertigkeit im Schwerpunkt. Die Fertigkeiten
+    rotieren, damit keine hinten runterfällt.</p>
+  <div class="legende">
+    <span style="background:var(--le);">LV Lesen</span>
+    <span style="background:var(--ho);">HV Hören</span>
+    <span style="background:var(--sb);">SB Grammatik im Text</span>
+    <span style="background:var(--sa);">SA Schreiben</span>
+    <span style="background:var(--ma);">MA Sprechen</span>
+  </div>
+  <div class="lekliste" id="lekliste"></div>
+</section>
+
+<section id="grammatik">
+  <h2>Die B1-Grammatik — die vollständige Liste</h2>
+  <p class="lead">Das ist der Grund, warum zwei Monate für den <em>Stoff</em> reichen: B1-Grammatik
+    ist endlich. Hier steht sie ganz, und jede Zeile hat ihren Tag.</p>
+  <div class="tabelle"><table>
+    <thead><tr><th class="n">Nr.</th><th>Thema</th><th>Warum es für dich zählt</th></tr></thead>
+    <tbody id="gramtab"></tbody>
+  </table></div>
+  <div class="achtung"><b>Vier davon sind deine Baustellen.</b> Nr. 5 (Kasus) und Nr. 7
+    (Adjektivdeklination) treffen <b>Baustelle 1 und 2</b> — zusammen über die Hälfte deiner
+    Fehler. Nr. 1 und Nr. 2 treffen <b>Baustelle 3</b> (Verbstellung), Nr. 12
+    <b>Baustelle 7</b> (feste Präpositionen). Diese fünf kommen nicht nur einmal dran, sondern
+    laufen in <em>jeder</em> Lektion in der Kette und in den Korrekturaufgaben mit.</div>
+</section>
+
+<section id="tag">
+  <h2>Ein Lerntag, zwei Übungstage</h2>
+  <p class="lead">Der Rhythmus, den du selbst gewählt hast — und was in den 60 bzw. 30 Minuten
+    wirklich passiert.</p>
+  <div class="tabelle"><table>
+    <thead><tr><th>Tag</th><th>Was drin ist</th><th class="n">Zeit</th></tr></thead>
+    <tbody>
+      <tr><td><b>Lerntag</b><br><span class="fr">tous les 3 jours</span></td>
+        <td>Verb des Tages mit voller Konjugation · Ausdruck des Tages · das Grammatikthema der
+          Lektion · <b>die Kette</b> an drei Sätzen (Deklination Schritt für Schritt) · ein
+          <b>Text von 200 Wörtern</b> mit Fragen, Wortschatztabelle und Konnektorenübungen ·
+          die <b>Fertigkeit des Tages</b> · Aussprache · <b>Diktat</b> · 5 Übersetzungen
+          FR→DE · 3 Alltagsmissionen</td><td class="n">60 Min</td></tr>
+      <tr><td><b>Übungstag 1</b><br><span class="fr">le lendemain</span></td>
+        <td><b>Nichts Neues.</b> Nur Übungen: die Kette laut, die Textaufgaben ohne den Text,
+          das Training, die Fertigkeit, das Diktat noch einmal, die Übersetzungen.
+          Eigene Antwortfelder — du fängst wirklich leer an.</td><td class="n">30 Min</td></tr>
+      <tr><td><b>Übungstag 2</b><br><span class="fr">le surlendemain</span></td>
+        <td>Dasselbe noch einmal — und <b>das ist der Sinn</b>. Beim zweiten Mal merkst du,
+          was wirklich sitzt und was nur bekannt vorkam.</td><td class="n">30 Min</td></tr>
+      <tr><td><b>Samstag 22:00</b></td>
+        <td>Probeprüfung im echten Format, damit du unter Zeit arbeitest. In der Etappe B1 auf
+          B1-Niveau.</td><td class="n">—</td></tr>
+    </tbody>
+  </table></div>
+  <div class="gut"><b>Was du jedes Mal tun musst, damit es wirkt:</b> <b>schick mir deine
+    Antworten.</b> Ich korrigiere sie — jeden Deklinationsfehler ordne ich dem <b>Kettenglied</b>
+    zu (1 Bestimmer · 2 Fall · 3 Genus · 4 Artikel · 5 Endung), jeden anderen seiner
+    <b>Baustelle</b>. Ohne deine Texte kann ich unterrichten, aber nicht korrigieren — und
+    Korrektur ist der Teil, der dich wirklich weiterbringt.</div>
+</section>
+
+<section id="messung">
+  <h2>Woran wir merken, ob es funktioniert</h2>
+  <p class="lead">Nicht am Gefühl. An denselben Aufgaben, zu drei festen Zeitpunkten.</p>
+  <div class="tabelle"><table>
+    <thead><tr><th class="n">Wann</th><th>Was</th><th>Wofür</th></tr></thead>
+    <tbody>
+      <tr><td class="n">08.09.2026</td><td>Einstufungstest, Messung 1</td>
+        <td>Dein Startpunkt in Zahlen. Du sagst A2 — der Test zeigt, ob das für alle fünf
+          Fertigkeiten gilt oder ob eine davon schon höher oder niedriger liegt.</td></tr>
+      <tr><td class="n">03.11.2026</td><td>Einstufungstest, Messung 2</td>
+        <td>Nach acht Wochen. Genau dieselben Aufgaben — nur so sind die Zahlen vergleichbar.</td></tr>
+      <tr><td class="n">08.11.2026</td><td>Ende der Etappe 1</td>
+        <td>Ich sage dir ehrlich, ob B1 erreicht ist, in welchen Fertigkeiten nicht, und ob
+          Etappe 2 (B2) anfängt oder ob wir B1 verlängern.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="info"><b>Und die Prüfung?</b> Es gibt <b>keinen Termin</b>, und ich setze keinen.
+    Die Anmeldung zu telc Deutsch B2 gebe ich erst frei, wenn zwei aufeinanderfolgende Messungen
+    in allen fünf Fertigkeiten B2 zeigen. Bis dahin gilt: <b>keine Zahl behaupten, die nicht
+    gemessen ist.</b></div>
+</section>
+
+</main>
+
+<footer>
+  <p><a href="https://claude.ai/code/artifact/e499dbe3-e198-410a-94d3-9393e6b27c84"
+        target="_blank" rel="noopener">🇩🇪 Deutsch täglich</a> ·
+     <a href="https://claude.ai/code/artifact/ea512258-b4a4-47d8-8959-12d7cd441bf9"
+        target="_blank" rel="noopener">📏 Einstufungstest</a> ·
+     <a href="https://claude.ai/code/artifact/aa4ffaa4-f1c0-4b44-85df-86b5bcd70ed1"
+        target="_blank" rel="noopener">⛓️ Die Kette</a> ·
+     <a href="https://claude.ai/code/artifact/3e941e25-cfd8-4cdc-99f6-3671b2f03365"
+        target="_blank" rel="noopener">🧭 Meine sieben Baustellen</a> ·
+     <a href="https://claude.ai/code/artifact/46864e04-1000-4201-8cf3-d76d6c889c1d"
+        target="_blank" rel="noopener">🎯 Prüfungsplan B2</a></p>
+  <p>Etappe 1 · Niveau B1 · 08.09.2026 – 08.11.2026 · 21 Lektionen ·
+    <span class="fr">Les estimations d'heures sur cette page sont des ordres de grandeur
+    généraux, pas des données de tes documents.</span></p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  var START=new Date(2026,8,8);          /* Dienstag, 08.09.2026 — Lektion 1 der Etappe B1 */
+  var TAG=86400000;
+
+  /* Die 21 Grammatikthemen der Etappe B1 */
+  var GRAMMATIK=[
+    ['Verbstellung und Satzklammer','Position 2, Verbteil ans Ende, W-Fragen und Ja/Nein-Fragen',
+     'Ohne das steht kein Satz richtig. Deine Baustelle 3.'],
+    ['Nebensätze: weil, dass, wenn/als, obwohl, damit','Komma davor, Verb ganz ans Ende',
+     'Damit begründest du überhaupt erst etwas — und Begründen ist B1.'],
+    ['Perfekt und Präteritum','regelmäßig, unregelmäßig, trennbar, sein oder haben',
+     'Erzählen, was passiert ist. Kommt in jeder Prüfung vor.'],
+    ['Modalverben in allen Zeiten','können, müssen, dürfen, sollen, wollen, mögen',
+     'Wollen, müssen, dürfen — der Kern jeder Bitte und jeder Regel.'],
+    ['Das Kasussystem: Nominativ, Akkusativ, Dativ','Artikel, Pronomen, Fragewörter wer/wen/wem',
+     'Deine Baustelle 1 — der teuerste Fehler, den du machst.'],
+    ['Wechselpräpositionen und feste Präpositionen','Wo? Dativ · Wohin? Akkusativ · die festen Listen',
+     'Das Glied 1 und 2 der Kette. Entscheidet über den ganzen Satz.'],
+    ['Adjektivdeklination','nach bestimmtem, unbestimmtem und ohne Artikel',
+     'Deine Baustelle 2 in Reinform — ohne Genus keine Endung.'],
+    ['Komparativ, Superlativ, Vergleiche','größer als, am größten, so … wie, je … desto',
+     'Vergleichen und bewerten — ohne das keine Meinung.'],
+    ['Possessiv-, Demonstrativ- und Indefinitpronomen','mein/dein, dieser, jeder, alle, man, etwas, nichts',
+     'Damit du nicht jedes Nomen wiederholen musst.'],
+    ['Reflexive Verben','sich freuen, sich waschen — Akkusativ und Dativ',
+     'Sehr häufig im Deutschen, im Französischen anders verteilt.'],
+    ['Trennbare und untrennbare Verben','aufstehen, verstehen — und das zu in der Mitte',
+     'aufzustehen, nicht zu aufstehen. Klassische Falle.'],
+    ['Verben mit Präpositionen, da- und wo-Komposita','warten auf, sich freuen über, darauf, worauf',
+     'Deine Baustelle 7. Muss auswendig, es gibt keine Regel.'],
+    ['Relativsätze','der, die, das im Nominativ, Akkusativ und Dativ',
+     'Damit deine Sätze länger werden als fünf Wörter.'],
+    ['Infinitiv mit zu, um … zu, ohne … zu','Absicht, Verzicht und der Unterschied zu damit',
+     'Der Sprung von Alltagsdeutsch zu erwachsenem Deutsch.'],
+    ['Passiv Präsens und Präteritum','wird gemacht, wurde gemacht — von und durch',
+     'Die Sprache von Berichten, Anleitungen und Dokumentation.'],
+    ['Konjunktiv II','würde, könnte, hätte, wäre — Wünsche, Bitten, Ratschläge',
+     'Höflichkeit. Ohne Konjunktiv klingt jede Bitte wie ein Befehl.'],
+    ['Genitiv und Genitivpräpositionen','des Vaters, wegen, während, trotz',
+     'Schriftliches Deutsch. Beim Lesen brauchst du ihn sofort.'],
+    ['Temporale Nebensätze und Plusquamperfekt','nachdem, bevor, während, seitdem, sobald',
+     'Zwei Ereignisse ordnen — beim Erzählen unverzichtbar.'],
+    ['Konnektoren auf Position 1','deshalb, trotzdem, sonst, außerdem, dann',
+     'Sie kippen die Wortstellung. Genau da entstehen deine Fehler.'],
+    ['Indirekte Fragen mit ob und W-Wort','Ich weiß nicht, ob … / Können Sie mir sagen, wo …',
+     'Höflich fragen — und Verb wieder ans Ende.'],
+    ['Wiederholung und B1-Standfestigkeit','die zehn Fehler, die B1 kosten, an einem ganzen Text',
+     'Der Abschluss: alles zusammen, unter Zeit, an einem Stück.']
+  ];
+
+  /* Die 16 Themenbereiche — der Wortschatz jeder Lektion */
+  var THEMEN=['Angaben zur eigenen Person',
+    'Der menschliche Körper, Gesundheit und Körperpflege','Wohnen','Orte','Tägliches Leben',
+    'Essen und Trinken','Erziehung, Ausbildung, Lernen','Arbeit und Beruf',
+    'Geschäfte, Handel, Konsum','Dienstleistungen','Natur und Umwelt','Reise und Verkehr',
+    'Freizeit und Unterhaltung','Medien und moderne Informationstechniken',
+    'Gesellschaft, Staat, Regierung','Beziehungen zu anderen Menschen und Kulturen'];
+
+  var REIHE=[['LV','Lesen','var(--le)'],['HV','Hören','var(--ho)'],
+             ['SB','Grammatik im Text','var(--sb)'],['SA','Schreiben','var(--sa)'],
+             ['MA','Sprechen','var(--ma)']];
+
+  function dat(d){
+    var W=['So','Mo','Di','Mi','Do','Fr','Sa'];
+    return W[d.getDay()]+' '+('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.';
+  }
+
+  var heute=new Date(); heute.setHours(0,0,0,0);
+  var liste=document.getElementById('lekliste');
+
+  GRAMMATIK.forEach(function(g,i){
+    var d=new Date(START); d.setDate(d.getDate()+i*3);
+    var f=REIHE[i%5];
+    var row=document.createElement('div');
+    row.className='lek'+(d.getTime()===heute.getTime()?' heute':(d<heute?' vorbei':''));
+
+    var nr=document.createElement('div'); nr.className='nr'; nr.textContent='L'+(i+1);
+    var dt=document.createElement('div'); dt.className='dt'; dt.textContent=dat(d);
+    var gr=document.createElement('div'); gr.className='gr';
+    var b=document.createElement('b'); b.textContent=g[0];
+    var it=document.createElement('i');
+    it.textContent='Wortschatz: '+THEMEN[i%16];
+    gr.appendChild(b); gr.appendChild(it);
+    var fk=document.createElement('div'); fk.className='fk';
+    fk.style.background=f[2]; fk.textContent=f[0]+' '+f[1];
+
+    row.appendChild(nr); row.appendChild(dt); row.appendChild(gr); row.appendChild(fk);
+    liste.appendChild(row);
+  });
+
+  var tb=document.getElementById('gramtab');
+  GRAMMATIK.forEach(function(g,i){
+    var tr=document.createElement('tr');
+    var a=document.createElement('td'); a.className='n'; a.textContent=String(i+1);
+    var b=document.createElement('td');
+    var bb=document.createElement('b'); bb.textContent=g[0];
+    var br=document.createElement('br');
+    var sp=document.createElement('span');
+    sp.style.color='var(--ink-soft)'; sp.style.fontSize='14px'; sp.textContent=g[1];
+    b.appendChild(bb); b.appendChild(br); b.appendChild(sp);
+    var c=document.createElement('td'); c.textContent=g[2];
+    tr.appendChild(a); tr.appendChild(b); tr.appendChild(c);
+    tb.appendChild(tr);
+  });
+})();
+</script>

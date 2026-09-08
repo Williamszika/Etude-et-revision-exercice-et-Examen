@@ -205,6 +205,8 @@
   details.tag1 .inhalt .block{margin:10px 0;}
   .zy-phase{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.05em;
     text-transform:uppercase;color:var(--tg);background:var(--tgbg);border-radius:999px;padding:4px 12px;}
+  .zy-etappe{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.06em;
+    color:var(--card);background:var(--sb);border-radius:999px;padding:4px 12px;}
   /* Training */
   .stufe{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:0 0 12px;}
   .stufe .lbl{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.05em;
@@ -442,10 +444,11 @@
 </style>
 
 <header class="hero">
-  <p class="eyebrow">Deutsch lernen · Niveau B2 · ein Lerntag, zwei Übungstage</p>
+  <p class="eyebrow">Etappe 1 · Niveau B1 · ein Lerntag, zwei Übungstage</p>
   <h1>Deutsch täglich</h1>
-  <p>Alle drei Tage ein neues Thema: ein <b>Verb</b>, ein <b>Wort oder ein Ausdruck</b>,
-  ein <b>Grammatik-Thema</b>, ein <b>Text</b> und ein <b>Prüfungsteil</b>.
+  <p>Der Weg von <b>A2</b> zu <b>B1</b> in <b>21 Lektionen</b>. Alle drei Tage eine neue Lektion:
+  ein <b>Verb</b>, ein <b>Ausdruck</b>, ein <b>Grammatik-Thema der B1-Liste</b>, ein <b>Text</b>
+  und eine <b>Fertigkeit</b> — Lesen, Hören, Sprechen, Schreiben.
   Dazwischen <b>zwei Übungstage</b> — dann wird nichts Neues gelernt, sondern das Alte gefestigt.</p>
   <span class="streak" id="streak"></span>
 </header>
@@ -471,8 +474,11 @@
       <a href="https://claude.ai/code/artifact/3e941e25-cfd8-4cdc-99f6-3671b2f03365"
          target="_blank" rel="noopener" style="color:var(--accent-deep);">🧭 Meine sieben
       Baustellen</a> ·
+      <a href="https://claude.ai/code/artifact/9ed33853-7d8f-4ee5-a756-b9ef186c99bc"
+         target="_blank" rel="noopener" style="color:var(--accent-deep);font-weight:600;">🪜 Der Weg
+      zu B1</a> ·
       <a href="https://claude.ai/code/artifact/46864e04-1000-4201-8cf3-d76d6c889c1d"
-         target="_blank" rel="noopener" style="color:var(--accent-deep);">🎯 Prüfungsplan</a> ·
+         target="_blank" rel="noopener" style="color:var(--accent-deep);">🎯 Prüfungsplan B2</a> ·
       <a href="https://claude.ai/code/artifact/fb2c751b-a84b-42e6-b19a-1bfc6fc6d4b3"
          target="_blank" rel="noopener" style="color:var(--accent-deep);">🎧 Hörverstehen</a>
     </p>
@@ -480,7 +486,7 @@
     <b>samstags 22:00</b> die Probeprüfung · die Tage dazwischen sind <b>Übungstage</b> ·
     <a href="https://claude.ai/code/artifact/ea512258-b4a4-47d8-8959-12d7cd441bf9"
        target="_blank" rel="noopener" style="color:var(--accent-deep);">📏 Einstufungstest</a> ·
-    Erklärungen auf Deutsch (B2) mit französischer Hilfe für schwere Stellen.
+    Erklärungen auf Deutsch (B1) mit französischer Hilfe für schwere Stellen.
   </footer>
 </div>
 
@@ -1297,7 +1303,7 @@ function dkNeu(){
   dkLaeuft=false;
   document.getElementById('dk-start').disabled=false;
 }
-function renderDiktat(b){
+function renderDiktat(b,niveau){
   if(!b)return '';
   /* akzeptiert beide Formen: b.text (ein Fließtext) oder b.saetze (Liste von Sätzen) */
   let roh = b.text;
@@ -1310,7 +1316,7 @@ function renderDiktat(b){
   const hilfe = b.hilfe || b.wortschatzhilfe || [];
   const woerter=tokens(dkText).length;
 
-  let h='<div class="block"><span class="kind k-dk">Diktat · Niveau B2</span>';
+  let h='<div class="block"><span class="kind k-dk">Diktat · Niveau '+(niveau||'B2')+'</span>';
   h+='<h3>'+bold(b.titel||'Diktat des Tages')+'</h3>';
   h+='<p class="dk-intro">Der Text wird <b>zweimal</b> vorgelesen. Stell dir vorher das <b>Tempo</b> ein — '+
      'du kannst jederzeit langsamer machen. Schreib beim Zuhören mit. '+
@@ -1467,6 +1473,13 @@ function alsDatum(iso){
   return new Date(+t[0],+t[1]-1,+t[2]);
 }
 /* Der Diktattext dient als Hörtext, wenn der telc-Block keinen eigenen hat */
+/* Etikett des Fertigkeitsblocks: in der Etappe B1 kein telc-B2-Label */
+function fokusBadge(l){
+  const z=(l&&l.zyklus)||{};
+  if(l&&l.telc&&l.telc.badge) return l.telc.badge;
+  if(z.etappe) return 'Fertigkeit des Tages · Niveau '+z.etappe;
+  return 'telc Deutsch B2 · Prüfungstraining';
+}
 function hoertextVon(l){
   if(!l||!l.diktat) return '';
   return l.diktat.text ||
@@ -1496,8 +1509,8 @@ function renderUebungstagSeite(l,datum){
   h+=renderLesen(l.lesen,'ue',{nurUebungen:true});
   h+=renderTraining(l.training,'ue');
   h+=renderTraining(l.telc,'uetelc',{telc:true,kls:'k-telc',hoertext:hoertextVon(l),
-      badge:'telc Deutsch B2 · Prüfungstraining'});
-  h+=renderDiktat(l.diktat);
+      badge:fokusBadge(l)});
+  h+=renderDiktat(l.diktat,(l.zyklus&&l.zyklus.etappe)||"B2");
   h+=renderTrans(l.uebersetzung,'ue');
   return h;
 }
@@ -1531,10 +1544,11 @@ function render(){
     /* Der Zyklus folgt nicht der Kalenderwoche: Lektionstag ist jeder dritte Tag ab
        z.start (ein Lerntag, zwei Übungstage). Die Leiste zeigt die nächsten sieben Tage. */
     const dLek=alsDatum(eintrag.datum), dStart=alsDatum(z.start), TAG=86400000;
-    /* Fortschrittspunkte = die 16 Themen eines Durchgangs */
+    /* Fortschrittspunkte = die Lektionen einer Etappe (B1: 21) bzw. die 16 Themen */
     const gw=z.gesamt||16;
     let p='';
-    const imDg=((z.lektion||1)-1)%16+1;
+    const imDg=((z.lektion||1)-1)%gw+1;
+    const dLekDiff=(dStart&&dLek)?Math.round((dLek-dStart)/TAG):0;
     for(let i=1;i<=gw;i++)p+='<i class="'+(i<=imDg?'on':'')+'"></i>';
     let tage='<div class="zy-tage">';
     for(let i=0;i<7;i++){
@@ -1546,7 +1560,7 @@ function render(){
         const diff=dStart?Math.round((d-dStart)/TAG):(i%3===0?0:1);
         if(diff>=0&&diff%3===0){
           art='Lektion';
-          const ln=diff/3+2;
+          const ln=(z.lektion||1)+(diff-dLekDiff)/3;
           tip='Lektion '+ln+' · '+REIHE[(ln-1)%5];
         } else if(d.getDay()===6){ art='Probeprüfung'; tip='Probeprüfung, 22:00'; }
         else tip='Übungstag — die letzte Lektion festigen';
@@ -1560,11 +1574,15 @@ function render(){
     zEl.innerHTML='<span class="zy-phase">'+
                     esc(ueb?(WOCHENTAGE[(alsDatum(eintrag.datum)||new Date()).getDay()]+
                              ' · Übungstag'):((z.tag||'')+' · '+(z.fokus||'Lektion')))+'</span>'+
+                  (z.etappe?'<span class="zy-etappe">Etappe '+esc(z.etappe)+'</span>':'')+
                   '<span class="zy-punkte">'+p+'</span>'+
                   (z.thema?'<span class="thema">Thema: <b>'+esc(z.thema)+'</b>'+
                     (z.themaNr?' <i class="nr">T'+z.themaNr+' von 16</i>':'')+'</span>':'')+
+                  (z.grammatik?'<span class="thema">Grammatik: <b>'+esc(z.grammatik)+'</b>'+
+                    (z.grammatikNr?' <i class="nr">G'+z.grammatikNr+' von '+gw+'</i>':'')+'</span>':'')+
                   '<span class="thema">'+
-                    (z.lektion?'Lektion <b>'+z.lektion+'</b>':'Woche <b>'+(z.woche||1)+'</b> von '+gw)+
+                    (z.lektion?'Lektion <b>'+z.lektion+'</b> von '+gw
+                              :'Woche <b>'+(z.woche||1)+'</b> von '+gw)+
                     (z.durchgang?' <i class="nr">Durchgang '+z.durchgang+'</i>':'')+'</span>'+
                   tage;
     zEl.style.display='flex';
@@ -1602,9 +1620,9 @@ function render(){
     +renderSatzbau(l.satzbau,cur)+renderDeklination(l.deklination,cur)+renderLesen(l.lesen,cur)
     +renderTraining(l.training,cur)
     +renderTraining(l.telc,'telc'+cur,{telc:true,kls:'k-telc',hoertext:hoertext,
-        badge:'telc Deutsch B2 · Prüfungstraining'})
+        badge:fokusBadge(l)})
     +renderProbe(l.probe,'probe'+cur,hoertext)
-    +renderSay(l.aussprache,cur)+renderDiktat(l.diktat)+renderTrans(l.uebersetzung,cur);
+    +renderSay(l.aussprache,cur)+renderDiktat(l.diktat,(l.zyklus&&l.zyklus.etappe)||"B2")+renderTrans(l.uebersetzung,cur);
   probeSchloss();
   if(document.querySelector('.dk-tempo')) dkSetRate(dkRate);
   tgWiederherstellen();

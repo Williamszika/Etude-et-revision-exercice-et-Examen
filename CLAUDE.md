@@ -40,6 +40,92 @@ Lektionstage: **05.09. · 08.09. · 11.09. · 14.09. · 17.09. · 20.09. …**
 Die Lektion vom **07.09.** ist noch im alten Zwei-Tage-Takt entstanden und bleibt stehen; ab dem
 08.09. zählt nur noch die Dreierregel.
 
+### Etappe 1 — erst B1, dann B2. Sie hat A2.
+
+**Am 08.09.2026 hat sie ihr Niveau genannt und das Ziel geändert:**
+
+> *„je connais mon niveau j'ai le A2. je veux que tu m'enseignes le B1 selon le plan de Deutsch
+> täglich pendant 2 mois afin que je puisse comprendre toute la grammaire, le vocabulaire, les
+> verbes et comment les employer, savoir écrire, lire et comprendre, savoir parler et écouter.
+> Niveau B1. pendant 2 mois."*
+
+Deshalb ist Deutsch täglich in **zwei Etappen** geteilt:
+
+| Etappe | Ziel | Zeitraum | Lektionen |
+|---|---|---|---|
+| **1 — läuft** | **A2 → B1** | **08.09.2026 – 08.11.2026** | **21** |
+| 2 — danach | B1 → B2, dann telc Deutsch B2 | ohne festes Datum | 16 pro Durchgang |
+
+Planseite: `deutsch-taeglich/b1.html` →
+`https://claude.ai/code/artifact/9ed33853-7d8f-4ee5-a756-b9ef186c99bc` (Favicon 🪜). Dort stehen
+die 21 Lektionen mit Datum, die vollständige B1-Grammatikliste und die ehrliche Rechnung.
+
+**Ihr Niveau A2 ist von ihr genannt, nicht gemessen.** Das steht so in `einstufungen.json` unter
+`startniveau`. Messung 1 (der Einstufungstest) soll zeigen, ob A2 für alle fünf Fertigkeiten gilt.
+Bis dahin: **A2 als Arbeitsannahme behandeln, nicht als Messwert ausgeben.**
+
+**Was in der Etappe 1 anders ist — das gilt für jede Lektion bis zum 08.11.2026:**
+
+- **Niveau B1, nicht B2.** Verben, Wortschatz, Texte, Aufgaben: alles auf **A2/B1**. Kein
+  B2-Wortschatz als Tagesverb (*sich auszeichnen durch*, *verzichten auf* sind zu hoch), keine
+  B2-Nominalisierungen als Pflichtstoff. B2-Wörter dürfen als Beispiel vorkommen, nie als Lernziel.
+- **Der `lesen`-Text ist 150–200 Wörter lang** und in kurzen Sätzen geschrieben; die
+  Wortschatztabelle nennt **A2** oder **B1** im Feld `niveau`.
+- **Kein telc-B2-Prüfungstraining.** Der Block heißt weiter `telc` (die Vorlage rendert ihn so),
+  trägt aber ein eigenes Etikett im Feld `badge`, z. B.
+  `"Fertigkeit des Tages · Lesen · Niveau B1"`, und übt die **Fertigkeit** statt das Prüfungsformat.
+  Keine telc-Punktzahlen, keine „1,5 Punkte pro Item", kein Subtest-Vokabular.
+- **`zyklus` bekommt drei neue Felder:** `etappe: "B1"`, `gesamt: 21`, `grammatik` und
+  `grammatikNr` (das Grammatikthema der Lektion aus der Liste unten). `start` ist **2026-09-08**,
+  `lektion` zählt **von 1 bis 21**. **Kein `durchgang`** in der Etappe 1.
+- **Die Probeprüfung am Samstag** bleibt, aber auf **B1-Niveau** und ohne telc-Punktwerte.
+
+### Die 21 Grammatikthemen der Etappe B1 — eins pro Lektion
+
+`grammatikNr = lektion`, in dieser Reihenfolge. Das ist die vollständige B1-Grammatik; nichts
+davon darf ausfallen, denn genau darauf beruht die Zusage „in zwei Monaten hast du das ganze
+B1-Programm gesehen".
+
+1. Verbstellung und Satzklammer (Position 2, W-Fragen, Ja/Nein-Fragen)
+2. Nebensätze: weil, dass, wenn/als, obwohl, damit
+3. Perfekt und Präteritum — regelmäßig, unregelmäßig, trennbar, sein/haben
+4. Modalverben in allen Zeiten
+5. Das Kasussystem: Nominativ, Akkusativ, Dativ — Artikel und Pronomen
+6. Wechselpräpositionen und feste Präpositionen
+7. Adjektivdeklination — nach bestimmtem, unbestimmtem und ohne Artikel
+8. Komparativ, Superlativ, Vergleiche (als/wie, je … desto)
+9. Possessiv-, Demonstrativ- und Indefinitpronomen
+10. Reflexive Verben — Akkusativ und Dativ
+11. Trennbare und untrennbare Verben, Infinitiv mit *zu*
+12. Verben mit Präpositionen, da- und wo-Komposita
+13. Relativsätze — Nominativ, Akkusativ, Dativ
+14. Infinitiv mit zu, um … zu, ohne … zu
+15. Passiv Präsens und Präteritum
+16. Konjunktiv II — würde, könnte, hätte, wäre
+17. Genitiv und Genitivpräpositionen (wegen, während, trotz)
+18. Temporale Nebensätze und Plusquamperfekt (nachdem, bevor, während, seitdem)
+19. Konnektoren auf Position 1 (deshalb, trotzdem, sonst, außerdem, dann)
+20. Indirekte Fragen mit *ob* und W-Wort
+21. Wiederholung — die zehn Fehler, die B1 kosten, an einem ganzen Text
+
+Der **Wortschatz** jeder Lektion kommt weiter aus den 16 Themenbereichen:
+`themaNr = ((lektion − 1) mod 16) + 1`.
+
+**Die Fokus-Rotation bleibt**, nur unter B1-Namen: `REIHE[(lektion − 1) mod 5]` mit
+Leseverstehen → Hörverstehen → Sprachbausteine → Schriftlicher Ausdruck → Mündlicher Ausdruck.
+Im `telc`-Block heißen sie in der Etappe 1 schlicht **Lesen · Hören · Grammatik im Text ·
+Schreiben · Sprechen**.
+
+**Am Ende der Etappe (08.11.2026):** ehrlich sagen, ob B1 erreicht ist, in welchen Fertigkeiten
+nicht, und ob Etappe 2 anfängt oder B1 verlängert wird. **Nicht behaupten, B1 sei erreicht, weil
+21 Lektionen abgearbeitet sind** — das entscheidet Messung 2, nicht der Kalender.
+
+**Der Zeit-Hinweis, der ihr gegeben wurde und der stehen bleiben muss:** Bei 60/30 Minuten sind
+zwei Monate **rund 41 Stunden**; die übliche Schätzung für A2 → B1 liegt bei **150–200 Stunden**
+(**allgemeine Schätzung, nicht aus ihren Unterlagen**). Ihr wurde gesagt: Der **Stoff** passt in
+zwei Monate, das **Können** in allen vier Fertigkeiten möglicherweise nicht — und dass sie den
+Rhythmus jederzeit auf täglich stellen kann. **Diese Unterscheidung nie verwischen.**
+
 ### Kein Prüfungstermin — das Niveau entscheidet
 
 **Am 08.09.2026 hat sie den Februartermin gestrichen.** Sie ist **nicht angemeldet** und will es
@@ -112,17 +198,20 @@ gegen ihre teuerste Schwäche: **Hörverstehen und Mündlicher Ausdruck sind zus
 Punkten.** Deshalb steht das Diktat **in jeder Lektion und an jedem Übungstag** — an Übungstagen
 rendert die Vorlage es ohnehin mit.
 
-### Das Ziel: das Niveau B2, dann die Prüfung telc Deutsch B2
+### Das Ziel: erst B1, dann B2, dann die Prüfung telc Deutsch B2
 
-Deutsch täglich ist **kein allgemeiner Sprachkurs mehr**, sondern der Weg zum Niveau **B2** in
-allen vier Fertigkeiten — und erst danach zur Prüfung **telc Deutsch B2**. **Ein Prüfungstermin
-steht nicht fest und wird nicht gesetzt.** Daraus folgt:
+Deutsch täglich ist **kein allgemeiner Sprachkurs mehr**, sondern ein Weg in zwei Etappen:
+zuerst **A2 → B1** (bis 08.11.2026, siehe oben), danach **B1 → B2** und erst ganz zum Schluss
+die Prüfung **telc Deutsch B2**. **Ein Prüfungstermin steht nicht fest und wird nicht gesetzt.**
+Daraus folgt:
 
-- Alle Themen liegen auf **B1/B2-Niveau**. Reine A2-Themen (einfache Fragen, Imperativ,
-  Komparativ) gehören nicht mehr als eigenes Thema hierher — sie laufen in den Beispielen mit.
-- **Jede** Lektion hat zusätzlich einen Block `telc` — Prüfungstraining im Prüfungsformat.
-- Die Beispiele bleiben aus dem Pflegealltag (siehe unten). Das passt auch dann, wenn sie sich
-  später für **telc Deutsch B2 Pflege** entscheidet.
+- **In der Etappe 1 liegen alle Themen auf A2/B1-Niveau.** Die B2-Regeln weiter unten in dieser
+  Datei (B2-Wortschatz, telc-Prüfungsformat, Punktwerte) gelten **erst ab Etappe 2**. Wo sich
+  etwas widerspricht, gewinnt der Abschnitt „Etappe 1".
+- **Jede** Lektion hat einen Block `telc` — in Etappe 1 als **Fertigkeit des Tages** (mit
+  eigenem `badge`), ab Etappe 2 als Prüfungstraining im telc-Format.
+- Die Beispiele dürfen aus dem Pflegealltag kommen (siehe unten), müssen es aber nicht — auf B1
+  zählt der Alltag insgesamt: Telefonieren, Ämter, Wohnen, Einkaufen, Freizeit.
 
 ### Das offizielle Prüfungsformat — Quelle im Repo
 
@@ -189,14 +278,16 @@ In beiden Fällen: nur `python3 deutsch-taeglich/build.py` ausführen, veröffen
    - `d % 3 == 0` → **Lektionstag**, weiter mit Schritt 3
    - sonst und heute Samstag → **nur Probeprüfung**, schlanke Datei (siehe unten)
    - sonst → **Übungstag**, direkt zu Schritt 4
-3. Neuen Zustand aus dem **heutigen Datum** berechnen:
-   - `lektion` = `d / 3 + 2` (Lektion 1 = 05.09., Lektion 2 = 07.09. aus dem alten Takt)
-   - `themaNr` = `lektion − 1`, gedeckelt auf 16 · `grammatikNr` = ebenso
-   - `woche` = `d // 7 + 1` (nur noch Anzeige, das Thema hängt nicht mehr daran)
-   - `tag` = heutiger Wochentag auf Deutsch
-   - `fokus` = `REIHE[(lektion − 1) mod 5]` (Rotation, siehe unten)
-   - `thema` und `themaNr` = das telc-Thema dieser Woche (Tabelle unten)
-   - `durchgang` = `((lektion − 1) // 16) + 1` — Durchgang 1, 2, 3 …
+3. Neuen Zustand aus dem **heutigen Datum** berechnen — `e = (heute − 2026-09-08).days`:
+   - **Etappe 1 (bis einschließlich 08.11.2026):**
+     `lektion` = `e / 3 + 1` · `etappe` = `"B1"` · `gesamt` = `21`
+     `grammatikNr` = `lektion` · `grammatik` = Thema Nr. `grammatikNr` aus der B1-Liste oben
+     `themaNr` = `((lektion − 1) mod 16) + 1` · `thema` = das Thema dazu
+     `start` = `"2026-09-08"` · **kein `durchgang`**
+   - **Etappe 2 (danach):** `lektion` weiterzählen, `etappe` = `"B2"`, `gesamt` = `16`,
+     `durchgang` = `((lektion − 1) // 16) + 1`, `start` = der Starttag der Etappe 2.
+   - immer: `woche` = `e // 7 + 1` (nur Anzeige) · `tag` = heutiger Wochentag auf Deutsch ·
+     `fokus` = `REIHE[(lektion − 1) mod 5]`
    - **Kein `bisPruefung`.** Es gibt keinen Termin.
    Dann `deutsch-taeglich/lektionen/<YYYY-MM-DD>.json` schreiben — Struktur **exakt** wie in
    der neuesten vorhandenen **Lektion vom gleichen Typ** (volle Lektion bzw. reine
@@ -222,20 +313,26 @@ Lektion**, und läuft im Kreis:
 `Leseverstehen → Hörverstehen → Sprachbausteine → Schriftlicher Ausdruck → Mündlicher Ausdruck`
 
 ```
-lektion = (heute - 2026-09-05).days / 3 + 2
+lektion = (heute - 2026-09-08).days / 3 + 1     # Etappe 1
 fokus   = REIHE[(lektion - 1) mod 5]
 ```
 
-Lektion 1 (05.09.) Leseverstehen · 2 (07.09.) Hörverstehen · 3 (08.09.) Sprachbausteine ·
-4 (11.09.) Schriftlicher Ausdruck · 5 (14.09.) Mündlicher Ausdruck · 6 (17.09.) wieder
-Leseverstehen. Jeder Subtest kommt gleich oft dran, keiner fällt hinten runter.
+Etappe B1: Lektion 1 (08.09.) Lesen · 2 (11.09.) Hören · 3 (14.09.) Grammatik im Text ·
+4 (17.09.) Schreiben · 5 (20.09.) Sprechen · 6 (23.09.) wieder Lesen. Jede Fertigkeit kommt
+gleich oft dran, keine fällt hinten runter.
+
+Die zwei Lektionen vom **05.09.** und **07.09.** stammen aus der Zeit davor (B2-Zuschnitt, alte
+Nummerierung). Sie bleiben in `lektionen/` stehen, damit sie zurückblättern kann, und werden
+**nicht** umgeschrieben. Die Zählung der Etappe 1 fängt am 08.09. bei 1 an.
 
 Der Block `zyklus` sieht ab Lektion 1 so aus:
 
 ```json
-"zyklus": {"woche": 1, "gesamt": 16, "thema": "Angaben zur eigenen Person",
-           "themaNr": 1, "tag": "Samstag", "fokus": "Leseverstehen",
-           "start": "2026-09-05", "lektion": 1, "durchgang": 1}
+"zyklus": {"woche": 1, "gesamt": 21, "etappe": "B1",
+           "thema": "Angaben zur eigenen Person", "themaNr": 1,
+           "grammatik": "Verbstellung und Satzklammer", "grammatikNr": 1,
+           "tag": "Dienstag", "fokus": "Leseverstehen",
+           "start": "2026-09-08", "lektion": 1}
 ```
 
 **Kein `bisPruefung`-Feld mehr.** Wo es in alten Lektionen noch steht, bleibt es stehen;
@@ -418,7 +515,7 @@ selbst formuliert: **nacherzählen, zusammenfassen, erklären.**
 | `titel` | Überschrift des Textes |
 | `quelle` | optional, eine Zeile |
 | `fr` | französische Anleitung, wie sie vorgehen soll |
-| `text` | **ungefähr 200 Wörter**, B2, Absätze mit Leerzeile getrennt |
+| `text` | **150–200 Wörter** — in Etappe 1 auf **B1**, ab Etappe 2 auf B2; Absätze mit Leerzeile getrennt |
 | `hilfe` | Vokabelchips `**Wort** — traduction` (10–12 Stück) |
 | `redemittel` | Satzanfänge, mit denen sie beginnen kann |
 | `nacherzaehlen` | `{frage, hinweis, platzhalter, muster}` — „Was ist passiert?" |
@@ -554,11 +651,17 @@ Aussprache-Block · Diktat · 5 Übersetzungssätze FR→DE · 3 Alltag-Missione
 **An einem Samstag, der kein Lektionstag ist:** nur `zyklus` + `probe` — sonst nichts.
 **An allen übrigen Tagen gar keine Datei.**
 
-**Verben und Wortschatz auf B2-Niveau wählen** und **zum Wochenthema passend**. Kein
-A2-Grundwortschatz. Gut sind Verben mit fester Präposition (*sich kümmern um*, *hinweisen auf*,
-*bestehen auf*, *verzichten auf*, *achten auf*, *sich beziehen auf*), Verben des Berichtens
-und Argumentierens (*schildern*, *einschätzen*, *veranlassen*, *nachvollziehen*, *begründen*,
-*abwägen*, *einräumen*) und Nominalisierungen.
+**In der Etappe 1: Verben und Wortschatz auf A2/B1-Niveau wählen**, passend zum Thema der
+Lektion. Gut sind häufige trennbare Verben (*anrufen, aufstehen, einkaufen, mitbringen,
+vorbereiten, abholen*), reflexive Verben des Alltags (*sich freuen über, sich ärgern über, sich
+kümmern um, sich bewerben um*) und die häufigsten Verben mit fester Präposition (*warten auf,
+denken an, sich interessieren für, bitten um, sprechen über*). **Kein B2-Wortschatz als
+Lernziel.**
+
+**Ab Etappe 2: Verben und Wortschatz auf B2-Niveau.** Dann sind gut: *sich auszeichnen durch*,
+*verzichten auf*, *hinweisen auf*, *bestehen auf*, *sich beziehen auf*, Verben des Berichtens und
+Argumentierens (*schildern, einschätzen, veranlassen, nachvollziehen, abwägen, einräumen*) und
+Nominalisierungen.
 
 Typische Fehler französischsprachiger Lernender ausdrücklich zeigen und korrigieren.
 
