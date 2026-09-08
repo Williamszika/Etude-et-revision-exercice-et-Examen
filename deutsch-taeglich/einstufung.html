@@ -1,0 +1,811 @@
+<title>Wo stehe ich gerade?</title>
+<style>
+  :root{
+    --paper:#f2f4f6;--paper-2:#e8ebee;--card:#ffffff;--ink:#171b20;--ink-soft:#5a636d;--line:#d5dade;
+    --accent:#2f4f7a;--accent-deep:#223c5e;--accent-soft:#dde5f0;
+    --a2:#a8722c;--a2bg:#f6ead6;
+    --b1:#1a7068;--b1bg:#d8ece9;
+    --b2:#40449b;--b2bg:#e0e1f4;
+    --good:#1a7068;--warn:#a8722c;--offen:#8b939c;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#12161a;--paper-2:#0d1114;--card:#1a1f25;--ink:#eef1f4;--ink-soft:#9aa4af;--line:#2b323a;
+    --accent:#7fa8d8;--accent-deep:#a3c4e8;--accent-soft:#182636;
+    --a2:#dfae6a;--a2bg:#2c2314;
+    --b1:#6cc2b7;--b1bg:#0f2825;
+    --b2:#9b9ee6;--b2bg:#1d1e33;
+    --good:#6cc2b7;--warn:#dfae6a;--offen:#79828c;}}
+  :root[data-theme="dark"]{
+    --paper:#12161a;--paper-2:#0d1114;--card:#1a1f25;--ink:#eef1f4;--ink-soft:#9aa4af;--line:#2b323a;
+    --accent:#7fa8d8;--accent-deep:#a3c4e8;--accent-soft:#182636;
+    --a2:#dfae6a;--a2bg:#2c2314;
+    --b1:#6cc2b7;--b1bg:#0f2825;
+    --b2:#9b9ee6;--b2bg:#1d1e33;
+    --good:#6cc2b7;--warn:#dfae6a;--offen:#79828c;}
+  :root[data-theme="light"]{
+    --paper:#f2f4f6;--paper-2:#e8ebee;--card:#ffffff;--ink:#171b20;--ink-soft:#5a636d;--line:#d5dade;
+    --accent:#2f4f7a;--accent-deep:#223c5e;--accent-soft:#dde5f0;
+    --a2:#a8722c;--a2bg:#f6ead6;
+    --b1:#1a7068;--b1bg:#d8ece9;
+    --b2:#40449b;--b2bg:#e0e1f4;
+    --good:#1a7068;--warn:#a8722c;--offen:#8b939c;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{border-bottom:1px solid var(--line);padding:40px 18px 26px;background:var(--paper-2);}
+  .in{max-width:56rem;margin:0 auto;}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--ink-soft);margin:0 0 9px;}
+  h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,5.5vw,2.6rem);
+    margin:0 0 10px;line-height:1.08;text-wrap:balance;}
+  .sub{max-width:58ch;margin:0;color:var(--ink-soft);font-size:15.5px;}
+
+  /* ---------- Das Profil: fünf Zeilen, eine je Fertigkeit ---------- */
+  .profil{max-width:56rem;margin:-14px auto 0;padding:0 18px;}
+  .profil-karte{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+  .profil h2{font-family:var(--serif);font-size:1.15rem;margin:0 0 3px;}
+  .profil .hint{color:var(--ink-soft);font-size:14px;margin:0 0 14px;}
+  .zeile{display:grid;grid-template-columns:minmax(9rem,1.1fr) 1fr auto;gap:14px;align-items:center;
+    padding:10px 0;border-top:1px solid var(--line);}
+  .zeile:first-of-type{border-top:none;}
+  .zeile .was{font-weight:600;font-size:15px;}
+  .zeile .was small{display:block;font-weight:400;color:var(--ink-soft);font-size:12.5px;}
+  .leiter{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;}
+  .stufe{height:26px;border-radius:6px;background:var(--paper-2);border:1px solid var(--line);
+    display:flex;align-items:center;justify-content:center;font-family:var(--mono);
+    font-size:10.5px;font-weight:700;color:var(--offen);letter-spacing:.06em;}
+  .stufe.ok-a2{background:var(--a2bg);border-color:var(--a2);color:var(--a2);}
+  .stufe.ok-b1{background:var(--b1bg);border-color:var(--b1);color:var(--b1);}
+  .stufe.ok-b2{background:var(--b2bg);border-color:var(--b2);color:var(--b2);}
+  .stufe.nein{opacity:.4;text-decoration:line-through;}
+  .zeile .erg{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);white-space:nowrap;
+    text-align:right;min-width:5.5rem;}
+  .zeile .erg b{font-size:14px;}
+  .zeile.fertig .erg b{color:var(--ink);}
+
+  nav.toc{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--line);
+    padding:8px 12px;display:flex;gap:5px;overflow-x:auto;margin-top:26px;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 11px;border-radius:7px;border:1px solid transparent;white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--ink);border-color:var(--line);background:var(--card);}
+
+  main{max-width:56rem;margin:0 auto;padding:0 18px 100px;}
+  section{padding-top:44px;}
+  h2.gross{font-family:var(--serif);font-size:clamp(1.35rem,3.5vw,1.85rem);font-weight:600;
+    margin:0 0 5px;line-height:1.15;}
+  .lead{color:var(--ink-soft);margin:0 0 18px;max-width:62ch;}
+  h3{font-family:var(--serif);font-size:1.1rem;font-weight:600;margin:22px 0 8px;}
+  p{margin:.6em 0;} ul,ol{padding-left:1.15em;} li{margin:4px 0;}
+
+  .stufenkopf{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10.5px;
+    font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:4px 11px;border-radius:999px;
+    margin:22px 0 4px;}
+  .st-a2{background:var(--a2bg);color:var(--a2);}
+  .st-b1{background:var(--b1bg);color:var(--b1);}
+  .st-b2{background:var(--b2bg);color:var(--b2);}
+
+  .block{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 19px;margin:9px 0 18px;}
+  .block > :first-child{margin-top:0;} .block > :last-child{margin-bottom:0;}
+  .lesetext{font-family:var(--serif);font-size:1.06rem;line-height:1.8;border-left:3px solid var(--line);
+    padding-left:16px;margin:10px 0 14px;}
+  .lesetext p{margin:0 0 10px;} .lesetext p:last-child{margin-bottom:0;}
+
+  .frage{margin:14px 0 0;padding-top:14px;border-top:1px dashed var(--line);}
+  .frage:first-of-type{border-top:none;padding-top:0;}
+  .frage .q{font-size:15.5px;font-weight:600;margin-bottom:8px;}
+  .opts{display:flex;flex-wrap:wrap;gap:7px;}
+  button.opt{font:inherit;font-size:14.5px;text-align:left;color:var(--ink);background:var(--paper-2);
+    border:1px solid var(--line);border-radius:9px;padding:8px 14px;cursor:pointer;flex:0 1 auto;}
+  button.opt:hover{border-color:var(--accent);}
+  button.opt:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  button.opt[aria-pressed="true"]{background:var(--accent);color:var(--card);border-color:var(--accent);}
+  button.opt.richtig{background:var(--b1bg);border-color:var(--good);color:var(--good);font-weight:600;}
+  button.opt.falsch{background:var(--a2bg);border-color:var(--warn);color:var(--warn);
+    text-decoration:line-through;}
+
+  .aktion{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:18px 0 0;}
+  button.tu{font:inherit;font-size:14.5px;font-weight:600;color:var(--card);background:var(--accent);
+    border:1px solid var(--accent);border-radius:10px;padding:10px 18px;cursor:pointer;}
+  button.tu:hover{background:var(--accent-deep);border-color:var(--accent-deep);}
+  button.tu:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  button.tu.ghost{background:transparent;color:var(--accent);}
+  .ergebnis{font-family:var(--mono);font-size:13px;color:var(--ink-soft);}
+  .ergebnis b{color:var(--ink);}
+
+  /* Hörteil */
+  .hoer{border:1.5px solid var(--accent);border-radius:12px;background:var(--accent-soft);
+    padding:15px 17px;margin:10px 0 14px;}
+  .hoer .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent-deep);margin-bottom:9px;}
+  .hoer .reihe{display:flex;flex-wrap:wrap;gap:9px;align-items:center;}
+  .hoer button{font:inherit;font-size:14.5px;font-weight:600;padding:9px 16px;border-radius:9px;
+    border:1.5px solid var(--accent);background:var(--accent);color:var(--card);cursor:pointer;}
+  .hoer button.ghost{background:transparent;color:var(--accent-deep);}
+  .hoer select{font:inherit;font-size:14px;padding:8px 10px;border-radius:9px;
+    border:1px solid var(--line);background:var(--card);color:var(--ink);}
+  .hoer .stand{font-size:13.5px;color:var(--ink-soft);margin:9px 0 0;min-height:1.3em;}
+  .hoer .txt{display:none;margin-top:11px;border-top:1px dashed var(--accent);padding-top:11px;
+    font-size:15px;line-height:1.65;}
+  .hoer .txt.offen{display:block;}
+
+  textarea{width:100%;font:inherit;font-size:15.5px;line-height:1.55;color:var(--ink);
+    background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:9px;padding:10px 13px;resize:vertical;min-height:60px;margin-top:10px;}
+  textarea:focus{outline:2px solid var(--accent);outline-offset:1px;}
+
+  .info{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 11px 11px 0;
+    padding:14px 18px;margin:14px 0;font-size:15px;}
+  .warn{border-left:4px solid var(--warn);background:var(--a2bg);border-radius:0 11px 11px 0;
+    padding:14px 18px;margin:14px 0;font-size:15px;}
+  .warn b{color:var(--warn);}
+
+  .tab{overflow-x:auto;margin:14px 0;border:1px solid var(--line);border-radius:11px;}
+  table{border-collapse:collapse;width:100%;min-width:30rem;background:var(--card);}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top;font-size:14.8px;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
+  tbody tr:last-child td{border-bottom:none;}
+
+  footer{border-top:1px solid var(--line);margin-top:64px;padding:26px 18px 56px;text-align:center;
+    color:var(--ink-soft);font-size:14px;}
+  footer a{color:var(--accent-deep);}
+  @media (max-width:640px){
+    .zeile{grid-template-columns:1fr;gap:7px;}
+    .zeile .erg{text-align:left;}
+  }
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;transition:none!important;}}
+</style>
+
+<header class="hero">
+  <div class="in">
+    <p class="eyebrow">Einstufung · 08.09.2026 · 146 Tage bis telc Deutsch B2</p>
+    <h1>Wo stehe ich gerade?</h1>
+    <p class="sub">Fünf Fertigkeiten, jede einzeln gemessen. Du bekommst <b>kein</b> einzelnes
+      Ergebnis, sondern fünf — denn fast niemand ist überall gleich weit.
+      <span style="font-style:italic;">Cinq compétences, mesurées séparément. Tu obtiens cinq
+      résultats, pas un seul : presque personne n'est au même niveau partout.</span></p>
+  </div>
+</header>
+
+<div class="profil">
+  <div class="profil-karte">
+    <h2>Mein Profil</h2>
+    <p class="hint">Füllt sich aus, während du den Test machst. Eine Stufe gilt als geschafft ab
+      <b>60 %</b> — dieselbe Grenze wie in der echten Prüfung.</p>
+    <div class="zeile" id="z-lesen">
+      <div class="was">Leseverstehen <small>25 % der Prüfung</small></div>
+      <div class="leiter"><span class="stufe" data-s="A2">A2</span><span class="stufe" data-s="B1">B1</span><span class="stufe" data-s="B2">B2</span></div>
+      <div class="erg"><b>—</b></div>
+    </div>
+    <div class="zeile" id="z-hoeren">
+      <div class="was">Hörverstehen <small>25 % der Prüfung</small></div>
+      <div class="leiter"><span class="stufe" data-s="A2">A2</span><span class="stufe" data-s="B1">B1</span><span class="stufe" data-s="B2">B2</span></div>
+      <div class="erg"><b>—</b></div>
+    </div>
+    <div class="zeile" id="z-bausteine">
+      <div class="was">Sprachbausteine <small>10 % · Grammatik und Lexik</small></div>
+      <div class="leiter"><span class="stufe" data-s="A2">A2</span><span class="stufe" data-s="B1">B1</span><span class="stufe" data-s="B2">B2</span></div>
+      <div class="erg"><b>—</b></div>
+    </div>
+    <div class="zeile" id="z-schreiben">
+      <div class="was">Schreiben und Diktat <small>15 % · ich korrigiere von Hand</small></div>
+      <div class="leiter"><span class="stufe" data-s="A2">A2</span><span class="stufe" data-s="B1">B1</span><span class="stufe" data-s="B2">B2</span></div>
+      <div class="erg"><b>schick mir</b></div>
+    </div>
+    <div class="zeile" id="z-sprechen">
+      <div class="was">Sprechen <small>25 % · du nimmst dich auf</small></div>
+      <div class="leiter"><span class="stufe" data-s="A2">A2</span><span class="stufe" data-s="B1">B1</span><span class="stufe" data-s="B2">B2</span></div>
+      <div class="erg"><b>schick mir</b></div>
+    </div>
+  </div>
+</div>
+
+<nav class="toc">
+  <a href="#anleitung">Anleitung</a>
+  <a href="#lesen">1 · Lesen</a>
+  <a href="#hoeren">2 · Hören</a>
+  <a href="#bausteine">3 · Sprachbausteine</a>
+  <a href="#diktat">4 · Diktat</a>
+  <a href="#schreiben">5 · Schreiben</a>
+  <a href="#sprechen">6 · Sprechen</a>
+  <a href="#danach">Was danach passiert</a>
+</nav>
+
+<main>
+
+<section id="anleitung">
+  <h2 class="gross">Bevor du anfängst</h2>
+  <p class="lead">Rechne mit <b>60 Minuten</b>. Am Stück, ohne Wörterbuch, ohne Übersetzer.
+    Ein Test, bei dem du nachschlägst, misst nicht dich — er misst dein Wörterbuch.</p>
+  <div class="info">
+    <b>Die Regel für heute:</b> Wenn du etwas nicht weißt, rate <em>einmal</em> und geh weiter.
+    Nicht grübeln. Es ist gut und normal, wenn du am Ende jedes Teils an eine Grenze stößt —
+    <b>genau diese Grenze suchen wir.</b> Sie zu finden ist das Ziel, nicht sie zu verstecken.
+  </div>
+  <div class="warn"><b>Was das hier nicht ist:</b> kein offizieller telc-Test. Ich habe ihn für
+    dich gebaut. Das <b>Format</b> (Richtig-Falsch beim Hören, Multiple-Choice mit genau drei
+    Optionen, die 60-%-Grenze) stammt aus deinem telc-Handbuch — die <b>Texte und Aufgaben</b>
+    sind von mir. Er sagt dir, wo du stehst, nicht welche Note du bekämst.</div>
+  <div class="tab"><table>
+    <thead><tr><th>Teil</th><th>Was du tust</th><th>Dauer</th></tr></thead>
+    <tbody>
+      <tr><td>1 Lesen</td><td>drei Texte, je drei Fragen — allein auswertbar</td><td>15 Min</td></tr>
+      <tr><td>2 Hören</td><td>drei Hörtexte, je drei Richtig-Falsch — allein auswertbar</td><td>12 Min</td></tr>
+      <tr><td>3 Sprachbausteine</td><td>neun Lücken, drei Optionen — allein auswertbar</td><td>8 Min</td></tr>
+      <tr><td>4 Diktat</td><td>neun Sätze, du schreibst mit</td><td>10 Min</td></tr>
+      <tr><td>5 Schreiben</td><td>ein kurzer Text, etwa 90 Wörter</td><td>12 Min</td></tr>
+      <tr><td>6 Sprechen</td><td>eine Minute frei sprechen, mit dem Handy aufnehmen</td><td>5 Min</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ════════ 1 LESEN ════════ -->
+<section id="lesen">
+  <h2 class="gross">1 · Leseverstehen</h2>
+  <p class="lead">Drei Texte, die härter werden. Lies jeden <b>einmal</b> und beantworte sofort.</p>
+
+  <span class="stufenkopf st-a2">Stufe A2</span>
+  <div class="block">
+    <div class="lesetext">
+      <p><b>Hausarztpraxis Dr. Weber — Hinweis für Patienten</b></p>
+      <p>Ab dem 1. Oktober ändern sich unsere Öffnungszeiten. Wir sind montags bis donnerstags von
+      8 bis 12 Uhr und von 15 bis 18 Uhr für Sie da. Freitags schließen wir schon um 13 Uhr.
+      Am Mittwochnachmittag bleibt die Praxis geschlossen. Bitte bringen Sie zu jedem Termin Ihre
+      Versichertenkarte mit. Ohne Karte können wir Sie leider nicht behandeln.</p>
+    </div>
+    <div class="frage" data-skill="lesen" data-level="A2">
+      <div class="q">1. Wann ist die Praxis nachmittags geschlossen?</div>
+      <div class="opts">
+        <button type="button" class="opt">am Montag</button>
+        <button type="button" class="opt" data-ok="1">am Mittwoch</button>
+        <button type="button" class="opt">am Donnerstag</button>
+      </div>
+    </div>
+    <div class="frage" data-skill="lesen" data-level="A2">
+      <div class="q">2. Bis wann ist die Praxis freitags offen?</div>
+      <div class="opts">
+        <button type="button" class="opt">bis 12 Uhr</button>
+        <button type="button" class="opt" data-ok="1">bis 13 Uhr</button>
+        <button type="button" class="opt">bis 18 Uhr</button>
+      </div>
+    </div>
+    <div class="frage" data-skill="lesen" data-level="A2">
+      <div class="q">3. Was muss man mitbringen?</div>
+      <div class="opts">
+        <button type="button" class="opt">ein Rezept</button>
+        <button type="button" class="opt">einen Ausweis</button>
+        <button type="button" class="opt" data-ok="1">die Versichertenkarte</button>
+      </div>
+    </div>
+  </div>
+
+  <span class="stufenkopf st-b1">Stufe B1</span>
+  <div class="block">
+    <div class="lesetext">
+      <p>Seit einem halben Jahr arbeitet Melike im Frühdienst. Eigentlich hatte sie sich für den
+      Spätdienst gemeldet, weil sie morgens ihre Tochter in den Kindergarten bringen wollte. Als
+      dann aber zwei Kolleginnen kündigten, wurde der Dienstplan umgestellt, und sie stand plötzlich
+      um halb sechs auf.</p>
+      <p>Am Anfang war das schwer. Inzwischen sagt sie, dass sie den Frühdienst nicht mehr tauschen
+      würde: Nachmittags hat sie Zeit für ihre Tochter, und abends ist sie zu Hause. Ihr Mann bringt
+      das Kind jetzt in den Kindergarten. Nur an den Wochenenden, an denen beide arbeiten, wird es
+      weiterhin eng.</p>
+    </div>
+    <div class="frage" data-skill="lesen" data-level="B1">
+      <div class="q">1. Warum hatte sich Melike ursprünglich für den Spätdienst gemeldet?</div>
+      <div class="opts">
+        <button type="button" class="opt">Weil sie abends besser arbeiten kann.</button>
+        <button type="button" class="opt" data-ok="1">Weil sie morgens ihre Tochter bringen wollte.</button>
+        <button type="button" class="opt">Weil ihr Mann im Frühdienst arbeitet.</button>
+      </div>
+    </div>
+    <div class="frage" data-skill="lesen" data-level="B1">
+      <div class="q">2. Wie kam es zur Umstellung des Dienstplans?</div>
+      <div class="opts">
+        <button type="button" class="opt">Melike hat darum gebeten.</button>
+        <button type="button" class="opt">Der Kindergarten hat die Zeiten geändert.</button>
+        <button type="button" class="opt" data-ok="1">Zwei Kolleginnen haben gekündigt.</button>
+      </div>
+    </div>
+    <div class="frage" data-skill="lesen" data-level="B1">
+      <div class="q">3. Wie steht Melike heute zum Frühdienst?</div>
+      <div class="opts">
+        <button type="button" class="opt">Sie möchte so schnell wie möglich wechseln.</button>
+        <button type="button" class="opt" data-ok="1">Sie würde nicht mehr tauschen wollen.</button>
+        <button type="button" class="opt">Sie hat sich noch nicht daran gewöhnt.</button>
+      </div>
+    </div>
+  </div>
+
+  <span class="stufenkopf st-b2">Stufe B2</span>
+  <div class="block">
+    <div class="lesetext">
+      <p>Dass in Pflegeberufen Personal fehlt, bestreitet niemand. Umstritten ist dagegen, woran es
+      liegt. Ein Teil der Fachwelt verweist auf die Bezahlung und fordert höhere Löhne; andere
+      halten dem entgegen, dass in den vergangenen Jahren durchaus mehr gezahlt worden sei, ohne
+      dass die Zahl der Bewerbungen nennenswert gestiegen wäre.</p>
+      <p>Wer mit Pflegenden selbst spricht, hört häufig ein drittes Argument: Nicht das Gehalt am
+      Monatsende sei ausschlaggebend, sondern die Frage, ob ein Dienstplan Bestand hat. Wer dreimal
+      im Monat aus dem Frei geholt wird, kündigt irgendwann — unabhängig davon, was auf der
+      Lohnabrechnung steht. Ob sich daraus politische Konsequenzen ziehen lassen, ist eine andere
+      Frage; als Beschreibung dürfte es der Wirklichkeit näherkommen als jede Lohntabelle.</p>
+    </div>
+    <div class="frage" data-skill="lesen" data-level="B2">
+      <div class="q">1. Was ist laut Text <b>unstrittig</b>?</div>
+      <div class="opts">
+        <button type="button" class="opt">dass höhere Löhne helfen würden</button>
+        <button type="button" class="opt" data-ok="1">dass Personal fehlt</button>
+        <button type="button" class="opt">dass Dienstpläne oft geändert werden</button>
+      </div>
+    </div>
+    <div class="frage" data-skill="lesen" data-level="B2">
+      <div class="q">2. Welches Argument bringen die Kritiker der Lohn-These vor?</div>
+      <div class="opts">
+        <button type="button" class="opt">Die Löhne seien bereits die höchsten in Europa.</button>
+        <button type="button" class="opt" data-ok="1">Es wurde mehr gezahlt, ohne dass mehr Bewerbungen kamen.</button>
+        <button type="button" class="opt">Geld sei den Pflegenden grundsätzlich gleichgültig.</button>
+      </div>
+    </div>
+    <div class="frage" data-skill="lesen" data-level="B2">
+      <div class="q">3. Wie bewertet der Autor das dritte Argument am Ende?</div>
+      <div class="opts">
+        <button type="button" class="opt">Es sei bewiesen und politisch sofort umsetzbar.</button>
+        <button type="button" class="opt">Es sei falsch, aber verständlich.</button>
+        <button type="button" class="opt" data-ok="1">Es beschreibe die Lage vermutlich zutreffend, ohne dass daraus schon eine politische Lösung folge.</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="aktion">
+    <button type="button" class="tu" data-auswerten="lesen">Leseverstehen auswerten</button>
+    <span class="ergebnis" id="erg-lesen"></span>
+  </div>
+</section>
+
+<!-- ════════ 2 HÖREN ════════ -->
+<section id="hoeren">
+  <h2 class="gross">2 · Hörverstehen</h2>
+  <p class="lead">Jeder Text wird <b>zweimal</b> vorgelesen. Den Text nicht aufklappen, bevor du
+    geantwortet hast — sonst misst du dein Lesen, nicht dein Hören.</p>
+
+  <span class="stufenkopf st-a2">Stufe A2</span>
+  <div class="hoer" id="h-a2" data-text="Achtung, eine Durchsage für alle Besucher. Die Cafeteria im Erdgeschoss schließt heute bereits um sechzehn Uhr. Getränke bekommen Sie danach am Automaten im ersten Stock. Die Besuchszeit auf den Stationen endet wie immer um zwanzig Uhr. Wir bitten Sie, die Aufzüge im linken Flur zu benutzen, weil der rechte Aufzug repariert wird.">
+    <div class="k">Hörtext 1 — Durchsage im Krankenhaus</div>
+    <div class="reihe">
+      <button type="button" class="hv-play">▶︎ Zweimal vorlesen</button>
+      <select class="hv-tempo" aria-label="Tempo">
+        <option value="0.7">sehr langsam</option><option value="0.85" selected>langsam</option>
+        <option value="1">normal</option>
+      </select>
+      <button type="button" class="hv-zeig ghost">Text anzeigen</button>
+    </div>
+    <p class="stand"></p><div class="txt"></div>
+  </div>
+  <div class="block">
+    <div class="frage" data-skill="hoeren" data-level="A2">
+      <div class="q">1. Die Cafeteria schließt heute um 16 Uhr.</div>
+      <div class="opts"><button type="button" class="opt" data-ok="1">richtig</button><button type="button" class="opt">falsch</button></div>
+    </div>
+    <div class="frage" data-skill="hoeren" data-level="A2">
+      <div class="q">2. Die Besuchszeit endet heute früher als sonst.</div>
+      <div class="opts"><button type="button" class="opt">richtig</button><button type="button" class="opt" data-ok="1">falsch</button></div>
+    </div>
+    <div class="frage" data-skill="hoeren" data-level="A2">
+      <div class="q">3. Man soll die Aufzüge im linken Flur benutzen.</div>
+      <div class="opts"><button type="button" class="opt" data-ok="1">richtig</button><button type="button" class="opt">falsch</button></div>
+    </div>
+  </div>
+
+  <span class="stufenkopf st-b1">Stufe B1</span>
+  <div class="hoer" id="h-b1" data-text="Hallo Frau Demir, hier ist Kowalski vom Pflegedienst. Ich rufe wegen des Termins am Donnerstag an. Leider müssen wir ihn verschieben, weil meine Kollegin krank geworden ist. Ich könnte stattdessen am Freitag um vierzehn Uhr kommen. Falls Ihnen das nicht passt, sagen Sie mir bitte bis morgen Mittag Bescheid, dann suche ich einen anderen Termin. Sie erreichen mich am besten auf dem Handy, im Büro bin ich diese Woche kaum.">
+    <div class="k">Hörtext 2 — Nachricht auf dem Anrufbeantworter</div>
+    <div class="reihe">
+      <button type="button" class="hv-play">▶︎ Zweimal vorlesen</button>
+      <select class="hv-tempo" aria-label="Tempo">
+        <option value="0.7">sehr langsam</option><option value="0.9" selected>langsam</option>
+        <option value="1">normal</option>
+      </select>
+      <button type="button" class="hv-zeig ghost">Text anzeigen</button>
+    </div>
+    <p class="stand"></p><div class="txt"></div>
+  </div>
+  <div class="block">
+    <div class="frage" data-skill="hoeren" data-level="B1">
+      <div class="q">1. Der Termin am Donnerstag findet wie geplant statt.</div>
+      <div class="opts"><button type="button" class="opt">richtig</button><button type="button" class="opt" data-ok="1">falsch</button></div>
+    </div>
+    <div class="frage" data-skill="hoeren" data-level="B1">
+      <div class="q">2. Der Grund für die Verschiebung ist eine Erkrankung.</div>
+      <div class="opts"><button type="button" class="opt" data-ok="1">richtig</button><button type="button" class="opt">falsch</button></div>
+    </div>
+    <div class="frage" data-skill="hoeren" data-level="B1">
+      <div class="q">3. Frau Demir soll im Büro zurückrufen.</div>
+      <div class="opts"><button type="button" class="opt">richtig</button><button type="button" class="opt" data-ok="1">falsch</button></div>
+    </div>
+  </div>
+
+  <span class="stufenkopf st-b2">Stufe B2</span>
+  <div class="hoer" id="h-b2" data-text="Man hört ja immer wieder, junge Leute wollten heute keine Schichtarbeit mehr machen. Ich halte das für zu einfach gedacht. Als ich angefangen habe, war die Bezahlung schlechter als heute, und trotzdem sind die Leute geblieben. Was sich geändert hat, ist etwas anderes: Früher wusste ich vier Wochen vorher, wann ich frei habe. Heute wird der Plan dreimal umgeworfen, bevor der Monat überhaupt angefangen hat. Wer nicht planen kann, kann auch kein Leben neben der Arbeit führen. Und dann geht man eben — nicht wegen des Geldes, sondern weil einem die eigene Zeit nicht mehr gehört.">
+    <div class="k">Hörtext 3 — Ausschnitt aus einem Interview</div>
+    <div class="reihe">
+      <button type="button" class="hv-play">▶︎ Zweimal vorlesen</button>
+      <select class="hv-tempo" aria-label="Tempo">
+        <option value="0.85">langsam</option><option value="1" selected>normal</option>
+        <option value="1.1">schnell</option>
+      </select>
+      <button type="button" class="hv-zeig ghost">Text anzeigen</button>
+    </div>
+    <p class="stand"></p><div class="txt"></div>
+  </div>
+  <div class="block">
+    <div class="frage" data-skill="hoeren" data-level="B2">
+      <div class="q">1. Der Sprecher stimmt der Aussage zu, dass junge Leute keine Schichtarbeit mehr wollen.</div>
+      <div class="opts"><button type="button" class="opt">richtig</button><button type="button" class="opt" data-ok="1">falsch</button></div>
+    </div>
+    <div class="frage" data-skill="hoeren" data-level="B2">
+      <div class="q">2. Nach seiner Erfahrung war die Bezahlung früher besser als heute.</div>
+      <div class="opts"><button type="button" class="opt">richtig</button><button type="button" class="opt" data-ok="1">falsch</button></div>
+    </div>
+    <div class="frage" data-skill="hoeren" data-level="B2">
+      <div class="q">3. Als eigentlichen Grund für Kündigungen nennt er die fehlende Planbarkeit.</div>
+      <div class="opts"><button type="button" class="opt" data-ok="1">richtig</button><button type="button" class="opt">falsch</button></div>
+    </div>
+  </div>
+
+  <div class="aktion">
+    <button type="button" class="tu" data-auswerten="hoeren">Hörverstehen auswerten</button>
+    <span class="ergebnis" id="erg-hoeren"></span>
+  </div>
+</section>
+
+<!-- ════════ 3 SPRACHBAUSTEINE ════════ -->
+<section id="bausteine">
+  <h2 class="gross">3 · Sprachbausteine</h2>
+  <p class="lead">Neun Lücken, je drei Optionen — genau das Format aus deinem Handbuch.</p>
+
+  <span class="stufenkopf st-a2">Stufe A2</span>
+  <div class="block">
+    <div class="frage" data-skill="bausteine" data-level="A2">
+      <div class="q">1. Ich arbeite seit zwei Jahren ______ einem Pflegeheim.</div>
+      <div class="opts"><button type="button" class="opt" data-ok="1">in</button><button type="button" class="opt">im</button><button type="button" class="opt">ins</button></div>
+    </div>
+    <div class="frage" data-skill="bausteine" data-level="A2">
+      <div class="q">2. Kannst du mir bitte ______ Schlüssel geben?</div>
+      <div class="opts"><button type="button" class="opt">der</button><button type="button" class="opt" data-ok="1">den</button><button type="button" class="opt">dem</button></div>
+    </div>
+    <div class="frage" data-skill="bausteine" data-level="A2">
+      <div class="q">3. Gestern ______ ich zwölf Stunden gearbeitet.</div>
+      <div class="opts"><button type="button" class="opt">bin</button><button type="button" class="opt" data-ok="1">habe</button><button type="button" class="opt">werde</button></div>
+    </div>
+  </div>
+
+  <span class="stufenkopf st-b1">Stufe B1</span>
+  <div class="block">
+    <div class="frage" data-skill="bausteine" data-level="B1">
+      <div class="q">4. Ich komme später, ______ ich noch eine Übergabe habe.</div>
+      <div class="opts"><button type="button" class="opt">denn habe</button><button type="button" class="opt" data-ok="1">weil</button><button type="button" class="opt">deshalb</button></div>
+    </div>
+    <div class="frage" data-skill="bausteine" data-level="B1">
+      <div class="q">5. ______ sie erst seit einem Jahr hier ist, kennt sie schon alle Bewohner.</div>
+      <div class="opts"><button type="button" class="opt">Trotzdem</button><button type="button" class="opt" data-ok="1">Obwohl</button><button type="button" class="opt">Wegen</button></div>
+    </div>
+    <div class="frage" data-skill="bausteine" data-level="B1">
+      <div class="q">6. Nach ______ Übergabe habe ich mit der Praxisanleiterin gesprochen.</div>
+      <div class="opts"><button type="button" class="opt">die</button><button type="button" class="opt" data-ok="1">der</button><button type="button" class="opt">den</button></div>
+    </div>
+  </div>
+
+  <span class="stufenkopf st-b2">Stufe B2</span>
+  <div class="block">
+    <div class="frage" data-skill="bausteine" data-level="B2">
+      <div class="q">7. Ich verfüge ______ mehrjährige Erfahrung in der Altenpflege.</div>
+      <div class="opts"><button type="button" class="opt">von</button><button type="button" class="opt" data-ok="1">über</button><button type="button" class="opt">an</button></div>
+    </div>
+    <div class="frage" data-skill="bausteine" data-level="B2">
+      <div class="q">8. Wenn ich das früher gewusst hätte, ______ ich anders entschieden.</div>
+      <div class="opts"><button type="button" class="opt">würde</button><button type="button" class="opt">hatte</button><button type="button" class="opt" data-ok="1">hätte</button></div>
+    </div>
+    <div class="frage" data-skill="bausteine" data-level="B2">
+      <div class="q">9. Der Antrag ______ bis Freitag eingereicht werden. (Passiv mit Modalverb)</div>
+      <div class="opts"><button type="button" class="opt">ist</button><button type="button" class="opt" data-ok="1">muss</button><button type="button" class="opt">wird gemusst</button></div>
+    </div>
+  </div>
+
+  <div class="aktion">
+    <button type="button" class="tu" data-auswerten="bausteine">Sprachbausteine auswerten</button>
+    <span class="ergebnis" id="erg-bausteine"></span>
+  </div>
+</section>
+
+<!-- ════════ 4 DIKTAT ════════ -->
+<section id="diktat">
+  <h2 class="gross">4 · Diktat</h2>
+  <p class="lead">Du hast gesagt, du willst im Diktat stark werden. Dann fangen wir damit an, zu
+    sehen, wo die Grenze liegt. <b>Neun Sätze in drei Blöcken</b>, jeder Block schwerer.</p>
+  <div class="info">Jeder Block wird zweimal vorgelesen. Schreib mit — auch das, was du nur halb
+    verstehst. <b>Halb geschriebene Sätze sind für mich wertvoller als leere Zeilen</b>, weil ich
+    daran sehe, wo genau du aussteigst.</div>
+
+  <span class="stufenkopf st-a2">Block 1 — A2</span>
+  <div class="hoer" id="d-a2" data-text="Ich arbeite seit drei Jahren im Krankenhaus. Meine Schicht beginnt um sechs Uhr dreißig. Am Wochenende habe ich meistens frei.">
+    <div class="reihe">
+      <button type="button" class="hv-play">▶︎ Zweimal vorlesen</button>
+      <select class="hv-tempo" aria-label="Tempo">
+        <option value="0.65">sehr langsam</option><option value="0.8" selected>langsam</option>
+        <option value="0.95">normal</option>
+      </select>
+      <button type="button" class="hv-zeig ghost">Text anzeigen</button>
+    </div>
+    <p class="stand"></p><div class="txt"></div>
+  </div>
+  <textarea data-id="dik-a2" rows="3" placeholder="Satz 1 … Satz 2 … Satz 3 …"></textarea>
+
+  <span class="stufenkopf st-b1">Block 2 — B1</span>
+  <div class="hoer" id="d-b1" data-text="Als ich gestern zum Dienst kam, war die Übergabe schon fast zu Ende. Weil zwei Kolleginnen ausgefallen waren, mussten wir die Arbeit anders verteilen. Ich habe der neuen Auszubildenden erklärt, wie man den Blutdruck richtig misst.">
+    <div class="reihe">
+      <button type="button" class="hv-play">▶︎ Zweimal vorlesen</button>
+      <select class="hv-tempo" aria-label="Tempo">
+        <option value="0.7">sehr langsam</option><option value="0.85" selected>langsam</option>
+        <option value="1">normal</option>
+      </select>
+      <button type="button" class="hv-zeig ghost">Text anzeigen</button>
+    </div>
+    <p class="stand"></p><div class="txt"></div>
+  </div>
+  <textarea data-id="dik-b1" rows="4" placeholder="Satz 1 … Satz 2 … Satz 3 …"></textarea>
+
+  <span class="stufenkopf st-b2">Block 3 — B2</span>
+  <div class="hoer" id="d-b2" data-text="Obwohl der Dienstplan bereits im Vormonat feststand, wurde er kurzfristig noch zweimal geändert. Hätte man die Betroffenen rechtzeitig gefragt, wäre der Unmut wahrscheinlich geringer ausgefallen. Nach eigenen Angaben verfügt die Einrichtung über ausreichend Personal; die Praxis auf den Stationen spricht allerdings eine andere Sprache.">
+    <div class="reihe">
+      <button type="button" class="hv-play">▶︎ Zweimal vorlesen</button>
+      <select class="hv-tempo" aria-label="Tempo">
+        <option value="0.75">sehr langsam</option><option value="0.9" selected>langsam</option>
+        <option value="1">normal</option>
+      </select>
+      <button type="button" class="hv-zeig ghost">Text anzeigen</button>
+    </div>
+    <p class="stand"></p><div class="txt"></div>
+  </div>
+  <textarea data-id="dik-b2" rows="5" placeholder="Satz 1 … Satz 2 … Satz 3 …"></textarea>
+
+  <div class="info" style="margin-top:18px;">Erst <b>nachdem</b> du alle drei Blöcke geschrieben
+    hast, darfst du die Texte anzeigen und selbst vergleichen. Schick mir trotzdem deine Fassung —
+    ich brauche die Fehler, nicht die Korrektur.</div>
+</section>
+
+<!-- ════════ 5 SCHREIBEN ════════ -->
+<section id="schreiben">
+  <h2 class="gross">5 · Schreiben</h2>
+  <p class="lead">Ein kurzer Text, <b>etwa 90 Wörter</b>, in 12 Minuten. Kein Wörterbuch.</p>
+  <div class="block">
+    <p><b>Die Aufgabe.</b> Du hast im Internet diese Anzeige gelesen:</p>
+    <div class="lesetext" style="border-left-color:var(--accent);">
+      <p><b>Sprachkurs Deutsch B2 — Abendkurs ab Oktober</b><br>
+      Zweimal wöchentlich, dienstags und donnerstags, 18–20 Uhr. Kleine Gruppen.
+      Interessierte melden sich bitte per E-Mail bei der Kursleitung.</p>
+    </div>
+    <p>Schreib eine kurze E-Mail an die Kursleitung. Diese vier Punkte müssen vorkommen:</p>
+    <ol>
+      <li>Warum du schreibst</li>
+      <li>Was du beruflich machst</li>
+      <li>Warum du den Kurs brauchst</li>
+      <li>Eine Frage zum Kurs</li>
+    </ol>
+    <textarea data-id="schreiben" rows="9" placeholder="Sehr geehrte Damen und Herren, …"></textarea>
+    <p style="font-size:14px;color:var(--ink-soft);margin-top:8px;">In der echten Prüfung sind es
+      <b>150 Wörter in 30 Minuten</b> und die vier Leitpunkte werden einzeln bewertet. Heute reicht
+      die Hälfte — ich will sehen, wie du schreibst, nicht wie lange du durchhältst.</p>
+  </div>
+</section>
+
+<!-- ════════ 6 SPRECHEN ════════ -->
+<section id="sprechen">
+  <h2 class="gross">6 · Sprechen</h2>
+  <p class="lead">Eine Minute frei sprechen, mit dem Handy aufgenommen. Kein Text vorher
+    aufschreiben — sonst liest du vor, und Vorlesen ist etwas anderes als Sprechen.</p>
+  <div class="block">
+    <p><b>Das Thema</b> (aus Teil 1 der echten Prüfung: über Erfahrungen sprechen):</p>
+    <div class="lesetext" style="border-left-color:var(--accent);">
+      <p><b>„Ein Tag, an dem bei der Arbeit etwas schiefgelaufen ist.“</b><br>
+      Was ist passiert? Was hast du gemacht? Was würdest du heute anders machen?</p>
+    </div>
+    <ol>
+      <li>Handy auf Aufnahme, <b>60 Sekunden</b>, und los.</li>
+      <li>Nicht neu anfangen, wenn du steckenbleibst — weiterreden ist Teil der Übung.</li>
+      <li>Danach hörst du dir die Aufnahme <b>einmal</b> an und beantwortest die drei Fragen unten.</li>
+    </ol>
+    <p style="font-weight:600;margin-top:14px;">Nach dem Anhören:</p>
+    <textarea data-id="sprechen" rows="6" placeholder="Wie lange habe ich wirklich gesprochen (Sekunden)? &#10;Wie oft bin ich stehengeblieben? &#10;Welche Wörter haben mir gefehlt? Schreib sie auf Französisch auf."></textarea>
+    <div class="warn" style="margin-top:14px;"><b>Ich kann deine Aufnahme nicht hören.</b> Deshalb
+      brauche ich deine eigene Einschätzung — und wenn du magst, schreib hinterher auf, was du
+      gesagt hast. Aus dem, was du <em>schreibst</em>, sehe ich, was dir beim <em>Sprechen</em>
+      gefehlt hat.</div>
+  </div>
+</section>
+
+<section id="danach">
+  <h2 class="gross">Was danach passiert</h2>
+  <p class="lead">Du schickst mir vier Dinge. Daraus baue ich den Plan für die nächsten 146 Tage.</p>
+  <div class="tab"><table>
+    <thead><tr><th>Was du schickst</th><th>Was ich daraus mache</th></tr></thead>
+    <tbody>
+      <tr><td>Die drei Ergebnisse oben (Lesen, Hören, Sprachbausteine)</td>
+          <td>Sie stehen sofort in deinem Profil — schick mir einfach die drei Prozentzahlen.</td></tr>
+      <tr><td>Deine <b>drei Diktatblöcke</b></td>
+          <td>Ich zähle die Fehler pro Block und ordne jeden einer deiner sieben Baustellen zu.
+            Daraus ergibt sich, wie schwer die täglichen Diktate anfangen.</td></tr>
+      <tr><td>Deine <b>E-Mail</b></td>
+          <td>Korrektur nach den drei Kriterien der echten Prüfung: Leitpunkte, kommunikative
+            Gestaltung, formale Richtigkeit.</td></tr>
+      <tr><td>Deine <b>Selbsteinschätzung zum Sprechen</b></td>
+          <td>Sie sagt mir, ob die Lücke beim Wortschatz liegt oder beim Mut weiterzureden.
+            Das entscheidet, wie die Sprechübungen aussehen.</td></tr>
+    </tbody>
+  </table></div>
+  <div class="info"><b>Und dann fängt der Plan an.</b> 146 Tage, drei Durchgänge:
+    die 16 Themen zum ersten Mal bis zum 19.10., dieselben 16 härter bis zum 06.12., danach
+    Endspurt mit ganzen Prüfungsteilen unter Zeit bis zum 23.01. — acht Tage vor der Prüfung.
+    Ein Lerntag, zwei Übungstage, ein neues Thema alle drei Tage.</div>
+</section>
+
+</main>
+
+<footer>
+  <p>Einstufungstest für <b>telc Deutsch B2</b>, Prüfung Februar 2027 ·
+    Format nach dem Handbuch telc Deutsch B2 (8. Auflage 2019), Aufgaben selbst geschrieben</p>
+  <p style="margin-top:12px;">
+    <a href="https://claude.ai/code/artifact/e499dbe3-e198-410a-94d3-9393e6b27c84" target="_blank" rel="noopener">🇩🇪 Deutsch täglich</a> ·
+    <a href="https://claude.ai/code/artifact/46864e04-1000-4201-8cf3-d76d6c889c1d" target="_blank" rel="noopener">🎯 Prüfungsplan</a> ·
+    <a href="https://claude.ai/code/artifact/fb2c751b-a84b-42e6-b19a-1bfc6fc6d4b3" target="_blank" rel="noopener">🎧 Echte telc-Aufnahme</a> ·
+    <a href="https://claude.ai/code/artifact/3e941e25-cfd8-4cdc-99f6-3671b2f03365" target="_blank" rel="noopener">🧭 Meine sieben Baustellen</a></p>
+  <p style="margin-top:12px;">Deine Antworten bleiben in diesem Browser gespeichert.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Antworten anklicken ---------- */
+  document.querySelectorAll(".frage").forEach(function(f){
+    f.querySelectorAll("button.opt").forEach(function(b){
+      b.setAttribute("aria-pressed","false");
+      b.addEventListener("click", function(){
+        f.querySelectorAll("button.opt").forEach(function(x){
+          x.setAttribute("aria-pressed","false");
+          x.classList.remove("richtig","falsch");
+        });
+        b.setAttribute("aria-pressed","true");
+        speichern();
+      });
+    });
+  });
+
+  /* ---------- Auswerten je Fertigkeit ---------- */
+  var STUFEN = ["A2","B1","B2"];
+  function auswerten(skill){
+    var proStufe = {};
+    STUFEN.forEach(function(s){ proStufe[s] = {richtig:0, gesamt:0}; });
+    document.querySelectorAll('.frage[data-skill="'+skill+'"]').forEach(function(f){
+      var lvl = f.dataset.level, gewaehlt = f.querySelector('button.opt[aria-pressed="true"]');
+      proStufe[lvl].gesamt++;
+      f.querySelectorAll("button.opt").forEach(function(b){
+        b.classList.remove("richtig","falsch");
+        if(b.dataset.ok) b.classList.add("richtig");
+      });
+      if(gewaehlt){
+        if(gewaehlt.dataset.ok) proStufe[lvl].richtig++;
+        else gewaehlt.classList.add("falsch");
+      }
+    });
+    /* Eine Stufe gilt ab 60 % als geschafft — wie die Bestehensgrenze der echten Prüfung */
+    var erreicht = null, teile = [];
+    STUFEN.forEach(function(s){
+      var p = proStufe[s].gesamt ? proStufe[s].richtig / proStufe[s].gesamt : 0;
+      var ok = p >= 0.6;
+      if(ok) erreicht = s;
+      teile.push(s + " " + proStufe[s].richtig + "/" + proStufe[s].gesamt);
+      var feld = document.querySelector("#z-" + skill + ' .stufe[data-s="' + s + '"]');
+      if(feld){
+        feld.classList.remove("ok-a2","ok-b1","ok-b2","nein");
+        feld.classList.add(ok ? ("ok-" + s.toLowerCase()) : "nein");
+      }
+    });
+    var zeile = document.getElementById("z-" + skill);
+    if(zeile){
+      zeile.classList.add("fertig");
+      zeile.querySelector(".erg").innerHTML = "<b>" + (erreicht || "unter A2") + "</b>";
+    }
+    var out = document.getElementById("erg-" + skill);
+    if(out) out.innerHTML = teile.join(" &nbsp;·&nbsp; ") + " &nbsp;→&nbsp; <b>" +
+      (erreicht || "unter A2") + "</b>";
+    speichern();
+  }
+  document.querySelectorAll("button[data-auswerten]").forEach(function(b){
+    b.addEventListener("click", function(){ auswerten(b.dataset.auswerten); });
+  });
+
+  /* ---------- Hörtexte: zweimal vorlesen ---------- */
+  var laeuft = false;
+  document.querySelectorAll(".hoer").forEach(function(box){
+    var txt = box.dataset.text || "";
+    var stand = box.querySelector(".stand");
+    var play = box.querySelector(".hv-play");
+    var zeig = box.querySelector(".hv-zeig");
+    var feld = box.querySelector(".txt");
+    if(feld) feld.textContent = txt;
+
+    if(zeig && feld){
+      zeig.addEventListener("click", function(){
+        var offen = feld.classList.toggle("offen");
+        zeig.textContent = offen ? "Text verbergen" : "Text anzeigen";
+      });
+    }
+    if(!play) return;
+    if(!("speechSynthesis" in window)){
+      play.disabled = true;
+      if(stand) stand.textContent = "Dieser Browser kann nicht vorlesen — klapp den Text auf und lies ihn dir selbst laut vor.";
+      return;
+    }
+    play.addEventListener("click", function(){
+      if(laeuft){ window.speechSynthesis.cancel(); laeuft = false; if(stand) stand.textContent = "Abgebrochen."; return; }
+      var sel = box.querySelector(".hv-tempo");
+      var rate = sel ? parseFloat(sel.value) : 0.9;
+      var durchgang = 0;
+      laeuft = true;
+      function lies(){
+        durchgang++;
+        if(stand) stand.textContent = durchgang === 1 ? "Erstes Vorlesen — nur zuhören." : "Zweites Vorlesen — jetzt antworten oder mitschreiben.";
+        var u = new SpeechSynthesisUtterance(txt);
+        u.lang = "de-DE"; u.rate = rate;
+        u.onend = function(){
+          if(durchgang < 2){ setTimeout(lies, 1400); }
+          else { laeuft = false; if(stand) stand.textContent = "Fertig — zweimal gelesen."; }
+        };
+        u.onerror = function(){ laeuft = false; if(stand) stand.textContent = "Vorlesen nicht möglich. Klapp den Text auf."; };
+        window.speechSynthesis.speak(u);
+      }
+      window.speechSynthesis.cancel();
+      lies();
+    });
+  });
+
+  /* ---------- Alles im Browser behalten ---------- */
+  function speichern(){
+    var daten = {opt:{}, txt:{}};
+    document.querySelectorAll(".frage").forEach(function(f, i){
+      var g = f.querySelector('button.opt[aria-pressed="true"]');
+      if(g) daten.opt[i] = [].indexOf.call(f.querySelectorAll("button.opt"), g);
+    });
+    document.querySelectorAll("textarea[data-id]").forEach(function(t){ daten.txt[t.dataset.id] = t.value; });
+    try { localStorage.setItem("einstufung-2026-09-08", JSON.stringify(daten)); } catch(e){}
+  }
+  (function laden(){
+    var roh = null;
+    try { roh = localStorage.getItem("einstufung-2026-09-08"); } catch(e){}
+    if(!roh) return;
+    var daten;
+    try { daten = JSON.parse(roh); } catch(e){ return; }
+    document.querySelectorAll(".frage").forEach(function(f, i){
+      var idx = daten.opt && daten.opt[i];
+      if(idx === undefined || idx === null) return;
+      var b = f.querySelectorAll("button.opt")[idx];
+      if(b) b.setAttribute("aria-pressed","true");
+    });
+    document.querySelectorAll("textarea[data-id]").forEach(function(t){
+      if(daten.txt && daten.txt[t.dataset.id]) t.value = daten.txt[t.dataset.id];
+    });
+  })();
+  document.querySelectorAll("textarea[data-id]").forEach(function(t){
+    var timer = null;
+    t.addEventListener("input", function(){
+      clearTimeout(timer); timer = setTimeout(speichern, 400);
+    });
+  });
+})();
+</script>

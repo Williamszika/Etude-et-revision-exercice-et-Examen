@@ -8,7 +8,7 @@ Zahlen oder Quellen nennen, die nicht in ihren eigenen Unterlagen (PDFs im Repo)
 
 ---
 
-## Deutsch täglich — jeden zweiten Tag eine Lektion, Start 05.09.2026
+## Deutsch täglich — ein Lerntag, zwei Übungstage, neues Thema alle drei Tage
 
 Diese Anweisung gilt **immer** und hat Vorrang vor älteren Routine-Texten.
 
@@ -22,22 +22,73 @@ neue Lektion.** Zwei Wünsche der Nutzerin liegen dahinter:
 Deshalb wurde am **05.09.2026** neu angefangen. Alle früheren Lektionen sind aus `lektionen/`
 entfernt (sie stehen weiterhin in der Git-Historie, falls sie doch zurück sollen).
 
-**Der Rhythmus — nach Datum, nicht nach Wochentag:**
+**Ab dem 08.09.2026 gilt der Drei-Tage-Takt.** Sie hat ihn selbst so beschrieben:
+*„Je me sens a l'aise lorsque tu m'enseigne un jour et deux jours d'exercices puis d'autres
+chaque trois jours."* Also: **ein Lerntag, zwei Übungstage, dann ein neues Thema.**
 
 | Fall | Was die 5:30-Routine tut |
 |---|---|
-| **`(heute − 05.09.2026)` ist gerade** | **Neue Lektion schreiben**, bauen, veröffentlichen, committen |
+| **`(heute − 05.09.2026) % 3 == 0`** | **Neue Lektion schreiben**, bauen, veröffentlichen, committen |
 | **Es ist Samstag** (und kein Lektionstag) | **Nur den `probe`-Block** — schlanke Datei mit `zyklus` + `probe` |
 | **alle übrigen Tage** | **Übungstag — keine neue Datei.** Nur `build.py`, veröffentlichen, fertig |
 
 Ist ein Samstag zugleich Lektionstag, bekommt die volle Lektion zusätzlich den `probe`-Block.
 An einem Übungstag: **keine** Datei in `lektionen/` anlegen, **nichts** überschreiben. Die Seite
-zeigt an diesen Tagen von selbst einen Übungstag-Kasten mit dem, was sie mit der letzten Lektion
-machen soll. Trotzdem bauen und veröffentlichen, damit Kasten und Countdown aktuell sind.
+baut den Übungstag selbst (siehe unten). Trotzdem bauen und veröffentlichen.
 
-Die ersten Lektionstage: **05.09. · 07.09. · 09.09. · 11.09. · 13.09. · 15.09. · 17.09. …**
-Weil 2 und 7 teilerfremd sind, wandert der Lektionstag durch die ganze Woche — das ist Absicht
-und beabsichtigt kein festes Wochentagsmuster.
+Lektionstage: **05.09. · 08.09. · 11.09. · 14.09. · 17.09. · 20.09. …**
+Die Lektion vom **07.09.** ist noch im alten Zwei-Tage-Takt entstanden und bleibt stehen; ab dem
+08.09. zählt nur noch die Dreierregel.
+
+### Der Plan bis zur Prüfung — drei Durchgänge
+
+146 Tage vom 08.09.2026 bis zum 01.02.2027 = **48 Lektionstage und 98 Übungstage.**
+
+| Durchgang | Zeitraum | Inhalt |
+|---|---|---|
+| **1** | 08.09. – 19.10. | die 16 telc-Themen zum ersten Mal, mit den 16 B2-Grammatikthemen |
+| **2** | 20.10. – 06.12. | dieselben 16 Themen, härter, durchgehend im Prüfungsformat |
+| **Endspurt** | 07.12. – 23.01. | ganze Prüfungsteile unter Zeit, gezielt die schwächsten Subtests |
+| Reserve | 24.01. – 01.02. | acht Tage Puffer vor der Prüfung |
+
+**Ein Thema pro Lektion, nicht mehr pro Woche.** Ab Lektion 3 gilt: `themaNr = lektion − 1`
+(Lektion 1 und 2 hatten beide T1). Ebenso `grammatikNr = lektion − 1` — Thema und Grammatik
+rücken gemeinsam vor. Der `fokus` rotiert weiter nach `REIHE[(lektion − 1) mod 5]`.
+
+### Ihre vier Festlegungen vom 08.09.2026
+
+Sie hat auf Nachfrage entschieden — **das gilt, bis sie es ändert:**
+
+| Frage | Ihre Antwort | Was daraus folgt |
+|---|---|---|
+| Zeit pro Tag | **60 Min Lerntag / 30 Min Übungstag** (≈ 97 Stunden bis zur Prüfung) | Der volle Plan mit drei Durchgängen wird nicht gekürzt. |
+| Aktuelles Niveau | **„Ich weiß nicht, wo ich stehe."** | Deshalb **Einstufungstest** am 08.09. — siehe unten. Vor dem Ergebnis keine Stufe behaupten. |
+| Welche Prüfung | **telc Deutsch B2 (allgemein)**, nicht Pflege | Die 16 Themen aus Anhang T bleiben das Rückgrat. Pflegebeispiele bleiben Beispiele. |
+| Sprechpartner | **keinen** | Mündlich läuft über **aufgenommene Monologe** und **Dialoge, in denen sie beide Rollen laut spricht**. Teil 2 und Teil 3 der echten Prüfung sind eine Paarprüfung — das wurde ihr ausdrücklich gesagt. |
+
+### Der Einstufungstest — `deutsch-taeglich/einstufung.html`
+
+→ `https://claude.ai/code/artifact/ea512258-b4a4-47d8-8959-12d7cd441bf9` (Favicon 📏)
+
+Fünf Fertigkeiten **einzeln** gemessen, je auf drei Stufen (A2 / B1 / B2), eine Stufe gilt ab
+**60 %** als geschafft (die Bestehensgrenze aus ihrem Handbuch). Selbst auswertbar: Lesen, Hören,
+Sprachbausteine. Von Hand zu korrigieren: **drei Diktatblöcke**, eine **kurze E-Mail** (90 Wörter,
+vier Leitpunkte) und ihre **Selbsteinschätzung zum Sprechen** (sie nimmt sich 60 Sekunden auf —
+ich kann die Aufnahme nicht hören, das steht so auf der Seite).
+
+**Format aus dem Handbuch, Aufgaben selbst geschrieben** — das steht auf der Seite ausdrücklich
+drin. Es ist kein offizieller telc-Test und darf nie als solcher bezeichnet werden.
+
+**Bis ihre Ergebnisse da sind:** keine Lektion so schreiben, als wäre ihr Niveau bekannt. Sobald
+sie die drei Prozentzahlen, die Diktate, die E-Mail und die Sprech-Einschätzung schickt, wird
+daraus der Startpunkt von Durchgang 1 festgelegt — und die Schwierigkeit der täglichen Diktate.
+
+### Diktat — jeden Tag, auch an Übungstagen
+
+Sie hat gesagt: *„Je dois etre fort en dictee."* Das Diktat ist zugleich das billigste Training
+gegen ihre teuerste Schwäche: **Hörverstehen und Mündlicher Ausdruck sind zusammen 150 von 300
+Punkten.** Deshalb steht das Diktat **in jeder Lektion und an jedem Übungstag** — an Übungstagen
+rendert die Vorlage es ohnehin mit.
 
 ### Das Ziel: telc Deutsch B2 im Februar 2027
 
@@ -93,7 +144,7 @@ Branch: `claude/nursing-exam-prep-workflow-gvn5u0`
 
 Zwei Fälle, in denen **keine** neue Lektion entsteht:
 
-- **`(heute − 05.09.2026)` ist ungerade und heute ist kein Samstag** → Übungstag. Keine Datei
+- **`(heute − 05.09.2026) % 3 != 0` und heute ist kein Samstag** → Übungstag. Keine Datei
   anlegen.
 - `deutsch-taeglich/lektionen/<HEUTIGES-DATUM>.json` **existiert schon** → diese Datei
   **nicht** anfassen.
@@ -112,12 +163,13 @@ In beiden Fällen: nur `python3 deutsch-taeglich/build.py` ausführen, veröffen
    Ihr Block `zyklus` sagt, wo wir stehen: `{woche, gesamt: 16, thema, themaNr, tag, fokus,
    start, bisPruefung, lektion}`.
 2. **Rechnen, nicht raten** — `d = (heute − 2026-09-05).days`:
-   - `d` gerade → **Lektionstag**, weiter mit Schritt 3
-   - `d` ungerade und heute Samstag → **nur Probeprüfung**, schlanke Datei (siehe unten)
+   - `d % 3 == 0` → **Lektionstag**, weiter mit Schritt 3
+   - sonst und heute Samstag → **nur Probeprüfung**, schlanke Datei (siehe unten)
    - sonst → **Übungstag**, direkt zu Schritt 4
 3. Neuen Zustand aus dem **heutigen Datum** berechnen:
-   - `lektion` = `d / 2 + 1` (die wievielte Lektion überhaupt)
-   - `woche` = `d // 7 + 1`
+   - `lektion` = `d / 3 + 2` (Lektion 1 = 05.09., Lektion 2 = 07.09. aus dem alten Takt)
+   - `themaNr` = `lektion − 1`, gedeckelt auf 16 · `grammatikNr` = ebenso
+   - `woche` = `d // 7 + 1` (nur noch Anzeige, das Thema hängt nicht mehr daran)
    - `tag` = heutiger Wochentag auf Deutsch
    - `fokus` = `REIHE[(lektion − 1) mod 5]` (Rotation, siehe unten)
    - `thema` und `themaNr` = das telc-Thema dieser Woche (Tabelle unten)
@@ -148,12 +200,12 @@ Lektion**, und läuft im Kreis:
 `Leseverstehen → Hörverstehen → Sprachbausteine → Schriftlicher Ausdruck → Mündlicher Ausdruck`
 
 ```
-lektion = (heute - 2026-09-05).days / 2 + 1
+lektion = (heute - 2026-09-05).days / 3 + 2
 fokus   = REIHE[(lektion - 1) mod 5]
 ```
 
-Lektion 1 (05.09.) Leseverstehen · 2 (07.09.) Hörverstehen · 3 (09.09.) Sprachbausteine ·
-4 (11.09.) Schriftlicher Ausdruck · 5 (13.09.) Mündlicher Ausdruck · 6 (15.09.) wieder
+Lektion 1 (05.09.) Leseverstehen · 2 (07.09.) Hörverstehen · 3 (08.09.) Sprachbausteine ·
+4 (11.09.) Schriftlicher Ausdruck · 5 (14.09.) Mündlicher Ausdruck · 6 (17.09.) wieder
 Leseverstehen. Jeder Subtest kommt gleich oft dran, keiner fällt hinten runter.
 
 Der Block `zyklus` sieht ab Lektion 1 so aus:

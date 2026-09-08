@@ -442,11 +442,11 @@
 </style>
 
 <header class="hero">
-  <p class="eyebrow">Deutsch lernen · Niveau B2 · jeden zweiten Tag</p>
+  <p class="eyebrow">Deutsch lernen · Niveau B2 · ein Lerntag, zwei Übungstage</p>
   <h1>Deutsch täglich</h1>
-  <p>Jeden zweiten Tag eine neue Lektion: ein <b>Verb</b>, ein <b>Wort oder ein Ausdruck</b>,
+  <p>Alle drei Tage ein neues Thema: ein <b>Verb</b>, ein <b>Wort oder ein Ausdruck</b>,
   ein <b>Grammatik-Thema</b>, ein <b>Text</b> und ein <b>Prüfungsteil</b>.
-  Dazwischen ein <b>Übungstag</b> — dann wird nichts Neues gelernt, sondern das Alte gefestigt.</p>
+  Dazwischen <b>zwei Übungstage</b> — dann wird nichts Neues gelernt, sondern das Alte gefestigt.</p>
   <span class="streak" id="streak"></span>
 </header>
 
@@ -476,8 +476,10 @@
       <a href="https://claude.ai/code/artifact/fb2c751b-a84b-42e6-b19a-1bfc6fc6d4b3"
          target="_blank" rel="noopener" style="color:var(--accent-deep);">🎧 Hörverstehen</a>
     </p>
-    Deutsch täglich · neue Lektion <b>jeden zweiten Tag</b> um 5:30 (Berlin), seit dem 05.09.2026 ·
+    Deutsch täglich · neue Lektion <b>alle drei Tage</b> um 5:30 (Berlin) ·
     <b>samstags 22:00</b> die Probeprüfung · die Tage dazwischen sind <b>Übungstage</b> ·
+    <a href="https://claude.ai/code/artifact/ea512258-b4a4-47d8-8959-12d7cd441bf9"
+       target="_blank" rel="noopener" style="color:var(--accent-deep);">📏 Einstufungstest</a> ·
     Erklärungen auf Deutsch (B2) mit französischer Hilfe für schwere Stellen.
   </footer>
 </div>
@@ -1526,8 +1528,8 @@ function render(){
     const W=['So','Mo','Di','Mi','Do','Fr','Sa'];
     const REIHE=['Leseverstehen','Hörverstehen','Sprachbausteine',
                  'Schriftlicher Ausdruck','Mündlicher Ausdruck'];
-    /* Der Zyklus folgt nicht mehr der Kalenderwoche: Lektionstag ist jeder zweite Tag
-       ab z.start. Die Leiste zeigt deshalb die nächsten sieben Tage ab dieser Lektion. */
+    /* Der Zyklus folgt nicht der Kalenderwoche: Lektionstag ist jeder dritte Tag ab
+       z.start (ein Lerntag, zwei Übungstage). Die Leiste zeigt die nächsten sieben Tage. */
     const dLek=alsDatum(eintrag.datum), dStart=alsDatum(z.start), TAG=86400000;
     /* Fortschrittspunkte = Wochen bis zur Prüfung */
     const gw=z.gesamt||16;
@@ -1540,10 +1542,10 @@ function render(){
       if(d){
         d.setDate(d.getDate()+i);
         lbl=W[d.getDay()]+' '+String(d.getDate()).padStart(2,'0')+'.';
-        const diff=dStart?Math.round((d-dStart)/TAG):(i%2===0?0:1);
-        if(diff>=0&&diff%2===0){
+        const diff=dStart?Math.round((d-dStart)/TAG):(i%3===0?0:1);
+        if(diff>=0&&diff%3===0){
           art='Lektion';
-          const ln=diff/2+1;
+          const ln=diff/3+2;
           tip='Lektion '+ln+' · '+REIHE[(ln-1)%5];
         } else if(d.getDay()===6){ art='Probeprüfung'; tip='Probeprüfung, 22:00'; }
         else tip='Übungstag — die letzte Lektion festigen';
