@@ -283,6 +283,9 @@
     text-transform:uppercase;color:var(--tg);background:var(--tgbg);border-radius:999px;padding:4px 12px;}
   .zy-etappe{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.06em;
     color:var(--card);background:var(--sb);border-radius:999px;padding:4px 12px;}
+  .zy-tt{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;color:var(--lb);
+    background:var(--lbbg);border:1px solid var(--lb);border-radius:999px;padding:3px 12px;}
+  .zy-tt b{font-weight:700;}
   /* Training */
   .stufe{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:0 0 12px;}
   .stufe .lbl{font-family:var(--mono);font-size:11.5px;font-weight:700;letter-spacing:.05em;
@@ -520,12 +523,12 @@
 </style>
 
 <header class="hero">
-  <p class="eyebrow">Etappe 1 · Niveau B1 · jeden Tag eine Lektion</p>
+  <p class="eyebrow">Etappe 1 · Niveau B1 · jeden Tag eine Lektion · ein Thema drei Tage</p>
   <h1>Deutsch täglich</h1>
-  <p>Der Weg von <b>A2</b> zu <b>B1</b> — <b>jeden Tag eine Lektion</b>: ein <b>Verb</b>, ein
-  <b>Ausdruck</b>, ein <b>Grammatik-Thema der B1-Liste</b>, ein <b>Text</b> und eine
-  <b>Fertigkeit</b> — Lesen, Hören, Sprechen, Schreiben.
-  Die 21 B1-Themen laufen <b>dreimal</b> durch: erst kennenlernen, dann festigen, dann anwenden.</p>
+  <p>Der Weg von <b>A2</b> zu <b>B1</b> in gut vier Monaten — <b>jeden Tag eine Lektion</b>,
+  aber <b>jedes Grammatikthema drei Tage lang</b>: <i>entdecken → vertiefen → anwenden</i>.
+  Jeden Tag ein <b>Verb</b>, <b>15–18 Vokabeln</b>, ein <b>Text</b>, eine <b>Alltagssituation</b>
+  und eine andere <b>Fertigkeit</b> — Lesen, Hören, Sprechen, Schreiben.</p>
   <span class="streak" id="streak"></span>
 </header>
 
@@ -1791,7 +1794,7 @@ function render(){
     /* Fortschrittspunkte = die Lektionen einer Etappe (B1: 21) bzw. die 16 Themen */
     const gw=z.gesamt||16;
     let p='';
-    const imDg=((z.lektion||1)-1)%gw+1;
+    const imDg=z.themaBlock?((z.themaBlock-1)%gw+1):((z.lektion||1)-1)%gw+1;
     const dLekDiff=(dStart&&dLek)?Math.round((dLek-dStart)/TAG):0;
     for(let i=1;i<=gw;i++)p+='<i class="'+(i<=imDg?'on':'')+'"></i>';
     let tage='<div class="zy-tage">';
@@ -1805,7 +1808,13 @@ function render(){
         if(diff>=0){
           art='Lektion';
           const ln=(z.lektion||1)+(diff-dLekDiff);
-          tip='Lektion '+ln+' · '+REIHE[(ln-1)%5]+(d.getDay()===6?' · dazu die Probeprüfung':'');
+          let tt='';
+          if(z.themenTag){
+            const n=((z.themenTag-1)+(diff-dLekDiff))%3;
+            tt=' · Thema-Tag '+((n+3)%3+1)+' von 3';
+          }
+          tip='Lektion '+ln+' · '+REIHE[(ln-1)%5]+tt+
+              (d.getDay()===6?' · dazu die Probeprüfung':'');
         } else if(d.getDay()===6){ art='Probeprüfung'; tip='Probeprüfung, 22:00'; }
         else tip='Übungstag — die letzte Lektion festigen';
       } else { lbl=W[(i+1)%7]; }
@@ -1819,6 +1828,8 @@ function render(){
                     esc(ueb?(WOCHENTAGE[(alsDatum(eintrag.datum)||new Date()).getDay()]+
                              ' · Übungstag'):((z.tag||'')+' · '+(z.fokus||'Lektion')))+'</span>'+
                   (z.etappe?'<span class="zy-etappe">Etappe '+esc(z.etappe)+'</span>':'')+
+                  (z.themenTag?'<span class="zy-tt">Thema-Tag <b>'+z.themenTag+'</b> von 3 · '+
+                    esc(['entdecken','vertiefen','anwenden'][z.themenTag-1]||'')+'</span>':'')+
                   '<span class="zy-punkte">'+p+'</span>'+
                   (z.thema?'<span class="thema">Thema: <b>'+esc(z.thema)+'</b>'+
                     (z.themaNr?' <i class="nr">T'+z.themaNr+' von 16</i>':'')+'</span>':'')+
@@ -1827,7 +1838,7 @@ function render(){
                   '<span class="thema">'+
                     (z.lektion?'Lektion <b>'+z.lektion+'</b>'
                               :'Woche <b>'+(z.woche||1)+'</b> von '+gw)+
-                    (z.runde?' <i class="nr">Runde '+z.runde+' von 3</i>':'')+
+                    (z.runde?' <i class="nr">Runde '+z.runde+' von 2</i>':'')+
                     (z.durchgang?' <i class="nr">Durchgang '+z.durchgang+'</i>':'')+'</span>'+
                   tage;
     zEl.style.display='flex';
