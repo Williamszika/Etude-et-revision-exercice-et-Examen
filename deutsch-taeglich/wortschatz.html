@@ -1,0 +1,335 @@
+<title>Mein Wortschatz</title>
+<style>
+  :root{
+    --paper:#f5f2ea;--paper-2:#ebe7dc;--card:#fffdf7;--ink:#1e1c17;--ink-soft:#57534a;--line:#dcd5c6;
+    --voc:#8a5a2b;--vocbg:#f5e7d3;--voc-deep:#6b4520;
+    --accent:#8a5a2b;--accent-deep:#6b4520;--accent-soft:#f5e7d3;
+    --good:#2f7d54;--goodbg:#e3f0e7;--warn:#b5731a;--warnbg:#faead8;
+    --n:#1a7068;--nbg:#dcefec;--v:#40449b;--vbg:#e3e3f5;--a:#a83b5c;--abg:#f6e0e6;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#15130f;--paper-2:#100e0b;--card:#1e1b16;--ink:#f1eee7;--ink-soft:#aea89c;--line:#332e26;
+    --voc:#d9a05b;--vocbg:#2d2416;--voc-deep:#e8b877;
+    --accent:#d9a05b;--accent-deep:#e8b877;--accent-soft:#2d2416;
+    --good:#6fc292;--goodbg:#14281c;--warn:#d9a559;--warnbg:#2e2114;
+    --n:#6cc4bf;--nbg:#0f2726;--v:#a9a4e8;--vbg:#1f1d33;--a:#e08aa0;--abg:#2e1620;}}
+  :root[data-theme="dark"]{
+    --paper:#15130f;--paper-2:#100e0b;--card:#1e1b16;--ink:#f1eee7;--ink-soft:#aea89c;--line:#332e26;
+    --voc:#d9a05b;--vocbg:#2d2416;--voc-deep:#e8b877;
+    --accent:#d9a05b;--accent-deep:#e8b877;--accent-soft:#2d2416;
+    --good:#6fc292;--goodbg:#14281c;--warn:#d9a559;--warnbg:#2e2114;
+    --n:#6cc4bf;--nbg:#0f2726;--v:#a9a4e8;--vbg:#1f1d33;--a:#e08aa0;--abg:#2e1620;}
+  :root[data-theme="light"]{
+    --paper:#f5f2ea;--paper-2:#ebe7dc;--card:#fffdf7;--ink:#1e1c17;--ink-soft:#57534a;--line:#dcd5c6;
+    --voc:#8a5a2b;--vocbg:#f5e7d3;--voc-deep:#6b4520;
+    --accent:#8a5a2b;--accent-deep:#6b4520;--accent-soft:#f5e7d3;
+    --good:#2f7d54;--goodbg:#e3f0e7;--warn:#b5731a;--warnbg:#faead8;
+    --n:#1a7068;--nbg:#dcefec;--v:#40449b;--vbg:#e3e3f5;--a:#a83b5c;--abg:#f6e0e6;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding:40px 20px 26px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,6vw,2.8rem);
+    margin:0 0 10px;line-height:1.06;}
+  header.hero p{max-width:56ch;margin:0 auto;color:var(--ink-soft);font-size:15.5px;}
+  .zahlen{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px;}
+  .zahlen div{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:10px 18px;min-width:104px;}
+  .zahlen b{display:block;font-family:var(--mono);font-size:1.5rem;line-height:1;color:var(--accent-deep);}
+  .zahlen span{font-size:12.5px;color:var(--ink-soft);}
+
+  main{max-width:56rem;margin:0 auto;padding:22px 18px 90px;}
+
+  .werkzeug{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--paper) 92%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 0 12px;margin-bottom:8px;}
+  .suche{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:11px;padding:11px 14px;}
+  .suche:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .knopfreihe{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;align-items:center;}
+  .knopfreihe button,.knopfreihe select{font:inherit;font-size:13.5px;color:var(--ink-soft);
+    background:var(--card);border:1px solid var(--line);border-radius:9px;padding:7px 13px;cursor:pointer;}
+  .knopfreihe button:hover,.knopfreihe select:hover{border-color:var(--accent);color:var(--ink);}
+  .knopfreihe button:focus-visible,.knopfreihe select:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  .knopfreihe button.an{background:var(--accent);border-color:var(--accent);color:var(--card);}
+  .treffer{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto;}
+
+  .lek-gruppe{margin:26px 0 0;}
+  .lek-gruppe > h2{font-family:var(--serif);font-size:1.22rem;font-weight:600;margin:0 0 4px;
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:9px;}
+  .lek-gruppe > h2 .dt{font-family:var(--mono);font-size:11.5px;color:var(--card);
+    background:var(--voc);border-radius:6px;padding:3px 9px;}
+  .lek-gruppe > h2 .th{font-size:13.5px;color:var(--ink-soft);font-family:var(--sans);font-weight:400;}
+
+  .liste{display:grid;gap:7px;margin:10px 0 0;}
+  .w{display:grid;grid-template-columns:auto 1fr 1fr auto;gap:12px;align-items:baseline;
+    background:var(--card);border:1px solid var(--line);border-radius:11px;padding:11px 14px;}
+  .w .de{font-weight:700;font-size:15.5px;}
+  .w .wa{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;border-radius:5px;padding:2px 6px;margin-left:7px;vertical-align:1px;}
+  .wa-nomen{background:var(--nbg);color:var(--n);}
+  .wa-verb{background:var(--vbg);color:var(--v);}
+  .wa-adjektiv{background:var(--abg);color:var(--a);}
+  .wa-andere{background:var(--paper-2);color:var(--ink-soft);}
+  .w .frx{color:var(--ink-soft);font-style:italic;font-size:15px;}
+  .w .bsp{grid-column:2 / -1;font-size:14px;color:var(--ink-soft);margin-top:3px;
+    border-left:2px solid var(--vocbg);padding-left:9px;}
+  .w .bsp b{color:var(--voc);font-weight:600;}
+  .w .hoer{font:inherit;font-size:14px;line-height:1;color:var(--voc);background:transparent;
+    border:1px solid var(--line);border-radius:8px;padding:6px 9px;cursor:pointer;}
+  .w .hoer:hover{border-color:var(--voc);}
+  .w .marke{font:inherit;font-size:11px;font-family:var(--mono);color:var(--ink-soft);
+    background:transparent;border:1px solid var(--line);border-radius:8px;padding:5px 9px;
+    cursor:pointer;white-space:nowrap;}
+  .w .marke:hover{border-color:var(--good);color:var(--good);}
+  .w.gewusst{border-color:var(--good);background:var(--goodbg);}
+  .w.gewusst .marke{color:var(--good);border-color:var(--good);}
+  .w.blind-de .de b,.w.blind-fr .frx span{background:var(--paper-2);color:transparent;
+    border-radius:5px;cursor:pointer;user-select:none;}
+  .w.blind-de .bsp,.w.blind-fr .bsp{display:none;}
+  .w .de b.auf,.w .frx span.auf{background:transparent;color:inherit;cursor:auto;}
+  .w[hidden]{display:none;}
+  @media (max-width:640px){
+    .w{grid-template-columns:1fr auto;}
+    .w .frx{grid-column:1;} .w .bsp{grid-column:1 / -1;}
+    .w .hoer{grid-row:1;grid-column:2;} .w .marke{grid-column:1 / -1;justify-self:start;}
+  }
+
+  .leer{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;
+    padding:15px 18px;margin:20px 0;}
+  .info{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px;
+    padding:15px 18px;margin:18px 0;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:26px 20px 50px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  footer a{color:var(--accent-deep);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Deutsch täglich · Etappe 1 · Niveau B1</p>
+  <h1>Mein Wortschatz</h1>
+  <p>Jedes Wort, das in einer Lektion vorkam — an einem Ort, durchsuchbar, mit Beispielsatz und
+    zum Abhören. <b>Verdeck eine Spalte und prüf dich selbst.</b>
+    <span class="fr">Chaque mot vu en leçon, réuni ici. Masque une colonne et teste-toi.</span></p>
+  <div class="zahlen">
+    <div><b id="zWoerter">—</b><span>Wörter</span></div>
+    <div><b id="zLektionen">—</b><span>Lektionen</span></div>
+    <div><b id="zGewusst">—</b><span>gewusst</span></div>
+  </div>
+</header>
+
+<main>
+  <div class="werkzeug">
+    <input type="search" class="suche" id="suche" autocomplete="off"
+           placeholder="Suchen — deutsch, französisch oder im Beispielsatz …"
+           aria-label="Wortschatz durchsuchen">
+    <div class="knopfreihe">
+      <button type="button" class="an" data-modus="alle">Alles zeigen</button>
+      <button type="button" data-modus="de">Deutsch verdecken</button>
+      <button type="button" data-modus="fr">Französisch verdecken</button>
+      <button type="button" data-filter="offen">Nur die offenen</button>
+      <select id="wortart" aria-label="Nach Wortart filtern">
+        <option value="">alle Wortarten</option>
+        <option value="Nomen">Nomen</option>
+        <option value="Verb">Verben</option>
+        <option value="Adjektiv">Adjektive</option>
+      </select>
+      <span class="treffer" id="treffer"></span>
+    </div>
+  </div>
+
+  <div id="inhalt"></div>
+
+  <div class="info"><b>So benutzt du diese Seite.</b> Klick auf <b>Deutsch verdecken</b> und geh
+    die Liste von unten nach oben durch: Sag das deutsche Wort laut, dann klick auf das graue Feld,
+    um zu prüfen. Was sitzt, markierst du mit <b>✓ gewusst</b> — es bleibt gespeichert, auch wenn
+    du die Seite schließt. Mit <b>Nur die offenen</b> siehst du danach nur noch das, was fehlt.
+    <p style="margin:10px 0 0;"><span class="fr">Astuce : fais-le à voix haute. Un mot que tu n'as
+    jamais prononcé ne sortira pas le jour où tu en auras besoin.</span></p></div>
+</main>
+
+<footer>
+  <p><a href="https://claude.ai/code/artifact/e499dbe3-e198-410a-94d3-9393e6b27c84"
+        target="_blank" rel="noopener">🇩🇪 Deutsch täglich</a> ·
+     <a href="https://claude.ai/code/artifact/9ed33853-7d8f-4ee5-a756-b9ef186c99bc"
+        target="_blank" rel="noopener">🪜 Der Weg zu B1</a> ·
+     <a href="https://claude.ai/code/artifact/aa4ffaa4-f1c0-4b44-85df-86b5bcd70ed1"
+        target="_blank" rel="noopener">⛓️ Die Kette</a> ·
+     <a href="https://claude.ai/code/artifact/3e941e25-cfd8-4cdc-99f6-3671b2f03365"
+        target="_blank" rel="noopener">🧭 Meine sieben Baustellen</a></p>
+  <p>Diese Seite wird bei jedem Build neu aus den Lektionen erzeugt — sie wächst von selbst.</p>
+</footer>
+
+<script>
+const WORTSCHATZ = [{"datum": "2026-09-09", "lektion": 2, "thema": "Der menschliche Körper, Gesundheit und Körperpflege", "titel": "Beim Arzt und mit dem eigenen Körper", "woerter": [{"de": "die Beschwerden (nur Plural)", "fr": "les troubles, les symptômes", "wortart": "Nomen", "beispiel": "Seit wann haben Sie diese **Beschwerden**?", "beispielFr": "Depuis quand avez-vous ces symptômes ?", "quelle": "vokabeln"}, {"de": "die Schmerzen (Plural von: der Schmerz)", "fr": "les douleurs", "wortart": "Nomen", "beispiel": "Ich habe **Schmerzen** im unteren Rücken.", "beispielFr": "J'ai des douleurs dans le bas du dos.", "quelle": "vokabeln"}, {"de": "wehtun (tut weh, tat weh, hat wehgetan)", "fr": "faire mal (+ datif)", "wortart": "Verb", "beispiel": "Seit gestern **tut** mir der Rücken **weh**.", "beispielFr": "Depuis hier, j'ai mal au dos. — le corps est sujet, la personne au datif.", "quelle": "vokabeln"}, {"de": "sich fühlen", "fr": "se sentir", "wortart": "Verb", "beispiel": "Ich **fühle mich** heute besser als gestern.", "beispielFr": "Je me sens mieux aujourd'hui qu'hier. — adjectif **sans terminaison**.", "quelle": "vokabeln"}, {"de": "sich Sorgen machen um (+ Akk.)", "fr": "s'inquiéter pour", "wortart": "Ausdruck", "beispiel": "Ich **mache mir Sorgen um** meinen Kollegen, weil er blass aussieht.", "beispielFr": "Je m'inquiète pour mon collègue parce qu'il est pâle.", "quelle": "vokabeln"}, {"de": "die Erkältung, -en", "fr": "le rhume", "wortart": "Nomen", "beispiel": "Der Arzt sagte, dass es nur eine **Erkältung** ist.", "beispielFr": "Le médecin a dit que ce n'était qu'un rhume.", "quelle": "vokabeln"}, {"de": "das Fieber (nur Singular)", "fr": "la fièvre", "wortart": "Nomen", "beispiel": "Sie hat seit gestern Abend **Fieber**.", "beispielFr": "Elle a de la fièvre depuis hier soir.", "quelle": "vokabeln"}, {"de": "der Husten (nur Singular)", "fr": "la toux", "wortart": "Nomen", "beispiel": "Der **Husten** wird nachts immer schlimmer.", "beispielFr": "La toux empire toujours la nuit.", "quelle": "vokabeln"}, {"de": "die Praxis, die Praxen", "fr": "le cabinet (médical)", "wortart": "Nomen", "beispiel": "In der **Praxis** musste ich eine Stunde warten.", "beispielFr": "Au cabinet, j'ai dû attendre une heure.", "quelle": "vokabeln"}, {"de": "die Apotheke, -n", "fr": "la pharmacie", "wortart": "Nomen", "beispiel": "Das Medikament bekommst du nur in der **Apotheke**.", "beispielFr": "Ce médicament, tu ne l'obtiens qu'en pharmacie.", "quelle": "vokabeln"}, {"de": "das Rezept, -e", "fr": "l'ordonnance (aussi : la recette)", "wortart": "Nomen", "beispiel": "Ohne **Rezept** gibt es dieses Medikament nicht.", "beispielFr": "Sans ordonnance, ce médicament n'est pas délivré.", "quelle": "vokabeln"}, {"de": "verschreiben (verschreibt, verschrieb, hat verschrieben)", "fr": "prescrire", "wortart": "Verb", "beispiel": "Der Arzt **verschrieb** ihr Krankengymnastik.", "beispielFr": "Le médecin lui a prescrit de la kinésithérapie.", "quelle": "vokabeln"}, {"de": "einnehmen (nimmt ein, nahm ein, hat eingenommen)", "fr": "prendre (un médicament)", "wortart": "Verb", "beispiel": "Die Tabletten müssen Sie dreimal täglich **einnehmen**.", "beispielFr": "Vous devez prendre les comprimés trois fois par jour.", "quelle": "vokabeln"}, {"de": "sich ausruhen (ruht sich aus)", "fr": "se reposer", "wortart": "Verb", "beispiel": "Du musst dich **ausruhen**, damit du wieder gesund wirst.", "beispielFr": "Tu dois te reposer pour retrouver la santé.", "quelle": "vokabeln"}, {"de": "die Krankmeldung, -en", "fr": "l'arrêt maladie", "wortart": "Nomen", "beispiel": "Die **Krankmeldung** musst du am ersten Tag schicken.", "beispielFr": "L'arrêt maladie doit être envoyé dès le premier jour.", "quelle": "vokabeln"}, {"de": "schwindelig (mir ist schwindelig)", "fr": "j'ai le vertige", "wortart": "Adjektiv", "beispiel": "Wenn ich zu schnell aufstehe, wird **mir schwindelig**.", "beispielFr": "Quand je me lève trop vite, j'ai le vertige. — datif : *mir*, pas *ich*.", "quelle": "vokabeln"}, {"de": "umlagern", "fr": "repositionner (un patient)", "wortart": "B1", "beispiel": "…, nachdem er einen schweren Bewohner **umgelagert** hatte.", "beispielFr": "", "quelle": "lesen"}, {"de": "sich bücken", "fr": "se pencher", "wortart": "B1", "beispiel": "Am nächsten Tag konnte er sich kaum **bücken**.", "beispielFr": "", "quelle": "lesen"}, {"de": "ernst nehmen", "fr": "prendre au sérieux", "wortart": "B1", "beispiel": "Er sagte niemandem etwas, weil er den Schmerz nicht **ernst nahm**.", "beispielFr": "", "quelle": "lesen"}, {"de": "sich seltsam bewegen", "fr": "bouger bizarrement", "wortart": "B1", "beispiel": "Seine Praxisanleiterin bemerkte, dass er sich **seltsam bewegte**.", "beispielFr": "", "quelle": "lesen"}, {"de": "zugeben (gibt zu, gab zu, hat zugegeben)", "fr": "admettre, avouer", "wortart": "B1", "beispiel": "Karim **gab zu**, dass ihm der Rücken seit Tagen wehtat.", "beispielFr": "", "quelle": "lesen"}, {"de": "der Betriebsarzt, ¨-e", "fr": "le médecin du travail", "wortart": "B1", "beispiel": "…und schickte ihn sofort **zum Betriebsarzt**.", "beispielFr": "", "quelle": "lesen"}, {"de": "heben", "fr": "soulever", "wortart": "A2", "beispiel": "Der Arzt erklärte, dass Karim sich beim **Heben** falsch bewegt hatte.", "beispielFr": "", "quelle": "lesen"}, {"de": "passieren", "fr": "arriver, se passer", "wortart": "A2", "beispiel": "…, damit so etwas nicht wieder **passiert**.", "beispielFr": "", "quelle": "lesen"}, {"de": "schweigen (schweigt, schwieg, hat geschwiegen)", "fr": "se taire", "wortart": "B1", "beispiel": "Wer **schweigt**, obwohl er Schmerzen hat, schadet sich selbst.", "beispielFr": "", "quelle": "lesen"}, {"de": "schaden (+ Dat.)", "fr": "nuire à", "wortart": "B1", "beispiel": "…**schadet** sich selbst und den Bewohnern.", "beispielFr": "", "quelle": "lesen"}]}, {"datum": "2026-09-08", "lektion": 1, "thema": "Angaben zur eigenen Person", "titel": "Wörter aus der Lektion", "woerter": [{"de": "der Respekt vor (+ Dat.)", "fr": "le respect de, la crainte de", "wortart": "B1", "beispiel": "Am Anfang hatte sie großen **Respekt vor** dem Telefon.", "beispielFr": "", "quelle": "lesen"}, {"de": "am Apparat", "fr": "au téléphone (expression figée)", "wortart": "B1", "beispiel": "Sie verstand **am Apparat** fast nichts.", "beispielFr": "", "quelle": "lesen"}, {"de": "klingeln", "fr": "sonner", "wortart": "A2", "beispiel": "Eines Nachmittags **klingelte** das Telefon in der Wohnung.", "beispielFr": "", "quelle": "lesen"}, {"de": "das Amt, ¨-er", "fr": "l'administration, le bureau public", "wortart": "B1", "beispiel": "Eine Frau vom **Amt** fragte nach einem Dokument.", "beispielFr": "", "quelle": "lesen"}, {"de": "auflegen (legt auf, legte auf, hat aufgelegt)", "fr": "raccrocher", "wortart": "B1", "beispiel": "Nadia bekam Angst und **legte** einfach **auf**.", "beispielFr": "", "quelle": "lesen"}, {"de": "sich ärgern über (+ Akk.)", "fr": "s'énerver contre, s'en vouloir", "wortart": "B1", "beispiel": "Danach **ärgerte sie sich** den ganzen Abend **über** sich selbst.", "beispielFr": "", "quelle": "lesen"}, {"de": "der Zettel, -", "fr": "le bout de papier, la note", "wortart": "A2", "beispiel": "Sie schrieb sich zuerst drei Sätze auf einen **Zettel**.", "beispielFr": "", "quelle": "lesen"}, {"de": "anrufen (ruft an, rief an, hat angerufen)", "fr": "appeler", "wortart": "A2", "beispiel": "Dann **rief** sie das Amt selbst **an**.", "beispielFr": "", "quelle": "lesen"}, {"de": "notieren", "fr": "noter", "wortart": "B1", "beispiel": "Sie **notierte** den Termin und den Namen der Sachbearbeiterin.", "beispielFr": "", "quelle": "lesen"}, {"de": "die Sachbearbeiterin, -nen", "fr": "l'agent administratif", "wortart": "B1", "beispiel": "Sie notierte den Termin und den Namen der **Sachbearbeiterin**.", "beispielFr": "", "quelle": "lesen"}, {"de": "einen Rat geben", "fr": "donner un conseil", "wortart": "B1", "beispiel": "Ihrer Nachbarin … **gibt** sie inzwischen denselben **Rat**.", "beispielFr": "", "quelle": "lesen"}, {"de": "auslachen (lacht aus)", "fr": "se moquer de quelqu'un", "wortart": "B1", "beispiel": "Niemand **lacht** dich **aus**.", "beispielFr": "", "quelle": "lesen"}]}, {"datum": "2026-09-07", "lektion": 2, "thema": "Angaben zur eigenen Person", "titel": "Wörter aus der Lektion", "woerter": [{"de": "die Übergabe, -n", "fr": "la transmission, la relève", "wortart": "B1", "beispiel": "Bei der **Übergabe** berichtet die Nachtschwester schnell und in ganzen Schachtelsätzen über sechs Bewohner gleichzeitig.", "beispielFr": "", "quelle": "lesen"}, {"de": "der Schachtelsatz, ⁠-̈e", "fr": "la phrase à tiroirs", "wortart": "B2", "beispiel": "… berichtet die Nachtschwester schnell und in ganzen **Schachtelsätzen** über sechs Bewohner gleichzeitig.", "beispielFr": "", "quelle": "lesen"}, {"de": "sich konzentrieren auf (+ Akk.)", "fr": "se concentrer sur", "wortart": "B2", "beispiel": "Amina stellt sich vor das Schwesternzimmer, **konzentriert sich** und macht sich Notizen zu jedem Namen.", "beispielFr": "", "quelle": "lesen"}, {"de": "die Notiz, -en", "fr": "la note", "wortart": "B1", "beispiel": "… und macht sich **Notizen** zu jedem Namen.", "beispielFr": "", "quelle": "lesen"}, {"de": "der Verbandwechsel, -", "fr": "le changement de pansement", "wortart": "B2", "beispiel": "… die neue Medikamentendosis von Herrn Berger und der **Verbandwechsel** bei Frau Yılmaz.", "beispielFr": "", "quelle": "lesen"}, {"de": "geduldig", "fr": "patient(e)", "wortart": "B1", "beispiel": "… und die Praxisanleiterin erklärt der neuen Kollegin **geduldig** den ganzen Ablauf noch einmal.", "beispielFr": "", "quelle": "lesen"}, {"de": "der Ablauf, ⁠-̈e", "fr": "le déroulement", "wortart": "B2", "beispiel": "… erklärt der neuen Kollegin geduldig den ganzen **Ablauf** noch einmal.", "beispielFr": "", "quelle": "lesen"}, {"de": "sich herausstellen (stellte sich heraus, hat sich herausgestellt)", "fr": "s'avérer, se révéler", "wortart": "B2", "beispiel": "**Es stellt sich heraus**, dass sie sich durch genaues Zuhören auszeichnet.", "beispielFr": "", "quelle": "lesen"}, {"de": "das Schlüsselwort, ⁠-̈er", "fr": "le mot-clé", "wortart": "B2", "beispiel": "… indem sie auf **Schlüsselwörter** wie Namen, Zahlen und Zeiten geachtet hatte.", "beispielFr": "", "quelle": "lesen"}, {"de": "einordnen (ordnete ein, hat eingeordnet)", "fr": "classer, situer correctement", "wortart": "B2", "beispiel": "… um die wichtigen Informationen richtig **einzuordnen**.", "beispielFr": "", "quelle": "lesen"}, {"de": "eine Lehre ziehen aus (+ Dat.)", "fr": "tirer une leçon de", "wortart": "B2", "beispiel": "Für die Prüfung **zieht sie daraus eine Lehre**.", "beispielFr": "", "quelle": "lesen"}, {"de": "die Dosis, Dosen", "fr": "la dose", "wortart": "B1", "beispiel": "… die neue Medikamenten**dosis** von Herrn Berger …", "beispielFr": "", "quelle": "lesen"}]}, {"datum": "2026-09-05", "lektion": 1, "thema": "Angaben zur eigenen Person", "titel": "Wörter aus der Lektion", "woerter": [{"de": "wiederholen (wiederholte, hat wiederholt)", "fr": "répéter", "wortart": "B1", "beispiel": "Amina stand am Montagmorgen vor der Tür des Kursraums und **wiederholte** im Kopf ihren ersten Satz.", "beispielFr": "", "quelle": "lesen"}, {"de": "die Herkunft (nur Sg.)", "fr": "l'origine, la provenance", "wortart": "B2", "beispiel": "Name, **Herkunft**, Beruf, Ziel.", "beispielFr": "", "quelle": "lesen"}, {"de": "die Angabe, -n", "fr": "l'indication, la donnée", "wortart": "B2", "beispiel": "Vier **Angaben**, sauber der Reihe nach.", "beispielFr": "", "quelle": "lesen"}, {"de": "an der Reihe sein", "fr": "être à son tour", "wortart": "B1", "beispiel": "Als sie **an der Reihe war**, stellte der Kursleiter jedoch eine andere Frage.", "beispielFr": "", "quelle": "lesen"}, {"de": "zögern (zögerte, hat gezögert)", "fr": "hésiter", "wortart": "B2", "beispiel": "Amina **zögerte**.", "beispielFr": "", "quelle": "lesen"}, {"de": "auswendig lernen", "fr": "apprendre par cœur", "wortart": "B2", "beispiel": "Der **auswendig gelernte** Satz passte nicht mehr.", "beispielFr": "", "quelle": "lesen"}, {"de": "jemandem fällt etwas ein (fiel ein, ist eingefallen)", "fr": "quelque chose vient à l'esprit de quelqu'un", "wortart": "B2", "beispiel": "… und für einen Moment **fiel ihr** überhaupt nichts **ein**.", "beispielFr": "", "quelle": "lesen"}, {"de": "der/die Angehörige, -n", "fr": "le proche, le membre de la famille", "wortart": "B2", "beispiel": "… wenn **Angehörige** etwas Genaues wissen wollen.", "beispielFr": "", "quelle": "lesen"}, {"de": "nicken (nickte, hat genickt)", "fr": "hocher la tête", "wortart": "B1", "beispiel": "Der Kursleiter **nickte** und fragte nach einem Beispiel.", "beispielFr": "", "quelle": "lesen"}, {"de": "ärgern (ärgerte, hat geärgert)", "fr": "agacer, contrarier", "wortart": "B1", "beispiel": "Amina beschrieb ein Gespräch vom Freitag, das sie **geärgert** hatte.", "beispielFr": "", "quelle": "lesen"}, {"de": "der Beitrag, ⁠-̈e", "fr": "la contribution, l'intervention", "wortart": "B2", "beispiel": "… sie habe sich von allen **Beiträgen** nur diesen einen gemerkt.", "beispielFr": "", "quelle": "lesen"}, {"de": "überzeugen (überzeugte, hat überzeugt)", "fr": "convaincre", "wortart": "B2", "beispiel": "Nicht der auswendig gelernte Satz **überzeugt**, sondern das eigene Beispiel.", "beispielFr": "", "quelle": "lesen"}]}];   // [{datum, lektion, thema, woerter:[…]}], neueste zuerst
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function attr(s){return esc(s).replace(/"/g,'&quot;');}
+function bold(s){return esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\*(.+?)\*/g,'<i>$1</i>');}
+
+function fmt(iso){
+  const t=String(iso).split('-');
+  if(t.length!==3)return iso;
+  return t[2]+'.'+t[1]+'.'+t[0];
+}
+function key(datum,wort){
+  return 'ws-'+datum+'-'+wort.replace(/[^a-zA-ZäöüÄÖÜß]/g,'').slice(0,24);
+}
+function artKlasse(wa){
+  const w=String(wa||'').toLowerCase();
+  if(w.indexOf('nomen')>=0)return 'wa-nomen';
+  if(w.indexOf('verb')>=0)return 'wa-verb';
+  if(w.indexOf('adjektiv')>=0)return 'wa-adjektiv';
+  return 'wa-andere';
+}
+function sprich(txt){
+  if(!('speechSynthesis' in window))return;
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(txt);
+  u.lang='de-DE'; u.rate=.85;
+  const v=window.speechSynthesis.getVoices().find(x=>x.lang&&x.lang.startsWith('de'));
+  if(v)u.voice=v;
+  window.speechSynthesis.speak(u);
+}
+
+const inhalt=document.getElementById('inhalt');
+
+if(!WORTSCHATZ.length||!WORTSCHATZ.some(l=>l.woerter&&l.woerter.length)){
+  const d=document.createElement('div');
+  d.className='leer';
+  d.innerHTML='<b>Hier steht noch nichts.</b> Sobald die erste Lektion einen Vokabelblock hat, '+
+              'füllt sich diese Seite von selbst.';
+  inhalt.appendChild(d);
+}
+
+let alleZeilen=[];
+
+WORTSCHATZ.forEach(function(lek){
+  if(!lek.woerter||!lek.woerter.length)return;
+  const g=document.createElement('section');
+  g.className='lek-gruppe';
+
+  const h=document.createElement('h2');
+  const dt=document.createElement('span'); dt.className='dt';
+  dt.textContent=(lek.lektion?'Lektion '+lek.lektion+' · ':'')+fmt(lek.datum);
+  h.appendChild(dt);
+  h.appendChild(document.createTextNode(lek.titel||'Wortschatz'));
+  if(lek.thema){
+    const th=document.createElement('span'); th.className='th'; th.textContent='· '+lek.thema;
+    h.appendChild(th);
+  }
+  g.appendChild(h);
+
+  const liste=document.createElement('div'); liste.className='liste';
+  lek.woerter.forEach(function(w){
+    const wort=w.de||w.wort||'';
+    const z=document.createElement('div');
+    z.className='w';
+    z.dataset.key=key(lek.datum,wort);
+    z.dataset.wortart=w.wortart||'';
+    z.dataset.suche=(wort+' '+(w.fr||'')+' '+(w.beispiel||'')).toLowerCase();
+
+    const hoer=document.createElement('button');
+    hoer.type='button'; hoer.className='hoer'; hoer.title='vorlesen';
+    hoer.textContent='🔊';
+    hoer.addEventListener('click',function(){ sprich(wort); });
+
+    const de=document.createElement('div'); de.className='de';
+    const b=document.createElement('b'); b.textContent=wort;
+    b.addEventListener('click',function(){ b.classList.toggle('auf'); });
+    de.appendChild(b);
+    if(w.wortart){
+      const wa=document.createElement('span');
+      wa.className='wa '+artKlasse(w.wortart); wa.textContent=w.wortart;
+      de.appendChild(wa);
+    }
+
+    const frx=document.createElement('div'); frx.className='frx';
+    const sp=document.createElement('span'); sp.textContent=w.fr||'';
+    sp.addEventListener('click',function(){ sp.classList.toggle('auf'); });
+    frx.appendChild(sp);
+
+    const marke=document.createElement('button');
+    marke.type='button'; marke.className='marke'; marke.textContent='✓ gewusst';
+    marke.addEventListener('click',function(){
+      const an=z.classList.toggle('gewusst');
+      try{ an?localStorage.setItem(z.dataset.key,'1'):localStorage.removeItem(z.dataset.key); }catch(e){}
+      zaehle();
+    });
+
+    z.appendChild(hoer); z.appendChild(de); z.appendChild(frx); z.appendChild(marke);
+    if(w.beispiel){
+      const bsp=document.createElement('div'); bsp.className='bsp';
+      bsp.innerHTML=bold(w.beispiel)+(w.beispielFr?'<br><i>'+esc(w.beispielFr)+'</i>':'');
+      z.appendChild(bsp);
+    }
+    try{ if(localStorage.getItem(z.dataset.key))z.classList.add('gewusst'); }catch(e){}
+    liste.appendChild(z);
+    alleZeilen.push(z);
+  });
+  g.appendChild(liste);
+  inhalt.appendChild(g);
+});
+
+/* ---- Zählen ---- */
+function zaehle(){
+  const sichtbar=alleZeilen.filter(z=>!z.hidden);
+  document.getElementById('zWoerter').textContent=alleZeilen.length;
+  document.getElementById('zLektionen').textContent=
+    WORTSCHATZ.filter(l=>l.woerter&&l.woerter.length).length;
+  document.getElementById('zGewusst').textContent=
+    alleZeilen.filter(z=>z.classList.contains('gewusst')).length;
+  document.getElementById('treffer').textContent=
+    sichtbar.length===alleZeilen.length ? '' : sichtbar.length+' von '+alleZeilen.length;
+}
+
+/* ---- Filtern ---- */
+let nurOffen=false;
+function filtern(){
+  const q=document.getElementById('suche').value.trim().toLowerCase();
+  const wa=document.getElementById('wortart').value.toLowerCase();
+  alleZeilen.forEach(function(z){
+    let zeig=true;
+    if(q&&z.dataset.suche.indexOf(q)<0)zeig=false;
+    if(wa&&String(z.dataset.wortart).toLowerCase().indexOf(wa)<0)zeig=false;
+    if(nurOffen&&z.classList.contains('gewusst'))zeig=false;
+    z.hidden=!zeig;
+  });
+  document.querySelectorAll('.lek-gruppe').forEach(function(g){
+    g.hidden=!Array.from(g.querySelectorAll('.w')).some(z=>!z.hidden);
+  });
+  zaehle();
+}
+document.getElementById('suche').addEventListener('input',filtern);
+document.getElementById('wortart').addEventListener('change',filtern);
+
+/* ---- Modus: verdecken ---- */
+document.querySelectorAll('.knopfreihe button[data-modus]').forEach(function(k){
+  k.addEventListener('click',function(){
+    document.querySelectorAll('.knopfreihe button[data-modus]')
+      .forEach(x=>x.classList.toggle('an',x===k));
+    alleZeilen.forEach(function(z){
+      z.classList.remove('blind-de','blind-fr');
+      z.querySelectorAll('.de b,.frx span').forEach(e=>e.classList.remove('auf'));
+      if(k.dataset.modus==='de')z.classList.add('blind-de');
+      if(k.dataset.modus==='fr')z.classList.add('blind-fr');
+    });
+  });
+});
+const offenKnopf=document.querySelector('.knopfreihe button[data-filter="offen"]');
+offenKnopf.addEventListener('click',function(){
+  nurOffen=!nurOffen;
+  offenKnopf.classList.toggle('an',nurOffen);
+  offenKnopf.setAttribute('aria-pressed',nurOffen?'true':'false');
+  filtern();
+});
+
+zaehle();
+</script>

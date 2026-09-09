@@ -388,10 +388,14 @@ wobei `l` die **letzte vorangegangene Lektion** ist. Daraus folgt:
 - `AKT_DATUM` ist das Datum **des Übungstags**, nicht das der Lektion. Ihre Antworten von heute
   liegen also unter eigenen `localStorage`-Schlüsseln — sie fängt wirklich mit leeren Feldern an.
 
-**Und es sind nur Übungen.** `renderUebungstagSeite(l, datum)` zeigt ausschließlich:
-`deklination` · `lesen` **mit `{nurUebungen:true}`** · `training` · `telc` · `diktat` ·
-`uebersetzung`. **Nicht** dabei: `verb`, `wortschatz`, `grammatik`, `aussprache` — das ist
-Lernstoff und gehört dem Lektionstag.
+**Und es sind nur Übungen — mit zwei Ausnahmen.** `renderUebungstagSeite(l, datum)` zeigt:
+**`vokabeln`** · `deklination` · `lesen` **mit `{nurUebungen:true}`** · `training` ·
+**`leben`** · `telc` · `diktat` · `uebersetzung`. **Nicht** dabei: `verb`, `wortschatz`, `grammatik`, `aussprache` — das
+ist Lernstoff und gehört dem Lektionstag.
+
+**Warum `vokabeln` doch dabei ist:** Am 09.09.2026 hat sie gesagt, es gebe keinen Wortschatz in
+Deutsch täglich — sie hatte an einem Tag ohne Lektion genau diese Seite vor sich. Vokabeln sind
+kein Lernstoff zum Nachlesen, sondern das, was **Wiederholung braucht**. Sie bleiben.
 
 Das Flag `nurUebungen` in `renderLesen` lässt nur die Aufgaben stehen: der Text steht
 **zugeklappt** in einem `<details>` („erst aufklappen, wenn du nicht weiterkommst"), und
@@ -536,6 +540,117 @@ prüfen, ob die neueste Lektion im Artifact neuer ist als die neueste Datei in `
 und wenn ja, sie erst aus dem Artifact zurückholen. Und: **immer committen und pushen**, nicht
 nur veröffentlichen.
 
+### Der Block `vokabeln` — Pflicht in jeder Lektion, 15–18 Wörter
+
+**Am 09.09.2026 hat sie sich beschwert:** *„Il n'y a pas de vocabulaire dans le Deutsch
+täglich"* — und danach: *„je veux que ce soit là, afin que je puisse bien étudier la langue au
+niveau B1 chaque jour."*
+
+Sie hatte recht, und zwar aus zwei Gründen: Der Block `wortschatz` ist nur **ein** Ausdruck, und
+die Wörterliste steckte versteckt im `lesen`-Block. Dazu kam: An dem Morgen war die 5:30-Routine
+nicht gelaufen, also sah sie die **Übungstagseite** — und die hatte gar keinen Wortschatz.
+
+Beides ist behoben. **Jede Lektion hat jetzt einen eigenen Block `vokabeln`**, und er wird
+**auch an Übungstagen gerendert** (Wortschatz ist genau das, was wiederholt werden muss).
+
+**Aufbau:**
+
+```json
+"vokabeln": {
+  "titel": "Beim Arzt und mit dem eigenen Körper",
+  "thema": "Der menschliche Körper, Gesundheit und Körperpflege",
+  "fr": "…  eine Zeile, wie sie damit arbeiten soll",
+  "woerter": [
+    {"de": "die Erkältung, -en", "fr": "le rhume", "wortart": "Nomen",
+     "beispiel": "Der Arzt stellte fest, dass es eine starke **Erkältung** war.",
+     "beispielFr": "Le médecin a constaté que c'était un gros rhume."}
+  ],
+  "aufgabe": {"frage": "…", "hinweis": "…", "muster": "…"},
+  "tipp": "…"
+}
+```
+
+**Regeln, die nicht verhandelbar sind:**
+
+- **15–18 Wörter** pro Lektion. Weniger ist zu wenig für B1 (rund 1100 neue Wörter von A2 aus),
+  mehr behält niemand an einem Tag.
+- **Nomen immer mit Artikel und Plural**: `die Erkältung, -en` · `das Fieber (nur Singular)` ·
+  `die Praxis, die Praxen`. **Ohne Genus kein Kasus** — das ist Baustelle 2.
+- **Unregelmäßige Verben mit allen Stammformen**: `einnehmen (nimmt ein, nahm ein, hat
+  eingenommen)`.
+- `wortart` ist **Nomen**, **Verb**, **Adjektiv** oder **Ausdruck** — die Vorlage färbt danach.
+- **Jedes Wort braucht einen `beispiel`-Satz**, möglichst aus dem Text der Lektion oder mit der
+  Grammatik des Tages, und dazu `beispielFr`. Ein Wort ohne Satz bleibt nicht hängen.
+- Der Wortschatz kommt aus dem **Themenbereich der Lektion** (`themaNr`), nicht querbeet.
+- Die `aufgabe` lässt sie **fünf eigene Sätze** bilden — über sich selbst, nicht über die Figur
+  des Textes.
+
+**Was die Vorlage daraus macht:** eine Liste mit Vorlesen-Knopf pro Wort (🔊), vier Schaltern
+(*Alles zeigen · Deutsch verdecken · Französisch verdecken · Mischen*), einem Häkchen
+**✓ gewusst** pro Wort (in `localStorage`, überlebt das Schließen der Seite) und einem Zähler
+„x von y gewusst". Verdeckte Wörter deckt ein Klick einzeln auf.
+
+### Der Block `leben` — Pflicht in jeder Lektion: was sie damit heute wirklich tut
+
+**Am 09.09.2026 hat sie gesagt:** *„Et aussi apprendre les choses de la VIE, comment utiliser ce
+que j'apprends dans la vie quotidienne. Tout."*
+
+Deshalb hat jede Lektion einen Block `leben`. Er nimmt die Grammatik und die Vokabeln des Tages
+und stellt sie in **eine echte Situation** ihres Alltags in Deutschland. Kein Lehrbuchdialog,
+sondern die Sätze, die sie **wirklich** braucht — und, genauso wichtig, **die Sätze, die sie hören
+wird**. Das Verstehen der Antwort ist das eigentliche Problem, nicht das eigene Sprechen.
+
+```json
+"leben": {
+  "wo": "Beim Arzt anrufen",
+  "titel": "Einen Termin machen — am Telefon, auf Deutsch",
+  "fr": "…",
+  "situation": "…  zwei Sätze: wer bist du, was willst du",
+  "warum": "…  warum genau das im Alltag zählt",
+  "dusagst":  [{"de": "…", "fr": "…"}],
+  "duhoerst": [{"de": "…", "fr": "…"}],
+  "rettung":  ["Können Sie das bitte wiederholen?", "…"],
+  "fallen":   [{"falsch": "…", "richtig": "…", "warum": "…"}],
+  "heute": "…  ein Auftrag, den sie heute wirklich erledigt"
+}
+```
+
+**Regeln:**
+
+- **`dusagst` 6–8 Sätze, `duhoerst` 5–6 Sätze** — beide mit französischer Zeile. Die Vorlage
+  stellt sie in zwei Spalten nebeneinander, jede Zeile mit Vorlese-Knopf.
+- **`rettung` 4–5 Sätze**, immer dabei: *Können Sie das bitte wiederholen? · Können Sie bitte
+  langsamer sprechen? · Wie schreibt man das?* Diese Sätze sind wichtiger als perfekte Grammatik.
+- **`fallen` 2–3 Stück**, jede einer **Baustelle** zugeordnet — bevorzugt falsche Freunde
+  (*einen Termin nehmen*), Kasus und feste Präpositionen.
+- **`heute` ist ein echter Auftrag**, kein Übungssatz: anrufen, fragen, ein Formular lesen, mit
+  einer Kollegin sprechen. Darunter steht ein Schreibfeld für *„was ich gesagt habe / was ich
+  nicht verstanden habe"* — **beides** wird korrigiert; was sie nicht verstanden hat, ist die
+  wertvollere Information.
+- **Die Situation passt zum Themenbereich der Lektion** (`themaNr`): Gesundheit → Arzt, Apotheke ·
+  Wohnen → Vermieter, Handwerker, Nachbarn · Arbeit → Dienstplan, Krankmeldung, Praxisanleitung ·
+  Dienstleistungen → Amt, Bank, Post · Einkaufen → umtauschen, reklamieren · Verkehr → Ticket,
+  Verspätung, Fahrkartenkontrolle.
+- **Über 21 Lektionen kein Thema zweimal.** In Runde 2 und 3 kommt dieselbe Grammatik in einer
+  **anderen** Lebenssituation wieder.
+- Der Block wird **auch an Übungstagen gerendert** — Alltagssätze brauchen Wiederholung.
+
+### Die Wortschatzseite — `deutsch-taeglich/wortschatz.html`
+
+→ `https://claude.ai/code/artifact/d3bfc347-9ff4-4842-86b4-e5c9e203877c` (Favicon 📒)
+
+**Wird bei jedem `build.py` neu erzeugt** — aus `_wortschatz.html` plus allen Wörtern aus allen
+Lektionen (`vokabeln.woerter`, und wo es die noch nicht gibt, `lesen.wortschatz.woerter`).
+Nichts wird dort von Hand gepflegt, nichts erfunden — die Seite trägt nur zusammen, was in den
+Lektionen steht, und wächst von selbst.
+
+Sie kann suchen (deutsch, französisch, im Beispielsatz), nach Wortart filtern, eine Spalte
+verdecken und sich abfragen; **✓ gewusst** ist pro Wort gespeichert, und **Nur die offenen**
+zeigt danach nur noch die Lücken. Die Seite ist im Fuß von Deutsch täglich verlinkt.
+
+**Nach jedem Lauf mitveröffentlichen**, wenn eine neue Lektion dazugekommen ist — sonst hinkt sie
+der Lektionsseite hinterher.
+
 ### Der Block `lesen` — in jeder Lektion ein Text von 200 Wörtern
 
 Sie hat ausdrücklich darum gebeten: **„Je n'arrive pas à m'exprimer clairement."** Deshalb hat
@@ -675,8 +790,10 @@ Tages sollen zu dieser Stufe passen und nicht darüber hinausgehen.
 
 ### Pflichtinhalt jeder Lektion (an jedem Lektionstag)
 
-Verb des Tages (mit Konjugation und Bedeutung) · Wortschatz-Block (Redemittel **zum Thema der
-Woche**) · Grammatik-Block · **`deklination`-Block mit drei Kettensätzen** ·
+Verb des Tages (mit Konjugation und Bedeutung) · Wortschatz-Block (ein Ausdruck **zum Thema der
+Lektion**) · **`vokabeln`-Block mit 15–18 Wörtern** · **`leben`-Block mit einer echten Alltagssituation** ·
+Grammatik-Block ·
+**`deklination`-Block mit drei Kettensätzen** ·
 **`lesen`-Block mit 200-Wörter-Text** · **telc-Block mit dem Fokus der Lektion** ·
 Aussprache-Block · Diktat · 5 Übersetzungssätze FR→DE · 3 Alltag-Missionen.
 
