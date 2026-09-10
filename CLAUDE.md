@@ -335,8 +335,8 @@ An allen anderen Tagen wird eine Lektion geschrieben — jeden Tag.
 ### Ablauf
 
 0. **Zuerst retten, dann arbeiten.** Das ist der Fehler, der bisher am häufigsten passiert ist
-   (31.08., 01.09., 02.–04.09., 05.09., 07.09.): Die Routine veröffentlicht eine Lektion, aber
-   sie committet sie nie — beim nächsten Build ist sie weg. Also **vor allem anderen**:
+   (31.08., 01.09., 02.–04.09., 05.09., 07.09., **09.09., 10.09.**): Die Routine veröffentlicht
+   eine Lektion, aber sie committet sie nie — beim nächsten Build ist sie weg. Also **vor allem anderen**:
    `Artifact action:"read"` auf die Deutsch-täglich-URL, `const LEKTIONEN` aus der gespeicherten
    Datei ziehen und **jede** Lektion, deren Datum nicht in `lektionen/` liegt, dort als JSON
    anlegen. Erst danach weitermachen.
@@ -367,12 +367,23 @@ An allen anderen Tagen wird eine Lektion geschrieben — jeden Tag.
    der neuesten vorhandenen **Lektion vom gleichen Typ** (volle Lektion bzw. reine
    Probeprüfung), gleiche Block- und Feldnamen, nur neuer Inhalt.
 4. `python3 deutsch-taeglich/build.py`
-5. Veröffentlichen: erst `Artifact` mit `action:"read"` auf die URL oben (sonst wird der
+5. **ERST COMMITTEN, DANN VERÖFFENTLICHEN.**
+   `git add -A && git commit && git pull --rebase origin <branch> && git push -u origin <branch>`
+
+   **Diese Reihenfolge ist am 10.09.2026 bewusst umgedreht worden.** Vorher stand der Commit
+   hinter dem Publish — und genau deshalb ist er **acht Mal** ausgefallen (31.08., 01.09.,
+   02.–04.09., 05.09., 07.09., 09.09., 10.09.): Die Routine veröffentlichte die Lektion, brach
+   danach ab oder lief in ein Limit, und die Lektion lag nur noch im Artifact. Jedes Mal musste
+   sie von Hand aus dem veröffentlichten HTML zurückgeholt werden.
+
+   **Der Publish ist der Schritt, der schiefgehen darf — der Commit nicht.** Ist die Lektion
+   committet, ist sie sicher; ein fehlender Publish wird beim nächsten Lauf von selbst
+   nachgeholt. Umgekehrt gilt das nicht.
+6. Veröffentlichen: erst `Artifact` mit `action:"read"` auf die URL oben (sonst wird der
    Publish als veraltet abgelehnt), dann publish mit `file_path deutsch-taeglich/index.html`
-   und derselben `url`.
-6. `git add -A && git commit && git pull --rebase origin <branch> && git push -u origin <branch>`
-   — **dieser Schritt gehört dazu, er ist nicht optional.** Eine Lektion, die nur veröffentlicht und
-   nicht committet ist, gilt als verloren. Der Lauf ist erst fertig, wenn `git status` sauber ist.
+   und derselben `url`. Danach **`deutsch-taeglich/wortschatz.html`** mit ihrer eigenen `url`
+   mitveröffentlichen — sie ist beim Build neu entstanden.
+7. `git status` muss sauber sein. Ist er es nicht, war Schritt 5 unvollständig — nachholen.
 
 ### Der Wochenrhythmus — kein Grammatik-Zyklus mehr
 
