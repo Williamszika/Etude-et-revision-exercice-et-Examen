@@ -575,6 +575,7 @@
 
 <script>
 const LEKTIONEN = __DATA__;   // neueste zuerst
+const START_DATUM = "__START__";   // erster Lektionstag der Etappe
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function bold(s){return esc(s).replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>');}
@@ -1897,7 +1898,38 @@ function render(){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 TAGE=baueTage();
-document.getElementById('streak').textContent='📚 '+LEKTIONEN.length+' Lektion'+
-  (LEKTIONEN.length>1?'en':'')+' gesammelt';
-buildBar();render();
+if(!TAGE.length){
+  /* Neustart: es gibt noch keine Lektion. Kein Blättern, kein leerer Tag —
+     nur der Hinweis, wann es losgeht. */
+  const start=START_DATUM||'';
+  const t=start.split('-');
+  const lang=t.length===3?(t[2]+'.'+t[1]+'.'+t[0]):start;
+  document.getElementById('streak').textContent='📚 Start am '+lang;
+  document.getElementById('datebar').style.display='none';
+  document.getElementById('blaettern').style.display='none';
+  document.getElementById('dayTitle').textContent='Es geht am '+lang+' los';
+  document.getElementById('daySub').textContent='Lektion 1 · Etappe B1 · jeden zweiten Tag';
+  document.getElementById('content').innerHTML=
+    '<div class="block"><span class="kind k-tg">Neustart</span>'+
+    '<h3>Morgen früh um 5:30 steht hier deine erste Lektion.</h3>'+
+    '<p class="fr">On repart de zéro. Tout ce qui a été fait avant a été effacé — '+
+    'la première leçon de la nouvelle étape arrive demain matin.</p>'+
+    '<div class="tipbox"><b>Was dich ab '+lang+' erwartet, jeden zweiten Tag:</b>'+
+    '<ul class="ex">'+
+    '<li><span class="de">Verb des Tages</span><span class="tr">mit voller Konjugation</span></li>'+
+    '<li><span class="de">15–18 Vokabeln</span><span class="tr">mit Artikel, Beispielsatz und Abfrage</span></li>'+
+    '<li><span class="de">Ein Grammatikthema</span><span class="tr">zwei Lektionen lang: entdecken, dann anwenden</span></li>'+
+    '<li><span class="de">Die Kette</span><span class="tr">Deklination an drei Sätzen</span></li>'+
+    '<li><span class="de">Ein Text von 150–200 Wörtern</span><span class="tr">nacherzählen, zusammenfassen, erklären</span></li>'+
+    '<li><span class="de">Im Leben</span><span class="tr">was du sagst und was du hören wirst</span></li>'+
+    '<li><span class="de">Diktat, Aussprache, fünf Übersetzungen</span><span class="tr">jeden Lektionstag</span></li>'+
+    '</ul></div>'+
+    '<div class="goldbox"><b>Am Tag dazwischen</b> ist Übungstag: nichts Neues, nur die '+
+    'Übungen der letzten Lektion mit leeren Feldern.</div>'+
+    '</div>';
+}else{
+  document.getElementById('streak').textContent='📚 '+LEKTIONEN.length+' Lektion'+
+    (LEKTIONEN.length>1?'en':'')+' gesammelt';
+  buildBar();render();
+}
 </script>

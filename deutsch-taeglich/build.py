@@ -19,14 +19,19 @@ for f in sorted(glob.glob(os.path.join(BASE, 'lektionen', '*.json')), reverse=Tr
     except Exception as e:
         print('  ! ungültiges JSON:', os.path.basename(f), e)
 
-if not lekt:
-    raise SystemExit('Keine Lektionen gefunden.')
+# Erster Lektionstag der laufenden Etappe. Steht in einer Lektion (zyklus.start),
+# sonst hier — damit die Seite auch ohne Lektion sagen kann, wann es losgeht.
+START = '2026-09-11'
+if lekt:
+    START = (lekt[-1].get('zyklus') or {}).get('start') or START
 
 data = json.dumps(lekt, ensure_ascii=False).replace('</', '<\\/')
 tpl = open(os.path.join(BASE, '_template.html'), encoding='utf-8').read()
-out = tpl.replace('__DATA__', data)
+out = tpl.replace('__DATA__', data).replace('__START__', START)
 open(os.path.join(BASE, 'index.html'), 'w', encoding='utf-8').write(out)
-print(f"{len(lekt)} Lektion(en) · neueste: {lekt[0]['datum']} · HTML: {round(len(out)/1024)} KB")
+print(f"{len(lekt)} Lektion(en) · "
+      f"{'neueste: ' + lekt[0]['datum'] if lekt else 'Neustart, Beginn ' + START} · "
+      f"HTML: {round(len(out)/1024)} KB")
 
 # ---- Wortschatzseite: alle Vokabeln aller Lektionen an einem Ort ----------------------
 # Quelle sind die Bloecke `vokabeln` (Vokabeln des Tages) und, wo es die noch nicht gibt,
