@@ -523,12 +523,13 @@
 </style>
 
 <header class="hero">
-  <p class="eyebrow">Etappe 1 · Niveau B1 · jeden Tag eine Lektion · ein Thema drei Tage</p>
+  <p class="eyebrow">Etappe 1 · Niveau B1 · eine Lektion jeden zweiten Tag · bis 31.12.2026</p>
   <h1>Deutsch täglich</h1>
-  <p>Der Weg von <b>A2</b> zu <b>B1</b> in gut vier Monaten — <b>jeden Tag eine Lektion</b>,
-  aber <b>jedes Grammatikthema drei Tage lang</b>: <i>entdecken → vertiefen → anwenden</i>.
-  Jeden Tag ein <b>Verb</b>, <b>15–18 Vokabeln</b>, ein <b>Text</b>, eine <b>Alltagssituation</b>
-  und eine andere <b>Fertigkeit</b> — Lesen, Hören, Sprechen, Schreiben.</p>
+  <p>Der Weg von <b>A2</b> zu <b>B1</b> bis <b>Ende Dezember</b> — eine Lektion <b>jeden zweiten
+  Tag</b>, dazwischen ein <b>Übungstag</b>. Jedes Grammatikthema bekommt <b>zwei Lektionen</b>:
+  <i>entdecken → anwenden</i>. Pro Lektion ein <b>Verb</b>, <b>15–18 Vokabeln</b>, ein
+  <b>Text</b>, eine <b>Alltagssituation</b> und eine andere <b>Fertigkeit</b>.
+  <b>Ab dem 3. Dezember</b> kein neuer Stoff mehr — nur noch anwenden.</p>
   <span class="streak" id="streak"></span>
 </header>
 
@@ -564,8 +565,8 @@
       <a href="https://claude.ai/code/artifact/fb2c751b-a84b-42e6-b19a-1bfc6fc6d4b3"
          target="_blank" rel="noopener" style="color:var(--accent-deep);">🎧 Hörverstehen</a>
     </p>
-    Deutsch täglich · neue Lektion <b>jeden Tag</b> um 5:30 (Berlin) ·
-    <b>samstags 22:00</b> zusätzlich die Probeprüfung ·
+    Deutsch täglich · neue Lektion <b>jeden zweiten Tag</b> um 5:30 (Berlin) ·
+    dazwischen ein <b>Übungstag</b> · <b>alle zwei Wochen samstags 22:00</b> die Probeprüfung ·
     <a href="https://claude.ai/code/artifact/ea512258-b4a4-47d8-8959-12d7cd441bf9"
        target="_blank" rel="noopener" style="color:var(--accent-deep);">📏 Einstufungstest</a> ·
     Erklärungen auf Deutsch (B1) mit französischer Hilfe für schwere Stellen.
@@ -1794,7 +1795,7 @@ function render(){
     /* Fortschrittspunkte = die Lektionen einer Etappe (B1: 21) bzw. die 16 Themen */
     const gw=z.gesamt||16;
     let p='';
-    const imDg=z.themaBlock?((z.themaBlock-1)%gw+1):((z.lektion||1)-1)%gw+1;
+    const imDg=z.themaBlock?Math.min(gw,z.themaBlock):gw;
     const dLekDiff=(dStart&&dLek)?Math.round((dLek-dStart)/TAG):0;
     for(let i=1;i<=gw;i++)p+='<i class="'+(i<=imDg?'on':'')+'"></i>';
     let tage='<div class="zy-tage">';
@@ -1805,13 +1806,21 @@ function render(){
         d.setDate(d.getDate()+i);
         lbl=W[d.getDay()]+' '+String(d.getDate()).padStart(2,'0')+'.';
         const diff=dStart?Math.round((d-dStart)/TAG):i;
-        if(diff>=0){
+        /* Lektionstag = jeder `takt`-te Tag ab themenStart; davor (Vorlauf) jeder Tag */
+        const dTh=alsDatum(z.themenStart), takt=z.takt||1;
+        const tHier=dTh?Math.round((d-dTh)/TAG):null;
+        const tLek =(dTh&&dLek)?Math.round((dLek-dTh)/TAG):null;
+        const istLek=(tHier===null)?(diff>=0)
+                    :(tHier<0?(diff>=0):(tHier%takt===0));
+        if(istLek){
           art='Lektion';
-          const ln=(z.lektion||1)+(diff-dLekDiff);
+          const schritte=(tHier!==null&&tLek!==null&&tHier>=0&&tLek>=0)
+                         ?Math.round((tHier-tLek)/takt):(diff-dLekDiff);
+          const ln=(z.lektion||1)+schritte;
           let tt='';
           if(z.themenTag){
-            const n=((z.themenTag-1)+(diff-dLekDiff))%3;
-            tt=' · Thema-Tag '+((n+3)%3+1)+' von 3';
+            const n=(((z.themenTag-1)+schritte)%2+2)%2;
+            tt=' · Thema-Tag '+(n+1)+' von 2';
           }
           tip='Lektion '+ln+' · '+REIHE[(ln-1)%5]+tt+
               (d.getDay()===6?' · dazu die Probeprüfung':'');
@@ -1828,8 +1837,9 @@ function render(){
                     esc(ueb?(WOCHENTAGE[(alsDatum(eintrag.datum)||new Date()).getDay()]+
                              ' · Übungstag'):((z.tag||'')+' · '+(z.fokus||'Lektion')))+'</span>'+
                   (z.etappe?'<span class="zy-etappe">Etappe '+esc(z.etappe)+'</span>':'')+
-                  (z.themenTag?'<span class="zy-tt">Thema-Tag <b>'+z.themenTag+'</b> von 3 · '+
-                    esc(['entdecken','vertiefen','anwenden'][z.themenTag-1]||'')+'</span>':'')+
+                  (z.phase?'<span class="zy-tt">'+esc(z.phase)+'</span>':
+                   z.themenTag?'<span class="zy-tt">Thema-Tag <b>'+z.themenTag+'</b> von 2 · '+
+                    esc(['entdecken','anwenden'][z.themenTag-1]||'')+'</span>':'')+
                   '<span class="zy-punkte">'+p+'</span>'+
                   (z.thema?'<span class="thema">Thema: <b>'+esc(z.thema)+'</b>'+
                     (z.themaNr?' <i class="nr">T'+z.themaNr+' von 16</i>':'')+'</span>':'')+
@@ -1838,7 +1848,7 @@ function render(){
                   '<span class="thema">'+
                     (z.lektion?'Lektion <b>'+z.lektion+'</b>'
                               :'Woche <b>'+(z.woche||1)+'</b> von '+gw)+
-                    (z.runde?' <i class="nr">Runde '+z.runde+' von 2</i>':'')+
+                    (z.runde?' <i class="nr">Runde '+z.runde+'</i>':'')+
                     (z.durchgang?' <i class="nr">Durchgang '+z.durchgang+'</i>':'')+'</span>'+
                   tage;
     zEl.style.display='flex';

@@ -8,7 +8,7 @@ Zahlen oder Quellen nennen, die nicht in ihren eigenen Unterlagen (PDFs im Repo)
 
 ---
 
-## Deutsch täglich — jeden Tag eine Lektion
+## Deutsch täglich — eine Lektion jeden zweiten Tag, bis Ende Dezember
 
 Diese Anweisung gilt **immer** und hat Vorrang vor älteren Routine-Texten.
 
@@ -30,17 +30,26 @@ ergibt, ein Lerntag pro Tag dagegen rund 62. Ihre Antwort am 08.09.2026:
 
 > *„oui, une leçon par jour"*
 
-**Damit gilt: jeder Tag ist ein Lektionstag.** Der Drei-Tage-Takt ist abgeschafft.
+**Am 10.09.2026 hat sie den Takt noch einmal geändert — das ist der gültige Stand:**
+
+> *„j'ai dit une leçon chaque deux jours et cela jusqu'à en Décembre. C'est-à-dire qu'en
+> Décembre, je dois savoir parler, écrire, écouter et comprendre la grammaire, le vocabulaire,
+> savoir former toutes sortes de phrases du niveau B1."*
+
+**Damit gilt: jeder zweite Tag ist ein Lektionstag, der Tag dazwischen ist Übungstag.**
+Die Etappe endet am **31.12.2026** statt am 13.01.2027.
 
 | Fall | Was die 5:30-Routine tut |
 |---|---|
-| **jeder Tag ab dem 08.09.2026** | **Neue Lektion schreiben**, bauen, veröffentlichen, committen |
-| **zusätzlich samstags** | dieselbe volle Lektion bekommt **den `probe`-Block dazu** |
-| **`lektionen/<heute>.json` existiert schon** | **nicht anfassen.** Nur `build.py`, veröffentlichen, fertig |
+| **`(heute − 2026-09-10).days` ist gerade** | **Neue Lektion schreiben**, bauen, **committen**, veröffentlichen |
+| **`…` ist ungerade** | **Übungstag — keine neue Datei.** Nur `build.py`, committen, veröffentlichen |
+| **Lektionstag **und** Samstag** | dieselbe volle Lektion bekommt **den `probe`-Block dazu** (das trifft alle zwei Wochen zu, erstmals am 12.09.2026) |
+| **`lektionen/<heute>.json` existiert schon** | **nicht anfassen.** Nur `build.py`, committen, veröffentlichen |
 
-**Übungstage entstehen nicht mehr planmäßig.** Fällt ein Lauf aus, baut die Vorlage aus dem
-leeren Tag von selbst einen Übungstag mit der letzten Lektion — das ist die Rückfalllösung, kein
-Bestandteil des Plans mehr. Der `renderUebungstagSeite`-Code bleibt genau dafür erhalten.
+**Die Übungstage sind wieder Teil des Plans.** An einem Übungstag entsteht **keine** Datei in
+`lektionen/`; die Vorlage baut den Übungstag aus dem leeren Tag von selbst und zeigt nur die
+Übungen der letzten Lektion (siehe Abschnitt „Die Übungstage"). Trotzdem bauen, committen und
+veröffentlichen, damit die Seite aktuell ist.
 
 Die zwei Lektionen vom **05.09.** und **07.09.** stammen aus der Zeit davor (B2-Zuschnitt, alte
 Nummerierung). Sie bleiben in `lektionen/` stehen und werden **nicht** umgeschrieben.
@@ -58,45 +67,44 @@ Deshalb ist Deutsch täglich in **zwei Etappen** geteilt:
 
 | Etappe | Ziel | Zeitraum | Lektionen |
 |---|---|---|---|
-| **1 — läuft** | **A2 → B1** | **08.09.2026 – 13.01.2027** (gut 4 Monate) | **128 — eine pro Tag** |
+| **1 — läuft** | **A2 → B1** | **08.09.2026 – 31.12.2026** (knapp 4 Monate) | **59 — eine jeden zweiten Tag** |
 | 2 — danach | B1 → B2, dann telc Deutsch B2 | ohne festes Datum | 16 pro Durchgang |
 
-### Ein Thema bleibt drei Tage — ihr Wunsch vom 09.09.2026
+### Der Takt ab dem 10.09.2026 — zwei Lektionen pro Thema, Ende 31.12.2026
 
-> *„je veux que les thèmes Niveau B1 soient chaque 3 jours cela en 4 mois. Est-ce que cela est
-> possible ?"*
-
-**Ja, und es geht genau auf.** Es bleibt bei **einer Lektion pro Tag**, aber das
-**Grammatikthema wechselt nur alle drei Tage**. 21 Themen × 3 Tage = **63 Tage pro Runde**,
-zwei Runden = **126 Tage ≈ 4 Monate**.
-
-**Der Themen-Takt beginnt am 10.09.2026.** Die Lektionen 1 und 2 (08.09. Verbstellung,
-09.09. Nebensätze) sind der Vorlauf und bleiben unangetastet; ab dem 10.09. fängt Thema 1
-noch einmal an, diesmal mit seinen vollen drei Tagen.
+**Der Themen-Takt läuft weiter ab dem 10.09.2026**, aber angepasst an den Zwei-Tage-Rhythmus:
+Jedes Grammatikthema bekommt **zwei Lektionen**, und weil zwischen zwei Lektionen ein Übungstag
+liegt, dauert ein Thema **vier Kalendertage**.
 
 | | |
 |---|---|
-| Themen-Takt ab | **10.09.2026** |
-| Themenblöcke | **42** (2 Runden × 21 Themen), je **3 Tage** |
-| Runde 1 · kennenlernen | **10.09.2026 – 11.11.2026** — Blöcke 1–21 |
-| Runde 2 · festigen und anwenden | **12.11.2026 – 13.01.2027** — Blöcke 22–42 |
-| Lektionen gesamt ab 08.09. | **128** ≈ **128 Stunden** |
+| Lektionstage | jeder zweite Tag ab **10.09.2026** — insgesamt **57** bis zum 31.12. |
+| Übungstage | die 56 Tage dazwischen |
+| Themenblöcke | **21**, je **2 Lektionen** = 4 Kalendertage |
+| Grammatik-Phase | **10.09. – 01.12.2026** — Blöcke 1–21, Lektionen 3–44 |
+| **Dezember: Wiederholungsphase** | **03.12. – 31.12.2026** — 15 Lektionen, kein neuer Stoff |
+| Lektionen gesamt ab 08.09. | **59** |
 
-**Die drei Tage eines Themas haben feste Rollen** — das ist der eigentliche Gewinn gegenüber
-einem Thema pro Tag:
+**Die zwei Lektionen eines Themas haben feste Rollen:**
 
-| Tag | Rolle | Was in der Lektion anders ist |
+| Lektion | Rolle | Was anders ist |
 |---|---|---|
-| **1 · entdecken** | die Regel kennenlernen | Regel ausführlich erklärt, viele Beispiele, viel französische Hilfe, leichte Aufgaben |
-| **2 · vertiefen** | die Regel anwenden | kürzere Erklärung, längere Sätze, mehr eigenes Schreiben, die typischen Fehler |
-| **3 · anwenden** | die Regel benutzen, ohne nachzudenken | kaum Erklärung, ganze Aufgaben, freier Text, Umformungen unter Zeit |
+| **1 · entdecken** | die Regel kennenlernen | Regel ausführlich erklärt, viele Beispiele, viel französische Hilfe |
+| **2 · anwenden** | die Regel benutzen | kaum Erklärung, ganze Aufgaben, freier Text, Umformungen, die typischen Fehler |
 
-Das Feld `zyklus` bekommt dafür `themenTag` (1, 2 oder 3) und `themaBlock` (1–42). Die Vorlage
-zeigt „Thema-Tag 2 von 3" in der Zyklusleiste.
+Das Feld `zyklus` bekommt dafür `themenTag` (**1 oder 2**) und `themaBlock` (**1–21**). Die
+Vorlage zeigt „Thema-Tag 1 von 2" in der Zyklusleiste.
 
-**Warum das besser ist als ein Thema pro Tag:** 128 Stunden statt 62 liegen **im** Bereich der
-üblichen Schätzung von 150–200 Stunden für A2 → B1, statt weit darunter. Und drei Tage an
-derselben Regel sind der Unterschied zwischen *gesehen* und *gekonnt*.
+**Der Dezember ist keine Verlängerung, sondern der Beweis.** Ab dem 03.12. kommt **kein neues
+Grammatikthema** mehr. Die 15 Dezemberlektionen wiederholen gezielt das, was in den
+Probeprüfungen und in ihren eingeschickten Texten schwach war — ganze Aufgaben, freies Schreiben,
+Sprechen, Hören unter Zeit. Der `zyklus` trägt dort `phase: "Wiederholung"` statt `themaBlock`.
+
+**Die Rechnung, die ihr gesagt wurde und die stehen bleiben muss:** 57 Lektionen × 60 Minuten
+= **57 Stunden**, plus 56 Übungstage × 30 Minuten = **28 Stunden** → **rund 85 Stunden**.
+Vorher (eine Lektion pro Tag, bis Januar) waren es 128. Sie hat sich bewusst für weniger Stunden
+und mehr Ruhetage entschieden; **das ist ihre Entscheidung und wird nicht kommentiert oder
+angemahnt** — aber die Zahl wird auch nicht schöngerechnet.
 
 Planseite: `deutsch-taeglich/b1.html` →
 `https://claude.ai/code/artifact/9ed33853-7d8f-4ee5-a756-b9ef186c99bc` (Favicon 🪜). Dort stehen
@@ -131,10 +139,11 @@ Bis dahin: **A2 als Arbeitsannahme behandeln, nicht als Messwert ausgeben.**
 
 ### Die 21 Grammatikthemen der Etappe B1 — eins pro Lektion
 
-`grammatikNr = ((themaBlock − 1) mod 21) + 1`, in dieser Reihenfolge — **jedes Thema drei Tage
-lang**. Das ist die vollständige B1-Grammatik; nichts davon darf ausfallen, denn genau darauf
-beruht die Zusage „in vier Monaten hast du das ganze B1-Programm gesehen" — und in der Etappe 1
-zweimal, jedes Mal drei Tage am Stück.
+`grammatikNr = themaBlock` (1 … 21), in dieser Reihenfolge — **jedes Thema zwei Lektionen lang**.
+Das ist die vollständige B1-Grammatik; **nichts davon darf ausfallen**, denn genau darauf beruht
+die Zusage, dass sie im Dezember das ganze B1-Programm gesehen hat. Anders als im Plan vom 09.09.
+läuft die Liste **einmal** durch, nicht zweimal — dafür steht der ganze Dezember als
+Wiederholung dahinter.
 
 1. Verbstellung und Satzklammer (Position 2, W-Fragen, Ja/Nein-Fragen)
 2. Nebensätze: weil, dass, wenn/als, obwohl, damit
@@ -158,35 +167,41 @@ zweimal, jedes Mal drei Tage am Stück.
 20. Indirekte Fragen mit *ob* und W-Wort
 21. Wiederholung — die zehn Fehler, die B1 kosten, an einem ganzen Text
 
-Der **Wortschatz** kommt weiter aus den 16 Themenbereichen, aber jetzt **pro Themenblock**, nicht
-pro Tag: `themaNr = ((themaBlock − 1) mod 16) + 1`. Die drei Tage eines Themas bleiben also im
-**selben** Wortfeld — die 15–18 Vokabeln bauen aufeinander auf, statt jeden Tag neu anzufangen.
-Weil 16 und 21 teilerfremd sind, trifft in Runde 2 jedes Grammatikthema auf einen **anderen**
-Wortschatzbereich. Das ist Absicht.
+Der **Wortschatz** kommt weiter aus den 16 Themenbereichen, **pro Themenblock**:
+`themaNr = ((themaBlock − 1) mod 16) + 1`. Die zwei Lektionen eines Themas bleiben im **selben**
+Wortfeld — die 15–18 Vokabeln bauen aufeinander auf. In der Dezemberphase wird der Bereich
+gewählt, der am wenigsten sitzt.
 
-**Über die drei Tage darf sich kein Wort und keine Übung wiederholen.** Gleiches Thema heißt:
-neuer Text, neues Verb, neue Vokabeln aus demselben Wortfeld, neue Aufgaben.
+**Über die zwei Lektionen darf sich kein Wort und keine Übung wiederholen.** Gleiches Thema
+heißt: neuer Text, neues Verb, neue Vokabeln aus demselben Wortfeld, neue Aufgaben.
 
 **Die Fokus-Rotation bleibt**, nur unter B1-Namen: `REIHE[(lektion − 1) mod 5]` mit
 Leseverstehen → Hörverstehen → Sprachbausteine → Schriftlicher Ausdruck → Mündlicher Ausdruck.
 Im `telc`-Block heißen sie in der Etappe 1 schlicht **Lesen · Hören · Grammatik im Text ·
 Schreiben · Sprechen**.
 
-**Am Ende der Etappe (13.01.2027):** ehrlich sagen, ob B1 erreicht ist, in welchen Fertigkeiten
+**Am Ende der Etappe (31.12.2026):** ehrlich sagen, ob B1 erreicht ist, in welchen Fertigkeiten
 nicht, und ob Etappe 2 anfängt oder B1 verlängert wird. **Nicht behaupten, B1 sei erreicht, weil
-128 Lektionen abgearbeitet sind** — das entscheiden die Messungen, nicht der Kalender.
-Gemessen wird alle acht Wochen: **08.09.2026 · 03.11.2026 · 29.12.2026** und zum Abschluss am
-**13.01.2027**.
+59 Lektionen abgearbeitet sind** — das entscheiden die Messungen, nicht der Kalender.
+Gemessen wird alle acht Wochen: **08.09.2026 · 03.11.2026 · 29.12.2026**, und die Messung vom
+29.12. ist zugleich die **Abschlussmessung** der Etappe.
 
-**Der Zeit-Hinweis, der ihr gegeben wurde und der stehen bleiben muss:** Bei einer Lektion pro
-Tag à 60 Minuten sind gut vier Monate **rund 128 Stunden**. Die übliche Schätzung für A2 → B1
-liegt bei **150–200 Stunden** (**allgemeine Schätzung, nicht aus ihren Unterlagen, nie als
-Tatsache darstellen**).
+**Sie hat für den Dezember ein klares Ziel formuliert:** *„en Décembre, je dois savoir parler,
+écrire, écouter et comprendre la grammaire, le vocabulaire, savoir former toutes sortes de
+phrases du niveau B1."* Der Plan ist genau darauf gebaut — Grammatik komplett bis zum 01.12.,
+Dezember als reine Anwendungs- und Wiederholungsphase. **Aber:** Ob sie es dann *kann*, sagt
+Messung 3 am 29.12., nicht der Plan. Diesen Unterschied nie verwischen — und ihr auch nie
+vorher versprechen, dass Dezember automatisch B1 bedeutet.
 
-Ihr Weg dahin, in ihren eigenen Entscheidungen: 41 Stunden (Drei-Tage-Takt) → 62 Stunden (eine
-Lektion pro Tag, 2 Monate) → **128 Stunden** (eine Lektion pro Tag, ein Thema alle drei Tage,
-4 Monate). **Erst mit dieser dritten Fassung liegt der Plan im Bereich der Schätzung** — das darf
-und soll ihr auch gesagt werden, es war ihre eigene Idee.
+**Der Zeit-Hinweis, der ihr gegeben wurde und der stehen bleiben muss:** Der jetzige Plan ergibt
+**rund 85 Stunden** (57 Lektionen à 60 Min + 56 Übungstage à 30 Min). Die übliche Schätzung für
+A2 → B1 liegt bei **150–200 Stunden** (**allgemeine Schätzung, nicht aus ihren Unterlagen, nie
+als Tatsache darstellen**).
+
+Ihr Weg dahin, in ihren eigenen Entscheidungen: 41 h → 62 h → 128 h → **85 h**. Die vierte
+Fassung liegt wieder **unter** der Schätzung. Das wurde ihr am 10.09. offen gesagt, zusammen mit
+dem Hebel (täglich statt jeden zweiten Tag). **Sie hat entschieden — dabei bleibt es, ohne
+Nachhaken.**
 
 Trotzdem gilt unverändert: Ob das **Können** in allen vier Fertigkeiten mitkommt, entscheidet die
 **Messung**, nicht der Kalender und nicht die Zahl der abgearbeiteten Lektionen. **Nie B1
@@ -349,15 +364,19 @@ An allen anderen Tagen wird eine Lektion geschrieben — jeden Tag.
    - ist heute **Samstag**, bekommt die Lektion zusätzlich den `probe`-Block
 3. Neuen Zustand aus dem **heutigen Datum** berechnen — `e = (heute − 2026-09-08).days` und
    `t = (heute − 2026-09-10).days`:
-   - **Etappe 1 (bis einschließlich 13.01.2027):**
-     `lektion` = `e + 1` (1 … 128) · `etappe` = `"B1"` · `gesamt` = `21`
-     `themaBlock` = `t // 3 + 1` (1 … 42) · `themenTag` = `t mod 3 + 1` (1, 2 oder 3)
-     `runde` = `((themaBlock − 1) // 21) + 1` — 1 oder 2
-     `grammatikNr` = `((themaBlock − 1) mod 21) + 1` · `grammatik` = das Thema dazu aus der Liste oben
+   - **Ist `t` ungerade → Übungstag.** Keine Datei schreiben, weiter mit Schritt 4.
+   - **Etappe 1 (bis einschließlich 31.12.2026), `t` gerade:**
+     `lektion` = `t // 2 + 3` (3 … 59) · `etappe` = `"B1"` · `gesamt` = `21` · `takt` = `2`
+     `themaBlock` = `t // 4 + 1` (1 … 21) · `themenTag` = `(t // 2) mod 2 + 1` (**1 oder 2**)
+     `grammatikNr` = `themaBlock` · `grammatik` = das Thema dazu aus der Liste oben
      `themaNr` = `((themaBlock − 1) mod 16) + 1` · `thema` = das Thema dazu
-     `start` = `"2026-09-08"` · `themenStart` = `"2026-09-10"` · **kein `durchgang`**
-   - **Der `themenTag` bestimmt den Zuschnitt der Lektion** (entdecken / vertiefen / anwenden —
-     siehe Tabelle oben). Bei `t < 0` (also am 08./09.09.) gibt es keinen `themaBlock`.
+     `start` = `"2026-09-08"` · `themenStart` = `"2026-09-10"` · **kein `durchgang`**, **keine `runde`**
+   - **Ab `t > 82` (also ab dem 03.12.2026): Wiederholungsphase.** Kein `themaBlock`, kein
+     `grammatikNr`; stattdessen `phase: "Wiederholung"` und `grammatik` = das Thema, das
+     wiederholt wird (das schwächste aus den Probeprüfungen und ihren Texten). `thema` frei
+     wählbar aus den 16 Bereichen.
+   - **Der `themenTag` bestimmt den Zuschnitt der Lektion** (entdecken / anwenden — siehe Tabelle
+     oben). Bei `t < 0` (also am 08./09.09.) gibt es keinen `themaBlock`.
    - **Etappe 2 (danach):** `lektion` weiterzählen, `etappe` = `"B2"`, `gesamt` = `16`,
      `durchgang` = `((lektion − 1) // 16) + 1`, `start` = der Starttag der Etappe 2.
    - immer: `woche` = `e // 7 + 1` (nur Anzeige) · `tag` = heutiger Wochentag auf Deutsch ·
@@ -398,28 +417,40 @@ Lektion**, und läuft im Kreis:
 `Leseverstehen → Hörverstehen → Sprachbausteine → Schriftlicher Ausdruck → Mündlicher Ausdruck`
 
 ```
-lektion    = (heute - 2026-09-08).days + 1        # eine Lektion pro Tag, 1 … 128
-themaBlock = (heute - 2026-09-10).days // 3 + 1   # ein Thema pro drei Tage, 1 … 42
+t          = (heute - 2026-09-10).days
+Lektionstag  ⇔  t gerade und t >= 0
+lektion    = t // 2 + 3        # 3 … 59
+themaBlock = t // 4 + 1        # 1 … 21, je zwei Lektionen
 fokus      = REIHE[(lektion - 1) mod 5]
 ```
 
-Etappe B1: Lektion 1 (08.09.) Lesen · 2 (09.09.) Hören · 3 (10.09.) Grammatik im Text ·
-4 (11.09.) Schreiben · 5 (12.09.) Sprechen · 6 (13.09.) wieder Lesen. Die Zählung der Etappe 1
-fängt am 08.09. bei 1 an.
+Etappe B1: Lektion 3 (10.09.) Grammatik im Text · 4 (12.09.) Schreiben · 5 (14.09.) Sprechen ·
+6 (16.09.) Lesen · 7 (18.09.) Hören … Die Lektionen 1 (08.09.) und 2 (09.09.) sind der Vorlauf.
 
-**Wichtig: Fokus und Thema laufen absichtlich auseinander.** Der Fokus wechselt **täglich**,
-das Grammatikthema **alle drei Tage**. Innerhalb eines Themas übt sie dieselbe Regel also einmal
-im Lesen, einmal im Hören und einmal im Schreiben — genau das, was die Regel wirklich verankert.
+**Wichtig: Fokus und Thema laufen absichtlich auseinander.** Der Fokus wechselt mit **jeder
+Lektion**, das Grammatikthema nur mit **jedem zweiten Block**. Innerhalb eines Themas übt sie
+dieselbe Regel also in **zwei verschiedenen Fertigkeiten** — zum Beispiel einmal im Schreiben und
+einmal im Hören. Genau das verankert eine Regel.
 
 Der Block `zyklus` sieht ab Lektion 1 so aus:
 
 ```json
-"zyklus": {"woche": 1, "gesamt": 21, "etappe": "B1", "runde": 1,
+"zyklus": {"woche": 1, "gesamt": 21, "etappe": "B1", "takt": 2,
            "thema": "Angaben zur eigenen Person", "themaNr": 1,
            "grammatik": "Verbstellung und Satzklammer", "grammatikNr": 1,
            "themaBlock": 1, "themenTag": 1,
            "tag": "Donnerstag", "fokus": "Sprachbausteine",
            "start": "2026-09-08", "themenStart": "2026-09-10", "lektion": 3}
+```
+
+Und in der Dezemberphase:
+
+```json
+"zyklus": {"woche": 13, "gesamt": 21, "etappe": "B1", "takt": 2,
+           "phase": "Wiederholung", "thema": "…", "themaNr": …,
+           "grammatik": "Adjektivdeklination — Wiederholung",
+           "tag": "Donnerstag", "fokus": "Schriftlicher Ausdruck",
+           "start": "2026-09-08", "themenStart": "2026-09-10", "lektion": 45}
 ```
 
 **Kein `bisPruefung`-Feld mehr.** Wo es in alten Lektionen noch steht, bleibt es stehen;
