@@ -19,6 +19,18 @@ for f in sorted(glob.glob(os.path.join(BASE, 'lektionen', '*.json')), reverse=Tr
     except Exception as e:
         print('  ! ungültiges JSON:', os.path.basename(f), e)
 
+# Echte Sprachaufnahmen (mit deutsch-taeglich/elevenlabs-audio.py vorher erzeugt).
+# Liegt audio/<datum>/diktat.mp3 vor, bekommt der Diktatblock das Feld "audio" und
+# die Seite nimmt die Aufnahme statt der Vorlesestimme des Browsers. Die Datei wird
+# beim Veroeffentlichen als Begleitdatei neben die Seite gelegt, deshalb steht hier
+# nur der relative Pfad — eingebettet wird nichts, die Seite bleibt klein.
+tonspuren = []
+for d in lekt:
+    rel = os.path.join('audio', d['datum'], 'diktat.mp3')
+    if d.get('diktat') and os.path.exists(os.path.join(BASE, rel)):
+        d['diktat']['audio'] = rel.replace(os.sep, '/')
+        tonspuren.append(rel.replace(os.sep, '/'))
+
 # Erster Lektionstag der laufenden Etappe. Steht in einer Lektion (zyklus.start),
 # sonst hier — damit die Seite auch ohne Lektion sagen kann, wann es losgeht.
 START = '2026-09-11'
@@ -32,6 +44,8 @@ open(os.path.join(BASE, 'index.html'), 'w', encoding='utf-8').write(out)
 print(f"{len(lekt)} Lektion(en) · "
       f"{'neueste: ' + lekt[0]['datum'] if lekt else 'Neustart, Beginn ' + START} · "
       f"HTML: {round(len(out)/1024)} KB")
+if tonspuren:
+    print(f"  Tonspuren (als Begleitdatei mitveröffentlichen): {', '.join(tonspuren)}")
 
 # ---- Wortschatzseite: alle Vokabeln aller Lektionen an einem Ort ----------------------
 # Quelle sind die Bloecke `vokabeln` (Vokabeln des Tages) und, wo es die noch nicht gibt,

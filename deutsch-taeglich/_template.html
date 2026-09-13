@@ -1347,6 +1347,9 @@ function renderSatzbau(b,idx){
 
 /* ---------- Diktat (alle zwei Tage) ---------- */
 let dkText='', dkSaetze=[], dkLaeuft=false;
+/* Echte Sprachaufnahme zum Diktat, wenn es eine gibt (ElevenLabs, vorher erzeugt).
+   Fehlt sie oder laesst sie sich nicht laden, wird auf die Browserstimme zurueckgefallen. */
+let dkAudio=null, dkEl=null;
 /* Sprechtempo — voreingestellt: langsam. Wird im Browser gemerkt. */
 const DK_TEMPI=[
   {k:'sehr', r:0.55, t:'🐌 sehr langsam'},
@@ -1362,6 +1365,8 @@ function dkSetRate(r){
   document.querySelectorAll('.dk-tempo button').forEach(b=>{
     b.classList.toggle('sel', Math.abs(parseFloat(b.dataset.r)-r)<0.001);
   });
+  /* Bei der echten Aufnahme wirkt das Tempo sofort, auch mitten im Satz. */
+  if(dkEl){ try{ dkEl.playbackRate=r; }catch(e){} }
 }
 
 function dkStatus(txt,run){
@@ -1370,9 +1375,54 @@ function dkStatus(txt,run){
   e.textContent=txt;
   e.classList.toggle('run',!!run);
 }
+/* Zweimal vorlesen mit der echten Aufnahme. Das Tempo wirkt live, die Tonhoehe
+   bleibt erhalten. Scheitert das Laden (Datei fehlt, Ton gesperrt), uebernimmt
+   ohne Umweg die Browserstimme. */
+function dkStartAudio(){
+  dkLaeuft=true;
+  const start=document.getElementById('dk-start');
+  if(start)start.disabled=true;
+  const area=document.getElementById('dk-area');
+  if(area){area.disabled=false;}
+  if(!dkEl){
+    dkEl=new Audio(dkAudio);
+    dkEl.preload='auto';
+  }
+  try{ dkEl.preservesPitch=true; dkEl.mozPreservesPitch=true; dkEl.webkitPreservesPitch=true; }catch(e){}
+  let durchgang=0;
+  function zurueckfallen(){
+    dkEl=null; dkAudio=null; dkLaeuft=false;
+    if(start)start.disabled=false;
+    dkStatus('Die Aufnahme liess sich nicht abspielen — ich nehme die Stimme des Browsers.',false);
+    setTimeout(dkStart,600);
+  }
+  dkEl.onerror=zurueckfallen;
+  dkEl.onended=function(){
+    if(durchgang<2){
+      dkStatus('⏸ Kurze Pause … gleich kommt Durchgang 2',true);
+      setTimeout(lauf,3500);
+    }else{
+      dkLaeuft=false;
+      if(start){ start.disabled=false; start.textContent='↻ Noch einmal hören'; }
+      dkStatus('✅ Fertig vorgelesen — schreib zu Ende, dann vergleichen',false);
+      const b=document.getElementById('dk-check'); if(b)b.disabled=false;
+    }
+  };
+  function lauf(){
+    durchgang++;
+    dkStatus('🔊 Durchgang '+durchgang+' von 2 — echte Stimme, hör gut zu und schreib mit',true);
+    try{ dkEl.currentTime=0; }catch(e){}
+    dkEl.playbackRate=dkRate;
+    const p=dkEl.play();
+    if(p&&p.catch)p.catch(zurueckfallen);
+  }
+  lauf();
+}
+
 /* Spricht den Text zweimal — normale Geschwindigkeit, kein Tempo-Regler */
 function dkStart(){
   if(dkLaeuft)return;
+  if(dkAudio){ dkStartAudio(); return; }
   if(!('speechSynthesis' in window)){
     dkStatus('Dein Browser kann leider nicht vorlesen.',false);return;
   }
@@ -1545,6 +1595,7 @@ function dkNeu(){
   document.getElementById('dk-start').textContent='▶︎ Diktat starten';
   dkStatus('Bereit — der Text wird zweimal vorgelesen.',false);
   window.speechSynthesis && window.speechSynthesis.cancel();
+  if(dkEl){ try{ dkEl.pause(); dkEl.currentTime=0; }catch(e){} }
   dkLaeuft=false;
   document.getElementById('dk-start').disabled=false;
 }
@@ -1560,12 +1611,21 @@ function renderDiktat(b,niveau){
     : dkText.split(/(?<=[.!?])\s+/).filter(s=>s.trim().length);
   const hilfe = b.hilfe || b.wortschatzhilfe || [];
   const woerter=tokens(dkText).length;
+  /* Gibt es zu diesem Tag eine echte Aufnahme, wird sie statt der Browserstimme benutzt. */
+  if(dkEl){ try{ dkEl.pause(); }catch(e){} }
+  dkEl=null;
+  dkAudio=b.audio||null;
 
   let h='<div class="block"><span class="kind k-dk">Diktat · Niveau '+(niveau||'B2')+'</span>';
   h+='<h3>'+bold(b.titel||'Diktat des Tages')+'</h3>';
   h+='<p class="dk-intro">Der Text wird <b>zweimal</b> vorgelesen. Stell dir vorher das <b>Tempo</b> ein — '+
-     'du kannst jederzeit langsamer machen. Schreib beim Zuhören mit. '+
+     'du kannst jederzeit langsamer machen'+(dkAudio?', auch mitten im Satz':'')+'. Schreib beim Zuhören mit. '+
      'Danach siehst du den Originaltext und deine Korrektur. <b>'+woerter+' Wörter.</b></p>';
+  if(dkAudio){
+    h+='<p class="dk-intro" style="color:var(--dk);"><b>🎙 Heute mit einer echten Stimme</b> statt der '+
+       'Vorlesestimme des Browsers. Lädt sie nicht, springt die Seite von selbst auf den Browser zurück — '+
+       'das Diktat fällt nie aus.</p>';
+  }
   if(b.fr)h+='<p class="fr">'+esc(b.fr)+'</p>';
   if(hilfe.length){
     h+='<div class="chips">'+hilfe.map(c=>'<span class="chip">'+bold(c)+'</span>').join('')+'</div>';
