@@ -1,0 +1,733 @@
+<title>Staatliche Abschlussprüfung Pflege</title>
+<style>
+  :root{
+    --paper:#f5f3ee;--paper-2:#edeae2;--card:#fffdf9;--ink:#1c211f;--ink-soft:#4c5552;--line:#dcd7cc;
+    --accent:#1f5f8b;--accent-deep:#164866;--accent-soft:#dce9f2;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;
+    --sr:#1f5f8b;--srbg:#dce9f2;--mu:#6b4fa8;--mubg:#e8e2f5;--pr:#0f6f6b;--prbg:#dcefee;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#121618;--paper-2:#0d1113;--card:#1a2023;--ink:#eef2f2;--ink-soft:#a4b0b2;--line:#2a3336;
+    --accent:#6cb2dd;--accent-deep:#94cbef;--accent-soft:#14293a;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --sr:#6cb2dd;--srbg:#14293a;--mu:#b39ce8;--mubg:#231d33;--pr:#6cc4bf;--prbg:#0f2726;}}
+  :root[data-theme="dark"]{
+    --paper:#121618;--paper-2:#0d1113;--card:#1a2023;--ink:#eef2f2;--ink-soft:#a4b0b2;--line:#2a3336;
+    --accent:#6cb2dd;--accent-deep:#94cbef;--accent-soft:#14293a;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --sr:#6cb2dd;--srbg:#14293a;--mu:#b39ce8;--mubg:#231d33;--pr:#6cc4bf;--prbg:#0f2726;}
+  :root[data-theme="light"]{
+    --paper:#f5f3ee;--paper-2:#edeae2;--card:#fffdf9;--ink:#1c211f;--ink-soft:#4c5552;--line:#dcd7cc;
+    --accent:#1f5f8b;--accent-deep:#164866;--accent-soft:#dce9f2;
+    --good:#2f7d54;--goodbg:#e3f0e7;--bad:#bb4d3f;--badbg:#f8e0dc;--warn:#b5731a;--warnbg:#faead8;
+    --sr:#1f5f8b;--srbg:#dce9f2;--mu:#6b4fa8;--mubg:#e8e2f5;--pr:#0f6f6b;--prbg:#dcefee;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding:44px 20px 28px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,6vw,2.9rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 20px;color:var(--ink-soft);font-size:15.5px;}
+
+  nav.toc{position:sticky;top:0;z-index:30;background:var(--paper-2);border-bottom:1px solid var(--line);
+    padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding:0 18px 90px;}
+  section{padding-top:50px;}
+  h2{font-family:var(--serif);font-size:clamp(1.45rem,4vw,2rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:26px 0 8px;}
+  h4{font-size:1rem;margin:18px 0 6px;}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:20px 22px 18px;margin:16px 0;}
+  .card > :first-child{margin-top:0;}
+  .card > :last-child{margin-bottom:0;}
+  .lbl{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+
+  ul,ol{padding-left:1.2em;margin:10px 0;}
+  li{margin:5px 0;}
+  ul.tick{list-style:none;padding-left:0;}
+  ul.tick li{padding-left:1.7em;position:relative;}
+  ul.tick li::before{content:"▸";position:absolute;left:.35em;color:var(--sub,var(--accent));}
+
+  .tabelle{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:12px;}
+  table{border-collapse:collapse;width:100%;min-width:540px;background:var(--card);}
+  th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
+  tbody tr:last-child td{border-bottom:none;}
+  td.n,th.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right;}
+  tr.summe td{background:var(--paper-2);font-weight:600;}
+
+  .sub{border:1px solid var(--line);border-left:5px solid var(--sub);border-radius:14px;
+    background:var(--card);margin:18px 0;overflow:hidden;}
+  .sub > .kopf{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;
+    padding:14px 20px;background:var(--subbg);border-bottom:1px solid var(--line);}
+  .sub > .kopf h3{margin:0;font-size:1.22rem;color:var(--sub);}
+  .sub > .kopf .pkt{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);
+    font-variant-numeric:tabular-nums;}
+  .sub > .inhalt{padding:6px 20px 18px;}
+  .sub .lbl{color:var(--sub);}
+
+  .warn{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .info{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:10px;padding:15px 18px;margin:16px 0;}
+
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0;}
+  @media (max-width:660px){.zwei{grid-template-columns:1fr;}}
+
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .q{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);white-space:nowrap;}
+  .qq{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;
+    padding:1px 7px;border-radius:999px;border:1px solid var(--line);background:var(--paper-2);
+    color:var(--ink-soft);vertical-align:middle;}
+  .qq.g{border-color:var(--good);background:var(--goodbg);color:var(--good);}
+  .qq.e{border-color:var(--accent);background:var(--accent-soft);color:var(--accent-deep);}
+  .qq.f{border-color:var(--warn);background:var(--warnbg);color:var(--warn);}
+
+  .stufen{display:grid;gap:10px;margin:16px 0;}
+  .st{display:grid;grid-template-columns:44px 1fr;gap:14px;padding:13px 16px;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;align-items:start;}
+  .st .nr{font-family:var(--mono);font-size:1.4rem;color:var(--accent-deep);line-height:1.1;
+    font-variant-numeric:tabular-nums;}
+  .st b{display:block;margin-bottom:3px;}
+  .st span{font-size:14.8px;color:var(--ink-soft);}
+  @media (max-width:520px){.st{grid-template-columns:1fr;gap:4px;}}
+
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:0;margin:14px 0;overflow:hidden;}
+  details > summary{cursor:pointer;padding:13px 18px;font-weight:600;list-style:none;
+    background:var(--paper-2);font-size:15px;}
+  details > summary::-webkit-details-marker{display:none;}
+  details > summary::before{content:"▸ ";color:var(--accent);}
+  details[open] > summary::before{content:"▾ ";}
+  details > div.body{padding:4px 18px 16px;}
+  details > div.body > :first-child{margin-top:10px;}
+
+  footer{border-top:1px solid var(--line);margin-top:70px;padding:30px 20px 50px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  footer a{color:var(--accent-deep);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">PflBG · PflAPrV · Bezirksregierung Köln · CBG Aachen</p>
+  <h1>Die staatliche Abschlussprüfung in der Pflege</h1>
+  <p class="sub">Wie sie abläuft, was passiert, wenn man sie nicht besteht, und worauf du dich
+    im <b>zweiten Lehrjahr</b> wirklich konzentrieren musst.
+    <span class="fr">Comment se déroule l'examen d'État, ce qui se passe si tu échoues, et sur
+    quoi te concentrer dès maintenant — en deuxième année.</span></p>
+</header>
+
+<nav class="toc">
+  <a href="#quellen">Woher die Angaben</a>
+  <a href="#ueberblick">Überblick</a>
+  <a href="#vornoten">Vornoten 25 %</a>
+  <a href="#zulassung">Zulassung</a>
+  <a href="#schriftlich">Schriftlich</a>
+  <a href="#muendlich">Mündlich</a>
+  <a href="#praktisch">Praktisch</a>
+  <a href="#noten">Noten</a>
+  <a href="#durchfallen">Wenn du nicht bestehst</a>
+  <a href="#zwischen">Zwischenprüfung</a>
+  <a href="#fokus">Worauf jetzt konzentrieren</a>
+  <a href="#offen">Was noch fehlt</a>
+</nav>
+
+<main>
+
+<section id="quellen">
+  <h2>Zuerst: woher jede Angabe kommt</h2>
+  <p class="lead"><span class="fr">Règle de base de ce dépôt : ne rien inventer. Voici donc,
+    avant tout le reste, l'origine de chaque information de cette page.</span></p>
+
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Etikett</th><th>Bedeutung</th><th>Quelle</th></tr></thead>
+      <tbody>
+        <tr><td><span class="qq e">Bundesrecht</span></td>
+            <td>Steht wörtlich im Gesetz oder in der Verordnung. Gilt in ganz Deutschland,
+                also auch in Aachen.</td>
+            <td><b>PflBG</b> (Pflegeberufegesetz) und <b>PflAPrV</b>
+                (Pflegeberufe-Ausbildungs- und -Prüfungsverordnung), abgerufen am 13.09.2026
+                von gesetze-im-internet.de</td></tr>
+        <tr><td><span class="qq g">Dein Papier</span></td>
+            <td>Steht in einem Dokument, das du selbst hast und das hier im Ordner liegt.</td>
+            <td><i>Gestaltung und Durchführung der Zwischenprüfung</i>, Stand 09.2026,
+                Pflegeschule CBG Aachen</td></tr>
+        <tr><td><span class="qq f">Nachfragen</span></td>
+            <td>Regelt das Land NRW oder deine Schule selbst. Ich weiß es nicht —
+                du musst es erfragen.</td>
+            <td>Pflegeschule CBG · Bezirksregierung Köln</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="info"><b>Die zuständige Behörde für dich ist die Bezirksregierung Köln.</b>
+    Aachen liegt im Regierungsbezirk Köln, und seit dem 1. Januar 2020 organisiert die
+    Bezirksregierung Köln die staatlichen Prüfungen und erteilt danach die Erlaubnis, die
+    Berufsbezeichnung <i>Pflegefachfrau</i> zu führen. Kontakt:
+    <span class="q">24-pflege@bezreg-koeln.nrw.de</span>
+    <br><span class="fr">C'est cette autorité — pas ton école — qui délivre l'autorisation
+    finale de porter le titre de Pflegefachfrau.</span></div>
+</section>
+
+<section id="ueberblick">
+  <h2>Die Prüfung auf einen Blick</h2>
+  <p class="lead">Die staatliche Prüfung hat <b>drei Teile</b>: schriftlich, mündlich, praktisch.
+    <span class="fr">Trois parties. Et — c'est le point le plus important de toute cette page —
+    chaque partie doit être réussie séparément.</span></p>
+
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Teil</th><th>Was du machst</th><th class="n">Dauer</th>
+        <th>Bestanden ab</th></tr></thead>
+      <tbody>
+        <tr><td><b>Schriftlich</b><br><span class="q">§ 14 PflAPrV</span></td>
+            <td><b>Drei Aufsichtsarbeiten</b> — je eine Fallbearbeitung zu einem der drei
+                Prüfungsbereiche</td>
+            <td class="n">3 × 120 Min<br>an drei aufeinander-<br>folgenden Werktagen</td>
+            <td><b>jede</b> der drei Arbeiten mindestens „ausreichend“</td></tr>
+        <tr><td><b>Mündlich</b><br><span class="q">§ 15 PflAPrV</span></td>
+            <td>Eine <b>komplexe Fallsituation</b> zu den Kompetenzbereichen III, IV und V</td>
+            <td class="n">30–45 Min<br>+ Vorbereitungszeit</td>
+            <td>mindestens „ausreichend“</td></tr>
+        <tr><td><b>Praktisch</b><br><span class="q">§ 16 PflAPrV</span></td>
+            <td>Pflegeplan · Fallvorstellung · Pflege durchführen · Reflexionsgespräch</td>
+            <td class="n">höchstens 240 Min<br>ohne Vorbereitungsteil</td>
+            <td>mindestens „ausreichend“</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="achtung"><b>Die Regel, die alles entscheidet <span class="qq e">Bundesrecht</span></b><br>
+    Die staatliche Prüfung ist bestanden, wenn die <b>Gesamtnote des schriftlichen, des mündlichen
+    und des praktischen Teils jeweils mindestens „ausreichend“</b> ist (§ 19 Absatz 1 PflAPrV).
+    <b>Es wird nicht verrechnet.</b> Eine glänzende praktische Prüfung rettet keine mangelhafte
+    schriftliche.
+    <br><span class="fr">Il n'y a aucune compensation entre les trois parties. Une excellente
+    note à l'oral ne rattrape pas un écrit insuffisant. Les trois doivent passer la barre
+    séparément.</span></div>
+
+  <p>Die <b>Gesamtnote</b> der staatlichen Prüfung ist dann das arithmetische Mittel der drei
+    Teile. <span class="q">§ 19 Abs. 1 Satz 2 PflAPrV</span></p>
+</section>
+
+<section id="vornoten">
+  <h2>Das Wichtigste für dich heute: die Vornoten</h2>
+  <p class="lead"><span class="fr">Si tu ne retiens qu'une seule chose de cette page, retiens
+    celle-ci — parce que c'est la seule qui concerne <b>maintenant</b>, en deuxième année.</span></p>
+
+  <div class="card" style="border-color:var(--good);border-left:5px solid var(--good);">
+    <span class="lbl" style="color:var(--good);">§ 13 PflAPrV · Vornoten <span class="qq e">Bundesrecht</span></span>
+    <p style="font-size:1.15rem;margin-top:0;"><b>Deine Jahreszeugnisse zählen mit
+      25 Prozent in jede der drei Prüfungsnoten.</b></p>
+    <p>Für den schriftlichen, den mündlichen und den praktischen Teil wird je eine <b>Vornote</b>
+      festgesetzt. Grundlage sind die <b>Jahreszeugnisse</b> (§ 6 Abs. 1 PflAPrV) — also die Noten,
+      die du im Unterricht und in der praktischen Ausbildung <b>jetzt gerade</b> bekommst.
+      Diese Vornoten werden „jeweils mit einem Anteil von <b>25 Prozent</b> berücksichtigt“.</p>
+    <ul class="tick" style="--sub:var(--good);">
+      <li>Die Vornote für <b>schriftlich</b> und für <b>mündlich</b> = Mittel deiner
+        <b>Unterrichtsnoten</b> aus den Jahreszeugnissen.</li>
+      <li>Die Vornote für <b>praktisch</b> = Mittel deiner <b>Praxisnoten</b> aus den
+        Jahreszeugnissen. Die entstehen aus den qualifizierten Leistungseinschätzungen deiner
+        Einsätze. <span class="q">§ 6 Abs. 2 u. 3 PflAPrV</span></li>
+      <li>Du erfährst deine Vornoten erst <b>drei Werktage vor dem ersten Prüfungsteil</b> —
+        also viel zu spät, um noch etwas zu ändern.</li>
+    </ul>
+    <p class="fr" style="margin-bottom:0;">Autrement dit : un quart de ton examen d'État est
+      <b>déjà en train de se jouer</b>, dans tes notes de cours et dans les évaluations de tes
+      stages de première et deuxième année. Ce n'est pas une préparation qui commence en
+      troisième année. Elle a commencé.</p>
+  </div>
+
+  <div class="info"><b>Rechenbeispiel</b> — nur zur Veranschaulichung, keine echte Note:
+    Wenn deine Vornote für den schriftlichen Teil 3,0 ist und du in den drei Aufsichtsarbeiten
+    im Schnitt 4,0 schreibst, dann ist die Gesamtnote 0,25 × 3,0 + 0,75 × 4,0 = <b>3,75</b> —
+    das ist „ausreichend“, du bestehst. Wären die Vornote 4,4 und die Arbeiten 4,0, käme
+    0,25 × 4,4 + 0,75 × 4,0 = <b>4,1</b> heraus — auch noch bestanden, aber der Puffer ist weg.
+    <b>Eine gute Vornote ist ein Polster, eine schlechte ist ein Gewicht am Fuß.</b></div>
+</section>
+
+<section id="zulassung">
+  <h2>Zulassung — zwei Hürden vor der Prüfung</h2>
+  <p class="lead">Bevor du überhaupt geprüft wirst, muss die oder der Vorsitzende des
+    Prüfungsausschusses dich <b>zulassen</b>. <span class="q">§ 11 PflAPrV</span></p>
+
+  <div class="zwei">
+    <div class="card">
+      <span class="lbl">Hürde 1 · Fehlzeiten <span class="qq e">Bundesrecht</span></span>
+      <p>Angerechnet werden Fehlzeiten wegen Krankheit oder aus Gründen, die du nicht zu
+        vertreten hast, nur</p>
+      <ul>
+        <li><b>bis zu 10 %</b> der Stunden des theoretischen und praktischen <b>Unterrichts</b></li>
+        <li><b>bis zu 10 %</b> der Stunden der <b>praktischen Ausbildung</b></li>
+      </ul>
+      <p><span class="q">§ 13 Abs. 1 Nr. 2 PflBG</span> Wer mehr fehlt, wird <b>nicht zugelassen</b>
+        (§ 11 Abs. 3 PflAPrV). Bei besonderer Härte kann die Behörde auf Antrag mehr anrechnen,
+        sonst wird die Ausbildung verlängert. <span class="q">§ 13 Abs. 2 PflBG</span></p>
+      <p class="fr" style="margin-bottom:0;">Les 10 % ne sont pas un droit à prendre : c'est un
+        plafond. Au-delà, tu n'es pas admise à l'examen.</p>
+    </div>
+    <div class="card">
+      <span class="lbl">Hürde 2 · Durchschnittsnote <span class="qq e">Bundesrecht</span></span>
+      <p>Die Zulassung kann nur erteilt werden, wenn „die <b>Durchschnittsnote der
+        Jahreszeugnisse mindestens ‚ausreichend‘</b> beträgt“.
+        <span class="q">§ 11 Abs. 3 PflAPrV</span></p>
+      <p>Das ist dieselbe Note, die als Vornote mit 25 % in die Prüfung eingeht — sie wirkt
+        also <b>doppelt</b>: einmal als Eintrittskarte, einmal als Viertel der Prüfungsnote.</p>
+      <p class="fr" style="margin-bottom:0;">Tes bulletins annuels servent deux fois : comme
+        billet d'entrée, et comme un quart de la note finale.</p>
+    </div>
+  </div>
+
+  <p>Außerdem gilt: Die Prüfung soll <b>frühestens drei Monate vor dem Ende der Ausbildung</b>
+    beginnen, und Zulassung und Termine werden dir <b>spätestens zwei Wochen vorher</b>
+    mitgeteilt. <span class="q">§ 11 Abs. 1 u. 4 PflAPrV</span></p>
+</section>
+
+<section id="schriftlich">
+  <h2>Der schriftliche Teil</h2>
+  <div class="sub" style="--sub:var(--sr);--subbg:var(--srbg);">
+    <div class="kopf"><h3>Drei Aufsichtsarbeiten</h3>
+      <span class="pkt">je 120 Minuten · drei aufeinanderfolgende Werktage · § 14 PflAPrV</span></div>
+    <div class="inhalt">
+      <p>Du bearbeitest zu <b>jedem</b> der drei Prüfungsbereiche eine eigene Aufsichtsarbeit mit
+        <b>fallbezogenen Aufgaben</b>. Keine Wissensabfrage — <b>Fallbearbeitung</b>.</p>
+
+      <div class="stufen">
+        <div class="st"><div class="nr">1</div><div>
+          <b>Pflegeprozessgestaltung in akuten und dauerhaften Pflegesituationen</b>
+          <span>Einschließlich Interaktion und Beziehungsgestaltung, lebensweltliche Aspekte,
+          Lebensgestaltung, Autonomieerhalt und Entwicklungsförderung.
+          <span class="q">KS I.1, II.1, I.5, I.6</span></span></div></div>
+        <div class="st"><div class="nr">2</div><div>
+          <b>Pflegeprozessgestaltung bei Menschen mit gesundheitlichen Problemlagen</b>
+          <span>Mit Schwerpunkt <b>Gesundheitsförderung, Prävention und Beratung</b> — und die
+          Handlungsentscheidungen sollen <b>pflegewissenschaftlich begründet</b> werden.
+          <span class="q">KS I.2, II.2, V.1</span></span></div></div>
+        <div class="st"><div class="nr">3</div><div>
+          <b>Pflegeprozesssteuerung in kritischen und krisenhaften Pflegesituationen</b>
+          <span>Verbunden mit der eigenständigen Durchführung <b>ärztlicher Anordnungen</b> und
+          mit <b>ethischen Entscheidungsprozessen</b>.
+          <span class="q">KS I.3, I.4, III.2, II.3</span></span></div></div>
+      </div>
+
+      <p>Die drei Fallsituationen werden <b>insgesamt variiert</b> nach Altersstufe, sozialem und
+        kulturellem Umfeld und Versorgungsbereich. <span class="q">§ 14 Abs. 2</span>
+        Du kannst dich also nicht auf einen Bereich verlassen.</p>
+
+      <div class="warn"><b>Und hier die harte Stelle:</b> Der schriftliche Teil ist nur bestanden,
+        wenn <b>jede einzelne der drei Arbeiten</b> mindestens „ausreichend“ ist
+        (§ 14 Abs. 6). Der Durchschnitt reicht nicht.
+        <br><span class="fr">Ce n'est pas la moyenne des trois copies qui compte : chacune des
+        trois doit individuellement atteindre « ausreichend ».</span></div>
+
+      <p>Jede Arbeit wird von <b>zwei Fachprüferinnen</b> benotet; gerechnet wird auf zwei
+        Stellen nach dem Komma <b>ohne Rundung</b>. <span class="q">§ 14 Abs. 5</span></p>
+    </div>
+  </div>
+</section>
+
+<section id="muendlich">
+  <h2>Der mündliche Teil</h2>
+  <div class="sub" style="--sub:var(--mu);--subbg:var(--mubg);">
+    <div class="kopf"><h3>Eine komplexe Fallsituation</h3>
+      <span class="pkt">30–45 Minuten · einzeln oder zu zweit · § 15 PflAPrV</span></div>
+    <div class="inhalt">
+      <p>Geprüft werden <b>drei Kompetenzbereiche</b> — an <b>einer</b> komplexen
+        Aufgabenstellung:</p>
+      <ul class="tick" style="--sub:var(--mu);">
+        <li><b>Kompetenzbereich III</b> — intra- und interprofessionelles Handeln in
+          unterschiedlichen systemischen Kontexten verantwortlich gestalten</li>
+        <li><b>Kompetenzbereich IV</b> — das eigene Handeln auf der Grundlage von
+          <b>Gesetzen, Verordnungen und ethischen Leitlinien</b> reflektieren und begründen</li>
+        <li><b>Kompetenzbereich V</b> — das eigene Handeln auf der Grundlage von
+          <b>wissenschaftlichen Erkenntnissen</b> und berufsethischen Werthaltungen reflektieren
+          und begründen</li>
+      </ul>
+
+      <div class="info"><b>Der Schwerpunkt steht wörtlich in der Verordnung:</b> „die
+        Auseinandersetzung mit der <b>eigenen Berufsrolle</b> und dem beruflichen
+        Selbstverständnis und teambezogene, einrichtungsbezogene sowie <b>gesellschaftliche
+        Kontextbedingungen</b> und ihr Einfluss auf das pflegerische Handeln.“
+        <span class="q">§ 15 Abs. 1</span>
+        <br><span class="fr">Ce n'est donc pas une interrogation de connaissances : on te demande
+        de <b>justifier et de réfléchir</b> sur ton propre rôle professionnel.</span></div>
+
+      <p><b>Wichtig für die Vorbereitung:</b> Die Fallsituation kommt aus einem <b>anderen
+        Versorgungskontext</b> als deine praktische Prüfung und betrifft eine <b>andere
+        Altersstufe</b>. <span class="q">§ 15 Abs. 2</span> Du kannst also nicht beides mit
+        demselben Bereich abdecken.</p>
+
+      <p>Eine <b>angemessene Vorbereitungszeit unter Aufsicht</b> ist zu gewähren.
+        Zwei Fachprüferinnen nehmen ab und benoten. <span class="q">§ 15 Abs. 3 u. 4</span></p>
+    </div>
+  </div>
+</section>
+
+<section id="praktisch">
+  <h2>Der praktische Teil</h2>
+  <div class="sub" style="--sub:var(--pr);--subbg:var(--prbg);">
+    <div class="kopf"><h3>Pflege an echten Menschen, im echten Dienst</h3>
+      <span class="pkt">höchstens 240 Minuten ohne Vorbereitungsteil · § 16 PflAPrV</span></div>
+    <div class="inhalt">
+      <p>Er erstreckt sich auf <b>alle fünf Kompetenzbereiche</b> und besteht aus „einer Aufgabe
+        der selbständigen, umfassenden und prozessorientierten Pflege“.</p>
+
+      <div class="tabelle">
+        <table>
+          <thead><tr><th>Schritt</th><th>Was du tust</th><th class="n">Dauer</th></tr></thead>
+          <tbody>
+            <tr><td><b>Vorbereitungsteil</b></td>
+                <td>Den <b>Pflegeplan</b> vorab schriftlich oder elektronisch ausarbeiten</td>
+                <td class="n">angemessene Zeit<br>unter Aufsicht</td></tr>
+            <tr><td><b>Fallvorstellung</b></td><td>Den Fall vorstellen</td>
+                <td class="n">max. 20 Min</td></tr>
+            <tr><td><b>Durchführung</b></td>
+                <td>Die geplanten <b>und die situativ erforderlichen</b> Pflegemaßnahmen
+                    durchführen</td><td class="n">—</td></tr>
+            <tr><td><b>Reflexionsgespräch</b></td><td>Begründen, was du getan hast und warum</td>
+                <td class="n">max. 20 Min</td></tr>
+            <tr class="summe"><td colspan="2">Prüfung ohne Vorbereitungsteil, einschließlich
+                Reflexionsgespräch</td><td class="n">max. 240 Min</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <ul class="tick" style="--sub:var(--pr);">
+        <li>Die Prüfung findet in <b>realen und komplexen Pflegesituationen</b> statt.</li>
+        <li>Sie erstreckt sich auf die Pflege von <b>mindestens zwei Menschen</b>, von denen
+          <b>einer einen erhöhten Pflegebedarf</b> aufweist. <span class="q">§ 16 Abs. 4</span></li>
+        <li>Du wirst <b>einzeln</b> geprüft.</li>
+        <li>Die Aufgabe soll <b>den Versorgungsbereich deines Vertiefungseinsatzes</b>
+          berücksichtigen. <span class="q">§ 16 Abs. 3</span></li>
+        <li>Die Prüfung kann durch eine organisatorische Pause von <b>maximal einem Werktag</b>
+          unterbrochen werden.</li>
+      </ul>
+
+      <div class="achtung"><b>„Wesentliches Prüfungselement sind die vorbehaltenen Tätigkeiten
+        nach § 4 des Pflegeberufegesetzes.“</b> <span class="q">§ 16 Abs. 2 Satz 3</span>
+        Das sind genau drei Dinge, und sie dürfen <b>nur</b> von examinierten Pflegefachpersonen
+        gemacht werden:
+        <ol style="margin-bottom:0;">
+          <li>die <b>Erhebung und Feststellung des individuellen Pflegebedarfs</b> und die
+            <b>Planung</b> der Pflege,</li>
+          <li>die <b>Organisation, Gestaltung und Steuerung des Pflegeprozesses</b>,</li>
+          <li>die <b>Analyse, Evaluation, Sicherung und Entwicklung der Qualität</b> der Pflege.</li>
+        </ol>
+        <span class="fr">Ces trois actes réservés sont le cœur de l'épreuve pratique — et ce
+        sont exactement ceux que tu travailles déjà dans la Pflegeplanung.</span></div>
+
+      <p>Abgenommen wird von <b>zwei Fachprüferinnen</b>, von denen eine eine
+        <b>Praxisanleiterin</b> ist. <span class="q">§ 16 Abs. 6 i. V. m. § 10 Abs. 1 S. 2 Nr. 4</span></p>
+    </div>
+  </div>
+</section>
+
+<section id="noten">
+  <h2>Die Notenskala</h2>
+  <p class="lead">Gerechnet wird auf zwei Stellen nach dem Komma <b>ohne Rundung</b>, danach wird
+    dem Zahlenwert die Note zugeordnet. <span class="q">§ 17 PflAPrV</span></p>
+
+  <div class="tabelle">
+    <table>
+      <thead><tr><th class="n">Wert</th><th>Note</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td class="n">bis unter 1,50</td><td><b>sehr gut (1)</b></td>
+            <td>entspricht den Anforderungen in besonderem Maß</td></tr>
+        <tr><td class="n">1,50 – unter 2,50</td><td><b>gut (2)</b></td>
+            <td>entspricht den Anforderungen voll</td></tr>
+        <tr><td class="n">2,50 – unter 3,50</td><td><b>befriedigend (3)</b></td>
+            <td>entspricht im Allgemeinen den Anforderungen</td></tr>
+        <tr style="background:var(--goodbg);"><td class="n">3,50 – unter 4,50</td>
+            <td><b>ausreichend (4)</b></td>
+            <td>weist Mängel auf, entspricht aber im Ganzen noch den Anforderungen
+                — <b>hier ist die Bestehensgrenze</b></td></tr>
+        <tr style="background:var(--badbg);"><td class="n">4,50 – unter 5,50</td>
+            <td><b>mangelhaft (5)</b></td>
+            <td>entspricht nicht den Anforderungen, Grundkenntnisse sind aber vorhanden
+                und die Mängel in absehbarer Zeit behebbar</td></tr>
+        <tr style="background:var(--badbg);"><td class="n">ab 5,50</td>
+            <td><b>ungenügend (6)</b></td>
+            <td>entspricht nicht den Anforderungen, selbst die Grundkenntnisse sind so
+                lückenhaft, dass die Mängel nicht in absehbarer Zeit behebbar sind</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="durchfallen">
+  <h2>Wenn du nicht bestehst</h2>
+  <p class="lead"><span class="fr">Ta question directe. Voici la réponse, article par article —
+    et elle est moins dramatique que tu ne le crains, mais il y a une limite dure.</span></p>
+
+  <div class="stufen">
+    <div class="st"><div class="nr">1</div><div>
+      <b>Du bekommst eine schriftliche Mitteilung mit allen Prüfungsnoten</b>
+      <span>Wer nicht besteht, erhält von der oder dem Vorsitzenden des Prüfungsausschusses
+      eine schriftliche oder elektronische Mitteilung, in der die Prüfungsnoten angegeben sind.
+      <span class="q">§ 19 Abs. 2 PflAPrV</span> Damit siehst du genau, welcher Teil gefehlt hat.</span></div></div>
+
+    <div class="st"><div class="nr">2</div><div>
+      <b>Du wiederholst nur das, was du nicht bestanden hast — und zwar einmal</b>
+      <span>„Jede Aufsichtsarbeit der schriftlichen Prüfung, die mündliche Prüfung und die
+      praktische Prüfung können <b>einmal wiederholt</b> werden, wenn die zu prüfende Person die
+      Note <b>‚mangelhaft‘ oder ‚ungenügend‘</b> erhalten hat.“ <span class="q">§ 19 Abs. 3</span>
+      <br>Das heißt konkret: Wenn nur <b>eine</b> der drei Aufsichtsarbeiten mangelhaft war,
+      schreibst du <b>nur diese eine</b> noch einmal. Der Rest bleibt stehen.</span></div></div>
+
+    <div class="st"><div class="nr">3</div><div>
+      <b>Bei großen Wiederholungen kommt eine zusätzliche Ausbildung dazu</b>
+      <span>Musst du <b>alle drei Aufsichtsarbeiten</b>, den <b>ganzen praktischen Teil</b> oder
+      <b>alle Teile</b> wiederholen, wirst du zur Wiederholungsprüfung nur zugelassen, wenn du
+      an einer <b>zusätzlichen Ausbildung</b> teilgenommen hast. Dauer und Inhalt bestimmt die
+      oder der Vorsitzende des Prüfungsausschusses. <b>Im Einzelfall</b> kann sie oder er im
+      Benehmen mit den Fachprüferinnen auch davon abweichen. Die zusätzliche Ausbildung darf
+      einschließlich Prüfungszeit <b>ein Jahr nicht überschreiten</b>. Den Nachweis legst du
+      dem Antrag auf Zulassung zur Wiederholungsprüfung bei.
+      <span class="q">§ 19 Abs. 4</span></span></div></div>
+
+    <div class="st"><div class="nr">4</div><div>
+      <b>Dein Ausbildungsvertrag verlängert sich — aber nur, wenn du es verlangst</b>
+      <span>„Besteht die oder der Auszubildende die staatliche Prüfung nicht […], so verlängert
+      sich das Ausbildungsverhältnis <b>auf Verlangen in Textform</b> gegenüber dem Träger der
+      praktischen Ausbildung bis zur nächstmöglichen Wiederholungsprüfung, <b>höchstens jedoch um
+      ein Jahr</b>.“ <span class="q">§ 21 Abs. 2 PflBG</span>
+      <br><b>Das passiert nicht automatisch.</b> Du musst es schriftlich verlangen — sonst endet
+      das Ausbildungsverhältnis mit Ablauf der Ausbildungszeit (§ 21 Abs. 1).</span></div></div>
+  </div>
+
+  <div class="achtung"><b>Die harte Grenze <span class="qq e">Bundesrecht</span></b><br>
+    <b>Einmal</b> heißt einmal. Die Verordnung sieht <b>keine zweite Wiederholung</b> vor.
+    Wer denselben Prüfungsteil zweimal nicht besteht, kann die Ausbildung nicht mit dieser
+    Prüfung abschließen.
+    <br><span class="fr">Un seul rattrapage par partie. C'est pour cela que la vraie stratégie
+    n'est pas « je rattraperai » — c'est de ne pas arriver à l'examen avec une partie fragile.
+    Et c'est précisément ce que tu peux influencer dès maintenant, en deuxième année.</span></div>
+
+  <div class="gut"><b>Was das praktisch für dich bedeutet:</b> Durchfallen ist kein Ende der
+    Ausbildung. Du wiederholst gezielt den schwachen Teil, dein Vertrag kann um bis zu ein Jahr
+    verlängert werden, und in vielen Fällen betrifft es nur <b>eine einzige</b> Aufsichtsarbeit.
+    Aber es kostet Zeit, Geld und Kraft — und beim zweiten Mal gibt es keinen dritten Versuch.
+    <br><span class="fr">Échouer n'est pas la fin. Mais le filet de sécurité n'a qu'une
+    maille.</span></div>
+</section>
+
+<section id="zwischen">
+  <h2>Vorher: die Zwischenprüfung — die betrifft dich jetzt</h2>
+  <p class="lead">Du bist im zweiten Lehrjahr. Die Zwischenprüfung findet <b>zum Ende des zweiten
+    Ausbildungsdrittels</b> statt. <span class="q">§ 6 Abs. 5 PflBG · § 7 PflAPrV</span></p>
+
+  <div class="gut"><b>Die gute Nachricht zuerst <span class="qq e">Bundesrecht</span></b><br>
+    „Die Ausbildung kann <b>unabhängig vom Ergebnis</b> der Zwischenprüfung fortgesetzt werden.“
+    <span class="q">§ 7 Satz 3 PflAPrV</span> Sie ist eine <b>Standortbestimmung</b>, keine Hürde.
+    Ist danach das Ausbildungsziel gefährdet, prüfen Träger, Schule und du <b>gemeinsam</b>,
+    welche Maßnahmen nötig sind.
+    <br><span class="fr">L'examen intermédiaire ne peut pas te faire échouer. Il sert à mesurer
+    où tu en es.</span></div>
+
+  <div class="card">
+    <span class="lbl" style="color:var(--good);">So läuft sie bei dir ab
+      <span class="qq g">Dein Papier</span></span>
+    <p>Aus <i>Gestaltung und Durchführung der Zwischenprüfung</i>, Stand 09.2026, deiner
+      Pflegeschule CBG Aachen — sie ist bei dir eine <b>Pflegeplanungsprüfung</b> über
+      <b>zwei Prüfungstage</b>, in der ambulanten Langzeitpflege:</p>
+
+    <h4>Vorher: drei Tage feste Tour mit der Praxisanleitung</h4>
+    <p>Auswahl der Patientin durch die PA · Gespräch mit ihr zur Pflegesituation ·
+      Informationssammlung. Die Zeiten werden als Anleitungsstunden dokumentiert.
+      Die Patientin soll einen <b>mittleren Grad an Pflegebedürftigkeit</b> haben
+      (Maßstab Pflegegrad 3) und <b>mit dir kommunizieren können</b>.</p>
+
+    <h4>1. Prüfungstag — 8:00 bis 11:00 Uhr, Schreibzeit 3 Stunden</h4>
+    <p>Bis 11:00 Uhr schickst du an die Pflegeschule:</p>
+    <ul>
+      <li>die <b>Zusammenfassung der Fallvorstellung</b> (nach Vorlage)</li>
+      <li>den <b>Medikamentenplan</b></li>
+      <li>die <b>Übersicht über die medizinischen Diagnosen</b></li>
+      <li>die <b>vollständige Problemanalyse</b> — alle Pflegeprobleme, aktuelle <b>und</b>
+        potentielle</li>
+      <li>die <b>schriftliche Pflegeplanung zu den vier wichtigsten Pflegeproblemen</b>
+        nach der <b>PE(S)R-Systematik</b>, mit den Planungsvorlagen</li>
+    </ul>
+
+    <h4>2. Prüfungstag — 45 Minuten</h4>
+    <ul>
+      <li><b>Mündliche Fallvorstellung</b> — 10 Minuten</li>
+      <li><b>Erläuterung der Pflegeplanung</b> — 20 Minuten.
+        <b>Kein Vorlesen</b>, sondern erläutern, <i>wie</i> sie zustande gekommen ist.</li>
+      <li><b>Prüfungsgespräch</b> zu den Kompetenzbereichen — 15 Minuten</li>
+    </ul>
+
+    <details><summary>Die Fragen im Prüfungsgespräch, nach Kompetenzbereich</summary>
+      <div class="body">
+        <ul>
+          <li><b>KB I</b> — Fragen zur erstellten Pflegeplanung: Erhebung des Pflegebedarfs,
+            eingesetzte <b>Assessments</b>, individuelle Maßnahmenplanung, Evaluation.</li>
+          <li><b>KB II</b> — Bezug zum Gespräch mit der Pflegebedürftigen: ihre individuelle
+            Situation, ihre Äußerungen über das <b>subjektive Erleben</b> ihrer Pflegesituation,
+            ihre Beteiligung am Pflegeprozess.</li>
+          <li><b>KB III</b> — Abstimmung der Pflegeplanung im Team und mit anderen Berufsgruppen
+            (Hausarzt, Physiotherapie …). Beispiel aus dem Papier: <i>Inwieweit sind
+            Informationen zur Pflegebedürftigen für die behandelnden Ärzte zur Anpassung der
+            medikamentösen Schmerztherapie wichtig?</i></li>
+          <li><b>KB IV</b> — Qualitätssicherung und Qualitätsmanagement: einrichtungsbezogene
+            Assessmentinstrumente, Standards und <b>Expertenstandards</b>. Beispiel aus dem
+            Papier: <i>Welche Risikofaktoren zur Sturzgefährdung gibt der Expertenstandard zur
+            Sturzprophylaxe vor?</i> Dazu Fragen zum konkreten <b>Pflegegrad</b>.</li>
+          <li><b>KB V</b> — pflege- und bezugswissenschaftliche Theorien und Konzepte:
+            Krankheitslehre zu ihren Erkrankungen, <b>Salutogenese</b> (Widerstandsressourcen),
+            <b>basale Stimulation</b>, <b>Biografiearbeit</b> und Kultur.</li>
+        </ul>
+      </div>
+    </details>
+
+    <div class="info" style="margin-bottom:0;"><b>Sieh dir das noch einmal an:</b>
+      Pflegeplan schreiben → Fallvorstellung → erläutern und begründen → Fragen zu den
+      Kompetenzbereichen. Das ist <b>derselbe Aufbau wie die praktische Abschlussprüfung</b>
+      (§ 16: Pflegeplan · Fallvorstellung · Durchführung · Reflexionsgespräch).
+      <br><span class="fr">Ton examen intermédiaire est une répétition générale de l'épreuve
+      pratique finale. Ce que tu y apprends, tu le réutilises tel quel dans deux ans.</span></div>
+  </div>
+</section>
+
+<section id="fokus">
+  <h2>Worauf du dich im zweiten Lehrjahr konzentrieren musst</h2>
+  <p class="lead">Sieben Dinge — abgeleitet aus dem, was oben steht, in der Reihenfolge, in der
+    sie dir <b>jetzt</b> etwas bringen.
+    <span class="fr">Sept points, classés par ce qui compte le plus <b>maintenant</b>.</span></p>
+
+  <div class="stufen">
+    <div class="st"><div class="nr">1</div><div>
+      <b>Deine Jahresnoten — sie sind schon ein Viertel der Prüfung</b>
+      <span>Vornoten = 25 % jeder Prüfungsnote, und die Durchschnittsnote entscheidet außerdem
+      über die Zulassung. Jede Klausur und jede Leistungseinschätzung im Praxiseinsatz zählt
+      heute schon mit. <b>Das ist der einzige Teil der Abschlussprüfung, den du im zweiten
+      Lehrjahr direkt beeinflussen kannst.</b>
+      <span class="fr">C'est le seul levier immédiat. Ne le laisse pas passer.</span></span></div></div>
+
+    <div class="st"><div class="nr">2</div><div>
+      <b>Fehlzeiten unter 10 % halten</b>
+      <span>10 % vom Unterricht und 10 % von der praktischen Ausbildung. Nicht als Budget
+      verstehen, sondern als Decke. Wer darüber kommt, wird nicht zugelassen — und die
+      Ausbildung verlängert sich. <b>Fehltage sammeln sich über drei Jahre.</b>
+      <span class="fr">Compte-les dès la première année, pas à la fin.</span></span></div></div>
+
+    <div class="st"><div class="nr">3</div><div>
+      <b>Pflegeplanung, bis sie dir in den Fingern sitzt</b>
+      <span>PE(S)R · SMART-Ziele · W-Fragen · die fünf Hilfeformen · aktuelle gegen potentielle
+      Probleme. Sie ist das Rückgrat von <b>drei</b> Prüfungen: der Zwischenprüfung jetzt, dem
+      praktischen Teil der Abschlussprüfung, und Prüfungsbereich 1 und 2 des schriftlichen Teils.
+      Dafür gibt es hier bereits eine eigene Seite — nutze sie täglich, nicht vor der Prüfung.
+      <span class="fr">Une seule compétence, trois épreuves.</span></span></div></div>
+
+    <div class="st"><div class="nr">4</div><div>
+      <b>Begründen lernen, nicht auswendig lernen</b>
+      <span>Der schriftliche Teil besteht aus <b>Fallbearbeitungen</b>, nicht aus Wissensfragen.
+      Prüfungsbereich 2 verlangt ausdrücklich <b>pflegewissenschaftliches Begründungswissen</b>;
+      der mündliche Teil verlangt „reflektieren und begründen“; der praktische Teil endet mit
+      einem <b>Reflexionsgespräch</b>. Übe die Operatoren deiner Klausuren:
+      <b>Nennen · Beschreiben · Erklären · Erläutern · Begründen</b> — und bei <i>Begründen</i>
+      gehört <b>weil / da / deshalb</b> sichtbar in die Antwort.
+      <span class="fr">On ne te demandera pas « qu'est-ce que c'est », mais « pourquoi tu as
+      fait ça ».</span></span></div></div>
+
+    <div class="st"><div class="nr">5</div><div>
+      <b>Die drei vorbehaltenen Tätigkeiten kennen und benennen können</b>
+      <span>Pflegebedarf erheben und Pflege planen · den Pflegeprozess steuern · die Qualität
+      analysieren und sichern. Sie sind „wesentliches Prüfungselement“ des praktischen Teils
+      und schon jetzt die Ausrichtung deiner Zwischenprüfung. Wenn du im Reflexionsgespräch
+      sagen kannst, welche dieser drei du gerade ausgeübt hast, zeigst du genau das, was geprüft
+      wird.</span></div></div>
+
+    <div class="st"><div class="nr">6</div><div>
+      <b>Expertenstandards und Assessments — die sind die Belegquelle</b>
+      <span>Der Fragenkatalog deiner Schule nennt sie ausdrücklich (Beispiel: Risikofaktoren im
+      <b>Expertenstandard Sturzprophylaxe</b>), und im schriftlichen Teil sollen
+      Handlungsentscheidungen begründet werden. Ein Expertenstandard ist die sauberste
+      Begründung, die du haben kannst — sie ersetzt „das macht man so“.
+      <span class="fr">C'est ta source de justification la plus solide.</span></span></div></div>
+
+    <div class="st"><div class="nr">7</div><div>
+      <b>Dein Deutsch — es ist ein Prüfungsfach, auch wenn es nicht so heißt</b>
+      <span>Drei mal 120 Minuten schriftliche Fallbearbeitung, ein Reflexionsgespräch, eine
+      Fallvorstellung, ein mündlicher Teil von 30–45 Minuten über Berufsrolle und Ethik. Alles
+      auf Deutsch, alles unter Zeit. Deine Fachkenntnis nützt dir nur so weit, wie du sie
+      <b>ausdrücken</b> kannst. Genau dafür läuft <b>Deutsch täglich</b>.
+      <span class="fr">Ce n'est pas un examen de langue, mais tout s'y joue en allemand, sous
+      chronomètre.</span></span></div></div>
+  </div>
+
+  <div class="warn"><b>Und was du im zweiten Lehrjahr noch entscheidest:</b> deinen
+    <b>Vertiefungseinsatz</b>. Die Aufgabe der praktischen Prüfung soll <b>den
+    Versorgungsbereich deines Vertiefungseinsatzes berücksichtigen</b> (§ 16 Abs. 3 PflAPrV),
+    und er soll in einem Bereich stattfinden, in dem du bereits einen Pflichteinsatz hattest
+    (§ 7 Abs. 4 PflBG). Du wählst damit also mit, in welchem Umfeld du geprüft wirst.
+    <br><span class="fr">Choisir ton stage d'approfondissement, c'est déjà choisir le terrain de
+    ton épreuve pratique. Parles-en tôt avec ton Träger.</span></div>
+</section>
+
+<section id="offen">
+  <h2>Was ich nicht weiß — und was du besorgen solltest</h2>
+  <p class="lead"><span class="fr">Pour respecter la règle de ce dépôt : voici honnêtement les
+    limites de cette page.</span></p>
+
+  <div class="card">
+    <span class="lbl" style="color:var(--warn);">Offene Punkte <span class="qq f">Nachfragen</span></span>
+    <ul>
+      <li><b>Gibt es in NRW zentrale Prüfungsaufgaben?</b> § 14 Abs. 4 PflAPrV erlaubt der
+        zuständigen Behörde, <b>zentrale Prüfungsaufgaben</b> vorzugeben — dann gäbe es einen
+        <b>landeseinheitlichen Prüfungstermin</b>. Ob NRW davon Gebrauch macht, habe ich
+        <b>nicht</b> bestätigt gefunden. <b>Frag deine Schule.</b></li>
+      <li><b>Der genaue Termin deiner Zwischenprüfung</b> und deiner Abschlussprüfung — beides
+        legt die Schule fest.</li>
+      <li><b>Die Vorlage der Fallvorstellung</b> für die stationäre und ambulante Langzeitpflege.
+        Dein Papier verweist darauf, aber sie liegt hier nicht. Ohne sie kann ich dir die
+        Fallvorstellung nicht in der richtigen Form üben lassen.</li>
+      <li><b>Das Beurteilungsprotokoll Teil 1 — Planungsbeurteilung.</b> Danach wird deine
+        Zwischenprüfung benotet. Ohne dieses Blatt kann ich keine Bewertungspunkte nennen —
+        und ich werde auch keine erfinden.</li>
+      <li><b>Wie NRW die Noten der Jahreszeugnisse bildet.</b> § 6 Abs. 1 PflAPrV sagt
+        ausdrücklich: „Das Nähere zur Bildung der Noten regeln die Länder.“ Das steht also
+        <b>nicht</b> im Bundesrecht.</li>
+    </ul>
+    <p style="margin-bottom:0;"><b>Bring mir diese drei Papiere</b> — die Vorlage der
+      Fallvorstellung, das Beurteilungsprotokoll und, falls es sie gibt, die Prüfungsordnung
+      deiner Schule. Dann baue ich dir daraus echte Prüfungsaufgaben statt allgemeiner Ratschläge.
+      <span class="fr">Avec ces trois documents, je peux te faire travailler sur tes vrais
+      critères d'évaluation — pas sur des généralités.</span></p>
+  </div>
+
+  <div class="info"><b>Was du bei der Bezirksregierung Köln selbst klären kannst:</b> Fragen zur
+    staatlichen Prüfung und zur späteren Erlaubnis, die Berufsbezeichnung zu führen, gehen an
+    <span class="q">24-pflege@bezreg-koeln.nrw.de</span>. Für alles, was den Ablauf an deiner
+    Schule betrifft, verweist die Behörde selbst auf die Ausbildungsstätte — also an die CBG.</div>
+</section>
+
+</main>
+
+<footer>
+  <p><b>Quellen</b><br>
+    Pflegeberufegesetz (PflBG) und Pflegeberufe-Ausbildungs- und -Prüfungsverordnung (PflAPrV),
+    amtliche Fassungen von <a href="https://www.gesetze-im-internet.de/pflaprv/">gesetze-im-internet.de</a>,
+    abgerufen am 13.09.2026 · <a href="https://www.bezreg-koeln.nrw.de/themen/gesundheit-und-soziales/gesundheitsfachberufe">Bezirksregierung Köln — Gesundheitsfachberufe</a> ·
+    <i>Gestaltung und Durchführung der Zwischenprüfung</i>, Stand 09.2026, Pflegeschule CBG Aachen
+    (<span class="q">schulung-zwischenpruefung/quellen/</span>)</p>
+  <p class="fr">Aucune information de cette page n'est devinée. Ce qui n'est pas sourcé est
+    marqué « Nachfragen ».</p>
+</footer>
