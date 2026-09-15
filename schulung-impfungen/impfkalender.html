@@ -1,0 +1,432 @@
+<title>Impfkalender lesen</title>
+<style>
+  :root{
+    /* Grundton kühl und leicht blaustichig — die Farbwelt des Plakats selbst */
+    --paper:#eef3f6;--paper-2:#e1eaf0;--card:#ffffff;
+    --ink:#14202a;--ink-soft:#4e606d;--line:#cbd8e1;
+    --stiko:#0b7ac0;--stiko-deep:#06598e;--stiko-soft:#dceaf4;
+    /* Die sechs Farben der Legende — sie SIND die Information, nicht Schmuck */
+    --g:#0c7ec4;--gbg:#dcecf8;   /* Grundimmunisierung  */
+    --n:#3f9738;--nbg:#e0f0dd;   /* Nachholimpfung      */
+    --a:#d8820f;--abg:#fbeed6;   /* Auffrischimpfung    */
+    --s:#cf4517;--sbg:#fae2da;   /* Standardimpfung     */
+    --i:#6c7b86;--ibg:#e6ebee;   /* bei Vorerkrankungen */
+    --p:#b8900a;--pbg:#faf0cf;   /* passive Immunisierung */
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#0f171d;--paper-2:#0a1116;--card:#18232b;
+    --ink:#e9f0f4;--ink-soft:#9dafba;--line:#27353f;
+    --stiko:#5cb3e4;--stiko-deep:#8dcdf2;--stiko-soft:#102a3a;
+    --g:#5cb3e4;--gbg:#102a3a;--n:#78c46f;--nbg:#132a12;
+    --a:#e0a552;--abg:#2d2010;--s:#e87d5a;--sbg:#301710;
+    --i:#93a3ae;--ibg:#1c252b;--p:#d9bb4e;--pbg:#2a2410;}}
+  :root[data-theme="dark"]{
+    --paper:#0f171d;--paper-2:#0a1116;--card:#18232b;
+    --ink:#e9f0f4;--ink-soft:#9dafba;--line:#27353f;
+    --stiko:#5cb3e4;--stiko-deep:#8dcdf2;--stiko-soft:#102a3a;
+    --g:#5cb3e4;--gbg:#102a3a;--n:#78c46f;--nbg:#132a12;
+    --a:#e0a552;--abg:#2d2010;--s:#e87d5a;--sbg:#301710;
+    --i:#93a3ae;--ibg:#1c252b;--p:#d9bb4e;--pbg:#2a2410;}
+  :root[data-theme="light"]{
+    --paper:#eef3f6;--paper-2:#e1eaf0;--card:#ffffff;
+    --ink:#14202a;--ink-soft:#4e606d;--line:#cbd8e1;
+    --stiko:#0b7ac0;--stiko-deep:#06598e;--stiko-soft:#dceaf4;
+    --g:#0c7ec4;--gbg:#dcecf8;--n:#3f9738;--nbg:#e0f0dd;
+    --a:#d8820f;--abg:#fbeed6;--s:#cf4517;--sbg:#fae2da;
+    --i:#6c7b86;--ibg:#e6ebee;--p:#b8900a;--pbg:#faf0cf;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.6;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding:38px 20px 26px;border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,var(--stiko-soft) 0%,transparent 88%);}
+  .mitte{max-width:62rem;margin:0 auto;}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--stiko-deep);margin:0 0 9px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,5.5vw,2.7rem);
+    margin:0 0 10px;line-height:1.08;text-wrap:balance;}
+  header.hero p.sub{max-width:62ch;margin:0;color:var(--ink-soft);font-size:15.5px;}
+
+  main{max-width:62rem;margin:0 auto;padding:0 18px 80px;}
+  section{padding-top:46px;}
+  h2{font-family:var(--serif);font-size:clamp(1.4rem,3.6vw,1.9rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 20px;max-width:64ch;}
+  h3{font-family:var(--serif);font-size:1.16rem;font-weight:600;margin:24px 0 8px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+
+  /* ---- Die sieben Buchstaben: der Schlüssel zum ganzen Plakat ---- */
+  .schluessel{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:10px;margin:18px 0;}
+  .sch{display:grid;grid-template-columns:44px 1fr;gap:13px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px 15px;}
+  .sch .bx{font-family:var(--mono);font-size:1.15rem;font-weight:700;line-height:1;
+    display:flex;align-items:center;justify-content:center;height:34px;border-radius:8px;}
+  .sch > div > b{display:block;font-size:15px;margin-bottom:2px;}
+  .sch > div > span{display:block;font-size:14px;color:var(--ink-soft);}
+  .bx.g{background:var(--g);color:#fff;} .bx.n{background:var(--n);color:#fff;}
+  .bx.a{background:var(--a);color:#fff;} .bx.s{background:var(--s);color:#fff;}
+  .bx.i{background:var(--i);color:#fff;} .bx.u{background:#1a1a1a;color:#fff;}
+  .bx.p{background:var(--p);color:#fff;}
+  :root[data-theme="dark"] .bx.g,:root[data-theme="dark"] .bx.n,:root[data-theme="dark"] .bx.a,
+  :root[data-theme="dark"] .bx.s,:root[data-theme="dark"] .bx.i,:root[data-theme="dark"] .bx.p{color:#0c141a;}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .bx.g,
+    :root:not([data-theme="light"]) .bx.n,:root:not([data-theme="light"]) .bx.a,
+    :root:not([data-theme="light"]) .bx.s,:root:not([data-theme="light"]) .bx.i,
+    :root:not([data-theme="light"]) .bx.p{color:#0c141a;}}
+
+  /* ---- Altersgruppen-Umschalter ---- */
+  .tabs{display:flex;gap:7px;flex-wrap:wrap;margin:6px 0 18px;}
+  .tabs button{font:inherit;font-size:14.5px;color:var(--ink-soft);background:var(--card);
+    border:1px solid var(--line);border-radius:999px;padding:9px 17px;cursor:pointer;}
+  .tabs button:hover{border-color:var(--stiko);color:var(--ink);}
+  .tabs button:focus-visible{outline:2px solid var(--stiko);outline-offset:2px;}
+  .tabs button[aria-selected="true"]{background:var(--stiko);border-color:var(--stiko);
+    color:#fff;font-weight:600;}
+  :root[data-theme="dark"] .tabs button[aria-selected="true"]{color:#08151d;}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .tabs button[aria-selected="true"]{color:#08151d;}}
+
+  /* ---- Impfzeilen ---- */
+  .zeilen{display:grid;gap:9px;}
+  .zeile{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--rand,var(--line));
+    border-radius:11px;padding:13px 16px;}
+  .zeile .kopf{display:flex;flex-wrap:wrap;gap:9px;align-items:baseline;}
+  .zeile .nm{font-weight:700;font-size:16px;}
+  .zeile .lat{font-size:13.5px;color:var(--ink-soft);}
+  .marken{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0 0;}
+  .mk{display:inline-flex;align-items:baseline;gap:7px;font-size:13.5px;
+    border:1px solid var(--line);border-radius:8px;padding:4px 10px;background:var(--paper-2);}
+  .mk i{font-family:var(--mono);font-style:normal;font-weight:700;font-size:12px;
+    border-radius:4px;padding:1px 6px;}
+  .mk .alt{font-family:var(--mono);font-size:12px;color:var(--ink-soft);
+    font-variant-numeric:tabular-nums;}
+  .mk.g i{background:var(--gbg);color:var(--g);} .mk.n i{background:var(--nbg);color:var(--n);}
+  .mk.a i{background:var(--abg);color:var(--a);} .mk.s i{background:var(--sbg);color:var(--s);}
+  .mk.i i{background:var(--ibg);color:var(--i);} .mk.p i{background:var(--pbg);color:var(--p);}
+  .zeile .note{font-size:14.5px;color:var(--ink-soft);margin:9px 0 0;}
+  .zeile .note b{color:var(--ink);}
+  .fn{font-family:var(--mono);font-size:11px;color:var(--stiko-deep);background:var(--stiko-soft);
+    border-radius:4px;padding:1px 6px;vertical-align:1px;}
+
+  /* ---- Fußnoten ---- */
+  .noten{display:grid;gap:8px;}
+  .note-z{display:grid;grid-template-columns:30px 1fr;gap:12px;
+    background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 14px;}
+  .note-z .l{font-family:var(--mono);font-weight:700;color:var(--stiko-deep);font-size:14px;}
+  .note-z .t{font-size:14.8px;}
+  .note-z .t .fr{display:block;font-size:13.8px;margin-top:3px;}
+
+  .kasten{border-left:4px solid var(--stiko);background:var(--stiko-soft);border-radius:0 11px 11px 0;
+    padding:15px 18px;margin:16px 0;}
+  .kasten.warn{border-left-color:var(--a);background:var(--abg);}
+  .kasten > :first-child{margin-top:0;} .kasten > :last-child{margin-bottom:0;}
+
+  ul{padding-left:1.2em;margin:10px 0;} li{margin:5px 0;}
+
+  figure{margin:16px 0;} figure img{width:100%;border:1px solid var(--line);border-radius:11px;display:block;}
+  figcaption{font-size:13.5px;color:var(--ink-soft);margin-top:7px;}
+
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:26px 20px 46px;
+    text-align:center;color:var(--ink-soft);font-size:13.8px;}
+  footer a{color:var(--stiko-deep);}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <div class="mitte">
+    <p class="eyebrow">STIKO · Stand Januar 2026 · Bundesinstitut für Öffentliche Gesundheit</p>
+    <h1>Den Impfkalender lesen</h1>
+    <p class="sub">Dein Plakat hat <b>22 Zeilen und 23 Spalten</b> — deshalb wirkt es unlesbar.
+      In Wirklichkeit steht dort nur eines: <b>welcher Buchstabe in welchem Alter</b>.
+      Wer die sieben Buchstaben kann, kann die ganze Tabelle.
+      <span class="fr">Ton affiche n'a que 22 lignes et 23 colonnes, d'où l'impression de mur.
+      En réalité elle ne dit qu'une chose : quelle lettre à quel âge.</span></p>
+  </div>
+</header>
+
+<main>
+
+<section id="schluessel">
+  <h2>Zuerst die sieben Buchstaben</h2>
+  <p class="lead">Das ist die Legende unten links auf deinem Bild. Sie ist der Schlüssel —
+    <b>ohne sie ist die Tabelle ein Farbmuster, mit ihr ist sie eine Anweisung.</b>
+    <span class="fr">C'est la légende en bas à gauche de ton image. Sans elle, le tableau
+    n'est qu'un motif coloré.</span></p>
+
+  <div class="schluessel">
+    <div class="sch"><div class="bx g">G</div><div><b>Grundimmunisierung</b>
+      <span>Der erste Aufbau des Schutzes — bis zu vier Teilimpfungen, <b>G1 bis G4</b>.
+      Die Zahl sagt, die wievielte Spritze es ist.</span></div></div>
+    <div class="sch"><div class="bx n">N</div><div><b>Nachholimpfung</b>
+      <span>Bei <b>unvollständigem Impfschutz</b>. Grün heißt: hier kann nachgeholt werden,
+      was früher versäumt wurde.</span></div></div>
+    <div class="sch"><div class="bx a">A</div><div><b>Auffrischimpfung</b>
+      <span>Der Schutz besteht schon und wird <b>erneuert</b>. <b>A1, A2, A3</b> = die wievielte
+      Auffrischung.</span></div></div>
+    <div class="sch"><div class="bx s">S</div><div><b>Standardimpfung</b>
+      <span>Für <b>alle</b> in dieser Altersgruppe empfohlen — nicht nur bei Risiko.</span></div></div>
+    <div class="sch"><div class="bx i">I</div><div><b>Impfung bei bestimmten Vorerkrankungen</b>
+      <span>Nur für Menschen mit einer <b>Indikation</b>, nicht für alle.</span></div></div>
+    <div class="sch"><div class="bx u">U</div><div><b>Impftermin bei der Früherkennungs&shy;untersuchung</b>
+      <span><b>U2 bis U9</b> bei Kindern, <b>J1 und J2</b> bei Jugendlichen. Das sind die
+      Vorsorgetermine, an denen geimpft wird.</span></div></div>
+    <div class="sch"><div class="bx p">◾</div><div><b>Passive Immunisierung</b>
+      <span>Gelb, ganz oben. <b>Keine Impfung</b> — fertige <b>Antikörper</b> werden gegeben.
+      Schutz sofort, aber nur kurz.</span></div></div>
+  </div>
+
+  <div class="kasten"><b>Der Unterschied, der in jeder Prüfung vorkommt</b><br>
+    <b>Aktive Immunisierung</b> (= Impfung): der Körper <b>bildet selbst</b> Antikörper. Dauert,
+    hält lang. — <b>Passive Immunisierung</b>: fertige Antikörper werden verabreicht. Wirkt
+    <b>sofort</b>, aber nach Fußnote <span class="fn">a</span> deines Blattes werden sie
+    „innerhalb weniger Wochen bis Monaten wieder abgebaut“.
+    <br><span class="fr">Actif = le corps fabrique lui-même les anticorps, c'est lent mais durable.
+    Passif = on injecte les anticorps tout faits, c'est immédiat mais ça s'épuise en semaines.</span></div>
+</section>
+
+<section id="tabelle">
+  <h2>Was in welchem Alter dransteht</h2>
+  <p class="lead">Dein Plakat hat drei Blöcke nebeneinander: <b>Säuglinge und Kleinkinder
+    (0–59 Monate)</b>, <b>Kinder und Jugendliche (5–17 Jahre)</b> und <b>Erwachsene</b>.
+    Wähl den Block — du siehst nur, was dort wirklich steht.
+    <span class="fr">Choisis le groupe d'âge : tu ne vois que ce qui le concerne.</span></p>
+
+  <div class="tabs" role="tablist" id="tabs"></div>
+  <div class="zeilen" id="zeilen"></div>
+</section>
+
+<section id="noten">
+  <h2>Die Fußnoten — da steckt das Genaue drin</h2>
+  <p class="lead">Die kleinen Buchstaben hinter den Feldern. Sie sagen das, was in ein farbiges
+    Kästchen nicht hineinpasst — und genau danach wird gefragt.
+    <span class="fr">Ce sont les petites lettres derrière les cases. C'est là qu'est le
+    détail — et c'est le détail qu'on interroge.</span></p>
+  <div class="noten" id="noten"></div>
+</section>
+
+<section id="pruefung">
+  <h2>Warum das für deine Prüfung zählt</h2>
+  <p class="lead">Nicht als Auswendiglernen — sondern weil Impfen genau in einem der drei
+    schriftlichen Prüfungsbereiche sitzt.</p>
+
+  <div class="kasten"><b>Prüfungsbereich 2 der schriftlichen Abschlussprüfung</b> heißt
+    wörtlich: <i>Pflegeprozessgestaltung bei Menschen mit gesundheitlichen Problemlagen unter
+    besonderer Berücksichtigung von <b>Gesundheitsförderung und Prävention</b> in Verbindung mit
+    verschiedenen Schwerpunkten und Gesichtspunkten von <b>Beratung</b></i> — und die
+    Handlungsentscheidungen sollen <b>pflegewissenschaftlich begründet</b> werden.
+    <br>Der Impfkalender ist <b>Primärprävention in Reinform</b>, und eine
+    <b>STIKO-Empfehlung ist eine belastbare Begründung</b> — so wie ein Expertenstandard.
+    <span class="fr">Le calendrier vaccinal, c'est de la prévention primaire à l'état pur — et
+    une recommandation STIKO est une justification solide, comme un Expertenstandard.</span></div>
+
+  <h3>Die drei Dinge, die du wirklich können musst</h3>
+  <ul>
+    <li><b>Aktiv gegen passiv</b> unterscheiden und erklären <b>warum</b> — siehe oben.</li>
+    <li><b>Grundimmunisierung → Auffrischung → Nachholimpfung</b> auseinanderhalten.
+      Das ist derselbe Dreischritt wie bei jeder Prophylaxe: aufbauen, erhalten, korrigieren.</li>
+    <li><b>Standardimpfung (S) gegen Indikationsimpfung (I)</b>: für alle oder nur bei
+      Vorerkrankung? Bei <b>RSV</b> siehst du beides in einer Zeile — <b>I</b> bei 60–74,
+      <b>S</b> ab 75. Das ist die Frage „für wen gilt die Empfehlung?“ in einem Bild.</li>
+  </ul>
+
+  <div class="kasten warn"><b>Und im Alltag auf Station:</b> Bei älteren Bewohnerinnen sind es
+    fast immer dieselben vier — <b>Grippe</b> und <b>COVID-19</b> jährlich im Herbst,
+    <b>Pneumokokken</b>, <b>Gürtelrose</b>. Dazu <b>Tetanus und Diphtherie alle zehn Jahre</b>,
+    und die werden am häufigsten vergessen.
+    <br><span class="fr">Chez les personnes âgées, ce sont presque toujours les mêmes quatre —
+    et ce sont le tétanos et la diphtérie, tous les dix ans, qu'on oublie le plus.</span></div>
+</section>
+
+<section id="quelle">
+  <h2>Die Quelle</h2>
+  <figure>
+    <img src="impfkalender-2026-stiko.png" alt="Impfkalender 2026 der Ständigen Impfkommission,
+      Stand Januar 2026, herausgegeben vom Bundesinstitut für Öffentliche Gesundheit.">
+    <figcaption>Dein Blatt: <b>Impfkalender 2026</b> — Empfehlungen der Ständigen Impfkommission
+      (STIKO), Stand Januar 2026. Bundesinstitut für Öffentliche Gesundheit,
+      Artikelnummer 11128003, <a href="https://www.infektionsschutz.de/impfen"
+      target="_blank" rel="noopener">infektionsschutz.de/impfen</a>.</figcaption>
+  </figure>
+  <div class="kasten"><b>Auf dieser Seite steht nichts, was nicht auf deinem Blatt steht.</b>
+    Ich habe es gelesen und geordnet, nicht ergänzt. Wo eine Spaltengrenze auf dem Foto knapp
+    ist, steht hier, wie ich sie lese — vergleich im Zweifel mit dem Original.
+    Der Abschnitt „Warum das für deine Prüfung zählt“ ist <b>meine Einordnung</b>, das Zitat
+    daraus stammt aus <b>§ 14 PflAPrV</b>.
+    <span class="fr">Rien ici n'a été inventé : j'ai lu et rangé ton affiche, je n'ai rien
+    ajouté. La section « examen » est mon analyse, pas la STIKO.</span></div>
+</section>
+
+</main>
+
+<footer>
+  Impfkalender 2026 (STIKO, Stand Januar 2026) · Bundesinstitut für Öffentliche Gesundheit ·
+  <a href="https://www.infektionsschutz.de/impfen" target="_blank" rel="noopener">infektionsschutz.de</a><br>
+  Gelesen und erklärt für die Pflegeausbildung, 2. Lehrjahr.
+</footer>
+
+<script>
+"use strict";
+/* Die Daten stammen Zeile fuer Zeile vom Plakat. typ = Buchstabe der Legende. */
+var GRUPPEN = [
+  {id:"erw", titel:"Erwachsene", unter:"18 Jahre und aelter"},
+  {id:"kin", titel:"Kinder und Jugendliche", unter:"5–17 Jahre"},
+  {id:"sae", titel:"Säuglinge und Kleinkinder", unter:"0–59 Monate"}
+];
+
+var IMPF = {
+erw:[
+ {nm:"Tetanus",lat:"Wundstarrkrampf",t:"a",
+  mk:[["a","A","alle 10 Jahre · 18 bis ab 75"]],
+  note:"Orange über die ganze Erwachsenenzeile: <b>alle zehn Jahre auffrischen</b>, lebenslang."},
+ {nm:"Diphtherie",t:"a",
+  mk:[["a","A","alle 10 Jahre · 18 bis ab 75"]],
+  note:"Genau wie Tetanus — deshalb werden beide fast immer <b>zusammen</b> gegeben."},
+ {nm:"Keuchhusten",lat:"Pertussis",t:"a",
+  mk:[["a","A3","18–24 und 25–59"],["n","N","60–74"]],
+  note:"<b>Einmalige</b> Auffrischung <span class=\"fn\">i</span> — möglichst zusammen mit der nächsten Tetanus-/Diphtherie-Impfung."},
+ {nm:"Masern",t:"s",
+  mk:[["s","S","18–24 und 25–59"]],
+  note:"<b>Einmalig</b> für alle <b>nach 1970 Geborenen</b> mit unklarem Impfschutz, ohne Impfung oder mit nur einer Impfung in der Kindheit <span class=\"fn\">j</span>."},
+ {nm:"Pneumokokken",t:"s",
+  mk:[["s","S","60–74 und ab 75"]],
+  note:"Erwachsene werden mit <b>PCV20</b> geimpft <span class=\"fn\">f</span> — Säuglinge dagegen mit PCV13 oder PCV15."},
+ {nm:"Gürtelrose",lat:"Herpes Zoster",t:"g",
+  mk:[["g","G1+G2","60–74"],["n","N","ab 75"]],
+  note:"<b>Zweimal</b> mit dem <b>Totimpfstoff</b>, Abstand mindestens 2 und höchstens 6 Monate <span class=\"fn\">k</span>."},
+ {nm:"Grippe",lat:"Influenza",t:"s",
+  mk:[["s","S jährlich","60–74 und ab 75"],["i","Risiko","ab 6 Monate"]],
+  note:"<b>Jährlich, vorzugsweise im Herbst</b> <span class=\"fn\">m</span>. Der graue Balken quer über die Zeile gilt zusätzlich für <b>alle ab 6 Monaten mit chronischen Erkrankungen</b> und für <b>Schwangere</b>."},
+ {nm:"COVID-19",t:"g",
+  mk:[["g","G1+G2+G3","18–24 und 25–59"],["a","A jährlich","60–74 und ab 75"],["i","Risiko","ab 6 Monate"]],
+  note:"Für die <b>Basisimmunität</b> sind <b>mindestens 3 Antigenkontakte</b> nötig, davon <b>mindestens 1 durch Impfung</b> <span class=\"fn\">l</span> — Kontakt heißt hier: Impfung <i>oder</i> durchgemachte Infektion. Danach jährlich im Herbst <span class=\"fn\">m</span>."},
+ {nm:"RSV",lat:"Respiratorisches Synzytial-Virus",t:"s",
+  mk:[["i","I","60–74"],["s","S","ab 75"]],
+  note:"<b>Die Zeile, die den Unterschied zeigt:</b> von 60 bis 74 nur <b>bei bestimmten Vorerkrankungen</b>, <b>ab 75 für alle</b>. Einmalig im <b>Spätsommer oder Herbst</b>."},
+ {nm:"Kinderlähmung",lat:"Poliomyelitis",t:"n",
+  mk:[["n","Nachholen","gestrichelt"]],
+  note:"Bei Erwachsenen steht nur noch die <b>gestrichelte Linie</b> — keine Routineimpfung mehr, aber <b>nachholbar</b>, wenn der Schutz fehlt."}
+],
+kin:[
+ {nm:"Tetanus",lat:"Wundstarrkrampf",t:"a",
+  mk:[["a","A1","5–6"],["n","N","7–8"],["a","A2","9–11 bis 12–14"],["n","N","15–16"]],
+  note:"Zwei Auffrischungen in der Schulzeit, dazwischen grüne Felder zum Nachholen."},
+ {nm:"Diphtherie",t:"a",
+  mk:[["a","A1","5–6"],["n","N","7–8"],["a","A2","9–11 bis 12–14"],["n","N","15–16"]],
+  note:"Parallel zu Tetanus — dieselben Termine."},
+ {nm:"Keuchhusten",lat:"Pertussis",t:"a",
+  mk:[["a","A1","5–6"],["n","N","7–8"],["a","A2","9–11 bis 12–14"],["n","N","15–16"]],
+  note:"Ebenfalls parallel. Die drei laufen als Kombinationsimpfung."},
+ {nm:"Kinderlähmung",lat:"Poliomyelitis",t:"a",
+  mk:[["a","A","9–11 bis 15–16"],["n","N","17"]],
+  note:"<b>Eine</b> Auffrischung im Jugendalter, danach grün zum Nachholen."},
+ {nm:"Meningokokken ACWY",t:"g",
+  mk:[["g","G1","12–14 · J1"],["n","N","15–16"]],
+  note:"Einmalig am Vorsorgetermin <b>J1</b>."},
+ {nm:"HPV",lat:"Humane Papillomviren",t:"g",
+  mk:[["g","G1+G2","9–11 und 12–14"],["n","N","15–16"]],
+  note:"<b>Zwei</b> Impfungen im Abstand von mindestens 5 Monaten, für <b>Mädchen und Jungen von 9 bis 14</b>. Wird später begonnen (ab 15) <b>oder</b> ist der Abstand kürzer als 5 Monate, braucht es eine <b>dritte</b> Impfung <span class=\"fn\">h</span>."},
+ {nm:"Masern · Mumps · Röteln · Windpocken",t:"n",
+  mk:[["n","N","5–6 bis 17"]],
+  note:"Hier nur noch <b>grün</b>: die Grundimmunisierung war im Kleinkindalter, in der Schulzeit wird nur noch <b>nachgeholt</b>."},
+ {nm:"Hepatitis B · Hib · Pneumokokken · Meningokokken B",t:"n",
+  mk:[["n","N","gestrichelt"]],
+  note:"Gestrichelte Linien — <b>nachholbar</b>, aber keine neuen Termine vorgesehen."}
+],
+sae:[
+ {nm:"RSV",lat:"passive Immunisierung",t:"p",
+  mk:[["p","Prophylaxe","0 Wochen bis 5–6 Monate"],["n","N","7–10"]],
+  note:"<b>Keine Impfung</b>, sondern <b>Antikörper</b> (Nirsevimab) <span class=\"fn\">a b</span>. Geburt zwischen <b>Oktober und März</b> → so schnell wie möglich nach der Geburt, am besten bei Entlassung oder zur U2. Geburt zwischen <b>April und September</b> → zwischen September und November desselben Jahres."},
+ {nm:"Rotaviren",t:"g",
+  mk:[["g","G1","6 Wochen"],["g","G2","3 Monate"],["g","(G3)","4 Monate"]],
+  note:"<b>Schluckimpfung</b>, nicht gespritzt. Start ab <b>6 Wochen</b>, je nach Impfstoff 2 oder 3 Dosen, Mindestabstand <b>4 Wochen</b> <span class=\"fn\">c</span>. Das <b>(G3) in Klammern</b> heißt: nur bei manchen Impfstoffen."},
+ {nm:"6-fach-Impfung",lat:"Tetanus · Diphtherie · Keuchhusten · Hib · Polio · Hepatitis B",t:"g",
+  mk:[["g","G1","2 Monate"],["g","G2","4 Monate"],["g","G3","11 Monate"],["n","N","12 bis 24–59"]],
+  note:"Die <b>blauen Säulen</b> auf deinem Bild. Sechs Krankheiten in <b>einer</b> Spritze, dreimal gegeben. Zwischen G2 und G3 mindestens <b>6 Monate</b> <span class=\"fn\">e</span>. <b>Frühgeborene</b> bekommen eine <b>vierte</b> Impfung mit 3 Monaten <span class=\"fn\">d</span>."},
+ {nm:"Pneumokokken",t:"g",
+  mk:[["g","G1","2 Monate"],["g","G2","4 Monate"],["g","G3","11 Monate"],["n","N","12"]],
+  note:"Läuft im selben Takt wie die 6-fach-Impfung. Säuglinge: <b>PCV13 oder PCV15</b> <span class=\"fn\">f</span>. Frühgeborene auch hier vier Impfungen <span class=\"fn\">d</span>."},
+ {nm:"Meningokokken B",t:"g",
+  mk:[["g","G1","2 Monate"],["g","G2","4 Monate"],["g","G3","12 Monate"],["n","N","13–14"]],
+  note:"<b>Drei</b> Impfungen bei Beginn zwischen 2 und 23 Monaten; wird erst <b>ab 24 Monaten</b> begonnen, reichen <b>zwei</b> <span class=\"fn\">g</span>."},
+ {nm:"Masern · Mumps · Röteln",lat:"3-fach-Impfung MMR",t:"g",
+  mk:[["g","G1","11 Monate"],["g","G2","15 Monate"],["n","N","16–23"]],
+  note:"Zwei Impfungen. Beim zweiten Termin als <b>4-fach-Impfung MMR + Windpocken</b>."},
+ {nm:"Windpocken",lat:"Varizellen",t:"g",
+  mk:[["g","G1","11 Monate"],["g","G2","15 Monate"],["n","N","16–23"]],
+  note:"MMR und Windpocken dürfen <b>am selben Termin</b> gegeben werden oder im Abstand von <b>4 Wochen</b> <span class=\"fn\">*</span>."}
+]};
+
+var NOTEN = [
+ ["a","Die passive Immunisierung bietet einen schnellen, kurzfristigen Schutz durch die Verabreichung von Antikörpern. Die Antikörper werden innerhalb weniger Wochen bis Monaten wieder abgebaut.",
+      "Protection rapide mais brève : on administre des anticorps tout faits, qui sont éliminés en quelques semaines à quelques mois."],
+ ["b","RSV-Vorbeugung: Für Kinder, die zwischen Oktober und März geboren sind, sollte die passive Immunisierung mit Nirsevimab möglichst rasch nach der Geburt erfolgen, am besten bei der Entlassung aus der Geburtseinrichtung bzw. bei der U2. Für Kinder, die zwischen April und September geboren sind, sollte sie zwischen September und November im selben Jahr erfolgen.",
+      "Le moment dépend du mois de naissance — l'objectif est de couvrir la saison du VRS."],
+ ["c","Die 1. Impfung sollte möglichst ab dem Alter von 6 Wochen erfolgen; je nach Impfstoff 2 bzw. 3 Schluckimpfungen (G2/G3) mit einem Mindestabstand von 4 Wochen.",
+      "Vaccin oral (on avale), pas une piqûre. 2 ou 3 doses selon le produit."],
+ ["d","Frühgeborene erhalten eine zusätzliche Impfung im Alter von 3 Monaten (insgesamt 4 Impfungen).",
+      "Les prématurés reçoivent une dose supplémentaire : quatre au total."],
+ ["e","Mindestabstand zur vorangegangenen Impfung: 6 Monate.",
+      "Écart minimal avec la dose précédente : 6 mois."],
+ ["f","Säuglinge werden mit PCV13 oder PCV15 geimpft. Erwachsene werden mit PCV20 geimpft.",
+      "Le vaccin antipneumococcique n'est pas le même chez le nourrisson et chez l'adulte."],
+ ["g","3 Impfungen für Kinder zwischen 2 und 23 Monaten; bei Impfbeginn ab 24 Monaten 2 Impfungen.",
+      "Plus on commence tard, moins il faut de doses."],
+ ["h","2 Impfungen (im Abstand von mindestens 5 Monaten) für Mädchen und Jungen im Alter von 9 bis 14 Jahren; bei Nachholen der Impfung beginnend im Alter ≥ 15 Jahre oder bei einem Abstand von &lt; 5 Monaten zwischen den beiden Impfungen ist eine dritte Impfung erforderlich.",
+      "Filles ET garçons. Deux doses si on commence tôt et qu'on respecte l'écart, sinon trois."],
+ ["i","Einmalige Auffrischung; möglichst mit der nächsten Impfung gegen Tetanus/Diphtherie/ggf. Poliomyelitis.",
+      "Une seule fois — et de préférence en même temps que le rappel tétanos/diphtérie."],
+ ["j","Einmalige Impfung für alle nach 1970 geborenen Erwachsenen mit unklarem Impfschutz, ohne Impfung oder nur einer Impfung in der Kindheit.",
+      "Née après 1970 et carnet incertain ? Une dose de rougeole est recommandée."],
+ ["k","Zweimalige Impfung mit dem Totimpfstoff im Abstand von mindestens 2 und maximal 6 Monaten.",
+      "Deux doses, vaccin inactivé, entre 2 et 6 mois d'écart."],
+ ["l","Für die Basisimmunität sind ≥ 3 Antigenkontakte erforderlich, davon mindestens 1 durch Impfung; Impfabstände entsprechend Fachinformation beachten.",
+      "Un « contact antigénique » = une vaccination ou une infection. Il en faut au moins trois, dont au moins une vaccination."],
+ ["m","Jährliche Auffrischimpfung vorzugsweise im Herbst.",
+      "Rappel annuel, de préférence à l'automne."],
+ ["n","Einmalige Impfung im Spätsommer oder Herbst.",
+      "Une seule fois, en fin d'été ou en automne."],
+ ["*","Impfungen können auf mehrere Impftermine verteilt werden. MMR und Windpocken können am selben Termin oder in 4-wöchigem Abstand gegeben werden.",
+      "On peut répartir les vaccins sur plusieurs rendez-vous."]
+];
+
+var RAND = {g:"var(--g)",n:"var(--n)",a:"var(--a)",s:"var(--s)",i:"var(--i)",p:"var(--p)"};
+
+function zeichneZeilen(id){
+  var ziel = document.getElementById("zeilen");
+  ziel.innerHTML = IMPF[id].map(function(v){
+    var marken = v.mk.map(function(m){
+      return '<span class="mk '+m[0]+'"><i>'+m[1]+'</i><span class="alt">'+m[2]+'</span></span>';
+    }).join("");
+    return '<article class="zeile" style="--rand:'+(RAND[v.t]||"var(--line)")+'">'
+      + '<div class="kopf"><span class="nm">'+v.nm+'</span>'
+      + (v.lat ? '<span class="lat">'+v.lat+'</span>' : '')
+      + '</div><div class="marken">'+marken+'</div>'
+      + '<p class="note">'+v.note+'</p></article>';
+  }).join("");
+}
+
+(function(){
+  var tabs = document.getElementById("tabs");
+  tabs.innerHTML = GRUPPEN.map(function(g,i){
+    return '<button type="button" role="tab" id="tab-'+g.id+'" data-id="'+g.id+'" '
+      + 'aria-selected="'+(i===0)+'">'+g.titel+' <span style="opacity:.7">· '+g.unter+'</span></button>';
+  }).join("");
+  tabs.addEventListener("click", function(e){
+    var b = e.target.closest("button[data-id]");
+    if(!b) return;
+    tabs.querySelectorAll("button").forEach(function(x){
+      x.setAttribute("aria-selected", String(x === b));
+    });
+    zeichneZeilen(b.dataset.id);
+  });
+  zeichneZeilen(GRUPPEN[0].id);
+
+  document.getElementById("noten").innerHTML = NOTEN.map(function(n){
+    return '<div class="note-z"><div class="l">'+n[0]+'</div><div class="t">'+n[1]
+      + '<span class="fr">'+n[2]+'</span></div></div>';
+  }).join("");
+})();
+</script>
