@@ -1,4 +1,7 @@
 <title>Deutsch täglich</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap">
 <style>
   :root{
     --paper:#f5f3ee;--paper-2:#edeae2;--card:#fffdf9;--ink:#1c211f;--ink-soft:#4c5552;--line:#dcd7cc;
@@ -9,10 +12,15 @@
     --miss:#2f7d54;--missbg:#dff0e6;--extra:#bb4d3f;--extrabg:#f8e0dc;--le:#7a5a1e;--lebg:#f5ecd8;--dekl:#4a3f8a;--deklbg:#e4e1f3;
     --lb:#0d6b8a;--lbbg:#d9edf5;
     --good:#2f7d54;--gold:#b5731a;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
-    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+    --serif:"Fraunces","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:"Public Sans","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"JetBrains Mono","SFMono-Regular","Consolas","Menlo",monospace;
+    /* Fortschritt */
+    --track:#e3ded2;--glanz:rgba(31,95,139,.13);
   }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--track:#2b3437;--glanz:rgba(108,178,221,.16);}}
+  :root[data-theme="dark"]{--track:#2b3437;--glanz:rgba(108,178,221,.16);}
+  :root[data-theme="light"]{--track:#e3ded2;--glanz:rgba(31,95,139,.13);}
   @media (prefers-color-scheme:dark){:root{
     --paper:#121618;--paper-2:#0d1113;--card:#1a2023;--ink:#eef2f2;--ink-soft:#a4b0b2;--line:#2a3336;
     --accent:#6cb2dd;--accent-deep:#94cbef;--accent-soft:#14293a;
@@ -24,12 +32,59 @@
   *{box-sizing:border-box;}
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;}
   .wrap{max-width:800px;margin:0 auto;padding:0 20px 80px;}
-  header.hero{padding:40px 20px 26px;text-align:center;border-bottom:1px solid var(--line);
-    background:radial-gradient(120% 90% at 50% -30%,var(--accent-soft) 0%,transparent 62%);}
-  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 10px;}
-  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.8rem,5.5vw,2.7rem);margin:0 0 8px;line-height:1.1;}
-  header.hero p{max-width:52ch;margin:0 auto;color:var(--ink-soft);font-size:15.5px;}
-  .streak{display:inline-block;margin-top:14px;font-family:var(--mono);font-size:13px;color:var(--accent-deep);background:var(--accent-soft);border-radius:999px;padding:6px 15px;}
+  header.hero{border-bottom:1px solid var(--line);padding:26px 20px 22px;
+    background:radial-gradient(130% 100% at 78% -40%,var(--glanz) 0%,transparent 60%);}
+  .heroin{max-width:800px;margin:0 auto;display:grid;grid-template-columns:1fr auto;
+    gap:22px;align-items:center;}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.17em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 7px;}
+  header.hero h1{font-family:var(--serif);font-optical-sizing:auto;font-weight:600;
+    font-size:clamp(2rem,6.4vw,3rem);margin:0 0 6px;line-height:1.02;letter-spacing:-.015em;
+    text-wrap:balance;}
+  .hero-sub{margin:0;color:var(--ink-soft);font-size:15px;max-width:40ch;}
+  .hero-sub b{color:var(--ink);}
+  /* Fortschrittsring */
+  .ring{position:relative;width:118px;height:118px;flex:0 0 auto;}
+  .ring svg{width:100%;height:100%;transform:rotate(-90deg);}
+  .ring .tr{fill:none;stroke:var(--track);stroke-width:9;}
+  .ring .fl{fill:none;stroke:var(--accent);stroke-width:9;stroke-linecap:round;
+    transition:stroke-dashoffset .9s cubic-bezier(.22,1,.36,1);}
+  .ring .mitte{position:absolute;inset:0;display:grid;place-content:center;text-align:center;line-height:1;}
+  .ring .gross{font-family:var(--serif);font-weight:700;font-size:2.15rem;
+    font-variant-numeric:tabular-nums;letter-spacing:-.03em;}
+  .ring .klein{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--ink-soft);margin-top:5px;}
+  /* Themenband: 21 Blöcke */
+  .band{max-width:800px;margin:20px auto 0;}
+  .band .kopf{display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--ink-soft);margin:0 0 7px;}
+  .band .kopf b{color:var(--accent);font-weight:700;}
+  .band .reihe{display:grid;grid-template-columns:repeat(21,1fr);gap:3px;}
+  .band .reihe i{display:block;height:9px;border-radius:2px;background:var(--track);
+    transition:background .3s;}
+  .band .reihe i.fertig{background:var(--accent);}
+  .band .reihe i.jetzt{background:var(--gold);box-shadow:0 0 0 2px var(--paper),0 0 0 3.5px var(--gold);}
+  .band .reihe i.wdh{background:var(--tgbg);}
+  /* Kennzahlen */
+  .kennz{max-width:800px;margin:16px auto 0;display:grid;
+    grid-template-columns:repeat(3,1fr);gap:10px;}
+  .kennz>div{background:var(--card);border:1px solid var(--line);border-radius:11px;
+    padding:11px 13px;}
+  .kennz .z{font-family:var(--serif);font-weight:700;font-size:1.45rem;line-height:1.1;
+    font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+  .kennz .b{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-soft);margin-top:3px;}
+  @media (max-width:560px){
+    .heroin{grid-template-columns:1fr;gap:16px;}
+    .ring{width:96px;height:96px;}
+    .ring .gross{font-size:1.8rem;}
+    .kennz{grid-template-columns:1fr 1fr;}
+    .kennz div:last-child{grid-column:1/-1;}
+  }
+  @media (prefers-reduced-motion:reduce){.ring .fl{transition:none;}}
+  .streak{display:inline-block;margin-top:12px;font-family:var(--mono);font-size:12.5px;
+    color:var(--accent-deep);background:var(--accent-soft);border-radius:999px;padding:5px 14px;}
   /* Datumsnavigation */
   .datebar{position:sticky;top:0;z-index:20;display:flex;gap:6px;align-items:center;overflow-x:auto;
     background:color-mix(in srgb,var(--paper) 90%,transparent);backdrop-filter:blur(8px);
@@ -50,10 +105,21 @@
   .blaettern button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
   .blaettern button:disabled{opacity:.32;cursor:default;}
   .blaettern .wo{flex:1;text-align:center;font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);}
-  h2.day{font-family:var(--serif);font-weight:600;font-size:1.5rem;margin:30px 0 4px;}
-  .day-sub{color:var(--ink-soft);font-family:var(--mono);font-size:13px;margin:0 0 18px;}
+  h2.day{font-family:var(--serif);font-optical-sizing:auto;font-weight:600;
+    font-size:clamp(1.5rem,4.4vw,1.85rem);margin:30px 0 4px;letter-spacing:-.015em;
+    text-wrap:balance;line-height:1.15;}
+  .day-sub{color:var(--ink-soft);font-family:var(--mono);font-size:12.5px;margin:0 0 18px;
+    letter-spacing:.02em;}
   /* Blöcke */
-  .block{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:16px 0;}
+  .block{--spine:var(--line);background:var(--card);border:1px solid var(--line);
+    border-left:3px solid var(--spine);border-radius:4px 14px 14px 4px;
+    padding:20px 22px;margin:16px 0;}
+  .block:has(.k-verb){--spine:var(--verb);}  .block:has(.k-voc){--spine:var(--voc);}
+  .block:has(.k-gram){--spine:var(--gram);}  .block:has(.k-say){--spine:var(--say);}
+  .block:has(.k-tr){--spine:var(--tr);}      .block:has(.k-dk){--spine:var(--dk);}
+  .block:has(.k-sb){--spine:var(--sb);}      .block:has(.k-tg){--spine:var(--tg);}
+  .block:has(.k-telc){--spine:var(--extra);} .block:has(.k-lesen){--spine:var(--le);}
+  .block:has(.k-dekl){--spine:var(--dekl);}
   .block .kind{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;
     text-transform:uppercase;padding:3px 9px;border-radius:6px;margin-bottom:8px;}
   .k-verb{background:var(--verbbg);color:var(--verb);} .k-voc{background:var(--vocbg);color:var(--voc);} .k-gram{background:var(--grambg);color:var(--gram);}
@@ -523,14 +589,31 @@
 </style>
 
 <header class="hero">
-  <p class="eyebrow">Etappe 1 · Niveau B1 · eine Lektion jeden zweiten Tag · bis 31.12.2026</p>
-  <h1>Deutsch täglich</h1>
-  <p>Der Weg von <b>A2</b> zu <b>B1</b> bis <b>Ende Dezember</b> — eine Lektion <b>jeden zweiten
-  Tag</b>, dazwischen ein <b>Übungstag</b>. Jedes Grammatikthema bekommt <b>zwei Lektionen</b>:
-  <i>entdecken → anwenden</i>. Pro Lektion ein <b>Verb</b>, <b>15–18 Vokabeln</b>, ein
-  <b>Text</b>, eine <b>Alltagssituation</b> und eine andere <b>Fertigkeit</b>.
-  <b>Ab dem 3. Dezember</b> kein neuer Stoff mehr — nur noch anwenden.</p>
-  <span class="streak" id="streak"></span>
+  <div class="heroin">
+    <div>
+      <p class="eyebrow">Etappe 1 · A2 → B1 · bis 31.12.2026</p>
+      <h1>Deutsch täglich</h1>
+      <p class="hero-sub">Eine Lektion <b>jeden zweiten Tag</b>, dazwischen ein Übungstag.
+      Jedes Grammatikthema zwei Lektionen lang: <i>entdecken</i>, dann <i>anwenden</i>.</p>
+      <span class="streak" id="streak"></span>
+    </div>
+    <div class="ring" id="ring">
+      <svg viewBox="0 0 120 120" aria-hidden="true">
+        <circle class="tr" cx="60" cy="60" r="51"></circle>
+        <circle class="fl" id="ringFl" cx="60" cy="60" r="51"
+                stroke-dasharray="320.44" stroke-dashoffset="320.44"></circle>
+      </svg>
+      <div class="mitte">
+        <div class="gross" id="ringNr">—</div>
+        <div class="klein" id="ringVon">von 56</div>
+      </div>
+    </div>
+  </div>
+  <div class="band" id="band">
+    <p class="kopf"><span>Die 21 Grammatikthemen</span><span id="bandJetzt"></span></p>
+    <div class="reihe" id="bandReihe"></div>
+  </div>
+  <div class="kennz" id="kennz"></div>
 </header>
 
 <div class="datebar" id="datebar"></div>
@@ -1957,6 +2040,73 @@ function render(){
   vokabelnHerstellen();
   window.scrollTo({top:0,behavior:'smooth'});
 }
+/* ---- Fortschritt im Kopf: Ring, Themenband, drei Kennzahlen ----
+   Alles wird aus den Lektionen und dem heutigen Datum gerechnet, nichts ist
+   fest eingetragen. Das Ziel ist, dass sie beim Öffnen sofort sieht, wie weit
+   sie ist — und nicht nur die Lektion von heute. */
+const ETAPPE_ENDE='2026-12-31', LEKTIONEN_GESAMT=56, THEMEN_GESAMT=21;
+function zeichneFortschritt(){
+  const start=START_DATUM||'2026-09-11';
+  const t=Math.round((alsDatum(heuteISO())-alsDatum(start))/86400000);
+  const neueste=LEKTIONEN.length?LEKTIONEN[0]:null;
+  const z=(neueste&&neueste.zyklus)||{};
+
+  /* Lektionsnummer: was in der Lektion steht, sonst aus dem Datum gerechnet. */
+  let lektion=z.lektion||(t>=0?Math.floor(t/2)+1:0);
+  lektion=Math.max(0,Math.min(LEKTIONEN_GESAMT,lektion));
+  const wdh=t>82;                                   /* ab 04.12.: Wiederholung */
+  let block=z.themaBlock||(t>=0?Math.floor(t/4)+1:0);
+  block=Math.max(0,Math.min(THEMEN_GESAMT,block));
+
+  const nr=document.getElementById('ringNr');
+  if(nr) nr.textContent=lektion||'—';
+  const von=document.getElementById('ringVon');
+  if(von) von.textContent='von '+LEKTIONEN_GESAMT;
+  const fl=document.getElementById('ringFl');
+  if(fl){
+    const U=2*Math.PI*51;
+    fl.setAttribute('stroke-dasharray',U.toFixed(2));
+    fl.setAttribute('stroke-dashoffset',U.toFixed(2));
+    requestAnimationFrame(()=>{
+      fl.setAttribute('stroke-dashoffset',(U*(1-lektion/LEKTIONEN_GESAMT)).toFixed(2));
+    });
+    const r=document.getElementById('ring');
+    if(r) r.setAttribute('aria-label','Lektion '+lektion+' von '+LEKTIONEN_GESAMT);
+  }
+
+  /* Die 21 Themen als Band — abgehakt, laufend, offen. */
+  const reihe=document.getElementById('bandReihe');
+  if(reihe){
+    let h='';
+    for(let i=1;i<=THEMEN_GESAMT;i++){
+      const k=wdh?'fertig':(i<block?'fertig':(i===block?'jetzt':''));
+      h+='<i class="'+k+'" title="Thema '+i+'"></i>';
+    }
+    reihe.innerHTML=h;
+  }
+  const bj=document.getElementById('bandJetzt');
+  if(bj){
+    bj.innerHTML=wdh?'<b>Dezember · Wiederholung</b>'
+      :(block?('Thema <b>'+block+' von '+THEMEN_GESAMT+'</b>'
+        +(z.grammatik?' · '+z.grammatik:'')):'');
+  }
+
+  /* Drei Zahlen, die alle drei ehrlich gezählt sind. */
+  let woerter=0;
+  LEKTIONEN.forEach(l=>{
+    const a=(l.vokabeln&&l.vokabeln.woerter)
+      ||(l.lesen&&l.lesen.wortschatz&&l.lesen.wortschatz.woerter)||[];
+    woerter+=a.length;
+  });
+  const rest=Math.max(0,Math.round((alsDatum(ETAPPE_ENDE)-alsDatum(heuteISO()))/86400000));
+  const kz=document.getElementById('kennz');
+  if(kz) kz.innerHTML=
+     '<div><div class="z">'+LEKTIONEN.length+'</div><div class="b">Lektionen da</div></div>'
+    +'<div><div class="z">'+woerter+'</div><div class="b">Vokabeln gesammelt</div></div>'
+    +'<div><div class="z">'+rest+'</div><div class="b">Tage bis zum 31.12.</div></div>';
+}
+zeichneFortschritt();
+
 TAGE=baueTage();
 if(!TAGE.length){
   /* Neustart: es gibt noch keine Lektion. Kein Blättern, kein leerer Tag —
