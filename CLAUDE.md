@@ -346,6 +346,10 @@ Pflegebeispiele sind **prüfungskonform** (Themen 2 und 8), aber die Lektionen m
 anderen vierzehn Themen streifen — besonders für die Diskussion in Teil 2 der Mündlichen Prüfung.
 
 Artifact-URL (nie ändern): `https://claude.ai/code/artifact/e499dbe3-e198-410a-94d3-9393e6b27c84`
+**Am 16.09.2026 hat der Dienst zusätzlich eine Kurzform ausgegeben:**
+`https://claude.ai/artifact/VEG6xxSiffnjp9r7dEdQV1`. Das ist **dieselbe Seite**, nicht
+eine zweite — geprüft mit `Artifact action:"list"`, es gibt nur ein „Deutsch täglich".
+Beide Adressen führen dorthin; die lange bleibt die eingetragene.
 Favicon: 🇩🇪 — beim Republish **nicht** mitschicken.
 Branch: `claude/nursing-exam-prep-workflow-gvn5u0`
 
