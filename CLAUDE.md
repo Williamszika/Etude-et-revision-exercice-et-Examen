@@ -913,6 +913,50 @@ Nominalisierungen.
 
 Typische Fehler französischsprachiger Lernender ausdrücklich zeigen und korrigieren.
 
+### `deutsch-taeglich/quellen/` — das Material, das sie selbst mitgebracht hat
+
+**Am 16.09.2026 hat sie fünf YouTube-Transkripte geschickt**, mit einem Satz dazu:
+
+> *„Benutz diese Texte für die Förderung von mein Deutschkenntisse"*
+
+Daraus sind sieben Blätter in `deutsch-taeglich/quellen/` entstanden. Sie sind **Rohstoff
+für die Lektionen**, keine Lektionen — sie werden **nicht veröffentlicht** und liegen nur
+im Repo. `quellen/README.md` ist das Inhaltsverzeichnis.
+
+| Blatt | Wofür |
+|---|---|
+| `satzmuster-alltag.md` | Block **`leben`** — `dusagst`, `duhoerst`, `rettung` |
+| `reagieren-und-sprechen.md` | Block **`leben`** und Mündlicher Ausdruck · **Abschnitt 8 = Beschwerden beschreiben, direkt ihr Beruf** |
+| `wortschatz-alltagsthemen.md` | Block **`vokabeln`** — die 15–18 Wörter, nach Themenbereich sortiert |
+| `verben-b1-c1.md` | **Verb des Tages** — 12 Blöcke, Zuordnungstabelle `themaNr` → Block am Ende |
+| `unregelmaessige-verben.md` | **Block 3** (Perfekt/Präteritum), Lektionen 5 und 6 |
+| `konnektoren.md` | **Block 2** (Nebensätze), Lektionen 3 und 4 · später **Block 19** |
+| `b2-intensivkurs.md` | Blöcke **1, 2, 12** · Tag 3 und Tag 6 gelten laufend · Übungsformen für die Übungstage |
+
+**Vier Regeln, die dabei gelten:**
+
+1. **Es sind YouTube-Transkripte, keine Norm und keine telc-Quelle.** Für alles, was die
+   Prüfung betrifft — Format, Punkte, Aufgabentypen, Bestehensgrenze — zählt weiterhin
+   **ausschließlich** `deutsch-taeglich/telc-quellen/`.
+2. **Die Niveauregel:** **B1 ist Lernziel.** B2 darf als Beispiel danebenstehen („eine Stufe
+   höher klingt das so"), **nie** als Pflichtstoff und nie in der Vokabelliste. **C1 in
+   Etappe 1 gar nicht.** Die Videos heißen „B1–C1" bzw. „B2" — das meiste liegt also
+   **über** ihrem Ziel und muss gefiltert werden.
+3. **Die Stufenangaben in den Blättern sind meine Einschätzung, nicht die der Quelle.** Die
+   Transkripte ordnen kein einzelnes Wort einer Stufe zu. Im Zweifel eine Stufe tiefer.
+4. **Nichts zweimal.** Über die 56 Lektionen darf sich kein Wort und keine Übung
+   wiederholen — vor der Auswahl in `lektionen/` prüfen, was schon dran war.
+
+**Und ein Satz, der ihr ausdrücklich gesagt wurde und der stehen bleiben muss** (er kommt
+aus dem Transkript *B2 in 30 Tagen*, Tag 3): *„B2 bedeutet nicht, dass du jedes einfache
+Wort ersetzen musst."* **Einfaches Deutsch ist kein schlechtes Deutsch.** Nie den Eindruck
+erwecken, sie müsse kompliziert formulieren, um besser zu werden.
+
+**Lücke:** Vom Transkript *„3.000 Redemittel & Konnektoren"* liegt nur der Einstieg
+gesichert vor; `konnektoren.md` trägt deshalb überwiegend die Konnektor-Lektion aus
+*B2 in 30 Tagen*. Das steht so im Blatt. **Wenn sie das Video noch einmal schickt, wird
+das Blatt vervollständigt** — nichts dazuerfinden.
+
 ### Archiv — dreimal hat sie zurückgesetzt
 
 Alles davon liegt in der **Git-Historie** und **nirgends sonst**. Nur zurückholen, wenn sie
