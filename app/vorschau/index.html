@@ -1,0 +1,915 @@
+<title>Deutsch täglich im Telefon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;700&display=swap">
+<style>
+  :root{
+    --papier:#f5f3ee; --papier2:#edeae2; --karte:#fffdf9;
+    --tinte:#1c211f; --weich:#4c5552; --linie:#dcd7cc;
+    --akzent:#1f5f8b; --gold:#b5731a; --gut:#2f7d54;
+    --verb:#1f5f8b; --voc:#8a5a2b; --leben:#0d6b8a; --dekl:#4a3f8a;
+    --diktat:#6b4fa8; --lesen:#7a5a1e; --ue:#8a3f6b; --rot:#bb4d3f;
+    --rahmen:#22282b; --glanz:rgba(31,95,139,.13);
+    --serif:"Fraunces",Georgia,serif;
+    --sans:"Public Sans","Segoe UI",system-ui,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --papier:#121618; --papier2:#0d1113; --karte:#1a2023;
+    --tinte:#eef2f2; --weich:#a4b0b2; --linie:#2a3336;
+    --akzent:#6cb2dd; --gold:#d9a559; --gut:#6fc292;
+    --verb:#6cb2dd; --voc:#d9a05b; --leben:#5cb8d8; --dekl:#a49ae0;
+    --diktat:#b39ce8; --lesen:#d8b26a; --ue:#dfa0c8; --rot:#e08a7c;
+    --rahmen:#000; --glanz:rgba(108,178,221,.16);
+  }}
+  :root[data-theme="dark"]{
+    --papier:#121618; --papier2:#0d1113; --karte:#1a2023;
+    --tinte:#eef2f2; --weich:#a4b0b2; --linie:#2a3336;
+    --akzent:#6cb2dd; --gold:#d9a559; --gut:#6fc292;
+    --verb:#6cb2dd; --voc:#d9a05b; --leben:#5cb8d8; --dekl:#a49ae0;
+    --diktat:#b39ce8; --lesen:#d8b26a; --ue:#dfa0c8; --rot:#e08a7c;
+    --rahmen:#000; --glanz:rgba(108,178,221,.16);
+  }
+  :root[data-theme="light"]{
+    --papier:#f5f3ee; --papier2:#edeae2; --karte:#fffdf9;
+    --tinte:#1c211f; --weich:#4c5552; --linie:#dcd7cc;
+    --akzent:#1f5f8b; --gold:#b5731a; --gut:#2f7d54;
+    --verb:#1f5f8b; --voc:#8a5a2b; --leben:#0d6b8a; --dekl:#4a3f8a;
+    --diktat:#6b4fa8; --lesen:#7a5a1e; --ue:#8a3f6b; --rot:#bb4d3f;
+    --rahmen:#22282b; --glanz:rgba(31,95,139,.13);
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--papier);color:var(--tinte);
+    font-family:var(--sans);font-size:16px;line-height:1.6;
+    -webkit-font-smoothing:antialiased}
+  .seite{max-width:1020px;margin:0 auto;padding:28px 16px 64px}
+
+  /* ---- Kopf der Vorschauseite ---- */
+  .oben{text-align:center;margin-bottom:26px}
+  .marke{font-family:var(--mono);font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--akzent);margin:0 0 8px}
+  h1{font-family:var(--serif);font-optical-sizing:auto;font-weight:700;
+    font-size:clamp(2rem,6vw,2.9rem);margin:0 0 10px;line-height:1.02;
+    letter-spacing:-.02em;text-wrap:balance}
+  .unter{max-width:56ch;margin:0 auto;color:var(--weich);font-size:16px}
+  .unter b{color:var(--tinte)}
+
+  /* ---- Das Telefon ---- */
+  .buehne{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);
+    gap:34px;align-items:start;margin-top:34px}
+  @media (max-width:820px){.buehne{grid-template-columns:1fr;gap:26px}}
+
+  .telefon{position:relative;width:100%;max-width:340px;margin:0 auto;
+    background:var(--rahmen);border-radius:38px;padding:11px;
+    box-shadow:0 24px 60px rgba(0,0,0,.28),0 3px 10px rgba(0,0,0,.2)}
+  .schirm{position:relative;background:var(--papier);border-radius:28px;
+    overflow:hidden;height:660px;display:flex;flex-direction:column}
+  .kerbe{position:absolute;top:0;left:50%;transform:translateX(-50%);
+    width:108px;height:23px;background:var(--rahmen);
+    border-radius:0 0 14px 14px;z-index:9}
+  #konfetti{position:absolute;inset:0;pointer-events:none;z-index:8}
+
+  /* ---- App-Kopf ---- */
+  .appkopf{padding:30px 15px 13px;border-bottom:1px solid var(--linie);
+    background:radial-gradient(130% 100% at 78% -30%,var(--glanz) 0,transparent 62%)}
+  .kopfreihe{display:flex;align-items:center;gap:11px}
+  .kopfreihe .links{flex:1;min-width:0}
+  .etappe{font-family:var(--mono);font-size:8.5px;letter-spacing:.17em;
+    text-transform:uppercase;color:var(--akzent);margin:0 0 3px}
+  .apptitel{font-family:var(--serif);font-weight:800;font-size:22px;
+    line-height:1.04;letter-spacing:-.025em;margin:0}
+  .straehne{display:inline-flex;align-items:center;gap:5px;margin-top:7px;
+    padding:4px 11px;border-radius:999px;font-size:11.5px;font-weight:700;
+    background:color-mix(in srgb,var(--gold) 14%,transparent);color:var(--gold)}
+  .ring{position:relative;width:84px;height:84px;flex:0 0 auto}
+  .ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .ring .spur{fill:none;stroke:var(--linie);stroke-width:7}
+  .ring .fuell{fill:none;stroke:var(--akzent);stroke-width:7;stroke-linecap:round;
+    transition:stroke-dashoffset 1.1s cubic-bezier(.22,1,.36,1)}
+  .ring .mitte{position:absolute;inset:0;display:grid;place-content:center;
+    text-align:center;line-height:1}
+  .ring .gr{font-family:var(--serif);font-weight:800;font-size:24px;
+    letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+  .ring .kl{font-family:var(--mono);font-size:7.5px;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--weich);margin-top:3px}
+
+  .bandkopf{display:flex;justify-content:space-between;gap:8px;
+    font-family:var(--mono);font-size:8px;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--weich);margin:13px 0 5px}
+  .bandkopf b{color:var(--gold)}
+  .band{display:grid;grid-template-columns:repeat(21,1fr);gap:2px}
+  .band i{height:7px;border-radius:2px;background:var(--linie);display:block;
+    transform-origin:center;animation:auf .4s cubic-bezier(.34,1.56,.64,1) both}
+  @keyframes auf{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+  .band i.fertig{background:var(--akzent)}
+  .band i.jetzt{background:var(--gold);box-shadow:0 0 6px var(--gold)}
+
+  .zahlen{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:11px}
+  .zahlen div{background:var(--karte);border:1px solid var(--linie);
+    border-radius:9px;padding:7px 8px}
+  .zahlen .z{font-family:var(--serif);font-weight:800;font-size:16px;
+    line-height:1.1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+  .zahlen .b{font-family:var(--mono);font-size:7px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--weich);margin-top:2px}
+
+  /* ---- Tagesleiste ---- */
+  .tage{display:flex;gap:5px;overflow-x:auto;padding:8px 12px;
+    border-bottom:1px solid var(--linie);scrollbar-width:none}
+  .tage::-webkit-scrollbar{display:none}
+  .tage button{flex:0 0 auto;font:inherit;font-size:11.5px;font-weight:500;
+    padding:5px 11px;border-radius:8px;cursor:pointer;white-space:nowrap;
+    background:var(--karte);color:var(--weich);border:1px solid var(--linie);
+    transition:background .18s,color .18s,border-color .18s}
+  .tage button.ue{border-color:var(--ue);color:var(--ue);border-style:dashed}
+  .tage button.an{background:var(--akzent);color:var(--karte);border-color:var(--akzent)}
+  .tage button.ue.an{background:var(--ue);border-color:var(--ue);border-style:solid}
+
+  /* ---- Inhalt ---- */
+  .inhalt{flex:1;overflow-y:auto;padding:14px 13px 26px;scroll-behavior:smooth}
+  .inhalt::-webkit-scrollbar{width:5px}
+  .inhalt::-webkit-scrollbar-thumb{background:var(--linie);border-radius:9px}
+  .tagtitel{font-family:var(--serif);font-weight:800;font-size:19px;
+    line-height:1.14;letter-spacing:-.02em;margin:0}
+  .tagsub{font-family:var(--mono);font-size:10px;color:var(--weich);margin:3px 0 11px}
+  .marken{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:11px}
+  .marke2{font-size:10px;font-weight:600;padding:3px 9px;border-radius:999px;
+    border:1px solid}
+  .vbalken{margin:12px 0 4px}
+  .vbalken .t{font-size:10.5px;font-weight:700;color:var(--voc);margin-bottom:4px}
+  .vbalken .s{height:6px;background:var(--linie);border-radius:999px;overflow:hidden}
+  .vbalken .s i{display:block;height:100%;background:var(--voc);width:0;
+    border-radius:999px;transition:width .6s cubic-bezier(.22,1,.36,1)}
+  .vbalken.voll .t{color:var(--gut)} .vbalken.voll .s i{background:var(--gut)}
+
+  .block{background:var(--karte);border:1px solid var(--linie);
+    border-left:3px solid var(--f,var(--linie));
+    border-radius:4px 13px 13px 4px;padding:13px 13px 14px;margin:9px 0;
+    animation:rein .42s cubic-bezier(.22,1,.36,1) both}
+  @keyframes rein{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  .kind{display:inline-block;font-family:var(--mono);font-size:8.5px;
+    font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+    padding:3px 8px;border-radius:5px;
+    background:color-mix(in srgb,var(--f) 13%,transparent);color:var(--f)}
+  .btitel{font-weight:700;font-size:16px;line-height:1.28;margin:7px 0 0}
+  .bsub{font-size:12.5px;font-style:italic;color:var(--weich);margin:2px 0 0}
+  .btext{font-size:13.5px;line-height:1.55;margin:8px 0 0}
+  .bfr{font-size:12.5px;line-height:1.5;color:var(--weich);margin:8px 0 0}
+
+  .vok{border:1px solid var(--linie);background:var(--papier2);
+    border-radius:10px;padding:9px 9px 5px;margin-top:6px;
+    transition:background .25s,border-color .25s}
+  .vok.kann{border-color:var(--gut);background:color-mix(in srgb,var(--gut) 11%,transparent)}
+  .vok .zeile{display:flex;align-items:flex-start;gap:6px}
+  .vok .de{font-weight:700;font-size:14.5px;line-height:1.3;flex:1}
+  .vok .fr{font-size:12.5px;font-style:italic;color:var(--weich);margin-top:2px}
+  .vok .bsp{font-size:12px;line-height:1.45;margin-top:6px;padding-left:8px;
+    border-left:2px solid color-mix(in srgb,var(--voc) 30%,transparent)}
+  .vok .bsp b{color:var(--voc)}
+  .verdeckt{background:var(--linie);color:transparent;border-radius:4px;
+    cursor:pointer;user-select:none}
+  .verdeckt::after{content:"tippen";color:var(--weich);font-size:10px;
+    font-weight:400;font-style:normal;position:absolute;margin-left:-3.2em}
+  .haken{font:inherit;font-size:10.5px;background:none;border:none;
+    color:var(--weich);cursor:pointer;padding:5px 2px;display:flex;
+    align-items:center;gap:4px}
+  .vok.kann .haken{color:var(--gut);font-weight:600}
+  .hoer{font:inherit;font-size:14px;line-height:1;background:none;border:none;
+    cursor:pointer;padding:5px;border-radius:7px;color:var(--f);flex:0 0 auto}
+  .hoer:hover{background:color-mix(in srgb,var(--f) 12%,transparent)}
+  .hoer.laeuft{animation:puls .9s ease-in-out infinite}
+  @keyframes puls{0%,100%{opacity:1}50%{opacity:.4}}
+
+  .schalter{display:flex;flex-wrap:wrap;gap:5px;margin:9px 0 3px;align-items:center}
+  .schalter button{font:inherit;font-size:10.5px;font-weight:600;padding:5px 9px;
+    border-radius:8px;cursor:pointer;background:var(--karte);
+    color:var(--voc);border:1px solid var(--voc)}
+  .schalter button.an{background:var(--voc);color:var(--karte)}
+  .zaehl{font-size:10.5px;font-weight:600;padding:5px 10px;border-radius:999px;
+    background:color-mix(in srgb,var(--voc) 13%,transparent);color:var(--voc)}
+
+  .satz{display:flex;align-items:flex-start;gap:5px;padding:6px 0;
+    border-bottom:1px dashed var(--linie)}
+  .satz:last-child{border-bottom:none}
+  .satz .t{flex:1;font-size:13.5px;line-height:1.42}
+  .satz .t i{display:block;font-size:11.5px;color:var(--weich);margin-top:2px}
+  .uteil{font-size:9.5px;font-weight:700;letter-spacing:.09em;
+    text-transform:uppercase;margin:12px 0 2px;color:var(--f)}
+
+  .feld{width:100%;font:inherit;font-size:13.5px;line-height:1.5;
+    color:var(--tinte);background:var(--karte);border:1px solid var(--linie);
+    border-radius:8px;padding:8px 10px;margin-top:8px;resize:vertical;
+    font-family:var(--sans)}
+  .feld:focus{outline:2px solid var(--f);outline-offset:1px}
+  .loesknopf{font:inherit;font-size:11.5px;font-weight:600;background:none;
+    border:none;color:var(--gut);cursor:pointer;padding:6px 0;margin-top:4px}
+  .loes{display:none;margin-top:4px;padding:8px 10px;border-radius:0 8px 8px 0;
+    border-left:2.5px solid var(--gut);font-size:13px;line-height:1.5;
+    background:color-mix(in srgb,var(--gut) 10%,transparent)}
+  .loes.offen{display:block;animation:rein .3s ease-out both}
+  .loes b{color:var(--gut)}
+  .loes .hw{display:block;font-size:11.5px;color:var(--weich);margin-top:4px;font-weight:400}
+
+  .aufg{border:1px solid var(--linie);background:var(--papier2);
+    border-radius:10px;padding:10px 11px;margin-top:8px}
+  .aufg .nr{display:inline-block;font-family:var(--mono);font-size:9.5px;
+    font-weight:700;padding:2px 7px;border-radius:5px;
+    background:var(--f);color:var(--karte)}
+  .aufg .q{font-size:13.5px;line-height:1.5;margin-top:6px}
+
+  .lesekasten{background:var(--karte);border:1px solid var(--linie);
+    border-left:4px solid var(--lesen);border-radius:0 11px 11px 0;
+    padding:12px 13px;margin-top:9px;font-size:14px;line-height:1.7}
+  .lesekasten p{margin:0 0 9px} .lesekasten p:last-of-type{margin-bottom:0}
+
+  .tempo{display:flex;align-items:center;gap:8px;margin:10px 0 8px;font-size:11.5px;
+    color:var(--weich)}
+  .tempo input{flex:1;accent-color:var(--diktat)}
+  .knopf{font:inherit;font-size:13px;font-weight:600;padding:9px 14px;
+    border-radius:9px;cursor:pointer;border:none;
+    background:var(--f);color:var(--karte)}
+  .knopf.geist{background:var(--karte);color:var(--f);border:1px solid var(--f)}
+  .knopf:disabled{opacity:.42;cursor:default}
+  .stand{font-size:11.5px;color:var(--f);margin-top:8px;min-height:1.2em}
+  .erg{margin-top:11px;padding:11px 12px;border-radius:10px;
+    background:color-mix(in srgb,var(--diktat) 11%,transparent);display:none}
+  .erg.offen{display:block;animation:rein .35s ease-out both}
+  .erg .pct{font-family:var(--serif);font-weight:800;font-size:22px;color:var(--diktat)}
+  .erg .note{font-size:11.5px;color:var(--weich)}
+  .erg .woerter{margin-top:9px;font-size:14px;line-height:1.75}
+  .w-fehlt{background:color-mix(in srgb,var(--gut) 15%,transparent);
+    color:var(--gut);font-weight:600;border-radius:3px;padding:0 3px}
+  .w-zuviel{background:color-mix(in srgb,var(--rot) 15%,transparent);
+    color:var(--rot);font-weight:600;border-radius:3px;padding:0 3px;
+    text-decoration:line-through}
+  .legende{display:flex;gap:12px;font-size:10.5px;color:var(--weich);margin-top:7px}
+
+  .uekasten{border:2px solid var(--ue);border-radius:12px;padding:12px 13px;
+    background:var(--karte);margin-bottom:10px}
+  .uekasten h4{margin:0 0 5px;font-size:15px;color:var(--ue)}
+  .uekasten p{margin:0;font-size:13px;line-height:1.5}
+  .uekasten .fr2{font-size:12px;color:var(--weich);margin-top:6px}
+
+  /* ---- Erklärspalte rechts ---- */
+  .notiz h2{font-family:var(--serif);font-weight:700;font-size:1.5rem;
+    margin:0 0 4px;letter-spacing:-.015em}
+  .notiz>p{color:var(--weich);margin:0 0 20px;font-size:15px}
+  .punkt{display:flex;gap:13px;padding:13px 0;border-top:1px solid var(--linie)}
+  .punkt:first-of-type{border-top:none;padding-top:4px}
+  .punkt .sym{font-size:20px;line-height:1.3;flex:0 0 26px;text-align:center}
+  .punkt h3{margin:0 0 3px;font-size:15.5px;font-weight:700}
+  .punkt p{margin:0;font-size:14px;line-height:1.55;color:var(--weich)}
+  .punkt p b{color:var(--tinte)}
+  .warn{margin-top:22px;padding:14px 16px;border-radius:11px;
+    border-left:3px solid var(--gold);
+    background:color-mix(in srgb,var(--gold) 11%,transparent)}
+  .warn h3{margin:0 0 6px;font-size:15px;color:var(--gold)}
+  .warn p{margin:0 0 7px;font-size:14px;line-height:1.55}
+  .warn p:last-child{margin-bottom:0}
+  .tasten{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .taste{font:inherit;font-size:13px;font-weight:600;padding:8px 14px;
+    border-radius:9px;border:1px solid var(--linie);background:var(--karte);
+    color:var(--tinte);cursor:pointer;text-decoration:none;display:inline-block}
+  .taste:hover{border-color:var(--akzent);color:var(--akzent)}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  }
+</style>
+
+<div class="seite">
+  <div class="oben">
+    <p class="marke">Android · Flutter · offline</p>
+    <h1>Deutsch täglich im Telefon</h1>
+    <p class="unter">Die App, die aus deinen Lektionen gebaut wird. Das hier ist
+    <b>keine Zeichnung</b> — es sind deine echten Lektionen vom 11., 13. und 15.09.
+    Tipp auf die Tage, deck Vokabeln auf, hak ab, was du kannst, und starte
+    das Diktat. <b>Alles läuft.</b></p>
+  </div>
+
+  <div class="buehne">
+    <div>
+      <div class="telefon">
+        <div class="schirm">
+          <div class="kerbe"></div>
+          <canvas id="konfetti"></canvas>
+
+          <div class="appkopf">
+            <div class="kopfreihe">
+              <div class="links">
+                <p class="etappe">Etappe 1 · A2 → B1</p>
+                <p class="apptitel">Deutsch täglich</p>
+                <span class="straehne" id="straehne"></span>
+              </div>
+              <div class="ring">
+                <svg viewBox="0 0 100 100" aria-hidden="true">
+                  <circle class="spur" cx="50" cy="50" r="43"></circle>
+                  <circle class="fuell" id="ringF" cx="50" cy="50" r="43"
+                          stroke-dasharray="270.18" stroke-dashoffset="270.18"></circle>
+                </svg>
+                <div class="mitte">
+                  <div class="gr" id="ringN">—</div>
+                  <div class="kl" id="ringV">von 56</div>
+                </div>
+              </div>
+            </div>
+            <p class="bandkopf"><span>Die 21 Themen</span><span id="bandJ"></span></p>
+            <div class="band" id="band"></div>
+            <div class="zahlen" id="zahlen"></div>
+          </div>
+
+          <div class="tage" id="tage"></div>
+          <div class="inhalt" id="inhalt"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notiz">
+      <h2>Was hier wirklich passiert</h2>
+      <p>Die Vorschau benutzt dieselben Daten und dieselbe Rechnung wie die App.</p>
+
+      <div class="punkt"><div class="sym">🔊</div><div>
+        <h3>Die Stimme ist echt</h3>
+        <p>Jeder Lautsprecher liest wirklich vor — hier über die Stimme deines
+        Browsers, in der App über die <b>deutsche Stimme des Telefons</b>.
+        Die braucht kein Netz und kein Guthaben.</p>
+      </div></div>
+
+      <div class="punkt"><div class="sym">✓</div><div>
+        <h3>Die Haken bleiben</h3>
+        <p>Hak eine Vokabel ab und lad die Seite neu — sie ist noch da. Wenn
+        <b>alle</b> Vokabeln einer Lektion sitzen, fliegt Konfetti. Nicht bei
+        jedem Haken, sonst bedeutet es nichts mehr.</p>
+      </div></div>
+
+      <div class="punkt"><div class="sym">✎</div><div>
+        <h3>Der Übungstag ist ein eigener Tag</h3>
+        <p>Der 12. und der 14. sind gestrichelt. Dort gibt es <b>keine neue
+        Lektion</b> — nur die Aufgaben von vorgestern, mit leeren Feldern.
+        Die App legt diese Tage von selbst an.</p>
+      </div></div>
+
+      <div class="punkt"><div class="sym">🎧</div><div>
+        <h3>Das Diktat läuft zweimal durch</h3>
+        <p>Satz für Satz, Tempo wählbar. Danach vergleicht es <b>Wort für
+        Wort</b>: grün, was fehlt, rot durchgestrichen, was zu viel ist.</p>
+      </div></div>
+
+      <div class="punkt"><div class="sym">↻</div><div>
+        <h3>Neue Lektionen kommen von selbst</h3>
+        <p>Die App holt <code>app-daten.json</code> aus dem Repo. Die Routine um
+        5:30 committet die Lektion — und sie ist da. <b>Keine neue App-Version
+        nötig.</b></p>
+      </div></div>
+
+      <div class="warn">
+        <h3>Zwei ehrliche Einschränkungen</h3>
+        <p><b>Diese Vorschau ist verkleinert.</b> Sie zeigt Verb, Vokabeln,
+        Im Leben, die Kette, den Lesetext, das Diktat und die Übersetzungen.
+        In der App sind auch Grammatik, Training, Fertigkeit des Tages und
+        Aussprache dabei — alles, was auf der Webseite steht.</p>
+        <p><b>Kein iPhone.</b> Dafür bräuchte es einen Mac und ein
+        Apple-Entwicklerkonto. Die Webseite läuft dort weiter wie bisher.</p>
+      </div>
+
+      <div class="tasten">
+        <button class="taste" id="themaKnopf" type="button">Hell / dunkel</button>
+        <a class="taste" href="https://claude.ai/artifact/VEG6xxSiffnjp9r7dEdQV1"
+           target="_blank" rel="noopener">🇩🇪 Die Webseite</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DATEN = {"stand":"2026-09-16","start":"2026-09-11","lektionenGesamt":56,"themenGesamt":21,"etappeEnde":"2026-12-31","lektionen":[{"datum":"2026-09-15","zyklus":{"woche":2,"gesamt":21,"etappe":"B1","takt":2,"thema":"Der menschliche Körper, Gesundheit und Körperpflege","themaNr":2,"grammatik":"Nebensätze: weil, dass, wenn/als, obwohl, damit","grammatikNr":2,"themaBlock":2,"themenTag":1,"tag":"Dienstag","fokus":"Sprachbausteine","start":"2026-09-11","themenStart":"2026-09-15","lektion":3},"verb":{"titel":"einnehmen (nimmt ein, nahm ein, hat eingenommen)","uebersetzung":"prendre (un médicament)","erklaerung":"**einnehmen** ist **trennbar**: Der konjugierte Teil (**nimmt, nahm, hat**) steht in der linken Klammer auf **Position 2**, die Vorsilbe **ein** bzw. das Partizip **eingenommen** wandert in die rechte Klammer ans **Satzende**.\n\n**Neu heute:** Genau dieses Verb eignet sich perfekt für Nebensätze, weil man fast immer einen Grund oder eine Bedingung dazu sagt: *Sie **muss** die Tablette **einnehmen**, **weil** sie Kopfschmerzen hat.* Im Nebensatz mit **weil** wandert das ganze Verb — hier sogar mit Modalverb — ans Ende, in der Reihenfolge Vollverb-Infinitiv vor Modalverb.","fr":"Verbe **séparable** : la partie conjuguée (**nimmt, nahm, hat**) occupe la **position 2**, la particule **ein** ou le participe **eingenommen** part à la **fin de la phrase**. **Nouveau aujourd'hui** : ce verbe se prête parfaitement aux subordonnées, car on donne presque toujours une raison ou une condition : *Sie **muss** die Tablette **einnehmen**, **weil** sie Kopfschmerzen hat.* Dans la subordonnée en **weil**, tout le verbe part à la fin — même avec un modal — dans l'ordre infinitif du verbe plein puis modal.","tabelle":{"head":["Person","Präsens","Präteritum","Perfekt"],"rows":[["ich","nehme … ein","nahm … ein","habe … eingenommen"],["du","nimmst … ein","nahmst … ein","hast … eingenommen"],["er/sie/es","nimmt … ein","nahm … ein","hat … eingenommen"],["wir","nehmen … ein","nahmen … ein","haben … eingenommen"],["ihr","nehmt … ein","nahmt … ein","habt … eingenommen"],["Sie/sie","nehmen … ein","nahmen … ein","haben … eingenommen"]]},"chips":["trennbar: **nimmt … ein** — die Vorsilbe geht ans Ende","Perfekt mit **haben**: hat … eingenommen","oft mit Objekt: eine Tablette / ein Medikament / einen Saft einnehmen","mit Modalverb bleibt es **ein Wort**: muss einnehmen, soll einnehmen","Nebensatz mit weil/dass: …, weil ich die Tablette einnehmen muss — beide Verbteile ans Ende, in dieser Reihenfolge"],"beispiele":[{"de":"Er **nimmt** die Tablette morgens **ein**.","fr":"Il prend le comprimé le matin. — Präsens ohne Modalverb, die Vorsilbe trennt sich wirklich ab."},{"de":"Der Arzt sagte, **dass** sie das Medikament dreimal täglich **einnehmen soll**.","fr":"Le médecin a dit qu'elle devait prendre le médicament trois fois par jour. — dass-Satz: Vollverb-Infinitiv vor dem Modalverb, beide ganz am Ende."},{"de":"**Weil** sie starke Schmerzen hatte, **nahm** sie sofort eine Tablette **ein**.","fr":"Comme elle avait de fortes douleurs, elle a immédiatement pris un comprimé. — weil-Satz vor dem Hauptsatz, danach sofort das Verb."},{"de":"Sie hat vergessen, ihre Tablette pünktlich **einzunehmen**.","fr":"Elle a oublié de prendre son comprimé à l'heure. — Infinitiv mit zu bei einem trennbaren Verb: zu steht mitten in der Vorsilbe."}],"tipp":"Sag laut: **„Ich muss meine Tablette einnehmen, weil ich Kopfschmerzen habe.“** — genau dieser Satzbau (Hauptsatz + weil-Satz) begegnet dir bei jeder Medikamentengabe und jedem Arztgespräch.","test":{"frage":"Ergänze: „Die Pflegekraft erklärte, ______ der Bewohner die Tablette vor dem Essen ______ ______.“ (dass / einnehmen, Modalverb sollen)","loesung":"„Die Pflegekraft erklärte, **dass** der Bewohner die Tablette vor dem Essen **einnehmen soll**.“ — dass-Satz, Vollverb-Infinitiv **einnehmen** vor dem Modalverb **soll**, beide ganz am Ende."}},"deklination":{"titel":"Die Kette an drei Sätzen — Stufe 3: Welches Genus?","stufe":3,"fr":"Heute **Glied 3** der Kette: Du weißt schon, wer bestimmt und welchen Fall du brauchst. Jetzt kommt das Glied, an dem die meisten Fehler entstehen — **das Genus**. Ohne das richtige Genus ist kein Artikel und kein Kasus richtig, egal wie gut du Glied 1 und 2 beherrschst.","saetze":[{"luecke":"Die Auszubildende ging zu ______ Hausarzt, weil sie sich krank fühlte. → **Welches Genus?**","bestimmer":"Die **Präposition zu**.","fall":"**zu** gehört zur festen Dativreihe *aus – bei – mit – nach – seit – von – zu* → **immer Dativ**.","genus":"**der Hausarzt** — ein Kompositum aus *das Haus* + *der Arzt*. Bei Komposita entscheidet **immer das letzte Wort**: *der Arzt* ist maskulin, also ist auch *der Hausarzt* maskulin.","artikel":"Dativ + maskulin → **dem**.","adjektiv":"Kein Adjektiv in diesem Satz.","loesung":"Genus: **maskulin** (der Hausarzt), weil das letzte Wortglied *Arzt* maskulin ist. — Ganzer Satz: Die Auszubildende ging zu **dem** Hausarzt, weil sie sich krank fühlte.","hinweis":"Merksatz für Stufe 3: Bei einem zusammengesetzten Nomen bestimmt **nie** das erste Wort das Genus, **immer** das letzte."},{"luecke":"Der Patient hatte seit dem Unfall starke Schmerzen in ______ Rücken. → **Welches Genus?**","bestimmer":"Die **Präposition in** — eine Wechselpräposition.","fall":"Frage: **Wo** hatte er Schmerzen? Kein Bewegungsziel, nur ein Ort → **Dativ**.","genus":"**der Rücken** — ein einfaches Nomen, kein Kompositum. Körperteile sind unterschiedlich verteilt: der Kopf, der Bauch, der Rücken sind maskulin, aber die Hand, die Schulter sind feminin — man muss sie einzeln lernen.","artikel":"Dativ + maskulin → **dem**.","adjektiv":"Kein Adjektiv in diesem Satz.","loesung":"Genus: **maskulin** (der Rücken). — Ganzer Satz: Der Patient hatte seit dem Unfall starke Schmerzen in **dem** Rücken.","hinweis":"Bei Körperteilen ohne Kompositum hilft keine Regel — nur das Auswendiglernen mit Artikel, am besten direkt als **der Rücken**, nie nur als *Rücken*."},{"luecke":"Die Pflegekraft gab ______ Patientin ______ Tablette vor dem Frühstück. → **Welches Genus?**","bestimmer":"**Keine Präposition** — das **Verb geben** entscheidet, weil es zwei Objekte verlangt.","fall":"Person (*die Patientin*) → **Dativ**. Sache (*die Tablette*) → **Akkusativ**. Reihenfolge: **Dativ vor Akkusativ**, wenn beides ein Nomen ist.","genus":"**die Patientin** — Endung **-in** macht ein Nomen fast immer **feminin**. **die Tablette** — Endung **-e** macht ein Nomen sehr oft (nicht immer) **feminin**, besonders bei Fremdwörtern und Krankheits-/Medikamentenbegriffen.","artikel":"Dativ + feminin → **der**. Akkusativ + feminin → **die** (gleiche Form wie Nominativ).","adjektiv":"Kein Adjektiv in diesem Satz.","loesung":"Genus: **beide feminin** (die Patientin, die Tablette). — Ganzer Satz: Die Pflegekraft gab **der** Patientin **die** Tablette vor dem Frühstück.","hinweis":"Zwei zuverlässige Genus-Regeln auf einmal: **-in** → fast immer feminin, **-e** → sehr oft feminin. Diese zwei Endungen allein lösen einen großen Teil aller Genus-Fehler."}],"tipp":"Heute zählt die **dritte Frage**: Welches Genus genau? Bei Komposita: das letzte Wort entscheidet. Bei einfachen Nomen: entweder auswendig lernen oder auf verlässliche Endungen achten (**-in, -e, -ung, -heit, -keit** → feminin; **-er, -ling** → meist maskulin; **-chen, -lein** → immer neutral). Erst danach kommt Glied 4, der Artikel, wirklich dran."},"lesen":{"titel":"Sophie fühlt sich nicht wohl","text":"Am Morgen bemerkte Sophie, dass sie starke Kopfschmerzen und leichtes Fieber hatte. Obwohl sie ihre Schicht auf der Station nicht verpassen wollte, wusste sie, dass sie sich krank melden musste, weil sie sonst die Bewohner hätte anstecken können.\n\nSie rief ihre Praxisanleiterin an und erklärte, dass sie sich seit dem frühen Morgen unwohl fühlte. Frau Klein fragte, ob Sophie schon Fieber gemessen hatte, und riet ihr, sofort einen Termin beim Hausarzt zu vereinbaren, damit die Ursache schnell geklärt werden konnte.\n\nIm Wartezimmer der Praxis füllte Sophie einen kurzen Anamnesebogen aus, während sie auf ihren Termin wartete. Der Arzt untersuchte sie gründlich und stellte fest, dass es sich nur um eine leichte Erkältung handelte. Er verschrieb ihr ein Mittel gegen die Kopfschmerzen und empfahl ihr, sich zwei Tage auszuruhen, obwohl Sophie eigentlich lieber sofort wieder gearbeitet hätte.\n\nZufrieden mit der klaren Diagnose ging Sophie nach Hause. Sie nahm die Tabletten pünktlich ein und rief noch einmal auf der Station an, damit ihre Kolleginnen wussten, wann sie zurückkommen würde. Als sie am nächsten Morgen aufwachte, fühlte sie sich schon viel besser und freute sich, wieder zur Arbeit gehen zu können.","hilfe":["**die Kopfschmerzen** (nur Plural) — les maux de tête","**das Fieber** (nur Singular) — la fièvre","**sich krank melden** — se déclarer malade","**anstecken** — contaminer","**die Praxisanleiterin**, -nen — la tutrice de stage","**der Hausarzt**, ¨e — le médecin traitant","**der Anamnesebogen**, ¨ — la fiche d'anamnèse","**die Erkältung**, -en — le rhume","**verschreiben** — prescrire","**die Diagnose**, -n — le diagnostic","**einnehmen** — prendre (un médicament)","**sich ausruhen** — se reposer"],"fragen":[{"operator":"Nennen","frage":"**Nennen Sie** die zwei Symptome, die Sophie am Morgen bemerkt.","loesung":"Starke Kopfschmerzen und leichtes Fieber.","hinweis":"**Nennen** heißt: nur aufzählen, keine Erklärung."},{"operator":"Beschreiben","frage":"**Beschreiben Sie**, was Sophie tut, bevor sie zum Arzt geht.","loesung":"Sophie ruft ihre Praxisanleiterin an, meldet sich krank und erklärt, dass sie sich seit dem Morgen unwohl fühlt. Auf Rat von Frau Klein vereinbart sie einen Termin beim Hausarzt.","hinweis":"**Beschreiben** heißt: der Reihe nach wiedergeben, ohne zu werten."},{"operator":"Begründen","frage":"**Begründen Sie**, warum Sophie sich krank meldet, statt zur Arbeit zu gehen.","loesung":"Sophie meldet sich krank, **weil** sie sonst die Bewohner hätte anstecken können. **Deshalb** entscheidet sie sich verantwortungsvoll für den Arztbesuch statt für die Schicht.","hinweis":"**Begründen** verlangt sichtbare Begründungswörter: weil, da, denn, deshalb."},{"operator":"Erklären","frage":"**Erklären Sie**, warum der Arzt Sophie empfiehlt, sich zwei Tage auszuruhen — und geben Sie ein eigenes Beispiel.","loesung":"Der Arzt empfiehlt Ruhe, **weil** sich der Körper bei einer Erkältung schneller erholt, wenn er nicht zusätzlich belastet wird. Mein eigenes Beispiel: *Auch ich habe mich letztes Jahr bei einer Erkältung zwei Tage ausgeruht, statt sofort wieder zu arbeiten.*","hinweis":"**Erklären** heißt: verständlich machen **und ein eigenes Beispiel geben**."},{"operator":"Erläutern","frage":"**Erläutern Sie** am Text, woran man erkennt, dass es Sophie am nächsten Tag schon besser geht.","loesung":"**Das sieht man daran, dass** sie sich beim Aufwachen viel besser fühlt und sich freut, wieder zur Arbeit gehen zu können. **Außerdem zeigt sich das daran, dass** sie am Vortag noch einmal auf der Station anruft, um ihre Rückkehr anzukündigen.","hinweis":"**Erläutern** ist die höchste Stufe: erklären **und am Text belegen**."}]},"diktat":{"titel":"Diktat 3 der Etappe B1 — Ein Anruf bei der Praxisanleiterin","fr":"Le texte est lu deux fois. Choisis d'abord la vitesse en haut (commence par « sehr langsam »). Écris tout, y compris la ponctuation. Ensuite compare avec l'original — chaque erreur a une cause, et je te la nomme si tu me l'envoies.","hilfe":["Praxisanleiterin","Kopfschmerzen","Erkältung","vereinbart","eingenommen","ausruhen"],"text":"Frau Yildiz hat heute Morgen ihre Praxisanleiterin angerufen, weil sie starke Kopfschmerzen und Fieber hatte. Sie erklärte, dass sie sich seit dem frühen Morgen unwohl fühlte. Ihre Praxisanleiterin riet ihr, sofort einen Termin beim Hausarzt zu vereinbaren, damit die Ursache schnell geklärt werden konnte. Der Arzt stellte fest, dass es sich nur um eine leichte Erkältung handelte. Obwohl Frau Yildiz lieber gleich wieder gearbeitet hätte, ruhte sie sich zwei Tage aus. Sie nahm ihre Tabletten pünktlich ein und meldete sich am dritten Tag wieder gesund.","erklaerung":"Sechs Sätze, alle mit der Regel von heute. Achte auf drei Dinge: die weil- und dass-Sätze mit dem Verb ganz am Ende; den damit-Satz in der Satzmitte; und die Großschreibung aller Komposita wie Praxisanleiterin und Kopfschmerzen.","fallen":["**Praxisanleiterin** — Kompositum, ein Wort, großgeschrieben.","**weil sie starke Kopfschmerzen und Fieber hatte** — weil-Satz, Verb **hatte** ganz am Ende.","**dass sie sich seit dem frühen Morgen unwohl fühlte** — dass-Satz, reflexives Verb, **fühlte** ganz am Ende.","**damit die Ursache schnell geklärt werden konnte** — damit-Satz mit Passiv, zwei Verbteile **geklärt werden konnte** am Ende, in dieser Reihenfolge.","**obwohl Frau Yildiz lieber gleich wieder gearbeitet hätte** — obwohl-Satz mit Konjunktiv II, Verb **hätte** ganz am Ende.","**eingenommen** — Partizip von *einnehmen*, ganz am Satzende, nicht zu verwechseln mit *eingenommen* im Sinne von Geld.","**meldete sich … gesund** — trennbares, reflexives Verb, Reflexivpronomen früh im Satz."]},"uebersetzung":{"saetze":[{"fr":"Je dois prendre ce comprimé, parce que j'ai mal à la tête.","de":"Ich muss diese Tablette einnehmen, weil ich Kopfschmerzen habe.","hinweis":"**weil**-Satz: Verb **habe** ganz am Ende. Verb von heute: **einnehmen**."},{"fr":"Elle s'est déclarée malade ce matin parce qu'elle avait de la fièvre.","de":"Sie hat sich heute Morgen krank gemeldet, weil sie Fieber hatte.","hinweis":"Wortschatz von heute: **sich krank melden**, trennbar und reflexiv zugleich."},{"fr":"Le médecin a dit qu'elle devait se reposer deux jours.","de":"Der Arzt hat gesagt, dass sie sich zwei Tage ausruhen soll.","hinweis":"**dass**-Satz: Vollverb-Infinitiv **ausruhen** vor dem Modalverb **soll**, beide ganz am Ende."},{"fr":"Bien qu'elle soit fatiguée, elle a rempli son formulaire d'inscription.","de":"Obwohl sie müde war, hat sie ihr Anmeldeformular ausgefüllt.","hinweis":"**obwohl**-Satz: Verb **war** ganz am Ende. Wortschatz aus dem letzten Zyklus: **ausfüllen**."},{"fr":"Elle a appelé la station, pour que ses collègues sachent quand elle reviendrait.","de":"Sie hat auf der Station angerufen, damit ihre Kolleginnen wissen, wann sie zurückkommt.","hinweis":"**damit**-Satz: zwei verschiedene Personen (sie / die Kolleginnen), deshalb **damit** und nicht um … zu."}]},"vokabeln":{"titel":"Der Körper, die Krankheit und die Pflege","thema":"Der menschliche Körper, Gesundheit und Körperpflege","fr":"Achtzehn Wörter zum Thema Körper, Gesundheit und Körperpflege. Écoute-les (🔊), puis clique sur **Deutsch verdecken** et redis-les de mémoire. Ce que tu sais, marque-le ✓. Les noms sont donnés **avec l'article et le pluriel** : sans le genre, aucun cas n'est possible (ton chantier 2).","woerter":[{"de":"der Kopf, ¨e","fr":"la tête","wortart":"Nomen","beispiel":"Sie hatte starke Schmerzen im **Kopf**.","beispielFr":"Elle avait de fortes douleurs à la tête."},{"de":"der Bauch, ¨e","fr":"le ventre","wortart":"Nomen","beispiel":"Der Bewohner klagte über Schmerzen im **Bauch**.","beispielFr":"Le résident se plaignait de douleurs au ventre."},{"de":"der Rücken, -","fr":"le dos","wortart":"Nomen","beispiel":"Er hatte seit dem Unfall Schmerzen im **Rücken**.","beispielFr":"Il avait mal au dos depuis l'accident."},{"de":"das Fieber (nur Singular)","fr":"la fièvre","wortart":"Nomen","beispiel":"Sie hatte am Morgen leichtes **Fieber**.","beispielFr":"Elle avait un peu de fièvre le matin."},{"de":"die Kopfschmerzen (nur Plural)","fr":"les maux de tête","wortart":"Nomen","beispiel":"Wegen der **Kopfschmerzen** nahm sie eine Tablette ein.","beispielFr":"À cause des maux de tête, elle a pris un comprimé."},{"de":"die Erkältung, -en","fr":"le rhume","wortart":"Nomen","beispiel":"Der Arzt stellte eine leichte **Erkältung** fest.","beispielFr":"Le médecin a constaté un léger rhume."},{"de":"der Husten (nur Singular)","fr":"la toux","wortart":"Nomen","beispiel":"Neben dem Fieber hatte er auch starken **Husten**.","beispielFr":"En plus de la fièvre, il avait aussi une forte toux."},{"de":"sich unwohl fühlen (fühlt sich unwohl, fühlte sich unwohl, hat sich unwohl gefühlt)","fr":"se sentir mal","wortart":"Verb","beispiel":"Sie **fühlte sich** seit dem Morgen **unwohl**.","beispielFr":"Elle se sentait mal depuis le matin."},{"de":"sich krank melden (meldet sich krank, meldete sich krank, hat sich krank gemeldet)","fr":"se déclarer malade","wortart":"Ausdruck","beispiel":"Sie musste **sich** heute **krank melden**.","beispielFr":"Elle a dû se déclarer malade aujourd'hui."},{"de":"die Tablette, -n","fr":"le comprimé","wortart":"Nomen","beispiel":"Der Arzt verschrieb ihr eine **Tablette** gegen die Schmerzen.","beispielFr":"Le médecin lui a prescrit un comprimé contre la douleur."},{"de":"einnehmen (nimmt ein, nahm ein, hat eingenommen)","fr":"prendre (un médicament)","wortart":"Verb","beispiel":"Sie **nahm** die Tablette pünktlich **ein**.","beispielFr":"Elle a pris le comprimé à l'heure."},{"de":"verschreiben (verschreibt, verschrieb, hat verschrieben)","fr":"prescrire","wortart":"Verb","beispiel":"Der Arzt **verschrieb** ihr ein Mittel gegen die Kopfschmerzen.","beispielFr":"Le médecin lui a prescrit un remède contre les maux de tête."},{"de":"die Diagnose, -n","fr":"le diagnostic","wortart":"Nomen","beispiel":"Nach der **Diagnose** wusste sie, was ihr fehlte.","beispielFr":"Après le diagnostic, elle savait ce qui n'allait pas."},{"de":"der Hausarzt, ¨e / die Hausärztin, -nen","fr":"le médecin traitant","wortart":"Nomen","beispiel":"Sie vereinbarte einen Termin bei ihrem **Hausarzt**.","beispielFr":"Elle a pris rendez-vous chez son médecin traitant."},{"de":"sich ausruhen (ruht sich aus, ruhte sich aus, hat sich ausgeruht)","fr":"se reposer","wortart":"Verb","beispiel":"Der Arzt riet ihr, **sich** zwei Tage **auszuruhen**.","beispielFr":"Le médecin lui a conseillé de se reposer deux jours."},{"de":"die Körperpflege (nur Singular)","fr":"les soins corporels","wortart":"Nomen","beispiel":"Zur **Körperpflege** gehören Waschen, Duschen und Zähneputzen.","beispielFr":"Les soins corporels comprennent se laver, se doucher et se brosser les dents."},{"de":"sich duschen (duscht sich, duschte sich, hat sich geduscht)","fr":"se doucher","wortart":"Verb","beispiel":"Der Bewohner **duscht sich** jeden Morgen mit Unterstützung.","beispielFr":"Le résident se douche chaque matin avec de l'aide."},{"de":"gesund / krank","fr":"en bonne santé / malade","wortart":"Adjektiv","beispiel":"Am dritten Tag fühlte sie sich wieder **gesund**.","beispielFr":"Le troisième jour, elle se sentait de nouveau en bonne santé."}],"aufgabe":{"frage":"**Bilde mit fünf dieser Wörter eigene Sätze** — Sätze über dich, nicht über Sophie. In mindestens drei Sätzen soll ein **Nebensatz mit weil, dass oder obwohl** vorkommen.","hinweis":"Genau da prüfst du die Regel von heute: Steht das Verb im Nebensatz wirklich ganz am Ende?","muster":"1. Ich habe **Kopfschmerzen**, **weil** ich schlecht geschlafen habe. 2. Mein Arzt hat gesagt, **dass** ich eine leichte **Erkältung** habe. 3. **Obwohl** ich müde war, habe ich meine **Tablette** pünktlich **eingenommen**. 4. Zur **Körperpflege** gehört bei mir jeden Morgen eine Dusche. 5. Ich fühle mich wieder **gesund**, seit ich **mich ausgeruht** habe."}},"leben":{"wo":"Sich krank melden — der Anruf in der Ausbildung","titel":"Ein Anruf am frühen Morgen","fr":"Aujourd'hui, la situation la plus utile de ta vie d'apprentie : appeler pour te déclarer malade. Le plus dur n'est pas de parler, mais de bien comprendre ce qu'on te répond au téléphone.","situation":"Du wachst auf und merkst, dass du krank bist. Du musst deine Praxisanleiterin oder deine Station anrufen, bevor deine Schicht beginnt, und erklären, was los ist.","warum":"Ein verspäteter oder fehlender Anruf gilt in der Ausbildung als **unentschuldigtes Fehlen** — das kann Konsequenzen haben. Der richtige Satzbau (weil-Satz, klare Uhrzeit) sorgt dafür, dass man dich sofort versteht, auch am Telefon mit schlechter Verbindung.","dusagst":[{"de":"Guten Morgen, hier ist … . Ich melde mich heute krank.","fr":"Bonjour, ici … . Je me déclare malade aujourd'hui."},{"de":"Ich habe seit heute Morgen Fieber und starke Kopfschmerzen.","fr":"J'ai de la fièvre et de fortes migraines depuis ce matin."},{"de":"Ich melde mich krank, weil ich mich sehr unwohl fühle.","fr":"Je me déclare malade parce que je me sens très mal."},{"de":"Ich werde heute noch einen Termin beim Hausarzt vereinbaren.","fr":"Je vais prendre rendez-vous chez le médecin traitant aujourd'hui."},{"de":"Ich schicke Ihnen die Krankschreibung, sobald ich sie habe.","fr":"Je vous enverrai l'arrêt de travail dès que je l'aurai."},{"de":"Melde ich mich morgen wieder, oder soll ich mich erst melden, wenn es mir besser geht?","fr":"Est-ce que je dois rappeler demain, ou seulement quand j'irai mieux ?"},{"de":"Vielen Dank für Ihr Verständnis. Auf Wiederhören.","fr":"Merci beaucoup pour votre compréhension. Au revoir."}],"duhoerst":[{"de":"Das tut mir leid. Was genau fehlt Ihnen denn?","fr":"Je suis désolée. Qu'est-ce qui ne va pas exactement ?"},{"de":"Haben Sie schon Fieber gemessen?","fr":"Avez-vous déjà pris votre température ?"},{"de":"Gehen Sie bitte zum Arzt und schicken Sie uns die Krankschreibung.","fr":"Allez chez le médecin s'il vous plaît et envoyez-nous l'arrêt de travail."},{"de":"Melden Sie sich bitte wieder, sobald Sie wissen, wie lange Sie ausfallen.","fr":"Merci de nous recontacter dès que vous savez pour combien de temps vous serez absent(e)."},{"de":"Gute Besserung, und melden Sie sich, wenn es Ihnen wieder besser geht.","fr":"Bon rétablissement, et recontactez-nous quand vous irez mieux."}],"rettung":["Können Sie das bitte wiederholen?","Können Sie bitte langsamer sprechen?","Wie schreibt man das?","Können Sie mir das bitte noch einmal erklären?"],"fallen":[{"falsch":"Ich habe eine Grippe genommen.","richtig":"Ich habe mir eine Grippe eingefangen.","warum":"**Baustelle 4, falscher Freund.** Eine Krankheit **nimmt** man nicht wie im Französischen (*attraper*), man **fängt sie sich ein** oder man **bekommt** sie."},{"falsch":"Ich melde krank.","richtig":"Ich melde mich krank.","warum":"**sich krank melden** ist reflexiv — ohne das Reflexivpronomen **mich** fehlt dem Verb sein Objekt, der Satz ist unvollständig."},{"falsch":"Ich habe Fieber bei 38,5 Grad.","richtig":"Ich habe 38,5 Grad Fieber.","warum":"**Baustelle 7, feste Präposition.** Fieber wird nicht mit **bei** angegeben, sondern die Gradzahl steht direkt vor **Grad Fieber**."}],"heute":"Wenn du heute mit jemandem telefonierst oder sprichst — ob auf der Station, beim Arzt oder privat — achte bewusst darauf, ob du einen weil-Satz benutzt, um etwas zu begründen. Schreib danach auf: Was habe ich gesagt? Was habe ich nicht sofort verstanden? Schick mir beides — gerade das Nichtverstandene zeigt mir, woran wir als Nächstes arbeiten müssen."}},{"datum":"2026-09-13","zyklus":{"woche":1,"gesamt":21,"etappe":"B1","takt":2,"thema":"Angaben zur eigenen Person","themaNr":1,"grammatik":"Verbstellung und Satzklammer","grammatikNr":1,"themaBlock":1,"themenTag":2,"tag":"Sonntag","fokus":"Hörverstehen","start":"2026-09-11","themenStart":"2026-09-11","lektion":2},"verb":{"titel":"ausfüllen (füllt aus, füllte aus, hat ausgefüllt)","uebersetzung":"remplir (un formulaire)","erklaerung":"**ausfüllen** ist **trennbar**, aber anders als *sich vorstellen* am Freitag **nicht reflexiv** — hier gibt es kein Pronomen, das mitwandert. Die Regel bleibt exakt dieselbe: Der konjugierte Teil (**füllt, füllte, hat**) steht in der linken Klammer auf **Position 2**, die Vorsilbe **aus** bzw. das Partizip **ausgefüllt** wandert in die rechte Klammer ans **Satzende**.\n\n**Neu heute:** Was passiert, wenn noch ein Modalverb dazukommt? *Sie **muss** das Formular **ausfüllen**.* Hier bleibt **ausfüllen** als **ganzer Infinitiv** zusammen — es trennt sich nicht. Nur ohne Modalverb (Präsens/Präteritum) trennt sich die Vorsilbe wirklich ab.","fr":"Verbe **séparable**, mais contrairement à *sich vorstellen* de vendredi, **non réfléchi** — pas de pronom qui voyage avec lui. La règle reste identique : la partie conjuguée (**füllt, füllte, hat**) occupe la **position 2**, la particule **aus** ou le participe **ausgefüllt** part à la **fin de la phrase**. **Nouveau aujourd'hui** : avec un verbe modal, *Sie **muss** das Formular **ausfüllen**.*, le verbe séparable reste un **infinitif entier** à la fin — il ne se sépare pas. Il ne se sépare vraiment qu'au présent/prétérit, sans modal.","tabelle":{"head":["Person","Präsens","Präteritum","Perfekt"],"rows":[["ich","fülle … aus","füllte … aus","habe … ausgefüllt"],["du","füllst … aus","fülltest … aus","hast … ausgefüllt"],["er/sie/es","füllt … aus","füllte … aus","hat … ausgefüllt"],["wir","füllen … aus","füllten … aus","haben … ausgefüllt"],["ihr","füllt … aus","fülltet … aus","habt … ausgefüllt"],["Sie/sie","füllen … aus","füllten … aus","haben … ausgefüllt"]]},"chips":["trennbar, aber **nicht reflexiv** — kein Pronomen im Mittelfeld","Perfekt mit **haben**: hat … ausgefüllt","oft mit Objekt: ein Formular / einen Antrag / einen Personalbogen ausfüllen","mit Modalverb bleibt es **ein Wort**: muss ausfüllen, kann ausfüllen, möchte ausfüllen","Nebensatz mit Modalverb: …, weil ich das Formular noch ausfüllen muss — beide Verbteile ans Ende, in dieser Reihenfolge"],"beispiele":[{"de":"Sie **füllt** das Anmeldeformular **aus**.","fr":"Elle remplit le formulaire d'inscription. — Präsens ohne Modalverb, die Vorsilbe trennt sich wirklich ab."},{"de":"**Musst** du das Formular heute noch **ausfüllen**?","fr":"Dois-tu encore remplir le formulaire aujourd'hui ? — mit Modalverb bleibt ausfüllen ein Wort am Ende."},{"de":"Gestern **hat** er das Formular **ausgefüllt** und **unterschrieben**.","fr":"Hier, il a rempli et signé le formulaire. — Zeitangabe auf Position 1, zwei Partizipien am Ende."},{"de":"Sie sagte, dass sie das Formular schon **ausgefüllt habe** — einfacher: dass sie es schon **ausgefüllt hat**.","fr":"Elle a dit qu'elle avait déjà rempli le formulaire. — im dass-Satz beide Verbteile ans Ende."}],"tipp":"Sag laut: **„Ich muss noch ein Formular ausfüllen.“** — genau dieser Satz begegnet dir bei jedem Amtstermin, jeder Anmeldung und jedem neuen Job.","test":{"frage":"Ergänze: „Sie ______ das Anmeldeformular schon gestern ______.“ (ausfüllen, Perfekt)","loesung":"„Sie **hat** das Anmeldeformular schon gestern **ausgefüllt**.“ — Perfekt mit **haben**, die Vorsilbe **aus** steckt im Partizip **ausgefüllt** ganz am Ende."}},"deklination":{"titel":"Die Kette an drei Sätzen — Stufe 2: Welcher Fall?","stufe":2,"fr":"Heute **Glied 2** der Kette: Du weißt schon, wer bestimmt (Präposition oder Verb). Jetzt geht es darum, den **Fall selbst korrekt zu benennen** — mit der Wo?/Wohin?-Frage bei Wechselpräpositionen, mit der festen Liste bei Dativpräpositionen, und mit der Dativ-vor-Akkusativ-Regel bei zwei Objekten.","saetze":[{"luecke":"Sie ging zu ______ Meldebehörde, um ihren Wohnsitz anzumelden. → **Welcher Fall?**","bestimmer":"Die **Präposition zu**.","fall":"**zu** gehört zur festen Dativreihe *aus – bei – mit – nach – seit – von – zu* → **immer Dativ**.","genus":"**die Meldebehörde** — feminin (die Behörde ist feminin, das Kompositum übernimmt das Genus vom letzten Wort).","artikel":"Dativ + feminin → **der**.","adjektiv":"Kein Adjektiv in diesem Satz.","loesung":"Fall: **Dativ**, weil **zu** immer Dativ verlangt. — Ganzer Satz: Sie ging zu **der** Meldebehörde, um ihren Wohnsitz anzumelden.","hinweis":"Merksatz für Stufe 2: Steht die Präposition in der festen Dativreihe, brauchst du gar nicht zu überlegen — der Fall steht schon fest, bevor du ans Genus denkst."},{"luecke":"Er hatte seinen Reisepass in ______ Innentasche seiner Jacke. → **Welcher Fall?**","bestimmer":"Die **Präposition in** — eine Wechselpräposition.","fall":"Frage: **Wo** war der Pass? Kein Bewegungsziel, nur ein Ort → **Dativ**.","genus":"**die Innentasche** — ein Kompositum aus *innen* + *die Tasche*. Das letzte Wort entscheidet: *die Tasche* ist feminin.","artikel":"Dativ + feminin → **der**.","adjektiv":"Kein Adjektiv in diesem Satz.","loesung":"Fall: **Dativ**, weil die Frage **Wo?** lautet (keine Bewegung). — Ganzer Satz: Er hatte seinen Reisepass in **der** Innentasche seiner Jacke.","hinweis":"Bei Wechselpräpositionen entscheidet **immer zuerst die Frage Wo?/Wohin?** — erst danach kommt das Genus ins Spiel."},{"luecke":"Der Sachbearbeiter erklärte ______ Kundin ______ Antrag. → **Welcher Fall?**","bestimmer":"**Keine Präposition** — das **Verb erklären** entscheidet, weil es zwei Objekte verlangt.","fall":"Person (*die Kundin*) → **Dativ**. Sache (*der Antrag*) → **Akkusativ**. Reihenfolge: **Dativ vor Akkusativ**, wenn beides ein Nomen ist.","genus":"**die Kundin** (Endung -in, feminin) und **der Antrag** (maskulin).","artikel":"Dativ + feminin → **der**. Akkusativ + maskulin → **den**.","adjektiv":"Kein Adjektiv in diesem Satz.","loesung":"Fall: **Dativ** für die Person, **Akkusativ** für die Sache. — Ganzer Satz: Der Sachbearbeiter erklärte **der** Kundin **den** Antrag.","hinweis":"Ohne Präposition entscheidet das Verb — und bei zwei Objekten gilt fast immer: **Person im Dativ, Sache im Akkusativ.**"}],"tipp":"Heute zählt die **zweite Frage**: Welcher Fall genau? Bei Präpositionen: feste Liste oder Wo?/Wohin? Bei zwei Objekten ohne Präposition: Person = Dativ, Sache = Akkusativ. Erst danach kommt Glied 3, das Genus, dran."},"lesen":{"titel":"Ein Bericht: Linas Termin bei der Meldebehörde","text":"Nachdem Lina vor zwei Wochen in ihre neue Wohnung in Essen gezogen war, musste sie ihren Wohnsitz bei der Meldebehörde anmelden. Am Montagmorgen ging sie deshalb zur Meldebehörde, weil sie vorher online einen Termin vereinbart hatte.\n\nAm Schalter zeigte sie der Sachbearbeiterin ihren Reisepass und ihren Mietvertrag. Die Sachbearbeiterin bat Lina, ein Anmeldeformular auszufüllen und ihre persönlichen Daten einzutragen: Name, Geburtsdatum, Geburtsort und neue Adresse.\n\nDanach unterschrieb Lina das Formular, und die Sachbearbeiterin bestätigte die Anmeldung mit einem Stempel. Sie erklärte, dass Lina die Anmeldebestätigung für ihre Ausbildung und für die Krankenkasse braucht.\n\nAm Ende fragte Lina noch, ob ihr alter Personalausweis noch gültig ist oder ob sie einen neuen beantragen muss. Die Sachbearbeiterin antwortete, dass der Ausweis noch drei Jahre gültig ist.\n\nZufrieden verließ Lina das Amt mit ihrer Anmeldebestätigung in der Hand. Sie war froh, dass der Termin nur zwanzig Minuten gedauert hatte. Danach ging sie direkt in die Ausbildung und erzählte ihrer Praxisanleiterin von dem Termin.","hilfe":["**der Wohnsitz**, -e — le domicile","**die Meldebehörde**, -n — l'office d'enregistrement","**vereinbaren** — convenir de, fixer (un rendez-vous)","**der/die Sachbearbeiter/in** — l'agent(e) administratif(ve)","**der Mietvertrag**, ¨e — le contrat de location","**das Anmeldeformular**, -e — le formulaire d'inscription","**eintragen** — inscrire","**unterschreiben** — signer","**bestätigen** — confirmer","**die Anmeldebestätigung**, -en — le certificat d'inscription","**gültig** — valide","**beantragen** — faire une demande de"],"fragen":[{"operator":"Nennen","frage":"**Nennen Sie** die zwei Dokumente, die Lina am Schalter zeigt.","loesung":"Ihren Reisepass und ihren Mietvertrag.","hinweis":"**Nennen** heißt: nur aufzählen, keine Erklärung."},{"operator":"Beschreiben","frage":"**Beschreiben Sie**, was am Schalter der Meldebehörde passiert.","loesung":"Lina zeigt ihre Dokumente, füllt ein Anmeldeformular aus, trägt ihre persönlichen Daten ein und unterschreibt. Die Sachbearbeiterin bestätigt die Anmeldung mit einem Stempel.","hinweis":"**Beschreiben** heißt: der Reihe nach wiedergeben, ohne zu werten."},{"operator":"Begründen","frage":"**Begründen Sie**, warum Lina zur Meldebehörde gehen muss.","loesung":"Lina muss zur Meldebehörde gehen, **weil** sie vor Kurzem umgezogen ist und ihren neuen Wohnsitz anmelden muss. **Deshalb** braucht sie auch eine Anmeldebestätigung.","hinweis":"**Begründen** verlangt sichtbare Begründungswörter: weil, da, denn, deshalb."},{"operator":"Erklären","frage":"**Erklären Sie**, wofür Lina die Anmeldebestätigung braucht — und geben Sie ein eigenes Beispiel.","loesung":"Sie braucht die Anmeldebestätigung, **weil** ihre Ausbildung und ihre Krankenkasse einen offiziellen Nachweis über ihren Wohnsitz verlangen. Mein eigenes Beispiel: *Auch ich musste meine Anmeldebestätigung bei meiner Ausbildungsschule vorlegen.*","hinweis":"**Erklären** heißt: verständlich machen **und ein eigenes Beispiel geben**."},{"operator":"Erläutern","frage":"**Erläutern Sie** am Text, woran man erkennt, dass der Termin für Lina gut verlaufen ist.","loesung":"**Das sieht man daran, dass** sie zufrieden das Amt verlässt und dass der Termin laut Text nur zwanzig Minuten gedauert hat. **Außerdem zeigt sich das daran, dass** sie danach direkt in die Ausbildung geht und davon erzählt.","hinweis":"**Erläutern** ist die höchste Stufe: erklären **und am Text belegen**."}]},"diktat":{"titel":"Diktat 2 der Etappe B1 — Ein neuer Personalausweis","fr":"Le texte est lu deux fois. Choisis d'abord la vitesse en haut (commence par « sehr langsam »). Écris tout, y compris la ponctuation. Ensuite compare avec l'original — chaque erreur a une cause, et je te la nomme si tu me l'envoies.","hilfe":["Personalausweis","Meldebehörde","Sachbearbeiterin","vereinbart","unterschreiben","zufrieden"],"text":"Herr Yildiz muss einen neuen Personalausweis beantragen, weil sein alter Ausweis nächsten Monat abläuft. Er hat online einen Termin bei der Meldebehörde vereinbart. Am Schalter zeigt er der Sachbearbeiterin seinen alten Ausweis und seinen Mietvertrag. Die Sachbearbeiterin bittet ihn, ein Formular auszufüllen und zu unterschreiben. Sie erklärt ihm, dass der neue Ausweis in zwei Wochen fertig ist. Herr Yildiz bedankt sich und verlässt zufrieden das Amt.","erklaerung":"Sechs Sätze, alle mit den Themen von heute. Achte auf drei Dinge: **beantragen** ist nicht trennbar, aber **auszufüllen** und **unterschreiben** brauchen ihre Endung am richtigen Platz; den dass-Satz am Ende des vorletzten Satzes; und die Großschreibung aller Komposita.","fallen":["**Personalausweis** — Kompositum, ein Wort, großgeschrieben.","**Meldebehörde** — langes Kompositum, kein Bindestrich.","**abläuft** — Präsens von *ablaufen*, trennbares Verb ohne Modalverb: **läuft … ab**.","**vereinbart** — Partizip von *vereinbaren*, ganz am Satzende, nicht zu verwechseln mit *verhandelt*.","**auszufüllen und zu unterschreiben** — zwei Infinitive mit *zu*, beide am Ende, durch *und* verbunden.","**dass der neue Ausweis in zwei Wochen fertig ist** — dass-Satz, Verb **ist** ganz am Ende.","**zufrieden** — kleingeschrieben, es ist ein Adjektiv, kein Nomen."],"audio":"audio/2026-09-13/diktat.mp3"},"uebersetzung":{"saetze":[{"fr":"Je dois remplir ce formulaire avant midi.","de":"Ich muss dieses Formular vor Mittag ausfüllen.","hinweis":"Nach dem Modalverb **muss** bleibt **ausfüllen** als ganzer Infinitiv am Ende."},{"fr":"Elle a déclaré son domicile hier à la mairie.","de":"Sie hat gestern ihren Wohnsitz beim Amt angemeldet.","hinweis":"**Gestern** auf Position 1 → **hat** sofort danach; **angemeldet** ganz am Ende."},{"fr":"Il m'a demandé si mon passeport était encore valide.","de":"Er hat mich gefragt, ob mein Reisepass noch gültig ist.","hinweis":"**ob**-Satz: kein Fragewort, Verb **ist** ganz am Ende."},{"fr":"D'abord j'ai signé le formulaire, ensuite j'ai reçu la confirmation.","de":"Zuerst habe ich das Formular unterschrieben, danach habe ich die Bestätigung bekommen.","hinweis":"**Zuerst** und **danach** besetzen Position 1 → jeweils sofort das Verb **habe**."},{"fr":"Depuis mon premier jour, je me présente toujours poliment.","de":"Seit meinem ersten Tag stelle ich mich immer höflich vor.","hinweis":"**Seit meinem ersten Tag** besetzt Position 1 komplett → **stelle ich**, nicht *ich stelle*. Verb von Freitag: **sich vorstellen**."}]},"vokabeln":{"titel":"Beim Amt — den eigenen Wohnsitz anmelden","thema":"Angaben zur eigenen Person","fr":"Siebzehn Wörter zum Thema Anmeldung und Behörden. Écoute-les (🔊), puis clique sur **Deutsch verdecken** et redis-les de mémoire. Ce que tu sais, marque-le ✓. Les noms sont donnés **avec l'article et le pluriel** : sans le genre, aucun cas n'est possible (ton chantier 2).","woerter":[{"de":"sich anmelden (meldet sich an, meldete sich an, hat sich angemeldet)","fr":"s'inscrire, se déclarer domicilié","wortart":"Verb","beispiel":"Nach dem Umzug musste sie **sich** bei der Meldebehörde **anmelden**.","beispielFr":"Après le déménagement, elle a dû se déclarer domiciliée auprès de l'office d'enregistrement."},{"de":"der Wohnsitz, -e","fr":"le domicile","wortart":"Nomen","beispiel":"Sie hat ihren neuen **Wohnsitz** in Essen angemeldet.","beispielFr":"Elle a déclaré son nouveau domicile à Essen."},{"de":"die Meldebehörde, -n","fr":"l'office d'enregistrement","wortart":"Nomen","beispiel":"Die **Meldebehörde** befindet sich im Rathaus.","beispielFr":"L'office d'enregistrement se trouve à la mairie."},{"de":"die Anmeldebestätigung, -en","fr":"le certificat d'inscription","wortart":"Nomen","beispiel":"Sie braucht die **Anmeldebestätigung** für die Krankenkasse.","beispielFr":"Elle a besoin du certificat d'inscription pour la caisse d'assurance maladie."},{"de":"der Reisepass, ¨e","fr":"le passeport","wortart":"Nomen","beispiel":"Er zeigte am Schalter seinen **Reisepass**.","beispielFr":"Il a montré son passeport au guichet."},{"de":"die Aufenthaltserlaubnis, -se","fr":"le titre de séjour","wortart":"Nomen","beispiel":"Ohne gültige **Aufenthaltserlaubnis** darf sie nicht arbeiten.","beispielFr":"Sans titre de séjour valide, elle n'a pas le droit de travailler."},{"de":"die Geburtsurkunde, -n","fr":"l'acte de naissance","wortart":"Nomen","beispiel":"Für die Heirat braucht man eine **Geburtsurkunde**.","beispielFr":"Pour se marier, il faut un acte de naissance."},{"de":"das Ausweisdokument, -e","fr":"le document d'identité","wortart":"Nomen","beispiel":"Bringen Sie bitte ein gültiges **Ausweisdokument** mit.","beispielFr":"Veuillez apporter un document d'identité valide."},{"de":"der Termin, -e","fr":"le rendez-vous","wortart":"Nomen","beispiel":"Sie hat online einen **Termin** vereinbart.","beispielFr":"Elle a pris rendez-vous en ligne."},{"de":"vereinbaren (vereinbart, vereinbarte, hat vereinbart)","fr":"convenir de, fixer (un rendez-vous)","wortart":"Verb","beispiel":"Er hat einen Termin für Montag **vereinbart**.","beispielFr":"Il a fixé un rendez-vous pour lundi."},{"de":"gültig","fr":"valide","wortart":"Adjektiv","beispiel":"Ihr Personalausweis ist noch drei Jahre **gültig**.","beispielFr":"Sa carte d'identité est encore valide pendant trois ans."},{"de":"abgelaufen","fr":"expiré","wortart":"Adjektiv","beispiel":"Sein Reisepass ist leider schon **abgelaufen**.","beispielFr":"Son passeport est malheureusement déjà expiré."},{"de":"die Unterschrift, -en","fr":"la signature","wortart":"Nomen","beispiel":"Auf dem Formular fehlt noch ihre **Unterschrift**.","beispielFr":"Il manque encore sa signature sur le formulaire."},{"de":"unterschreiben (unterschreibt, unterschrieb, hat unterschrieben)","fr":"signer","wortart":"Verb","beispiel":"Sie hat das Formular am Schalter **unterschrieben**.","beispielFr":"Elle a signé le formulaire au guichet."},{"de":"die Wohnung, -en","fr":"le logement, l'appartement","wortart":"Nomen","beispiel":"Sie ist vor zwei Wochen in eine neue **Wohnung** gezogen.","beispielFr":"Elle a emménagé dans un nouveau logement il y a deux semaines."},{"de":"der Mietvertrag, ¨e","fr":"le contrat de location","wortart":"Nomen","beispiel":"Für die Anmeldung braucht man auch den **Mietvertrag**.","beispielFr":"Pour l'inscription, il faut aussi le contrat de location."},{"de":"bestätigen (bestätigt, bestätigte, hat bestätigt)","fr":"confirmer","wortart":"Verb","beispiel":"Die Sachbearbeiterin hat die Anmeldung mit einem Stempel **bestätigt**.","beispielFr":"L'employée a confirmé l'inscription avec un tampon."}],"aufgabe":{"frage":"**Schreib fünf eigene Sätze** mit fünf dieser Wörter — über deine eigene Situation in Deutschland. In mindestens drei Sätzen soll **etwas anderes als das Subjekt** auf Position 1 stehen.","hinweis":"Trennbare Verben wie **sich anmelden** oder feste Wendungen wie **einen Termin vereinbaren** brauchen am Satzende ihren zweiten Verbteil — zähl nach, bevor du absendest.","muster":"1. **Letzte Woche habe** ich meinen **Wohnsitz** bei der Meldebehörde **angemeldet**. 2. Mein **Reisepass** ist noch zwei Jahre **gültig**. 3. Für den Termin brauchte ich meinen **Mietvertrag** und meinen Ausweis. 4. Ich habe das Formular sorgfältig ausgefüllt und **unterschrieben**. 5. **Am Ende hat** die Sachbearbeiterin meine Anmeldung **bestätigt**."},"tipp":"Präg dir die Komposita als Ganzes ein: **Anmeldebestätigung**, **Aufenthaltserlaubnis**, **Ausweisdokument** — das letzte Wort bestimmt immer das Genus (die Erlaubnis → die Aufenthaltserlaubnis)."},"leben":{"wo":"Beim Bürgeramt — den Wohnsitz anmelden","titel":"Einen Termin bei der Meldebehörde wahrnehmen","fr":"Voilà à quoi sert la leçon d'aujourd'hui dans la vraie vie : chaque déménagement en Allemagne oblige à déclarer son domicile. À gauche, ce que tu dis. À droite, ce que tu vas entendre au guichet — écoute chaque phrase (🔊) et répète-la à voix haute, car aujourd'hui le focus est justement l'écoute.","situation":"Du bist vor Kurzem umgezogen und gehst zu deinem Termin bei der Meldebehörde, um deinen neuen Wohnsitz anzumelden.","warum":"Jeder, der in Deutschland umzieht, muss seinen Wohnsitz anmelden — das gilt für dich genauso wie für jede Kollegin. Ohne Anmeldebestätigung bekommst du oft keine Krankenversicherung und keinen neuen Ausweis.","dusagst":[{"de":"Guten Tag, ich habe einen Termin um … Uhr.","fr":"Bonjour, j'ai rendez-vous à … heures."},{"de":"Ich möchte meinen neuen Wohnsitz anmelden.","fr":"Je voudrais déclarer mon nouveau domicile."},{"de":"Hier ist mein Reisepass und mein Mietvertrag.","fr":"Voici mon passeport et mon contrat de location."},{"de":"Muss ich das Formular komplett ausfüllen?","fr":"Dois-je remplir le formulaire en entier ?"},{"de":"Ist mein Personalausweis noch gültig, oder muss ich einen neuen beantragen?","fr":"Ma carte d'identité est-elle encore valide, ou dois-je en demander une nouvelle ?"},{"de":"Wo muss ich hier unterschreiben?","fr":"Où dois-je signer ici ?"},{"de":"Wie lange dauert es, bis ich die Anmeldebestätigung bekomme?","fr":"Combien de temps faut-il pour recevoir le certificat d'inscription ?"}],"duhoerst":[{"de":"**Haben Sie schon einen Termin, oder brauchen Sie einen neuen?**","fr":"Avez-vous déjà un rendez-vous, ou en avez-vous besoin d'un nouveau ?"},{"de":"**Bitte füllen Sie zuerst dieses Formular aus.**","fr":"Veuillez d'abord remplir ce formulaire."},{"de":"**Haben Sie Ihren Mietvertrag und Ihren Ausweis dabei?**","fr":"Avez-vous votre contrat de location et votre pièce d'identité sur vous ?"},{"de":"**Unterschreiben Sie bitte hier unten.**","fr":"Signez ici en bas, s'il vous plaît."},{"de":"**Die Anmeldebestätigung bekommen Sie sofort ausgedruckt.**","fr":"Vous recevrez le certificat d'inscription imprimé tout de suite."},{"de":"**Ihr Ausweis ist noch gültig, Sie müssen keinen neuen beantragen.**","fr":"Votre carte d'identité est encore valide, vous n'avez pas besoin d'en demander une nouvelle."}],"rettung":["**Entschuldigung, können Sie das bitte wiederholen?** — Excusez-moi, pouvez-vous répéter ?","**Können Sie bitte etwas langsamer sprechen? Ich lerne noch Deutsch.**","**Wie schreibt man das?** — Comment ça s'écrit ?","**Einen Moment bitte, ich schreibe mit.** — Un instant, je note.","**Habe ich das richtig verstanden: Ich muss das Formular jetzt sofort ausfüllen?**"],"fallen":[{"falsch":"Ich nehme einen Termin.","richtig":"Ich vereinbare einen Termin. / Ich habe einen Termin.","warum":"Falscher Freund aus dem Französischen (*prendre un rendez-vous*). Auf Deutsch **vereinbart** man einen Termin oder **hat** ihn — man **nimmt** ihn nicht. **Baustelle 4**."},{"falsch":"Mein Wohnsitz ist abgelaufen.","richtig":"Mein Ausweis ist abgelaufen.","warum":"**abgelaufen** passt zu Dokumenten mit Gültigkeitsdatum (Ausweis, Pass), nicht zum Wohnsitz selbst."},{"falsch":"Ich habe angemeldet meinen Wohnsitz.","richtig":"Ich habe meinen Wohnsitz angemeldet.","warum":"**Baustelle 3**: Die Vorsilbe **an** bleibt bis zum Satzende, das Objekt **meinen Wohnsitz** steht davor im Mittelfeld."}],"heute":"Übe heute laut den Satz „Ich möchte meinen Wohnsitz anmelden“ und die Frage „Ist mein Ausweis noch gültig?“. Wenn du heute wirklich mit einem Amt, einer Vermieterin oder einer Behörde zu tun hast, hör bewusst hin, was man dir am Schalter sagt. Schreib danach auf, was du verstanden hast und welchen Satz du nicht sofort verstanden hast — genau das zeigt mir, woran wir als Nächstes arbeiten müssen."}},{"datum":"2026-09-11","zyklus":{"woche":1,"gesamt":21,"etappe":"B1","takt":2,"thema":"Angaben zur eigenen Person","themaNr":1,"grammatik":"Verbstellung und Satzklammer","grammatikNr":1,"themaBlock":1,"themenTag":1,"tag":"Freitag","fokus":"Leseverstehen","start":"2026-09-11","themenStart":"2026-09-11","lektion":1},"verb":{"titel":"sich vorstellen (stellt sich vor, stellte sich vor, hat sich vorgestellt)","uebersetzung":"se présenter","erklaerung":"**sich vorstellen** ist **reflexiv** und **trennbar** zugleich — zwei Baustellen in einem Verb. Reflexive Verben bilden ihr Perfekt fast immer mit **haben**, auch wenn sie wie eine Veränderung klingen: *Ich **habe** mich **vorgestellt**.* Im Hauptsatz trennt sich **vor** vom Verb und wandert ans Ende, das Reflexivpronomen **mich/dich/sich…** bleibt dagegen früh im Mittelfeld, gleich nach dem konjugierten Verb.\n\n**Wichtig für dich:** Nach *sich vorstellen* folgt oft **als** + Beruf/Rolle (*als neue Kollegin*) oder **bei** + Person/Institution. Ein häufiger Fehler: das Reflexivpronomen zu vergessen — *Ich stelle vor* ✗ heißt etwas ganz anderes (*ich präsentiere etwas*), nicht *ich stelle mich vor*.","fr":"Verbe à la fois **réfléchi** et **séparable** — deux difficultés en un seul verbe. Les verbes réfléchis forment presque toujours leur parfait avec **haben**, même sans mouvement réel : *Ich **habe** mich **vorgestellt**.* Dans la principale, **vor** se détache et part à la fin, tandis que le pronom réfléchi **mich/dich/sich…** reste tôt dans le champ du milieu, juste après le verbe conjugué. Piège fréquent : oublier le pronom réfléchi — *Ich stelle vor* ✗ signifie autre chose (*je présente quelque chose*), pas *je me présente*.","tabelle":{"head":["Person","Präsens","Präteritum","Perfekt"],"rows":[["ich","stelle mich vor","stellte mich vor","habe mich vorgestellt"],["du","stellst dich vor","stelltest dich vor","hast dich vorgestellt"],["er/sie/es","stellt sich vor","stellte sich vor","hat sich vorgestellt"],["wir","stellen uns vor","stellten uns vor","haben uns vorgestellt"],["ihr","stellt euch vor","stelltet euch vor","habt euch vorgestellt"],["Sie/sie","stellen sich vor","stellten sich vor","haben sich vorgestellt"]]},"chips":["trennbar: **stellt … vor** — die Vorsilbe geht ans Ende","reflexiv: das Pronomen ändert sich mit der Person (mich, dich, sich, uns, euch, sich)","Perfekt **immer mit haben**, auch bei einer „Veränderung“","oft mit **als** + Rolle: *sich als neue Kollegin vorstellen*","Nebensatz: *…, weil ich mich noch nicht vorgestellt habe* — Reflexivpronomen bleibt vorne, beide Verbteile ans Ende"],"beispiele":[{"de":"Lina **stellt sich** den Kolleginnen **vor**.","fr":"Lina se présente aux collègues. — Reflexivpronomen direkt nach dem Verb, **vor** am Ende."},{"de":"**Hast** du **dich** schon bei der neuen Stationsleitung **vorgestellt**?","fr":"T'es-tu déjà présenté(e) à la nouvelle responsable ? — Frage, Verb auf Position 1."},{"de":"Sie sagte, dass sie **sich** als neue Auszubildende **vorgestellt habe** — einfacher: dass sie **sich vorgestellt hat**.","fr":"Elle a dit qu'elle s'était présentée comme nouvelle apprentie. — im dass-Satz beide Verbteile ans Ende."},{"de":"Am ersten Arbeitstag **stellte** ich **mich** allen Bewohnern **vor**.","fr":"Le premier jour de travail, je me suis présenté(e) à tous les résidents. — Zeitangabe auf Position 1, Verb sofort danach."}],"tipp":"Sag laut: **„Ich stelle mich kurz vor: Ich heiße …, ich komme aus …, und ich bin …“** — genau dieser Satz öffnet fast jedes erste Gespräch, ob im Pflegeteam oder beim Amt.","test":{"frage":"Ergänze im Perfekt: „Die neue Kollegin ______ ______ heute Morgen dem Team ______.“ (sich vorstellen)","loesung":"„Die neue Kollegin **hat sich** heute Morgen dem Team **vorgestellt**.“ — Perfekt mit **haben**, das Reflexivpronomen **sich** steht früh, die Vorsilbe **vor** ganz am Ende."}},"deklination":{"titel":"Die Kette an drei Sätzen — Stufe 1: Wer bestimmt?","stufe":1,"fr":"Heute **Glied 1** der Kette: Bevor du an Fall, Genus oder Artikel denkst, frag zuerst: **Wer bestimmt den Fall überhaupt?** Eine **Präposition** gewinnt immer, wenn eine da ist — das **Verb** bestimmt nur, wenn keine Präposition im Satz steht.","saetze":[{"luecke":"Sie ging in ______ Warteraum, um auf ihren Termin zu warten. → **Wer bestimmt?**","bestimmer":"Die **Präposition in** — eine Wechselpräposition.","fall":"Frage: **Wohin** ging sie? Eine Bewegung mit Ziel → **Akkusativ**.","genus":"**der Warteraum** — ein Kompositum aus *warten* + *der Raum*. Das letzte Wort entscheidet: *der Raum* ist maskulin.","artikel":"Akkusativ + maskulin → **den**.","adjektiv":"Kein Adjektiv in diesem Satz.","loesung":"Bestimmer: **die Präposition in**. — Ganzer Satz: Sie ging in **den** Warteraum, um auf ihren Termin zu warten.","hinweis":"Merksatz für Stufe 1: **Steht eine Präposition im Satz, bestimmt IMMER sie den Fall — nie das Verb.** Das Verb *gehen* selbst verlangt keinen Fall, erst *in* entscheidet."},{"luecke":"Sie wartete seit ______ Anmeldung schon eine halbe Stunde. → **Wer bestimmt?**","bestimmer":"Die **Präposition seit**.","fall":"**seit** gehört zur festen Dativreihe *aus – bei – mit – nach – seit – von – zu* → **immer Dativ**.","genus":"**die Anmeldung** — feminin. Nomen auf **-ung** sind fast immer feminin.","artikel":"Dativ + feminin → **der**.","adjektiv":"Kein Adjektiv in diesem Satz.","loesung":"Bestimmer: **die Präposition seit**. — Ganzer Satz: Sie wartete seit **der** Anmeldung schon eine halbe Stunde.","hinweis":"**seit** steht fest in der Dativreihe — du musst nicht überlegen, du musst sie nur auswendig können."},{"luecke":"Die Sachbearbeiterin gab ______ Kollegin ______ Formular. → **Wer bestimmt?**","bestimmer":"**Keine Präposition** — das **Verb geben** entscheidet, weil es zwei Objekte verlangt.","fall":"Person (*die Kollegin*) → **Dativ**. Sache (*das Formular*) → **Akkusativ**. Reihenfolge: **Dativ vor Akkusativ**, wenn beides ein Nomen ist.","genus":"**die Kollegin** (Endung -in, feminin) und **das Formular** (Fremdwort, neutral).","artikel":"Dativ + feminin → **der**. Akkusativ + neutral → **das** (gleiche Form wie Nominativ).","adjektiv":"Kein Adjektiv in diesem Satz.","loesung":"Bestimmer: **das Verb geben**, keine Präposition. — Ganzer Satz: Die Sachbearbeiterin gab **der** Kollegin **das** Formular.","hinweis":"Ohne Präposition entscheidet das Verb — und bei zwei Objekten gilt fast immer: **Person im Dativ, Sache im Akkusativ.**"}],"tipp":"Heute zählt **nur die erste Frage**: Präposition oder Verb? Sag bei jedem Satz laut: **„Ist hier eine Präposition? Ja → sie bestimmt. Nein → das Verb bestimmt.“** Erst wenn das automatisch geht, lohnt es sich, an Fall, Genus und Artikel zu denken."},"lesen":{"titel":"Der erste Arbeitstag im neuen Pflegeheim","text":"Lina beginnt heute ihren ersten Arbeitstag in einem neuen Pflegeheim in Essen. Vor der Frühschicht muss sie zuerst ins Büro der Pflegedienstleitung gehen, weil sie noch einen Personalbogen ausfüllen muss.\n\nDie Pflegedienstleiterin, Frau Berger, begrüßt Lina freundlich und bittet sie, sich kurz vorzustellen. Lina erzählt, dass sie vor drei Jahren nach Deutschland gekommen ist und seit letztem Jahr die Ausbildung zur Pflegefachfrau macht. Sie erklärt außerdem, dass ihre Muttersprache Arabisch ist, sie aber inzwischen gut Deutsch spricht.\n\nDanach muss Lina Angaben zu ihrer Person machen. Sie trägt ihren vollständigen Namen, ihr Geburtsdatum, ihren Geburtsort und ihre Staatsangehörigkeit in den Personalbogen ein. Bei der Frage nach dem Familienstand schreibt sie „ledig“, weil sie noch nicht verheiratet ist. Frau Berger erklärt ihr, dass die Daten vertraulich behandelt werden und nur die Verwaltung Zugriff darauf hat.\n\nAm Ende stellt Frau Berger Lina den Kolleginnen im Wohnbereich vor. Alle freuen sich über die neue Kollegin, und eine erfahrene Pflegekraft bietet an, ihr am ersten Tag zu helfen. Lina fühlt sich sofort willkommen und freut sich auf ihre erste Schicht.","hilfe":["**der Personalbogen**, ¨ — la fiche du personnel","**die Pflegedienstleitung**, -en — la direction des soins","**sich vorstellen** — se présenter","**der Familienstand** (nur Singular) — l'état civil","**ledig** — célibataire","**vertraulich** — confidentiel","**der Zugriff**, -e (auf) — l'accès (à)","**der Wohnbereich**, -e — l'unité de vie (en EHPAD)","**sich freuen auf** (+ Akk.) — se réjouir de, avoir hâte de","**willkommen** — bienvenu","**die Frühschicht**, -en — l'équipe du matin","**Angaben machen zu** — donner des renseignements sur"],"fragen":[{"operator":"Nennen","frage":"**Nennen Sie** die vier Angaben, die Lina in den Personalbogen einträgt.","loesung":"Ihren vollständigen Namen, ihr Geburtsdatum, ihren Geburtsort und ihre Staatsangehörigkeit.","hinweis":"**Nennen** heißt: nur aufzählen, keine Erklärung drumherum."},{"operator":"Beschreiben","frage":"**Beschreiben Sie**, was im Büro der Pflegedienstleitung passiert.","loesung":"Frau Berger begrüßt Lina freundlich und bittet sie, sich vorzustellen. Lina erzählt kurz von ihrer Herkunft und ihrer Ausbildung. Danach füllt sie den Personalbogen aus und trägt ihre persönlichen Daten ein.","hinweis":"**Beschreiben** heißt: der Reihe nach wiedergeben, ohne zu werten."},{"operator":"Begründen","frage":"**Begründen Sie**, warum Lina beim Familienstand „ledig“ einträgt.","loesung":"Lina trägt „ledig“ ein, **weil** sie noch nicht verheiratet ist. **Deshalb** passt für sie kein anderer Familienstand wie „verheiratet“ oder „geschieden“.","hinweis":"**Begründen** verlangt sichtbare Begründungswörter: mindestens eines von **weil, da, denn, deshalb**."},{"operator":"Erklären","frage":"**Erklären Sie**, warum Frau Berger Lina sagt, dass die Daten vertraulich behandelt werden — und gib ein eigenes Beispiel aus deinem Alltag.","loesung":"Sie sagt das, **weil** persönliche Daten wie Geburtsdatum und Staatsangehörigkeit sensibel sind und nur von berechtigten Personen gesehen werden dürfen. Mein eigenes Beispiel: *Auch in meiner Ausbildung unterschreibe ich jedes Jahr eine Erklärung zum Datenschutz, bevor ich mit echten Patientendaten arbeite.*","hinweis":"**Erklären** heißt: verständlich machen **und ein eigenes Beispiel geben**."},{"operator":"Erläutern","frage":"**Erläutern Sie** am Text, woran man erkennt, dass Lina sich am Ende willkommen fühlt.","loesung":"**Das sieht man daran, dass** die Kolleginnen sich über die neue Kollegin freuen und eine erfahrene Pflegekraft ihr sofort Hilfe anbietet. **Außerdem zeigt sich das daran, dass** Lina sich laut Text „sofort willkommen“ fühlt und sich schon auf ihre erste Schicht freut.","hinweis":"**Erläutern** ist die höchste Stufe: erklären **und am Text belegen** — ein Zitat oder ein „Das sieht man daran, dass …“ muss vorkommen."}]},"diktat":{"titel":"Diktat 1 der Etappe B1 — Der erste Arbeitstag","fr":"Le texte est lu deux fois. Choisis d'abord la vitesse en haut (commence par « sehr langsam »). Écris tout, y compris la ponctuation. Ensuite compare avec l'original — chaque erreur a une cause, et je te la nomme si tu me l'envoies.","hilfe":["Pflegedienstleitung","Personalbogen","Staatsangehörigkeit","Familienstand","vertraulich","vorgestellt"],"text":"Lina hat heute ihren ersten Arbeitstag im neuen Pflegeheim begonnen. Zuerst musste sie sich der Pflegedienstleitung vorstellen. Danach hat sie einen Personalbogen ausgefüllt und Angaben zu ihrer Person gemacht. Sie hat ihren Namen, ihr Geburtsdatum und ihre Staatsangehörigkeit eingetragen. Bei ihrem Familienstand hat sie „ledig“ geschrieben. Frau Berger hat ihr erklärt, dass alle Daten vertraulich bleiben. Am Ende hat sie Lina den Kolleginnen vorgestellt.","erklaerung":"Sieben Sätze, alle mit der Regel des Tages. Achte beim Schreiben auf drei Dinge: die Zeitangabe auf Position 1 (**Zuerst musste …**, **Danach hat …**, **Am Ende hat …**) — danach kommt immer das Verb; die reflexiven und trennbaren Verben (**sich vorstellen**, **ausgefüllt**); und die Großschreibung aller Nomen, besonders der Komposita.","fallen":["**Zuerst musste sie sich vorstellen** — Zeitangabe auf Position 1, also Verb, dann Subjekt. Nicht *Zuerst sie musste sich vorstellen*.","**Personalbogen** — Kompositum, ein einziges Wort, groß geschrieben (Baustelle 5).","**Staatsangehörigkeit** — langes Kompositum, kein Leerzeichen, kein Bindestrich.","**Angaben zu ihrer Person** — Angaben steht im Plural, zu verlangt den Dativ (ihrer).","**vorgestellt** — Partizip von sich vorstellen, ganz am Satzende.","**Familienstand** — Kompositum aus Familie + Stand, ein Wort.","**dass alle Daten vertraulich bleiben** — Nebensatz mit dass, Verb bleiben ans Ende."],"audio":"audio/2026-09-11/diktat.mp3"},"uebersetzung":{"saetze":[{"fr":"Je me présente : je m'appelle William et je viens de France.","de":"Ich stelle mich vor: Ich heiße William und komme aus Frankreich.","hinweis":"**sich vorstellen**: Reflexivpronomen **mich** früh im Satz, Verb **stelle** in der linken Klammer."},{"fr":"Elle a dû donner des informations sur son état civil.","de":"Sie musste Angaben zu ihrem Familienstand machen.","hinweis":"**Angaben machen zu** + Dativ: **der Familienstand** ist maskulin, Dativ → **ihrem**."},{"fr":"Hier, je me suis présenté(e) à mon nouveau chef.","de":"Gestern habe ich mich meinem neuen Chef vorgestellt.","hinweis":"Zeitangabe **Gestern** auf Position 1 → **habe** sofort danach; **mich** früh im Mittelfeld, **vorgestellt** am Ende."},{"fr":"Depuis un an, elle fait sa formation d'aide-soignante.","de":"Seit einem Jahr macht sie ihre Ausbildung zur Pflegefachfrau.","hinweis":"**Seit einem Jahr** besetzt Position 1 komplett → **macht sie**, nicht *sie macht*."},{"fr":"Je dois encore remplir la fiche du personnel, parce que je suis nouveau/nouvelle ici.","de":"Ich muss noch den Personalbogen ausfüllen, weil ich neu hier bin.","hinweis":"**weil** leitet einen Nebensatz ein: Verb **bin** ans Ende."}]},"vokabeln":{"titel":"Angaben zur eigenen Person","thema":"Angaben zur eigenen Person","fr":"Seize mots du jour. Écoute-les (🔊), puis clique sur **Deutsch verdecken** et redis-les de mémoire. Ce que tu sais, marque-le ✓ — c'est enregistré. Les noms sont donnés **avec l'article et le pluriel** : sans le genre, aucun cas ne peut être juste (ton chantier 2).","woerter":[{"de":"die Staatsangehörigkeit, -en","fr":"la nationalité","wortart":"Nomen","beispiel":"Bei der Anmeldung fragte man nach ihrer **Staatsangehörigkeit**.","beispielFr":"Lors de l'inscription, on lui a demandé sa nationalité."},{"de":"der Familienstand (nur Singular)","fr":"l'état civil","wortart":"Nomen","beispiel":"Im Formular musste sie ihren **Familienstand** angeben.","beispielFr":"Sur le formulaire, elle devait indiquer son état civil."},{"de":"ledig","fr":"célibataire","wortart":"Adjektiv","beispiel":"Mit 25 Jahren war sie noch **ledig**.","beispielFr":"À 25 ans, elle était encore célibataire."},{"de":"verheiratet","fr":"marié(e)","wortart":"Adjektiv","beispiel":"Seit letztem Jahr ist er mit seiner Freundin **verheiratet**.","beispielFr":"Depuis l'année dernière, il est marié avec sa copine."},{"de":"geschieden","fr":"divorcé(e)","wortart":"Adjektiv","beispiel":"Sie sind seit zwei Jahren **geschieden**.","beispielFr":"Ils sont divorcés depuis deux ans."},{"de":"der Geburtsort, -e","fr":"le lieu de naissance","wortart":"Nomen","beispiel":"Ihr **Geburtsort** steht auf jedem offiziellen Dokument.","beispielFr":"Son lieu de naissance figure sur chaque document officiel."},{"de":"das Geburtsdatum, die Geburtsdaten","fr":"la date de naissance","wortart":"Nomen","beispiel":"Bitte tragen Sie hier Ihr **Geburtsdatum** ein.","beispielFr":"Veuillez inscrire ici votre date de naissance."},{"de":"der Personalbogen, ¨","fr":"la fiche du personnel","wortart":"Nomen","beispiel":"Am ersten Arbeitstag musste sie einen **Personalbogen** ausfüllen.","beispielFr":"Le premier jour de travail, elle a dû remplir une fiche du personnel."},{"de":"die Pflegedienstleitung, -en","fr":"la direction des soins","wortart":"Nomen","beispiel":"Sie stellte sich zuerst der **Pflegedienstleitung** vor.","beispielFr":"Elle s'est d'abord présentée à la direction des soins."},{"de":"sich vorstellen (stellt sich vor, stellte sich vor, hat sich vorgestellt)","fr":"se présenter","wortart":"Verb","beispiel":"Er **hat sich** dem neuen Team **vorgestellt**.","beispielFr":"Il s'est présenté à la nouvelle équipe. — Perfekt mit haben."},{"de":"Angaben machen zu (+ Dativ)","fr":"donner des renseignements sur","wortart":"Ausdruck","beispiel":"Sie musste **Angaben** **zu** ihrer Ausbildung **machen**.","beispielFr":"Elle a dû donner des informations sur sa formation."},{"de":"vertraulich","fr":"confidentiel","wortart":"Adjektiv","beispiel":"Die persönlichen Daten werden **vertraulich** behandelt.","beispielFr":"Les données personnelles sont traitées de manière confidentielle."},{"de":"der Wohnort, -e","fr":"le lieu de résidence","wortart":"Nomen","beispiel":"Seit dem Umzug hat sie einen neuen **Wohnort**.","beispielFr":"Depuis le déménagement, elle a un nouveau lieu de résidence."},{"de":"der Personalausweis, -e","fr":"la carte d'identité","wortart":"Nomen","beispiel":"Ohne **Personalausweis** kommt man nicht durch die Kontrolle.","beispielFr":"Sans carte d'identité, on ne passe pas le contrôle."},{"de":"die Muttersprache, -n","fr":"la langue maternelle","wortart":"Nomen","beispiel":"Ihre **Muttersprache** ist Arabisch, aber sie spricht auch Deutsch.","beispielFr":"Sa langue maternelle est l'arabe, mais elle parle aussi allemand."},{"de":"der Beruf, -e","fr":"le métier","wortart":"Nomen","beispiel":"Sie lernt gerade den **Beruf** der Pflegefachfrau.","beispielFr":"Elle est en train d'apprendre le métier d'infirmière."}],"aufgabe":{"frage":"**Schreib fünf eigene Sätze** mit fünf dieser Wörter — über dich. In mindestens drei Sätzen soll **etwas anderes als das Subjekt** auf Position 1 stehen.","hinweis":"Zwei Fallen: **sich vorstellen** bildet das Perfekt mit **haben**, nicht mit *sein* — obwohl es sich wie eine Veränderung anfühlt. Und alle Nomen brauchen ihren Artikel — ohne Genus kein richtiger Kasus.","muster":"1. **Letzten Monat habe** ich **mich** meiner neuen Klasse **vorgestellt**. 2. Meine **Muttersprache** ist Französisch. 3. **Seit meiner Anmeldung habe** ich einen deutschen **Wohnort**. 4. Ich **bin ledig**. 5. **Am ersten Tag musste** ich **Angaben zu** meiner Ausbildung **machen**."},"tipp":"Merk dir die Nomen nie ohne Artikel. **die Staatsangehörigkeit** (Wörter auf **-keit** sind feminin), **der Geburtsort**, **das Geburtsdatum**, **die Pflegedienstleitung**. Ohne das Genus kommst du in der Kette nicht über Glied 3 hinaus — und dann ist auch der Fall falsch."},"leben":{"wo":"Der erste Tag im Pflegeteam — sich vorstellen","titel":"Sich im neuen Team vorstellen — am ersten Arbeitstag, auf Deutsch","fr":"Voilà à quoi sert la leçon d'aujourd'hui **dans la vraie vie** : se présenter à un nouveau chef ou une nouvelle équipe, ce que tu vas devoir faire à chaque nouveau stage ou poste. À gauche, ce que **tu** dis. À droite, ce que **tu vas entendre** — c'est ça le plus dur. Écoute chaque phrase (🔊) et répète-la à voix haute avant d'y aller.","situation":"Du beginnst heute deinen ersten Tag in einem neuen Pflegeteam und stellst dich der Stationsleitung und den Kolleginnen vor.","warum":"Sich kurz und klar vorzustellen ist eine der ersten Situationen, die du in jeder neuen Ausbildungsstelle, jedem Praktikum und jedem neuen Job auf Deutsch meisterst. Wer die Sätze zu Name, Herkunft, Ausbildung und Erfahrung sicher beherrscht, wirkt sofort professioneller.","dusagst":[{"de":"Guten Tag, ich bin die/der Neue hier.","fr":"Bonjour, je suis le/la nouveau/nouvelle ici."},{"de":"Darf ich mich kurz **vorstellen**?","fr":"Puis-je me présenter brièvement ?"},{"de":"Ich heiße …, ich komme aus … und bin seit … Jahren in Deutschland.","fr":"Je m'appelle …, je viens de … et je suis en Allemagne depuis … ans."},{"de":"Ich mache die Ausbildung zur/zum **Pflegefachfrau/-mann** im zweiten Lehrjahr.","fr":"Je fais la formation d'infirmier(ère) en deuxième année."},{"de":"Ich kann Ihnen gerne **Angaben zu** meiner bisherigen Erfahrung **machen**.","fr":"Je peux volontiers vous donner des informations sur mon expérience précédente."},{"de":"Muss ich noch einen **Personalbogen** ausfüllen?","fr":"Dois-je encore remplir une fiche du personnel ?"},{"de":"Vielen Dank für den freundlichen Empfang.","fr":"Merci beaucoup pour cet accueil chaleureux."}],"duhoerst":[{"de":"**Herzlich willkommen im Team!**","fr":"Bienvenue dans l'équipe ! — réponds simplement : Vielen Dank!"},{"de":"**Erzählen Sie uns doch kurz etwas über sich.**","fr":"Racontez-nous donc brièvement quelque chose sur vous."},{"de":"**Woher kommen Sie, und wie lange sind Sie schon in Deutschland?**","fr":"D'où venez-vous, et depuis combien de temps êtes-vous en Allemagne ?"},{"de":"**Haben Sie schon Erfahrung in der Pflege?**","fr":"Avez-vous déjà de l'expérience dans les soins ?"},{"de":"**Bitte füllen Sie noch diesen Personalbogen aus.**","fr":"Veuillez encore remplir cette fiche du personnel."},{"de":"**Wenn Sie Fragen haben, kommen Sie einfach zu mir.**","fr":"Si vous avez des questions, venez simplement me voir."}],"rettung":["**Entschuldigung, können Sie das bitte wiederholen?** — Excusez-moi, pouvez-vous répéter ?","**Können Sie bitte etwas langsamer sprechen? Ich lerne noch Deutsch.**","**Wie schreibt man das?** — Comment ça s'écrit ?","**Einen Moment bitte, ich schreibe mit.** — Un instant, je note.","**Habe ich das richtig verstanden: Ich soll morgen um acht Uhr da sein?**"],"fallen":[{"falsch":"Ich stelle vor mich dem Team.","richtig":"Ich stelle mich dem Team vor.","warum":"Das Reflexivpronomen **mich** steht direkt nach dem konjugierten Verb, die trennbare Vorsilbe **vor** wandert ans Ende. **Baustelle 3**."},{"falsch":"Ich bin arbeitend seit zwei Jahren hier.","richtig":"Ich arbeite seit zwei Jahren hier.","warum":"Im Deutschen gibt es keine Verlaufsform wie im Französischen (*je suis en train de*). Präsens reicht: **arbeite**. Falscher Freund einer wörtlichen Übersetzung."},{"falsch":"Mein Familienstand ist single.","richtig":"Ich bin ledig.","warum":"*single* ist ein englisches Wort, das umgangssprachlich vorkommt, aber auf einem Formular oder bei einer Behörde heißt es **ledig**."}],"heute":"**Übe heute laut**, dich in drei bis vier Sätzen vorzustellen: Name, Herkunft, Ausbildung/Beruf. Wenn du heute wirklich eine neue Person triffst — eine Kollegin, eine Nachbarin, jemanden beim Amt — benutz genau diese Sätze. Schreib danach auf, **was dir leichtgefallen ist** und **welches Wort du nicht sofort gefunden hast** — genau das zeigt mir, woran wir als Nächstes arbeiten müssen."}}]};
+
+/* ---------- Rechnen: dieselbe Formel wie App, Web und CLAUDE.md ---------- */
+const START = DATEN.start || '2026-09-11';
+const tagVon = s => { const t = s.split('-'); return new Date(+t[0], +t[1]-1, +t[2]); };
+const isoVon = d => d.getFullYear() + '-' +
+  String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+const HEUTE = isoVon(new Date());
+const diff = (a,b) => Math.round((tagVon(b) - tagVon(a)) / 86400000);
+const WOTAG = ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'];
+const kurz = s => { const d = tagVon(s);
+  return String(d.getDate()).padStart(2,'0')+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'; };
+const lang = s => { const d = tagVon(s); return WOTAG[d.getDay()]+', '+kurz(s)+d.getFullYear(); };
+
+/* Tage bauen: jeder Tag ohne Lektionsdatei wird Übungstag mit der Lektion davor. */
+function baueTage(){
+  const L = DATEN.lektionen;
+  if(!L.length) return [];
+  const nach = {}; L.forEach(l => nach[l.datum] = l);
+  const erste = tagVon(L[L.length-1].datum);
+  let ende = tagVon(L[0].datum);
+  const h = tagVon(HEUTE); if(h > ende) ende = h;
+  const raus = []; let letzte = null;
+  for(let x = new Date(erste); x <= ende; x.setDate(x.getDate()+1)){
+    const iso = isoVon(x), l = nach[iso];
+    if(l){ letzte = l; raus.push({datum:iso, l, ue:false}); }
+    else if(letzte){ raus.push({datum:iso, l:letzte, ue:true}); }
+  }
+  return raus.reverse();
+}
+const TAGE = baueTage();
+let WAHL = 0;
+
+/* ---------- Kleine Helfer ---------- */
+const esc = s => String(s == null ? '' : s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const fett = s => esc(s).replace(/\*\*(.+?)\*\*/g, '<b>$1</b>');
+const ohne = s => String(s||'').replace(/\*\*/g,'');
+const $ = s => document.querySelector(s);
+
+/* Gespeichertes — mit try/catch, weil es im privaten Fenster fehlen darf. */
+const merk = {
+  lies(k, f){ try{ const v = localStorage.getItem('dtv·'+k); return v === null ? f : v; }
+              catch(e){ return f; } },
+  schreib(k, v){ try{ localStorage.setItem('dtv·'+k, v); }catch(e){} },
+  weg(k){ try{ localStorage.removeItem('dtv·'+k); }catch(e){} }
+};
+const kurzKey = s => String(s).replace(/[^a-zA-ZäöüÄÖÜß0-9]/g,'').slice(0,40);
+const kann = w => merk.lies('v·'+kurzKey(w), '') === '1';
+const kannSetz = (w, an) => an ? merk.schreib('v·'+kurzKey(w),'1') : merk.weg('v·'+kurzKey(w));
+
+/* ---------- Vorlesen ---------- */
+let stimme = null;
+function stimmeSuchen(){
+  const alle = speechSynthesis.getVoices();
+  stimme = alle.find(v => v.lang && v.lang.toLowerCase().startsWith('de')) || null;
+}
+if('speechSynthesis' in window){
+  stimmeSuchen();
+  speechSynthesis.onvoiceschanged = stimmeSuchen;
+}
+function sprich(text, tempo, fertig){
+  if(!('speechSynthesis' in window)){ if(fertig) fertig(); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(ohne(text));
+  u.lang = 'de-DE'; u.rate = tempo || 0.95;
+  if(stimme) u.voice = stimme;
+  if(fertig) u.onend = fertig;
+  if(fertig) u.onerror = fertig;
+  speechSynthesis.speak(u);
+}
+function hoerKnopf(text, farbe){
+  return '<button class="hoer" style="--f:var(--'+farbe+')" '+
+    'data-sprich="'+esc(text)+'" title="Vorlesen" type="button">🔊</button>';
+}
+
+/* ---------- Kopf ---------- */
+function zeichneKopf(){
+  const z = (DATEN.lektionen[0] || {}).zyklus || {};
+  const t = diff(START, HEUTE);
+  const ges = DATEN.lektionenGesamt || 56, themen = DATEN.themenGesamt || 21;
+  const lektion = Math.max(0, Math.min(ges, z.lektion || (t >= 0 ? Math.floor(t/2)+1 : 0)));
+  const wdh = t > 82;
+  const block = Math.max(0, Math.min(themen, z.themaBlock || (t >= 0 ? Math.floor(t/4)+1 : 0)));
+
+  $('#ringN').textContent = lektion || '—';
+  $('#ringV').textContent = 'von ' + ges;
+  const U = 2 * Math.PI * 43;
+  const fl = $('#ringF');
+  fl.setAttribute('stroke-dasharray', U.toFixed(2));
+  fl.setAttribute('stroke-dashoffset', U.toFixed(2));
+  requestAnimationFrame(() => fl.setAttribute('stroke-dashoffset',
+    (U * (1 - lektion/ges)).toFixed(2)));
+
+  let b = '';
+  for(let i = 1; i <= themen; i++){
+    const k = wdh ? 'fertig' : (i < block ? 'fertig' : (i === block ? 'jetzt' : ''));
+    b += '<i class="'+k+'" style="animation-delay:'+(i*22)+'ms"></i>';
+  }
+  $('#band').innerHTML = b;
+  $('#bandJ').innerHTML = wdh ? '<b>Dezember</b>'
+    : (block ? 'Thema <b>'+block+' von '+themen+'</b>' : '');
+
+  let woerter = 0;
+  DATEN.lektionen.forEach(l => {
+    woerter += ((l.vokabeln || {}).woerter || []).length;
+  });
+  const rest = Math.max(0, diff(HEUTE, DATEN.etappeEnde || '2026-12-31'));
+  $('#zahlen').innerHTML =
+     '<div><div class="z" data-zaehl="'+DATEN.lektionen.length+'">0</div><div class="b">Lektionen</div></div>'
+    +'<div><div class="z" data-zaehl="'+woerter+'">0</div><div class="b">Vokabeln</div></div>'
+    +'<div><div class="z" data-zaehl="'+rest+'">0</div><div class="b">Tage bis 31.12.</div></div>';
+  zaehlHoch();
+
+  const dabei = Math.max(1, diff(START, HEUTE) + 1);
+  $('#straehne').innerHTML = (dabei >= 6 ? '🔥' : '📚') + ' ' + dabei + ' Tage dabei';
+}
+
+function zaehlHoch(){
+  document.querySelectorAll('[data-zaehl]').forEach(el => {
+    const ziel = +el.dataset.zaehl, start = performance.now(), dauer = 900;
+    function schritt(jetzt){
+      const p = Math.min(1, (jetzt - start) / dauer);
+      el.textContent = Math.round(ziel * (1 - Math.pow(1-p, 3)));
+      if(p < 1) requestAnimationFrame(schritt);
+    }
+    requestAnimationFrame(schritt);
+  });
+}
+
+/* ---------- Tagesleiste ---------- */
+function zeichneTage(){
+  $('#tage').innerHTML = TAGE.map((t,i) =>
+    '<button type="button" data-tag="'+i+'" class="'+(t.ue?'ue ':'')+(i===WAHL?'an':'')+'">'+
+    (t.ue ? '✎ ' : '') +
+    (t.datum === HEUTE ? 'Heute · ' : '') + kurz(t.datum) + '</button>').join('');
+}
+
+/* ---------- Blöcke ---------- */
+function blockAuf(farbe, etikett, titel, sub, inhalt){
+  return '<div class="block" style="--f:var(--'+farbe+')">'+
+    '<span class="kind">'+esc(etikett)+'</span>'+
+    (titel ? '<p class="btitel">'+fett(titel)+'</p>' : '')+
+    (sub ? '<p class="bsub">'+esc(sub)+'</p>' : '')+
+    inhalt + '</div>';
+}
+
+function verbBlock(v){
+  let h = hoerKnopf(v.titel, 'verb');
+  h += '<p class="btext">'+fett((v.erklaerung||'').split('\n\n')[0])+'</p>';
+  (v.beispiele||[]).slice(0,3).forEach(b => {
+    h += '<div class="satz">'+hoerKnopf(b.de,'verb')+
+      '<div class="t">'+fett(b.de)+'<i>'+esc(b.fr)+'</i></div></div>';
+  });
+  return blockAuf('verb','Verb des Tages', v.titel, v.uebersetzung, h);
+}
+
+function vokabelBlock(v, datum){
+  const w = v.woerter || [];
+  const gekannt = w.filter(x => kann(x.de)).length;
+  let h = '<p class="bfr">🇫🇷 '+esc(v.fr||'')+'</p>';
+  h += '<div class="schalter">'+
+    '<button type="button" data-sicht="alles" class="an">Alles</button>'+
+    '<button type="button" data-sicht="ohneDe">DE verdecken</button>'+
+    '<button type="button" data-sicht="ohneFr">FR verdecken</button>'+
+    '<span class="zaehl" id="vzaehl">'+gekannt+' von '+w.length+'</span></div>';
+  w.forEach((x,i) => {
+    h += '<div class="vok'+(kann(x.de)?' kann':'')+'" data-vok="'+i+'">'+
+      '<div class="zeile"><div class="de">'+
+        '<span class="wDe">'+fett(x.de)+'</span>'+
+        (x.wortart ? ' <span class="kind" style="--f:var(--voc)">'+esc(x.wortart)+'</span>' : '')+
+        '<div class="fr"><span class="wFr">'+esc(x.fr)+'</span></div>'+
+      '</div>'+ hoerKnopf(x.de,'voc') +'</div>'+
+      (x.beispiel ? '<div class="bsp">'+fett(x.beispiel)+'</div>' : '')+
+      '<button class="haken" type="button" data-haken="'+esc(x.de)+'">'+
+        (kann(x.de) ? '✓ gewusst' : '○ als gewusst markieren')+'</button>'+
+    '</div>';
+  });
+  return blockAuf('voc','Vokabeln des Tages', v.titel, v.thema, h);
+}
+
+function lebenBlock(l){
+  let h = '<p class="btext">'+fett(l.situation||'')+'</p>';
+  h += '<p class="uteil">Das sagst du</p>';
+  (l.dusagst||[]).slice(0,4).forEach(s => {
+    h += '<div class="satz">'+hoerKnopf(s.de,'leben')+
+      '<div class="t">'+fett(s.de)+'<i>'+esc(s.fr)+'</i></div></div>';
+  });
+  h += '<p class="uteil">Das wirst du hören</p>';
+  (l.duhoerst||[]).slice(0,3).forEach(s => {
+    h += '<div class="satz">'+hoerKnopf(s.de,'leben')+
+      '<div class="t">'+fett(s.de)+'<i>'+esc(s.fr)+'</i></div></div>';
+  });
+  if((l.rettung||[]).length){
+    h += '<p class="uteil">🛟 Wenn du nicht weiterweißt</p>';
+    l.rettung.slice(0,3).forEach(s => {
+      h += '<div class="satz">'+hoerKnopf(s,'leben')+'<div class="t">'+fett(s)+'</div></div>';
+    });
+  }
+  return blockAuf('leben','Im Leben · '+(l.wo||''), l.titel, '', h);
+}
+
+function deklBlock(d, datum){
+  let h = '<p class="bfr">🇫🇷 '+esc(d.fr||'')+'</p>';
+  (d.saetze||[]).forEach((s,i) => {
+    h += '<div class="aufg">'+
+      '<span class="nr">Satz '+(i+1)+'</span>'+
+      '<p class="q">'+fett(s.luecke)+'</p>'+
+      feld(datum,'dekl'+i,'Ganzer Satz …',1)+
+      loes(s.loesung, s.hinweis)+
+    '</div>';
+  });
+  return blockAuf('dekl','Die Kette'+(d.stufe?' · Stufe '+d.stufe:''), d.titel, '', h);
+}
+
+function lesenBlock(l, ue, datum){
+  const anzahl = (l.text||'').trim().split(/\s+/).length;
+  let h = '';
+  if(ue){
+    h += '<button class="loesknopf" style="color:var(--lesen)" type="button" '+
+         'data-klapp="lesetext">+ Text aufklappen — erst, wenn du nicht weiterkommst</button>';
+    h += '<div class="loes" id="lesetext" style="border-left-color:var(--lesen);'+
+         'background:color-mix(in srgb,var(--lesen) 9%,transparent)">'+
+         (l.text||'').split(/\n\s*\n/).map(p => '<p>'+fett(p)+'</p>').join('')+'</div>';
+  } else {
+    h += '<div class="lesekasten">'+
+      (l.text||'').split(/\n\s*\n/).map(p => '<p>'+fett(p)+'</p>').join('')+
+      '<button class="knopf" style="--f:var(--lesen);margin-top:4px" type="button" '+
+      'data-sprich="'+esc(l.text)+'">▶ Vorlesen</button></div>';
+  }
+  (l.fragen||[]).slice(0,2).forEach((q,i) => {
+    h += '<div class="aufg">'+
+      (q.operator ? '<span class="nr">'+esc(q.operator)+'</span>' : '')+
+      '<p class="q">'+fett(q.frage)+'</p>'+
+      feld(datum,'lf'+i,'Deine Antwort …',3)+
+      loes(q.loesung, q.hinweis)+'</div>';
+  });
+  return blockAuf('lesen','Lesen · '+anzahl+' Wörter', l.titel, '', h);
+}
+
+function diktatBlock(d, datum){
+  let h = '<p class="bfr">🇫🇷 '+esc(d.fr||'')+'</p>'+
+    '<div class="tempo"><span>Tempo</span>'+
+    '<input type="range" id="dkTempo" min="0.5" max="1.2" step="0.1" value="0.85">'+
+    '<span id="dkTempoT">normal</span></div>'+
+    '<div style="display:flex;gap:7px;flex-wrap:wrap">'+
+    '<button class="knopf" id="dkStart" type="button" style="--f:var(--diktat)">🎧 Diktat starten</button>'+
+    '<button class="knopf geist" id="dkStopp" type="button" style="--f:var(--diktat)" disabled>■ Anhalten</button>'+
+    '</div><p class="stand" id="dkStand" style="--f:var(--diktat)"></p>'+
+    '<textarea class="feld" id="dkFeld" rows="5" style="--f:var(--diktat)" '+
+      'placeholder="Schreib mit, was du hörst …"></textarea>'+
+    '<button class="knopf" id="dkPruef" type="button" style="--f:var(--gut);margin-top:8px">'+
+      '✓ Vergleichen</button>'+
+    '<div class="erg" id="dkErg"></div>';
+  return blockAuf('diktat','Diktat', d.titel, '', h);
+}
+
+function uebersBlock(u, datum){
+  let h = '';
+  (u.saetze||[]).slice(0,3).forEach((s,i) => {
+    h += '<div class="aufg">'+
+      '<p class="q">🇫🇷 <b>'+esc(s.fr)+'</b></p>'+
+      feld(datum,'ub'+i,'Auf Deutsch …',1)+
+      loes(s.de, s.hinweis)+'</div>';
+  });
+  return blockAuf('ue','Übersetzen · FR → DE', '', '', h);
+}
+
+function feld(datum, name, platz, zeilen){
+  const wert = merk.lies('a·'+datum+'·'+name, '');
+  return '<textarea class="feld" rows="'+zeilen+'" placeholder="'+esc(platz)+'" '+
+    'data-feld="'+datum+'·'+name+'">'+esc(wert)+'</textarea>';
+}
+let loesNr = 0;
+function loes(text, hinweis){
+  if(!text && !hinweis) return '';
+  const id = 'l'+(loesNr++);
+  return '<button class="loesknopf" type="button" data-klapp="'+id+'">+ Lösung zeigen</button>'+
+    '<div class="loes" id="'+id+'"><b>'+fett(text||'')+'</b>'+
+    (hinweis ? '<span class="hw">'+fett(hinweis)+'</span>' : '')+'</div>';
+}
+
+/* ---------- Einen Tag zeichnen ---------- */
+function zeichneTag(){
+  const t = TAGE[WAHL]; if(!t) return;
+  const l = t.l, z = l.zyklus || {};
+  let h = '<p class="tagtitel">'+esc(lang(t.datum))+'</p>'+
+    '<p class="tagsub">'+(t.ue
+      ? 'Übungstag · nur Übungen zur Lektion vom '+kurz(l.datum)
+      : 'Lektion '+(z.lektion||'')+' · '+(z.fokus||''))+'</p>';
+
+  const marken = [];
+  if(t.ue) marken.push(['Übungstag','ue']);
+  if(z.etappe) marken.push(['Etappe '+z.etappe,'gut']);
+  if(z.themenTag) marken.push(['Thema-Tag '+z.themenTag+' von 2 · '+
+    (z.themenTag===1?'entdecken':'anwenden'),'leben']);
+  h += '<div class="marken">'+marken.map(m =>
+    '<span class="marke2" style="color:var(--'+m[1]+');border-color:var(--'+m[1]+');'+
+    'background:color-mix(in srgb,var(--'+m[1]+') 12%,transparent)">'+esc(m[0])+'</span>').join('')+'</div>';
+
+  if(t.ue){
+    h += '<div class="uekasten"><h4>Heute gibt es keine neue Lektion</h4>'+
+      '<p>Was hier steht, sind <b>nur die Aufgaben</b> zur Lektion vom '+kurz(l.datum)+
+      ' — ohne den Lernstoff.</p>'+
+      '<p class="fr2">🇫🇷 Rien de nouveau aujourd’hui, <b>que des exercices</b>. '+
+      'Tes réponses d’aujourd’hui sont enregistrées à part.</p></div>';
+  }
+
+  if(l.vokabeln){
+    const w = l.vokabeln.woerter || [];
+    const g = w.filter(x => kann(x.de)).length;
+    const voll = w.length > 0 && g >= w.length;
+    h += '<div class="vbalken'+(voll?' voll':'')+'" id="vbalken">'+
+      '<div class="t">'+(voll ? 'Alle Vokabeln sitzen 🎉' : 'Vokabeln: '+g+' von '+w.length)+'</div>'+
+      '<div class="s"><i style="width:'+(w.length?Math.round(g/w.length*100):0)+'%"></i></div></div>';
+  }
+
+  if(!t.ue && l.verb) h += verbBlock(l.verb);
+  if(l.vokabeln) h += vokabelBlock(l.vokabeln, t.datum);
+  if(l.deklination) h += deklBlock(l.deklination, t.datum);
+  if(l.lesen) h += lesenBlock(l.lesen, t.ue, t.datum);
+  if(l.leben) h += lebenBlock(l.leben);
+  if(l.diktat) h += diktatBlock(l.diktat, t.datum);
+  if(l.uebersetzung) h += uebersBlock(l.uebersetzung, t.datum);
+
+  h += '<p style="text-align:center;font-size:11.5px;color:var(--weich);'+
+    'margin:20px 0 0;line-height:1.5">Schick mir deine Antworten —<br>'+
+    'sie werden korrigiert, nicht nur gelobt.</p>';
+
+  const box = $('#inhalt');
+  box.innerHTML = h;
+  box.scrollTop = 0;
+  loesNr = 0;
+}
+
+/* ---------- Diktat ---------- */
+let dkLaeuft = false, dkAbbruch = false;
+function diktatStart(){
+  const l = TAGE[WAHL].l; if(!l.diktat) return;
+  const saetze = (l.diktat.text||'').split(/(?<=[.!?])\s+/).filter(s => s.trim());
+  const tempo = +$('#dkTempo').value;
+  dkLaeuft = true; dkAbbruch = false;
+  $('#dkStart').disabled = true; $('#dkStopp').disabled = false;
+  let d = 1, i = 0;
+  function weiter(){
+    if(dkAbbruch || !document.getElementById('dkStand')){ ende(); return; }
+    if(i >= saetze.length){ i = 0; d++; if(d > 2){ ende(true); return; } }
+    $('#dkStand').textContent = 'Durchgang '+d+' von 2 · Satz '+(i+1)+' von '+saetze.length;
+    sprich(saetze[i], tempo, () => { i++; setTimeout(weiter, 700); });
+  }
+  function ende(fertig){
+    dkLaeuft = false;
+    const s = document.getElementById('dkStand');
+    if(s) s.textContent = fertig ? 'Fertig — jetzt vergleichen.' : '';
+    const a = document.getElementById('dkStart'), b = document.getElementById('dkStopp');
+    if(a) a.disabled = false; if(b) b.disabled = true;
+  }
+  weiter();
+}
+function diktatPruefen(){
+  const l = TAGE[WAHL].l;
+  const soll = ohne(l.diktat.text||'').split(/\s+/).filter(Boolean);
+  const ist = ($('#dkFeld').value||'').split(/\s+/).filter(Boolean);
+  const norm = s => s.toLowerCase().replace(/[^a-zäöüß0-9]/g,'');
+  const n = soll.length, m = ist.length;
+  const tab = Array.from({length:n+1}, () => new Int32Array(m+1));
+  for(let i = n-1; i >= 0; i--) for(let j = m-1; j >= 0; j--)
+    tab[i][j] = (norm(soll[i]) === norm(ist[j]) && norm(soll[i]))
+      ? tab[i+1][j+1]+1 : Math.max(tab[i+1][j], tab[i][j+1]);
+  let h = '', i = 0, j = 0, treffer = 0, gesamt = 0;
+  while(i < n && j < m){
+    if(norm(soll[i]) === norm(ist[j]) && norm(soll[i])){
+      h += esc(soll[i])+' '; treffer++; gesamt++; i++; j++;
+    } else if(tab[i+1][j] >= tab[i][j+1]){
+      h += '<span class="w-fehlt">'+esc(soll[i])+'</span> '; gesamt++; i++;
+    } else { h += '<span class="w-zuviel">'+esc(ist[j])+'</span> '; j++; }
+  }
+  while(i < n){ h += '<span class="w-fehlt">'+esc(soll[i++])+'</span> '; gesamt++; }
+  while(j < m){ h += '<span class="w-zuviel">'+esc(ist[j++])+'</span> '; }
+  const pct = gesamt ? Math.round(treffer*100/gesamt) : 0;
+  const box = $('#dkErg');
+  box.innerHTML = '<div class="pct">'+pct+' % richtig</div>'+
+    '<div class="note">'+treffer+' von '+gesamt+' Wörtern getroffen</div>'+
+    '<div class="woerter">'+h+'</div>'+
+    '<div class="legende"><span><span class="w-fehlt">Wort</span> fehlt</span>'+
+    '<span><span class="w-zuviel">Wort</span> zu viel</span></div>';
+  box.classList.add('offen');
+}
+
+/* ---------- Konfetti auf dem Canvas ---------- */
+const cv = $('#konfetti'), ctx = cv.getContext('2d');
+let teile = [], konfettiLaeuft = false;
+function passeCanvas(){
+  const r = cv.getBoundingClientRect(), dpr = window.devicePixelRatio || 1;
+  cv.width = r.width * dpr; cv.height = r.height * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+addEventListener('resize', passeCanvas);
+function konfetti(){
+  passeCanvas();
+  const farben = ['#1f5f8b','#b5731a','#2f7d54','#6b4fa8','#a83b5c','#0f6f6b'];
+  const r = cv.getBoundingClientRect();
+  teile = Array.from({length:52}, () => {
+    const w = -Math.PI/2 + (Math.random()-.5)*1.7, k = .5 + Math.random()*.8;
+    return { x: r.width/2, y: r.height*.38,
+      vx: Math.cos(w)*k*4.6, vy: Math.sin(w)*k*4.6,
+      dr: (Math.random()-.5)*.34, w: 4+Math.random()*5, h: 7+Math.random()*6,
+      f: farben[(Math.random()*farben.length)|0], a: Math.random()*6.3, leben: 1 };
+  });
+  if(!konfettiLaeuft){ konfettiLaeuft = true; requestAnimationFrame(male); }
+}
+function male(){
+  const r = cv.getBoundingClientRect();
+  ctx.clearRect(0, 0, r.width, r.height);
+  let lebt = false;
+  teile.forEach(p => {
+    if(p.leben <= 0) return;
+    lebt = true;
+    p.x += p.vx; p.y += p.vy; p.vy += .26; p.vx *= .992;
+    p.a += p.dr; p.leben -= .0095;
+    ctx.save(); ctx.globalAlpha = Math.max(0, Math.min(1, p.leben));
+    ctx.translate(p.x, p.y); ctx.rotate(p.a);
+    ctx.fillStyle = p.f; ctx.fillRect(-p.w/2, -p.h/2, p.w, p.h);
+    ctx.restore();
+  });
+  if(lebt) requestAnimationFrame(male);
+  else { konfettiLaeuft = false; ctx.clearRect(0, 0, r.width, r.height); }
+}
+
+/* ---------- Ein Klick-Empfänger für alles ---------- */
+document.addEventListener('click', e => {
+  const t = e.target.closest('[data-tag],[data-haken],[data-klapp],[data-sprich],[data-sicht],#dkStart,#dkStopp,#dkPruef,#themaKnopf');
+  if(!t) return;
+
+  if(t.dataset.tag !== undefined){
+    speechSynthesis.cancel(); dkAbbruch = true;
+    WAHL = +t.dataset.tag; zeichneTage(); zeichneTag(); return;
+  }
+
+  if(t.dataset.sprich !== undefined){
+    document.querySelectorAll('.hoer.laeuft').forEach(x => x.classList.remove('laeuft'));
+    t.classList.add('laeuft');
+    sprich(t.dataset.sprich, +($('#dkTempo')||{value:.95}).value || .95,
+           () => t.classList.remove('laeuft'));
+    return;
+  }
+
+  if(t.dataset.haken !== undefined){
+    const wort = t.dataset.haken, neu = !kann(wort);
+    kannSetz(wort, neu);
+    const box = t.closest('.vok');
+    box.classList.toggle('kann', neu);
+    t.textContent = neu ? '✓ gewusst' : '○ als gewusst markieren';
+    const l = TAGE[WAHL].l, w = (l.vokabeln||{}).woerter || [];
+    const g = w.filter(x => kann(x.de)).length;
+    const z = $('#vzaehl'); if(z) z.textContent = g+' von '+w.length;
+    const bal = $('#vbalken');
+    if(bal){
+      const voll = w.length > 0 && g >= w.length;
+      bal.classList.toggle('voll', voll);
+      bal.querySelector('.t').textContent = voll
+        ? 'Alle Vokabeln sitzen 🎉' : 'Vokabeln: '+g+' von '+w.length;
+      bal.querySelector('.s i').style.width = (w.length ? g/w.length*100 : 0)+'%';
+      if(voll && neu) konfetti();
+    }
+    return;
+  }
+
+  if(t.dataset.klapp !== undefined){
+    const ziel = document.getElementById(t.dataset.klapp);
+    if(!ziel) return;
+    const offen = ziel.classList.toggle('offen');
+    t.textContent = t.textContent.replace(/^[+−-]/, offen ? '−' : '+');
+    return;
+  }
+
+  if(t.dataset.sicht !== undefined){
+    document.querySelectorAll('[data-sicht]').forEach(b => b.classList.remove('an'));
+    t.classList.add('an');
+    const s = t.dataset.sicht;
+    document.querySelectorAll('.vok').forEach(v => {
+      const de = v.querySelector('.wDe'), fr = v.querySelector('.wFr'),
+            bsp = v.querySelector('.bsp');
+      de.classList.toggle('verdeckt', s === 'ohneDe');
+      fr.classList.toggle('verdeckt', s === 'ohneFr');
+      if(bsp) bsp.style.display = s === 'ohneDe' ? 'none' : '';
+    });
+    return;
+  }
+
+  if(t.id === 'dkStart'){ diktatStart(); return; }
+  if(t.id === 'dkStopp'){ dkAbbruch = true; speechSynthesis.cancel();
+    $('#dkStart').disabled = false; t.disabled = true; $('#dkStand').textContent = ''; return; }
+  if(t.id === 'dkPruef'){ diktatPruefen(); return; }
+  if(t.id === 'themaKnopf'){
+    const jetzt = document.documentElement.getAttribute('data-theme');
+    const dunkel = jetzt ? jetzt === 'dark'
+      : matchMedia('(prefers-color-scheme:dark)').matches;
+    document.documentElement.setAttribute('data-theme', dunkel ? 'light' : 'dark');
+    return;
+  }
+});
+
+/* Verdecktes Wort einzeln aufdecken. */
+document.addEventListener('click', e => {
+  if(e.target.classList && e.target.classList.contains('verdeckt')){
+    e.target.classList.remove('verdeckt');
+    const v = e.target.closest('.vok'), bsp = v && v.querySelector('.bsp');
+    if(bsp) bsp.style.display = '';
+  }
+});
+
+/* Antwortfelder merken. */
+document.addEventListener('input', e => {
+  const f = e.target;
+  if(f.dataset && f.dataset.feld){
+    if(f.value.trim()) merk.schreib('a·'+f.dataset.feld, f.value);
+    else merk.weg('a·'+f.dataset.feld);
+  }
+  if(f.id === 'dkTempo'){
+    const v = +f.value;
+    $('#dkTempoT').textContent = v <= .6 ? 'sehr langsam'
+      : v <= .8 ? 'langsam' : v <= 1 ? 'normal' : 'zügig';
+  }
+});
+
+zeichneKopf();
+zeichneTage();
+zeichneTag();
+passeCanvas();
+</script>
