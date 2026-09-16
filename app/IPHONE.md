@@ -221,8 +221,9 @@ pas dans l'app.
 | Tu configures la signature mais rien ne change | Tu es sur la cible **RunnerTests**. Il faut **Runner**, la ligne au-dessus dans TARGETS |
 | Le projet n'a pas les bonnes dépendances (google_sign_in, geolocator…) | Tu as ouvert **un autre projet**. Le bon affiche `claude/nursing-exam-prep-workflow…` en haut et n'a que 4 dépendances |
 | `Exited with status code 255` en **1 à 4 secondes**, sans autre message | `flutter` cache l'erreur d'Xcode. Lance `xcodebuild` directement, voir « Voir le vrai message » |
-| `The device must be opted into Developer Mode` **(code -27)** | Mode développeur pas activé → étape 4 |
-| `Could not build the precompiled application for the device` + `status code 255`, revenu en quelques secondes | L'iPhone est en Wi-Fi seulement, ou le mode développeur est éteint. Branche le câble. |
+| `Exited with status code 255` alors que `xcodebuild` sur `generic/platform=iOS` réussit | Le code va bien, **c'est l'appareil**. Voir « Le test qui sépare le code de l'appareil » |
+| `The device must be opted into Developer Mode` **(code -27)** | Mode développeur pas activé → étape 4. **Tant que cette ligne apparaît, `flutter run` échouera**, même si la compilation est parfaite par ailleurs |
+| `Could not build the precompiled application for the device` + `status code 255` | L'iPhone est en Wi-Fi seulement, ou le mode développeur est éteint. Branche le câble. |
 | `flutter_tts does not support Swift Package Manager` | **Simple avertissement**, ça ne bloque rien aujourd'hui |
 | `No profiles for 'de.zika.deutschTaeglich' were found` | L'identifiant n'est pas unique → étape 3, point 5 |
 | `Signing for "Runner" requires a development team` | Tu as sauté l'étape 3, point 4 |
@@ -263,6 +264,33 @@ sur un Mac chez GitHub à chaque modification.
 **Il installe la dernière version stable de Flutter.** Il prouve donc que le code compile
 **avec cette version-là** — pas qu'il compile avec la tienne. Si lui est vert et que ça
 échoue chez toi, compare d'abord `flutter --version` avant de chercher ailleurs.
+
+### Le test qui sépare « le code » de « l'appareil »
+
+Quand `flutter run` échoue avec `status code 255` sans rien dire d'autre, lance
+**deux** compilations et compare. La première ne vise aucun appareil :
+
+```bash
+cd ~/Documents/Etude-et-revision-exercice-et-Examen/app/ios && xcodebuild -workspace Runner.xcworkspace -scheme Runner -configuration Release -destination generic/platform=iOS -allowProvisioningUpdates build 2>&1 | tail -5
+```
+
+| Ce que tu obtiens | Ce que ça veut dire |
+|---|---|
+| `** BUILD SUCCEEDED **` ici, mais `flutter run` échoue | Le code et la signature vont bien. **Le problème est l'appareil** : câble, Mode développeur, « Se fier » → étape 4 |
+| Échec ici aussi | Le problème est dans le projet ou la signature → étapes 3 et 5 |
+
+**Pourquoi ça marche :** `generic/platform=iOS` compile pour « un iPhone quelconque ».
+Viser ton iPhone précis oblige Xcode à inscrire son numéro de série dans ton profil
+de signature — et il ne peut le faire que s'il arrive vraiment à lui parler. Un
+iPhone joignable seulement en Wi-Fi, avec le Mode développeur éteint, échoue donc
+à la signature alors que le code est irréprochable.
+
+Pour voir l'erreur exacte sur **ton** appareil, remplace la destination par son
+identifiant (celui que `flutter devices` affiche) :
+
+```bash
+cd ~/Documents/Etude-et-revision-exercice-et-Examen/app/ios && xcodebuild -workspace Runner.xcworkspace -scheme Runner -configuration Release -destination id=TON-IDENTIFIANT -allowProvisioningUpdates build 2>&1 | grep -i error | head -30
+```
 
 ### Voir le vrai message
 
