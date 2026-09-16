@@ -142,6 +142,15 @@ class Stil {
 ///
 /// Die Lektionen sind mit Markdown-Sternchen geschrieben, weil die Webseite
 /// das so rendert. Ohne diesen Schritt stünden hier überall Sternchen.
+///
+/// **Warum die Farbe hier so umständlich hergeleitet wird.** Am 16.09.2026 war
+/// auf ihrem iPhone der halbe Lektionstext unlesbar — weiß auf hellem Papier.
+/// Der Grund: `RichText` erbt **nicht** vom `DefaultTextStyle`, und ein
+/// `TextSpan` ohne `color` wird von der Engine **weiß** gezeichnet. Überall, wo
+/// ein Aufrufer ein eigenes `stil` mitgab (`const TextStyle(fontSize: 14.5)`),
+/// fiel damit die Farbe weg. Deshalb wird der übergebene Stil jetzt **auf** den
+/// Standardstil gelegt statt ihn zu ersetzen, und am Ende ist eine Farbe
+/// garantiert. Ein Aufrufer, der bewusst eine Farbe setzt, gewinnt weiterhin.
 class MarkText extends StatelessWidget {
   const MarkText(this.text, {super.key, this.stil, this.ausrichtung});
 
@@ -151,7 +160,13 @@ class MarkText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final grund = stil ?? DefaultTextStyle.of(context).style;
+    var grund = DefaultTextStyle.of(context).style.merge(stil);
+    if (grund.color == null && grund.foreground == null) {
+      grund = grund.copyWith(
+        color: Theme.of(context).textTheme.bodyMedium?.color ??
+            (Theme.of(context).brightness == Brightness.dark ? dTinte : tinte),
+      );
+    }
     return RichText(
       textAlign: ausrichtung ?? TextAlign.start,
       text: TextSpan(style: grund, children: teile(text, grund)),

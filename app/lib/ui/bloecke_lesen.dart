@@ -737,7 +737,7 @@ class _DiktatBlockState extends State<DiktatBlock> {
       _laeuft = true;
       _vergleich = null;
     });
-    await Sprecher.ich.diktieren(
+    final klage = await Sprecher.ich.diktieren(
       _saetze,
       tempo: _tempo,
       abgebrochen: () => _abbrechen,
@@ -748,6 +748,12 @@ class _DiktatBlockState extends State<DiktatBlock> {
         }
       },
     );
+    // Ein stummes Diktat sieht aus wie ein kaputtes Diktat. Sagen, woran es lag.
+    if (klage != null && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(klage), duration: const Duration(seconds: 6)),
+      );
+    }
     if (mounted) {
       setState(() {
         _laeuft = false;
