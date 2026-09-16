@@ -262,6 +262,30 @@ sur un Mac chez GitHub à chaque modification.
 **avec cette version-là** — pas qu'il compile avec la tienne. Si lui est vert et que ça
 échoue chez toi, compare d'abord `flutter --version` avant de chercher ailleurs.
 
+## 🔁 Mettre à jour l'app — **une seule commande**
+
+Branche l'iPhone, déverrouille-le, puis :
+
+```bash
+bash ~/Documents/Etude-et-revision-exercice-et-Examen/app/aktualisieren.sh
+```
+
+Le script fait les cinq étapes dans l'ordre : il récupère le nouveau code,
+installe les dépendances, compile en Release, pose l'app sur le téléphone et
+te rappelle les deux réglages iPhone à faire.
+
+**Pourquoi il existe.** Le 16.09.2026, `git pull` a été refusé **deux fois** —
+d'abord à cause de `analysis_options.yaml`, puis de `pubspec.lock`. Les deux
+sont réécrits par `flutter pub get` lui-même. Résultat : l'app a été recompilée
+et réinstallée telle quelle, sans les corrections, et rien n'avait changé à
+l'écran. Le script écarte ces deux fichiers générés avant de tirer — ton travail
+à toi n'est jamais dedans.
+
+Si un jour un **autre** fichier bloque le pull, dis-le moi : je l'ajoute à la
+liste plutôt que de te faire deviner.
+
+---
+
 ### ✅ Le chemin qui a marché — sans `flutter run`
 
 Le 16.09.2026, après une journée d'essais, c'est **ce chemin-là** qui a mis l'app
