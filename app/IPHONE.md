@@ -222,6 +222,7 @@ pas dans l'app.
 | Le projet n'a pas les bonnes dépendances (google_sign_in, geolocator…) | Tu as ouvert **un autre projet**. Le bon affiche `claude/nursing-exam-prep-workflow…` en haut et n'a que 4 dépendances |
 | `Exited with status code 255` en **1 à 4 secondes**, sans autre message | `flutter` cache l'erreur d'Xcode. Lance `xcodebuild` directement, voir « Voir le vrai message » |
 | `Exited with status code 255` alors que `xcodebuild` sur `generic/platform=iOS` réussit | Le code va bien, **c'est l'appareil**. Voir « Le test qui sépare le code de l'appareil » |
+| `Exited with status code 255` alors qu'`xcodebuild` réussit **même en visant ton iPhone** | La compilation n'est pas en cause : il ne manque que la pose. Installe avec `devicectl` → « Poser l'app sur l'iPhone sans `flutter run` » |
 | `The device must be opted into Developer Mode` **(code -27)** | Mode développeur pas activé → étape 4. **Tant que cette ligne apparaît, `flutter run` échouera**, même si la compilation est parfaite par ailleurs |
 | `Could not build the precompiled application for the device` + `status code 255` | L'iPhone est en Wi-Fi seulement, ou le mode développeur est éteint. Branche le câble. |
 | `flutter_tts does not support Swift Package Manager` | **Simple avertissement**, ça ne bloque rien aujourd'hui |
@@ -264,6 +265,30 @@ sur un Mac chez GitHub à chaque modification.
 **Il installe la dernière version stable de Flutter.** Il prouve donc que le code compile
 **avec cette version-là** — pas qu'il compile avec la tienne. Si lui est vert et que ça
 échoue chez toi, compare d'abord `flutter --version` avant de chercher ailleurs.
+
+### Poser l'app sur l'iPhone sans `flutter run`
+
+Le 16.09.2026, la compilation réussissait (`** BUILD SUCCEEDED **`, zéro `error:`,
+y compris en visant l'iPhone par son identifiant) mais `flutter run` échouait quand
+même avec `status code 255`. Dans ce cas, **l'app existe déjà** — seule la pose sur
+le téléphone manque. `devicectl`, l'outil d'Apple, la fait sans Flutter :
+
+```bash
+xcrun devicectl device install app --device TON-IDENTIFIANT ~/Library/Developer/Xcode/DerivedData/Runner-XXXXXX/Build/Products/Release-iphoneos/Runner.app
+```
+
+L'identifiant est celui que `flutter devices` affiche. Le nom exact du dossier
+`Runner-XXXXXX` apparaît dans la sortie d'`xcodebuild` (cherche `DerivedData/Runner-`).
+Pour lister les appareils que `devicectl` voit :
+
+```bash
+xcrun devicectl list devices
+```
+
+Déverrouille l'iPhone avant, puis accorde la confiance au certificat (étape 6).
+
+**À retenir :** compiler et installer sont deux choses distinctes. Quand la
+compilation passe, ne recommence pas à chercher du côté du code.
 
 ### Le test qui sépare « le code » de « l'appareil »
 
