@@ -43,6 +43,11 @@ test/zyklus_test.dart    die Rechnung — das, was still falsch sein könnte
 
 ## Selbst bauen
 
+**Flutter 3.47.4 oder neuer.** Das iOS-Gerüst benutzt `FlutterImplicitEngineDelegate`
+und `FlutterSceneDelegate` — beide gibt es erst ab dieser Fassung. Mit einer älteren
+bricht der iOS-Bau nach anderthalb Sekunden mit `status code 255` ab, ohne zu sagen,
+warum.
+
 ```bash
 cd app
 flutter pub get

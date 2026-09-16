@@ -12,6 +12,7 @@ la dernière étape se passe forcément sur ta machine.
 
 | Ce qu'il faut | Comment vérifier |
 |---|---|
+| **Flutter 3.47.4 minimum** | `flutter --version`. Si c'est moins : `flutter upgrade` |
 | **Xcode** installé et ouvert **une fois** | Il doit avoir fini « Installing components » |
 | **Un identifiant Apple** | Le tien suffit. Pas besoin de payer. |
 | **Un câble** entre le Mac et l'iPhone | Le Wi-Fi marche aussi, mais le câble la première fois |
@@ -46,10 +47,30 @@ Vérifie :
 
 ```bash
 flutter doctor
+flutter --version
 ```
 
-Il doit afficher une coche verte devant **Xcode**. S'il se plaint, il écrit exactement
-la commande à lancer — suis-la, c'est fiable.
+`flutter doctor` doit afficher une coche verte devant **Xcode**. S'il se plaint, il écrit
+exactement la commande à lancer — suis-la, c'est fiable.
+
+### ⚠️ La version compte vraiment
+
+**Il faut Flutter 3.47.4 ou plus récent.** Le projet iOS utilise deux classes ajoutées
+dans cette version :
+
+```swift
+class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate
+class SceneDelegate: FlutterSceneDelegate
+```
+
+Avec une version antérieure, Swift ne les trouve pas et la compilation meurt **en une
+seconde et demie**, sans message utile — juste `Exited with status code 255`.
+
+Si `flutter --version` affiche moins :
+
+```bash
+flutter upgrade
+```
 
 ---
 
@@ -188,6 +209,7 @@ pas dans l'app.
 
 | Message | Ce que ça veut dire |
 |---|---|
+| `Exited with status code 255` en **1 à 4 secondes**, sans autre message | Flutter trop ancien. `flutter --version` doit dire **3.47.4** ou plus → `flutter upgrade`, puis `flutter clean` |
 | `The device must be opted into Developer Mode` **(code -27)** | Mode développeur pas activé → étape 4 |
 | `Could not build the precompiled application for the device` + `status code 255`, revenu en quelques secondes | L'iPhone est en Wi-Fi seulement, ou le mode développeur est éteint. Branche le câble. |
 | `flutter_tts does not support Swift Package Manager` | **Simple avertissement**, ça ne bloque rien aujourd'hui |
@@ -198,17 +220,27 @@ pas dans l'app.
 | `Could not find a valid iOS deployment target` | `flutter clean` puis `flutter pub get` |
 | L'app se ferme tout de suite | Tu as sauté l'étape 5 (faire confiance au certificat) |
 
-**Le code lui-même est vérifié.** Le fichier `.github/workflows/app-bauen.yml` contient
-un travail `iphone` qui compile l'app pour iOS sur un Mac chez GitHub à chaque
-modification. S'il est vert et que ça échoue chez toi, le problème vient de Xcode ou de
-la signature — pas du code. Regarde le tableau ci-dessus.
+### Ne colle jamais une ligne qui commence par `#`
+
+Dans **zsh** (le terminal du Mac), `#` n'est **pas** un commentaire en usage interactif.
+Coller `flutter devices   # un commentaire` donne `command not found: #` et le commentaire
+part comme argument. Tape les commandes seules.
+
+### Ce que le job GitHub prouve — et ce qu'il ne prouve pas
+
+`.github/workflows/app-bauen.yml` contient un travail `iphone` qui compile l'app pour iOS
+sur un Mac chez GitHub à chaque modification.
+
+**Il installe la dernière version stable de Flutter.** Il prouve donc que le code compile
+**avec cette version-là** — pas qu'il compile avec la tienne. Si lui est vert et que ça
+échoue chez toi, compare d'abord `flutter --version` avant de chercher ailleurs.
 
 ### Voir le vrai message
 
 `flutter run` masque l'erreur d'Xcode. Celle-ci la montre :
 
 ```bash
-flutter build ios --release 2>&1 | tail -40
+flutter build ios --release --verbose 2>&1 | grep -B2 -A6 "error:" | head -60
 ```
 
 Copie-moi la sortie **en entier** — avec ça je vois précisément ce qui coince.
