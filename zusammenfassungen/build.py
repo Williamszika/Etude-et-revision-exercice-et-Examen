@@ -1,9 +1,19 @@
 #!/usr/bin/env python3
-"""Baut zusammenfassungen/index.html — nur die zusammengefassten Kurse und ihre Erklaerungen.
+"""Baut zusammenfassungen/index.html — NUR die Zusammenfassungen, sonst nichts.
 
-Quelle ist dieselbe Datei wie fuer die Schulungsuebersicht: schulungen/schulungen.json.
-Der Unterschied ist, was hier NICHT hineinkommt: keine Quellen-PDFs, keine 110 Kurs-PDFs,
-keine Klausurprotokolle. Nur: welcher Kurs, worum geht es, und der Link zum Lesen.
+Quelle ist dieselbe Datei wie fuer die frueher veroeffentlichte Schulungsuebersicht:
+schulungen/schulungen.json. Der Unterschied ist, was hier NICHT hineinkommt.
+
+Ihre Ansage vom 16.09.2026: "Sicher sein, dass sie erhaelt nur die Zusammenfassung."
+Daraus die Regel, und sie ist bewusst hart:
+
+    Pro Kurs GENAU EIN Link — das Lesestueck.
+
+Drin:    links.zusammenfassung, sonst links.schulung (die erklaerte Seite des Kurses)
+Draussen: links.klausur und links.faelle (Uebungen und Protokolle, keine Zusammenfassung)
+          zusatz (Gespraechsleitfaeden, Fallbeispiele — Arbeitsmaterial, keine Zusammenfassung)
+          Quellen-PDFs, Kurs-PDFs, Dateilisten
+          aus "weitere" alles, was kein Lesestoff ist (z. B. das Klausur-Protokoll)
 
 Damit nichts doppelt gepflegt wird, wird beim Hinzufuegen einer Schulung weiterhin nur
 schulungen/schulungen.json bearbeitet — diese Seite waechst dann von selbst mit.
@@ -17,16 +27,15 @@ import os
 BASE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(BASE)
 
-# Welche Links sind "lesen und verstehen"? Reihenfolge = Rang.
+# Nur diese beiden zaehlen als Zusammenfassung. Reihenfolge = Rang.
 LESEN = [
     ("zusammenfassung", "Zusammenfassung"),
     ("schulung", "Schulung"),
 ]
-# Alles andere ist Uebung oder Protokoll und steht nur klein daneben.
-WEITER = {
-    "klausur": "Klausur",
-    "faelle": "Übungsfälle",
-}
+
+# Aus dem Abschnitt "weitere" kommt nur herein, was wirklich Zusammenfassungen sammelt.
+# Das Klausur-Protokoll ist eine Auswertung geschriebener Klausuren, keine Zusammenfassung.
+WEITERE_ERLAUBT = {"lernhub"}
 
 MONATE = ["Januar", "Februar", "März", "April", "Mai", "Juni",
           "Juli", "August", "September", "Oktober", "November", "Dezember"]
@@ -53,6 +62,7 @@ def main():
     daten = json.load(open(quelle, encoding="utf-8"))
 
     kurse = []
+    draussen = []
     for s in daten.get("schulungen", []):
         links = s.get("links") or {}
 
@@ -65,14 +75,13 @@ def main():
             # Ohne Lesestueck gehoert der Kurs nicht auf diese Seite.
             continue
 
-        weiter = [{"url": links[k], "label": v} for k, v in WEITER.items() if links.get(k)]
-        # Ein zweites Lesestueck (z. B. Schulung neben Zusammenfassung) zaehlt auch dazu.
-        for schluessel, etikett in LESEN:
-            if links.get(schluessel) and links[schluessel] != haupt["url"]:
-                weiter.insert(0, {"url": links[schluessel], "label": etikett})
+        # Alles andere bleibt draussen — nur mitzaehlen, damit der Build es berichtet.
+        for k, v in (("klausur", "Klausur"), ("faelle", "Übungsfälle")):
+            if links.get(k):
+                draussen.append(f"{s.get('titel','')}: {v}")
         for z in (s.get("zusatz") or []):
             if z.get("url"):
-                weiter.append({"url": z["url"], "label": z.get("label", "mehr")})
+                draussen.append(f"{s.get('titel','')}: {z.get('label','Zusatz')}")
 
         kurse.append({
             "titel": s.get("titel", ""),
@@ -87,18 +96,22 @@ def main():
             "icon": s.get("icon", "📄"),
             "kernpunkte": [h for h in (s.get("highlights") or [])][:4],
             "haupt": haupt,
-            "weiter": weiter,
+            "weiter": [],
         })
 
-    # Die Lernmittel aus "weitere" (Lern-Hub, Klausurprotokoll) sind ebenfalls Lesestoff.
+    # Aus "weitere" nur, was selbst Zusammenfassungen sammelt.
     weitere = []
     for w in daten.get("weitere", []):
-        if w.get("link"):
-            weitere.append({
-                "titel": w.get("titel", ""), "untertitel": w.get("untertitel", ""),
-                "worum": w.get("hinweis", ""), "icon": w.get("icon", "📄"),
-                "url": w["link"], "datumDe": deutsch(w.get("datum", "")),
-            })
+        if not w.get("link"):
+            continue
+        if w.get("id") not in WEITERE_ERLAUBT:
+            draussen.append(f"weitere: {w.get('titel','')}")
+            continue
+        weitere.append({
+            "titel": w.get("titel", ""), "untertitel": w.get("untertitel", ""),
+            "worum": w.get("hinweis", ""), "icon": w.get("icon", "📄"),
+            "url": w["link"], "datumDe": deutsch(w.get("datum", "")),
+        })
 
     kurse.sort(key=lambda k: k["datum"], reverse=True)
 
@@ -110,9 +123,13 @@ def main():
     open(ziel, "w", encoding="utf-8").write(seite)
 
     faecher = sorted({k["fach"] for k in kurse if k["fach"]})
-    print(f"OK  {len(kurse)} zusammengefasste Kurse, {len(weitere)} weitere Lernmittel "
+    print(f"OK  {len(kurse)} Zusammenfassungen, {len(weitere)} weitere "
           f"-> zusammenfassungen/index.html ({round(len(seite)/1024)} KB)")
     print(f"    Fächer: {', '.join(faecher)}")
+    if draussen:
+        print(f"    draußen gelassen ({len(draussen)}), weil keine Zusammenfassung:")
+        for d in draussen:
+            print(f"      · {d}")
 
 
 if __name__ == "__main__":
