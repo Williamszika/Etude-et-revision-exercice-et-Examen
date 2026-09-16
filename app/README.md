@@ -62,9 +62,24 @@ Zum Installieren muss auf dem Telefon einmal
 Dateien-App erlaubt werden. Die APK ist mit dem Debug-Schlüssel signiert —
 das reicht zum Selbstinstallieren, aber nicht für den Play Store.
 
-## Was noch fehlt
+## iPhone
 
-- **Kein iOS.** Dafür braucht es einen Mac und ein Apple-Entwicklerkonto.
+Das iOS-Gerüst liegt in `ios/`. **Gebaut wird auf ihrem Mac** — Apple lässt das
+nirgends sonst zu, und signieren geht nur mit ihrem eigenen Apple-Konto.
+
+Die Anleitung dafür steht in **[`IPHONE.md`](IPHONE.md)**, auf Französisch und
+Schritt für Schritt: Flutter einrichten, Konto in Xcode eintragen, Telefon
+anstecken, `flutter run --release`, Zertifikat freigeben.
+
+Dass der Code für iOS **kompiliert**, prüft der Job `iphone` in
+`.github/workflows/app-bauen.yml` bei jeder Änderung auf einem Mac bei GitHub.
+Ist der grün und es klemmt trotzdem, liegt es an Xcode oder der Signatur.
+
+Mit einem **kostenlosen** Apple-Konto läuft die App **7 Tage**, dann muss sie neu
+aufgespielt werden (zwei Minuten). Mit dem bezahlten Konto ein Jahr. Ihre Haken
+und Antworten bleiben in beiden Fällen — die liegen im Telefon, nicht in der App.
+
+## Was noch fehlt
 - **Die Probeprüfung** hat noch keine Zeitsperre wie auf der Webseite
   (dort ist sie bis Samstag 22:00 zu).
 - **Die Original-Audiodateien** der telc-Hörverstehen-Seite sind nicht dabei;

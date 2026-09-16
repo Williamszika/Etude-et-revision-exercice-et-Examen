@@ -58,3 +58,26 @@ jobs:
           path: app/build/app/outputs/flutter-apk/app-release.apk
           if-no-files-found: error
           retention-days: 90
+
+  # Prueft, dass die App auch fuer iPhone baut. Signiert wird hier NICHT —
+  # das geht nur mit ihrem Apple-Konto auf ihrem Mac. Der Lauf beantwortet
+  # genau eine Frage: kompiliert der Code fuer iOS, bevor sie es auf dem Mac
+  # versucht? Wenn dieser Job gruen ist, liegt ein Fehler dort an Xcode oder
+  # der Signatur, nicht am Code.
+  iphone:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Abhaengigkeiten holen
+        working-directory: app
+        run: flutter pub get
+
+      - name: Fuer iPhone bauen, ohne Signatur
+        working-directory: app
+        run: flutter build ios --release --no-codesign
