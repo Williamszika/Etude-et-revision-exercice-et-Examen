@@ -961,6 +961,41 @@ gesichert vor; `konnektoren.md` trägt deshalb überwiegend die Konnektor-Lektio
 *B2 in 30 Tagen*. Das steht so im Blatt. **Wenn sie das Video noch einmal schickt, wird
 das Blatt vervollständigt** — nichts dazuerfinden.
 
+### Die Android-App — `app/`
+
+**Am 16.09.2026 gebaut**, auf ihren Wunsch: *„Creer l'application Flutter de Täglisch
+Deutsch"* und *„installe flutter et creer l'app"*.
+
+Vorschau zum Anfassen: `app/vorschau/index.html` →
+`https://claude.ai/artifact/TrpFWX3dRCBx1UPdjoYP2c` (Favicon 📱). Sie zeigt die App in
+einem Telefonrahmen und **funktioniert wirklich** — dieselben Daten, dieselbe Rechnung.
+Gebaut mit `python3 app/vorschau/bauen.py`.
+
+**Die Datenquelle ist `deutsch-taeglich/app-daten.json`.** `build.py` schreibt sie bei
+jedem Lauf neu; die App holt sie beim Start von GitHub raw. **Daraus folgt: Eine neue
+Lektion braucht keine neue App-Version** — die 5:30-Routine committet sie, und die App
+hat sie beim nächsten Öffnen. Neu gebaut wird die App nur, wenn sich `app/` ändert.
+
+| | |
+|---|---|
+| Gerüst | Flutter 3.47.4, Dart 3.13.3, nur Android |
+| Prüfen | `cd app && flutter analyze && flutter test` — 14 Tests auf `logik/zyklus.dart` |
+| Bauen | `flutter build apk --release --split-per-abi` (arm64 ≈ 17 MB) |
+| Ohne Flutter | `.github/workflows/app-bauen.yml` → Actions → App bauen → Artifacts |
+
+**Was die App kann und die Webseite nicht:** offline weiterlaufen · die **deutsche Stimme
+des Telefons** für Diktat, Vorlesen und Aussprache (kein Guthaben, kein Konto, kein Netz) ·
+Vokabelhaken, Antwortfelder und Diktattempo auf dem Gerät merken.
+
+**Animationen mit Flutters Canvas (`CustomPainter`), nicht mit Remotion** — das ist eine
+React-Videobibliothek und läuft in Flutter nicht. Das steht hier, weil sie ausdrücklich
+danach gefragt hat. Bewegung nur da, wo sie Fortschritt zeigt: Ring, Themenband,
+hochzählende Zahlen — und **Konfetti erst, wenn alle Vokabeln einer Lektion sitzen**,
+nicht bei jedem Haken.
+
+**Was fehlt:** kein iOS (braucht Mac und Apple-Konto) · die Probeprüfung hat noch keine
+Zeitsperre bis Samstag 22:00 · die telc-Originalaudios sind nicht dabei.
+
 ### Archiv — dreimal hat sie zurückgesetzt
 
 Alles davon liegt in der **Git-Historie** und **nirgends sonst**. Nur zurückholen, wenn sie
