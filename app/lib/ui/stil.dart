@@ -14,13 +14,13 @@ class Stil {
   static const papier2 = Color(0xFFEDEAE2);
   static const karte = Color(0xFFFFFDF9);
   static const tinte = Color(0xFF1C211F);
-  static const tinteWeich = Color(0xFF4C5552);
+  static const tinteWeich = Color(0xFF3E4745);
   static const linie = Color(0xFFDCD7CC);
   static const akzent = Color(0xFF1F5F8B);
   static const akzentTief = Color(0xFF164866);
   static const akzentWeich = Color(0xFFDCE9F2);
-  static const gold = Color(0xFFB5731A);
-  static const gut = Color(0xFF2F7D54);
+  static const gold = Color(0xFF7E4C0E);
+  static const gut = Color(0xFF226341);
 
   // dunkles Thema
   static const dPapier = Color(0xFF121618);
@@ -35,20 +35,30 @@ class Stil {
   static const dGut = Color(0xFF6FC292);
 
   /// Blockfarben — hell und dunkel. Die Namen sind die Blocknamen im JSON.
+  ///
+  /// **Die hellen Farben sind am 16.09.2026 nachgedunkelt worden.** Sie hat
+  /// gesagt: *„changer les couleurs aussi dans l'app, Je n'arrive pas a bien
+  /// les lires."* Nachgemessen stimmte das: `gold` kam auf **3,49:1** gegen das
+  /// Papier, `telc` auf 4,46, `aussprache` auf 4,53 — die Grenze für normalen
+  /// Text liegt bei 4,5:1, und diese Farben tragen oft **kleine** Schrift
+  /// (Etiketten, 11 px, gesperrt). Jetzt liegt jede helle Blockfarbe über
+  /// **6:1**; `farben_test.dart` rechnet das bei jedem Testlauf nach.
+  ///
+  /// Die dunklen Farben bleiben, wie sie waren — sie lagen alle schon über 8:1.
   static const _blockHell = <String, Color>{
     'verb': Color(0xFF1F5F8B),
-    'wortschatz': Color(0xFF8A5A2B),
-    'vokabeln': Color(0xFF8A5A2B),
+    'wortschatz': Color(0xFF7A4C20),
+    'vokabeln': Color(0xFF7A4C20),
     'grammatik': Color(0xFF5C4A8A),
     'deklination': Color(0xFF4A3F8A),
-    'lesen': Color(0xFF7A5A1E),
-    'leben': Color(0xFF0D6B8A),
-    'training': Color(0xFFA35A12),
-    'telc': Color(0xFFBB4D3F),
-    'probe': Color(0xFFA83B5C),
-    'aussprache': Color(0xFF2F7D54),
-    'diktat': Color(0xFF6B4FA8),
-    'uebersetzung': Color(0xFFA83B5C),
+    'lesen': Color(0xFF6B4E18),
+    'leben': Color(0xFF0A5A75),
+    'training': Color(0xFF8A4A0E),
+    'telc': Color(0xFF9E3527),
+    'probe': Color(0xFF96304F),
+    'aussprache': Color(0xFF226341),
+    'diktat': Color(0xFF5C4293),
+    'uebersetzung': Color(0xFF96304F),
   };
   static const _blockDunkel = <String, Color>{
     'verb': Color(0xFF6CB2DD),

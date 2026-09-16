@@ -92,7 +92,9 @@ class Etikett extends StatelessWidget {
         child: Text(
           text.toUpperCase(),
           style: TextStyle(
-            fontSize: 10.5,
+            // 11 statt 10.5: Etiketten stehen in GROSSBUCHSTABEN und gesperrt,
+            // das ist die kleinste Schrift der ganzen App.
+            fontSize: 11,
             fontWeight: FontWeight.w700,
             letterSpacing: .8,
             color: farbe,
