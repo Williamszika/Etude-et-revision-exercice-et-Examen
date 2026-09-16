@@ -227,9 +227,27 @@ pas dans l'app.
 | `No profiles for 'de.zika.deutschTaeglich' were found` | L'identifiant n'est pas unique → étape 3, point 5 |
 | `Signing for "Runner" requires a development team` | Tu as sauté l'étape 3, point 4 |
 | `Unable to install` / `device is locked` | Déverrouille l'iPhone et relance |
+| `git pull` refusé : *« Ihre lokalen Änderungen … app/analysis_options.yaml »* | C'est **Flutter** qui a modifié ce fichier chez toi (« Upgrading analysis_options.yaml… » pendant `flutter pub get`). Voir juste en dessous. |
 | `CocoaPods not installed` | `brew install cocoapods` puis `cd ios && pod install` |
 | `Could not find a valid iOS deployment target` | `flutter clean` puis `flutter pub get` |
 | L'app se ferme tout de suite | Tu as sauté l'étape 5 (faire confiance au certificat) |
+
+### Quand `git pull` refuse à cause de `analysis_options.yaml`
+
+`flutter pub get` modifie lui-même ce fichier (il ajoute `ios/**` à la liste des
+dossiers ignorés par l'analyseur). Git voit alors une modification locale et
+refuse de tirer.
+
+**Ce n'est pas ton travail que tu perds** — la ligne que Flutter a ajoutée chez toi
+est exactement celle qui est déjà dans le dépôt. Jeter ta version et tirer donne
+le même fichier :
+
+```bash
+cd ~/Documents/Etude-et-revision-exercice-et-Examen && git checkout -- app/analysis_options.yaml && git pull
+```
+
+Une fois ce `git pull` passé, le problème ne revient plus : le fichier du dépôt
+contient déjà la ligne, donc `flutter pub get` n'a plus rien à modifier.
 
 ### Ne colle jamais une ligne qui commence par `#`
 
