@@ -12,7 +12,6 @@ la dernière étape se passe forcément sur ta machine.
 
 | Ce qu'il faut | Comment vérifier |
 |---|---|
-| **Flutter 3.47.4 minimum** | `flutter --version`. Si c'est moins : `flutter upgrade` |
 | **Xcode** installé et ouvert **une fois** | Il doit avoir fini « Installing components » |
 | **Un identifiant Apple** | Le tien suffit. Pas besoin de payer. |
 | **Un câble** entre le Mac et l'iPhone | Le Wi-Fi marche aussi, mais le câble la première fois |
@@ -53,24 +52,7 @@ flutter --version
 `flutter doctor` doit afficher une coche verte devant **Xcode**. S'il se plaint, il écrit
 exactement la commande à lancer — suis-la, c'est fiable.
 
-### ⚠️ La version compte vraiment
-
-**Il faut Flutter 3.47.4 ou plus récent.** Le projet iOS utilise deux classes ajoutées
-dans cette version :
-
-```swift
-class AppDelegate: FlutterAppDelegate, FlutterImplicitEngineDelegate
-class SceneDelegate: FlutterSceneDelegate
-```
-
-Avec une version antérieure, Swift ne les trouve pas et la compilation meurt **en une
-seconde et demie**, sans message utile — juste `Exited with status code 255`.
-
-Si `flutter --version` affiche moins :
-
-```bash
-flutter upgrade
-```
+Flutter 3.35 ou plus récent suffit pour le projet iOS.
 
 ---
 
@@ -209,7 +191,7 @@ pas dans l'app.
 
 | Message | Ce que ça veut dire |
 |---|---|
-| `Exited with status code 255` en **1 à 4 secondes**, sans autre message | Flutter trop ancien. `flutter --version` doit dire **3.47.4** ou plus → `flutter upgrade`, puis `flutter clean` |
+| `Exited with status code 255` en **1 à 4 secondes**, sans autre message | `flutter` cache l'erreur d'Xcode. Lance `xcodebuild` directement, voir « Voir le vrai message » |
 | `The device must be opted into Developer Mode` **(code -27)** | Mode développeur pas activé → étape 4 |
 | `Could not build the precompiled application for the device` + `status code 255`, revenu en quelques secondes | L'iPhone est en Wi-Fi seulement, ou le mode développeur est éteint. Branche le câble. |
 | `flutter_tts does not support Swift Package Manager` | **Simple avertissement**, ça ne bloque rien aujourd'hui |
@@ -239,8 +221,14 @@ sur un Mac chez GitHub à chaque modification.
 
 `flutter run` masque l'erreur d'Xcode. Celle-ci la montre :
 
+Le plus fiable est de contourner `flutter` et d'appeler Xcode directement :
+
 ```bash
-flutter build ios --release --verbose 2>&1 | grep -B2 -A6 "error:" | head -60
+cd ~/Documents/Etude-et-revision-exercice-et-Examen/app/ios
+```
+
+```bash
+xcodebuild -workspace Runner.xcworkspace -scheme Runner -configuration Release -destination generic/platform=iOS -allowProvisioningUpdates build 2>&1 | tail -60
 ```
 
 Copie-moi la sortie **en entier** — avec ça je vois précisément ce qui coince.
