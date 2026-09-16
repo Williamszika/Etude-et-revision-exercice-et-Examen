@@ -1,0 +1,449 @@
+<title>Meine Kurse, zusammengefasst</title>
+<style>
+  :root{
+    --paper:#f4f2ed;--paper-2:#eae7e0;--card:#fffefb;
+    --ink:#1b1f1c;--ink-soft:#57615b;--line:#d9d4c9;
+    --gruen:#2c5c47;--gruen-tief:#1d4232;--gruen-soft:#e2ede7;
+    --gold:#8a6a1f;--gold-soft:#f6edd8;
+    --fl:34%;              /* Helligkeit der Fachfarben */
+    --fs:42%;              /* Sättigung */
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#13160f;--paper-2:#0e110a;--card:#1c201a;
+    --ink:#eef1ea;--ink-soft:#a9b3a9;--line:#2f342b;
+    --gruen:#7ec2a1;--gruen-tief:#9ed8bb;--gruen-soft:#16281f;
+    --gold:#d3ae5e;--gold-soft:#2a2314;
+    --fl:68%;--fs:46%;}}
+  :root[data-theme="dark"]{
+    --paper:#13160f;--paper-2:#0e110a;--card:#1c201a;
+    --ink:#eef1ea;--ink-soft:#a9b3a9;--line:#2f342b;
+    --gruen:#7ec2a1;--gruen-tief:#9ed8bb;--gruen-soft:#16281f;
+    --gold:#d3ae5e;--gold-soft:#2a2314;
+    --fl:68%;--fs:46%;}
+  :root[data-theme="light"]{
+    --paper:#f4f2ed;--paper-2:#eae7e0;--card:#fffefb;
+    --ink:#1b1f1c;--ink-soft:#57615b;--line:#d9d4c9;
+    --gruen:#2c5c47;--gruen-tief:#1d4232;--gruen-soft:#e2ede7;
+    --gold:#8a6a1f;--gold-soft:#f6edd8;
+    --fl:34%;--fs:42%;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+  .mitte{max-width:56rem;margin:0 auto;}
+
+  /* ---------- Kopf mit Fortschritt ---------- */
+  header.hero{padding:40px 20px 30px;border-bottom:1px solid var(--line);
+    background:linear-gradient(175deg,var(--gruen-soft) 0%,transparent 80%);}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--gruen-tief);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,6vw,2.9rem);
+    margin:0 0 11px;line-height:1.05;text-wrap:balance;}
+  header.hero p.sub{max-width:58ch;margin:0;color:var(--ink-soft);font-size:15.5px;}
+
+  .fortschritt{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-top:24px;
+    background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px;}
+  .ring{flex:0 0 auto;position:relative;width:88px;height:88px;}
+  .ring svg{width:88px;height:88px;transform:rotate(-90deg);display:block;}
+  .ring .bahn{fill:none;stroke:var(--paper-2);stroke-width:9;}
+  .ring .weg{fill:none;stroke:var(--gruen);stroke-width:9;stroke-linecap:round;
+    transition:stroke-dashoffset .5s ease;}
+  .ring .zahl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:1.35rem;font-weight:700;color:var(--gruen-tief);}
+  .f-text{flex:1 1 230px;min-width:0;}
+  .f-text b{display:block;font-family:var(--serif);font-size:1.22rem;margin-bottom:3px;}
+  .f-text span{font-size:14.6px;color:var(--ink-soft);}
+
+  /* ---------- Weiterlesen ---------- */
+  .weiterlesen{max-width:56rem;margin:22px auto 0;padding:0 18px;}
+  .wl{display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+    background:var(--card);border:2px solid var(--gruen);border-radius:16px;padding:18px 22px;}
+  .wl[hidden]{display:none;}
+  .wl .ico{font-size:2rem;line-height:1;}
+  .wl .txt{flex:1 1 220px;min-width:0;}
+  .wl .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--gruen-tief);display:block;margin-bottom:3px;}
+  .wl .txt b{font-family:var(--serif);font-size:1.25rem;font-weight:600;display:block;
+    line-height:1.2;}
+  .wl .txt span{font-size:14.4px;color:var(--ink-soft);}
+  .wl .fertig{font-family:var(--serif);font-size:1.15rem;}
+
+  /* ---------- Werkzeugleiste ---------- */
+  .werkzeug{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin-top:26px;
+    background:color-mix(in srgb,var(--paper) 93%,transparent);backdrop-filter:blur(8px);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px 18px;}
+  .werkzeug .reihe{max-width:56rem;margin:0 auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .werkzeug input{flex:1 1 210px;font:inherit;font-size:15px;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:10px;padding:9px 13px;min-width:0;}
+  .werkzeug input:focus{outline:2px solid var(--gruen);outline-offset:1px;}
+  .treffer{font-family:var(--mono);font-size:12px;color:var(--gruen-tief);white-space:nowrap;}
+  .chips{max-width:56rem;margin:9px auto 0;display:flex;gap:6px;flex-wrap:wrap;}
+  .chips button{font:inherit;font-size:13px;color:var(--ink-soft);background:var(--card);
+    border:1px solid var(--line);border-radius:999px;padding:5px 13px;cursor:pointer;}
+  .chips button:hover{border-color:var(--gruen);color:var(--ink);}
+  .chips button:focus-visible{outline:2px solid var(--gruen);outline-offset:2px;}
+  .chips button[aria-pressed="true"]{background:var(--gruen);border-color:var(--gruen);color:var(--card);}
+  .chips button.offen[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);}
+
+  main{max-width:56rem;margin:0 auto;padding:6px 18px 90px;}
+
+  .monat{display:flex;align-items:center;gap:13px;margin:32px 0 2px;}
+  .monat[hidden]{display:none;}
+  .monat h2{font-family:var(--serif);font-weight:600;font-size:1.1rem;margin:0;
+    white-space:nowrap;color:var(--ink-soft);}
+  .monat .li{flex:1;height:1px;background:var(--line);}
+
+  /* ---------- Kurskarte ---------- */
+  .kurse{display:grid;gap:13px;margin-top:13px;}
+  article.k{--f:hsl(var(--fh) var(--fs) var(--fl));
+    background:var(--card);border:1px solid var(--line);border-left:5px solid var(--f);
+    border-radius:14px;padding:19px 22px;position:relative;}
+  article.k[hidden]{display:none;}
+  article.k.gelesen{border-left-color:var(--gruen);background:
+    linear-gradient(90deg,var(--gruen-soft) 0%,var(--card) 34%);}
+  .k-kopf{display:flex;gap:14px;align-items:flex-start;}
+  .k-ico{font-size:1.8rem;line-height:1.05;flex:0 0 auto;}
+  .k-tit{flex:1;min-width:0;}
+  .k-tit h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:0 0 3px;
+    line-height:1.18;text-wrap:balance;}
+  .k-tit .unter{color:var(--ink-soft);font-size:14.6px;margin:0;}
+  .haken{flex:0 0 auto;font:inherit;font-family:var(--mono);font-size:11px;cursor:pointer;
+    color:var(--ink-soft);background:transparent;border:1px solid var(--line);
+    border-radius:999px;padding:5px 11px;white-space:nowrap;}
+  .haken:hover{border-color:var(--gruen);color:var(--gruen-tief);}
+  .haken:focus-visible{outline:2px solid var(--gruen);outline-offset:2px;}
+  article.k.gelesen .haken{background:var(--gruen);border-color:var(--gruen);color:var(--card);}
+
+  .k-meta{display:flex;flex-wrap:wrap;gap:6px;margin:13px 0 0;}
+  .k-meta span{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-soft);
+    background:var(--paper-2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;}
+  .k-meta span.fach{background:color-mix(in srgb,var(--f) 14%,transparent);
+    color:var(--f);border-color:color-mix(in srgb,var(--f) 34%,transparent);font-weight:700;}
+
+  /* Der eine Kernsatz — als Zitat, nicht als Aufzählung */
+  .k-kern{font-family:var(--serif);font-size:1.08rem;line-height:1.55;margin:14px 0 0;
+    padding-left:15px;border-left:3px solid color-mix(in srgb,var(--f) 42%,transparent);}
+  .k-worum{font-size:14.6px;color:var(--ink-soft);margin:12px 0 0;}
+  .k-punkte{list-style:none;padding:0;margin:11px 0 0;}
+  .k-punkte li{font-size:14.5px;color:var(--ink-soft);padding:3px 0 3px 21px;position:relative;}
+  .k-punkte li::before{content:"▸";position:absolute;left:2px;color:var(--f);}
+
+  .k-links{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:17px;}
+  a.lesen{font:inherit;font-size:15px;font-weight:600;text-decoration:none;
+    display:inline-flex;align-items:center;gap:8px;background:var(--f);color:var(--card);
+    border:1px solid var(--f);border-radius:10px;padding:9px 18px;}
+  a.lesen:hover{filter:brightness(1.12);}
+  a.lesen:focus-visible{outline:2px solid var(--f);outline-offset:2px;}
+  a.klein{font:inherit;font-size:13.5px;text-decoration:none;color:var(--ink-soft);
+    border:1px solid var(--line);border-radius:9px;padding:7px 13px;background:var(--paper);}
+  a.klein:hover{border-color:var(--f);color:var(--ink);}
+
+  .weiter{margin-top:46px;}
+  .wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:12px;}
+  a.w{display:block;text-decoration:none;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:13px;padding:17px 19px;}
+  a.w:hover{border-color:var(--gruen);}
+  a.w .i{font-size:1.5rem;}
+  a.w h4{font-family:var(--serif);font-weight:600;font-size:1.1rem;margin:8px 0 3px;}
+  a.w .s{font-size:14px;color:var(--ink-soft);margin:0;}
+
+  .leer{text-align:center;color:var(--ink-soft);padding:40px 20px;font-size:15px;}
+  .leer[hidden]{display:none;}
+  .hinweis{border-left:4px solid var(--gold);background:var(--gold-soft);border-radius:0 11px 11px 0;
+    padding:15px 18px;margin:34px 0 0;font-size:14.7px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  footer{border-top:1px solid var(--line);margin-top:50px;padding:26px 20px 46px;
+    text-align:center;color:var(--ink-soft);font-size:13.6px;}
+  footer a{color:var(--gruen-tief);}
+  @media (max-width:560px){
+    article.k{padding:17px 17px;}
+    .k-kopf{flex-wrap:wrap;} .haken{order:3;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <div class="mitte">
+    <p class="eyebrow">Pflegeausbildung · 2. Lehrjahr · generalistisch</p>
+    <h1>Meine Kurse, zusammengefasst</h1>
+    <p class="sub">Nur das Gelesene: jeder Kurs, kurz gefasst und erklärt, ein Klick zum
+      Nachlesen. <b>Keine Original-PDFs, keine Dateilisten.</b>
+      <span class="fr">Uniquement les cours résumés et leurs explications.</span></p>
+
+    <div class="fortschritt">
+      <div class="ring">
+        <svg viewBox="0 0 88 88" aria-hidden="true">
+          <circle class="bahn" cx="44" cy="44" r="38"></circle>
+          <circle class="weg" id="weg" cx="44" cy="44" r="38"
+                  stroke-dasharray="238.76" stroke-dashoffset="238.76"></circle>
+        </svg>
+        <div class="zahl" id="ringZahl">0%</div>
+      </div>
+      <div class="f-text">
+        <b id="fTitel">Noch nichts abgehakt</b>
+        <span id="fUnter">Hak einen Kurs ab, wenn du ihn gelesen und verstanden hast.
+          Der Haken bleibt gespeichert, auch wenn du die Seite schließt.</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="weiterlesen">
+  <div class="wl" id="wl" hidden>
+    <span class="ico" id="wlIco">📖</span>
+    <div class="txt">
+      <span class="l">Als Nächstes</span>
+      <b id="wlTitel"></b>
+      <span id="wlUnter"></span>
+    </div>
+    <a class="lesen" id="wlLink" href="#" target="_blank" rel="noopener"
+       style="--f:var(--gruen)">Jetzt lesen →</a>
+  </div>
+  <div class="wl" id="wlFertig" hidden>
+    <span class="ico">🎉</span>
+    <div class="txt"><span class="fertig"><b>Alle Kurse gelesen.</b> Wenn ein neuer dazukommt,
+      erscheint er hier von selbst.</span></div>
+  </div>
+</div>
+
+<div class="werkzeug">
+  <div class="reihe">
+    <input type="search" id="suche" autocomplete="off"
+           placeholder="Suchen — Thema, Dozent, Stichwort …" aria-label="Kurse durchsuchen">
+    <span class="treffer" id="treffer"></span>
+  </div>
+  <div class="chips" id="chips"></div>
+</div>
+
+<main>
+  <div id="liste"></div>
+  <p class="leer" id="leer" hidden>Kein Kurs gefunden. Versuch ein anderes Wort.</p>
+
+  <section class="weiter" id="weiter">
+    <div class="monat"><h2>Weiteres zum Lesen</h2><div class="li"></div></div>
+    <div class="wgrid" id="wgrid"></div>
+  </section>
+
+  <div class="hinweis"><b>Diese Seite pflegt sich selbst.</b> Sie entsteht bei jedem Build aus
+    derselben Liste wie die Schulungsseite — kommt ein Kurs dazu, erscheint er hier von allein.
+    Nichts wird hier von Hand eingetragen, nichts erfunden.
+    <span class="fr">Cette page se met à jour toute seule.</span></div>
+</main>
+
+<footer>
+  Alle Zusammenfassungen beruhen auf den Original-Unterlagen der Dozentinnen und Dozenten,
+  die im Repository liegen.<br>
+  Die vollständige Übersicht mit allen Quellen-PDFs steht auf der
+  <a href="https://claude.ai/code/artifact/70ca4043-134c-44a7-ae57-307f4df8b29c"
+     target="_blank" rel="noopener">📚 Schulungsseite</a>.
+</footer>
+
+<script>
+"use strict";
+var D = {"kurse": [{"titel": "Zwischenprüfung", "untertitel": "Pflegeplanungsprüfung zum Ende des zweiten Ausbildungsdrittels", "worum": "Zwei Prüfungstage, fünf Dokumente, PE(S)R-Systematik, ABEDL, SMART-Ziele, W-Fragen, die fünf Kompetenzbereiche · Termin 01.04.2027", "fach": "Prüfung", "ue": "§ 6 Abs. 5 PflBG", "dozent": "Pflegeschule CBG Aachen", "datum": "2027-04-01", "datumDe": "1. April 2027", "monat": "April 2027", "icon": "📋", "kernpunkte": [], "haupt": {"url": "https://claude.ai/code/artifact/2e1db357-3e32-4a56-9356-3e4fde3d5c88", "label": "Schulung"}, "weiter": [{"url": "https://claude.ai/code/artifact/5f2d11f0-0e52-46e9-a01b-aa460a59d33c", "label": "Gesprächsleitfaden"}, {"url": "https://claude.ai/code/artifact/cf5bfd6d-72ce-4a69-a226-41dfdbd0f9c1", "label": "Fall Herr Lambrecht"}]}, {"titel": "Asthma bronchiale", "untertitel": "Die drei Engstellen der Bronchie — und die Medikamente, die dagegen wirken", "worum": "Beide PDFs zusammengefasst: Foliensatz und Medikamententabelle · Definition, die drei Formen, Ursachen · alle Medikamentengruppen mit Wirkstoff, Wirkung und Nebenwirkung · Stufenschema 1–6 · Peak Flow · Erstmaßnahmen im Anfall · atemerleichternde Positionen · Pflege, Asthmatagebuch und Beratung · Fallbeispiel Stephan", "fach": "CE 10", "ue": "UE 5", "dozent": "A. Perleberg", "datum": "2026-09-16", "datumDe": "16. September 2026", "monat": "September 2026", "icon": "🫁", "kernpunkte": ["⭐ Drei Engstellen machen die Bronchie eng — Muskel, entzündete Wand, Schleim. Daher drei Medikamentengruppen", "Bedarf gegen Dauer: SABA wirkt in Minuten gegen das Symptom, ICS jeden Tag gegen die Ursache", "Alle Wirkstoffe und Handelsnamen aus der Tabelle: SABA, LABA, ICS, OCS, LTRA", "Das Stufenschema 1 bis 6 für Kinder und Jugendliche, Zeile für Zeile lesbar"], "haupt": {"url": "https://claude.ai/artifact/4L2BLAR9Q6Gsm4mci9Wc6N", "label": "Zusammenfassung"}, "weiter": []}, {"titel": "Den Impfkalender 2026 lesen", "untertitel": "Die sieben Buchstaben der STIKO — und was in welchem Alter dransteht", "worum": "Die Legende zuerst (G N A S I U und die passive Immunisierung) · Umschalter für die drei Altersblöcke · jede Impfzeile mit Marken und Altersangaben · alle Fußnoten a–n im Wortlaut mit französischer Zeile · warum das in Prüfungsbereich 2 der Abschlussprüfung sitzt", "fach": "Prävention", "ue": "—", "dozent": "Ständige Impfkommission (STIKO), Stand Januar 2026 · Bundesinstitut für Öffentliche Gesundheit", "datum": "2026-09-15", "datumDe": "15. September 2026", "monat": "September 2026", "icon": "💉", "kernpunkte": ["⭐ Die sieben Buchstaben zuerst — ohne die Legende ist die Tabelle nur ein Farbmuster", "G Grundimmunisierung · N Nachholimpfung · A Auffrischimpfung · S Standardimpfung · I bei Vorerkrankungen · U/J Vorsorgetermin", "Aktive gegen passive Immunisierung — der Unterschied, nach dem gefragt wird", "Drei Altersblöcke zum Umschalten, Erwachsene zuerst"], "haupt": {"url": "https://claude.ai/artifact/NjWaoqAWqGs3Vg4uQ4t6QS", "label": "Schulung"}, "weiter": []}, {"titel": "Die staatliche Abschlussprüfung in der Pflege", "untertitel": "Wie sie abläuft, was bei Nichtbestehen passiert, worauf im 2. Lehrjahr konzentrieren", "worum": "Die drei Prüfungsteile mit Dauer und Bestehensgrenze · die Vornoten mit 25 Prozent · Zulassung und die 10-Prozent-Fehlzeiten · Notenskala · Wiederholung: jeder Teil genau einmal · die Zwischenprüfung nach dem CBG-Papier · sieben Schwerpunkte für das zweite Lehrjahr", "fach": "Ausbildung", "ue": "—", "dozent": "PflBG und PflAPrV (Bundesrecht) · Bezirksregierung Köln · CBG Aachen", "datum": "2026-09-13", "datumDe": "13. September 2026", "monat": "September 2026", "icon": "🎓", "kernpunkte": ["⭐ Die Vornoten aus den Jahreszeugnissen zählen mit 25 Prozent in jede Prüfungsnote — das läuft schon jetzt", "Kein Verrechnen: schriftlich, mündlich und praktisch müssen jeweils einzeln „ausreichend“ sein (§ 19 Abs. 1 PflAPrV)", "Schriftlich: drei Aufsichtsarbeiten à 120 Minuten — und jede einzelne muss bestehen", "Praktisch: Pflegeplan · Fallvorstellung · Durchführung · Reflexionsgespräch, höchstens 240 Minuten"], "haupt": {"url": "https://claude.ai/code/artifact/49b64d31-0eff-40f4-9beb-0d71627a5091", "label": "Schulung"}, "weiter": []}, {"titel": "Pflegeplanung in fünf Tagen", "untertitel": "Die vier Spalten schreiben lernen — mit den Fragen, die man sich dabei stellt", "worum": "Fünf Lerntage, je eine Spalte · die Fragen, die man sich stellt · PE(S)R, SMART, W-Fragen und die fünf Hilfeformen · Übungen an Thrombose, Sturz, Haut, Thromboseprophylaxe und Linksherzinsuffizienz · danach fünf Übungstage, ab Tag 11 Prüfungsaufgaben", "fach": "CE 02", "ue": "UE 2", "dozent": "nach dem Blatt „Pflegeplanung“ der Dozentin", "datum": "2026-09-07", "datumDe": "7. September 2026", "monat": "September 2026", "icon": "📋", "kernpunkte": ["⭐ Eine Spalte pro Tag: Problem · Ziel · Maßnahmen · Begründung", "Zu jeder Spalte die Fragen, die man sich stellt — nicht nur die Regel", "Tag 1: ABEDL-Raster mit den vier Stern-Feldern, aktuelles gegen potentielles Problem", "Tag 2: P E (S) R — und warum bei potentiellen Problemen KEIN S stehen darf"], "haupt": {"url": "https://claude.ai/code/artifact/d1d757ad-782d-4350-bcce-1337702a922f", "label": "Schulung"}, "weiter": []}, {"titel": "Projekt EZIA — Haus Cadenbach", "untertitel": "Pflegeprozessgestaltung und ein individuelles Aktivitätsangebot", "worum": "Wochenablauf 04.–11.09. · Analyse des Pflegeempfängers · SIS und die sechs Themenfelder · Fragenkatalog · Planung und Evaluation des individuellen Angebots", "fach": "CE 09", "ue": "UE 3", "dozent": "Haus Cadenbach Aachen · CBG", "datum": "2026-09-04", "datumDe": "4. September 2026", "monat": "September 2026", "icon": "🏡", "kernpunkte": [], "haupt": {"url": "https://claude.ai/code/artifact/f2095b7d-e78e-44b5-92b5-8c61381300f2", "label": "Schulung"}, "weiter": []}, {"titel": "Zwangsstörungen", "untertitel": "Von der Handlung über das Ritual zum Zwang", "worum": "Zwangsgedanken und Zwangshandlungen, der Teufelskreis, Y-BOCS, Therapie mit Exposition und Reaktionsmanagement, pflegerische Begleitung", "fach": "CE 11", "ue": "UE 5", "dozent": "Anja Funke", "datum": "2026-08-31", "datumDe": "31. August 2026", "monat": "August 2026", "icon": "🔁", "kernpunkte": ["⭐ Der Teufelskreis in 7 Schritten zum Aufklappen — er erklärt die ganze Erkrankung", "Die Leiter der Dozentin: Handlung → Ritual → Zwang → Zwangsstörung", "Sortierspiel mit 8 Situationen: Handlung, Ritual, Zwangsgedanke oder Zwangshandlung?", "Vier Fallbeispiele: Frau Korzepa, Frau Käser, Herr Starke und die 10-jährige Patientin"], "haupt": {"url": "https://claude.ai/code/artifact/988e4e0d-a520-4053-a6ea-8b67fe64bd64", "label": "Zusammenfassung"}, "weiter": []}, {"titel": "Demenz im Krankenhaus", "untertitel": "Pflege dementiell veränderter Menschen — Vorbereitungsblatt", "worum": "Perspektivwechsel, demenzsensible Pflege in vier Ansatzpunkten (Orientierung, Kommunikation, Biografie und Angehörige, körperliche Bedürfnisse), Demenz oder Delir, Arbeitsauftrag mit Musterlösung", "fach": "CE 05", "ue": "—", "dozent": "—", "datum": "2026-08-30", "datumDe": "30. August 2026", "monat": "August 2026", "icon": "🧠", "kernpunkte": ["⚠️ Noch keine Dozenten-Folien — sobald sie da sind, wird daraus die richtige Zusammenfassung", "⭐ Fallbeispiel Herr Werner: 10 Stellen aus dem Fall, jede mit der Entsprechung aus den eigenen Unterlagen", "⭐ Postoperatives Delir: steht als eigene Hauptform schon in der Notfall-Schulung", "Sturzrisiko im Krankenhaus: „kurzfristige Veränderung der Umgebung\" und „freiheitentziehende Maßnahmen\" stehen im Expertenstandard selbst als Risikofaktoren"], "haupt": {"url": "https://claude.ai/code/artifact/34db66f4-1177-46be-9bee-5da1f01af89c", "label": "Zusammenfassung"}, "weiter": []}, {"titel": "Recht in der Pflege", "untertitel": "Ausbildungs- und berufsbezogene Rechte und Pflichten", "worum": "Strafrecht, Zivilrecht, Arbeitsrecht, Berufsrecht, Schweigepflicht, Datenschutz, Instanzen, Medizinprodukte", "fach": "CE 6", "ue": "UE 1", "dozent": "RAin Stephanie Welters", "datum": "2026-08-19", "datumDe": "19. August 2026", "monat": "August 2026", "icon": "⚖️", "kernpunkte": ["⭐ Klausur Haftung vom 27.08.2026: 83,5 / 86 Punkte — Note 1,15", "📝 Klausur in 3 Tagen: jedes Schema Schritt für Schritt, mit Satzbausteinen und Musterfall", "✍️ Alle 9 Übungsfälle: selbst schreiben, dann mit der Musterlösung vergleichen", "Fall-Trainer: 8 Klausurfälle Schritt für Schritt (Tatbestand → Rechtswidrigkeit → Schuld)"], "haupt": {"url": "https://claude.ai/code/artifact/56f4b6ba-ea38-4780-bd8b-1b6374e4ae14", "label": "Zusammenfassung"}, "weiter": [{"url": "https://claude.ai/code/artifact/65decd28-339d-4c03-b2c2-586ab5d273bb", "label": "Schulung"}, {"url": "https://claude.ai/code/artifact/bd667602-7598-478b-b0d7-c4aeb999c79e", "label": "Klausur"}, {"url": "https://claude.ai/code/artifact/a452d288-6abd-4cbc-bb39-18b375d581d1", "label": "Übungsfälle"}]}, {"titel": "Notfälle & Erste Hilfe", "untertitel": "Basiskurs + psychiatrische Notfälle", "worum": "ABCD, Reanimation, Apoplex/Infarkt/Lungenembolie, Delir, Deeskalation", "fach": "Notfall", "ue": "Basiskurs", "dozent": "Toni Weidenbecher", "datum": "2026-08-19", "datumDe": "19. August 2026", "monat": "August 2026", "icon": "🚑", "kernpunkte": ["ABCD-Trainer zum Klicken", "Reanimations-Metronom mit Ton (100–120/min)", "Krampf-Zuordnung: Epilepsie / Fieberkrampf / Hypoglykämie", "Rapport-Leiter: Spiegeln → Pacing → Matching → Leading"], "haupt": {"url": "https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d", "label": "Zusammenfassung"}, "weiter": [{"url": "https://claude.ai/code/artifact/47eb85aa-760d-499a-9544-95776d185ea5", "label": "Schulung"}]}, {"titel": "Kultursensible Pflege & LSBTI", "untertitel": "Interkulturelle und LSBTI-Pflege", "worum": "Kultur, Menschenrechte, Stigma, LSBTI-Geschichte, Biografiearbeit", "fach": "CE 09", "ue": "UE 1", "dozent": "André Perleberg", "datum": "2026-08-18", "datumDe": "18. August 2026", "monat": "August 2026", "icon": "🌈", "kernpunkte": ["Kultur-Eisberg zum Anklicken", "Gesten-Weltreise (Augenkontakt, OK-Zeichen …)", "Zeitleiste 1920er bis heute", "Sprach-Werkstatt: heteronormativ → offen"], "haupt": {"url": "https://claude.ai/code/artifact/89d798fd-bf60-4c0d-a5f9-77c66bc03d02", "label": "Zusammenfassung"}, "weiter": [{"url": "https://claude.ai/code/artifact/3eab3d02-98c4-4c3c-a62e-6a81e0223585", "label": "Schulung"}]}, {"titel": "Neurodermitis & Krätze", "untertitel": "Menschen mit Hauterkrankungen pflegen", "worum": "Atopische Dermatitis, AWMF-S3-Leitlinie 013-027 · Skabies nach RKI-Erregersteckbrief", "fach": "CE 05", "ue": "UE 7", "dozent": "André Perleberg", "datum": "2026-08-18", "datumDe": "18. August 2026", "monat": "August 2026", "icon": "🧴", "kernpunkte": ["Atopie-Score nach Diepgen zum Ausrechnen", "Entstehungs-Kreislauf und Prädilektionsstellen nach Alter", "Stufenplan 1–4 zum Aufklappen", "Notfallkoffer-Checkliste + Sortierspiel"], "haupt": {"url": "https://claude.ai/code/artifact/e6f67e90-150a-4c63-aa84-f64f89414ca4", "label": "Zusammenfassung"}, "weiter": [{"url": "https://claude.ai/code/artifact/605dac3f-6aff-416a-b26c-5f9001fc136a", "label": "Schulung"}, {"url": "https://claude.ai/code/artifact/4835c073-f3a6-47cb-a092-af25444ac1d9", "label": "🦠 Krätze (Skabies)"}]}, {"titel": "Lebensentwürfe verstehen", "untertitel": "Menschen in der Lebensgestaltung unterstützen", "worum": "Lebenslauf, Biografie, Wahlbiografie, Rogers", "fach": "CE 09", "ue": "UE 1", "dozent": "Dr. Ortrud Knauf", "datum": "2026-08-18", "datumDe": "18. August 2026", "monat": "August 2026", "icon": "🧭", "kernpunkte": ["Lebenslinie mit 6 Phasen", "Normalbiografie ↔ Wahlbiografie", "Spiel: „Beobachtung oder Vorurteil?“", "Fallbeispiel Herr Novak + Quiz mit 12 Fragen"], "haupt": {"url": "https://claude.ai/code/artifact/95147bb8-4411-40dc-aa5e-254d3e7132d6", "label": "Schulung"}, "weiter": []}, {"titel": "Blutgruppen & Transfusion", "untertitel": "Menschen mit Erkrankungen des Blut- und Immunsystems pflegen", "worum": "AB0, Rhesus, Kell und HLA, Blutgruppen-Antigene und Antikörper, Herstellung und Lagerung der Blutprodukte, Bedside-Test", "fach": "CE 05", "ue": "UE 6", "dozent": "Sabrina van de Kamp", "datum": "2026-08-14", "datumDe": "14. August 2026", "monat": "August 2026", "icon": "🩸", "kernpunkte": ["⭐ Verträglichkeitsrechner: AB0 allein oder mit Rhesus, empfangen oder spenden", "Bedside-Trainer mit Zufallskarte — Blutgruppe selbst bestimmen", "Die Regel hinter dem AB0-System: was ich nicht habe, dagegen habe ich Antikörper", "Albumin: der Schwamm, der Wasser im Gefäß hält — Ödeme bei zu wenig, Volumenüberladung bei zu viel Infusion"], "haupt": {"url": "https://claude.ai/code/artifact/d4e71c95-f8ed-4c2d-98f8-1248ce99def2", "label": "Zusammenfassung"}, "weiter": [{"url": "https://claude.ai/code/artifact/24250f0b-8b52-4d63-925b-f0f190f6cf30", "label": "Schulung"}]}, {"titel": "Hypotonie & Hypertonie", "untertitel": "Menschen mit Erkrankungen des Herz- und Kreislaufsystems", "worum": "Blutdruckwerte, kurz- und langfristige Regulation, RAAS, 24-Stunden-Messung, hypertensive Entgleisung und Notfall", "fach": "CE 05", "ue": "UE 1", "dozent": "Annette Küppers", "datum": "2026-08-14", "datumDe": "14. August 2026", "monat": "August 2026", "icon": "❤️", "kernpunkte": ["⭐ Arbeitsauftrag Frau Krause: alle 8 Aufgaben zum Selberschreiben, mit Korrektur", "Kurzfristige Regulation: Presso- und Volumenrezeptoren → verlängertes Mark → Vagus oder Sympathikus", "Langfristige Regulation: das RAAS Schritt für Schritt", "24-Stunden-Messung: alle Zahlen der Klausur an einem Ort"], "haupt": {"url": "https://claude.ai/code/artifact/316b844e-b1e6-4bb8-8163-3af3058de4fa", "label": "Zusammenfassung"}, "weiter": [{"url": "https://claude.ai/code/artifact/fa448dc8-ae77-40e4-8a2d-c1ae0d4ecbd5", "label": "Schulung"}]}, {"titel": "Pflegeplanung schreiben", "untertitel": "Wie schreibe ich eine gute Pflegeplanung?", "worum": "Krohwinkel, ABEDL, PESR, SMART, W-Fragen", "fach": "Pflegeprozess", "ue": "Grundlagen", "dozent": "—", "datum": "2026-08-12", "datumDe": "12. August 2026", "monat": "August 2026", "icon": "📋", "kernpunkte": ["6-Schritte-Regelkreis zum Anklicken", "13 ABEDL mit passenden Prophylaxen", "PESR und SMART mit Beispielen", "Musterbeispiel Frau Kowalski + Quiz mit 12 Fragen"], "haupt": {"url": "https://claude.ai/code/artifact/e7b944ee-0965-48b4-8e24-837ed5450542", "label": "Schulung"}, "weiter": []}, {"titel": "Kulturelle Vielfalt & Vorurteile", "untertitel": "Einführung in kulturelle Vielfalt und der Umgang mit Vorurteilen", "worum": "Anzeichen, Handzeichen, Lewis, Hofstede, Zwiebelmodell, Werte, Vorurteile, Feedback-Kultur", "fach": "CE 09", "ue": "Knauf-Reihe", "dozent": "Dr. Ortrud Knauf", "datum": "2026-07-24", "datumDe": "24. Juli 2026", "monat": "Juli 2026", "icon": "🌍", "kernpunkte": ["Handzeichen zum Anklicken: dasselbe Zeichen, vier Bedeutungen (bis zum Klenkes)", "Zwiebelmodell nach Hofstede — Schicht für Schicht aufklappbar", "Small Talk und Vortragsdauer im Ländervergleich", "Die drei Kulturtypen nach Lewis mit beiden Skalen"], "haupt": {"url": "https://claude.ai/code/artifact/9fc9f3d9-fa71-4700-aa8f-abf9a1f66749", "label": "Zusammenfassung"}, "weiter": []}, {"titel": "Interkulturelle Pflege", "untertitel": "Fünf Weltreligionen am Pflegebett", "worum": "Christentum, Islam, Judentum, Buddhismus, Hinduismus — Glaubenspraxis, Pflege, Essen, Sterben und Tod", "fach": "CE 09", "ue": "Knauf-Reihe", "dozent": "Dr. Ortrud Knauf", "datum": "2026-07-22", "datumDe": "22. Juli 2026", "monat": "Juli 2026", "icon": "🕌", "kernpunkte": ["Alle fünf Religionen nach demselben Raster aus acht Achsen", "Vergleichstabelle mit Filter: 16 Fragen, fünf Antworten nebeneinander", "Was am Bett konkret anders ist — Waschen, Essen, Gebet, Sterbebett", "Der Händeschüttel-Konflikt: was in einer Kultur Respekt ist, wirkt in der anderen wie eine Beleidigung"], "haupt": {"url": "https://claude.ai/code/artifact/ea58472e-2151-40bb-aa03-acfaf7720a12", "label": "Zusammenfassung"}, "weiter": []}], "weitere": [{"titel": "Mein Klausur-Protokoll", "untertitel": "Jede geschriebene Klausur, ausgewertet", "worum": "Gestellte Fragen · verlorene Punkte · was ich daraus lerne · die Methode für die nächste Klausur und die Zwischenprüfung", "icon": "📝", "url": "https://claude.ai/code/artifact/3fce2c25-8e2b-413c-b03b-dd5bc3ab975e", "datumDe": "27. August 2026"}, {"titel": "Lern-Hub — 2. Lehrjahr", "untertitel": "13 Themen aus 109 Kurs-PDFs", "worum": "Zusammenfassungen · 195 Quizfragen · Übungen · Fallbeispiele · Klausuren · Probeklausur · Lernplan", "icon": "📚", "url": "https://claude.ai/code/artifact/822f1c00-b5df-437d-b70a-e94931a72299", "datumDe": "17. Juli 2026"}]};
+
+function esc(s){return String(s==null?"":s)
+  .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+
+/* Jedes Fach bekommt einen festen Farbton — gleiche Eingabe, gleiche Farbe, immer. */
+function farbton(fach){
+  var h = 0, s = String(fach || "");
+  for(var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 360;
+  return h;
+}
+function schluessel(k){
+  return "zf-gelesen-" + String(k.titel).replace(/[^a-zA-Z0-9]/g, "").slice(0, 28);
+}
+function istGelesen(k){
+  try{ return localStorage.getItem(schluessel(k)) === "1"; }catch(e){ return false; }
+}
+function setzeGelesen(k, an){
+  try{ an ? localStorage.setItem(schluessel(k), "1") : localStorage.removeItem(schluessel(k)); }
+  catch(e){}
+}
+
+var liste = document.getElementById("liste");
+var karten = [];
+
+(function zeichne(){
+  var letzterMonat = null, teile = [], offen = false;
+  D.kurse.forEach(function(k, i){
+    if(k.monat !== letzterMonat){
+      if(offen) teile.push('</div>');
+      letzterMonat = k.monat;
+      teile.push('<div class="monat"><h2>' + esc(k.monat) + '</h2><div class="li"></div></div>'
+        + '<div class="kurse">');
+      offen = true;
+    }
+    var meta = [];
+    if(k.fach) meta.push('<span class="fach">' + esc(k.fach) + '</span>');
+    if(k.ue && k.ue !== "—") meta.push('<span>' + esc(k.ue) + '</span>');
+    if(k.dozent && k.dozent !== "—") meta.push('<span>' + esc(k.dozent) + '</span>');
+    if(k.datumDe) meta.push('<span>' + esc(k.datumDe) + '</span>');
+
+    /* Der erste Kernpunkt (der mit dem Stern) steht als Zitat oben, der Rest als Liste. */
+    var kern = "", rest = k.kernpunkte.slice();
+    if(rest.length && /^⭐/.test(rest[0])) kern = rest.shift().replace(/^⭐\s*/, "");
+    else if(rest.length) kern = rest.shift();
+
+    var punkte = rest.length
+      ? '<ul class="k-punkte">' + rest.map(function(p){
+          return '<li>' + esc(p.replace(/^⭐\s*/, "")) + '</li>'; }).join("") + '</ul>'
+      : '';
+
+    var weiter = k.weiter.map(function(w){
+      return '<a class="klein" href="' + esc(w.url) + '" target="_blank" rel="noopener">'
+        + esc(w.label) + '</a>'; }).join("");
+
+    teile.push(
+      '<article class="k' + (istGelesen(k) ? ' gelesen' : '') + '" data-i="' + i + '"'
+      + ' style="--fh:' + farbton(k.fach) + '"'
+      + ' data-suche="' + esc((k.titel + " " + k.untertitel + " " + k.worum + " "
+          + k.dozent + " " + k.fach).toLowerCase()) + '"'
+      + ' data-fach="' + esc(k.fach) + '">'
+      + '<div class="k-kopf"><div class="k-ico">' + esc(k.icon) + '</div>'
+      + '<div class="k-tit"><h3>' + esc(k.titel) + '</h3>'
+      + (k.untertitel ? '<p class="unter">' + esc(k.untertitel) + '</p>' : '')
+      + '</div>'
+      + '<button type="button" class="haken" data-i="' + i + '" aria-pressed="'
+      + (istGelesen(k) ? 'true' : 'false') + '">✓ gelesen</button>'
+      + '</div>'
+      + (meta.length ? '<div class="k-meta">' + meta.join("") + '</div>' : '')
+      + (kern ? '<p class="k-kern">' + esc(kern) + '</p>' : '')
+      + (k.worum ? '<p class="k-worum">' + esc(k.worum) + '</p>' : '')
+      + punkte
+      + '<div class="k-links"><a class="lesen" href="' + esc(k.haupt.url)
+        + '" target="_blank" rel="noopener">' + esc(k.haupt.label) + ' lesen →</a>'
+      + weiter + '</div></article>');
+  });
+  if(offen) teile.push('</div>');
+  liste.innerHTML = teile.join("");
+  karten = Array.prototype.slice.call(liste.querySelectorAll("article.k"));
+})();
+
+/* ---------- Haken setzen ---------- */
+liste.addEventListener("click", function(e){
+  var b = e.target.closest("button.haken");
+  if(!b) return;
+  var art = b.closest("article.k");
+  var k = D.kurse[Number(b.dataset.i)];
+  var an = !art.classList.contains("gelesen");
+  art.classList.toggle("gelesen", an);
+  b.setAttribute("aria-pressed", an ? "true" : "false");
+  setzeGelesen(k, an);
+  fortschritt();
+  if(nurOffen) filtern();
+});
+
+/* ---------- Fortschritt und Weiterlesen ---------- */
+var UMFANG = 2 * Math.PI * 38;
+function fortschritt(){
+  var gelesen = D.kurse.filter(istGelesen).length;
+  var gesamt = D.kurse.length;
+  var anteil = gesamt ? gelesen / gesamt : 0;
+
+  document.getElementById("weg").setAttribute("stroke-dashoffset",
+    String(UMFANG * (1 - anteil)));
+  document.getElementById("ringZahl").textContent = Math.round(anteil * 100) + "%";
+
+  var titel = document.getElementById("fTitel");
+  var unter = document.getElementById("fUnter");
+  if(gelesen === 0){
+    titel.textContent = "Noch nichts abgehakt";
+    unter.textContent = "Hak einen Kurs ab, wenn du ihn gelesen und verstanden hast. "
+      + "Der Haken bleibt gespeichert, auch wenn du die Seite schließt.";
+  }else if(gelesen === gesamt){
+    titel.textContent = "Alle " + gesamt + " Kurse gelesen.";
+    unter.textContent = "Fang beim ältesten wieder an — was man zweimal gelesen hat, "
+      + "kann man erklären.";
+  }else{
+    titel.textContent = gelesen + " von " + gesamt + " gelesen";
+    unter.textContent = "Noch " + (gesamt - gelesen)
+      + (gesamt - gelesen === 1 ? " Kurs" : " Kurse") + " offen. Einer pro Tag reicht.";
+  }
+
+  /* Der nächste ungelesene Kurs — von unten, also der älteste zuerst. */
+  var naechster = null;
+  for(var i = D.kurse.length - 1; i >= 0; i--){
+    if(!istGelesen(D.kurse[i])){ naechster = D.kurse[i]; break; }
+  }
+  var wl = document.getElementById("wl"), fertig = document.getElementById("wlFertig");
+  if(naechster){
+    document.getElementById("wlIco").textContent = naechster.icon;
+    document.getElementById("wlTitel").textContent = naechster.titel;
+    document.getElementById("wlUnter").textContent = naechster.untertitel || "";
+    document.getElementById("wlLink").href = naechster.haupt.url;
+    wl.hidden = false; fertig.hidden = true;
+  }else{
+    wl.hidden = true; fertig.hidden = D.kurse.length === 0;
+  }
+}
+
+/* ---------- Filter ---------- */
+var aktivesFach = "", nurOffen = false;
+(function chips(){
+  var alle = [];
+  D.kurse.forEach(function(k){ if(k.fach && alle.indexOf(k.fach) < 0) alle.push(k.fach); });
+  alle.sort();
+  var ziel = document.getElementById("chips");
+  ziel.innerHTML = '<button type="button" data-fach="" aria-pressed="true">alle</button>'
+    + alle.map(function(f){
+        return '<button type="button" data-fach="' + esc(f) + '" aria-pressed="false" '
+          + 'style="--fh:' + farbton(f) + '">' + esc(f) + '</button>'; }).join("")
+    + '<button type="button" class="offen" id="nurOffen" aria-pressed="false">'
+    + 'nur die offenen</button>';
+
+  ziel.addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if(!b) return;
+    if(b.id === "nurOffen"){
+      nurOffen = !nurOffen;
+      b.setAttribute("aria-pressed", nurOffen ? "true" : "false");
+    }else{
+      aktivesFach = b.dataset.fach;
+      ziel.querySelectorAll("button[data-fach]").forEach(function(x){
+        x.setAttribute("aria-pressed", String(x === b)); });
+    }
+    filtern();
+  });
+})();
+
+function filtern(){
+  var q = document.getElementById("suche").value.trim().toLowerCase();
+  var sichtbar = 0;
+  karten.forEach(function(art){
+    var k = D.kurse[Number(art.dataset.i)];
+    var zeig = true;
+    if(q && art.dataset.suche.indexOf(q) < 0) zeig = false;
+    if(aktivesFach && art.dataset.fach !== aktivesFach) zeig = false;
+    if(nurOffen && istGelesen(k)) zeig = false;
+    art.hidden = !zeig;
+    if(zeig) sichtbar++;
+  });
+  liste.querySelectorAll(".monat").forEach(function(m){
+    var block = m.nextElementSibling;
+    var hat = block && Array.prototype.some.call(
+      block.querySelectorAll("article.k"), function(a){ return !a.hidden; });
+    m.hidden = !hat;
+  });
+  document.getElementById("treffer").textContent =
+    sichtbar === karten.length ? "" : sichtbar + " von " + karten.length;
+  document.getElementById("leer").hidden = sichtbar > 0;
+}
+document.getElementById("suche").addEventListener("input", filtern);
+
+(function weitere(){
+  var g = document.getElementById("wgrid");
+  if(!D.weitere.length){ document.getElementById("weiter").hidden = true; return; }
+  g.innerHTML = D.weitere.map(function(w){
+    return '<a class="w" href="' + esc(w.url) + '" target="_blank" rel="noopener">'
+      + '<span class="i">' + esc(w.icon) + '</span>'
+      + '<h4>' + esc(w.titel) + '</h4>'
+      + '<p class="s">' + esc(w.untertitel || w.worum) + '</p></a>'; }).join("");
+})();
+
+fortschritt();
+</script>

@@ -1,0 +1,449 @@
+<title>Meine Kurse, zusammengefasst</title>
+<style>
+  :root{
+    --paper:#f4f2ed;--paper-2:#eae7e0;--card:#fffefb;
+    --ink:#1b1f1c;--ink-soft:#57615b;--line:#d9d4c9;
+    --gruen:#2c5c47;--gruen-tief:#1d4232;--gruen-soft:#e2ede7;
+    --gold:#8a6a1f;--gold-soft:#f6edd8;
+    --fl:34%;              /* Helligkeit der Fachfarben */
+    --fs:42%;              /* Sättigung */
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#13160f;--paper-2:#0e110a;--card:#1c201a;
+    --ink:#eef1ea;--ink-soft:#a9b3a9;--line:#2f342b;
+    --gruen:#7ec2a1;--gruen-tief:#9ed8bb;--gruen-soft:#16281f;
+    --gold:#d3ae5e;--gold-soft:#2a2314;
+    --fl:68%;--fs:46%;}}
+  :root[data-theme="dark"]{
+    --paper:#13160f;--paper-2:#0e110a;--card:#1c201a;
+    --ink:#eef1ea;--ink-soft:#a9b3a9;--line:#2f342b;
+    --gruen:#7ec2a1;--gruen-tief:#9ed8bb;--gruen-soft:#16281f;
+    --gold:#d3ae5e;--gold-soft:#2a2314;
+    --fl:68%;--fs:46%;}
+  :root[data-theme="light"]{
+    --paper:#f4f2ed;--paper-2:#eae7e0;--card:#fffefb;
+    --ink:#1b1f1c;--ink-soft:#57615b;--line:#d9d4c9;
+    --gruen:#2c5c47;--gruen-tief:#1d4232;--gruen-soft:#e2ede7;
+    --gold:#8a6a1f;--gold-soft:#f6edd8;
+    --fl:34%;--fs:42%;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+  .mitte{max-width:56rem;margin:0 auto;}
+
+  /* ---------- Kopf mit Fortschritt ---------- */
+  header.hero{padding:40px 20px 30px;border-bottom:1px solid var(--line);
+    background:linear-gradient(175deg,var(--gruen-soft) 0%,transparent 80%);}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--gruen-tief);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,6vw,2.9rem);
+    margin:0 0 11px;line-height:1.05;text-wrap:balance;}
+  header.hero p.sub{max-width:58ch;margin:0;color:var(--ink-soft);font-size:15.5px;}
+
+  .fortschritt{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-top:24px;
+    background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px;}
+  .ring{flex:0 0 auto;position:relative;width:88px;height:88px;}
+  .ring svg{width:88px;height:88px;transform:rotate(-90deg);display:block;}
+  .ring .bahn{fill:none;stroke:var(--paper-2);stroke-width:9;}
+  .ring .weg{fill:none;stroke:var(--gruen);stroke-width:9;stroke-linecap:round;
+    transition:stroke-dashoffset .5s ease;}
+  .ring .zahl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:var(--mono);font-size:1.35rem;font-weight:700;color:var(--gruen-tief);}
+  .f-text{flex:1 1 230px;min-width:0;}
+  .f-text b{display:block;font-family:var(--serif);font-size:1.22rem;margin-bottom:3px;}
+  .f-text span{font-size:14.6px;color:var(--ink-soft);}
+
+  /* ---------- Weiterlesen ---------- */
+  .weiterlesen{max-width:56rem;margin:22px auto 0;padding:0 18px;}
+  .wl{display:flex;gap:16px;align-items:center;flex-wrap:wrap;
+    background:var(--card);border:2px solid var(--gruen);border-radius:16px;padding:18px 22px;}
+  .wl[hidden]{display:none;}
+  .wl .ico{font-size:2rem;line-height:1;}
+  .wl .txt{flex:1 1 220px;min-width:0;}
+  .wl .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
+    color:var(--gruen-tief);display:block;margin-bottom:3px;}
+  .wl .txt b{font-family:var(--serif);font-size:1.25rem;font-weight:600;display:block;
+    line-height:1.2;}
+  .wl .txt span{font-size:14.4px;color:var(--ink-soft);}
+  .wl .fertig{font-family:var(--serif);font-size:1.15rem;}
+
+  /* ---------- Werkzeugleiste ---------- */
+  .werkzeug{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin-top:26px;
+    background:color-mix(in srgb,var(--paper) 93%,transparent);backdrop-filter:blur(8px);
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px 18px;}
+  .werkzeug .reihe{max-width:56rem;margin:0 auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .werkzeug input{flex:1 1 210px;font:inherit;font-size:15px;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:10px;padding:9px 13px;min-width:0;}
+  .werkzeug input:focus{outline:2px solid var(--gruen);outline-offset:1px;}
+  .treffer{font-family:var(--mono);font-size:12px;color:var(--gruen-tief);white-space:nowrap;}
+  .chips{max-width:56rem;margin:9px auto 0;display:flex;gap:6px;flex-wrap:wrap;}
+  .chips button{font:inherit;font-size:13px;color:var(--ink-soft);background:var(--card);
+    border:1px solid var(--line);border-radius:999px;padding:5px 13px;cursor:pointer;}
+  .chips button:hover{border-color:var(--gruen);color:var(--ink);}
+  .chips button:focus-visible{outline:2px solid var(--gruen);outline-offset:2px;}
+  .chips button[aria-pressed="true"]{background:var(--gruen);border-color:var(--gruen);color:var(--card);}
+  .chips button.offen[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);}
+
+  main{max-width:56rem;margin:0 auto;padding:6px 18px 90px;}
+
+  .monat{display:flex;align-items:center;gap:13px;margin:32px 0 2px;}
+  .monat[hidden]{display:none;}
+  .monat h2{font-family:var(--serif);font-weight:600;font-size:1.1rem;margin:0;
+    white-space:nowrap;color:var(--ink-soft);}
+  .monat .li{flex:1;height:1px;background:var(--line);}
+
+  /* ---------- Kurskarte ---------- */
+  .kurse{display:grid;gap:13px;margin-top:13px;}
+  article.k{--f:hsl(var(--fh) var(--fs) var(--fl));
+    background:var(--card);border:1px solid var(--line);border-left:5px solid var(--f);
+    border-radius:14px;padding:19px 22px;position:relative;}
+  article.k[hidden]{display:none;}
+  article.k.gelesen{border-left-color:var(--gruen);background:
+    linear-gradient(90deg,var(--gruen-soft) 0%,var(--card) 34%);}
+  .k-kopf{display:flex;gap:14px;align-items:flex-start;}
+  .k-ico{font-size:1.8rem;line-height:1.05;flex:0 0 auto;}
+  .k-tit{flex:1;min-width:0;}
+  .k-tit h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:0 0 3px;
+    line-height:1.18;text-wrap:balance;}
+  .k-tit .unter{color:var(--ink-soft);font-size:14.6px;margin:0;}
+  .haken{flex:0 0 auto;font:inherit;font-family:var(--mono);font-size:11px;cursor:pointer;
+    color:var(--ink-soft);background:transparent;border:1px solid var(--line);
+    border-radius:999px;padding:5px 11px;white-space:nowrap;}
+  .haken:hover{border-color:var(--gruen);color:var(--gruen-tief);}
+  .haken:focus-visible{outline:2px solid var(--gruen);outline-offset:2px;}
+  article.k.gelesen .haken{background:var(--gruen);border-color:var(--gruen);color:var(--card);}
+
+  .k-meta{display:flex;flex-wrap:wrap;gap:6px;margin:13px 0 0;}
+  .k-meta span{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-soft);
+    background:var(--paper-2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;}
+  .k-meta span.fach{background:color-mix(in srgb,var(--f) 14%,transparent);
+    color:var(--f);border-color:color-mix(in srgb,var(--f) 34%,transparent);font-weight:700;}
+
+  /* Der eine Kernsatz — als Zitat, nicht als Aufzählung */
+  .k-kern{font-family:var(--serif);font-size:1.08rem;line-height:1.55;margin:14px 0 0;
+    padding-left:15px;border-left:3px solid color-mix(in srgb,var(--f) 42%,transparent);}
+  .k-worum{font-size:14.6px;color:var(--ink-soft);margin:12px 0 0;}
+  .k-punkte{list-style:none;padding:0;margin:11px 0 0;}
+  .k-punkte li{font-size:14.5px;color:var(--ink-soft);padding:3px 0 3px 21px;position:relative;}
+  .k-punkte li::before{content:"▸";position:absolute;left:2px;color:var(--f);}
+
+  .k-links{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:17px;}
+  a.lesen{font:inherit;font-size:15px;font-weight:600;text-decoration:none;
+    display:inline-flex;align-items:center;gap:8px;background:var(--f);color:var(--card);
+    border:1px solid var(--f);border-radius:10px;padding:9px 18px;}
+  a.lesen:hover{filter:brightness(1.12);}
+  a.lesen:focus-visible{outline:2px solid var(--f);outline-offset:2px;}
+  a.klein{font:inherit;font-size:13.5px;text-decoration:none;color:var(--ink-soft);
+    border:1px solid var(--line);border-radius:9px;padding:7px 13px;background:var(--paper);}
+  a.klein:hover{border-color:var(--f);color:var(--ink);}
+
+  .weiter{margin-top:46px;}
+  .wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:12px;}
+  a.w{display:block;text-decoration:none;color:var(--ink);background:var(--card);
+    border:1px solid var(--line);border-radius:13px;padding:17px 19px;}
+  a.w:hover{border-color:var(--gruen);}
+  a.w .i{font-size:1.5rem;}
+  a.w h4{font-family:var(--serif);font-weight:600;font-size:1.1rem;margin:8px 0 3px;}
+  a.w .s{font-size:14px;color:var(--ink-soft);margin:0;}
+
+  .leer{text-align:center;color:var(--ink-soft);padding:40px 20px;font-size:15px;}
+  .leer[hidden]{display:none;}
+  .hinweis{border-left:4px solid var(--gold);background:var(--gold-soft);border-radius:0 11px 11px 0;
+    padding:15px 18px;margin:34px 0 0;font-size:14.7px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  footer{border-top:1px solid var(--line);margin-top:50px;padding:26px 20px 46px;
+    text-align:center;color:var(--ink-soft);font-size:13.6px;}
+  footer a{color:var(--gruen-tief);}
+  @media (max-width:560px){
+    article.k{padding:17px 17px;}
+    .k-kopf{flex-wrap:wrap;} .haken{order:3;}
+  }
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <div class="mitte">
+    <p class="eyebrow">Pflegeausbildung · 2. Lehrjahr · generalistisch</p>
+    <h1>Meine Kurse, zusammengefasst</h1>
+    <p class="sub">Nur das Gelesene: jeder Kurs, kurz gefasst und erklärt, ein Klick zum
+      Nachlesen. <b>Keine Original-PDFs, keine Dateilisten.</b>
+      <span class="fr">Uniquement les cours résumés et leurs explications.</span></p>
+
+    <div class="fortschritt">
+      <div class="ring">
+        <svg viewBox="0 0 88 88" aria-hidden="true">
+          <circle class="bahn" cx="44" cy="44" r="38"></circle>
+          <circle class="weg" id="weg" cx="44" cy="44" r="38"
+                  stroke-dasharray="238.76" stroke-dashoffset="238.76"></circle>
+        </svg>
+        <div class="zahl" id="ringZahl">0%</div>
+      </div>
+      <div class="f-text">
+        <b id="fTitel">Noch nichts abgehakt</b>
+        <span id="fUnter">Hak einen Kurs ab, wenn du ihn gelesen und verstanden hast.
+          Der Haken bleibt gespeichert, auch wenn du die Seite schließt.</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="weiterlesen">
+  <div class="wl" id="wl" hidden>
+    <span class="ico" id="wlIco">📖</span>
+    <div class="txt">
+      <span class="l">Als Nächstes</span>
+      <b id="wlTitel"></b>
+      <span id="wlUnter"></span>
+    </div>
+    <a class="lesen" id="wlLink" href="#" target="_blank" rel="noopener"
+       style="--f:var(--gruen)">Jetzt lesen →</a>
+  </div>
+  <div class="wl" id="wlFertig" hidden>
+    <span class="ico">🎉</span>
+    <div class="txt"><span class="fertig"><b>Alle Kurse gelesen.</b> Wenn ein neuer dazukommt,
+      erscheint er hier von selbst.</span></div>
+  </div>
+</div>
+
+<div class="werkzeug">
+  <div class="reihe">
+    <input type="search" id="suche" autocomplete="off"
+           placeholder="Suchen — Thema, Dozent, Stichwort …" aria-label="Kurse durchsuchen">
+    <span class="treffer" id="treffer"></span>
+  </div>
+  <div class="chips" id="chips"></div>
+</div>
+
+<main>
+  <div id="liste"></div>
+  <p class="leer" id="leer" hidden>Kein Kurs gefunden. Versuch ein anderes Wort.</p>
+
+  <section class="weiter" id="weiter">
+    <div class="monat"><h2>Weiteres zum Lesen</h2><div class="li"></div></div>
+    <div class="wgrid" id="wgrid"></div>
+  </section>
+
+  <div class="hinweis"><b>Diese Seite pflegt sich selbst.</b> Sie entsteht bei jedem Build aus
+    derselben Liste wie die Schulungsseite — kommt ein Kurs dazu, erscheint er hier von allein.
+    Nichts wird hier von Hand eingetragen, nichts erfunden.
+    <span class="fr">Cette page se met à jour toute seule.</span></div>
+</main>
+
+<footer>
+  Alle Zusammenfassungen beruhen auf den Original-Unterlagen der Dozentinnen und Dozenten,
+  die im Repository liegen.<br>
+  Die vollständige Übersicht mit allen Quellen-PDFs steht auf der
+  <a href="https://claude.ai/code/artifact/70ca4043-134c-44a7-ae57-307f4df8b29c"
+     target="_blank" rel="noopener">📚 Schulungsseite</a>.
+</footer>
+
+<script>
+"use strict";
+var D = __DATA__;
+
+function esc(s){return String(s==null?"":s)
+  .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+
+/* Jedes Fach bekommt einen festen Farbton — gleiche Eingabe, gleiche Farbe, immer. */
+function farbton(fach){
+  var h = 0, s = String(fach || "");
+  for(var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 360;
+  return h;
+}
+function schluessel(k){
+  return "zf-gelesen-" + String(k.titel).replace(/[^a-zA-Z0-9]/g, "").slice(0, 28);
+}
+function istGelesen(k){
+  try{ return localStorage.getItem(schluessel(k)) === "1"; }catch(e){ return false; }
+}
+function setzeGelesen(k, an){
+  try{ an ? localStorage.setItem(schluessel(k), "1") : localStorage.removeItem(schluessel(k)); }
+  catch(e){}
+}
+
+var liste = document.getElementById("liste");
+var karten = [];
+
+(function zeichne(){
+  var letzterMonat = null, teile = [], offen = false;
+  D.kurse.forEach(function(k, i){
+    if(k.monat !== letzterMonat){
+      if(offen) teile.push('</div>');
+      letzterMonat = k.monat;
+      teile.push('<div class="monat"><h2>' + esc(k.monat) + '</h2><div class="li"></div></div>'
+        + '<div class="kurse">');
+      offen = true;
+    }
+    var meta = [];
+    if(k.fach) meta.push('<span class="fach">' + esc(k.fach) + '</span>');
+    if(k.ue && k.ue !== "—") meta.push('<span>' + esc(k.ue) + '</span>');
+    if(k.dozent && k.dozent !== "—") meta.push('<span>' + esc(k.dozent) + '</span>');
+    if(k.datumDe) meta.push('<span>' + esc(k.datumDe) + '</span>');
+
+    /* Der erste Kernpunkt (der mit dem Stern) steht als Zitat oben, der Rest als Liste. */
+    var kern = "", rest = k.kernpunkte.slice();
+    if(rest.length && /^⭐/.test(rest[0])) kern = rest.shift().replace(/^⭐\s*/, "");
+    else if(rest.length) kern = rest.shift();
+
+    var punkte = rest.length
+      ? '<ul class="k-punkte">' + rest.map(function(p){
+          return '<li>' + esc(p.replace(/^⭐\s*/, "")) + '</li>'; }).join("") + '</ul>'
+      : '';
+
+    var weiter = k.weiter.map(function(w){
+      return '<a class="klein" href="' + esc(w.url) + '" target="_blank" rel="noopener">'
+        + esc(w.label) + '</a>'; }).join("");
+
+    teile.push(
+      '<article class="k' + (istGelesen(k) ? ' gelesen' : '') + '" data-i="' + i + '"'
+      + ' style="--fh:' + farbton(k.fach) + '"'
+      + ' data-suche="' + esc((k.titel + " " + k.untertitel + " " + k.worum + " "
+          + k.dozent + " " + k.fach).toLowerCase()) + '"'
+      + ' data-fach="' + esc(k.fach) + '">'
+      + '<div class="k-kopf"><div class="k-ico">' + esc(k.icon) + '</div>'
+      + '<div class="k-tit"><h3>' + esc(k.titel) + '</h3>'
+      + (k.untertitel ? '<p class="unter">' + esc(k.untertitel) + '</p>' : '')
+      + '</div>'
+      + '<button type="button" class="haken" data-i="' + i + '" aria-pressed="'
+      + (istGelesen(k) ? 'true' : 'false') + '">✓ gelesen</button>'
+      + '</div>'
+      + (meta.length ? '<div class="k-meta">' + meta.join("") + '</div>' : '')
+      + (kern ? '<p class="k-kern">' + esc(kern) + '</p>' : '')
+      + (k.worum ? '<p class="k-worum">' + esc(k.worum) + '</p>' : '')
+      + punkte
+      + '<div class="k-links"><a class="lesen" href="' + esc(k.haupt.url)
+        + '" target="_blank" rel="noopener">' + esc(k.haupt.label) + ' lesen →</a>'
+      + weiter + '</div></article>');
+  });
+  if(offen) teile.push('</div>');
+  liste.innerHTML = teile.join("");
+  karten = Array.prototype.slice.call(liste.querySelectorAll("article.k"));
+})();
+
+/* ---------- Haken setzen ---------- */
+liste.addEventListener("click", function(e){
+  var b = e.target.closest("button.haken");
+  if(!b) return;
+  var art = b.closest("article.k");
+  var k = D.kurse[Number(b.dataset.i)];
+  var an = !art.classList.contains("gelesen");
+  art.classList.toggle("gelesen", an);
+  b.setAttribute("aria-pressed", an ? "true" : "false");
+  setzeGelesen(k, an);
+  fortschritt();
+  if(nurOffen) filtern();
+});
+
+/* ---------- Fortschritt und Weiterlesen ---------- */
+var UMFANG = 2 * Math.PI * 38;
+function fortschritt(){
+  var gelesen = D.kurse.filter(istGelesen).length;
+  var gesamt = D.kurse.length;
+  var anteil = gesamt ? gelesen / gesamt : 0;
+
+  document.getElementById("weg").setAttribute("stroke-dashoffset",
+    String(UMFANG * (1 - anteil)));
+  document.getElementById("ringZahl").textContent = Math.round(anteil * 100) + "%";
+
+  var titel = document.getElementById("fTitel");
+  var unter = document.getElementById("fUnter");
+  if(gelesen === 0){
+    titel.textContent = "Noch nichts abgehakt";
+    unter.textContent = "Hak einen Kurs ab, wenn du ihn gelesen und verstanden hast. "
+      + "Der Haken bleibt gespeichert, auch wenn du die Seite schließt.";
+  }else if(gelesen === gesamt){
+    titel.textContent = "Alle " + gesamt + " Kurse gelesen.";
+    unter.textContent = "Fang beim ältesten wieder an — was man zweimal gelesen hat, "
+      + "kann man erklären.";
+  }else{
+    titel.textContent = gelesen + " von " + gesamt + " gelesen";
+    unter.textContent = "Noch " + (gesamt - gelesen)
+      + (gesamt - gelesen === 1 ? " Kurs" : " Kurse") + " offen. Einer pro Tag reicht.";
+  }
+
+  /* Der nächste ungelesene Kurs — von unten, also der älteste zuerst. */
+  var naechster = null;
+  for(var i = D.kurse.length - 1; i >= 0; i--){
+    if(!istGelesen(D.kurse[i])){ naechster = D.kurse[i]; break; }
+  }
+  var wl = document.getElementById("wl"), fertig = document.getElementById("wlFertig");
+  if(naechster){
+    document.getElementById("wlIco").textContent = naechster.icon;
+    document.getElementById("wlTitel").textContent = naechster.titel;
+    document.getElementById("wlUnter").textContent = naechster.untertitel || "";
+    document.getElementById("wlLink").href = naechster.haupt.url;
+    wl.hidden = false; fertig.hidden = true;
+  }else{
+    wl.hidden = true; fertig.hidden = D.kurse.length === 0;
+  }
+}
+
+/* ---------- Filter ---------- */
+var aktivesFach = "", nurOffen = false;
+(function chips(){
+  var alle = [];
+  D.kurse.forEach(function(k){ if(k.fach && alle.indexOf(k.fach) < 0) alle.push(k.fach); });
+  alle.sort();
+  var ziel = document.getElementById("chips");
+  ziel.innerHTML = '<button type="button" data-fach="" aria-pressed="true">alle</button>'
+    + alle.map(function(f){
+        return '<button type="button" data-fach="' + esc(f) + '" aria-pressed="false" '
+          + 'style="--fh:' + farbton(f) + '">' + esc(f) + '</button>'; }).join("")
+    + '<button type="button" class="offen" id="nurOffen" aria-pressed="false">'
+    + 'nur die offenen</button>';
+
+  ziel.addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if(!b) return;
+    if(b.id === "nurOffen"){
+      nurOffen = !nurOffen;
+      b.setAttribute("aria-pressed", nurOffen ? "true" : "false");
+    }else{
+      aktivesFach = b.dataset.fach;
+      ziel.querySelectorAll("button[data-fach]").forEach(function(x){
+        x.setAttribute("aria-pressed", String(x === b)); });
+    }
+    filtern();
+  });
+})();
+
+function filtern(){
+  var q = document.getElementById("suche").value.trim().toLowerCase();
+  var sichtbar = 0;
+  karten.forEach(function(art){
+    var k = D.kurse[Number(art.dataset.i)];
+    var zeig = true;
+    if(q && art.dataset.suche.indexOf(q) < 0) zeig = false;
+    if(aktivesFach && art.dataset.fach !== aktivesFach) zeig = false;
+    if(nurOffen && istGelesen(k)) zeig = false;
+    art.hidden = !zeig;
+    if(zeig) sichtbar++;
+  });
+  liste.querySelectorAll(".monat").forEach(function(m){
+    var block = m.nextElementSibling;
+    var hat = block && Array.prototype.some.call(
+      block.querySelectorAll("article.k"), function(a){ return !a.hidden; });
+    m.hidden = !hat;
+  });
+  document.getElementById("treffer").textContent =
+    sichtbar === karten.length ? "" : sichtbar + " von " + karten.length;
+  document.getElementById("leer").hidden = sichtbar > 0;
+}
+document.getElementById("suche").addEventListener("input", filtern);
+
+(function weitere(){
+  var g = document.getElementById("wgrid");
+  if(!D.weitere.length){ document.getElementById("weiter").hidden = true; return; }
+  g.innerHTML = D.weitere.map(function(w){
+    return '<a class="w" href="' + esc(w.url) + '" target="_blank" rel="noopener">'
+      + '<span class="i">' + esc(w.icon) + '</span>'
+      + '<h4>' + esc(w.titel) + '</h4>'
+      + '<p class="s">' + esc(w.untertitel || w.worum) + '</p></a>'; }).join("");
+})();
+
+fortschritt();
+</script>
