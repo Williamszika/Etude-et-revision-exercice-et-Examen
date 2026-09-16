@@ -1,0 +1,60 @@
+name: App bauen
+
+# Baut die Android-App und hängt die fertige APK an den Lauf.
+#
+# Warum das hier steht: Sie ist Pflegeauszubildende, keine Entwicklerin. Ohne
+# diesen Schritt müsste sie Flutter installieren, um die App zu bekommen. So
+# lädt sie die fertige Datei einfach von GitHub herunter.
+#
+# Die Lektionen selbst brauchen KEINEN neuen Bau — die App holt sie beim Start
+# aus `deutsch-taeglich/app-daten.json`. Neu gebaut wird nur, wenn sich die App
+# selbst ändert.
+
+on:
+  push:
+    branches: [claude/nursing-exam-prep-workflow-gvn5u0]
+    paths:
+      - "app/**"
+      - ".github/workflows/app-bauen.yml"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Abhaengigkeiten holen
+        working-directory: app
+        run: flutter pub get
+
+      - name: Pruefen
+        working-directory: app
+        run: |
+          flutter analyze
+          flutter test
+
+      - name: APK bauen
+        working-directory: app
+        run: flutter build apk --release
+
+      - name: APK anhaengen
+        uses: actions/upload-artifact@v4
+        with:
+          name: deutsch-taeglich-apk
+          path: app/build/app/outputs/flutter-apk/app-release.apk
+          if-no-files-found: error
+          retention-days: 90

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Baut deutsch-taeglich/index.html aus allen Lektionen in lektionen/*.json (neueste zuerst)."""
-import os, json, glob
+import os, json, glob, datetime
 
 BASE = os.path.dirname(os.path.abspath(__file__))
+REPO = os.path.dirname(BASE)
 lekt = []
 for f in sorted(glob.glob(os.path.join(BASE, 'lektionen', '*.json')), reverse=True):
     try:
@@ -91,3 +92,36 @@ wout = wtpl.replace('__DATA__',
 open(os.path.join(BASE, 'wortschatz.html'), 'w', encoding='utf-8').write(wout)
 print(f"Wortschatz: {sum(len(x['woerter']) for x in ws)} Wörter aus {len(ws)} Lektion(en) "
       f"· HTML: {round(len(wout)/1024)} KB")
+
+# ---------------------------------------------------------------------------
+# app-daten.json — die Datenquelle der Flutter-App
+#
+# Die App holt sich beim Start genau diese eine Datei von GitHub (raw). Damit
+# bekommt sie jede neue Lektion automatisch, sobald die 5:30-Routine committet
+# hat — ohne dass eine neue App-Version gebaut werden muss.
+#
+# Dieselbe Datei liegt zusätzlich als Asset in der App (app/assets/), damit
+# der allererste Start auch ohne Netz etwas anzeigt.
+# ---------------------------------------------------------------------------
+app_daten = {
+    'stand': datetime.date.today().isoformat(),
+    'start': START,
+    'lektionenGesamt': 56,
+    'themenGesamt': 21,
+    'etappeEnde': '2026-12-31',
+    'lektionen': lekt,          # neueste zuerst, wie im Template
+}
+app_pfad = os.path.join(BASE, 'app-daten.json')
+open(app_pfad, 'w', encoding='utf-8').write(
+    json.dumps(app_daten, ensure_ascii=False, separators=(',', ':')))
+
+# Und als Asset in die App kopieren, falls der Ordner existiert.
+asset = os.path.join(REPO, 'app', 'assets', 'lektionen.json')
+if os.path.isdir(os.path.dirname(asset)):
+    open(asset, 'w', encoding='utf-8').write(
+        json.dumps(app_daten, ensure_ascii=False, separators=(',', ':')))
+    print(f"App-Daten: {len(lekt)} Lektion(en) -> app-daten.json und app/assets/ "
+          f"({round(os.path.getsize(app_pfad)/1024)} KB)")
+else:
+    print(f"App-Daten: {len(lekt)} Lektion(en) -> app-daten.json "
+          f"({round(os.path.getsize(app_pfad)/1024)} KB)")
