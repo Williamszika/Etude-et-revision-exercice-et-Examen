@@ -164,7 +164,9 @@ class MarkText extends StatelessWidget {
     if (grund.color == null && grund.foreground == null) {
       grund = grund.copyWith(
         color: Theme.of(context).textTheme.bodyMedium?.color ??
-            (Theme.of(context).brightness == Brightness.dark ? dTinte : tinte),
+            (Theme.of(context).brightness == Brightness.dark
+                ? Stil.dTinte
+                : Stil.tinte),
       );
     }
     return RichText(
