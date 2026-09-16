@@ -1,21 +1,21 @@
-# Meine Schulungen
+# Meine Schulungen — nur noch die Datenquelle
 
-**Der Link für die Schulungen:** https://claude.ai/code/artifact/70ca4043-134c-44a7-ae57-307f4df8b29c
+> **Die veroeffentlichte Schulungsseite gibt es nicht mehr.** Sie wurde am **16.09.2026** auf
+> ausdruecklichen Wunsch geloescht (*"Du musst 📚 Schulungen mit allen Quellen loeschen."*).
+> Das Artifact `70ca4043-…` ist weg und wird **nicht neu angelegt**.
+>
+> **Dieser Ordner bleibt trotzdem**, weil `schulungen.json` die **Datenquelle** der
+> Zusammenfassungsseite ist:
+>
+> **📖 Meine Kurse, zusammengefasst — https://claude.ai/artifact/7nrNDXtzTUdMquigJJzvZj**
+>
+> Eine neue Schulung wird also weiterhin **hier** in `schulungen.json` eingetragen; gebaut und
+> veroeffentlicht wird danach `zusammenfassungen/` mit `python3 zusammenfassungen/build.py`.
+> `schulungen/build.py` und `schulungen/index.html` werden **nicht mehr veroeffentlicht**.
+>
+> Die Original-PDFs liegen unveraendert im Repo (`schulung-*/quellen/`, `PDFs*/`).
 
-Diese Seite sammelt **alle Schulungen**, Zusammenfassungen und Original-PDFs,
-sortiert nach dem Tag, an dem sie dazugekommen sind — neueste zuerst.
-Der Link bleibt **immer derselbe**.
-
-## Zwei getrennte Links
-
-| Bereich | Link |
-|---|---|
-| 🎓 **Schulungen** (Pflege) | https://claude.ai/code/artifact/70ca4043-134c-44a7-ae57-307f4df8b29c |
-| 🇩🇪 **Deutsch täglich** | https://claude.ai/code/artifact/e499dbe3-e198-410a-94d3-9393e6b27c84 |
-
-**Deutsch täglich gehört bewusst NICHT auf die Schulungs-Seite** und wird auch nicht
-in `schulungen.json` eingetragen. Es hat seinen eigenen Ordner (`deutsch-taeglich/`),
-sein eigenes Build-Skript und seinen eigenen Link.
+---
 
 ## Dateien
 

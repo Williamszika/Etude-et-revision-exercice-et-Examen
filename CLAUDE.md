@@ -966,17 +966,23 @@ Planungsbeurteilung**. Ohne sie keine Bewertungspunkte erfinden.
 
 ## Schulungen und Klausuren
 
-- `schulungen/` — Übersichtsseite, gebaut aus `schulungen.json` + `_template.html`
-- **`zusammenfassungen/`** — **nur die zusammengefassten Kurse und ihre Erklärungen**
-  → `https://claude.ai/artifact/7nrNDXtzTUdMquigJJzvZj` (Favicon 📖). Auf ihren Wunsch vom
-  16.09.2026: *„creer un lien uniquement pour les cours résumés et leurs explications."*
-  Gebaut mit `python3 zusammenfassungen/build.py` aus **derselben** `schulungen/schulungen.json`
-  — **nichts wird doppelt gepflegt.** Aufgenommen wird nur, was einen Lesestoff-Link hat
+- **`zusammenfassungen/`** — **der einzige Schulungs-Link. Nur die zusammengefassten Kurse und
+  ihre Erklärungen.** → `https://claude.ai/artifact/7nrNDXtzTUdMquigJJzvZj` (Favicon 📖).
+  Auf ihren Wunsch vom 16.09.2026: *„creer un lien uniquement pour les cours résumés et leurs
+  explications."* Gebaut mit `python3 zusammenfassungen/build.py` aus
+  `schulungen/schulungen.json`. Aufgenommen wird nur, was einen Lesestoff-Link hat
   (`links.zusammenfassung` oder `links.schulung`); Quellen-PDFs, Kurs-PDFs und Dateilisten
-  bleiben draußen, die stehen auf der Schulungsseite. Die Seite hat einen **Fortschrittsring**,
-  je Kurs einen Haken **„gelesen"** (im `localStorage`), eine Karte **„Als Nächstes"** mit dem
-  ältesten ungelesenen Kurs und einen Filter **„nur die offenen"**.
-  **Nach jeder neuen Schulung mitbauen und mitveröffentlichen.**
+  bleiben draußen. Die Seite hat einen **Fortschrittsring**, je Kurs einen Haken **„gelesen"**
+  (im `localStorage`), eine Karte **„Als Nächstes"** mit dem ältesten ungelesenen Kurs und einen
+  Filter **„nur die offenen"**. **Nach jeder neuen Schulung mitbauen und mitveröffentlichen.**
+- **`schulungen/` — die alte Übersichtsseite ist am 16.09.2026 auf ihren Wunsch gelöscht.**
+  Ihr Wortlaut: *„Du musst 📚 Schulungen mit allen Quellen löschen."* Das Artifact
+  `70ca4043-…` existiert **nicht mehr** und darf **nicht neu angelegt werden**.
+  **Aber `schulungen/schulungen.json` bleibt** — sie ist die Datenquelle der
+  Zusammenfassungsseite. Dort wird weiterhin jede neue Schulung eingetragen;
+  `schulungen/build.py` und `schulungen/index.html` werden **nicht mehr veröffentlicht**.
+  Die Original-PDFs liegen unverändert im Repo (`schulung-*/quellen/`, `PDFs*/`) und sind
+  über GitHub erreichbar.
 - `schulung-pflegeplanung/` — Pflegeplanung in fünf Tagen (siehe oben)
 - `klausuren/` — Klausur-Protokoll, gebaut aus `klausuren.json` + `build.py`
 - `schulung-recht/uebungsfaelle.html` — neun Übungsfälle im Schema der Dozentin
