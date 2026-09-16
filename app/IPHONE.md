@@ -139,7 +139,33 @@ plus bas.
 
 ---
 
-## 5. Le dernier obstacle : autoriser le certificat
+## 5. ⚠️ Xcode doit compiler en **Release**, pas en Debug
+
+**C'est le piège qui coûte le plus de temps.** Par défaut, le bouton ▶ d'Xcode
+installe la version **Debug**. Or Apple interdit à une app Flutter en Debug de
+démarrer depuis l'écran d'accueil : elle s'ouvre blanche, ou affiche
+
+> *In iOS 14+, debug mode Flutter apps can only be launched from Flutter tooling,
+> IDEs with Flutter plugins or from Xcode.*
+
+Une app Debug ne fonctionne que tant que le Mac est branché. Inutilisable pour
+réviser dans le train.
+
+**À faire une fois :**
+
+1. Menu **Product → Scheme → Edit Scheme…**
+2. Colonne de gauche : **Run**, onglet **Info**
+3. **Build Configuration** : passe de `Debug` à **`Release`**
+4. **Close**, puis **▶**
+
+Depuis le terminal, `flutter run --release` fait la même chose.
+
+Le premier build Release prend 5 à 10 minutes — tout le code Dart est compilé
+en natif. C'est justement ce qui rend l'app autonome.
+
+---
+
+## 6. Le dernier obstacle : autoriser le certificat
 
 L'app s'installe mais **refuse de s'ouvrir** la première fois. C'est normal, Apple fait
 ça avec tout ce qui ne vient pas de l'App Store.
@@ -170,7 +196,7 @@ L'app va chercher `deutsch-taeglich/app-daten.json` dans le dépôt à chaque ou
 La routine de 5h30 écrit la leçon → tu l'as à l'ouverture suivante.
 
 **Tu n'as pas à recompiler pour avoir une nouvelle leçon.** Tu ne recompiles que si
-l'app elle-même change (ou tous les 7 jours, avec le compte gratuit).
+l'app elle-même change (ou tous les 7 jours, avec le compte gratuit — et toujours en **Release**).
 
 ### Au bout de 7 jours (compte gratuit)
 
@@ -191,6 +217,9 @@ pas dans l'app.
 
 | Message | Ce que ça veut dire |
 |---|---|
+| **Écran blanc**, ou *« debug mode Flutter apps can only be launched from Flutter tooling »* | L'app a été installée en **Debug**. Passe le scheme en **Release** → étape 5 |
+| Tu configures la signature mais rien ne change | Tu es sur la cible **RunnerTests**. Il faut **Runner**, la ligne au-dessus dans TARGETS |
+| Le projet n'a pas les bonnes dépendances (google_sign_in, geolocator…) | Tu as ouvert **un autre projet**. Le bon affiche `claude/nursing-exam-prep-workflow…` en haut et n'a que 4 dépendances |
 | `Exited with status code 255` en **1 à 4 secondes**, sans autre message | `flutter` cache l'erreur d'Xcode. Lance `xcodebuild` directement, voir « Voir le vrai message » |
 | `The device must be opted into Developer Mode` **(code -27)** | Mode développeur pas activé → étape 4 |
 | `Could not build the precompiled application for the device` + `status code 255`, revenu en quelques secondes | L'iPhone est en Wi-Fi seulement, ou le mode développeur est éteint. Branche le câble. |
