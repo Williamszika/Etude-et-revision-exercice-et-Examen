@@ -1,0 +1,744 @@
+<title>Asthma bronchiale verstehen</title>
+<style>
+  :root{
+    /* Grundton: kühles Atemluft-Blau. Signalfarbe: das Terrakotta der Folien von Herrn Perleberg. */
+    --paper:#eff3f6;--paper-2:#e3eaef;--card:#ffffff;
+    --ink:#131c24;--ink-soft:#4b5c68;--line:#ccd8e0;
+    --ak:#b4441f;--ak-deep:#8d3316;--ak-soft:#f8e4dc;        /* Akzent / Anfall */
+    --bedarf:#0d74b8;--bedarf-bg:#dcecf7;                    /* schnell, bei Bedarf */
+    --dauer:#2f7d54;--dauer-bg:#e0efe6;                      /* langsam, jeden Tag */
+    --luft:#0f6f6b;--luft-bg:#dceeed;                        /* Atmung, Pflege */
+    --warn:#a9750c;--warn-bg:#faeed6;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#101820;--paper-2:#0b1117;--card:#19232c;
+    --ink:#e8eff4;--ink-soft:#9bacb8;--line:#273540;
+    --ak:#e08a63;--ak-deep:#f0a582;--ak-soft:#2f1a11;
+    --bedarf:#5fb2e4;--bedarf-bg:#0f2a3b;--dauer:#6fc292;--dauer-bg:#12291d;
+    --luft:#6cc4bf;--luft-bg:#0d2726;--warn:#d9a559;--warn-bg:#2c2313;}}
+  :root[data-theme="dark"]{
+    --paper:#101820;--paper-2:#0b1117;--card:#19232c;
+    --ink:#e8eff4;--ink-soft:#9bacb8;--line:#273540;
+    --ak:#e08a63;--ak-deep:#f0a582;--ak-soft:#2f1a11;
+    --bedarf:#5fb2e4;--bedarf-bg:#0f2a3b;--dauer:#6fc292;--dauer-bg:#12291d;
+    --luft:#6cc4bf;--luft-bg:#0d2726;--warn:#d9a559;--warn-bg:#2c2313;}
+  :root[data-theme="light"]{
+    --paper:#eff3f6;--paper-2:#e3eaef;--card:#ffffff;
+    --ink:#131c24;--ink-soft:#4b5c68;--line:#ccd8e0;
+    --ak:#b4441f;--ak-deep:#8d3316;--ak-soft:#f8e4dc;
+    --bedarf:#0d74b8;--bedarf-bg:#dcecf7;--dauer:#2f7d54;--dauer-bg:#e0efe6;
+    --luft:#0f6f6b;--luft-bg:#dceeed;--warn:#a9750c;--warn-bg:#faeed6;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding:40px 20px 28px;border-bottom:1px solid var(--line);
+    background:linear-gradient(170deg,var(--ak-soft) 0%,transparent 80%);}
+  .mitte{max-width:62rem;margin:0 auto;}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--ak-deep);margin:0 0 9px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,5.5vw,2.8rem);
+    margin:0 0 12px;line-height:1.07;text-wrap:balance;}
+  header.hero p.sub{max-width:62ch;margin:0;color:var(--ink-soft);font-size:15.5px;}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--ak-deep);border-color:var(--line);background:var(--card);}
+
+  main{max-width:62rem;margin:0 auto;padding:0 18px 80px;}
+  section{padding-top:48px;}
+  h2{font-family:var(--serif);font-size:clamp(1.45rem,3.8vw,2rem);font-weight:600;
+    margin:0 0 6px;line-height:1.15;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 20px;max-width:64ch;}
+  h3{font-family:var(--serif);font-size:1.18rem;font-weight:600;margin:26px 0 8px;}
+  h4{font-size:1rem;margin:18px 0 6px;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+
+  .kasten{border-left:4px solid var(--ak);background:var(--ak-soft);border-radius:0 12px 12px 0;
+    padding:16px 19px;margin:16px 0;}
+  .kasten.luft{border-left-color:var(--luft);background:var(--luft-bg);}
+  .kasten.warn{border-left-color:var(--warn);background:var(--warn-bg);}
+  .kasten.dauer{border-left-color:var(--dauer);background:var(--dauer-bg);}
+  .kasten > :first-child{margin-top:0;} .kasten > :last-child{margin-bottom:0;}
+  .kasten .titel{font-family:var(--serif);font-size:1.1rem;font-weight:600;display:block;margin-bottom:5px;}
+
+  /* Die drei Engstellen */
+  .drei{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin:18px 0;}
+  .eng{background:var(--card);border:1px solid var(--line);border-top:4px solid var(--farbe);
+    border-radius:12px;padding:15px 17px;}
+  .eng .nr{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.09em;
+    text-transform:uppercase;color:var(--farbe);}
+  .eng h4{margin:5px 0 6px;font-family:var(--serif);font-size:1.12rem;}
+  .eng p{margin:0;font-size:14.8px;color:var(--ink-soft);}
+  .eng .gegen{display:block;margin-top:10px;padding-top:9px;border-top:1px dashed var(--line);
+    font-size:14px;}
+  .eng .gegen b{color:var(--farbe);}
+
+  /* Medikamente */
+  .meds{display:grid;gap:12px;margin:16px 0;}
+  .med{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--farbe);
+    border-radius:12px;padding:16px 18px;}
+  .med .kopf{display:flex;flex-wrap:wrap;gap:10px;align-items:baseline;margin-bottom:4px;}
+  .med .kurz{font-family:var(--mono);font-weight:700;font-size:1rem;color:var(--card);
+    background:var(--farbe);border-radius:7px;padding:3px 10px;}
+  .med .lang{font-family:var(--serif);font-size:1.14rem;font-weight:600;}
+  .med .rolle{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    border-radius:999px;padding:3px 10px;margin-left:auto;white-space:nowrap;}
+  .rolle.b{background:var(--bedarf-bg);color:var(--bedarf);}
+  .rolle.d{background:var(--dauer-bg);color:var(--dauer);}
+  .med dl{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;margin:10px 0 0;}
+  .med dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--ink-soft);padding-top:4px;white-space:nowrap;}
+  .med dd{margin:0;font-size:15px;}
+  .med dd ul{margin:0;padding-left:1.1em;}
+  .med dd li{margin:2px 0;}
+  @media (max-width:560px){.med dl{grid-template-columns:1fr;gap:2px 0;}
+    .med dt{padding-top:9px;} .med .rolle{margin-left:0;}}
+  .wirkstoffe{font-family:var(--mono);font-size:13.5px;}
+  .handel{font-size:14px;color:var(--ink-soft);}
+
+  /* Stufenschema */
+  .stufen{display:grid;gap:7px;margin:16px 0;}
+  .st{display:grid;grid-template-columns:78px 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:11px;padding:12px 15px;}
+  .st .nr{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--card);background:var(--dauer);border-radius:7px;
+    padding:4px 0;text-align:center;}
+  .st .was{font-size:15px;}
+  .st .was b{color:var(--dauer);}
+  @media (max-width:520px){.st{grid-template-columns:1fr;gap:6px;}
+    .st .nr{justify-self:start;padding:4px 14px;}}
+
+  /* Positionen */
+  .pos{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:16px 0;}
+  .p1{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:13px 15px;}
+  .p1 b{display:block;color:var(--luft);font-family:var(--serif);font-size:1.05rem;margin-bottom:3px;}
+  .p1 span{font-size:14.3px;color:var(--ink-soft);}
+
+  ul,ol{padding-left:1.2em;margin:10px 0;} li{margin:5px 0;}
+  ul.tick{list-style:none;padding-left:0;}
+  ul.tick li{padding-left:1.7em;position:relative;}
+  ul.tick li::before{content:"▸";position:absolute;left:.35em;color:var(--luft);}
+
+  .tabelle{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:12px;}
+  table{border-collapse:collapse;width:100%;min-width:480px;background:var(--card);}
+  th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line);vertical-align:top;font-size:15px;}
+  thead th{background:var(--paper-2);font-family:var(--mono);font-size:11px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
+  tbody tr:last-child td{border-bottom:none;}
+
+  .fall{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px 22px;margin:16px 0;}
+  .fall .text{font-family:var(--serif);font-size:1.06rem;line-height:1.75;
+    border-left:3px solid var(--ak);padding-left:16px;margin:12px 0 0;}
+
+  details{background:var(--card);border:1px solid var(--line);border-radius:12px;margin:12px 0;overflow:hidden;}
+  details > summary{cursor:pointer;padding:13px 17px;font-weight:600;list-style:none;
+    background:var(--paper-2);font-size:15px;}
+  details > summary::-webkit-details-marker{display:none;}
+  details > summary::before{content:"▸ ";color:var(--ak);}
+  details[open] > summary::before{content:"▾ ";}
+  details .body{padding:4px 17px 16px;}
+
+  .auftrag{border:2px dashed var(--ak);border-radius:12px;padding:15px 18px;margin:14px 0;background:var(--card);}
+  .auftrag .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ak-deep);display:block;margin-bottom:6px;}
+
+  footer{border-top:1px solid var(--line);margin-top:60px;padding:26px 20px 46px;
+    text-align:center;color:var(--ink-soft);font-size:13.8px;}
+  footer a{color:var(--ak-deep);}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+</style>
+
+<header class="hero">
+  <div class="mitte">
+    <p class="eyebrow">CE 10 · UE 5 — Unterstützung chronisch kranker Kinder und ihrer Familien · A. Perleberg</p>
+    <h1>Asthma bronchiale verstehen</h1>
+    <p class="sub">Beide Blätter zusammengefasst: der Foliensatz und die Medikamententabelle.
+      <b>Kein neuer Stoff</b> — nur geordnet und erklärt, damit es hängen bleibt.
+      <span class="fr">Tes deux documents, résumés et expliqués. Rien d'ajouté : seulement mis en
+      ordre pour que ça reste.</span></p>
+  </div>
+</header>
+
+<nav class="toc">
+  <a href="#kern">Der Kern</a>
+  <a href="#bronchien">Was passiert</a>
+  <a href="#formen">Die drei Formen</a>
+  <a href="#ursachen">Ursachen</a>
+  <a href="#medikamente">Medikamente</a>
+  <a href="#stufen">Stufenschema</a>
+  <a href="#peakflow">Peak Flow</a>
+  <a href="#anfall">Akuter Anfall</a>
+  <a href="#pflege">Pflege</a>
+  <a href="#tagebuch">Asthmatagebuch</a>
+  <a href="#beratung">Beratung</a>
+  <a href="#stephan">Fall Stephan</a>
+  <a href="#auftraege">Deine Aufträge</a>
+</nav>
+
+<main>
+
+<section id="kern">
+  <h2>Der Kern in einem Satz</h2>
+
+  <div class="kasten"><span class="titel">Die Definition deines Foliensatzes, wörtlich</span>
+    „<b>Chronische Atemwegserkrankung</b> mit <b>erhöhter Empfindlichkeit der Atemwege auf
+    verschiedene Reize (Hyperreagibilität)</b>, die auf einer <b>Entzündung der
+    Bronchialschleimhaut</b> beruht.“
+    <p style="margin-bottom:0;"><span class="fr">Retiens l'ordre : d'abord une
+    <b>inflammation</b> chronique de la muqueuse, ensuite les bronches deviennent
+    <b>hypersensibles</b>, et alors n'importe quel stimulus déclenche la crise.
+    L'inflammation est la cause, la crise n'est que le symptôme.</span></p></div>
+
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Die Zahlen aus deinem Blatt</th><th></th></tr></thead>
+      <tbody>
+        <tr><td><b>ca. 10 %</b></td><td>der Kinder in Deutschland sind aktuell betroffen —
+          <b>mit steigender Tendenz</b></td></tr>
+        <tr><td><b>häufigste</b></td><td>chronische Erkrankung <b>im Kindesalter</b></td></tr>
+        <tr><td><b>Jungen</b></td><td>sind häufiger betroffen als Mädchen</td></tr>
+        <tr><td><b>7 von 10</b></td><td>Kindern mit diagnostiziertem Asthma haben schon
+          <b>vor dem fünften Lebensjahr</b> Symptome</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="bronchien">
+  <h2>Was passiert mit den Bronchien — und warum es drei Medikamentengruppen gibt</h2>
+  <p class="lead">Auf der Folie „Was passiert mit den Bronchien?“ siehst du die gesunde Bronchie
+    neben der kranken. <b>Drei Dinge machen sie gleichzeitig eng</b> — und genau deshalb braucht
+    es mehr als ein Medikament. <span class="fr">Trois choses rétrécissent la bronche en même
+    temps. C'est pour ça qu'un seul médicament ne suffit pas.</span></p>
+
+  <div class="drei">
+    <div class="eng" style="--farbe:var(--bedarf)"><span class="nr">Engstelle 1</span>
+      <h4>Der Muskel verkrampft</h4>
+      <p>Die glatte Muskulatur um die Bronchie zieht sich zusammen — auf der Folie
+        <i>„tightened muscles constrict the airway“</i>.</p>
+      <span class="gegen">Dagegen hilft: <b>SABA und LABA</b> — sie entspannen den Muskel.</span></div>
+    <div class="eng" style="--farbe:var(--ak)"><span class="nr">Engstelle 2</span>
+      <h4>Die Wand ist entzündet und dick</h4>
+      <p>Die Schleimhaut schwillt an — <i>„inflamed and thickened airway wall“</i>.
+        <b>Das ist die eigentliche Krankheit.</b></p>
+      <span class="gegen">Dagegen hilft: <b>ICS und OCS</b> — sie dämpfen die Entzündung.</span></div>
+    <div class="eng" style="--farbe:var(--luft)"><span class="nr">Engstelle 3</span>
+      <h4>Zäher Schleim verstopft</h4>
+      <p>Dazu kommt Sekret — <i>„mucus“</i>. Dein Blatt erklärt woher: Die Bronchialwand enthält
+        <b>Becherzellen</b> und <b>Schleimdrüsen</b>.</p>
+      <span class="gegen">Dagegen hilft: <b>Sekret verflüssigen</b> — trinken, inhalieren.</span></div>
+  </div>
+
+  <div class="kasten luft"><span class="titel">Und warum es Kinder härter trifft</span>
+    Dein Blatt sagt es beim Wandaufbau: In großen und mittleren Bronchien sitzen
+    <b>Knorpelspangen</b>, die die Bronchien <b>offen halten</b>. Die <b>kleinen Bronchien und
+    Bronchiolen haben keine knorpelige Wandverstärkung</b> — sie fallen also leichter zu.
+    Und die Atemwege eines Kindes sind ohnehin eng.
+    <span class="fr">Les petites bronches n'ont pas de cartilage pour les tenir ouvertes. Chez
+    l'enfant, elles sont en plus déjà étroites — d'où la gravité.</span></div>
+</section>
+
+<section id="formen">
+  <h2>Die drei Formen</h2>
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Form</th><th>Wodurch ausgelöst</th></tr></thead>
+      <tbody>
+        <tr><td><b>Allergisches</b> Asthma bronchiale</td>
+            <td>durch <b>Allergene</b>: Blütenpollen, Gräserpollen, Tierhaare, Hausstaubmilben —
+              <b>nicht nur der Kot ist allergisch wirksam</b></td></tr>
+        <tr><td><b>Nichtallergisches</b> Asthma bronchiale</td>
+            <td>durch <b>unspezifische Auslöser</b>: Kälte, verschmutzte Luft, psychische oder
+              emotionale Belastung, körperliche Belastung, Medikamente
+              (z. B. <b>Azetylsalizylsäure, ACC</b>)</td></tr>
+        <tr><td><b>Mischformen</b></td>
+            <td>sowohl durch Allergene <b>als auch</b> durch unspezifische Auslöser</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><span class="fr">Note bien : un médicament peut lui-même déclencher une crise. L'acide
+    acétylsalicylique et l'ACC sont nommés dans ton document — c'est le genre de détail qu'on
+    demande en examen.</span></p>
+</section>
+
+<section id="ursachen">
+  <h2>Ursachen und Risikofaktoren</h2>
+  <ul class="tick">
+    <li><b>Genetische Faktoren</b> — insbesondere das <b>allergische</b> Asthma wird vererbt.</li>
+    <li><b>Das Immunsystem</b> — trägt zur <b>Hyperreagibilität</b> beim allergischen Asthma bei.</li>
+    <li><b>Infektionen</b> — Atemwegsinfektionen, <b>vor allem durch Viren</b>, können ein
+      <b>nichtallergisches</b> Asthma begünstigen. Tritt vermehrt in der <b>Pubertät</b> auf.</li>
+    <li><b>Aktives und passives Rauchen</b> — Zigaretten, <b>E-Zigaretten und Dampfer</b>.
+      Dein Blatt nennt es „<b>Dosis-Wirkungs-Beziehung</b>“: je mehr, desto höher das Risiko.</li>
+    <li><b>Frühkindliche Prägung</b> — schon beim Embryo oder in den ersten Lebensmonaten kann
+      eine <b>Fehlprogrammierung</b> stattfinden.</li>
+  </ul>
+</section>
+
+<section id="medikamente">
+  <h2>Die Medikamente — die zweite Datei</h2>
+  <p class="lead">Das ist der Teil, den man verwechselt. <b>Trenn zuerst nach der Frage: wann
+    nimmt man es?</b> <span class="fr">Avant tout : quand le prend-on ? Tout le reste en
+    découle.</span></p>
+
+  <div class="kasten"><span class="titel">Die eine Unterscheidung, die alles ordnet</span>
+    <b style="color:var(--bedarf)">Bedarfstherapie</b> = im Anfall, wirkt in <b>Minuten</b>,
+    macht die Bronchien <b>weit</b>. Es behandelt <b>das Symptom</b>.
+    <br><b style="color:var(--dauer)">Langzeittherapie</b> = <b>jeden Tag</b>, auch wenn es
+    einem gut geht, wirkt <b>langsam</b>, dämpft die <b>Entzündung</b>. Es behandelt
+    <b>die Ursache</b>.
+    <p style="margin-bottom:0;"><span class="fr">C'est l'erreur classique du patient : il se sent
+    bien, donc il arrête le traitement de fond — et l'inflammation revient. Le spray de secours
+    soulage, il ne soigne pas.</span></p></div>
+
+  <div class="meds">
+
+    <article class="med" style="--farbe:var(--bedarf)">
+      <div class="kopf"><span class="kurz">SABA</span>
+        <span class="lang">kurz wirksames β2-Sympathomimetikum</span>
+        <span class="rolle b">Bedarf · im Anfall</span></div>
+      <dl>
+        <dt>Wirkstoffe</dt><dd class="wirkstoffe">Salbutamol · Fenoterol · Terbutalin</dd>
+        <dt>Handelsname</dt><dd class="handel">Salbutamol-ratiopharm · SalbuHEXAL · Cyclocaps ·
+          Salbutamol AL · Berotec · Terbutalin AL · Bricanyl</dd>
+        <dt>Anwendung</dt><dd>Inhalation · Kapseln zum Inhalieren</dd>
+        <dt>Wirkung</dt><dd><b>Aktivierung der β2-Rezeptoren.</b> Wirkung setzt <b>innerhalb
+          weniger Minuten</b> ein und hält <b>3 bis 6 Stunden</b> an.
+          <ul>
+            <li><b>Erweiterung der Bronchien</b> durch Entspannung der glatten Muskulatur</li>
+            <li>Verbesserung des <b>Selbstreinigungsmechanismus</b></li>
+            <li>Verminderung der Freisetzung von bronchienverengenden Botenstoffen aus
+              Entzündungsquellen</li>
+            <li>Erweiterung der Blutgefäße · Steigerung der Herzfrequenz</li>
+            <li>Beeinflussung des Stoffwechsels (Erhöhung der Insulin- und
+              Blutzuckerkonzentration)</li>
+          </ul></dd>
+        <dt>Nebenwirkung</dt><dd>Steigerung der Herzfrequenz · Herzklopfen · Kopfschmerzen ·
+          <b>Zittern</b> · Unruhe · Übelkeit · Muskelkrämpfe</dd>
+      </dl>
+    </article>
+
+    <article class="med" style="--farbe:var(--dauer)">
+      <div class="kopf"><span class="kurz">LABA</span>
+        <span class="lang">lang wirksames β2-Sympathomimetikum</span>
+        <span class="rolle d">Dauer · jeden Tag</span></div>
+      <dl>
+        <dt>Wirkstoffe</dt><dd class="wirkstoffe">Salmeterol · Formoterol · Indacaterol · Vilanterol</dd>
+        <dt>Handelsname</dt><dd class="handel">Salmeterol AL · SalmeterolHEXAL · Formoterol STADA ·
+          Formoterol AL · Ultibro · ANORO</dd>
+        <dt>Anwendung</dt><dd>Inhalationen · Hartkapseln zur Inhalation</dd>
+        <dt>Wirkung</dt><dd>Dienen zur <b>Dauertherapie</b> beziehungsweise <b>beugen Anfällen
+          vor</b>. Wirkung hält <b>ca. 12–24 Stunden</b> an.
+          <b>Sonst dieselbe Wirkung wie SABA.</b></dd>
+        <dt>Nebenwirkung</dt><dd><b>Dieselben wie SABA.</b></dd>
+      </dl>
+    </article>
+
+    <article class="med" style="--farbe:var(--ak)">
+      <div class="kopf"><span class="kurz">ICS</span>
+        <span class="lang">inhalatives Glukokortikoid</span>
+        <span class="rolle d">Dauer · das wichtigste</span></div>
+      <dl>
+        <dt>Wirkstoffe</dt><dd class="wirkstoffe">Beclomethason · Budesonid · Ciclesonid ·
+          Fluticason · Mometason</dd>
+        <dt>Handelsname</dt><dd class="handel">Ventolair · Sanasthmax · Pulmicort · Flutide ·
+          Atemur · Inhacort</dd>
+        <dt>Anwendung</dt><dd>Inhalationen</dd>
+        <dt>Wirkung</dt><dd>Bei <b>langfristiger</b> Asthma-bronchiale-Behandlung.
+          <ul>
+            <li>Vermindern die Freisetzung von <b>entzündungsfördernden Botenstoffen</b></li>
+            <li>Verminderung der Aktivierung von <b>Immunzellen</b> im Gewebe</li>
+            <li>Verminderung der <b>Hyperreagibilität</b></li>
+            <li>Verminderung der <b>Sekretbildung</b> in den Bronchien</li>
+            <li>Verbesserung des <b>Selbstreinigungsmechanismus</b></li>
+            <li><b>Verbesserung der Wirkung von SABA und LABA</b></li>
+          </ul></dd>
+        <dt>Nebenwirkung</dt><dd><b>Meist nur lokal im Mund- und Rachenraum:</b> Heiserkeit ·
+          Mundtrockenheit · erhöhte Infektanfälligkeit · selten <b>Pilzinfektionen</b></dd>
+      </dl>
+    </article>
+
+    <article class="med" style="--farbe:var(--ak)">
+      <div class="kopf"><span class="kurz">OCS</span>
+        <span class="lang">orales Glukokortikoid</span>
+        <span class="rolle d">Dauer · Reserve</span></div>
+      <dl>
+        <dt>Wirkung</dt><dd>Auf deinem Blatt <b>zusammen mit ICS</b> aufgeführt — also dieselbe
+          entzündungshemmende Wirkung, aber als <b>Tablette</b> statt zum Inhalieren. Im
+          Stufenschema steht es erst in <b>Stufe 6</b>, „alternativ in begründeten Fällen“.</dd>
+      </dl>
+    </article>
+
+    <article class="med" style="--farbe:var(--luft)">
+      <div class="kopf"><span class="kurz">LTRA</span>
+        <span class="lang">Leukotrien-Rezeptor-Antagonist</span>
+        <span class="rolle d">Dauer</span></div>
+      <dl>
+        <dt>Wirkstoff</dt><dd class="wirkstoffe">Montelukast</dd>
+        <dt>Handelsname</dt><dd class="handel">accord</dd>
+        <dt>Anwendung</dt><dd><b>Tabletten zur oralen Einnahme</b> — nicht inhaliert</dd>
+        <dt>Wirkung</dt><dd><b>Hemmstoff der Leukotriene</b>, <b>schwächere Wirkung als
+          Glukokortikoide</b>.
+          <ul>
+            <li>Verbessern in einer <b>Dauertherapie</b> die Asthma-Symptome</li>
+            <li>Vermindern die <b>Verengung</b> der Bronchien</li>
+            <li>Verminderung der <b>Sekretproduktion</b></li>
+            <li>Verminderung der <b>Reizbarkeit</b> der Bronchien</li>
+          </ul></dd>
+        <dt>Nebenwirkung</dt><dd>Kann zur <b>Wechselwirkung mit anderen Medikamenten</b> führen ·
+          Kopfschmerzen · Bauchschmerzen · Schwindel · erhöhte Infektanfälligkeit der
+          <b>oberen Atemwege</b></dd>
+      </dl>
+    </article>
+
+    <article class="med" style="--farbe:var(--dauer)">
+      <div class="kopf"><span class="kurz">LAMA</span>
+        <span class="lang">lang wirksames Parasympatholytikum</span>
+        <span class="rolle d">Dauer</span></div>
+      <dl>
+        <dt>Hinweis</dt><dd>Steht im <b>Stufenschema</b> (Stufe 4 und 5) und in der
+          Abkürzungsliste des Foliensatzes — aber in deiner <b>Medikamententabelle gibt es dazu
+          keine Zeile</b>. Wirkstoff, Nebenwirkungen und Handelsnamen stehen also nirgends in
+          deinen Unterlagen. <b>Frag bei Herrn Perleberg nach</b>, wenn es geprüft wird.</dd>
+      </dl>
+    </article>
+  </div>
+
+  <div class="kasten warn"><span class="titel">Merkhilfe — drei Fragen, dann weißt du die Gruppe</span>
+    <ol style="margin-bottom:0;">
+      <li><b>Entspannt es den Muskel?</b> → β2-Sympathomimetikum. <b>Kurz</b> = SABA (Anfall),
+        <b>lang</b> = LABA (Dauer).</li>
+      <li><b>Dämpft es die Entzündung?</b> → Glukokortikoid. <b>Inhaliert</b> = ICS,
+        <b>Tablette</b> = OCS.</li>
+      <li><b>Blockiert es Botenstoffe?</b> → LTRA (Montelukast), Tablette, schwächer als Kortison.</li>
+    </ol></div>
+
+  <div class="kasten"><span class="titel">Die zwei Nebenwirkungen, die du als Pflegende siehst</span>
+    <b>Bei SABA/LABA: Zittern, Herzklopfen, Unruhe.</b> Ein Kind, das nach dem Spray zittert und
+    ein schnelles Herz hat, ist <b>nicht</b> panisch — das ist die Wirkung am Herzen, die dein
+    Blatt ausdrücklich nennt. Trotzdem beobachten und dokumentieren.
+    <br><b>Bei ICS: Heiserkeit, Mundtrockenheit, Pilzinfektionen im Mund.</b> Deshalb steht in der
+    Pflegeliste deines Foliensatzes <b>„Für Mund- und Nasenpflege Sorge tragen“</b> — das ist
+    kein Zufall, das ist die Antwort auf diese Nebenwirkung.
+    <span class="fr">Ces deux-là, tu les verras toi-même au chevet. C'est exactement ce qu'on
+    attend de toi en tant que soignante.</span></div>
+</section>
+
+<section id="stufen">
+  <h2>Das Stufenschema — Langzeittherapie bei Kindern und Jugendlichen</h2>
+  <p class="lead">Von der Folie „Behandlungsstrategie“. <b>Je höher die Stufe, desto mehr und
+    desto höher dosiert.</b> Unten durchgehend: die <b>Bedarfstherapie</b>.</p>
+
+  <div class="stufen">
+    <div class="st"><span class="nr">Stufe 1</span><span class="was">Nur <b>Bedarfstherapie</b>:
+      SABA — <b>oder</b> ab 12 Jahren die Fixkombination aus niedrig dosiertem ICS + Formoterol.</span></div>
+    <div class="st"><span class="nr">Stufe 2</span><span class="was"><b>ICS niedrig dosiert
+      (bevorzugt)</b> — oder LTRA. <i>Alternative in begründeten Fällen ab 12 Jahren:</i>
+      bedarfsorientierte Fixkombination ICS niedrig + Formoterol.</span></div>
+    <div class="st"><span class="nr">Stufe 3</span><span class="was"><b>ICS mitteldosiert.</b></span></div>
+    <div class="st"><span class="nr">Stufe 4</span><span class="was"><b>ICS mitteldosiert + LABA</b>
+      — oder + LTRA — oder + LABA + LTRA. <i>Bei unzureichender Kontrolle:</i>
+      ICS mitteldosiert + LABA + LTRA + LAMA.</span></div>
+    <div class="st"><span class="nr">Stufe 5</span><span class="was"><b>ICS hoch dosiert + LABA</b>
+      — oder + LTRA — oder + LABA + LTRA — oder + LABA + LAMA — oder + LABA + LTRA + LAMA.</span></div>
+    <div class="st"><span class="nr">Stufe 6</span><span class="was"><b>Zusätzlich zu Stufe 5:</b>
+      Anti-IgE-Antikörper — oder Anti-IL-4-R-Antikörper — oder Anti-IL-5-Antikörper.
+      <i>Alternative in begründeten Fällen:</i> OCS zusätzlich oder alternativ.</span></div>
+  </div>
+
+  <p><b>Bedarfstherapie in allen Stufen:</b> SABA — oder die Fixkombination aus ICS + Formoterol,
+    wenn diese auch die Langzeittherapie darstellt. <b>Alternativen in begründeten Fällen:</b>
+    zusätzlich oder alternativ <b>Ipratropiumbromid</b>.</p>
+
+  <div class="kasten dauer"><b>Lies die Treppe von unten nach oben:</b> Die <b>blaue Zeile
+    unten</b> ist die Bedarfstherapie und läuft durch <b>alle</b> Stufen. Die <b>orangen Kästen
+    oben</b> sind die Langzeittherapie und werden Stufe für Stufe mehr. <b>ICS ist ab Stufe 2 in
+    jeder Stufe dabei</b> — das ist das Rückgrat.
+    <span class="fr">La ligne du bas ne change jamais : le secours est toujours là. C'est le
+    traitement de fond, au-dessus, qui monte.</span></div>
+</section>
+
+<section id="peakflow">
+  <h2>Peak Flow — die Selbstmessung</h2>
+  <p class="lead"><b>Peak Flow</b> heißt wörtlich „<b>stärkste Strömung</b>“, also
+    <b>Spitzenfluss</b>.</p>
+  <ul class="tick">
+    <li>Gemessen wird die <b>höchstmögliche Strömungsgeschwindigkeit der Ausatemluft</b>.</li>
+    <li>Es kommt auf ein <b>kraftvolles und schnelles Ausatmen</b> an.</li>
+    <li>Die Werte werden in <b>Prozent</b> oder in <b>Volumen (L/min)</b> angezeigt.</li>
+  </ul>
+  <div class="kasten luft"><b>Warum das für ein Kind so viel wert ist:</b> Es macht die Enge
+    <b>messbar</b>, bevor man sie fühlt. Das Kind sieht eine Zahl statt nur Angst — und die Zahl
+    kommt ins <b>Asthmatagebuch</b>, morgens und abends.
+    <span class="fr">Ça transforme une peur en un chiffre. Et un chiffre, on peut le suivre.</span></div>
+  <p>Auf der Folie <b>„Peak-Flow-Meter Werte für Kinder“</b> stehen zwei Normwerttabellen —
+    <b>Jungen/Männer</b> und <b>Mädchen/Frauen</b> — aufgeschlüsselt nach <b>Körpergröße
+    (135–195 cm)</b> und <b>Alter (5–80 Jahre)</b>. <b>Der Wert hängt also von Größe und Alter
+    ab, nicht vom Gefühl.</b> Die einzelnen Zahlen liest du direkt auf der Folie ab — ich
+    schreibe sie hier nicht ab, damit sich kein Zahlendreher einschleicht.</p>
+</section>
+
+<section id="anfall">
+  <h2>Erstmaßnahmen bei einem akuten Asthmaanfall</h2>
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Schritt</th><th>Was dein Blatt sagt</th></tr></thead>
+      <tbody>
+        <tr><td><b>1 · Bronchien weiten</b></td>
+            <td><b>Schnellwirksame Bronchodilatatoren</b> wie <b>Salbutamol</b>
+              (inhalativ oder i. v.)</td></tr>
+        <tr><td><b>2 · Entzündung dämpfen</b></td>
+            <td>Gabe von <b>systemisch wirksamen Glukokortikoiden</b> (oral oder i. v.)</td></tr>
+        <tr><td><b>3 · Atmung erleichtern</b></td>
+            <td><b>Atemerleichternde Maßnahmen — altersentsprechend!!!</b> (so steht es auf der
+              Folie, mit drei Ausrufezeichen)</td></tr>
+        <tr><td><b>4 · Sauerstoff</b></td>
+            <td>Bei <b>unzureichender Sauerstoffsättigung &lt; 92 %</b> sollte Sauerstoff
+              verabreicht werden — <b>Sauerstoff wirkt auf Dauer toxisch!</b></td></tr>
+        <tr><td><b>5 · Weitere Therapie</b></td>
+            <td><b>Ipratropiumbromid (Atrovent)</b>, Versuche mit <b>Magnesiumsulfat</b> oder
+              <b>Theophyllin</b> i. v.</td></tr>
+        <tr><td><b>Neueste Technik</b></td>
+            <td><b>AnaConDa™</b> — Spasmolytika oder Narkosegas werden bei <b>schweren
+              Asthmaanfällen</b> und <b>intubierten</b> Patienten über den <b>Tubus</b>
+              verabreicht.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="kasten warn"><b>Die beiden Zahlen, die du dir merkst:</b> <b>&lt; 92 %</b>
+    Sauerstoffsättigung ist die Grenze deines Blattes — und <b>Sauerstoff ist kein harmloses
+    Mittel</b>. Beides steht so auf der Folie, mit Ausrufezeichen.</div>
+
+  <h3>Atemerleichternde Maßnahmen bei Kindern</h3>
+  <p>Die Folie zeigt fünf Positionen und die Lippenbremse — und, ganz oben, ein Baby in
+    <b>Bauchlage mit angezogenen Knien</b>, weil ein Säugling sich nicht hinsetzen kann.
+    <b>„Altersentsprechend“ heißt genau das:</b> was ein 7-Jähriger kann, kann ein Säugling nicht.</p>
+
+  <div class="pos">
+    <div class="p1"><b>Kutschersitz</b><span>Sitzen, Oberkörper nach vorn, Unterarme auf die
+      Oberschenkel gestützt</span></div>
+    <div class="p1"><b>Paschasitz</b><span>Aufrecht im Sessel, Arme seitlich abgestützt</span></div>
+    <div class="p1"><b>Stuhlstütze</b><span>Verkehrt herum auf dem Stuhl, auf die Lehne
+      gestützt</span></div>
+    <div class="p1"><b>Wandstellung</b><span>Stehend, Unterarme gegen die Wand gestützt</span></div>
+    <div class="p1"><b>Torwartstellung</b><span>Stehend, leicht gebeugt, Hände auf den
+      Oberschenkeln</span></div>
+    <div class="p1"><b>Lippenbremse</b><span>Gegen locker aufeinanderliegende Lippen ausatmen —
+      auf der Folie in zwei Fotos gezeigt</span></div>
+  </div>
+
+  <div class="kasten luft"><b>Was alle sechs gemeinsam haben:</b> Sie schaffen einen
+    <b>Gegendruck</b> oder nehmen dem Brustkorb Arbeit ab, damit die <b>kleinen Bronchien beim
+    Ausatmen nicht zufallen</b> — genau die ohne Knorpel. <b>Das Problem beim Asthma ist die
+    Ausatmung</b>, nicht die Einatmung.
+    <span class="fr">Le problème de l'asthme, c'est <b>expirer</b>, pas inspirer. Toutes ces
+    positions servent à empêcher les petites bronches de se refermer à l'expiration.</span></div>
+</section>
+
+<section id="pflege">
+  <h2>Pflege und Versorgung eines Kindes mit Asthma</h2>
+  <p class="lead">Die Liste deines Foliensatzes, vollständig — und daneben, <b>warum</b> jeder
+    Punkt daraufsteht.</p>
+
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Was dein Blatt sagt</th><th>Warum</th></tr></thead>
+      <tbody>
+        <tr><td><b>Ruhig, koordiniert und sicher handeln</b></td>
+            <td>Angst verengt zusätzlich — bei nichtallergischem Asthma ist
+              <b>psychische Belastung selbst ein Auslöser</b></td></tr>
+        <tr><td><b>Das Kind selbst oder mittels der Eltern in eine atemerleichternde Position
+              bringen</b>, oder altersentsprechende Übungen durchführen</td>
+            <td>siehe oben — die Ausatmung offen halten</td></tr>
+        <tr><td><b>Bedarfsinhalation verabreichen</b></td><td>SABA, wirkt in Minuten</td></tr>
+        <tr><td><b>Beim Kind und den Eltern bleiben, um die Angst zu nehmen</b></td>
+            <td>Auch die Eltern werden mitversorgt — das ist der Kern von <b>CE 10</b></td></tr>
+        <tr><td><b>Für die Zufuhr von frischer Luft sorgen</b></td><td>Fenster öffnen</td></tr>
+        <tr><td><b>Ggf. Sauerstoff verabreichen</b> — nach ärztlicher Rücksprache und unter
+              <b>Monitoring</b></td>
+            <td>nicht eigenmächtig, und nur überwacht</td></tr>
+        <tr><td><b>Auf die Belastbarkeit des Kindes achten</b></td>
+            <td>Atemarbeit erschöpft; ein erschöpftes Kind wird plötzlich ruhig —
+              <b>und das ist kein gutes Zeichen</b></td></tr>
+        <tr><td><b>Beobachtung des Aussehens, Verhaltens und der Vigilanz</b></td>
+            <td><b>Vigilanz</b> = Wachheit. Deine Atembeobachtungskriterien passen hier
+              direkt hinein</td></tr>
+        <tr><td><b>Für Mund- und Nasenpflege Sorge tragen</b></td>
+            <td>gegen die <b>lokalen ICS-Nebenwirkungen</b>: Heiserkeit, Mundtrockenheit,
+              Pilzinfektionen</td></tr>
+        <tr><td><b>Kleine Mahlzeiten anbieten</b> — <b>ein voller Magen drückt auf die
+              Lunge</b></td>
+            <td>steht wörtlich so auf der Folie; das Zwerchfell braucht Platz</td></tr>
+        <tr><td><b>Immer wieder Flüssigkeit anbieten</b> — <b>das verflüssigt das Sekret</b></td>
+            <td>Engstelle 3. <b>Trinken ist hier eine Pflegemaßnahme</b>, keine
+              Nebensache</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="tagebuch">
+  <h2>Das Asthmatagebuch</h2>
+  <p class="lead">Was hineingehört — die Liste deines Foliensatzes:</p>
+  <ul class="tick">
+    <li><b>Übersichtlich und einfach</b> in der Handhabung</li>
+    <li>Dokumentation der <b>Medikation</b>, Tages- und Wochenmedikation</li>
+    <li>Dokumentation der <b>Arzttermine</b></li>
+    <li>Dokumentation <b>nach Tagen mit Datum</b></li>
+    <li><b>Peak-Flow-Messung morgens und abends</b></li>
+    <li><b>Symptome am Tag</b> (z. B. Husten/Pfeifen, Atemnot, Auswurf …)</li>
+    <li><b>Nächtliches Erwachen</b> durch Symptome</li>
+    <li>Anwendung der <b>Bedarfsmedikation</b></li>
+    <li><b>Attraktiv</b>, damit man es über einen langen Zeitraum durchhält</li>
+  </ul>
+  <div class="kasten"><b>Der letzte Punkt ist der wichtigste</b> — und der, den man in einer
+    Prüfung vergisst. Ein Tagebuch, das keinen Spaß macht, wird nach zwei Wochen nicht mehr
+    geführt. Bei einem <b>chronisch kranken Kind</b> ist die <b>Alltagstauglichkeit</b> ein
+    fachliches Kriterium, kein nettes Extra.
+    <span class="fr">Un carnet qu'on n'a pas envie de remplir n'est plus rempli au bout de deux
+    semaines. Chez un enfant chronique, être tenable au quotidien est un critère
+    professionnel.</span></div>
+</section>
+
+<section id="beratung">
+  <h2>Schulungsbedarf und gesundheitsfördernde Lebensweise</h2>
+  <div class="tabelle">
+    <table>
+      <thead><tr><th>Bereich</th><th>Was dein Blatt sagt</th></tr></thead>
+      <tbody>
+        <tr><td><b>Allergenvermeidung</b></td>
+            <td>Auslösende Allergene <b>erkennen</b>, <b>vermeiden</b> und in einem
+              <b>Allergiepass</b> auflisten</td></tr>
+        <tr><td><b>Umweltfaktoren</b></td>
+            <td>Bei nichtallergischem Asthma die auslösenden Faktoren erkennen, vermeiden und
+              <b>mit der Umgebung besprechen</b></td></tr>
+        <tr><td><b>Rauchfreie Umgebung</b></td>
+            <td>Asthmatiker sollten <b>Zigarettenrauch nicht ausgesetzt</b> sein</td></tr>
+        <tr><td><b>Sport</b></td>
+            <td>Mit <b>Sporttherapeuten</b> herausfinden, welcher Sport geeignet ist.
+              <b>Nicht: kein Sport.</b></td></tr>
+        <tr><td><b>Infektvermeidung</b></td>
+            <td><b>Jeder Atemwegsinfekt</b> kann die Gesamtsituation des Kindes
+              verschlechtern</td></tr>
+        <tr><td><b>Anpassung des Privatlebens</b></td>
+            <td><b>Notfallpass</b> und Medikamente mitführen, Urlaube vorausplanen,
+              <b>Beratung bei der Berufswahl</b></td></tr>
+        <tr><td><b>Psychisches Gleichgewicht</b></td>
+            <td>Chronisch kranke Kinder <b>und deren Familien</b> sind <b>stetig</b>
+              Belastungssituationen ausgesetzt — es muss ein <b>Ausgleich</b> gefunden
+              werden</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="kasten"><b>Sieh dir die letzte Zeile genau an.</b> Sie sagt <b>„und deren
+    Familien“</b>. Genau darum heißt die Unterrichtseinheit <b>„Unterstützung chronisch kranker
+    Kinder <u>und ihrer Familien</u>“</b>. Wenn in einer Prüfungsaufgabe nach Maßnahmen gefragt
+    wird und du nur an das Kind denkst, fehlt dir die Hälfte.
+    <span class="fr">La famille fait partie du soin — c'est littéralement dans le titre de
+    l'unité.</span></div>
+</section>
+
+<section id="stephan">
+  <h2>Das Fallbeispiel: Stephan will das Bett nicht mehr verlassen</h2>
+  <div class="fall">
+    <p class="text">Stephan ist <b>7 Jahre alt</b> und geht in die erste Grundschulklasse. Im Alter
+      von <b>5 Jahren</b> wurde bei ihm ein Asthma bronchiale diagnostiziert. <b>Seit einem Jahr
+      ist er anfallsfrei.</b> Vor einer Woche bekam Stephan <b>zweimal einen schweren
+      asthmatischen Anfall nach dem Sportunterricht</b>, momentan hat er zusätzlich einen
+      <b>Infekt der oberen Luftwege</b>. Stephan verhält sich sehr ruhig und leidet aufgrund der
+      <b>nächtlichen Hustenanfälle</b> unter häufigem Aufwachen. <b>Körperliche Anstrengungen
+      vermeidet er.</b> Nach einem erneuten schweren Anfall wird Stefan stationär aufgenommen.
+      Wenn er aufgefordert wird, das Bett zu verlassen, um an Aktivitäten im Spielzimmer
+      teilzunehmen, <b>verkrampft er sich sofort und nestelt unruhig mit den Händen an der
+      Bettdecke</b>. Stefan gibt ständig an, <b>sich zu schwach zu fühlen oder keine Lust zu
+      haben</b>. Stefan arbeitet <b>aktiv bei Atemübungen mit, wenn diese im Bett durchgeführt
+      werden können</b>. Die Eltern des Jungen sind <b>rund um die Uhr im Krankenhaus</b> und
+      <b>unterstützen Stephan in seiner Passivität</b>, die er <b>aus Angst vor einem neuen
+      Anfall</b> entwickelt hat.</p>
+  </div>
+
+  <details><summary>Wie du diesen Fall aufschlüsselst — ohne dass ich dir die Antwort schreibe</summary>
+    <div class="body">
+      <p>Alles, was du brauchst, steht <b>im Text</b>. Unterstreich beim Lesen drei Farben:</p>
+      <ul class="tick">
+        <li><b>Auslöser</b> — was hat die Anfälle ausgelöst? Der Text nennt zwei Dinge, und beide
+          stehen in deiner Liste der <b>nichtallergischen</b> Auslöser.</li>
+        <li><b>Symptome</b> — was zeigt Stephan körperlich? (nächtliche Hustenanfälle,
+          häufiges Aufwachen …)</li>
+        <li><b>Das eigentliche Problem</b> — das ist <b>nicht</b> körperlich. Der Text sagt
+          wörtlich, woher es kommt: <i>„aus Angst vor einem neuen Anfall“</i>. Und er sagt auch,
+          <b>wer es verstärkt</b>.</li>
+      </ul>
+      <p><b>Die Ressource steht auch drin</b>, in einem einzigen Satz — such den, in dem Stephan
+        etwas <b>aktiv mitmacht</b>. Genau dort setzt deine Pflegeplanung an.</p>
+      <p class="fr" style="margin-bottom:0;">Ne saute pas sur le problème respiratoire : il est
+        visible, mais ce n'est pas lui qui le garde au lit. Écris-moi ton PE(S)R et je le
+        corrige.</p>
+    </div>
+  </details>
+</section>
+
+<section id="auftraege">
+  <h2>Deine drei offenen Arbeitsaufträge</h2>
+  <p class="lead">Die stehen als <b>Gruppenarbeit</b> im Foliensatz — die Antworten sind
+    <b>nicht</b> darin enthalten. Also fehlen sie dir noch.</p>
+
+  <div class="auftrag"><span class="l">Auftrag 1 · Folie „Symptome bei Asthma bronchiale“</span>
+    <ul style="margin-bottom:0;">
+      <li>Was sind <b>typische Symptome</b> bei Kindern mit Asthma bronchiale?</li>
+      <li><b>Benennen und beschreiben</b> Sie <b>fünf</b> typische Orte, Jahreszeiten oder
+        Auslöser, bei denen ein akuter Asthmaanfall ausgelöst werden kann.</li>
+      <li>In welche <b>Schweregrade</b> kann ein akuter Asthmaanfall eingeteilt werden?</li>
+    </ul></div>
+
+  <div class="auftrag"><span class="l">Auftrag 2 · Asthmatagebuch erstellen</span>
+    Für <b>vier</b> Altersgruppen je ein Tagebuch: <b>Eltern von Säuglingen</b> ·
+    <b>Eltern und Kleinkinder</b> · <b>Jugendliche</b> · <b>Erwachsene</b>.</div>
+
+  <div class="auftrag"><span class="l">Auftrag 3 · Beratung und Anleitung</span>
+    Über <b>Asthmaschulungsprogramme</b> für Schulkinder informieren und im <b>Rollenspiel</b>
+    (Pflegekraft + Kind + ein Elternteil) verschiedene Beratungssituationen gestalten.</div>
+
+  <div class="kasten warn"><b>Achtung bei der dritten Frage von Auftrag 1.</b> Die
+    <b>Schweregrade des akuten Asthmaanfalls</b> stehen <b>nirgends</b> in deinen beiden PDFs.
+    Ich erfinde sie nicht. Das kam entweder im Unterricht mündlich oder es steht in
+    <b>„Pflege Heute — Pädiatrische Pflege“</b>, das dein Foliensatz als Quelle nennt.
+    <b>Frag danach</b> — und schick es mir, dann ergänze ich diese Seite.</div>
+</section>
+
+<section id="quellen">
+  <h2>Die Quellen</h2>
+  <ul>
+    <li><b>Asthma bronchiale</b> — Foliensatz, 29 Folien, erstellt von <b>A. Perleberg</b>.
+      <span class="fr">→ <code>schulung-asthma/quellen/ce10-ue05-asthma-bronchiale-perleberg.pdf</code></span></li>
+    <li><b>Medikamente zur Behandlung von Asthma Bronchiale</b> — Tabelle, 2 Seiten,
+      CE 10 UE 5. <span class="fr">→ <code>schulung-asthma/quellen/ce10-ue05-medikamente-asthma-bronchiale.pdf</code></span></li>
+  </ul>
+  <p>Dein Foliensatz nennt als eigene Quellen: <b>I Care — Anatomie/Physiologie</b> ·
+    <b>Elsevier — Pflege Heute, Pädiatrische Pflege</b> · <b>Deutscher Allergie- und
+    Asthmabund e. V.</b></p>
+
+  <div class="kasten"><b>Auf dieser Seite steht nur, was in deinen beiden PDFs steht.</b> Die
+    Wirkstoffe, Handelsnamen, Wirkungen, Nebenwirkungen, Zahlen und Listen sind von dort
+    abgeschrieben, nicht ergänzt. Die <b>Erklärungen</b> — die drei Engstellen, die Merkhilfe,
+    die Spalte „Warum“ — sind <b>meine Ordnung deines Materials</b>, kein neuer Inhalt.
+    Wo etwas fehlt, steht es ausdrücklich da: <b>LAMA</b> und die <b>Schweregrade</b>.
+    <span class="fr">Rien n'a été ajouté. Là où ton document ne dit rien, je le dis
+    clairement.</span></div>
+</section>
+
+</main>
+
+<footer>
+  CE 10 UE 5 — Unterstützung chronisch kranker Kinder und ihrer Familien · Foliensatz und
+  Medikamententabelle von A. Perleberg<br>
+  Zusammengefasst und erklärt für die Pflegeausbildung, 2. Lehrjahr.
+</footer>
