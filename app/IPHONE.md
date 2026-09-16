@@ -200,15 +200,11 @@ l'app elle-même change (ou tous les 7 jours, avec le compte gratuit — et touj
 
 ### Au bout de 7 jours (compte gratuit)
 
-L'app affiche une erreur au lancement. Rebranche l'iPhone au Mac :
+L'app affiche une erreur au lancement. Rebranche l'iPhone au Mac et relance les
+**deux commandes** de la section « ✅ Le chemin qui a marché » (`xcodebuild` puis
+`devicectl`). Deux minutes.
 
-```bash
-cd ~/Documents/Etude-et-revision-exercice-et-Examen/app
-git pull
-flutter run --release
-```
-
-Deux minutes. Tes mots cochés et tes réponses **restent** — ils sont dans le téléphone,
+Tes mots cochés et tes réponses **restent** — ils sont dans le téléphone,
 pas dans l'app.
 
 ---
@@ -266,26 +262,40 @@ sur un Mac chez GitHub à chaque modification.
 **avec cette version-là** — pas qu'il compile avec la tienne. Si lui est vert et que ça
 échoue chez toi, compare d'abord `flutter --version` avant de chercher ailleurs.
 
-### Poser l'app sur l'iPhone sans `flutter run`
+### ✅ Le chemin qui a marché — sans `flutter run`
 
-Le 16.09.2026, la compilation réussissait (`** BUILD SUCCEEDED **`, zéro `error:`,
-y compris en visant l'iPhone par son identifiant) mais `flutter run` échouait quand
-même avec `status code 255`. Dans ce cas, **l'app existe déjà** — seule la pose sur
-le téléphone manque. `devicectl`, l'outil d'Apple, la fait sans Flutter :
+Le 16.09.2026, après une journée d'essais, c'est **ce chemin-là** qui a mis l'app
+sur son iPhone. `flutter run` échouait avec `status code 255` alors que la
+compilation, elle, réussissait parfaitement (`** BUILD SUCCEEDED **`, zéro `error:`,
+y compris en visant l'iPhone par son identifiant). Autrement dit : l'app était
+déjà prête, seule la **pose** manquait. `devicectl`, l'outil d'Apple, la fait
+sans passer par Flutter.
 
-```bash
-xcrun devicectl device install app --device TON-IDENTIFIANT ~/Library/Developer/Xcode/DerivedData/Runner-XXXXXX/Build/Products/Release-iphoneos/Runner.app
-```
-
-L'identifiant est celui que `flutter devices` affiche. Le nom exact du dossier
-`Runner-XXXXXX` apparaît dans la sortie d'`xcodebuild` (cherche `DerivedData/Runner-`).
-Pour lister les appareils que `devicectl` voit :
+**Ce sont aussi les deux commandes à relancer tous les 7 jours** (compte Apple
+gratuit), quand l'app refuse de s'ouvrir. Dans cet ordre, iPhone déverrouillé :
 
 ```bash
-xcrun devicectl list devices
+cd ~/Documents/Etude-et-revision-exercice-et-Examen/app/ios && xcodebuild -workspace Runner.xcworkspace -scheme Runner -configuration Release -destination id=00008130-000C45D91E09001C -allowProvisioningUpdates build
 ```
 
-Déverrouille l'iPhone avant, puis accorde la confiance au certificat (étape 6).
+```bash
+xcrun devicectl device install app --device 00008130-000C45D91E09001C ~/Library/Developer/Xcode/DerivedData/Runner-azwaycqbhxqgvcffhqlicyamtdcc/Build/Products/Release-iphoneos/Runner.app
+```
+
+La réussite ressemble à ça :
+
+```
+App installed:
+• bundleID: de.zika.deutschTaeglich
+```
+
+Puis **accorde la confiance au certificat** (étape 6) — sans ça l'app se ferme
+aussitôt ouverte.
+
+*Si un jour ces chemins ne collent plus :* l'identifiant de l'appareil est celui
+que `flutter devices` affiche, et le dossier `Runner-XXXXXX` apparaît dans la
+sortie d'`xcodebuild` (cherche `DerivedData/Runner-`). Pour lister ce que
+`devicectl` voit : `xcrun devicectl list devices`.
 
 **À retenir :** compiler et installer sont deux choses distinctes. Quand la
 compilation passe, ne recommence pas à chercher du côté du code.
