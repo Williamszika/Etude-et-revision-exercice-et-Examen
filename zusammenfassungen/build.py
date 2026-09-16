@@ -21,11 +21,22 @@ schulungen/schulungen.json bearbeitet — diese Seite waechst dann von selbst mi
     python3 zusammenfassungen/build.py
 """
 
+import datetime
 import json
 import os
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 REPO = os.path.dirname(BASE)
+
+# --- Neuanfang am 16.09.2026 -------------------------------------------------------------
+# Ihre Entscheidung an diesem Tag: die Seite faengt bei heute neu an und zeigt nur noch die
+# Kurse, deren PDFs sie mir gibt. Erster Eintrag der neuen Etappe: Asthma bronchiale.
+#
+# WICHTIG: Hier wird NICHTS geloescht. Die siebzehn frueheren Eintraege stehen unveraendert
+# in schulungen/schulungen.json, und ihre Artifact-Seiten sind weiterhin online — sie werden
+# von dieser Liste nur nicht mehr angezeigt. Will sie sie zurueck, genuegt es, NEUSTART
+# hier wieder nach vorn zu setzen. Nichts muss neu geschrieben werden.
+NEUSTART = "2026-09-16"
 
 # Nur diese beiden zaehlen als Zusammenfassung. Reihenfolge = Rang.
 LESEN = [
@@ -63,7 +74,18 @@ def main():
 
     kurse = []
     draussen = []
+    vor_neustart = 0
+    heute = datetime.date.today().isoformat()
     for s in daten.get("schulungen", []):
+        datum = s.get("datum", "")
+
+        # Vor dem Neustart? Dann nicht anzeigen — aber auch nicht anfassen.
+        # Ein Datum in der Zukunft ist ein Termin (z. B. die Zwischenpruefung), kein
+        # Tag, an dem eine Zusammenfassung dazugekommen ist.
+        if not (NEUSTART <= datum <= heute):
+            vor_neustart += 1
+            continue
+
         links = s.get("links") or {}
 
         haupt = None
@@ -123,6 +145,9 @@ def main():
     open(ziel, "w", encoding="utf-8").write(seite)
 
     faecher = sorted({k["fach"] for k in kurse if k["fach"]})
+    if vor_neustart:
+        print(f"    {vor_neustart} Eintrag/Eintraege vor dem Neustart {NEUSTART} — "
+              f"stehen weiter in schulungen.json, werden nur nicht gezeigt")
     print(f"OK  {len(kurse)} Zusammenfassungen, {len(weitere)} weitere "
           f"-> zusammenfassungen/index.html ({round(len(seite)/1024)} KB)")
     print(f"    Fächer: {', '.join(faecher)}")
