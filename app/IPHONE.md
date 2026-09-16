@@ -99,16 +99,30 @@ Quand le triangle jaune disparaît, c'est bon.
 
 ## 4. Brancher l'iPhone et lancer
 
+### D'abord : le mode développeur
+
+**Réglages → Confidentialité et sécurité → Mode développeur → activer.**
+L'iPhone **redémarre**, puis redemande confirmation avec ton code.
+
+Si l'entrée n'apparaît pas dans la liste : c'est normal, elle ne s'affiche
+qu'**après** qu'un Mac ait tenté une première installation. Lance une fois
+`flutter run`, redémarre l'iPhone, et regarde à nouveau.
+
+### Ensuite : le câble
+
+Branche l'iPhone, déverrouille l'écran, et réponds **Se fier** à
+« Faire confiance à cet ordinateur ? ».
+
+**Le Wi-Fi ne suffit pas pour la première installation.** Flutter doit
+interroger l'appareil directement.
+
 ```bash
 flutter devices
 ```
 
-Ton iPhone doit apparaître. S'il n'apparaît pas :
-
-- Déverrouille l'iPhone
-- Il demande **« Faire confiance à cet ordinateur ? »** → **Se fier**
-- Sur l'iPhone : *Réglages → Confidentialité et sécurité → Mode développeur* → **activer**
-  (l'iPhone redémarre)
+L'iPhone doit apparaître **sans** la mention `wireless` et **sans** l'erreur
+`code -27`. Si tu vois encore l'une des deux, une des deux étapes ci-dessus
+n'est pas faite.
 
 Puis :
 
@@ -116,7 +130,9 @@ Puis :
 flutter run --release
 ```
 
-La première fois prend 5 à 10 minutes. Ensuite c'est rapide.
+**Compte 5 à 10 minutes la première fois.** Si ça revient en quelques
+secondes, c'est que la compilation n'a jamais commencé — voir le tableau
+plus bas.
 
 ---
 
@@ -172,6 +188,9 @@ pas dans l'app.
 
 | Message | Ce que ça veut dire |
 |---|---|
+| `The device must be opted into Developer Mode` **(code -27)** | Mode développeur pas activé → étape 4 |
+| `Could not build the precompiled application for the device` + `status code 255`, revenu en quelques secondes | L'iPhone est en Wi-Fi seulement, ou le mode développeur est éteint. Branche le câble. |
+| `flutter_tts does not support Swift Package Manager` | **Simple avertissement**, ça ne bloque rien aujourd'hui |
 | `No profiles for 'de.zika.deutschTaeglich' were found` | L'identifiant n'est pas unique → étape 3, point 5 |
 | `Signing for "Runner" requires a development team` | Tu as sauté l'étape 3, point 4 |
 | `Unable to install` / `device is locked` | Déverrouille l'iPhone et relance |
@@ -184,4 +203,12 @@ un travail `iphone` qui compile l'app pour iOS sur un Mac chez GitHub à chaque
 modification. S'il est vert et que ça échoue chez toi, le problème vient de Xcode ou de
 la signature — pas du code. Regarde le tableau ci-dessus.
 
-Et si tu bloques : copie-moi le message d'erreur **en entier**, je te dis quoi faire.
+### Voir le vrai message
+
+`flutter run` masque l'erreur d'Xcode. Celle-ci la montre :
+
+```bash
+flutter build ios --release 2>&1 | tail -40
+```
+
+Copie-moi la sortie **en entier** — avec ça je vois précisément ce qui coince.
