@@ -1,0 +1,1509 @@
+<title>Psychiatrische Pflege</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#245b5f;--accent-deep:#18454a;--accent-soft:#d9e6e6;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#6fb3b7;--accent-deep:#8ecacd;--accent-soft:#132a2c;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#6fb3b7;--accent-deep:#8ecacd;--accent-soft:#132a2c;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#245b5f;--accent-deep:#18454a;--accent-soft:#d9e6e6;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 11 · Psychiatrische Pflege</p>
+  <h1>Psychiatrische Pflege</h1>
+  <p class="sub">Von der Frage, was „normal“ überhaupt heißt, bis zu den Sätzen, mit denen man
+    einen Erregungszustand herunterfährt. Alles auf dieser Seite steht so in deinen eigenen
+    Unterlagen — nichts ist dazuerfunden.</p>
+  <div class="meta">
+    <span>CE 11 / UE 1</span>
+    <span>5 Foliensätze</span>
+    <span>Niveau B1</span>
+    <span>Stand 18.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#fach">Das Fach</a>
+  <a href="#orte">Wo gepflegt wird</a>
+  <a href="#norm">Norm &amp; Stigma</a>
+  <a href="#krank">Gesund / krank</a>
+  <a href="#befund">Der Befund</a>
+  <a href="#fass">Das Fass</a>
+  <a href="#peplau">Peplau</a>
+  <a href="#angst">Angst</a>
+  <a href="#therapie">Therapie</a>
+  <a href="#pharma">Medikamente</a>
+  <a href="#notfall">Notfälle</a>
+  <a href="#deeskalation">Deeskalation</a>
+  <a href="#recht">Recht</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="fach">
+  <h2>Das Fach: was Psychiatrie ist</h2>
+  <p class="lead">Zwei deiner Foliensätze fangen mit derselben Frage an. Beide Definitionen
+    stehen hier nebeneinander, weil sie sich ergänzen.</p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Definition · Foliensatz CE 11 / UE 1</h4>
+      <p>Fachgebiet der Medizin, das sich mit <b>Prophylaxe, Diagnose, Therapie und
+        Rehabilitation</b> psychischer Erkrankungen einschließlich deren <b>Erforschung und
+        Lehre</b> befasst.</p>
+    </div>
+    <div class="karte">
+      <h4>Definition · Psychiatrische Notfälle</h4>
+      <p>Das Wesen der Psychiatrie liegt im <b>Zusammenwirken biologischer und psychosozialer
+        Faktoren</b> und deren Auswirkung auf das psychopathologische Erscheinungsbild. Das
+        zugrunde liegende Krankheitsmodell ist ein <b>bio-psycho-soziales Krankheitsmodell</b>.</p>
+    </div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Der Satz, der in die Klausur gehört</span>
+    <p><b>bio-psycho-soziales Krankheitsmodell</b> — psychische Krankheit entsteht nie aus
+      einer einzigen Ursache. Körper, Seele und soziale Lage wirken zusammen. Dieses Modell
+      erklärt auch, warum die Therapie immer mehrere Bausteine hat.</p>
+    <p class="fr">Modèle bio-psycho-social : jamais une seule cause. Corps, psychisme et
+      situation sociale agissent ensemble.</p>
+  </div>
+
+  <h3>Die vier Fachgebiete der Psychiatrie</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Fachgebiet</th><th>Womit es sich befasst</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Kinder- und Jugendpsychiatrie</td>
+            <td>psychische Erkrankungen im Kindes- und Jugendalter</td></tr>
+        <tr><td class="k">Psychosomatik</td>
+            <td>die Wechselwirkungen zwischen Körper und Seele</td></tr>
+        <tr><td class="k">Gerontopsychiatrie</td>
+            <td>Schwerpunkt auf älteren Menschen</td></tr>
+        <tr><td class="k">Forensische Psychiatrie</td>
+            <td>Behandlung psychisch kranker und suchtkranker Straftäter
+                (<b>§§ 63 und 64 StGB</b>)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Nachbarfächer, die dazugehören</h3>
+  <p>Der Foliensatz <i>Psychiatrische Notfälle</i> grenzt die Nachbardisziplinen ab. Die
+    Unterscheidung <b>Psychologie / Psychiatrie</b> wird gern verwechselt:</p>
+  <ul>
+    <li><b>Psychopharmakologie</b> — Lehre von der Beeinflussung seelischer Vorgänge durch
+      Psychopharmaka</li>
+    <li><b>Sozialpsychiatrie</b> — Epidemiologie und Soziologie seelischer Krankheiten</li>
+    <li><b>Neurologie</b> — Erkrankungen des zentralen, peripheren und vegetativen Nervensystems</li>
+    <li><b>Psychologie</b> — Lehre von den <i>normalen</i> seelischen Vorgängen; die klinische
+      Psychologie befasst sich auch mit krankhaften Vorgängen</li>
+  </ul>
+</section>
+
+<section id="orte">
+  <h2>Wo psychiatrisch gepflegt wird</h2>
+  <p class="lead">Drei Ebenen — stationär, teilstationär, ambulant. Die Beispiele sind aus deiner
+    Region; genau die kann man in einer Prüfung nennen.</p>
+
+  <div class="stufen">
+    <div class="stufe">
+      <span class="nr n2">stationär</span>
+      <div>
+        <h4>Rund um die Uhr in der Einrichtung</h4>
+        <p><b>Fachkrankenhäuser und psychiatrische Kliniken</b> sind für ein bestimmtes
+          Einzugsgebiet zuständig — LVR-Klinik Düren, Alexianer Krankenhaus Aachen, Uniklinik
+          Aachen. Es gibt <b>offene, geschützte und fakultativ geschützte</b> Stationen
+          (<i>fakultativ</i> = nicht zwingend, nicht verpflichtend). Dazu Privatkliniken
+          (Röher Parkklinik Eschweiler) und <b>Wohnheime</b> — offen (Wohnstätten Verbund Kolping)
+          oder geschützt (Haus Stefan, Gangelt Alexianer).</p>
+      </div>
+    </div>
+    <div class="stufe">
+      <span class="nr n2">teilstationär</span>
+      <div>
+        <h4>Einen Teil des Tages in der Klinik</h4>
+        <p><b>Tagesklinik</b> — Kombination aus Krankenhausbehandlung und Aufenthalt in der
+          häuslichen Umgebung. Die Person bleibt im gewohnten Lebensumfeld. Das motiviert
+          besonders Menschen mit Familie oder mit zu pflegenden Angehörigen. Dazu die
+          <b>Nachtklinik</b>.</p>
+      </div>
+    </div>
+    <div class="stufe">
+      <span class="nr n2">ambulant</span>
+      <div>
+        <h4>Zu Hause und im Wohnumfeld</h4>
+        <p><b>Häusliche psychiatrische Pflege (APP)</b> — eine <i>Sonderform der häuslichen
+          Krankenpflege</i>. Sie richtet sich an Menschen mit psychiatrischer Erkrankung und kann
+          Krankenhausaufenthalte <b>vermeiden oder verkürzen</b>. Dazu <b>Wohngemeinschaften</b>,
+          oft über das <b>betreute Wohnen (BeWo)</b> begleitet, <b>Beratungsstellen</b> (für alle
+          Bürger zugänglich, Schweigepflicht besteht) und <b>Selbsthilfegruppen</b> — auch für
+          Angehörige.</p>
+      </div>
+    </div>
+  </div>
+
+  <details class="quelle">
+    <summary>Die Stationen im Alexianer — die Liste aus deinen Folien</summary>
+    <div class="inh">
+      <div class="scroll">
+        <table>
+          <thead><tr><th>Station</th><th>Fachbereich</th></tr></thead>
+          <tbody>
+            <tr><td class="k">Hildegardis</td><td>Gerontopsychiatrie, <b>offene</b> Station</td></tr>
+            <tr><td class="k">Marien</td><td>Gerontopsychiatrie, <b>geschützte</b> Station</td></tr>
+            <tr><td class="k">Theresa</td><td>Suchtmedizin — Entzug <b>legaler</b> Drogen (Alkohol,
+              Medikamente, Cannabis)</td></tr>
+            <tr><td class="k">Josef</td><td>Suchtmedizin — Entzug <b>illegaler</b> Drogen (Heroin,
+              Kokain, Amphetamine, Cannabis, Halluzinogene)</td></tr>
+            <tr><td class="k">Herman-Josef</td><td>Psychotherapie: Borderline-Erkrankungen,
+              Störungen der Gefühlsregulation, Psychotraumata und PTBS</td></tr>
+            <tr><td class="k">Antonius</td><td>Allgemeinpsychiatrie — Wahlleistung (Privatstation)</td></tr>
+            <tr><td class="k">Konrad</td><td>Allgemeinpsychiatrie — therapeutischer Fokus</td></tr>
+            <tr><td class="k">Camillus</td><td>Allgemeinpsychiatrie — Akutstation, Konzept der
+              <b>offenen Tür</b></td></tr>
+            <tr><td class="k">Johannes</td><td>Akut-Aufnahmestation (psychiatrische Intensivstation),
+              akute Eigen- und/oder Fremdgefährdung, geschützte Station <b>ohne</b> Schleuse</td></tr>
+            <tr><td class="k">Paulus</td><td>Akut-Aufnahmestation, akute Eigen- und/oder
+              Fremdgefährdung, geschützte Station <b>mit</b> Schleuse</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+</section>
+
+<section id="norm">
+  <h2>Norm, Gesellschaft und Stigmatisierung</h2>
+  <p class="lead">Dieser Teil ist kein Vorgeplänkel. Er ist die Begründung dafür, warum
+    psychiatrische Pflege anders aussieht als somatische — und er kommt in Prüfungen als
+    Diskussionsfrage.</p>
+
+  <h3>Vier Arten von Norm</h3>
+  <p>„Der Norm entsprechend“ heißt schlicht: <b>dem Durchschnitt entsprechend</b>. Aber
+    Durchschnitt wovon? Deine Folien unterscheiden vier:</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Norm</th><th>Was sie misst</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Soziale Norm</td><td>standardisiert das Umgehen der Gruppenmitglieder
+          miteinander</td></tr>
+        <tr><td class="k">Statistische Norm</td><td>errechnete Mittelwerte, z. B. aus Intelligenz-,
+          Leistungs- und Persönlichkeitstests</td></tr>
+        <tr><td class="k">Subjektive Norm</td><td>das persönliche Erleben und die persönliche
+          Erfahrung</td></tr>
+        <tr><td class="k">Individualnorm</td><td>was im Leben eines Menschen ein Kontinuum ist —
+          z. B. ein von jeher zurückgezogener Mensch</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><b>Und „abnormal“ geht in zwei Richtungen:</b> positiv über dem Durchschnitt (Genie, Talent,
+    Begabung) oder negativ darunter (Störer, Querulant). Es ist also immer <b>abhängig vom
+    Blickwinkel</b>.</p>
+
+  <h3>Diskriminierung und Stigmatisierung — die zwei Begriffe auseinanderhalten</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Diskriminierung</h4>
+      <p>Ungerechtfertigte <b>Benachteiligung</b> von Menschen oder Gruppen aufgrund von
+        Merkmalen wie Herkunft, Geschlecht, Religion oder sexueller Orientierung.</p>
+      <p class="fr">La discrimination : le <b>désavantage</b> injustifié.</p>
+    </div>
+    <div class="karte">
+      <h4>Stigmatisierung</h4>
+      <p>Der <b>Prozess</b> der negativen Bewertung und Ausgrenzung aufgrund von Merkmalen, die
+        von der gesellschaftlichen Norm abweichen.</p>
+      <p class="fr">La stigmatisation : le <b>processus</b> de dévalorisation et d'exclusion.</p>
+    </div>
+    <div class="karte">
+      <h4>Individuelle Diskriminierung</h4>
+      <p>Vorurteile und abwertende Verhaltensweisen gehen von <b>Einzelpersonen</b> aus.</p>
+    </div>
+    <div class="karte">
+      <h4>Strukturelle Diskriminierung</h4>
+      <p>Verankert in <b>Strukturen und Institutionen</b> — Gesundheitswesen, Arbeitsmarkt.
+        Benachteiligung durch Richtlinien oder Praktiken, z. B. nicht behindertengerechte
+        Arbeitsplätze.</p>
+    </div>
+  </div>
+
+  <p><b>Vorurteil</b> ist laut deinen Folien eine <i>nicht objektive, meist von feindseligen
+    Gefühlen bestimmte Meinung, die sich jemand ohne Prüfung der Tatsachen voreilig im Voraus
+    gebildet hat.</i></p>
+
+  <details class="quelle">
+    <summary>Die konkreten Sätze aus den Folien — was Menschen wirklich sagen</summary>
+    <div class="inh">
+      <ul>
+        <li><b>Bei Depressionen:</b> faul, möchten nichts tun, keine Selbstdisziplin, mangelnde
+          Willenskraft</li>
+        <li><b>Bei Angststörungen:</b> Angsthase, „haben nur schwache Menschen“, Weichei</li>
+        <li><b>Bei Suchterkrankung:</b> keine Selbstdisziplin, kriminell</li>
+        <li><b>Bei Essstörungen:</b> will Aufmerksamkeit, Langeweile, sonst keine Probleme</li>
+        <li><b>Über Pflegekräfte in der Psychiatrie:</b> „die werden da auch bekloppt“, „sollten
+          was anderes machen, mit richtiger Medizin“</li>
+      </ul>
+      <p style="margin-top:12px;">Und die <b>Folgen</b> für die Betroffenen: sie werden nicht
+        verstanden, über die Krankheit definiert, finden schwer einen Job, werden schnell
+        kriminalisiert, verlieren das Recht auf Selbstbestimmung und erfahren Ausgrenzung.</p>
+    </div>
+  </details>
+</section>
+
+<section id="krank">
+  <h2>Psychisch gesund — psychisch krank</h2>
+
+  <div class="merk">
+    <span class="t">WHO-Definition, wörtlich aus deinen Folien</span>
+    <p>„Psychische Gesundheit ist ein Zustand des Wohlbefindens, in dem eine Person ihre
+      Fähigkeiten ausschöpfen, die normalen Lebensbelastungen bewältigen, produktiv arbeiten und
+      einen Beitrag zu ihrer Gemeinschaft leisten kann.“</p>
+    <p><b>Psychische Gesundheit ist mehr als die Abwesenheit von Krankheitssymptomen.</b> Sie
+      wird beeinflusst durch biologische, psychologische, sozioökonomische, soziokulturelle und
+      institutionelle Faktoren — zusammengefasst: <b>exogene Faktoren</b>.</p>
+  </div>
+
+  <p><b>Psyche</b> ist definiert als die <i>Gesamtheit des Erlebens, Denkens, Fühlens, Handelns
+    und Wollens eines Menschen.</i></p>
+
+  <h3>Was psychisch gesunde Menschen können</h3>
+  <ul>
+    <li>Wohlbefinden erleben und sich positiv fühlen</li>
+    <li>sich selbst akzeptieren</li>
+    <li>die eigenen Bedürfnisse erkennen und angemessen befriedigen</li>
+    <li>Stress und Einbußen kompensieren</li>
+    <li>sozial kompetent handeln und soziale Rollen ausfüllen</li>
+    <li>Fantasie und Realität unterscheiden</li>
+    <li>sich an einem Sinn orientieren</li>
+  </ul>
+
+  <h3>Wann man von psychischer Krankheit spricht</h3>
+  <p>Wenn <b>psychische Funktionen</b> verändert sind — Wahrnehmung, Antrieb, Gefühlslage,
+    Gedanken (Kognition) oder Verhalten — <b>und</b> diese Veränderungen zu Leiden oder
+    Einschränkungen bei der betroffenen Person oder ihren Angehörigen führen.</p>
+
+  <h3>Die sechs Merkmale, an denen man es festmacht</h3>
+  <div class="karten">
+    <div class="karte"><h4>Leidensdruck</h4><p>„Ich halte es nicht mehr lange aus.“</p></div>
+    <div class="karte"><h4>Verändertes Erleben</h4><p>„Ich fühle mich innerlich ganz leer, wie
+      ausgehöhlt, so, als ob ich tot wäre.“</p></div>
+    <div class="karte"><h4>Verhaltensveränderung</h4><p>Früher Vereinsmensch, jetzt kaum noch
+      draußen, keine Feste mehr.</p></div>
+    <div class="karte"><h4>Eigen- oder Fremdgefährdung</h4><p>Gefahr für sich selbst oder
+      andere.</p></div>
+    <div class="karte"><h4>Störung der Beziehung</h4><p>zu sich selbst, zu anderen oder zur
+      Umwelt.</p></div>
+    <div class="karte"><h4>Eingeschränkte Selbstversorgung</h4><p>Die Fähigkeit, sich selbst zu
+      versorgen, lässt nach.</p></div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Der wichtigste Satz des ganzen Kapitels</span>
+    <p><b>Nicht jedes ungewöhnliche Verhalten ist Ausdruck einer psychiatrischen Krankheit.</b>
+      Oft ist es nicht einfach zu entscheiden, ob verändertes Erleben nur vom gesellschaftlich
+      Üblichen abweicht oder ob es Ausdruck einer Erkrankung ist.
+      <b>Schlechte Gefühle sind nicht automatisch pathologisch</b> — diese gilt es zu
+      akzeptieren. Grundlage für die Diagnostik ist der <b>psychopathologische Befund</b>.</p>
+    <p class="fr">Un comportement inhabituel n'est pas automatiquement une maladie. Se sentir
+      mal n'est pas pathologique en soi.</p>
+  </div>
+
+  <h3>Das Fallbeispiel Peter aus den Folien</h3>
+  <p>Peter, 38 Jahre, Depression. Die Folie ordnet jede Aussage einem Merkmal zu:</p>
+  <div class="paare">
+    <div class="paar"><span class="de">„Jede kleine Auseinandersetzung wirft mich um.“</span>
+      <span class="frx">→ herabgesetzte körperliche und geistige Leistungsfähigkeit</span></div>
+    <div class="paar"><span class="de">„Ich fühle mich innerlich ganz leer, wie ausgehöhlt.“</span>
+      <span class="frx">→ verändertes Erleben</span></div>
+    <div class="paar"><span class="de">Die Ehefrau: „Früher war mein Mann ein Vereinsmensch. Seit
+      er so bedrückt ist, geht er kaum noch raus.“</span>
+      <span class="frx">→ Verhaltensänderung</span></div>
+    <div class="paar"><span class="de">„Ich halte es nicht mehr lange aus.“</span>
+      <span class="frx">→ Leidensdruck</span></div>
+  </div>
+</section>
+
+<section id="befund">
+  <h2>Der psychopathologische Befund</h2>
+  <p class="lead">Das ist das Werkzeug, mit dem der Zustand eines Menschen beschrieben wird —
+    sachlich, in festen Kategorien, ohne Deutung. Dein Übersichtsblatt gliedert ihn so.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Bereich</th><th>Unterteilung</th><th>Beispiele aus dem Blatt</th></tr></thead>
+      <tbody>
+        <tr><td class="k" rowspan="2">Denkstörungen</td>
+            <td><b>formal</b> (wie gedacht wird)</td>
+            <td>verlangsamt · eingeengt · Gedankendrängen · inkohärent</td></tr>
+        <tr><td><b>inhaltlich</b> (was gedacht wird)</td>
+            <td><b>Wahn</b></td></tr>
+        <tr><td class="k">Ich-Störungen</td><td>—</td>
+            <td>Gedankenentzug · Gedankeneingebung · Gedankenausbreitung · Gemachtheit ·
+              Derealisation · Depersonalisation</td></tr>
+        <tr><td class="k">Wahrnehmungsstörungen</td><td>—</td>
+            <td>Halluzinationen · Illusionen</td></tr>
+        <tr><td class="k">Orientierungsstörungen</td><td>—</td>
+            <td>Zeit · Ort · Person · Situation</td></tr>
+        <tr><td class="k">Gedächtnisstörungen</td><td>—</td>
+            <td>Kurzzeitgedächtnis · Langzeitgedächtnis · Amnesien</td></tr>
+        <tr><td class="k" rowspan="2">Bewusstseinsstörungen</td>
+            <td><b>quantitativ</b></td>
+            <td>Vigilanzstörungen · Minderung der Wachheit</td></tr>
+        <tr><td><b>qualitativ</b></td>
+            <td>Zusammenhänge in einer Situation können nicht erkannt werden</td></tr>
+        <tr><td class="k">Affektive Störungen</td><td>—</td>
+            <td>Depression · Hoffnungslosigkeit · Ängstlichkeit · Insuffizienzgefühl ·
+              Affektarmut · Affektstarre · Ambivalenz · Parathymie · Gefühl der Gefühllosigkeit ·
+              Euphorie · übersteigertes Selbstwertgefühl</td></tr>
+        <tr><td class="k">Antriebs- und psychomotorische Störungen</td><td>—</td>
+            <td>Antriebsarmut · Antriebssteigerung · Hyperkinese · Hypokinese · Akinese ·
+              Stereotypien · manierierte oder bizarre Bewegungen</td></tr>
+        <tr><td class="k">Aufmerksamkeits- und Konzentrationsstörungen</td><td>—</td>
+            <td><b>Aufmerksamkeit</b> = sich einem Ausschnitt zuwenden können ·
+              <b>Konzentration</b> = über längere Zeit dabei bleiben können</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Der Unterschied, den man gern verwechselt</span>
+    <p><b>Aufmerksamkeit</b> ist die Fähigkeit, sich <i>einem</i> Ausschnitt der Wahrnehmung
+      <b>zuzuwenden</b>. <b>Konzentration</b> ist die Fähigkeit, <b>über längere Zeit dabei zu
+      bleiben</b>. Wer sich nicht zuwenden kann, hat ein Aufmerksamkeitsproblem; wer abschweift,
+      ein Konzentrationsproblem.</p>
+  </div>
+</section>
+
+<section id="fass">
+  <h2>Das Vulnerabilitäts-Stress-Modell — das Fass</h2>
+  <p class="lead">Ein Bild, das man nie wieder vergisst, und es erklärt fast alles über
+    Rückfälle, Belastung und Prophylaxe.</p>
+
+  <p><b>Vulnerabilität</b> heißt Verletzlichkeit (von lateinisch <i>vulnus</i> = Wunde).
+    <b>Diathese</b> heißt Krankheitsneigung in Wechselwirkung mit Stress. Das Modell heißt
+    deshalb auch <b>Diathese-Modell</b> oder <b>Verletzlichkeitsmodell</b>.</p>
+
+  <div class="merk">
+    <span class="t">Das Bild</span>
+    <p>Die individuelle Verletzlichkeit ist ein <b>Fass</b>. Das <b>Wasser</b> darin ist
+      beruflicher und privater Stress sowie soziale Belastung. <b>Jeder Mensch hat ein
+      unterschiedlich großes Fassungsvermögen</b> und ist daher unterschiedlich belastbar. Hat
+      das Fass einen <b>höheren Boden</b>, ist die Vulnerabilität hoch — es läuft schneller über.</p>
+    <p class="fr">Le tonneau : chacun a une contenance différente. Un fond plus haut = une
+      vulnérabilité plus grande, le tonneau déborde plus vite.</p>
+  </div>
+
+  <ul>
+    <li>Menschen mit <b>geringer</b> Vulnerabilität werden erst bei <b>hoher</b> Stressintensität
+      krank.</li>
+    <li>Menschen mit <b>hoher</b> Vulnerabilität schon bei <b>niedriger</b>.</li>
+    <li>Wer an Depression oder Psychose erkrankt, hat ein <b>geringeres Fassungsvermögen</b>.</li>
+    <li>Die Vulnerabilität wird bestimmt durch <b>genetische, somatische und psychosoziale</b>
+      Faktoren.</li>
+    <li>Ziel der Therapie: die Vulnerabilität verringern — eine Art <b>Überlaufschutz</b> bauen,
+      mit <b>Medikamenten, Psychotherapie und psychosozialen Maßnahmen</b>.</li>
+  </ul>
+
+  <p style="font-size:14.5px;color:var(--ink-soft);">Quelle im Blatt genannt: Altmann, K.;
+    Keller, Ch. (Hrsg.) 2021, <i>Pflegeassistenz Heute</i>, Elsevier, S. 418.</p>
+</section>
+
+<section id="peplau">
+  <h2>Hildegard Peplau — auf die Beziehung kommt es an</h2>
+  <p class="lead">Das Pflegemodell für die Psychiatrie. Peplau war <b>1952 die erste
+    Pflegetheoretikerin, die der Beziehung zwischen Pflegekraft und Patient eine höhere Bedeutung
+    zuschrieb als der somatischen Versorgung.</b></p>
+
+  <details class="quelle">
+    <summary>Steckbrief — falls die Dozentin nach Daten fragt</summary>
+    <div class="inh">
+      <ul>
+        <li>Geboren <b>01.09.1909</b> in Pennsylvania, zweite Tochter von sechs Kindern deutscher
+          Immigranten polnischer Abstammung · gestorben <b>17.03.1999</b> in Kalifornien</li>
+        <li>Als Neunjährige erlebte sie die <b>große Grippeepidemie von 1918</b> — die Auswirkungen
+          von Krankheit und Tod auf Familien blieben ein einschneidendes Erlebnis</li>
+        <li>1943–1945 Offizier als Pflegeberaterin des <b>Army Nurse Corps</b></li>
+        <li>Abschlüsse: B.A. in Interpersonal Psychology · M.A. in Psychiatric Nursing · Ed.D. in
+          Erziehungswissenschaft</li>
+        <li>1960 bis 1974 Professorin an der <b>Columbia University</b> in New Jersey, Lehrgebiet
+          psychiatrische Pflege</li>
+        <li>Hauptwerk: <b>„Interpersonal Relations in Nursing“ (1952)</b>. Der erste Verlag lehnte
+          das Manuskript 1949 ab mit der Begründung, <i>„eine Krankenschwester sei nicht befugt,
+          sich über ein solches Thema in Buchform zu äußern“</i>. Erst der dritte Versuch gelang.</li>
+      </ul>
+    </div>
+  </details>
+
+  <h3>Fünf Merkmale professioneller Pflege</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Teilnehmende Beobachterrolle</h4>
+      <p>Eine <b>aktive</b> Tätigkeit: bewusst alle Äußerungen wahrnehmen und gleichzeitig das
+        eigene Verhalten kritisch beleuchten. Nicht passiver Zuschauer, sondern aktiv Handelnder,
+        der beobachtet <i>und</i> reagiert.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Aufmerksamkeit ganz auf den Patienten</h4>
+      <p>Die Pflegekraft stellt eigene persönliche und soziale Bedürfnisse zurück.
+        <b>„Mit den Augen des Patienten sehen“</b> wird zum Leitprinzip der Pflege.</p></div></div>
+    <div class="stufe"><span class="nr">3</span><div>
+      <h4>Sich der eigenen Rollen bewusst sein</h4>
+      <p>Zu wissen, welche Rolle man gerade einnimmt oder zugeschrieben bekommt. Peplau hält die
+        Rollen <b>Freund, Kumpel oder Sexualobjekt</b> für <b>nicht geeignet</b>, die Beziehung
+        positiv zu beeinflussen.</p></div></div>
+    <div class="stufe"><span class="nr">4</span><div>
+      <h4>Erkundende Haltung</h4>
+      <p>Erkundend, fragend und abwartend <b>statt</b> rationeller und voreiliger Abwicklung.
+        Schwerpunkt auf gewissenhafter Datensammlung: Zuhören, Fragen, Beobachten.</p></div></div>
+    <div class="stufe"><span class="nr">5</span><div>
+      <h4>Rückschlüsse ziehen</h4>
+      <p>In jeder Pflegesituation kommen drei Handlungsweisen zum Tragen:
+        <b>Beobachten — Deuten — Eingreifen.</b></p></div></div>
+  </div>
+
+  <h3>Die vier Phasen der Pflegekraft-Patienten-Beziehung</h3>
+  <p>Peplau fand vier Phasen. Sie haben einen Anfang, sind zeitlich begrenzt und ein Ende ist
+    absehbar. Wichtig für die Klausur: <b>Anlass, Verhalten des Patienten, Verhalten der
+    Pflegekraft und die zentrale Aufgabe</b> der Phase.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Phase</th><th>Anlass</th><th>Der Patient…</th><th>Die Pflegekraft…</th>
+        <th>Zentrale Aufgabe</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="k">1 · Orientierung</td>
+          <td>Aufnahme, Erstkontakt</td>
+          <td>hat ein Problem, versucht es zu artikulieren, stellt Fragen, fühlt sich unsicher,
+            entwickelt einen Bedarf an professioneller Pflege</td>
+          <td>geht auf Wünsche ein, hilft bei der Orientierung, drückt sich verständlich aus,
+            gibt Ruhe und Zeit, nimmt die Angst vor Neuem, ermutigt zur Teilnahme</td>
+          <td>Basis für eine <b>kooperative Beziehung</b></td>
+        </tr>
+        <tr>
+          <td class="k">2 · Identifikation</td>
+          <td>während der intensiven Behandlung</td>
+          <td>identifiziert sich mit der Pflegekraft, sucht ein Bündnis, entdeckt die Tiefe der
+            Probleme — <b>oder verweigert die Kooperation</b></td>
+          <td>bringt Fürsorge entgegen, ist ehrlich und offen, bestärkt ihn, Gefühle zu äußern,
+            hält die Kommunikation aufrecht</td>
+          <td>Entscheidung über einen <b>aktiven oder passiven</b> Beziehungsprozess</td>
+        </tr>
+        <tr>
+          <td class="k">3 · Nutzung</td>
+          <td>Rekonvaleszenz und Rehabilitation</td>
+          <td>versteht seine Situation zunehmend, nutzt die Angebote, fordert Informationen ein,
+            nimmt aktiv teil</td>
+          <td>bietet ausreichende Pflegehandlungen an, gibt Informationen, plant gemeinsam,
+            <b>ermöglicht ihm, unabhängig zu werden</b></td>
+          <td>Wechsel von <b>Abhängigkeit zu Selbstständigkeit</b></td>
+        </tr>
+        <tr>
+          <td class="k">4 · Ablösung</td>
+          <td>Entlassung oder Übergabe an eine andere Person</td>
+          <td>übernimmt Verantwortung für sich, löst sich aus der Patientenrolle, macht
+            Zukunftspläne</td>
+          <td>bietet Hilfestellung beim Lösen, plant den Abschluss, bereitet vor — und
+            <b>muss lernen, loslassen zu können</b></td>
+          <td>Bewältigung der <b>neuen Lebenssituation</b></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Die sechs Rollen der Pflegenden</h3>
+  <div class="karten">
+    <div class="karte"><h4>Fremde / Unbekannte</h4><p>Am Anfang stehen sich beide fremd gegenüber.
+      Professionalität heißt: <b>ohne Vorurteile</b> begegnen. Wertschätzung, emotionale Offenheit,
+      höchste Aufmerksamkeit.</p></div>
+    <div class="karte"><h4>Informantin / Ressource</h4><p>Fragen beantworten — pflegerisch,
+      technisch, rechtlich. <b>Meist sind es emotionale Fragen.</b> Die Pflegekraft entscheidet
+      über Umfang und Art der Vermittlung.</p></div>
+    <div class="karte"><h4>Lehrende</h4><p>Wissen auf der Sachebene vermitteln <i>und</i> auf der
+      Gefühlsebene vermitteln. Kernaufgabe: die <b>Anleitung</b>. Sie hält das Lernen am Leben.</p></div>
+    <div class="karte"><h4>Führungspersönlichkeit</h4><p>Peplau untersuchte Führungsstile und kommt
+      zu dem Schluss: der <b>demokratische Stil</b> kommt der kooperativen Beziehung und der
+      aktiven Teilnahme am nächsten.</p></div>
+    <div class="karte"><h4>Beraterin</h4><p><b>Für Peplau die wichtigste Aufgabe</b> — und eine der
+      schwierigsten. Ziel ist, den Patienten zu befähigen, seine Situation zu reflektieren und
+      eigene Bewältigungsstrategien zu entwickeln. Der Ablauf ist <b>immer offen</b>, das Ergebnis
+      nie vorab festgelegt.</p></div>
+    <div class="karte"><h4>Stellvertreterin / Ersatzperson</h4><p>Patienten weisen der Pflegekraft
+      in Krisen Rollen zu, in denen sie jemanden aus der Vergangenheit ersetzt. Wichtig: der
+      Patientin <b>helfen zu erkennen, worin der Unterschied</b> zwischen ihr und der zugewiesenen
+      Rolle besteht.</p></div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Steht ausdrücklich so in deinem Skript</span>
+    <p>Für <b>Anfängerinnen in der Ausbildung oder direkt nach dem Examen</b> sind die Rollen der
+      <b>Beraterin</b> und der <b>Stellvertretung</b> zu komplex und zu schwierig, um sie
+      professionell auszuführen. Das ist kein Vorwurf — das ist eine Aussage über die Anforderung.</p>
+  </div>
+
+  <h3>Die drei Pflegebündnisse</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">A</span><div>
+      <h4>Aktiv-Passiv-Bündnis</h4>
+      <p>Die Pflegekraft übernimmt den aktiven Teil und entscheidet, <i>was, wie und warum</i>.
+        <b>Nur in akuten Situationen zu rechtfertigen</b> — Bewusstlosigkeit, starke Schmerzen,
+        starke Ängste. In der Praxis gibt es aber immer wieder Menschen, die eine aktive Rolle
+        übernehmen <i>könnten</i>, aber froh sind, wenn für sie entschieden wird.</p></div></div>
+    <div class="stufe"><span class="nr">B</span><div>
+      <h4>Experten-Klienten-Bündnis</h4>
+      <p>Die Pflegende ist fachkundige Begleiterin und Beraterin. Es besteht ein gewisses
+        Abhängigkeitsverhältnis, aber die Patientin kann sich <b>jederzeit entscheiden</b>, ob sie
+        dem Rat folgt — z. B. täglich Atemübungen zu machen.</p></div></div>
+    <div class="stufe"><span class="nr">C</span><div>
+      <h4>Kooperatives Bündnis</h4>
+      <p>Beide bestimmen gemeinsam den Pflegeplan und sind gemeinsam für die Zielerreichung
+        verantwortlich. <b>Von den meisten Patienten bevorzugt</b> — und hieraus lässt sich der
+        größtmögliche Nutzen ziehen.</p></div></div>
+  </div>
+
+  <h3>Beziehungsprozess und Pflegeprozess — der Unterschied</h3>
+  <div class="merk">
+    <span class="t">Zwei Sätze, die man auswendig können sollte</span>
+    <p>Der <b>Beziehungsprozess</b> nach Peplau ist <b>linear</b> — mit definiertem Anfang und
+      Ende.</p>
+    <p>Der <b>Pflegeprozess</b> ist ein Denk- und Handlungsmuster, das <b>zyklisch</b> angelegt
+      ist: ein Regelprozess, in dem sich alle Schritte ständig gegenseitig beeinflussen.</p>
+    <p><b>Grundvoraussetzung</b> für die Umsetzung des Pflegeprozesses ist nach Peplau, dass sich
+      zwischen Pflegekraft und Patient überhaupt <b>eine Beziehung entwickeln kann</b>.</p>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Phase Beziehungsprozess</th><th>Leitfrage</th><th>Schritt im Pflegeprozess
+        (WHO 1976)</th><th>Instrumente</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Orientierung</td><td>Warum besteht ein Bedarf an professioneller Pflege?</td>
+          <td>1 · Einschätzung / Informationssammlung (Assessment), Pflegeanamnese</td>
+          <td>Biographiebogen, Stammblatt, Anamnesebogen</td></tr>
+        <tr><td class="k">Identifikation</td><td>Welche Ziele können gemeinsam formuliert werden?</td>
+          <td>2 · Planung, Pflegediagnose, Pflegeverordnung</td>
+          <td>Betreuungsplan, Berichteblatt</td></tr>
+        <tr><td class="k">Nutzung</td><td>Wie wird die Pflege durchgeführt?</td>
+          <td>3 · Durchführung, Pflegedokumentation</td>
+          <td>Pflegebericht, Pflegestandard</td></tr>
+        <tr><td class="k">Ablösung</td><td>Wurde das Pflegeziel erreicht?</td>
+          <td>4 · Evaluation (Bewertung), Pflegeergebnis</td>
+          <td>Pflegebericht, Betreuungsplan, Entlassungsbericht</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="angst">
+  <h2>Peplaus Angstkonzept — vier Grade, vier Reaktionen</h2>
+  <p class="lead">Das Praktischste an der ganzen Theorie. Es sagt dir, <b>was du tun sollst</b> —
+    und ab welchem Punkt Erklären sinnlos wird.</p>
+
+  <p>Peplau versteht unter Angst: <b>ein Mensch nimmt eine ihm unbekannte Gefahr wahr und
+    reagiert darauf körperlich.</b> Ihre allgemeinen Merkmale:</p>
+  <ul>
+    <li>„Angst ist eine <b>subjektive, gefühlsmäßige Erfahrung</b>.“</li>
+    <li>Angst kann <b>nicht direkt beobachtet werden</b> — nur ihre physiologischen und
+      verhaltensmäßigen Reaktionen.</li>
+    <li>Sie beruht auf subjektiver Wahrnehmung, die real <b>oder nicht real</b> sein kann.</li>
+    <li>Körperlich: erhöhter Pulsschlag, Schwindel, erhöhte Schweißproduktion, Zittern.</li>
+    <li>Angst ist ein <b>Warnzeichen für das Überleben des Selbstsystems</b>.</li>
+  </ul>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Grad</th><th>Wahrnehmung</th><th>Was du siehst</th><th>Was du tust</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="k">Geringe Angst (1+)</td>
+          <td>Wahrnehmung ist <b>erweitert</b>, Zusammenhänge werden <b>besser</b> erkannt als
+            vorher</td>
+          <td>hellwach; erkennt die Angst und kann sie benennen</td>
+          <td>dem Patienten helfen, <b>aus der Angstsituation zu lernen</b>; der erste Schritt
+            der Problemlösung kann gemeinsam gegangen werden</td>
+        </tr>
+        <tr>
+          <td class="k">Mäßige Angst (2+)</td>
+          <td>Wahrnehmungsfeld ist <b>eingeengt</b>, selektive Aufmerksamkeit; die Umgebung des
+            Brennpunkts wird nicht mehr wahrgenommen</td>
+          <td>sieht, hört und begreift weniger als zuvor; kann die Aufmerksamkeit noch auf einen
+            Punkt halten; kann die Angst aussprechen</td>
+          <td>zum Sprechen auffordern: <b>auf eine Erfahrung beschränken</b>, alle Einzelheiten
+            beschreiben lassen, dann allgemein darüber sprechen. Die eigene Angst unter Kontrolle
+            halten, damit keine Übertragung stattfindet.</td>
+        </tr>
+        <tr>
+          <td class="k">Große Angst (3+)</td>
+          <td>Wahrnehmung <b>stark eingeschränkt</b>, Aufmerksamkeit auf ein Detail oder
+            unzusammenhängende Details beschränkt</td>
+          <td>erfasst bedeutend weniger; Schlussfolgerungen sind verzerrt; ist sich der Angst
+            <b>häufig nicht bewusst</b> und kann sie nicht benennen; zeigt Entlastungsverhalten</td>
+          <td><b>Lernen ist nur sehr begrenzt möglich.</b> Entlastungsverhalten zulassen („Luft
+            ablassen“, über psychosomatische Beschwerden sprechen). <b>Hinweis: dazu keine
+            analytischen Fragen stellen.</b> Spontane Äußerungen können das Angstniveau senken.</td>
+        </tr>
+        <tr>
+          <td class="k">Panische Angst (4+)</td>
+          <td>Wahrnehmung auf <b>ein einziges, überspitzt aufgeblähtes Detail</b> zusammengeschrumpft;
+            <b>keine Realitätsprüfung</b> mehr möglich</td>
+          <td>unwillkürliches Entlastungsverhalten ohne Überlegung — rennen, um sich schlagen,
+            Wutausbrüche</td>
+          <td><b>Lernen ist unmöglich geworden.</b> Beim Patienten bleiben, <b>ihn nicht
+            berühren</b>. Nicht mit Argumentationen behelligen. <b>Kurze sachliche Aussagen</b>
+            formulieren. Auf das eingehen, was der Patient sagt.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Warum diese Tabelle im Alltag zählt</span>
+    <p>Die häufigste Fehlreaktion ist, einem Menschen in <b>großer oder panischer Angst</b> etwas
+      <b>erklären</b> zu wollen. Genau das geht nicht mehr — die Wahrnehmung ist zu eng. Je
+      höher die Angst, desto <b>kürzer und sachlicher</b> die Sätze.</p>
+    <p class="fr">Plus l'angoisse est forte, plus tes phrases doivent être courtes et factuelles.
+      Expliquer ne sert plus à rien à partir du grade 3.</p>
+  </div>
+
+  <h3>Peplaus vier Fragetypen</h3>
+  <div class="paare">
+    <div class="paar"><span class="de">A · Offene Frage — kann nicht mit ja oder nein beantwortet
+      werden, engt die Antwort nicht ein.</span>
+      <span class="frx">„Wie haben Sie unser Gespräch wahrgenommen?“ — der Informationsgewinn ist
+        enorm.</span></div>
+    <div class="paar"><span class="de">B · Klärende Frage — eine Aussage soll spezifiziert werden,
+      schließt meist an eine offene Frage an.</span>
+      <span class="frx">„Sie haben gesagt, das Gespräch war hilfreich. Könnten Sie erläutern, was
+        hilfreich für Sie heißt?“</span></div>
+    <div class="paar"><span class="de">C · Erweiternde Frage — vertieft die Aussage.</span>
+      <span class="frx">„Könnten Sie mir erzählen, warum Sie nach unserem Gespräch eine
+        Erleichterung empfunden haben?“</span></div>
+    <div class="paar"><span class="de">D · Hypothetische Frage — vorausschauend: Ideen, Gedanken,
+      Bewältigungsstrategien für die Zukunft.</span>
+      <span class="frx">„Was glauben Sie, würden Sie demnächst tun, wenn Sie wieder in Ihrem
+        häuslichen Umfeld sind?“</span></div>
+  </div>
+  <p>Und eine <b>letzte, wichtige Fähigkeit</b>: im richtigen Moment auch <b>schweigen</b> zu
+    können.</p>
+</section>
+
+<section id="therapie">
+  <h2>Psychiatrische Therapieformen</h2>
+  <p class="lead">Foliensatz <i>Psychiatrische Therapie</i>, CE 11. Erst die Voraussetzung,
+    dann fünf Familien von Verfahren.</p>
+
+  <div class="warnung">
+    <span class="t">Voraussetzung — die wird gern vergessen</span>
+    <p><b>Vor Therapiebeginn wird durch einen Psychiater geklärt, ob eine organische Ursache
+      besteht</b> — zum Beispiel eine Stoffwechselerkrankung oder ein Hirntumor. Erst danach
+      beginnt die psychiatrische Behandlung.</p>
+  </div>
+
+  <p><b>Die drei Ziele:</b> 1. Linderung von Symptomen · 2. Verbesserung der Lebensqualität ·
+    3. Förderung der psychischen Gesundheit.</p>
+  <p><b>Die Wahl des Verfahrens</b> hängt ab vom individuellen Krankheitsverlauf, von den
+    Präferenzen des Patienten und von der Verfügbarkeit und Zugänglichkeit der Behandlung.</p>
+
+  <h3>Psychiater, Psychologe oder Psychotherapeut?</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th></th><th>Ausbildung</th><th>Arbeitsbereiche</th><th>Darf Medikamente
+        verschreiben?</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Psychiater</td><td>Medizinstudium + Facharztausbildung</td>
+          <td>Psychotherapie, Diagnostik, medikamentöse Einstellung</td>
+          <td><b>ja</b></td></tr>
+        <tr><td class="k">Psychologe</td><td>Psychologiestudium (Master)</td>
+          <td>Forschung, Personalwesen, Beratungsstellen, Coaching</td>
+          <td><b>nein</b> — und <b>keine Psychotherapie</b></td></tr>
+        <tr><td class="k">Psychotherapeut</td>
+          <td><i>ärztlicher</i> PT: Medizinstudium + Ausbildung zum Psychotherapeuten ·
+            <i>psychologischer</i> PT: Psychologiestudium + Ausbildung</td>
+          <td>Behandlung verschiedener seelischer Erkrankungen</td>
+          <td>nur der <b>ärztliche</b>; der psychologische PT darf es <b>nicht</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>1 · Psychotherapeutische Verfahren</h3>
+  <p>Strukturierte psychologische Interventionen auf Basis verschiedener theoretischer Modelle,
+    die <b>durch Gespräche und spezifische Übungen</b> wirken.</p>
+
+  <h4>Verhaltenstherapie</h4>
+  <p>Ausgangspunkt: <b>Verhalten ist erlernt.</b> Umgebung, soziales Umfeld, Erfahrungen und
+    Elternhaus formen das Verhaltensbild. Eine Verhaltensstörung wird als <b>Erlerntes</b>
+    aufgefasst, das korrigiert oder durch ein anderes Verhalten ersetzt werden kann.
+    <b>Ziele:</b> Aktivierung und Stabilisierung, Abbau negativer Einstellungen, Entwicklung von
+    Sozialkompetenz.</p>
+  <div class="karten">
+    <div class="karte"><h4>Expositionstherapie</h4><p>auch Konfrontationstherapie. Betroffene werden
+      <b>schrittweise</b> mit Situationen oder Objekten konfrontiert, vor denen sie Angst haben.
+      Häufig bei <b>Angst- und Zwangsstörungen</b>. Ziel: <b>Desensibilisierung</b>. Beispiele in
+      den Folien: Angst vor Enge, Agoraphobie (Platzangst).</p></div>
+    <div class="karte"><h4>Operante Verfahren</h4><p>Verhalten wird durch <b>Verstärkung</b>
+      verändert. <b>Positiver Verstärker</b> = Belohnung bei erwünschtem Verhalten;
+      <b>negativer Verstärker</b> = Bestrafung bei unerwünschtem. Häufig im <b>kinder- und
+      jugendpsychiatrischen</b> Bereich (Verstärkerpläne).</p></div>
+    <div class="karte"><h4>Kognitive Verfahren</h4><p>Annahme: bestimmte <b>Grundüberzeugungen</b>
+      bestimmen unsere Gedanken, Gefühle und Handlungen. Ziel: die eigenen Gedankengänge
+      <b>hinterfragen und neu bewerten</b>. Anwendung z. B. bei Depressionen und
+      Persönlichkeitsstörungen.</p></div>
+    <div class="karte"><h4>Selbstsicherheitstraining</h4><p>Stärkung des Selbstbildes, Gewinn von
+      Selbstsicherheit, Erwerb sozialer Fertigkeiten — Wünsche und Bedürfnisse äußern und
+      <b>„nein“ sagen</b> lernen. Zum Beispiel über <b>Rollenspiele</b>.</p></div>
+  </div>
+
+  <details class="quelle">
+    <summary>Beck gegen Hayes — die zwei kognitiven Schulen im Vergleich</summary>
+    <div class="inh">
+      <h4>Aaron T. Beck — die vier Schritte der kognitiven Therapie</h4>
+      <ol>
+        <li><b>Identifikation</b> dysfunktionaler Gedanken — negative Gedanken erkennen</li>
+        <li><b>Hinterfragen</b> von Denkmustern durch spezifische Gesprächstherapien</li>
+        <li><b>Erarbeiten alternativer Kognitionen</b> — positive und realistische Gedanken
+          entwickeln</li>
+        <li><b>Anwendung im Alltag</b> mit Reflexion der emotionalen Reaktion</li>
+      </ol>
+      <h4>Steven C. Hayes — ACT (Akzeptanz- und Commitment-Therapie)</h4>
+      <p>Achtsame, <b>nicht bewertende Akzeptanz</b> negativer Gedanken ermöglicht neutrale
+        Distanzierung. Die Formulierung einer <b>Werteorientierung</b> („Was ist mir wichtig?“)
+        hilft, Handlungsabsichten (<i>commitments</i>) abzuleiten. Sechs Komponenten:</p>
+      <ol>
+        <li>Gegenwärtigkeit im Augenblick (Achtsamkeit)</li>
+        <li>Akzeptanz</li>
+        <li>Defusion — sich von Gedanken distanzieren, um ihren Einfluss zu reduzieren</li>
+        <li>Selbst als Kontext</li>
+        <li>Werte</li>
+        <li>Commitment</li>
+      </ol>
+      <p><b>Ziel:</b> größtmögliche <b>psychische Flexibilität</b> als Weg zur Genesung.</p>
+    </div>
+  </details>
+
+  <h4>Psychodynamische Psychotherapie</h4>
+  <p><i>Psychodynamik</i> = „seelische Kräfte“, die im Menschen wirken (Gefühle). Stützt sich auf
+    die <b>klassische Psychoanalyse nach Sigmund Freud</b>: das Unbewusste und die Kindheit
+    spielen eine entscheidende Rolle. <b>Ausgangspunkt:</b> akute psychische Erkrankungen sind
+    Spätfolgen früherer, nicht verarbeiteter Erlebnisse, Erfahrungen und Konflikte.
+    <b>Ziel:</b> Aufdecken und Bearbeiten der Konflikte. Eingesetzt z. B. bei <b>PTBS</b>
+    (posttraumatische Belastungsstörung) und Persönlichkeitsstörungen.</p>
+
+  <h4>Gesprächspsychotherapie nach Carl Rogers</h4>
+  <p>Humanistisches, <b>personen-/klientenzentriertes</b> Verfahren. Grundlage ist eine
+    <b>wohlwollende, empathische Beziehung</b>; der Therapeut ist <b>authentisch</b> und wird
+    akzeptiert, wie er ist. Er sorgt nicht dafür, dass der Patient „selbst auf die Schliche
+    kommt“ — sondern der Patient erarbeitet <b>mithilfe</b> des Therapeuten selbst
+    Lösungsmöglichkeiten.</p>
+  <div class="merk">
+    <span class="t">Der Kerngedanke bei Rogers</span>
+    <p><b>Jeder Mensch hat eine natürliche Tendenz zu positiver Entwicklung</b> — wenn die
+      Wachstumskräfte nicht behindert werden. Der Patient erlangt dadurch Selbstverständnis und
+      Wertschätzung, was zu einer Verbesserung seines Befindens führt.</p>
+  </div>
+
+  <h3>2 · Somatische Therapieverfahren — die EKT</h3>
+  <p>Physikalische und biologische Methoden, die <b>direkt auf Gehirnfunktionen einwirken</b>.
+    Sie sind eine <b>Ergänzung</b> zu Psychotherapie und Pharmakotherapie und kommen vor allem
+    bei <b>schweren oder therapieresistenten</b> Erkrankungen zum Einsatz.</p>
+  <p>Die <b>Elektrokonvulsionstherapie (EKT)</b> ist das <b>am längsten etablierte</b> somatische
+    Verfahren. Hohe Wirksamkeit bei:</p>
+  <ul>
+    <li>schweren <b>therapieresistenten Depressionen</b></li>
+    <li><b>katatonen Zuständen</b></li>
+    <li>einigen Formen der <b>Schizophrenie</b></li>
+    <li><b>manischen Episoden</b></li>
+  </ul>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Schritt</th><th>Was passiert</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Vorbereitung</td><td>anästhesiologische Überwachung und <b>Narkose</b></td></tr>
+        <tr><td class="k">Durchführung</td><td>unter Narkose: Abgabe elektrischer Impulse über
+          Elektroden auf die Kopfhaut → Auslösen eines <b>kontrollierten epileptischen
+          Anfalls</b>. Dauer: wenige Minuten.</td></tr>
+        <tr><td class="k">Nachbehandlung</td><td><b>mehrere Sitzungen</b> erforderlich, meist in
+          Abständen von <b>2–3 Tagen</b></td></tr>
+        <tr><td class="k">Erfolgsquote</td><td>je nach Erkrankung <b>50–82 %</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>3 · Gruppentherapeutische Ansätze</h3>
+  <p>Die <b>Dynamik und Ressourcen einer Gruppe</b> werden für den therapeutischen Prozess
+    genutzt. Patienten erleben und reflektieren soziale Interaktion, erhalten Feedback und
+    profitieren von den Erfahrungen anderer. <b>Vorteil: Normalisierung von Problemen.</b>
+    Besonders erfolgreich bei Suchterkrankungen, Angststörungen, Depressionen und
+    Persönlichkeitsstörungen.</p>
+  <h4>Systemische Therapie</h4>
+  <p>Betrachtet psychische Störungen im <b>Kontext sozialer Beziehungen</b>, besonders der
+    Familie. <b>Probleme sind nicht im Individuum lokalisiert, sondern in den Kommunikations- und
+    Interaktionsmustern innerhalb des Systems.</b> Behandelt wird deshalb mit dem Partner oder
+    der ganzen Familie. Bewährt bei Essstörungen, Suchterkrankungen, Störungen im Kindes- und
+    Jugendalter <b>sowie bei Patienten mit Migrationshintergrund</b>, weil kulturelle und
+    familiäre Zusammenhänge einbezogen werden.</p>
+
+  <h3>4 · Weitere Therapieformen</h3>
+  <p>In den Folien als <b>Gruppenarbeit</b> vergeben, je Gruppe ein Ansatz:
+    <b>Milieutherapie · Soziotherapie · Entspannungstechniken · Psychoedukation · Kunst- und
+    Ergotherapie</b>. Die vier Leitfragen waren: Was beinhaltet der Ansatz und wie wird er
+    definiert? Welche Ziele? Wie die Umsetzung (Setting, Berufsgruppen, Patientengruppen)? Und:
+    <b>welche Aufgaben gibt es für die Pflege?</b></p>
+
+  <div class="merk">
+    <span class="t">Das Fazit der Folien</span>
+    <p>Psychische Erkrankungen sind <b>komplex</b> — Therapievielfalt ist notwendig. Die
+      verschiedenen Ansätze sind <b>ergänzende Bausteine</b>, die sich flexibel an individuelle
+      Bedürfnisse anpassen lassen. Der <b>ganzheitliche Blick</b> ist dabei entscheidend:
+      biologisch, psychologisch, sozial.</p>
+  </div>
+</section>
+
+<section id="pharma">
+  <h2>Psychopharmaka</h2>
+  <p class="lead">Die zentrale Behandlungssäule — und der Teil, in dem die Pflege am meisten
+    Verantwortung trägt.</p>
+
+  <p><b>Grundprinzip:</b> Wirkung auf neuronale Strukturen und <b>Neurotransmittersysteme</b> im
+    Gehirn. Ziel: Symptomlinderung, Stabilisierung und Therapiebereitschaft.
+    <b>Neurotransmitter</b> sind chemische Botenstoffe, die Signale zwischen Nervenzellen
+    (Neuronen) übertragen.</p>
+  <p><b>Die Auswahl richtet sich nach</b> Diagnose, Komorbiditäten, bisherigen
+    Behandlungserfahrungen und den Präferenzen des Patienten.</p>
+
+  <h3>Was die Pflege bei der Medikamentengabe tut</h3>
+  <div class="karten">
+    <div class="karte"><h4>Gabe</h4><p>Die Medikamentengabe erfolgt <b>kontrolliert, unter
+      Aufsicht</b>.</p></div>
+    <div class="karte"><h4>Beobachtung</h4><p>Nebenwirkungen erkennen — <b>besonders bei älteren
+      Patienten (Sturzgefahr)</b>. Beobachtungen und Nebenwirkungen <b>genau dokumentieren</b>,
+      regelmäßige Vitalzeichenkontrolle.</p></div>
+    <div class="karte"><h4>Informieren und beraten</h4><p>Die <b>Notwendigkeit der Einnahme</b>
+      muss dem Patienten deutlich gemacht werden, um langfristig <b>Akzeptanz</b> herzustellen.
+      Ängste über Nebenwirkungen und mögliche Abhängigkeiten <b>ernst nehmen</b>.</p></div>
+    <div class="karte"><h4>Laborkontrolle</h4><p>Bestimmung des <b>Medikamentenspiegels</b>.</p></div>
+  </div>
+
+  <h3>Antidepressiva</h3>
+  <p><b>Wirkung</b> auf die Neurotransmitter <b>Serotonin, Noradrenalin und Dopamin</b> — wichtig
+    für <b>Antrieb, Stimmung und Schlaf-Wach-Rhythmus</b>.
+    <b>Einsatz:</b> Depressionen, Angst- und Zwangsstörungen, bipolare Störungen.
+    <b>Wirkmechanismus:</b> Antidepressiva <b>verhindern die Wiederaufnahme</b> von Serotonin und
+    Noradrenalin in die Nervenzelle. Dadurch bleibt mehr davon im <b>synaptischen Spalt</b>, die
+    Konzentration steigt und die Signalübertragung wird verbessert.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Gruppe</th><th>Abkürzung</th><th>Beispiele aus deinen Folien</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Selektive Serotonin-Wiederaufnahme-Hemmer</td><td><b>SSRI</b></td>
+          <td>Citalopram, Fluoxetin, Sertralin</td></tr>
+        <tr><td class="k">Selektive Serotonin-Noradrenalin-Wiederaufnahme-Hemmer</td><td><b>SSNRI</b></td>
+          <td>Venlafaxin</td></tr>
+        <tr><td class="k">Selektive Noradrenalin-Wiederaufnahme-Hemmer</td><td><b>SNRI</b></td>
+          <td>Elontril</td></tr>
+        <tr><td class="k">Monoaminooxidase-Hemmer (ältere)</td><td><b>MAO-Hemmer</b></td>
+          <td>in der Folie: „Amitriptylin = Seroten“ — <b>siehe Hinweis unten</b></td></tr>
+        <tr><td class="k">Tri- und tetrazyklische Antidepressiva (ältere)</td><td><b>TZA</b></td>
+          <td>Mirtazapin</td></tr>
+        <tr><td class="k">Pflanzlich</td><td>—</td><td>Johanniskraut</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Bitte bei der Dozentin nachfragen</span>
+    <p>In der Folie steht <b>Amitriptylin</b> in der Zeile <b>MAO-Hemmer</b>, mit dem Zusatz
+      „= Seroten“. In derselben Folie stehen die <b>tri- und tetrazyklischen Antidepressiva</b>
+      als eigene Gruppe. Amitriptylin wird üblicherweise den <b>trizyklischen</b> Antidepressiva
+      zugeordnet, und der Handelsname wird meist <b>Saroten</b> geschrieben. Das kann ein
+      Tippfehler in der Folie sein. <b>Das wird hier nicht stillschweigend korrigiert</b> — frag
+      nach, bevor du es so lernst.</p>
+  </div>
+
+  <h3>Nebenwirkungen — nach Gruppe getrennt</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>SSRI · SSNRI · SNRI</th><th>MAO-Hemmer</th><th>tri- und tetrazyklische</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>Kopfschmerzen · Schlafstörungen · innere Unruhe · Übelkeit · sexuelle
+            Funktionsstörung</td>
+          <td>Unruhe · Tremor · Schlaflosigkeit</td>
+          <td><b>Anticholinerge Nebenwirkungen:</b> Mundtrockenheit, Verstopfung,
+            Miktionsstörungen, Akkommodationsstörungen (Sehstörung) · sedierend ·
+            Gewichtszunahme · sexuelle Funktionsstörungen · <b>Herzrhythmusstörungen</b></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Serotonin-Syndrom</span>
+    <p>Entsteht durch die Einnahme <b>mehrerer serotoninähnlicher Substanzen</b>.
+      <b>Symptome:</b> Fieber, hoher RR, Herzrasen, Kopfschmerzen, Übelkeit, Durchfall,
+      Müdigkeit, Gangunsicherheit, Verwirrtheit, Desorientiertheit; gegebenenfalls Halluzinationen
+      und Bewusstseinsstörungen <b>bis zum Koma</b>.
+      <b>Therapie:</b> Absetzen der Medikamente unter Überwachung.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die drei Sätze, die in jeder Prüfung zu Antidepressiva vorkommen</span>
+    <ol style="margin-bottom:0;">
+      <li>Die <b>Antriebssteigerung beginnt sofort</b> nach der Einnahme — die
+        <b>Stimmungsaufhellung erst nach 1–3 Wochen</b>.</li>
+      <li>Genau deshalb <b>kann das Suizidrisiko bei suizidgefährdeten Patienten steigen</b>: Die
+        Kraft zu handeln kommt zurück, bevor die Verzweiflung nachlässt.</li>
+      <li>Maßnahmen: <b>Patienten informieren</b>, die <b>Dosis allmählich steigern</b>,
+        <b>nicht abrupt absetzen</b>.</li>
+    </ol>
+  </div>
+
+  <p><b>Absetzen:</b> Antidepressiva haben <b>kein Abhängigkeitspotenzial</b>, müssen aber
+    <b>langsam ausgeschlichen</b> werden — Absetzphänomene, z. B. Schwindel.</p>
+  <div class="warnung">
+    <span class="t">Johanniskraut ist „nur“ pflanzlich — und trotzdem gefährlich</span>
+    <p>Johanniskraut hat <b>Wechselwirkungen mit anderen Medikamenten</b>. Zum Beispiel
+      <b>setzt es die Wirkung oraler Kontrazeptiva (Antibabypille) herab.</b></p>
+  </div>
+
+  <p style="font-size:14.5px;color:var(--ink-soft);">Die Folien vergeben einen Arbeitsauftrag zu
+    fünf weiteren Gruppen — <b>Schlafmittel und Sedativa, Antipsychotika,
+    Stimmungsstabilisierer, Psychostimulanzien, Antidementiva</b> — mit Wirkmechanismus,
+    Anwendung, Nebenwirkungen und Beispielen (z. B. Lithium). Diese Recherche ist in den
+    vorliegenden Dateien <b>nicht enthalten</b> und wird hier deshalb auch nicht ergänzt.</p>
+</section>
+
+<section id="notfall">
+  <h2>Psychiatrische Notfälle</h2>
+  <p class="lead">Foliensatz <i>Psychiatrische Notfälle und Zustände</i> (T. Weidenbecher).
+    In Notfallsituationen wird <b>sehr symptomorientiert</b> gearbeitet — es geht um schwerwiegende
+    akute Störungen des <b>Denkens, der Stimmung, des Verhaltens oder des sozialen Seins</b>.</p>
+
+  <h3>Die sieben Notfallbilder</h3>
+  <div class="karten">
+    <div class="karte"><h4>Erregungszustand</h4><p>Meist <b>ziellose</b> Steigerung von Antrieb und
+      Psychomotorik, affektive <b>Enthemmung</b> und <b>Kontrollverlust</b>. Es kann zu
+      ausgeprägter Gereiztheit und aggressiven Äußerungen bis hin zu <b>unvermittelten
+      Gewalttätigkeiten</b> kommen.</p></div>
+    <div class="karte"><h4>Akute Suizidalität</h4><p>siehe eigener Abschnitt unten.</p></div>
+    <div class="karte"><h4>Angst- und Panikstörung</h4><p>Ein Notfall liegt vor, wenn der Patient
+      meint, <b>die Kontrolle über sich zu verlieren</b> oder lebensbedrohlich erkrankt zu sein.
+      Panikartige Verhaltensweisen mit hochgradiger Erregung und Unruhe.</p></div>
+    <div class="karte"><h4>Bewusstseinsstörung</h4><p>Von leichter Benommenheit bis zu tiefer
+      Bewusstlosigkeit. Ursachen: zerebral, zerebrovaskulär, kardiovaskulär, metabolisch, toxisch,
+      traumatisch <b>oder psychisch</b>. Nach der Dauer: <b>Synkope</b> (Sekunden bis Minuten)
+      gegen <b>Koma</b> (Stunden bis Tage).</p></div>
+    <div class="karte"><h4>Delir</h4><p>Gekennzeichnet durch <b>Desorientiertheit, Verkennung der
+      Umgebung, halluzinatorische Erlebnisse (vorwiegend optisch)</b> und Unruhe bis zu starker
+      Erregung. Es ist eine <b>akute organische Psychose</b>.</p></div>
+    <div class="karte"><h4>Stupor</h4><p>Psychomotorische Hemmung mit Bewegungs- und
+      Regungslosigkeit. <b>Der Kranke ist bei klarem Bewusstsein</b>, reagiert nicht auf äußere
+      Reize, spricht nicht (<b>Mutismus</b>), trinkt und isst nicht — <b>obwohl er
+      Aufforderungen wahrnimmt und versteht</b>. Eine Amnesie besteht in der Regel nicht.</p></div>
+    <div class="karte"><h4>Drogennotfall</h4><p>Vorwiegend als akute <b>Intoxikation</b> oder
+      <b>Entzugserscheinung</b> sowie als psychotische Reaktion, z. B. ein „Horrortrip“. Kann sich
+      als Bewusstseinsstörung, delirantes Syndrom oder Erregungszustand zeigen.</p></div>
+    <div class="karte"><h4>Psychopharmaka-induzierter Notfall</h4><p>Ursachen: <b>versehentliche
+      oder suizidale Überdosierung</b>, Nebenwirkungen, Absetz- und Entzugssyndrome.</p></div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Der Satz, der Leben rettet</span>
+    <p><b>Nur weil ein Patient eine bekannte psychische Störung hat, heißt das nicht, dass nicht
+      doch eine ernsthafte organische Erkrankung vorliegt.</b> Somatische Differenzialdiagnosen
+      sind auszuschließen.</p>
+    <p class="fr">Une maladie psychique connue n'exclut jamais une cause organique grave.
+      Toujours écarter le somatique.</p>
+  </div>
+
+  <details class="quelle">
+    <summary>Die vier Hauptformen des Delirs</summary>
+    <div class="inh">
+      <ul>
+        <li><b>(Alkohol-)Entzugsdelir</b> — „Delirium tremens“</li>
+        <li><b>postoperatives Delir</b></li>
+        <li>durch <b>allgemeinmedizinische und hirnorganische Krankheiten</b> bedingtes Delir</li>
+        <li><b>pharmakogenes</b> Delir, z. B. das zentrale anticholinerge Delir</li>
+      </ul>
+      <p>Ursachen sind Alkoholentzug, Medikamentenentzug, Allgemeinerkrankungen und die Einnahme
+        zentral wirksamer Pharmaka.</p>
+    </div>
+  </details>
+
+  <details class="quelle">
+    <summary>Die fünf gefährlichen Akutnebenwirkungen von Antipsychotika</summary>
+    <div class="inh">
+      <ul>
+        <li><b>Frühdyskinesie</b> — Therapie mit Anticholinergika</li>
+        <li><b>Malignes neuroleptisches Syndrom</b> — Fieber, Tremor, Rigor,
+          Bewusstseinsstörungen, vegetative Dysfunktionen. <b>Sofortiges Absetzen</b> der
+          Antipsychotika, körpertemperatursenkende und intensivmedizinische Maßnahmen;
+          Therapieversuch mit dopaminergen Substanzen und Muskelrelaxanzien (z. B. Dantrolen).</li>
+        <li><b>Serotonin-Syndrom</b> — Fieber, Tremor, Erregung, Desorientiertheit bei
+          (kontraindizierten!) Medikamentenkombinationen. <b>Lebensbedrohlich.</b></li>
+        <li><b>Anticholinerges Syndrom</b> — delirantes Bild durch Überdosierung oder Kombination
+          anticholinerg wirksamer Pharmaka. Therapie mit Physostigmin.</li>
+        <li><b>Kardiovaskuläre Störungen</b> — unter trizyklischen Antidepressiva und
+          Antipsychotika. <b>Sturzrisiko durch orthostatischen Kollaps.</b></li>
+      </ul>
+      <p>Weitere: Harnsperre, (Sub-)Ileus, zerebrale Krampfanfälle.</p>
+    </div>
+  </details>
+
+  <h3>Suizidalität</h3>
+  <p><b>Ein Suizid kann sich vorher ankündigen — muss aber nicht.</b> Die Folien nennen die
+    Motive, die Betroffene selbst genannt haben, deren Versuch nicht geglückt ist oder die davon
+    abgehalten werden konnten:</p>
+  <ul>
+    <li>Todeswunsch · Wunsch nach Veränderung im Leben · <b>Hilferuf</b> · Rache</li>
+    <li>Wunsch nach Ruhe · Wunsch nach Ablösung und Trennung · Manipulation anderer</li>
+    <li>Enttäuschung, Wut · depressive Verstimmung · belastende Lebensereignisse ·
+      psychotische Motivation</li>
+  </ul>
+
+  <h4>Das Krisenmodell der akuten Suizidalität</h4>
+  <p>Das Krisenmodell geht von einer <b>psychisch unauffälligen Persönlichkeit</b> aus. Suizidales
+    Handeln resultiert aus einem <b>nicht bewältigbar erscheinenden Lebensereignis</b>.
+    <span style="color:var(--ink-soft);">(Quelle in den Folien: Wolfersdorf M., <i>Suizidalität</i>,
+    in: Berger M. (Hrsg.), <i>Psychische Erkrankungen</i>, 2. Aufl., Elsevier, München 2004.)</span></p>
+
+  <h4>Die fünf Risikogruppen — mit abnehmendem Risiko</h4>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div><h4>Depressive aller Arten</h4></div></div>
+    <div class="stufe"><span class="nr">2</span><div><h4>Alkohol-, Medikamenten- und
+      Drogenabhängige</h4></div></div>
+    <div class="stufe"><span class="nr">3</span><div><h4>Alte und Vereinsamte</h4></div></div>
+    <div class="stufe"><span class="nr">4</span><div><h4>Personen, die durch eine
+      Suizidankündigung auffallen</h4></div></div>
+    <div class="stufe"><span class="nr">5</span><div><h4>Personen, die einen Suizidversuch hinter
+      sich haben</h4></div></div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die Zahlen zur Depression aus deinen Folien</span>
+    <ul style="margin-bottom:0;">
+      <li>Die Suizidrate bei depressiven Patienten liegt bei etwa <b>4 %</b> — das ist
+        <b>ca. 30-mal höher</b> als in der Durchschnittsbevölkerung.</li>
+      <li><b>15 %</b> der Patienten mit schweren depressiven Störungen begehen Suizid.</li>
+      <li><b>20 bis 60 %</b> weisen Suizidversuche in ihrer Krankengeschichte auf.</li>
+      <li><b>40 bis 80 %</b> leiden während einer Depression an Suizidideen.</li>
+    </ul>
+  </div>
+
+  <h4>Larvierte Depression</h4>
+  <p>Ein Teil der Depressiven ist am <b>äußeren Aspekt</b> zu erkennen. In anderen Fällen werden
+    <b>fast ausschließlich körperliche Beschwerden</b> geschildert — das ist die <b>larvierte
+    Depression</b> (<i>larviert</i> = maskiert, versteckt). Bei Verdacht muss die Symptomatik
+    <b>gezielt exploriert</b> werden.</p>
+  <p><b>Symptome der Depression aus den Folien:</b> depressive Verstimmung und Niedergeschlagenheit ·
+    Antriebshemmung · Denkhemmung · Schlafstörungen · Interesse- und Initiativeverlust ·
+    Entscheidungsunfähigkeit · Angst und Hoffnungslosigkeit · innere Unruhe · Grübeln ·
+    Vitalstörungen.</p>
+
+  <h4>Schizophrenie — wie die Folien sie beschreiben</h4>
+  <ul>
+    <li>Das Durchleben <b>akuter Psychosen</b> — phasenweise oder dauerhaft</li>
+    <li>Patienten <b>hören Stimmen</b>, <b>Verfolgungswahn</b>, kompletter Verlust des Bezugs zur
+      Wirklichkeit möglich</li>
+    <li><b>Gestörte Affektivität</b> durch aufeinanderfolgend stark wechselnde Gefühlssituationen</li>
+    <li>Gefühlsleere, <b>starre Mimik</b>, Teilnahmslosigkeit, Vermeiden von Augenkontakt</li>
+    <li><b>Fälschlicherweise</b> wird ein Bezug zur „gespaltenen Persönlichkeit“ hergestellt —
+      das ist <b>falsch</b></li>
+  </ul>
+
+  <div class="merk">
+    <span class="t">Und ein Teil, der nicht den Patienten betrifft, sondern dich</span>
+    <p>Die Folien widmen der <b>eigenen seelischen Verfassung</b> ein ganzes Kapitel. Das Bild ist
+      das <b>„sich füllende Fass“</b> — dasselbe wie im Vulnerabilitäts-Stress-Modell: belastende
+      Situationen werden oft einfach zur Seite gedrückt und ignoriert. In Berufen mit viel
+      Schicksalsschlägen, Tod und schweren Geschichten kann sich das ansammeln. Dazu kommt das
+      Privatleben.</p>
+    <p>Aus den Folien, über eine erfahrene Kollegin in einer kritischen Situation:
+      <i>Frage: „Was würdest du beim Patienten tun?“ — Antwort: „Ja das ist doch klar, aber bei
+      mir ist es etwas anderes.“</i></p>
+    <p><b>Die persönliche Belastungsgrenze nicht vergessen.</b></p>
+  </div>
+</section>
+
+<section id="deeskalation">
+  <h2>Deeskalation: Kommunikation ist der Schlüssel</h2>
+  <p class="lead">Der praktischste Teil des ganzen Kurses. Ohne Medikamente, ohne Körperlichkeit —
+    nur über die Art, wie man auftritt und spricht.</p>
+
+  <h3>Die Grundannahmen, bevor man den Raum betritt</h3>
+  <div class="karten">
+    <div class="karte"><h4>Die Landkarte ist nicht das Gebiet</h4><p>Wir alle haben verschiedene
+      Vorstellungen von der Welt, und <b>keine davon stellt die Welt vollständig dar</b>. Menschen
+      reagieren auf ihre <b>Abbildung</b> der Realität, nicht auf die Realität selbst.</p></div>
+    <div class="karte"><h4>Es gibt keine falschen Modelle</h4><p>Jeder sieht die Welt durch eine
+      andere Brille.</p></div>
+    <div class="karte"><h4>Hinter jedem Verhalten steckt eine gute Absicht</h4><p>Jedes Verhalten
+      bezweckt im Leben des Betreffenden eine <b>positive Funktion</b> — unabhängig von möglichen
+      negativen Nebenwirkungen.</p></div>
+    <div class="karte"><h4>Menschen treffen die beste ihnen verfügbare Wahl</h4><p>Hätten sie
+      andere und angemessenere Möglichkeiten, ihre Bedürfnisse zu erfüllen, würden sie vieles
+      nicht tun, was <b>aus reiner Bosheit zu geschehen scheint</b>.</p></div>
+    <div class="karte"><h4>Widerstand ist ein Hinweis, kein Angriff</h4><p>Widerstand beim
+      Patienten bedeutet <b>mangelnde Flexibilität auf Seiten des Beraters</b> — ein Hinweis auf
+      fehlenden Rapport, der durch erneutes Herstellen von Rapport ausgeräumt werden kann.</p></div>
+    <div class="karte"><h4>Es gibt keine Fehler, nur Feedback</h4><p>Die Bedeutung der
+      Kommunikation liegt <b>in der Reaktion, die man erhält</b>. Bleibt sie aus, ist die eigene
+      Botschaft nicht angekommen. <b>Wenn etwas nicht funktioniert, tue etwas anderes.</b></p></div>
+  </div>
+
+  <h3>Rapport — und die vier Schritte dorthin</h3>
+  <p><b>Rapport</b> bedeutet, Menschen <b>auf ihrem Niveau</b> anzusprechen und <b>deren
+    Sprache</b> zu verwenden. Es ist die Fähigkeit, die Welt eines anderen zu betreten und eine
+    <b>Brücke</b> zu ihm zu bauen — die Kunst, Unterstützung und Mitarbeit zu erhalten, um ein
+    gemeinsames Ziel zu erreichen. <b>Wenn der Rapport vorhanden ist, verschwindet der
+    Widerstand.</b></p>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Spiegeln</h4>
+      <p>Körperliches Sich-Anpassen an <b>Haltung, Gestik, Atmung, Mimik, Bewegungen,
+        Gewichtsverlagerung, Muskeltonus</b>. Man passt sich an wie ein Spiegel — <b>nicht
+        übertreiben.</b></p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Pacing</h4>
+      <p>Sich im gesamten <b>visuellen und auditiven</b> Ausdrucksverhalten anpassen —
+        <b>nicht duplizieren.</b> Die andere Person wird dort abgeholt, wo sie steht.
+        Zum Beispiel Sprachtempo, Rhythmus, Tonlage.</p></div></div>
+    <div class="stufe"><span class="nr">3</span><div>
+      <h4>Matching</h4>
+      <p>Eine Ebene umfassender: das Angleichen an <b>Sprachstile und Sprachmuster</b>.</p></div></div>
+    <div class="stufe"><span class="nr">4</span><div>
+      <h4>Leading</h4>
+      <p>Erst <b>nachdem</b> man sich eine Weile angeglichen und den Rapport hergestellt hat, kann
+        man dazu übergehen, den Patienten zu <b>führen</b> — auf der Basis von Rapport und im
+        Sinne des <b>Win-Win-Prinzips</b> zu einem bestimmten Ziel.</p></div></div>
+  </div>
+
+  <h3>Die Wörter, die man vermeidet — und die, die man benutzt</h3>
+  <div class="karten">
+    <div class="karte" style="border-left:3px solid var(--bad);">
+      <h4 style="color:var(--bad);">Vermeiden</h4>
+      <p><b>„Wieso, weshalb, warum, aber“.</b> Diese Wörter lösen ein <b>Hinterfragen der
+        Sinnigkeit</b> aus — nicht ein Interesse an den Hintergründen der Situation.</p>
+    </div>
+    <div class="karte" style="border-left:3px solid var(--good);">
+      <h4 style="color:var(--good);">Stattdessen</h4>
+      <p>Aktiv nach Gründen und Zielen fragen:<br>
+        <b>„Hat es einen Grund, dass Sie …?“</b><br>
+        <b>„Was ist hier gerade Ihr Ziel?“</b></p>
+    </div>
+  </div>
+
+  <h3>Die Fallstricke — die auf deiner Seite liegen</h3>
+  <ul>
+    <li><b>Unser Auftreten</b> kann schon von Beginn an entscheiden, wie die gesamte Situation
+      verläuft.</li>
+    <li><b>Die Worte</b>, die wir nutzen, können über die Kooperation des Patienten entscheiden.</li>
+    <li><b>Unsere Körpersprache</b> sagt deutlich mehr über uns aus, als es uns lieb ist.</li>
+    <li><b>Blickführung</b> kann gerade bei hyperaktiven, schizophrenen und depressiven Patienten
+      das Vertrauen in Frage stellen.</li>
+    <li>Ein <b>Nicht-Ernst-Nehmen</b> der Situation und Verständnislosigkeit.</li>
+    <li>Ein <b>Missachten des emotionalen Zustandes</b>.</li>
+    <li><b>Lügen.</b></li>
+  </ul>
+
+  <div class="merk">
+    <span class="t">Die Voraussetzungen auf deiner Seite</span>
+    <ul style="margin-bottom:0;">
+      <li><b>Wertfrei</b> sein</li>
+      <li>idealerweise <b>mit sich selbst im Reinen</b> sein</li>
+      <li>ein <b>Grundverständnis der Erkrankungen</b> haben</li>
+      <li><b>nicht lügen</b> und immer mit offenen Karten spielen</li>
+      <li><b>rechtliches Wissen</b></li>
+    </ul>
+    <p style="margin-top:12px;margin-bottom:0;">Und der Satz, der die Erwartung geraderückt:
+      <b>„Es ist nicht euer Ziel, den Patienten zu heilen. Es ist euer Ziel, den Patienten aus
+      seinem Wahn herauszuholen.“</b></p>
+  </div>
+
+  <h3>Körpersprache</h3>
+  <p>Die Folien geben folgende Aufteilung an: <b>Körpersprache 55 %</b> (Mimik, Gestik) ·
+    <b>Sprache 45 %</b> (Tonfall, Tonlage, Tonhöhe) · <b>Inhalt 7 %</b>.</p>
+  <div class="warnung">
+    <span class="t">Bitte nachfragen</span>
+    <p>Diese drei Zahlen ergeben zusammen <b>mehr als 100 %</b> (55 + 45 = 100, und der Inhalt
+      käme mit 7 % noch dazu). So wie sie auf der Folie stehen, gehen sie <b>rechnerisch nicht
+      auf</b>. Das wird hier nicht heimlich korrigiert — <b>frag nach, wie die Zahlen gemeint
+      sind</b>, bevor du sie in einer Prüfung verwendest.</p>
+    <p>Die <b>Aussage dahinter</b> ist davon unberührt und steht fest: <i>„Ein Großteil der
+      Kommunikation ist bereits gelaufen, bevor wir den ersten Ton gesagt haben.“</i> Und, nach
+      Paul Watzlawick: <b>„Man kann nicht nicht kommunizieren.“</b> Sobald zwei Personen sich
+      gegenseitig wahrnehmen, kommunizieren sie — denn jedes Verhalten hat kommunikativen
+      Charakter.</p>
+  </div>
+
+  <p><b>Gesprächsführung:</b> auf klare und deutliche Aussprache achten — <b>du hast die
+    Leitung</b>. Körperhaltung <b>immer stabil und aufrecht</b>: Wenn der Patient merkt, dass er
+    geistig und körperlich über dir steht, gibt es für ihn keinen Grund, dir Respekt zu zollen.
+    Und: <b>Wenn ein Patient dir zu nahe kommt oder Angst verursacht, dann sag es.</b></p>
+
+  <div class="gefahr">
+    <span class="t">Eigenschutz — die Zahlen aus den Folien</span>
+    <ul style="margin-bottom:0;">
+      <li>Dein Gegenüber kann in <b>1 bis 1,5 Sekunden 3 Meter</b> überwinden und einen Angriff
+        ausüben.</li>
+      <li>Das heißt: Bei gewalttätigen oder aggressiven Personen sollte diese <b>Distanz von
+        mindestens 3 Metern</b> eingehalten werden.</li>
+      <li><b>Messer</b> werden von sehr vielen Personen „am Mann“ getragen, lassen sich leicht
+        verstecken und unvermittelt einsetzen.</li>
+      <li>Die <b>Angriffsschwelle sinkt seit Jahren</b>.</li>
+    </ul>
+  </div>
+  <p>Wenn im Vorfeld eine Eskalation vermutet wird, sollten <b>immer weitere Hilfskräfte im
+    direkten Umfeld</b> sein — wenigstens in Wortreichweite. Situationen mit Drogen sind besonders
+    dynamisch: aufgedreht und plötzlich bewusstlos, oder umgekehrt.</p>
+</section>
+
+<section id="recht">
+  <h2>Der rechtliche Rahmen</h2>
+  <p class="lead">Drei Punkte, die in den Notfall-Folien stehen. Es sind genau die, die man im
+    Ernstfall kennen muss.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Paragraf</th><th>Was er sagt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">§ 32 StGB<br>Notwehr</td>
+          <td>„Wer eine Tat begeht, die durch Notwehr geboten ist, handelt <b>nicht
+            rechtswidrig</b>.“ Notwehr ist die Verteidigung, die <b>erforderlich</b> ist, um einen
+            <b>gegenwärtigen rechtswidrigen Angriff</b> von sich oder einem anderen abzuwenden.</td></tr>
+        <tr><td class="k">§ 34 StGB<br>Rechtfertigender Notstand</td>
+          <td>Wer in einer <b>gegenwärtigen, nicht anders abwendbaren Gefahr</b> für Leben, Leib,
+            Freiheit, Ehre, Eigentum oder ein anderes Rechtsgut eine Tat begeht, um die Gefahr
+            abzuwenden, handelt nicht rechtswidrig — <b>wenn bei Abwägung</b> der widerstreitenden
+            Interessen das <b>geschützte Interesse das beeinträchtigte wesentlich überwiegt</b>.
+            Das gilt nur, soweit die Tat ein <b>angemessenes Mittel</b> ist.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Die Zwangseinweisung</h3>
+  <p>Behandlung nach den <b>Unterbringungsgesetzen (UBG und PsychKG)</b>. Gegen seinen Willen in
+    einer geschlossenen psychiatrischen Klinik untergebracht werden kann, wer</p>
+  <ul>
+    <li>an einer <b>psychischen Krankheit</b> oder einer <b>krankheitswertigen psychischen
+      Störung</b> leidet <b>und</b></li>
+    <li>deswegen eine <b>Gefahr für sich selbst oder die öffentliche Sicherheit und Ordnung</b>
+      darstellt.</li>
+  </ul>
+  <div class="warnung">
+    <span class="t">Wichtig für die Prüfung</span>
+    <p>Zwischen den Unterbringungsgesetzen der <b>verschiedenen Bundesländer bestehen erhebliche
+      Unterschiede</b>. Für dich gilt das <b>PsychKG NRW</b>.</p>
+  </div>
+
+  <h4>Der Ablauf in Aachen und Umgebung — aus den Folien</h4>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div><h4>Der Rettungsdienst stellt die Problematik
+      fest</h4></div></div>
+    <div class="stufe"><span class="nr">2</span><div><h4>Nachforderung von NEF, Ordnungsamt und
+      Polizei</h4></div></div>
+    <div class="stufe"><span class="nr">3</span><div><h4>Kontrolle durch Notarzt und Ordnungsamt,
+      ob wirklich indiziert</h4></div></div>
+    <div class="stufe"><span class="nr">4</span><div><h4>Auftrag an Polizei und Rettungsdienst,
+      den Patienten <b>unter Voranmeldung</b> ins Krankenhaus zu transportieren</h4></div></div>
+    <div class="stufe"><span class="nr">5</span><div><h4>Durchführung des Transports <b>unter
+      Polizeibegleitung</b></h4></div></div>
+    <div class="stufe"><span class="nr">6</span><div><h4><b>Innerhalb von 24 Stunden</b> muss ein
+      Richter den Patienten sichten und entscheiden, wie es weitergeht</h4></div></div>
+  </div>
+</section>
+
+<section id="offen">
+  <h2>Was in dieser Zusammenfassung fehlt — und warum</h2>
+  <p class="lead">Diese Seite ist aus fünf Dateien gebaut. Was in keiner davon steht, steht auch
+    hier nicht. Hier ist die ehrliche Liste.</p>
+
+  <div class="karten">
+    <div class="karte"><h4>Die vier weiteren Psychopharmaka-Gruppen</h4><p>Schlafmittel und
+      Sedativa, Antipsychotika, Stimmungsstabilisierer, Psychostimulanzien, Antidementiva — dazu
+      gab es einen <b>Arbeitsauftrag</b>, aber die Ergebnisse liegen nicht vor. Schick sie mir,
+      dann kommen sie dazu.</p></div>
+    <div class="karte"><h4>Die fünf „weiteren Therapieformen“</h4><p>Milieutherapie, Soziotherapie,
+      Entspannungstechniken, Psychoedukation, Kunst- und Ergotherapie waren <b>Gruppenarbeit</b>.
+      Zu Milieutherapie und Kunst-/Ergotherapie liegen Handouts im Ordner, die hier noch nicht
+      eingearbeitet sind.</p></div>
+    <div class="karte"><h4>Der Film „Hirngespinster“</h4><p>Mehrere Arbeitsaufträge beziehen sich
+      auf diesen Film. <b>Der Film liegt nicht vor</b> — deshalb wird dazu hier nichts behauptet.</p></div>
+    <div class="karte"><h4>Zwangsstörungen</h4><p>Dafür gibt es bereits eine <b>eigene, ausführliche
+      Schulung</b> in deiner Sammlung. Sie wird hier nicht wiederholt.</p></div>
+    <div class="karte"><h4>Die Ausarbeitungen deiner Mitschülerinnen</h4><p>Im Drive-Ordner liegen
+      viele Dateien <i>„AA Schizophrenie …“</i> von Mitschülerinnen. Das sind <b>studentische
+      Bearbeitungen, teils unkorrigiert</b> — sie sind deshalb <b>keine Fachquelle</b> und nicht
+      in diese Zusammenfassung eingeflossen.</p></div>
+    <div class="karte"><h4>Zwei Stellen zum Nachfragen</h4><p>Die Zuordnung von <b>Amitriptylin</b>
+      zu den MAO-Hemmern und die <b>Kommunikationsprozente</b> (55 / 45 / 7). Beide stehen oben
+      markiert. Frag bei der Dozentin nach, statt sie so zu lernen.</p></div>
+  </div>
+
+  <div class="pruef">
+    <h4>Sieben Fragen, mit denen du dich selbst prüfen kannst</h4>
+    <ol>
+      <li>Nenne die vier Arten von Norm und je ein Beispiel.</li>
+      <li>Erkläre den Unterschied zwischen <b>Diskriminierung</b> und <b>Stigmatisierung</b>.</li>
+      <li>Beschreibe das <b>Vulnerabilitäts-Stress-Modell</b> mit dem Bild des Fasses.</li>
+      <li>Nenne die <b>vier Phasen</b> nach Peplau und je die zentrale Aufgabe.</li>
+      <li>Begründe, warum man einem Menschen in <b>panischer Angst (4+)</b> nichts mehr erklären
+        soll.</li>
+      <li>Erläutere, warum Antidepressiva <b>das Suizidrisiko vorübergehend erhöhen</b> können.</li>
+      <li>Erkläre den Unterschied zwischen <b>Stupor</b> und <b>Bewusstseinsstörung</b>.</li>
+    </ol>
+  </div>
+
+  <details class="quelle">
+    <summary>Die fünf Quellen, aus denen diese Seite gebaut ist</summary>
+    <div class="inh">
+      <ul>
+        <li><b>Psychiatrie in der Gesellschaft.pdf</b> — Foliensatz CE 11 / UE 1</li>
+        <li><b>Psychiatrische Therapie.pdf</b> — Foliensatz CE 11</li>
+        <li><b>Psychiatrische Notfaelle neu-2.pdf</b> — Foliensatz, T. Weidenbecher</li>
+        <li><b>Peplau Pflegemodell.pdf</b> — Skript „Ausgewählte Pflegetheorien, Pflegemodelle,
+          Pflegekonzepte — Hildegard Peplau“, Kapitel II</li>
+        <li><b>Vulnerabilitaets-Stress-Modell 2.pdf</b></li>
+      </ul>
+      <p>Alle fünf aus deinem Google-Drive-Ordner, geteilt am 18.09.2026. Die Literaturangaben,
+        die in den Folien selbst stehen, sind an den betreffenden Stellen mit abgedruckt.</p>
+    </div>
+  </details>
+</section>
+
+</main>
+
+<footer>
+  <p>Psychiatrische Pflege · CE 11 — gebaut aus deinen eigenen Unterlagen, ohne Zusätze.<br>
+    Wo etwas fehlt oder unklar ist, steht es oben ausdrücklich dabei.</p>
+</footer>
