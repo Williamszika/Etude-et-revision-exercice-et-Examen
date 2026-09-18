@@ -1,0 +1,645 @@
+<title>Punkte holen in der Klausur</title>
+<style>
+  :root{
+    --paper:#edeff2;--paper-2:#e0e4ea;--card:#fcfdfe;--ink:#151a21;--ink-soft:#4a545f;--line:#ccd3dc;
+    --accent:#23456e;--accent-deep:#16304f;--accent-soft:#dde6f1;
+    --punkt:#8a5a12;--punktbg:#f6ecd9;
+    --gut:#256b4a;--gutbg:#dfeee6;--schlecht:#a33f34;--schlechtbg:#f6e1de;
+    --afb1:#1f6f6a;--afb1bg:#dcefee;--afb2:#4a4a8f;--afb2bg:#e3e3f3;--afb3:#8f3f6a;--afb3bg:#f4e0ec;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#10141a;--paper-2:#0b0e13;--card:#181d25;--ink:#e9edf2;--ink-soft:#9ba6b3;--line:#2a323d;
+    --accent:#7fa8d8;--accent-deep:#9cc0e8;--accent-soft:#152436;
+    --punkt:#d5a45c;--punktbg:#2c2314;
+    --gut:#6fc292;--gutbg:#14281c;--schlecht:#e08a7c;--schlechtbg:#301b17;
+    --afb1:#6cc4bf;--afb1bg:#0f2726;--afb2:#a6a2e4;--afb2bg:#1d1c33;--afb3:#dfa0c8;--afb3bg:#301e2a;}}
+  :root[data-theme="dark"]{
+    --paper:#10141a;--paper-2:#0b0e13;--card:#181d25;--ink:#e9edf2;--ink-soft:#9ba6b3;--line:#2a323d;
+    --accent:#7fa8d8;--accent-deep:#9cc0e8;--accent-soft:#152436;
+    --punkt:#d5a45c;--punktbg:#2c2314;
+    --gut:#6fc292;--gutbg:#14281c;--schlecht:#e08a7c;--schlechtbg:#301b17;
+    --afb1:#6cc4bf;--afb1bg:#0f2726;--afb2:#a6a2e4;--afb2bg:#1d1c33;--afb3:#dfa0c8;--afb3bg:#301e2a;}
+  :root[data-theme="light"]{
+    --paper:#edeff2;--paper-2:#e0e4ea;--card:#fcfdfe;--ink:#151a21;--ink-soft:#4a545f;--line:#ccd3dc;
+    --accent:#23456e;--accent-deep:#16304f;--accent-soft:#dde6f1;
+    --punkt:#8a5a12;--punktbg:#f6ecd9;
+    --gut:#256b4a;--gutbg:#dfeee6;--schlecht:#a33f34;--schlechtbg:#f6e1de;
+    --afb1:#1f6f6a;--afb1bg:#dcefee;--afb2:#4a4a8f;--afb2bg:#e3e3f3;--afb3:#8f3f6a;--afb3bg:#f4e0ec;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:44px 30px;padding-inline:20px;border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,var(--accent-soft) 0%,transparent 78%);}
+  .mitte{max-width:58rem;margin:0 auto;}
+  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.95rem,6vw,2.9rem);
+    margin:0 0 12px;line-height:1.05;text-wrap:balance;}
+  header.hero p.sub{max-width:62ch;margin:0;color:var(--ink-soft);font-size:15.5px;}
+
+  .befund{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;
+    margin-top:24px;}
+  .bf{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:15px 17px;}
+  .bf .z{font-family:var(--serif);font-size:2.1rem;font-weight:700;line-height:1;
+    font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+  .bf .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-soft);margin-top:6px;}
+  .bf.gut .z{color:var(--gut);} .bf.schlecht .z{color:var(--schlecht);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:58rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2rem);font-weight:600;margin:0 0 6px;
+    line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:36rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+  .afb{font-family:var(--mono);font-size:10px;font-weight:700;border-radius:5px;padding:2px 7px;
+    white-space:nowrap;}
+  .a1{background:var(--afb1bg);color:var(--afb1);} .a2{background:var(--afb2bg);color:var(--afb2);}
+  .a3{background:var(--afb3bg);color:var(--afb3);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child,.merk ul:last-child,.merk ol:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+  .warn{border-left:4px solid var(--punkt);background:var(--punktbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warn p:last-child,.warn ul:last-child{margin-bottom:0;}
+  .warn .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--punkt);display:block;margin-bottom:6px;}
+
+  .gegen{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0;}
+  @media (max-width:620px){.gegen{grid-template-columns:1fr;}}
+  .gg{border:1px solid var(--line);border-radius:12px;padding:14px 16px;background:var(--card);}
+  .gg.nein{border-left:4px solid var(--schlecht);}
+  .gg.ja{border-left:4px solid var(--gut);}
+  .gg h4{margin:0 0 7px;}
+  .gg.nein h4{color:var(--schlecht);} .gg.ja h4{color:var(--gut);}
+  .gg p{margin:0 0 8px;font-size:15.3px;}
+  .gg p:last-child{margin-bottom:0;}
+  .gg .pt{font-family:var(--mono);font-size:11.5px;color:var(--ink-soft);display:block;margin-top:7px;}
+
+  .schritte{display:grid;gap:10px;margin:18px 0;counter-reset:s;}
+  .schritt{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;counter-increment:s;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .schritt::before{content:counter(s);font-family:var(--mono);font-size:13px;font-weight:700;
+    color:var(--card);background:var(--accent);border-radius:8px;padding:5px 11px;}
+  .schritt h4{margin:0 0 4px;}
+  .schritt p{margin:0;font-size:15.4px;}
+
+  /* ---- Schreibtraining ---- */
+  .auf{background:var(--card);border:1px solid var(--line);border-left:5px solid var(--accent);
+    border-radius:0 14px 14px 0;padding:18px 20px;margin:18px 0;}
+  .auf .kopf{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin-bottom:10px;}
+  .auf .op{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;background:var(--accent);color:var(--card);border-radius:6px;
+    padding:4px 10px;}
+  .auf .pk{font-family:var(--mono);font-size:11px;background:var(--punktbg);color:var(--punkt);
+    border-radius:999px;padding:4px 11px;font-weight:700;}
+  .auf .herkunft{font-size:12.5px;color:var(--ink-soft);margin-left:auto;}
+  .auf .frage{font-family:var(--serif);font-size:1.12rem;line-height:1.5;margin:0 0 12px;}
+  .auf .fall{background:var(--paper-2);border-radius:10px;padding:12px 15px;margin:0 0 12px;
+    font-size:15px;}
+
+  .uhr{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:0 0 10px;}
+  .uhr .zeit{font-family:var(--mono);font-size:1.5rem;font-weight:700;font-variant-numeric:tabular-nums;
+    color:var(--accent-deep);min-width:4.4ch;}
+  .uhr .zeit.aus{color:var(--schlecht);}
+  .uhr button{font:inherit;font-size:14px;font-weight:600;cursor:pointer;border-radius:9px;
+    padding:8px 15px;border:1px solid var(--accent);background:var(--accent);color:var(--card);}
+  .uhr button.geist{background:transparent;color:var(--accent-deep);}
+  .uhr button:hover{filter:brightness(1.08);}
+  .uhr .hint{font-size:13px;color:var(--ink-soft);}
+
+  .auf textarea{width:100%;min-height:150px;font:inherit;font-size:16px;line-height:1.65;
+    color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;
+    padding:12px 14px;resize:vertical;}
+  .auf textarea:focus{outline:2px solid var(--accent);outline-offset:1px;}
+  .zaehler{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:6px;}
+
+  details.loes{margin:14px 0 0;border:1px solid var(--line);border-radius:11px;background:var(--paper);
+    overflow:hidden;}
+  details.loes>summary{cursor:pointer;list-style:none;padding:12px 16px;font-weight:600;font-size:15px;
+    color:var(--gut);display:flex;align-items:center;gap:9px;}
+  details.loes>summary::-webkit-details-marker{display:none;}
+  details.loes>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.loes[open]>summary::before{content:"－";}
+  details.loes .inh{padding:0 16px 14px;font-size:15.3px;}
+  details.loes .inh ul{margin-bottom:0;}
+  details.loes .inh p:last-child{margin-bottom:0;}
+
+  .haken{background:var(--paper-2);border-radius:10px;padding:12px 15px;margin-top:12px;font-size:14.6px;}
+  .haken b{display:block;margin-bottom:5px;}
+  .haken ul{margin:0;padding-left:1.15rem;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <div class="mitte">
+    <p class="eyebrow">Klausurtraining · Kurs PF 25-28-1</p>
+    <h1>Punkte holen in der Klausur</h1>
+    <p class="sub">Diese Seite lehrt keinen neuen Stoff. Sie übt das, was zwischen deinem Wissen
+      und deiner Note steht: <b>den Satz auf dem Papier</b>, unter Zeit, auf Deutsch.</p>
+    <div class="befund">
+      <div class="bf gut"><div class="z">1,89</div><div class="l">Schnitt praktisch · 4 Noten</div></div>
+      <div class="bf schlecht"><div class="z">3,68</div><div class="l">Schnitt schriftlich · 5 Noten</div></div>
+      <div class="bf"><div class="z">1,79</div><div class="l">Abstand in Notenpunkten</div></div>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#warum">Warum</a>
+  <a href="#operator">Die Operatoren</a>
+  <a href="#zeit">Zeit &amp; Punkte</a>
+  <a href="#sprache">Sprache</a>
+  <a href="#ablauf">Der Ablauf</a>
+  <a href="#training">Schreibtraining</a>
+  <a href="#kreis">Der Korrekturkreis</a>
+</nav>
+
+<main>
+
+<section id="warum">
+  <h2>Warum es diese Seite gibt</h2>
+  <p class="lead">Weil deine Zahlen etwas sehr Genaues sagen — und weil die Lösung deshalb
+    <b>nicht</b> „noch mehr lernen“ heißt.</p>
+
+  <p>Deine vier <b>praktischen</b> Prüfungen: 1,45 · 2,21 · 2 · 1,91. Über vierzehn Monate, bei
+    drei Einsätzen, bei mehreren Prüfern. <b>Das ist stabil und gut.</b> Du kannst pflegen.</p>
+  <p>Deine fünf <b>schriftlichen</b> Klausuren: 2,63 · 3,45 · 2,95 · 3,99 · 5,37. Das geht nach
+    unten, ohne eine einzige Ausnahme.</p>
+
+  <div class="merk">
+    <span class="t">Was daraus folgt</span>
+    <p>Ein <b>Wissensproblem</b> würde beide Reihen drücken — auch die praktische. Sie tut es
+      nicht. Was auf dem Papier verloren geht, geht also <b>zwischen deinem Kopf und dem Blatt</b>
+      verloren: beim Lesen der Aufgabe, beim Formulieren, bei der Zeit.</p>
+    <p class="fr">Ce n'est pas un problème de connaissances — tes notes de stage le prouvent.
+      C'est entre ta tête et la feuille que les points se perdent.</p>
+  </div>
+
+  <div class="warn">
+    <span class="t">Und deshalb hilft mehr Material nicht mehr</span>
+    <p>Du hast im <b>Lern-Hub</b> bereits 13 Themen, je mit Zusammenfassung, Übungen, Fallbeispiel
+      und einer eigenen Klausur — dazu <b>195 Quizfragen</b>, eine Probeklausur über 90 Minuten
+      und einen Lernplan. Das ist viel, und es ist gut gemacht.</p>
+    <p>Aber: In einem <b>Quiz kreuzt du an</b> — du musst die richtige Antwort nur
+      <b>wiedererkennen</b>. In einer Klausur musst du sie <b>selbst herstellen</b>, in ganzen
+      deutschen Sätzen, mit der Uhr. Das sind zwei verschiedene Fähigkeiten, und bisher hat
+      niemand die zweite mit dir geübt — und <b>niemand hat je deine geschriebenen Sätze
+      korrigiert</b>.</p>
+    <p class="fr">Reconnaître la bonne réponse ≠ la produire. Personne n'a encore corrigé tes
+      phrases écrites.</p>
+  </div>
+</section>
+
+<section id="operator">
+  <h2>Die Operatoren — das Verb sagt dir, was Punkte gibt</h2>
+  <p class="lead">In deinen Klausuren steht es ausdrücklich im Kopf des Aufgabenteils:
+    <i>„Achten Sie auf den Operator (das Aufgabenverb) und die geforderte Anzahl.“</i>
+    Der Operator ist kein Schmuck. Er ist die Bezahlliste.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Operator</th><th>AFB</th><th>Was er verlangt</th><th>Woran der Korrektor
+        merkt, dass du es getan hast</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Nennen</td><td><span class="afb a1">I</span></td>
+          <td>nur <b>aufzählen</b> — keine Erklärung, kein Grund</td>
+          <td>Die geforderte <b>Anzahl</b> steht da. Drei verlangt = drei geschrieben.</td></tr>
+        <tr><td class="k">Beschreiben</td><td><span class="afb a1">I</span></td>
+          <td>sachlich <b>darstellen</b>, wie etwas aussieht oder abläuft</td>
+          <td>Aufbau <b>und</b> Funktion, beides getrennt benannt.</td></tr>
+        <tr><td class="k">Erarbeiten</td><td><span class="afb a2">II</span></td>
+          <td>aus dem <b>Fall</b> herausziehen, was dort wirklich steht</td>
+          <td>Jeder Punkt ist im Text belegbar — kein Wissen von außen.</td></tr>
+        <tr><td class="k">Erläutern</td><td><span class="afb a2">II</span></td>
+          <td>erklären <b>und am Fall belegen</b> — zuordnen</td>
+          <td>Die Wörter <i>„bei Frau …“</i>, <i>„das sieht man daran, dass …“</i>, ein Zitat.</td></tr>
+        <tr><td class="k">Ableiten</td><td><span class="afb a2">II</span></td>
+          <td>aus der Situation die <b>passende Maßnahme</b> folgern</td>
+          <td>Maßnahme <b>plus</b> das <i>weil</i>, das sie an den Fall bindet.</td></tr>
+        <tr><td class="k">Begründen</td><td><span class="afb a3">III</span></td>
+          <td>sagen <b>warum</b> — die Ursache-Wirkung-Kette</td>
+          <td>Sichtbares <b>weil · da · denn · deshalb · dadurch</b>. Ohne diese Wörter ist es
+            keine Begründung.</td></tr>
+        <tr><td class="k">Beurteilen</td><td><span class="afb a3">III</span></td>
+          <td>die Lage <b>einschätzen</b> und daraus handeln</td>
+          <td>Erst eine Einschätzung („Verdacht auf …, das ist ein Notfall“), <b>dann</b> die
+            Maßnahmen.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Leiter</span>
+    <p><b>Nennen</b> → aufzählen. <b>Beschreiben</b> → wie es ist. <b>Erläutern</b> → wie es ist
+      <i>plus</i> am Fall gezeigt. <b>Begründen</b> → warum. <b>Beurteilen</b> → was das heißt und
+      was du tust.</p>
+    <p>Jede Stufe enthält die darunter. Aber <b>nach oben</b> geht es nicht von allein: Wer bei
+      <i>Begründen</i> nur aufzählt, bekommt die Punkte für <i>Nennen</i> — und verliert den Rest.</p>
+  </div>
+
+  <h3>Derselbe Inhalt, zwei Antworten — und der Unterschied in Punkten</h3>
+  <p>Aufgabe aus deinem eigenen Material, Thema 07:
+    <i>„<b>Begründen Sie</b>, warum bei einer gesicherten TVT von Frau Mai die Beine nicht
+    ausgestrichen werden dürfen.“</i> (7 Punkte)</p>
+
+  <div class="gegen">
+    <div class="gg nein">
+      <h4>Was Punkte liegen lässt</h4>
+      <p>„Man darf die Beine nicht ausstreichen. Das ist bei einer Thrombose verboten. Man wäscht
+        sie im Bett.“</p>
+      <p>Alles daran ist <b>richtig</b>. Aber es ist eine <b>Aufzählung</b>, keine Begründung.
+        Es steht kein einziges <i>weil</i> darin, und die Gefahr wird nie benannt.</p>
+      <span class="pt">Operator nicht erfüllt → nur die Punkte für „Nennen“</span>
+    </div>
+    <div class="gg ja">
+      <h4>Was volle Punkte holt</h4>
+      <p>„Die Beine dürfen nicht ausgestrichen werden, <b>weil</b> der Druck auf die Vene einen
+        Teil des Thrombus lösen kann. <b>Dadurch</b> entsteht ein <b>Embolus</b>, der mit dem
+        Blutstrom in die Lunge gelangt und eine <b>Lungenembolie</b> auslöst — das ist
+        lebensbedrohlich. <b>Deshalb</b> wird Frau Mai im Bett gewaschen, und ausgestrichen wird
+        nur nach Arztanordnung.“</p>
+      <span class="pt">Kette sichtbar: Druck → Thrombus löst sich → Embolus → Lungenembolie</span>
+    </div>
+  </div>
+
+  <div class="warn">
+    <span class="t">Die billigste Punktequelle überhaupt</span>
+    <p>Schreib bei <b>Begründen</b> und <b>Erläutern</b> das Wort <b>weil</b> bewusst hin — auch
+      wenn es sich holprig anhört. Der Korrektor sucht die Kette. Ein etwas schwerfälliger Satz
+      <i>mit</i> Begründung bekommt die Punkte; ein eleganter Satz <i>ohne</i> Begründung nicht.</p>
+  </div>
+</section>
+
+<section id="zeit">
+  <h2>Zeit und Punkte — die Zahl, die du vorher ausrechnest</h2>
+  <p class="lead">Aus dem Deckblatt deiner eigenen Themenklausur: <b>45 Minuten</b> Bearbeitungszeit
+    (davon etwa <b>5 Minuten Lesezeit</b>) für <b>50 Punkte</b>.</p>
+
+  <div class="merk">
+    <span class="t">Die Rechnung, die du in der ersten Minute machst</span>
+    <p>40 Minuten Schreibzeit ÷ 50 Punkte = <b>0,8 Minuten pro Punkt</b> = <b>rund 48 Sekunden
+      für jeden Punkt</b>.</p>
+    <p>Also: eine <b>3-Punkte-Aufgabe</b> bekommt etwa <b>2,5 Minuten</b>. Eine
+      <b>8-Punkte-Aufgabe</b> bekommt <b>6,5 Minuten</b> — und keine Sekunde mehr, auch wenn du
+      noch viel dazu wüsstest.</p>
+    <p class="fr">Divise le temps par les points. Chaque point vaut environ 48 secondes. Une
+      question à 3 points n'en mérite pas 10 minutes.</p>
+  </div>
+
+  <p><b>Der Fehler, der am meisten Noten kostet:</b> lange an der ersten schweren Aufgabe sitzen
+    und am Ende drei leichte Aufgaben nicht mehr schaffen. Eine 3-Punkte-Aufgabe, die du sicher
+    kannst, ist <b>genauso viel wert</b> wie drei Punkte in der schweren Aufgabe — und kostet ein
+    Viertel der Zeit.</p>
+
+  <h3>Der Notenschlüssel aus deinem Material (NRW)</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Note</th><th>Prozent</th><th>Punkte von 50</th></tr></thead>
+      <tbody>
+        <tr><td class="k">1 — sehr gut</td><td>100–90 %</td><td>50–45</td></tr>
+        <tr><td class="k">2 — gut</td><td>89–75 %</td><td>44,5–37,5</td></tr>
+        <tr><td class="k">3 — befriedigend</td><td>74–60 %</td><td>37–30</td></tr>
+        <tr><td class="k">4 — ausreichend</td><td>59–50 %</td><td>29,5–25</td></tr>
+        <tr><td class="k">5 — mangelhaft</td><td>49–35 %</td><td>24,5–17,5</td></tr>
+        <tr><td class="k">6 — ungenügend</td><td>34–0 %</td><td>17–0</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><b>Bestehensgrenze: 50 % = 25 von 50 Punkten.</b> Das heißt auch: Von einer 5 zu einer 4
+    fehlt oft nur <b>eine einzige Aufgabe</b>, die du nicht leer gelassen hättest.</p>
+  <div class="warn">
+    <span class="t">Achtung</span>
+    <p>Dieser Notenschlüssel steht in <b>deinem Übungsmaterial</b>. Ob deine Schule für jede
+      Klausur denselben benutzt, steht in keinem Dokument, das ich habe. <b>Frag die
+      Kursleitung</b>, bevor du danach rechnest.</p>
+  </div>
+</section>
+
+<section id="sprache">
+  <h2>Sprache: welche Fehler dich Punkte kosten — und welche nicht</h2>
+  <p class="lead">Das ist die Angst, die dich ausbremst. Sie ist zum Teil unbegründet — und zum
+    Teil sehr begründet, aber an einer anderen Stelle, als du denkst.</p>
+
+  <p>Im Kopf deiner Klausur steht: <i>„Schreiben Sie in ganzen Sätzen und verwenden Sie die
+    korrekten Fachbegriffe.“</i> Und im Erwartungshorizont stehen die Punkte an <b>Inhalten</b>:
+    <i>Muskel-Venen-Pumpe 1 P · intakte Venenklappen 1 P · Sogwirkung des Thorax 1 P.</i></p>
+
+  <div class="gegen">
+    <div class="gg ja">
+      <h4>Kostet dich in einer Fachklausur meist nichts</h4>
+      <p>Eine falsche <b>Endung</b>, ein falscher <b>Artikel</b>, ein Komma zu wenig — solange
+        der Satz verständlich bleibt und der Fachbegriff stimmt.</p>
+      <p><i>„Der Druck auf die Vene kann ein Teil des Thrombus lösen“</i> — Kasusfehler, aber der
+        Korrektor sieht die Kette und findet seinen Inhaltspunkt.</p>
+    </div>
+    <div class="gg nein">
+      <h4>Kostet dich sofort Punkte</h4>
+      <p><b>Der falsche oder fehlende Fachbegriff.</b> <i>„ein Stück Blut“</i> statt
+        <b>Thrombus</b>, <i>„die Lunge verstopft“</i> statt <b>Lungenembolie</b>. Der
+        Erwartungshorizont sucht das <b>Wort</b>.</p>
+      <p><b>Der Satz, den man zweimal lesen muss.</b> Wenn der Korrektor nicht erkennt, welchen
+        Inhalt du meinst, kann er den Punkt nicht geben — auch wenn du ihn wusstest.</p>
+    </div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Was du daraus machst</span>
+    <ol style="margin-bottom:0;">
+      <li><b>Kurze Sätze.</b> Ein Gedanke pro Satz. Ein einfacher richtiger Satz ist besser als
+        ein komplizierter kaputter — und in der Klausur ist er auch schneller.</li>
+      <li><b>Die Fachbegriffe auf Deutsch auswendig.</b> Das ist der Teil, der wirklich Punkte
+        kostet. <i>Thrombus, Embolus, Lungenembolie, Exsikkose, Hyperkoagulabilität, Virchow-Trias,
+        Dyspnoe, Tachykardie.</i></li>
+      <li><b>Nie ein Feld leer lassen.</b> Ein halber Satz mit dem richtigen Fachwort bringt oft
+        einen Punkt. Leer bringt sicher null.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="ablauf">
+  <h2>Der Ablauf — sechs Schritte, jedes Mal gleich</h2>
+  <p class="lead">Nicht anfangen zu schreiben, bevor Schritt 3 fertig ist. Die fünf Minuten
+    Lesezeit stehen dir laut Deckblatt ausdrücklich zu.</p>
+
+  <div class="schritte">
+    <div class="schritt"><div>
+      <h4>Alles einmal durchblättern, nichts schreiben</h4>
+      <p>Wie viele Aufgaben? Wie viele Punkte insgesamt? Gibt es eine Fallsituation, die für
+        mehrere Aufgaben gilt? Das kostet 60 Sekunden und verhindert Überraschungen auf Seite 6.</p></div></div>
+    <div class="schritt"><div>
+      <h4>Bei jeder Aufgabe den Operator einkreisen und die Punktzahl danebenschreiben</h4>
+      <p>Mit dem Stift, wirklich einkreisen. <i>Nennen · Beschreiben · Erläutern · Begründen ·
+        Beurteilen.</i> Und die geforderte <b>Anzahl</b> unterstreichen — „<b>drei</b>
+        Risikofaktoren“.</p></div></div>
+    <div class="schritt"><div>
+      <h4>Die Minuten pro Aufgabe an den Rand schreiben</h4>
+      <p>Punkte × 0,8 Minuten. Du hast jetzt einen Fahrplan und musst nie wieder überlegen, ob du
+        zu lange an etwas sitzt.</p></div></div>
+    <div class="schritt"><div>
+      <h4>Mit der Aufgabe anfangen, die du sicher kannst</h4>
+      <p>Nicht mit Aufgabe 1. Die sichere Aufgabe bringt Punkte <b>und</b> Ruhe. Die Reihenfolge
+        auf dem Blatt ist keine Vorschrift — schreib nur die Aufgabennummer dazu.</p></div></div>
+    <div class="schritt"><div>
+      <h4>Beim Schreiben: erst das Gerüst, dann die Sätze</h4>
+      <p>Bei einer 8-Punkte-Aufgabe zuerst drei Stichwörter an den Rand — das sind deine drei
+        Inhaltspunkte. Dann jeden zu einem Satz ausbauen. So vergisst du keinen Punkt, während du
+        am ersten Satz feilst.</p></div></div>
+    <div class="schritt"><div>
+      <h4>Die letzten fünf Minuten: Lücken füllen, nicht polieren</h4>
+      <p>Geh alle Aufgaben durch und such <b>leere Felder</b>. In jedes leere Feld kommt das, was
+        du sicher weißt — und sei es ein einziger Fachbegriff. Erst wenn nichts mehr leer ist,
+        darfst du Sätze verbessern.</p></div></div>
+  </div>
+</section>
+
+<section id="training">
+  <h2>Schreibtraining — vier Aufgaben, mit Uhr</h2>
+  <p class="lead">Alle vier stehen wörtlich in deinem eigenen Material (Thema 07, Herz-Kreislauf
+    &amp; Thrombose). <b>Erst schreiben, dann aufklappen</b> — die Musterlösung vorher zu lesen
+    ist die einzige Art, diese Übung wertlos zu machen. Dein Text bleibt im Browser gespeichert.</p>
+
+  <div class="auf" data-sek="144" data-id="a2">
+    <div class="kopf"><span class="op">Nennen</span><span class="afb a1">AFB I</span>
+      <span class="pk">3 Punkte</span><span class="herkunft">Thema 07 · Aufgabe 2</span></div>
+    <p class="frage">Nennen Sie die drei funktionellen Mechanismen, die den venösen Rückstrom zum
+      Herzen aufrechterhalten.</p>
+    <div class="uhr">
+      <span class="zeit">2:24</span>
+      <button type="button" class="start">Uhr starten</button>
+      <button type="button" class="geist reset">zurücksetzen</button>
+      <span class="hint">3 Punkte × 48 s</span>
+    </div>
+    <textarea id="ta-a2" placeholder="Nur aufzählen. Drei Stück. Keine Erklärung — die gibt hier keine Punkte."></textarea>
+    <p class="zaehler"><span class="w">0</span> Wörter</p>
+    <div class="haken"><b>Bevor du aufklappst, prüf selbst:</b>
+      <ul><li>Stehen wirklich <b>drei</b> da?</li>
+        <li>Hast du nur genannt — oder unnötig erklärt und Zeit verloren?</li></ul></div>
+    <details class="loes"><summary>Musterlösung und Punktevergabe</summary><div class="inh">
+      <p>Drei von: <b>Muskel-Venen-Pumpe</b> (Muskelkontraktion presst Blut herzwärts) ·
+        <b>intakte Venenklappen</b> (verhindern Rückfluss) · <b>Arterienpulswelle</b>
+        (komprimiert die benachbarte Venenwand) · <b>Sogwirkung des Thorax</b> (Unterdruck beim
+        Einatmen). <i>Je 1 P, max. 3 P.</i></p>
+    </div></details>
+  </div>
+
+  <div class="auf" data-sek="192" data-id="a3">
+    <div class="kopf"><span class="op">Beschreiben</span><span class="afb a1">AFB I</span>
+      <span class="pk">4 Punkte</span><span class="herkunft">Thema 07 · Aufgabe 3</span></div>
+    <p class="frage">Beschreiben Sie den Aufbau und die Funktion einer Venenklappe.</p>
+    <div class="uhr">
+      <span class="zeit">3:12</span>
+      <button type="button" class="start">Uhr starten</button>
+      <button type="button" class="geist reset">zurücksetzen</button>
+      <span class="hint">4 Punkte × 48 s</span>
+    </div>
+    <textarea id="ta-a3" placeholder="Zwei Teile werden verlangt: Aufbau UND Funktion. Schreib sie getrennt."></textarea>
+    <p class="zaehler"><span class="w">0</span> Wörter</p>
+    <div class="haken"><b>Bevor du aufklappst, prüf selbst:</b>
+      <ul><li>Hast du <b>beide</b> Teile — Aufbau und Funktion?</li>
+        <li>Steht das Fachwort <b>Taschenklappe</b> da?</li></ul></div>
+    <details class="loes"><summary>Musterlösung und Punktevergabe</summary><div class="inh">
+      <ul>
+        <li><b>Aufbau:</b> aus 2–3 Endothelausstülpungen der inneren Wandschicht gebildete
+          <b>Taschenklappe</b> (Ventil), in kleinen und mittelgroßen Venen — <b>2 P</b>.</li>
+        <li><b>Funktion:</b> gibt den Blutstrom <b>zum Herzen hin frei</b> — <b>1 P</b>; strömt
+          Blut zurück, entfalten sich die Taschen und <b>verhindern den Rückfluss</b> — <b>1 P</b>.</li>
+      </ul>
+    </div></details>
+  </div>
+
+  <div class="auf" data-sek="384" data-id="a5">
+    <div class="kopf"><span class="op">Erläutern</span><span class="afb a2">AFB II</span>
+      <span class="pk">8 Punkte</span><span class="herkunft">Thema 07 · Aufgabe 5</span></div>
+    <div class="fall"><b>Fallsituation.</b> Frau Renate Mai, 74 Jahre, wurde vor 4 Tagen wegen
+      eines Oberschenkelhalsbruchs operiert. Sie ist stark eingeschränkt mobil und liegt
+      überwiegend im Bett. Sie hat Krampfadern (Varikosis), ist Nichtraucherin, trinkt aber sehr
+      wenig. Heute klagt sie über ein Spannungs- und Schweregefühl im linken Bein; die linke Wade
+      ist geschwollen und überwärmt.</div>
+    <p class="frage">Erläutern Sie anhand der Virchow-Trias, wie es bei Frau Mai zur Entstehung
+      einer Thrombose kommen kann. Ordnen Sie ihre Risikofaktoren den drei Faktoren der
+      Virchow-Trias zu.</p>
+    <div class="uhr">
+      <span class="zeit">6:24</span>
+      <button type="button" class="start">Uhr starten</button>
+      <button type="button" class="geist reset">zurücksetzen</button>
+      <span class="hint">8 Punkte × 48 s</span>
+    </div>
+    <textarea id="ta-a5" placeholder="Erläutern = erklären UND am Fall belegen. Schreib zuerst drei Stichwörter an den Rand, dann je einen Satz mit „bei Frau Mai …“."></textarea>
+    <p class="zaehler"><span class="w">0</span> Wörter</p>
+    <div class="haken"><b>Bevor du aufklappst, prüf selbst:</b>
+      <ul><li>Stehen <b>alle drei</b> Faktoren der Virchow-Trias da?</li>
+        <li>Ist jedem Faktor ein Risikofaktor <b>von Frau Mai</b> zugeordnet — nicht irgendeiner?</li>
+        <li>Gibt es einen Schlusssatz, der die drei zusammenführt?</li></ul></div>
+    <details class="loes"><summary>Musterlösung und Punktevergabe</summary><div class="inh">
+      <ul>
+        <li><b>Verlangsamter Blutfluss</b> durch Immobilität/Bettlägerigkeit → die
+          Muskel-Venen-Pumpe wird nicht aktiviert, das Blut steht in den Beinvenen — <b>2–3 P</b>.</li>
+        <li><b>Erhöhte Gerinnungsneigung (Hyperkoagulabilität)</b> durch geringe Trinkmenge →
+          Exsikkose — <b>2–3 P</b>.</li>
+        <li><b>Gefäßwandschäden</b> durch die Operation und/oder die Varikosis — <b>2–3 P</b>.</li>
+        <li><b>Fazit:</b> Zusammentreffen der drei Faktoren (Virchow-Trias) → Thrombosebildung in
+          einer tiefen Vene. <i>Bis 8 P gesamt.</i></li>
+      </ul>
+    </div></details>
+  </div>
+
+  <div class="auf" data-sek="336" data-id="a7">
+    <div class="kopf"><span class="op">Begründen</span><span class="afb a3">AFB III</span>
+      <span class="pk">7 Punkte</span><span class="herkunft">Thema 07 · Aufgabe 7</span></div>
+    <p class="frage">Begründen Sie, warum bei einer gesicherten TVT von Frau Mai weder die Beine
+      ausgestrichen noch ein warmes Vollbad angeboten werden dürfen.</p>
+    <div class="uhr">
+      <span class="zeit">5:36</span>
+      <button type="button" class="start">Uhr starten</button>
+      <button type="button" class="geist reset">zurücksetzen</button>
+      <span class="hint">7 Punkte × 48 s</span>
+    </div>
+    <textarea id="ta-a7" placeholder="Zwei Verbote, zwei Begründungen. Schreib in beiden ein sichtbares „weil“ und die Kette bis zur Gefahr."></textarea>
+    <p class="zaehler"><span class="w">0</span> Wörter</p>
+    <div class="haken"><b>Bevor du aufklappst, prüf selbst:</b>
+      <ul><li>Steht in deinem Text mindestens zweimal <b>weil</b>, <b>dadurch</b> oder
+        <b>deshalb</b>?</li>
+        <li>Hast du <b>beide</b> Verbote begründet — Ausstreichen <i>und</i> Vollbad?</li>
+        <li>Steht das Wort <b>Lungenembolie</b> da?</li>
+        <li>Hast du gesagt, was man <b>stattdessen</b> tut?</li></ul></div>
+    <details class="loes"><summary>Musterlösung und Punktevergabe</summary><div class="inh">
+      <ul>
+        <li><b>Kein Ausstreichen:</b> Druck auf die Vene kann einen Teil des Thrombus lösen
+          (<b>2 P</b>) → <b>Embolus</b> → <b>Lungenembolie</b>, lebensbedrohlich (<b>2 P</b>).</li>
+        <li><b>Kein warmes Vollbad / warmes Duschen:</b> Wärme fördert Gefäßerweiterung und
+          Ödembildung → verschlechtert den Zustand; bei TVT kontraindiziert (<b>2 P</b>).</li>
+        <li><b>Korrektes Vorgehen:</b> Waschung im Bett oder am Waschbecken, Kompressionsverband
+          danach wieder anlegen; Ausstreichen nur nach Arztanordnung (<b>1 P</b>).</li>
+      </ul>
+    </div></details>
+  </div>
+</section>
+
+<section id="kreis">
+  <h2>Der Korrekturkreis — der Teil, den du nicht allein machen kannst</h2>
+  <p class="lead">Das ist die eigentliche Lücke. Alles andere hast du schon.</p>
+
+  <p>Bisher läuft dein Lernen so: lesen → Quiz ankreuzen → Musterlösung <b>lesen</b> und denken
+    „ja, das wusste ich“. Dieser letzte Schritt ist die Falle. <b>Wiedererkennen fühlt sich an
+    wie Können</b> — bis das leere Blatt vor dir liegt.</p>
+
+  <div class="merk">
+    <span class="t">Die Runde, die das ändert</span>
+    <ol style="margin-bottom:0;">
+      <li><b>Du schreibst</b> eine Aufgabe oben — mit Uhr, ohne nachzuschauen.</li>
+      <li><b>Du schickst mir deinen Text</b>, genau so, wie er dasteht. Mit Fehlern. Die Fehler
+        sind die Information.</li>
+      <li><b>Ich korrigiere zweimal:</b> einmal fachlich — hast du die Inhaltspunkte des
+        Erwartungshorizonts getroffen? Und einmal sprachlich — jeder Fehler bekommt seine
+        <b>Baustelle</b> (1 Kasus · 2 Genus · 3 Verbstellung · 4 falsche Freunde · 5 Komposita ·
+        6 Siezen · 7 feste Präpositionen) und jeder Deklinationsfehler sein <b>Kettenglied</b>.</li>
+      <li><b>Du siehst das Muster</b> statt einer Fehlerliste — es sind immer dieselben sieben.</li>
+    </ol>
+  </div>
+
+  <p><b>Fang mit einer einzigen Aufgabe an.</b> Nicht mit vier. Die 7-Punkte-Aufgabe
+    <i>Begründen</i> ganz oben ist die richtige: Genau dieser Operator trennt bei dir eine 3 von
+    einer 2.</p>
+
+  <div class="warn">
+    <span class="t">Was diese Seite nicht weiß</span>
+    <p>Welche Klausuren bei dir als Nächstes kommen und wann. Sobald du mir die Termine und
+      Themen sagst, kann daraus ein Plan rückwärts vom Datum werden statt einer allgemeinen
+      Methode.</p>
+    <p>Und: ob die <b>5,37</b> vom 29.05.2026 nachgeschrieben werden kann. Das weiß nur die
+      <b>Kursleitung</b> — steht so auch im Portal.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Gebaut aus deinem eigenen Notenspiegel und deinem eigenen Übungsmaterial (Thema 07).<br>
+    Keine Aufgabe und keine Musterlösung auf dieser Seite ist erfunden.</p>
+</footer>
+
+<script>
+"use strict";
+(function(){
+  function lies(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  function schreib(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+
+  /* Antwortfelder merken */
+  Array.prototype.forEach.call(document.querySelectorAll(".auf textarea"), function(ta){
+    var k = "kt-" + ta.id;
+    var alt = lies(k);
+    if(alt) ta.value = alt;
+    var z = ta.parentNode.querySelector(".zaehler .w");
+    function zaehle(){
+      var n = ta.value.trim() ? ta.value.trim().split(/\s+/).length : 0;
+      if(z) z.textContent = String(n);
+    }
+    ta.addEventListener("input", function(){ schreib(k, ta.value); zaehle(); });
+    zaehle();
+  });
+
+  /* Uhr je Aufgabe */
+  Array.prototype.forEach.call(document.querySelectorAll(".auf"), function(box){
+    var gesamt = parseInt(box.dataset.sek, 10) || 60;
+    var rest = gesamt, lauf = null;
+    var feld = box.querySelector(".zeit");
+    var start = box.querySelector(".start");
+    var reset = box.querySelector(".reset");
+
+    function zeige(){
+      var m = Math.floor(Math.abs(rest) / 60), s = Math.abs(rest) % 60;
+      feld.textContent = (rest < 0 ? "+" : "") + m + ":" + (s < 10 ? "0" : "") + s;
+      feld.classList.toggle("aus", rest <= 0);
+    }
+    function stopp(){
+      if(lauf){ clearInterval(lauf); lauf = null; }
+      start.textContent = "Uhr starten";
+    }
+    start.addEventListener("click", function(){
+      if(lauf){ stopp(); return; }
+      start.textContent = "anhalten";
+      lauf = setInterval(function(){ rest--; zeige(); }, 1000);
+    });
+    reset.addEventListener("click", function(){ stopp(); rest = gesamt; zeige(); });
+    zeige();
+  });
+})();
+</script>
