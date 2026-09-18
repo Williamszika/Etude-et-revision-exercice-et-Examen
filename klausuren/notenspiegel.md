@@ -44,6 +44,63 @@ Im Portal steht darunter: *„Rückfragen bitte an die Kursleitung."*
 **Der Abstand zwischen praktisch und schriftlich beträgt 1,79 Notenpunkte.** Das ist kein
 Zufallsrauschen, das ist der eigentliche Befund.
 
+### Schärfer: nicht „Papier gegen Praxis", sondern „Deutsch herstellen gegen pflegen"
+
+Die **mündliche** Note (3,42) liegt fast genau auf dem **schriftlichen** Schnitt (3,68) — und
+weit weg vom praktischen (1,89). Fasst man danach zusammen, statt nach der Papierform:
+
+| | Anzahl | Durchschnitt |
+|---|---|---|
+| **Deutsch unter Prüfung produzieren** (schriftlich + mündlich) | 6 | **3,64** |
+| **Pflegen und dabei beobachtet werden** | 4 | **1,89** |
+
+Das Problem hängt also nicht am Stift, sondern an der **Sprachproduktion auf Abruf**.
+
+### Der Kontrollversuch, den die Daten selbst mitliefern
+
+**Joachim Fuchsberger hat 7 der 10 Leistungen benotet** — alle vier praktischen und drei der
+fünf schriftlichen.
+
+| bei Fuchsberger allein | Noten | Durchschnitt |
+|---|---|---|
+| praktisch | 1,45 · 2,21 · 2 · 1,91 | **1,89** |
+| schriftlich | 3,45 · 2,95 · 3,99 | **3,46** |
+
+**Abstand bei einem einzigen Prüfer: 1,57 Notenpunkte.** Damit fällt die Erklärung „ein
+strengerer Korrektor" weg. Dieselbe Person bewertet dieselbe Auszubildende im Abstand von
+anderthalb Noten, je nachdem, ob sie handelt oder formuliert.
+
+*(Eine frühere Fassung dieser Datei und der Schreibtrainingsseite sprach von „mehreren Prüfern"
+bei den praktischen Noten. Das war falsch — alle vier stammen von Fuchsberger. Korrigiert, und
+der Befund wird dadurch stärker, nicht schwächer.)*
+
+### Was sich innerhalb der schriftlichen Reihe zeigt
+
+Zwei Klausuren am **selben Tag**, beim **selben Dozenten** (22.02.2026):
+
+| Klausur | Note | Art des Stoffes |
+|---|---|---|
+| Sturz, Thrombose, Kinästhetik, Burnout | **2,95** | pflegerisches Handeln, Prophylaxen |
+| Blut, Herz, Pflegeversicherung | **3,99** | Anatomie/Physiologie + System |
+
+Gleicher Tag, gleiche Tagesform, gleicher Korrektor — **ein voller Notenpunkt Unterschied.**
+Die schwächere war die mit **Anatomie, Physiologie und Systemwissen**; die stärkere die mit
+**Pflegehandlungen**.
+
+Dazu passt die Reihenfolge der schriftlichen Noten inhaltlich:
+
+| Klausur | Note | Verlangt vor allem |
+|---|---|---|
+| Organsystem | 2,63 | benennen, zuordnen |
+| Bewegung, Hautbeob., Pat.beob., VZ | 3,45 | beobachten, beschreiben |
+| Sturz, Thrombose, Kinästhetik, Burnout | 2,95 | Maßnahmen ableiten |
+| Blut, Herz, Pflegeversicherung | 3,99 | Anatomie + System erklären |
+| **Pneumonie mit septischem Schock** | **5,37** | **Krankheitsmechanismus erläutern und Notfall beurteilen** |
+
+Die Noten fallen in dem Maß, in dem die Aufgaben von **AFB I** (nennen, beschreiben) zu
+**AFB II/III** (erläutern, begründen, beurteilen) wandern. Genau dort muss auf Deutsch eine
+Ursache-Wirkungs-Kette gebaut werden — und genau das bricht ein.
+
 ### Zeitlicher Verlauf
 
 **Praktisch — stabil und gut, über vierzehn Monate:**
@@ -99,9 +156,33 @@ als Tatsache.
 
 ---
 
+## Der Gegenbeweis, der im Repo schon liegt
+
+In `klausuren/klausuren.json` steht eine Klausur, die **nicht** im Portal auftaucht:
+
+| Datum | Fach | Punkte | Note |
+|---|---|---|---|
+| 27.08.2026 | Recht in der Pflege — Haftung | **83,5 von 86 (97 %)** | **1,15** |
+
+Das ist **drei Monate nach der 5,37**, auf Deutsch, auf Papier, unter Zeit — und es war eine
+**Fallbearbeitung**, also genau die anspruchsvolle Sorte Aufgabe (AFB III), an der die
+Pflegeklausuren scheitern. Im Protokoll steht dazu: *„Der Fall war fehlerfrei — genau das Schema,
+das wir geübt haben. Beide Fehler lagen bei den Wissensfragen, nicht beim Fall."*
+
+**Damit ist bewiesen, dass die Sprache keine Decke ist.** Wenn ein **Schema** vorher auswendig
+gelernt und das **Format** geübt wurde, kann sie in derselben Sprache 97 % schreiben. Was bei
+den Pflegeklausuren fehlt, ist nicht Können — es ist dieses Schema und diese Übung.
+
+**Offene Frage dazu:** Warum steht diese Klausur nicht im Portal? Möglich ist vieles (noch nicht
+eingetragen, anderer Kurs, andere Erfassung). Das ist **nicht geklärt** und sollte bei der
+Kursleitung nachgefragt werden.
+
+---
+
 ## Offen
 
 - **Die Bestehensgrenze und die Regeln zum Nachschreiben** — nur die Kursleitung weiß das.
+- **Warum die Haftungsklausur (1,15) nicht im Notenspiegel steht.**
 - **Die Klausur vom 29.05.2026 selbst** liegt nicht vor. Ohne den korrigierten Bogen lässt
   sich nicht sagen, *woran* es lag — fehlendes Wissen, Zeit, Sprache oder Aufgabenverständnis.
   Mit dem Bogen ließe sich das wie bei der Haftungsklausur Fehler für Fehler auswerten.
