@@ -173,7 +173,16 @@
   .op-nennen{background:var(--paper-2);color:var(--ink-soft);}
   .op-erklaeren{background:var(--verbbg);color:var(--verb);}
   .op-erlaeutern{background:var(--sbbg);color:var(--sb);}
+  .op-erarbeiten{background:var(--sbbg);color:var(--sb);}
+  .op-ableiten{background:var(--sbbg);color:var(--sb);}
   .op-begruenden{background:var(--extrabg);color:var(--extra);}
+  .op-beurteilen{background:var(--extrabg);color:var(--extra);}
+  /* Anforderungsbereich — die Stufe, auf der die Punkte liegen */
+  .afbz{font-family:var(--mono);font-size:9.5px;font-weight:700;letter-spacing:.07em;
+    border-radius:5px;padding:2px 6px;margin-left:5px;vertical-align:1px;}
+  .afbz-1{background:var(--paper-2);color:var(--ink-soft);}
+  .afbz-2{background:var(--sbbg);color:var(--sb);}
+  .afbz-3{background:var(--extrabg);color:var(--extra);}
   details.opbox{margin:12px 0;border:1px solid var(--line);border-radius:11px;
     background:var(--card);overflow:hidden;}
   details.opbox>summary{cursor:pointer;list-style:none;padding:11px 15px;font-weight:600;
@@ -1002,31 +1011,62 @@ function renderLesen(b,idx,opt){
        '<p class="fr2">Verständnisfragen — antworte in ganzen Sätzen.</p>'+
        '<p class="hw">Das <b>erste Wort</b> jeder Frage sagt dir, <b>was für eine Antwort</b> '+
        'verlangt ist. Genau diese Wörter stehen auch in deinen Pflege-Klausuren.</p>';
-    h+='<details class="opbox"><summary>Was die vier Aufgabenwörter genau verlangen</summary>'+
-       '<div class="inh"><table class="optab"><tbody>'+
-       '<tr><td><span class="op op-nennen">Nennen · Beschreiben</span></td>'+
-       '<td>Sag, <b>was da ist</b>. Aufzählen, wiedergeben. Keine Gründe, keine Bewertung.</td></tr>'+
+    h+='<details class="opbox"><summary>Was die Aufgabenwörter genau verlangen — und wo die '+
+       'Punkte liegen</summary>'+
+       '<div class="inh">'+
+       '<p style="font-size:14.5px;margin:0 0 10px;">In deinen Pflege-Klausuren steht neben '+
+       'jeder Aufgabe ein <b>AFB</b> — der Anforderungsbereich. Gezählt über dein ganzes '+
+       'Übungsmaterial: <b>AFB I 95 Aufgaben · AFB II 86 · AFB III 53</b>. Also liegen rund '+
+       '<b>60 % der Aufgaben auf AFB II und III</b> — genau dort, wo deine Noten wegbrechen.</p>'+
+       '<table class="optab"><tbody>'+
+       '<tr><td><span class="op op-nennen">Nennen · Beschreiben</span>'+
+       '<span class="afbz afbz-1">AFB I</span></td>'+
+       '<td>Sag, <b>was da ist</b>. Aufzählen, wiedergeben. Keine Gründe, keine Bewertung. '+
+       'Achte auf die <b>geforderte Anzahl</b>.</td></tr>'+
        '<tr><td><span class="op op-erklaeren">Erklären</span></td>'+
        '<td>Sag, <b>wie etwas funktioniert</b> oder <b>was es bedeutet</b> — so, dass jemand '+
        'ohne Vorwissen es versteht. Meist mit einem Beispiel.</td></tr>'+
-       '<tr><td><span class="op op-erlaeutern">Erläutern</span></td>'+
+       '<tr><td><span class="op op-erarbeiten">Erarbeiten</span>'+
+       '<span class="afbz afbz-2">AFB II</span></td>'+
+       '<td>Zieh aus dem <b>Text oder Fall</b> heraus, was dort wirklich steht. Jeder Punkt '+
+       'muss belegbar sein — kein Wissen von außen.</td></tr>'+
+       '<tr><td><span class="op op-erlaeutern">Erläutern</span>'+
+       '<span class="afbz afbz-2">AFB II</span></td>'+
        '<td>Erklären <b>und am Text belegen</b>. Immer mit einer Stelle aus dem Text: '+
        '<em>„Das sieht man daran, dass …“</em></td></tr>'+
-       '<tr><td><span class="op op-begruenden">Begründen</span></td>'+
-       '<td>Sag <b>warum</b>. Antwort <b>immer</b> mit <b>weil</b>, <b>da</b>, <b>denn</b> '+
-       'oder <b>deshalb</b> — ohne diese Wörter hast du nicht begründet.</td></tr>'+
+       '<tr><td><span class="op op-ableiten">Ableiten</span>'+
+       '<span class="afbz afbz-2">AFB II</span></td>'+
+       '<td>Folgere aus der Situation die <b>passende Maßnahme</b> — und häng ein <b>weil</b> '+
+       'dran, das sie an den Fall bindet.</td></tr>'+
+       '<tr><td><span class="op op-begruenden">Begründen</span>'+
+       '<span class="afbz afbz-3">AFB III</span></td>'+
+       '<td>Sag <b>warum</b>. Antwort <b>immer</b> mit <b>weil</b>, <b>da</b>, <b>denn</b>, '+
+       '<b>dadurch</b> oder <b>deshalb</b> — ohne diese Wörter hast du nicht begründet.</td></tr>'+
+       '<tr><td><span class="op op-beurteilen">Beurteilen</span>'+
+       '<span class="afbz afbz-3">AFB III</span></td>'+
+       '<td>Erst die <b>Einschätzung</b> („Verdacht auf …, das ist ein Notfall“), <b>dann</b> '+
+       'die Maßnahmen. Beides, sonst fehlt die Hälfte.</td></tr>'+
        '</tbody></table>'+
-       '<p style="font-size:14px;color:var(--ink-soft);margin:10px 0 0;">Wenn deine Schule eine '+
-       'eigene Operatorenliste austeilt, gilt ihre. Das hier ist die übliche Bedeutung.</p>'+
+       '<p style="font-size:14px;color:var(--ink-soft);margin:10px 0 0;">Die AFB-Angaben '+
+       'stammen aus deinen eigenen Themenklausuren. Bei <b>Erklären</b> ist dort kein AFB '+
+       'vermerkt — deshalb steht hier auch keiner. Wenn deine Schule eine eigene '+
+       'Operatorenliste austeilt, gilt ihre.</p>'+
        '</div></details>';
     b.fragen.forEach((f,i)=>{
       const fid=id+'-f'+i;
       const op=(f.operator||'Verständnisfrage');
-      const opk={'Begründen':'op-begruenden','Erläutern':'op-erlaeutern','Erklären':'op-erklaeren',
-                 'Nennen':'op-nennen','Beschreiben':'op-nennen'}[op]||'op-nennen';
+      const OPI={'Nennen':['op-nennen','1'],'Beschreiben':['op-nennen','1'],
+                 'Erklären':['op-erklaeren',''],
+                 'Erarbeiten':['op-erarbeiten','2'],'Erläutern':['op-erlaeutern','2'],
+                 'Ableiten':['op-ableiten','2'],
+                 'Begründen':['op-begruenden','3'],'Beurteilen':['op-beurteilen','3']}[op]
+                ||['op-nennen',''];
+      const opk=OPI[0];
+      const afb=OPI[1]?'<span class="afbz afbz-'+OPI[1]+'">AFB '+
+                       ['','I','II','III'][+OPI[1]]+'</span>':'';
       h+='<div class="auf" style="background:var(--card)"><div class="kopf">'+
          '<span class="nr" style="background:var(--le)">'+(i+1)+'</span>'+
-         '<span class="op '+opk+'">'+esc(op)+'</span></div>';
+         '<span class="op '+opk+'">'+esc(op)+'</span>'+afb+'</div>';
       h+='<div class="frage">'+bold(f.frage)+'</div>';
       h+='<div class="antwort"><textarea rows="2" data-nr="lesen-f'+i+'" '+
          'placeholder="Antworte in einem ganzen Satz …"></textarea>'+

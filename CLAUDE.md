@@ -779,17 +779,36 @@ selbst formuliert: **nacherzählen, zusammenfassen, erklären.**
 | `tipp` | Bezug zum Prüfungsteil des Tages |
 
 **Die Fragen benutzen die Operatoren, die auch in ihren Pflege-Klausuren stehen.** Feld
-`operator`, erlaubte Werte: **Nennen**, **Beschreiben**, **Erklären**, **Erläutern**,
-**Begründen**. Die Vorlage färbt sie ein und zeigt darüber einen ausklappbaren Kasten, der
-erklärt, was jedes Wort verlangt. Pro Text möglichst **alle vier Stufen** vorkommen lassen,
-in dieser Reihenfolge: erst *Nennen*, dann *Begründen*, *Erklären*, *Erläutern*.
+`operator`, erlaubte Werte — **am 18.09.2026 vervollständigt**, nachgezählt in
+`Lernmaterial/*/klausur.md`:
 
-Und die Musterlösung muss **vormachen**, was der Operator verlangt:
-- **Begründen** → im Musterantwort-Text steht sichtbar **weil / da / denn / deshalb**.
-- **Erläutern** → die Musterantwort **belegt am Text**: *„Das sieht man daran, dass …“* oder
-  ein wörtliches Zitat.
-- **Erklären** → verständliche Erklärung **plus eigenes Beispiel**.
-- **Nennen** → wirklich nur aufzählen, keine Begründung.
+| Operator | AFB | Was die Musterlösung vormachen muss |
+|---|---|---|
+| **Nennen** | I | wirklich nur aufzählen, keine Begründung — und die **geforderte Anzahl** liefern |
+| **Beschreiben** | I | sachlich darstellen; werden zwei Teile verlangt (Aufbau **und** Funktion), müssen beide sichtbar getrennt dastehen |
+| **Erklären** | — | verständliche Erklärung **plus eigenes Beispiel** |
+| **Erarbeiten** | II | alles aus dem **Text/Fall** belegbar — kein Wissen von außen |
+| **Erläutern** | II | **belegt am Text**: *„Das sieht man daran, dass …“* oder ein wörtliches Zitat |
+| **Ableiten** | II | Maßnahme **plus** das *weil*, das sie an den Fall bindet |
+| **Begründen** | III | im Text steht sichtbar **weil / da / denn / dadurch / deshalb** — und die ganze Kette bis zur Folge |
+| **Beurteilen** | III | erst die **Einschätzung** („Verdacht auf …, das ist ein Notfall“), **dann** die Maßnahmen |
+
+`Erklären` trägt bewusst **kein** AFB: In ihren Themenklausuren ist bei diesem Operator keiner
+vermerkt. **Nicht dazuerfinden.**
+
+**Die Gewichtung ist seit dem 18.09.2026 vorgeschrieben.** Gezählt über ihr ganzes
+Übungsmaterial: **AFB I 95 Aufgaben · AFB II 86 · AFB III 53** — rund **60 % liegen auf II und
+III**, und genau dort brechen ihre Noten weg. Deshalb gilt für jeden `lesen`-Block:
+
+- **Mindestens eine Frage auf AFB III** (*Begründen* oder *Beurteilen*) — **in jeder Lektion**,
+  ohne Ausnahme.
+- **Mindestens eine auf AFB II** (*Erarbeiten*, *Erläutern* oder *Ableiten*).
+- Höchstens zwei auf AFB I. *Nennen* darf nie die letzte Frage sein.
+- Reihenfolge weiter aufsteigend: erst AFB I, dann II, dann III.
+
+**Und die Musterlösung bei AFB III muss die Kette sichtbar machen**, nicht nur die Antwort:
+*Ursache → Wirkung → Gefahr → deshalb tue ich X.* Eine Musterantwort ohne diese vier Glieder ist
+bei *Begründen* und *Beurteilen* **falsch gebaut**, auch wenn der Inhalt stimmt.
 
 **Der Block `wortschatz` — sie hat gesagt, sie will hier Grammatik und Wortschatz B1/B2 lernen,
 nicht nur verstehen.** Also 12–14 Wörter aus dem Text als Tabelle: `wort` mit Artikel und
@@ -827,6 +846,61 @@ eingeklappt.
 
 **Und in der Antwort an sie immer erwähnen:** Sie soll ihre Antworten schicken — sie werden
 korrigiert (Inhalt, Satzbau, Wortwahl), nicht nur gelobt.
+
+### Klausurkopplung — was der Notenspiegel vom 18.09.2026 an Deutsch täglich ändert
+
+Am 18.09.2026 hat sie ihren Notenspiegel geschickt (zehn Leistungen, Portal der Schule) und
+danach gesagt:
+
+> *„donc améliorer mon Deutsch Täglich via ce que je dois travailler"*
+
+**Deshalb ist Deutsch täglich seit diesem Tag kein allgemeiner Sprachkurs mehr, der zufällig
+Pflegebeispiele benutzt, sondern auf ihre schriftliche Schwäche ausgerichtet.** Die vollständige
+Auswertung steht in `klausuren/notenspiegel.md`. Die vier Zahlen, auf die es ankommt:
+
+| | Noten | Schnitt |
+|---|---|---|
+| Pflegen und dabei beobachtet werden | 4 | **1,89** |
+| Deutsch unter Prüfung **produzieren** (schriftlich + mündlich) | 6 | **3,64** |
+| derselbe Prüfer (Fuchsberger), praktisch | 4 | **1,89** |
+| derselbe Prüfer, schriftlich | 3 | **3,46** |
+
+**Ein und dieselbe Person bewertet sie 1,57 Notenpunkte auseinander**, je nachdem, ob sie
+handelt oder formuliert. Damit ist es kein Wissensproblem und kein strenger Korrektor.
+
+**Vier Regeln folgen daraus. Sie gelten ab Lektion 5 (19.09.2026) für jede Lektion:**
+
+**1. AFB II und III sind Pflicht** — siehe die Operatorentabelle oben. Jede Lektion hat
+mindestens eine *Begründen*- oder *Beurteilen*-Frage, und die Musterlösung zeigt die Kette
+*Ursache → Wirkung → Gefahr → deshalb tue ich X*.
+
+**2. Der Wortschatz bekommt eine Mechanismus-Quote.** Ihre schwächsten Klausuren waren die mit
+**Anatomie, Physiologie und Krankheitsmechanismus** (Blut/Herz 3,99 · Pneumonie mit septischem
+Schock 5,37); die stärkere am selben Tag war die über **Pflegehandlungen** (2,95). Deshalb:
+In jeder Lektion sind **mindestens vier der 15–18 Vokabeln Fachbegriffe für Vorgänge im Körper**
+— nicht für Handgriffe. Beispiele aus ihrem eigenen Material: *der Thrombus · der Embolus · die
+Lungenembolie · die Exsikkose · die Hyperkoagulabilität · die Dyspnoe · die Tachykardie · das
+Ödem.* Diese Wörter bekommen in der `aufgabe` den Auftrag **schreiben, nicht wiedererkennen**.
+
+**3. Mündlich zählt genauso.** Ihre mündliche Prüfung liegt bei **3,42** — auf dem schriftlichen
+Schnitt, nicht auf dem praktischen. Der Block `erklaeren` (30 Sekunden laut) bekommt deshalb
+**einmal pro Themenblock** ausdrücklich eine **Begründung** als Auftrag: nicht „erzähl den Text
+nach“, sondern *„sag laut, **warum** … — mit weil und der ganzen Kette“*.
+
+**4. Das Ziel wird beim Namen genannt.** Im `tipp` des `lesen`-Blocks steht künftig, welcher
+Klausur-Operator heute geübt wurde. Sie soll sehen, dass die Deutschstunde und die Pflegeklausur
+dieselbe Sache sind.
+
+**Was sich ausdrücklich NICHT ändert:** Niveau **B1**, der Takt jeden zweiten Tag, die 21
+Grammatikthemen, die 16 telc-Themenbereiche und alle Blöcke. Deutsch täglich wird nicht zum
+Fachkundeunterricht — die Pflegeinhalte bleiben **Material**, an dem deutsche Sätze gebaut
+werden. Die Fachinhalte selbst kommen weiter aus den Schulungen und dem Lern-Hub.
+
+**Der Gegenbeweis, der die Richtung bestätigt:** Am 27.08.2026 hat sie die Haftungsklausur mit
+**83,5 von 86 Punkten (Note 1,15)** geschrieben — auf Deutsch, unter Zeit, als Fallbearbeitung,
+also AFB III. Im Protokoll steht: *„Der Fall war fehlerfrei — genau das Schema, das wir geübt
+haben.“* **Die Sprache ist also keine Decke.** Was fehlt, ist das geübte Schema — und genau das
+liefern die vier Regeln oben.
 
 ### Ihre sieben Baustellen — die Fehler, die wirklich vorkommen
 
