@@ -797,8 +797,9 @@ selbst formuliert: **nacherzählen, zusammenfassen, erklären.**
 vermerkt. **Nicht dazuerfinden.**
 
 **Die Gewichtung ist seit dem 18.09.2026 vorgeschrieben.** Gezählt über ihr ganzes
-Übungsmaterial: **AFB I 95 Aufgaben · AFB II 86 · AFB III 53** — rund **60 % liegen auf II und
-III**, und genau dort brechen ihre Noten weg. Deshalb gilt für jeden `lesen`-Block:
+Übungsmaterial, gezählt nur in den **Aufgabenüberschriften** (179 Aufgaben):
+**AFB I 74 · AFB II 67 · AFB III 38** — also liegen **59 % der Aufgaben auf II und III**, und
+genau dort brechen ihre Noten weg. Deshalb gilt für jeden `lesen`-Block:
 
 - **Mindestens eine Frage auf AFB III** (*Begründen* oder *Beurteilen*) — **in jeder Lektion**,
   ohne Ausnahme.
