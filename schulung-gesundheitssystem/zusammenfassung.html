@@ -1,0 +1,825 @@
+<title>Gesunde stehen für Kranke ein</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#2f5f4a;--accent-deep:#1f4735;--accent-soft:#dcece4;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#7fc0a4;--accent-deep:#9ad5bc;--accent-soft:#14261e;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#7fc0a4;--accent-deep:#9ad5bc;--accent-soft:#14261e;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#2f5f4a;--accent-deep:#1f4735;--accent-soft:#dcece4;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Das deutsche Gesundheitssystem · Geschichte, Prinzipien, Ebenen, Aufgaben</p>
+  <h1>Gesunde stehen für Kranke ein</h1>
+  <p class="sub">Warum du eine Karte abgibst statt einer Rechnung, wer entscheidet, was die Kasse
+    zahlt — und warum die Pflegeversicherung ausdrücklich nur eine Teilkostenversicherung ist.</p>
+  <div class="meta">
+    <span>A. Issel</span>
+    <span>BMG-Broschüre</span>
+    <span>7 Quellen</span>
+    <span>Niveau B1</span>
+    <span>Stand 19.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#warum">Warum das dein Thema ist</a>
+  <a href="#geschichte">1883 — Bismarck</a>
+  <a href="#prinzipien">Die fünf Grundprinzipien</a>
+  <a href="#welt">Die drei Systemtypen</a>
+  <a href="#ebenen">Die drei Ebenen</a>
+  <a href="#gba">Der G-BA</a>
+  <a href="#aufgaben">Die Aufgaben</a>
+  <a href="#pflege">Die Pflegeversicherung</a>
+  <a href="#zahlen">Die Zahlen und ihr Datum</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="warum">
+  <h2>Warum das kein Politikunterricht ist</h2>
+  <p class="lead">Du arbeitest <b>in</b> diesem System. Und deine Patienten fragen <b>dich</b>,
+    nicht das Ministerium.</p>
+
+  <div class="merk">
+    <span class="t">Drei Fragen, die du auf Station wirklich hörst</span>
+    <p><b>„Muss ich das selbst bezahlen?“</b> → Sachleistungsprinzip und Zuzahlungen ·
+      <b>„Warum kriege ich plötzlich eine andere Tablette?“</b> → Generika und Rabattverträge ·
+      <b>„Warum zahlt die Kasse die Reha nicht?“</b> → Wirtschaftlichkeitsgebot und G-BA.</p>
+    <p>Alle drei Antworten stehen auf dieser Seite. <b>Du musst keine Auskunft geben</b> — aber
+      du solltest wissen, <b>wohin</b> du jemanden schickst.</p>
+    <p class="fr">Tu travailles <b>dans</b> ce système, et c'est à <b>toi</b> qu'on pose les
+      questions. Tu n'as pas à répondre — mais à savoir vers qui renvoyer.</p>
+  </div>
+</section>
+
+<section id="geschichte">
+  <h2>Der 15. Juni 1883 — und warum das bis heute trägt</h2>
+
+  <div class="merk">
+    <span class="t">Die Geburtsstunde, wörtlich</span>
+    <p>Unter Reichskanzler <b>Otto von Bismarck</b> wurde am <b>15. Juni 1883</b> das
+      <b>„Gesetz betreffend die Krankenversicherung der Arbeiter“</b> erlassen. Von da an sind
+      <b>Industriearbeiter und Beschäftigte in Handwerks- und Gewerbebetrieben</b>
+      krankenversicherungspflichtig.</p>
+    <p><b>Sie trugen zwei Drittel, ihr Arbeitgeber ein Drittel</b> des Beitrags.</p>
+    <p>Und der Satz, der die Bedeutung erklärt: <b>Deutschland ist damit das erste Land, das
+      eine Sozialversicherung auf nationaler Ebene einführte.</b> Die GKV ist
+      <b>der älteste Zweig der Sozialversicherung</b> und hat ihre tragenden Grundsätze
+      <b>seit dem Wilhelminischen Kaiserreich im Kern bis heute erhalten</b>.</p>
+    <p class="fr">1883 : l'Allemagne est le <b>premier pays</b> à créer une assurance sociale
+      nationale. Les principes de base tiennent depuis.</p>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th></th><th>Zu Beginn (1883)</th><th>Heute</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Anteil der Bevölkerung</td><td>etwa <b>10 %</b> pflichtversichert</td>
+          <td>rund <b>88 %</b> in einer gesetzlichen Krankenkasse</td></tr>
+        <tr><td class="k">Versicherte GKV</td><td>—</td><td>über <b>74 Millionen</b></td></tr>
+        <tr><td class="k">Privat versichert</td><td>—</td>
+          <td>rund <b>9 Millionen</b></td></tr>
+        <tr><td class="k">Sonstige</td><td>—</td>
+          <td>besondere Versorgungsformen, z. B. die <b>unentgeltliche truppenärztliche
+            Versorgung der Bundeswehr</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Und ein Satz, den man leicht überliest: <b>„Auch wenn von der ‚gesetzlichen
+    Krankenversicherung‘ meist in der Einzahl gesprochen wird, ist sie kein einheitlicher
+    Block.“</b> Sie besteht aus <b>unabhängigen Krankenkassen mit eigenem Profil</b>, zwischen
+    denen man <b>weitgehend frei wählen und wechseln</b> kann.</p>
+
+  <div class="warnung">
+    <span class="t">Eine kleine Abweichung zwischen zwei deiner Dateien</span>
+    <p>Der <b>Foliensatz</b> von A. Issel schreibt zu 1883: <b>„Nur für Handwerks- und
+      Gewerbebetriebe“</b>. Der <b>Textauszug des Ministeriums</b> nennt dagegen
+      <b>„Industriearbeiter <i>und</i> Beschäftigte in Handwerks- und Gewerbebetrieben“</b>.</p>
+    <p>Die Folie ist also <b>etwas enger</b> formuliert als der Quelltext. <b>Nimm im Zweifel
+      die Formulierung des Textes</b> — er ist die zitierte Originalquelle.</p>
+  </div>
+</section>
+
+<section id="prinzipien">
+  <h2>Die fünf Grundprinzipien</h2>
+  <p class="lead">Der Arbeitsauftrag lautet: <b>„Fassen Sie das Ihnen zugewiesene Prinzip
+    zusammen“</b> und <b>„Ordnen Sie die Prinzipien in die ‚Leiter‘ ein und begründen Sie Ihre
+    Einordnung.“</b> — <b>Die Leiter ist nicht ausgefüllt.</b></p>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Versicherungspflicht</h4>
+      <p><b>Alle</b> Bürgerinnen und Bürger mit Wohnort oder gewöhnlichem Aufenthalt in
+        Deutschland müssen einen Krankenversicherungsschutz haben — in der <b>GKV seit dem
+        1. April 2007</b>, in der <b>PKV seit dem 1. Januar 2009</b>.</p>
+      <p>Arbeitnehmer sind in der GKV <b>pflichtversichert</b>, solange ihr Einkommen die
+        <b>Versicherungspflichtgrenze</b> nicht überschreitet. Darüber dürfen sie
+        <b>freiwillig in der GKV bleiben</b> oder <b>privat</b> wählen. <b>Generell nicht</b>
+        versicherungspflichtig in der GKV sind z. B. <b>Beamte und Selbstständige</b> — auch
+        bei niedrigem Einkommen.</p></div></div>
+
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Beitragsfinanzierung</h4>
+      <p><b>Der entscheidende Unterschied GKV ↔ PKV:</b></p>
+      <p><b>PKV:</b> Die Prämie richtet sich nach <b>Gesundheitszustand, Eintrittsalter und
+        individuellem Krankheitsrisiko</b>; Leistungen und Selbstbeteiligungen werden
+        <b>individuell vertraglich</b> vereinbart.</p>
+      <p><b>GKV:</b> Der Beitrag richtet sich nach dem <b>Einkommen</b> —
+        <b>„Alle Versicherten erhalten die gleichen Leistungen. Wer mehr verdient, zahlt auch
+        mehr ein.“</b></p>
+      <p>Und der große Unterschied für Familien: In der GKV sind <b>Kinder und Ehepartner ohne
+        oder mit geringem eigenem Einkommen beitragsfrei mitversichert</b>. Für Arbeitslosengeld-
+        und Sozialhilfeempfänger übernimmt <b>der zuständige Sozialleistungsträger</b> den
+        Beitrag.</p></div></div>
+
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Solidaritätsprinzip</h4>
+      <p><b>„Alle gesetzlich Versicherten tragen gemeinsam die Kosten, die durch Krankheiten der
+        einzelnen Mitglieder entstehen.“</b> Jeder hat <b>den gleichen Anspruch auf medizinische
+        Versorgung — egal, wie hoch sein Einkommen und damit sein Beitrag ist</b>.</p>
+      <p>Der Merksatz des Textes: <b>„Gesunde stehen also für Kranke ein, Reiche für Arme und
+        Singles für Familien.“</b></p>
+      <p>Dazu gehört auch die <b>Lohnfortzahlung</b>: die <b>ersten sechs Wochen in voller
+        Höhe vom Arbeitgeber</b>; wer länger krank ist, bekommt von der Kasse
+        <b>Krankengeld</b>.</p></div></div>
+
+    <div class="stufe"><span class="nr n2">4</span><div>
+      <h4>Sachleistungsprinzip</h4>
+      <p><b>„Gesetzlich Versicherte werden ärztlich behandelt, ohne dass sie dafür in
+        finanzielle Vorleistung gehen müssen.“</b> Ärzte, Kliniken und Apotheken rechnen
+        <b>direkt mit den Krankenkassen</b> ab.</p>
+      <p>Die Versicherten haben — <b>abgesehen von einzelnen gesetzlichen Eigenleistungen und
+        Zuzahlungen</b> — Anspruch auf eine <b>kostenfreie Behandlung</b>.</p></div></div>
+
+    <div class="stufe"><span class="nr n2">5</span><div>
+      <h4>Selbstverwaltungsprinzip</h4>
+      <p>Die Frage, die der Text stellt: <b>„Wer soll das regeln? Macht's der Staat?
+        Entscheidet der Markt? Oder die Beteiligten selbst?“</b> — <b>Deutschland hat sich für
+        die letzte Variante entschieden.</b></p>
+      <p><b>Der Staat gibt die Rahmenbedingungen vor</b> und erlässt Gesetze und Verordnungen.
+        <b>Wie</b> die Versorgung organisiert wird und <b>welche Behandlungen, Operationen,
+        Therapien und Arzneimittel die Kassen finanzieren</b>, wird <b>innerhalb des
+        Gesundheitswesens</b> entschieden — von Ärzte-, Zahnärzte- und Psychotherapeutenschaft,
+        Krankenhäusern, Krankenkassen und Versicherten <b>gemeinsam</b>.</p></div></div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Warum das Solidaritätsprinzip die wichtigste Kette dieses Blocks ist</span>
+    <p><b>Ursache:</b> Der Beitrag richtet sich nach dem <b>Einkommen</b>, der Anspruch dagegen
+      ist <b>für alle gleich</b>. → <b>Wirkung:</b> Wer viel verdient, zahlt mehr ein, als er
+      im Schnitt herausbekommt; wer wenig verdient, bekommt mehr, als er einzahlt. →
+      <b>Gefahr:</b> Ohne dieses Prinzip könnten sich chronisch Kranke, Alte und Familien ihre
+      Versorgung <b>nicht leisten</b> — sie sind genau die Gruppen mit hohen Kosten und oft
+      niedrigem Einkommen. → <b>Deshalb:</b> ist die Beitragsbemessung nach Einkommen
+      <b>kein Sozialrabatt, sondern die Bedingung dafür, dass das System überhaupt
+      funktioniert</b>.</p>
+    <p><b>Das ist meine Ausformulierung</b> — die drei Sätze des Textes („Gesunde für Kranke,
+      Reiche für Arme, Singles für Familien“) sagen genau das, nur kürzer. Wenn du nach dem
+      Solidaritätsprinzip gefragt wirst, <b>zitiere den Satz und erkläre dann die Kette</b>.</p>
+    <p class="fr">La cotisation suit le <b>revenu</b>, le droit aux soins est <b>le même pour
+      tous</b>. C'est la condition de fonctionnement, pas une remise sociale.</p>
+  </div>
+</section>
+
+<section id="welt">
+  <h2>Die drei Systemtypen — und wo Deutschland steht</h2>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Typ</th><th>Wie finanziert und organisiert</th><th>Beispiele</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Staatliche Gesundheitssysteme</td>
+          <td>Vom <b>Staat organisiert</b> und über <b>Steuergelder</b> finanziert. Alle
+            Operationen, Therapien und Arzneimittel werden <b>aus dem Staatshaushalt</b>
+            bezahlt; es gibt <b>lediglich Zuzahlungen</b>. Der Staat organisiert auch die
+            Versorgung mit Krankenhäusern und Gesundheitszentren.</td>
+          <td><b>Großbritannien</b>, <b>Schweden</b></td></tr>
+        <tr><td class="k">Sozialversicherungssysteme</td>
+          <td><b>Sozialversicherungen — also Krankenkassen — finanzieren</b> die Versorgung.
+            <b>Unternehmen und Beschäftigte zahlen ein.</b> <b>Private und öffentliche Anbieter
+            sind nebeneinander tätig</b> und organisieren die Versorgung <b>in einem gesetzlich
+            abgesteckten Rahmen selbst</b> — das <b>Selbstverwaltungsprinzip</b>.</td>
+          <td><b>Deutschland</b></td></tr>
+        <tr><td class="k">Marktwirtschaftlich orientierte Systeme</td>
+          <td>Der Staat spielt eine <b>nachgeordnete Rolle</b>. Organisation und Steuerung sind
+            <b>Aufgabe privater Akteure</b>, und auch <b>finanziert wird fast alles privat</b>.
+            <b>Keine Lohnfortzahlung</b> bei langer Krankheit — man muss selbst für den
+            Lebensunterhalt sorgen.</td>
+          <td><b>USA</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Die Vor- und Nachteile — aus dem Foliensatz</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>System</th><th>Vorteil</th><th>Nachteil</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Staatlich</td>
+          <td><b>Gleichheit beim Zugang</b> · <b>weniger Bürokratie und Kosten</b></td>
+          <td><b>Lange Wartezeiten</b> · geringe Auswahl</td></tr>
+        <tr><td class="k">Hybrid</td>
+          <td><b>Gleichheit beim Zugang</b> · <b>Krankenkassenwahl</b> · Auswahl bei
+            Behandlungen und Medikamenten</td>
+          <td>Lange Wartezeiten · <b>hohe Bürokratie</b></td></tr>
+        <tr><td class="k">Privat</td>
+          <td><b>Sehr kurze Wartezeiten</b> · mehr Auswahl bei Behandlungen ·
+            <b>kostengünstiger, solange man gesund ist</b></td>
+          <td><b>Sehr hohe Kosten bei Unfall</b> · <b>nicht finanzierbar</b> ·
+            <b>Ungleichheit</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Zeile, die eine Beurteilen-Antwort trägt</span>
+    <p>Beim privaten System steht als Vorteil <b>„kostengünstiger bei Gesundheit“</b> und als
+      Nachteil <b>„sehr hohe Kosten bei Unfall“</b>.</p>
+    <p><b>Das ist derselbe Punkt, einmal von vorn und einmal von hinten gelesen:</b> Ein System,
+      das nach individuellem Risiko bezahlt wird, ist <b>billig für den, der es nicht
+      braucht</b>, und <b>teuer für den, der es braucht</b>. Genau das ist der Gegensatz zum
+      Solidaritätsprinzip.</p>
+    <p>Der Foliensatz nennt Deutschland in dieser Tabelle <b>„Hybrid“</b>, im Text heißt es
+      <b>„Sozialversicherungssystem“</b>. Gemeint ist dasselbe: <b>Kassen statt Steuern, aber
+      private und öffentliche Anbieter nebeneinander.</b></p>
+    <p class="fr">Payer selon le <b>risque</b> : bon marché pour qui n'en a pas besoin, ruineux
+      pour qui en a besoin. C'est exactement l'inverse de la solidarité.</p>
+  </div>
+</section>
+
+<section id="ebenen">
+  <h2>Die drei Ebenen</h2>
+  <p class="lead">Für diese Aufgabe gibt es im Ordner eine <b>Lösung</b> — die einzige in
+    diesem Block.</p>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Der gesetzliche Rahmen</h4>
+      <p><b>Das BMG</b> ist innerhalb der Bundesregierung <b>federführend</b>: zuständig für
+        <b>Gesetzesvorhaben, Verordnungen und Verwaltungsvorschriften</b>, und es führt die
+        <b>Rechtsaufsicht</b> über die Selbstverwaltungsorganisationen auf Bundesebene. Die
+        Aufsicht über die <b>bundesweit</b> tätigen Kassen führt das <b>Bundesamt für Soziale
+        Sicherung (BAS)</b>.</p>
+      <p><b>Dem BMG unterstehen:</b> das <b>BfArM</b> (Arzneimittel und Medizinprodukte — dorthin
+        gehen die Rollator-Meldungen!), das <b>Paul-Ehrlich-Institut (PEI)</b> für Impfstoffe
+        und biomedizinische Arzneimittel, das <b>Robert Koch-Institut (RKI)</b> und die
+        <b>BZgA</b>.</p>
+      <p>Dazu die <b>Bevollmächtigte der Bundesregierung für Pflege</b>, der <b>Beauftragte für
+        Sucht- und Drogenfragen</b> und der <b>Patientenbeauftragte</b>. Dritter Akteur neben
+        Bundestag und Bundesregierung: der <b>Bundesrat</b> als „2. Kammer“ der Länder.</p>
+      <p><b>Die Bundesländer:</b> eigene Gesetzgebungskompetenzen · <b>Durchführung der
+        Bundesgesetze</b> · <b>Planung und Teilfinanzierung der stationären Versorgung</b> ·
+        Fach- und Dienstaufsicht über den kommunalen Öffentlichen Gesundheitsdienst ·
+        <b>Aufsicht über die regionalen Kassen</b> sowie über die <b>Heilberufe-Kammern</b> und
+        die Kassen(zahn)ärztlichen Vereinigungen.</p>
+      <p><b>Die Kommunen:</b> <b>„Sie agieren nah am Menschen“</b> und sind verantwortlich für
+        die <b>Gesundheitsversorgung vor Ort</b>; in der <b>Prävention</b> bieten sie
+        <b>niedrigschwellig zugängliche Angebote</b> an und leisten damit <b>einen Beitrag zur
+        Chancengleichheit</b>. Die <b>Gesundheitsämter</b> gehören dazu, und die Kommunen sind
+        <b>vielfach selbst Träger von Krankenhäusern</b>.</p></div></div>
+
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Die Selbstverwaltung</h4>
+      <p>Hier entscheiden <b>die Akteure selbst</b>, welche Leistungen <b>auf Kosten der
+        Solidargemeinschaft</b> erbracht werden — orientiert am
+        <b>Wirtschaftlichkeitsgebot</b>.</p>
+      <p>Dazu gehören: der <b>GKV-Spitzenverband</b> (die Kassen schließen über ihn oder ihre
+        Regionalverbände <b>Verträge mit Ärzteverbänden, Kliniken und Apotheken</b>), die
+        <b>KBV und KZBV</b> (<b>Sicherstellungsauftrag</b> für die ambulante Versorgung und
+        Interessenvertretung), die <b>Deutsche Krankenhausgesellschaft (DKG)</b> — und als
+        oberstes Gremium der <b>G-BA</b>.</p></div></div>
+
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Die einzelnen Akteure und ihre Interessenvertretungen</h4>
+      <p>Die Frage des Textes: <b>„Und wo werden jetzt tatsächlich Menschen behandelt?“</b> —
+        <b>„auf der dritten Ebene“</b>: durch <b>Ärztinnen und Ärzte, Therapeutinnen und
+        Therapeuten, in Krankenhäusern und Rehakliniken</b>.</p>
+      <p>Damit sie politisch Gehör finden, sind sie in <b>Standesorganisationen sowie Berufs-
+        und Unternehmensverbänden</b> organisiert: Bundes- und Landeskammern der Heilberufe,
+        die <b>ABDA</b> (Apothekerverbände), <b>Patientenorganisationen</b>, die Verbände der
+        nicht ärztlichen Heilberufe, der <b>Verband der Privaten Krankenversicherung</b> und
+        die Verbände der <b>Arzneimittelhersteller</b>.</p></div></div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Das Wirtschaftlichkeitsgebot — vier Wörter, die alles entscheiden</span>
+    <p>Leistungen müssen <b>ausreichend</b>, <b>zweckmäßig</b> und <b>wirtschaftlich</b> sein —
+      und <b>„sie dürfen das Maß des Notwendigen nicht überschreiten“</b>. Für alles darüber
+      hinaus müssen Versicherte <b>in der Regel selbst aufkommen</b>.</p>
+    <p><b>Die Beispiele aus dem Text zeigen, wo die Grenze liegt:</b> Ein Herzinfarkt wird
+      sofort notärztlich versorgt — das zahlt die Kasse, klar. Wer beim Sport umknickt, wird
+      geröntgt und bandagiert — auch klar. <b>Aber:</b> Was, wenn jemand nach einer
+      orthopädischen Verletzung statt Physiotherapie eine <b>osteopathische</b> Behandlung
+      möchte? Oder <b>homöopathische</b> Arzneimittel statt Schmerztabletten?
+      <b>„Dann muss jemand entscheiden“</b> — und dafür gibt es den G-BA.</p>
+    <p class="fr">Suffisant, approprié, économique — et <b>pas au-delà du nécessaire</b>. Les
+      cas limites, c'est le G-BA qui tranche.</p>
+  </div>
+
+  <h3>Die Lösung aus dem Ordner — so kurz darf es sein</h3>
+  <p><b>1. Ebene:</b> BMG — Politik, Verordnungen im Bund, Überwachung der Verbände ·
+    Bundesländer — Teilfinanzierung, Planung der Versorgung, Umsetzung von Gesetzen ·
+    Kommunen — Gesundheitsversorgung, Überwachung der Gesundheit.<br>
+    <b>2. Ebene:</b> Selbstverwaltung — entscheidet über die Übernahme von Behandlungskosten ·
+    GKV-Spitzenverband — Verträge · KBV und KZBV — vertreten die Interessen der Ärzte und
+    stellen die Versorgung sicher · G-BA — Zulassungen und Kostenübernahme von Medikamenten.<br>
+    <b>3. Ebene:</b> Ärztinnen und Ärzte, Krankenhäuser, Rehakliniken, Apotheken, Hersteller
+    von Arzneimitteln.</p>
+  <p><b>Das ist der Umfang, den eine Antwort haben darf.</b> Die langen Texte oben sind die
+    Grundlage — <b>die Lösung ist die Verdichtung</b>. Übe das: Für jede Ebene ein Akteur,
+    ein Verb, ein Gegenstand.</p>
+</section>
+
+<section id="gba">
+  <h2>Der Gemeinsame Bundesausschuss (G-BA)</h2>
+  <p class="lead"><b>„Das wichtigste Gremium der gemeinsamen Selbstverwaltung im
+    Gesundheitswesen“</b>, mit Sitz in Berlin.</p>
+
+  <div class="karten">
+    <div class="karte"><h4>Wer drin sitzt</h4>
+      <p>Der <b>GKV-Spitzenverband</b> · die <b>Kassenärztliche Bundesvereinigung (KBV)</b> ·
+        die <b>Kassenzahnärztliche Bundesvereinigung (KZBV)</b> · die <b>Deutsche
+        Krankenhausgesellschaft (DKG)</b>.</p></div>
+    <div class="karte"><h4>Wer mitberät</h4>
+      <p><b>Patienten- und Behindertenorganisationen</b> haben ein <b>Mitberatungs- und
+        Antragsrecht</b> — sie dürfen <b>zu allen Themen mitberaten</b>.</p></div>
+    <div class="karte"><h4>Worüber entschieden wird</h4>
+      <p>Ob die Kassen <b>neue Behandlungsmethoden, moderne Medizintechnik, neue Heilmittel
+        oder alternative Heilmethoden</b> bezahlen. Für <b>neue Arzneimittel</b> wird eine
+        <b>Nutzenbewertung</b> durchgeführt — <b>sie werden regelhaft erstattet</b>.</p></div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Die Grenze der Beteiligung — und sie ist wichtig</span>
+    <p>Patientenvertreter haben ein <b>Mitberatungs- und Antragsrecht</b>. <b>Von einem
+      Stimmrecht ist in deinen Unterlagen nirgends die Rede.</b></p>
+    <p>Das ist genau der Unterschied, nach dem in einer <b>Beurteilen</b>-Frage gesucht wird:
+      <b>mitreden dürfen</b> ist nicht dasselbe wie <b>mitentscheiden</b>. Ich behaupte hier
+      nicht, wie die Stimmverhältnisse aussehen — <b>das steht nicht in deinen Texten</b>.
+      Aber die Formulierung „Mitberatungs- und Antragsrecht“ ist auffällig präzise.</p>
+    <p class="fr">Droit de <b>participer aux débats</b> et de <b>déposer des demandes</b> — pas
+      la même chose que voter. Tes documents ne parlent pas de droit de vote.</p>
+  </div>
+
+  <p>Die konkreten Beispiele aus dem Text, was der G-BA entscheidet: ob die Kassen die
+    <b>Ernährungsberatung für Diabetespatienten</b> bezahlen · welche <b>neuen
+    Behandlungsmethoden</b> in die Versorgung aufgenommen werden · welchen <b>Zahnersatz</b>
+    die Kassen finanzieren.</p>
+</section>
+
+<section id="aufgaben">
+  <h2>Die Aufgaben des Gesundheitssystems — fünf Gruppen</h2>
+
+  <h3>1 · Prävention und Gesundheitsförderung</h3>
+  <p><b>2015</b> haben sich die Spitzenorganisationen der gesetzlichen <b>Kranken-, Unfall-,
+    Renten- und Pflegeversicherung</b> sowie der <b>Verband der privaten
+    Krankenversicherungsunternehmen</b> in der <b>„Nationalen Präventionskonferenz“</b>
+    zusammengefunden und eine <b>nationale Präventionsstrategie</b> vereinbart.</p>
+  <div class="merk">
+    <span class="t">Das gemeinsame Ziel, wörtlich</span>
+    <p><b>„Die Menschen sollen gesund aufwachsen, leben und arbeiten und auch im Alter gesund
+      bleiben.“</b> — und sie sollen <b>in allen Lebenswelten Rahmenbedingungen vorfinden, die
+      ihre Gesundheit, Sicherheit und Teilhabe fördern</b>.</p>
+    <p>Die Lebenswelten, die genannt werden: <b>Kindergärten, Schulen, Betriebe und
+      Pflegeheime</b>. Dazu die <b>Gesundheitskompetenz</b> der Bürgerinnen und Bürger
+      verbessern.</p>
+    <p>Das Wort <b>Teilhabe</b> steht auch hier — dasselbe wie auf deinen Seiten
+      <b>Menschen mit Behinderung</b> und <b>Rehabilitation</b>.</p>
+  </div>
+  <p>Konkret: <b>Präventionskurse</b> der Kassen · <b>betriebliche Gesundheitsförderung</b> für
+    kleine und mittlere Unternehmen und <b>insbesondere Krankenhäuser und
+    Pflegeeinrichtungen</b> · mit dem <b>Präventionsgesetz</b> weiterentwickelte
+    <b>Früherkennungsuntersuchungen</b> · <b>Präventionsempfehlungen</b> durch Ärzte · und ein
+    regelmäßiger Anspruch Erwachsener auf <b>Krebsfrüherkennung</b> bei <b>Darm-, Haut-,
+    Brust-, Gebärmutterhals- und Prostatakrebs</b>.</p>
+
+  <h3>2 · Ambulante und stationäre Versorgung</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th></th><th>Was gilt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Ambulant</td>
+          <td>Niedergelassene <b>Haus-, Fach- und Zahnärzte</b>, <b>Psychotherapeuten</b> und
+            <b>nichtärztliche Heilberufe</b> (Physiotherapie, Logopädie). Die meisten haben
+            eine <b>Kassenzulassung</b> — damit sind sie <b>Mitglied in einer KV bzw. KZV</b>,
+            dürfen gesetzlich Versicherte behandeln und mit der GKV abrechnen. <b>Die Zulassung
+            ist an den Praxisstandort und die Bedarfsplanung der KV-Region gebunden.</b>
+            Außerhalb der Sprechstunden: <b>Bereitschaftsdienst</b>.</td></tr>
+        <tr><td class="k">Stationär</td>
+          <td>Die Patienten <b>können sich das Krankenhaus ihrer Wahl aussuchen</b> und brauchen
+            eine <b>ärztliche Einweisung</b> — <b>außer im Notfall</b>. Die GKV zahlt, wenn das
+            Haus <b>zugelassen</b> ist: als <b>Plankrankenhaus</b> (im Krankenhausplan des
+            Landes), über einen <b>Versorgungsvertrag</b> mit den Kassen oder als anerkannte
+            <b>Hochschulklinik</b>. Trägerschaft: <b>privat, freigemeinnützig oder
+            öffentlich</b>. Gesetzlich Versicherte leisten eine <b>Zuzahlung für Unterbringung
+            und Verpflegung</b>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>3 · Rehabilitation und die Misch- und Sonderformen</h3>
+  <div class="merk">
+    <span class="t">Der Satz, der zu deiner Reha-Seite gehört</span>
+    <p><b>„Die Versorgung von Patientinnen und Patienten ist eine Mannschaftsleistung.“</b></p>
+    <p>Das Beispiel dazu: Wer <b>altersbedingte Hüftgelenkschmerzen</b> hat, wird
+      <b>ambulant orthopädisch untersucht</b>, muss womöglich <b>stationär operiert</b> werden,
+      kommt anschließend <b>in eine Rehaklinik</b> und nach der Entlassung <b>zur
+      Physiotherapie vor Ort</b>.</p>
+    <p><b>„Medizinische Behandlungen gehen oft über die einzelnen Sektoren hinaus.“</b> Genau
+      dafür gibt es das <b>Entlassmanagement</b> und die <b>Pflegeüberleitung</b> von deiner
+      Seite zum ambulanten Setting.</p>
+    <p class="fr">Un seul patient traverse quatre secteurs. C'est pour ça que la transmission
+      existe.</p>
+  </div>
+
+  <h3>5 · Arzneimittelversorgung</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Regel</th><th>Was gilt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Zuzahlung</td>
+          <td><b>10 % des Verkaufspreises</b>, <b>mindestens 5 €</b>, <b>höchstens 10 €</b>.
+            Beispiel aus dem Text: Bei einem Arzneimittel für <b>17,80 €</b> zahlt man den
+            <b>Mindestbetrag von 5 €</b>; bei <b>70 €</b> zahlt man <b>10 %</b> — also
+            <b>7 €</b>.</td></tr>
+        <tr><td class="k">Befreiung</td>
+          <td><b>Kinder und Jugendliche bis zum 18. Lebensjahr</b> sind von der Zuzahlung
+            <b>ausgenommen</b>.</td></tr>
+        <tr><td class="k">Belastungsgrenze</td>
+          <td>Zuzahlungen höchstens <b>2 %</b> der jährlichen Bruttoeinnahmen zum
+            Lebensunterhalt — bei <b>chronisch Kranken 1 %</b>. <b>Die Krankenkasse prüft das
+            nur auf Antrag des Versicherten.</b></td></tr>
+        <tr><td class="k">Einheitspreis</td>
+          <td>Man kann <b>mit dem Rezept in jede Apotheke</b> gehen — die
+            <b>Arzneimittelpreisverordnung</b> sorgt für einen <b>einheitlichen Abgabepreis</b>
+            bei verschreibungspflichtigen Arzneimitteln.</td></tr>
+        <tr><td class="k">Generika</td>
+          <td><b>Generika</b> sind den Originalpräparaten <b>nachentwickelt</b> und deshalb
+            oft viel günstiger. Kassen legen oft fest, welche Arzneimittel verschrieben werden
+            dürfen — <b>sofern der Arzt das nicht ausgeschlossen hat</b>. Deshalb kann die
+            Apotheke plötzlich ein anderes Herstellerprodukt abgeben. <b>„Diese Generika wirken
+            aber genau gleich“</b> — und die Zuzahlung kann sogar geringer sein.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die Belastungsgrenze — der Satz, an dem Menschen Geld verlieren</span>
+    <p><b>„Ob die Belastungsgrenze erreicht ist, ist durch die zuständige Krankenkasse zu
+      prüfen. Hierfür ist ein Antrag bei der Krankenkasse durch die Versicherten zu
+      stellen.“</b></p>
+    <p><b>Die Befreiung kommt also nicht von allein.</b> Wer chronisch krank ist, viele
+      Zuzahlungen leistet und den Antrag nicht kennt, zahlt weiter. Das ist eine Information,
+      die du weitergeben kannst — und genau die Art von Wissen, die im
+      <b>Entlassmanagement</b> und in der <b>Beratung</b> zählt.</p>
+    <p class="fr">L'exonération ne vient <b>pas</b> toute seule : il faut la demander. Une
+      information à transmettre.</p>
+  </div>
+</section>
+
+<section id="pflege">
+  <h2>Die Pflegeversicherung — und das Wort „Teilkostenversicherung“</h2>
+
+  <div class="merk">
+    <span class="t">Seit wann und für wen</span>
+    <p>Am <b>1. Januar 1995</b> wurde eine <b>umfassende Versicherungspflicht für alle
+      gesetzlich und privat Versicherten für das Pflegerisiko</b> eingeführt. Die soziale
+      Pflegeversicherung wird <b>paritätisch</b> von Arbeitgebern und Arbeitnehmern
+      finanziert.</p>
+    <p>Und die Definition von Pflegebedürftigkeit im Text: Wenn jemand <b>körperliche, kognitive
+      oder psychische Beeinträchtigungen</b> oder gesundheitlich bedingte Belastungen
+      <b>ohne Hilfe durch andere nicht ausgleichen oder bewältigen</b> kann.</p>
+    <p>Das Ziel: <b>trotz Einschränkungen ein möglichst selbstständiges und selbstbestimmtes
+      Leben zu führen, das der Würde des Menschen entspricht</b>.</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Teilkostenversicherung — was das für Familien heißt</span>
+    <p><b>„Die Pflegeversicherung deckt allerdings nicht alle Kosten der Pflege ab. Den Rest
+      tragen die Pflegebedürftigen oder ihre Angehörigen selbst beziehungsweise im Bedarfsfall
+      die Sozialhilfe. Die Pflegeversicherung wird deshalb auch als ‚Teilkostenversicherung‘
+      bezeichnet.“</b></p>
+    <p><b>Das ist der Unterschied zur Krankenversicherung</b>, und er ist die Antwort auf eine
+      Frage, die dir gestellt werden wird: Warum zahlt die Familie bei der Pflege zu, bei der
+      Behandlung aber nicht? → Weil die GKV nach dem <b>Sachleistungsprinzip</b> arbeitet und
+      die Pflegeversicherung nur <b>einen Teil</b> übernimmt.</p>
+    <p>Und genau das erklärt, warum auf deiner Seite zum <b>ambulanten Setting</b> jede Zeile
+      der Leistungstabelle eine <b>Obergrenze</b> hat.</p>
+    <p class="fr">Assurance <b>partielle</b> : le reste est payé par la personne, la famille, ou
+      l'aide sociale. C'est la différence avec l'assurance maladie.</p>
+  </div>
+
+  <h3>Der neue Pflegebedürftigkeitsbegriff — die wichtigste Reform</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Vorher: Zeitbedarf an körperlicher Unterstützung</h4>
+      <p><b>„Zuvor waren die Bedarfslagen von Menschen mit Demenz beim Zugang zu Pflegeleistungen
+        nicht ausreichend berücksichtigt worden.“</b> Denn <b>auch wenn sie körperlich oft keine
+        schwerwiegenden Einschränkungen haben</b>, brauchen sie Unterstützung bei der
+        Gestaltung und Bewältigung ihres Alltags.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Seit 2017: Selbstständigkeit statt Zeit</h4>
+      <p>Grundlage der Begutachtung ist jetzt eine <b>differenzierte Betrachtung der
+        Selbstständigkeit</b> — <b>neben körperlichen auch geistige und psychische
+        Einschränkungen</b>, wie sie bei <b>Alzheimer und anderen demenziellen Erkrankungen</b>
+        vorkommen. Ergebnis: <b>fünf Pflegegrade</b>.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Ab 2020: Nationale Demenzstrategie</h4>
+      <p>Mit ihrer Umsetzung <b>„wird die Situation für Menschen mit Demenz weiter
+        verbessert“</b>.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Warum dich genau dieser Punkt betrifft</span>
+    <p>Auf deiner Seite zum <b>ambulanten Setting</b> hat <b>Frau Elisabeth S. eine
+      fortgeschrittene Demenz — und nur Pflegegrad 1</b>. Beide Beratungsgespräche empfehlen
+      eine <b>Höherstufung</b>.</p>
+    <p><b>Dieser Abschnitt erklärt, warum das überhaupt möglich ist:</b> Seit 2017 zählen
+      geistige und psychische Einschränkungen mit. Vorher hätte jemand wie Frau S. — körperlich
+      weitgehend selbstständig, kognitiv stark eingeschränkt — kaum Leistungen bekommen.</p>
+    <p><b>Das ist meine Verbindung der beiden Seiten</b>, aber beide Sätze stehen in deinen
+      Unterlagen.</p>
+    <p class="fr">C'est cette réforme de 2017 qui rend la révision du grade de Frau S. possible.</p>
+  </div>
+</section>
+
+<section id="zahlen">
+  <h2>Die Zahlen — und warum du bei jeder das Datum mitsagen musst</h2>
+
+  <div class="gefahr">
+    <span class="t">Deine eigenen Dateien widersprechen sich, weil sie aus verschiedenen Jahren sind</span>
+    <p>Die Texte dieses Blocks stammen aus einer <b>undatierten BMG-Broschüre</b>. Einige Zahlen
+      darin lassen sich datieren: Die <b>Versicherungspflichtgrenze</b> wird ausdrücklich mit
+      <b>„2022“</b> angegeben, die Pflegestatistik mit <b>„2021“</b>, und die Corona-Pandemie
+      wird als <b>„aktuelle Krise“</b> beschrieben.</p>
+    <p><b>Gleichzeitig</b> sagt der Foliensatz des Sozialdienstes auf deiner Seite zum
+      ambulanten Setting, dass die Leistungen der Pflegeversicherung <b>zum 1.1.2025 um 4,5 %
+      gestiegen</b> sind.</p>
+    <p><b>Beides steht in deinen Unterlagen, und beides kann nicht gleichzeitig aktuell
+      sein.</b> Das ist kein Fehler deiner Dozenten — Broschüren veralten. Aber es heißt:
+      <b>Jede Zahl aus diesem Block gehört mit ihrem Jahr genannt.</b></p>
+    <p class="fr">Tes propres documents se contredisent parce qu'ils datent d'années
+      différentes. Cite <b>toujours</b> l'année avec le chiffre.</p>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Zahl aus dem Text</th><th>Wert</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Allgemeiner Beitragssatz GKV</td><td><b>14,6 %</b>, davon zahlt der
+          Arbeitgeber die Hälfte</td><td>undatiert</td></tr>
+        <tr><td class="k">Zusatzbeitrag</td><td>im Durchschnitt <b>ca. 1,3 %</b>, ebenfalls
+          hälftig</td><td>undatiert, <b>„zur Zeit“</b></td></tr>
+        <tr><td class="k">Versicherungspflichtgrenze</td><td><b>5 362,50 €</b> monatlich</td>
+          <td><b>ausdrücklich 2022</b></td></tr>
+        <tr><td class="k">Beitragssatz Pflegeversicherung</td>
+          <td><b>3,05 %</b>, kinderlose Mitglieder <b>+ 0,35 %</b></td>
+          <td>undatiert — <b>und dein Sozialdienst-Foliensatz nennt spätere
+            Änderungen</b></td></tr>
+        <tr><td class="k">Krankengeld</td><td><b>70 % des Bruttolohnes</b></td>
+          <td>undatiert</td></tr>
+        <tr><td class="k">Anzahl Krankenkassen</td><td><b>979</b></td>
+          <td><b>prüfen!</b> — siehe Kasten unten</td></tr>
+        <tr><td class="k">Anzahl Krankenhäuser</td><td>rund <b>1 900</b></td>
+          <td>undatiert</td></tr>
+        <tr><td class="k">Pflegeleistungsempfänger</td>
+          <td>rund <b>4,9 Mio.</b> — davon knapp <b>4 Mio. ambulant</b> und rund
+            <b>900 000 stationär</b></td><td><b>ausdrücklich 2021</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Die Zahl, bei der ich besonders vorsichtig bin</span>
+    <p>Der Text spricht von <b>„aktuell 979 Krankenkassen“</b>. <b>Diese Zahl kann ich aus
+      deinen Unterlagen nicht bestätigen</b>, und sie passt nicht zu dem, was derselbe Text
+      sonst beschreibt.</p>
+    <p><b>Ich schreibe dir keine andere Zahl hin</b> — ich habe keine Quelle dafür in deinen
+      Dateien. <b>Aber nenne diese Zahl nicht in einer Klausur, ohne sie vorher zu prüfen.</b>
+      Was du sicher sagen kannst, steht ohnehin im selben Absatz: Es gibt <b>Orts-, Betriebs-
+      und Innungskrankenkassen, Ersatzkassen, die landwirtschaftliche Krankenkasse und die
+      Knappschaft</b> — <b>diese Kassenarten</b> sind das Prüfungswissen, nicht die Anzahl.</p>
+    <p class="fr">Apprends les <b>types</b> de caisses, pas leur nombre. Le nombre est à
+      vérifier.</p>
+  </div>
+</section>
+
+<section id="offen">
+  <h2>Was fehlt</h2>
+
+  <div class="warnung">
+    <span class="t">Drei offene Arbeitsaufträge</span>
+    <p><b>1. Die „Leiter“.</b> Beide Foliensätze von A. Issel verlangen: <b>„Ordnen Sie die
+      Prinzipien in die ‚Leiter‘ ein und begründen Sie Ihre Einordnung.“</b>
+      <b>Wie diese Leiter aussieht, steht nirgends</b> — die entsprechende Folie heißt nur
+      <i>„Einordnung der Prinzipien“</i> und enthält offenbar nur ein Bild. <b>Ohne die Leiter
+      kann ich die Aufgabe nicht lösen</b>, und ich erfinde keine. Frag im Kurs nach oder schick
+      mir ein Foto der Folie.</p>
+    <p><b>2. Die Zuteilung der Akteure auf die Aufgaben</b> — im Foliensatz <i>Aufgaben des
+      Gesundheitssystems</i> angekündigt, aber nicht ausgeführt. Die Ergebnisse sollten in
+      <b>TaskCards</b> eingetragen werden; die liegen nicht im Ordner.</p>
+    <p><b>3. Die Zusammenfassungen zu den fünf Gruppen</b> (Prävention · ambulant/stationär ·
+      Reha · Pflege · Arzneimittel) sollten <b>in eigenen Worten</b> ins <b>EduPad</b>
+      übertragen werden. <b>Nur für die Ebenen gibt es eine Lösung im Ordner.</b></p>
+    <p class="fr">L'« échelle » n'est nulle part — je ne l'invente pas. Envoie-moi une photo de
+      la diapo.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Brücken zu deinen anderen Seiten</span>
+    <p><b>Pflegehilfsmittel &amp; ambulantes Setting:</b> Dort die Leistungen im Einzelfall,
+      hier das System dahinter — und die Erklärung, warum jede Zeile eine Obergrenze hat
+      (<b>Teilkostenversicherung</b>).</p>
+    <p><b>Rehabilitation:</b> Dort die fünf Kostenträger, hier warum es sie getrennt gibt.
+      Und das <b>DRG-System</b> von dort ist die Finanzierungsseite der <b>stationären
+      Versorgung</b> von hier.</p>
+    <p><b>Menschen mit Behinderung:</b> Der <b>G-BA</b> definiert die Barrierefreiheit in den
+      Qualitätsberichten — die Studie über die 2 242 Krankenhäuser wertet genau diese Berichte
+      aus.</p>
+    <p><b>Der Rollator</b> von deiner Hilfsmittel-Seite: Vorkommnisse gehen an das
+      <b>BfArM</b> — und das ist eine der Institutionen, die <b>dem BMG unterstehen</b>.</p>
+    <p><b>Notfälle und Impfungen:</b> Das <b>RKI</b> und das <b>PEI</b> stehen auf derselben
+      Liste.</p>
+  </div>
+</section>
+
+<details class="quelle">
+  <summary>Die sieben Quellen — jede einzeln genannt</summary>
+  <div class="inh">
+    <ul>
+      <li><b>Geschichte des Gesundheitssystems.pdf</b> — Textauszug, zitiert nach dem
+        <b>Bundesministerium für Gesundheit</b>: die Entstehung der GKV 1883 und die Zahlen
+        von damals und heute.</li>
+      <li><b>Grundprinzipien.pdf</b> — Foliensatz <b>Alexander Issel</b>: historische
+        Entwicklung, die Grundprinzipien und die <b>„Leiter“</b> (Bildfolie ohne Text).</li>
+      <li><b>AB Grundprinzipien.pdf</b> — das Arbeitsblatt mit den <b>fünf Prinzipientexten</b>
+        und der <b>Einordnung des deutschen Systems</b> im internationalen Vergleich.
+        Zitiert nach <i>Das deutsche Gesundheitssystem. Leistungsstark. Sicher. Bewährt</i>,
+        BMG.</li>
+      <li><b>AB Ebenen im Gesundheitswesen.pdf</b> — die Texte zu den <b>drei Ebenen</b>: BMG,
+        Länder, Kommunen, Selbstverwaltung, G-BA, Kassen und Verbände. Ebenfalls aus der
+        BMG-Broschüre.</li>
+      <li><b>Loesung Ebenen.pdf</b> — die <b>einzige Lösung</b> in diesem Block, sehr knapp
+        gehalten.</li>
+      <li><b>Aufgaben Gesundheitssystem.pdf</b> — Foliensatz <b>Alexander Issel</b> mit der
+        Vor-/Nachteil-Tabelle der drei Systemtypen.</li>
+      <li><b>AB Aufgaben Gesundheitssystem.pdf</b> — die Gruppentexte 1 bis 5: Prävention,
+        ambulante und stationäre Versorgung, Rehabilitation, Pflege und
+        Arzneimittelversorgung.</li>
+    </ul>
+    <p>Alle aus deinem Google-Drive-Ordner, geteilt am 18.09.2026. Die Sachtexte sind
+      durchgängig nach dem <b>Bundesministerium für Gesundheit</b> zitiert — das ist für diesen
+      Block die <b>amtliche Quelle</b>, im Unterschied zu den Gruppenarbeiten in anderen
+      Blöcken.</p>
+    <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> die ausformulierte Kette zum
+      Solidaritätsprinzip · die Beobachtung, dass „kostengünstiger bei Gesundheit“ und „sehr
+      hohe Kosten bei Unfall“ derselbe Punkt von zwei Seiten sind · der Hinweis, dass
+      Mitberatungsrecht nicht Stimmrecht ist · die Datumsprüfung aller Zahlen und der Vergleich
+      mit dem Sozialdienst-Foliensatz · die Verbindung des Pflegebedürftigkeitsbegriffs von 2017
+      mit dem Fall Frau S. · und alle Brücken zu deinen anderen Zusammenfassungen.</p>
+    <p><b>Nicht ergänzt:</b> die „Leiter“, die Akteurszuteilung und eine Ersatzzahl für die
+      979 Krankenkassen.</p>
+    <p>Die französischen Zeilen sind von mir ergänzt.</p>
+  </div>
+</details>
+
+</main>
+
+<footer>
+  <p>Das deutsche Gesundheitssystem — gebaut aus deinen eigenen Unterlagen.<br>
+    Wo eine Zahl undatiert ist, eine Aufgabe offen bleibt oder etwas von mir stammt, steht es
+    oben ausdrücklich dabei.</p>
+</footer>
