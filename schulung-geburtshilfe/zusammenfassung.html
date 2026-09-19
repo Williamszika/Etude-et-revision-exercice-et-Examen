@@ -1,0 +1,1299 @@
+<title>Schwangerschaft, Geburt, Wochenbett</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#8a4470;--accent-deep:#6d3358;--accent-soft:#f2e2ec;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#dc9cc0;--accent-deep:#eab4d1;--accent-soft:#2e1a26;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#dc9cc0;--accent-deep:#eab4d1;--accent-soft:#2e1a26;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#8a4470;--accent-deep:#6d3358;--accent-soft:#f2e2ec;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 10 / UE 1 · In der perinatalen Pflege mitwirken</p>
+  <h1>Schwangerschaft, Geburt, Wochenbett</h1>
+  <p class="sub">Von den Hormonen bis zum Neugeborenen. Der ausführlichste Block deines
+    Drive-Ordners — und er schließt nebenbei die Lücke, die im Anatomie-Block offengeblieben war:
+    das Hormonsystem.</p>
+  <div class="meta">
+    <span>CE 10 / UE 1</span>
+    <span>L. Grove · 03/2021</span>
+    <span>6 Quellen</span>
+    <span>Niveau B1</span>
+    <span>Stand 19.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#organe">Die Organe</a>
+  <a href="#hormone">Hormone &amp; Zyklus</a>
+  <a href="#meiose">Keimzellen</a>
+  <a href="#praenatal">Pränataldiagnostik</a>
+  <a href="#nidation">Befruchtung</a>
+  <a href="#plazenta">Plazenta</a>
+  <a href="#ssw">Die Schwangerschaft</a>
+  <a href="#krank">Erkrankungen</a>
+  <a href="#geburt">Die Geburt</a>
+  <a href="#wochenbett">Wochenbett</a>
+  <a href="#brust">Milchstau &amp; Mastitis</a>
+  <a href="#blutung">Blutungen</a>
+  <a href="#rhesus">Rhesus</a>
+  <a href="#ngb">Das Neugeborene</a>
+  <a href="#offen">Was offen ist</a>
+</nav>
+
+<main>
+
+<section id="organe">
+  <h2>Die weiblichen Geschlechtsorgane</h2>
+  <p class="lead">Vier außen, vier innen. Getrennt durch das Hymen.</p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Äußere — klinisch <i>Vulva</i></h4>
+      <ol>
+        <li><b>Schamberg</b> = Venushügel = <i>Mons pubis</i></li>
+        <li><b>Schamlippen</b> — große und kleine</li>
+        <li><b>Klitoris</b> = Kitzler</li>
+        <li><b>Scheidenvorhof</b></li>
+      </ol>
+    </div>
+    <div class="karte">
+      <h4>Innere — im kleinen Becken</h4>
+      <ol start="5">
+        <li><b>Gebärmutter</b> = <i>Uterus</i></li>
+        <li><b>Eierstock</b> = <i>Ovar</i></li>
+        <li><b>Eileiter</b> = <i>Tuba uterina</i></li>
+        <li><b>Scheide</b> = <i>Vagina</i></li>
+      </ol>
+      <p style="margin-top:8px;font-size:14.5px;"><b>Adnexe</b> = in der Klinik der Sammelbegriff
+        für <b>Eierstöcke und Eileiter</b> zusammen.</p>
+    </div>
+  </div>
+
+  <h3>Der Uterus — drei Schichten, drei Abschnitte</h3>
+  <p>Ein <b>birnenförmiges, muskuläres Hohlorgan</b>, innen mit Schleimhaut ausgekleidet. Er
+    liegt im kleinen Becken <b>zwischen Harnblase und Rektum</b> und ist normalerweise
+    <b>nach vorne geneigt</b>.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Schicht</th><th>Fachname</th><th>Was es ist</th></tr></thead>
+      <tbody>
+        <tr><td class="k">innen</td><td><b>Tunica mucosa</b> — <i>Endometrium</i></td>
+          <td>die Schleimhautauskleidung</td></tr>
+        <tr><td class="k">mitte</td><td><b>Tunica muscularis</b> — <i>Myometrium</i></td>
+          <td>die Muskelschicht</td></tr>
+        <tr><td class="k">außen</td><td><b>Tunica serosa</b> — <i>Perimetrium</i></td>
+          <td>der Bauchfellüberzug</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><b>Die drei Abschnitte:</b> <b>Gebärmutterkörper</b> (obere ⅔) · <b>Isthmus uteri</b>
+    (Engstelle) · <b>Cervix uteri</b> (unteres ⅓). Der untere Teil der Cervix stülpt sich in die
+    Scheide vor — das ist die <b>Portio</b>.</p>
+
+  <div class="gefahr">
+    <span class="t">Warum das für die Pflege zählt</span>
+    <p>Der Uterus wird durch <b>Bänder und Bindegewebszüge</b> gehalten. „Nach Schwangerschaften
+      und/oder altersbedingt können die Bänder <b>nachgeben</b> und der Uterus <b>absinken</b>.“</p>
+    <p><b>Folge: Harninkontinenz</b> — und im schlimmsten Fall ein <b>kompletter Prolaps</b>
+      (Vorfall) des Uterus.</p>
+    <p class="fr">C'est la chaîne complète : ligaments qui cèdent → descente d'organe →
+      incontinence. Exactement le type de raisonnement qu'on te demande de « begründen ».</p>
+  </div>
+
+  <h3>Die Vagina — und warum der pH-Wert wichtig ist</h3>
+  <ul>
+    <li><b>8–12 cm</b> lang, dehnbar in Länge und Breite</li>
+    <li>Soll mit <b>Döderlein-Bakterien</b> besiedelt sein, die für ein <b>saures Milieu
+      (pH ca. 4)</b> sorgen</li>
+    <li><b>Das schützt vor Infektionen und Entzündungen</b></li>
+    <li>Sie ist <b>Kohabitationsorgan</b> und der <b>natürliche Geburtskanal</b></li>
+  </ul>
+
+  <div class="merk">
+    <span class="t">Der Zusammenhang, den du erklären können musst</span>
+    <p><b>Döderlein-Bakterien → Milchsäure → pH 4 → Krankheitserreger können sich nicht
+      vermehren.</b> Wer diese Bakterien zerstört — etwa durch übertriebene Intimhygiene oder
+      Antibiotika —, nimmt dem Körper genau diesen Schutz weg.</p>
+  </div>
+
+  <div class="paare">
+    <div class="paar"><span class="de">der Eierstock, ¨-e (das Ovar, -ien)</span>
+      <span class="frx">l'ovaire</span></div>
+    <div class="paar"><span class="de">der Eileiter, -</span>
+      <span class="frx">la trompe de Fallope</span></div>
+    <div class="paar"><span class="de">die Gebärmutter (nur Singular)</span>
+      <span class="frx">l'utérus</span></div>
+    <div class="paar"><span class="de">die Schleimhaut, ¨-e</span>
+      <span class="frx">la muqueuse</span></div>
+    <div class="paar"><span class="de">der Prolaps, -e (der Vorfall, ¨-e)</span>
+      <span class="frx">le prolapsus, la descente d'organe</span></div>
+  </div>
+</section>
+
+<section id="hormone">
+  <h2>Das Hormonsystem und der Menstruationszyklus</h2>
+  <p class="lead">Hier steht die Erklärung, die im Nervensystem-Foliensatz nur angedeutet war.</p>
+
+  <div class="merk">
+    <span class="t">Die zwei Steuerungssysteme</span>
+    <p>„Zur Abstimmung dieser Tätigkeiten verfügt der menschliche Körper über <b>zwei
+      Steuerungssysteme: das Nervensystem und das Hormonsystem</b> = endokrine System.“</p>
+    <p>Genau dieser Satz stand auch im Nervensystem-Foliensatz — dort <b>ohne</b> Erklärung. Hier
+      ist sie.</p>
+  </div>
+
+  <h3>Die Befehlskette — von oben nach unten</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Hypothalamus</h4>
+      <p>Eine Region im Gehirn, <b>das oberste Steuerungsorgan</b> im endokrinen System.
+        Er schüttet <b>Gn-RH</b> aus. <i>(Aber: nicht alle Hormondrüsen werden von ihm
+        kontrolliert.)</i></p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Hypophyse</h4>
+      <p>Die <b>Hirnanhangsdrüse</b>, dem Hypothalamus untergeordnet. Bildet unter anderem
+        <b>FSH</b> und <b>LH</b>.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Ovar</h4>
+      <p>FSH und LH bewirken dort die <b>Eireifung</b> und steuern die Produktion von
+        <b>Östrogenen</b> und <b>Progesteron</b>.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Der Rückkoppelungsmechanismus — in einer Zeile</span>
+    <p><b>Gn-RH → FSH und LH → Östrogene, Progesteron</b></p>
+    <p>Die Hormone gehen ins <b>Blut</b>. In Hypothalamus und Hypophyse werden die Blutspiegel
+      von Östrogen und Progesteron <b>gemessen</b> — und als Reaktion darauf wird die eigene
+      Produktion <b>angepasst</b>. Das ist der <b>Rückkoppelungsmechanismus</b>.</p>
+    <p class="fr">Le système mesure son propre résultat et ajuste sa commande. C'est une boucle
+      de rétroaction.</p>
+  </div>
+
+  <h3>Wo Sexualhormone gebildet werden</h3>
+  <ul>
+    <li>in den <b>Gonaden</b> (Keimdrüsen: Hoden und Ovar)</li>
+    <li>in den <b>Nebennieren</b></li>
+    <li>im <b>Fettgewebe</b></li>
+    <li>bei Schwangeren auch in der <b>Plazenta</b></li>
+  </ul>
+
+  <div class="warnung">
+    <span class="t">Der Satz mit dem Ausrufezeichen im Skript</span>
+    <p>„<b>Achtung: beide Geschlechter haben beide Hormone!</b>“ Die Wirkung ist
+      <b>dosisabhängig</b> — bei Männern wirken mehr <b>Androgene</b>, bei Frauen mehr
+      <b>Östrogene und Gestagene</b>. Es ist kein Entweder-oder, sondern ein Verhältnis.</p>
+  </div>
+
+  <h3>Was die beiden Hormone tun</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Östrogene (Follikelhormone)</h4>
+      <ul>
+        <li>fördern in der Pubertät <b>Brustentwicklung</b> und weibliche Fettverteilung</li>
+        <li>bewirken im Ovar die <b>Eireifung</b></li>
+        <li>bewirken nach der Menstruation den <b>Wiederaufbau der Gebärmutterschleimhaut</b></li>
+        <li>begünstigen <b>Wassereinlagerungen</b></li>
+        <li>haben <b>Einfluss auf die Stimmungslage</b></li>
+        <li>bewirken den <b>Einbau von Kalzium in die Knochen</b> — wirken also
+          <b>knochenfestigend</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Progesteron (wichtigstes Gestagen)</h4>
+      <p><b>Das schwangerschaftserhaltende Hormon.</b></p>
+      <ul>
+        <li>bereitet in der <b>zweiten</b> Zyklushälfte die Schleimhaut auf die Einnistung vor</li>
+        <li><b>erhöht die Körpertemperatur um etwa 0,5 °C</b></li>
+        <li>fördert in der Frühschwangerschaft das <b>Wachstum des Embryos</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Zwei Folgerungen, die in Klausuren gefragt werden</span>
+    <p><b>1.</b> Östrogene bauen <b>Kalzium in die Knochen</b> ein. Nach den Wechseljahren fällt
+      das weg — <b>deshalb</b> steigt bei Frauen das Osteoporoserisiko.</p>
+    <p><b>2.</b> Progesteron <b>hebt die Körpertemperatur um 0,5 °C</b>. Deshalb kann man am
+      Temperaturverlauf ablesen, ob ein Eisprung stattgefunden hat.</p>
+  </div>
+
+  <h3>Die vier Phasen des Zyklus</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Phase</th><th>Was passiert</th><th>Wer steuert</th></tr></thead>
+      <tbody>
+        <tr><td class="k">1 · Menstruationsphase</td>
+          <td>die Schleimhaut wird innerhalb einiger Tage <b>abgestoßen</b></td><td>—</td></tr>
+        <tr><td class="k">2 · Proliferationsphase</td>
+          <td>neue Schleimhaut <b>baut sich auf</b>, im Ovar reifen die Eier — am <b>Ende
+            der Eisprung</b></td><td><b>Östrogene</b></td></tr>
+        <tr><td class="k">3 · Sekretionsphase</td>
+          <td>die Schleimhaut baut sich <b>weiter auf</b>, um eine befruchtete Eizelle aufnehmen
+            zu können</td><td><b>Progesteron</b></td></tr>
+        <tr><td class="k">4 · Ischämiephase</td>
+          <td>die Schleimhaut <b>stirbt ab</b>, falls keine Befruchtung passiert ist</td>
+          <td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:15px;">Bei der Mehrzahl der Frauen ein Rhythmus von <b>etwa 28 Tagen</b>,
+    von der Pubertät bis zu den Wechseljahren.</p>
+</section>
+
+<section id="meiose">
+  <h2>Keimzellen, Meiose und Chromosomenanomalien</h2>
+  <p class="lead">Warum jede Eizelle so alt ist wie die Frau selbst.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th></th><th>Normale Körperzelle</th><th>Keimzelle</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Chromosomen</td><td><b>46</b> — <i>diploider</i> Satz</td>
+          <td><b>23</b> — <i>haploider</i> Satz</td></tr>
+        <tr><td class="k">Entsteht durch</td><td><b>Mitose</b> — erbgleiche Tochterzellen</td>
+          <td><b>Meiose</b> (Reifeteilung)</td></tr>
+        <tr><td class="k">Wo</td><td>überall</td><td><b>nur in den Keimdrüsen</b> — Hoden,
+          Eierstöcke</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p><b>Geschlecht:</b> Frauen haben <b>zwei X-Chromosomen</b>, Männer <b>ein X und ein
+    Y</b>. Chromosomen bestehen aus <b>DNA-Molekülen</b> und sind <b>nur während der
+    Zellteilungsphase wirklich sichtbar</b>. <b>Gene</b> sind kleine Stücke dieser DNA-Moleküle —
+    jedes einzelne Gen <b>enthält die Information für den Aufbau eines Eiweißes</b>.</p>
+
+  <h3>Der große Unterschied zwischen Mann und Frau</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Mann</h4>
+      <ul>
+        <li>Aus einer Urkeimzelle entstehen <b>vier Spermien</b> — zwei mit X, zwei mit Y</li>
+        <li><b>Junge</b>, wenn ein <b>Y-Spermium</b> befruchtet; <b>Mädchen</b>, wenn ein
+          <b>X-Spermium</b></li>
+        <li>Meiosen laufen <b>von der Pubertät bis ins Alter</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Frau</h4>
+      <ul>
+        <li>Aus einer Urkeimzelle entsteht <b>eine große Eizelle</b> und <b>drei Polzellen</b>,
+          die zugrunde gehen</li>
+        <li>Die Meiosen <b>beginnen schon vor der Geburt</b> und <b>verharren</b> in einem frühen
+          Stadium</li>
+        <li>Bei der Geburt: ca. <b>400 000 Primärfollikel je Eierstock</b></li>
+        <li>Ab der Pubertät macht pro Zyklus <b>meist nur einer</b> so weit weiter, dass das
+          Ei springt</li>
+        <li><b>Nach der Menopause laufen keine Meiosen mehr ab</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Der Satz, der alles erklärt</span>
+    <p>„<b>Jede Eizelle, die befruchtet wird, ist praktisch so alt wie die Frau selbst.</b>“</p>
+    <p>Und deshalb: „Ab etwa <b>Mitte 30</b> steigt für Frauen das Risiko für ein Kind mit
+      Chromosomenanomalie <b>deutlich</b> an.“ Das ist keine Statistik, das ist die
+      <b>Begründung</b>: Je älter die Zelle, desto häufiger läuft die Meiose fehlerhaft ab.</p>
+    <p class="fr">Chaque ovule a l'âge de la femme. C'est là toute l'explication du risque lié
+      à l'âge.</p>
+  </div>
+
+  <h3>Wenn die Meiose Fehler macht</h3>
+  <p><b>Ursache:</b> Die homologen Chromosomen werden <b>nicht aufgeteilt</b> — ein komplettes
+    Paar gelangt in eine Eizelle oder ein Spermium.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Anomalie</th><th>Was</th><th>Beispiele</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Trisomie</td><td>Chromosom <b>dreimal</b> vorhanden</td>
+          <td><b>Trisomie 21</b> = Down-Syndrom · <b>Trisomie 13</b> = Pätau-Syndrom ·
+            <b>Trisomie 18</b> = Edward-Syndrom</td></tr>
+        <tr><td class="k">Monosomie</td><td>Chromosom nur <b>einmal</b> vorhanden</td>
+          <td>selten — „weil meist Fehlgeburt“</td></tr>
+        <tr><td class="k">Klinefelter</td><td>Männer mit <b>zwei X und einem Y</b></td>
+          <td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:15px;">„Gut mit dem Leben vereinbar ist die <b>Trisomie 21</b>.“ Bei
+    Trisomie 13 und 18 ist die Lebenserwartung gering.</p>
+</section>
+
+<section id="praenatal">
+  <h2>Pränatale Diagnostik — die vier Verfahren</h2>
+  <p class="lead">Jedes mit einem Zeitpunkt, einer Sicherheit und einem Risiko.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Verfahren</th><th>Ab wann</th><th>Sicherheit</th><th>Risiko</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Ultraschall / Nackenfalte</td><td>—</td>
+          <td>„eine ganz sichere Diagnose ist nicht möglich“</td>
+          <td><b>ungefährlich</b></td></tr>
+        <tr><td class="k">Mütterliche Blutuntersuchung (z. B. Praena-Test)</td>
+          <td><b>11./12. SSW</b></td><td>„nicht ganz sicher“</td>
+          <td><b>ungefährlich</b>, einfach</td></tr>
+        <tr><td class="k">Chorionzottenbiopsie</td><td><b>10.–11. SSW</b></td>
+          <td>„ziemlich sicher“</td><td><b>ca. 1 %</b> Fehlgeburtsrisiko</td></tr>
+        <tr><td class="k">Amniozentese (Fruchtwasseruntersuchung)</td>
+          <td><b>15.–17. SSW</b></td><td><b>„sehr sicher“</b></td>
+          <td><b>ca. 0,5 %</b> Fehlgeburtsrisiko</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Das Muster in der Tabelle</span>
+    <p><b>Je sicherer das Ergebnis, desto größer der Eingriff.</b> Ultraschall und Bluttest sind
+      ungefährlich, aber unsicher; die beiden Punktionen sind sicher, aber riskant. Deshalb die
+      Reihenfolge in der Praxis: <b>erst ungefährlich, und nur bei Auffälligkeiten die
+      Amniozentese</b>.</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Der Satz, der die ganze ethische Frage enthält</span>
+    <p>„Eine <b>Therapie für Chromosomenanomalien beim ungeborenen Kind gibt es nicht</b>. Beim
+      Nachweis einer Chromosomenanomalie <b>darf die Schwangerschaft abgebrochen werden</b>.“</p>
+    <p>Und zum Praena-Test: „Ist erst seit wenigen Jahren auf dem Markt und war/ist <b>ethisch
+      umstritten</b>. Kosten müssen (eventuell) selbst getragen werden.“</p>
+    <p><b>Diese Diagnostik heilt nichts.</b> Sie schafft Wissen und damit eine Entscheidung.
+      Genau darüber wird in der Diskussion gesprochen — auf Station und in der Prüfung.</p>
+    <p class="fr">Ce diagnostic ne soigne rien. Il crée un savoir, et donc une décision.</p>
+  </div>
+</section>
+
+<section id="nidation">
+  <h2>Befruchtung und Einnistung</h2>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Befruchtung = Konzeption</h4>
+      <p>Die Eizelle ist nach dem Eisprung <b>12–24 Stunden</b> befruchtungsfähig, <b>Spermien
+        mehrere Tage</b>. Die Befruchtung passiert normalerweise im <b>ovarnahen Teil des
+        Eileiters</b>. Die befruchtete Eizelle heißt <b>Zygote</b> und hat <b>46
+        Chromosomen</b>.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Wanderung</h4>
+      <p>Die Zygote teilt sich rasch durch <b>Mitosen</b>: erst <b>Morula</b>, wenige Tage später
+        <b>Blastozyste</b>. In etwa <b>5–6 Tagen</b> wird dieser Keimling in den Uterus
+        befördert.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Einnistung = Nidation</h4>
+      <p>Das Eindringen in die Gebärmutterschleimhaut — etwa vom <b>6. bis 10. Tag</b> nach der
+        Befruchtung, also <b>zwischen dem 20. und 24. Tag</b> des Zyklus.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">HCG — und warum ein Schwangerschaftstest funktioniert</span>
+    <p><b>Ab dem Tag der Einnistung</b> produziert der Keimling das Hormon <b>HCG</b>
+      (Choriongonadotropin).</p>
+    <p><b>Die Kette:</b> HCG → verhindert die Rückbildung des <b>Gelbkörpers</b> im Ovar → der
+      Gelbkörper produziert weiter <b>Progesteron</b> → <b>die Schwangerschaft bleibt
+      erhalten</b>.</p>
+    <p>Und: HCG <b>kann im Blut und Urin nachgewiesen werden</b> — <b>das</b> misst ein
+      Schwangerschaftstest.</p>
+  </div>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Zweieiige Zwillinge</h4>
+      <p><b>Zwei</b> Eier sind gesprungen, mit <b>zwei unterschiedlichen Spermien</b>
+        befruchtet. Können <b>unterschiedliches Geschlecht</b> haben, haben
+        <b>unterschiedliches Erbgut</b> — „nicht ähnlicher als andere Geschwister auch“.</p>
+    </div>
+    <div class="karte">
+      <h4>Eineiige Zwillinge</h4>
+      <p><b>Eine</b> Zygote. Die Morula hat sich in <b>zwei Hälften</b> geteilt. Immer
+        <b>dasselbe Geschlecht</b>, <b>gleiches Erbgut</b>, sehr ähnliches Aussehen.</p>
+    </div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Extrauteringravidität</span>
+    <p>Der Keimling hat sich <b>außerhalb der Gebärmutter</b> eingenistet — typischerweise im
+      <b>Eileiter</b>, selten in der <b>Bauchhöhle</b>.</p>
+    <p><b>Die drei Zeichen:</b> Schmerzen bald nach Ausbleiben der Menstruation ·
+      <b>Schwangerschaftstest positiv</b> · aber <b>im Ultraschall keine Fruchtblase in der
+      Gebärmutter</b>.</p>
+    <p><b>Die Schwangerschaft muss schnell beendet werden.</b></p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Nidationshemmer — eine Unterscheidung, die zählt</span>
+    <p>„Die <b>Spirale</b> und die <b>Pille danach</b> verhindern nicht (unbedingt) die
+      <b>Befruchtung</b>, sondern die <b>Einnistung</b>.“ Deshalb sind sie <b>erlaubt</b> — und
+      deshalb wirkt die Pille danach auch noch nach dem Geschlechtsverkehr.</p>
+  </div>
+</section>
+
+<section id="plazenta">
+  <h2>Plazenta, Nabelschnur, Fruchtwasser</h2>
+
+  <h3>Die Plazenta — der Mutterkuchen</h3>
+  <ul>
+    <li>Wiegt zum Zeitpunkt der Geburt etwa <b>500 g</b></li>
+    <li>Entwickelt sich aus <b>kindlichen und mütterlichen</b> Zellen</li>
+    <li><b>Das Blut vermischt sich nicht</b> — es bleibt durch die <b>Plazentaschranke</b>
+      getrennt</li>
+    <li>Über sie läuft der Austausch von <b>Atemgasen, Nährstoffen und
+      Stoffwechselendprodukten</b></li>
+  </ul>
+
+  <div class="gefahr">
+    <span class="t">Was trotzdem durchgeht</span>
+    <p><b>Plazentagängige Antikörper · Alkohol · viele Medikamente · viele Viren.</b></p>
+    <p>Die Schranke trennt <b>Blut</b>, nicht <b>Stoffe</b>. Das ist der Grund, warum Alkohol in
+      der Schwangerschaft das Kind erreicht — und die Grundlage jeder Beratung dazu.</p>
+  </div>
+
+  <p>Nach der Geburt soll sich die Plazenta lösen und als <b>Nachgeburt</b> ausgestoßen werden.
+    Wenn nicht, ist eine <b>manuelle Plazentalösung</b> durch den Geburtshelfer nötig — mit
+    <b>Narkose</b>.</p>
+
+  <div class="merk">
+    <span class="t">Die Wunde, die niemand sieht</span>
+    <p>Nach der Ablösung bleibt eine <b>großflächige Wunde</b> an der Innenwand der Gebärmutter
+      zurück. Sie verkleinert sich durch <b>Kontraktion der Gebärmutter</b> und der
+      <b>Blutgefäße</b> erstaunlich schnell — normalerweise <b>ohne massive Blutung</b>.</p>
+    <p>Aber sie <b>blutet und nässt noch ca. 4 bis maximal 6 Wochen</b>. Das Wundsekret fließt
+      durch die Vagina ab: <b>Wochenfluss = Lochien</b>.</p>
+    <p><b>Das ist die Erklärung für alles, was im Wochenbett passiert.</b> Wer sich das eine Bild
+      merkt — eine handtellergroße Wunde in der Gebärmutter —, kann Nachwehen, Wochenfluss,
+      Infektionsgefahr und Blutungsrisiko <b>selbst herleiten</b>.</p>
+    <p class="fr">Une plaie de la taille d'une paume dans l'utérus : c'est l'image qui explique
+      tout le post-partum.</p>
+  </div>
+
+  <h3>Nabelschnur — drei Gefäße</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Gefäß</th><th>Anzahl</th><th>Richtung</th><th>Was drin ist</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Nabel<b>arterien</b></td><td><b>zwei</b></td>
+          <td>vom Kind <b>zur</b> Plazenta</td>
+          <td>sauerstoff<b>armes</b>, nährstoffarmes Blut + Stoffwechselendprodukte</td></tr>
+        <tr><td class="k">Nabel<b>vene</b></td><td><b>eine</b></td>
+          <td>von der Plazenta <b>zum</b> Kind</td>
+          <td>sauerstoff<b>reiches</b>, nährstoffreiches Blut</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Die Umkehrung, die man sich merken muss</span>
+    <p>Sonst gilt: <b>Arterien führen sauerstoffreiches Blut, Venen sauerstoffarmes.</b> In der
+      Nabelschnur ist es <b>genau umgekehrt</b>. Merkregel: <b>Arterien führen immer vom Herzen
+      weg</b> — und das stimmt auch hier.</p>
+    <p>Länge zur Geburt: <b>50–60 cm</b>. „Es ist möglich, dass die Nabelschnur um den Hals des
+      Kindes gewickelt liegt!“</p>
+  </div>
+
+  <h3>Fruchtblase und Fruchtwasser</h3>
+  <ul>
+    <li>Die Wand besteht aus <b>zwei Schichten</b> = den <b>Eihäuten</b>: innen das
+      <b>Amnion</b>, außen das <b>Chorion</b></li>
+    <li>Fruchtwasser wird zunächst vom <b>Amnion</b> gebildet, später <b>vom Kind selbst</b> —
+      Urin und Lungenflüssigkeit</li>
+    <li><b>Das Kind trinkt das Fruchtwasser und produziert daraus Urin</b></li>
+    <li>Menge zur Geburt: <b>etwa ein Liter</b></li>
+    <li>Funktion: schützt vor <b>mechanischen Einwirkungen</b> und vor <b>Austrocknung</b></li>
+  </ul>
+</section>
+
+<section id="ssw">
+  <h2>Die Schwangerschaft — rechnen und einteilen</h2>
+
+  <div class="merk">
+    <span class="t">Die Rechnung, die man falsch versteht</span>
+    <p>Die Entwicklung dauert <b>etwa 38 Wochen</b> ab der Befruchtung. Weil die meisten Frauen
+      den Tag der Befruchtung <b>nicht kennen</b>, rechnet man <b>ab dem ersten Tag der letzten
+      Menstruation 40 Wochen</b> — das ist die Schwangerschaftsdauer <b>post menstruationem
+      (p.m.)</b>.</p>
+    <p><b>Die Folge, die verwirrt:</b> Wenn die Menstruation ausbleibt, ist die Frau nach dieser
+      Rechnung <b>schon in der 5. Schwangerschaftswoche</b> — obwohl der Embryo erst <b>drei
+      Wochen</b> alt ist.</p>
+    <p>Der genaue Geburtstermin wird mit der <b>Naegele-Regel</b> berechnet. Die meisten Kinder
+      kommen <b>±10–14 Tage</b> um den errechneten Termin.</p>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Trimenon</th><th>Zeitraum</th><th>Was beim Kind</th><th>Was bei der Frau</th></tr></thead>
+      <tbody>
+        <tr><td class="k">1.</td><td>die ersten <b>12 Wochen</b> p.m.</td>
+          <td><b>Embryonalphase</b> — alle Organe werden angelegt</td>
+          <td>Übelkeit, Müdigkeit · <b>relativ viele Fehlgeburten</b></td></tr>
+        <tr><td class="k">2.</td><td><b>13. bis 24./28. SSW</b></td>
+          <td>ab ca. <b>24. SSW</b> gelten Frühgeborene als überlebensfähig — in
+            spezialisierten Zentren</td>
+          <td>„fühlen sich besonders wohl“ · Fehlgeburten selten</td></tr>
+        <tr><td class="k">3.</td><td><b>24./28. SSW bis zur Geburt</b></td>
+          <td>Geburtstermin am Ende der <b>40. SSW</b></td>
+          <td>oft anstrengend: Bauchumfang, Gewichtszunahme</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Die drei Entwicklungsabschnitte</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Von der Befruchtung bis zur Einnistung — die ersten 6–10 Tage</h4>
+      <p>Der Keimling besteht aus <b>Embryoblast</b> (wird der Embryo) und <b>Trophoblast</b>
+        (werden Eihäute und Plazenta).</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Embryonalphase — bis Ende der 8. Woche</h4>
+      <p><b>Alle Organe entwickeln sich.</b> „Diese Phase ist <b>sehr anfällig für
+        Störungen</b>.“ Am Ende ist der Embryo etwa <b>3 cm</b> lang.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Fetalphase — ab der 9. Woche bis zur Geburt</h4>
+      <p>Die Organe <b>wachsen</b> und nehmen ihre <b>Funktion</b> auf. Schädigende Einflüsse
+        haben <b>nicht mehr so gravierende</b> Folgen. Zur Geburt: <b>ca. 3000–3800 g</b> und
+        etwa <b>50 cm</b>.</p></div></div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Teratogene</span>
+    <p>„Substanzen, die zu <b>Fehlbildungen</b> beim Embryo führen können.“ Genannt werden:
+      <b>Alkohol · Zytostatika · Vitamin-A-Säure-Präparate</b>.</p>
+    <p><b>Warum gerade im 1. Trimenon?</b> Weil dort <b>alle Organe angelegt</b> werden. Ein
+      Schaden in dieser Phase betrifft den <b>Bauplan</b>, nicht nur das Wachstum. Das ist die
+      Begründung, die man mitschreiben muss.</p>
+  </div>
+
+  <p><b>Frühgeburt:</b> vor vollendeter <b>37. SSW</b>. <b>Übertragung:</b> nach WHO <b>später
+    als 14 Tage</b> nach Termin — im Alltag wird oft schon von Übertragung gesprochen, wenn der
+    Termin einige Tage überschritten ist.</p>
+</section>
+
+<section id="krank">
+  <h2>Typische Erkrankungen in der Schwangerschaft</h2>
+  <p class="lead">„Eine Schwangerschaft ist keine Krankheit.“ Aber fünf Probleme sind häufig.</p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Hyperemesis — Schwangerschaftserbrechen</h4>
+      <p>Im <b>ersten Trimenon</b> leiden viele Schwangere unter Übelkeit und Erbrechen.
+        <b>Bei manchen ist eine stationäre Behandlung nötig.</b></p>
+    </div>
+    <div class="karte">
+      <h4>Gestationsdiabetes</h4>
+      <p><b>Schwangere gefährdet:</b> Hypertonie · steigende Infektanfälligkeit · Riesenbaby und
+        damit erschwerte Geburt.</p>
+      <p><b>Kind gefährdet:</b> Abort- und Frühgeburtsrate erhöht · Geburtsgewicht oft
+        <b>über 4500 g</b> — und <b>trotzdem</b> oft Anpassungsschwierigkeiten wie
+        <b>Hypoglykämien</b>.</p>
+    </div>
+    <div class="karte">
+      <h4>Schwangerschaftsinduzierte Hypertonie</h4>
+      <p>Hoher Blutdruck, der <b>behandelt werden muss</b>.</p>
+    </div>
+    <div class="karte">
+      <h4>Präeklampsie</h4>
+      <p><b>Hoher Blutdruck + Ödeme + Proteinurie.</b></p>
+      <p>Es droht eine <b>Eklampsie</b> mit <b>Krampfanfällen</b> und anderen neurologischen
+        Auffälligkeiten. <b>Mutter:</b> Nierenschäden. <b>Kind:</b> Funktionsstörungen der
+        Plazenta.</p>
+    </div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Vena-cava-Syndrom — das musst du sofort können</span>
+    <p><b>Wann:</b> Bei <b>auf dem Rücken liegenden Hochschwangeren</b>.</p>
+    <p><b>Warum:</b> Der <b>schwere Uterus drückt die V. cava ab</b>.</p>
+    <p><b>Zeichen:</b> Die Schwangere wird <b>blass</b>, klagt über <b>Übelkeit</b> und
+      <b>Unwohlsein</b>.</p>
+    <p><b>Therapie: Seitenlage</b> — „laut Lehrbuch wird die <b>linke</b> Seitenlage empfohlen,
+      <b>weil die V. cava mehr rechts liegt</b>“.</p>
+    <p class="fr">Décubitus latéral GAUCHE, parce que la veine cave est plutôt à droite. La
+      raison est dans le mot.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Das Riesenbaby mit Unterzucker — der Widerspruch, der keiner ist</span>
+    <p>Ein Kind von über 4500 g wirkt kräftig und hat <b>trotzdem</b> Hypoglykämien. Warum? Weil
+      es im Bauch an den <b>hohen Zucker der Mutter</b> gewöhnt war und viel eigenes Insulin
+      produziert hat. Nach der Geburt fällt die Zuckerzufuhr weg — <b>das Insulin bleibt</b>.</p>
+    <p><b>Achtung:</b> Diese Erklärung <b>steht nicht in deinem Skript</b>. Dort steht nur das
+      „trotzdem“. Ich habe sie dazugeschrieben, weil das „trotzdem“ sonst unverständlich bleibt —
+      <b>prüf sie nach, bevor du sie in einer Klausur verwendest</b>.</p>
+  </div>
+</section>
+
+<section id="geburt">
+  <h2>Die Geburt — drei Phasen</h2>
+
+  <p>Am Ende der Schwangerschaft fördert das Hormon <b>Oxytocin</b> — aus dem
+    <b>Hypophysenhinterlappen</b> — die Wehentätigkeit. Etwa <b>vier Wochen vor der Geburt</b>
+    treten die ersten <b>Senkwehen</b> auf, die das Kind ins kleine Becken drücken. Das Kind
+    liegt dann meist schon in <b>Schädellage</b>.</p>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Eröffnungsphase</h4>
+      <p>Gebärmutterhals und äußerer Muttermund werden aufgedehnt — am Ende ist der Muttermund
+        <b>ganz offen, also 10–12 cm</b>. „Kann sich über <b>sehr viele Stunden</b> hinziehen,
+        vor allem bei <b>Erstgebärenden</b>.“ Meist platzt am Ende die <b>Fruchtblase</b>.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Austreibungsphase</h4>
+      <p>Das Kind wird durch die Vagina nach außen gedrückt. Dauer: <b>30 Minuten bis zwei
+        Stunden</b>. Am Ende die <b>Pressphase</b> mit starkem Pressdrang — danach ist das Kind
+        geboren.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Nachgeburtsphase</h4>
+      <p><b>Nachgeburtswehen</b> lösen Plazenta und Eihäute und stoßen sie aus. Dieselben
+        Kontraktionen <b>verkleinern die große Wundfläche</b>.</p></div></div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Vorzeitiger Blasensprung</span>
+    <p>Die Fruchtblase platzt <b>vor</b> der Eröffnungsperiode. Die Schwangere spürt <b>keine
+      Wehen</b>, aber <b>das Fruchtwasser läuft ab</b>.</p>
+    <p><b>Die Geburt gilt als begonnen.</b> Sie soll <b>umgehend</b> die Hebamme kontaktieren
+      oder in die Klinik.</p>
+    <p><b>Warum es eilt:</b> „Das Kind ist <b>nicht mehr vor aufsteigenden Infektionen
+      geschützt</b> und sollte nach dem Platzen der Fruchtblase <b>innerhalb einer bestimmten
+      Zeit</b> geboren werden.“</p>
+  </div>
+
+  <h3>Dammschnitt = Episiotomie</h3>
+  <p><b>Damm = Perineum:</b> die Gewebebrücke zwischen Vaginalausgang und After.</p>
+  <p>In der Austreibungsphase drohen dort <b>Risse</b>. Die Hebammen versuchen sie durch
+    <b>Dammschutz</b> zu verhindern. <b>Schlimmstenfalls</b> beschädigen Risse die
+    <b>Schließmuskeln von Blase und Darm</b> — Folge: <b>Harn- oder Stuhlinkontinenz</b>.</p>
+  <p>Beim Dammschnitt schneidet der Geburtshelfer gezielt ein, um <b>Überdehnung und Risse zu
+    vermeiden</b>. Er muss <b>genäht</b> und im Wochenbett <b>versorgt</b> werden.</p>
+</section>
+
+<section id="wochenbett">
+  <h2>Das Wochenbett</h2>
+  <p class="lead"><b>6 bis 8 Wochen nach der Geburt.</b> Alles darin folgt aus zwei Dingen: der
+    Wunde in der Gebärmutter und der Hormonumstellung.</p>
+
+  <h3>Die Hormonumstellung</h3>
+  <p>Die Plazenta, die Progesteron und Östrogene gebildet hat, <b>ist nicht mehr da</b>. Dafür
+    schüttet die Hypophyse vermehrt <b>Prolaktin</b> und <b>Oxytocin</b> aus.</p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Prolaktin</h4>
+      <p>fördert die <b>Milchbildung</b> — und <b>wirkt auf die Stimmungslage</b>.</p>
+    </div>
+    <div class="karte">
+      <h4>Oxytocin</h4>
+      <p>fördert den <b>Milchfluss</b>, fördert <b>Uteruskontraktionen</b> (also die Nachwehen)
+        — und wirkt <b>bindungsfördernd</b> auf die Stimmung.</p>
+    </div>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Phänomen</th><th>Was</th><th>Worauf du achtest</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Nachwehen</td>
+          <td>Kontraktionen des Uterus, <b>wichtig für die Rückbildung</b></td>
+          <td>bei manchen Frauen <b>sehr schmerzhaft</b></td></tr>
+        <tr><td class="k">Wochenfluss (Lochien)</td>
+          <td>Blutung und Nässen aus der Plazentawunde, <b>mehrere Wochen</b></td>
+          <td><b>„Starke Blutungen sind aber nicht normal!“</b></td></tr>
+        <tr><td class="k">Dammschnitt / -riss</td>
+          <td>Wunden im Genitalbereich</td>
+          <td><b>tägliche Waschungen oder Sitzbäder</b>, dürfen sich nicht entzünden</td></tr>
+        <tr><td class="k">Milcheinschuss</td>
+          <td>etwa am <b>3.–4. Tag</b></td>
+          <td>„sehr unangenehm bis schmerzhaft“</td></tr>
+        <tr><td class="k">Eierstocktätigkeit</td>
+          <td>ohne Stillen: Regelblutung nach <b>6–7 Wochen</b>; beim <b>vollen Stillen</b> oft
+            erst nach Monaten</td>
+          <td><b>„Voll stillen ist keinesfalls ein zuverlässiges Verhütungsmittel!“</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die Hygieneregel, die man kennen muss</span>
+    <p>„Der Wochenfluss = die Lochien gelten als <b>infektiös</b> (sind verkeimt) und sollten
+      <b>auf keinen Fall mit der Brust</b> der meist stillenden Frau in Kontakt kommen. <b>Dann
+      droht eine Brustentzündung.</b>“</p>
+    <p><b>Das ist die Begründung für die Händehygiene im Wochenbett</b> — und die Kette ist
+      sichtbar: Lochien → Keime an den Händen → Brustwarze → Mastitis.</p>
+    <p class="fr">Les lochies sont infectieuses. Elles ne doivent jamais toucher le sein — d'où
+      le lavage des mains entre les soins.</p>
+  </div>
+
+  <h3>Kolostrum — die Vormilch</h3>
+  <p>Schon direkt nach der Geburt sondert die Brust Milch ab, aber in kleinen Mengen. Diese
+    Vormilch heißt <b>Kolostrum</b> und enthält <b>besonders viele Antikörper, Vitamine und
+    Eiweiße</b> — sie ist <b>besonders wertvoll für das Kind</b>.</p>
+
+  <h3>Baby-Blues oder Wochenbettdepression?</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>„Baby-Blues“</h4>
+      <p>Durch die <b>hormonelle Umstellung</b> und die <b>komplett neue Lebenssituation</b>:
+        Stimmungsschwankungen, Empfindlichkeit, Tränen „scheinbar ohne Grund“, Gefühl der
+        Überforderung.</p>
+      <p><b>Sollte nach einigen Tagen vorüber sein.</b> Nicht behandlungsbedürftig.</p>
+    </div>
+    <div class="karte">
+      <h4>Wochenbettdepression / -psychose</h4>
+      <p>„Einige wenige Frauen“ entwickeln eine <b>schwere Depression oder Psychose</b>.</p>
+      <p><b>Diese Erkrankungen müssen behandelt werden.</b></p>
+    </div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Und das ist deine Aufgabe</span>
+    <p>Aus dem Skript, wörtlich: „<b>Daher ist es wichtig, dass die Personen im Umfeld der
+      Wöchnerinnen erkennen, dass ein ‚Baby Blues‘ in eine Wochenbettdepression übergeht.</b>“</p>
+    <p>Das Unterscheidungsmerkmal ist <b>die Zeit</b>: einige Tage — oder länger. Und in deiner
+      Psychiatrie-Zusammenfassung stehen die Merkmale, an denen man eine Depression erkennt. Die
+      beiden Seiten gehören zusammen.</p>
+  </div>
+</section>
+
+<section id="brust">
+  <h2>Milchstau und Mastitis puerperalis</h2>
+  <p class="lead">Zwei Bilder, die sich ähneln — und eine Zahl, die sie trennt.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th></th><th>Milchstau</th><th>Mastitis puerperalis</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Art</td><td><b>nicht-infektiöse</b> Entzündung</td>
+          <td><b>akute, meist bakterielle</b> Entzündung der Brustdrüse</td></tr>
+        <tr><td class="k">Erreger</td><td>keiner</td><td>meist <b>Staphylococcus aureus</b></td></tr>
+        <tr><td class="k">Entstehung</td>
+          <td>Milch staut sich in den Milchgängen, Gewebe schwillt an</td>
+          <td><b>Milchstau begünstigt das Eindringen von Bakterien über Hautrisse</b></td></tr>
+        <tr><td class="k">Fieber</td><td><b>gering, unter 38,5 °C</b></td>
+          <td><b>plötzlich hoch, über 38,5 °C</b></td></tr>
+        <tr><td class="k">Allgemeinbefinden</td><td><b>meist gut</b></td>
+          <td><b>allgemeines Krankheitsgefühl</b></td></tr>
+        <tr><td class="k">Schmerz</td><td>gespannt, warm, lokale Rötung, Verhärtung tastbar</td>
+          <td><b>starke</b> Schmerzen, Rötung, Schwellung, Druckschmerz</td></tr>
+        <tr><td class="k">Diagnostik</td><td>Abtasten, Temperaturmessung, <b>Abgrenzung zur
+          Mastitis</b></td><td>klinisch + <b>CRP, Leukozyten</b> + <b>bakteriologische
+          Abstriche</b></td></tr>
+        <tr><td class="k">Therapie</td>
+          <td>häufiges Anlegen, Brustmassage, <b>Wärme vor / Kälte nach</b> dem Stillen,
+            Entleerung, bequeme Kleidung</td>
+          <td>Stillen/Entleeren <b>fortsetzen</b>, Wärme vor / Kälte nach, <b>Schmerzmittel und
+            Antibiotika</b>, Ruhe und Flüssigkeit</td></tr>
+        <tr><td class="k">Komplikation</td><td><b>Übergang zur Mastitis</b></td>
+          <td><b>Abszess</b> (chirurgisch entlasten) · Abstillen bei schweren Verläufen ·
+            <b>Sepsis</b> (selten)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die eine Zahl, die entscheidet: 38,5 °C</span>
+    <p>Beide Bilder sehen gleich aus: eine rote, harte, schmerzende Brust. <b>Unter 38,5 °C und
+      gutes Allgemeinbefinden</b> → Milchstau. <b>Plötzlich über 38,5 °C und Krankheitsgefühl</b>
+      → Mastitis, und damit <b>Antibiotika</b>.</p>
+    <p>Und die Kette dazwischen: <b>Milchstau → Hautrisse → Bakterien → Mastitis → Abszess →
+      Sepsis.</b> Jeder Schritt lässt sich früh aufhalten. <b>Deshalb ist „häufiges Anlegen“
+      keine Kleinigkeit, sondern Therapie.</b></p>
+    <p class="fr">38,5 °C : au-dessous, c'est une stase ; au-dessus et d'un coup, c'est une
+      mastite.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Was beide gemeinsam haben — und was man falsch macht</span>
+    <p><b>Bei beiden wird weiter gestillt beziehungsweise entleert.</b> Die Brust zu schonen wäre
+      falsch: Der Rückstau ist ja die Ursache. <b>Wärme vor</b> dem Stillen (damit die Milch
+      fließt), <b>Kälte danach</b> (gegen die Schwellung).</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Und das, was in Klausuren gern vergessen wird</span>
+    <p>Beide Blätter nennen einen eigenen Punkt <b>„Emotionale Situation“</b>: Frust, Schmerzen,
+      <b>Angst vor dem Abstillen</b>, Erschöpfung, <b>Schuldgefühle</b>, Bedürfnis nach
+      Sicherheit und Verständnis.</p>
+    <p>Wenn eine Aufgabe nach <b>Pflegemaßnahmen</b> fragt, gehört <b>emotionale Begleitung</b>
+      dazu — das ist keine Nettigkeit, das steht in der Gliederung.</p>
+  </div>
+</section>
+
+<section id="blutung">
+  <h2>Blutungen im Wochenbett</h2>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Begriff</th><th>Definition</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Primäre Blutung</td>
+          <td>Blutverlust <b>innerhalb der ersten 24 Stunden</b> nach der Geburt</td></tr>
+        <tr><td class="k">Sekundäre Blutung</td>
+          <td>Blutverlust <b>nach 24 Stunden bis 6 Wochen</b> postpartal</td></tr>
+        <tr><td class="k">Subinvolutio uteri</td>
+          <td><b>verzögerte Rückbildung</b> der Gebärmutter nach der Geburt</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Die drei Mechanismen</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Uterusatonie</h4><p><b>fehlende Kontraktion</b> — die Wunde wird nicht
+        verschlossen</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Plazentareste</h4><p><b>gestörte Wundheilung</b></p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Infektionen</h4><p><b>Entzündungsprozesse hemmen die Rückbildung</b></p></div></div>
+  </div>
+
+  <p><b>Ursachen:</b> Mehrgebärende, große Plazenta · Verletzungen an Damm, Zervix, Vagina ·
+    Infektionen, mangelnde Mobilisation · Stillprobleme mit hormoneller Dysbalance.</p>
+
+  <p><b>Symptome:</b> starke vaginale Blutung mit <b>Koagelbildung</b> · Schmerzen im Unterbauch ·
+    <b>übelriechender Ausfluss</b> bei Infektion · Schwindel und Schwäche.</p>
+
+  <p><b>Diagnostik:</b> Vitalzeichen, <b>Hb-Wert</b>, <b>CRP</b> · <b>Sonografie</b> (Plazentareste,
+    Uterusgröße) · klinische Inspektion von Verletzungen und Lochien.</p>
+
+  <p><b>Therapie:</b> <b>Uterusmassage</b> und <b>Oxytocin-Gabe</b> · Entfernung von Plazentaresten
+    · Antibiotika bei Infektion · Bettruhe, Mobilisation, ggf. <b>Bluttransfusion</b>.</p>
+
+  <div class="gefahr">
+    <span class="t">Die zwei Komplikationen, die töten können</span>
+    <p><b>Hämorrhagischer Schock</b> und <b>Sepsis</b>.</p>
+    <p><b>Die Kette:</b> Uterus kontrahiert nicht → Wunde bleibt offen → starke Blutung →
+      Volumenmangel → <b>hämorrhagischer Schock</b>. Und deshalb ist die erste Maßnahme genau
+      das Gegenteil des Problems: <b>Uterusmassage und Oxytocin — beide bewirken
+      Kontraktion.</b></p>
+    <p class="fr">Le traitement s'explique par la cause : l'utérus ne se contracte pas, donc on
+      le fait se contracter.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Woher dieses Kapitel stammt — bitte lesen</span>
+    <p>Diese Inhalte stammen aus <b>zwei Gruppenpräsentationen deiner Mitschülerinnen und
+      Mitschüler</b>, nicht von der Dozentin. Die Blutungs-Präsentation nennt als Quellen
+      <i>Pflege Heute</i>, <i>Mändle &amp; Opitz-Kreuter: Das Hebammenbuch</i>, ClinicalKey
+      Student — <b>und „Microsoft Copilot (KI-Unterstützung)“</b>.</p>
+    <p><b>Das ist keine gesicherte Fachquelle.</b> Die Inhalte wirken schlüssig und decken sich
+      mit dem Skript der Dozentin, wo sie sich überschneiden. <b>Aber prüf die Werte nach</b>,
+      bevor du sie in einer Klausur als gesichert hinschreibst.</p>
+  </div>
+</section>
+
+<section id="rhesus">
+  <h2>Die Rhesus-Prophylaxe</h2>
+  <p class="lead">Der klarste Mechanismus in diesem ganzen Block — und der mit den härtesten
+    Zahlen.</p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Die Begriffe</h4>
+      <ul>
+        <li><b>Rh-positiv:</b> hat den Rhesus-Faktor <b>D</b> auf den roten Blutkörperchen</li>
+        <li><b>rh-negativ:</b> hat ihn <b>nicht</b></li>
+        <li>In Europa: <b>85 % Rh-positiv, 15 % rh-negativ</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Rhesus-Unverträglichkeit</h4>
+      <p>Wenn eine <b>rh-negative Mutter ein Rh-positives Kind</b> erwartet.</p>
+    </div>
+  </div>
+
+  <h3>Was passiert — Schritt für Schritt</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Übertritt</h4>
+      <p>Durch <b>kleinste Risse in der Plazenta</b> treten rote Blutkörperchen des Kindes in
+        den mütterlichen Kreislauf über. <b>Am häufigsten während der Geburt.</b> Größere Mengen
+        auch bei Eingriffen (Fruchtwasseruntersuchung, äußere Kindswendung) oder
+        Blutungen.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Sensibilisierung</h4>
+      <p>Das mütterliche Immunsystem erkennt sie als <b>Fremdkörper</b>, bildet <b>Antikörper</b>
+        — und <b>Gedächtniszellen</b>. <b>Das</b> ist die Rhesus-Sensibilisierung.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Die nächste Schwangerschaft</h4>
+      <p>Bei erneutem Kontakt schüttet das Immunsystem <b>sehr große Mengen</b> Antikörper aus.
+        Diese <b>passieren die Plazenta</b>, gelangen in den kindlichen Kreislauf und
+        <b>zerstören dort die roten Blutkörperchen</b>.</p></div></div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Morbus haemolyticus neonatorum</span>
+    <p><b>Blutarmut</b> und <b>Sauerstoffunterversorgung</b> des kindlichen Organismus. Dazu
+      <b>Gelbsucht</b>, und in schweren Fällen <b>Wassersucht (Hydrops fetalis)</b>,
+      <b>Krämpfe</b>, <b>Organ- oder Hirnschäden</b> — <b>bis zum Tod</b>.</p>
+    <p>Bei schweren Verläufen werden <b>Blutaustauschtransfusionen am ungeborenen Kind</b>
+      durchgeführt.</p>
+    <p><b>Und der Satz, der die ganze Prophylaxe erklärt:</b> „Da sich eine einmal eingetretene
+      Rhesus-Sensibilisierung <b>nicht mehr rückgängig machen lässt</b>, muss sie <b>vorab
+      während jeder Schwangerschaft verhindert</b> werden.“</p>
+  </div>
+
+  <h3>Die Prophylaxe — drei Stufen und eine Frist</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Wann</th><th>Was</th><th>Dosis / Frist</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Präpartal</td><td>allen rh-negativen Schwangeren</td>
+          <td><b>28.–30. SSW · 300 Mikrogramm Anti-D-Immunglobulin</b></td></tr>
+        <tr><td class="k">Postpartal</td>
+          <td>wenn das Kind <b>Rh-positiv</b> ist — die Blutgruppe wird nach der Geburt bestimmt</td>
+          <td><b>so schnell wie möglich, innerhalb von 72 Stunden</b></td></tr>
+        <tr><td class="k">Nach jedem Risiko-Ereignis</td>
+          <td>Fruchtwasseruntersuchung · Plazentapunktion · Blutungen · stumpfes Bauchtrauma ·
+            äußere Kindswendung · <b>Fehlgeburt</b> · <b>Schwangerschaftsabbruch</b> ·
+            Extrauterinschwangerschaft</td>
+          <td><b>innerhalb von 72 Stunden</b> — und <b>jedes Mal neu</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Zahl, die zeigt, dass es funktioniert</span>
+    <p>„Durch die Kombination aus präpartaler und postpartaler Rhesus-Prophylaxe können
+      <b>über 99 % aller Rhesus-Sensibilisierungen verhindert</b> werden.“</p>
+    <p><b>Und der Satz dahinter, der dich angeht:</b> „Dennoch kommt es in Deutschland auch heute
+      noch <b>aufgrund von Fehlern</b> — wie <b>vergessener oder verspäteter</b> Rhesus-Prophylaxe
+      oder <b>versehentlichen Unterdosierungen</b> — zu Rhesus-Sensibilisierungen.“</p>
+    <p>Das Medikament wirkt. <b>Was fehlschlägt, ist die Organisation.</b> Genau da arbeitest du.</p>
+    <p class="fr">Le médicament marche à plus de 99 %. Ce qui échoue, c'est l'organisation :
+      oubli, retard, sous-dosage.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Wie Anti-D wirkt — und warum es keine Impfung ist</span>
+    <p>Anti-D-Immunglobulin sorgt dafür, dass die kindlichen roten Blutkörperchen <b>aus dem
+      mütterlichen Blutkreislauf entfernt werden, bevor</b> sie das Immunsystem aktivieren und
+      zur Bildung von Gedächtniszellen führen können.</p>
+    <p>Es macht die übergetretenen Zellen also <b>unschädlich</b> — es trainiert nicht das
+      Immunsystem, sondern <b>kommt ihm zuvor</b>. Deshalb muss es <b>jedes Mal neu</b> gegeben
+      werden.</p>
+  </div>
+
+  <p style="font-size:15px;"><b>Die Ausweiskarte:</b> Die Broschüre enthält eine Karte, in die
+    jede Anti-D-Gabe mit Arztstempel eingetragen wird. Sie <b>ersetzt nicht den Mutterpass</b>.</p>
+</section>
+
+<section id="ngb">
+  <h2>Das Neugeborene</h2>
+  <p class="lead">CE 10 / UE 1, L. Grove. Die Definitionen sind da — die Normwerte zum Teil.</p>
+
+  <h3>Die Altersstufen — Kassenärztliche Bundesvereinigung, Stand 2021</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Begriff</th><th>Zeitraum</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Neugeborenes</td><td>bis zum vollendeten <b>28. Lebenstag</b></td></tr>
+        <tr><td class="k">Säugling</td><td>ab dem <b>29. Lebenstag</b> bis zum vollendeten
+          <b>12. Lebensmonat</b></td></tr>
+        <tr><td class="k">Kleinkind</td><td>ab dem <b>2.</b> bis zum vollendeten
+          <b>3. Lebensjahr</b></td></tr>
+        <tr><td class="k">Kind</td><td>ab dem <b>4.</b> bis zum vollendeten
+          <b>12. Lebensjahr</b></td></tr>
+        <tr><td class="k">Jugendlicher</td><td>ab dem <b>13.</b> bis zum vollendeten
+          <b>18. Lebensjahr</b></td></tr>
+        <tr><td class="k">Erwachsener</td><td>ab dem <b>19. Lebensjahr</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Die Fachbegriffe</h3>
+  <div class="paare">
+    <div class="paar"><span class="de">die Pädiatrie</span>
+      <span class="frx">la pédiatrie — Kinderheilkunde</span></div>
+    <div class="paar"><span class="de">die Neonatologie</span>
+      <span class="frx">la néonatologie — typische Erkrankungen Neugeborener, Behandlung Frühgeborener</span></div>
+    <div class="paar"><span class="de">natal</span><span class="frx">qui concerne la naissance</span></div>
+    <div class="paar"><span class="de">der Partus</span><span class="frx">l'accouchement — das Gebären</span></div>
+    <div class="paar"><span class="de">pränatal / präpartal</span>
+      <span class="frx">avant la naissance</span></div>
+    <div class="paar"><span class="de">postnatal / postpartal</span>
+      <span class="frx">après la naissance</span></div>
+    <div class="paar"><span class="de">die Perinatalphase</span>
+      <span class="frx">la période périnatale — Phase um die Geburt herum</span></div>
+    <div class="paar"><span class="de">das Gestationsalter</span>
+      <span class="frx">l'âge gestationnel — in SSW angegeben</span></div>
+  </div>
+
+  <h3>Die drei Einteilungen des Neugeborenen</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>nach dem Gestationsalter</h4>
+      <p>reif/termingerecht · frühgeboren · übertragen</p>
+    </div>
+    <div class="karte">
+      <h4>nach dem Geburtsgewicht</h4>
+      <p>normalgewichtig · untergewichtig · übergewichtig</p>
+    </div>
+    <div class="karte">
+      <h4>nach dem <i>auf das Gestationsalter bezogenen</i> Gewicht</h4>
+      <p><b>eutroph</b> · <b>hypotroph</b> · <b>hypertroph</b></p>
+    </div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Warum es drei Einteilungen gibt</span>
+    <p>Ein Kind kann <b>normalgewichtig</b> und trotzdem <b>hypotroph</b> sein — nämlich wenn es
+      übertragen wurde und für sein Gestationsalter <b>zu leicht</b> ist. Erst die dritte
+      Einteilung setzt Gewicht und Alter zueinander ins Verhältnis.</p>
+  </div>
+
+  <h3>Die Werte, die im Foliensatz stehen</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Was</th><th>Zielwert</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Körperkerntemperatur</td><td><b>37 °C ± 0,5 °C</b> — „Das Ngb. ist
+          normotherm“</td></tr>
+        <tr><td class="k">Blutzucker</td><td><b>über 45 mg/dl</b> — „Ein niedriger Blutzucker
+          wird frühestmöglich erkannt“</td></tr>
+        <tr><td class="k">Mekonium</td><td><b>„Ist 48 Stunden nach der Geburt noch kein Mekonium
+          abgesetzt worden, ist ein Arzt zu informieren!“</b></td></tr>
+        <tr><td class="k">Apgar-Schema</td><td>je Kriterium <b>0–2 Punkte</b>; Gesamtwertung in
+          drei Gruppen: <b>7–10</b> · <b>4–6</b> · <b>unter 4</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Die vier Bereiche der postpartalen Adaptation</h3>
+  <p>Der Foliensatz gliedert sie so: <b>Regelung der Körpertemperatur</b> ·
+    <b>Energiestoffwechsel</b> · <b>Verdauungsapparat</b> (Mekonium) · <b>Nabelpflege</b>.
+    Jeweils mit den Feldern <i>potentielles Problem — Begründung — Ziel — Maßnahmen</i>.</p>
+
+  <div class="merk">
+    <span class="t">Diese vier Felder sind kein Zufall</span>
+    <p><b>Problem → Begründung → Ziel → Maßnahmen.</b> Das ist genau das Schema deiner
+      <b>Pflegeplanung</b> — P E (S) R, Ziel, Maßnahme, Begründung. Die Dozentin hat den
+      Foliensatz danach gebaut.</p>
+    <p>Wenn du die Lücken füllst, übst du <b>gleichzeitig</b> Neugeborenenpflege <b>und</b>
+      Pflegeplanung.</p>
+  </div>
+</section>
+
+<section id="offen">
+  <h2>Was offen ist — und was du selbst noch schuldest</h2>
+
+  <div class="gefahr">
+    <span class="t">Zwei unausgefüllte Arbeitsaufträge</span>
+    <p><b>1. „Pflege des Neugeborenen“ ist ein Lückenfoliensatz.</b> Fast jede Folie sagt
+      <i>„Ergänzen Sie …“</i> oder <i>„Füllen Sie mit Hilfe der angegebenen Textstellen die
+      Lücken!“</i> — und <b>die Lücken sind leer</b>. Offen sind: die Grenzwerte der drei
+      Einteilungen · die <b>Apgar-Kriterien</b> und was 7–10, 4–6 und unter 4 bedeuten ·
+      Atemfrequenz, Pulsfrequenz, Blutdruck des Neugeborenen · gute und schlechte Zeichen bei
+      Aussehen und Verhalten · alle Felder <i>Problem/Begründung/Maßnahmen</i> der vier
+      Adaptationsbereiche.</p>
+    <p><b>2. „Neugeborenenikterus“ ist ein reiner Arbeitsauftrag.</b> Die Aufgabe lautet, einen
+      <b>Steckbrief</b> zu erstellen mit Definition, Krankheitsentstehung und Einteilung,
+      Symptomen, Diagnostik und Therapie — plus die <b>spezielle Pflege bei Fototherapie</b>.
+      <b>Der Steckbrief liegt nicht im Ordner.</b> Damit fehlt auf dieser Seite der gesamte
+      Neugeborenenikterus.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Warum ich die Lücken nicht gefüllt habe</span>
+    <p>Die Antworten stehen in <b>Pflege Heute, 7. Auflage</b> — Kapitel 34.23 und 34.24, mit
+      Seitenzahlen und ClinicalKey-Links auf den Folien. <b>Dieses Buch liegt nicht in deinem
+      Ordner.</b></p>
+    <p>Ich könnte die Werte aus dem Kopf hinschreiben. <b>Das mache ich nicht</b> — dann stünden
+      hier Zahlen, die deine Dozentin nie gesagt hat, und du würdest sie für geprüft halten.</p>
+    <p><b>Schick mir die Seiten oder deine ausgefüllten Folien, und ich baue sie ein.</b></p>
+    <p class="fr">Les réponses sont dans <i>Pflege Heute</i>, qui n'est pas dans ton dossier.
+      Envoie-moi les pages ou tes fiches remplies.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Im Ordner, aber hier nicht ausgewertet</span>
+    <ul>
+      <li><b>BZgA-Broschüre „Das Baby“</b> — Elternratgeber, keine Kursquelle</li>
+      <li><b>Psychiatrische Erkrankungen nach der Entbindung (.pptx)</b> — ergänzt den Abschnitt
+        Wochenbettdepression. <b>Sag Bescheid, dann werte ich sie aus.</b></li>
+      <li><b>Präsentationen 1 bis 5</b> — sie decken sich inhaltlich mit dem Skript, das hier die
+        Grundlage war. <b>Falls sie mehr enthalten als das Skript, sag es mir.</b></li>
+      <li><b>Zwei Abbildungen weibl. Geschlechtsorgane, Fetus</b> — reine Bilder ohne Text</li>
+    </ul>
+  </div>
+
+  <div class="merk">
+    <span class="t">Und ein Gewinn nebenbei</span>
+    <p>Im <b>Anatomie-Block</b> stand: „Zum Hormonsystem liegt nichts vor — es wird im
+      Nervensystem-Foliensatz nur <b>erwähnt</b>.“ <b>Das ist jetzt erledigt.</b> Der Abschnitt
+      <i>Hormone &amp; Zyklus</i> auf dieser Seite stammt aus dem Skript deiner Dozentin und
+      schließt die Lücke.</p>
+  </div>
+</section>
+
+<section id="quellen">
+  <h2>Woraus diese Seite gebaut ist</h2>
+  <details class="quelle">
+    <summary>Die sechs Quellen — jede einzeln genannt</summary>
+    <div class="inh">
+      <ul>
+        <li><b>Skript weibliche Geschlechtsorgane, Keimzellenbildung,
+          Embryonal-Fetalentwicklung, Schwangerschaft, Geburt, Wochenbett.pdf</b> — das
+          <b>Hauptdokument</b>. Von ihm stammt der größte Teil dieser Seite. Es nennt am Ende
+          zwei Quellenlinks auf <i>viamedici.thieme.de</i>.</li>
+        <li><b>Pflege des Neugeborenen.pdf</b> — Foliensatz <b>CE 10, UE 1 „In der perinatalen
+          Pflege mitwirken“</b>, L. Grove, 03/2021. <b>Lückenfoliensatz, nicht ausgefüllt.</b>
+          Verweist auf <i>Pflege Heute</i>, 7. Aufl., Kap. 34.</li>
+        <li><b>INFO Rhesus-Prophylaxe_Informationen_Schwangere.pdf</b> — Patientenbroschüre der
+          <b>CSL Behring GmbH</b>, Stand 2017, mit Ausweiskarte.</li>
+        <li><b>Milchstau_und_Mastitis_puerperalis.pdf</b> — <b>Gruppenarbeit</b> (Gruppe 3:
+          Akpamu-Peters, Akanni, Stasiak, Fan).</li>
+        <li><b>Praesentation Blutungen.pdf</b> — <b>Gruppenarbeit</b> (Gruppe 1: Scheer, Wiese,
+          Hoppe, van Thriel, Gülpen). Quellen laut Folie: <i>Pflege Heute</i>, <i>Mändle &amp;
+          Opitz-Kreuter: Das Hebammenbuch</i>, ClinicalKey Student und <b>Microsoft Copilot
+          (KI-Unterstützung)</b>.</li>
+        <li><b>Neugeborenenikterus AA Steckbrieferstellung.pdf</b> — <b>Arbeitsauftrag ohne
+          Lösung</b>.</li>
+      </ul>
+      <p>Alle aus deinem Google-Drive-Ordner, geteilt am 18.09.2026. <b>Jede Zahl auf dieser
+        Seite steht so in einer dieser Dateien</b> — mit <b>einer</b> Ausnahme, die im Abschnitt
+        <i>Erkrankungen</i> ausdrücklich markiert ist (die Erklärung zur Hypoglykämie des
+        Riesenbabys).</p>
+      <p>Die französischen Zeilen und die Übersetzungen sind von mir ergänzt. Sie stehen nicht in
+        den Unterlagen.</p>
+    </div>
+  </details>
+</section>
+
+</main>
+
+<footer>
+  <p>Schwangerschaft, Geburt, Wochenbett · CE 10 / UE 1 — gebaut aus deinen eigenen Unterlagen.<br>
+    Wo etwas fehlt, aus Schülerarbeit stammt oder von mir ergänzt wurde, steht es oben
+    ausdrücklich dabei.</p>
+</footer>
