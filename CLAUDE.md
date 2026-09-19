@@ -1336,6 +1336,21 @@ der Pflegemaßnahmen", gibt aber keine Anleitung dazu. Die vier Begründungsquel
 gelb markierten Kasten „Bitte zusätzlich berücksichtigen!". Das steht auf der Seite ausdrücklich
 so drin, mit der Bitte, es bei der Dozentin zu prüfen. **Nicht als gesichert darstellen.**
 
+**Am 19.09.2026 präzisiert — der Kasten liegt jetzt im Original vor.** Der Foliensatz
+`03_ Pflegeplanung.pdf` (CE 02 UE 2, aus ihrem Drive-Ordner) enthält ihn wörtlich, und er nennt
+**drei** Zeilen, nicht vier:
+
+> Bitte zusätzlich berücksichtigen!
+> – Prophylaxen-Expertenstandards
+> – Diagnosen
+> – Medikamentöse Therapie
+
+Die Aufschlüsselung in **vier** Quellen ist damit endgültig **meine** und steht auf der Seite
+auch so gekennzeichnet. **Offen bleibt genau eine Frage:** Ist
+*Prophylaxen-Expertenstandards* **eine** Quelle oder **zwei**? Das steht nirgends — die
+Rückfrage an die Dozentin bleibt, sie ist nur präziser geworden. **Spalte 4 selbst ist
+weiterhin inhaltlich leer**; daran hat der Fund nichts geändert.
+
 Für die Prüfungsaufgaben ab Tag 11 fehlen noch die **Vorlage der Fallvorstellung für die
 stationäre und ambulante Langzeitpflege** und das **Beurteilungsprotokoll Teil 1 —
 Planungsbeurteilung**. Ohne sie keine Bewertungspunkte erfinden.
