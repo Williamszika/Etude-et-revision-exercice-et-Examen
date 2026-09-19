@@ -17,23 +17,56 @@ class StartSeite extends StatefulWidget {
   State<StartSeite> createState() => _StartSeiteState();
 }
 
-class _StartSeiteState extends State<StartSeite> {
+class _StartSeiteState extends State<StartSeite> with WidgetsBindingObserver {
   late Daten _daten = widget.daten;
   late List<Tag> _tage = Tag.bauen(_daten);
   int _wahl = 0;
   bool _laedt = false;
 
+  /// Wann zuletzt wirklich geholt wurde. Verhindert, dass jedes kurze
+  /// Weglegen und Zurückholen des Telefons eine Anfrage auslöst.
+  DateTime? _zuletzt;
+  static const _mindestAbstand = Duration(minutes: 2);
+
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     // Beim Start still nachladen. Wenn es klappt, erscheint die neue Lektion
     // von selbst; wenn nicht, bleibt einfach stehen, was schon da war.
     WidgetsBinding.instance.addPostFrameCallback((_) => _auffrischen());
   }
 
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  /// **Der Grund, warum es das gibt — ihre Meldung vom 19.09.2026:**
+  /// *„j'ai déjà aussi l'app sur mon iPhone. Juste que il ne se met pas à
+  /// jour automatique."*
+  ///
+  /// Nachgeladen wurde bis dahin nur in `initState`, also **beim Kaltstart**.
+  /// Auf dem iPhone kommt der so gut wie nie vor: Man schließt eine App nicht,
+  /// man wechselt weg, iOS friert sie ein, und beim Zurückwechseln läuft
+  /// derselbe State weiter — `initState` nicht. Die 5:30-Lektion kam also erst
+  /// an, wenn sie die App aus dem Umschalter warf oder von selbst auf die Idee
+  /// kam, die Seite nach unten zu ziehen.
+  ///
+  /// Jetzt wird bei jedem Zurückwechseln geholt, höchstens alle zwei Minuten.
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState zustand) {
+    if (zustand != AppLifecycleState.resumed) return;
+    final z = _zuletzt;
+    if (z != null && DateTime.now().difference(z) < _mindestAbstand) return;
+    _auffrischen();
+  }
+
   Future<void> _auffrischen() async {
     if (_laedt) return;
     setState(() => _laedt = true);
+    _zuletzt = DateTime.now();
     final neu = await Quelle.holen();
     if (!mounted) return;
     setState(() {

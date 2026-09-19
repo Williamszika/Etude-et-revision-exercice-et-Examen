@@ -1219,7 +1219,30 @@ nicht bei jedem Haken.
 **Was fehlt:** kein iOS (braucht Mac und Apple-Konto) · die Probeprüfung hat noch keine
 Zeitsperre bis Samstag 22:00 · die telc-Originalaudios sind nicht dabei.
 
-#### ⚠️ Sie hat ein iPhone — die Android-App nützt ihr nichts
+#### Sie hat ein iPhone — und die App läuft dort bereits
+
+**Am 19.09.2026 klargestellt:** *„J'ai déjà tout … et j'ai déjà aussi l'app sur mon iPhone."*
+Sie hat einen **Mac** und die App **selbst installiert**. Der Abschnitt darunter war zuvor auf
+die Annahme gebaut, sie habe keinen Mac und könne die App nicht benutzen — **das stimmte
+nicht.** Ihr wurde an dem Tag eine Android-APK geschickt, bevor überhaupt gefragt worden war,
+welches Telefon sie hat. **Erst fragen, dann bauen.**
+
+**Was wirklich ihr Problem war:** *„Juste que il ne se met pas à jour automatique."* Die neue
+Lektion kam nicht an. Ursache in `ui/start_seite.dart`: Nachgeladen wurde nur in `initState`,
+also beim **Kaltstart**. Auf dem iPhone gibt es den kaum — man wechselt weg, iOS friert die App
+ein, beim Zurückwechseln läuft derselbe State weiter. Behoben mit `WidgetsBindingObserver`:
+Bei `AppLifecycleState.resumed` wird geholt, höchstens alle zwei Minuten. Das Ziehen nach unten
+(`RefreshIndicator`) gab es schon, aber sie musste es wissen.
+
+**Offline ist geprüft und stimmt** (`daten/quelle.dart`): Zwischenspeicher zuerst, dann Netz,
+dann das mitgelieferte Asset. Die Stimme kommt über `flutter_tts` vom Gerät. Im Funkloch
+funktioniert also alles außer dem Nachladen neuer Lektionen.
+
+**Die 7-Tage-Grenze gilt für sie trotzdem** — mit kostenlosem Apple-Konto signiert, muss die App
+wöchentlich neu aufgespielt werden. `app/IPHONE.md` ist ihre Anleitung dafür, auf Französisch.
+**Nicht ungefragt eine APK schicken** — die läuft auf ihrem Telefon nicht.
+
+#### Der alte Stand, zur Einordnung — galt nur einen Nachmittag lang
 
 **Am 19.09.2026 gesagt:** *„moi j'ai le test sut iPhone."* Das kam, nachdem ihr eine frisch
 gebaute **arm64-APK** geschickt worden war. **Eine APK lässt sich auf einem iPhone nicht
