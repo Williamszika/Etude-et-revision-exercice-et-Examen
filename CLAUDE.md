@@ -1219,6 +1219,38 @@ nicht bei jedem Haken.
 **Was fehlt:** kein iOS (braucht Mac und Apple-Konto) · die Probeprüfung hat noch keine
 Zeitsperre bis Samstag 22:00 · die telc-Originalaudios sind nicht dabei.
 
+#### ⚠️ Sie hat ein iPhone — die Android-App nützt ihr nichts
+
+**Am 19.09.2026 gesagt:** *„moi j'ai le test sut iPhone."* Das kam, nachdem ihr eine frisch
+gebaute **arm64-APK** geschickt worden war. **Eine APK lässt sich auf einem iPhone nicht
+installieren** — anderes Betriebssystem, anderes Paketformat.
+
+**Damit ist die Lage ehrlich diese:**
+
+- Die **Flutter-App ist für sie derzeit nicht benutzbar.** Der Code baut für iOS (der
+  `iphone`-Job in der CI ist grün), aber eine **installierbare** iOS-App braucht **einen Mac mit
+  Xcode**. Mit kostenloser Apple-ID läuft sie **7 Tage**, dann muss sie neu aufgespielt werden;
+  ohne Ablauf braucht es das **Apple Developer Program (99 €/Jahr)**. Beides hat sie nicht.
+  **Das nicht beschönigen und ihr keine iOS-App in Aussicht stellen.**
+- **Ihr Weg ist die Webseite in Safari plus „Zum Home-Bildschirm".** Das gibt ein Symbol auf dem
+  Bildschirm und eine Seite ohne Adressleiste. Der Fuß von Deutsch täglich erklärt es ihr.
+- **Was auf dem iPhone trotzdem funktioniert:** `speechSynthesis` läuft in Safari mit den
+  **deutschen Stimmen des Geräts** — Vorlesen, Diktat und Aussprache brauchen die App also
+  nicht. `localStorage` hält Antworten, Vokabelhaken und Diktattempo.
+- **Was verloren geht:** **offline**. Die Seite selbst braucht Netz zum Laden. Das ist der
+  einzige echte Vorteil, den die App vor der Webseite hat.
+
+**Offen und nicht versprochen:** Die Seite ließe sich mit Service Worker und Manifest zu einer
+**PWA** machen, die auch offline lädt. Ob ein Service Worker unter einer
+`claude.ai/artifact/…`-Adresse registriert werden darf, **ist nicht geprüft** — nicht behaupten,
+dass es geht, bevor es auf ihrem Gerät nachweislich läuft.
+
+**Vorher war unklar, womit sie die App gesehen hat.** Am 19.09. schickte sie Screenshots „der
+App". Das war mit hoher Wahrscheinlichkeit die **Vorschauseite** `app/vorschau/index.html`
+(`https://claude.ai/artifact/TrpFWX3dRCBx1UPdjoYP2c`), die die App im Telefonrahmen zeigt und
+wirklich funktioniert — nicht die APK. **Wenn etwas an „der App" gemeldet wird, zuerst
+nachfragen, welche der beiden Seiten gemeint ist.**
+
 ### Archiv — dreimal hat sie zurückgesetzt
 
 Alles davon liegt in der **Git-Historie** und **nirgends sonst**. Nur zurückholen, wenn sie
