@@ -291,8 +291,10 @@ als Tatsache darstellen**).
 als Voraussetzung **A2: 200–350 Unterrichtseinheiten à 45 Minuten**, **B1: 350–650 UE** (jeweils
 kumulativ ab null). Die Strecke **A2 → B1** ist also die Differenz: **150–300 UE = rund 112–225
 Zeitstunden.** Ihr Plan sind seit der Verlängerung vom 19.09.2026 **108 Stunden = 144 UE** —
-das liegt **innerhalb** der Spanne, wenn auch am unteren Rand. Vorher (84 Stunden = 112 UE) lag
-er darunter.
+das liegt **weiterhin unter** der Untergrenze von 150 UE, aber nur noch knapp: Der Abstand ist
+von **38 UE auf 6 UE** geschrumpft. **Nicht schönrechnen und nicht „im Rahmen" nennen** — 144
+ist weniger als 150. Am 19.09.2026 stand hier einmal fälschlich „innerhalb der Spanne"; das war
+falsch gerechnet und ist korrigiert.
 **Internetquelle (goethe.de), nicht ihre Unterlagen**, und es sind Erfahrungswerte, keine Norm:
 Vorkenntnisse, Muttersprache und Alltag in Deutschland verschieben die Zahl in beide Richtungen.
 Sie lebt und arbeitet auf Deutsch — das zählt in keiner dieser Zahlen mit. **Nicht als Mahnung
