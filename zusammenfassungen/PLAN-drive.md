@@ -61,7 +61,26 @@ Musterlösungen, Skripte, Broschüren, dazu Hausarbeiten von Mitschülerinnen.
 | | ↳ *dabei gefunden* | **Sieben Dateien um einen einzigen Fall** — das Ehepaar S. —, aber **die Original-Fallbeschreibung fehlt**; sie musste aus den Gruppenarbeiten rekonstruiert werden. Beste Quelle: der Foliensatz des **Sozialdienstes im Luisenhospital** (G. Opitz) mit den Rechtsgrundlagen und der **Rangfolge der vier Rechtsinstrumente** — Patientenverfügung → Vorsorgevollmacht → **Ehegattennotvertretung (nur medizinisch, nur 6 Monate)** → Betreuung als letztes Mittel. Das ergänzt die Betreuer-Rechte auf der Ethik-Seite genau um deren **Befugnisse**. **Eine Datei ist ihre eigene Gruppenarbeit** (Farnaz, **Zika**, Sokna, El Inani) — dazu gibt es auf der Seite eine Rückmeldung mit drei Nachfragen („4–6 Wochen“ ohne Quelle · **„Approvierung“ ist kein deutsches Wort**, richtig: Genehmigung · erfundene Kontaktdaten). **Die Geldtabelle der Pflegeversicherung stammt aus einer Mitschüler-Gruppenarbeit** und ist ungeprüft — auf der Seite ausdrücklich mit der Warnung versehen, sie nie als Auskunft an Patienten zu benutzen. **Eine Datei (2 MB) enthält keinen auslesbaren Text** — Inhalt unbekannt. | ⚠️ Zahlen ungeprüft |
 | **13** | **Gesundheitssystem** | Geschichte, Ebenen, Grundprinzipien, Aufgaben | **fertig 19.09.2026** → `schulung-gesundheitssystem/` |
 | | ↳ *dabei gefunden* | **Der einzige Block mit durchgängig amtlicher Quelle:** Alle Sachtexte sind nach dem **Bundesministerium für Gesundheit** zitiert (Broschüre *Das deutsche Gesundheitssystem. Leistungsstark. Sicher. Bewährt*). **Aber die Broschüre ist undatiert**, und einzelne Zahlen tragen **2021** bzw. **2022**, während der Sozialdienst-Foliensatz aus Block 12 Leistungsänderungen **zum 1.1.2025** nennt. **Ihre eigenen Unterlagen widersprechen sich also, weil sie aus verschiedenen Jahren stammen** — die Seite hat deshalb eine eigene Tabelle, die zu jeder Zahl den Datumsstatus angibt. **Die Angabe „979 Krankenkassen“ ist als zu prüfen markiert und NICHT durch eine andere Zahl ersetzt** — gelernt werden die Kassen**arten**, nicht die Anzahl. **Offen:** Die **„Leiter“** zur Einordnung der fünf Prinzipien existiert nur als **Bildfolie ohne Text**; ohne sie ist der Arbeitsauftrag nicht lösbar. Für die Ebenen gibt es als einzige Aufgabe eine Lösung im Ordner. | ⚠️ Zahlen undatiert |
-| 14 | Pflegeplanung & Pflegeprozess | ergänzt die vorhandene Schulung: ausgearbeitete PP mit Kommentaren, Fallbeispiele | offen |
+| **14** | **Pflegeplanung & Pflegeprozess** | ergänzt die vorhandene Schulung: ausgearbeitete PP mit Kommentaren, Fallbeispiele | **fertig 19.09.2026** → `schulung-pflegeplanung-beispiele/` |
+| | ↳ *dabei gefunden* | **Der beste Einzelfund des ganzen Ordners:** Warum heißt es **PE(S)R** und nicht PESR? **Vier ihrer eigenen Dateien** beantworten das unabhängig voneinander — der Foliensatz mit der Fußnote *„nicht bei potentiellen Problemen“*, die Vorlage für **aktuelle** Probleme **mit** Symptomspalte, die für **potentielle** **ohne** sie, und eine ausgearbeitete Planung, die *„S: (Potenzielles Pflegeproblem, daher keine Symptome)“* in die Zeile schreibt. Dazu **Frau Mai zweimal gelöst** — aktuell und potentiell nebeneinander, sodass sichtbar wird, wie **dieselbe Beobachtung von der Symptom- in die Ursachenspalte wandert**. **Und eine offene Frage der alten Seite ist geklärt:** Der gelbe Kasten *„Bitte zusätzlich berücksichtigen!“*, den `planung.html` als **abgeleitet und ungesichert** markiert, liegt jetzt im Original vor — er nennt **drei** Zeilen, nicht vier (Prophylaxen-Expertenstandards · Diagnosen · medikamentöse Therapie). Ob „Prophylaxen-Expertenstandards“ eine Quelle ist oder zwei, bleibt offen — aber die Frage an die Dozentin ist jetzt präzise. **Benannt statt korrigiert:** „Forosemid“ (Furosemid), „einfachgesättigte Fettsäuren“, „Übergesicht“ und eine „Empfehlung der DGA“ ohne Quelle. | ⭐ die S-Regel |
+
+---
+
+## Stand am 19.09.2026 — alle vierzehn Blöcke fertig
+
+Der ursprüngliche Plan ist **vollständig abgearbeitet**. Offen bleibt der am 19.09. neu
+hinzugekommene **Block 15 (Beobachtung)**.
+
+**Was durchgehend gleich gehandhabt wurde:**
+
+- **Jede Seite nennt ihre Quellen einzeln** und sagt bei jeder, ob sie Dozentenmaterial,
+  Schülerarbeit, amtliche Quelle oder unlesbar ist.
+- **Nichts wurde aus dem Gedächtnis ergänzt**, wo die Unterlagen schweigen — auch dann nicht,
+  wenn die Antwort bekannt war (Watzlawicks Axiome, ICN-Kodex, Closed Loop, CRM).
+- **Fehler in den Folien wurden benannt, nicht stillschweigend korrigiert** — außer wo ihre
+  eigenen anderen Dateien die Auflösung liefern (B/Bl bei den Merkzeichen).
+- **Geldbeträge und Statistiken tragen ihr Datum** oder den Hinweis, dass sie ungeprüft sind.
+- **Ihre eigenen Arbeiten bekommen eine Rückmeldung** statt einer stillen Übernahme.
 
 ---
 

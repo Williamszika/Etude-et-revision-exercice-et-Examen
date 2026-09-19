@@ -1,0 +1,739 @@
+<title>Das S steht in Klammern</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#8a3f5e;--accent-deep:#6d2f49;--accent-soft:#f4e1ea;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#dd9cb8;--accent-deep:#edb8ce;--accent-soft:#301c26;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#dd9cb8;--accent-deep:#edb8ce;--accent-soft:#301c26;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#8a3f5e;--accent-deep:#6d2f49;--accent-soft:#f4e1ea;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 02 / UE 2 · die Ergänzung zu deinen beiden Pflegeplanungs-Seiten</p>
+  <h1>Das S steht in Klammern — und jetzt weißt du warum</h1>
+  <p class="sub">Vier deiner Dateien sagen dasselbe: Beim <b>potentiellen</b> Problem gibt es
+    keine Symptome. Dazu vier ausgearbeitete Planungen und drei Fälle, die noch offen sind.</p>
+  <div class="meta">
+    <span>CE 02 / UE 2</span>
+    <span>Fiechter und Meier</span>
+    <span>Krohwinkel</span>
+    <span>I care Kap. 10</span>
+    <span>11 Quellen</span>
+    <span>Stand 19.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#neu">Was hier neu ist</a>
+  <a href="#prozess">Der Pflegeprozess</a>
+  <a href="#ehrlich">Drei ehrliche Sätze</a>
+  <a href="#sregel">Die S-Regel</a>
+  <a href="#vorlagen">Die zwei Vorlagen</a>
+  <a href="#abedl">ABEDL 1 und 2</a>
+  <a href="#kasten">Der gelbe Kasten</a>
+  <a href="#smart">SMART und die W-Fragen</a>
+  <a href="#mai">Frau Mai — zweimal gelöst</a>
+  <a href="#faelle">Drei weitere Fälle</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="neu">
+  <h2>Was auf dieser Seite steht — und was schon bei dir liegt</h2>
+  <p class="lead">Du hast bereits <b>zwei</b> Pflegeplanungs-Seiten: <b>Pflegeplanung
+    schreiben</b> und <b>Pflegeplanung in fünf Tagen</b>. Diese Seite ersetzt keine davon.</p>
+
+  <div class="merk">
+    <span class="t">Der Unterschied in einem Satz</span>
+    <p>Deine beiden Seiten erklären <b>das Verfahren</b>. Diese Seite bringt das, was dort
+      fehlte: <b>vier vollständig ausgearbeitete Planungen</b> aus dem Unterricht, die beiden
+      <b>leeren Originalvorlagen</b> und <b>drei unbearbeitete Fälle</b>.</p>
+    <p>Und einen Punkt, der auf der Seite <b>Pflegeplanung in fünf Tagen</b> ausdrücklich als
+      <b>unsicher</b> markiert ist — <b>die Begründungsspalte</b>. Dazu unten mehr.</p>
+    <p class="fr">Tes deux pages expliquent la <b>méthode</b>. Celle-ci apporte les
+      <b>exemples rédigés</b> et les <b>modèles vierges</b>.</p>
+  </div>
+</section>
+
+<section id="prozess">
+  <h2>Der Pflegeprozess — sechs Schritte nach Fiechter und Meier</h2>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div><h4>Informationssammlung</h4></div></div>
+    <div class="stufe"><span class="nr">2</span><div><h4>Erkennen von Problemen</h4></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div><h4>Festlegen der Pflegeziele</h4></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div><h4>Planung der Pflegemaßnahmen</h4></div></div>
+    <div class="stufe"><span class="nr n2">5</span><div><h4>Durchführung der Pflege</h4></div></div>
+    <div class="stufe"><span class="nr n2">6</span><div>
+      <h4>Beurteilung der Wirkung der Pflege auf den Patienten</h4></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Warum es ein Kreislauf ist — und der Satz dazu</span>
+    <p>„Der Pflegeprozess wird als <b>Kreislauf</b> verstanden. <b>Kann nie beendet werden</b>,
+      da im Verlauf neue Probleme entstehen und an anderer Stelle gelöst wird.“</p>
+    <p>Und die Einordnung: <b>„Ein Teil des Pflegeprozesses ist die Pflegeplanung.“</b> — Der
+      Prozess ist das Ganze, die Planung ist ein Stück davon. <b>Diese beiden Begriffe werden in
+      Klausuren gern verwechselt.</b></p>
+    <p class="fr">Le processus de soins ne se termine jamais. La planification n'en est
+      <b>qu'une partie</b>.</p>
+  </div>
+</section>
+
+<section id="ehrlich">
+  <h2>Drei Sätze, die der Foliensatz offen ausspricht</h2>
+
+  <div class="warnung">
+    <span class="t">Über die Wirklichkeit auf Station</span>
+    <p><b>„Pflegeplanung wird je nach Einrichtung unterschiedlich gewichtet.“</b></p>
+    <p><b>„Im Krankenhaus ist die Aufenthaltsdauer der Patienten geringer als die der Bewohner
+      im Altenheim.“</b></p>
+    <p><b>„Erfahrene Pflegekräfte verschriftlichen die Pflegeplanung nicht immer — wissen
+      dennoch, welche Probleme bestehen und welche Maßnahmen angewandt werden können.“</b></p>
+    <p><b>Das ist eine ehrliche Auskunft, kein Freibrief.</b> Für dich gilt: In der
+      <b>Prüfung</b> und als <b>Auszubildende</b> wird genau das schriftlich verlangt, was
+      erfahrene Kolleginnen im Kopf haben. Das schriftliche Planen ist das Mittel, mit dem du
+      dir dieses Können <b>überhaupt erst aneignest</b>.</p>
+    <p class="fr">Les collègues expérimentées ne rédigent pas toujours. Toi, si — c'est
+      justement ainsi qu'on acquiert ce qu'elles ont en tête.</p>
+  </div>
+
+  <h3>Wann überhaupt ein Pflegeproblem vorliegt</h3>
+  <div class="merk">
+    <span class="t">Zwei Bedingungen, wörtlich</span>
+    <p>Pflegeprobleme sind vorhanden: <b>„Wenn Veränderungen (psychisch/physisch) sich auf die
+      Selbstständigkeit auswirken“</b> — oder <b>„wenn die Gefahr besteht, dass aus einer
+      Einschränkung eine Schädigung entsteht oder sich weitere Einschränkungen
+      entwickeln“</b>.</p>
+    <p><b>Der erste Teil beschreibt das aktuelle, der zweite das potentielle Problem.</b> Die
+      Definition enthält die Unterscheidung also schon.</p>
+    <p>Ein Pflegeproblem kann <b>physischer, psychischer, emotionaler, sozialer und
+      organisatorischer Natur</b> sein.</p>
+  </div>
+</section>
+
+<section id="sregel">
+  <h2>Die S-Regel — der wichtigste Fund dieses Blocks</h2>
+  <p class="lead">Warum heißt das Schema <b>PE(S)R</b> und nicht PESR? Vier deiner Dateien
+    beantworten das unabhängig voneinander.</p>
+
+  <div class="gefahr">
+    <span class="t">Vier Belege aus deinen eigenen Unterlagen</span>
+    <p><b>1. Der Foliensatz</b> schreibt es als Regel hin:<br>
+      <b>„(S)* (Symptome) — wie zeigt sich das Problem?“</b> und die Fußnote:
+      <b>„*nicht bei potentiellen Problemen“</b>.</p>
+    <p><b>2. Die leere Vorlage für aktuelle Probleme</b> hat die Spalten:
+      <b>Pflegeproblem (P) / -ausmaß / -ursachen / Etiologie (E) — Symptome (S) —
+      Ressourcen (R)</b>.</p>
+    <p><b>3. Die leere Vorlage für potentielle Probleme</b> hat: <b>Pflegeproblem (P) —
+      Problemursachen / Etiologie (E) — Ressourcen (R)</b>. <b>Die Spalte „Symptome“ fehlt
+      dort.</b></p>
+    <p><b>4. Die ausgearbeitete Planung zu Stephan</b> schreibt es sogar in die Zeile hinein:
+      <b>„S: (Potenzielles Pflegeproblem, daher keine Symptome)“</b>.</p>
+    <p class="fr">Le S est entre parenthèses parce qu'un problème <b>potentiel</b> n'a pas
+      encore de symptômes. Quatre de tes documents le disent.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Logik dahinter — und sie ist zwingend</span>
+    <p>Ein <b>potentielles</b> Problem ist <b>noch nicht eingetreten</b>. Also kann es sich
+      auch <b>noch nicht zeigen</b>. Wer bei „Thrombosegefahr“ Symptome aufschreibt, hat
+      entweder <b>die Symptome der Ursachen</b> notiert (das gehört unter E) oder
+      <b>behauptet, dass die Thrombose schon da ist</b> — dann wäre es kein potentielles
+      Problem mehr.</p>
+    <p><b>Und genau das ist der häufigste Fehler.</b> Das lässt sich an deinem eigenen Fall
+      zeigen — siehe unten <i>Frau Mai, zweimal gelöst</i>.</p>
+    <p class="fr">Un problème potentiel n'est <b>pas encore là</b> : il ne peut donc pas encore
+      se <b>montrer</b>.</p>
+  </div>
+
+  <h3>Was E bei einem potentiellen Problem stattdessen enthält</h3>
+  <p>Die leere Vorlage sagt es genau. Unter <b>Problemursachen/Etiologie (E)</b> stehen dort
+    drei Stichpunkte:</p>
+  <div class="karten">
+    <div class="karte"><h4>Pflegerelevante Informationen</h4></div>
+    <div class="karte"><h4>Individuelle Risikofaktoren</h4></div>
+    <div class="karte"><h4>Assessment / Gefährdungsgrad</h4></div>
+  </div>
+  <p>Damit ist beantwortet, was viele beim potentiellen Problem nicht wissen: Das <b>E</b> wird
+    dort <b>breiter</b> — es nimmt die <b>Risikofaktoren</b> und das <b>Assessment</b> mit auf,
+    das beim aktuellen Problem unter den Symptomen stünde.</p>
+</section>
+
+<section id="vorlagen">
+  <h2>Die beiden Originalvorlagen im Vergleich</h2>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th></th><th>Aktuelle Probleme</th><th>Potentielle Probleme</th></tr></thead>
+      <tbody>
+        <tr><td class="k">P</td>
+          <td>Pflegeproblem / -ausmaß / -ursachen</td><td>Pflegeproblem</td></tr>
+        <tr><td class="k">E</td>
+          <td>Etiologie</td>
+          <td>Problemursachen / Etiologie: <b>pflegerelevante Informationen ·
+            individuelle Risikofaktoren · Assessment/Gefährdungsgrad</b></td></tr>
+        <tr><td class="k">S</td><td><b>Symptome</b></td><td><b>— gibt es nicht —</b></td></tr>
+        <tr><td class="k">R</td><td>Ressourcen</td><td>Ressourcen</td></tr>
+        <tr><td class="k">Danach</td><td colspan="2"><b>Pflegeziele · Pflegemaßnahmen ·
+          Begründungen</b> — in beiden Vorlagen gleich</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Woher du die Vorlagen bekommst</span>
+    <p>Der Foliensatz verweist auf <b>ILIAS</b>: <i>CE02 UE02 Pflegeproblem Thrombose →
+      Arbeitsaufträge → Pflegeplanung → Pflegeplanung Blanco</i>. Im Drive-Ordner liegen die
+      beiden leeren Vorlagen ebenfalls.</p>
+    <p><b>Druck dir beide aus und leg sie nebeneinander.</b> Der Unterschied springt dann ins
+      Auge — und du schreibst nie wieder Symptome in ein potentielles Problem.</p>
+  </div>
+</section>
+
+<section id="abedl">
+  <h2>Die ABEDL — und die beiden, auf die du zuerst schauen sollst</h2>
+  <p class="lead">Die dreizehn ABEDL stehen schon auf deiner Seite <b>Pflegeplanung
+    schreiben</b>. Neu ist hier ein Hinweis, der auf dem Foliensatz mit Sternchen markiert
+    ist.</p>
+
+  <div class="gefahr">
+    <span class="t">ABEDL 1 und 2 tragen ein Sternchen</span>
+    <p><b>1. Kommunizieren können*</b> und <b>2. Sich bewegen können*</b> — und die Erklärung
+      dazu auf derselben Folie:</p>
+    <p><b>„*hat einen Einfluss auf alle anderen ABEDLs“</b> und
+      <b>„fokussieren, da sie häufig prioritär verursachend sind für Pflegeprobleme auch in
+      den anderen ABEDLs“</b>.</p>
+    <p><b>Das ist eine Arbeitsanweisung, keine Randnotiz.</b> Wenn du bei einem Fall nicht
+      weißt, wo du anfangen sollst: <b>fang bei Kommunikation und Bewegung an</b> — die beiden
+      verursachen die meisten Probleme in allen anderen Bereichen.</p>
+    <p>Und genau so ist der Fall <b>Frau Mai</b> gebaut: Aus der <b>Bewegungseinschränkung</b>
+      (ABEDL 2) entsteht die <b>Thrombosegefahr</b>. Ein Problem, zwei Planungen.</p>
+    <p class="fr">Tu ne sais pas par où commencer ? Par la <b>communication</b> et le
+      <b>mouvement</b> — ce sont eux qui causent les problèmes ailleurs.</p>
+  </div>
+
+  <p>Die Bedeutung von <b>AEDL</b> steht im Stephan-Dokument ausgeschrieben:
+    <b>A</b>ktivität und <b>e</b>xistenzielle <b>E</b>rfahrungen <b>d</b>es <b>L</b>ebens —
+    nach <b>Dr. Monika Krohwinkel</b>, mit <b>13 grundlegenden Kriterien, die in den Pflegeplan
+    eingearbeitet werden</b>.</p>
+</section>
+
+<section id="kasten">
+  <h2>Der gelbe Kasten — eine offene Frage von deiner Seite ist damit beantwortet</h2>
+
+  <div class="merk">
+    <span class="t">Was bisher unsicher war</span>
+    <p>Auf deiner Seite <b>Pflegeplanung in fünf Tagen</b> steht zur <b>Begründungsspalte</b>
+      ausdrücklich, dass die vier genannten Begründungsquellen <b>abgeleitet</b> sind aus dem
+      gelb markierten Kasten <b>„Bitte zusätzlich berücksichtigen!“</b> — und dass das
+      <b>bei der Dozentin zu prüfen</b> sei, weil das Blatt selbst keine Anleitung dazu gibt.</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Jetzt liegt der Kasten vor — und er nennt drei Punkte</span>
+    <p>Im Foliensatz <b>CE 02 / UE 2</b> steht unter der ABEDL-Übersicht wörtlich:</p>
+    <p><b>„Bitte zusätzlich berücksichtigen!“</b><br>
+      — <b>Prophylaxen-Expertenstandards</b><br>
+      — <b>Diagnosen</b><br>
+      — <b>Medikamentöse Therapie</b></p>
+    <p><b>Das bestätigt deine Seite im Kern und schärft sie in einem Punkt:</b> Im Kasten stehen
+      <b>drei</b> Zeilen, nicht vier — und <b>„Prophylaxen“ und „Expertenstandards“ stehen in
+      einer Zeile zusammen</b>, durch einen Bindestrich verbunden.</p>
+    <p><b>Ob das eine Quelle ist oder zwei, sagt der Kasten nicht.</b> Ich löse das nicht auf —
+      aber jetzt weißt du wenigstens, <b>worauf sich die Frage genau bezieht</b>, wenn du sie
+      deiner Dozentin stellst.</p>
+    <p class="fr">Le cadre jaune existe et contient <b>trois</b> lignes, pas quatre. La question
+      à poser est donc précise : « Prophylaxen-Expertenstandards », est-ce une source ou deux ?</p>
+  </div>
+
+  <p>Als Quelle des Foliensatzes ist angegeben: <b>I care, Pflegeprozess und Pflegeplanung,
+    Kapitel 10, S. 210 ff.</b></p>
+</section>
+
+<section id="smart">
+  <h2>SMART und die W-Fragen — so, wie dein Kurs sie definiert</h2>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Buchstabe</th><th>Wofür er steht</th><th>Was dein Foliensatz dazu
+        sagt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">S</td><td>spezifisch</td>
+          <td><b>konkret, unmissverständlich</b> — worum geht es, <b>was</b>?</td></tr>
+        <tr><td class="k">M</td><td>messbar</td>
+          <td>so formulieren, dass <b>später erkannt werden kann, ob das Ziel erreicht wurde
+            oder nicht</b></td></tr>
+        <tr><td class="k">A</td><td><b>akzeptabel</b></td>
+          <td><b>positiv und aktiv beschreiben</b>, <b>aktive Verben verwenden</b></td></tr>
+        <tr><td class="k">R</td><td>realistisch</td><td><b>machbar</b></td></tr>
+        <tr><td class="k">T</td><td>terminiert</td><td><b>Zeitpunkt festlegen</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Dazu die Definition des Ziels selbst: ein <b>Verhalten, Zustand, Wissen, Können oder
+    Wollen</b>, das <b>nach einer bestimmten Zeit erreicht werden soll</b> — unterschieden in
+    <b>Nah- und Fernziele</b>.</p>
+
+  <div class="warnung">
+    <span class="t">Achtung: zwei verschiedene R</span>
+    <p>Im selben Foliensatz steht <b>R</b> zweimal: einmal in <b>SMART = realistisch
+      (machbar)</b> und einmal in <b>PE(S)R = Ressource</b> — dort erklärt als
+      <b>„was kann der Klient noch / inklusive Hilfsmitteln“</b>.</p>
+    <p><b>Verwechsle sie nicht.</b> Das eine prüft das Ziel, das andere beschreibt den
+      Menschen.</p>
+  </div>
+
+  <h3>Die W-Fragen für die Maßnahmen</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Frage</th><th>Was hineingehört</th></tr></thead>
+      <tbody>
+        <tr><td class="k">WER</td><td><b>1 bzw. 2</b> — <b>PFK</b> (Pflegefachkraft),
+          <b>PFA</b> (Pflegefachassistent) oder <b>PP</b> (Pflegeperson)</td></tr>
+        <tr><td class="k">WAS</td><td>Art der Maßnahme</td></tr>
+        <tr><td class="k">WIE UND WOMIT</td>
+          <td>Inhalt <b>und die Hilfeform</b> — siehe die fünf Stufen unten</td></tr>
+        <tr><td class="k">WANN</td><td>Umfang</td></tr>
+        <tr><td class="k">WIE OFT</td><td>Umfang</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Die fünf Hilfeformen — von wenig zu viel</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div><h4>Beaufsichtigung</h4></div></div>
+    <div class="stufe"><span class="nr">2</span><div><h4>Anleitung</h4></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div><h4>Unterstützung</h4></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div><h4>Teilweise Übernahme</h4></div></div>
+    <div class="stufe"><span class="nr n2">5</span><div><h4>Vollständige Übernahme</h4></div></div>
+  </div>
+  <p><b>Die Reihenfolge ist die Botschaft:</b> Man beginnt bei der geringsten Hilfeform und geht
+    nur so weit wie nötig. Das ist dieselbe Denkfigur wie <b>„aktivierende Pflege“</b> auf
+    deiner Reha-Seite und wie <b>„ressourcenerhaltend formulieren“</b> im Phasenmodell.</p>
+</section>
+
+<section id="mai">
+  <h2>Frau Mai — ein Fall, zwei Planungen, und der Unterschied ist sichtbar</h2>
+
+  <div class="merk">
+    <span class="t">Der Fall, gekürzt</span>
+    <p><b>Frau Mai, 78 Jahre</b>, vor <b>einem Monat Hüft-TEP</b>, zurück in ihrer Wohnung im
+      <b>2. Stock</b> eines Mehrfamilienhauses. Trotz der Operation <b>erhebliche
+      Bewegungseinschränkungen und Schmerzen</b>. Bei einer Routineuntersuchung fallen
+      <b>ausgeprägte Varizen an den Unterschenkeln</b> auf — <b>ein möglicher Hinweis auf eine
+      venöse Insuffizienz</b>.</p>
+    <p>Ihr eigener Satz: <b>„Ach wissen Sie, ich sitze sehr viel auf dem Sofa. Es ist
+      anstrengend, ein paar Schritte am Tag zu machen, und so ist es bequemer für mich.“</b></p>
+    <p>Sie nutzt einen <b>Rollator</b>, wirkt aber <b>unsicher beim Laufen</b>. Sie bekommt die
+      <b>Heparin-Spritze s. c.</b> und <b>Kompressionsstrümpfe</b>. Positiv: Sie ist
+      <b>kognitiv in der Lage, Wünsche und Schmerzen klar zu äußern</b>, und hat in der Reha
+      <b>viel gelernt</b> — <b>„jedoch fehlt ihr der Mut, die Bewegungsübungen eigenständig
+      durchzuführen“</b>.</p>
+  </div>
+
+  <p><b>Der Arbeitsauftrag:</b> Die Planung zum <b>potentiellen</b> Problem
+    <i>Thrombosegefahr</i> wird <b>gemeinsam im Kurs</b> erarbeitet — die zum <b>aktuellen</b>
+    Problem <i>Bewegungseinschränkung</i> <b>jeder in Einzelarbeit</b>. <b>Beide liegen
+    ausgearbeitet im Ordner.</b></p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th></th><th>Aktuell: Bewegungseinschränkung</th>
+        <th>Potentiell: Thrombosegefahr</th></tr></thead>
+      <tbody>
+        <tr><td class="k">P</td><td>Bewegungseinschränkung</td><td>Thrombosegefahr</td></tr>
+        <tr><td class="k">E</td>
+          <td>Alter · <b>Angst/Unsicherheit beim Gehen</b> · Hüft-OP/Hüft-TEP · Schmerzen ·
+            geringe Aktivität im Alter</td>
+          <td>Höheres Lebensalter · <b>wenig Bewegung, Vermeidung von Bewegung,
+            Bewegungseinschränkungen</b> · Schmerzen durch Hüft-TEP · <b>venöse
+            Insuffizienz</b> · <b>ausgeprägte Varizen</b></td></tr>
+        <tr><td class="k">S</td>
+          <td><b>Äußert große Anstrengung beim Gehen</b> · <b>unsicheres Gangbild</b> ·
+            <b>sitzt gerne auf dem Sofa</b> · Schmerzen</td>
+          <td><b>— keine —</b></td></tr>
+        <tr><td class="k">R</td>
+          <td>Kann mit Rollator gehen · Kompressionsstrümpfe · kognitiv in der Lage, Wünsche zu
+            äußern und mitzuarbeiten · kennt Bewegungsübungen aus der Reha · <b>ist lernfähig
+            und mitarbeitend</b></td>
+          <td>Nutzung von Rollator · <b>Bereitschaft, Hilfe anzunehmen</b> · kognitiv in der
+            Lage, Wünsche und Schmerzen zu äußern · kennt Bewegungsübungen aus der Reha ·
+            Fähigkeit zur Kommunikation · Kompressionsstrümpfe</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Schau dir an, wohin die Symptome gewandert sind</span>
+    <p>In der <b>aktuellen</b> Planung stehen unter <b>S</b>: <i>äußert große Anstrengung beim
+      Gehen, unsicheres Gangbild, sitzt gerne auf dem Sofa</i>.</p>
+    <p>In der <b>potentiellen</b> Planung gibt es kein S — und dieselben Beobachtungen stehen
+      dort unter <b>E</b>: <i>wenig Bewegung, Vermeidung von Bewegung,
+      Bewegungseinschränkungen</i>.</p>
+    <p><b>Das ist die Regel in Aktion.</b> Was beim aktuellen Problem ein <b>Symptom</b> ist,
+      wird beim potentiellen Problem zum <b>Risikofaktor</b> — also zur <b>Ursache</b>. Dieselbe
+      Beobachtung, eine andere Spalte, weil sich die Frage geändert hat: <i>„Wie zeigt sich das
+      Problem?“</i> gegen <i>„Warum droht es?“</i></p>
+    <p class="fr">La même observation change de colonne : <b>symptôme</b> du problème actuel,
+      <b>facteur de risque</b> du problème potentiel.</p>
+  </div>
+
+  <h3>Was in diesen Planungen gut gemacht ist — zum Abschauen</h3>
+  <div class="karten">
+    <div class="karte"><h4>Ziele mit Zeit und Zahl</h4>
+      <p><b>„innerhalb von zwei Monaten sicher im Gehen mit dem Rollator“</b> ·
+        <b>„reduzierte/keine Schmerzen beim Gehen innerhalb von 2 Wochen“</b> ·
+        <b>„2× täglich selbstständig innerhalb der nächsten 3 Wochen“</b> · <b>„ab sofort“</b>.
+        Das ist das <b>T</b> aus SMART — in jedem einzelnen Ziel.</p></div>
+    <div class="karte"><h4>Maßnahmen mit WER, WIE OFT und WOMIT</h4>
+      <p><b>„PK fragt 1× täglich nach Schmerzen mittels NRS, schätzt es ein, dokumentiert“</b> ·
+        <b>„PK überprüft täglich die Wohnung auf Stolperfallen“</b> ·
+        <b>„Koordination durch PK von Physiotherapieterminen 1×/Woche“</b>.</p></div>
+    <div class="karte"><h4>Begründungen, die eine Kette enthalten</h4>
+      <p><b>„Ausreichende Flüssigkeitszufuhr regt den Blutfluss an, Blut bleibt
+        dünnflüssig“</b> · <b>„Die Muskel-Venen-Pumpe wird aktiviert“</b> ·
+        <b>„Schmerzreduktion → Bewegungsbereitschaft wird gefördert“</b>.</p></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Eine Formulierung, die du dir merken solltest</span>
+    <p>Bei der Schmerzmessung steht als Begründung: <b>„Ab einem Wert von 5 muss reagiert
+      werden, Schmerzmittel können jedoch auch schon bei geringerer Angabe verabreicht
+      werden.“</b></p>
+    <p><b>Das ist eine saubere Begründung</b>, weil sie die Grenze nennt <b>und</b> den
+      Spielraum darunter — <b>„muss“ gegen „kann“</b>. Genau so unterscheidet man in einer
+      Klausur eine <b>Anordnung</b> von einer <b>Möglichkeit</b>.</p>
+    <p class="fr">À partir de 5, on <b>doit</b> réagir ; en dessous, on <b>peut</b>. Cette
+      distinction vaut des points.</p>
+  </div>
+</section>
+
+<section id="faelle">
+  <h2>Drei weitere Fälle — und was mit ihnen ist</h2>
+
+  <h3>Frau Feldner kommt zur Aufnahme</h3>
+  <p><b>74 Jahre</b>, kommt mit ihrem Sohn in die <b>Seniorenresidenz Sonnenblume</b>. Die
+    Auszubildende <b>Anne</b> im 3. Ausbildungsjahr übernimmt die <b>Bezugspflege</b>.</p>
+  <p>Vorgeschichte: <b>Sturz im Badezimmer</b>, starke Schmerzen, sie konnte sich nicht bewegen
+    und musste <b>auf ihren Sohn warten</b>. <b>Neue Hüfte</b>, <b>3 Wochen Reha</b>, dann die
+    Einsicht: <b>„Ich musste einsehen, dass ich alleine nicht mehr zurechtkomme.“</b> Über sich
+    selbst sagt sie: <b>„Ich muss Sie warnen, ich bin ein ungeduldiger Mensch und es fällt mir
+    schwer zu warten und Hilfe anzunehmen.“</b></p>
+  <p><b>Diagnosen:</b> essentielle Hypertonie · rheumatische Arthritis · <b>Gonarthrose
+    links</b>. <b>Medikamente:</b> Ramipril, <b>Forosemid</b>, Prednisolon, Ibuprofen.</p>
+
+  <div class="gefahr">
+    <span class="t">Was dieser Fall an Beobachtungen liefert — sammle sie</span>
+    <p><b>Beim Sitzen an der Bettkante:</b> Sie <b>greift nach Annes Hand und greift
+      daneben</b> · sie <b>sitzt schräg</b>, der Oberkörper <b>neigt nach links</b>, sie
+      <b>stützt sich mit der linken Hand ab</b> · die <b>Beine baumeln in der Luft</b>, was sie
+      <b>aus dem Gleichgewicht bringt</b>.</p>
+    <p><b>Beim Gehen zwei Wochen später:</b> Sie <b>krallt sich am Rollator regelrecht
+      fest</b> · <b>kleine, fast schlürfende Schritte</b> · <b>Knie nicht durchgedrückt</b> ·
+      <b>Oberkörper stark nach vorne gebeugt</b> · sie <b>übersieht die Teppichkante</b> —
+      und hat <b>ihre Brille vergessen</b>.</p>
+    <p><b>Und der Satz, der die ganze Beratungsaufgabe enthält:</b> <b>„Der Teppich bleibt. Der
+      schützt mich, wenn ich nochmal falle. Hätte ich den im Badezimmer gehabt, hätte ich mir
+      nichts gebrochen.“</b></p>
+    <p class="fr">Le tapis est vécu comme une <b>protection</b>, pas comme un danger. C'est
+      là qu'est tout le travail de conseil.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Zu diesem Fall liegt keine Aufgabenstellung im Ordner</span>
+    <p>Der Text endet nach Zeile 65 ohne Fragen. <b>Ich erfinde keine.</b> Wenn du die
+      Aufgabenstellung hast, schick sie mir.</p>
+    <p><b>Zwei Dinge, die ich trotzdem anmerke:</b></p>
+    <p><b>1.</b> Im Text steht <b>„Forosemid“</b>. Der Wirkstoff heißt <b>Furosemid</b> — ein
+      Tippfehler im Fallbeispiel.</p>
+    <p><b>2.</b> Die <b>Medikamentenliste gehört zur Sturzbeurteilung dazu</b>, und
+      <b>kein Dokument in deinem Ordner wertet sie aus</b>. Ich schreibe dir hier keine
+      Wirkungen und Wechselwirkungen aus dem Gedächtnis hin — aber merk dir die Frage:
+      <b>Welche dieser vier Medikamente können zu einem Sturz beitragen, und warum?</b> Das ist
+      genau die Art Frage, die in einer <b>Beurteilen</b>-Aufgabe gestellt wird. Schlag es in
+      deinem Medikamentenmaterial nach.</p>
+  </div>
+
+  <h3>Stephan — eine Pflegeplanung, die schon ausgearbeitet ist</h3>
+  <p>Aus <b>CE 10 / UE 5</b>, zum Asthma bronchiale (das Thema deiner Asthma-Seite). Zwei
+    vollständige Planungen: eine zur <b>Thromboseprophylaxe (ABEDL 2)</b> und eine
+    <b>zum Asthma (ABEDL 8 — Ruhen und Schlafen)</b>.</p>
+  <div class="merk">
+    <span class="t">Was daran besonders ist</span>
+    <p>Die Maßnahmen tragen <b>durchgehend eine Häufigkeit in Klammern</b>: <b>„(einmalig &amp;
+      b.B.)“</b> · <b>„(Mind. 1× pro Schicht)“</b> · <b>„(3–5× pro Schicht)“</b> ·
+      <b>„(1× im ND und b.B. in der Nacht)“</b>. <b>Genau das verlangt die W-Frage
+      „WIE OFT“.</b></p>
+    <p>Und zwei Begründungen, die eine Fachkette enthalten: <b>„Durch eine höhere
+      Flüssigkeitszufuhr wird der Virchow'schen Trias entgegengewirkt“</b> und
+      <b>„Leichterer Blutrückfluss des venösen Blutes“</b>.</p>
+    <p>Eine Maßnahme ist sehr konkret und deshalb gut: <b>„Sicherstellen, dass Stephan eine
+      kleine Lichtquelle zur Nacht im Zimmer hat, um seine Inhalatoren zu sehen“</b> und
+      <b>„Inhalatoren stets am selben Ort im Zimmer lagern“</b>.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Drei Stellen in diesem Dokument, die ich nicht übernehmen würde</span>
+    <p><b>1.</b> <b>„einfachgesättigte Fettsäuren“</b> — dieses Wort gibt es nicht. Es gibt
+      <b>gesättigte</b>, <b>einfach ungesättigte</b> und <b>mehrfach ungesättigte</b>
+      Fettsäuren. Gemeint ist vermutlich <b>einfach ungesättigt</b>.</p>
+    <p><b>2.</b> <b>„So kann Übergesicht vermieden werden“</b> — vermutlich
+      <b>Übergewicht</b>.</p>
+    <p><b>3.</b> <b>„Empfehlung der DGA“</b> — welche Organisation gemeint ist, steht nicht da.
+      <b>Ich rate nicht.</b> Eine Empfehlung ohne nachprüfbare Quelle gehört nicht in eine
+      Begründungsspalte.</p>
+    <p>Das Dokument nennt <b>keinen Verfasser</b>. Behandle es wie die anderen ausgearbeiteten
+      Beispiele: <b>gut zum Abschauen der Form</b>, aber <b>Fachangaben nachprüfen</b>.</p>
+    <p class="fr">Bonne forme, mais vérifie le contenu : « einfachgesättigt » n'existe pas, et
+      une recommandation sans source ne va pas dans une colonne de justification.</p>
+  </div>
+
+  <h3>Frau Sommer — acht Maßnahmen gegen Dehydratation</h3>
+  <p>Ein kurzes Blatt zum <b>aktuellen Problem „Frau Sommer ist dehydriert“</b> — <b>nur
+    Maßnahmen</b>, ohne P, E, S, R, ohne Ziele und ohne Begründungen.</p>
+  <div class="merk">
+    <span class="t">Trotzdem lehrreich — schau auf die Formulierungen</span>
+    <p><b>„Die Patientin wird bei jedem Kontakt von PP an eine ausreichende Trinkmenge erinnert
+      (muss vorher festgelegt werden).“</b> — Die Klammer ist genau richtig: Eine Trinkmenge zu
+      „erinnern“ geht nur, wenn sie <b>vorher bestimmt</b> wurde.</p>
+    <p><b>„Dazu muss immer Wasser in Griffweite stehen“</b> und <b>„mit von der Patientin
+      bevorzugten Getränken“</b> — <b>Griffweite</b> und <b>Vorlieben</b> sind zwei Details,
+      die eine Maßnahme erst wirksam machen.</p>
+    <p><b>„Zu den Mahlzeiten wird wasserreiche Kost wie z. B. Wassermelone oder Gurke
+      angeboten.“</b> — Flüssigkeit muss nicht getrunken werden.</p>
+    <p><b>„PFK ermittelt 1×/Schicht RR und Puls, um Tachykardie und Hypotonie frühzeitig zu
+      erkennen.“</b> — hier steckt die Begründung schon <b>in</b> der Maßnahme.</p>
+    <p>Und die Angehörigenarbeit: Sie werden gebeten, <b>auf die Flüssigkeitszufuhr zu
+      achten, zum Trinken zu animieren und bevorzugte Getränke mitzubringen</b>.</p>
+  </div>
+  <p><b>Deine Aufgabe damit:</b> Ergänze das Blatt um <b>P, E, S, R</b>, um <b>Ziele</b> und um
+    die <b>Begründungen</b>. Die Maßnahmen sind schon da — der Rest fehlt, und genau der ist
+    das, was geübt werden muss. <b>Schick es mir, ich korrigiere es.</b></p>
+</section>
+
+<section id="offen">
+  <h2>Was fehlt</h2>
+
+  <div class="warnung">
+    <span class="t">Offene Punkte</span>
+    <p><b>1. Zum Fall Frau Feldner gibt es keine Aufgabenstellung</b> im Ordner — und keine
+      Lösung.</p>
+    <p><b>2. Der ABEDL-Erhebungsbogen</b> (<i>Erhebung ABEDL.pdf</i>) ist ein <b>Scan eines
+      ausgefüllten Formulars</b> und maschinell <b>kaum lesbar</b>. Erkennbar ist nur die
+      Struktur: eine <b>Erhebung nach den AEDL</b> mit <b>13 nummerierten Abschnitten</b> und
+      — das ist das Interessante — <b>zu jedem Abschnitt einer oder mehrere vorgedruckte
+      Pflegediagnosen</b>. <b>Die Einzelheiten kann ich nicht sicher entziffern</b>, deshalb
+      gebe ich sie nicht wieder. Wenn du das Formular als klares Foto hast, schick es mir.</p>
+    <p><b>3. Die Vorlagen „PP Vorlage.pdf“, „OMW_Vorlage.pptx“ und „Pflegeplanung blanco.pdf“</b>
+      habe ich <b>nicht einzeln ausgewertet</b> — es sind Formulare ohne Inhalt. Die beiden
+      inhaltlich wichtigen leeren Vorlagen (aktuell/potentiell) sind oben verglichen.</p>
+    <p><b>4. Die Frage zum gelben Kasten bleibt offen</b>: Sind „Prophylaxen-Expertenstandards“
+      eine Begründungsquelle oder zwei? Jetzt kannst du sie wenigstens präzise stellen.</p>
+    <p><b>5. Die Musterlösung zu den Durchfallerkrankungen</b> liegt ebenfalls im Ordner, ist
+      aber bereits vollständig auf deiner Seite <b>Das kranke Kind</b> ausgewertet und wird hier
+      nicht wiederholt.</p>
+    <p class="fr">Cinq points ouverts, aucun rempli de mémoire.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Brücken zu deinen anderen Seiten</span>
+    <p><b>Pflegeplanung schreiben</b> und <b>Pflegeplanung in fünf Tagen</b>: das Verfahren —
+      diese Seite: die Beispiele und die Vorlagen.</p>
+    <p><b>Das kranke Kind:</b> die vollständige Musterlösung deiner Dozentin zu
+      Durchfallerkrankungen — das <b>beste</b> ausgearbeitete Beispiel, das du hast.</p>
+    <p><b>Rehabilitation:</b> <i>„Pflegeziele stets ressourcenerhaltend formulieren“</i> und
+      <i>„Pflegeanamnese unerlässlich“</i> — dieselbe Forderung, aus dem Phasenmodell.</p>
+    <p><b>Pflegehilfsmittel &amp; ambulantes Setting:</b> Frau Mai lebt im <b>2. Stock</b> und
+      wird <b>ambulant</b> versorgt — dort stehen die Hilfsmittel und Leistungen, die zu dieser
+      Planung gehören.</p>
+    <p><b>Asthma bronchiale:</b> Stephan ist der Fall von dieser Seite.</p>
+  </div>
+</section>
+
+<details class="quelle">
+  <summary>Die elf Quellen — jede einzeln genannt</summary>
+  <div class="inh">
+    <ul>
+      <li><b>03_ Pflegeplanung.pdf</b> — der <b>Foliensatz CE 02 / UE 2</b>. Trägt den
+        Regelteil dieser Seite: Pflegeprozess nach Fiechter und Meier, Definition des
+        Pflegeproblems, <b>die S-Regel</b>, ABEDL mit den Sternchen, <b>der gelbe Kasten</b>,
+        SMART, W-Fragen, die fünf Hilfeformen. Quelle: <b>I care, Pflegeprozess und
+        Pflegeplanung, Kapitel 10, S. 210 ff.</b></li>
+      <li><b>aktuelle Pflegeprobleme-Leer-Vorlage.pdf</b> — die leere Originalvorlage
+        <b>mit</b> Symptom-Spalte.</li>
+      <li><b>potentielle Pflegeprobleme-Leer-Vorlage.pdf</b> — die leere Originalvorlage
+        <b>ohne</b> Symptom-Spalte, dafür mit den drei Stichpunkten unter E.</li>
+      <li><b>Pflegeproblem Bewegungseinschraenkung.pdf</b> — die ausgearbeitete Planung zum
+        <b>aktuellen</b> Problem (CE 02 UE 2, Frau Mai).</li>
+      <li><b>Pflegeproblem Thrombosegefahr.pdf</b> — die ausgearbeitete Planung zum
+        <b>potentiellen</b> Problem (CE 02 UE 2, Frau Mai).</li>
+      <li><b>Fallbeispiel Frau Mai ambulante Pflege Pflegeplanung.pdf</b> — der Fall und der
+        Arbeitsauftrag dazu.</li>
+      <li><b>Fallbeispiel Frau Mai Thrombose und Thromboseprophylaxe.pdf</b> — die zweite
+        Fassung desselben Falls.</li>
+      <li><b>Frau Feldner kommt zur Aufnahme.pdf</b> — ausführliche Situationsbeschreibung,
+        <b>ohne Aufgabenstellung</b>.</li>
+      <li><b>Pflegeplanungsbeispiele am Fallbeispiel Stephan.pdf</b> — zwei ausgearbeitete
+        Planungen aus CE 10 / UE 5, <b>ohne Verfasserangabe</b>, mit drei fachlich
+        fragwürdigen Stellen.</li>
+      <li><b>Aktuelles Pflegeproblem Dehydratation Frau Sommer.pdf</b> — acht Maßnahmen,
+        <b>ohne P/E/S/R, ohne Ziele, ohne Begründungen</b>.</li>
+      <li><b>Erhebung ABEDL.pdf</b> — Scan eines ausgefüllten Erhebungsbogens,
+        <b>maschinell kaum lesbar</b>. Dazu die Formulare <i>PP Vorlage.pdf</i>,
+        <i>Pflegeplanung blanco.pdf</i> und <i>OMW_Vorlage.pptx</i>.</li>
+    </ul>
+    <p>Alle aus deinem Google-Drive-Ordner, geteilt am 18.09.2026.</p>
+    <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> die Zusammenstellung der vier
+      Belege für die S-Regel · die Beobachtung, dass dieselben Angaben in der aktuellen Planung
+      unter <b>S</b> und in der potentiellen unter <b>E</b> stehen · der Hinweis auf die beiden
+      verschiedenen <b>R</b> · die Einordnung der fünf Hilfeformen als aufsteigende Reihe · die
+      Anmerkungen zu „Forosemid“, „einfachgesättigte Fettsäuren“, „Übergesicht“ und „DGA“ ·
+      die Frage nach den Medikamenten im Fall Feldner · und alle Brücken zu deinen anderen
+      Zusammenfassungen.</p>
+    <p><b>Was ich NICHT ergänzt habe:</b> eine Aufgabenstellung für Frau Feldner, den Inhalt des
+      unlesbaren Erhebungsbogens, die Auflösung der Frage „eine Begründungsquelle oder zwei“
+      und eine Auswertung der Medikamentenliste.</p>
+    <p>Die französischen Zeilen sind von mir ergänzt.</p>
+  </div>
+</details>
+
+</main>
+
+<footer>
+  <p>Pflegeplanung und Pflegeprozess · CE 02 / UE 2 — die Ergänzung zu deinen beiden
+    Planungs-Seiten.<br>
+    Wo etwas fehlt, aus einer unbezeichneten Arbeit stammt oder von mir ist, steht es oben
+    ausdrücklich dabei.</p>
+</footer>
