@@ -1,0 +1,832 @@
+<title>Vom unkooperativen Patienten zur Phase</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#2a5f8f;--accent-deep:#1c4870;--accent-soft:#dde9f4;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#86b6dd;--accent-deep:#a5cbe9;--accent-soft:#15242f;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#86b6dd;--accent-deep:#a5cbe9;--accent-soft:#15242f;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#2a5f8f;--accent-deep:#1c4870;--accent-soft:#dde9f4;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 07 / UE 01 · Konzepte in der Rehabilitation</p>
+  <h1>Vom „unkooperativen Patienten“ zur Phase</h1>
+  <p class="sub">Pflege in der Rehabilitation, das biopsychosoziale Modell der ICF — und das
+    Phasenmodell nach Schaeffer und Moers, das erklärt, warum aus vorbildlichen Patienten
+    kritische werden.</p>
+  <div class="meta">
+    <span>CE 07 / UE 01</span>
+    <span>K. Schnapp-Benend</span>
+    <span>Schaeffer &amp; Moers 2008</span>
+    <span>6 Quellen</span>
+    <span>Niveau B1</span>
+    <span>Stand 19.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#kern">Der Kerngedanke</a>
+  <a href="#reha">Was Rehabilitation ist</a>
+  <a href="#warum">Warum jetzt</a>
+  <a href="#geld">Struktur und Geld</a>
+  <a href="#traeger">Die fünf Kostenträger</a>
+  <a href="#icf">Das ICF-Modell</a>
+  <a href="#fall">Der Fall Bauingenieur</a>
+  <a href="#modell">Schaeffer und Moers</a>
+  <a href="#phasen">Die sechs Phasen</a>
+  <a href="#rollen">Die fünf Patientenrollen</a>
+  <a href="#tabelle">Die ausgefüllte Tabelle</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="kern">
+  <h2>Der Gedanke, um den es in dieser ganzen Unterrichtseinheit geht</h2>
+  <p class="lead">Zwei deiner Dateien ergeben zusammen eine Aussage, die keine von beiden allein
+    macht.</p>
+
+  <div class="merk">
+    <span class="t">Die Einstiegsfolie nennt das Problem …</span>
+    <p>Unter <b>„Ausgangspunkt“</b> stehen drei Stichpunkte, die klingen wie eine Beschwerde
+      über Patienten: <b>Beratungsresistenz</b> · <b>wenig Kooperation</b> (zum Beispiel beim
+      Medikamentenregime oder bei Diätregeln) · <b>Complianceprobleme</b>.</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">… und das Modell erklärt es als Phase, nicht als Charakterfehler</span>
+    <p>Im Originaltext steht zur vierten Phase: Die Erkrankten werden <b>„von vorbildlichen zu
+      normalen Patienten“</b>. Sie beginnen, <b>„das Therapieregime zu hinterfragen oder zu
+      modifizieren, stillschweigend in das Medikamentenregime einzugreifen“</b> — <b>weil ihnen
+      klar geworden ist, dass die Krankheit nicht mehr weggeht</b>.</p>
+    <p><b>Ursache:</b> Die Hoffnung auf Rückkehr ins normale Leben erweist sich als Trugschluss.
+      → <b>Wirkung:</b> Enttäuschung und Ernüchterung, die Patientin arrangiert sich und geht
+      großzügiger mit den Anforderungen um. → <b>Gefahr:</b> Die Pflege deutet das als
+      <b>Non-Compliance</b> und reagiert mit Ermahnung — genau dann fühlt sich die Patientin
+      <b>bagatellisiert</b> und zieht sich weiter zurück. → <b>Deshalb:</b> ist die richtige
+      Maßnahme in dieser Phase <b>nicht Ermahnung, sondern Information, Beratung und die
+      Förderung der Selbstmanagementkompetenz</b>.</p>
+    <p class="fr">« Il ne suit pas le traitement » n'est pas un trait de caractère. C'est une
+      <b>phase</b> — et elle a sa propre réponse soignante.</p>
+  </div>
+
+  <p>Das ist der Grund, warum dieses Modell im Lehrplan steht. <b>Es ändert nicht, was du tust —
+    es ändert, wie du erklärst, was du siehst.</b></p>
+</section>
+
+<section id="reha">
+  <h2>Was Rehabilitation ist</h2>
+
+  <div class="merk">
+    <span class="t">Die Definition aus dem Foliensatz — drei Teile</span>
+    <p><b>1.</b> Rehabilitation umfasst <b>alle Maßnahmen</b>, die <b>akut oder chronisch
+      kranken, behinderten, pflegebedürftigen oder von Behinderung und Pflegebedürftigkeit
+      bedrohten</b> Menschen ein <b>möglichst selbstständiges und selbstbestimmtes Leben</b>
+      mit Teilnahme an relevanten oder gewünschten Lebensaktivitäten ermöglichen sollen.</p>
+    <p><b>2.</b> Sie beinhaltet zusätzlich die <b>Vorbeugung</b> von Entwicklungen, die zu
+      beeinträchtigter Gesundheit oder Behinderung führen können.</p>
+    <p><b>3.</b> Sie zielt auf den Erwerb von <b>Wissen und Kompetenz für eine neue berufliche
+      Tätigkeit</b> ab — <b>sofern</b> der Wiedererwerb der Fähigkeiten im bisherigen Beruf
+      <b>nicht erfolgversprechend</b> ist.</p>
+    <p>Beachte das Wort <b>„bedroht“</b> im ersten Teil: Reha beginnt <b>vor</b> der
+      Pflegebedürftigkeit, nicht erst danach.</p>
+    <p class="fr">La réadaptation commence <b>avant</b> la dépendance, pas après.</p>
+  </div>
+
+  <h3>Die neun Ziele</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Ziel</th><th>Wozu</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Vorbeugung drohender Beeinträchtigung</td>
+          <td><b>sekundäre Prävention</b></td></tr>
+        <tr><td class="k">Wiederherstellung von Gesundheit</td><td>—</td></tr>
+        <tr><td class="k">Behandlung und Bewältigung von Krankheit</td>
+          <td>ggf. <b>Leben mit Beeinträchtigung</b> — die <b>Lebensqualität verbessern</b></td></tr>
+        <tr><td class="k">Verhindern von Rückfällen</td><td><b>tertiäre Prävention</b></td></tr>
+        <tr><td class="k">Veränderung der sozialen Situation</td>
+          <td>des Patienten <b>und seines Umfelds</b></td></tr>
+        <tr><td class="k">(Wieder-)Eingliederung in den Arbeitsprozess</td><td>—</td></tr>
+        <tr><td class="k">(Wieder-)Eingliederung in die Gesellschaft</td>
+          <td><b>Teilhabe ermöglichen</b></td></tr>
+        <tr><td class="k">Vermeidung und Reduzierung von Pflegebedürftigkeit</td><td>—</td></tr>
+        <tr><td class="k">Längerer Verbleib in der gewählten Lebens- und Wohnumgebung</td>
+          <td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Zwei Wörter, die du in Klausuren brauchst</span>
+    <p><b>Sekundäre Prävention</b> = eine drohende Beeinträchtigung <b>abwenden</b>.
+      <b>Tertiäre Prävention</b> = einen <b>Rückfall verhindern</b>, wenn die Krankheit schon
+      da ist.</p>
+    <p>Der Begriff <b>Teilhabe</b> ist derselbe wie auf deiner Seite <b>Menschen mit
+      Behinderung</b> — und er kommt aus derselben Quelle, der UN-BRK.</p>
+  </div>
+</section>
+
+<section id="warum">
+  <h2>Warum das Thema gerade jetzt wichtig ist</h2>
+  <p class="lead">Fünf Entwicklungen, die der Foliensatz nennt.</p>
+
+  <div class="karten">
+    <div class="karte"><h4>Demografie</h4>
+      <p>Der <b>Anteil älterer Menschen steigt</b>, die <b>Geburtenzahl nimmt ab</b>.</p></div>
+    <div class="karte"><h4>Fortschritt</h4>
+      <p>Medizinischer, therapeutischer und pflegerischer Fortschritt führt zu einer
+        <b>höheren Lebenserwartung — auch bei chronischer Krankheit</b>.</p></div>
+    <div class="karte"><h4>Familie</h4>
+      <p>Die Formen des Zusammenlebens von Generationen verändern sich →
+        <b>Unterstützung durch die Familie ist nicht selbstverständlich</b>.</p></div>
+    <div class="karte"><h4>Umorientierung</h4>
+      <p>Weg von <b>Heilung</b> — hin zu <b>Erhalt und Förderung von Fähigkeiten,
+        Wohlbefinden, Lebensqualität und sozialer Integration</b>.</p></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Der Zusammenhang, der daraus folgt</span>
+    <p>Menschen leben <b>länger mit</b> ihrer Krankheit statt <b>an</b> ihr zu sterben. Damit
+      wird die Frage <b>„Wie geht es weiter?“</b> wichtiger als die Frage <b>„Wird es wieder
+      gut?“</b> — und genau das ist der Gegenstand des Phasenmodells weiter unten.</p>
+  </div>
+</section>
+
+<section id="geld">
+  <h2>Struktur und Finanzierung — und warum das deine Arbeit verändert</h2>
+
+  <div class="gefahr">
+    <span class="t">Das DRG-System und seine Folgekette</span>
+    <p><b>Ursache:</b> Seit der Einführung des <b>DRG-Systems</b> (<i>diagnosis related
+      groups</i>, diagnosebezogene Fallgruppen) ist die <b>Verweildauer im Akutkrankenhaus
+      verkürzt</b>. → <b>Wirkung:</b> Patientinnen und Patienten werden <b>früher entlassen</b>.
+      → <b>Gefahr:</b> Sie kommen <b>kränker und pflegebedürftiger</b> in der Reha und zu Hause
+      an. → <b>Deshalb:</b> kommt dem <b>Entlassungsmanagement eine große Bedeutung</b> zu, und
+      Patienten in der Reha sind <b>auf umfassende Pflege angewiesen</b>.</p>
+    <p class="fr">Séjours plus courts à l'hôpital → les gens arrivent plus fragiles en
+      réadaptation → d'où l'importance de la préparation de la sortie.</p>
+  </div>
+
+  <p>Die Leistungen der <b>ärztlich verordneten medizinischen Rehabilitation</b> für
+    pflegebedürftige Menschen werden <b>in der Regel durch die gesetzlichen Krankenkassen</b>
+    finanziert. Und: Mit der <b>aktivierenden Pflege</b> formuliert die <b>Pflegeversicherung</b>
+    einen <b>eigenständigen pflegerischen Ansatz der Rehabilitation</b>.</p>
+
+  <h3>Reha in der Ausbildung — zwei Paragraphen, die sich zu widersprechen scheinen</h3>
+  <div class="warnung">
+    <span class="t">§ 5 Abs. 2 gegen § 7 Abs. 1 PflBG</span>
+    <p><b>§ 5 Abs. 2 PflBG</b> nennt als Schwerpunkt der Ausbildung ausdrücklich
+      „…präventive, kurative, <b>rehabilitative</b>, palliative und sozialpflegerische Maßnahmen
+      zur Erhaltung, Förderung, Wiedererlangung oder Verbesserung der physischen und psychischen
+      Situation der zu pflegenden Menschen, ihre Beratung sowie ihre Begleitung in allen
+      Lebensphasen“.</p>
+    <p><b>Aber § 7 Abs. 1 PflBG:</b> <b>Rehabilitationseinrichtungen sind nicht für die
+      verpflichtende praktische Ausbildung zugelassen.</b></p>
+    <p>Die Folie zieht selbst den Schluss: Die Rehabilitation ist <b>„eine gleichrangige Aufgabe
+      von Pflegefachpersonen“</b>. Im palliativen Bereich zielt sie <b>vor allem auf Erhaltung
+      und Verbesserung der Lebensqualität</b>.</p>
+    <p><b>Du lernst es also, ohne einen Pflichteinsatz dort zu haben.</b> Das erklärt, warum
+      dieser Foliensatz so viel Struktur- und Finanzierungswissen enthält: Es ersetzt die
+      Erfahrung, die der Einsatz gebracht hätte.</p>
+    <p class="fr">Le droit l'exige dans la formation, mais les centres de réadaptation ne sont
+      pas des lieux de stage obligatoires. D'où ce cours très théorique.</p>
+  </div>
+
+  <h3>Die vier Leistungsarten</h3>
+  <div class="karten">
+    <div class="karte"><h4>Medizinische Reha</h4></div>
+    <div class="karte"><h4>Berufliche Reha</h4></div>
+    <div class="karte"><h4>Soziale Reha</h4></div>
+    <div class="karte"><h4>Unterhaltssicherung</h4></div>
+  </div>
+</section>
+
+<section id="traeger">
+  <h2>Die fünf Kostenträger — und woran man sie auseinanderhält</h2>
+  <p class="lead">Welcher Träger zahlt, hängt <b>von Ziel und Ursache</b> des Reha-Bedarfs ab.
+    Der Foliensatz nennt zu jedem Träger genau ein Stichwort — und das ist die Merkhilfe.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Kostenträger</th><th>Wofür er zuständig ist</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Krankenversicherung</td><td><b>Gesundheit</b></td></tr>
+        <tr><td class="k">Rentenversicherung</td><td><b>Erwerbsfähigkeit</b></td></tr>
+        <tr><td class="k">Unfallversicherung</td><td>Folgen eines <b>Arbeitsunfalls</b> oder
+          einer <b>Berufserkrankung</b></td></tr>
+        <tr><td class="k">Pflegeversicherung</td><td><b>Vermeidung und Reduktion von
+          Pflegebedürftigkeit</b></td></tr>
+        <tr><td class="k">Sozialhilfeträger</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Eselsbrücke</span>
+    <p>Frag nicht „Wer bezahlt?“, sondern <b>„Was soll gerettet werden?“</b> — die
+      <b>Gesundheit</b>, die <b>Arbeitsfähigkeit</b>, die Folgen eines <b>Unfalls bei der
+      Arbeit</b> oder die <b>Selbstständigkeit</b>. Dann steht der Träger fest.</p>
+    <p><b>Beim Sozialhilfeträger nennt die Folie kein Stichwort.</b> Ich habe keins dazuerfunden
+      — frag im Kurs nach.</p>
+    <p class="fr">Ne demande pas « qui paie ? » mais « qu'est-ce qu'on cherche à sauver ? ».</p>
+  </div>
+</section>
+
+<section id="icf">
+  <h2>Das biopsychosoziale Modell der ICF</h2>
+
+  <div class="merk">
+    <span class="t">Was die ICF ist — und wie sie sich von der ICD-10 unterscheidet</span>
+    <p>Die <b>ICF</b> gehört zu den Klassifikationen der <b>WHO</b>. Sie <b>ergänzt</b> die
+      gebräuchliche Einteilung der Krankheiten (die ICD) und legt ihrer Klassifikation ein
+      <b>biopsychosoziales Modell</b> zugrunde.</p>
+    <p>Damit <b>„spannt sie den Bogen weiter als die auf Krankheiten bezogene ICD-10“</b>:
+      Es lassen sich die <b>gesundheitlichen und sozialen Folgen</b> abbilden, die
+      <b>die Lebenswirklichkeit der betroffenen Menschen verändern</b>.</p>
+    <p><b>Kurz:</b> Die ICD sagt, <b>was jemand hat</b>. Die ICF sagt, <b>was das für sein
+      Leben bedeutet</b>.</p>
+    <p class="fr">La CIM dit ce qu'on <b>a</b>. La CIF dit ce que ça <b>change dans la vie</b>.</p>
+  </div>
+
+  <h3>Die sechs Betrachtungsebenen</h3>
+  <div class="karten">
+    <div class="karte"><h4>Gesundheitsproblem</h4></div>
+    <div class="karte"><h4>Körperfunktionen &amp; -strukturen</h4></div>
+    <div class="karte"><h4>Aktivitäten</h4></div>
+    <div class="karte"><h4>Partizipation (Teilhabe)</h4></div>
+    <div class="karte"><h4>Umweltfaktoren</h4></div>
+    <div class="karte"><h4>Personenbezogene Faktoren</h4></div>
+  </div>
+
+  <h3>Die Rolle der Pflege — vier Wörter</h3>
+  <p><b>Aktivierung und Motivation</b> · <b>Beratung &amp; Edukation</b> ·
+    <b>Alltagsorientierung</b> · <b>Teilhabeförderung</b></p>
+
+  <h3>Wo Pflegefachpersonen in der Reha arbeiten</h3>
+  <p>Reha-Kliniken · Reha-Beratung · <b>Case-Management</b> · <b>„Parkinson-Nurse“</b> ·
+    <b>„Stroke-Nurse“</b> · Frührehabilitation. Die Folie schließt: <b>„Das Feld […] ist
+    vielfältig.“</b></p>
+</section>
+
+<section id="fall">
+  <h2>Der Fall Bauingenieur — dein Arbeitsauftrag</h2>
+  <p class="lead">Er steht zweimal im Ordner: einmal im Foliensatz, einmal als eigenes
+    Arbeitsblatt. <b>Bearbeitet ist er nicht.</b></p>
+
+  <div class="merk">
+    <span class="t">Der Fall, gekürzt — der Wortlaut steht auf deinem Arbeitsblatt</span>
+    <p>Ein <b>45-jähriger Bauingenieur</b> klagt <b>seit sieben Monaten</b> über vermehrte
+      <b>Müdigkeit nach geistigen Anstrengungen</b>, oft mit <b>abnehmender Arbeitsleistung</b>.
+      Die geistige Ermüdbarkeit beschreibt er als <b>Konzentrationsschwäche</b> und
+      <b>ineffektives Denken</b>. Dazu <b>Schwindelgefühl, Spannungskopfschmerz</b> und
+      allgemeine Unsicherheit.</p>
+    <p>Der <b>Kontakt zu seinem 15-jährigen Sohn</b> fällt ihm zunehmend schwer. Sorge,
+      <b>Reizbarkeit, Freudlosigkeit, Schlafstörungen, Depression und Angst</b> führen ihn
+      <b>auf Anregung seiner Ehefrau</b> zum Hausarzt, der eine <b>rezidivierende depressive
+      Episode (F33.0)</b> diagnostiziert. Die bisherige <b>medikamentöse Therapie</b> bringt
+      keine wesentliche Verbesserung.</p>
+    <p>Durch eine <b>Erbschaft</b> keine Geldsorgen, die <b>Ehefrau unterstützt</b> ihn,
+      beruflich <b>nicht überfordert</b>. Freunde und Kollegen <b>„nerven“</b> ihn. Der
+      <b>sonntägliche Kirchgang</b> ist nur noch mit Mühe möglich. Das <b>„Leben“ macht ihm
+      keinen Spaß mehr</b>. Eine <b>ambulante Psychotherapie</b> ist erst <b>in drei
+      Monaten</b> möglich. Deshalb: <b>Antrag auf eine psychotherapeutisch-psychosomatische
+      Reha-Maßnahme</b>.</p>
+  </div>
+
+  <h3>Der Auftrag — und die vier Fragen der interaktiven Übung</h3>
+  <p><b>„Wenden Sie bitte das Biopsychosoziale Modell auf das Fallbeispiel an. Finden Sie für
+    jeden der im Modell genannten Punkte die passenden Beispiele aus dem Fall.“</b></p>
+  <p>Im Foliensatz steht dazu die interaktive Übung mit vier Fragen:</p>
+  <ul>
+    <li>Welche <b>Aktivitäten und Teilhabe</b> sind eingeschränkt?</li>
+    <li>Welche <b>Körperfunktionen und -strukturen</b> sind betroffen?</li>
+    <li>Welche <b>Umwelt- und personenbezogenen Faktoren</b> <b>helfen oder hindern</b>?</li>
+    <li>Welche <b>pflegerischen Maßnahmen</b> könnten unterstützen?</li>
+  </ul>
+
+  <div class="gefahr">
+    <span class="t">Der Tipp, der den Unterschied macht — und warum ich den Fall nicht löse</span>
+    <p><b>Ich fülle die Tabelle nicht für dich aus.</b> Sie ist dein Arbeitsauftrag, und die
+      Punkte gibt es fürs Zuordnen, nicht fürs Abschreiben.</p>
+    <p>Aber ein Hinweis zur dritten Frage, weil er die häufigste Falle ist: Sie fragt nach
+      Faktoren, die <b>helfen ODER hindern</b>. Der Fall ist absichtlich so geschrieben, dass
+      beides drinsteht — <b>Erbschaft, unterstützende Ehefrau und keine berufliche
+      Überforderung auf der einen Seite</b>, <b>drei Monate Wartezeit auf die Psychotherapie
+      auf der anderen</b>. Wer nur das Negative aufzählt, hat die halbe Aufgabe nicht gesehen.</p>
+    <p><b>Schick mir deine ausgefüllte Tabelle</b> — dann korrigiere ich sie.</p>
+    <p class="fr">La troisième question demande ce qui <b>aide</b> aussi, pas seulement ce qui
+      gêne. Le cas contient les deux exprès.</p>
+  </div>
+</section>
+
+<section id="modell">
+  <h2>Schaeffer und Moers — wer sie sind und woher das Modell kommt</h2>
+
+  <div class="karten">
+    <div class="karte"><h4>Martin Moers</h4>
+      <p><b>Krankenpfleger</b> mit Erfahrung mit chronisch Kranken · <b>Professor für
+        Pflegewissenschaft</b> · Mitglied der wissenschaftlichen Leitung des
+        <b>DNQP</b> (dort kommen die Expertenstandards her, die du schon kennst).</p></div>
+    <div class="karte"><h4>Doris Schaeffer</h4>
+      <p><b>Soziologie und Erziehungswissenschaft</b> · Wissenschaftszentrum ·
+        <b>Professur für Gesundheitswissenschaften</b> · verschiedene
+        Forschungsprojekte.</p></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Woher das Modell stammt</span>
+    <p><b>Fokus:</b> Erwachsene mit <b>somatischer, chronisch-progredienter</b> Erkrankung.</p>
+    <p><b>Grundlage:</b> <b>empirische Studien</b> — und es <b>knüpft an das Trajektmodell nach
+      Corbin und Strauss an</b>.</p>
+    <p><b>Quelle:</b> Schaeffer, D. / Moers, M.: <i>Überlebensstrategien — ein Phasenmodell zum
+      Charakter des Bewältigungshandelns chronisch Erkrankter</i>. Pflege &amp; Gesellschaft,
+      13. Jg., <b>2008</b>.</p>
+    <p><b>Der Perspektivwechsel</b>, den die Folie als Bild zeigt: von der
+      <b>Außenperspektive auf die chronische Erkrankung</b> hin zur
+      <b>Perspektive der Pflegeempfängerin</b>.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Drei Sätze, die die Folie über die Grenzen des Modells sagt</span>
+    <p><b>„Das Phasenmodell hat nur idealtypischen Charakter.“</b> — Kein Mensch durchläuft die
+      sechs Phasen so sauber der Reihe nach.</p>
+    <p><b>„Das Modell bietet keine Handlungsvorschläge.“</b></p>
+    <p><b>„Es dient als Wissensgrundlage.“</b></p>
+    <p>Merk dir das für die Prüfung: Wenn du nach den <b>Pflegemaßnahmen</b> gefragt wirst,
+      kommen die <b>nicht aus dem Modell</b> — du musst sie selbst aus dem Erleben der Phase
+      ableiten. <b>Genau das ist der Arbeitsauftrag deiner Dozentin.</b></p>
+    <p class="fr">Le modèle explique, il ne prescrit pas. Les mesures de soins, c'est à toi de
+      les déduire.</p>
+  </div>
+
+  <h3>Die Herausforderungen chronischer Erkrankungen</h3>
+  <p><b>Tiefer, biografischer Einschnitt</b> (Identitätskrisen) · negative körperliche
+    Begleiterscheinungen · Verunsicherungen · <b>Unberechenbarkeit des Krankheitsverlaufs</b>
+    (Verlaufsdynamik) · <b>Umstellungsprozesse im Alltag</b> · Einfluss auf das System
+    <b>Familie</b> · <b>Ambiguität</b> · Symptome, Therapien, Untersuchungen.</p>
+  <p>Das Wort <b>Ambiguität</b> steht auch hier — dasselbe wie in der
+    <b>Ambiguitätstoleranz</b> auf deiner Kultur-Seite. Chronisch krank sein heißt
+    <b>dauerhaft im Mehrdeutigen leben</b>.</p>
+</section>
+
+<section id="phasen">
+  <h2>Die sechs Phasen</h2>
+  <p class="lead">Die Inhalte hier stammen aus dem <b>Originaltext</b>, den du gelesen hast —
+    nicht aus der Zusammenfassung einer Mitschülerin.</p>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Im Vorfeld der Diagnose</h4>
+      <p>Chronische Krankheiten haben meist eine <b>längere Vorlaufzeit</b> mit zunächst
+        <b>unscheinbar anmutenden Veränderungen</b>. Trotz Verunsicherung versuchen die
+        Erkrankten, diese Anzeichen <b>so lange wie möglich zu normalisieren oder zu
+        verdrängen</b> — bis die körperlichen oder psychischen <b>Vorboten</b> so störend
+        werden, dass die Abklärung unumgänglich wird.</p>
+      <p>Der Weg zur gesicherten Diagnose führt dann <b>„über zahlreiche Instanzen“</b> und kann
+        sich <b>„einer Odyssee gleichend, über Wochen und manchmal Monate“</b> hinziehen.
+        Die Unsicherheit wird von Erkrankten <b>und ihren Familien</b> durchgängig als
+        <b>belastend und zermürbend</b> empfunden.</p></div></div>
+
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Krankheitsbeginn — Manifestation</h4>
+      <p>Die Diagnose wird <b>zugleich als Erleichterung und als Schock</b> erlebt: ein
+        <b>„plötzlicher Absturz aus dem normalen Leben“</b>, <b>zunächst kaum zu
+        verarbeiten</b>. Charmaz nennt diesen Zustand <b>„Life is out of control“</b> — ein
+        vorübergehender Zustand von <b>Ohnmacht und Handlungsunfähigkeit</b>. Die Diagnose zieht
+        oft eine <b>biografische Zäsur</b> nach sich.</p>
+      <p>Der Satz eines Patienten aus der Studie: <b>„Man stürzt so tief ab, weil man sich eine
+        andere Lebensplanung zurechtgelegt hat. Ich will das und das tun in meinem Leben und
+        dann geht das auf einmal nicht mehr.“</b></p>
+      <p><b>Das Entscheidende für die Pflege:</b> In dieser Phase ist die <b>Sinnfrage
+        dringlicher als die Krankheitsbewältigung</b>. Die Bewältigung <b>delegieren</b> die
+        Erkrankten an den Arzt und fügen sich <b>„zunächst oft fraglos in die traditionelle
+        Patientenrolle“</b>.</p></div></div>
+
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Restabilisierung — Renormalisierung?</h4>
+      <p>Der Gesundheitszustand <b>konsolidiert sich</b>, die Therapie <b>beginnt zu
+        greifen</b>, eine erste vorsichtige Entspannung setzt ein. Die Erkrankten sind bestrebt,
+        die <b>Wiederherstellung von Normalität</b> zu ermöglichen und ihr Leben
+        <b>„wieder ins Lot zu bringen“</b>.</p>
+      <p>Das Zitat aus der Studie: <b>„Ich mach absolut alles, was die gesagt haben, absolut.
+        Ich nehme die Medikamente absolut pünktlich, vollständig und ordentlich. … Ich will
+        wieder mein vorheriges normales Leben führen können.“</b></p>
+      <p>Therapiehinweise werden <b>eher unhinterfragt akzeptiert</b> und mit <b>hoher Adhärenz
+        (Therapiemotivation)</b> befolgt — das Bild des <b>verantwortungsbewussten und
+        ko-produktiven Patienten</b>.</p>
+      <p><b>Der Haken, den die Folie ausdrücklich nennt:</b> Die Erkrankten folgen hier
+        <b>„dem vertrauten Muster des Umgangs mit Akuterkrankungen“</b> und <b>erfassen nicht,
+        was Chronizität faktisch bedeutet</b>.</p></div></div>
+
+    <div class="stufe"><span class="nr n2">4</span><div>
+      <h4>Auf und Ab der Krankheit</h4>
+      <p>Erst jetzt wird bewusst, dass die Hoffnung auf Rückkehr <b>„einem Trugschluss
+        gleichkommt“</b> und die Krankheit <b>dauerhaft</b> ist. <b>Enttäuschung und
+        Ernüchterung</b> breiten sich aus — und die Erkrankten werden <b>„von vorbildlichen zu
+        normalen Patienten“</b>: Sie hinterfragen das Therapieregime, <b>greifen stillschweigend
+        in das Medikamentenregime ein</b> oder ziehen <b>zusätzliche Expertise</b> hinzu.</p>
+      <p>Gleichzeitig wird ihnen deutlich, wie <b>„ahnungslos“</b> sie der Krankheit
+        gegenüberstehen — sie beginnen, <b>sich „kundig zu machen“, zu informieren und zu
+        expertisieren</b>, und erwarten Unterstützung vor allem vom Arzt.</p>
+      <p>Das Zitat, das zeigt, was dabei schiefgeht: <b>„Ich habe das bei den Ärzten
+        angesprochen, wie mache ich das? Aber da kommen dann auch keine tollen Hilfen. (…) die
+        konnten nur sagen: ‚Du musst dir selbst Schritte überlegen, wie Du das machst.‘“</b></p>
+      <p>Sie <b>stoßen an Zeitgrenzen</b> und fühlen sich <b>„mit ihren Belangen und Nöten
+        bagatellisiert“</b>.</p></div></div>
+
+    <div class="stufe"><span class="nr n2">5</span><div>
+      <h4>Beginn der Abwärtsentwicklung</h4>
+      <p>Diese Phase <b>kündigt das Nahen des Lebensendes an</b> und ruft <b>Angst, Ohnmacht
+        und Hilflosigkeit</b> hervor, zuweilen <b>Frustration, Bitterkeit und Groll</b>. Sie
+        beginnt <b>nicht abrupt, sondern schleichend</b>, begleitet von <b>neuen Krisen und
+        Zustandsverschlechterungen unklarer Ursache</b>.</p>
+      <p><b>Der Satz, auf den es pflegerisch ankommt:</b> Diese Verschlechterungen werden
+        <b>„vom sozialen Umfeld oft kaum registriert“</b> — und die Erkrankten <b>„haben nicht
+        mehr die nötige Energie, um korrigierend einzugreifen“</b>. Sie sind darauf angewiesen,
+        dass ihre Situation <b>„ohne lange Erklärungen verstanden“</b> wird.</p>
+      <p>Geschieht das nicht, werden sie zu <b>kritischen, aber auch überforderten
+        Patienten</b>. Der Text benennt außerdem, was die Profis oft tun: Sie <b>„ziehen sich
+        stillschweigend zurück“</b> — <b>genau dann, wenn mehr gebraucht würde</b>. Gefordert
+        ist <b>„eine protektive, gleichwohl nicht de-autonomisierende Versorgung“</b>.</p></div></div>
+
+    <div class="stufe"><span class="nr n2">6</span><div>
+      <h4>Abwärtsentwicklung und Sterben</h4>
+      <p>Der Krankheitsverlauf gewinnt <b>noch einmal an Dynamik und Komplexität</b>. Die
+        <b>Handlungsanforderungen steigen</b>, gleichzeitig steigen die <b>Einschränkungen der
+        Handlungsfähigkeit</b> und die <b>Vulnerabilität</b>. Durch den medizinischen Fortschritt
+        verläuft diese Phase <b>langsamer als früher</b>.</p>
+      <p>Die Erkrankten sind <b>„fast vollständig auf die Unterstützung anderer verwiesen“</b>
+        und werden <b>„immer mehr zu leidenden und erduldenden Patienten“</b>. Besonders schwer
+        ist es, <b>zu ertragen, dass andere stellvertretend für sie agieren</b>.</p>
+      <p>Das gilt umso mehr, wenn die <b>Hilfesituation als unsicher und instabil</b> empfunden
+        wird — <b>weil pflegende Angehörige selbst überfordert sind</b>. Gewünscht wird
+        <b>„eine protektive Versorgung, die allen Beteiligten hinreichend Sicherheit
+        bietet“</b>.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Der Satz, der Phase 5 und 6 zusammenhält</span>
+    <p><b>„Gerade weil die Ressourcen und Selbstmanagementpotenziale der Erkrankten mit
+      Voranschreiten der Krankheit sukzessiv weniger werden, bedarf es einer Intensivierung der
+      professionellen Unterstützung.“</b></p>
+    <p>Und der Zusatz, der es schwer macht: <b>protektiv, aber nicht de-autonomisierend</b> —
+      also <b>schützen, ohne zu entmündigen</b>. Das ist keine Floskel, das ist die eigentliche
+      Aufgabe.</p>
+    <p class="fr">Protéger sans déposséder. C'est là toute la difficulté de la fin de parcours.</p>
+  </div>
+</section>
+
+<section id="rollen">
+  <h2>Die Patientenrollen — die kürzeste Art, sich das Modell zu merken</h2>
+  <p class="lead">Durch alle sechs Phasen zieht sich eine <b>Kette von Rollen</b>. Wer sie kann,
+    kann das Modell.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Phase</th><th>Die Rolle</th><th>Das Leitwort</th></tr></thead>
+      <tbody>
+        <tr><td class="k">1 · Vor der Diagnose</td><td>noch <b>kein</b> Patient</td>
+          <td><b>Normalisieren und verdrängen</b></td></tr>
+        <tr><td class="k">2 · Krankheitsbeginn</td>
+          <td><b>traditionelle Patientenrolle</b>, fraglos übernommen</td>
+          <td><b>Delegieren</b> — die Sinnfrage ist dringlicher</td></tr>
+        <tr><td class="k">3 · Restabilisierung</td>
+          <td><b>vorbildlicher, ko-produktiver Patient</b></td>
+          <td><b>Hohe Adhärenz</b> — aber Chronizität nicht erfasst</td></tr>
+        <tr><td class="k">4 · Auf und Ab</td><td><b>normaler Patient</b></td>
+          <td><b>Hinterfragen und expertisieren</b></td></tr>
+        <tr><td class="k">5 · Beginn der Abwärtsentwicklung</td>
+          <td><b>kritischer, aber überforderter Patient</b></td>
+          <td><b>Sich unverstanden fühlen</b></td></tr>
+        <tr><td class="k">6 · Abwärtsentwicklung und Sterben</td>
+          <td><b>leidender und erduldender Patient</b></td>
+          <td><b>Aushalten müssen</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die Umkehrung, die dabei sichtbar wird</span>
+    <p>Der <b>„vorbildlichste“</b> Patient ist der in <b>Phase 3</b> — und genau er
+      <b>hat noch nicht verstanden, was Chronizität bedeutet</b>. Der <b>„schwierige“</b>
+      Patient in Phase 4 ist der, der <b>begriffen hat</b>.</p>
+    <p><b>Das ist meine Zuspitzung</b>, aber sie steht so in den Sätzen des Originaltextes:
+      Phase 3 — <b>„erfassen nicht, was Chronizität faktisch bedeutet“</b>; Phase 4 —
+      <b>„wird den Erkrankten bewusst, dass die Krankheit dauerhaft ist“</b>.</p>
+    <p>Wenn du das in einer <b>Beurteilen</b>-Aufgabe schreibst, hast du den Unterschied
+      zwischen Wiedergeben und Verstehen gezeigt.</p>
+    <p class="fr">Le patient le plus « exemplaire » est celui qui n'a pas encore compris. Le
+      « difficile » est celui qui a compris.</p>
+  </div>
+
+  <h3>Die Wörter dazu</h3>
+  <div class="paare">
+    <div class="paar"><span class="de">das Bewältigungshandeln (nur Singular)</span>
+      <span class="frx">les stratégies d'adaptation, le coping</span></div>
+    <div class="paar"><span class="de">chronisch-progredient</span>
+      <span class="frx">chronique et évolutif</span></div>
+    <div class="paar"><span class="de">die Chronizität (nur Singular)</span>
+      <span class="frx">la chronicité</span></div>
+    <div class="paar"><span class="de">die Adhärenz (nur Singular)</span>
+      <span class="frx">l'adhésion au traitement</span></div>
+    <div class="paar"><span class="de">die biografische Zäsur, -en</span>
+      <span class="frx">la rupture biographique</span></div>
+    <div class="paar"><span class="de">die Restabilisierung (nur Singular)</span>
+      <span class="frx">la restabilisation</span></div>
+    <div class="paar"><span class="de">die Vulnerabilität (nur Singular)</span>
+      <span class="frx">la vulnérabilité</span></div>
+    <div class="paar"><span class="de">bagatellisieren</span>
+      <span class="frx">minimiser, banaliser (un problème)</span></div>
+    <div class="paar"><span class="de">die Teilhabe (nur Singular)</span>
+      <span class="frx">la participation sociale</span></div>
+    <div class="paar"><span class="de">die Erwerbsfähigkeit (nur Singular)</span>
+      <span class="frx">la capacité de travail</span></div>
+    <div class="paar"><span class="de">die Verweildauer, -n</span>
+      <span class="frx">la durée de séjour</span></div>
+    <div class="paar"><span class="de">das Entlassungsmanagement (nur Singular)</span>
+      <span class="frx">la préparation de la sortie</span></div>
+    <div class="paar"><span class="de">die aktivierende Pflege</span>
+      <span class="frx">les soins activants (qui font faire plutôt que faire à la place)</span></div>
+    <div class="paar"><span class="de">die Selbstmanagementkompetenz (nur Singular)</span>
+      <span class="frx">la compétence d'autogestion</span></div>
+  </div>
+</section>
+
+<section id="tabelle">
+  <h2>Die ausgefüllte Tabelle — und wie du damit umgehst</h2>
+
+  <div class="warnung">
+    <span class="t">Woher sie stammt</span>
+    <p>Eine der Dateien ist die <b>ausgefüllte Arbeitstabelle</b> zum Auftrag — mit vier Spalten:
+      <b>Wichtige Informationen · Erleben der Krankheitssituation · Bewältigungshandeln ·
+      Pflegemaßnahmen</b>.</p>
+    <p><b>Es ist eine Schülerarbeit, kein Dozentenmaterial.</b> Das sieht man an Tippfehlern und
+      unfertigen Sätzen. Sie ist trotzdem wertvoll — vor allem die <b>vierte Spalte</b>, denn
+      <b>Pflegemaßnahmen stehen weder im Originaltext noch im Foliensatz</b>; das Modell bietet
+      ja ausdrücklich <b>keine Handlungsvorschläge</b>.</p>
+    <p><b>Behandle sie als Ideensammlung, nicht als Musterlösung.</b> Für eine Klausur zitierst
+      du den Originaltext, nicht die Tabelle.</p>
+    <p class="fr">C'est le travail d'un·e élève, pas un corrigé. Bon pour les idées, pas pour
+      citer.</p>
+  </div>
+
+  <h3>Was in der vierten Spalte steht — Pflegemaßnahmen pro Phase</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Phase</th><th>Vorgeschlagene Pflegemaßnahmen</th></tr></thead>
+      <tbody>
+        <tr><td class="k">1 · Vor der Diagnose</td>
+          <td>Helfen, die <b>Symptome wahrzunehmen</b> · <b>ermutigen</b> · Gespräche mit
+            Angehörigen führen · die <b>ärztliche Kommunikation fördern</b></td></tr>
+        <tr><td class="k">2 · Krankheitsbeginn</td>
+          <td>Über <b>Selbsthilfegruppen</b> informieren · <b>offene Kommunikation</b> von
+            Ärzten und Pflege · <b>Struktur in den Alltag bringen</b> (über neue Ziele
+            nachdenken, Angehörige einbeziehen) · ausführliche Aufklärung über das medizinische
+            Vorgehen · <b>Ressourcen fördern</b></td></tr>
+        <tr><td class="k">3 · Restabilisierung</td>
+          <td><b>Förderung der Selbstständigkeit</b> · Förderung der Kommunikation ·
+            Entwicklung einer <b>individuellen Bewältigungsstrategie</b> ·
+            <b>Anleitung und Beratung</b> · Motivation fördern</td></tr>
+        <tr><td class="k">4 · Auf und Ab</td>
+          <td><b>Wissen vermitteln und beraten</b> — zu Krankheit, Therapien, Anlaufstellen und
+            zum <b>Aufbau des Gesundheitssystems</b> · <b>Hilfe zur Selbsthilfe</b>, damit die
+            Krankheit selbst gemanagt werden kann · <b>aktives Zuhören</b>, Probleme
+            <b>ernst nehmen und nicht banalisieren</b></td></tr>
+        <tr><td class="k">5 · Beginn der Abwärtsentwicklung</td>
+          <td><b>Aktiv zuhören</b>, emotional unterstützen, <b>Sorgen und Ängste erfragen</b>
+            und gegensteuern · <b>Förderung und Wahrung der Autonomie</b>, bei Bedarf
+            unterstützen</td></tr>
+        <tr><td class="k">6 · Abwärtsentwicklung und Sterben</td>
+          <td><b>Sichere und stabile Versorgung</b> · <b>Angehörige entlasten</b> · emotionale
+            Unterstützung · <b>Wünsche wahrnehmen</b> · ggf. <b>palliativen Pflegedienst oder
+            ein Hospiz</b> hinzuziehen und organisieren</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Eine Zeile aus der Tabelle, die du so nicht übernehmen solltest</span>
+    <p>In Phase 6 steht als Maßnahme: <b>„Im Notfall BTM benutzen“</b>.</p>
+    <p><b>Betäubungsmittel</b> werden <b>ärztlich verordnet</b> — „benutzen“ ist keine
+      pflegerische Maßnahme, die eine Auszubildende entscheidet. Was gemeint sein dürfte, ist
+      die <b>ärztlich angeordnete Bedarfsmedikation</b> in der palliativen Situation. <b>Ich
+      weiß es nicht und schreibe hier keine Regel hin, die nicht in deinen Unterlagen steht</b> —
+      aber diese Zeile <b>so</b> in eine Klausur zu schreiben, wäre riskant.</p>
+    <p><b>Frag im Kurs nach, was dort genau gemeint war.</b></p>
+    <p class="fr">Ne recopie pas cette ligne telle quelle. Demande ce qui était visé.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Und der bessere Weg</span>
+    <p>Die drei Spalten <b>Informationen · Erleben · Bewältigungshandeln</b> lassen sich aus dem
+      Originaltext <b>belegen</b>. Die vierte Spalte ist <b>Transferleistung</b> — genau das,
+      was AFB II und III verlangen.</p>
+    <p>Füll sie <b>selbst</b> aus, ohne die fremde Tabelle daneben, und vergleich danach. Was
+      bei dir anders ist, ist die interessante Stelle — <b>schick sie mir</b>.</p>
+  </div>
+</section>
+
+<section id="offen">
+  <h2>Was fehlt</h2>
+
+  <div class="warnung">
+    <span class="t">Vier offene Punkte</span>
+    <p><b>1. Der Fall Bauingenieur</b> ist <b>nicht bearbeitet</b> — weder im Arbeitsblatt noch
+      im Foliensatz gibt es eine Lösung.</p>
+    <p><b>2. Die Ergebnissicherung</b> zur ICF-Übung ist im Foliensatz nur eine Überschrift
+      ohne Inhalt.</p>
+    <p><b>3. Beim Sozialhilfeträger</b> nennt die Folie als einzigem Kostenträger
+      <b>kein Stichwort</b>.</p>
+    <p><b>4. Die Datei „QR AB Rehabilitation“</b> ist <b>nur ein QR-Code-Bild</b>. Wohin er
+      führt und welches Arbeitsblatt dahintersteht, <b>weiß ich nicht</b> — ich habe ihn nicht
+      aufgelöst. Scan ihn mit dem Handy; wenn dort etwas Wichtiges steht, schick es mir.</p>
+    <p class="fr">Quatre trous. Le QR code, je ne l'ai pas suivi — scanne-le toi-même.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Brücken zu deinen anderen Seiten</span>
+    <p><b>Menschen mit Behinderung:</b> derselbe Teilhabebegriff, dieselbe Quelle (UN-BRK) —
+      und die ICF ist das Modell, das dort hinter dem Wort <b>Barriere</b> steckt.</p>
+    <p><b>Verantwortliches Pflegehandeln:</b> <i>protektiv, aber nicht de-autonomisierend</i> ist
+      ein Wertekonflikt im Sinne von <b>Phase 2</b> nach Heffels — <b>Fürsorge</b> gegen
+      <b>Selbstbestimmung</b>.</p>
+    <p><b>Pflegeplanung in fünf Tagen:</b> Die Phase sagt dir, welches <b>Ziel</b> realistisch
+      ist. In Phase 3 kannst du <b>Selbstständigkeit fördern</b>, in Phase 6 geht es um
+      <b>Sicherheit und Entlastung</b>. Dasselbe Problem, ein anderes Ziel.</p>
+    <p><b>Kultursensible Pflege:</b> Auch dort steht <b>Ambiguität</b> — und derselbe Grundsatz,
+      den Erkrankten <b>als Fachmann seiner eigenen Situation</b> zu sehen.</p>
+  </div>
+</section>
+
+<details class="quelle">
+  <summary>Die sechs Quellen — jede einzeln genannt</summary>
+  <div class="inh">
+    <ul>
+      <li><b>Unterricht_Pflege_Reha.pdf</b> — Foliensatz <b>Kerstin Schnapp-Benend M.A.
+        Pflegepädagogik</b>, <b>CE 07 / UE 1</b>: Definition, Ziele, Bedeutung, Struktur und
+        Finanzierung, PflBG, Leistungen, Träger, ICF, Rolle der Pflege, Arbeitsfelder.</li>
+      <li><b>Einstieg Phasenmodell Schaeffer Moers.pdf</b> — Einstiegsfolien
+        <b>CE 07 Rehabilitation / UE 01 Konzepte in der Rehabilitation</b>: die Begründer, die
+        Herkunft aus dem Trajektmodell nach Corbin/Strauss, die Grenzen des Modells, die
+        Herausforderungen, die sechs Phasennamen und der Arbeitsauftrag. Nennt als Literatur
+        <b>Schaeffer/Moers, Pflege &amp; Gesellschaft, 13. Jg., 2008</b>.</li>
+      <li><b>Text SchaefferMoers.pdf</b> — der <b>Originaltext</b>, aus dem alle Phasenbeschreibungen
+        und alle Zitate auf dieser Seite stammen. Kapiteltext von <b>D. Schaeffer und
+        J. Haslbeck</b>, <i>Bewältigung chronischer Krankheit</i>, der sich seinerseits auf
+        <b>Schaeffer und Moers (2009)</b> und Schaeffer und Haslbeck (2013) stützt.</li>
+      <li><b>Phasenmodell Schaeffer und Moers.pdf</b> — die <b>ausgefüllte Arbeitstabelle</b>
+        mit vier Spalten. <b>Schülerarbeit</b>, nicht Dozentenmaterial — auf dieser Seite
+        entsprechend gekennzeichnet.</li>
+      <li><b>Rehabillitation Arbeitsauftrag.pdf</b> — das Arbeitsblatt mit dem Fall
+        <i>Psychophysische Erschöpfung</i> und dem Auftrag, das biopsychosoziale Modell darauf
+        anzuwenden. <b>Unbearbeitet.</b></li>
+      <li><b>QR AB Rehabilitation.PNG</b> — <b>nur ein QR-Code-Bild</b>, sonst kein Inhalt.
+        Nicht aufgelöst.</li>
+    </ul>
+    <p>Alle aus deinem Google-Drive-Ordner, geteilt am 18.09.2026.</p>
+    <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> der Abschnitt <i>Der Kerngedanke</i>,
+      der die Einstiegsfolie („Beratungsresistenz, Complianceprobleme“) mit Phase 4 des
+      Originaltextes zusammenbringt · die DRG-Kette · die Rollentabelle und die Zuspitzung, dass
+      der „vorbildlichste“ Patient der ist, der noch nicht verstanden hat · die Merkhilfe zu den
+      Kostenträgern · der Hinweis zur dritten ICF-Frage · und die Warnung zur Zeile
+      „Im Notfall BTM benutzen“.</p>
+    <p>Die französischen Zeilen und die Vokabelübersetzungen sind von mir ergänzt.</p>
+  </div>
+</details>
+
+</main>
+
+<footer>
+  <p>Rehabilitation und Bewältigungshandeln · CE 07 / UE 01 — gebaut aus deinen eigenen Unterlagen.<br>
+    Wo etwas fehlt, aus einer Schülerarbeit stammt oder von mir ist, steht es oben ausdrücklich dabei.</p>
+</footer>
