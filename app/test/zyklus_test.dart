@@ -13,7 +13,7 @@ void main() {
   group('Lektionstag und Übungstag wechseln sich ab', () {
     test('der Starttag ist Lektion 1', () {
       expect(Zyklus.istLektionstag(start, '2026-09-11'), isTrue);
-      expect(Zyklus.lektionsNr(start, '2026-09-11', 56), 1);
+      expect(Zyklus.lektionsNr(start, '2026-09-11', 72), 1);
     });
 
     test('der Tag danach ist Übungstag', () {
@@ -23,52 +23,79 @@ void main() {
 
     test('die bekannten Lektionsdaten stimmen', () {
       // Diese fünf stehen so in CLAUDE.md — sie sind der Prüfstein.
-      expect(Zyklus.lektionsNr(start, '2026-09-13', 56), 2);
-      expect(Zyklus.lektionsNr(start, '2026-09-15', 56), 3);
-      expect(Zyklus.lektionsNr(start, '2026-09-17', 56), 4);
-      expect(Zyklus.lektionsNr(start, '2026-09-19', 56), 5);
-      expect(Zyklus.lektionsNr(start, '2026-09-21', 56), 6);
+      expect(Zyklus.lektionsNr(start, '2026-09-13', 72), 2);
+      expect(Zyklus.lektionsNr(start, '2026-09-15', 72), 3);
+      expect(Zyklus.lektionsNr(start, '2026-09-17', 72), 4);
+      expect(Zyklus.lektionsNr(start, '2026-09-19', 72), 5);
+      expect(Zyklus.lektionsNr(start, '2026-09-21', 72), 6);
     });
 
     test('vor dem Start gibt es nichts', () {
       expect(Zyklus.istLektionstag(start, '2026-09-10'), isFalse);
-      expect(Zyklus.lektionsNr(start, '2026-09-10', 56), 0);
+      expect(Zyklus.lektionsNr(start, '2026-09-10', 72), 0);
     });
   });
 
   group('Themenblöcke dauern zwei Lektionen', () {
     test('Block 1 trägt die Lektionen 1 und 2', () {
-      expect(Zyklus.themenBlock(start, '2026-09-11', 21), 1);
-      expect(Zyklus.themenBlock(start, '2026-09-13', 21), 1);
+      expect(Zyklus.themenBlock(start, '2026-09-11', 29), 1);
+      expect(Zyklus.themenBlock(start, '2026-09-13', 29), 1);
     });
 
     test('Block 2 fängt bei Lektion 3 an', () {
-      expect(Zyklus.themenBlock(start, '2026-09-15', 21), 2);
-      expect(Zyklus.themenBlock(start, '2026-09-17', 21), 2);
+      expect(Zyklus.themenBlock(start, '2026-09-15', 29), 2);
+      expect(Zyklus.themenBlock(start, '2026-09-17', 29), 2);
     });
 
     test('Block 3 — Perfekt und Präteritum — ist der 19. und 21.09.', () {
-      expect(Zyklus.themenBlock(start, '2026-09-19', 21), 3);
-      expect(Zyklus.themenBlock(start, '2026-09-21', 21), 3);
+      expect(Zyklus.themenBlock(start, '2026-09-19', 29), 3);
+      expect(Zyklus.themenBlock(start, '2026-09-21', 29), 3);
     });
   });
 
-  group('Die Wiederholungsphase fängt am 04.12. an', () {
-    test('davor nicht', () {
-      expect(Zyklus.istWiederholung(start, '2026-12-02'), isFalse);
+  // Seit der Verlängerung vom 19.09.2026 läuft die Etappe bis zum 31.01.2027:
+  // 72 Lektionen, 29 Blöcke, Wiederholung ab dem 05.01.2027.
+  group('Die Wiederholungsphase fängt am 05.01.2027 an', () {
+    test('davor nicht — der 03.01. ist noch Block 29', () {
+      expect(Zyklus.istWiederholung(start, '2026-12-04'), isFalse);
+      expect(Zyklus.istWiederholung(start, '2027-01-03'), isFalse);
     });
     test('danach schon', () {
-      expect(Zyklus.istWiederholung(start, '2026-12-04'), isTrue);
-      expect(Zyklus.istWiederholung(start, '2026-12-30'), isTrue);
+      expect(Zyklus.istWiederholung(start, '2027-01-05'), isTrue);
+      expect(Zyklus.istWiederholung(start, '2027-01-31'), isTrue);
+    });
+    test('die Grenze hängt an themenGesamt, nicht an einer festen Zahl', () {
+      // Mit den alten 21 Blöcken lag sie am 04.12.2026 — derselbe Code.
+      expect(Zyklus.istWiederholung(start, '2026-12-02', 21), isFalse);
+      expect(Zyklus.istWiederholung(start, '2026-12-04', 21), isTrue);
+    });
+  });
+
+  group('Die verlängerte Etappe rechnet bis Lektion 72', () {
+    test('Lektion 42 schließt Block 21 am 02.12.2026 ab', () {
+      expect(Zyklus.lektionsNr(start, '2026-12-02', 72), 42);
+      expect(Zyklus.themenBlock(start, '2026-12-02', 29), 21);
+    });
+    test('Block 22 fängt am 04.12.2026 mit Lektion 43 an', () {
+      expect(Zyklus.lektionsNr(start, '2026-12-04', 72), 43);
+      expect(Zyklus.themenBlock(start, '2026-12-04', 29), 22);
+    });
+    test('Block 29 endet mit Lektion 58 am 03.01.2027', () {
+      expect(Zyklus.lektionsNr(start, '2027-01-03', 72), 58);
+      expect(Zyklus.themenBlock(start, '2027-01-03', 29), 29);
+    });
+    test('die letzte Lektion ist Nummer 72 am 31.01.2027', () {
+      expect(Zyklus.istLektionstag(start, '2027-01-31'), isTrue);
+      expect(Zyklus.lektionsNr(start, '2027-01-31', 72), 72);
     });
   });
 
   group('Die Tagesleiste baut Übungstage von selbst', () {
     final daten = Daten.ausJson({
       'start': start,
-      'lektionenGesamt': 56,
-      'themenGesamt': 21,
-      'etappeEnde': '2026-12-31',
+      'lektionenGesamt': 72,
+      'themenGesamt': 29,
+      'etappeEnde': '2027-01-31',
       'lektionen': [
         {'datum': '2026-09-15', 'zyklus': {'lektion': 3}},
         {'datum': '2026-09-13', 'zyklus': {'lektion': 2}},
@@ -115,9 +142,9 @@ void main() {
   group('Eine fehlende Lektion wird als fehlend erkannt', () {
     final mitLuecke = Daten.ausJson({
       'start': start,
-      'lektionenGesamt': 56,
-      'themenGesamt': 21,
-      'etappeEnde': '2026-12-31',
+      'lektionenGesamt': 72,
+      'themenGesamt': 29,
+      'etappeEnde': '2027-01-31',
       'lektionen': [
         // Lektion 4 vom 17.09. ist da, Lektion 5 vom 19.09. fehlt.
         {'datum': '2026-09-17', 'zyklus': {'lektion': 4}},

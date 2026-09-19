@@ -33,9 +33,9 @@ class Daten {
   static Daten ausJson(Map<String, dynamic> j) => Daten(
         stand: (j['stand'] ?? '') as String,
         start: (j['start'] ?? '2026-09-11') as String,
-        lektionenGesamt: (j['lektionenGesamt'] ?? 56) as int,
-        themenGesamt: (j['themenGesamt'] ?? 21) as int,
-        etappeEnde: (j['etappeEnde'] ?? '2026-12-31') as String,
+        lektionenGesamt: (j['lektionenGesamt'] ?? 72) as int,
+        themenGesamt: (j['themenGesamt'] ?? 29) as int,
+        etappeEnde: (j['etappeEnde'] ?? '2027-01-31') as String,
         lektionen: ((j['lektionen'] ?? const []) as List)
             .whereType<Map<String, dynamic>>()
             .map(Lektion.new)
@@ -45,9 +45,9 @@ class Daten {
   static final Daten leer = Daten(
     stand: '',
     start: '2026-09-11',
-    lektionenGesamt: 56,
-    themenGesamt: 21,
-    etappeEnde: '2026-12-31',
+    lektionenGesamt: 72,
+    themenGesamt: 29,
+    etappeEnde: '2027-01-31',
     lektionen: const [],
   );
 

@@ -614,7 +614,7 @@
       </svg>
       <div class="mitte">
         <div class="gross" id="ringNr">—</div>
-        <div class="klein" id="ringVon">von 56</div>
+        <div class="klein" id="ringVon">von 72</div>
       </div>
     </div>
   </div>
@@ -2084,7 +2084,7 @@ function render(){
    Alles wird aus den Lektionen und dem heutigen Datum gerechnet, nichts ist
    fest eingetragen. Das Ziel ist, dass sie beim Öffnen sofort sieht, wie weit
    sie ist — und nicht nur die Lektion von heute. */
-const ETAPPE_ENDE='2026-12-31', LEKTIONEN_GESAMT=56, THEMEN_GESAMT=21;
+const ETAPPE_ENDE='2027-01-31', LEKTIONEN_GESAMT=72, THEMEN_GESAMT=29;
 function zeichneFortschritt(){
   const start=START_DATUM||'2026-09-11';
   const t=Math.round((alsDatum(heuteISO())-alsDatum(start))/86400000);
@@ -2094,7 +2094,7 @@ function zeichneFortschritt(){
   /* Lektionsnummer: was in der Lektion steht, sonst aus dem Datum gerechnet. */
   let lektion=z.lektion||(t>=0?Math.floor(t/2)+1:0);
   lektion=Math.max(0,Math.min(LEKTIONEN_GESAMT,lektion));
-  const wdh=t>82;                                   /* ab 04.12.: Wiederholung */
+  const wdh=t>=THEMEN_GESAMT*4;                     /* ab 05.01.2027: Wiederholung */
   let block=z.themaBlock||(t>=0?Math.floor(t/4)+1:0);
   block=Math.max(0,Math.min(THEMEN_GESAMT,block));
 

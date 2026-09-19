@@ -4,12 +4,17 @@ import '../daten/modelle.dart';
 /// `CLAUDE.md`, nur in Dart.
 ///
 ///     t = (heute − 11.09.2026).days
-///     t gerade und ≥ 0  →  Lektionstag,  lektion = t ~/ 2 + 1   (1 … 56)
+///     t gerade und ≥ 0  →  Lektionstag,  lektion = t ~/ 2 + 1   (1 … 72)
 ///     t ungerade        →  Übungstag
-///     themaBlock        =  t ~/ 4 + 1                            (1 … 21)
+///     themaBlock        =  t ~/ 4 + 1                            (1 … 29)
 ///
-/// Ab t > 82 (also ab dem 04.12.2026) läuft die Wiederholungsphase: kein neues
-/// Grammatikthema mehr.
+/// Ab t ≥ themenGesamt × 4 (mit 29 Blöcken also ab t = 116, dem 05.01.2027)
+/// läuft die Wiederholungsphase: kein neues Grammatikthema mehr.
+///
+/// **Am 19.09.2026 wurde die Etappe bis zum 31.01.2027 verlängert** — vorher
+/// 56 Lektionen und 21 Blöcke bis zum 31.12.2026. Die Grenze der
+/// Wiederholungsphase stand damals als feste 82 im Code und musste von Hand
+/// mitgezogen werden; deshalb rechnet sie sich jetzt aus `themenGesamt`.
 class Zyklus {
   const Zyklus._();
 
@@ -63,8 +68,9 @@ class Zyklus {
     return n < 0 ? 0 : (n > gesamt ? gesamt : n);
   }
 
-  static bool istWiederholung(String start, String datum) =>
-      t(start, datum) > 82;
+  static bool istWiederholung(String start, String datum,
+          [int themenGesamt = 29]) =>
+      t(start, datum) >= themenGesamt * 4;
 
   static const wochentage = [
     'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag',

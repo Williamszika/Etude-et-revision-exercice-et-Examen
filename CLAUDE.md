@@ -50,7 +50,7 @@ ergibt, ein Lerntag pro Tag dagegen rund 62. Ihre Antwort am 08.09.2026:
 > savoir former toutes sortes de phrases du niveau B1."*
 
 **Damit gilt: jeder zweite Tag ab dem 11.09.2026 ist ein Lektionstag, der Tag dazwischen ist
-Übungstag.** Die Etappe endet am **31.12.2026**.
+Übungstag.** Die Etappe endet am **31.01.2027**.
 
 | Fall | Was die 5:30-Routine tut |
 |---|---|
@@ -80,22 +80,23 @@ Deshalb ist Deutsch täglich in **zwei Etappen** geteilt:
 
 | Etappe | Ziel | Zeitraum | Lektionen |
 |---|---|---|---|
-| **1 — läuft** | **A2 → B1** | **11.09.2026 – 31.12.2026** (knapp 4 Monate) | **56 — eine jeden zweiten Tag** |
+| **1 — läuft** | **A2 → B1** | **11.09.2026 – 31.01.2027** (knapp 5 Monate) | **72 — eine jeden zweiten Tag** |
 | 2 — danach | B1 → B2, dann telc Deutsch B2 | ohne festes Datum | 16 pro Durchgang |
 
-### Der Takt — zwei Lektionen pro Thema, 11.09. bis 31.12.2026
+### Der Takt — zwei Lektionen pro Thema, 11.09.2026 bis 31.01.2027
 
 Jedes Grammatikthema bekommt **zwei Lektionen**, und weil zwischen zwei Lektionen ein Übungstag
 liegt, dauert ein Thema **vier Kalendertage**.
 
 | | |
 |---|---|
-| Lektionstage | jeder zweite Tag ab **11.09.2026** — insgesamt **56** |
-| Übungstage | die 56 Tage dazwischen |
-| Themenblöcke | **21**, je **2 Lektionen** = 4 Kalendertage |
-| Grammatik-Phase | **11.09. – 02.12.2026** — Blöcke 1–21, Lektionen 1–42 |
-| **Dezember: Wiederholungsphase** | **04.12. – 30.12.2026** — 14 Lektionen, kein neuer Stoff |
-| Lektionen gesamt | **56** |
+| Lektionstage | jeder zweite Tag ab **11.09.2026** — insgesamt **72** |
+| Übungstage | die 72 Tage dazwischen |
+| Themenblöcke | **29**, je **2 Lektionen** = 4 Kalendertage |
+| Grammatik-Phase, Teil 1 | **11.09. – 02.12.2026** — Blöcke 1–21, Lektionen 1–42 |
+| Grammatik-Phase, Teil 2 | **04.12.2026 – 03.01.2027** — Blöcke 22–29, Lektionen 43–58 |
+| **Januar: Wiederholungsphase** | **05.01. – 31.01.2027** — 14 Lektionen, kein neuer Stoff |
+| Lektionen gesamt | **72** |
 
 **Die zwei Lektionen eines Themas haben feste Rollen:**
 
@@ -107,20 +108,28 @@ liegt, dauert ein Thema **vier Kalendertage**.
 Das Feld `zyklus` bekommt dafür `themenTag` (**1 oder 2**) und `themaBlock` (**1–21**). Die
 Vorlage zeigt „Thema-Tag 1 von 2" in der Zyklusleiste.
 
-**Der Dezember ist keine Verlängerung, sondern der Beweis.** Ab dem 04.12. kommt **kein neues
-Grammatikthema** mehr. Die 14 Dezemberlektionen wiederholen gezielt das, was in den
+**Der Januar ist keine Verlängerung, sondern der Beweis.** Ab dem 05.01.2027 kommt **kein neues
+Grammatikthema** mehr. Die 14 Januarlektionen wiederholen gezielt das, was in den
 Probeprüfungen und in ihren eingeschickten Texten schwach war — ganze Aufgaben, freies Schreiben,
 Sprechen, Hören unter Zeit. Der `zyklus` trägt dort `phase: "Wiederholung"` statt `themaBlock`.
 
-**Die Rechnung, die ihr gesagt wurde und die stehen bleiben muss:** 56 Lektionen × 60 Minuten
-= **56 Stunden**, plus 56 Übungstage × 30 Minuten = **28 Stunden** → **rund 84 Stunden**.
-Vorher (eine Lektion pro Tag, bis Januar) waren es 128. Sie hat sich bewusst für weniger Stunden
-und mehr Ruhetage entschieden; **das ist ihre Entscheidung und wird nicht kommentiert oder
-angemahnt** — aber die Zahl wird auch nicht schöngerechnet.
+**Die Verlängerung bis Ende Januar ist ihre Entscheidung vom 19.09.2026:** *„On prolonge jusqu'a
+a la fin de mois de Janvier afin que tout ce qui manque puisse est integrer."* Vorher endete die
+Etappe am 31.12.2026 mit 56 Lektionen und 21 Blöcken. Die acht neuen Blöcke 22–29 tragen genau
+die elf Lücken, die am selben Tag gefunden wurden — sie mussten vorher in die Anwenden-Lektionen
+der Blöcke 2–21 hineingequetscht werden und haben jetzt **eigene Lektionen**. Die
+Wiederholungsphase behält ihre **14 Lektionen**, sie rutscht nur vom Dezember in den Januar.
+
+**Die Rechnung, die ihr gesagt wurde und die stehen bleiben muss:** 72 Lektionen × 60 Minuten
+= **72 Stunden**, plus 72 Übungstage × 30 Minuten = **36 Stunden** → **rund 108 Stunden**.
+Bis zum 19.09.2026 waren es 84 (56 Lektionen bis zum 31.12.2026); die Verlängerung bis Ende
+Januar bringt **24 Stunden dazu**, ohne dass sich der Takt oder die Zeit pro Tag ändert. Sie hat
+sich bewusst für weniger Stunden und mehr Ruhetage entschieden; **das ist ihre Entscheidung und
+wird nicht kommentiert oder angemahnt** — aber die Zahl wird auch nicht schöngerechnet.
 
 Planseite: `deutsch-taeglich/b1.html` →
 `https://claude.ai/code/artifact/9ed33853-7d8f-4ee5-a756-b9ef186c99bc` (Favicon 🪜). Dort stehen
-die 21 Lektionen mit Datum, die vollständige B1-Grammatikliste und die ehrliche Rechnung.
+die 29 Themenblöcke mit Datum, die vollständige B1-Grammatikliste und die ehrliche Rechnung.
 
 **Ihr Niveau A2 ist von ihr genannt, nicht gemessen.** Das steht so in `einstufungen.json` unter
 `startniveau`. Messung 1 (der Einstufungstest) soll zeigen, ob A2 für alle fünf Fertigkeiten gilt.
@@ -137,9 +146,9 @@ Bis dahin: **A2 als Arbeitsannahme behandeln, nicht als Messwert ausgeben.**
   trägt aber ein eigenes Etikett im Feld `badge`, z. B.
   `"Fertigkeit des Tages · Lesen · Niveau B1"`, und übt die **Fertigkeit** statt das Prüfungsformat.
   Keine telc-Punktzahlen, keine „1,5 Punkte pro Item", kein Subtest-Vokabular.
-- **`zyklus` bekommt vier neue Felder:** `etappe: "B1"`, `gesamt: 21` (die 21 Themen einer
-  Runde), `runde` (1, 2 oder 3), `grammatik` und `grammatikNr`. `start` ist **2026-09-08**,
-  `lektion` zählt durchgehend **von 1 bis 62**. **Kein `durchgang`** in der Etappe 1.
+- **`zyklus` bekommt vier neue Felder:** `etappe: "B1"`, `gesamt: 29` (die 29 Themenblöcke),
+  `grammatik` und `grammatikNr`. `start` ist **2026-09-11**,
+  `lektion` zählt durchgehend **von 1 bis 72**. **Kein `durchgang`** in der Etappe 1.
 - **Die Probeprüfung am Samstag** bleibt, aber auf **B1-Niveau** und ohne telc-Punktwerte. Weil
   jetzt jeder Tag ein Lektionstag ist, ist der Samstag **immer** eine volle Lektion **plus**
   `probe` — es gibt keine reinen Probeprüfungs-Dateien mehr.
@@ -149,13 +158,17 @@ Bis dahin: **A2 als Arbeitsannahme behandeln, nicht als Messwert ausgeben.**
 - **Dasselbe gilt innerhalb eines Themenblocks:** Tag 1, 2 und 3 haben dieselbe Regel, aber
   **nichts anderes** darf sich wiederholen.
 
-### Die 21 Grammatikthemen der Etappe B1 — eins pro Lektion
+### Die 29 Grammatikblöcke der Etappe B1 — je zwei Lektionen
 
-`grammatikNr = themaBlock` (1 … 21), in dieser Reihenfolge — **jedes Thema zwei Lektionen lang**.
+`grammatikNr = themaBlock` (1 … 29), in dieser Reihenfolge — **jedes Thema zwei Lektionen lang**.
 Das ist die vollständige B1-Grammatik; **nichts davon darf ausfallen**, denn genau darauf beruht
-die Zusage, dass sie im Dezember das ganze B1-Programm gesehen hat. Anders als im Plan vom 09.09.
-läuft die Liste **einmal** durch, nicht zweimal — dafür steht der ganze Dezember als
-Wiederholung dahinter.
+die Zusage, dass sie am Ende das ganze B1-Programm gesehen hat. Die Liste läuft **einmal**
+durch — dafür steht der ganze Januar als Wiederholung dahinter.
+
+**Die Blöcke 1–21 sind der ursprüngliche Plan** (11.09. – 02.12.2026). **Die Blöcke 22–29 sind
+am 19.09.2026 dazugekommen** (04.12.2026 – 03.01.2027), als die Verlängerung bis Ende Januar
+beschlossen wurde; sie tragen die elf Lücken, die der Vergleich mit den öffentlichen
+B1-Referenzen gezeigt hat.
 
 1. Verbstellung und Satzklammer (Position 2, W-Fragen, Ja/Nein-Fragen)
 2. Nebensätze: weil, dass, wenn/als, obwohl, damit
@@ -179,7 +192,21 @@ Wiederholung dahinter.
 20. Indirekte Fragen mit *ob* und W-Wort
 21. Wiederholung — die zehn Fehler, die B1 kosten, an einem ganzen Text
 
-#### Die Pflichterweiterungen — was am 19.09.2026 gefehlt hat
+**Ab hier die acht neuen Blöcke — 04.12.2026 bis 03.01.2027:**
+
+22. Futur I (*werden* + Infinitiv) — Vorhersage und Vermutung · dazu *nicht/nur brauchen … zu*
+23. n-Deklination — *der Patient → den Patienten*, *der Kollege*, *der Mensch* · dazu *falls*
+24. Partizipien als Adjektive und Adjektive als Nomen — *der schlafende Patient*, *der Kranke* ·
+    dazu die Adjektivendungen im Genitiv
+25. Passiv Perfekt und Passiv mit Modalverben — *ist gelagert worden*, *muss gelagert werden*
+26. Konjunktiv II der Vergangenheit und irreale Sätze — *hätte gemacht*, *wäre gewesen*,
+    irreale Bedingung, irrealer Wunsch, *als ob*
+27. Zweiteilige Konnektoren — *sowohl … als auch*, *nicht nur … sondern auch*, *weder … noch*,
+    *entweder … oder*, *zwar … aber* · dazu *indem* und *sodass*
+28. Relativsätze mit Präposition, *was* und *wo* · dazu *(an)statt … zu* und *ohne dass*
+29. Wortbildung — Vorsilben, Nachsilben, Komposita
+
+#### Die elf Lücken — gefunden am 19.09.2026, ab dem 04.12. mit eigenen Blöcken
 
 **Am 19.09.2026 hat sie gefragt, ob mit diesem Plan wirklich die ganze B1-Grammatik
 drankommt.** Nachgeschlagen wurde in öffentlichen B1-Referenzen (Goethe-/ÖSD-Zertifikat B1
@@ -188,24 +215,31 @@ Internetquellen, nicht ihre eigenen Unterlagen** — sie dürfen als Orientierun
 Norm zitiert werden, und das Prüfungsformat kommt weiterhin **ausschließlich** aus
 `deutsch-taeglich/telc-quellen/`.
 
-Der Vergleich hat **elf Lücken** gezeigt. Die Liste der 21 Themen und der Kalender bleiben
-**unverändert** — die Lücken werden in den Block eingebaut, zu dem sie gehören. **Jede Zeile
-hier ist Pflicht**, und zwar in der **zweiten** Lektion des Blocks (`themenTag: 2`, die
-Anwenden-Lektion), damit die Entdecken-Lektion nicht überladen wird.
+Der Vergleich hat **elf Lücken** gezeigt. **Am selben Tag hat sie die Etappe bis Ende Januar
+verlängert, damit jede Lücke eine eigene Lektion bekommt** statt in eine Anwenden-Lektion
+gequetscht zu werden. Daher die Blöcke 22–29.
 
-| In Block | Was zusätzlich drankommt | Warum es sie besonders trifft |
-|---|---|---|
-| **3** Perfekt/Präteritum | **Futur I** (*werden* + Infinitiv) — Vorhersage und Vermutung | fehlte ganz |
-| **5** Kasussystem | **n-Deklination** (*der Patient → den Patienten*, *der Kollege*, *der Mensch*, *der Praktikant*) | ihre häufigsten Nomen; trifft Baustelle 1 **und** 2 direkt |
-| **7** Adjektivdeklination | **Partizipien als Adjektive** (*der schlafende Patient*, *die gebrochene Hüfte*) · **Adjektive als Nomen** (*der Kranke*, *etwas Wichtiges*) · Endungen im **Genitiv** | fehlte ganz |
-| **13** Relativsätze | **Relativsatz mit Präposition** (*die Station, **auf der** ich arbeite*) · **was/wo** | Plan nannte nur Nom./Akk./Dat. |
-| **14** Infinitiv mit zu | **(an)statt … zu** · **ohne dass** | Plan nannte nur um…zu, ohne…zu |
-| **15** Passiv | **Passiv Perfekt** · **Passiv mit Modalverb** (*muss gelagert werden*) | steht in jedem Pflegetext; Plan nannte nur Präsens/Präteritum |
-| **16** Konjunktiv II | **Konjunktiv II der Vergangenheit** (*hätte gemacht*, *wäre gewesen*) · **irreale Bedingung und irrealer Wunsch** · **als ob** | Plan nannte nur die Gegenwartsformen |
-| **19** Konnektoren | **zweiteilige Konnektoren** (*sowohl … als auch*, *nicht nur … sondern auch*, *weder … noch*, *entweder … oder*, *zwar … aber*) · **indem** · **sodass** | fehlte ganz; *je … desto* steht schon in Block 8 |
-| **21** Wiederholung | **Wortbildung** — Vorsilben, Nachsilben, Komposita | trifft Baustelle 5 (*Pflege dienst*) |
-| **2** Nebensätze | **falls** neben *wenn* | fehlte in der Aufzählung |
-| **4** Modalverben | **nicht brauchen … zu** / **nur brauchen … zu** | fehlte ganz |
+**Trotzdem wird jede Lücke zweimal berührt** — und das ist Absicht, nicht Doppelung:
+
+| Lücke | **erstes Mal:** kurz erwähnt in Block | **zweites Mal:** eigener Block | Warum es sie besonders trifft |
+|---|---|---|---|
+| **Futur I** | 3 Perfekt/Präteritum | **22** | fehlte ganz |
+| **n-Deklination** (*der Patient → den Patienten*) | 5 Kasussystem | **23** | ihre häufigsten Nomen; trifft Baustelle 1 **und** 2 direkt |
+| **Partizipien als Adjektive · Adjektive als Nomen · Genitivendungen** | 7 Adjektivdeklination | **24** | fehlte ganz |
+| **Passiv Perfekt · Passiv mit Modalverb** (*muss gelagert werden*) | 15 Passiv | **25** | steht in jedem Pflegetext |
+| **Konjunktiv II der Vergangenheit · irreale Sätze · als ob** | 16 Konjunktiv II | **26** | Plan nannte nur die Gegenwartsformen |
+| **zweiteilige Konnektoren · indem · sodass** | 19 Konnektoren | **27** | fehlte ganz; *je … desto* steht schon in Block 8 |
+| **Relativsatz mit Präposition · was/wo** | 13 Relativsätze | **28** | Plan nannte nur Nom./Akk./Dat. |
+| **(an)statt … zu · ohne dass** | 14 Infinitiv mit zu | **28** | Plan nannte nur um…zu, ohne…zu |
+| **Wortbildung** | 21 Wiederholung | **29** | trifft Baustelle 5 (*Pflege dienst*) |
+| **falls** | 2 Nebensätze | **23** | fehlte in der Aufzählung |
+| **nicht/nur brauchen … zu** | 4 Modalverben | **22** | fehlte ganz |
+
+**Die Erwähnung im frühen Block ist ein Satz, keine Lektion** — ein Beispiel im `grammatik`-Block
+oder im Text, mit dem Hinweis „das kommt später ganz dran". Der **eigene Block** ist die volle
+Behandlung mit Regel, Aufgaben, Kettensätzen und Text. **Das ist kein Verstoß gegen „nichts
+zweimal"** — diese Regel gilt für **Wörter und Übungen**, nicht für eine Grammatikregel. Genau
+dieser Abstand von Wochen ist der Grund, warum es hängen bleibt.
 
 **Was bewusst draußen bleibt:** **Modalpartikel** (*doch, mal, ja, eben*) und **Ausdrücke mit
 „es"** stehen in manchen B1.2-Übersichten, gehören aber zum Hörverstehen und zur Umgangssprache,
@@ -217,7 +251,7 @@ nicht *ausreichend*. Ob B1 erreicht ist, sagt die Messung — nicht die abgehakt
 
 Der **Wortschatz** kommt weiter aus den 16 Themenbereichen, **pro Themenblock**:
 `themaNr = ((themaBlock − 1) mod 16) + 1`. Die zwei Lektionen eines Themas bleiben im **selben**
-Wortfeld — die 15–18 Vokabeln bauen aufeinander auf. In der Dezemberphase wird der Bereich
+Wortfeld — die 15–18 Vokabeln bauen aufeinander auf. In der Januarphase wird der Bereich
 gewählt, der am wenigsten sitzt.
 
 **Über die zwei Lektionen darf sich kein Wort und keine Übung wiederholen.** Gleiches Thema
@@ -228,28 +262,37 @@ Leseverstehen → Hörverstehen → Sprachbausteine → Schriftlicher Ausdruck �
 Im `telc`-Block heißen sie in der Etappe 1 schlicht **Lesen · Hören · Grammatik im Text ·
 Schreiben · Sprechen**.
 
-**Am Ende der Etappe (31.12.2026):** ehrlich sagen, ob B1 erreicht ist, in welchen Fertigkeiten
+**Am Ende der Etappe (31.01.2027):** ehrlich sagen, ob B1 erreicht ist, in welchen Fertigkeiten
 nicht, und ob Etappe 2 anfängt oder B1 verlängert wird. **Nicht behaupten, B1 sei erreicht, weil
-56 Lektionen abgearbeitet sind** — das entscheiden die Messungen, nicht der Kalender.
-Gemessen wird: **11.09.2026 · 06.11.2026 · 31.12.2026**, und die Messung vom 31.12. ist zugleich
-die **Abschlussmessung** der Etappe.
+72 Lektionen abgearbeitet sind** — das entscheiden die Messungen, nicht der Kalender.
+Gemessen wird: **11.09.2026 · 06.11.2026 · 31.12.2026 · 31.01.2027**. Die Verlängerung bringt
+eine **vierte** Messung: die vom 31.12. ist jetzt eine Zwischenmessung am Ende der
+Grammatik-Phase, die vom **31.01.2027** ist die **Abschlussmessung** der Etappe.
 
 **Sie hat für den Dezember ein klares Ziel formuliert:** *„en Décembre, je dois savoir parler,
 écrire, écouter et comprendre la grammaire, le vocabulaire, savoir former toutes sortes de
-phrases du niveau B1."* Der Plan ist genau darauf gebaut — Grammatik komplett bis zum 01.12.,
-Dezember als reine Anwendungs- und Wiederholungsphase. **Aber:** Ob sie es dann *kann*, sagt
-Messung 3 am 29.12., nicht der Plan. Diesen Unterschied nie verwischen — und ihr auch nie
-vorher versprechen, dass Dezember automatisch B1 bedeutet.
+phrases du niveau B1."* Der Plan ist genau darauf gebaut — Grammatik komplett bis zum 03.01.2027,
+Januar als reine Anwendungs- und Wiederholungsphase. **Aber:** Ob sie es dann *kann*, sagt die
+Abschlussmessung am **31.01.2027**, nicht der Plan. Diesen Unterschied nie verwischen — und ihr
+auch nie vorher versprechen, dass der Kalender automatisch B1 bedeutet.
+
+**Hinweis zu ihrem Dezember-Ziel:** Sie hat am 10.09. gesagt, sie wolle *„en Décembre"* so weit
+sein. Mit der Verlängerung vom 19.09. liegt das Ende jetzt **einen Monat später**. Das war ihre
+eigene Entscheidung und ist kein Rückschritt — die Grammatik ist trotzdem am **03.01.2027**
+vollständig, und der zusätzliche Monat ist reine Anwendung. **Nicht so tun, als sei das
+Dezember-Ziel weiterhin das Ziel.**
 
 **Der Zeit-Hinweis, der ihr gegeben wurde und der stehen bleiben muss:** Der jetzige Plan ergibt
-**rund 84 Stunden** (56 Lektionen à 60 Min + 56 Übungstage à 30 Min). Die übliche Schätzung für
+**rund 108 Stunden** (72 Lektionen à 60 Min + 72 Übungstage à 30 Min). Die übliche Schätzung für
 A2 → B1 liegt bei **150–200 Stunden** (**allgemeine Schätzung, nicht aus ihren Unterlagen, nie
 als Tatsache darstellen**).
 
 **Am 19.09.2026 nachgeprüft — die Schätzung hat jetzt eine Quelle.** Das Goethe-Institut nennt
 als Voraussetzung **A2: 200–350 Unterrichtseinheiten à 45 Minuten**, **B1: 350–650 UE** (jeweils
 kumulativ ab null). Die Strecke **A2 → B1** ist also die Differenz: **150–300 UE = rund 112–225
-Zeitstunden.** Ihr Plan sind **84 Stunden = 112 UE** — das liegt **unter** der unteren Grenze.
+Zeitstunden.** Ihr Plan sind seit der Verlängerung vom 19.09.2026 **108 Stunden = 144 UE** —
+das liegt **innerhalb** der Spanne, wenn auch am unteren Rand. Vorher (84 Stunden = 112 UE) lag
+er darunter.
 **Internetquelle (goethe.de), nicht ihre Unterlagen**, und es sind Erfahrungswerte, keine Norm:
 Vorkenntnisse, Muttersprache und Alltag in Deutschland verschieben die Zahl in beide Richtungen.
 Sie lebt und arbeitet auf Deutsch — das zählt in keiner dieser Zahlen mit. **Nicht als Mahnung
@@ -425,13 +468,13 @@ An allen anderen Tagen wird eine Lektion geschrieben — jeden Tag.
    - ist heute **Samstag**, bekommt die Lektion zusätzlich den `probe`-Block
 3. Neuen Zustand aus dem **heutigen Datum** berechnen — `t = (heute − 2026-09-11).days`:
    - **Ist `t` ungerade → Übungstag.** Keine Datei schreiben, weiter mit Schritt 4.
-   - **Etappe 1 (bis einschließlich 31.12.2026), `t` gerade:**
-     `lektion` = `t // 2 + 1` (1 … 56) · `etappe` = `"B1"` · `gesamt` = `21` · `takt` = `2`
-     `themaBlock` = `t // 4 + 1` (1 … 21) · `themenTag` = `(t // 2) mod 2 + 1` (**1 oder 2**)
+   - **Etappe 1 (bis einschließlich 31.01.2027), `t` gerade:**
+     `lektion` = `t // 2 + 1` (1 … 72) · `etappe` = `"B1"` · `gesamt` = `29` · `takt` = `2`
+     `themaBlock` = `t // 4 + 1` (1 … 29) · `themenTag` = `(t // 2) mod 2 + 1` (**1 oder 2**)
      `grammatikNr` = `themaBlock` · `grammatik` = das Thema dazu aus der Liste oben
      `themaNr` = `((themaBlock − 1) mod 16) + 1` · `thema` = das Thema dazu
      `start` = `"2026-09-11"` · `themenStart` = `"2026-09-11"` · **kein `durchgang`**, **keine `runde`**
-   - **Ab `t > 82` (also ab dem 04.12.2026): Wiederholungsphase.** Kein `themaBlock`, kein
+   - **Ab `t >= 116` (also ab dem 05.01.2027): Wiederholungsphase.** Kein `themaBlock`, kein
      `grammatikNr`; stattdessen `phase: "Wiederholung"` und `grammatik` = das Thema, das
      wiederholt wird (das schwächste aus den Probeprüfungen und ihren Texten). `thema` frei
      wählbar aus den 16 Bereichen.
@@ -479,8 +522,8 @@ Lektion**, und läuft im Kreis:
 ```
 t          = (heute - 2026-09-11).days
 Lektionstag  ⇔  t gerade und t >= 0
-lektion    = t // 2 + 1        # 1 … 56
-themaBlock = t // 4 + 1        # 1 … 21, je zwei Lektionen
+lektion    = t // 2 + 1        # 1 … 72
+themaBlock = t // 4 + 1        # 1 … 29, je zwei Lektionen
 fokus      = REIHE[(lektion - 1) mod 5]
 ```
 
@@ -495,7 +538,7 @@ einmal im Hören. Genau das verankert eine Regel.
 Der Block `zyklus` sieht ab Lektion 1 so aus:
 
 ```json
-"zyklus": {"woche": 1, "gesamt": 21, "etappe": "B1", "takt": 2,
+"zyklus": {"woche": 1, "gesamt": 29, "etappe": "B1", "takt": 2,
            "thema": "Angaben zur eigenen Person", "themaNr": 1,
            "grammatik": "Verbstellung und Satzklammer", "grammatikNr": 1,
            "themaBlock": 1, "themenTag": 1,
@@ -503,14 +546,14 @@ Der Block `zyklus` sieht ab Lektion 1 so aus:
            "start": "2026-09-11", "themenStart": "2026-09-11", "lektion": 1}
 ```
 
-Und in der Dezemberphase:
+Und in der Januarphase (ab dem 05.01.2027):
 
 ```json
-"zyklus": {"woche": 13, "gesamt": 21, "etappe": "B1", "takt": 2,
+"zyklus": {"woche": 18, "gesamt": 29, "etappe": "B1", "takt": 2,
            "phase": "Wiederholung", "thema": "…", "themaNr": …,
            "grammatik": "Adjektivdeklination — Wiederholung",
            "tag": "Freitag", "fokus": "Schriftlicher Ausdruck",
-           "start": "2026-09-11", "themenStart": "2026-09-11", "lektion": 43}
+           "start": "2026-09-11", "themenStart": "2026-09-11", "lektion": 59}
 ```
 
 **Kein `bisPruefung`-Feld mehr.** Wo es in alten Lektionen noch steht, bleibt es stehen;
@@ -726,9 +769,9 @@ Beides ist behoben. **Jede Lektion hat jetzt einen eigenen Block `vokabeln`**, u
   **Die Zahl 1100 ist am 19.09.2026 nachgeprüft worden** und stammt aus den offiziellen
   Wortlisten: Goethe-/ÖSD-Zertifikat **A2 ≈ 1300**, **B1 ≈ 2400 lexikalische Einheiten**
   (Vorwort der B1-Wortliste, Goethe-Institut/ÖSD 2016, kumulativ ab A1). **Internetquelle, nicht
-  ihre Unterlagen.** Gerechnet: 56 Lektionen × 15–18 = **840–1008** Wörter aus `vokabeln`, dazu
+  ihre Unterlagen.** Gerechnet: 72 Lektionen × 15–18 = **1080–1296** Wörter aus `vokabeln`, dazu
   12–14 pro Lektion aus `lesen.wortschatz`; nach den ersten fünf Lektionen sind es **115
-  verschiedene** Wörter, hochgerechnet rund **1300**. **Die Menge stimmt also — die Deckung
+  verschiedene** Wörter, hochgerechnet rund **1650**. **Die Menge stimmt also — die Deckung
   nicht geprüft**, denn die Auswahl folgt den 16 telc-Themenbereichen, nicht der Goethe-Liste.
   Das ist ein bekannter offener Punkt und wird nicht als „B1-Wortschatz abgedeckt" ausgegeben.
 - **Nomen immer mit Artikel und Plural**: `die Erkältung, -en` · `das Fieber (nur Singular)` ·
@@ -788,7 +831,7 @@ wird**. Das Verstehen der Antwort ist das eigentliche Problem, nicht das eigene 
   Wohnen → Vermieter, Handwerker, Nachbarn · Arbeit → Dienstplan, Krankmeldung, Praxisanleitung ·
   Dienstleistungen → Amt, Bank, Post · Einkaufen → umtauschen, reklamieren · Verkehr → Ticket,
   Verspätung, Fahrkartenkontrolle.
-- **Über 21 Lektionen kein Thema zweimal.** In Runde 2 und 3 kommt dieselbe Grammatik in einer
+- **Über die 29 Blöcke kein Thema zweimal.** In Etappe 2 kommt dieselbe Grammatik in einer
   **anderen** Lebenssituation wieder.
 - Der Block wird **auch an Übungstagen gerendert** — Alltagssätze brauchen Wiederholung.
 
@@ -1076,7 +1119,7 @@ im Repo. `quellen/README.md` ist das Inhaltsverzeichnis.
    **über** ihrem Ziel und muss gefiltert werden.
 3. **Die Stufenangaben in den Blättern sind meine Einschätzung, nicht die der Quelle.** Die
    Transkripte ordnen kein einzelnes Wort einer Stufe zu. Im Zweifel eine Stufe tiefer.
-4. **Nichts zweimal.** Über die 56 Lektionen darf sich kein Wort und keine Übung
+4. **Nichts zweimal.** Über die 72 Lektionen darf sich kein Wort und keine Übung
    wiederholen — vor der Auswahl in `lektionen/` prüfen, was schon dran war.
 
 **Und ein Satz, der ihr ausdrücklich gesagt wurde und der stehen bleiben muss** (er kommt

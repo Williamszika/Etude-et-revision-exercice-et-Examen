@@ -105,7 +105,8 @@ class _Kopf extends StatelessWidget {
 
     final lektion = zahlVon(z['lektion']) ??
         Zyklus.lektionsNr(daten.start, heute, daten.lektionenGesamt);
-    final wdh = Zyklus.istWiederholung(daten.start, heute);
+    final wdh =
+        Zyklus.istWiederholung(daten.start, heute, daten.themenGesamt);
     final block = zahlVon(z['themaBlock']) ??
         Zyklus.themenBlock(daten.start, heute, daten.themenGesamt);
 

@@ -106,9 +106,9 @@ print(f"Wortschatz: {sum(len(x['woerter']) for x in ws)} Wörter aus {len(ws)} L
 app_daten = {
     'stand': datetime.date.today().isoformat(),
     'start': START,
-    'lektionenGesamt': 56,
-    'themenGesamt': 21,
-    'etappeEnde': '2026-12-31',
+    'lektionenGesamt': 72,
+    'themenGesamt': 29,
+    'etappeEnde': '2027-01-31',
     'lektionen': lekt,          # neueste zuerst, wie im Template
 }
 app_pfad = os.path.join(BASE, 'app-daten.json')
