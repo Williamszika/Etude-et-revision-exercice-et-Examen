@@ -1,0 +1,844 @@
+<title>Ich will aber keine Fremden im Haus</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#8a6a1f;--accent-deep:#6d5215;--accent-soft:#f6edd8;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#d8b972;--accent-deep:#e9cf96;--accent-soft:#2e2718;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#d8b972;--accent-deep:#e9cf96;--accent-soft:#2e2718;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#8a6a1f;--accent-deep:#6d5215;--accent-soft:#f6edd8;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Pflegebedürftigkeit und lebensweltorientierte Pflege · ambulantes Setting</p>
+  <h1>„Ich will aber keine Fremden im Haus“</h1>
+  <p class="sub">Der Sozialdienst, der Beratungsbesuch nach § 37 SGB XI, die Leistungen der
+    Pflegeversicherung — und die Hilfsmittel, mit denen jemand zu Hause bleiben kann.</p>
+  <div class="meta">
+    <span>Sozialdienst · G. Opitz</span>
+    <span>Luisenhospital</span>
+    <span>§ 37 Abs. 3 SGB XI</span>
+    <span>7 Quellen</span>
+    <span>Niveau B1</span>
+    <span>Stand 19.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#fall">Das Ehepaar S.</a>
+  <a href="#sozialdienst">Der Sozialdienst</a>
+  <a href="#recht">Wer darf entscheiden</a>
+  <a href="#pueg">Das PUEG</a>
+  <a href="#beratung">Der Beratungsbesuch</a>
+  <a href="#leistungen">Die Leistungen</a>
+  <a href="#hilfsmittel">Die Hilfsmittel</a>
+  <a href="#rollator">Der Rollator</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="fall">
+  <h2>Das Ehepaar S. — der Fall, um den sich alles dreht</h2>
+  <p class="lead">Fünf der sieben Dateien beziehen sich auf denselben Fall. <b>Die
+    Original-Fallbeschreibung liegt nicht im Ordner</b> — was hier steht, habe ich aus den
+    Gruppenarbeiten und dem Beratungsgespräch zusammengetragen.</p>
+
+  <div class="karten">
+    <div class="karte"><h4>Herr Paul S., 79 Jahre</h4>
+      <p><b>Pflegegrad 3</b> · <b>Herzinsuffizienz</b> mit <b>Belastungsdyspnoe</b> und
+        <b>Nykturie</b> · <b>Cox- und Gonarthrose</b> → <b>eingeschränkte Mobilität</b>.</p>
+      <p>Er hat <b>lange als Arzt gearbeitet</b> und war immer sehr selbstständig.</p></div>
+    <div class="karte"><h4>Frau Elisabeth S., 76 Jahre</h4>
+      <p><b>Pflegegrad 1</b> · <b>fortgeschrittene Demenz</b> mit <b>Orientierungs- und
+        Gedächtnisstörungen</b>.</p>
+      <p>Der Pflegegrad wurde <b>vor fast einem Jahr</b> festgestellt.</p></div>
+    <div class="karte"><h4>Die Tochter Christine</h4>
+      <p><b>Berufstätig</b>, kann nicht jeden Tag da sein. <b>Hohe psychische und physische
+        Belastung</b> für sie und das Ehepaar.</p></div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die Kette, die in diesen drei Karten steckt</span>
+    <p><b>Ursache:</b> Herzinsuffizienz mit <b>Nykturie</b> — er muss nachts mehrfach zur
+      Toilette — plus <b>Belastungsdyspnoe</b> und <b>Arthrose in Hüfte und Knie</b>. →
+      <b>Wirkung:</b> Er steht <b>nachts, im Dunkeln, mit Atemnot und Schmerzen</b> auf und
+      geht eine längere Strecke. → <b>Gefahr:</b> <b>Sturz</b> — und zwar zu der Tageszeit und
+      in dem Zustand, in dem ein Sturz am wahrscheinlichsten ist. → <b>Deshalb:</b> empfiehlt
+      die Pflegefachkraft im Beratungsgespräch genau vier Dinge: <b>durchgehende
+      Nachtbeleuchtung</b>, eine <b>Aufstehhilfe (Bettgalgen)</b>, <b>Bettschutzeinlagen</b> und
+      <b>einen Nachtstuhl, um die Wege zu verkürzen</b>.</p>
+    <p><b>Das ist eine fertige AFB-III-Antwort</b>, und sie steht so in deinen Unterlagen. Merk
+      dir die Reihenfolge: <b>erst die Diagnosen verbinden, dann die Tageszeit, dann die
+      Maßnahme.</b></p>
+    <p class="fr">Nycturie + dyspnée + arthrose + obscurité = chute. Les quatre mesures en
+      découlent directement.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Und der Satz, an dem die ganze Beratung hängt</span>
+    <p><b>Herr S.: „Ich will aber keine Fremden im Haus.“</b></p>
+    <p>Und davor: <b>„Also ich sag direkt: Wir kommen hier eigentlich ganz gut klar. Ich weiß
+      nicht, ob wir diesen ganzen Kram wirklich brauchen.“</b></p>
+    <p>Das ist derselbe Wertekonflikt wie auf deiner Seite <b>Verantwortliches
+      Pflegehandeln</b>: <b>Fürsorge gegen Selbstbestimmung</b> — Phase 2 nach Heffels. Und die
+      Antwort der Pflegekraft macht genau das, was Rogers <b>Akzeptanz</b> nennt:</p>
+    <p><b>„Es geht heute nicht darum, Ihnen etwas aufzuzwingen, sondern Ihnen einen Überblick zu
+      geben, damit Sie selbst eine gute Entscheidung für sich treffen können.“</b></p>
+    <p class="fr">« Je ne veux pas d'étrangers chez moi. » Sollicitude contre autodétermination
+      — le même conflit que dans ta fiche d'éthique.</p>
+  </div>
+</section>
+
+<section id="sozialdienst">
+  <h2>Der Sozialdienst im Krankenhaus</h2>
+  <p class="lead">Der Foliensatz stammt von <b>Greta Opitz</b> aus dem <b>Luisenhospital</b> —
+    also aus deinem eigenen Haus. Sie ist selbst <b>Gesundheits- und Krankenpflegerin</b>
+    (2016–2019), hat <b>Soziale Arbeit</b> studiert und ist seit 2023 im Sozialdienst.</p>
+
+  <h3>Die vier Grundsätze</h3>
+  <div class="karten">
+    <div class="karte"><h4>Beraten und unterstützen</h4>
+      <p>zu <b>ungewohnten Lebenssituationen</b></p></div>
+    <div class="karte"><h4>Selbsthilfefähigkeit fördern</h4>
+      <p>„Im Vordergrund steht, die <b>Selbsthilfefähigkeit bei der Problembewältigung</b> zu
+        fördern“</p></div>
+    <div class="karte"><h4>Neue Perspektiven entwickeln</h4></div>
+    <div class="karte"><h4>„Ambulant vor stationär“</h4>
+      <p>Der Leitsatz des ganzen Blocks.</p></div>
+  </div>
+
+  <h3>Die gesetzliche Verankerung</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Norm</th><th>Was sie sagt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">§ 39 Abs. 1a SGB V</td>
+          <td>„Die Krankenhausbehandlung umfasst ein <b>Entlassmanagement</b> zur Unterstützung
+            einer <b>sektorenübergreifenden Versorgung</b> der Versicherten beim Übergang in die
+            Versorgung nach Krankenhausbehandlung.“</td></tr>
+        <tr><td class="k">Rahmenvertrag zu § 39 Abs. 1a</td>
+          <td>Das Krankenhaus stellt ein <b>standardisiertes Entlassmanagement in
+            multidisziplinärer Zusammenarbeit</b> sicher und etabliert <b>schriftliche, für alle
+            Beteiligten transparente Standards</b>.</td></tr>
+        <tr><td class="k">§ 5 Abs. 5 KHGG NRW</td>
+          <td>(vom 11.12.2007, zuletzt geändert am <b>15.02.2025</b>) Das Krankenhaus
+            <b>hat einen sozialen Dienst sicherzustellen</b> und die Patientinnen und Patienten
+            <b>darüber zu informieren</b>. Aufgabe: <b>in sozialen Fragen beraten</b> und
+            <b>Hilfen nach den Sozialgesetzbüchern vermitteln</b>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Was daraus für dich folgt</span>
+    <p>Der Sozialdienst ist <b>kein freiwilliges Angebot des Hauses</b> — er ist in NRW
+      <b>gesetzlich vorgeschrieben</b>, und das Krankenhaus muss die Patienten <b>über ihn
+      informieren</b>. Wenn dich also jemand fragt, ob er „so etwas beantragen darf“: ja, und
+      das Haus ist verpflichtet, ihm den Weg zu zeigen.</p>
+    <p class="fr">Le service social n'est pas une faveur : il est <b>obligatoire par la loi</b>
+      en NRW, et l'hôpital doit en informer les patients.</p>
+  </div>
+
+  <h3>Der Weg eines Falls — drei Schritte</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Versorgungsproblematik oder Beratungswunsch taucht auf</h4>
+      <p>Erfasst werden kann das durch <b>ärztliches und pflegerisches Personal</b>, den
+        <b>Sozialdienst selbst</b>, in Absprache mit dem Behandlungsteam oder durch
+        <b>An- und Zugehörige</b>.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Konsilstellung</h4>
+      <p>Beispiel aus der Folie: <b>„Pat. bei akuter Verschlechterung kurzfristig nicht
+        entlassfähig in häusliches Umfeld. Bitte Mitbeurteilung.“</b></p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Konsilbearbeitung und Entlassung in die Nachversorgung</h4>
+      <p>Kontaktaufnahme mit Konsilsteller, Patient, Behandlungsteam, Zugehörigen ·
+        <b>Einrichtungen, Kostenträgern, gesetzlichen Betreuern</b> · <b>Bedarfe erkennen,
+        klären, vermitteln — Anträge stellen</b>.</p>
+      <p>Beispiel: <b>„Pat. XY kann am 30.06. in die Kurzzeitpflege verlegt werden. Für die
+        anschließende Versorgung ist bereits ein PD installiert.“</b></p></div></div>
+  </div>
+
+  <h3>Was die Pflege dem Sozialdienst liefern muss</h3>
+  <div class="karten">
+    <div class="karte"><h4>Für die medizinische Reha</h4>
+      <p><b>Bedarfsermittlung</b> · Beratungswunsch weiterleiten · <b>relevante Unterlagen
+        ausfüllen</b> · Rückmeldung bei Besonderheiten · <b>Planung der
+        Transportmöglichkeit</b></p></div>
+    <div class="karte"><h4>Fürs Entlassmanagement</h4>
+      <p><b>Pflegerische Anamnese / Stammblatt</b> · Gibt es <b>weitere Informationen über
+        Zugehörige oder bereits bestehende Hilfen</b>? · <b>Einschätzung benötigter
+        Hilfsmittel</b> · Einschätzung von Patient und Kontaktpersonen · Mitteilung von
+        <b>Änderungen der Medikation oder Behandlungspflege</b> · Mitteilung bei
+        <b>Veränderung des Allgemeinzustandes</b></p></div>
+    <div class="karte"><h4>Das wichtigste Assessment</h4>
+      <p>Die <b>Pflegeüberleitung</b> — <b>„vor allem für den MD (Medizinischer Dienst)“</b> ·
+        der <b>Entlassbrief</b> · die <b>Hospiznotwendigkeit</b></p></div>
+  </div>
+
+  <h3>Die fünf Leistungsbereiche</h3>
+  <p><b>Medizinische Rehabilitation</b> (geriatrische Reha · <b>Anschlussheilbehandlung
+    AHB</b> — bei geplanter OP <b>im Vorfeld organisiert</b> · onkologische Reha ·
+    pneumologische und internistische Indikationen) · <b>Sozialrechtliche Beratung</b>
+    (Leistungen der Kranken- und Pflegeversicherung · <b>Antragstellung von Pflegegrad oder
+    Höherstufung</b> · Expertenstandard <b>PEOPSA</b> · psychoonkologischer Dienst ·
+    <b>Anregung und Beratung zu einer gesetzlichen Betreuung</b>) · <b>Entlassmanagement</b>
+    (ambulanter Pflegedienst · <b>Essen auf Rädern</b> · <b>Hausnotruf</b> · Tagespflege ·
+    Behandlungspflege · <b>Beratung zu Hilfsmitteln</b> · Überleitung in Lang- oder
+    Kurzzeitpflege oder <b>Palliativversorgung</b>) · <b>Rechtliche Verfügungen</b> ·
+    <b>weitere Leistungen</b>.</p>
+
+  <div class="warnung">
+    <span class="t">Der Exkurs, der nicht schöngeredet wird</span>
+    <p>Zu <b>wohnungslosen und obdachlosen Menschen</b> sagt der Foliensatz offen:
+      <b>„Nicht jede Person möchte Hilfe durch den Sozialdienst erhalten oder erkennt den
+      Hilfebedarf an.“</b> Und: <b>„Cave: keine leeren Versprechungen machen!“</b></p>
+    <p><b>„In den meisten Fällen kehren diese Menschen nach der Krankenhausentlassung in die
+      Wohnungslosigkeit zurück.“</b> Was geht: Wäschekammern oder Waschmöglichkeiten im Haus ·
+      gemeinsam eine <b>gesetzliche Betreuung</b> einleiten · <b>in der Regel</b> jedoch nur
+      <b>Kontaktdaten zu Beratungs- und niederschwelligen Hilfeangeboten</b> aushändigen.</p>
+    <p>Diese Ehrlichkeit ist selbst Lehrstoff: <b>Nichts versprechen, was das System nicht
+      halten kann</b> — das ist dieselbe Haltung wie „protektiv, aber nicht de-autonomisierend“
+      auf deiner Reha-Seite.</p>
+    <p class="fr">« Pas de promesses vides. » C'est une règle, pas du pessimisme.</p>
+  </div>
+
+  <p>Und zum Schluss die <b>poststationäre Versorgungsproblematik</b>: hauptsächlich verursacht
+    durch den <b>demografischen Wandel</b>, mit Folgen für die Kapazitäten in der
+    <b>ambulanten und stationären Versorgung</b> und bei <b>Reha-Maßnahmen</b>. Ergebnis:
+    <b>Patienten sind poststationär nicht versorgt ⇒ längere Liegezeiten.</b> Das ist die
+    Gegenrichtung zur DRG-Kette auf deiner Reha-Seite — beides zusammen erklärt den Druck im
+    Entlassmanagement.</p>
+</section>
+
+<section id="recht">
+  <h2>Wer darf entscheiden, wenn jemand es nicht mehr kann?</h2>
+  <p class="lead">Vier Instrumente, in der Reihenfolge, in der sie greifen. <b>Das ergänzt
+    direkt den Abschnitt zum Betreuungsrecht auf deiner Ethik-Seite.</b></p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Instrument</th><th>Was es regelt</th><th>Worauf es ankommt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Patientenverfügung</td>
+          <td>Für den Fall einer <b>Einwilligungsunfähigkeit in medizinischen
+            Angelegenheiten</b>: <b>vorsorglich</b> festhalten, welche medizinischen Maßnahmen
+            <b>durchgeführt oder unterlassen</b> werden sollen.</td>
+          <td>Von <b>jeder einwilligungsfähigen volljährigen Person</b> zu verfassen und
+            <b>jederzeit formlos widerrufbar</b> · sinnvoll ist eine <b>ärztliche oder
+            fachkundige Beratung</b> · <b>Betreuer und Bevollmächtigte haben dem festgehaltenen
+            Willen Folge zu leisten</b> · liegt keine vor oder passt sie nicht auf die Situation,
+            entscheiden <b>vertretende Person und ärztliches Personal nach dem mutmaßlichen
+            Willen</b>.</td></tr>
+        <tr><td class="k">Vorsorgevollmacht</td>
+          <td>Eine oder mehrere <b>Vertrauenspersonen</b> werden bevollmächtigt, im Bedarfsfall
+            <b>rechtliche Angelegenheiten</b> wahrzunehmen.</td>
+          <td>Ermöglicht ein <b>hohes Maß an Selbstbestimmung</b>, setzt aber <b>volles
+            Vertrauen</b> voraus. <b>Liegt eine wirksame Vollmacht für die erforderlichen
+            Aufgabenkreise vor und ist die Person bereit, ist eine rechtliche Betreuung nicht
+            erforderlich.</b></td></tr>
+        <tr><td class="k">Rechtliche Betreuung</td>
+          <td>Rechtsinstrument für Erwachsene, die <b>aufgrund einer Krankheit oder
+            Behinderung</b> ihre rechtlichen Angelegenheiten nicht mehr selbst wahrnehmen
+            können. Die <b>vom Betreuungsgericht bestellte</b> Person unterstützt <b>in den
+            festgelegten Aufgabenkreisen</b>.</td>
+          <td><b>Neues Betreuungsrecht seit 2023</b> mit <b>noch höherem Anspruch an den Willen
+            der betreuten Person</b>: Sie soll ihr Leben <b>nach ihren Wünschen</b> gestalten
+            können (<b>§ 1821 Abs. 2 BGB</b>). Und: <b>Eine Betreuung soll nur eingerichtet
+            werden, wenn andere Hilfen — vor allem nach dem Sozialrecht — ausgeschöpft
+            sind.</b></td></tr>
+        <tr><td class="k">Ehegattennotvertretungsrecht</td>
+          <td>Wenn eine <b>verheiratete</b> Person z. B. wegen <b>Bewusstlosigkeit oder Koma</b>
+            nicht selbst in <b>Gesundheitsangelegenheiten</b> entscheiden kann.</td>
+          <td><b>Auf den medizinischen Bereich beschränkt</b> · notwendige Behandlungsverträge
+            dürfen geschlossen werden · <b>auf 6 Monate begrenzt</b> · Fristbeginn ist der
+            Moment, in dem das <b>ärztliche Personal schriftlich bescheinigt</b>, dass die
+            Voraussetzungen vorliegen · <b>gilt NICHT</b>, wenn bereits eine Betreuung für
+            Gesundheitsangelegenheiten besteht, eine Vorsorgevollmacht sie umfasst oder eine
+            <b>passende Patientenverfügung</b> vorliegt.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die Reihenfolge ist die Prüfungsantwort</span>
+    <p><b>Patientenverfügung</b> → <b>Vorsorgevollmacht</b> → <b>Ehegattennotvertretung</b> →
+      <b>rechtliche Betreuung</b>. Jedes Instrument weiter oben <b>verdrängt</b> die weiter
+      unten. Die Betreuung ist ausdrücklich <b>das letzte Mittel</b>.</p>
+    <p><b>Der häufigste Irrtum, den du richtigstellen kannst:</b> Viele glauben, der Ehepartner
+      dürfe automatisch und dauerhaft entscheiden. Er darf es — <b>nur im medizinischen
+      Bereich</b>, <b>nur bei Entscheidungsunfähigkeit</b>, <b>nur nach ärztlicher schriftlicher
+      Bescheinigung</b> und <b>nur sechs Monate lang</b>.</p>
+    <p class="fr">L'ordre est la réponse d'examen : directives → procuration → conjoint (6 mois
+      max) → tutelle, en dernier recours.</p>
+  </div>
+</section>
+
+<section id="pueg">
+  <h2>Das PUEG — Pflegeunterstützungs- und -entlastungsgesetz</h2>
+  <div class="karten">
+    <div class="karte"><h4>Was es will</h4>
+      <p><b>Geänderte Leistungsansprüche</b> für pflegebedürftige Personen und ihre
+        Angehörigen · <b>Stabilisierung der Pflegeversicherung</b> · <b>Entlastung der
+        berufstätigen Pflegepersonen</b>.</p></div>
+    <div class="karte"><h4>Ab dem 1.1.2025</h4>
+      <p>Die Leistungen der Pflegeversicherung <b>steigen um 4,5 %</b> · <b>gemeinsames Budget
+        für Verhinderungs- und Kurzzeitpflege</b>.</p></div>
+    <div class="karte"><h4>Aus dem Vorjahr</h4>
+      <p><b>Pflegeunterstützungsgeld</b> (§ 44a Abs. 3 SGB XI) für Angehörige auf
+        <b>10 Arbeitstage pro Jahr</b> angehoben · Versorgung des Pflegebedürftigen während
+        einer <b>Vorsorge- oder Reha-Maßnahme der Pflegeperson</b> (§ 42a SGB XI).</p></div>
+  </div>
+</section>
+
+<section id="beratung">
+  <h2>Der Beratungsbesuch nach § 37 Abs. 3 SGB XI</h2>
+  <p class="lead">Eine der Dateien ist ein <b>vollständig ausformuliertes Beratungsgespräch</b>
+    im häuslichen Setting — mit <b>Methodenhinweisen in Klammern</b>. Die Datei nennt
+    <b>keinen Verfasser</b>.</p>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Gesprächseröffnung — Beziehungsaufbau und Zielklärung</h4>
+      <p>Vorstellen, danken, offen fragen: <b>„Wie geht es Ihnen beiden im Moment?“</b> Dann das
+        Ziel benennen: <b>„Der heutige Besuch dient dazu, Ihre aktuelle Pflegesituation
+        gemeinsam anzuschauen und zu überlegen, wo wir Sie entlasten und unterstützen
+        können.“</b></p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Einschätzung — Ressourcenorientierung</h4>
+      <p><b>„Können Sie mir beschreiben, wie ein typischer Tag für Sie aussieht?“</b> Und zur
+        demenziell erkrankten Ehefrau, wertschätzend: <b>„Frau S., Sie unterstützen Ihren Mann
+        schon sehr lange. Das ist nicht selbstverständlich.“</b></p>
+      <p>Beachte: Die Pflegekraft spricht <b>Frau S. direkt an</b>, obwohl sie „unbeteiligt
+        wirkt“. Das ist <b>„Nichts über uns ohne uns“</b> in der Praxis.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Beratung und Information</h4>
+      <p>Erst die <b>Begründung</b> („Aufgrund Ihrer Arthrose und der nächtlichen Atemnot
+        besteht ein <b>erhöhtes Sturzrisiko</b>“), <b>dann</b> die vier Empfehlungen. Dazu
+        gezielte <b>Bewegungsübungen</b>, <b>feste Abläufe</b> bei Gedächtnisproblemen — und der
+        Hinweis auf den <b>Höherstufungsantrag</b> für die Ehefrau.</p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div>
+      <h4>Entlastung der Angehörigen</h4>
+      <p><b>Betreuungsdienst</b> oder <b>Tagespflege</b> für die Ehefrau: <b>„Das könnte Ihnen
+        Freiräume geben und Ihre Gesundheit schützen.“</b></p></div></div>
+    <div class="stufe"><span class="nr n2">5</span><div>
+      <h4>Abschluss</h4>
+      <p><b>Zusammenfassen</b>, <b>Informationsmaterial dalassen</b>, den <b>nächsten
+        Beratungsbesuch</b> ankündigen und <b>erreichbar bleiben</b>.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Drei Sätze aus dem zweiten Gespräch, die du dir abschreiben solltest</span>
+    <p>Auf <b>„Ich will aber keine Fremden im Haus“</b>: <b>„Das höre ich oft. Viele Menschen
+      haben diese Sorge. Deshalb kann man die Unterstützung sehr gezielt einsetzen, vielleicht
+      nur ein- oder zweimal pro Woche.“</b></p>
+    <p>Auf <b>„Ich bin noch nie gestürzt“</b>: <b>„Das ist gut. Ziel ist, dass es auch so
+      bleibt — gerade bei Arthrose und Luftnot.“</b></p>
+    <p>Auf <b>„Ich habe doch versprochen, mich um sie zu kümmern“</b>: <b>„Und das tun Sie.
+      Unterstützung anzunehmen heißt nicht, Verantwortung abzugeben, sondern sie zu
+      teilen.“</b></p>
+    <p>Und die deeskalierende Formulierung, wenn Vater und Tochter aneinandergeraten:
+      <b>„Ich glaube, hier treffen gerade zwei Perspektiven aufeinander: Ihr Wunsch nach
+      Selbstständigkeit und die Sorge Ihrer Tochter um Ihre Sicherheit.“</b></p>
+    <p><b>Das sind fertige deutsche Sätze für schwierige Gespräche.</b> Lern sie auswendig —
+      sie funktionieren auch außerhalb dieses Falls.</p>
+    <p class="fr">Des phrases toutes faites pour les conversations difficiles. Apprends-les par
+      cœur : elles marchent ailleurs aussi.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Eine Grenze, die keine der Dateien zieht</span>
+    <p>Beide Gespräche empfehlen einen <b>Höherstufungsantrag</b> für Frau S. — das ist
+      plausibel und wird im Text begründet (<b>„Aufgrund der Veränderungen“</b>, <b>„vor fast
+      einem Jahr festgestellt“</b>).</p>
+    <p><b>Was in keiner Datei steht:</b> wie das Begutachtungsverfahren abläuft, wer es
+      durchführt und nach welchen <b>Modulen</b> der Pflegegrad ermittelt wird. <b>Ich ergänze
+      das nicht</b> — es steht nicht in deinen Unterlagen. Wenn ihr das im Unterricht hattet,
+      schick mir die Folien.</p>
+  </div>
+</section>
+
+<section id="leistungen">
+  <h2>Die Leistungen der Pflegeversicherung — mit einer wichtigen Warnung</h2>
+
+  <div class="gefahr">
+    <span class="t">Lies das, bevor du die Tabelle liest</span>
+    <p>Diese Zahlen stammen aus einer <b>Gruppenarbeit von Mitschülern</b> (Ghannam, Nowacki,
+      Hoppe, Hüls, PF25-28-1, <b>23.01.2026</b>) — <b>nicht</b> aus einem Foliensatz, nicht von
+      der Pflegekasse, nicht aus dem Gesetz.</p>
+    <p><b>Ich habe keine einzige dieser Zahlen geprüft</b>, und ich kann es aus deinen
+      Unterlagen auch nicht. Sie stehen hier, weil sie die Antwort auf den Arbeitsauftrag sind
+      und weil die <b>Struktur</b> stimmt — welche Leistungsarten es überhaupt gibt.</p>
+    <p><b>Benutze sie zum Lernen der Begriffe, nie als Auskunft an einen Patienten.</b>
+      Geldbeträge in der Pflegeversicherung ändern sich — allein das PUEG hat sie zum
+      <b>1.1.2025 um 4,5 % angehoben</b>. Für eine echte Auskunft: <b>Pflegekasse,
+      Pflegestützpunkt oder Sozialdienst</b>.</p>
+    <p class="fr">Ces montants viennent d'un devoir d'élèves, pas d'une source officielle.
+      Apprends les <b>catégories</b>, jamais les chiffres — et ne les cite jamais à un patient.</p>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Leistungsart</th><th>Frau S.<br>Pflegegrad 1</th><th>Herr S.<br>Pflegegrad 3</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Pflegegeld (monatlich)</td><td>—</td><td>599 €</td></tr>
+        <tr><td class="k">Pflegesachleistungen (monatlich)</td><td>—</td><td>1 497 €</td></tr>
+        <tr><td class="k">Entlastungsbetrag (monatlich)</td><td>131 €</td><td>131 €</td></tr>
+        <tr><td class="k">Pflegehilfsmittel zum Verbrauch (monatlich)</td>
+          <td>bis zu 42 €</td><td>bis zu 42 €</td></tr>
+        <tr><td class="k">Hausnotruf (monatlich)</td><td>25,50 €</td><td>25,50 €</td></tr>
+        <tr><td class="k">Verhinderungs- und Kurzzeitpflege (jährlich)</td>
+          <td>—</td><td>3 539 €</td></tr>
+        <tr><td class="k">Tages- und Nachtpflege (monatlich)</td><td>—</td><td>1 357 €</td></tr>
+        <tr><td class="k">Anpassung am Wohnraum (je Maßnahme)</td>
+          <td>4 180 €</td><td>4 180 €</td></tr>
+        <tr><td class="k">DiPA — digitale Pflegeanwendung (monatlich)</td>
+          <td>53 €</td><td>53 €</td></tr>
+        <tr><td class="k">Wohngruppenzuschuss (monatlich)</td><td>224 €</td><td>224 €</td></tr>
+        <tr><td class="k">Vollstationäre Pflege (monatlich)</td><td>—</td><td>1 319 €</td></tr>
+        <tr><td class="k">Technische und sonstige Pflegehilfsmittel</td>
+          <td colspan="2"><b>100 % der Kosten</b> unter bestimmten Voraussetzungen — jedoch
+            <b>Zuzahlung von 10 %, höchstens 25 € je Pflegehilfsmittel</b></td></tr>
+        <tr><td class="k">Rentenversicherungsbeiträge für Pflegepersonen (monatlich)</td>
+          <td>—</td><td>299,53 €</td></tr>
+        <tr><td class="k">Arbeitslosenversicherung für Pflegepersonen (monatlich)</td>
+          <td>—</td><td>48,69 €</td></tr>
+        <tr><td class="k">Zuschüsse zur KV/PV bei Pflegezeit (monatlich)</td>
+          <td colspan="2">KV 213,46 € · PV 44,94 €</td></tr>
+        <tr><td class="k">Pflegeunterstützungsgeld (bis zu 10 Arbeitstage je Jahr)</td>
+          <td colspan="2">bis zu <b>90 %</b> bzw. <b>100 %</b> des ausgefallenen
+            Nettoarbeitsentgelts</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Was an dieser Tabelle wirklich lernenswert ist</span>
+    <p><b>Der Unterschied zwischen Pflegegrad 1 und 3.</b> Bei <b>Pflegegrad 1</b> stehen in
+      fast jeder Zeile Striche — kein Pflegegeld, keine Sachleistungen, keine
+      Verhinderungspflege. Was bleibt: <b>Entlastungsbetrag, Pflegehilfsmittel zum Verbrauch,
+      Hausnotruf, Wohnraumanpassung</b>.</p>
+    <p><b>Genau deshalb</b> ist der Höherstufungsantrag für Frau S. in beiden Gesprächen ein
+      Thema — und genau deshalb sagt die Pflegekraft, die Familie wäre dann
+      <b>„finanziell deutlich flexibler“</b>.</p>
+    <p>Und der zweite Unterschied, der oft verwechselt wird: <b>Pflegegeld</b> bekommt, wer sich
+      <b>privat pflegen lässt</b> (Angehörige). <b>Pflegesachleistungen</b> sind die Leistungen
+      eines <b>ambulanten Pflegedienstes</b>. <b>Das ist meine Erläuterung</b> — die Tabelle
+      stellt beide nur nebeneinander.</p>
+    <p class="fr">Retiens la <b>structure</b> : au grade 1, presque tout est barré. C'est pour
+      ça qu'on demande une révision du grade.</p>
+  </div>
+</section>
+
+<section id="hilfsmittel">
+  <h2>Die Hilfsmittel — deine eigene Gruppenarbeit</h2>
+  <p class="lead">Eine der Dateien trägt deinen Namen: <b>Farnaz, Zika, Sokna, El Inani</b>. Sie
+    ist nach <b>sechs Lebensbereichen</b> geordnet — und diese Gliederung ist gut gewählt.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Bereich</th><th>Hilfsmittel</th><th>Nutzen</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Mobilität &amp; Sturzprävention</td>
+          <td><b>Rutschfeste Schuhe</b> mit rutschhemmender Sohle · <b>Haltegriffe im Bad</b>
+            als sichere Haltepunkte</td>
+          <td><b>Sturzrisiko reduzieren</b> · Selbstständigkeit</td></tr>
+        <tr><td class="k">Orientierung im Alltag</td>
+          <td><b>Uhr mit Datum</b> · <b>Kalender</b> für Tages- und Wochenplanung ·
+            <b>Erinnerungsbücher</b> für wichtige Erinnerungen und persönliche Daten</td>
+          <td>bessere <b>räumliche und zeitliche Orientierung</b> · <b>Reduzierung von Angst
+            und Unsicherheit</b> · Unterstützung der Gedächtnisfunktion</td></tr>
+        <tr><td class="k">Sicherheit zu Hause</td>
+          <td><b>Hausnotrufsystem</b> (24/7) · <b>Herdsicherungen</b> ·
+            <b>Anti-Rutsch-Matten</b></td>
+          <td>Unfälle und Stürze verhindern · <b>Nacht- und Alltagssicherheit</b> ·
+            sorgenfreier Alltag <b>für Patienten und Angehörige gleichermaßen</b></td></tr>
+        <tr><td class="k">Körperpflege &amp; Selbstständigkeit</td>
+          <td><b>Greifzange</b> · <b>Duschhocker</b></td>
+          <td>Selbstständigkeit beim Duschen und Greifen · <b>Entlastung für Herrn S.</b></td></tr>
+        <tr><td class="k">Kommunikation &amp; Erinnerung</td>
+          <td><b>Telefon mit großen Tasten</b> · <b>Erinnerungswecker</b> (visuell und
+            akustisch)</td>
+          <td>Kontakt zur Tochter erleichtern · Termine und <b>Medikamenteneinnahme</b> nicht
+            vergessen · <b>soziale Kontakte, um Isolation zu vermeiden</b></td></tr>
+        <tr><td class="k">Professionelle Angebote</td>
+          <td><b>Ambulante Pflege</b> · <b>Angehörigenschulungen</b> (Tochter Christine lernt
+            den Umgang mit Demenz) · <b>Tagespflege</b> · <b>Pflegestützpunkt</b> ·
+            <b>Kurzzeitpflege</b> · <b>Verhinderungspflege</b> · <b>Selbsthilfegruppen</b></td>
+          <td>Entlastung der Familie · <b>soziale Kontakte</b> · Unterstützung bei Pflegegrad
+            und Antragstellung · <b>Austausch und emotionale Unterstützung</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Was an eurer Arbeit richtig gut ist</span>
+    <p><b>Ihr habt zu jedem Hilfsmittel einen Nutzen geschrieben</b> — nicht nur eine Liste.
+      Genau das verlangt der Operator <b>Ableiten</b>: die Maßnahme <b>plus</b> das <i>weil</i>,
+      das sie an den Fall bindet.</p>
+    <p>Und zwei Sätze treffen den Fall wirklich: <b>„Erinnerungen können auch für soziale
+      Kontakte stehen, um Isolation zu vermeiden“</b> und <b>„sorgenfreier Alltag für Patienten
+      und Angehörige gleichermaßen“</b>. Beide denken an die <b>Tochter</b> mit — und die ist
+      im Fall die dritte betroffene Person.</p>
+    <p class="fr">Vous avez écrit un <b>bénéfice</b> pour chaque aide, pas juste une liste.
+      C'est exactement l'opérateur <i>Ableiten</i>.</p>
+  </div>
+
+  <h3>Der Weg zum Hilfsmittel — fünf Schritte</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div><h4>Bedarf feststellen</h4>
+      <p>Erfassen, welche Hilfsmittel gebraucht werden.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div><h4>Beratung</h4>
+      <p>beim <b>Pflegestützpunkt</b>.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div><h4>Antrag stellen</h4>
+      <p>Formulare ausfüllen und einreichen.</p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div><h4>Genehmigung</h4>
+      <p>Warten auf die Entscheidung.</p></div></div>
+    <div class="stufe"><span class="nr n2">5</span><div><h4>Lieferung &amp; Einweisung</h4>
+      <p>Gerät erhalten <b>und in die Bedienung eingewiesen werden</b>.</p></div></div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Drei Stellen, die ich in eurer Arbeit nachfragen würde</span>
+    <p><b>1. „Die gesamte Prozedur dauert in der Regel 4–6 Wochen.“</b> Diese Zahl steht in
+      keiner anderen Datei und hat keine Quelle. <b>Ich kann sie nicht bestätigen</b> — nenn sie
+      nur mit dem Zusatz, woher sie kommt, oder lass sie weg.</p>
+    <p><b>2. „Warten auf Approvierung“.</b> <b>Approvierung ist kein deutsches Wort</b> — es ist
+      vom englischen <i>approval</i> gebildet. Richtig ist <b>die Genehmigung</b> (oder
+      <i>die Bewilligung</i>). Auf der Seite oben steht deshalb „Genehmigung“.</p>
+    <p><b>3. Kontaktdaten und Öffnungszeiten am Ende</b> (E-Mail, Telefonnummer) sind offenbar
+      <b>erfunden</b> bzw. Platzhalter. In einer echten Beratung dürfen dort nur <b>die
+      Adressen des zuständigen Pflegestützpunkts</b> stehen.</p>
+    <p>Auch die Überschriften <i>„Einführung in assistive Devices &amp; Support Services“</i>
+      sind <b>englisch</b> — in einer deutschen Prüfungsleistung wäre
+      <b>„Hilfsmittel und Unterstützungsangebote“</b> sicherer.</p>
+    <p class="fr">« Approvierung » n'existe pas en allemand — c'est <b>Genehmigung</b>. Et la
+      durée de 4–6 semaines n'a pas de source.</p>
+  </div>
+</section>
+
+<section id="rollator">
+  <h2>Der Rollator — ein Hilfsmittel ist ein Medizinprodukt</h2>
+  <p class="lead">Eine eigene <b>MPG-Schulungseinheit</b>, Dauer <b>ca. 10 Minuten</b>. Sie
+    macht aus dem Alltagsgegenstand eine Sache mit Regeln.</p>
+
+  <div class="merk">
+    <span class="t">Rollator oder Delta-Gehrad — der Unterschied zählt</span>
+    <p><b>Rollatoren sind vierrädrige Gehhilfen.</b> <b>Dreirädrige</b> heißen
+      <b>Delta-Gehräder</b>.</p>
+    <p>Und der Satz dazu: Delta-Gehräder haben <b>aufgrund ihrer geringeren Standfläche
+      wesentlich weniger Unterstützungsmöglichkeiten</b> und <b>stellen keinen Ersatz für
+      Rollatoren dar</b>.</p>
+    <p class="fr">Quatre roues = Rollator. Trois roues = Delta-Gehrad — <b>et ce n'est pas un
+      remplacement</b>.</p>
+  </div>
+
+  <h3>Die fünf Sicherheitsregeln</h3>
+  <div class="gefahr">
+    <span class="t">Zwei davon sind die eigentlichen Gefahren</span>
+    <p><b>„Der Rollator darf nur bei angezogenen Bremsen als Sitzhilfe genutzt werden.“</b></p>
+    <p><b>„Nutzen Sie den Rollator niemals als Rollstuhlersatz!“</b> — und ebenso nie als
+      <b>Transportwagen</b>.</p>
+    <p>Und die Begründung für die dritte Regel, die man sonst für eine Kleinigkeit hält:
+      <b>Eine falsche Einstellung der Griffhöhe führt dazu, dass der Patient entweder den
+      sicheren Standbereich zwischen den Rädern verlässt oder sich in Gefahrensituationen nicht
+      effektiv aufstützen kann.</b></p>
+    <p><b>Ursache:</b> Griffe zu hoch oder zu tief. → <b>Wirkung:</b> Der Patient geht
+      <b>hinter</b> statt <b>zwischen</b> den Rädern. → <b>Gefahr:</b> Er kann sich beim
+      Stolpern nicht abstützen — der Rollator rollt weg. → <b>Deshalb:</b> <b>„Prüfen Sie stets
+      die korrekte Einstellung der Griffhöhe.“</b></p>
+    <p class="fr">La hauteur des poignées n'est pas un détail de confort : elle décide si la
+      personne marche <b>entre</b> les roues ou derrière.</p>
+  </div>
+
+  <p>Dazu die <b>Hygiene</b>: Rollatoren, die von <b>mehreren Patienten</b> benutzt werden,
+    bei <b>jedem Patientenwechsel reinigen und desinfizieren</b> — <b>insbesondere die
+    Handgriffe</b>, mit einer <b>Wischdesinfektion</b>. Und vor jeder Benutzung:
+    <b>auf Schäden überprüfen</b>, regelmäßig <b>Räder und Bremsen</b> kontrollieren, und immer
+    die <b>Gebrauchsanweisung und Kennzeichnung</b> beachten.</p>
+
+  <h3>Die Dokumentationsregeln — das, was man nicht vermutet</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Regel</th><th>Was gilt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Bestandsverzeichnis und Medizinproduktebuch</td>
+          <td>Rollatoren sind dort <b>nicht</b> zu führen. <b>Aber:</b> <b>elektrisch
+            unterstützte</b> Rollatoren <b>wären im Bestandsverzeichnis zu führen</b>.</td></tr>
+        <tr><td class="k">Einweisung der Anwender</td>
+          <td>wird <b>in deren Personalakte</b> dokumentiert.</td></tr>
+        <tr><td class="k">Einweisung des Patienten</td>
+          <td><b>ist ebenfalls zu dokumentieren</b> — und <b>in der Patientenakte ist das neue
+            Hilfsmittel zu vermerken</b>.</td></tr>
+        <tr><td class="k">Vorkommnisse</td>
+          <td><b>Alle Vorkommnisse UND Beinahe-Vorkommnisse</b> werden <b>immer an das
+            BfArM</b> gemeldet.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die drei Wiederholungsfragen der Schulung — unbeantwortet</span>
+    <p><b>1.</b> Können Rollatoren als Sitzhilfe genutzt werden? ·
+      <b>2.</b> Was müssen Sie nach dem Zusammenfalten bzw. -klappen immer kontrollieren? ·
+      <b>3.</b> Müssen Sie in Rollatoren eingewiesen werden?</p>
+    <p><b>Frage 1 und 3 beantwortet der Text selbst</b> — such die Stellen. <b>Frage 2 nicht:</b>
+      Was nach dem Zusammenklappen zu kontrollieren ist, steht in der Schulung nirgends
+      ausdrücklich. <b>Ich rate nicht.</b></p>
+    <p class="fr">Les questions 1 et 3 ont leur réponse dans le texte. La 2 non — je ne devine
+      pas.</p>
+  </div>
+
+  <div class="paare">
+    <div class="paar"><span class="de">das Hilfsmittel, -</span>
+      <span class="frx">l'aide technique, le dispositif d'assistance</span></div>
+    <div class="paar"><span class="de">der Pflegegrad, -e</span>
+      <span class="frx">le degré de dépendance reconnu</span></div>
+    <div class="paar"><span class="de">die Höherstufung, -en</span>
+      <span class="frx">le reclassement à un degré supérieur</span></div>
+    <div class="paar"><span class="de">das Pflegegeld (nur Singular)</span>
+      <span class="frx">l'allocation versée quand la famille assure les soins</span></div>
+    <div class="paar"><span class="de">die Pflegesachleistung, -en</span>
+      <span class="frx">la prestation en nature (service de soins à domicile)</span></div>
+    <div class="paar"><span class="de">die Verhinderungspflege (nur Singular)</span>
+      <span class="frx">le relais quand l'aidant est empêché</span></div>
+    <div class="paar"><span class="de">die Kurzzeitpflege (nur Singular)</span>
+      <span class="frx">l'hébergement temporaire</span></div>
+    <div class="paar"><span class="de">die Tagespflege (nur Singular)</span>
+      <span class="frx">l'accueil de jour</span></div>
+    <div class="paar"><span class="de">der Entlastungsbetrag, ¨-e</span>
+      <span class="frx">le forfait de soulagement</span></div>
+    <div class="paar"><span class="de">der Hausnotruf (nur Singular)</span>
+      <span class="frx">la téléalarme</span></div>
+    <div class="paar"><span class="de">das Entlassmanagement (nur Singular)</span>
+      <span class="frx">la gestion de la sortie d'hôpital</span></div>
+    <div class="paar"><span class="de">die Pflegeüberleitung, -en</span>
+      <span class="frx">la transmission entre structures de soins</span></div>
+    <div class="paar"><span class="de">die Patientenverfügung, -en</span>
+      <span class="frx">les directives anticipées</span></div>
+    <div class="paar"><span class="de">die Vorsorgevollmacht, ¨-e</span>
+      <span class="frx">la procuration de protection future</span></div>
+    <div class="paar"><span class="de">der Bettgalgen, -</span>
+      <span class="frx">la potence de lit</span></div>
+    <div class="paar"><span class="de">der Nachtstuhl, ¨-e</span>
+      <span class="frx">la chaise percée</span></div>
+    <div class="paar"><span class="de">die Nykturie (nur Singular)</span>
+      <span class="frx">la nycturie (besoin d'uriner la nuit)</span></div>
+  </div>
+</section>
+
+<section id="offen">
+  <h2>Was fehlt</h2>
+
+  <div class="warnung">
+    <span class="t">Fünf offene Punkte</span>
+    <p><b>1. Die Original-Fallbeschreibung des Ehepaars S. liegt nicht im Ordner.</b> Alles, was
+      oben über die beiden steht, habe ich aus den Gruppenarbeiten und dem Beratungsgespräch
+      zusammengetragen — es kann also unvollständig sein.</p>
+    <p><b>2. Die Datei „Pflegehilfsmittel und Angebote Ambulantes Setting.pdf“ lässt sich nicht
+      lesen.</b> Sie ist 2 MB groß, enthält aber <b>keinen auslesbaren Text</b> — vermutlich
+      nur Bilder oder ein Scan. <b>Was darin steht, weiß ich nicht.</b> Schau selbst nach; wenn
+      dort etwas Wichtiges steht, schick es mir als Foto.</p>
+    <p><b>3. Das Begutachtungsverfahren zum Pflegegrad</b> — Module, Ablauf, wer begutachtet —
+      steht in <b>keiner</b> der sieben Dateien, obwohl zweimal eine Höherstufung empfohlen
+      wird.</p>
+    <p><b>4. Die drei Wiederholungsfragen</b> der Rollator-Schulung sind unbeantwortet, und
+      Frage 2 lässt sich aus dem Text nicht beantworten.</p>
+    <p><b>5. Die Geldbeträge</b> sind ungeprüfte Angaben aus einer Schülerarbeit — siehe die
+      Warnung oben.</p>
+    <p class="fr">Cinq trous nommés. Aucun rempli de mémoire.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Brücken zu deinen anderen Seiten</span>
+    <p><b>Verantwortliches Pflegehandeln:</b> Die vier <b>Rechte</b> des Betreuers stehen dort —
+      seine <b>Befugnisse</b> und die Rangfolge der Instrumente stehen <b>hier</b>. Zusammen
+      ergibt es ein vollständiges Bild.</p>
+    <p><b>Rehabilitation:</b> Dort die DRG-Kette (kürzere Liegezeiten), hier die Gegenrichtung
+      (<b>fehlende Nachsorgeplätze ⇒ längere Liegezeiten</b>). Beides drückt auf dasselbe
+      Entlassmanagement.</p>
+    <p><b>Kommunikation:</b> Die Sätze aus dem Beratungsgespräch sind <b>angewandter Rogers</b> —
+      Akzeptanz, Kongruenz, Empathie, dazu Paraphrasieren und Spiegeln.</p>
+    <p><b>Menschen mit Behinderung:</b> Derselbe Gedanke — <b>Teilhabe</b>, und die Barriere
+      liegt in der Wohnung, nicht im Menschen.</p>
+    <p><b>Sturzprophylaxe (Lern-Hub):</b> Die vier Nachtmaßnahmen sind eine fertige
+      Sturzprophylaxe für einen konkreten Fall.</p>
+  </div>
+</section>
+
+<details class="quelle">
+  <summary>Die sieben Quellen — jede einzeln genannt, mit ihrem Status</summary>
+  <div class="inh">
+    <ul>
+      <li><b>NEUSozialdienst im Krankenhaus.pdf</b> — Foliensatz <b>Greta Opitz</b>,
+        Luisenhospital, <i>Pflegebedürftigkeit und lebensweltorientierte Pflege</i>.
+        <b>Dozentenmaterial</b> und die verlässlichste Quelle dieses Blocks: Rechtsgrundlagen,
+        Konsilweg, Leistungen, rechtliche Verfügungen, PUEG.</li>
+      <li><b>Beratungsgespraech zu Pflegehilfsmitteln.pdf</b> — ein vollständig ausformuliertes
+        Beratungsgespräch nach <b>§ 37 Abs. 3 SGB XI</b> mit Methodenhinweisen.
+        <b>Die Datei nennt keinen Verfasser</b>, ist aber didaktisch aufgebaut.</li>
+      <li><b>MPG-Schulungseinheit-Anwendung-von-Rollatoren.pdf</b> — eine
+        <b>Medizinprodukte-Schulung</b>, ca. 10 Minuten, mit drei unbeantworteten
+        Wiederholungsfragen.</li>
+      <li><b>Arbeitauftraghilfsmittel (Farnaz, Zika, Sokna, El Inani).pdf</b> —
+        <b>deine eigene Gruppenarbeit</b> zu den Hilfsmitteln, nach sechs Lebensbereichen
+        geordnet.</li>
+      <li><b>AA Pflegeversicherung &amp; Beratung Familie S. (Ghannam, Nowacki, Hüls,
+        Hoppe).pdf</b> — <b>Gruppenarbeit von Mitschülern</b>, PF25-28-1, 23.01.2026: die
+        Leistungstabelle und ein zweites, ausformuliertes Beratungsgespräch.
+        <b>Kein offizielles Material — alle Geldbeträge sind ungeprüft.</b></li>
+      <li><b>Pflegehilsmittel und Angebote Ambulantes Setting.pdf</b> — <b>nicht auslesbar</b>
+        (2 MB, kein Text, vermutlich nur Bilder). Inhalt unbekannt.</li>
+      <li><b>Fallbeispiel Frau Mai ambulante Pflege Pflegeplanung.pdf</b> — gehört zum
+        Pflegeplanungs-Block und wird dort bearbeitet, nicht hier.</li>
+    </ul>
+    <p>Alle aus deinem Google-Drive-Ordner, geteilt am 18.09.2026.</p>
+    <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> die Kette Nykturie → Dyspnoe →
+      Arthrose → nächtlicher Sturz · die Einordnung der vier Rechtsinstrumente <b>als
+      Rangfolge</b> · der Hinweis auf den häufigsten Irrtum beim Ehegattennotvertretungsrecht ·
+      die Erläuterung des Unterschieds zwischen Pflegegeld und Pflegesachleistungen · die
+      Rückmeldung zu deiner Gruppenarbeit einschließlich der drei Nachfragen
+      („4–6 Wochen“, „Approvierung“, die erfundenen Kontaktdaten) · die Griffhöhen-Kette beim
+      Rollator · und alle Brücken zu deinen anderen Zusammenfassungen.</p>
+    <p>Die französischen Zeilen und die Vokabelübersetzungen sind von mir ergänzt.</p>
+  </div>
+</details>
+
+</main>
+
+<footer>
+  <p>Pflegehilfsmittel, Sozialdienst und ambulantes Setting — gebaut aus deinen eigenen
+    Unterlagen.<br>
+    Wo etwas aus einer Schülerarbeit stammt, ungeprüft ist oder von mir kommt, steht es oben
+    ausdrücklich dabei.</p>
+</footer>
