@@ -60,7 +60,7 @@
     font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
     color:var(--ink-soft);margin:0 0 7px;}
   .band .kopf b{color:var(--accent);font-weight:700;}
-  .band .reihe{display:grid;grid-template-columns:repeat(21,1fr);gap:3px;}
+  .band .reihe{display:grid;grid-template-columns:repeat(var(--bloecke,29),1fr);gap:3px;}
   .band .reihe i{display:block;height:9px;border-radius:2px;background:var(--track);
     transition:background .3s;}
   .band .reihe i.fertig{background:var(--accent);}
@@ -600,7 +600,7 @@
 <header class="hero">
   <div class="heroin">
     <div>
-      <p class="eyebrow">Etappe 1 · A2 → B1 · bis 31.12.2026</p>
+      <p class="eyebrow">Etappe 1 · A2 → B1 · bis 31.01.2027</p>
       <h1>Deutsch täglich</h1>
       <p class="hero-sub">Eine Lektion <b>jeden zweiten Tag</b>, dazwischen ein Übungstag.
       Jedes Grammatikthema zwei Lektionen lang: <i>entdecken</i>, dann <i>anwenden</i>.</p>
@@ -619,7 +619,7 @@
     </div>
   </div>
   <div class="band" id="band">
-    <p class="kopf"><span>Die 21 Grammatikthemen</span><span id="bandJetzt"></span></p>
+    <p class="kopf"><span>Die <span id="bandZahl">29</span> Grammatikblöcke</span><span id="bandJetzt"></span></p>
     <div class="reihe" id="bandReihe"></div>
   </div>
   <div class="kennz" id="kennz"></div>
@@ -2114,9 +2114,12 @@ function zeichneFortschritt(){
     if(r) r.setAttribute('aria-label','Lektion '+lektion+' von '+LEKTIONEN_GESAMT);
   }
 
-  /* Die 21 Themen als Band — abgehakt, laufend, offen. */
+  /* Die Themenblöcke als Band — abgehakt, laufend, offen. */
   const reihe=document.getElementById('bandReihe');
+  const bz=document.getElementById('bandZahl');
+  if(bz) bz.textContent=THEMEN_GESAMT;
   if(reihe){
+    reihe.style.setProperty('--bloecke',THEMEN_GESAMT);
     let h='';
     for(let i=1;i<=THEMEN_GESAMT;i++){
       const k=wdh?'fertig':(i<block?'fertig':(i===block?'jetzt':''));
@@ -2126,7 +2129,7 @@ function zeichneFortschritt(){
   }
   const bj=document.getElementById('bandJetzt');
   if(bj){
-    bj.innerHTML=wdh?'<b>Dezember · Wiederholung</b>'
+    bj.innerHTML=wdh?'<b>Januar · Wiederholung</b>'
       :(block?('Thema <b>'+block+' von '+THEMEN_GESAMT+'</b>'
         +(z.grammatik?' · '+z.grammatik:'')):'');
   }
