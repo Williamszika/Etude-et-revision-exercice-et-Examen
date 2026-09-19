@@ -1240,6 +1240,13 @@ installieren** — anderes Betriebssystem, anderes Paketformat.
 - **Was verloren geht:** **offline**. Die Seite selbst braucht Netz zum Laden. Das ist der
   einzige echte Vorteil, den die App vor der Webseite hat.
 
+**Der eine Weg, der ohne 99 € funktioniert, steht in `app/IPHONE.md`** — auf Französisch, weil
+sie ihn selbst abarbeiten muss: Xcode, Flutter auf dem Mac, `ios/Runner.xcworkspace` (nicht
+`.xcodeproj`), Personal Team, eigene Bundle-ID statt `de.zika.deutschTaeglich`, Entwicklermodus
+am iPhone, dann „Entwickler vertrauen". **Die 7-Tage-Grenze steht ganz oben im Blatt**, nicht
+im Kleingedruckten — sie soll vorher wissen, worauf sie sich einlässt, und das Blatt sagt ihr
+ausdrücklich, dass sich der Aufwand **nur für das Offline-Arbeiten** lohnt.
+
 **Offen und nicht versprochen:** Die Seite ließe sich mit Service Worker und Manifest zu einer
 **PWA** machen, die auch offline lädt. Ob ein Service Worker unter einer
 `claude.ai/artifact/…`-Adresse registriert werden darf, **ist nicht geprüft** — nicht behaupten,
