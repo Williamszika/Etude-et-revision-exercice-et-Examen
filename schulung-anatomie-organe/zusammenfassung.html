@@ -1,0 +1,979 @@
+<title>Die Organe und das Nervensystem</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#8a3a3f;--accent-deep:#6d2b30;--accent-soft:#f3e0e1;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#e0949a;--accent-deep:#eeb0b5;--accent-soft:#33191b;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#e0949a;--accent-deep:#eeb0b5;--accent-soft:#33191b;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#8a3a3f;--accent-deep:#6d2b30;--accent-soft:#f3e0e1;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 05 · CE 07 · Anatomie und Physiologie</p>
+  <h1>Die Organe und das Nervensystem</h1>
+  <p class="sub">Genau das Gebiet, in dem deine Klausuren am schwächsten waren. Alles hier steht
+    so in deinen eigenen Unterlagen — und wo etwas fehlt, sage ich es, statt es zu erfinden.</p>
+  <div class="meta">
+    <span>CE 05 / UE 0</span>
+    <span>CE 07 / UE 04</span>
+    <span>6 Dateien</span>
+    <span>Niveau B1</span>
+    <span>Stand 19.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#warum">Warum dieses Thema</a>
+  <a href="#auftrag">Der Auftrag</a>
+  <a href="#organe">Die Organe</a>
+  <a href="#leber">Leber</a>
+  <a href="#lunge">Lunge</a>
+  <a href="#magen">Magen</a>
+  <a href="#niere">Niere</a>
+  <a href="#nerven">Nervensystem</a>
+  <a href="#neuron">Das Neuron</a>
+  <a href="#gehirn">Gehirn</a>
+  <a href="#bewusst">Bewusstsein</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="warum">
+  <h2>Warum ausgerechnet dieses Thema zuerst</h2>
+  <p class="lead">Weil dein Notenspiegel genau hier einbricht.</p>
+
+  <p>Am 18.09.2026 haben wir deine zehn Noten ausgewertet. Das Muster war eindeutig: Deine
+    <b>schwächsten</b> Klausuren waren die über <b>Anatomie, Physiologie und
+    Krankheitsmechanismus</b> — Blut und Herz <b>3,99</b>, Pneumonie mit septischem Schock
+    <b>5,37</b>. Die Klausur am selben Tag über <b>Pflegehandlungen</b> lag bei <b>2,95</b>.</p>
+
+  <p>Es ist also nicht „Pflege“, was schwerfällt. Es ist <b>der Vorgang im Körper</b> — das
+    Beschreiben und Begründen von etwas, das man nicht sieht.</p>
+
+  <div class="merk">
+    <span class="t">Deshalb dieser Block zuerst</span>
+    <p>Von den vierzehn Themenblöcken deines Google-Drive-Ordners ist das hier der, der deine
+      Noten am direktesten trifft. Alles andere — Notfälle, Geburtshilfe, Pädiatrie — baut
+      außerdem darauf auf.</p>
+    <p class="fr">C'est le bloc qui touche tes notes le plus directement. Tout le reste s'appuie
+      dessus.</p>
+  </div>
+</section>
+
+<section id="auftrag">
+  <h2>Der Auftrag deiner Dozentin — und warum er zählt</h2>
+  <p class="lead">Die Einstiegsfolie CE 05 UE 0 sagt genau, was geprüft wird.</p>
+
+  <p>Der Foliensatz <b>Organübersicht</b> ist keine Wissensfolie, sondern eine
+    <b>Arbeitsanweisung</b>. Die Klasse wurde in Gruppen geteilt, jede Gruppe hat ein Organ
+    bearbeitet und vorgestellt. Am Ende steht dort ein Wort: <b>Prüfungsform: Klausur</b>.</p>
+
+  <div class="merk">
+    <span class="t">Wörtlich aus der Folie</span>
+    <p>„Erarbeiten Sie zu jedem Organ folgende Inhalte:<br>
+      <b>Größe / Gewicht / Lage</b><br>
+      <b>Makroskopie (Grundaufbau)</b><br>
+      <b>Funktionen des Organs</b>“</p>
+  </div>
+
+  <p><b>Das sind drei Fragen, keine offene Aufgabe.</b> Wenn in der Klausur „Beschreiben Sie die
+    Leber“ steht, erwartet die Korrektur genau diese drei Punkte — und zwar <b>sichtbar
+    getrennt</b>. Der Operator <b>Beschreiben</b> liegt auf AFB I: Werden zwei oder drei Teile
+    verlangt, müssen alle dastehen, sonst fehlen Punkte, auch wenn der Inhalt stimmt.</p>
+
+  <div class="warnung">
+    <span class="t">Die Falle, die dich Punkte kostet</span>
+    <p>Man schreibt einen schönen Absatz über die Leber — und vergisst das <b>Gewicht</b>. Der
+      Inhalt ist richtig, die Antwort ist trotzdem unvollständig. <b>Schreib die drei
+      Überschriften hin, bevor du antwortest</b>, und fülle sie einzeln.</p>
+    <p class="fr">Écris les trois titres avant de répondre : taille/poids/position — structure —
+      fonctions. Puis remplis-les un par un.</p>
+  </div>
+
+  <p class="fr">Le cours date du 31.03.2025. C'est un travail de groupe : chaque groupe a traité
+    un organe.</p>
+</section>
+
+<section id="organe">
+  <h2>Die Organe, die vorgestellt wurden</h2>
+  <p class="lead">Elf Organe stehen auf der Übersichtsfolie — mit ihren lateinischen Namen.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Deutsch</th><th>Lateinisch / Fachbegriff</th><th>Unterlagen dazu?</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Leber</td><td>Hepar</td><td>✅ eigenes Plakat</td></tr>
+        <tr><td class="k">Lunge</td><td>Pulmones</td><td>✅ eigenes Plakat</td></tr>
+        <tr><td class="k">Magen</td><td>Gaster / Ventriculus</td><td>✅ eigenes Plakat</td></tr>
+        <tr><td class="k">Niere</td><td>Ren</td><td>✅ eigenes Plakat</td></tr>
+        <tr><td class="k">Gehirn</td><td>Enzephalon</td><td>✅ im Foliensatz Nervensystem</td></tr>
+        <tr><td class="k">Herz</td><td>Cor</td><td>❌ kein Plakat im Ordner</td></tr>
+        <tr><td class="k">Darm</td><td>Dünndarm: Intestinum tenue · Dickdarm: Intestinum crassum</td><td>❌ kein Plakat</td></tr>
+        <tr><td class="k">Bauchspeicheldrüse</td><td>Pankreas</td><td>❌ kein Plakat</td></tr>
+        <tr><td class="k">Ableitende Harnwege</td><td>Nierenbecken (Pelvis renalis) · Harnleiter (Ureter) · Harnblase (Vesica urinaria) · Harnröhre (Urethra)</td><td>❌ kein Plakat</td></tr>
+        <tr><td class="k">Milz</td><td>Splen</td><td>❌ kein Plakat</td></tr>
+        <tr><td class="k">Thymus</td><td>Thymus</td><td>❌ kein Plakat</td></tr>
+        <tr><td class="k">Luftröhre</td><td>Trachea</td><td>❌ kein Plakat</td></tr>
+        <tr><td class="k">Speiseröhre</td><td>Ösophagus</td><td>❌ kein Plakat</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Das musst du wissen, bevor du weiterliest</span>
+    <p>Zu <b>Herz, Darm, Pankreas, Milz, Thymus, Trachea, Ösophagus</b> und den <b>ableitenden
+      Harnwegen</b> liegt in deinem Drive-Ordner <b>nichts</b> — nur der Name auf der
+      Übersichtsfolie. Diese Organe waren die Plakate der <b>anderen Gruppen</b>, und die hast
+      du nicht abfotografiert.</p>
+    <p><b>Ich erfinde sie nicht.</b> Wenn du sie brauchst — und für die Klausur brauchst du sie
+      —, dann besorg dir die Plakate der anderen Gruppen und schick sie mir. Dann wird diese
+      Seite vollständig.</p>
+    <p class="fr">Il manque huit organes. Demande les affiches des autres groupes et envoie-les
+      moi — je ne vais rien inventer à leur place.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Eine Ausnahme: Herz und Blut hast du schon</span>
+    <p>Zum <b>Herz-Kreislauf-System</b> gibt es im Repo bereits eine eigene Schulung, aus deinen
+      Kurs-PDFs gebaut. Genau darüber lief auch die Klausur mit der 3,99. <b>Das ist die
+      Zusammenfassung, die du dafür brauchst</b> — nicht diese hier.</p>
+  </div>
+</section>
+
+<section id="leber">
+  <h2>Die Leber — <i>Hepar</i></h2>
+  <p class="lead">Das größte innere Organ des Menschen.</p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Größe · Gewicht · Lage</h4>
+      <ul>
+        <li>Rechter Leberlappen: <b>ca. 20 cm</b></li>
+        <li><b>Circa 1,5 kg</b> beim Erwachsenen</li>
+        <li>Im <b>rechten Oberbauch</b>, unterhalb des <b>Zwerchfells</b></li>
+        <li><b>Das größte innere Organ</b> des menschlichen Körpers</li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Makroskopie — der Grundaufbau</h4>
+      <ul>
+        <li><b>Zwei große Lappen</b>: rechter und linker Leberlappen</li>
+        <li>Farbe: <b>dunkelbraun bis rotbraun</b></li>
+        <li><b>Gallenblase</b> an der Unterseite</li>
+        <li><b>Ligamentum falciforme</b> — das Band zwischen den beiden Lappen</li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Funktionen</h4>
+      <ul>
+        <li><b>Steuert den Stoffwechsel</b></li>
+        <li><b>Entgiftet das Blut</b></li>
+        <li><b>Produziert Galle</b></li>
+        <li><b>Speichert Energie</b> in Form von <b>Glykogen</b></li>
+        <li><b>Bildet wichtige Proteine</b> für den Körper</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="paare">
+    <div class="paar"><span class="de">der Stoffwechsel</span>
+      <span class="frx">le métabolisme</span></div>
+    <div class="paar"><span class="de">entgiften</span>
+      <span class="frx">détoxifier, désintoxiquer</span></div>
+    <div class="paar"><span class="de">die Galle</span>
+      <span class="frx">la bile</span></div>
+    <div class="paar"><span class="de">das Glykogen</span>
+      <span class="frx">le glycogène — la forme de stockage du sucre</span></div>
+    <div class="paar"><span class="de">das Zwerchfell</span>
+      <span class="frx">le diaphragme</span></div>
+    <div class="paar"><span class="de">der Leberlappen, die Leberlappen</span>
+      <span class="frx">le lobe hépatique</span></div>
+  </div>
+</section>
+
+<section id="lunge">
+  <h2>Die Lunge — <i>Pulmones</i></h2>
+  <p class="lead">Unser Atmungsorgan.</p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Größe · Gewicht · Lage</h4>
+      <ul>
+        <li><b>25–30 cm</b></li>
+        <li><b>1–1,3 kg</b></li>
+        <li>In der <b>Brusthöhle</b>, umgeben von den <b>Rippen</b></li>
+        <li>Nach unten begrenzt vom <b>Zwerchfell</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Makroskopie — der Grundaufbau</h4>
+      <ul>
+        <li><b>Luftröhre</b> → <b>Hauptbronchien</b> → immer feinere Äste</li>
+        <li><b>Rechts drei Lappen:</b> Ober-, Mittel-, Unterlappen</li>
+        <li><b>Links zwei Lappen:</b> Ober- und Unterlappen — links ist Platz für das
+          <b>Herz</b></li>
+        <li><b>Alveolen</b> (Lungenbläschen) am Ende der Äste</li>
+        <li><b>Lungenarterie</b> und <b>Lungenvene</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Funktionen</h4>
+      <ul>
+        <li><b>Hauptaufgabe: Gasaustausch</b> zwischen Atemluft und Blut — <b>Sauerstoff</b>
+          wird aufgenommen, <b>Kohlendioxid (CO₂)</b> abgegeben</li>
+        <li><b>Druckausgleich</b> und Unterstützung des Kreislaufs</li>
+        <li><b>Säure-Basen-Regulation</b> (pH-Wert)</li>
+        <li><b>Immunabwehr durch Zilien</b> (Flimmerhärchen); der Schleim schützt</li>
+        <li><b>Temperatur- und Feuchtigkeitsregulierung</b> — die Lunge gibt Wärme und
+          Feuchtigkeit ab</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Zahl, die sich lohnt</span>
+    <p><b>Rechts drei Lappen, links zwei.</b> Der Grund ist der einzige, den du dir merken
+      musst: <b>Links liegt das Herz.</b> Eine Frage, die man in einem Satz begründen kann —
+      genau das, wofür es auf AFB II und III Punkte gibt.</p>
+  </div>
+
+  <div class="paare">
+    <div class="paar"><span class="de">der Gasaustausch</span>
+      <span class="frx">les échanges gazeux</span></div>
+    <div class="paar"><span class="de">die Alveole, -n (das Lungenbläschen, -)</span>
+      <span class="frx">l'alvéole pulmonaire</span></div>
+    <div class="paar"><span class="de">der Sauerstoff (nur Singular)</span>
+      <span class="frx">l'oxygène</span></div>
+    <div class="paar"><span class="de">das Kohlendioxid (nur Singular)</span>
+      <span class="frx">le dioxyde de carbone</span></div>
+    <div class="paar"><span class="de">die Zilien (Plural), das Flimmerhärchen, -</span>
+      <span class="frx">les cils vibratiles</span></div>
+    <div class="paar"><span class="de">die Brusthöhle, -n</span>
+      <span class="frx">la cavité thoracique</span></div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Unsicher auf dem Plakat</span>
+    <p>Die Abkürzungen <b>RLF</b> und <b>LLF</b> stehen handschriftlich auf dem Plakat, ohne
+      Erklärung. Gemeint sind mit hoher Wahrscheinlichkeit <b>rechter</b> und <b>linker
+      Lungenflügel</b> — <b>aber das steht nirgends</b>. Frag im Kurs nach, bevor du es in einer
+      Klausur benutzt.</p>
+  </div>
+</section>
+
+<section id="magen">
+  <h2>Der Magen — <i>Gaster / Ventriculus</i></h2>
+  <p class="lead">Fünf Abschnitte, fünf Namen. Die muss man können.</p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Größe · Fassungsvermögen · Lage</h4>
+      <ul>
+        <li><b>25–30 cm</b> lang</li>
+        <li>Fasst <b>bis 1,5 L Nahrung</b></li>
+        <li>Zwischen <b>Milz</b> und <b>Leber</b>, im <b>linken Oberbauch</b>, unterhalb des
+          <b>Zwerchfells</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Makroskopie — die fünf Abschnitte</h4>
+      <ul>
+        <li><b>Kardia</b> — der Mageneingang</li>
+        <li><b>Fundus</b> — der Magengrund</li>
+        <li><b>Korpus</b> — der Magenkörper</li>
+        <li><b>Antrum</b> — die Magenhöhle</li>
+        <li><b>Pylorus</b> — der Magenpförtner</li>
+      </ul>
+      <p style="margin-top:8px;font-size:14.5px;">Davor die <b>Speiseröhre</b>, danach der
+        <b>Zwölffingerdarm (Duodenum)</b>.</p>
+    </div>
+    <div class="karte">
+      <h4>Funktionen</h4>
+      <ul>
+        <li>Teil des <b>Verdauungstraktes</b></li>
+        <li>Die Nahrung wird in ca. <b>0,5–3 Stunden</b> durch rhythmisch kontrahierende
+          <b>Muskelfasern</b> durchmischt und zerkleinert — das ist die <b>Peristaltik</b></li>
+        <li>Die Magenwände geben <b>enzymhaltige Magensäure</b> ab, die <b>Proteine spaltet</b>
+          und <b>Bakterien abtötet</b></li>
+        <li>Die Nahrung wird für die weitere Verdauung im <b>Dünndarm</b> vorbereitet</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Eselsbrücke für die fünf Abschnitte</span>
+    <p>Sie stehen in der Reihenfolge, in der die Nahrung durchläuft:
+      <b>K</b>ardia → <b>F</b>undus → <b>K</b>orpus → <b>A</b>ntrum → <b>P</b>ylorus.
+      Von oben nach unten, vom Eingang zum Pförtner.</p>
+    <p class="fr">Dans l'ordre du passage des aliments, de l'entrée au « portier ».</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Ein Zahlendreher auf dem Plakat</span>
+    <p>Auf dem Plakat steht <i>„Gewicht bis 4,5 L“</i>. Das kann nicht stimmen: <b>Liter ist
+      keine Gewichtseinheit</b>, und an anderer Stelle steht auf demselben Plakat
+      <b>„bis 1,5 L Nahrung“</b>. Gemeint ist also ein <b>Fassungsvermögen</b>, kein Gewicht.
+      Welcher der beiden Werte der richtige ist, <b>steht in deinen Unterlagen nicht</b> —
+      ich habe die 1,5 L übernommen, weil sie im Funktionsteil steht. <b>Prüf das nach.</b></p>
+  </div>
+
+  <div class="paare">
+    <div class="paar"><span class="de">die Verdauung (nur Singular)</span>
+      <span class="frx">la digestion</span></div>
+    <div class="paar"><span class="de">die Peristaltik (nur Singular)</span>
+      <span class="frx">le péristaltisme — les contractions qui font avancer les aliments</span></div>
+    <div class="paar"><span class="de">die Magensäure (nur Singular)</span>
+      <span class="frx">l'acide gastrique</span></div>
+    <div class="paar"><span class="de">spalten (spaltet, spaltete, hat gespalten)</span>
+      <span class="frx">scinder, décomposer</span></div>
+    <div class="paar"><span class="de">abtöten (tötet ab, tötete ab, hat abgetötet)</span>
+      <span class="frx">tuer, détruire (des germes)</span></div>
+    <div class="paar"><span class="de">der Zwölffingerdarm (nur Singular)</span>
+      <span class="frx">le duodénum</span></div>
+  </div>
+</section>
+
+<section id="niere">
+  <h2>Die Niere — <i>Ren</i></h2>
+  <p class="lead">Zwei Organe, fünf lebenswichtige Aufgaben.</p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Größe · Gewicht · Lage</h4>
+      <ul>
+        <li><b>10–14 cm</b> lang, <b>5–7 cm</b> breit, <b>4–5 cm</b> dick</li>
+        <li><b>110–200 g</b></li>
+        <li><b>Beidseitig der Wirbelsäule</b></li>
+        <li>Die <b>rechte</b> Niere liegt normalerweise <b>etwas tiefer</b> als die linke —
+          <b>wegen der Leber</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Makroskopie — der Grundaufbau</h4>
+      <ul>
+        <li><b>Bohnenförmig</b></li>
+        <li>Zum Großteil aus <b>Blutgefäßen</b> aufgebaut, mit Blut gefüllt</li>
+        <li>Umhüllt von einer <b>kräftigen Bindegewebskapsel</b></li>
+        <li>Drei Teile: <b>Nierenrinde</b> · <b>Nierenmark</b> · <b>Nierenbecken</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Funktionen</h4>
+      <ul>
+        <li><b>Filtration des Blutes</b></li>
+        <li><b>Ausscheidung</b> von Wasser und Elektrolyten</li>
+        <li><b>Regulation des Elektrolythaushalts</b></li>
+        <li><b>Blutdruckregulation</b></li>
+        <li><b>Harnproduktion</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Begründung, die Punkte bringt</span>
+    <p><b>Warum liegt die rechte Niere tiefer?</b> Weil <b>darüber die Leber liegt</b> — und die
+      ist das größte innere Organ, sie braucht den Platz. <b>Ursache → Wirkung.</b> Genau so
+      sieht eine Antwort auf <i>Begründen</i> aus: nicht nur „sie liegt tiefer“, sondern das
+      <b>weil</b> dazu.</p>
+    <p class="fr">Pas seulement « elle est plus basse », mais le <b>parce que</b>.</p>
+  </div>
+
+  <div class="paare">
+    <div class="paar"><span class="de">die Filtration (nur Singular)</span>
+      <span class="frx">la filtration</span></div>
+    <div class="paar"><span class="de">die Ausscheidung, -en</span>
+      <span class="frx">l'excrétion, l'élimination</span></div>
+    <div class="paar"><span class="de">der Elektrolythaushalt (nur Singular)</span>
+      <span class="frx">l'équilibre électrolytique</span></div>
+    <div class="paar"><span class="de">das Bindegewebe (nur Singular)</span>
+      <span class="frx">le tissu conjonctif</span></div>
+    <div class="paar"><span class="de">die Wirbelsäule, -n</span>
+      <span class="frx">la colonne vertébrale</span></div>
+    <div class="paar"><span class="de">bohnenförmig</span>
+      <span class="frx">en forme de haricot</span></div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Schwer lesbar auf dem Plakat</span>
+    <p>Auf dem Plakat stehen <b>dexter</b> und <b>sinister</b> für rechts und links. Das ist
+      Latein und korrekt, kommt aber in deinen anderen Unterlagen nicht vor. Schreib in der
+      Klausur ruhig <b>rechts</b> und <b>links</b> — das ist nicht falsch.</p>
+  </div>
+</section>
+
+<section id="nerven">
+  <h2>Das Nervensystem — Anatomie und Physiologie</h2>
+  <p class="lead">CE 07 / UE 04. Der einzige richtige Foliensatz in diesem Block — und mit
+    Abstand der ausführlichste.</p>
+
+  <div class="merk">
+    <span class="t">Definition aus der Folie</span>
+    <p>„Die <b>Gesamtheit aller Nervenzellen</b> bildet das Nervensystem. Es regelt gemeinsam
+      mit dem <b>Hormonsystem</b> sämtliche Organsysteme.“</p>
+  </div>
+
+  <h3>Die vier Aufgaben — in dieser Reihenfolge</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Erfassen</h4>
+      <p>Informationen aus <b>Körper und Umwelt</b> aufnehmen — über
+        <b>Sensoren / Rezeptoren</b>.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Übermitteln</h4>
+      <p>An die übergeordneten Zentren weiterleiten — über <b>afferente Nerven</b>
+        (<i>hin zum Gehirn</i>).</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Verarbeiten und speichern</h4>
+      <p>Daraus entstehen <b>Bewusstsein, Lernen, Sprache, Motivation, Denken</b>.</p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div>
+      <h4>Antworten</h4>
+      <p>Über <b>efferente Nerven</b> (<i>weg vom Gehirn</i>). Die Folge kann eine
+        <b>Reaktion</b> sein.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Afferent oder efferent? Die Eselsbrücke</span>
+    <p><b>A</b>fferent = <b>A</b>nkommen (zum Gehirn hin). <b>E</b>fferent = <b>E</b>xit
+      (vom Gehirn weg). Diese beiden Wörter werden ständig verwechselt und kommen in jeder
+      Klausur über das Nervensystem vor.</p>
+    <p class="fr">Afferent = qui arrive au cerveau. Efferent = qui en repart.</p>
+  </div>
+
+  <h3>Zwei Einteilungen — man muss beide kennen</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Einteilung</th><th>Teil 1</th><th>Teil 2</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="k">nach <b>Lage</b></td>
+          <td><b>Zentrales Nervensystem (ZNS)</b><br>Gehirn und Rückenmark</td>
+          <td><b>Peripheres Nervensystem (PNS)</b><br>alle Nervenzellen und -bahnen außerhalb
+            des ZNS</td>
+        </tr>
+        <tr>
+          <td class="k">nach <b>Funktion</b></td>
+          <td><b>Somatisches / willkürliches NS</b><br>Umweltreize empfangen und verarbeiten ·
+            Bewegungssteuerung</td>
+          <td><b>Vegetatives / autonomes NS</b><br>steuert die inneren Organfunktionen · nur
+            geringfügig durch den Willen beeinflussbar</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Ein Satz aus der Folie, den man leicht überliest</span>
+    <p>„<b>Alle Unterteilungen sind nicht eindeutig trennscharf.</b>“ Das heißt: Die Grenzen
+      sind nicht scharf. Wenn eine Klausurfrage nach einem Grenzfall fragt, ist <b>„das lässt
+      sich nicht eindeutig trennen, weil …“</b> eine richtige Antwort — keine Ausrede.</p>
+  </div>
+
+  <h3>Sympathikus und Parasympathikus</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Sympathikus</h4>
+      <p><b>Allgemein aktivierendes System.</b> Nach <b>außen</b> gerichtet.</p>
+    </div>
+    <div class="karte">
+      <h4>Parasympathikus</h4>
+      <p><b>Bremsendes System.</b> Nach <b>innen</b> gerichtet. Aktiviert die
+        <b>Magen-Darm-Tätigkeit</b>. Vor allem über den <b>N. vagus</b>.</p>
+    </div>
+  </div>
+</section>
+
+<section id="neuron">
+  <h2>Das Neuron — die Grundeinheit</h2>
+  <p class="lead">Hier liegt der Mechanismus. Und Mechanismen sind genau das, was in deinen
+    Klausuren fehlt.</p>
+
+  <p>Ein Neuron nimmt Signale auf, verarbeitet sie und leitet sie weiter — durch
+    <b>elektrische und biochemische Prozesse</b>.</p>
+
+  <h3>Die drei Zustände der Membran</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Ruhepotential</h4>
+      <p><b>Negative</b> elektrische Grundladung der Membran. Bedingt vor allem durch
+        <b>K⁺</b> und <b>Na⁺</b>, gesteuert über die <b>Natrium-Kalium-Pumpe</b>.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Aktionspotential</h4>
+      <p><b>Schlagartige, massive</b> Veränderung der Membran in eine <b>positive</b> Ladung.
+        Vor allem durch <b>Na⁺-Einstrom</b>. Es gilt das
+        <b>Alles-oder-nichts-Prinzip</b>.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Repolarisation</h4>
+      <p><b>Wiederherstellung</b> der Grundladung, vor allem durch <b>K⁺-Ausstrom</b> aus der
+        Zelle. Danach die <b>Refraktärzeit</b>: In dieser Zeit kann <b>kein weiteres</b>
+        Aktionspotential ausgelöst werden.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Kette, die du in der Klausur schreiben musst</span>
+    <p><b>Reiz → Na⁺ strömt ein → Ladung kippt ins Positive (Aktionspotential) → K⁺ strömt aus
+      → Grundladung wieder da (Repolarisation) → Refraktärzeit, kurze Pause.</b></p>
+    <p>Genau <b>so</b> sieht eine Antwort auf <i>Erklären</i> aus: die Schritte <b>in der
+      richtigen Reihenfolge</b>, nicht nur die Namen. Eine Aufzählung ohne Reihenfolge ist auf
+      AFB II keine vollständige Antwort.</p>
+  </div>
+
+  <h3>Wie das Signal weiterkommt</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Im Axon — <b>saltatorische Leitung</b></h4>
+      <p>Das Signal springt von <b>Ranvierschem Schnürring</b> zu Ranvierschem Schnürring —
+        <b>sprunghaft</b>, nicht durchgehend. Das macht es schnell.</p>
+    </div>
+    <div class="karte">
+      <h4>Zur nächsten Zelle — der <b>synaptische Spalt</b></h4>
+      <p>Hier wird das <b>elektrische</b> Signal in eine <b>chemische</b> Übertragung
+        umgewandelt — über <b>Neurotransmitter</b>. Synapsen wirken <b>hemmend oder
+        erregend</b>.</p>
+    </div>
+  </div>
+
+  <h3>Die vier wichtigsten Neurotransmitter</h3>
+  <p><b>Acetylcholin · Noradrenalin · Serotonin · Dopamin</b></p>
+
+  <div class="merk">
+    <span class="t">Die Brücke zur Psychiatrie</span>
+    <p><b>Serotonin</b> und <b>Dopamin</b> stehen auch in deiner Psychiatrie-Zusammenfassung —
+      dort als Angriffspunkt der Medikamente. Das ist <b>dieselbe Sache</b>, einmal von der
+      Physiologie und einmal von der Behandlung aus gesehen. Wenn du diese Verbindung in einer
+      Klausur herstellst, ist das AFB II.</p>
+    <p class="fr">C'est le même mécanisme, vu de deux côtés : la physiologie et le traitement.</p>
+  </div>
+
+  <div class="paare">
+    <div class="paar"><span class="de">das Neuron, die Neuronen (die Nervenzelle, -n)</span>
+      <span class="frx">le neurone</span></div>
+    <div class="paar"><span class="de">die Membran, -en</span>
+      <span class="frx">la membrane</span></div>
+    <div class="paar"><span class="de">das Ruhepotential (nur Singular)</span>
+      <span class="frx">le potentiel de repos</span></div>
+    <div class="paar"><span class="de">das Aktionspotential, -e</span>
+      <span class="frx">le potentiel d'action</span></div>
+    <div class="paar"><span class="de">die Repolarisation (nur Singular)</span>
+      <span class="frx">la repolarisation</span></div>
+    <div class="paar"><span class="de">die Refraktärzeit, -en</span>
+      <span class="frx">la période réfractaire</span></div>
+    <div class="paar"><span class="de">der Einstrom / der Ausstrom</span>
+      <span class="frx">l'entrée / la sortie (d'ions)</span></div>
+    <div class="paar"><span class="de">der Neurotransmitter, -</span>
+      <span class="frx">le neurotransmetteur</span></div>
+    <div class="paar"><span class="de">hemmen (hemmt, hemmte, hat gehemmt)</span>
+      <span class="frx">inhiber, freiner</span></div>
+    <div class="paar"><span class="de">erregen (erregt, erregte, hat erregt)</span>
+      <span class="frx">exciter, stimuler</span></div>
+  </div>
+</section>
+
+<section id="gehirn">
+  <h2>Das Gehirn</h2>
+  <p class="lead">Drei Hauptteile, drei Hirnhäute, ein Flüssigkeitssystem.</p>
+
+  <h3>Die drei Schutzschichten — die Hirnhäute (<i>Meningen</i>)</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">außen</span><div>
+      <h4>Dura mater</h4><p>die <b>harte</b> Hirnhaut</p></div></div>
+    <div class="stufe"><span class="nr">mitte</span><div>
+      <h4>Arachnoidea</h4><p>die <b>Spinnengewebshaut</b></p></div></div>
+    <div class="stufe"><span class="nr n2">innen</span><div>
+      <h4>Pia mater</h4><p>die <b>weiche</b> Hirnhaut</p></div></div>
+  </div>
+
+  <h3>Der Liquor — die Hirnflüssigkeit</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Was er ist</h4>
+      <p><b>Klare, farblose bis leicht gelbe</b> Flüssigkeit. Das Gehirn <b>schwimmt</b> darin.
+        Gebildet und teilweise wieder aufgenommen in den <b>Ventrikeln</b>, im
+        <b>Arachnoidalraum</b> resorbiert.</p>
+    </div>
+    <div class="karte">
+      <h4>Was er tut</h4>
+      <ul>
+        <li><b>Stoß- und Reibungsreduktion</b> für Gehirn und Hirnhäute</li>
+        <li><b>Ernährungsfunktion</b> für die Neuronen — vor allem O₂, CO₂ und H₂O</li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Woraus er besteht</h4>
+      <ul>
+        <li>Wasser</li>
+        <li>Mineralsalze</li>
+        <li><b>Eiweiß: 15–30 mg%</b></li>
+        <li><b>Glucose: 40–70 mg%</b></li>
+        <li><b>Wenige bis keine Zellen</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Warum diese Zahlen wichtig sind</span>
+    <p>Der Liquor kann zur <b>Diagnostik</b> gewonnen werden — durch die
+      <b>Lumbalpunktion</b>. Therapeutisch gibt es die <b>Ventrikeldrainage</b>.</p>
+    <p>Und deshalb zählen die Werte: <b>Wenige bis keine Zellen.</b> Findet man plötzlich viele
+      Zellen und wenig Glucose, ist das ein Hinweis auf eine <b>Entzündung</b>. Die Zahl allein
+      bringt keine Punkte — <b>die Zahl mit ihrer Bedeutung</b> schon.</p>
+  </div>
+
+  <h3>Großhirn (<i>Cerebrum</i>)</h3>
+  <ul>
+    <li>Steuerung vieler <b>aktiver</b> Prozesse</li>
+    <li><b>70 % der Neuronen</b> liegen in der Großhirnrinde</li>
+    <li><b>Zwei Hemisphären</b>, verbunden durch den <b>Balken</b></li>
+    <li>Die Aufgaben sind in <b>bestimmten Bereichen konzentriert</b></li>
+    <li><b>Das Hirn ist grundsätzlich lernfähig</b> — Aufgaben können von anderen Bereichen
+      übernommen werden</li>
+  </ul>
+
+  <h4>Die vier Lappen und ihre Zentren</h4>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Lappen</th><th>Lateinisch</th><th>Was dort liegt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Stirnlappen</td><td>Lobus frontalis</td>
+          <td>primäres <b>motorisches</b> Rindenfeld · <b>Broca-Sprachzentrum</b></td></tr>
+        <tr><td class="k">Scheitellappen</td><td>Lobus parietalis</td>
+          <td>primäres <b>sensorisches</b> Rindenfeld</td></tr>
+        <tr><td class="k">Schläfenlappen</td><td>Lobus temporalis</td>
+          <td><b>Hörzentrum</b> · <b>Wernicke-Sprachzentrum</b></td></tr>
+        <tr><td class="k">Hinterhauptlappen</td><td>Lobus occipitalis</td>
+          <td><b>Sehzentrum</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:15px;">Dazwischen die <b>Zentralfurche</b> und die <b>seitliche
+    Großhirnfurche</b>, hinten die <b>Scheitel-Hinterhaupt-Furche</b>.</p>
+
+  <div class="merk">
+    <span class="t">Die Regel, die man sich merken muss</span>
+    <p>Die <b>Pyramidenbahnen</b> laufen <b>„über Kreuz“</b>: <b>Die linke Hirnhälfte steuert
+      die rechte Körperhälfte</b> — und umgekehrt.</p>
+    <p>Das ist die Erklärung dafür, warum nach einem Schlaganfall links die <b>rechte</b> Seite
+      gelähmt ist. Eine klassische Begründungsfrage.</p>
+    <p class="fr">L'hémisphère gauche commande le côté droit du corps. C'est pourquoi un AVC à
+      gauche paralyse la droite.</p>
+  </div>
+
+  <h3>Die übrigen Teile</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Kleinhirn — <i>Cerebellum</i></h4>
+      <ul>
+        <li>Regulation der <b>Muskelspannung</b></li>
+        <li><b>Gleichgewicht</b></li>
+        <li><b>Bewegungskoordination</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Hirnstamm — <i>Truncus cerebri</i></h4>
+      <p>Das <b>unterste</b> Gehirnstück. Wichtigster Bestandteil: das <b>verlängerte Mark
+        (Medulla oblongata)</b>.</p>
+      <p>Steuert <b>Herz-Kreislauf</b>, <b>Atmung</b>, <b>Schlucken und Brechen</b>,
+        <b>Niesen und Husten</b>.</p>
+    </div>
+    <div class="karte">
+      <h4>Hypothalamus und Hypophyse</h4>
+      <p>Teile des <b>Zwischenhirns</b>.</p>
+      <p><b>Hypothalamus:</b> verbindet das <b>hormonelle</b> und das <b>nervale</b> System,
+        reguliert innere Prozesse.<br>
+        <b>Hypophyse:</b> die <b>übergeordnete hormonelle Drüse</b>.</p>
+    </div>
+    <div class="karte">
+      <h4>Rückenmark — <i>Medulla spinalis</i></h4>
+      <p>Das <b>Reflexzentrum</b>. Reflexe werden <b>nicht</b> ans Großhirn geleitet — die
+        Antwort auf den Reiz entsteht <b>im Rückenmark selbst</b>.</p>
+      <p>Außerdem: Weiterleitung der Reaktionen aus dem Großhirn. Umgeben von Hirnhäuten.</p>
+    </div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Der Satz, der zeigt, warum das lebenswichtig ist</span>
+    <p>Aus der Folie zum <b>Hirnstamm</b>: „<b>Schädigungen oft tödlich</b> oder mit schweren
+      Einschränkungen verbunden.“</p>
+    <p>Der Grund steht eine Zeile darüber: Dort sitzen <b>Herz-Kreislauf und Atmung</b>. Fällt
+      der Hirnstamm aus, fällt beides aus. <b>Ursache → Wirkung → Gefahr.</b></p>
+  </div>
+
+  <h3>Hirnnerven und Blut-Hirn-Schranke</h3>
+  <p><b>12 Hirnnerven</b>, afferent und efferent — die Hauptstrombahnen des Gehirns oberhalb des
+    Rückenmarks, mit direkter Reizleitung besonders am Kopf. Als wichtig genannt:
+    <b>N. trigeminus · N. vestibulocochlearis · N. facialis · N. vagus</b>.</p>
+  <p>Die <b>Blut-Hirn-Schranke</b>: Ausläufer der <b>Gliazellen</b> ummanteln die Blutgefäße und
+    verbinden sich mit den Neuronen. Diese Ummantelung ist <b>für viele Stoffe
+    unpassierbar</b> — zum <b>Schutz der Neuronen</b>.</p>
+
+  <div class="warnung">
+    <span class="t">Tippfehler in den Folien</span>
+    <p>Im Foliensatz steht zweimal etwas anders, als es richtig heißt: <b>„Aoxns“</b> statt
+      <i>Axons</i>, <b>„12 Neven“</b> statt <i>Nerven</i>, und <b>„N. fascialis“</b> statt
+      <i>N. facialis</i>. Außerdem steht bei den Erstmaßnahmen <b>„GCG“</b> — gemeint ist
+      mit hoher Wahrscheinlichkeit die <b>GCS</b>, die <i>Glasgow Coma Scale</i>.
+      <b>Ich habe es nicht stillschweigend geändert</b>, damit du es wiedererkennst, wenn du die
+      Folie neben dieser Seite liest.</p>
+  </div>
+</section>
+
+<section id="bewusst">
+  <h2>Bewusstseinslagen und Erstmaßnahmen</h2>
+  <p class="lead">Drei Stufen — und acht Handgriffe. Das ist der Teil, der direkt auf Station
+    zählt.</p>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Somnolenz</h4>
+      <p><b>Schläfrig, aber noch erweckbar</b>, verlangsamt.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Sopor</h4>
+      <p><b>Hochgradig schläfrig</b>, nur <b>kurzzeitig</b> erweckbar.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Koma</h4>
+      <p><b>Nicht erweckbar</b>, Augen geschlossen.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Woran du sie unterscheidest</span>
+    <p>An <b>einer</b> Frage: <b>Wird der Mensch wach — und wie lange bleibt er es?</b><br>
+      Somnolenz: ja, bleibt wach. Sopor: ja, aber nur kurz. Koma: nein.</p>
+    <p class="fr">Une seule question : est-ce qu'il se réveille, et combien de temps ?</p>
+  </div>
+
+  <h3>Erstmaßnahmen bei Bewusstlosen — die Reihenfolge aus der Folie</h3>
+  <ol>
+    <li><b>Hilfe verständigen</b></li>
+    <li><b>Atmung sichern</b> — auf <b>freie Atemwege</b> achten</li>
+    <li><b>GCS erheben</b> <i>(in der Folie als „GCG“ geschrieben)</i></li>
+    <li><b>Pupillenreaktion</b> und <b>Kornealreflex</b> testen</li>
+    <li><b>Temperaturkontrolle</b> — wegen <b>Meningitis</b></li>
+    <li><b>Blutzuckerkontrolle</b> — zum <b>Ausschluss einer Hypoglykämie</b></li>
+    <li>Kontrolle auf <b>Wunden</b>, <b>Blut aus Nase, Mund oder Ohren</b></li>
+    <li>Kontrolle auf <b>Frakturen</b></li>
+  </ol>
+
+  <div class="merk">
+    <span class="t">Warum gerade Temperatur und Blutzucker?</span>
+    <p>Weil beides <b>eine Bewusstlosigkeit erklären kann und sofort behandelbar ist</b>.
+      <b>Fieber</b> → Verdacht auf <b>Meningitis</b>. <b>Zu niedriger Blutzucker</b> →
+      <b>Hypoglykämie</b>, und die lässt sich in Minuten beheben.</p>
+    <p>Genau <b>das</b> ist eine <i>Begründen</i>-Antwort: nicht die Maßnahme aufzählen, sondern
+      sagen, <b>wonach man sucht und warum</b>.</p>
+    <p class="fr">Ce ne sont pas des gestes au hasard : chacun cherche une cause qu'on peut
+      traiter tout de suite.</p>
+  </div>
+
+  <div class="paare">
+    <div class="paar"><span class="de">die Bewusstseinslage, -n</span>
+      <span class="frx">l'état de conscience</span></div>
+    <div class="paar"><span class="de">erweckbar</span>
+      <span class="frx">que l'on peut réveiller</span></div>
+    <div class="paar"><span class="de">die Hypoglykämie, -n</span>
+      <span class="frx">l'hypoglycémie</span></div>
+    <div class="paar"><span class="de">die Meningitis (nur Singular)</span>
+      <span class="frx">la méningite</span></div>
+    <div class="paar"><span class="de">die Fraktur, -en (der Knochenbruch, ¨-e)</span>
+      <span class="frx">la fracture</span></div>
+    <div class="paar"><span class="de">der Kornealreflex, -e</span>
+      <span class="frx">le réflexe cornéen</span></div>
+  </div>
+</section>
+
+<section id="offen">
+  <h2>Was auf dieser Seite fehlt — und warum</h2>
+  <p class="lead">Damit du weißt, worauf du dich <b>nicht</b> verlassen kannst.</p>
+
+  <div class="gefahr">
+    <span class="t">Acht Organe ohne Unterlagen</span>
+    <p><b>Herz · Darm · Bauchspeicheldrüse · Milz · Thymus · Luftröhre · Speiseröhre · ableitende
+      Harnwege.</b> Sie stehen auf der Übersichtsfolie, aber im Ordner liegt kein Plakat dazu.
+      Das waren die Gruppen der anderen. <b>Schick mir die Fotos, dann ergänze ich sie.</b></p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Die vier Plakate sind Schülerarbeit, nicht Dozentenmaterial</span>
+    <p>Leber, Lunge, Magen und Niere sind <b>handgeschriebene Plakate deiner Klasse</b>. Sie sind
+      stellenweise schwer lesbar, und <b>eine Angabe ist sicher falsch</b> (der Magen „wiegt“
+      keine 4,5 Liter). Was ich übernommen habe, steht so auf den Plakaten — aber ein Plakat ist
+      <b>keine Lehrbuchquelle</b>. <b>Gleich die Zahlen im Unterricht gegenprüfen.</b></p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Zellen, Gewebe, Hormonsystem, Skelett, Muskeln</span>
+    <p>Dazu liegt in diesem Ordner <b>nichts</b>. Das Hormonsystem wird im Nervensystem-Foliensatz
+      nur <b>erwähnt</b> („regelt gemeinsam mit dem Hormonsystem“), nicht erklärt. Den allgemeinen
+      Aufbau des Hormonsystems gibt es allerdings in deinem Geburtshilfe-Material
+      (<i>Präsentation 2</i>) — das kommt in Block 4.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Und was schon im Repo liegt</span>
+    <p><b>Herz-Kreislauf</b> und <b>Blut und Immunsystem</b> haben bereits eigene
+      Zusammenfassungen, aus deinen Kurs-PDFs gebaut. Genau darüber liefen die Klausuren mit der
+      <b>3,99</b>. Diese Seite hier <b>ersetzt sie nicht</b> — sie liegen daneben.</p>
+  </div>
+</section>
+
+<section id="quellen">
+  <h2>Woraus diese Seite gebaut ist</h2>
+  <details class="quelle">
+    <summary>Die sechs Dateien — jede einzeln genannt</summary>
+    <div class="inh">
+      <ul>
+        <li><b>Organuebersicht.pdf</b> — Foliensatz <b>CE 05 UE 0</b>, 31.03.2025. Enthält den
+          Arbeitsauftrag, die Organliste und den Hinweis „Prüfungsform: Klausur“. <b>Die
+          Organbilder selbst sind Grafiken ohne Text</b> — daraus lässt sich nichts zitieren.</li>
+        <li><b>Nervensystem Anatomie und Physiologie.pdf</b> — Foliensatz <b>CE 07 / UE 04</b>,
+          Christliche Bildungsakademie für Gesundheitsberufe. <b>Der mit Abstand ausführlichste
+          Teil dieser Seite.</b> Enthält zwei LearningApps-Übungslinks.</li>
+        <li><b>Leber.pdf</b> — handgeschriebenes Gruppenplakat (Soennecken-Flipchart)</li>
+        <li><b>Lunge.pdf</b> — handgeschriebenes Gruppenplakat</li>
+        <li><b>Magen.pdf</b> — handgeschriebenes Gruppenplakat</li>
+        <li><b>Niere.pdf</b> — handgeschriebenes Gruppenplakat</li>
+      </ul>
+      <p>Alle sechs aus deinem Google-Drive-Ordner, geteilt am 18.09.2026. <b>Nichts auf dieser
+        Seite stammt von außerhalb dieser Dateien</b> — keine Zahl, kein Fachbegriff, keine
+        Norm. Wo etwas fehlte, steht im Abschnitt <i>Was fehlt</i>, dass es fehlt.</p>
+      <p>Die französischen Übersetzungen der Vokabeln sind von mir ergänzt, damit du die Wörter
+        benutzen kannst — sie stehen nicht in den Unterlagen.</p>
+    </div>
+  </details>
+</section>
+
+</main>
+
+<footer>
+  <p>Anatomie und Physiologie · CE 05 und CE 07 — gebaut aus deinen eigenen Unterlagen, ohne
+    Zusätze.<br>Wo etwas fehlt oder unklar ist, steht es oben ausdrücklich dabei.</p>
+</footer>

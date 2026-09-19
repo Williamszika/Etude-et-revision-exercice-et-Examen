@@ -35,8 +35,9 @@ Musterlösungen, Skripte, Broschüren, dazu Hausarbeiten von Mitschülerinnen.
 
 | # | Block | Warum an dieser Stelle | Status |
 |---|---|---|---|
-| **1** | **Psychiatrische Pflege** | Der **laufende Kurs**. Größter Block im Ordner (~35 Dateien), und der Arbeitsauftrag Schizophrenie ist offen. | **in Arbeit** |
-| 2 | Anatomie & Physiologie der Organe | Grundlage für fast alles andere: Herz, Lunge, Leber, Niere, Magen, Darm, Bauchspeicheldrüse, ableitende Harnwege, Nervensystem | offen |
+| **1** | **Psychiatrische Pflege** | Der **laufende Kurs**. Größter Block im Ordner (~35 Dateien), und der Arbeitsauftrag Schizophrenie ist offen. | **fertig 18.09.2026** → `schulung-psychiatrie/` |
+| **2** | **Anatomie & Physiologie der Organe** | Grundlage für fast alles andere — und **die Ecke, in der ihre Noten einbrechen** (Blut/Herz 3,99 · Pneumonie 5,37) | **fertig 19.09.2026** → `schulung-anatomie-organe/` |
+| | ↳ *dabei gefunden* | Im Ordner liegen **nur sechs** Dateien dazu: Organübersicht, Nervensystem (voller Foliensatz) und vier **handgeschriebene Gruppenplakate** (Leber, Lunge, Magen, Niere). Zu **Herz, Darm, Pankreas, Milz, Thymus, Trachea, Ösophagus** und den **ableitenden Harnwegen** liegt **nichts** vor — das waren die Plakate der anderen Gruppen. **Steht so auf der Seite, wird nicht ergänzt.** | ⚠️ Lücke |
 | 3 | Notfälle & Reanimation | Prüfungs- **und** stationsrelevant: ABCDE, CRM, Leitlinien Reanimation (Erwachsene und Kinder), Kommunikation im Notfall | offen |
 | 4 | Geburtshilfe, Wochenbett, Neugeborenes | eigener großer Block: Schwangerschaft, Geburt, Sectio, Stillen, Ikterus, Rh-Prophylaxe | offen |
 | 5 | Pädiatrie | Pflege des kranken Kindes, Atemwegsinfekte, Inhalation, prä-/postoperativ | offen |
