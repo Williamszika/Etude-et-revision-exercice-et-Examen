@@ -33,6 +33,7 @@ class _TagSeiteState extends State<TagSeite> {
   Widget build(BuildContext context) {
     final l = widget.tag.lektion;
     final uebung = widget.tag.uebung;
+    final fehlt = widget.tag.fehlt;
     final datum = widget.tag.datum;
     final z = l.zyklus;
     final (kann, alle) = _vokabelStand();
@@ -87,18 +88,23 @@ class _TagSeiteState extends State<TagSeite> {
           ),
           const SizedBox(height: 4),
           Text(
-            uebung
-                ? 'Übungstag · nur Übungen zur Lektion vom '
-                    '${Zyklus.kurzesDatum(l.datum)}'
-                : 'Lektion ${z['lektion'] ?? ''} · '
-                    '${z['fokus'] ?? ''}',
+            fehlt
+                ? 'Die Lektion von heute ist noch nicht angekommen'
+                : uebung
+                    ? 'Übungstag · nur Übungen zur Lektion vom '
+                        '${Zyklus.kurzesDatum(l.datum)}'
+                    : 'Lektion ${z['lektion'] ?? ''} · '
+                        '${z['fokus'] ?? ''}',
             style: TextStyle(fontSize: 13.5, color: Stil.weich(context)),
           ),
           const SizedBox(height: 12),
           _Kopfzeilen(z: z, uebung: uebung),
           if (uebung) ...[
             const SizedBox(height: 12),
-            _UebungstagKasten(vonDatum: l.datum),
+            if (fehlt)
+              _FehltKasten(vonDatum: l.datum)
+            else
+              _UebungstagKasten(vonDatum: l.datum),
           ],
           if (alle > 0) ...[
             const SizedBox(height: 14),
@@ -219,6 +225,76 @@ class _Zeile extends StatelessWidget {
           ],
         ),
       );
+}
+
+/// Nach dem Takt wäre heute ein Lektionstag — aber die Lektion ist nicht in
+/// `app-daten.json`. Das heißt fast immer: Sie wurde geschrieben und
+/// veröffentlicht, aber nicht nach GitHub committet. Die App holt ihre Daten
+/// von GitHub, also sieht sie die Lektion nicht, obwohl es sie gibt.
+///
+/// Bis zum 19.09.2026 zeigte die App in diesem Fall denselben Kasten wie an
+/// einem echten Übungstag — sie behauptete also, es gebe heute keine Lektion.
+/// Jetzt sagt sie, was wirklich los ist, und nennt den Weg zur Webseite.
+class _FehltKasten extends StatelessWidget {
+  const _FehltKasten({required this.vonDatum});
+  final String vonDatum;
+
+  @override
+  Widget build(BuildContext context) {
+    final f = Stil.blockFarbe(context, 'telc');
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 15),
+      decoration: BoxDecoration(
+        color: Stil.kartenGrund(context),
+        border: Border.all(color: f, width: 2),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Heute wäre eine Lektion dran',
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.w700,
+              color: f,
+            ),
+          ),
+          const SizedBox(height: 6),
+          MarkText(
+            'Sie ist hier **noch nicht angekommen**. Wahrscheinlich steht sie '
+            'schon auf der Webseite — die App holt ihre Lektionen von GitHub, '
+            'und dorthin ist sie noch nicht gelangt.\n\n'
+            '**Was du tun kannst:** Schließ die App ganz und öffne sie neu. '
+            'Kommt sie dann immer noch nicht, schau auf der Webseite nach und '
+            'sag mir Bescheid — dann hole ich sie nach.',
+            stil: const TextStyle(fontSize: 15.5, height: 1.5),
+          ),
+          const SizedBox(height: 8),
+          MarkText(
+            '🇫🇷 Une leçon était prévue aujourd’hui, mais elle n’est pas encore '
+            'arrivée ici. Ferme complètement l’app et rouvre-la. Si elle '
+            'manque toujours, regarde sur le site et dis-le-moi.',
+            stil: TextStyle(
+              fontSize: 14.5,
+              height: 1.5,
+              color: Stil.weich(context),
+            ),
+          ),
+          const SizedBox(height: 10),
+          MarkText(
+            'Unten stehen so lange die **Aufgaben** der Lektion vom '
+            '${Zyklus.kurzesDatum(vonDatum)} — die sind nicht verloren.',
+            stil: TextStyle(
+              fontSize: 14.5,
+              height: 1.5,
+              color: Stil.weich(context),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class _UebungstagKasten extends StatelessWidget {

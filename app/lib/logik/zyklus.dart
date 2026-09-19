@@ -97,13 +97,35 @@ class Zyklus {
 /// vorangegangenen Lektion. Deshalb entsteht für einen Übungstag **keine
 /// Datei** — er fällt von selbst an.
 class Tag {
-  Tag({required this.datum, required this.lektion, required this.uebung});
+  Tag({
+    required this.datum,
+    required this.lektion,
+    required this.uebung,
+    this.fehlt = false,
+  });
 
   final String datum;
 
   /// Bei einem Übungstag: die Lektion, deren Übungen gezeigt werden.
   final Lektion lektion;
   final bool uebung;
+
+  /// **Der Unterschied, der am 19.09.2026 dazugekommen ist.**
+  ///
+  /// Ein Tag ohne Lektionsdatei kann zwei sehr verschiedene Dinge bedeuten:
+  ///
+  /// * `fehlt == false` — ein **geplanter Übungstag**. Nach dem Takt ist heute
+  ///   kein Lektionstag, es soll gar keine Lektion geben.
+  /// * `fehlt == true` — nach dem Takt **wäre** heute ein Lektionstag, aber die
+  ///   Lektion ist nicht in `app-daten.json` angekommen.
+  ///
+  /// Vorher sahen beide Fälle gleich aus, und die App meldete „Heute gibt es
+  /// keine neue Lektion“ — auch dann, wenn es sehr wohl eine gab, sie aber nur
+  /// nicht committet worden war. Genau das ist ihr am 19.09.2026 passiert: Die
+  /// Webseite zeigte Lektion 5, die App einen Übungstag. Die App hat also nicht
+  /// versagt, sie hat **das Falsche behauptet**. Mit diesem Feld sagt sie
+  /// stattdessen, dass etwas fehlt, und schickt sie auf die Webseite.
+  final bool fehlt;
 
   static List<Tag> bauen(Daten d) {
     if (d.lektionen.isEmpty) return const [];
@@ -121,7 +143,14 @@ class Tag {
         letzte = l;
         raus.add(Tag(datum: iso, lektion: l, uebung: false));
       } else if (letzte != null) {
-        raus.add(Tag(datum: iso, lektion: letzte, uebung: true));
+        // Kein Lektionsdatei für diesen Tag. Sagt der Takt, dass hier eine
+        // hingehört, dann fehlt sie — sonst ist es ein geplanter Übungstag.
+        raus.add(Tag(
+          datum: iso,
+          lektion: letzte,
+          uebung: true,
+          fehlt: Zyklus.istLektionstag(d.start, iso),
+        ));
       }
     }
     return raus.reversed.toList(); // neueste zuerst

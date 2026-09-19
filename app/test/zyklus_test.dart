@@ -93,6 +93,61 @@ void main() {
       final tage = Tag.bauen(daten);
       expect(tage.first.datum.compareTo(tage.last.datum), greaterThan(0));
     });
+
+    test('ein geplanter Übungstag gilt nicht als fehlend', () {
+      final tage = Tag.bauen(daten);
+      // 12.09. ist t = 1, also ungerade: hier gehört keine Lektion hin.
+      expect(tage.firstWhere((t) => t.datum == '2026-09-12').fehlt, isFalse);
+      expect(tage.firstWhere((t) => t.datum == '2026-09-14').fehlt, isFalse);
+    });
+
+    test('ein Lektionstag hat nie das Fehlt-Kennzeichen', () {
+      final tage = Tag.bauen(daten);
+      for (final t in tage.where((t) => !t.uebung)) {
+        expect(t.fehlt, isFalse, reason: 'Lektionstag ${t.datum}');
+      }
+    });
+  });
+
+  // Der Fall vom 19.09.2026: Die Webseite zeigte Lektion 5, die App einen
+  // Übungstag — weil die Lektion veröffentlicht, aber nicht committet war.
+  // Die App darf dann nicht behaupten, es gebe heute keine Lektion.
+  group('Eine fehlende Lektion wird als fehlend erkannt', () {
+    final mitLuecke = Daten.ausJson({
+      'start': start,
+      'lektionenGesamt': 56,
+      'themenGesamt': 21,
+      'etappeEnde': '2026-12-31',
+      'lektionen': [
+        // Lektion 4 vom 17.09. ist da, Lektion 5 vom 19.09. fehlt.
+        {'datum': '2026-09-17', 'zyklus': {'lektion': 4}},
+        {'datum': '2026-09-15', 'zyklus': {'lektion': 3}},
+      ],
+    });
+
+    test('der 19.09. ist nach dem Takt ein Lektionstag', () {
+      expect(Zyklus.istLektionstag(start, '2026-09-19'), isTrue);
+    });
+
+    test('fehlt die Datei, ist der Tag als fehlend gekennzeichnet', () {
+      // Nur prüfbar, solange der 19.09.2026 nicht in der Zukunft liegt —
+      // `Tag.bauen` baut die Leiste höchstens bis heute.
+      final treffer =
+          Tag.bauen(mitLuecke).where((t) => t.datum == '2026-09-19').toList();
+      if (treffer.isEmpty) return;
+      expect(treffer.first.uebung, isTrue);
+      expect(treffer.first.fehlt, isTrue);
+      // Er zeigt so lange die Aufgaben der letzten vorhandenen Lektion.
+      expect(treffer.first.lektion.datum, '2026-09-17');
+    });
+
+    test('der 18.09. daneben bleibt ein normaler Übungstag', () {
+      final treffer =
+          Tag.bauen(mitLuecke).where((t) => t.datum == '2026-09-18').toList();
+      if (treffer.isEmpty) return;
+      expect(treffer.first.uebung, isTrue);
+      expect(treffer.first.fehlt, isFalse);
+    });
   });
 
   group('Fett aus dem JSON wird echte Fettschrift', () {
