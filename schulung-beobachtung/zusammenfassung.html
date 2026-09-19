@@ -1,0 +1,2063 @@
+<title>Wahrnehmen ist nicht Beobachten</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#5f6b1f;--accent-deep:#47521a;--accent-soft:#e7ead2;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#b3bf72;--accent-deep:#c8d28c;--accent-soft:#242817;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#b3bf72;--accent-deep:#c8d28c;--accent-soft:#242817;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#5f6b1f;--accent-deep:#47521a;--accent-soft:#e7ead2;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+<style>.fr2{font-size:14px;color:var(--ink-soft);font-style:italic;}</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 02 · UE 1, 4 und 5 · Wahrnehmen und Beobachten</p>
+  <h1>Wahrnehmen ist nicht Beobachten</h1>
+  <p class="sub">Der ganze Beobachtungsblock deines Ordners an einem Ort: die sechs
+    Beobachtungsarten, der Beobachtungsprozess, das Bewusstsein mit der vollständigen Glasgow
+    Coma Scale — und Atmung, Haut, Stuhl, Urin, Puls, Blutdruck und Bewegung.</p>
+  <div class="meta">
+    <span>CE 02 / UE 1, 4, 5</span>
+    <span>Nix · Himmel · Küppers</span>
+    <span>15 Quellen</span>
+    <span>Niveau B1</span>
+    <span>Stand 19.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#kern">Der Unterschied</a>
+  <a href="#sinne">Sinne und Wahrnehmung</a>
+  <a href="#arten">Die sechs Arten</a>
+  <a href="#prozess">Der Beobachtungsprozess</a>
+  <a href="#bewusstsein">Bewusstsein und GCS</a>
+  <a href="#atmung">Atmung</a>
+  <a href="#haut">Haut</a>
+  <a href="#stuhl">Stuhl</a>
+  <a href="#urin">Urin und Miktion</a>
+  <a href="#puls">Puls und Blutdruck</a>
+  <a href="#bewegung">Bewegung</a>
+  <a href="#aufgaben">Deine offenen Aufträge</a>
+  <a href="#woerter">Die Wörter</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="kern">
+  <h2>Der Unterschied, auf dem der ganze Block steht</h2>
+  <p class="lead">Zwei Sätze aus zwei verschiedenen Dateien sagen dasselbe — und sie sind die
+    Antwort auf jede Prüfungsfrage in dieser Einheit.</p>
+
+  <div class="merk">
+    <span class="t">Frau Nix, Textblatt CE 02b UE 5</span>
+    <p><b>„Beobachten setzt im Gegensatz zum Wahrnehmen ein Bewusstsein und eine Absicht
+      voraus.“</b> Wahrnehmung ist die <b>Grundlage</b> des Beobachtungsprozesses. Beobachten ist
+      ein <b>aktiver, dynamischer Vorgang</b>.</p>
+    <p>Und der Satz, der erklärt, warum diese Einheit am Anfang der Ausbildung steht:
+      <b>„In der professionellen Pflege ist die Beobachtung der wichtigste Schritt, um
+      Pflegemaßnahmen planen, durchführen und überprüfen zu können.“</b></p>
+    <p class="fr">Percevoir, c'est passif. Observer, c'est décidé, actif, avec des critères. Toute
+      la matière tient dans cette différence.</p>
+  </div>
+
+  <div class="karten">
+    <div class="karte"><h4>Die fünf A</h4>
+      <p>Der Foliensatz von I. Himmel sagt es als Liste. <b>Beobachten geht über Wahrnehmen
+        hinaus, weil es:</b></p>
+      <ul>
+        <li><b>Absicht</b> voraussetzt</li>
+        <li><b>Aktivität</b> voraussetzt</li>
+        <li><b>Aufmerksamkeit</b> verlangt</li>
+        <li>die <b>Anwendung fester Kriterien</b> umfasst</li>
+        <li><b>Auswertung</b> erfordert</li>
+      </ul>
+      <p><b>Alle fünf fangen mit A an.</b> Das ist meine Merkhilfe, nicht die der Folie — aber die
+        fünf Wörter stehen so da.</p></div>
+    <div class="karte"><h4>Die zwei Prozesse nebeneinander</h4>
+      <p><b>Wahrnehmung:</b> Reiz → <b>ungerichtete</b> Aufnahme → Wahrnehmung → Interpretation →
+        Konsequenz.</p>
+      <p><b>Beobachtung:</b> Reiz → <b>gerichtete</b> Aufnahme → Beobachtung → Einschätzung →
+        <b>Handlung</b>.</p>
+      <p>Ein Wort unterscheidet sie am Anfang — <b>ungerichtet</b> gegen <b>gerichtet</b> — und
+        eines am Ende: aus <b>Konsequenz</b> wird <b>Handlung</b>.</p></div>
+  </div>
+
+  <h3>Die drei Definitionen, die du zitieren kannst</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Satz</th><th>Quelle, die die Folie nennt</th></tr></thead>
+      <tbody>
+        <tr><td>„Beobachtung ist <b>aufmerksames, methodisches und zielgerichtetes Wahrnehmen</b>,
+          um Informationen zu gewinnen und Entscheidungen zu treffen.“</td>
+          <td>Pflege Heute, 7. Auflage, S. 27</td></tr>
+        <tr><td>„Patientenbeobachtung heißt, <b>auf der Grundlage von Fachwissen</b> den
+          körperlichen und psychischen Zustand des Patienten sowie sein Umfeld gezielt
+          wahrzunehmen und <b>unter Berücksichtigung seiner Fähigkeiten und seiner Wünsche</b>
+          einzuordnen.“</td>
+          <td>Pflege I care, 2015, S. 267</td></tr>
+        <tr><td>„Beobachtung ist die <b>Grundlage professioneller Pflege</b>: Sie erfasst nicht nur
+          den Zustand eines Menschen sowie mögliche Komplikationen, sondern <b>belegt auch die
+          Wirksamkeit durchgeführter Maßnahmen</b>.“</td>
+          <td>Pflege Heute, 7. Auflage, S. 27</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Warum der dritte Satz für deine Pflegeplanung wichtig ist</span>
+    <p><b>„… belegt auch die Wirksamkeit durchgeführter Maßnahmen“</b> — das ist die
+      <b>Evaluation</b>, der sechste Schritt des Pflegeprozesses nach Fiechter und Meier.</p>
+    <p>Beobachtung steht also <b>zweimal</b> im Pflegeprozess: am <b>Anfang</b> (Informationen
+      sammeln) und am <b>Ende</b> (hat es gewirkt?). Wenn du in einer Klausur gefragt wirst,
+      wozu Beobachtung dient, ist <b>dieser</b> Doppelplatz die vollständige Antwort.</p>
+    <p class="fr">L'observation est au début ET à la fin du processus de soins. C'est la réponse
+      complète.</p>
+  </div>
+</section>
+
+<section id="sinne">
+  <h2>Die Sinne — und was du mit jedem beobachtest</h2>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Sinnesorgan</th><th>Was du damit in der Pflege beobachtest</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Augen</td>
+          <td>Veränderungen der <b>Haut und Schleimhaut</b> · <b>Ausscheidungen</b> (Menge,
+            Aussehen) · <b>Wundheilung</b> · Haltung, <b>Gestik und Mimik</b></td></tr>
+        <tr><td class="k">Ohren</td>
+          <td><b>Atemgeräusche</b> · Veränderungen der <b>Sprache</b> ·
+            <b>Schmerzäußerung</b></td></tr>
+        <tr><td class="k">Nase</td>
+          <td><b>Körperausscheidungen</b> · <b>Wundinfektion</b></td></tr>
+        <tr><td class="k">Haut</td>
+          <td><b>Temperaturveränderungen</b> · <b>Schwellungen oder Verhärtungen</b> ·
+            <b>Puls</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Die Folie zählt sieben Sinne, nicht fünf</span>
+    <p>Neben Sehen, Hören, Tasten, Riechen und Schmecken nennt die Tabelle noch zwei:</p>
+    <p><b>Gleichgewicht (vestibuläre Wahrnehmung)</b> — Reiz: Schwerkraft und mechanische Kraft;
+      Organ: <b>Innenohr</b>; Rezeptor: <b>Haarzellen in den Bogengängen</b>; Empfindung:
+      Bewegung im Raum.</p>
+    <p><b>Tiefensinn (kinästhetische Wahrnehmung)</b> — Reiz: Bewegung; Organ: <b>Muskeln, Sehnen,
+      Gelenke</b>; Rezeptor: Nervenfasern; Empfindung: Bewegung und Orientierung.</p>
+    <p>Diese beiden sind die, an die man nicht denkt — und genau sie fehlen, wenn ein Mensch
+      <b>stürzt</b>. Die Brücke zu deiner Sturzprophylaxe.</p>
+    <p class="fr">Sept sens, pas cinq. Les deux qu'on oublie — équilibre et sens profond — sont
+      justement ceux qui manquent quand quelqu'un tombe.</p>
+  </div>
+
+  <h3>Das Beispiel, das der Foliensatz durchspielt</h3>
+  <p>Derselbe Reiz, drei Menschen, drei Konsequenzen. <b>Reiz:</b> Ein Mann kommt entgegen.
+    <b>Ungerichtete Aufnahme:</b> lange, ungekämmte, fettige Haare, zerrissene Kleidung.</p>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Eine junge Frau</h4>
+      <p><b>Interpretation:</b> ein Bettler. → <b>Konsequenz: Ausweichen.</b></p></div></div>
+    <div class="stufe"><span class="nr n2">2</span><div>
+      <h4>Ein Sozialarbeiter</h4>
+      <p><b>Interpretation:</b> ein Hilfebedürftiger. → <b>Konsequenz: Gespräch suchen.</b></p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Ein Wohnungsloser</h4>
+      <p><b>Interpretation:</b> ein Bekannter? → <b>Konsequenz: Gespräch suchen.</b></p></div></div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Was daran für die Prüfung zählt</span>
+    <p><b>Die Aufnahme war bei allen dreien gleich.</b> Auseinander gegangen ist es erst bei der
+      <b>Interpretation</b> — und die hängt an Vorwissen, Vorerfahrung und Erwartung.</p>
+    <p>Die Folie sagt dazu: <b>„Die Schritte Identifizieren und Einordnen des
+      Wahrnehmungsprozesses sind menschlichen Irrtümern unterworfen.“</b> Deshalb die optischen
+      Täuschungen im Unterricht — sie sind kein Spiel, sondern der Beweis.</p>
+    <p><b>Der Satz, den du in eine Klausur schreiben kannst:</b> Ich dokumentiere, <b>was ich
+      sehe</b>, nicht <b>was ich denke</b> — „Essen nicht angerührt“, nicht „hat keinen
+      Appetit“.</p>
+    <p class="fr">Documente ce que tu vois, pas ce que tu en déduis. La déduction vient après, et
+      elle porte un autre nom : l'appréciation.</p>
+  </div>
+</section>
+
+<section id="arten">
+  <h2>Die sechs Beobachtungsarten</h2>
+  <p class="lead">Aus dem Textblatt von <b>Frau Nix</b>, Quelle: <i>Pflegen Grundlagen und
+    Interventionen</i>, 2. Auflage, Elsevier, Kapitel 12.1.2. Die Beispiele sind die aus dem
+    Blatt, nicht erfunden.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Art</th><th>Was sie ist</th><th>Das Beispiel aus dem Blatt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Subjektive<br>Beobachtung</td>
+          <td>Nur aus dem Blickwinkel <b>einer</b> Person. <b>Gefühle und Vorurteile</b> der
+            beobachtenden Person beeinflussen die Situation.</td>
+          <td>Eine Pflegekraft bemerkt in der häuslichen Pflege eine <b>zunehmende depressive
+            Verstimmung</b>. Um ihre Beobachtung zu <b>überprüfen</b>, sucht sie das Gespräch mit
+            den Angehörigen.</td></tr>
+        <tr><td class="k">Objektive<br>Beobachtung</td>
+          <td><b>Unabhängig</b> vom persönlichen Blickwinkel, auf sachlicher Ebene. Schwierig —
+            deshalb: <b>mehrere Beobachter</b> mit gleichem Ergebnis machen es
+            <b>annähernd</b> objektiv, und Pflegende nutzen <b>zuverlässige
+            Messinstrumente</b>.</td>
+          <td><b>Geburtsgewicht</b> mit der Säuglingswaage, <b>Körpertemperatur</b> mit dem
+            Fieberthermometer.</td></tr>
+        <tr><td class="k">Selbst­beobachtung</td>
+          <td>Eine Person beobachtet <b>sich selbst</b>. Gilt für <b>beide Seiten</b>: Der
+            Pflegebedürftige liefert Informationen über den eigenen Unterstützungsbedarf — und die
+            Pflegekraft <b>reflektiert ihr eigenes Handeln</b>.</td>
+          <td>Nach langer Arbeit am Computer <b>brennen die Augen</b>. Er reduziert die
+            Bildschirmzeit und beobachtet sich weiter; bleibt die Besserung aus, geht er zum
+            Augenarzt.</td></tr>
+        <tr><td class="k">Fremd­beobachtung</td>
+          <td>Eine Person beobachtet <b>eine andere</b>. Nicht eindeutige, subjektive
+            Beobachtungen sollen <b>mit dem Patienten und im Team besprochen</b> werden.</td>
+          <td><b>Gerötetes, überhitztes Gesicht bei kühlen Extremitäten</b> → Temperatur
+            kontrollieren. Oder: Eine junge Krebspatientin lässt ihre Mahlzeiten <b>kaum
+            angerührt</b> zurückgehen → sie spricht sie darauf an.</td></tr>
+        <tr><td class="k">Teilnehmende<br>Beobachtung</td>
+          <td>Der Beobachter ist <b>gleichzeitig Handelnder</b>. <b>Geringere Gefahr der
+            Datenverfälschung</b>, weil der Patient sich nicht beobachtet fühlt.</td>
+          <td>Während der <b>Körperpflege</b> Hautzustand, motorische Beweglichkeit und emotionale
+            Verfassung erfassen.</td></tr>
+        <tr><td class="k">Nicht­teilnehmende<br>Beobachtung</td>
+          <td>Aus <b>neutraler, nicht aktiver Position</b>. <b>Hohe Gefahr der
+            Datenverfälschung</b> — wer weiß, dass er beobachtet wird, verhält sich anders.</td>
+          <td><b>Beziehungsgestaltung</b> zwischen Pflegekraft und Patient. Das Gegenbeispiel
+            steht im selben Absatz: Sagt man einem Patienten, man wolle seine <b>Atmung</b>
+            beobachten, <b>ist eine normale Atmung für ihn kaum möglich</b>.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die drei Paare — so merkst du dir alle sechs</span>
+    <p><b>subjektiv ↔ objektiv</b> (wie zuverlässig?) · <b>Selbst ↔ Fremd</b> (wer wird
+      beobachtet?) · <b>teilnehmend ↔ nichtteilnehmend</b> (bin ich dabei?)</p>
+    <p>Drei Fragen, sechs Antworten. <b>Das ist meine Ordnung</b>, das Blatt zählt sie
+      hintereinander auf.</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Der Satz mit der Atmung ist kein Nebensatz — er ist die Praxisregel</span>
+    <p>Im Blatt von Frau Nix steht er als Beispiel für die nichtteilnehmende Beobachtung. Im
+      Foliensatz von I. Himmel steht er noch einmal als <b>Anweisung</b>:</p>
+    <p><b>„Sobald der Mensch sich seiner Atmung bewusst wird, beeinflusst er diese!“</b> —
+      deshalb: <b>„Günstig ist es z. B. nach der Pulskontrolle das Handgelenk weiter zu halten und
+      währenddessen die Atmung zu beobachten.“</b></p>
+    <p><b>Das ist ein Handgriff, der im Praxiseinsatz geprüft werden kann.</b> Puls zählen, Hand
+      nicht loslassen, weiterzählen — die Atmung.</p>
+    <p class="fr">Après le pouls, ne lâche pas le poignet : compte la respiration. Si tu l'annonces,
+      elle n'est plus normale.</p>
+  </div>
+</section>
+
+<section id="prozess">
+  <h2>Der Beobachtungsprozess — fünf Schritte</h2>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div><h4>Planung der Beobachtung</h4>
+      <p><b>Wen? Was? Wann?</b></p></div></div>
+    <div class="stufe"><span class="nr">2</span><div><h4>Durchführung</h4>
+      <p><b>objektiv, wertfrei, vollständig</b></p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div><h4>Auswertung</h4><p>&nbsp;</p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div><h4>Dokumentation</h4><p>&nbsp;</p></div></div>
+    <div class="stufe"><span class="nr n2">5</span><div><h4>Beurteilung der Ergebnisse</h4>
+      <p><b>Konsequenzen?</b></p></div></div>
+  </div>
+
+  <h3>Das Beispiel der Folie, Glied für Glied</h3>
+  <div class="merk">
+    <span class="t">Roter Kopf · Essen nicht angerührt</span>
+    <p><b>Wahrnehmungsinhalte:</b> roter Kopf, Essen nicht angerührt.</p>
+    <p><b>Verschiedene Deutungen möglich:</b> dem Patienten ist warm · das Essen schmeckt nicht ·
+      der Patient ist aufgeregt · …</p>
+    <p><b>Spezifizieren:</b> nachfragen, <b>Fieber messen</b>.</p>
+    <p><b>Pflegeproblem erkannt:</b> Der Patient hat Fieber. → <b>Handlungskonsequenz:</b>
+      Arztinformation.</p>
+    <p><b>Merk dir die Reihenfolge:</b> erst <b>mehrere</b> Deutungen, dann <b>messen</b>, dann
+      erst benennen. Wer sofort „Fieber“ schreibt, hat drei Schritte übersprungen.</p>
+    <p class="fr">D'abord plusieurs interprétations, ensuite on mesure, ensuite seulement on nomme.</p>
+  </div>
+
+  <h3>Objektive und subjektive Patientendaten</h3>
+  <div class="karten">
+    <div class="karte"><h4>Objektiv — messbar, überprüfbar</h4>
+      <p><b>Vitalzeichen</b> · <b>Ausscheidungen</b> · <b>Ernährungszustand</b> ·
+        <b>Bewusstseinslage</b> · soziale Faktoren</p></div>
+    <div class="karte"><h4>Subjektiv — Äußerungen, Beschwerden</h4>
+      <p><b>Schmerzen</b> · <b>Müdigkeit</b> · <b>Abgeschlagenheit</b> · <b>Unwohlsein</b> ·
+        <b>Schwindel</b></p></div>
+  </div>
+  <div class="warnung">
+    <span class="t">Ein Wort steht in beiden Spalten</span>
+    <p><b>Schmerzen</b> stehen auf der Folie bei den <b>subjektiven</b> Daten — und noch einmal
+      am Rand der objektiven. Das ist <b>kein Fehler zum Wegstreichen</b>, sondern der Kern der
+      Sache: Schmerz ist die <b>Aussage des Patienten</b> und wird trotzdem <b>gemessen</b>
+      (Schmerzskala). <b>Ich habe die Folie so gelassen, wie sie ist</b> — frag im Kurs nach, wie
+      sie es gemeint hat.</p>
+  </div>
+
+  <h3>Was deine Beobachtung hemmt und was sie fördert</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Hemmend</th><th>Fördernd</th></tr></thead>
+      <tbody>
+        <tr><td><b>Zeitmangel</b> · <b>Stress</b> · Interessenlosigkeit · <b>Übermüdung</b> ·
+          Unterforderung · <b>Antipathie</b> · Überforderung · <b>eigene Probleme</b></td>
+          <td><b>ausreichend Zeit</b> · Ausgeglichenheit · <b>Interesse</b> ·
+            Verantwortungsbewusstsein · Pflichtbewusstsein · <b>innere Ruhe</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="merk">
+    <span class="t">Die Zeile, die niemand gern liest</span>
+    <p><b>Antipathie</b> steht in der linken Spalte. Im Klartext: <b>Wenn du jemanden nicht
+      magst, beobachtest du schlechter.</b> Das ist keine Charakterfrage, sondern ein
+      Sicherheitsrisiko — und es ist der Grund, warum die <b>Selbstbeobachtung</b> (Art 3 oben)
+      zum Beruf gehört.</p>
+    <p>Genauso steht <b>Unterforderung</b> neben Überforderung: Auch Langeweile macht blind.</p>
+  </div>
+
+  <h3>Voraussetzungen und Hilfsmittel</h3>
+  <p><b>Fachwissen</b> — Wissen um <b>Normwerte</b> und die physiologische Norm, Wissen über
+    <b>pathologische Abweichungen</b>, Beobachtungskompetenz · <b>praktisches Können</b> und der
+    adäquate Einsatz von Hilfsmitteln · <b>Einfühlungsvermögen</b> · <b>Kombinationsgabe</b> ·
+    <b>objektive Betrachtung und Dokumentation</b>.</p>
+  <p><b>Hilfsmittel:</b> Thermometer · Teststreifen (z. B. Blutzucker) · <b>Uhr mit
+    Sekundenzeiger</b> · Blutdruckmessgerät mit Stethoskop · Maßband · Waage.</p>
+
+  <div class="merk">
+    <span class="t">Warum „Wissen um Normwerte“ an erster Stelle steht</span>
+    <p><b>Ohne Normwert keine Abweichung.</b> Alle Zahlen weiter unten auf dieser Seite —
+      Atemfrequenz, Hauttemperatur, Stuhlmenge, Urinmenge, Puls, Blutdruck — sind nicht Beiwerk,
+      sondern <b>die Voraussetzung dafür, dass Beobachtung überhaupt etwas bedeutet</b>.</p>
+  </div>
+
+  <h3>Die sieben Ziele der Patientenbeobachtung</h3>
+  <ul>
+    <li>Die <b>Selbstpflegefähigkeit</b> eines Patienten erkennen</li>
+    <li>Die <b>Pflegebedürftigkeit</b> erfassen</li>
+    <li><b>Beratungsbedarf</b> ermitteln</li>
+    <li><b>Gefahren erkennen und abwenden</b> (Prophylaxe)</li>
+    <li>Das <b>frühe Erkennen von Veränderungen und Komplikationen</b> im Pflege- und
+      Krankheitsverlauf</li>
+    <li><b>Pflege planen</b></li>
+    <li>Den <b>Erfolg von Therapie und Pflegemaßnahmen überprüfen</b> und ggf. anpassen</li>
+  </ul>
+  <p><b>Beobachtungsmöglichkeiten gibt es bei:</b> Körperpflege und Behandlungspflege ·
+    <b>Lagerungen</b> · Verabreichung von Speisen und Getränken · <b>Gesprächen</b> · gezielter
+    Beobachtung in allen Lebenssituationen.</p>
+</section>
+
+<section id="bewusstsein">
+  <h2>Das Bewusstsein — und die vollständige Glasgow Coma Scale</h2>
+  <p class="lead">Aus dem Foliensatz <i>Bewusstsein, Wahrnehmung und Verhalten</i>. <b>Das ist
+    der Teil, der auf deiner Anatomie-Seite fehlt</b> — dort stehen nur drei Stufen der
+    Bewusstseinsstörung und keine Punktetabelle.</p>
+
+  <div class="merk">
+    <span class="t">Der Einstiegssatz</span>
+    <p><b>Bewusstsein ist die Grundlage für selbstbestimmtes Handeln.</b> Um sich etwas „bewusst
+      machen zu können“, braucht man Fähigkeiten in: <b>Wahrnehmung · Denken · Erinnern ·
+      Orientierung</b>.</p>
+    <p>Und: <b>Bewusstsein und Gedächtnis sind in keiner neuroanatomischen Struktur fest
+      verortet</b> — sie funktionieren im <b>Zusammenspiel mehrerer Regionen</b>. Deshalb kann man
+      sie nicht „finden“, sondern nur an <b>Kriterien</b> beobachten.</p>
+    <p class="fr">La conscience n'a pas de siège unique dans le cerveau. On ne la trouve pas — on
+      l'observe, selon des critères.</p>
+  </div>
+
+  <h3>Was „volles Bewusstsein“ heißt — vier Kennzeichen</h3>
+  <p>Ein Mensch ist bei <b>vollem (klarem) Bewusstsein</b>, wenn er: <b>wach und ansprechbar</b>
+    ist · <b>von sich aus sinnhaft agiert</b> · <b>prompt und adäquat reagiert</b> ·
+    <b>Aufforderungen zielgerichtet nachkommt</b>.</p>
+  <p>Zur Beurteilung gilt: <b>den ersten Eindruck objektivieren</b> anhand von
+    Beobachtungskriterien — und <b>bei Auffälligkeiten Kollegen und den Arzt hinzuziehen</b>.</p>
+
+  <h3>Die sieben Beobachtungskriterien — mit den Fragen, die man wirklich stellt</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Kriterium</th><th>Wie du es prüfst</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Wachheit (Vigilanz)</td>
+          <td>Ist die Patientin <b>jederzeit erweckbar</b>? Reagiert sie dann <b>prompt und
+            adäquat</b>?</td></tr>
+        <tr><td class="k">Sensibilität und Wahrnehmung</td>
+          <td>Werden Reize (Berührung, Temperatur) <b>bewusst und situationsgerecht</b>
+            wahrgenommen? <b>An allen Körperregionen gleich?</b> Entspricht die Wahrnehmung dem
+            Reiz?</td></tr>
+        <tr><td class="k">Aufmerksamkeit und Konzentration</td>
+          <td>Kann sie einem Gespräch konzentriert folgen? <b>Direkt fragen:</b> „Fällt es Ihnen
+            schwer, bei einer Sache zu bleiben? Konnten Sie sich schon mal besser
+            konzentrieren?“</td></tr>
+        <tr><td class="k">Gedächtnis und Merkfähigkeit</td>
+          <td><b>Kurzzeit:</b> <b>sieben Gegenstände</b> nennen oder eine kurze Geschichte
+            erzählen, dann <b>sofort</b> und <b>nach 10 Minuten</b> wiedergeben lassen.
+            <b>Langzeit:</b> Hochzeitsdatum, Geburtsdaten der Kinder — <b>und</b> kürzer
+            Zurückliegendes: <b>Was gab es zum Mittagessen?</b></td></tr>
+        <tr><td class="k">Orientierung</td>
+          <td>Im Gespräch: Welcher Monat und Tag ist heute? Wann sind Sie in die Klinik gekommen
+            und <b>warum</b>? An welchem Ort leben Sie? Sind Sie verheiratet und wie lange?
+            Welchen Beruf üben Sie aus?</td></tr>
+        <tr><td class="k">Verhalten und Selbstkontrolle</td>
+          <td>Die Bewertung orientiert sich am vermeintlich „normalen, richtigen Verhalten“ —
+            beeinflusst durch <b>gesellschaftliche Normen und Rollenerwartungen</b>, <b>eigene
+            Erfahrungen und Lebensgeschichte</b> und <b>unbewusste Prozesse</b>.</td></tr>
+        <tr><td class="k">Antrieb und Psychomotorik</td>
+          <td>Die <b>Individualität ist hier groß</b>. Fragen an die Patientin oder die
+            Angehörigen: Haben Sie den Eindruck, Ihre <b>Lebendigkeit, Ihren Schwung</b> verloren
+            zu haben? Fühlen Sie sich manchmal <b>(an)getrieben</b>? <b>Können Sie gut zur Ruhe
+            kommen?</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Zwei Sätze aus dieser Tabelle, die eine Klausurantwort retten</span>
+    <p><b>Beim Verhalten:</b> Die Folie sagt selbst, dass die Bewertung am <b>„vermeintlich
+      normalen“</b> Verhalten hängt — und nennt die drei Quellen dieser Norm. Wer das schreibt,
+      hat eine <b>Beurteilen</b>-Aufgabe verstanden: Ich beurteile nicht den Menschen, ich
+      vergleiche mit einer Norm, <b>die selbst nicht neutral ist</b>.</p>
+    <p><b>Beim Antrieb:</b> „Die Individualität ist hier groß“ — ein Mensch kann <b>zeitlebens</b>
+      still oder umtriebig sein. Deshalb fragt man <b>nach der Veränderung</b>, nicht nach dem
+      Zustand. Das ist die Brücke zur <b>Biografiearbeit</b>.</p>
+    <p class="fr">On ne juge pas l'état, on cherche le <b>changement</b>. Et la « norme » à
+      laquelle on compare n'est pas neutre — la diapo le dit elle-même.</p>
+  </div>
+
+  <h3>Warum das in der Pflege besonders zählt</h3>
+  <p>Patienten mit veränderter Bewusstseinslage sind oft <b>hilflos</b> und können sich nicht um
+    sich selbst kümmern · können <b>Situationen nicht richtig einschätzen</b> · können
+    <b>verängstigt oder misstrauisch</b> sein · <b>müssen beschützt werden, damit sie keinen
+    Schaden nehmen</b>.</p>
+
+  <h3>Bewusstseinsstörungen — die eine Unterscheidung, die alles trägt</h3>
+  <p class="lead"><b>Definition:</b> Störung des menschlichen <b>Gesamterlebens</b>.</p>
+  <div class="karten">
+    <div class="karte"><h4>Quantitativ</h4>
+      <p><b>Vigilanzminderung</b> — Minderung der <b>Wachheit</b>. Reicht von der
+        Bewusstseinseintrübung bis zur <b>Bewusstlosigkeit</b>.</p></div>
+    <div class="karte"><h4>Qualitativ</h4>
+      <p><b>Veränderte Bewusstseins<i>inhalte</i></b> — Störung der Wahrnehmung, der
+        Orientierung, der Reizverarbeitung oder der Bewusstheit, <b>ohne
+        Bewusstlosigkeit</b> (z. B. Verwirrtheit).</p></div>
+  </div>
+
+  <h4>Die vier quantitativen Stufen</h4>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div><h4>Benommenheit</h4>
+      <p><b>Leichteste Form</b> der Bewusstseinsstörung · <b>verlangsamtes Denken und
+        Handeln</b> · <b>der Patient ist orientiert</b>.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div><h4>Somnolenz</h4>
+      <p><b>Abnorme Schläfrigkeit</b> · für kurze Zeit weckbar · <b>gerade noch orientiert</b> ·
+        kann einfache Fragen noch beantworten.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div><h4>Sopor</h4>
+      <p><b>Schlafähnlicher Zustand</b> · reagiert <b>nur noch auf starke Außenreize</b> gezielt,
+        mit <b>kurzzeitigen Orientierungsversuchen</b>.</p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div><h4>Koma</h4>
+      <p><b>Bewusstlosigkeit</b> · <b>keine Reaktion auf Ansprache</b> · evtl. Reflexe und
+        Reaktionen auf <b>Schmerzreize</b> vorhanden.</p></div></div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Benommenheit — das ist die Stufe, die auf deiner Anatomie-Seite fehlt</span>
+    <p>Dort stehen nur <b>Somnolenz, Sopor und Koma</b>. Der Foliensatz nennt <b>vier</b> Stufen,
+      und die erste ist die, die dir im Alltag am häufigsten begegnet: <b>orientiert, aber
+      verlangsamt</b>.</p>
+    <p>Merk dir die <b>Reihenfolge der drei Wörter</b>, an denen die Stufen hängen:
+      <b>orientiert</b> (Benommenheit) → <b>gerade noch orientiert</b> (Somnolenz) →
+      <b>Orientierungs<i>versuche</i></b> (Sopor) → <b>nichts</b> (Koma).</p>
+    <p class="fr">Quatre niveaux, pas trois. Le premier — <i>Benommenheit</i> — manque sur ta
+      fiche d'anatomie : ralenti, mais encore orienté.</p>
+  </div>
+
+  <h3>Die Glasgow Coma Scale — vollständig, mit allen Punktwerten</h3>
+  <p><b>Der Schweregrad ergibt sich aus der Summe aller Punkte:</b> je <b>weniger</b> Punkte,
+    desto <b>schwerer</b> die Bewusstseinsstörung. <b>„Normal“ (= keine Bewusstseinsstörung) bei
+    einem Wert von 15 Punkten.</b> Quelle nach der Folie: <b>Tab. 37.2, Pflege Heute, 8. Auflage,
+    S. 1098</b>.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Beste Reaktion des Patienten</th><th>Punkte</th></tr></thead>
+      <tbody>
+        <tr><td class="k" colspan="2">Augen öffnen</td></tr>
+        <tr><td>Spontan</td><td><b>4</b></td></tr>
+        <tr><td>Auf Ansprache</td><td><b>3</b></td></tr>
+        <tr><td>Auf Schmerzreiz</td><td><b>2</b></td></tr>
+        <tr><td>Kein Öffnen</td><td><b>1</b></td></tr>
+        <tr><td class="k" colspan="2">Verbale Reaktion (auf Ansprache)</td></tr>
+        <tr><td>Orientiert <span class="fr2">(&lt; 2 J.: altersentsprechende Äußerungen, Interaktion
+          durch Plappern/Gurren, Lächeln, Wenden nach Geräuschen, Verfolgen von
+          Objekten)</span></td><td><b>5</b></td></tr>
+        <tr><td>Verwirrt, desorientiert <span class="fr2">(&lt; 2 J.: Weinen, irritables
+          Schreien)</span></td><td><b>4</b></td></tr>
+        <tr><td>Unzusammenhängende/unpassende Worte <span class="fr2">(&lt; 2 J.: Trösten
+          inkonsistent möglich, Weinen/Schreien auf Schmerzreiz)</span></td><td><b>3</b></td></tr>
+        <tr><td>Unverständliche Laute <span class="fr2">(&lt; 2 J.: Stöhnen auf
+          Schmerzreiz)</span></td><td><b>2</b></td></tr>
+        <tr><td>Keine verbale Reaktion</td><td><b>1</b></td></tr>
+        <tr><td class="k" colspan="2">Motorische Reaktion (auf Aufforderungen, falls nicht
+          vorhanden, auf Schmerzreize)</td></tr>
+        <tr><td>Befolgen von Aufforderungen</td><td><b>6</b></td></tr>
+        <tr><td>Gezielte Schmerzabwehr</td><td><b>5</b></td></tr>
+        <tr><td>Ungezielte Schmerzabwehr</td><td><b>4</b></td></tr>
+        <tr><td>Beugesynergien (Beugehaltung)</td><td><b>3</b></td></tr>
+        <tr><td>Strecksynergien (Streckhaltung)</td><td><b>2</b></td></tr>
+        <tr><td>Keine motorische Reaktion</td><td><b>1</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Wie du die Skala im Kopf behältst</span>
+    <p><b>4 – 5 – 6.</b> Augen bis 4, Sprache bis 5, Motorik bis 6. Zusammen <b>15</b>.</p>
+    <p><b>Und der niedrigste mögliche Wert ist 3, nicht 0</b> — jede Kategorie beginnt bei 1, auch
+      wenn gar nichts passiert. Das ist die Falle, in die man in einer Rechenaufgabe tappt.</p>
+    <p><b>Die Klammern sind für Kinder unter 2 Jahren.</b> Die Folie hat die pädiatrische Fassung
+      gleich mit eingebaut — Brücke zu deiner Pädiatrie-Seite.</p>
+    <p class="fr">4 – 5 – 6, donc 15 au maximum. Et le minimum est <b>3</b>, jamais 0.</p>
+  </div>
+
+  <h4>Qualitative Bewusstseinsstörungen — die sechs Merkmale</h4>
+  <p>Ein Zustand, in dem das Bewusstsein <b>inhaltlich verändert</b> ist: Die Gesamtheit der
+    Lebensbezüge, die <b>Realität, wird nicht erfasst</b> · <b>Zusammenhänge werden nicht
+    erkannt</b> · Gesamtsituationen können nur zu geringen Anteilen erfasst werden · oder es kann
+    das Gefühl einer <b>hyperintensiven Wahrnehmung</b> bestehen · die betroffene Person
+    <b>ist wach und kann komplexe Handlungen ausführen</b> · charakteristisch <b>begleitet von
+    produktiven psychotischen Symptomen</b> (z. B. Halluzinationen). <span class="fr2">(Pflege
+    Heute 38.2.1)</span></p>
+
+  <div class="gefahr">
+    <span class="t">Das eine Merkmal, das die Prüfungsfrage entscheidet</span>
+    <p><b>„Die betroffene Person ist wach und kann komplexe Handlungen ausführen.“</b></p>
+    <p>Genau daran erkennst du eine <b>qualitative</b> Störung: <b>Die Wachheit ist in Ordnung,
+      der Inhalt nicht.</b> Wer wach ist und trotzdem etwas sieht, was nicht da ist, hat keine
+      Vigilanzminderung — sondern eine Störung des Bewusstseins<i>inhalts</i>.</p>
+    <p>Und deshalb ist die Frage in <b>allen sechs</b> Gruppenaufträgen deiner Dozentin dieselbe:
+      <b>„Beurteilen Sie, ob es sich um eine qualitative oder eine quantitative
+      Bewusstseinsstörung handelt, und begründen Sie dies.“</b> Das ist <b>AFB III</b>.</p>
+    <p class="fr">Éveillé mais le contenu est faussé → <b>qualitative</b>. Vigilance diminuée →
+      <b>quantitative</b>. C'est toute la question.</p>
+  </div>
+
+  <h4>Ursachen</h4>
+  <p>Sie liegen <b>nur teilweise im ZNS</b> (z. B. Schlaganfall, Gehirnentzündung, Verletzung) —
+    und <b>außerhalb des ZNS</b>: <b>Schock</b>, <b>Stoffwechselentgleisungen</b> (z. B. bei
+    Diabetes mellitus) oder <b>Vergiftungen</b>. <span class="fr2">(Pflege Heute 12.1)</span></p>
+  <p>Die Folie nennt weiter: nach Gabe <b>beruhigender Arzneimittel</b> · Verletzungen und
+    Erkrankungen des Schädels und des Gehirns (<b>SHT</b>) · <b>Hirntumoren</b> · psychische
+    Erkrankungen (Depression, Schizophrenie) · Schmerzen, schwere Verletzungen (Blutverlust,
+    Schock) · <b>zerebrale Durchblutungsstörungen</b> und Blutungen · kindliche
+    Entwicklungsstörungen des ZNS · die <b>postoperative Phase</b>.</p>
+
+  <div class="merk">
+    <span class="t">Der Satz, den du mitnehmen sollst</span>
+    <p><b>Die Ursache liegt oft nicht im Kopf.</b> Schock, entgleister Zucker, Vergiftung,
+      Narkosemittel — wenn jemand plötzlich verwirrt ist, ist der Kopf die <b>letzte</b> Adresse,
+      nicht die erste. <b>Das ist der Unterschied zwischen „der ist halt dement“ und einer
+      Beobachtung.</b></p>
+  </div>
+</section>
+
+<section id="atmung">
+  <h2>Atembeobachtung</h2>
+  <p class="lead">Zwei Foliensätze von <b>I. Himmel, M.A. (2025)</b>, CE 2 / UE 5. Der reichste
+    Einzelteil des ganzen Blocks. Quellen, die er selbst nennt: <b>Pflege Heute 7. Auflage
+    2019</b>, <b>Altenpflege Heute 4. Auflage 2021</b>, <b>I care Pflege 2. Auflage 2020</b>.</p>
+
+  <h3>Wann eine gezielte Atembeobachtung nötig ist</h3>
+  <ul>
+    <li>Bei <b>allen</b> Pflegeempfängern im <b>Erstgespräch</b> bzw. der Pflegeanamnese</li>
+    <li>Bei <b>Lungen- oder Herzerkrankungen</b>: <b>mindestens einmal pro Dienst</b></li>
+    <li><b>Fortlaufend</b> bei Sauerstofftherapie und während einer Narkose</li>
+    <li>Bei <b>atemdepressiven Medikamenten</b> (Opioide) sowie bei bewusstlosen, beatmeten oder
+      <b>soeben extubierten</b> Pflegeempfängern</li>
+  </ul>
+
+  <h3>Die neun Beobachtungskriterien</h3>
+  <p><b>Atemtyp</b> (Bauch-/Brust-/Mischatmung) · <b>Atemfrequenz</b> · <b>Atemintensität und
+    -tiefe</b> · <b>Atemrhythmus</b> · <b>Atemgeräusche</b> · <b>Atemgeruch</b> · <b>Husten und
+    Sputum</b> · <b>Hautfarbe</b> (z. B. Zyanose) · <b>Mimik</b> (z. B. Schmerzen beim Atmen).</p>
+  <p>Dazu beobachten Pflegende <b>Körperhaltung und Atembewegungen</b> (Atemhilfsmuskulatur?
+    seitengleich? Schonatmung?), das <b>Gesamtbefinden</b> (Wie beurteilt sie ihre Atmung selbst?
+    atemabhängige Schmerzen? psychische Faktoren?) und die <b>Rauchgewohnheiten</b>.</p>
+
+  <h3>Atemfrequenz — die Normwerte</h3>
+  <p>Beim <b>Erwachsenen 12–18 Atemzüge/Min.</b> Die Erfassung erfolgt <b>über eine ganze
+    Minute</b>. Im <b>Schlaf</b> nennt die Folie <b>12–16/Min.</b></p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Alter</th><th>Atemfrequenz/Min.</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Neugeborene</td><td><b>50–60</b></td></tr>
+        <tr><td class="k">1.–2. Lebensjahr</td><td>30–40</td></tr>
+        <tr><td class="k">2.–4. Lj.</td><td>23–42</td></tr>
+        <tr><td class="k">4.–6. Lj.</td><td>19–36</td></tr>
+        <tr><td class="k">6.–10. Lj.</td><td>15–30</td></tr>
+        <tr><td class="k">10.–12. Lj.</td><td>15–28</td></tr>
+        <tr><td class="k">Jugendliche</td><td>18–26</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Frequenz, Tiefe, Belüftung — die sieben Begriffe</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Begriff</th><th>Was er heißt</th><th>Wann</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Eupnoe</td>
+          <td>Gesunde, normale Atmung: <b>regelmäßig, gleichmäßig tief, geräuscharm, geruchlos,
+            unbewusst, ohne größere Anstrengung</b>, 12–18/Min.</td><td>—</td></tr>
+        <tr><td class="k">Tachypnoe</td>
+          <td><b>&gt; 20 Atemzüge/Min.</b> beim Erwachsenen (bis zu 100)</td>
+          <td><b>Physiologisch:</b> Anstrengung, psychische Belastung, Hitze, große Höhe (ab ca.
+            2 000 m) · <b>psychisch:</b> Hyperventilationssyndrom · <b>pathologisch:</b> Schmerzen,
+            <b>Fieber</b>, Herz- und Lungenerkrankungen, Anämie</td></tr>
+        <tr><td class="k">Bradypnoe</td>
+          <td><b>&lt; 12 Atemzüge/Min.</b> beim Erwachsenen</td>
+          <td><b>Physiologisch:</b> Schlaf, tiefe Entspannung · <b>pathologisch:</b>
+            ZNS-Schädigung (z. B. SHT), <b>Vergiftungen (Opiate)</b>, ausgeprägte
+            Hypothyreose</td></tr>
+        <tr><td class="k">Apnoe</td>
+          <td><b>Atemstillstand — vitaler Notfall!</b></td>
+          <td>Verlegung der Atemwege, Lähmung des Atemzentrums oder der Atemmuskulatur</td></tr>
+        <tr><td class="k">Hyperventilation</td>
+          <td>Atmung <b>intensiver als für den Gasaustausch nötig</b>; am häufigsten
+            <b>psychogen</b></td>
+          <td>Symptome: <b>Kribbeln um den Mund</b>, Muskelkrämpfe, <b>Pfötchenstellung</b> der
+            Hände. Es wird zu viel CO₂ abgeatmet → <b>pH steigt (&gt; 7,44)</b>.
+            <b>Maßnahme: Rückatmung</b>, z. B. in eine vorgehaltene Tüte</td></tr>
+        <tr><td class="k">Hypoventilation</td>
+          <td><b>Verminderte Atemtätigkeit</b> — zu geringe Belüftung der Alveolen, vermindertes
+            <b>Atemminutenvolumen</b> (Atemzugvolumen <b>500 ml</b> × Atemfrequenz)</td>
+          <td>Zeigt sich als <b>Bradypnoe</b> oder <b>flache Atmung</b>. Ursachen: <b>COPD, Asthma
+            bronchiale</b>, Schädigung des Atemzentrums</td></tr>
+        <tr><td class="k">Minderbelüftung</td>
+          <td><b>Einzelne Lungenabschnitte</b> werden zu wenig belüftet — durch <b>flache
+            Atmung</b> oder <b>Sekretstau</b></td>
+          <td>z. B. <b>schmerzbedingte Schonatmung</b> nach Thoraxverletzung oder Bauch-OP
+            (Cholezystektomie), <b>Surfactantmangel bei Frühgeborenen</b> →
+            <b>Pneumoniegefahr!</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die Notfallkette bei Apnoe — genau so, wie sie auf der Folie steht</span>
+    <p><b>Kardiopulmonale Reanimation:</b> <b>Freimachen der Atemwege</b> →
+      <b>Herzdruckmassage (30×)</b> → <b>Atemspende (2×)</b> → <b>im Wechsel</b>, bis die Atmung
+      wieder einsetzt.</p>
+    <p><b>Eine unbehandelte Apnoe führt in ca. 5 Minuten zum Tode.</b> „Setzen die Maßnahmen zu
+      spät oder nur mangelhaft ein, bleiben dauerhafte Schäden zurück oder der/die
+      PflegeempfängerIn verstirbt innerhalb weniger Minuten.“</p>
+    <p class="fr">30 compressions, 2 insufflations, en alternance. Cinq minutes, c'est tout ce
+      qu'il y a.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Zwei Zahlen, die du genau so lernen musst, wie sie dastehen</span>
+    <p><b>Eupnoe 12–18</b>, <b>Tachypnoe erst ab &gt; 20</b>. Zwischen 18 und 20 sagen die Folien
+      also <b>nichts</b>. <b>Ich fülle diese Lücke nicht</b> — lern die Grenzen so, wie deine
+      Unterlagen sie nennen, und schreib in der Klausur genau diese Zahlen.</p>
+    <p><b>Und die Fieberregel:</b> Die Atemfrequenz steigt <b>pro 1 °C um etwa 7 Atemzüge/Min.</b>
+      Das ist die Art Zahl, nach der in einer <i>Erklären</i>-Aufgabe gefragt wird.</p>
+  </div>
+
+  <h3>Atemrhythmus und die vier pathologischen Atemmuster</h3>
+  <p><b>Normal:</b> regelmäßige Abfolge etwa gleich tiefer Atemzüge. <b>Das Zeitverhältnis
+    Einatmung zu Ausatmung ist etwa 1 : 2</b> — die Ausatmung dauert doppelt so lange.</p>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div><h4>Kußmaulatmung</h4>
+      <p>Nach dem Internisten <b>Adolf Kußmaul</b>. <b>Azidose-Atmung</b>: abnorm
+        <b>vertieft, aber regelmäßig</b>. Der Körper will verstärkt <b>CO₂ abatmen</b>, um den
+        niedrigen pH zu korrigieren. Bei <b>Übersäuerung</b> des Blutes, z. B.
+        <b>diabetisches oder urämisches Koma</b>.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div><h4>Cheyne-Stokes-Atmung</h4>
+      <p>Nach <b>John Cheyne</b> und <b>William Stokes</b>. <b>Periodisches An- und Abschwellen</b>
+        mit kurzen Pausen: flache Atemzüge werden immer tiefer und flachen wieder ab; nach einer
+        Pause von <b>manchmal mehr als 10 Sekunden</b> beginnt es von vorn. <b>Pathologisch:</b>
+        schwere Schädigung des Atemzentrums, Herzerkrankungen. <b>Physiologisch:</b> bei
+        <b>Sterbenden im präfinalen Stadium</b>, im Schlaf, bei raschem Aufstieg in große
+        Höhen.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div><h4>Schnappatmung</h4>
+      <p>Tritt vor allem <b>kurz vor dem Tod</b> auf, <b>oft geht ihr die Cheyne-Stokes-Atmung
+        voraus</b>. Einzelne <b>schnappende Atemzüge</b> mit <b>langen Pausen</b>
+        dazwischen.</p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div><h4>Biot-Atmung</h4>
+      <p>Nach dem französischen Arzt <b>Camille Biot</b>. Mehrere <b>gleichmäßig tiefe und
+        kräftige</b> Atemzüge, unterbrochen durch eine <b>deutliche, regelmäßig wiederkehrende
+        Atempause</b>. Bei <b>Hirndrucksteigerung</b> (Meningitis, SHT) und bei <b>Früh- und
+        Neugeborenen</b>.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Cheyne-Stokes und Biot auseinanderhalten</span>
+    <p><b>Cheyne-Stokes schwillt an und ab</b> — die Tiefe ändert sich. <b>Biot bleibt gleich
+      tief</b> und hört dann einfach auf. Beide haben Pausen; nur bei Cheyne-Stokes ist der
+      <b>Weg dahin</b> ein Crescendo.</p>
+    <p><b>Und die Reihenfolge am Lebensende</b> steht auf der Folie: erst <b>Cheyne-Stokes</b>,
+      dann <b>Schnappatmung</b>. Das ist Wissen, das Angehörigen Angst nimmt, wenn du es ruhig
+      erklären kannst.</p>
+    <p class="fr">Cheyne-Stokes : ça enfle et ça retombe. Biot : même profondeur, puis pause nette.</p>
+  </div>
+
+  <h3>Atemtypen</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Typ</th><th>Wer arbeitet</th><th>Wann</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Bauchatmung<br>(Abdominal-, Zwerchfellatmung)</td>
+          <td>Hauptsächlich das <b>Zwerchfell (Diaphragma)</b>, der Bauch wölbt sich sichtbar
+            vor</td>
+          <td><b>Physiologisch</b> bei <b>Säuglingen und Kleinkindern</b>, <b>pathologisch</b> als
+            <b>Schonatmung nach Brustkorbverletzungen und -operationen</b>. Folge: <b>tiefere und
+            ruhigere Atemzüge</b>.</td></tr>
+        <tr><td class="k">Brustatmung<br>(Kostal-, Thorakalatmung)</td>
+          <td>Die <b>Zwischenrippenmuskeln (Interkostalmuskeln)</b>, der Brustkorb hebt sich
+            sichtbar</td>
+          <td><b>Beeinträchtigt die Atemintensität.</b> Tritt <b>schmerzbedingt als Schonatmung
+            nach Bauchverletzungen und -operationen</b> auf → <b>Pneumonieprophylaxe</b>.</td></tr>
+        <tr><td class="k">Mischatmung</td>
+          <td>Interkostalmuskeln und Zwerchfell <b>gleich stark</b></td>
+          <td>Besonders bei <b>körperlicher Anstrengung</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die Umkehrung, die man sich falsch merkt</span>
+    <p><b>Nach einer Bauch-OP atmet der Mensch mit der Brust. Nach einer Brustkorb-Verletzung
+      atmet er mit dem Bauch.</b> Er schont immer <b>das, was wehtut</b> — also atmet er mit dem
+      anderen Teil.</p>
+    <p><b>Und beides führt zur Pneumonie</b>, weil beides die Belüftung einschränkt. Deshalb steht
+      hinter beiden Zeilen dasselbe Wort: <b>Pneumonieprophylaxe</b>. Das ist eine fertige
+      <i>Begründen</i>-Kette: <b>Schmerz → Schonatmung → Minderbelüftung → Sekretstau →
+      Pneumoniegefahr → deshalb frühzeitig prophylaktische Maßnahmen.</b></p>
+    <p class="fr">On respire avec ce qui ne fait pas mal — et les deux mènent à la pneumonie.
+      Voilà ta chaîne de cause à effet toute faite.</p>
+  </div>
+
+  <h4>Zwei pathologische Veränderungen des Atemtyps</h4>
+  <div class="karten">
+    <div class="karte"><h4>Auxiliaratmung</h4>
+      <p><b>Einsatz der Atemhilfsmuskulatur</b> bei <b>schwerer Atemnot</b>. Der Mensch sitzt
+        meist <b>aufrecht im Bett</b>, stützt sich <b>seitlich mit den Armen ab</b>, der Kopf ist
+        durch Anspannen der Schulter- und Halsmuskulatur <b>gerade oder leicht nach hinten
+        geneigt</b>. <b>Körperhaltung und Gesichtsausdruck zeigen deutlich Anspannung und
+        Angst.</b></p></div>
+    <div class="karte"><h4>Paradoxe Atmung</h4>
+      <p><b>Asymmetrische Brustkorbbewegung</b> bei <b>Pneumothorax</b> (Luft zwischen den
+        Pleurablättern → Kollaps der Lunge) oder <b>Rippenserienfrakturen</b>. Auf der betroffenen
+        Seite <b>senkt</b> sich der Brustkorb beim <b>Einatmen</b> und <b>hebt</b> sich beim
+        <b>Ausatmen</b>. Dazu meist <b>starke Thoraxschmerzen und Dyspnoe</b>.</p></div>
+  </div>
+
+  <h3>Atemgeräusche</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Geräusch</th><th>Was dahintersteckt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Schnarchen</td>
+          <td>Flatternde Bewegung des <b>Gaumensegels</b>. Ursachen: <b>Erschlaffung der
+            Rachenmuskulatur</b> oder <b>behinderte Nasenatmung</b>. <b>Übergewicht</b> begünstigt
+            es in jedem Alter.</td></tr>
+        <tr><td class="k">Schluckauf</td>
+          <td>Reizung des <b>Nervus phrenicus</b> → ruckartige Kontraktion des Zwerchfells.
+            Z. B. wenn eine <b>Luftblase im Magen</b> auf den Nerv drückt. Ursachen: kalte
+            Getränke, hastiges Essen, hastiges Atmen, <b>Operationen im Oberbauch</b> — oder
+            <b>ohne erkennbare Ursache</b>.</td></tr>
+        <tr><td class="k">Stridor</td>
+          <td>Lat. Zischen, Pfeifen — <b>pfeifendes Geräusch bei verengten Atemwegen</b>.
+            <b>Inspiratorisch</b> = Verengung der <b>großen extrathorakalen</b> Atemwege
+            (Pseudokrupp, vergrößerte Schilddrüse). <b>Exspiratorisch</b> = Verengung der
+            <b>kleinen intrathorakalen</b> Atemwege (<b>Asthma bronchiale</b>). Auch kombiniert
+            möglich. <b>Atemnot + Stridor = Notfall.</b></td></tr>
+        <tr><td class="k">Rasselgeräusche</td>
+          <td>Pathologisch, in den Bronchien; <b>trocken</b> und <b>feucht</b> (Auskultation mit
+            Stethoskop). <b>Ohne Hilfsmittel hörbar:</b> <b>Giemen und Brummen</b> — trocken,
+            <b>während der Exspiration</b>, bei verengten Bronchien oder schwingenden
+            Schleimfäden (<b>chronisch-obstruktive Bronchitis, Asthma</b>). Und das
+            <b>Trachealrasseln</b> — feucht, grob bis <b>brodelnd</b>, <b>teils auf große Distanz
+            hörbar</b>, durch <b>Sekretmassen in der Trachea</b> (ausgeprägte Bronchitis,
+            <b>Lungenödem</b>).</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Atemgeruch — die Tabelle, die in der Prüfung gern abgefragt wird</h3>
+  <p><b>Normal ist die Atemluft (fast) geruchlos.</b> <b>Foetor</b> (lat.) = übler Geruch; ein
+    unangenehmer Atemgeruch ist <b>meist ein Krankheitszeichen</b>.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Geruch</th><th>Wonach</th><th>Woher</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Azetongeruch</td><td><b>obstartig</b></td>
+          <td>Bei Diät oder <b>anhaltendem Insulinmangel</b>: Energiegewinnung durch
+            <b>Fettabbau</b> → <b>Ketonkörper</b>. <b>Typisch für das diabetische Koma, oft
+            zusammen mit einer Kußmaul-Atmung.</b></td></tr>
+        <tr><td class="k">Ammoniakgeruch</td><td>nach <b>Salmiakgeist</b></td>
+          <td>Schwere Beeinträchtigung der <b>Leberfunktion</b>: Die Leber kann das beim
+            Eiweißzerfall entstehende <b>Ammoniak</b> nicht mehr abbauen
+            (<b>Leberkoma</b>).</td></tr>
+        <tr><td class="k">Foetor hepaticus</td><td>wie <b>frische Leber</b></td>
+          <td>Beim <b>Leberversagen</b> → Leberzerfallkoma</td></tr>
+        <tr><td class="k">Fäulnisgeruch</td><td>übel riechend bis <b>jauchig-stinkend</b></td>
+          <td><b>Zerfallsprozesse in den Atemwegen</b>, etwa bei <b>Lungenkarzinom</b></td></tr>
+        <tr><td class="k">Eitergeruch</td><td><b>fade-süßlich</b></td>
+          <td><b>Bakterielle Infektionen</b> — charakteristisch bei <b>akuter Bronchitis,
+            Pneumonie</b></td></tr>
+        <tr><td class="k">Foetor uraemicus</td><td><b>urinös</b></td>
+          <td>Im <b>Endstadium des Nierenversagens</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Merkhilfe für die drei Komata</span>
+    <p><b>Obst = Zucker</b> (diabetisches Koma) · <b>Salmiak oder Leber = Leber</b> (Leberkoma) ·
+      <b>Urin = Niere</b> (Nierenversagen). <b>Drei Gerüche, drei Organe.</b></p>
+    <p>Und die eine Kombination, die zusammengehört: <b>Azetongeruch + Kußmaul-Atmung =
+      diabetisches Koma</b>. Beides steht auf verschiedenen Folien — aber die Folie zum
+      Atemgeruch nennt sie ausdrücklich zusammen.</p>
+    <p class="fr">Pomme/fruit = sucre. Ammoniaque ou foie = foie. Urine = rein.</p>
+  </div>
+
+  <h3>Wie du wirklich misst</h3>
+  <ul>
+    <li>Der Mensch soll sich <b>ruhig verhalten</b> — keine Anstrengung, keine Aufregung.</li>
+    <li><b>Bei Kindern ist Ablenkung besonders wichtig</b>: Sie atmen oft sehr tief ein, weil sie
+      das von ärztlichen Untersuchungen kennen.</li>
+    <li><b>Beim Bewusstlosen</b> je eine Hand an <b>Brustbein</b> und <b>Rippenrand oder
+      Flanke</b>.</li>
+    <li><b>Bei Neugeborenen, Säuglingen und Kleinkindern</b> die <b>Hebung und Senkung des
+      Abdomens</b> beobachten (Abdominalatmung) — oder eine Hand seitlich an den unteren
+      Rippenbogen, die andere auf das Abdomen.</li>
+    <li><b>In Belastungssituationen:</b> Wie atmet jemand <b>nach mehreren Treppenstufen</b>?
+      Warum macht ein Säugling <b>beim Stillen häufig Pausen</b> — bekommt er durch die Nase
+      genug Luft? <b>Verändert sich seine Hautfarbe beim Trinken?</b></li>
+  </ul>
+  <p><b>Dokumentation:</b> die Atemfrequenz als <b>Verlaufskurve oder Zahl</b> im
+    Dokumentationsbogen; Besonderheiten wie der <b>Einsatz der Atemhilfsmuskulatur</b> gehören
+    <b>in den Pflegebericht</b>.</p>
+
+  <div class="merk">
+    <span class="t">Die Übung, die der Foliensatz dir stellt</span>
+    <p><b>Stell dir einen Timer auf eine Minute. Was kannst du bei deiner eigenen Atmung
+      beobachten?</b> Notieren, dann mit jemandem austauschen.</p>
+    <p>Das ist <b>Selbstbeobachtung</b> (Art 3) — und gleichzeitig der beste Beweis für den Satz
+      oben: <b>Sobald du auf deine Atmung achtest, ist sie nicht mehr normal.</b> Genau das sollst
+      du merken.</p>
+    <p class="fr">Une minute, ta propre respiration. Tu verras toi-même pourquoi on ne l'annonce
+      jamais au patient.</p>
+  </div>
+</section>
+
+<section id="haut">
+  <h2>Hautbeobachtung</h2>
+  <p class="lead">Foliensatz <b>CE 02 / UE 01 — Bei der Körperpflege unterstützen</b>. Literatur,
+    die er nennt: <b>Pflege Heute, 8. Auflage 2023</b>, Jecklin <i>Arbeitsbuch Anatomie und
+    Physiologie</i> 16. Auflage 2020, Schmal/Kost <i>Aufbauwissen Pflege Anatomie</i> 2021.</p>
+
+  <div class="merk">
+    <span class="t">Der Hydrolipidfilm — warum die Zahl 5,5 wichtig ist</span>
+    <p>Der <b>Säureschutzmantel</b> wird von <b>Schweiß- und Talgdrüsen</b> gebildet. Er
+      <b>schützt vor Austrocknung und Mikroorganismen</b>, hält die Haut <b>geschmeidig, feucht,
+      fettig</b> und hat einen <b>pH-Wert von 5,5 (leicht sauer)</b>. Aus den Talgdrüsen stammen
+      die <b>Fette</b> für Wasserabweisung und Geschmeidigkeit.</p>
+    <p><b>Daraus folgen die fünf Ziele der Hautpflege:</b> Förderung des <b>Wohlbefindens</b> ·
+      <b>Erhaltung des Hydrolipidfilms</b> · <b>Verhinderung verstopfter Poren</b> · Ermöglichung
+      der <b>Hautatmung</b> · Ermöglichung der <b>Wärme- und Feuchtigkeitsabgabe</b>.</p>
+    <p class="fr">pH 5,5 — c'est le chiffre à retenir. Un savon alcalin détruit ce manteau
+      protecteur.</p>
+  </div>
+
+  <h3>Die fünf Beobachtungskriterien</h3>
+  <p><b>1. Hauttyp · 2. Hautfarbe · 3. Hautoberfläche · 4. Hauttemperatur · 5. Hautspannung
+    (Hautturgor)</b></p>
+
+  <h4>1 · Hauttyp</h4>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Typ</th><th>Woran du ihn erkennst</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Normale Haut</td><td>Weder zu viel noch zu wenig Fett, kaum
+          Hautunreinheiten oder andere Hautprobleme</td></tr>
+        <tr><td class="k">Fettige Haut</td><td><b>Überproduktion der Talgdrüsen</b>, oft mit
+          stärkerer Schweißproduktion und Unreinheiten (Pickel, Mitesser); die Haut wirkt
+          <b>feucht, dick, grobporig, fettglänzend</b></td></tr>
+        <tr><td class="k">Trockene Haut</td><td><b>Verminderte Talgproduktion</b>: trocken,
+          spröde, <b>reißt leicht ein</b>, manchmal schuppig, fühlt sich rau an; oft
+          <b>Juckreiz</b></td></tr>
+        <tr><td class="k">Mischhaut</td><td>Gesichtsmitte fettig, Wangen trocken; auch am übrigen
+          Körper trockene und fettige Partien</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>2 · Hautfarbe — physiologisch gegen pathophysiologisch</h4>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Farbe</th><th>Physiologisch (gesund)</th><th>Pathophysiologisch
+        (krankhaft)</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Rötung</td>
+          <td>Durch <b>Gefäßweitstellung</b>: Sport, Hitze, Aufregung, Erröten · angeborene
+            <b>Feuermale</b></td>
+          <td><b>Fieber</b> · <b>Hypertonie</b> · Verbrennung · Sonnenbrand · <b>Entzündungen</b>
+            · Infektionen · <b>Dekubitus</b></td></tr>
+        <tr><td class="k">Blässe</td>
+          <td>Durch <b>Gefäßverengung</b>, Mangeldurchblutung: kalte Umgebung, Kälte,
+            <b>Angst</b></td>
+          <td><b>Hypotonie</b> · <b>Blutung</b> · periphere Durchblutungsstörungen, <b>pAVK</b> ·
+            <b>Anämie</b> · <b>Kreislaufkollaps</b></td></tr>
+        <tr><td class="k">Blaufärbung</td>
+          <td>Intensive Kälteeinwirkung, Blutgefäßverengung an Händen, Füßen, Lippen</td>
+          <td><b>Zyanose</b> — Zeichen von <b>Sauerstoffmangel</b>, meist an den <b>Akren</b>
+            (Finger, Nasenspitze, Lippen). Bei <b>Herzinsuffizienz</b>, Herzfehlern oder
+            <b>respiratorischer Insuffizienz</b> (Störung des Gasaustauschs in der
+            Lunge)</td></tr>
+        <tr><td class="k">Gelbfärbung</td>
+          <td><b>Reichlich Karotten</b> (Provitamin A wird in der Haut eingelagert) ·
+            <b>Neugeborenenikterus</b> durch vermehrten Hämoglobinabbau nach der Geburt bei
+            unreifer Leberfunktion</td>
+          <td><b>Ikterus</b> von Haut und Schleimhäuten (v. a. <b>Augenbindehaut</b>) — Zeichen
+            für <b>Leber-, Gallenwegs- und Pankreaserkrankungen</b>, häufig mit <b>Juckreiz</b> ·
+            <b>Hämolyse</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Die Folie zeigt dazu die <b>Licht- und Phototherapie beim Neugeborenenikterus</b> — Brücke
+    zu deiner Pädiatrie-Seite.</p>
+
+  <h4>3 · Hautoberfläche — Effloreszenzen</h4>
+  <p>Normal ist sie <b>abhängig von Alter, Talg- und Schweißproduktion</b>, zeigt individuelle
+    Besonderheiten wie <b>Muttermale, Behaarung oder Narben</b> und ist <b>frei von
+    Hautdefekten</b>. Eine <b>Effloreszenz</b> ist eine <b>pathologische Hautveränderung</b>.</p>
+  <div class="karten">
+    <div class="karte"><h4>Primäreffloreszenzen</h4>
+      <p><b>Folge einer Erkrankung:</b> Fleck · Knötchen · Bläschen · Quaddel · Erosion.</p>
+      <p><i>Beispiele der Folie:</i> <b>Fleck</b> — Pigmenteinlagerung · <b>Papel</b> —
+        Insektenstichreaktion · <b>Bläschen/Blase</b> — nach Verbrennungen, Herpes ·
+        <b>Quaddel</b> — Neurodermitis, Allergie.</p></div>
+    <div class="karte"><h4>Sekundäreffloreszenzen</h4>
+      <p><b>Entwickeln sich aus einer Primäreffloreszenz:</b> Abszess · Kruste · Schuppen ·
+        Geschwür · Narbe.</p>
+      <p><i>Beispiele der Folie:</i> <b>Erosion</b> — nach dem Platzen einer Blase ·
+        <b>Schuppe</b> — Schuppenflechte · <b>Lichenifikation</b> (Vertiefung der Hautfalten) nach
+        chronischer mechanischer Reizung · <b>Atrophie</b> (Gewebeschwund) · Kruste.</p></div>
+  </div>
+  <p>Dazu kommen: <b>Verletzungen · OP-Wunden · Hämatome · Hauttumore · Parasiten</b> (z. B.
+    Läuse).</p>
+
+  <div class="warnung">
+    <span class="t">Ein Wort steht in beiden Listen</span>
+    <p><b>Erosion</b> nennt die Folie bei den <b>Primär</b>effloreszenzen — und im Beispiel
+      darunter bei den <b>Sekundär</b>effloreszenzen („nach Platzen einer Blase“). <b>Ich habe das
+      nicht stillschweigend korrigiert.</b> Die Logik der Folie („entwickelt sich aus einer
+      Primäreffloreszenz“) spricht für das Zweite, aber <b>ich schreibe hier keine Einordnung
+      hin, die in deinen Unterlagen nicht eindeutig steht.</b> Frag im Kurs nach.</p>
+  </div>
+
+  <h4>4 · Hauttemperatur</h4>
+  <p><b>Physiologisch 28–33 °C</b> — abhängig von Raumtemperatur, körperlicher Anstrengung,
+    Hautdurchblutung und Hautfeuchtigkeit. <b>Kälte</b> sorgt für Gefäß<b>eng</b>stellung,
+    <b>Wärme</b> für Gefäß<b>weit</b>stellung, <b>Schwitzen</b> für <b>Verdunstungskälte</b>.</p>
+  <div class="karten">
+    <div class="karte"><h4>Pathologisch erhöht</h4>
+      <p><b>Fieber</b> · Entzündungen <b>der Haut</b> · Entzündungen <b>unter der Haut</b></p></div>
+    <div class="karte"><h4>Pathologisch erniedrigt</h4>
+      <p><b>Durchblutungsstörungen</b> (z. B. pAVK) · <b>Hypotonie</b> · <b>Herzinsuffizienz</b> ·
+        Kreislaufbelastung</p></div>
+  </div>
+
+  <h4>5 · Hautturgor (Hautspannung)</h4>
+  <div class="karten">
+    <div class="karte"><h4>Herabgesetzt</h4>
+      <p><b>Austrocknung (Dehydratation)</b> · <b>Flüssigkeitsverlust</b> ·
+        <b>Mangelernährung/Kachexie</b> durch wenig Unterhautfettgewebe. <b>Überprüfung durch
+        Anhebung der Hautfalte.</b></p></div>
+    <div class="karte"><h4>Erhöht</h4>
+      <p><b>Flüssigkeitsansammlungen im Gewebe (Ödeme)</b> · <b>Herz- und Nierenerkrankungen</b> ·
+        <b>Lymphstau</b></p></div>
+  </div>
+
+  <h3>Wann und wie du erhebst — und die Regel zur Fotodokumentation</h3>
+  <ul>
+    <li><b>Jeden Kontakt nutzen</b>; Hautstatus <b>bei jeder stationären Aufnahme</b> erheben</li>
+    <li>Bei der Körperpflege besonders auf <b>Hautfalten</b> und den <b>Genitalbereich</b>
+      achten</li>
+    <li>Bei pflegerischen Interventionen — <b>Verbandswechsel</b>, <b>Anziehen von
+      Kompressionsstrümpfen</b></li>
+    <li><b>Veränderungen regelmäßig erfragen</b> und dokumentieren, ergänzend ggf.
+      <b>Fotodokumentation</b></li>
+  </ul>
+  <div class="gefahr">
+    <span class="t">Fotodokumentation — drei Bedingungen, keine davon optional</span>
+    <p><b>1. Aufklärung und Information</b> über die Erstellung der Fotos.
+      <b>2. Einholung der Zustimmung</b> der Pflegeempfängerin bzw. ggf. der Betreuerin.
+      <b>3. Zusätzlich immer eine schriftliche Wundeinschätzung.</b></p>
+    <p><b>Das Foto ersetzt nie den Text</b> — und ohne Zustimmung ist es keine Dokumentation,
+      sondern ein Eingriff. Brücke zu deiner Rechts-Seite und zu <b>§ 203 StGB</b>.</p>
+    <p class="fr">Information, consentement, et <b>toujours</b> une évaluation écrite en plus. La
+      photo ne remplace jamais le texte.</p>
+  </div>
+</section>
+
+<section id="stuhl">
+  <h2>Stuhlbeobachtung — die sieben Kriterien</h2>
+  <p class="lead"><b>CE 02 / UE 04 — Die Selbstpflege unterstützen, Ausscheidung.</b> Dieses Thema
+    liegt <b>dreifach</b> im Ordner: als Foliensatz, als <b>leeres Arbeitsblatt</b> und als
+    <b>ausgefüllte Lösung</b>.</p>
+
+  <div class="merk">
+    <span class="t">Woraus Stuhl besteht — die Grundlage der ganzen Tabelle</span>
+    <p><b>75 % Wasser</b> · <b>Mikroorganismen der Darmflora</b> · <b>Schleim</b> ·
+      <b>unverdaute Nahrungsbestandteile</b> · <b>Sekrete des Verdauungstrakts</b> (z. B.
+      Gallensäure, <b>Bilirubin</b>).</p>
+    <p>Das <b>Bilirubin</b> ist der Schlüssel zur Farbtabelle: Aus dem Gallenfarbstoff entsteht
+      <b>Sterkobilin</b> — und <b>daher</b> ist Stuhl braun. Fehlt die Galle, fehlt die Farbe.</p>
+    <p class="fr">C'est la bile qui donne la couleur. Pas de bile → pas de brun. Toute la ligne
+      « gris-blanc » tient là-dedans.</p>
+  </div>
+
+  <h3>Die sieben Kriterien, ausgefüllt</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Kriterium</th><th>Physiologisch</th><th>Pathologisch</th></tr></thead>
+      <tbody>
+        <tr><td class="k">1 · Defäkation</td>
+          <td><b>Spontane Darmentleerung ohne Hilfsmittel und Schmerzen</b>, 1–3× täglich oder
+            alle 2–3 Tage. Der Stuhl lässt sich <b>ohne starkes Pressen</b> ausscheiden.</td>
+          <td>Defäkationsstörungen: <b>chronische Obstipation</b> · <b>Rektumkarzinom</b> ·
+            <b>Hämorrhoiden</b> · <b>Anal- und Rektumprolaps</b> · <b>Stuhlinkontinenz</b></td></tr>
+        <tr><td class="k">2 · Menge</td>
+          <td><b>ca. 100–500 g pro Tag</b>, abhängig von <b>Ballaststoffen</b>,
+            <b>Flüssigkeitszufuhr</b> und <b>Bewegung</b></td><td>—</td></tr>
+        <tr><td class="k">3 · Häufigkeit</td>
+          <td><b>Zwischen 3× pro Woche und 3× pro Tag gilt als normal</b></td>
+          <td><b>Diarrhö</b> — „ist ein Symptom, keine Krankheit“: häufiger und flüssiger,
+            <b>ab 4× bis zu 30× täglich</b> · <b>Obstipation</b> — ebenfalls ein Symptom: akute
+            oder chronische Verstopfung mit <b>hartem Stuhl und schmerzhafter
+            Ausscheidung</b></td></tr>
+        <tr><td class="k">4 · Konsistenz</td>
+          <td><b>Homogene, breiige bis feste Masse.</b> <b>fest</b> → eiweißreiche Ernährung ·
+            <b>weich</b> → kohlenhydratreiche Ernährung</td><td>—</td></tr>
+        <tr><td class="k">5 · Farbe</td>
+          <td><b>Hell- bis dunkelbraun</b>, durch Nahrungsfarbstoffe und <b>Sterkobilin</b> (aus
+            Bilirubin)</td><td>siehe eigene Tabelle unten</td></tr>
+        <tr><td class="k">6 · Geruch</td>
+          <td><b>Immer übelriechend</b>, schwefel- oder eierähnlich</td>
+          <td><b>jauchig, faulig</b> → Fäulnisdyspepsie · <b>faulig, stinkend</b> →
+            <b>Rektumkarzinom</b> · <b>säuerlich, stechend</b> → Fettstuhl, Erkrankung der
+            <b>Bauchspeicheldrüse</b>, Kohlenhydratunverträglichkeit · <b>Ammoniakgeruch</b> →
+            <b>Leberzirrhose, Hepatitis</b></td></tr>
+        <tr><td class="k">7 · Beimengungen</td>
+          <td>Überreste von <b>Hülsenfrüchten</b></td>
+          <td><b>Fettschicht</b> → Mukoviszidose · <b>frisches Blut</b> → Wunden im unteren
+            Darmbereich oder am After · <b>Schleim</b> → gereizte Darmschleimhaut · <b>Blut und
+            Schleim</b> → <b>Colitis ulcerosa</b> · <b>Parasiten</b> → Maden-, Spul-, Rinder- und
+            Schweinebandwürmer</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Die Farbtabelle</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Gruppe</th><th>Farbe</th><th>Ursache</th></tr></thead>
+      <tbody>
+        <tr><td class="k" rowspan="4">Ernährung</td><td>Braunschwarz</td>
+          <td>viel Fleisch, <b>Blaubeeren</b>, Rotwein</td></tr>
+        <tr><td>Grünbraun</td><td><b>chlorophyllhaltige Kost</b>: Blattgemüse, Mangold, Erbsen,
+          Spinat, Grünkohl</td></tr>
+        <tr><td>Rotbraun</td><td><b>rote Bete</b></td></tr>
+        <tr><td>Gelbbraun</td><td>Milchprodukte, Eier, stärkehaltige Kost</td></tr>
+        <tr><td class="k" rowspan="2">Medikamente</td><td>Schwarz</td>
+          <td><b>Kohle, Eisenpräparate</b></td></tr>
+        <tr><td>Weiß</td><td><b>Röntgenkontrastmittel</b></td></tr>
+        <tr><td class="k" rowspan="4">Säuglinge</td><td>Goldgelb</td><td>durch die
+          <b>Muttermilch</b></td></tr>
+        <tr><td>Grünschwarz</td><td><b>erster Stuhl eines Neugeborenen (Mekonium)</b></td></tr>
+        <tr><td>Hellgelb bis lehmfarben</td><td><b>Kuhmilch</b></td></tr>
+        <tr><td>Orange</td><td>durch <b>Karotten</b> nach Ende der Stillzeit</td></tr>
+        <tr><td class="k" rowspan="8">Pathologisch</td><td><b>Grauweiß</b></td>
+          <td><b>Gallenwegs- und Lebererkrankungen</b></td></tr>
+        <tr><td>Gelblich / ocker</td><td>Nahrungsunverträglichkeiten, Infektion</td></tr>
+        <tr><td>Rotbraun, marmoriert</td><td>Blutungen im <b>unteren</b> Dickdarmbereich</td></tr>
+        <tr><td>Rotbraun bis dunkelrot</td><td>Blutungen im <b>oberen</b> Dickdarmbereich</td></tr>
+        <tr><td>Hellrote Blutauflagerungen / frisches Blut</td>
+          <td>Blutungen durch <b>Hämorrhoiden oder Fissur</b></td></tr>
+        <tr><td><b>Schwarz (Teerstuhl)</b></td>
+          <td>Blutungen in <b>Magen und oberem Darm</b> — <b>Hämatin entsteht aus Magensäure und
+            Blut</b></td></tr>
+        <tr><td>Grünlich</td><td>nach <b>Diarrhö</b></td></tr>
+        <tr><td>Tonfarben (oft glänzend)</td><td><b>Pankreaserkrankungen</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die zwei Zeilen, bei denen schwarz nicht gleich schwarz ist</span>
+    <p><b>Schwarz durch Kohle oder Eisenpräparate</b> ist harmlos. <b>Schwarzer Teerstuhl</b> ist
+      eine <b>Blutung im Magen oder oberen Darm</b> — ein Notfallhinweis.</p>
+    <p><b>Die Frage, die du dir also immer zuerst stellst, ist nicht „welche Farbe?“, sondern
+      „welche Medikamente?“.</b> Ohne den Medikamentenplan ist die Farbe nicht deutbar. Das ist
+      genau die Art Begründung, die bei <i>Beurteilen</i> Punkte bringt.</p>
+    <p><b>Und zwei weitere Paare, die man verwechselt:</b> <b>grauweiß</b> = keine Galle
+      (Leber/Gallenwege) gegen <b>weiß</b> = Röntgenkontrastmittel · <b>rotbraun</b> durch rote
+      Bete gegen <b>rotbraun</b> durch eine Blutung.</p>
+    <p class="fr">Avant la couleur, demande les médicaments. Sinon la couleur ne veut rien dire.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Was der Foliensatz noch ergänzt — und was dabei übersehen wird</span>
+    <p><b>Mikroskopische Beimengungen</b> sind <b>mit bloßem Auge nicht erkennbar</b>:
+      <b>okkultes (nicht sichtbares) Blut</b> · <b>Wurmeier</b> · <b>pathogene Keime</b>.</p>
+    <p><b>Das ist die Grenze deiner Beobachtung</b> — und der Grund, warum es
+      <b>Stuhluntersuchungen</b> gibt. In einer <i>Beurteilen</i>-Aufgabe ist der Satz „das sehe
+      ich nicht, dafür braucht es eine Untersuchung“ kein Ausweichen, sondern die richtige
+      Antwort.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Woher die ausgefüllte Tabelle stammt — ehrlich gesagt: unklar</span>
+    <p>Die Datei heißt <b>„Loesung Kriterien Stuhlbeobachtung“</b> und trägt dieselbe Kopfzeile
+      wie das leere Arbeitsblatt, aber <b>keinen Verfassernamen</b>. Einige Schreibungen darin
+      sind auffällig — <b>„Ausmerzung des Körpers“</b> in der Zeile zu grünlichem Stuhl,
+      <b>„zb.“</b>, <b>„Eiweissreiche“</b>, <b>„tonfarbe“</b> klein.</p>
+    <p><b>Ob es das Material der Dozentin oder eine gute Schülerlösung ist, weiß ich nicht</b> —
+      und ich habe nichts davon geglättet. Der Foliensatz nennt als Quelle der Tabelle
+      <b>NovaHeal, Kapitel „Beobachtung und Beurteilung von Stuhl“</b>; dort kannst du
+      gegenprüfen.</p>
+    <p class="fr">Le fichier s'appelle « solution » mais ne porte aucun nom. Vérifie sur NovaHeal,
+      que la diapo cite comme source.</p>
+  </div>
+</section>
+
+<section id="urin">
+  <h2>Urin und Miktion</h2>
+  <p class="lead">Foliensatz <b>CE 02 UE 4</b> von <b>Frau Küppers</b> (2025). <b>Achtung: Das ist
+    eine Unterrichtsfassung mit Lücken</b> — viele Felder sind zum Ausfüllen gedacht, und
+    <b>die Antworten stehen nicht in der Datei</b>.</p>
+
+  <div class="gefahr">
+    <span class="t">Was in diesem Foliensatz leer ist — damit du weißt, was dir fehlt</span>
+    <p><b>Leer bzw. nur als Lücke vorhanden:</b> die Folie <b>„Kriterien der Urinbeobachtung“</b> ·
+      die Beschreibung der <b>normalen Urinfarbe</b> · die <b>Fachbegriffe der Beimengungen</b>
+      (Erythrozyten, Leukozyten usw.) · die <b>Stoffe, die den Geruch verursachen</b> · die
+      <b>Miktionsfrequenz</b> („die meisten Menschen müssen etwa ___ täglich zur Toilette“) ·
+      <b>Fassungsvermögen der Blase</b> und die Menge, ab der Harndrang entsteht · die <b>drei
+      Inkontinenzformen</b> in der Aufzählung.</p>
+    <p><b>Ich fülle diese Lücken nicht.</b> Was ich aus dem Gedächtnis hineinschriebe, wäre nicht
+      das, was deine Dozentin gesagt hat — und genau daran hängt in der Klausur die Punktzahl.
+      <b>Hol dir die Zahlen aus deinen Unterrichtsnotizen oder frag im Kurs.</b> Die Folie sagt
+      es selbst: <i>„Notieren Sie sich bitte weitere Informationen, die im Unterricht besprochen
+      werden.“</i></p>
+    <p class="fr">Beaucoup de trous dans ces diapos, et les réponses n'y sont pas. Je ne les
+      invente pas — reprends tes notes de cours.</p>
+  </div>
+
+  <h3>Was vollständig dasteht</h3>
+  <div class="karten">
+    <div class="karte"><h4>Das Harnsystem — zwei Teile</h4>
+      <p><b>Harnproduzierend:</b> die <b>Niere (Ren)</b> — Filterung des Blutes, Bildung des
+        Harns, <b>Hormonproduktion</b>.</p>
+      <p><b>Harnableitend:</b> <b>Nierenbecken</b> (empfängt den Harn) → <b>Harnleiter
+        (Ureter)</b> (transportiert) → <b>Harnblase (Vesica urinaria)</b> (sammelt) →
+        <b>Harnröhre (Urethra)</b> (befördert nach außen).</p></div>
+    <div class="karte"><h4>Zusammensetzung</h4>
+      <p><b>95 % Wasser</b> · Endprodukte des <b>Eiweißstoffwechsels</b> (Harnstoff, Kreatinin,
+        Harnsäure) · Salze · Säuren · Schleim · <b>Urobilinogen</b> (aus dem Abbau roter
+        Blutkörperchen) · wasserlösliche Vitamine · Hormone.</p>
+      <p><b>pH-Wert ca. 5–6.</b></p></div>
+  </div>
+
+  <h3>Die Menge</h3>
+  <p><b>Erwachsene: ca. 1 500–2 000 ml pro Tag.</b> Abhängig von <b>Trinkmenge</b> ·
+    <b>Ernährung</b> (wasserreiche Speisen, z. B. Melone) · <b>körperlicher Aktivität</b>
+    (Schwitzen) · <b>Umgebungsfaktoren</b> (Hitze, Luftfeuchtigkeit) · <b>Gesundheitszustand</b>
+    (Nierenfunktionsstörung) · <b>hormoneller Regulation</b> · <b>Alter</b>.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Alter</th><th>Menge und Häufigkeit</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Neugeborenes</td><td><b>5–10 ml</b> / <b>8–10×</b> täglich</td></tr>
+        <tr><td class="k">Säuglinge</td><td><b>15–30 ml</b> / <b>12–18×</b> täglich</td></tr>
+        <tr><td class="k">Kinder im schulfähigen Alter</td><td><b>ca. 150 ml</b> / <b>6–8×</b>
+          täglich</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Die Miktion</h3>
+  <p><b>Physiologisch erfolgt sie im Strahl, schmerzlos und willkürlich</b>; die Entleerungsphase
+    dauert <b>ca. 20–30 Sekunden</b>. Der <b>innere</b> Blasenschließmuskel ist <b>nicht bewusst
+    steuerbar</b>, der <b>äußere (quergestreifte)</b> ist es — er <b>verhindert eine vorzeitige
+    Entleerung</b>. <b>Dehnungsrezeptoren in der Blasenwand</b> lösen den Harndrang aus und melden
+    ihn ans Gehirn. Für die vollständige Entleerung <b>kontrahiert die Blasenmuskulatur</b>; die
+    <b>Kontraktion der Bauch- und Beckenbodenmuskulatur</b> erhöht den Druck, sodass der Urin „im
+    Strahl“ abfließen kann.</p>
+  <p><b>Die Miktionsfrequenz hängt ab von:</b> Aufregung und Angst · <b>Ekel und Schamgefühl</b> ·
+    <b>Nichtvorhandensein geeigneter Örtlichkeiten</b> · Organfunktion · Druckverhältnissen ·
+    Füllungszustand des Gefäßsystems.</p>
+
+  <div class="merk">
+    <span class="t">Drei der sechs Faktoren sind gar nicht körperlich</span>
+    <p><b>Aufregung, Scham, keine passende Toilette.</b> Wenn jemand auf Station „ständig“ oder
+      „nie“ muss, ist die erste Frage nicht die Diagnose, sondern: <b>Kommt er in Ruhe und
+      rechtzeitig auf eine Toilette, die er benutzen mag?</b></p>
+    <p class="fr">Trois des six facteurs ne sont pas médicaux. Commence par la porte, pas par le
+      diagnostic.</p>
+  </div>
+
+  <h3>Störungen — Harnstrahl, Frequenz, Entleerung</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Gruppe</th><th>Störung</th><th>Beispiel aus der Folie</th></tr></thead>
+      <tbody>
+        <tr><td class="k" rowspan="4">Harnstrahl</td>
+          <td><b>Abgeschwächter, „schlaffer“ Harnstrahl</b> — verzögerter Miktionsbeginn,
+            verlängerte Miktionszeit</td><td>z. B. bei <b>Prostatavergrößerung</b></td></tr>
+        <tr><td><b>Harnträufeln</b> — tropfenweiser, unbeabsichtigter Harnabgang oder andauerndes
+          Tropfen</td><td>z. B. bei <b>chronischer Harnretention</b>; Nachträufeln z. B. bei
+          Harnröhrenerweiterung</td></tr>
+        <tr><td><b>Unterbrochener Harnstrahl („Harnstottern“)</b></td>
+          <td>z. B. bei <b>Verlegung der Harnröhre durch Tumore</b> oder bei <b>Angst/Scham in
+            Gegenwart anderer</b></td></tr>
+        <tr><td><b>Gespaltener, gedrehter Harnstrahl</b></td>
+          <td>z. B. bei <b>Harnröhrenverengung</b>, Narbenbildung nach diagnostischen Eingriffen
+            oder <b>Harnröhrenentzündungen</b></td></tr>
+        <tr><td class="k" rowspan="3">Frequenz</td>
+          <td><b>Pollakisurie</b> — erhöhte Miktionsfrequenz bei <b>erniedrigter
+            Miktionsmenge</b>; die <b>24-Stunden-Menge kann normal sein</b></td>
+          <td>z. B. <b>Blasenentzündung</b></td></tr>
+        <tr><td><b>Algurie / Dysurie</b> — <b>schmerzhaftes</b> bzw. <b>erschwertes</b>
+          Wasserlassen</td><td>z. B. <b>Blasenentzündung</b></td></tr>
+        <tr><td><b>Nykturie</b> — vermehrtes Wasserlassen <b>in der Nacht</b></td>
+          <td>z. B. bei <b>Herzschwäche</b></td></tr>
+        <tr><td class="k" rowspan="3">Entleerung</td>
+          <td><b>Harnverhalt (Retention)</b> — <b>Unvermögen, die gefüllte Blase zu
+            entleeren</b></td><td>z. B. durch <b>Narkosemedikamente</b></td></tr>
+        <tr><td><b>Restharn</b> — Harn, der nach der Miktion in der Blase verbleibt, und damit
+          <b>deutlich erhöhtes Risiko einer Harnwegsinfektion</b>. <b>Pathologische Menge:
+          50–100 ml</b></td><td>z. B. durch <b>Prostatavergrößerung</b></td></tr>
+        <tr><td><b>Harninkontinenz</b></td><td>siehe unten</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Nykturie bei Herzschwäche — die Kette, die man erklären können muss</span>
+    <p>Die Folie nennt nur das Stichwort. Für eine <i>Begründen</i>-Aufgabe brauchst du die Kette,
+      und <b>die musst du selbst aus deiner Herz-Kreislauf-Seite holen</b> — ich schreibe sie hier
+      nicht hin, weil sie in <b>diesen</b> Unterlagen nicht steht. <b>Aber merk dir, dass die
+      Frage kommt</b>: Warum muss jemand mit Herzschwäche nachts?</p>
+  </div>
+
+  <h3>Kontinenz und Inkontinenz</h3>
+  <div class="karten">
+    <div class="karte"><h4>Harnkontinenz</h4>
+      <p>Die Fähigkeit, <b>willkürlich und zur passenden Zeit an einem geeigneten Ort</b> die
+        Blase zu entleeren. <b>Und weiterhin: die Fähigkeit, Bedürfnisse zu kommunizieren, um
+        Hilfestellung zu erhalten</b>, wenn der selbstständige Toilettengang eingeschränkt
+        ist.</p></div>
+    <div class="karte"><h4>Harninkontinenz</h4>
+      <p><b>Jeglicher unwillkürlicher Harnverlust.</b></p>
+      <p><b>Chronische Hauptformen:</b> <b>Belastungsinkontinenz</b> (z. B. durch Schwächung des
+        <b>Beckenbodens</b>) · <b>Dranginkontinenz</b> (z. B. durch <b>Schädigung von
+        Nerven</b>).</p></div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Der zweite Satz der Kontinenz-Definition ist der wichtige</span>
+    <p><b>„Kontinenz beinhaltet weiterhin die Fähigkeit, Bedürfnisse zu kommunizieren, um
+      Hilfestellungen zu erhalten.“</b></p>
+    <p>Damit ist jemand, der <b>Hilfe holen kann</b>, <b>kontinent</b> — auch wenn er allein nicht
+      zur Toilette kommt. <b>Kontinenz ist also keine reine Körperleistung, sondern zum Teil eine
+      Leistung der Umgebung.</b> Genau deshalb stehen weiter unten <b>Türgriffe und Beleuchtung</b>
+      als Risikofaktoren.</p>
+    <p class="fr">Pouvoir demander de l'aide fait partie de la continence. Donc l'environnement en
+      fait partie aussi.</p>
+  </div>
+
+  <h3>Risikofaktoren — zwei Gruppen</h3>
+  <div class="karten">
+    <div class="karte"><h4>Personenbezogen</h4>
+      <p><b>Geistige Einschränkungen</b> · körperliche Einschränkungen, <b>insbesondere der
+        Mobilität</b> · <b>chronischer Husten</b> · <b>Medikamente</b> · <b>Harnwegsinfektion</b> ·
+        <b>Verstopfung (Obstipation)</b> · <b>Übergewicht</b> · <b>Geburten</b> (insbesondere
+        großer Kinder) · Erkrankungen und <b>Operationen der Prostata</b>.</p></div>
+    <div class="karte"><h4>Umgebungsbedingt</h4>
+      <p><b>Erreichbarkeit</b> von Toiletten: weite Wege, Treppen, unklare Beschilderung ·
+        <b>Nutzbarkeit</b>: fehlende Haltegriffe, schlechte Beleuchtung, ungeeignete Sitzhöhe,
+        abstoßender hygienischer Zustand · <b>Zugänglichkeit</b>: schwere oder zu enge Türen,
+        ungeeignete Türgriffe, Hindernisse.</p></div>
+  </div>
+
+  <h3>Was Betroffene tun können</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Maßnahme</th><th>Warum</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Regelung der Flüssigkeitszufuhr</td>
+          <td><b>Wenig trinken macht es schlimmer:</b> geringe Trinkmenge → <b>hohe
+            Urinkonzentration</b> → <b>verstärkter Harndrang</b>. <b>Koffein verstärkt die
+            Drangproblematik.</b> Rücksicht auf den individuellen Bedarf — <b>und ärztlich
+            verordnete Flüssigkeitseinschränkungen beachten</b>.</td></tr>
+        <tr><td class="k">Gewichtsreduktion</td>
+          <td>Nimmt <b>Gewicht vom Beckenboden</b> → Vorbeugung der
+            <b>Belastungsinkontinenz</b></td></tr>
+        <tr><td class="k">Obstipationsprophylaxe</td>
+          <td><b>Verstopfung fördert die Inkontinenz durch starkes Pressen</b></td></tr>
+        <tr><td class="k">Anpassen der Kleidung</td>
+          <td><b>Schnell zu öffnen</b> (Klettverschlüsse, Gummizug) · bequem und leicht · luft-
+            und feuchtigkeitsdurchlässig · <b>bedruckte, farbige und dunkle Stoffe</b> ·
+            pflegeleicht · <b>rutschfeste Schuhe → Sturzgefahr!</b></td></tr>
+        <tr><td class="k">Orientierung schaffen</td>
+          <td><b>Beschilderung, Nachtlicht</b> — <b>insbesondere bei funktioneller
+            Inkontinenz</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><b>Hilfsmittel — mobile und auffangende:</b> Urinflaschen · Steckbecken („Bettpfanne“) ·
+    Toilettenstühle · <b>Kondomurinal</b> · Urinkollektor mit mobilem Harnableitungssystem ·
+    Blasenkatheter mit Harnableitungssystem für immobile Pflegeempfänger.
+    <b>Aufsaugende/absorbierende:</b> saugfähige Einlagen und Bettunterlagen · Netzhosen und
+    Inkontinenzslips.</p>
+
+  <div class="gefahr">
+    <span class="t">Der Satz mit der Sturzgefahr steht mitten in der Inkontinenz-Folie</span>
+    <p><b>Kleidung, die schnell aufgeht, plus rutschfeste Schuhe — und dahinter das Wort
+      Sturzgefahr.</b> Das ist keine Randbemerkung: <b>Der Weg zur Toilette ist einer der
+      häufigsten Sturzanlässe</b>, und Inkontinenz und Sturzprophylaxe sind damit <b>dasselbe
+      Problem</b>.</p>
+    <p>Wenn in einer Klausur ein Fall mit <b>Nykturie</b> vorkommt, gehört die
+      <b>Sturzprophylaxe</b> in die Antwort — Nachtlicht, freier Weg, rutschfeste Schuhe.</p>
+    <p class="fr">Le chemin vers les toilettes est l'un des lieux de chute les plus fréquents.
+      Incontinence et prévention des chutes, c'est le même dossier.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Und die Regel, die die Folie mit einem eigenen Symbol markiert</span>
+    <p>Bei Farbveränderungen des Urins steht ein Zeichen, das ab dort <b>immer</b> dasselbe
+      bedeutet: <b>„Bei diesen Farbveränderungen bitte unbedingt eine Pflegefachkraft
+      informieren!“</b></p>
+    <p><b>Das ist deine Rolle als Auszubildende, klar benannt:</b> beobachten, dokumentieren,
+      <b>melden</b> — nicht selbst bewerten und nicht selbst entscheiden.</p>
+  </div>
+</section>
+
+<section id="puls">
+  <h2>Puls und Blutdruck</h2>
+  <p class="lead"><b>CE 02 UE 05.</b> Die Datei heißt im Dateinamen selbst
+    <b>„Vorabversion“</b> — und sie ist es: <b>Dutzende Lücken, die im Unterricht gefüllt
+    werden sollten.</b></p>
+
+  <div class="gefahr">
+    <span class="t">Lies das, bevor du mit dieser Datei lernst</span>
+    <p><b>Diese Folien sind zum Mitschreiben gebaut, nicht zum Nachlesen.</b> Leer sind unter
+      anderem: die <b>Definitionen</b> von systolischem und diastolischem Druck, dem <b>mittleren
+      arteriellen Druck</b> und der <b>Blutdruckamplitude</b> · die <b>Gründe</b> für Tachykardie
+      und Bradykardie · die <b>Normale Pulsfrequenz für Erwachsene</b> (die Zeile ist leer!) ·
+      mehrere <b>Fachbegriffe</b> und die Übersetzungstabelle (Radius, Ulna, dorsal, anterior,
+      posterior, cranial, sinister, dexter).</p>
+    <p><b>Ich fülle diese Lücken nicht.</b> Was unten steht, ist ausschließlich das, was
+      <b>wirklich in der Datei steht</b>.</p>
+    <p class="fr">Ces diapos sont faites pour être complétées en cours. Je n'invente rien : ce qui
+      suit est uniquement ce qui y figure vraiment.</p>
+  </div>
+
+  <h3>Puls — was dasteht</h3>
+  <p><b>Puls</b>, von lat. <i>pulsus</i> — Stoß. <b>Ausstoß von Blut aus der linken Herzkammer
+    (Systole)</b>, tastbar an oberflächlich verlaufenden Gefäßen. <b>Wichtiges Kriterium zur
+    Beurteilung der Herz- und Kreislauffunktion (Vitalzeichen).</b></p>
+  <p><b>Pulswelle:</b> Sie entsteht durch die Herzschläge, die rhythmisch ausgestoßen werden, und
+    ist <b>gegen eine harte Struktur gedrückt tastbar</b> (Muskel oder Knochen). <b>Je Herzschlag
+    werden ca. 70 ml Blut in die Aorta ausgeworfen</b>, in einer Minute <b>ca. 5 l</b>. Der Vorteil:
+    <b>Rückschlüsse auf Kreislauf und Herzaktivität ohne technische Geräte.</b></p>
+  <p><b>Technik:</b> <b>Fingerkuppen mit leichtem Druck</b> auflegen, das <b>Handgelenk locker
+    halten</b>, am besten mit Auflage (z. B. auf dem Oberschenkel).</p>
+
+  <h4>Messorte</h4>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Ort</th><th>Wofür</th></tr></thead>
+      <tbody>
+        <tr><td class="k">A. radialis</td><td>die übliche Stelle am Handgelenk <span class="fr2">(der
+          Name ist auf der Folie eine Lücke — aus dem übrigen Text ergänzt)</span></td></tr>
+        <tr><td class="k">A. femoralis</td><td><b>Notfall</b></td></tr>
+        <tr><td class="k">A. carotis communis</td><td><b>Notfall</b></td></tr>
+        <tr><td class="k">A. dorsalis pedis</td><td><b>Durchblutungsstörungen</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="karten">
+    <div class="karte"><h4>Peripherer Puls</h4>
+      <p>An herzfernen Stellen, z. B. <b>A. dorsalis pedis</b> oder <b>A. radialis</b>. Bei
+        <b>Herzrhythmusstörungen, Hypotonie oder arteriellen Verschlüssen</b> teilweise
+        <b>nicht tastbar</b>.</p></div>
+    <div class="karte"><h4>Zentraler Puls</h4>
+      <p>An <b>großen herznahen Arterien</b>: <b>A. carotis, A. femoralis</b>. <b>CAVE: die
+        A. carotis nur einseitig und mit leichtem Druck messen — Kollapsgefahr!</b> Relativ
+        genau auch bei Herzrhythmusstörungen und <b>gibt nahezu die Herzfrequenz an</b>.</p></div>
+  </div>
+
+  <h4>Die drei Messkriterien</h4>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Kriterium</th><th>Was es ist</th><th>Normal</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Pulsfrequenz</td><td><b>Anzahl der Pulswellen pro Minute</b> —
+          „Schläge“ pro Minute</td>
+          <td>Kinder (10–14 J.) <b>80–90</b> · Kleinkinder (2 J.) <b>100–120</b> · Neugeborene
+            <b>130–150</b>. <b>Die Zeile für Erwachsene ist in der Datei leer.</b></td></tr>
+        <tr><td class="k">Pulsrhythmus</td><td><b>Regelmäßigkeit bzw. Unregelmäßigkeit</b> der
+          Pulswellen — sind die Abstände gleich?</td><td>Im Normalfall immer <b>gleiche
+          Abstände</b></td></tr>
+        <tr><td class="k">Pulsqualität</td><td><b>Beschaffenheit</b> der Pulswellen (Spannung,
+          Füllung): <b>hart oder weich</b> (wie leicht zu unterdrücken?), <b>stark oder
+          schwach</b>, <b>Anstieg</b> schnell oder langsam — und: <b>variiert die Qualität über
+          mehrere Wellen?</b></td><td><b>Weich und gut gefüllt, gut tastbar</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><b>Abweichungen der Frequenz:</b> <b>Tachykardie &gt; 100 Schläge/Min.</b> ·
+    <b>Bradykardie &lt; 50 Schläge/Min.</b> (beim Erwachsenen). Die Folie fügt ausdrücklich hinzu:
+    <b>„Eine Abweichung hat nicht immer einen Krankheitswert!“</b> — die Tabelle mit den
+    <b>Gründen</b> ist leer.</p>
+  <p><b>Abweichungen des Rhythmus:</b> <b>Asystolie</b> — keine Herzaktion, <b>Notfall</b> ·
+    <b>Extrasystole</b> — zusätzliche Herzaktion außerhalb des Grundrhythmus · <b>Bigeminus</b> —
+    doppelter Puls, auch Zwillingspuls · <b>Arrhythmie</b> — abweichende Rhythmik.</p>
+
+  <div class="merk">
+    <span class="t">Herzfrequenz ist nicht Pulsfrequenz</span>
+    <p>Physiologisch sind beide <b>gleich</b>. Sie können aber <b>auseinanderfallen</b> — die
+      Differenz heißt <b>Pulsdefizit</b> bzw. steht auf der Folie als <b>Pulsdifferenz</b>, und
+      sie ist <b>mit Hilfe eines EKGs diagnostizierbar</b>.</p>
+    <p><b>Was das praktisch heißt:</b> Das Herz schlägt, aber der Schlag kommt am Handgelenk nicht
+      an — weil er zu schwach war. Wer nur am Handgelenk zählt, <b>zählt dann zu wenig</b>.</p>
+    <p class="fr">Le cœur bat, mais le battement n'arrive pas au poignet. C'est pour ça qu'un pouls
+      normal ne prouve pas un cœur normal.</p>
+  </div>
+
+  <h4>Ablauf und Fehler</h4>
+  <ul>
+    <li>Patient <b>in Ruhe</b>; <b>zunächst die Rhythmik</b> feststellen; Schlag <b>„0“</b> als
+      Startsignal</li>
+    <li><b>Rhythmischer Puls:</b> 15 Sekunden zählen und <b>mit 4 multiplizieren</b></li>
+    <li><b>Arrhythmischer oder bradykarder Puls:</b> <b>eine volle Minute</b> zählen</li>
+    <li>Auf die <b>Pulsqualität</b> wird <b>während des Zählens</b> geachtet</li>
+    <li>Bei <b>Neuaufnahmen</b> oder <b>peripheren Durchblutungsstörungen beide Seiten</b>
+      messen</li>
+  </ul>
+  <p><b>Fehler:</b> den <b>Daumen</b> zur Messung nehmen — <b>eigener Puls</b> · <b>zu leichter
+    Druck</b>: nicht alle Schläge werden bemerkt · <b>zu starker Druck</b>: Pulswellen werden
+    unterdrückt · <b>Kinder</b>: viel Bewegung, schneller und schwach tastbarer Puls · <b>zu kurz
+    gemessen</b>, besonders bei unregelmäßigem Puls.</p>
+  <p><b>Pulsoximeter:</b> misst <b>Puls und O₂-Sättigung</b>, schnelle konstante Überwachung —
+    <b>muss geeicht und einsatzbereit sein!</b></p>
+
+  <h3>Blutdruck</h3>
+  <div class="merk">
+    <span class="t">Die drei Namen, die auf den Folien stehen</span>
+    <p><b>1733</b> — <b>Stephen Hales</b> (1677–1761): erste <b>invasive</b> Blutdruckmessung,
+      eingesetzt in der <b>Veterinärmedizin</b>.</p>
+    <p><b>1816</b> — <b>René Théophile Hyacinthe Laennec</b>: Entwicklung des
+      <b>Stethoskops</b>.</p>
+    <p><b>1896</b> — <b>Scipione Riva-Rocci</b> (1863–1937): erste Beschreibung der Messung mit
+      <b>Armmanschette und Quecksilberröhrchen</b>. <b>Daher die Abkürzung RR</b>, und die Angabe
+      in <b>Millimeter Quecksilbersäule</b>.</p>
+    <p class="fr">RR = Riva-Rocci. Voilà pourquoi la tension s'écrit « RR » dans les dossiers
+      allemands.</p>
+  </div>
+
+  <p><b>Definition:</b> Druck, der auf Arterien und Venen wirkt; im klinischen Alltag der
+    <b>arterielle</b> Blutdruck, angegeben als <b>Zahlenpaar</b> aus systolischem und
+    diastolischem Druck. Die Folie stellt ihn ausdrücklich in Frage: <b>„DEN Blutdruck gibt es
+    eigentlich gar nicht…“</b> — er hängt ab von <b>Gefäßwiderstand</b>, <b>Herzschlagkraft</b>,
+    <b>Blut- und Flüssigkeitsvolumen</b> sowie körperlicher und psychischer Arbeit und
+    Krankheit.</p>
+
+  <p><b>Windkesselfunktion</b> — warum immer Druck im System ist: Blut wird während der Systole in
+    die <b>Aorta</b> gepumpt, die <b>Aortenklappe schließt</b>, der Druck verteilt sich entlang des
+    geringsten Widerstands — und <b>bevor der Druck richtig abfallen kann, erfolgt bereits die
+    nächste Systole</b>.</p>
+
+  <h4>Messung</h4>
+  <p><b>Direkt (invasiv):</b> per Zugang in einem Gefäß (A. radialis, A. brachialis, A. femoralis),
+    im OP und auf Intensiv- und Überwachungsstationen. <b>Indirekt (auskultatorisch):</b> einfach,
+    nicht-invasiv, schnell, nutzt die <b>Korotkow-Geräusche</b>. Weitere Möglichkeiten:
+    <b>palpatorisch</b> (Ausschläge am Manometer), <b>oszilloskopisch</b> (Schwingungen der
+    Gefäßwände), <b>Langzeitmessung über 24 Stunden</b>.</p>
+  <p><b>Korotkow-Geräusche</b> sind <b>Strömungsgeräusche</b>, die durch das <b>Fließen des
+    Blutstroms gegen den Widerstand (Verwirbelung)</b> entstehen — erzeugt durch das
+    <b>Abdrücken mit der Manschette</b>.</p>
+  <p><b>Durchführung:</b> Manschette <b>luftleer, eng und faltenfrei</b> am Oberarm,
+    <b>2–3 cm oberhalb der Ellenbeuge</b>, <b>Schläuche nicht direkt in der Ellenbeuge</b>
+    (Störgeräusche).</p>
+  <p><b>Messbedingungen:</b> in Ruhe · am <b>entkleideten</b> Arm · <b>immer am gleichen Arm</b> ·
+    <b>passende Manschettengröße</b> · sitzend, stehend oder liegend · <b>Messarm in Herzhöhe</b> ·
+    Messinstrumente nach Gebrauch <b>desinfizieren</b> · <b>zur gleichen Tageszeit</b>, und die
+    <b>Tabletteneinnahme beachten</b>.</p>
+
+  <div class="gefahr">
+    <span class="t">Kontraindikationen — „NIEMALS MESSEN/STAUEN!“</span>
+    <p>Die Folie schreibt es in Großbuchstaben. <b>An diesem Arm wird nicht gemessen und nicht
+      gestaut:</b></p>
+    <p><b>Shunt-Arm</b> · <b>Ödeme und Lymphödeme</b> (insbesondere <b>nach Mamma-Ca</b>) ·
+      <b>Paresen, Plegien</b> · <b>peripherer venöser Zugang, arterieller Zugang</b> und
+      Ähnliches · <b>Verbrennungen</b> oder ähnliche Hautveränderungen · <b>Frakturen, Gips</b>.</p>
+    <p><b>Diese Liste ist Prüfungsstoff und Praxisstoff zugleich.</b> Sie ist außerdem der
+      häufigste Grund, warum man <b>fragt, bevor man die Manschette anlegt</b> — dem Arm sieht man
+      einen Shunt oder eine Lymphknotenausräumung nicht immer an.</p>
+    <p class="fr">Jamais de brassard sur ce bras-là. Et comme ça ne se voit pas toujours :
+      <b>demande avant de poser</b>.</p>
+  </div>
+
+  <h4>Normwerte</h4>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Gruppe</th><th>Normwert</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Erwachsene</td><td><b>120/80 mmHg</b></td></tr>
+        <tr><td class="k">Menschen ab 60+</td><td><b>140/90 mmHg</b></td></tr>
+        <tr><td class="k">Kinder 4–12 Jahre</td><td><b>100/60 mmHg</b></td></tr>
+        <tr><td class="k">Säuglinge</td><td><b>80/60 mmHg</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Die Folie setzt sofort dazu: <b>„Normwerte sind immer in Abhängigkeit zum klinischen Zustand,
+    Vorerkrankungen, Lebensstil usw. zu sehen. Nicht immer ist ein Normwert realistisch erreichbar
+    oder erstrebenswert.“</b></p>
+  <p><b>Pathologische Werte:</b> Abweichungen <b>&gt; 140/90 mmHg</b> bzw. <b>&lt; 105/60 mmHg</b>
+    beim Erwachsenen — <b>die beiden Fachwörter dafür sind auf der Folie Lücken</b>. Und:
+    <b>„Im Alltag ist meist der systolische Wert entscheidend!“</b></p>
+
+  <h4>Steuerung</h4>
+  <p><b>Hormonell:</b> Hormone der Niere und der Nebenniere · <b>Noradrenalin</b>, Adrenalin,
+    <b>Dopamin</b>, <b>Angiotensin II</b> <span class="fr2">(zwei dieser Wörter sind auf der Folie
+    Lücken)</span>. <b>Nerval:</b> Nerven des <b>Hirnstamms</b>, <b>Sympathikus und
+    Parasympathikus</b>. <b>Gemessen wird das über Chemo-, Presso- und Volumenrezeptoren im ganzen
+    Körper.</b></p>
+  <p><b>Total periphere Resistance (TPR)</b> = <b>Gefäßwiderstand</b>, die Summe der einzelnen
+    Gefäßwiderstände (<b>insbesondere der Kapillaren</b>), gesteuert über hormonelle und nervale
+    Systeme. <b>Vasokonstriktion</b> = Gefäßverengung, <b>Vasodilatation</b> = Gefäßweitung.</p>
+
+  <h4>Wann gemessen wird</h4>
+  <div class="karten">
+    <div class="karte"><h4>Einfache Kontrolle</h4>
+      <p><b>Puls:</b> bei Aufnahme, <b>mindestens 1× täglich</b> im Krankenhaus, bei
+        <b>verschlechtertem Allgemeinzustand</b>, bei Veränderung anderer Vitalzeichen (Blutdruck,
+        Atmung, Temperatur, <b>Bewusstsein</b>), vor der <b>Mobilisation kreislaufinstabiler
+        Menschen</b>.</p>
+      <p><b>Blutdruck:</b> bei Neuaufnahme, in der Regel <b>einmal täglich</b>, <b>zusammen mit
+        der Pulskontrolle</b>, vor der Mobilisation, bei <b>Hyper- und Hypotonie</b> und bei
+        Herz-Kreislauf-Erkrankungen.</p></div>
+    <div class="karte"><h4>Häufige oder dauerhafte Kontrolle</h4>
+      <p><b>Puls:</b> Messung nicht im Normbereich · Therapie mit <b>vasoaktiven Substanzen</b>
+        (z. B. Adrenalin) · <b>prä-, peri-, postoperativ</b>.</p>
+      <p><b>Blutdruck:</b> <b>starke Schwankungen</b> · Medikamente, die den Blutdruck
+        beeinflussen (<b>Diuretika, Antihypertensiva, Glukokortikoide, Kontrazeptiva</b>) ·
+        prä-, peri-, postoperativ · Überwachung nach <b>Unfällen und schweren Verletzungen</b>,
+        <b>Blutung und großen Flüssigkeitsverlusten</b>, <b>Schock</b>, <b>Vergiftung</b> · während
+        <b>invasiver Untersuchungen, Analgosedierung, Beatmung</b>.</p></div>
+  </div>
+  <p class="fr">Ces deux listes sont presque identiques — apprends-les ensemble, pas séparément.</p>
+
+  <div class="merk">
+    <span class="t">Die Quellenliste zu diesem Thema liegt als eigene Datei im Ordner</span>
+    <p><b>Verstehen und pflegen 2 — Wahrnehmen und Beobachten</b>, Annette Lauber, 4. Auflage,
+      Thieme · <b>Pflege Heute</b>, 8. Auflage, Menche, Elsevier · <b>Pflegen Gesundheits- und
+      Krankheitslehre</b>, 2. Auflage, Keller · <b>Pflegen Biologie Anatomie Physiologie</b>,
+      2. Auflage, Menche · <b>Pflege Heute Geriatrische Pflege</b>, Schraut · <b>Pflegen Grundlagen
+      und Interventionen</b>, 3. Auflage, Bartoszek · <b>Larsen, Anästhesie und Intensivmedizin
+      für die Fachpflege</b>, 9. Auflage, Springer 2016 · <b>Arbeitsbuch Anatomie und
+      Physiologie</b>, 16. Auflage, Jecklin.</p>
+    <p><b>Das erste Buch der Liste trägt den Titel dieser Unterrichtseinheit.</b> Wenn du eine
+      Lücke füllen willst, fang dort an — nicht bei mir und nicht im Internet.</p>
+  </div>
+</section>
+
+<section id="bewegung">
+  <h2>Bewegung und Gangbild</h2>
+  <p class="lead"><b>CE 02A UE 1.</b> Zwei Arbeitsblätter — <b>beide vollständig leer</b>. Sie
+    gehören zu <i>Pflegen Grundlagen und Intervention</i> von Prof. <b>Gabriele Bartoszek</b>,
+    Elsevier.</p>
+
+  <div class="merk">
+    <span class="t">Die sechs Beobachtungskriterien der Bewegung</span>
+    <p><b>Körperhaltung / Muskeltonus</b> · <b>Körperschema</b> · <b>Gleichgewicht</b> ·
+      <b>Beweglichkeit der Gelenke</b> · <b>Muskelkraft</b> · <b>Bewegungskoordination</b></p>
+    <p><b>Dieselben sechs Kriterien stehen auf beiden Blättern</b> — einmal quer über
+      <i>Definition · worauf wird geachtet · Testverfahren · pathologische Veränderungen</i>,
+      einmal quer über <i>dreijähriges Kind · junger Erwachsener · alter Mensch</i>.</p>
+    <p class="fr">Six critères, deux grilles : une par contenu, une par âge. Rien n'est rempli.</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Der Satz der Dozentin, den du nicht überlesen darfst</span>
+    <p><b>„Bitte schreiben Sie nicht aus dem Buch ab. Formulieren Sie eigene Sätze.“</b></p>
+    <p>Das ist wörtlich die Anforderung von <b>AFB II</b>: nicht wiedergeben, sondern <b>in eigenen
+      Worten darstellen</b>. Und es ist exakt die Stelle, an der deine schriftlichen Noten
+      weggebrochen sind — nicht am Wissen, sondern am <b>eigenen Satz</b>.</p>
+    <p><b>Deshalb löse ich diese Tabellen nicht für dich, auch nicht als Beispiel.</b> Schreib sie
+      selbst, auf Deutsch, in ganzen Sätzen — und <b>schick sie mir</b>. Dann korrigiere ich
+      Inhalt, Satzbau und Wortwahl, und du siehst, wo es wirklich hakt.</p>
+    <p class="fr">« N'recopie pas le livre, formule tes propres phrases. » C'est exactement
+      l'AFB II — et exactement là où tes notes écrites chutent. Écris-les, envoie-les-moi.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Verbindung zur Sturzprophylaxe</span>
+    <p>Das zweite Blatt sagt, warum das Gangbild sich lohnt: <b>„Am Gangbild lassen sich die
+      Auswirkungen der Beobachtungskriterien in der Ausgestaltung gut erkennen.“</b> Und:
+      <b>„dabei ist das entsprechende Lebens- und Entwicklungsalter zu berücksichtigen“</b>.</p>
+    <p><b>Ein einziger Gang über den Flur zeigt dir alle sechs Kriterien auf einmal</b> — Haltung,
+      Gleichgewicht, Gelenke, Kraft, Koordination, Körperschema. Deshalb steht in den
+      Sturzassessments ein Gehtest und keine Kraftmessung.</p>
+  </div>
+</section>
+
+<section id="aufgaben">
+  <h2>Deine offenen Aufträge aus diesem Block</h2>
+  <p class="lead">Fünf Aufgaben liegen unbearbeitet im Ordner. <b>Ich löse sie nicht</b> — aber ich
+    sage dir bei jeder, worauf es ankommt.</p>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Die Lernaufgabe Nachtschrank — von Anne Nix, für deinen Praxiseinsatz</h4>
+      <p><b>Ohne Ankündigung</b> durchführen, am besten, wenn du sowieso etwas im Zimmer zu tun
+        hast. <b>Was liegt offen auf dem Nachtschrank, was eher „versteckt“?</b> Dann: den
+        Menschen <b>darauf ansprechen</b> und <b>ins Gespräch kommen</b>. Danach Notizen machen.</p>
+      <p><b>Die zwei Auswertungsfragen:</b> Was sagen mir diese Gegenstände über den Patienten?
+        Welche <b>Schlussfolgerungen</b> kann ich ziehen?</p>
+      <p><b>Und der Teil, den man übersieht:</b> In den nächsten Tagen den Kontakt
+        <b>intensivieren</b> — und dann beantworten: <b>Wie hat sich die Beziehung nach deinem
+        Gespräch verändert?</b> <b>An mindestens zwei Menschen</b> durchführen; die Notizen zum
+        nächsten Theorieblock mitbringen.</p>
+      <p><b>Das ist die beste Aufgabe des ganzen Blocks</b> — sie übt <b>teilnehmende
+        Beobachtung</b>, <b>Selbstbeobachtung</b> und <b>Deutsch sprechen</b> in einem. Schick mir
+        deine Notizen, ich korrigiere sie sprachlich mit.</p>
+      <p class="fr">Sans l'annoncer, pendant que tu fais autre chose dans la chambre. Deux
+        personnes au minimum. Envoie-moi tes notes, je corrige aussi la langue.</p></div></div>
+
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Frau Melinek — der Inkontinenzfall</h4>
+      <p><b>58 Jahre, 84 kg bei 1,64 m, drei Kinder</b>, arbeitet in der <b>Bettenaufbereitung</b>
+        im Krankenhaus. <b>Wegen der Arbeitsbelastung selten eine Pause</b>; wenn sie es schafft,
+        <b>raucht sie schnell eine Zigarette und trinkt einen Kaffee</b>. Seit einiger Zeit merkt
+        sie, dass sie <b>während der Arbeit tröpfchenweise Harn verliert</b>.</p>
+      <p><b>Die drei Fragen:</b> 1. Um welche <b>Form der Inkontinenz</b> handelt es sich
+        wahrscheinlich? 2. Welche <b>Risikofaktoren</b> können beigetragen haben? 3. <b>Drei
+        Empfehlungen</b>, was sie tun könnte.</p>
+      <p><b>Mein Hinweis, ohne die Lösung:</b> Die Risikofaktorenliste weiter oben ist die
+        Fundgrube — und <b>fast jedes Detail des Falls</b> steht dort als Stichwort. Geh den Fall
+        <b>Wort für Wort</b> durch und streich an, was in der Liste vorkommt. Was übrig bleibt,
+        ist kein Zufall: Die Dozentin hat den Fall <b>aus ihrer eigenen Liste gebaut</b>.</p>
+      <p class="fr">Relis le cas mot à mot avec la liste des facteurs de risque à côté. Presque
+        chaque détail y figure — ce n'est pas un hasard.</p></div></div>
+
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Fallbeispiel Frau Schwarz — Hautbeobachtung</h4>
+      <p>Der Auftrag lautet: das Fallbeispiel <b>in Einzelarbeit lesen</b>, <b>die wichtigen
+        Aussagen markieren</b> und eine <b>Hautbeobachtung anhand der 5 Kriterien</b>
+        durchführen.</p>
+      <p><b>Die Falldatei liegt in ILIAS, nicht in deinem Ordner</b> — ich habe sie nicht.
+        Die fünf Kriterien und alle Ausprägungen stehen oben auf dieser Seite; sobald du den Fall
+        hast, ist die Tabelle in zehn Minuten gemacht. <b>Schick ihn mir, wenn du ihn
+        herunterlädst.</b></p></div></div>
+
+    <div class="stufe"><span class="nr n2">4</span><div>
+      <h4>Die sechs Gruppenarbeiten zu den Bewusstseinsstörungen</h4>
+      <p>Jede Gruppe recherchiert in <b>Pflege Heute</b> und baut ein Plakat:</p>
+      <ul>
+        <li><b>Gruppe 1</b> — <b>Denkstörungen</b> (Kap. 38.2.5): Unterschied <b>formale ↔
+          inhaltliche</b> Denkstörung</li>
+        <li><b>Gruppe 2</b> — <b>Wahrnehmungsstörungen</b> (Kap. 38.2.7): Unterschied
+          <b>Halluzination ↔ Illusion</b>, und <b>welche Sinnesreize</b> betroffen sein
+          können</li>
+        <li><b>Gruppe 3</b> — <b>Orientierungsstörung</b> (Kap. 38.2.2) und
+          <b>Verwirrtheitsprophylaxe</b> (Kap. 12.4.2), mit je einem Beispiel für <b>zeitliche,
+          situative, persönliche und örtliche</b> Orientierungshilfen</li>
+        <li><b>Gruppe 4</b> — <b>Sensibilitätsstörungen</b> (Kap. 37.2.9) und
+          <b>Polyneuropathien</b> (Kap. 35.15.1): Definition, <b>3 häufige Ursachen</b>,
+          Symptome</li>
+        <li><b>Gruppe 5</b> — <b>Syndrom der reaktionslosen Wachheit</b> (Kap. 37.2.12):
+          Entstehung, Symptome, Diagnostik, Behandlung und Pflege</li>
+        <li><b>Gruppe 6</b> — <b>Geistige Behinderung</b> (Kap. 12.6): Definition, Ursachen,
+          <b>warum der pflegerische Umgang eine besondere Herausforderung ist — mit
+          Begründung</b>, und <b>3 Prinzipien</b> der Begleitung</li>
+      </ul>
+      <p><b>Und in allen sechs Aufträgen steht am Ende dieselbe Frage:</b> „Beurteilen Sie, ob es
+        sich um eine <b>qualitative</b> oder eine <b>quantitative</b> Bewusstseinsstörung handelt,
+        und <b>begründen Sie</b> dies.“</p>
+      <p><b>Das ist der Prüfungsstoff.</b> Sechs verschiedene Themen, eine einzige Frage — und sie
+        ist <b>AFB III</b>. Wenn du dich auf eine Sache vorbereitest, dann darauf: <b>zu jedem der
+        sechs Themen einen Satz mit „weil“</b>.</p>
+      <p><b>Der Haken:</b> Die Kapitel stehen in <b>Pflege Heute</b>, und dieses Buch liegt
+        <b>nicht</b> in deinem Ordner. <b>Ich schreibe die Inhalte nicht aus dem Gedächtnis
+        hin</b> — das wäre genau der Fehler, den diese Aufgabe verhindern soll.</p>
+      <p class="fr">Six sujets, une seule question à la fin — et c'est du niveau AFB III. Prépare
+        une phrase avec « weil » pour chacun des six.</p></div></div>
+
+    <div class="stufe"><span class="nr n2">5</span><div>
+      <h4>Das Plakat, das im Ordner liegt — Gruppe 2</h4>
+      <p>Ein <b>handgeschriebenes Plakat</b> zur Wahrnehmungsstörung ist dabei. <b>Ob es deins
+        ist, weiß ich nicht</b> — es steht kein Name darauf. Was darauf steht:</p>
+      <p><b>Definition:</b> „Eine Wahrnehmungsstörung bezeichnet eine Beeinträchtigung der
+        <b>Aufnahme, Verarbeitung oder Interpretation von Sinneseindrücken</b>.“ ·
+        <b>Halluzination:</b> Sinneswahrnehmung <b>ohne äußeren Reiz</b> · <b>Illusion:</b> ein
+        <b>realer Reiz wird falsch interpretiert</b> · <b>betroffene Sinnesreize:</b> Sehen,
+        Hören, Riechen, Schmecken, Fühlen · <b>Einordnung: qualitative
+        Bewusstseinsstörung</b>.</p>
+      <p><b>Meine Rückmeldung dazu:</b> Die beiden Definitionen sind <b>sauber und knapp</b> —
+        genau der Unterschied, um den es geht (<b>kein Reiz</b> gegen <b>falsch gedeuteter
+        Reiz</b>). Die Einordnung ist richtig.</p>
+      <p><b>Aber zwei Teile des Auftrags fehlen:</b> Es steht <b>kein Beispiel</b> darauf
+        („Formulieren Sie jeweils ein entsprechendes Beispiel“) und <b>keine Begründung</b> für
+        die Einordnung („und begründen Sie dies mit wenigen Worten“). <b>Genau die zwei fehlenden
+        Teile sind die AFB-II- und AFB-III-Punkte.</b> Die Definition allein ist AFB I.</p>
+      <p><b>Wenn du mir sagst, dass das Plakat von deiner Gruppe ist, üben wir genau diese zwei
+        Sätze</b> — ein Beispiel und ein „weil“.</p>
+      <p class="fr">Les définitions sont bonnes. Ce qui manque — l'exemple et le « parce que » —
+        c'est précisément là que sont les points.</p></div></div>
+  </div>
+</section>
+
+<section id="woerter">
+  <h2>Die Wörter dieses Blocks</h2>
+  <p class="lead">Alle aus den Dateien oben. Die Übersetzungen sind von mir.</p>
+  <div class="paare">
+    <div class="paar"><span class="de">die Wahrnehmung, -en</span>
+      <span class="frx">la perception</span></div>
+    <div class="paar"><span class="de">die Beobachtung, -en</span>
+      <span class="frx">l'observation</span></div>
+    <div class="paar"><span class="de">der Reiz, -e</span>
+      <span class="frx">le stimulus</span></div>
+    <div class="paar"><span class="de">die Vigilanz (nur Singular)</span>
+      <span class="frx">la vigilance, l'état de veille</span></div>
+    <div class="paar"><span class="de">die Merkfähigkeit (nur Singular)</span>
+      <span class="frx">la capacité de mémorisation</span></div>
+    <div class="paar"><span class="de">die Benommenheit (nur Singular)</span>
+      <span class="frx">l'obnubilation (ralentissement, mais orienté)</span></div>
+    <div class="paar"><span class="de">die Somnolenz (nur Singular)</span>
+      <span class="frx">la somnolence</span></div>
+    <div class="paar"><span class="de">der Sopor (nur Singular)</span>
+      <span class="frx">la stupeur, le sopor</span></div>
+    <div class="paar"><span class="de">das Koma, die Komata</span>
+      <span class="frx">le coma</span></div>
+    <div class="paar"><span class="de">die Eupnoe (nur Singular)</span>
+      <span class="frx">la respiration normale</span></div>
+    <div class="paar"><span class="de">die Dyspnoe (nur Singular)</span>
+      <span class="frx">la dyspnée, la gêne respiratoire</span></div>
+    <div class="paar"><span class="de">die Atemhilfsmuskulatur (nur Singular)</span>
+      <span class="frx">les muscles respiratoires accessoires</span></div>
+    <div class="paar"><span class="de">die Schonatmung (nur Singular)</span>
+      <span class="frx">la respiration d'épargne (pour éviter la douleur)</span></div>
+    <div class="paar"><span class="de">der Sekretstau (nur Singular)</span>
+      <span class="frx">la stase des sécrétions</span></div>
+    <div class="paar"><span class="de">der Stridor (nur Singular)</span>
+      <span class="frx">le stridor, le sifflement respiratoire</span></div>
+    <div class="paar"><span class="de">der Hautturgor (nur Singular)</span>
+      <span class="frx">la turgescence cutanée, l'élasticité de la peau</span></div>
+    <div class="paar"><span class="de">die Effloreszenz, -en</span>
+      <span class="frx">la lésion élémentaire de la peau</span></div>
+    <div class="paar"><span class="de">der Ikterus (nur Singular)</span>
+      <span class="frx">l'ictère, la jaunisse</span></div>
+    <div class="paar"><span class="de">die Zyanose (nur Singular)</span>
+      <span class="frx">la cyanose</span></div>
+    <div class="paar"><span class="de">die Defäkation, -en</span>
+      <span class="frx">la défécation</span></div>
+    <div class="paar"><span class="de">die Obstipation (nur Singular)</span>
+      <span class="frx">la constipation</span></div>
+    <div class="paar"><span class="de">die Beimengung, -en</span>
+      <span class="frx">l'élément ajouté, l'impureté (dans les selles, l'urine)</span></div>
+    <div class="paar"><span class="de">der Teerstuhl (nur Singular)</span>
+      <span class="frx">le méléna (selles noires, saignement haut)</span></div>
+    <div class="paar"><span class="de">die Miktion, -en</span>
+      <span class="frx">la miction</span></div>
+    <div class="paar"><span class="de">der Harndrang (nur Singular)</span>
+      <span class="frx">l'envie d'uriner</span></div>
+    <div class="paar"><span class="de">der Restharn (nur Singular)</span>
+      <span class="frx">le résidu post-mictionnel</span></div>
+    <div class="paar"><span class="de">die Nykturie (nur Singular)</span>
+      <span class="frx">la nycturie (uriner la nuit)</span></div>
+    <div class="paar"><span class="de">die Pulsqualität (nur Singular)</span>
+      <span class="frx">la qualité du pouls (tension et remplissage)</span></div>
+    <div class="paar"><span class="de">die Manschette, -n</span>
+      <span class="frx">le brassard</span></div>
+    <div class="paar"><span class="de">stauen</span>
+      <span class="frx">comprimer, garrotter (ici : poser un garrot ou un brassard)</span></div>
+  </div>
+</section>
+
+<section id="offen">
+  <h2>Was fehlt — und was ich bewusst nicht ergänzt habe</h2>
+
+  <div class="warnung">
+    <span class="t">Sechs Lücken</span>
+    <p><b>1. Der Foliensatz „Puls und Blutdruck“ ist eine Vorabversion mit Dutzenden Lücken</b> —
+      unter anderem <b>der Normwert der Pulsfrequenz für Erwachsene</b>, die Definitionen von
+      systolisch, diastolisch, MAD und Amplitude und die Gründe für Tachy- und Bradykardie.</p>
+    <p><b>2. Auch der Urin-Foliensatz ist teilweise zum Ausfüllen</b> — unter anderem die Folie
+      „Kriterien der Urinbeobachtung“ und die <b>drei Inkontinenzformen</b>.</p>
+    <p><b>3. Das Fallbeispiel Frau Schwarz</b> (Haut) liegt in <b>ILIAS</b>, nicht im Ordner.</p>
+    <p><b>4. Die Pflege-Heute-Kapitel</b> aus den sechs Gruppenarbeiten liegen nicht vor.</p>
+    <p><b>5. Beide Arbeitsblätter zur Bewegung und zum Gangbild sind leer</b>, und das Buch von
+      Bartoszek ist nicht dabei.</p>
+    <p><b>6. Die drei LearningApps-Übungen</b> aus dem Urin-Foliensatz (Kreuzworträtsel,
+      Lückentext, Zuordnung) sind <b>Links</b> — die Lösungen stehen nicht in der Datei.</p>
+    <p class="fr">Six trous. Je les nomme au lieu de les combler de mémoire.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die 20 Fragen des Kreuzworträtsels — ohne Lösung, absichtlich</span>
+    <p>Sie stehen im Urin-Foliensatz und sind eine gute Selbstprüfung. <b>1.</b> Organ, in dem
+      Urin produziert wird · <b>2.</b> Bestandteil des Urins · <b>3.</b> rote Blutkörperchen im
+      Urin · <b>4.</b> Farbveränderung bei Dehydratation · <b>5.</b> Geruchsveränderung bei
+      längerem Stehen · <b>6.</b> Urinproduktion unter 100 ml/Tag · <b>7.</b> Fachbegriff
+      Harnröhre · <b>8.</b> Wenn der Urin so aussieht, solltest du mehr trinken · <b>9.</b> Bei
+      einer Harnwegsinfektion wird der Urin … · <b>10.</b> Beimengung bei Entzündung ·
+      <b>11.</b> Übersetzung: Ureter · <b>12.</b> Ursache für orange-braunen Urin ·
+      <b>13.</b> Fachbegriff: Eiweiß im Urin · <b>14.</b> Bei dieser Erkrankung riecht der Urin
+      „obstartig“ · <b>15.</b> Urinausscheidung über 2 500 ml/Tag · <b>16.</b> Zucker im Urin ·
+      <b>17.</b> Kriterium der Urinbeobachtung · <b>18.</b> physiologische Ursache für roten
+      Urin · <b>19.</b> Substanzen, die normalerweise nicht oder zu viel im Urin enthalten sind ·
+      <b>20.</b> anderer Name für Urin.</p>
+    <p><b>Löse sie selbst und schick mir deine Antworten</b> — dann sage ich dir, welche stimmen.
+      Das ist ehrlicher, als wenn ich sie hier hinschreibe.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Brücken zu deinen anderen Seiten</span>
+    <p><b>Anatomie und Organe:</b> Dort stehen nur <b>drei</b> Bewusstseinsstufen und <b>keine</b>
+      Glasgow Coma Scale. <b>Benommenheit</b> und die Punktetabelle oben ergänzen sie.</p>
+    <p><b>Herz und Kreislauf:</b> Puls, Blutdruck, Windkesselfunktion, Zyanose — dieselben Begriffe
+      aus der Beobachtungsperspektive.</p>
+    <p><b>Pädiatrie:</b> die Atemfrequenzen nach Alter, die Urinmengen nach Alter, die
+      GCS-Klammern für Kinder unter 2 Jahren und die Phototherapie beim Neugeborenenikterus.</p>
+    <p><b>Pflegeplanung in fünf Tagen:</b> Beobachtung ist <b>Schritt 1 und Schritt 6</b> des
+      Pflegeprozesses — Informationssammlung und Evaluation.</p>
+    <p><b>Notfälle und Reanimation:</b> die Apnoe-Kette 30 : 2 und die fünf Minuten.</p>
+    <p><b>Rehabilitation:</b> Der <b>Beobachtungsauftrag zum Video „37 Grad“</b>, der zuerst hier
+      vermutet wurde, gehört zu <b>CE 07 / UE 01</b> und steht dort auf der Reha-Seite.</p>
+  </div>
+</section>
+
+<details class="quelle">
+  <summary>Die fünfzehn Quellen — jede einzeln genannt</summary>
+  <div class="inh">
+    <ul>
+      <li><b>Wahrnehmung und Beobachtung.pdf</b> — Foliensatz <b>I. Himmel B.Sc.</b>,
+        <b>CE 2 UE 5</b>, Unterkurs 25–28: Sinnesorgane, die sieben Sinne, Wahrnehmungsprozess mit
+        dem durchgespielten Beispiel, optische Täuschungen, Definitionen, Beobachtungsprozess,
+        Ziele, Voraussetzungen, hemmende und fördernde Faktoren, Hilfsmittel, objektive und
+        subjektive Patientendaten. Nennt als Quellen <b>Pflege Heute 6. und 7. Auflage</b>,
+        <b>Pflege I care (Thieme 2015)</b> und <b>Prof. Dr. A. D. Fröhlich (1994)</b>.</li>
+      <li><b>Arten von Beobachtung.pdf</b> — Textblatt <b>CE 02b UE 5, Frau Nix</b>: die sechs
+        Beobachtungsarten mit Beispielen. Quelle laut Blatt: <b>Pflegen Grundlagen und
+        Interventionen, 2. Auflage, Elsevier, Kapitel 12.1.2</b>.</li>
+      <li><b>PP_Bewusstsein, Wahrnehmung und Verhalten - PF.pdf</b> — Foliensatz zum Bewusstsein:
+        physiologische Grundlagen, Nervensystem, Kreislauf Wahrnehmung–Verhalten, die sieben
+        Beobachtungskriterien, quantitative und qualitative Bewusstseinsstörungen, Ursachen — und
+        die <b>vollständige Glasgow Coma Scale</b> nach <b>Tab. 37.2, Pflege Heute, 8. Auflage,
+        S. 1098</b>. Verweist außerdem auf <b>Pflege Heute 12.1, 38.2.1</b> und
+        <b>Abb. 12.1, S. 274</b>.</li>
+      <li><b>Gruppenarbeit Bewusstseinsstoerungen.pdf</b> — <b>CE 02 UE 5</b>: die sechs
+        Gruppenaufträge mit Kapitelangaben in <b>Pflege Heute</b>. <b>Ohne Lösungen.</b></li>
+      <li><b>Wahrnehmungsstoerungen.jpg</b> — Foto eines <b>handgeschriebenen Plakats</b> aus der
+        Gruppenarbeit (Gruppe 2). <b>Kein Name darauf</b>; auf dieser Seite als Plakat
+        gekennzeichnet und mit Rückmeldung versehen.</li>
+      <li><b>Lernaufgabe Beobachtung nach dem Einfuehrungsblock.pdf</b> — die <b>Lernaufgabe
+        Nachtschrank</b> von <b>Anne Nix</b>, CE 02b UE 5, für den Praxiseinsatz.
+        <b>Unbearbeitet.</b></li>
+      <li><b>Atembeobachtung Teil 1.pdf</b> und <b>Teil 2.pdf</b> — zwei Foliensätze
+        <b>I. Himmel, M.A., 2025</b>, CE 2 / UE 5: Anatomie, Physiologie, Atemmechanik, Steuerung,
+        Beobachtungskriterien, Frequenzen, Atemmuster, Atemtypen, Geräusche, Geruch. Quellen laut
+        Datei: <b>Pflege Heute 7. Auflage 2019</b>, <b>Altenpflege Heute 4. Auflage 2021</b>,
+        <b>I care Pflege 2. Auflage 2020</b>.</li>
+      <li><b>Hautbeobachtung.pdf</b> — Foliensatz <b>CE 02 / UE 01</b>: Ziele der Hautpflege,
+        Hydrolipidfilm, die fünf Kriterien, Effloreszenzen, Fotodokumentation, Auftrag zum
+        Fallbeispiel Frau Schwarz. Literatur laut Datei: <b>Pflege Heute 8. Auflage 2023</b>,
+        <b>Jecklin 2020</b>, <b>Schmal/Kost 2021</b>.</li>
+      <li><b>Stuhlbeobachtung.pdf</b> — Foliensatz <b>CE 02 / UE 04</b>: Verdauungsorgane,
+        Zusammensetzung, Defäkationsvorgang, die sieben Kriterien, mikroskopische Beimengungen.
+        Nennt als Quellen <b>NovaHeal</b> und die ILIAS-Tabelle.</li>
+      <li><b>AA Stuhlbeobachtung.pdf</b> — dasselbe Raster als <b>leeres Arbeitsblatt</b>.</li>
+      <li><b>Loesung Kriterien Stuhlbeobachtung.pdf</b> — dasselbe Raster <b>ausgefüllt</b>.
+        <b>Kein Verfassername</b>; einzelne auffällige Schreibungen sind auf dieser Seite
+        benannt.</li>
+      <li><b>2025-Urin- und Miktionsbeobachtung (Azubis).ppt.pdf</b> — Foliensatz
+        <b>CE 02 UE 4, Frau Küppers</b>. <b>Teilweise Lückenfassung</b>; verweist auf
+        <b>NovaHeal</b> und drei <b>LearningApps</b>-Übungen. Enthält den Fall <b>Frau
+        Melinek</b>, <b>ungelöst</b>.</li>
+      <li><b>Puls und Blutdruck Vorabversion.pdf</b> — Foliensatz <b>CE 02 UE 05</b>.
+        <b>Vorabversion mit Dutzenden Lücken</b>, die auf dieser Seite als Lücken benannt und
+        <b>nicht gefüllt</b> sind.</li>
+      <li><b>Quellen Puls und Blutdruck.pdf</b> — die <b>Literaturliste</b> zum Foliensatz,
+        acht Titel, oben vollständig zitiert.</li>
+      <li><b>AA Kriterien der Beobachtung der Bewegung.pdf</b> und <b>AA Kriterien der Beobachtung
+        Gangbild-Lebensphasen.pdf</b> — <b>CE 02A UE 1</b>, zwei <b>leere</b> Arbeitsraster zu den
+        sechs Bewegungskriterien, mit Verweis auf <b>Bartoszek, Pflegen Grundlagen und
+        Intervention</b>, Elsevier.</li>
+    </ul>
+    <p>Alle aus deinem Google-Drive-Ordner, geteilt am 18.09.2026.</p>
+    <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> die Merkhilfe „<b>die fünf A</b>“ ·
+      die Gegenüberstellung von Wahrnehmungs- und Beobachtungsprozess in einer Zeile · die
+      <b>drei Paare</b> der sechs Beobachtungsarten · der Hinweis, dass <b>Gleichgewicht und
+      Tiefensinn</b> die Brücke zur Sturzprophylaxe sind · die Merkhilfe <b>4 – 5 – 6</b> und der
+      Hinweis, dass der niedrigste GCS-Wert <b>3</b> ist · die Unterscheidung <b>Cheyne-Stokes
+      gegen Biot</b> · die Umkehrung <b>Bauch-OP → Brustatmung</b> und die daraus gebaute
+      Begründungskette · die Merkhilfe <b>Obst–Salmiak–Urin</b> für die drei Komata · der Hinweis,
+      vor der Stuhlfarbe <b>nach den Medikamenten</b> zu fragen · die Verbindung von
+      <b>Nykturie und Sturzprophylaxe</b> · und alle Hinweise zu den unbearbeiteten Aufträgen.</p>
+    <p><b>Ausdrücklich nicht ergänzt:</b> keine der Lücken aus „Puls und Blutdruck“ und aus dem
+      Urin-Foliensatz · keine Lösung des Kreuzworträtsels · keine Inhalte aus <b>Pflege Heute</b>
+      zu den sechs Gruppenarbeiten · keine Kette zur Nykturie bei Herzschwäche · und keine
+      Einordnung der <b>Erosion</b>, die in der Hautfolie in beiden Listen steht.</p>
+    <p>Die französischen Zeilen und die Vokabelübersetzungen sind von mir ergänzt.</p>
+  </div>
+</details>
+
+</main>
+
+<footer>
+  <p>Wahrnehmen und Beobachten · CE 02 / UE 1, 4 und 5 — gebaut aus deinen eigenen Unterlagen.<br>
+    Wo eine Folie eine Lücke hat, steht die Lücke hier auch. Ich fülle sie nicht aus dem Gedächtnis.</p>
+</footer>
