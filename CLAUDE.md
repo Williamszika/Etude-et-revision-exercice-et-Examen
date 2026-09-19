@@ -179,6 +179,42 @@ Wiederholung dahinter.
 20. Indirekte Fragen mit *ob* und W-Wort
 21. Wiederholung — die zehn Fehler, die B1 kosten, an einem ganzen Text
 
+#### Die Pflichterweiterungen — was am 19.09.2026 gefehlt hat
+
+**Am 19.09.2026 hat sie gefragt, ob mit diesem Plan wirklich die ganze B1-Grammatik
+drankommt.** Nachgeschlagen wurde in öffentlichen B1-Referenzen (Goethe-/ÖSD-Zertifikat B1
+Wortliste 2016; Lehrwerksübersichten B1.1/B1.2; telc-B1-Grammatikliste). **Das sind
+Internetquellen, nicht ihre eigenen Unterlagen** — sie dürfen als Orientierung dienen, nie als
+Norm zitiert werden, und das Prüfungsformat kommt weiterhin **ausschließlich** aus
+`deutsch-taeglich/telc-quellen/`.
+
+Der Vergleich hat **elf Lücken** gezeigt. Die Liste der 21 Themen und der Kalender bleiben
+**unverändert** — die Lücken werden in den Block eingebaut, zu dem sie gehören. **Jede Zeile
+hier ist Pflicht**, und zwar in der **zweiten** Lektion des Blocks (`themenTag: 2`, die
+Anwenden-Lektion), damit die Entdecken-Lektion nicht überladen wird.
+
+| In Block | Was zusätzlich drankommt | Warum es sie besonders trifft |
+|---|---|---|
+| **3** Perfekt/Präteritum | **Futur I** (*werden* + Infinitiv) — Vorhersage und Vermutung | fehlte ganz |
+| **5** Kasussystem | **n-Deklination** (*der Patient → den Patienten*, *der Kollege*, *der Mensch*, *der Praktikant*) | ihre häufigsten Nomen; trifft Baustelle 1 **und** 2 direkt |
+| **7** Adjektivdeklination | **Partizipien als Adjektive** (*der schlafende Patient*, *die gebrochene Hüfte*) · **Adjektive als Nomen** (*der Kranke*, *etwas Wichtiges*) · Endungen im **Genitiv** | fehlte ganz |
+| **13** Relativsätze | **Relativsatz mit Präposition** (*die Station, **auf der** ich arbeite*) · **was/wo** | Plan nannte nur Nom./Akk./Dat. |
+| **14** Infinitiv mit zu | **(an)statt … zu** · **ohne dass** | Plan nannte nur um…zu, ohne…zu |
+| **15** Passiv | **Passiv Perfekt** · **Passiv mit Modalverb** (*muss gelagert werden*) | steht in jedem Pflegetext; Plan nannte nur Präsens/Präteritum |
+| **16** Konjunktiv II | **Konjunktiv II der Vergangenheit** (*hätte gemacht*, *wäre gewesen*) · **irreale Bedingung und irrealer Wunsch** · **als ob** | Plan nannte nur die Gegenwartsformen |
+| **19** Konnektoren | **zweiteilige Konnektoren** (*sowohl … als auch*, *nicht nur … sondern auch*, *weder … noch*, *entweder … oder*, *zwar … aber*) · **indem** · **sodass** | fehlte ganz; *je … desto* steht schon in Block 8 |
+| **21** Wiederholung | **Wortbildung** — Vorsilben, Nachsilben, Komposita | trifft Baustelle 5 (*Pflege dienst*) |
+| **2** Nebensätze | **falls** neben *wenn* | fehlte in der Aufzählung |
+| **4** Modalverben | **nicht brauchen … zu** / **nur brauchen … zu** | fehlte ganz |
+
+**Was bewusst draußen bleibt:** **Modalpartikel** (*doch, mal, ja, eben*) und **Ausdrücke mit
+„es"** stehen in manchen B1.2-Übersichten, gehören aber zum Hörverstehen und zur Umgangssprache,
+nicht zur geprüften Satzbildung. Sie dürfen in Texten vorkommen und dort erklärt werden, sind
+aber **kein Lernziel** und **kein Vokabeleintrag**.
+
+**Und die Grenze, die dabei nicht verwischt wird:** Diese Liste macht den Plan *vollständiger*,
+nicht *ausreichend*. Ob B1 erreicht ist, sagt die Messung — nicht die abgehakte Themenliste.
+
 Der **Wortschatz** kommt weiter aus den 16 Themenbereichen, **pro Themenblock**:
 `themaNr = ((themaBlock − 1) mod 16) + 1`. Die zwei Lektionen eines Themas bleiben im **selben**
 Wortfeld — die 15–18 Vokabeln bauen aufeinander auf. In der Dezemberphase wird der Bereich
@@ -209,6 +245,15 @@ vorher versprechen, dass Dezember automatisch B1 bedeutet.
 **rund 84 Stunden** (56 Lektionen à 60 Min + 56 Übungstage à 30 Min). Die übliche Schätzung für
 A2 → B1 liegt bei **150–200 Stunden** (**allgemeine Schätzung, nicht aus ihren Unterlagen, nie
 als Tatsache darstellen**).
+
+**Am 19.09.2026 nachgeprüft — die Schätzung hat jetzt eine Quelle.** Das Goethe-Institut nennt
+als Voraussetzung **A2: 200–350 Unterrichtseinheiten à 45 Minuten**, **B1: 350–650 UE** (jeweils
+kumulativ ab null). Die Strecke **A2 → B1** ist also die Differenz: **150–300 UE = rund 112–225
+Zeitstunden.** Ihr Plan sind **84 Stunden = 112 UE** — das liegt **unter** der unteren Grenze.
+**Internetquelle (goethe.de), nicht ihre Unterlagen**, und es sind Erfahrungswerte, keine Norm:
+Vorkenntnisse, Muttersprache und Alltag in Deutschland verschieben die Zahl in beide Richtungen.
+Sie lebt und arbeitet auf Deutsch — das zählt in keiner dieser Zahlen mit. **Nicht als Mahnung
+verwenden, nur als Antwort, wenn sie fragt.** Ihre Entscheidung vom 10.09. steht.
 
 Ihr Weg dahin, in ihren eigenen Entscheidungen: 41 h → 62 h → 128 h → **84 h**. Die vierte
 Fassung liegt wieder **unter** der Schätzung. Das wurde ihr am 10.09. offen gesagt, zusammen mit
@@ -678,6 +723,14 @@ Beides ist behoben. **Jede Lektion hat jetzt einen eigenen Block `vokabeln`**, u
 
 - **15–18 Wörter** pro Lektion. Weniger ist zu wenig für B1 (rund 1100 neue Wörter von A2 aus),
   mehr behält niemand an einem Tag.
+  **Die Zahl 1100 ist am 19.09.2026 nachgeprüft worden** und stammt aus den offiziellen
+  Wortlisten: Goethe-/ÖSD-Zertifikat **A2 ≈ 1300**, **B1 ≈ 2400 lexikalische Einheiten**
+  (Vorwort der B1-Wortliste, Goethe-Institut/ÖSD 2016, kumulativ ab A1). **Internetquelle, nicht
+  ihre Unterlagen.** Gerechnet: 56 Lektionen × 15–18 = **840–1008** Wörter aus `vokabeln`, dazu
+  12–14 pro Lektion aus `lesen.wortschatz`; nach den ersten fünf Lektionen sind es **115
+  verschiedene** Wörter, hochgerechnet rund **1300**. **Die Menge stimmt also — die Deckung
+  nicht geprüft**, denn die Auswahl folgt den 16 telc-Themenbereichen, nicht der Goethe-Liste.
+  Das ist ein bekannter offener Punkt und wird nicht als „B1-Wortschatz abgedeckt" ausgegeben.
 - **Nomen immer mit Artikel und Plural**: `die Erkältung, -en` · `das Fieber (nur Singular)` ·
   `die Praxis, die Praxen`. **Ohne Genus kein Kasus** — das ist Baustelle 2.
 - **Unregelmäßige Verben mit allen Stammformen**: `einnehmen (nimmt ein, nahm ein, hat
