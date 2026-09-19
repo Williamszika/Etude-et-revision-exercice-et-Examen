@@ -261,14 +261,14 @@ class _FehltKasten extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 6),
-          MarkText(
+          const MarkText(
             'Sie ist hier **noch nicht angekommen**. Wahrscheinlich steht sie '
             'schon auf der Webseite — die App holt ihre Lektionen von GitHub, '
             'und dorthin ist sie noch nicht gelangt.\n\n'
             '**Was du tun kannst:** Schließ die App ganz und öffne sie neu. '
             'Kommt sie dann immer noch nicht, schau auf der Webseite nach und '
             'sag mir Bescheid — dann hole ich sie nach.',
-            stil: const TextStyle(fontSize: 15.5, height: 1.5),
+            stil: TextStyle(fontSize: 15.5, height: 1.5),
           ),
           const SizedBox(height: 8),
           MarkText(
