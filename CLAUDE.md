@@ -1238,6 +1238,16 @@ Bei `AppLifecycleState.resumed` wird geholt, höchstens alle zwei Minuten. Das Z
 dann das mitgelieferte Asset. Die Stimme kommt über `flutter_tts` vom Gerät. Im Funkloch
 funktioniert also alles außer dem Nachladen neuer Lektionen.
 
+**Am 19.09.2026 um 09:30 hat sie die App selbst auf ihrem iPhone installiert** — Release-Build,
+über `flutter run --release`. Bundle-ID **`de.zika.deutschTaeglich` blieb unverändert**, der
+vorsorgliche Rat, sie zu ändern, war unnötig. Ihre Eckdaten stehen oben in `app/IPHONE.md`:
+Geräte-ID `00008130-000C45D91E09001C`, iOS 26.6.2, Personal Team, Zertifikat auf
+zikabiabraham@protonmail.com. **Dort steht auch die eine Befehlszeile für die wöchentliche
+Neusignierung** — bei Fragen dorthin verweisen, nicht neu erfinden.
+
+**`flutter upgrade` auf ihrem Mac nicht empfehlen.** Flutter meldet dort eine neuere Version;
+ein Upgrade kann den iOS-Build brechen, und sie hat keine Möglichkeit, das selbst zu reparieren.
+
 **Die 7-Tage-Grenze gilt für sie trotzdem** — mit kostenlosem Apple-Konto signiert, muss die App
 wöchentlich neu aufgespielt werden. `app/IPHONE.md` ist ihre Anleitung dafür, auf Französisch.
 **Nicht ungefragt eine APK schicken** — die läuft auf ihrem Telefon nicht.

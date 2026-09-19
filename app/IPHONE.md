@@ -7,7 +7,49 @@ avec ton identifiant Apple normal, **sans payer les 99 €/an**.
 
 ---
 
-## Avant de commencer — lis ces quatre lignes
+## ✅ C'est fait — le 19.09.2026, à 09h30
+
+L'app tourne sur ton iPhone en version **release**. Tes réglages, pour ne plus avoir à les
+rechercher :
+
+| | |
+|---|---|
+| Dossier du projet | `~/Etude-et-revision-exercice-et-Examen` |
+| Ton iPhone | `00008130-000C45D91E09001C` — iOS 26.6.2 |
+| Équipe Xcode | **Bi Abraham Zika (Personal Team)** |
+| Certificat | Apple Development : zikabiabraham@protonmail.com (4B94TWVD4P) |
+| Bundle Identifier | **`de.zika.deutschTaeglich`** — inchangé, il est passé tel quel |
+
+### La commande des 7 jours — la seule à retenir
+
+Quand l'app refuse de s'ouvrir (environ une fois par semaine), branche l'iPhone, déverrouille-le,
+et colle ça :
+
+```bash
+cd ~/Etude-et-revision-exercice-et-Examen/app && git pull && flutter run --release -d 00008130-000C45D91E09001C
+```
+
+Environ 30 secondes. Quand l'app s'ouvre, appuie sur **`q`**. Le `git pull` récupère au passage
+les corrections faites entre-temps.
+
+**Tes réponses et tes coches de vocabulaire sont conservées** — elles sont sur le téléphone,
+pas dans l'app.
+
+### Deux messages qui ne sont pas des erreurs
+
+- *« The following plugins do not support Swift Package Manager: flutter_tts »* — un
+  avertissement pour l'avenir. La voix allemande fonctionne.
+- *« Application finished. »* après avoir tapé `q` — ça ferme l'app sur le téléphone, ça ne la
+  désinstalle pas.
+
+**Ne fais pas `flutter upgrade`** quand il te le propose. Si un jour c'est nécessaire, on le fera
+ensemble — une mise à jour de Flutter peut casser la compilation iOS.
+
+---
+
+## Le mode d'emploi complet, si tu dois tout refaire un jour
+
+### Avant de commencer — lis ces quatre lignes
 
 | | |
 |---|---|
