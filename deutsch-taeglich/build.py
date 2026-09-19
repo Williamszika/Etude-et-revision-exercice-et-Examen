@@ -61,7 +61,8 @@ def woerter_aus(d):
         raus.append({
             'de': wort,
             'fr': w.get('fr', ''),
-            'wortart': w.get('wortart') or w.get('niveau') or '',
+            'wortart': w.get('wortart') or '',
+            'niveau': w.get('niveau') or '',
             'beispiel': w.get('beispiel') or w.get('imText') or '',
             'beispielFr': w.get('beispielFr', ''),
             'quelle': quelle,

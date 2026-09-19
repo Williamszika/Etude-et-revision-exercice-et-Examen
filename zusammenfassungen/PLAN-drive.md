@@ -105,16 +105,18 @@ die vorhandene Schulung **ergänzt** statt eine zweite anzulegen.
   nicht vor. Ohne ihn bleibt der Filmauftrag unbearbeitet — es wird nichts dazuerfunden.
   Die Datei `Film Hirn gespinster -2.pdf` enthält die **neun Aufgaben** dazu; sie gehören zu
   **Block 1 (Psychiatrie)**, nicht zur Neurologie, und stehen dort schon als offener Auftrag.
-- **Nachzutragen auf der Psychiatrie-Seite:** Das Plakat `Wahrnehmungsstoerungen.jpg`
-  definiert **Halluzination** (*Sinneswahrnehmung ohne äußeren Reiz*) gegen **Illusion**
-  (*ein realer Reiz wird falsch interpretiert*) und ordnet beide der **qualitativen
-  Bewusstseinsstörung** zu. Auf der Psychiatrie-Seite stehen die beiden Wörter bisher nur in
-  einer Aufzählung, ohne diese Unterscheidung. **Seit dem 19.09.2026 steht die Unterscheidung
-  auf der neuen Beobachtungs-Seite** (`schulung-beobachtung/`), samt Rückmeldung zum Plakat —
-  der Nachtrag auf der Psychiatrie-Seite bleibt trotzdem sinnvoll, weil das Thema dort
-  hingehört.
-- **Nachzutragen auf der Anatomie-Seite:** Sie nennt **drei** Bewusstseinsstufen; die
-  vierte (**Benommenheit**) und die **vollständige Glasgow Coma Scale** stehen jetzt auf der
-  Beobachtungs-Seite. Auch dieser Nachtrag ist noch offen.
+- ~~**Nachzutragen auf der Psychiatrie-Seite**~~ — **erledigt am 19.09.2026.** Das Plakat
+  `Wahrnehmungsstoerungen.jpg` definiert **Halluzination** (*Sinneswahrnehmung ohne äußeren
+  Reiz*) gegen **Illusion** (*ein realer Reiz wird falsch interpretiert*) und ordnet beide der
+  **qualitativen Bewusstseinsstörung** zu. Auf der Psychiatrie-Seite standen die beiden Wörter
+  nur in einer Aufzählung. Jetzt steht dort die Unterscheidung, die fünf betroffenen Sinne, die
+  Einordnung **mit Begründung** (*wach, aber der Inhalt ist verändert*) und die Herkunft
+  (Plakat **ohne Namen** · Foliensatz nach *Pflege Heute 38.2.1*). **Das im Auftrag verlangte
+  Beispiel fehlt auf dem Plakat und wurde nicht erfunden** — es steht als achte Selbsttestfrage
+  dort, samt der Begründung, die ebenfalls fehlt.
+- ~~**Nachzutragen auf der Anatomie-Seite**~~ — **erledigt am 19.09.2026.** Sie nannte **drei**
+  Bewusstseinsstufen; jetzt stehen dort alle **vier** (mit **Benommenheit**), die Abgrenzung
+  quantitativ/qualitativ und die **vollständige Glasgow Coma Scale** — an genau der Stelle, an
+  der die Folie bisher nur *„GCS erheben“* sagte.
 - Einige Dateien sind **Fotos von Tafelbildern** (`IMG_…jpg`, `Folie 15.pdf`). Sie werden
   gelesen, aber wo die Aufnahme unleserlich ist, wird das vermerkt.
