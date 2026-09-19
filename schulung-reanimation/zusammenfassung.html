@@ -1,0 +1,963 @@
+<title>Reanimation nach Leitlinie</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#9c3026;--accent-deep:#7a231b;--accent-soft:#f6e0dd;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#e79287;--accent-deep:#f2aba1;--accent-soft:#331714;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#e79287;--accent-deep:#f2aba1;--accent-soft:#331714;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#9c3026;--accent-deep:#7a231b;--accent-soft:#f6e0dd;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">ERC-Leitlinien 2021 · Erwachsene und Kinder</p>
+  <h1>Reanimation nach Leitlinie</h1>
+  <p class="sub">Die offiziellen Zahlen — aus den drei Leitlinien-PDFs in deinem Drive-Ordner.
+    Jede Tiefe, jede Frequenz, jede Dosis steht so dort. Nichts geschätzt, nichts gerundet.</p>
+  <div class="meta">
+    <span>ERC / GRC 2021</span>
+    <span>DGK Pocket-Leitlinie</span>
+    <span>3 Quellen</span>
+    <span>Niveau B1</span>
+    <span>Stand 19.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#warum">Warum diese Seite</a>
+  <a href="#zahlen">Die Zahlen</a>
+  <a href="#bls">BLS Erwachsene</a>
+  <a href="#aed">Der AED</a>
+  <a href="#als">ALS Erwachsene</a>
+  <a href="#ursachen">Reversible Ursachen</a>
+  <a href="#rosc">Nach ROSC</a>
+  <a href="#bolus">Fremdkörper</a>
+  <a href="#kind">Kinder — anders</a>
+  <a href="#pbls">PBLS</a>
+  <a href="#kindals">Kinder ALS</a>
+  <a href="#normwerte">Normwerte</a>
+  <a href="#anaphylaxie">Anaphylaxie</a>
+  <a href="#vergleich">Der Vergleich</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="warum">
+  <h2>Warum es diese Seite zusätzlich gibt</h2>
+  <p class="lead">Du hast schon eine Notfall-Zusammenfassung. Diese hier ersetzt sie nicht.</p>
+
+  <p>Die Schulung <b>Notfälle &amp; Erste Hilfe</b> (aus dem Foliensatz von Herrn Weidenbecher)
+    deckt das Feld breit ab: Rettungskette, Apoplex, Herzinfarkt, Lungenembolie, Krampfleiden,
+    psychiatrische Notfälle. Reanimation ist dort <b>ein Kapitel von fünfundzwanzig</b>.</p>
+
+  <p>Die drei PDFs in deinem Drive-Ordner sind etwas anderes: die <b>Originalleitlinien
+    selbst</b> — und sie enthalten <b>zwei Dinge, die in der Schulung fehlen</b>:</p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Die genauen Zahlen</h4>
+      <p>Drucktiefe, Frequenz, Energie in Joule, Medikamentendosen, Zeitfenster. In einer
+        Klausurfrage zählt genau das — <b>„tief drücken“ gibt keine Punkte, „5–6 cm“ schon</b>.</p>
+    </div>
+    <div class="karte">
+      <h4>Kinder</h4>
+      <p>Die Reanimation beim Kind läuft <b>anders</b> als beim Erwachsenen — anderer Rhythmus,
+        andere Reihenfolge, andere Dosen. In der Notfall-Schulung kommt sie nicht vor. Hier
+        schon, aus den <b>ERC-Leitlinien für Kinder 2021</b>.</p>
+    </div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Woher die Leitlinien kommen</span>
+    <p>Der <b>European Resuscitation Council (ERC)</b> hat im <b>März 2021</b> zum siebten Mal
+      in Folge neue Leitlinien herausgegeben. Sie beruhen auf dem <b>CoSTR</b> des <b>ILCOR</b> —
+      einem internationalen Verbund, der <b>jährlich die Weltliteratur</b> durchsieht. Die
+      deutsche Fassung kommt vom <b>German Resuscitation Council (GRC)</b>.</p>
+    <p class="fr">Ce ne sont pas des conseils : ce sont les recommandations officielles
+      européennes, révisées chaque année.</p>
+  </div>
+</section>
+
+<section id="zahlen">
+  <h2>Die Zahlen, die zeigen, warum es auf Ersthelfer ankommt</h2>
+  <p class="lead">Aus dem europäischen Register <b>EuReCa</b>, an dem <b>29 Länder</b> mitarbeiten.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Was</th><th>Zahl</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Kreislaufstillstände außerhalb des Krankenhauses pro Jahr in Europa</td>
+          <td><b>67 bis 170</b> pro 100 000 Einwohner</td></tr>
+        <tr><td class="k">Davon wird vom Rettungsdienst reanimiert</td>
+          <td><b>50–60 %</b> der Fälle</td></tr>
+        <tr><td class="k">Laienreanimationsquote</td>
+          <td>im Schnitt <b>58 %</b> — Spanne <b>13 bis 83 %</b></td></tr>
+        <tr><td class="k">AED-Einsatz in Europa</td>
+          <td>im Schnitt <b>28 %</b> — Spanne <b>3,8 bis 59 %</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Der Satz aus der DGK-Leitlinie, der alles erklärt</span>
+    <p>„Da der Rettungsdienst regelhaft <b>mehrere Minuten</b> bis zum Eintreffen an der
+      Notfallstelle benötigt, hängt das Leben des Betroffenen bis dahin von den
+      <b>Erstmaßnahmen und deren Qualität</b> ab.“</p>
+    <p>Und der zweite, der jede Ausrede wegnimmt: „<b>Alleinige Thoraxkompressionen sind in
+      jedem Fall besser als die Unterlassung jeglicher Reanimationsmaßnahmen.</b>“</p>
+    <p class="fr">Comprimer seul, sans souffler, vaut toujours mieux que ne rien faire.</p>
+  </div>
+</section>
+
+<section id="bls">
+  <h2>Basismaßnahmen beim Erwachsenen — BLS</h2>
+  <p class="lead">Sechs Bestandteile, vier Schritte.</p>
+
+  <h3>Was zu den Basismaßnahmen gehört</h3>
+  <ol>
+    <li>Das <b>Erkennen</b> des Kreislaufstillstandes</li>
+    <li>Die <b>Alarmierung</b> des Rettungsdienstes</li>
+    <li>Die Kreislaufunterstützung durch <b>Thoraxkompression</b></li>
+    <li>Die <b>Aufrechterhaltung offener Atemwege</b></li>
+    <li>Die <b>Unterstützung der Atmung</b> ohne zusätzliche Geräte</li>
+    <li>Der Einsatz <b>automatisierter externer Defibrillatoren (AED)</b></li>
+  </ol>
+
+  <h3>Der Ablauf — Schritt für Schritt</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Reagiert der Patient?</h4>
+      <p>Patienten <b>schütteln und ansprechen</b>. Keine Reaktion → <b>Hilfe hinzurufen</b>,
+        <b>Rückenlagerung</b>.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Atmet er normal?</h4>
+      <p>Atemwege öffnen: <b>Kopf überstrecken, Kinn anheben</b>. Bei abnormaler oder fehlender
+        Atmung: <b>Notruf 112</b>, Stichwort <i>Bewusstlosigkeit</i>. AED holen lassen.</p>
+      <p style="margin-top:6px;"><b>Beachten: Schnappatmung ist keine normale Atmung.</b></p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Thoraxkompression</h4>
+      <p>Oberkörper freimachen, Rückenlage auf <b>hartem Untergrund</b>, an der Seite
+        niederknien. Handballen auf die <b>Mitte des Brustkorbes</b> (untere Hälfte des
+        Brustbeins), zweite Hand auf den Handrücken der ersten. <b>Senkrecht</b> über die Brust
+        beugen, mit <b>gestreckten Armen</b> drücken.</p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div>
+      <h4>Beatmung</h4>
+      <p>Nach <b>30</b> Kompressionen: Atemwege öffnen, mit der Stirnhand die <b>Nase
+        verschließen</b>, mit den Lippen den Mund umschließen, über <b>1 Sekunde</b> Luft
+        einblasen — <b>ohne erhöhten Druck</b>, bis der Thorax sich <b>eben erkennbar
+        hebt</b> (ca. <b>500 ml</b>). Ausatmen lassen, wiederholen.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die vier Zahlen, die du auswendig können musst</span>
+    <div class="scroll" style="margin:10px 0 0;">
+      <table>
+        <tbody>
+          <tr><td class="k">Drucktiefe</td><td><b>5–6 cm</b> (mindestens 5 cm)</td></tr>
+          <tr><td class="k">Frequenz</td><td><b>100–120 pro Minute</b></td></tr>
+          <tr><td class="k">Verhältnis</td><td><b>30 : 2</b></td></tr>
+          <tr><td class="k">Beatmungsvolumen</td><td>ca. <b>500 ml</b> über <b>1 Sekunde</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:10px;">Und der Punkt, den man leicht vergisst: <b>Nach jeder
+      Kompression das Brustbein vollständig entlasten</b> — ohne den Kontakt zwischen Hand und
+      Sternum zu verlieren.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Auch wenn die Beatmung misslingt</span>
+    <p>Wörtlich aus der Leitlinie: den beiden Beatmungen folgen sofort erneut 30 Kompressionen —
+      <b>„auch wenn der Beatmungsversuch mutmaßlich misslingt“</b>. Man versucht es nicht ein
+      drittes Mal. <b>Jede Sekunde ohne Kompression ist verlorene Durchblutung.</b></p>
+  </div>
+</section>
+
+<section id="aed">
+  <h2>Der AED — der automatisierte externe Defibrillator</h2>
+  <p class="lead">Das Gerät, das selbst entscheidet, ob es einen Schock abgibt.</p>
+
+  <p>AED werden <b>von minimal vorgebildeten Ersthelfern und sogar von Laien erfolgreich
+    eingesetzt</b>. Sie zeichnen sich durch eine <b>sehr hohe Sicherheit</b> aus: Sie stellen
+    die Energie <b>nur bei defibrillationsfähigem Rhythmus</b> zur Verfügung. Integrierte
+    <b>Sprachanweisungen</b> führen den Helfer.</p>
+
+  <h3>So läuft es ab</h3>
+  <ol>
+    <li>Gerät <b>einschalten</b>, Elektroden auf die <b>nackte Haut</b> kleben — möglichst durch
+      einen Zweithelfer</li>
+    <li>Den <b>Sprachanweisungen</b> folgen</li>
+    <li><b>Rhythmusanalyse</b> → „Schock empfohlen“ oder „Kein Schock empfohlen“</li>
+    <li>Bei Schock: <b>einmal</b> defibrillieren</li>
+    <li><b>Sofort danach</b> — ohne Kreislaufkontrolle — <b>2 Minuten</b> Thoraxkompression und
+      Beatmung 30:2</li>
+    <li>Dann erneute Rhythmusanalyse. Und so weiter, bis ein <b>sicher perfundierender
+      Rhythmus</b> da ist (sicher tastbarer Puls ohne Herzdruckmassage)</li>
+  </ol>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Energie</th><th>Wert</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Biphasisch (Standard)</td><td><b>120–360 J</b> — im Zweifel immer
+          <b>Maximalenergie</b></td></tr>
+        <tr><td class="k">Monophasisch (selten)</td><td><b>360 J</b> für sämtliche Schocks</td></tr>
+        <tr><td class="k">Bei Kindern, manueller Defibrillator</td><td><b>4 J pro kg
+          Körpergewicht</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:15px;">Geräte mit <b>biphasischer</b> Schockabgabe sind wirksamer und sind
+    der Standard. Die Energie für den <b>ersten</b> Schock ist meist vom Hersteller vorgegeben;
+    die <b>folgenden</b> Schocks werden mit <b>höherer oder maximaler</b> Energie abgegeben.</p>
+
+  <div class="gefahr">
+    <span class="t">Zwei Regeln, die man falsch macht</span>
+    <p><b>1.</b> „Es ist <b>nicht sinnvoll</b>, Thoraxkompressionen und Beatmung für das
+      Herbeiholen eines AED zu unterbrechen. Ein <b>alleiniger Ersthelfer soll den Patienten
+      nicht verlassen</b>.“</p>
+    <p><b>2.</b> Nach dem Schock <b>keine Kreislaufkontrolle</b> — sofort weiter mit 2 Minuten
+      CPR. Erst danach wieder analysieren.</p>
+    <p class="fr">Ne quitte jamais le patient pour aller chercher un DAE si tu es seule. Et après
+      le choc, on reprend immédiatement — sans vérifier le pouls.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Die eine Ausnahme mit drei Schocks</span>
+    <p>Normalerweise wird <b>nur einmal</b> defibrilliert. Ausnahme: das <b>beobachtete
+      Eintreten</b> des Kammerflimmerns, zum Beispiel <b>im Herzkatheterlabor</b> — dann bis zu
+      <b>3 unmittelbar aufeinanderfolgende</b> Schocks.</p>
+  </div>
+</section>
+
+<section id="als">
+  <h2>Erweiterte Maßnahmen beim Erwachsenen — ALS</h2>
+  <p class="lead">Zwei Äste. Alles hängt an einer Frage: Ist der Rhythmus schockbar?</p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Defibrillierbar</h4>
+      <p><b>Kammerflimmern (VF)</b> · <b>pulslose Kammertachykardie (VT)</b></p>
+    </div>
+    <div class="karte">
+      <h4>Nicht defibrillierbar</h4>
+      <p><b>Pulslose elektrische Aktivität (PEA)</b> · <b>Asystolie</b></p>
+    </div>
+  </div>
+
+  <h3>Nicht defibrillierbarer Rhythmus</h3>
+  <ol>
+    <li>Erst prüfen: <b>Richtige Elektrodenlage? Guter Elektrodenkontakt?</b> — gegen
+      Fehldiagnosen</li>
+    <li><b>2 Minuten</b> Thoraxkompression/Beatmung 30:2 fortsetzen</li>
+    <li>In dieser Zeit: <b>peripher-venöser Zugang</b> (wenn das nicht gelingt:
+      <b>intraossär</b>), <b>Atemwegssicherung</b>, <b>Sauerstoffgabe</b>, Gabe von
+      <b>1 mg Adrenalin</b></li>
+    <li>Besteht die Asystolie bei der nächsten Analyse fort: <b>erneut 1 mg Adrenalin</b>,
+      wieder 2 Minuten CPR</li>
+  </ol>
+
+  <h3>Defibrillierbarer Rhythmus</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1.</span><div>
+      <h4>Erster Schock</h4>
+      <p>120–360 J biphasisch, dann sofort <b>2 Minuten</b> CPR 30:2 → Rhythmusanalyse</p></div></div>
+    <div class="stufe"><span class="nr">2.</span><div>
+      <h4>Zweiter Schock</h4>
+      <p>wieder <b>2 Minuten</b> CPR → Rhythmusanalyse</p></div></div>
+    <div class="stufe"><span class="nr n2">3.</span><div>
+      <h4>Dritter Schock — <b>in jedem Fall mit Maximalenergie</b></h4>
+      <p>Danach: <b>Adrenalin 1 mg</b> <b>und</b> <b>Amiodaron 300 mg</b> i.v. oder i.o.</p></div></div>
+    <div class="stufe"><span class="nr n2">5.</span><div>
+      <h4>Nach dem fünften erfolglosen Schock</h4>
+      <p><b>Amiodaron 150 mg</b> i.v./i.o. — alternativ <b>Lidocain</b>: zuerst 100 mg, dann
+        50 mg</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Adrenalin — wann und wie oft</span>
+    <p><b>Nicht schockbarer Rhythmus:</b> so früh wie möglich.<br>
+      <b>Schockbarer Rhythmus:</b> erst <b>nach dem 3. erfolglosen Schock</b>.<br>
+      <b>Danach:</b> Wiederholung <b>alle 3–5 Minuten</b>.</p>
+    <p class="fr">Rythme non choquable → adrénaline tout de suite. Rythme choquable → seulement
+      après le 3ᵉ choc.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Intubation nur von Erfahrenen</span>
+    <p>Die endotracheale Intubation wird <b>nur Helfern mit großer Intubationserfahrung</b>
+      empfohlen — die Leitlinie definiert das genau: <b>Erfolgsrate über 95 % bei zwei
+      Versuchen</b>. Grund: <b>„Fehlintubationen sind eine der häufigsten Komplikationen bei der
+      Reanimation.“</b></p>
+    <p>Die Kontrolle der Tubuslage durch <b>Auskultation</b> und Heben/Senken des Thorax ist
+      <b>nur bedingt zuverlässig</b>. Standard soll die <b>Kapnographie</b> sein — sie zeigt
+      zusätzlich, <b>wie gut die Herzdruckmassage wirkt</b>.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Und die Prävention, die oft übersehen wird</span>
+    <p>Vor einem akuten Kreislaufstillstand sind <b>häufig Warnzeichen</b> zu beobachten:
+      Veränderungen der <b>Herzfrequenz</b>, des <b>Blutdrucks</b>, der <b>Atemfrequenz</b> und
+      der <b>Bewusstseinslage</b>.</p>
+    <p><b>Das ist dein Teil der Arbeit.</b> Wer die Vitalzeichen kennt und Veränderungen früh
+      meldet, verhindert Reanimationen — und genau dafür sollen Krankenhäuser Kriterien
+      definieren.</p>
+  </div>
+</section>
+
+<section id="ursachen">
+  <h2>Die reversiblen Ursachen — suchen, solange reanimiert wird</h2>
+  <p class="lead">Acht Dinge, die man beheben kann, wenn man sie findet.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Ursache</th><th>Was dahintersteckt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Hypoxie</td><td>Sauerstoffmangel</td></tr>
+        <tr><td class="k">Hypovolämie</td><td>zu wenig Volumen im Kreislauf, meist Blutverlust</td></tr>
+        <tr><td class="k">Hyper- / Hypokaliämie</td><td>Kalium zu hoch oder zu niedrig</td></tr>
+        <tr><td class="k">Hypothermie</td><td>Unterkühlung</td></tr>
+        <tr><td class="k">Spannungspneumothorax</td><td>Luft im Brustkorb, die das Herz einengt</td></tr>
+        <tr><td class="k">Intoxikation</td><td>Vergiftung</td></tr>
+        <tr><td class="k">Herztamponade</td><td>Flüssigkeit im Herzbeutel</td></tr>
+        <tr><td class="k">Lungenembolie</td><td>Gerinnsel in der Lungenarterie</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Warum das für dich besonders zählt</span>
+    <p>Zwei davon — <b>Lungenembolie</b> und <b>Hypovolämie</b> — sind genau die Mechanismen aus
+      deinem Thrombose-Material. Die Kette, die du dort gelernt hast, endet <b>hier</b>:
+      Thrombus → Embolus → Lungenembolie → Kreislaufstillstand.</p>
+    <p class="fr">C'est la même chaîne que dans le cours sur la thrombose — elle se termine ici.</p>
+  </div>
+</section>
+
+<section id="rosc">
+  <h2>Nach dem Wiedereinsetzen des Kreislaufs — ROSC</h2>
+  <p class="lead">„Die primäre Wiederherstellung des Kreislaufs ist <b>nur ein erster
+    Schritt</b> zum Überleben.“</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Was</th><th>Zielwert aus der Leitlinie</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Sauerstoffsättigung</td><td><b>94–98 %</b> — Hyperoxygenierung
+          <b>vermeiden</b></td></tr>
+        <tr><td class="k">CO₂</td><td><b>Normokapnie</b> — Hyperventilation <b>vermeiden</b></td></tr>
+        <tr><td class="k">Blutdruck</td><td>möglichst <b>Normotension (&gt; 65 mmHg)</b>, starke
+          Schwankungen vermeiden</td></tr>
+        <tr><td class="k">Blutzucker</td><td><b>100–150 mg/dl</b> (5–8 mmol/l)</td></tr>
+        <tr><td class="k">Körpertemperatur</td><td><b>32–36 °C für mindestens 24 Stunden</b>;
+          <b>Fieber für mindestens 72 Stunden vermeiden</b></td></tr>
+        <tr><td class="k">Wiedererwärmung</td><td><b>0,25–0,5 °C pro Stunde</b>, danach
+          <b>keine Hyperthermie</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ul>
+    <li>Bei vermuteter <b>kardialer</b> Ursache und <b>ST-Hebungen</b> im EKG: <b>sofortige
+      Koronarangiographie</b> und ggf. <b>PCI</b></li>
+    <li><b>Elektrolytstörungen</b>, besonders eine <b>Hypokaliämie</b>, ausgleichen</li>
+    <li>Eine <b>Magensonde</b> entlastet den Magen von Nebenluft</li>
+    <li>Die <b>Sedierung</b> nur so lange aufrechterhalten wie nötig</li>
+    <li><b>Krampfanfälle und Myoklonien</b> treten häufig auf — empfohlen werden
+      <b>Levetiracetam</b> und <b>Natrium-Valproat</b>. Eine <b>routinemäßige Anfallsprophylaxe
+      erscheint nicht sinnvoll</b></li>
+  </ul>
+
+  <div class="gefahr">
+    <span class="t">Der Satz, der dich auf Station betrifft</span>
+    <p>„<b>Vorsicht: Hypoglykämien können bei komatösen Patienten leicht übersehen werden.</b>“</p>
+    <p>Ein bewusstloser Mensch sagt nicht, dass ihm schwindelig ist. Ohne Messung <b>sieht man
+      es nicht</b>. Deshalb steht die Blutzuckerkontrolle auch in den Erstmaßnahmen bei
+      Bewusstlosen.</p>
+  </div>
+</section>
+
+<section id="bolus">
+  <h2>Fremdkörper in den Atemwegen — der Erwachsene</h2>
+  <p class="lead">Erst erkennen, dann unterscheiden: leicht oder schwer?</p>
+
+  <p><b>Verdacht:</b> jemand <b>würgt plötzlich beim Essen und kann nicht mehr sprechen</b>.</p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Geringgradige Obstruktion</h4>
+      <p>Der Patient <b>kann noch sprechen, husten und atmen</b>.</p>
+      <p><b>Maßnahme: zum Husten auffordern.</b> Weitere Sofortmaßnahmen sind in aller Regel
+        <b>nicht notwendig</b>.</p>
+    </div>
+    <div class="karte">
+      <h4>Schwere Obstruktion</h4>
+      <p><b>Unfähigkeit zu sprechen</b>, erschwerte Atmung mit <b>Giemen</b>, <b>tonloses
+        Husten</b>, ggf. eintretende <b>Bewusstlosigkeit</b>.</p>
+      <p>→ sofort handeln, siehe unten.</p>
+    </div>
+  </div>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Bis zu 5 Rückenschläge</h4>
+      <p>Patienten <b>nach vorne beugen</b>, kräftig mit dem <b>Handballen zwischen die
+        Schulterblätter</b> schlagen.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>5× Heimlich-Manöver</h4>
+      <p>Hinter den Patienten stellen, beide Arme um den <b>Oberbauch</b> schlingen, eine Hand
+        zur <b>Faust</b> ballen und <b>zwischen Nabel und Sternumspitze</b> platzieren. Die
+        Faust mit der anderen Hand fassen und <b>kräftig nach innen und oben</b> ziehen.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Abwechselnd weiter</h4>
+      <p>Rückenschläge und Oberbauchkompressionen im Wechsel, <b>bis Besserung eintritt</b>.</p>
+      <p style="margin-top:6px;"><b>Wird der Betroffene bewusstlos: Basisreanimation
+        einleiten.</b></p></div></div>
+  </div>
+</section>
+
+<section id="kind">
+  <h2>Beim Kind ist alles anders — und zwar aus einem Grund</h2>
+  <p class="lead">Das musst du verstanden haben, bevor du die Zahlen lernst.</p>
+
+  <div class="merk">
+    <span class="t">Der Unterschied in einem Satz</span>
+    <p>Beim <b>Erwachsenen</b> steht meistens das <b>Herz</b> zuerst still — deshalb zählt die
+      <b>frühe Defibrillation</b>.<br>
+      Beim <b>Kind</b> geht meistens die <b>Atmung</b> zuerst aus — deshalb fängt man
+      <b>mit 5 Beatmungen</b> an, bevor überhaupt gedrückt wird.</p>
+    <p class="fr">Chez l'adulte, c'est le cœur qui s'arrête en premier. Chez l'enfant, c'est la
+      respiration. D'où les 5 insufflations avant tout.</p>
+  </div>
+
+  <p>Die ERC-Leitlinien für Kinder gelten für <b>0 bis 18 Jahre</b> — <b>ausgenommen
+    Neugeborene im Rahmen der Geburt</b>, für die es eigene Leitlinien gibt.</p>
+
+  <h3>Das ABCDE-Schema als gemeinsame Sprache</h3>
+  <p>Die Leitlinie verlangt es als <b>gemeinsame Sprache</b> im Team, und zwar so: „Führen Sie
+    <b>bei jedem Schritt</b> der Bewertung die erforderlichen Interventionen durch, wenn
+    pathologische Befunde festgestellt werden.“ Und: „<b>Wiederholen Sie Ihre Evaluation nach
+    jeder Intervention</b> oder wenn Zweifel bestehen.“</p>
+
+  <div class="paare">
+    <div class="paar"><span class="de">A — Airway (Atemweg)</span>
+      <span class="frx">ouvrir les voies aériennes et les maintenir ouvertes</span></div>
+    <div class="paar"><span class="de">B — Breathing (Atmung)</span>
+      <span class="frx">la respiration</span></div>
+    <div class="paar"><span class="de">C — Circulation (Kreislauf)</span>
+      <span class="frx">la circulation</span></div>
+    <div class="paar"><span class="de">D — Disability (Bewusstsein)</span>
+      <span class="frx">l'état neurologique</span></div>
+    <div class="paar"><span class="de">E — Exposure (Entkleiden, Umgebung)</span>
+      <span class="frx">déshabiller, examiner, protéger de l'hypothermie</span></div>
+  </div>
+
+  <p>Davor steht das <b>pädiatrische Blickdiagnosedreieck</b> — ein <b>Quick-Look-Tool</b>, um
+    ein gefährdetes Kind <b>frühzeitig</b> zu erkennen.</p>
+
+  <div class="warnung">
+    <span class="t">Beim Schock</span>
+    <p>Flüssigkeitsboli von <b>10 ml/kg Körpergewicht</b> (bevorzugt <b>balancierte</b>
+      Vollelektrolytlösung oder Blutprodukte). <b>Reevaluation nach jedem Bolus.</b> Frühzeitig
+      eine <b>Katecholamintherapie</b> erwägen.</p>
+    <p>Und die Warnung dazu: „Der Übergang von einem <b>kompensierten</b> zu einem
+      <b>dekompensierten</b> Zustand kann <b>schnell und unvorhersehbar</b> sein.“ <b>Kein
+      einzelner Befund</b> kann die Schwere zuverlässig anzeigen.</p>
+  </div>
+</section>
+
+<section id="pbls">
+  <h2>PBLS — Basismaßnahmen beim Kind</h2>
+  <p class="lead">Der Ablauf, den du auswendig können musst.</p>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">0</span><div>
+      <h4>Sicher? Rufen Sie um Hilfe</h4>
+      <p>Wie immer: erst die <b>Sicherheit der Helfer</b>.</p></div></div>
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Fehlende oder abnormale Atmung → <b>5 initiale Beatmungen</b></h4>
+      <p>Das ist der große Unterschied zum Erwachsenen. Kompetente Helfer verwenden
+        <b>Beutel-Maske-Beatmung mit Sauerstoff</b> statt Mund-zu-Mund, wenn verfügbar.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Notruf</h4>
+      <p>Bei <b>einem Retter mit Mobiltelefon</b>: <b>unmittelbar nach den Initialbeatmungen</b>
+        den Notruf absetzen — über <b>Lautsprecher</b> — und weitermachen, während man auf
+        Antwort wartet.</p>
+      <p style="margin-top:6px;"><b>Kein Mobiltelefon?</b> Dann erst <b>eine Minute</b>
+        Basismaßnahmen, bevor man das Kind für den Hilferuf verlässt.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>15 Thoraxkompressionen — dann 2 Beatmungen, im Wechsel</h4>
+      <p>Sofort fortfahren, <b>es sei denn, es gibt deutliche Lebenszeichen</b> (Bewegungen,
+        Husten).</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Zahlen beim Kind</span>
+    <div class="scroll" style="margin:10px 0 0;">
+      <table>
+        <tbody>
+          <tr><td class="k">Verhältnis</td><td><b>15 : 2</b></td></tr>
+          <tr><td class="k">Frequenz</td><td><b>100–120/min</b> — für Säuglinge <b>und</b> Kinder</td></tr>
+          <tr><td class="k">Drucktiefe</td><td>untere Hälfte des Sternums um <b>mindestens ein
+            Drittel des anterior-posterioren Thoraxdurchmessers</b></td></tr>
+          <tr><td class="k">Obergrenze</td><td><b>niemals tiefer als 6 cm</b> (die
+            Erwachsenengrenze) — „etwa eine Daumenlänge eines Erwachsenen“</td></tr>
+          <tr><td class="k">Technik beim Säugling, ein Helfer</td><td>thoraxumgreifende
+            <b>Zwei-Daumen-Technik</b> <i>oder</i> <b>zwei Fingerspitzen</b></td></tr>
+          <tr><td class="k">Entlastung</td><td><b>vollständig</b> zwischen den Kompressionen —
+            nicht auf dem Brustkorb aufstützen</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Woher die 4 cm und 5 cm kommen — und warum sie hier nicht stehen</span>
+    <p>Die Leitlinien von <b>2015</b> nannten konkrete Zahlen: <b>Säugling 4 cm, Kind 5 cm</b>.
+      Die DGK-Pocket-Leitlinie führt sie <b>weiterhin</b> so auf. Die <b>ERC-Kinderleitlinie
+      2021</b> begründet ausführlich, warum sie stattdessen bei <b>„ein Drittel des
+      Durchmessers“</b> bleibt: Bei größeren Kindern käme man sonst über 6 cm, und die 4/5-cm-Ziele
+      werden in der Praxis ohnehin oft nicht erreicht. Außerdem: „<b>Die visuelle Bestimmung der
+      Kompressionstiefe in Zentimeter ist nahezu unmöglich.</b>“</p>
+    <p><b>Beide Angaben stehen in deinen Unterlagen.</b> Ich habe sie nicht gegeneinander
+      ausgespielt — frag im Kurs, welche in der Klausur erwartet wird.</p>
+  </div>
+
+  <h3>Wenn du nicht beatmen kannst oder willst</h3>
+  <p>„Thoraxkompressionen sollen <b>sofort begonnen</b> werden, wenn PBLS-Helfer nicht direkt mit
+    den Beatmungen beginnen <b>können oder wollen</b> — und die Beatmung unmittelbar starten,
+    sobald diese durchgeführt werden kann.“</p>
+
+  <h3>Der zweite Helfer</h3>
+  <ul>
+    <li><b>Notruf</b> / Herzalarm-Team rufen (Lautsprecherfunktion)</li>
+    <li><b>AED</b> holen und verwenden, falls verfügbar</li>
+    <li>Wenn möglich: <b>Beutel-Maske-Beatmung in 2-Helfer-Methode</b> mit Sauerstoff — das ist
+      die <b>Beatmungsunterstützung der ersten Wahl</b></li>
+    <li>Wenn Beatmung nicht möglich ist: <b>kontinuierliche Thoraxkompressionen</b></li>
+  </ul>
+
+  <h3>Fremdkörper beim Kind</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Kind ist wach</h4>
+      <p><b>Säugling:</b> 5 Rückenschläge, dann <b>5 Thoraxkompressionen</b> — im Wechsel.</p>
+      <p><b>Kind:</b> 5 Rückenschläge, dann <b>5 abdominelle Kompressionen</b> — im Wechsel.</p>
+    </div>
+    <div class="karte">
+      <h4>Kind ist bewusstlos</h4>
+      <p><b>Notfallbeatmungen durchführen, dann weiter nach dem PBLS-Algorithmus.</b></p>
+    </div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Zwei Verbote</span>
+    <p><b>Den Mund nicht wiederholt oder blind auswischen.</b></p>
+    <p>Und danach: Auch wenn der Zustand sich gebessert hat — <b>den klinischen Zustand neu
+      beurteilen</b>. Es kann ein Teil des Fremdkörpers zurückgeblieben sein. Im Zweifel, oder
+      wenn abdominelle/thorakale Kompressionen angewendet wurden, ist eine <b>dringende
+      medizinische Untersuchung indiziert</b>.</p>
+    <p class="fr">Ne jamais balayer la bouche à l'aveugle. Et toujours faire examiner l'enfant
+      après.</p>
+  </div>
+</section>
+
+<section id="kindals">
+  <h2>Erweiterte Maßnahmen beim Kind</h2>
+  <p class="lead">Dieselbe Logik wie beim Erwachsenen — aber alle Dosen pro Kilogramm.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Maßnahme</th><th>Dosis beim Kind</th><th>Obergrenze</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Defibrillation</td><td><b>4 J pro kg KG</b></td><td>—</td></tr>
+        <tr><td class="k">Adrenalin i.v./i.o.</td><td><b>10 µg pro kg KG</b></td>
+          <td><b>max. 1 mg</b></td></tr>
+        <tr><td class="k">Amiodaron nach dem 3. Schock</td><td><b>5 mg pro kg KG</b></td>
+          <td><b>max. 300 mg</b></td></tr>
+        <tr><td class="k">Amiodaron nach dem 5. Schock</td><td><b>5 mg pro kg KG</b></td>
+          <td><b>max. 150 mg</b></td></tr>
+        <tr><td class="k">Kardioversion bei instabiler Tachykardie</td>
+          <td>initial <b>1 J/kg</b>, dann <b>verdoppeln</b></td><td><b>max. 4 J/kg</b></td></tr>
+        <tr><td class="k">Adenosin bei vermuteter SVT</td>
+          <td><b>0,1–0,2 mg/kg</b> als schneller Bolus</td><td><b>max. 6 mg</b></td></tr>
+        <tr><td class="k">Flüssigkeitsbolus im Schock</td><td><b>10 ml/kg</b></td>
+          <td>Reevaluation nach jedem Bolus</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Der Ablauf</h3>
+  <ul>
+    <li><b>Schockbar:</b> 1 Schock <b>4 J/kg</b> → sofort 2 Minuten CPR</li>
+    <li><b>Nicht schockbar:</b> <b>Adrenalin 10 µg/kg so schnell wie möglich</b> → 2 Minuten CPR</li>
+    <li><b>Nach dem 3. Schock:</b> Amiodaron 5 mg/kg <b>und</b> Adrenalin 10 µg/kg</li>
+    <li>Adrenalin danach <b>alle 3–5 Minuten</b></li>
+    <li><b>Nach jeder Gabe mit NaCl 0,9 % nachspülen</b></li>
+  </ul>
+
+  <div class="merk">
+    <span class="t">Während der CPR beim Kind</span>
+    <ul style="margin:8px 0 0;">
+      <li>Hochwertige CPR sicherstellen: <b>Frequenz, Tiefe, Entlastung</b></li>
+      <li><b>Beutel-Maske-Beatmung mit 100 % Sauerstoff</b>, 2-Helfer-Technik mit
+        <b>Doppel-C-Griff</b></li>
+      <li><b>Hyperventilation vermeiden</b></li>
+      <li>Gefäßzugang <b>intravenös oder intraossär</b></li>
+      <li>Nach endotrachealer Intubation: <b>asynchron</b> beatmen mit altersadäquater Frequenz
+        <b>10–25/min</b></li>
+      <li><b>Reversible Ursachen suchen und behandeln</b> — bei Kindern wird darauf <b>noch mehr
+        Wert</b> gelegt als beim Erwachsenen</li>
+    </ul>
+  </div>
+
+  <div class="merk">
+    <span class="t">Der Grundsatz über allem</span>
+    <p>„Eine <b>qualitativ hochwertige CPR</b> und die <b>Verringerung der Hands-off-Zeit</b>
+      sind von <b>höchster Priorität</b>.“</p>
+    <p><b>Hands-off-Zeit</b> = die Zeit, in der niemand drückt. Jede Unterbrechung — zum
+      Anschauen, zum Nachdenken, zum Umgreifen — kostet Durchblutung. Deshalb steht in den
+      Leitlinien: <b>„Handlung planen, bevor die CPR unterbrochen wird.“</b></p>
+    <p class="fr">Le « hands-off time », c'est le temps pendant lequel personne ne comprime.
+      C'est lui qu'il faut réduire au minimum.</p>
+  </div>
+</section>
+
+<section id="normwerte">
+  <h2>Altersspezifische Normwerte</h2>
+  <p class="lead">Aus den ERC-Kinderleitlinien 2021 — direkt aus den Tabellen 1 bis 3.</p>
+
+  <h3>Atemfrequenz pro Minute</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Alter</th><th>1 Monat</th><th>1 Jahr</th><th>2 Jahre</th><th>5 Jahre</th>
+        <th>10 Jahre</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Obergrenze</td><td>60</td><td>50</td><td>40</td><td>30</td><td>25</td></tr>
+        <tr><td class="k">Untergrenze</td><td>25</td><td>20</td><td>18</td><td>17</td><td>14</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Herzfrequenz pro Minute</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Alter</th><th>1 Monat</th><th>1 Jahr</th><th>2 Jahre</th><th>5 Jahre</th>
+        <th>10 Jahre</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Obergrenze</td><td>180</td><td>170</td><td>160</td><td>140</td><td>120</td></tr>
+        <tr><td class="k">Untergrenze</td><td>110</td><td>100</td><td>90</td><td>70</td><td>60</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Blutdruck in mmHg</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Alter</th><th>1 Monat</th><th>1 Jahr</th><th>5 Jahre</th>
+        <th>10 Jahre</th></tr></thead>
+      <tbody>
+        <tr><td class="k">systolisch, p50</td><td>75</td><td>95</td><td>100</td><td>110</td></tr>
+        <tr><td class="k">systolisch, p5</td><td>50</td><td>70</td><td>75</td><td>80</td></tr>
+        <tr><td class="k">MAD, p50</td><td>55</td><td>70</td><td>75</td><td>75</td></tr>
+        <tr><td class="k">MAD, p5</td><td>40</td><td>50</td><td>55</td><td>55</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:15px;"><b>p5</b> und <b>p50</b> sind die <b>fünfte</b> und die
+    <b>fünfzigste Perzentile</b>. <b>MAD</b> = mittlerer arterieller Druck.</p>
+
+  <div class="merk">
+    <span class="t">Das Muster, das man sich merken kann</span>
+    <p><b>Je jünger das Kind, desto schneller Atmung und Puls — und desto niedriger der
+      Blutdruck.</b> Ein Puls von 150 ist bei einem Säugling normal und bei einem Zehnjährigen
+      ein Alarmzeichen.</p>
+    <p>Genau deshalb sind diese Tabellen mehr als Zahlen: <b>Ohne Alter kann man keinen Wert
+      beurteilen.</b> Das ist eine typische <i>Beurteilen</i>-Frage.</p>
+  </div>
+</section>
+
+<section id="anaphylaxie">
+  <h2>Anaphylaxie beim Kind</h2>
+  <p class="lead">Ein Notfall mit einer klaren Dosis — und Fertigspritzen nach Alter.</p>
+
+  <ul>
+    <li><b>Die frühzeitige Diagnose ist entscheidend.</b> Behandlung nach dem
+      <b>ABCDE-Schema</b>: Hilferuf, Atemwegsmanagement, Sauerstofftherapie,
+      Beatmungsunterstützung, venöser Zugang, <b>repetitive Flüssigkeitsboli</b>,
+      Katecholamintherapie</li>
+    <li>Dosis <b>i.m. Adrenalin: 0,01 mg pro kg KG</b> — mit einer Spritze aus der
+      <b>1 mg/ml</b>-Lösung</li>
+    <li><b>Wiederholung nach 5–10 Minuten</b>, wenn sich die Symptome nicht schnell bessern</li>
+    <li><b>Weitere Exposition vermeiden.</b> Bei einem Bienenstich den <b>Stachel so schnell wie
+      möglich entfernen</b></li>
+  </ul>
+
+  <h3>Autoinjektoren — die drei Größen</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Alter</th><th>Dosis</th></tr></thead>
+      <tbody>
+        <tr><td class="k">unter 6 Jahre</td><td><b>0,15 mg</b></td></tr>
+        <tr><td class="k">6 bis 12 Jahre</td><td><b>0,3 mg</b></td></tr>
+        <tr><td class="k">über 12 Jahre</td><td><b>0,5 mg</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Und beim Asthma — ein Satz, der oft falsch erinnert wird</span>
+    <p>„<b>Es gibt keinen Platz für routinemäßiges, systemisches oder lokales Adrenalin bei
+      Asthma.</b>“ Aber: „Eine <b>Anaphylaxie soll als alternative Diagnose</b> bei allen Kindern
+      mit <b>plötzlich auftretenden</b> Symptomen <b>ausgeschlossen</b> werden.“</p>
+    <p>Adrenalin ist also <b>nicht</b> das Asthmamittel — aber wenn es plötzlich kam, muss man
+      <b>an die Anaphylaxie denken</b>, und dann gilt das Gegenteil. Das ist der Unterschied
+      zwischen Auswendiglernen und Verstehen.</p>
+  </div>
+</section>
+
+<section id="vergleich">
+  <h2>Erwachsener und Kind nebeneinander</h2>
+  <p class="lead">Die Tabelle, die du dir abschreiben solltest.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Was</th><th>Erwachsener</th><th>Kind / Säugling</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Häufigste Ursache</td><td>das <b>Herz</b></td>
+          <td>die <b>Atmung</b></td></tr>
+        <tr><td class="k">Wie man anfängt</td><td>sofort <b>30 Kompressionen</b></td>
+          <td><b>5 initiale Beatmungen</b>, dann 15 Kompressionen</td></tr>
+        <tr><td class="k">Verhältnis</td><td><b>30 : 2</b></td><td><b>15 : 2</b></td></tr>
+        <tr><td class="k">Frequenz</td><td><b>100–120/min</b></td><td><b>100–120/min</b></td></tr>
+        <tr><td class="k">Drucktiefe</td><td><b>5–6 cm</b> (mind. 5)</td>
+          <td><b>⅓ des Thoraxdurchmessers</b>, nie über 6 cm</td></tr>
+        <tr><td class="k">Defibrillation</td><td><b>120–360 J</b> biphasisch</td>
+          <td><b>4 J/kg</b></td></tr>
+        <tr><td class="k">Adrenalin</td><td><b>1 mg</b></td>
+          <td><b>10 µg/kg</b>, max. 1 mg</td></tr>
+        <tr><td class="k">Amiodaron nach 3. Schock</td><td><b>300 mg</b></td>
+          <td><b>5 mg/kg</b>, max. 300 mg</td></tr>
+        <tr><td class="k">Allein ohne Telefon</td><td>erst Notruf, dann CPR</td>
+          <td><b>erst 1 Minute CPR</b>, dann Notruf</td></tr>
+        <tr><td class="k">Fremdkörper, wach</td><td>5 Rückenschläge + <b>5 Heimlich</b></td>
+          <td>Säugling: 5 Rückenschläge + <b>5 Thoraxkompressionen</b><br>
+            Kind: 5 Rückenschläge + <b>5 abdominelle</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die drei Unterschiede, die wirklich zählen</span>
+    <p><b>1. Fünf Beatmungen zuerst</b> — weil beim Kind die Atmung ausfällt.<br>
+      <b>2. 15:2 statt 30:2</b> — mehr Beatmungen pro Runde, aus demselben Grund.<br>
+      <b>3. Beim Säugling zuerst eine Minute CPR</b>, bevor man weggeht — weil eine Minute
+      Sauerstoff mehr wert ist als eine Minute früher Alarm.</p>
+    <p>Und was <b>gleich</b> ist: die <b>Frequenz 100–120</b>, die <b>vollständige
+      Entlastung</b>, das <b>Suchen nach reversiblen Ursachen</b> und der <b>Vorrang der
+      ununterbrochenen Kompression</b>.</p>
+  </div>
+</section>
+
+<section id="offen">
+  <h2>Was auf dieser Seite fehlt — und warum</h2>
+
+  <div class="warnung">
+    <span class="t">Ein Widerspruch in deinen eigenen Unterlagen</span>
+    <p><b>Kompressionstiefe beim Kind.</b> Die DGK-Pocket-Leitlinie nennt <b>4 cm</b> (Säugling)
+      und <b>5 cm</b> (größeres Kind). Die ERC-Kinderleitlinie 2021 sagt <b>ein Drittel des
+      Thoraxdurchmessers</b> und begründet ausdrücklich, warum sie <b>keine</b> Zentimeterangabe
+      mehr macht. <b>Beides steht in deinem Ordner.</b> Ich habe keine der beiden gestrichen.
+      Frag im Kurs, welche gilt.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Nicht aufgenommen, weil es nicht dein Ausbildungsstand ist</span>
+    <p>Die Leitlinien enthalten viel <b>Intensivmedizin</b>: eCPR und extrakorporaler Life
+      Support, Reanimation im herzchirurgischen OP und im Herzkatheterlabor, Periarrest-Arrhythmien
+      im Detail, point-of-care-Sonographie, unkontrollierte Organspende nach Kreislauftod. Das
+      sind <b>Arztmaßnahmen</b>. Sie stehen in den PDFs — <b>wenn du sie brauchst, sag es, dann
+      arbeite ich sie auf</b>.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Neugeborene direkt nach der Geburt</span>
+    <p>Dafür gibt es <b>eigene</b> Leitlinien, und die Kinderleitlinie nimmt sie ausdrücklich
+      aus. In deinem Drive-Ordner liegt Geburtshilfe-Material — das kommt in <b>Block 4</b>.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Und was du schon hast</span>
+    <p>Die Schulung <b>Notfälle &amp; Erste Hilfe</b> deckt Rettungskette, Apoplex, Herzinfarkt,
+      Lungenembolie, Bolusgeschehen, Krampfleiden und die psychiatrischen Notfälle ab. <b>Diese
+      Seite hier ersetzt sie nicht</b> — sie liefert die <b>Zahlen</b> und die <b>Kinder</b>.</p>
+  </div>
+</section>
+
+<section id="quellen">
+  <h2>Woraus diese Seite gebaut ist</h2>
+  <details class="quelle">
+    <summary>Die drei Leitlinien — jede einzeln genannt</summary>
+    <div class="inh">
+      <ul>
+        <li><b>Pocket Leitlinien Kardiopulmonale Reanimation.pdf</b> — <b>DGK Pocket-Leitlinie,
+          Version 2021</b>, Deutsche Gesellschaft für Kardiologie. Bearbeitet von W. Schöls
+          (Duisburg), J. Bauersachs (Hannover), N. Frey (Heidelberg), P. C. Schulze (Jena),
+          H. Thiele (Leipzig). „In Übereinstimmung mit den Leitlinien des German und European
+          Resuscitation Council.“ Börm Bruckmeier Verlag, ISBN 978-3-89862-329-2.
+          <b>Quelle für alles zum Erwachsenen.</b></li>
+        <li><b>Leitlinien Paediatische Reanimation.pdf</b> — <b>ERC-Leitlinien 2021,
+          Paediatric Life Support</b>, Van de Voorde P. et al., erschienen in
+          <i>Notfall + Rettungsmedizin</i> 2021 · 24:650–719, © European Resuscitation Council
+          (ERC), German Resuscitation Council (GRC), Austrian Resuscitation Council (ARC) 2021.
+          <b>Quelle für alles zum Kind.</b></li>
+        <li><b>Leitlinienkompakt.pdf</b> — <b>Reanimation 2021 — Leitlinien kompakt</b>,
+          überarbeitete Version 2022, Herausgeber: Deutscher Rat für Wiederbelebung (GRC),
+          ISBN 978-3-00-068718-1. <b>Quelle für die EuReCa-Zahlen.</b></li>
+      </ul>
+      <p>Alle drei aus deinem Google-Drive-Ordner, geteilt am 18.09.2026. <b>Jede Zahl auf
+        dieser Seite steht so in einem dieser drei Dokumente.</b> Wo die beiden Leitlinien sich
+        widersprechen, steht der Widerspruch oben — er wurde nicht aufgelöst.</p>
+      <p>Die französischen Zeilen sind von mir ergänzt, als Verständnishilfe. Sie stehen nicht
+        in den Leitlinien.</p>
+    </div>
+  </details>
+</section>
+
+</main>
+
+<footer>
+  <p>Reanimation nach ERC-Leitlinie 2021 · Erwachsene und Kinder — gebaut aus deinen eigenen
+    Unterlagen, ohne Zusätze.<br>Wo etwas fehlt oder sich widerspricht, steht es oben
+    ausdrücklich dabei.</p>
+</footer>
