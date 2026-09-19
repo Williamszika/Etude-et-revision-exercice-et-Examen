@@ -1,0 +1,1128 @@
+<title>Das kranke Kind</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#1f6b8a;--accent-deep:#16506a;--accent-soft:#dcecf3;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#79bcdb;--accent-deep:#9bd1e8;--accent-soft:#122834;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#79bcdb;--accent-deep:#9bd1e8;--accent-soft:#122834;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#1f6b8a;--accent-deep:#16506a;--accent-soft:#dcecf3;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 10 · UE 1 und UE 3 · Pädiatrische Pflege</p>
+  <h1>Das kranke Kind</h1>
+  <p class="sub">Warum bei Kindern fast jeder Handgriff anders ist — und eine Musterlösung
+    deiner Dozentin, die zeigt, wie eine Pflegeplanung aussehen soll.</p>
+  <div class="meta">
+    <span>CE 10 / UE 1 · UE 3</span>
+    <span>L. Grove</span>
+    <span>Pflege Heute</span>
+    <span>6 Quellen</span>
+    <span>Niveau B1</span>
+    <span>Stand 19.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#anders">Warum anders</a>
+  <a href="#beobachten">Beobachten</a>
+  <a href="#atmung">Atmung</a>
+  <a href="#vitalwerte">Vitalzeichen</a>
+  <a href="#pflege">Körperpflege &amp; Ernährung</a>
+  <a href="#schlaf">Schlaf &amp; Schmerz</a>
+  <a href="#klinik">Im Krankenhaus</a>
+  <a href="#atemweg">Atemwegsinfekte</a>
+  <a href="#durchfall">Durchfall — Musterlösung</a>
+  <a href="#praeop">Vor der Operation</a>
+  <a href="#postop">Nach der Operation</a>
+  <a href="#fragen">17 Wiederholungsfragen</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="anders">
+  <h2>Warum bei Kindern fast alles anders ist</h2>
+  <p class="lead">Nicht weil sie kleiner sind. Weil sie sich anders äußern.</p>
+
+  <div class="merk">
+    <span class="t">Der Satz, aus dem sich der ganze Rest ergibt</span>
+    <p>„Pflegende müssen häufig Angaben der Kinder <b>objektivieren</b>, weil die Kinder ihre
+      Beschwerden <b>nicht präzise benennen können</b>. So klagen kleine Kinder etwa über
+      <b>Bauchschmerzen, obwohl das Ohr schmerzt</b>.“</p>
+    <p class="fr">Un petit enfant dit « j'ai mal au ventre » alors que c'est l'oreille. C'est de
+      là que découle tout le reste.</p>
+  </div>
+
+  <p>Deshalb kommen zu den eigenen Beobachtungen die <b>Angaben der Eltern und anderer
+    Angehöriger</b> dazu — und <b>eine genaue Dokumentation</b> ist wichtig.</p>
+
+  <h3>Akute und chronische Erkrankungen im Kindesalter</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Akut</h4>
+      <p>Masern · Windpocken · Mumps · Infektionen der oberen Atemwege · Magen-Darm- und
+        Harnwegsinfektionen</p>
+    </div>
+    <div class="karte">
+      <h4>Chronisch</h4>
+      <p>Neurodermitis · Asthma bronchiale · Mukoviszidose · Neurofibromatose · chronische
+        Darmentzündungen · Diabetes mellitus · angeborene Herzfehler · Krampfanfälle</p>
+    </div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Zwei Reaktionen, die du erkennen musst</span>
+    <p><b>Überfürsorglichkeit der Eltern</b> — mit Auswirkungen auf das ganze Familiensystem.</p>
+    <p><b>Regression der Kinder</b> — sie fallen in ein früheres Entwicklungsstadium zurück:
+      Einnässen, Daumenlutschen, Babysprache, obwohl sie das längst überwunden hatten.</p>
+    <p>Das sind <b>keine Erziehungsprobleme</b>, sondern <b>Krankheitsreaktionen</b>. Wer das
+      weiß, reagiert anders darauf.</p>
+  </div>
+</section>
+
+<section id="beobachten">
+  <h2>Beobachten — beim ruhigen oder schlafenden Kind</h2>
+  <p class="lead">Ein Grundsatz, der für Atmung und Puls gleichermaßen gilt.</p>
+
+  <div class="merk">
+    <span class="t">Warum man nicht einfach hinschaut</span>
+    <p>Bei <b>älteren</b> Kindern soll man beim Atemzählen eine <b>Berührung vermeiden</b>, „da
+      diese die Atmung dann <b>häufig bewusst beeinflussen</b>“.</p>
+    <p>Und: „Haben die Kinder <b>Angst, Schmerzen</b> oder sind sie <b>emotional erregt</b>,
+      atmen sie häufig <b>schneller und oberflächlicher</b>.“</p>
+    <p><b>Die Folge für die Praxis:</b> Ein Messwert, der beim weinenden Kind erhoben wurde, ist
+      kein Messwert. <b>Erst beruhigen, dann messen</b> — sonst behandelt man die Angst und nicht
+      die Krankheit.</p>
+    <p class="fr">Une valeur mesurée sur un enfant qui pleure n'est pas une valeur.</p>
+  </div>
+</section>
+
+<section id="atmung">
+  <h2>Atmung</h2>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Alter</th><th>Wie man zählt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Säugling</td>
+          <td>Hand <b>unterhalb des Schwertfortsatzes des Brustbeins</b> auflegen und erspüren —
+            oder <b>Stethoskop</b> auf den Thorax</td></tr>
+        <tr><td class="k">Älteres Kind</td>
+          <td><b>Berührung vermeiden</b> — unauffällig zählen</td></tr>
+        <tr><td class="k">Ab 4 Jahren</td>
+          <td>Die Atemfunktion kann mit dem <b>Peak-Flow-Meter</b> gemessen werden</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Was die Atmung verrät</h3>
+  <ul>
+    <li><b>Angst, Schmerz, Erregung</b> → schneller und oberflächlicher</li>
+    <li>In extremen Fällen <b>Hyperventilation</b></li>
+    <li>In <b>Schreck- und Schockmomenten</b> → kurze <b>Atempausen</b></li>
+    <li>Bei <b>starken Schmerzen</b> → <b>Schonatmung</b>, oberflächlicher und schneller</li>
+  </ul>
+
+  <h3>Atemunterstützende Positionen</h3>
+  <p><b>Oberkörperhochpositionierung</b> sowie die <b>A-, T- und I-Positionierung</b>. Ältere
+    Kinder können <b>zeitlich befristet</b> auch gezielte <b>Dehnpositionierungen</b>
+    einnehmen.</p>
+
+  <div class="gefahr">
+    <span class="t">Die Regel, bei der es um Leben geht</span>
+    <p>Bei <b>Drainagepositionierungen</b> gilt: Die <b>Bauchlage</b> darf bei <b>Säuglingen nur
+      unter Beobachtung</b> ausgeführt werden — <b>wegen der Gefahr des plötzlichen
+      Kindstods</b>.</p>
+    <p>Dasselbe gilt für die Schlafumgebung: Sie „sollte besonders im Hinblick auf das Risiko des
+      plötzlichen Kindstods <b>sicher gestaltet</b> und <b>Verletzungsrisiken ausgeschlossen</b>
+      werden“.</p>
+    <p class="fr">Décubitus ventral chez le nourrisson : uniquement sous surveillance. Risque de
+      mort subite.</p>
+  </div>
+
+  <h3>Kindgerechte Atemübungen — und warum sie funktionieren</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Für alle Kleinen</h4>
+      <ul>
+        <li><b>Seifenblasen pusten</b></li>
+        <li><b>Luftballons aufpusten</b></li>
+        <li><b>Blubbern</b> mit dem Strohhalm im Wasserglas</li>
+        <li><b>Singen</b></li>
+        <li><b>Windrad</b> · <b>Pustebilder</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Ab Kindergartenalter</h4>
+      <p><b>Lippenbremse</b> und <b>Blubberflasche</b></p>
+    </div>
+    <div class="karte">
+      <h4>Ältere Kinder</h4>
+      <p><b>PEP-Geräte</b> und <b>inspiratorische Atemtrainer</b></p>
+    </div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Warum Seifenblasen Therapie sind</span>
+    <p>Ein Kind macht keine Atemübung, weil man es darum bittet. Es pustet aber eine Seifenblase.
+      <b>Die Übung ist dieselbe</b> — verlängerte Ausatmung gegen Widerstand, genau wie bei der
+      Lippenbremse des Erwachsenen.</p>
+    <p><b>Das ist eine typische Begründungsfrage:</b> nicht „was macht man“, sondern „warum
+      wirkt das“.</p>
+  </div>
+
+  <div class="paare">
+    <div class="paar"><span class="de">die Schonatmung (nur Singular)</span>
+      <span class="frx">la respiration superficielle de protection (à cause de la douleur)</span></div>
+    <div class="paar"><span class="de">die Hyperventilation (nur Singular)</span>
+      <span class="frx">l'hyperventilation</span></div>
+    <div class="paar"><span class="de">der plötzliche Kindstod</span>
+      <span class="frx">la mort subite du nourrisson</span></div>
+    <div class="paar"><span class="de">der Schwertfortsatz, ¨-e</span>
+      <span class="frx">l'appendice xiphoïde</span></div>
+    <div class="paar"><span class="de">die Lippenbremse (nur Singular)</span>
+      <span class="frx">la respiration à lèvres pincées</span></div>
+  </div>
+</section>
+
+<section id="vitalwerte">
+  <h2>Puls, Blutdruck, Temperatur</h2>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Was</th><th>Beim Kind</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Puls</td>
+          <td>beim <b>ruhigen oder schlafenden</b> Kind · bei Säuglingen sinnvoll mit dem
+            <b>Stethoskop</b> · dem wachen Kind den Vorgang vorher <b>spielerisch und
+            altersgerecht erklären</b> · häufig <b>EKG-Monitoring</b></td></tr>
+        <tr><td class="k">Blutdruck</td>
+          <td>meist <b>oszillometrisch</b> · auch auskultatorisch oder palpatorisch · auf der
+            <b>Kinderintensivstation meist arteriell</b></td></tr>
+        <tr><td class="k">Temperatur</td>
+          <td>gleiche Methoden wie beim Erwachsenen —
+            <b>aber: Schnullerthermometer sind unzuverlässig</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Fieber bei Kindern</span>
+    <p>„Kinder haben bei Infektionen <b>deutlich häufiger Fieber</b> als Erwachsene. Vor allem
+      bei <b>Kleinkindern</b> treten oft Temperaturen <b>bis 39 °C</b> auf.“</p>
+    <p><b>Maßnahmen:</b> physikalische Maßnahmen wie <b>Wadenwickel</b> oder <b>kühle Teil- und
+      Ganzkörperwaschungen</b> · auf <b>ausreichende Flüssigkeitszufuhr</b> achten · die
+      <b>Vitalzeichen engmaschig</b> kontrollieren.</p>
+  </div>
+</section>
+
+<section id="pflege">
+  <h2>Körperpflege, Ernährung, Bewegung, Kommunikation</h2>
+
+  <div class="gefahr">
+    <span class="t">Der eine Satz, den man auf Station sofort braucht</span>
+    <p>„Bei der Nasenpflege ist zu beachten, dass <b>Säuglinge fast ausschließlich über die Nase
+      atmen</b> — eine <b>unbehinderte Nasenatmung muss daher sichergestellt sein</b>.“</p>
+    <p><b>Das erklärt, warum ein einfacher Schnupfen beim Säugling ein Problem ist</b> und beim
+      Erwachsenen nicht. Ein verstopftes Näschen heißt: das Kind kann nicht gleichzeitig trinken
+      und atmen.</p>
+    <p class="fr">Le nourrisson respire presque uniquement par le nez. Un simple rhume devient
+      donc un vrai problème.</p>
+  </div>
+
+  <h3>Körperpflege</h3>
+  <ul>
+    <li><b>Das Schamgefühl</b> ist stets zu berücksichtigen — es <b>entwickelt sich bereits im
+      Kindergartenalter</b></li>
+    <li><b>Eigene Kleidung</b> vermittelt Vertrautheit und Geborgenheit</li>
+    <li>Baden, Duschen, Waschen können <b>meist von den Eltern</b> durchgeführt werden — die
+      Pflegenden <b>beraten</b></li>
+    <li>Wer <b>nüchtern</b> bleiben muss, soll <b>auf das Zähneputzen verzichten</b></li>
+    <li><b>Zahnspangen</b> weiter wie gewohnt tragen und reinigen</li>
+    <li>Beim Wickeln besonders auf <b>Anzeichen von Wundsein</b> achten</li>
+  </ul>
+
+  <h3>Ernährung und Bewegung</h3>
+  <p>Beratung der Eltern zu <b>Stillen und Beikost</b>, <b>Allergieprävention</b>, <b>Diäten</b>
+    und <b>Sondenernährung</b>. Die Pflegefachperson muss die Interventionen bei <b>Übelkeit und
+    Erbrechen</b> ebenso beherrschen wie das <b>Legen einer Magensonde</b>.</p>
+  <p>Bei der Bewegung: <b>Kinaesthetics Infant Handling</b>. Bei eingeschränkter
+    Bewegungsfähigkeit gelten <b>dieselben Prophylaxen wie beim Erwachsenen</b> —
+    Kontrakturen-, Dekubitus-, Thrombose- und Sturzprophylaxe.</p>
+
+  <h3>Kommunikation — das Dreiecksgefüge</h3>
+  <p>Die Fähigkeiten hängen von <b>Alter und Entwicklungsstand</b> ab. Die <b>Körpersprache</b>
+    ergänzt gerade bei Kindern die Sprache — „allerdings können Kinder ihre <b>Mimik, Haltung
+    und Gestik nur begrenzt kontrollieren</b>“.</p>
+  <p>Hilfsmittel: <b>Sprechtafel</b> für sprachbehinderte Kinder, <b>Bildtafeln oder -karten</b>
+    für <b>fremdsprachige</b> Kinder.</p>
+
+  <div class="merk">
+    <span class="t">Warum „begrenzt kontrollieren“ ein Vorteil ist</span>
+    <p>Ein Erwachsener kann Schmerzen verbergen. Ein Kind kann das <b>nicht</b> — die Mimik
+      verrät ihn. <b>Genau deshalb</b> ist bei Kindern die Beobachtung so ergiebig: „Je weniger
+      sich das Kind verbal über seine Schmerzen äußern kann, <b>desto wichtiger wird die
+      Mimik</b>.“</p>
+  </div>
+
+  <p>„Häufig findet die Kommunikation zwischen Kind und Pflegenden <b>im Dreiecksgefüge mit den
+    Eltern</b> statt. <b>Beratung und Anleitung der Bezugspersonen ist eine wesentliche Aufgabe
+    der Pflege.</b>“</p>
+</section>
+
+<section id="schlaf">
+  <h2>Schlaf und Schmerz</h2>
+
+  <div class="merk">
+    <span class="t">Die Zahl, die überrascht</span>
+    <p>„Während <b>Säuglinge rund 18 von 24 Stunden</b> schlafen, kommen <b>Schulkinder bereits
+      mit 11 Stunden</b> aus.“</p>
+    <p>Kinder „erholen sich im Schlaf, <b>sammeln Kraftreserven</b> und <b>verarbeiten ihre
+      Erlebnisse</b>“. Krankheit und Schmerzen beeinträchtigen die Schlafqualität sehr.</p>
+    <p><b>Der praktische Tipp aus dem Buch:</b> schlaffördernde Maßnahmen anwenden, <b>die nach
+      Aussage der Eltern auch zu Hause wirken</b>. Nicht das Standardrezept — das eigene Ritual
+      des Kindes.</p>
+  </div>
+
+  <h3>Schmerz — was man wissen muss</h3>
+  <div class="gefahr">
+    <span class="t">Der wichtigste Satz des ganzen Kapitels</span>
+    <p>„<b>Schmerzempfindung ist unabhängig vom Lebensalter und auch schon beim Frühgeborenen
+      nachweisbar.</b>“</p>
+    <p>Ein Kind, das nicht sprechen kann, hat <b>nicht weniger</b> Schmerzen. Es kann sie nur
+      nicht sagen.</p>
+  </div>
+
+  <p><b>Zur Einschätzung werden herangezogen:</b> die <b>Selbsteinschätzung</b> des Kindes ·
+    die <b>Fremdeinschätzung</b> durch die Eltern · die <b>Krankenbeobachtung</b> durch die
+    Pflegenden · <b>spezielle kindgerechte Erfassungsinstrumente</b>.</p>
+
+  <p>Auch die <b>Erhöhung von Muskeltonus und/oder Pulsfrequenz</b> kann auf Schmerzen
+    hinweisen.</p>
+
+  <h3>Die Schmerzskalen nach Alter</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Alter / Situation</th><th>Instrument</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Säuglinge</td><td><b>Berner Schmerzscore</b></td></tr>
+        <tr><td class="k">Kleinkinder bis Ende des 4. Lebensjahrs · Patienten mit Sprach- und
+          Verständnisschwierigkeiten</td><td><b>KUSS-Skala</b></td></tr>
+        <tr><td class="k">Ab Schulkindalter</td><td>zunächst <b>Gesichterskalen</b>, später
+          <b>numerische Skalen von 0 bis 10</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Medikamente</h3>
+  <p><b>Kinderfreundliche Darreichungsformen</b> (z. B. Saft) sind zu bevorzugen.
+    „<b>Ehrlichkeit und kindgerechte Erläuterung erhöhen die Bereitschaft des Kindes</b>, die
+    Medikamente einzunehmen.“</p>
+
+  <div class="merk">
+    <span class="t">Warum Ehrlichkeit hier eine Pflegemaßnahme ist</span>
+    <p>Wer einem Kind sagt „das tut nicht weh“ und es tut weh, hat <b>alle weiteren
+      Maßnahmen</b> erschwert — das Kind glaubt beim nächsten Mal nichts mehr. <b>Das steht so
+      im Buch</b>, und es ist der Grund, warum Ehrlichkeit dort neben der Darreichungsform
+      steht.</p>
+  </div>
+</section>
+
+<section id="klinik">
+  <h2>Das Kind im Krankenhaus</h2>
+
+  <p><b>AKIK</b> — das <b>Aktionskomitee Kind im Krankenhaus</b> — entstand <b>1968 in
+    Frankfurt</b>, gegründet von mehreren Elterninitiativen, seit <b>1997</b> in einem
+    Bundesverband zusammengefasst.</p>
+
+  <h3>Die vier Verluste aus Sicht des Kindes</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Verlust der Bezugsperson</h4>
+      <p>Die Trennung vom Zuhause. „Die <b>Mitaufnahme eines Elternteils</b> gehört deshalb
+        heute zu Recht <b>zum Standard</b> in Kinderkliniken.“</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Verlust der gewohnten Umgebung</h4>
+      <p>Damit auch der täglichen <b>Aktivitäten und Routinen</b> — das <b>verstärkt die ohnehin
+        vorhandene Verunsicherung</b>.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Verlust der Freunde</h4>
+      <p>Bei älteren Kindern schmerzlich. „Die <b>virtuelle Vernetzung</b> mit Freunden und
+        Klassenzimmer ist heute leicht möglich.“</p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div>
+      <h4>Verlust der Unabhängigkeit</h4>
+      <p>Besonders für <b>Jugendliche</b> — sie haben sie gerade erst erworben.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Warum diese vier Punkte Pflegemaßnahmen sind</span>
+    <p>Zu jedem Verlust gibt es eine Gegenmaßnahme, und sie steht im Text: Elternteil mit
+      aufnehmen · <b>eigene Kleidung</b> und gewohnte Rituale · Handy und Videokontakt erlauben ·
+      Jugendliche <b>selbst entscheiden lassen</b>, wo es geht.</p>
+    <p>Wenn eine Prüfungsaufgabe lautet <i>„Leiten Sie Pflegemaßnahmen ab“</i>, ist das genau
+      die Struktur: <b>Problem → Maßnahme, und das weil dazwischen.</b></p>
+  </div>
+</section>
+
+<section id="atemweg">
+  <h2>Schwere Atemwegsinfekte und Inhalation</h2>
+
+  <div class="gefahr">
+    <span class="t">RS-Viren</span>
+    <p>„Atemwegsinfektionen (z. B. durch <b>RS-Viren</b> ausgelöst) verlaufen <b>vor allem im
+      1. Lebensjahr oft schwer</b>.“</p>
+  </div>
+
+  <h3>Was nur stationär geht</h3>
+  <ul>
+    <li><b>Beatmung / Sauerstoffgabe</b></li>
+    <li><b>Volumensubstitution</b> — i.v. oder per Magensonde</li>
+    <li><b>Überwachung der Sauerstoffsättigung</b> — <b>insbesondere im Schlaf</b></li>
+    <li><b>Inhalationen</b> — teils auch ambulant möglich, abhängig von Frequenz und
+      medikamentösen Zusätzen</li>
+  </ul>
+
+  <div class="merk">
+    <span class="t">„Insbesondere im Schlaf“ — warum dieser Zusatz da steht</span>
+    <p>Im Schlaf sinkt der Atemantrieb, die Muskulatur erschlafft, das Kind kann sich nicht durch
+      Aufsetzen helfen. <b>Die Sättigung fällt genau dann, wenn niemand hinsieht.</b> Deshalb
+      wird dort gemessen — und deshalb ist die Nachtwache bei diesen Kindern kein
+      Routinedienst.</p>
+  </div>
+
+  <h3>Inhalieren mit Kleinkindern — die fünf Tricks</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Aus dem Kursmaterial</h4>
+      <ol>
+        <li>Kinder das <b>Inhalationsgerät selbst erkunden</b> lassen</li>
+        <li><b>Pausen einbauen</b> und das Kind anschließend weiter inhalieren lassen</li>
+        <li><b>Geschwister einbinden</b></li>
+        <li>Erst das <b>Lieblingsstofftier</b> inhalieren lassen</li>
+        <li>Die Inhalation als <b>Familienzeit</b> nutzen</li>
+      </ol>
+    </div>
+    <div class="karte">
+      <h4>Was sie gemeinsam haben</h4>
+      <p><b>Kein einziger dieser Punkte ist eine Anweisung an das Kind.</b> Alle fünf nehmen dem
+        Gerät die Bedrohlichkeit — durch Erkunden, Nachahmen, Mitmachen.</p>
+      <p>Bei einem Zweijährigen ist das <b>die Therapie</b>, nicht die Verpackung: Ein Kind, das
+        schreit, inhaliert nichts.</p>
+    </div>
+  </div>
+  <p style="font-size:15px;">Das Material verweist auf zwei Videos auf YouTube — eines zum
+    Inhalieren mit Kleinkindern, eines zu spielerischen Atemübungen.</p>
+</section>
+
+<section id="durchfall">
+  <h2>Durchfallerkrankungen — die Musterlösung deiner Dozentin</h2>
+  <p class="lead"><b>CE 10, UE 3 · L. Grove, 05/2022.</b> Das Wertvollste in diesem ganzen
+    Ordner: eine fertige Pflegeplanung im Schema <i>Problem — Ziel — Maßnahmen</i>.</p>
+
+  <div class="merk">
+    <span class="t">Warum du dir gerade dieses Blatt genau ansehen solltest</span>
+    <p>Das ist <b>keine Zusammenfassung</b>, sondern eine <b>Musterlösung</b> — so, wie deine
+      Dozentin es geschrieben haben will. <b>Jedes Problem enthält das „aufgrund von“</b>, jedes
+      Ziel ist ein <b>Zustand</b>, jede Maßnahme ist <b>überprüfbar</b>.</p>
+    <p class="fr">Ce n'est pas un résumé, c'est un corrigé. La formulation elle-même est le
+      modèle.</p>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Pflegeproblem</th><th>Pflegeziel</th><th>Pflegemaßnahmen</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="k">Wasser- und Elektrolytverlust mit erhöhter Kreislaufbelastung und
+            allgemeiner Schwäche <b>aufgrund von</b> Durchfällen und Erbrechen</td>
+          <td>ausgeglichener Wasser- und Elektrolythaushalt</td>
+          <td><ul style="margin:0;padding-left:1.1em;">
+            <li>kontinuierliche Überwachung der <b>Infusionstherapie</b></li>
+            <li>Beobachtung von <b>Hautturgor</b> (bei Exsikkose bleibt eine abgehobene
+              Hautfalte stehen), Vitalzeichen, Bewusstsein und Verhalten</li>
+            <li>tägliche <b>Ein-, Ausfuhr- und Gewichtskontrolle</b></li>
+            <li>Beobachtung der Urinausscheidung</li>
+            <li><b>Stuhlbeobachtung, auch auf Blutbeimengungen</b></li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td class="k">unzureichende Nahrungsaufnahme durch Übelkeit, Erbrechen und
+            Nahrungsverweigerung</td>
+          <td>ausreichende Nahrungs- und Flüssigkeitsaufnahme</td>
+          <td><ul style="margin:0;padding-left:1.1em;">
+            <li>bei Dehydrierung <b>orale Rehydrierungslösungen (ORL)</b> — evtl. über eine
+              Magensonde</li>
+            <li><b>so bald wie möglich wieder normale Nahrungszufuhr</b></li>
+            <li>Beobachtung von Appetit, Übelkeit, Erbrechen, Bauchschmerzen</li>
+            <li>kleine, leicht verdauliche, fettarme Mahlzeiten: getoastetes Weißbrot, zerdrückte
+              Banane, geriebener Apfel, Karottenbrei, Kartoffelbrei, Nudeln, Reis</li>
+            <li><b>auf Cola, Limonaden und Säfte verzichten</b></li>
+            <li>gestillte Säuglinge erhalten <b>weiter Muttermilch</b></li>
+            <li>andere Säuglinge: laktose- und fettarme Diätnahrung</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td class="k">Gefahr einer Austrocknung, Schädigung und Infektion der Mundschleimhaut
+            durch reduzierten Flüssigkeitshaushalt und Erbrechen</td>
+          <td>intakte, feuchte Mundschleimhaut</td>
+          <td><b>Mundpflege nach den Mahlzeiten und dem Erbrechen</b></td>
+        </tr>
+        <tr>
+          <td class="k">gestörtes Wohlbefinden durch Fieber</td>
+          <td>Wohlbefinden durch physiologische Körpertemperatur</td>
+          <td>Kontrolle der Körpertemperatur · fiebersenkende Maßnahmen</td>
+        </tr>
+        <tr>
+          <td class="k">häufiger und schmerzhafter Stuhldrang, Bauchschmerzen</td>
+          <td>gelinderte Bauchschmerzen</td>
+          <td><ul style="margin:0;padding-left:1.1em;">
+            <li><b>nach Rücksprache mit dem Arzt</b> kann Wärme auf dem Bauch angewendet werden</li>
+            <li>Kind zur Toilette begleiten, <b>Schamgefühl berücksichtigen</b></li>
+            <li><b>bei jedem Patientenkontakt</b> auf Schmerzäußerungen achten</li>
+          </ul></td>
+        </tr>
+        <tr>
+          <td class="k">besondere Gefährdung bei Säuglingen und Kleinkindern für ein Wundsein im
+            Windelbereich durch häufige dünnflüssige Stühle</td>
+          <td>intakte Haut im Windelbereich</td>
+          <td>schonende Hautreinigung · <b>Säuglinge mit Diarrhö nach Bedarf häufiger
+            wickeln</b></td>
+        </tr>
+        <tr>
+          <td class="k">Gefahr der Entwicklung einer <b>Sepsis</b> bei Salmonella-typhi- und
+            -paratyphi-Infektion bei nicht ausgebildetem oder geschwächtem Immunsystem des
+            Darms</td>
+          <td>frühzeitiges Erkennen von Anzeichen einer Sepsis</td>
+          <td><ul style="margin:0;padding-left:1.1em;">
+            <li>Beobachtung auf <b>Sepsiszeichen</b>: <b>intermittierendes hohes Fieber mit
+              Schüttelfrost</b>, Blutdruck- und Pulskontrolle</li>
+            <li><b>Assistenz bei der Abnahme einer Blutkultur</b></li>
+            <li>nach Arztanordnung <b>Antibiotikatherapie</b> durchführen und überwachen</li>
+          </ul></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die Begründung, die im Blatt mitgeliefert wird — lern sie auswendig</span>
+    <p><b>Warum kein Cola, keine Limonade, keine Säfte?</b></p>
+    <p>Wörtlich: „<b>enthalten zu viel Glukose und im Verhältnis zu wenig Elektrolyte und Wasser,
+      damit ist die Flüssigkeitsaufnahme im Darm vermindert</b>“.</p>
+    <p><b>Die Kette:</b> zu viel Zucker → falsches Verhältnis zu Elektrolyten → der Darm nimmt
+      <b>weniger</b> Flüssigkeit auf → die Austrocknung wird <b>schlimmer</b>, nicht besser.</p>
+    <p>Das ist <b>genau eine AFB-III-Antwort</b>: Ursache → Wirkung → Gefahr → deshalb gebe ich
+      ORL statt Cola.</p>
+    <p class="fr">Le Coca aggrave la déshydratation au lieu de la corriger. Trop de sucre, pas
+      assez d'électrolytes — l'intestin absorbe moins.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Und der Hautturgor — das Zeichen in einem Satz</span>
+    <p>„<b>Bei Exsikkose bleibt eine abgehobene Hautfalte stehen.</b>“</p>
+    <p>Ein Test ohne Gerät, in zwei Sekunden, am Handrücken oder am Bauch. <b>Exsikkose</b> ist
+      außerdem eines der Fachwörter, die in deinen Pflege-Klausuren immer wieder vorkommen.</p>
+  </div>
+
+  <div class="paare">
+    <div class="paar"><span class="de">die Exsikkose, -n</span>
+      <span class="frx">la déshydratation sévère</span></div>
+    <div class="paar"><span class="de">der Hautturgor (nur Singular)</span>
+      <span class="frx">le pli cutané, la turgescence de la peau</span></div>
+    <div class="paar"><span class="de">die orale Rehydrierungslösung, -en (ORL)</span>
+      <span class="frx">la solution de réhydratation orale (SRO)</span></div>
+    <div class="paar"><span class="de">der Stuhldrang (nur Singular)</span>
+      <span class="frx">l'envie d'aller à la selle</span></div>
+    <div class="paar"><span class="de">die Blutkultur, -en</span>
+      <span class="frx">l'hémoculture</span></div>
+    <div class="paar"><span class="de">der Schüttelfrost (nur Singular)</span>
+      <span class="frx">les frissons (avec tremblements)</span></div>
+  </div>
+</section>
+
+<section id="praeop">
+  <h2>Vor der Operation</h2>
+
+  <div class="merk">
+    <span class="t">Warum die Vorbereitung mehr ist als Organisation</span>
+    <p>„Eine gute präoperative Vorbereitung lässt den Patienten <b>schonender aus der Narkose
+      erwachen</b> und <b>verringert ein mögliches postoperatives Delir</b>.“</p>
+    <p><b>Delir</b> — von lateinisch <i>delirare</i>, „<b>aus der Spur geraten</b>“ — ist ein
+      Verwirrtheitszustand nach Narkose oder Operation, mit <b>Unruhe und Desorientierung</b>.</p>
+  </div>
+
+  <h3>Wann <em>nicht</em> operiert wird</h3>
+  <div class="gefahr">
+    <span class="t">Die Ausschlusskriterien — mit Zahlen</span>
+    <p><b>Die Operation muss verschoben werden bei:</b></p>
+    <ul>
+      <li>Körpertemperatur <b>über 38,5 °C</b></li>
+      <li><b>feuchten Rasselgeräuschen</b></li>
+      <li><b>akuter Gastroenteritis</b></li>
+    </ul>
+    <p><b>Ein Wahleingriff</b> darf nur stattfinden, wenn eine Impfung mit einem
+      <b>Lebendimpfstoff länger als 14 Tage</b> oder mit einem <b>Totimpfstoff länger als
+      3 Tage</b> zurückliegt.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Und was <em>kein</em> Ausschlusskriterium ist</span>
+    <p>„Ein <b>produktiver Husten</b> oder eine <b>Rhinitis</b> sind <b>keine</b>
+      Ausschlusskriterien für das geplante Operieren.“</p>
+    <p>Das steht so im Buch, und es ist genau die Art von Detail, die in einer
+      Multiple-Choice-Frage auftaucht.</p>
+  </div>
+
+  <h3>Nahrungskarenz — drei Zeiten</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Wer</th><th>Was</th><th>Wie lange vorher</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Säuglinge unter 1 Jahr</td><td>letzte Nahrung (Milch, Brei)</td>
+          <td><b>nicht später als 4 Stunden</b> präoperativ</td></tr>
+        <tr><td class="k">Kinder über 1 Jahr</td><td>letzte <b>feste</b> Nahrung</td>
+          <td><b>nicht später als 6 Stunden</b> vor Anästhesiebeginn</td></tr>
+        <tr><td class="k">Unabhängig vom Alter</td><td>letzte <b>klare Flüssigkeit</b></td>
+          <td><b>nicht später als 2 Stunden</b> vor Anästhesiebeginn</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:15px;"><b>Der Grund:</b> eine <b>Aspiration</b> während der Narkose
+    vermeiden. Weil Säuglinge <b>sehr schnell exsikkieren</b>, erhalten sie häufig einen
+    Flüssigkeitsausgleich per Infusion.</p>
+
+  <h3>Angst nach Alter — und was hilft</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Alter</th><th>Wie die OP erlebt wird</th><th>Was hilft</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Neugeborene und Säuglinge <b>unter 6 Monaten</b></td>
+          <td>„in der Regel <b>noch keine angsteinflößende Situation</b>“ — sie
+            <b>fremdeln noch nicht</b></td>
+          <td>ruhige, freundliche Umgebung · kurze Nahrungskarenz · <b>keine Medikamente
+            nötig</b> — <b>Glukosegabe</b> am Beruhigungssauger zum <b>non-nutritiven
+            Saugen</b></td></tr>
+        <tr><td class="k">Säuglinge <b>über 6 Monaten</b> und Kleinkinder</td>
+          <td><b>sehr emotional belastend</b> — sie orientieren sich stark an den Bezugspersonen,
+            alle anderen wirken <b>bedrohlich</b>; der Nutzen lässt sich noch nicht rational
+            erklären</td>
+          <td>das <b>sichere, vertrauensvolle Auftreten der Eltern</b> — „die Kinder orientieren
+            sich am elterlichen Verhalten“</td></tr>
+        <tr><td class="k">Vorschulalter</td>
+          <td>bereits ein <b>einfaches Verständnis</b> von Gesundheit und Krankheit</td>
+          <td>Aufklärung mit <b>Kinderbüchern</b> (genannt: <i>Conni im Krankenhaus</i>) und
+            <b>Bildern</b> — „nimmt den Kindern häufig viele ihrer Ängste“</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Prämedikation</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Midazolam — der Goldstandard</h4>
+      <ul>
+        <li><b>anxiolytisch</b> (angstlösend)</li>
+        <li><b>euphorisierend</b> — positiv-heitere Stimmung</li>
+        <li><b>anterograde Amnesie</b> — keine Erinnerung an die OP, „und so nicht traumatisiert
+          werden können“</li>
+      </ul>
+      <p><b>Aber:</b> muskelrelaxierend → <b>Ataxien</b>, Kopf und Extremitäten werden schwer →
+        <b>strenge Überwachung</b> (Sauerstoff- und EKG-Monitoring) und <b>Bettruhe, um Stürze
+        zu verhindern</b>. Selten <b>paradoxe Reaktionen</b> wie akute Erregungszustände.</p>
+    </div>
+    <div class="karte">
+      <h4>Ketamin — nur in Kombination</h4>
+      <p>Wenn Midazolam nicht reicht. <b>Nur zusammen mit Midazolam</b>, um psychomimetische
+        Nebenwirkungen zu verhindern — <b>Visionen, Wahnvorstellungen und „teilweise als sehr
+        erschreckend bezeichnete Albträume“</b>.</p>
+      <p><b>Warum die Kombination:</b> Die amnestische Wirkung des Midazolams <b>verhindert die
+        Erinnerung</b> an diese Vorstellungen. Ketamin wirkt außerdem <b>analgetisch</b>.</p>
+    </div>
+    <div class="karte">
+      <h4>Clonidin</h4>
+      <p>Seltener eingesetzt. Eigenschaften: <b>Sedierung, Hypnose, Co-Analgesie</b>.</p>
+    </div>
+  </div>
+
+  <p><b>Zeitpunkt:</b> oral, nasal, rektal oder intravenös, <b>ca. 30–60 Minuten vor der
+    Operation</b>. Im Kinderbereich kann Midazolam + Ketamin auch <b>nasal</b> gegeben werden
+    (MAD-Zerstäuber) — schnell, vertraut (wie Nasentropfen) und über die Nasenschleimhaut
+    <b>schnell aufgenommen</b>.</p>
+
+  <div class="merk">
+    <span class="t">Emla-Pflaster</span>
+    <p><b>Mindestens 60 Minuten</b> vor einer Punktion, <b>über zwei Venen</b>. Wirkstoffe:
+      <b>Lidocain und Prilocain</b>. Die Wirkung tritt <b>nach ca. 15 Minuten</b> ein. <b>Vor dem
+      Legen des Zugangs muss die Creme vollständig entfernt werden.</b></p>
+  </div>
+
+  <h3>Die fünf Vorbereitungen, die man leicht vergisst</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Was</th><th>Und warum</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Nagellack entfernen</td>
+          <td>sonst ist eine <b>Zyanose am Nagelbett nicht zeitnah erkennbar</b> und es kommt bei
+            der Sauerstoffmessung zu <b>falschen Messwerten</b></td></tr>
+        <tr><td class="k">Nicht eincremen</td>
+          <td>damit das <b>Anbringen der Elektroden</b> nicht erschwert wird</td></tr>
+        <tr><td class="k">Rasur am <b>Vorabend</b></td>
+          <td>„damit am Tag der OP <b>keine Hautirritationen</b> mehr bestehen“ — durchgeführt
+            <b>vom Pflegepersonal</b>, behutsam, weil Hautverletzungen die OP unmöglich machen
+            können. Die Pflicht zur Rasur ist <b>umstritten und wissenschaftlich nicht
+            ausreichend belegt</b></td></tr>
+        <tr><td class="k">Blase entleeren <b>vor</b> der Prämedikation</td>
+          <td>aus <b>Sicherheitsgründen</b> — nach der Prämedikation gilt Bettruhe</td></tr>
+        <tr><td class="k">Thromboseprophylaxe <b>ab Pubertätszeichen</b></td>
+          <td>bei Brustwachstum oder Schambehaarung (Tanner-Stadien): <b>subkutane
+            Heparin-Injektion am Vorabend</b>, nach ärztlicher Anordnung, ggf. plus MTS</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Eine Warnung aus dem Buch</span>
+    <p>„<b>VORSICHT!</b> Bei <b>akuten abdominellen Erkrankungen</b> sollte auf eine
+      <b>Darmreinigung verzichtet</b> werden, um eine <b>Perforation</b> zu vermeiden.“</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Einüben, bevor es wehtut</span>
+    <p>Gehen an Unterarmgehstützen, Atemübungen, <b>En-Bloc-Aufstehen</b> — all das kann
+      <b>präoperativ</b> eingeübt werden. „Dadurch werden auch mögliche Komplikationen wie
+      <b>Stürze, Thrombosen, Pneumonien</b> und bewegungsbedingte Schmerzen postoperativ
+      vermieden.“</p>
+    <p><b>Nach</b> der OP hat das Kind Schmerzen und Angst — dann lernt es nichts mehr. Deshalb
+      <b>vorher</b>.</p>
+  </div>
+</section>
+
+<section id="postop">
+  <h2>Nach der Operation</h2>
+
+  <p>„Das Komplikationsrisiko ist <b>besonders in den ersten Stunden</b> nach dem Eingriff
+    erhöht“ — deshalb kontinuierliche und sorgfältige Beobachtung.</p>
+
+  <div class="warnung">
+    <span class="t">Säuglinge unter 6 Monaten</span>
+    <p>Sie reagieren „<b>häufig mit Apnoen</b> auf eine Narkose“ und werden deshalb in der Regel
+      <b>für einige Stunden oder sogar Tage auf einer Kinderintensivstation</b> überwacht.</p>
+  </div>
+
+  <h3>Der Rücktransport</h3>
+  <ul>
+    <li>Durch <b>zwei Pflegepersonen</b> — mindestens eine <b>examiniert und erfahren</b>, in
+      <b>Erstmaßnahmen bei Notfällen geschult</b></li>
+    <li>Ein <b>funktionstüchtiger Beatmungsbeutel</b> wird mitgenommen</li>
+    <li>Noch sauerstoffpflichtig? Dann auch <b>mobiles Pulsoxymeter</b> und
+      <b>Sauerstoffflasche</b></li>
+    <li><b>Vorgewärmte Decken</b> — gegen die Auskühlung</li>
+    <li><b>Seitenlage und leicht oberkörperhoch</b> — <b>um eine Aspiration zu verhindern</b></li>
+    <li><b>Blickrichtung nach vorne</b>, damit sich das Kind orientieren kann</li>
+    <li><b>Kein Zug</b> an Zu- und Ableitungen, <b>stoß- und zugfreier</b> Transport</li>
+  </ul>
+
+  <h3>Die sechs Beobachtungsbereiche</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Bereich</th><th>Gefahr</th><th>Was du tust</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Atmung</td>
+          <td><b>Atemdepression</b> durch Narkoseüberhang oder Opiate · <b>Pneumonie</b></td>
+          <td>Atemrhythmus <b>und</b> Atemqualität beobachten · ggf. Sauerstoff mit
+            <b>Pulsoxymeter</b> · <b>Oberkörperhochlagerung</b> · zum <b>tiefen Durchatmen und
+            Abhusten</b> motivieren</td></tr>
+        <tr><td class="k">Herz-Kreislauf</td>
+          <td><b>Volumenmangelschock</b> durch innere Blutungen oder Blutverlust</td>
+          <td>Puls und Blutdruck <b>kontinuierlich bzw. in kleinen Intervallen</b> · Hautkolorit
+            und -temperatur: <b>blassgrau und kühl</b>, evtl. <b>Petechien</b></td></tr>
+        <tr><td class="k">Bewusstsein</td><td><b>Aufwachdelir</b></td>
+          <td>leise ansprechen, dann lauter, dann an der Schulter berühren · bei kleinen Kindern
+            erschwert — „erfordert Geduld“</td></tr>
+        <tr><td class="k">Übelkeit / Erbrechen</td>
+          <td>besonders durch <b>inhalative Anästhetika</b>; erhöhte Rate <b>ab dem
+            4. Lebensjahr bis ins Jugendalter</b></td>
+          <td><b>bei den ersten Äußerungen</b> ein Antiemetikum nach ärztlicher Anordnung · das
+            Kind <b>nicht allein lassen</b> · Beutel direkt entsorgen, neuen bereitlegen</td></tr>
+        <tr><td class="k">Urinausscheidung</td>
+          <td><b>Miktionsstörungen</b> durch Anästhetika und Opiate</td>
+          <td>erfolgt <b>innerhalb von 6–8 Stunden</b> keine Miktion → <b>Ursache durch den Arzt
+            abklären</b> (übervolle Blase? Volumenmangel?), <b>bevor</b> katheterisiert wird</td></tr>
+        <tr><td class="k">Körpertemperatur</td>
+          <td><b>Auskühlung</b> im OP — <b>oder</b> überschießende Gegenreaktion</td>
+          <td><b>sofort nach Ankunft</b> messen · bei Säuglingen und Kleinkindern <b>rektal</b>
+            (genauer), bei größeren Kindern <b>tympanal</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Aufwachdelir — was hilft und was nicht</span>
+    <p><b>Betroffen: überwiegend Säuglinge und Kleinkinder.</b></p>
+    <p><b>Zeichen:</b> anhaltendes, auffälliges, angestrengtes Weinen oder Schreien · „Hervorquellen“
+      der Augen · der Drang, sich aufsetzen oder hinstellen zu wollen · <b>zum Teil sehr heftige
+      Abwehrbewegungen</b>, sodass die Betreuenden <b>auf den Eigenschutz achten müssen</b> ·
+      „Der Blick des Kindes <b>fixiert und erkennt nichts</b>, er geht ins Leere.“</p>
+    <p><b>Was NICHT hilft:</b> „das Kind lässt sich <b>durch Worte und Zuneigung nicht
+      trösten</b>“.</p>
+    <p><b>Was hilft:</b> <b>nur ablenkende Maßnahmen</b> · Orientierung geben durch bekannte
+      Personen, Kuscheltiere, durch <b>Reden und Erklären dessen, was geschieht</b>.</p>
+    <p><b>Es ist vorübergehend</b> und sollte nach einigen Stunden abklingen.</p>
+    <p class="fr">Le consoler ne marche pas. Seule la distraction aide. C'est passager.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Resorptionsfieber — kein Infekt</span>
+    <p>„In den <b>ersten fünf postoperativen Tagen</b> sind <b>subfebrile Temperaturen bis
+      38,5 °C physiologisch</b>. Diese Art von Fieber <b>ohne das Vorliegen einer Infektion</b>
+      wird als <b>Resorptionsfieber</b> bezeichnet.“</p>
+    <p><b>Das ist die Unterscheidung, die Punkte bringt:</b> bis 38,5 °C in den ersten fünf Tagen
+      — normal. Höher, später, oder mit anderen Zeichen — <b>Verdacht auf Infektion</b>.</p>
+  </div>
+
+  <h3>Nahrungsaufbau</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Operation <b>außerhalb</b> des Magen-Darm-Trakts</h4>
+      <p>Wenn alle <b>Schutzreflexe</b> wieder da sind (<b>Hustenreflex wichtig</b>): bereits
+        <b>2 bis 4 Stunden</b> postoperativ kleine Mengen <b>klarer Flüssigkeit</b>. Dann leicht
+        verdauliche Kost — die Darmperistaltik ist durch Narkosemittel und Opiate
+        beeinträchtigt.</p>
+    </div>
+    <div class="karte">
+      <h4>Operation <b>am</b> Magen-Darm-Trakt oder Ösophagus</h4>
+      <p>Schwieriger, <b>kann bis zu 14 Tage dauern</b>. Orientiert sich an der
+        <b>Stuhlausscheidung</b>.</p>
+      <p><b>Die Zeichen, dass der Trakt wieder arbeitet:</b> geringe Magenreste bei liegender
+        Sonde · <b>kein Erbrechen</b> · <b>Winde und Stuhl werden abgesetzt</b>.</p>
+    </div>
+  </div>
+
+  <h3>Wundgebiet, Drainagen, Schmerzen</h3>
+  <ul>
+    <li>Inspektion auf <b>Rötung, Schwellung, Eiteransammlung, Nachblutung, Verhärtung,
+      Schmerzen</b></li>
+    <li><b>Nachsickerndes Blut mit einem wasserfesten Stift auf dem Verband markieren</b> — so
+      sieht man, ob es sich ausbreitet</li>
+    <li>Drainagen <b>sicher und zugfrei</b> seitlich am Bett fixieren, sodass <b>Fördermenge,
+      Aussehen und Konsistenz jederzeit beurteilbar</b> sind</li>
+  </ul>
+
+  <div class="merk">
+    <span class="t">Schmerzen werden <em>vorher</em> behandelt</span>
+    <p>„Deshalb sollten Schmerzen bereits <b>präventiv</b> behandelt werden, d. h., die
+      medikamentöse Therapie erfolgt <b>vor Schmerzausbruch</b>.“</p>
+    <p>Jedes Kind bekommt postoperativ einen <b>Medikamentenplan</b> mit <b>festen Zeiten</b> —
+      „auch wenn es zu dem Zeitpunkt vielleicht keine Schmerzen äußert. Dadurch werden
+      <b>Schmerzspitzen vermieden</b>.“ Ergänzt durch Bedarfsmedikamente; bei älteren Kindern
+      auch eine <b>Schmerzpumpe</b>.</p>
+    <p class="fr">On traite la douleur AVANT qu'elle arrive — sinon on court derrière les pics.</p>
+  </div>
+
+  <h3>Nicht medikamentös gegen Schmerz</h3>
+  <ul>
+    <li><b>Alle Altersgruppen:</b> ruhige, vertraute Umgebung mit <b>Anwesenheit der
+      Bezugspersonen</b></li>
+    <li><b>Säuglinge:</b> begrenzende, <b>puckende Nestchenlagerung</b> · Beruhigungssauger</li>
+    <li><b>Klein- und Schulkinder:</b> altersentsprechende Aufklärung · <b>spielerische
+      Ablenkung</b> · erklären, dass sie <b>beim Husten, Lachen oder Bewegen leicht mit der Hand
+      auf die Wunde drücken</b> sollen · <b>Knierolle</b> zur Entlastung der Bauchdecke</li>
+    <li><b>Jedes Alter:</b> Kälte- und Wärmeauflagen nach individuellem Bedürfnis</li>
+  </ul>
+
+  <h3>Die zwei Komponenten, an denen du Schmerz erkennst</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Somatisch</h4>
+      <p><b>hohe Herzfrequenz</b> und <b>niedrige Atemfrequenz</b> (Schonatmung) · <b>Zyanose</b>
+        · <b>blass-marmoriertes</b> Hautkolorit · <b>Schwitzen</b> · hoher <b>Blutzucker</b> und
+        <b>Blutdruck</b></p>
+    </div>
+    <div class="karte">
+      <h4>Verhalten</h4>
+      <p><b>Grimassieren</b> · <b>Unruhe</b> · <b>Abwehrhaltung</b> · <b>Hypertonus</b> ·
+        <b>Schonhaltung</b> · <b>Weinen</b> · <b>Niesen</b> und <b>Gähnen</b></p>
+    </div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Niesen und Gähnen als Schmerzzeichen?</span>
+    <p>Ja — das steht so im Buch, unter den <b>Verhaltenskomponenten</b>. Das ist ein Detail, das
+      man nicht errät und das in einer Prüfungsfrage genau deshalb auftaucht.</p>
+    <p>Und der Grundsatz daneben: „<b>Schmerzempfinden ist immer subjektiv.</b> Schmerzstärke und
+      -intensität hängen immer von der <b>Persönlichkeit</b> und den <b>Vorerfahrungen</b> des
+      Kindes mit Schmerzen ab.“</p>
+  </div>
+
+  <h3>Prophylaxen und Selbstständigkeit</h3>
+  <p><b>So schnell wie möglich mobilisieren.</b> Geht das nicht: <b>alle 3 bis 4 Stunden</b>
+    umlagern, <b>ohne Zug- und Scherkräfte</b>. Besonders gefährdet: <b>Ferse, Steißbein,
+    Hinterkopf</b>.</p>
+  <p>Das Kind soll <b>so früh wie möglich kleinere Tätigkeiten selbst übernehmen</b> — Gesicht
+    waschen, Zähne putzen, Haare kämmen. „Eine <b>adäquate Schmerzmedikation trägt positiv dazu
+    bei</b>“ — wer keine Schmerzen hat, traut sich mehr zu.</p>
+
+  <div class="merk">
+    <span class="t">Eltern sind Experten ihres Kindes</span>
+    <p>Wörtlich aus dem Buch: „<b>Eltern sind Experten ihres Kindes</b> und bemerken daher
+      schnell Gemüts- und Stimmungsveränderungen, worauf sie die Pflegeperson aufmerksam machen
+      können.“</p>
+    <p>Sie können unter Anleitung <b>Temperatur kontrollieren, Körperpflege durchführen, Nahrung
+      anreichen</b> — und Rituale von zu Hause weiterführen, etwa das Vorlesen vor dem
+      Einschlafen.</p>
+  </div>
+</section>
+
+<section id="fragen">
+  <h2>Die 17 Wiederholungsfragen zu den Infektionskrankheiten</h2>
+  <p class="lead">Von <b>L. Grove, 16. Mai 2022</b> — CE 10, UE 3. <b>Ohne Lösungen</b>, die
+    liegen nicht im Ordner. Benutz sie als Selbsttest.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th class="k">Nr.</th><th>Frage</th></tr></thead>
+      <tbody>
+        <tr><td class="k">1</td><td>In welchem Alter ist Keuchhusten besonders gefährlich?</td></tr>
+        <tr><td class="k">2</td><td>Warum sollte man gegen Masern impfen?</td></tr>
+        <tr><td class="k">3</td><td>Was ist die Inkubationszeit?</td></tr>
+        <tr><td class="k">4</td><td>Welche Infektionskrankheit (ohne Komplikationen) stellen Sie
+          sich am unangenehmsten vor?</td></tr>
+        <tr><td class="k">5</td><td>Welche Symptome treten <b>nur</b> bei Masern auf?</td></tr>
+        <tr><td class="k">6</td><td>Welche Symptome treten bei <b>mehreren</b>
+          Infektionskrankheiten auf?</td></tr>
+        <tr><td class="k">7</td><td>Warum sollte man Kinder gegen Mumps impfen lassen?</td></tr>
+        <tr><td class="k">8</td><td>Warum wird die Rötelnimpfung empfohlen?</td></tr>
+        <tr><td class="k">9</td><td>Bei welchen Infektionskrankheiten ist die Nahrungsaufnahme
+          erschwert?</td></tr>
+        <tr><td class="k">10</td><td>Was ist das unangenehmste Symptom bei Windpocken?</td></tr>
+        <tr><td class="k">11</td><td>Ist bei einer der Infektionskrankheiten eine <b>kausale</b>
+          Therapie möglich?</td></tr>
+        <tr><td class="k">12</td><td>Welche Infektionskrankheiten gehen mit einem Ausschlag
+          einher?</td></tr>
+        <tr><td class="k">13</td><td>Welche Infektionskrankheit ist am ansteckendsten?</td></tr>
+        <tr><td class="k">14</td><td>Was ist eine Embryopathie?</td></tr>
+        <tr><td class="k">15</td><td>Was ist der häufigste Übertragungsweg bei
+          Infektionskrankheiten?</td></tr>
+        <tr><td class="k">16</td><td>Welche Infektionskrankheiten beginnen mit
+          Erkältungssymptomen?</td></tr>
+        <tr><td class="k">17</td><td>Welche Maßnahme ist bei der stationären Behandlung von
+          Infektionskrankheiten besonders wichtig?</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Wie du diese Liste benutzt</span>
+    <p>Lies eine Frage, <b>schreib die Antwort auf</b> — erst danach nachschlagen. Beantworte
+      besonders die <b>Warum</b>-Fragen (2, 7, 8) <b>schriftlich</b>: Das sind genau die
+      <i>Begründen</i>-Aufgaben, bei denen deine Noten wegbrechen.</p>
+    <p><b>Schick mir deine Antworten</b> — ich korrigiere Inhalt, Satzbau und Wortwahl.</p>
+    <p class="fr">Écris les réponses aux questions « warum » — ce sont exactement les questions
+      qui te coûtent des points.</p>
+  </div>
+</section>
+
+<section id="offen">
+  <h2>Was fehlt — und warum</h2>
+
+  <div class="gefahr">
+    <span class="t">Die Infektionskrankheiten selbst fehlen komplett</span>
+    <p>Im Ordner liegen zu <b>CE 10, UE 3</b> nur <b>die 17 Fragen</b> und eine <b>leere
+      Übersichtstabelle</b> mit den Spalten <i>Symptome — Übertragung — potentielle
+      Komplikationen</i> und den Zeilen <b>Masern · Mumps · Röteln · Windpocken · Keuchhusten
+      (Pertussis)</b>.</p>
+    <p><b>Die Tabelle ist nicht ausgefüllt.</b> Damit fehlt der ganze Inhalt dieser
+      Unterrichtseinheit — Inkubationszeiten, Symptome, Komplikationen, Übertragungswege.</p>
+    <p><b>Ich fülle sie nicht aus dem Gedächtnis.</b> Schick mir deine ausgefüllte Tabelle oder
+      die Folien der Dozentin, dann kommt sie hier hinein.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Fünf Fallbeispiele ohne Bearbeitung</span>
+    <p>Im Ordner liegen: <b>Clara die Wasserratte</b> · <b>Clara, die Angst vor den Nadeln</b> ·
+      <b>Paul, Kind nach Fahrradsturz</b> · <b>Sven kann kaum atmen</b> · <b>Mia und das
+      RS-Virus</b> (Videolink mit Arbeitsauftrag).</p>
+    <p>Das sind <b>Aufgabenstellungen</b>, keine Inhalte. <b>Sag mir, welchen Fall du bearbeiten
+      willst</b> — ich gehe ihn mit dir durch, nach dem Schema der Musterlösung oben.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Anderswo im Repo</span>
+    <ul>
+      <li><b>Impfkalender 2026</b> — liegt im Ordner, hat aber bereits eine eigene Schulung</li>
+      <li><b>Pflege bei leichtem SHT</b> — gehört inhaltlich zum Fall <i>Paul nach
+        Fahrradsturz</i> und kommt in <b>Block 7 (Neurologie)</b></li>
+      <li><b>Kindesmisshandlung und sexueller Missbrauch</b> — das Pflege-Heute-Kapitel geht an
+        dieser Stelle weiter (Kap. 2.9). Es bricht in deinem Auszug mitten in den Risikofaktoren
+        ab. <b>Ein schwerer und rechtlich heikler Bereich — ich fasse ihn nur zusammen, wenn du
+        das ausdrücklich willst und die vollständigen Seiten schickst.</b></li>
+    </ul>
+  </div>
+</section>
+
+<section id="quellen">
+  <h2>Woraus diese Seite gebaut ist</h2>
+  <details class="quelle">
+    <summary>Die sechs Quellen — jede einzeln genannt</summary>
+    <div class="inh">
+      <ul>
+        <li><b>Pflege des kranken Kindes — Auszug aus Pflege Heute.pdf</b> — Kap. 18.3.3 und
+          18.4, mit den „Spickzettel“-Kästen. Trägt den größten Teil dieser Seite.</li>
+        <li><b>Kap. 2.8 Prä- und postoperative Pflege — Auszug aus Pflege Heute Pädiatrische
+          Pflege.pdf</b> — der zweitgrößte Teil. Enthält am Ende auch den Anfang von Kap. 2.9
+          (Kindesmisshandlung), der hier <b>nicht</b> ausgewertet ist.</li>
+        <li><b>Pflegeprobleme, -ziele und -maßnahmen bei Durchfallerkrankungen —
+          MUSTERLÖSUNG.pdf</b> — <b>CE 10, UE 3 · L. Grove, 05/2022</b>. Die Musterlösung ist
+          vollständig übernommen.</li>
+        <li><b>therapeutische Massnahmen bei schweren Atemwegsinfekten.pdf</b></li>
+        <li><b>Inhalation und Atemtherapie bei Kindern.pdf</b> — mit zwei YouTube-Links</li>
+        <li><b>Infektionskrankheiten — Fragen zum Thema.pdf</b> — <b>L. Grove, 16. Mai 2022</b>,
+          17 Wiederholungsfragen, <b>ohne Lösungen</b></li>
+      </ul>
+      <p>Alle aus deinem Google-Drive-Ordner, geteilt am 18.09.2026. <b>Jede Zahl und jede Regel
+        auf dieser Seite steht so in einer dieser Dateien.</b> Die Erklärungen in den
+        Merkkästen — warum Seifenblasen wirken, warum ein Schnupfen beim Säugling zählt, warum
+        Ehrlichkeit eine Maßnahme ist — sind meine <b>Herleitung aus dem Text</b>, nicht
+        zusätzliches Fachwissen von außen.</p>
+      <p>Die französischen Zeilen und die Vokabelübersetzungen sind von mir ergänzt.</p>
+    </div>
+  </details>
+</section>
+
+</main>
+
+<footer>
+  <p>Das kranke Kind · CE 10 / UE 1 und UE 3 — gebaut aus deinen eigenen Unterlagen.<br>
+    Wo etwas fehlt oder nicht ausgefüllt ist, steht es oben ausdrücklich dabei.</p>
+</footer>
