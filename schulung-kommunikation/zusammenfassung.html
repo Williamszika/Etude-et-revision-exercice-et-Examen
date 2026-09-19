@@ -1,0 +1,1060 @@
+<title>Werde ich so verstanden, wie ich es meine?</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#6a4a8c;--accent-deep:#52386e;--accent-soft:#eae2f3;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#bda3dc;--accent-deep:#d2bdea;--accent-soft:#251d33;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#bda3dc;--accent-deep:#d2bdea;--accent-soft:#251d33;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#6a4a8c;--accent-deep:#52386e;--accent-soft:#eae2f3;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 03 / UE 2 · CE 06 / UE 1 · Workshop Selbstreflexion</p>
+  <h1>Werde ich so verstanden, wie ich es meine?</h1>
+  <p class="sub">Schulz von Thun, Watzlawick und Rogers — dazu die Gefühlsarbeit, die niemand
+    als Arbeit zählt, und die Kommunikation im Notfall, an der 80 bis 90 % der Fehler hängen.</p>
+  <div class="meta">
+    <span>CE 03 · CE 06</span>
+    <span>Rütten-Sieben M.A.</span>
+    <span>M. Podkowa</span>
+    <span>10 Quellen</span>
+    <span>Niveau B1</span>
+    <span>Stand 19.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#drei">Drei Fragen, drei Männer</a>
+  <a href="#thun">Schulz von Thun</a>
+  <a href="#ohren">Die vier Ohren</a>
+  <a href="#uebung">Die Übungen</a>
+  <a href="#watzlawick">Watzlawick</a>
+  <a href="#rogers">Rogers</a>
+  <a href="#zuhoeren">Aktives Zuhören</a>
+  <a href="#gefuehl">Gefühlsarbeit</a>
+  <a href="#fallLos">Der Fall Frau Los</a>
+  <a href="#notfall">Kommunikation im Notfall</a>
+  <a href="#selbst">Selbstreflexion</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="drei">
+  <h2>Drei Fragen — und für jede ein eigenes Modell</h2>
+  <p class="lead">Der Foliensatz <b>CE 03: Pflegeerfahrungen reflektieren — verständigungsorientiert
+    kommunizieren</b> ist um drei Fragen gebaut. Merk dir die Fragen, dann sitzen auch die
+    Namen.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Die Frage</th><th>Wer sie beantwortet</th><th>Worum es geht</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Werde ich so verstanden, wie ich es meine?</td>
+          <td><b>Schulz von Thun</b></td><td><b>Selbstwahrnehmung</b></td></tr>
+        <tr><td class="k">Wie sieht mein Gegenüber die Situation?</td>
+          <td><b>Watzlawick</b></td><td><b>Perspektivwechsel</b></td></tr>
+        <tr><td class="k">Wie führe ich ein Gespräch so, dass jemand von sich selbst
+          erzählt?</td>
+          <td><b>Rogers</b></td><td><b>Gesprächsführung</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Zwei Grundbilder vorweg</span>
+    <p><b>Das Sender-Empfänger-Modell:</b> Der Sender <b>„codiert“</b> und sendet seine
+      Nachricht, der Empfänger <b>„decodiert“</b> sie und antwortet darauf. Die Frage der Folie
+      dazu: <b>„Warum ist das oft so schwer?“</b></p>
+    <p><b>Das Eisbergmodell:</b> <b>Inhaltsaspekte werden hauptsächlich verbal übermittelt</b> —
+      alles andere liegt unter der Oberfläche.</p>
+    <p>Und der Leitsatz, der im Foliensatz mitten zwischen den Modellen steht:
+      <b>Verstehen vor Handeln.</b></p>
+    <p class="fr">Comprendre avant d'agir. C'est la phrase qui tient tout le cours.</p>
+  </div>
+</section>
+
+<section id="thun">
+  <h2>Schulz von Thun — das Kommunikationsquadrat</h2>
+  <p class="lead">Friedemann Schulz von Thun, <b>*1944</b>, Kommunikationspsychologe, Gründer
+    des Schulz-von-Thun-Instituts für Kommunikation in Hamburg.</p>
+
+  <div class="merk">
+    <span class="t">Der Grundsatz, wörtlich</span>
+    <p>„Wenn ich als Mensch etwas von mir gebe, bin ich auf <b>vierfache Weise wirksam</b>.
+      Jede meiner Äußerungen enthält, <b>ob ich will oder nicht</b>, vier Botschaften
+      gleichzeitig.“</p>
+    <p>Die Äußerung entstammt den <b>„vier Schnäbeln“</b> des Senders und trifft auf die
+      <b>„vier Ohren“</b> des Empfängers. <b>Sender und Empfänger sind beide für die Qualität
+      der Kommunikation verantwortlich</b> — und: <b>die unmissverständliche Kommunikation ist
+      der Idealfall und nicht die Regel</b>.</p>
+    <p class="fr">Les quatre messages partent <b>que tu le veuilles ou non</b>. Et la
+      responsabilité est des deux côtés.</p>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Seite</th><th>Was der Sender tut</th><th>Was der Empfänger
+        fragt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">1 · Sachinhalt</td>
+          <td><b>Worüber ich informieren möchte</b> — Daten, Fakten, Sachverhalte. Es gelten
+            drei Kriterien: <b>wahr oder unwahr</b> · <b>relevant oder irrelevant</b> ·
+            <b>ausreichend oder unzureichend</b>.</td>
+          <td>Prüft auf <b>Richtigkeit, Wichtigkeit, Vollständigkeit</b></td></tr>
+        <tr><td class="k">2 · Selbstkundgabe</td>
+          <td><b>Was ich von mir zu erkennen gebe</b> — bewusst oder unbewusst,
+            <b>explizit (Ich-Botschaften) oder implizit</b>. Es geht um <b>Gefühle, Werte,
+            Eigenarten und Bedürfnisse</b>.</td>
+          <td><b>Was sagt mir das über den anderen? Was für ein Typ ist das? Wie ist er
+            gestimmt?</b></td></tr>
+        <tr><td class="k">3 · Beziehungshinweis</td>
+          <td><b>Was ich von dir halte, wie ich zu dir stehe</b> — über <b>verbale und
+            nonverbale</b> Kommunikation, bewusst oder unbewusst.</td>
+          <td><b>Was hält er/sie von mir?</b> Fühle ich mich <b>wertgeschätzt oder abgelehnt,
+            missachtet oder geachtet, respektiert oder gedemütigt</b>?</td></tr>
+        <tr><td class="k">4 · Appell</td>
+          <td><b>Was ich bei dir erreichen möchte</b> — Wünsche, Anregungen,
+            Handlungsanweisungen, <b>offen oder verdeckt</b>.</td>
+          <td><b>Was soll ich jetzt machen, denken, fühlen?</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Das Beispiel aus dem Foliensatz: „Ich habe Schmerzen“</span>
+    <p><b>Sachinhalt:</b> die Feststellung einer Tatsache. ·
+      <b>Selbstkundgabe:</b> „Ich bin verzweifelt“, „Ich kann nicht mehr“. ·
+      <b>Beziehung:</b> „Du kannst helfen“. ·
+      <b>Appell:</b> „Hilf mir!“, „Tu was“.</p>
+    <p>Und das zweite: <b>„Mir ist kalt“</b> — vier mögliche Antworten:
+      „Ja, das Fenster ist offen“ (Sachohr) · „Ihnen ist kalt“ (Selbstkundgabeohr) ·
+      „Brauchen Sie immer jemanden, der die Dinge für Sie erledigt?“ (Beziehungsohr) ·
+      „Ich mache sofort das Fenster zu“ (Appellohr).</p>
+    <p class="fr">« J'ai froid » : la même phrase, quatre réponses possibles — selon l'oreille.</p>
+  </div>
+</section>
+
+<section id="ohren">
+  <h2>Die vier Ohren — und was schiefgeht, wenn eins zu groß ist</h2>
+
+  <div class="gefahr">
+    <span class="t">Die Frage der Folie: Was hören wir, wenn …</span>
+    <p>… wir <b>einseitig auf dem Sachohr</b> hören? · … wir <b>überempfindlich auf dem
+      Beziehungsohr</b> hören? · … wir <b>primär auf dem Selbstoffenbarungsohr</b> hören? ·
+      … wir ein <b>übergroßes Appellohr</b> haben?</p>
+    <p><b>Die Folie stellt diese vier Fragen und beantwortet sie nicht.</b> Ich schreibe hier
+      keine Antwort hin, die nicht in deinen Unterlagen steht — aber die Beispiele oben geben
+      dir alles, was du brauchst, um sie selbst zu beantworten.</p>
+    <p><b>Für dich besonders wichtig:</b> Wer ein <b>übergroßes Appellohr</b> hat, hört in jedem
+      Satz einen Auftrag und rennt los — <b>auch da, wo jemand nur reden wollte</b>. In der
+      Pflege ist das ein häufiges Muster, und es ist der Gegensatz zu allem, was unter
+      <i>Gefühlsarbeit</i> weiter unten steht.</p>
+    <p class="fr">Une oreille « appel » trop grande entend un ordre dans chaque phrase — et
+      court, là où quelqu'un voulait seulement parler.</p>
+  </div>
+
+  <h3>Das lange Beispiel: „Klingeln Sie, wenn Sie Hilfe brauchen“</h3>
+  <p>Der Foliensatz sammelt, was Patientinnen und Patienten auf diesen einen Satz hin
+    <b>tatsächlich</b> verstehen:</p>
+  <div class="karten">
+    <div class="karte"><h4>Sachebene</h4>
+      <p>„Ich soll klingeln, wenn ich Hilfe brauche.“</p></div>
+    <div class="karte"><h4>Selbstoffenbarung</h4>
+      <p>„Ich bin bereit, Ihnen zu helfen.“ · „Die Pflegerin ist da und nimmt sich Zeit für
+        mich, wenn ich sie brauche.“</p></div>
+    <div class="karte"><h4>Beziehungsebene</h4>
+      <p>„Die Pflegekraft kümmert sich um mich.“ — <b>oder</b> „Ich kann wohl ohne Hilfe nichts
+        alleine machen.“ · „Die Pflegekraft weiß wohl nicht von alleine, wann sie zu mir kommen
+        muss.“ · <b>„Ich möchte die Pflegekraft nicht stören.“</b></p></div>
+    <div class="karte"><h4>Appellebene</h4>
+      <p><b>„Ich soll NUR klingeln, wenn ich WIRKLICH Hilfe brauche.“</b> — oder
+        „Ich soll sofort klingeln.“ — oder <b>„Ich darf nichts selbstständig machen.“</b></p></div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die Kette, die in diesem Beispiel steckt</span>
+    <p><b>Ursache:</b> Du sagst einen freundlichen, völlig korrekten Satz. →
+      <b>Wirkung:</b> Der Patient hört auf dem Beziehungsohr <b>„Ich möchte nicht stören“</b>
+      und auf dem Appellohr <b>„nur wenn es wirklich nötig ist“</b>. →
+      <b>Gefahr:</b> Er klingelt <b>nicht</b> — bei Schmerz, bei Schwindel, vor dem Sturz. →
+      <b>Deshalb:</b> sagst du dazu, <b>was der Satz nicht meint</b>: <i>„Klingeln Sie ruhig
+      auch, wenn Sie unsicher sind. Dafür bin ich da.“</i></p>
+    <p><b>Das ist meine Ableitung</b>, aber sie steht in den Sätzen der Folie. Und sie verbindet
+      diesen Foliensatz direkt mit der <b>Sturzprophylaxe</b>.</p>
+    <p class="fr">Il n'appellera pas. Alors dis aussi ce que la phrase ne veut <b>pas</b> dire.</p>
+  </div>
+</section>
+
+<section id="uebung">
+  <h2>Die Übungen — CE 03 / UE 2</h2>
+  <p class="lead">Ein eigenes Arbeitsblatt mit fünf Aufgabentypen. <b>Keine davon ist
+    gelöst.</b></p>
+
+  <h3>Aufgabe 1 · Mit welchem Ohr hat der Empfänger gehört?</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Sender sagt</th><th>Empfänger antwortet</th></tr></thead>
+      <tbody>
+        <tr><td class="k">„Ist noch Kaffee da?“</td><td>„Ich koche gleich welchen.“</td></tr>
+        <tr><td class="k">„Ich habe gar keine Lust zu spülen.“</td>
+          <td>„Es gibt nicht viel schmutziges Geschirr.“</td></tr>
+        <tr><td class="k">„Ihre Rosen sehen sehr schön aus.“</td>
+          <td>„Ich schneide Ihnen welche.“</td></tr>
+        <tr><td class="k">„Ist das Rindfleisch?“</td><td>„Nie passt dir, was ich koche!“</td></tr>
+        <tr><td class="k">„Steht mir das Kleid?“</td><td>„Der Stoff ist sehr
+          interessant.“</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Aufgabe 2 · Vier Äußerungen aus Sendersicht analysieren</h3>
+  <ul>
+    <li>Zwei Studierende nach der Klausur: <b>„Das war echt leicht, oder?“</b></li>
+    <li>Ein Patient nach der Visite: <b>„Ich habe den Arzt nicht verstanden.“</b></li>
+    <li>Ein Pflegeempfänger: <b>„Ich verstehe nicht, wie mir das passieren konnte. Ich habe
+      mich immer an die hygienischen Regeln gehalten, und jetzt bin ich doch Corona
+      positiv!“</b></li>
+    <li>Ein Pflegeempfänger: <b>„Wie oft wollen Sie denn noch in mein Zimmer kommen,
+      Schwester/Pfleger?“</b></li>
+  </ul>
+
+  <h3>Aufgabe 3 · Fall Herr Vage</h3>
+  <p><b>78 Jahre</b>, 2. Tag nach operativer Korrektur eines <b>Hallux valgus</b>. Er lebt seit
+    35 Jahren mit seiner Frau zusammen, die seit einer <b>beidseitigen Mamma-OP</b> vor drei
+    Jahren <b>keine schwere körperliche Arbeit</b> mehr übernehmen kann. Der Arzt ordnet für
+    <b>sechs Wochen völlige Entlastung des Fußes und Hochlagerung</b> an, dazu zur
+    <b>Thromboseprophylaxe 1× täglich Clexane s. c.</b> — <b>selbst zu injizieren</b>.</p>
+  <p>Nach der Visite sagt er <b>in einem sehr bestimmten Tonfall</b>: <b>„Mich selber spritzen,
+    das kann ich auf gar keinen Fall! Das Leben muss weitergehen, ich kann nicht so lange
+    stillsitzen, mir tut auch schon gar nichts mehr weh!“</b></p>
+
+  <h3>Aufgabe 4 · Fall Frau Fogel</h3>
+  <p>Eine Schülerin berichtet: Frau Fogel hat eine <b>Querschnittslähmung</b> nach einem Unfall
+    vor über 20 Jahren und ist wegen der <b>medikamentösen Einstellung ihrer Hypertonie</b> im
+    Krankenhaus. Nach dem Messen der Vitalzeichen fragt die Schülerin: <b>„Frau Fogel, kann ich
+    noch etwas für Sie tun?“</b> — „Ja, das können Sie. Können Sie mir bitte noch die Tabletten
+    vom Tisch geben?“ Die Schülerin nimmt die Tabletten und <b>will sie ihr anreichen</b>.
+    Frau Fogel reagiert <b>empört</b>: <b>„Stellen Sie die Tabletten auf den Nachttisch. Ich
+    habe nichts an den Händen und an den Augen.“</b></p>
+  <p>Die Fragen dazu: die Situation <b>auf Sender- UND Empfängerseite</b> analysieren ·
+    <b>worin liegt das Missverständnis?</b> · <b>auf welchen Ebenen wird kommuniziert?</b></p>
+
+  <div class="merk">
+    <span class="t">Warum gerade Frau Fogel die beste Übung des ganzen Blocks ist</span>
+    <p>Hier gibt es <b>keinen Fehler</b> im üblichen Sinn. Die Schülerin tut etwas Hilfreiches,
+      und trotzdem geht es schief — <b>weil die gemeinte Sachebene beim Hören zur
+      Beziehungsebene wird</b>.</p>
+    <p>Das ist genau der Punkt, an dem du beim Beantworten <b>nicht</b> schreiben solltest, wer
+      schuld ist. Schreib, <b>auf welcher Ebene die Nachricht gesendet und auf welcher sie
+      gehört wurde</b>. Danach fragt die Aufgabe, und genau dafür gibt es die Punkte.</p>
+    <p><b>Schick mir deine Analysen</b> — die fünf Ohr-Zuordnungen, die vier Äußerungen und die
+      beiden Fälle. Ich korrigiere sie.</p>
+    <p class="fr">Personne n'a « tort » ici. Dis sur quel niveau c'est <b>envoyé</b> et sur
+      lequel c'est <b>entendu</b>. C'est ça qui rapporte les points.</p>
+  </div>
+</section>
+
+<section id="watzlawick">
+  <h2>Paul Watzlawick — und die Aufgabe, die noch offen ist</h2>
+  <p class="lead"><b>1921–2007</b>, Kommunikationswissenschaftler, Psychotherapeut,
+    Psychoanalytiker, Soziologe, Philosoph, Autor.</p>
+
+  <div class="merk">
+    <span class="t">Seine zentrale Frage — und die Frage dahinter</span>
+    <p><b>„Wie sieht mein Gegenüber die Situation?“</b></p>
+    <p>Und als Paartherapeut: <b>„Liegt die Störung in den Menschen oder in dem, was zwischen
+      den Menschen passiert?“</b></p>
+    <p class="fr">Le trouble est-il <b>dans</b> les personnes, ou dans ce qui se passe
+      <b>entre</b> elles ?</p>
+  </div>
+
+  <h3>Die fünf Axiome — so, wie sie im Foliensatz stehen</h3>
+  <ol>
+    <li><b>Man kann nicht nicht kommunizieren</b></li>
+    <li><b>Jede Kommunikation hat einen Inhalts- und einen Beziehungsaspekt</b></li>
+    <li><b>Kommunikation als kreisförmiger Prozess</b></li>
+    <li><b>Analoge und digitale Kommunikation</b></li>
+    <li><b>Symmetrische und komplementäre Beziehungen</b></li>
+  </ol>
+
+  <div class="warnung">
+    <span class="t">Hier höre ich auf — und zwar mit Absicht</span>
+    <p>Der Foliensatz nennt die fünf Axiome <b>nur beim Namen</b>. Der Inhalt steht
+      <b>nicht</b> in deinen Unterlagen, sondern ist dein <b>Arbeitsauftrag</b>:</p>
+    <p>„Lesen Sie das Kommunikationsmodell nach Watzlawick im <b>Pflege Heute 39.2.1
+      (Seite 1205–1206)</b> aufmerksam durch. <b>Fassen Sie die Inhalte der 5 Axiome vollständig
+      zusammen.</b> […] <b>Nutzen Sie ausschließlich die angegebene Literatur!</b>“</p>
+    <p><b>Pflege Heute liegt nicht im Ordner.</b> Ich könnte die Axiome aus dem Gedächtnis
+      erklären — aber deine Dozentin schreibt ausdrücklich <i>ausschließlich die angegebene
+      Literatur</i>. Dann wären es <b>meine</b> Formulierungen statt der geprüften, und du
+      würdest sie für gesichert halten.</p>
+    <p><b>Die Folie nennt den Link zu ClinicalKey.</b> Arbeite die zwei Seiten durch und schick
+      mir deine Zusammenfassung — die korrigiere ich gern, auch sprachlich.</p>
+    <p class="fr">Les cinq axiomes ne sont que <b>nommés</b> dans tes documents. Le contenu est
+      dans Pflege Heute, que je n'ai pas. Fais le résumé, je le corrige.</p>
+  </div>
+</section>
+
+<section id="rogers">
+  <h2>Carl Rogers — die patientenzentrierte Gesprächsführung</h2>
+  <p class="lead"><b>1902–1987</b>, US-amerikanischer Psychologe und Psychotherapeut,
+    <b>Mitbegründer der humanistischen Psychotherapie</b> (neben Psychoanalyse und
+    Verhaltenstherapie). Er postulierte die <b>Einzigartigkeit des Individuums</b>.</p>
+
+  <div class="merk">
+    <span class="t">Sein Zitat aus dem Foliensatz</span>
+    <p>„<b>Es ist im Leben sehr selten, dass uns jemand zuhört und wirklich versteht, ohne
+      gleich zu urteilen. Dies ist eine sehr eindringliche Erfahrung.</b>“</p>
+    <p>Seine zentrale Frage: <b>Welche Bedingungen führen dazu, dass eine Person von sich aus
+      über ihr Erleben spricht, sich dabei besser verstehen lernt und schließlich zu
+      Einstellungs- und Verhaltensänderung gelangt?</b></p>
+  </div>
+
+  <h3>Die drei Grundhaltungen</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Haltung</th><th>Was sie heißt</th><th>Wie sie aussieht</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Kongruenz</td><td><b>Echtheit</b> in Begegnung und Kontakt</td>
+          <td>Das eigene aktuelle Erleben <b>unverzerrt wahrnehmen und mitteilen können</b> —
+            <b>„ich muss nicht alles sagen, aber was ich sage, stimmt mit dem Empfinden
+            überein“</b> · <b>Ich-Botschaften</b></td></tr>
+        <tr><td class="k">Akzeptanz</td><td><b>Nicht an Bedingungen geknüpfte Wertschätzung</b>
+          — emotionale Wärme</td>
+          <td><b>Nicht jedem Verhalten zustimmen, sondern akzeptieren und nicht werten</b> →
+            <b>Abgrenzung von Person und Verhalten</b> (die positive Wertschätzung steht
+            <b>über</b> dem aktuellen Verhalten) · Zuwendung ohne Bedingungen
+            (<b>Namen merken</b>) · <b>Verständnis äußern für erfahrene Ablehnung</b> ·
+            Teilnahme an positiven <b>und</b> negativen Gefühlen</td></tr>
+        <tr><td class="k">Empathie</td><td><b>Einfühlendes Verstehen</b></td>
+          <td><b>Aussprechen von emotionalen Erlebensinhalten und Gefühlen</b> · Aussprechen
+            der <b>hinter einer inhaltlichen Aussage stehenden gefühlten Bedeutung</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Der Satz, der die Akzeptanz erst brauchbar macht</span>
+    <p><b>„Abgrenzung von Person und Verhalten.“</b></p>
+    <p>Du musst <b>nicht</b> gut finden, was jemand tut. Du musst die <b>Person</b> annehmen und
+      das <b>Verhalten</b> davon trennen. Das ist der Unterschied zwischen Akzeptanz und
+      Einverständnis — und der Grund, warum diese Haltung auch bei jemandem funktioniert, der
+      dich gerade anschreit.</p>
+    <p class="fr">Accepter la <b>personne</b> n'est pas approuver le <b>comportement</b>. C'est
+      toute la différence.</p>
+  </div>
+</section>
+
+<section id="zuhoeren">
+  <h2>Aktives Zuhören — die drei Stufen und die Technik</h2>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Beziehung — der Türöffner</h4>
+      <p><b>Verbal:</b> „Möchten Sie darüber reden?“ · „Kann ich Ihnen helfen?“ ·
+        <b>„Manchmal hilft es, wenn man sich etwas von der Seele redet.“</b><br>
+        <b>Nonverbal:</b> Augenkontakt · Kopfnicken · im Zimmer <b>besuchen</b>.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Inhalt — paraphrasieren</h4>
+      <p>Kernaussagen <b>wiedergeben</b>: <b>mit eigenen Worten zusammenfassen, was verstanden
+        wurde</b>. Das <b>vermindert Missverständnisse</b> — und verlangt
+        <b>Zurückhaltung mit Bewertungen</b>.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Gefühle — spiegeln</h4>
+      <p>Dem anderen <b>„aus dem Herzen sprechen“</b>: Gefühle <b>mimisch aufnehmen oder verbal
+        formulieren</b> — zum Beispiel <b>„Das macht Sie jetzt ganz wütend.“</b></p></div></div>
+  </div>
+
+  <h3>Die fünf Regeln des aktiven Zuhörens</h3>
+  <ul>
+    <li><b>Aktiv</b> = bewusstes Zuhören, <b>nicht einfach nebenbei</b> —
+      <b>Nebentätigkeiten ruhen lassen</b></li>
+    <li><b>Körpersprache:</b> dem Gesprächspartner <b>zugewandt und offen</b>, Blickkontakt</li>
+    <li><b>Wertschätzendes, nicht wertendes Zuhören</b> — <b>eigene Meinung, Urteile und
+      Ratschläge zurückhalten</b></li>
+    <li><b>Perspektivwechsel</b></li>
+    <li><b>Mit allen vier Ohren hören</b></li>
+  </ul>
+  <p>Dazu die Techniken: <b>Aufmerksamkeit signalisieren</b> (nicken, „mmh“, „ja“) ·
+    <b>Zusammenfassen</b> längerer Inhalte · <b>Paraphrasieren</b> · <b>Verbalisieren</b>
+    (Gefühle in Worte fassen) · <b>Unklarheiten klären</b> · <b>Nachfragen</b>, wenn das
+    Gespräch ins Stocken gerät.</p>
+
+  <div class="merk">
+    <span class="t">Die Gesprächsübung — acht Sätze zum Spiegeln</span>
+    <p>In Partnerarbeit: Einer liest <b>authentisch und kongruent</b> vor, der andere
+      <b>paraphrasiert und spiegelt</b>. Dann Rollentausch.</p>
+    <p>„Da gehe ich auf keinen Fall mehr hin!“ · „Das hätten Sie sehen sollen, wie die gestaunt
+      haben, als ich plötzlich in der Tür stand.“ · „Da bin ich aufgestanden und habe denen
+      meine Meinung gesagt. Ich glaub, ich bin nicht mal rot geworden.“ · „Meinen Sie, mit dem
+      kann ich noch reden? Das hat doch überhaupt keinen Sinn mehr.“ · „Sie glauben nicht, wie
+      kalt der Mann sein kann. So richtig kalt.“ · <b>„Mich braucht ja doch keiner mehr.“</b> ·
+      <b>„Niemand kommt zu mir, keiner kümmert sich um mich.“</b> ·
+      <b>„Ich habe abgeschlossen mit allem, ich will keinem zur Last fallen.“</b></p>
+    <p><b>Diese Übung ist für dich doppelt wertvoll:</b> Sie trainiert die Technik <b>und</b>
+      das deutsche Formulieren von Gefühlen. Nimm dich beim Spiegeln <b>auf</b> und schick es
+      mir — dann korrigiere ich Inhalt und Sprache zusammen.</p>
+    <p class="fr">Enregistre-toi en train de reformuler ces phrases. Je corrige le fond
+      <b>et</b> la langue.</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die letzten drei Sätze der Übungsliste</span>
+    <p><b>„Mich braucht ja doch keiner mehr.“ · „Ich habe abgeschlossen mit allem, ich will
+      keinem zur Last fallen.“</b></p>
+    <p>Das sind <b>keine beliebigen Übungssätze</b>. Solche Äußerungen gehören zu dem, was auf
+      deiner Seite <b>Psychiatrische Pflege</b> unter <b>Suizidalität</b> steht. Spiegeln ist
+      hier der <b>erste</b> Schritt — der zweite ist <b>ansprechen und weitergeben</b>.</p>
+    <p><b>Das ist meine Einordnung</b>, das Arbeitsblatt sagt dazu nichts. Aber es wäre falsch,
+      diese Sätze nur als Sprechübung stehen zu lassen.</p>
+    <p class="fr">Ces phrases-là ne sont pas de simples exercices. Refléter, puis <b>nommer et
+      transmettre</b>.</p>
+  </div>
+</section>
+
+<section id="gefuehl">
+  <h2>Gefühlsarbeit — die Arbeit, die niemand als Arbeit zählt</h2>
+  <p class="lead"><b>CE 06 / UE 1 — Handeln in Notfallsituationen: Fassungsarbeit.</b></p>
+
+  <div class="merk">
+    <span class="t">Die Definition</span>
+    <p><b>Strauss, Anselm et al.</b> deuten Gefühlsarbeit als <b>„die Arbeit, die Angehörige
+      personenbezogener Dienstleistungsberufe im Blick auf die Gefühle anderer erbringen“</b> —
+      dazu gehören <b>Vertrauensarbeit, Fassungsarbeit und Identitätsarbeit</b>.</p>
+    <p>Laut <b>Dunkel</b> meint Gefühlsarbeit den <b>„beruflich-fachlichen Umgang mit
+      Gefühlen“</b>. Verwandte Begriffe: <b>Emotionsarbeit</b> (Gerhard 1988) und
+      <b>Gefühlsregulierung</b> (Badura 1990).</p>
+    <p class="fr">Le travail émotionnel : la gestion <b>professionnelle</b> des émotions — pas
+      de la gentillesse.</p>
+  </div>
+
+  <h3>These 1 — Gefühlsarbeit erfolgt häufig „unbeachtet“</h3>
+  <div class="gefahr">
+    <span class="t">Vier Sätze, die du dir merken solltest</span>
+    <p>Gefühlsarbeit <b>geschieht ungeplant und unbemerkt</b>.</p>
+    <p>Sie wird <b>nicht als hochqualifizierte Professionsarbeit wahrgenommen</b>.</p>
+    <p>Sie gilt als <b>„Nichtleistung“</b> — ohne Beimessung von <b>(Geld-)Wert oder
+      Anerkennung</b>.</p>
+    <p>Sie wird <b>nicht als Arbeit anerkannt</b> — <b>beansprucht aber Energie, Zeit, Können,
+      Geld und Arbeitsteilung</b>.</p>
+    <p class="fr">Ce n'est pas reconnu comme du travail — mais ça coûte de l'énergie, du temps
+      et des compétences.</p>
+  </div>
+
+  <h3>These 2 — Gefühlsarbeit ist täglich geleisteter Bestandteil von Pflegearbeit</h3>
+  <p>Die Studie von <b>Strauss et al. 1980</b> in Kalifornien beobachtete Krankenhauspersonal
+    bei der Arbeit. <b>Ergebnis:</b> Ein Großteil der Tätigkeiten <b>um die medizinische Arbeit
+    herum</b> besteht darin, <b>Mut zuzusprechen</b>, <b>Stimmungen aufzuhellen</b>,
+    <b>Konflikte zu lösen</b>, <b>Informationen zu erhalten</b>, die <b>Biografie zu
+    erheben</b> und die <b>Fassung der Patienten</b> zu stützen.
+    <b>Fazit: „Gefühlsarbeit“ ist ein gelebter Anteil von Pflegetätigkeit.</b></p>
+
+  <h3>Was ohne Gefühlsarbeit passiert</h3>
+  <div class="karten">
+    <div class="karte"><h4>Für die medizinische Arbeit</h4>
+      <p>Sie <b>könnte nicht so leicht, nicht so effizient oder überhaupt nicht</b> durchgeführt
+        werden.</p></div>
+    <div class="karte"><h4>Für den Patienten</h4>
+      <p>Gefühle der <b>Erniedrigung</b>, der <b>Beleidigung</b>, der <b>verletzten
+        Privatsphäre</b>, des <b>physischen und geistigen Unbehagens</b> — und das Gefühl,
+        <b>wie ein Objekt behandelt zu werden</b>.</p></div>
+    <div class="karte"><h4>Für die Station</h4>
+      <p>Negative Auswirkungen auf die <b>Gefühlsordnung</b> und damit auch auf die
+        <b>Arbeitsorganisation</b>.</p></div>
+  </div>
+
+  <h3>Die Typen der Gefühlsarbeit</h3>
+  <p><b>Vertrauensarbeit</b> · <b>Fassungsarbeit</b> · <b>Identitätsarbeit</b> ·
+    <b>Versöhnungsarbeit</b> · <b>Biografische Arbeit</b> · <b>Berichtigungsarbeit</b> ·
+    <b>Trostarbeit</b> · <b>Trauerarbeit</b></p>
+
+  <div class="merk">
+    <span class="t">Die Fassungsarbeit — die einzige, die der Foliensatz ausführt</span>
+    <p><b>Ziel:</b> die <b>Stabilisierung oder Wiederherstellung jener Kräfte</b>, die zur
+      Bewältigung der augenblicklichen oder zukünftigen bedrohlichen Situation wichtig sind.</p>
+    <p>Der Patient wird auf ein <b>unangenehmes, belastendes medizinisches Ereignis vorsichtig
+      vorbereitet</b> bzw. dabei unterstützt — im Sinne von
+      <b>„Halte bitte durch, dann wird es schon.“</b></p>
+    <p>Und der Satz, auf den es ankommt: <b>„Fassungsarbeit findet nicht ausschließlich verbal
+      statt!“</b></p>
+    <p class="fr">Le travail de « tenir bon » ne passe pas seulement par les mots.</p>
+  </div>
+
+  <div class="paare">
+    <div class="paar"><span class="de">die Gefühlsarbeit (nur Singular)</span>
+      <span class="frx">le travail émotionnel</span></div>
+    <div class="paar"><span class="de">die Fassungsarbeit (nur Singular)</span>
+      <span class="frx">le travail pour aider quelqu'un à se ressaisir</span></div>
+    <div class="paar"><span class="de">die Fassungslosigkeit (nur Singular)</span>
+      <span class="frx">la stupeur, le fait d'être bouleversé</span></div>
+    <div class="paar"><span class="de">die Selbstkundgabe, -n</span>
+      <span class="frx">la révélation de soi</span></div>
+    <div class="paar"><span class="de">der Appell, -e</span>
+      <span class="frx">l'appel, la demande implicite</span></div>
+    <div class="paar"><span class="de">paraphrasieren</span>
+      <span class="frx">reformuler avec ses propres mots</span></div>
+    <div class="paar"><span class="de">spiegeln</span>
+      <span class="frx">refléter (les émotions de l'autre)</span></div>
+    <div class="paar"><span class="de">die Kongruenz (nur Singular)</span>
+      <span class="frx">la congruence, l'authenticité</span></div>
+    <div class="paar"><span class="de">die Wertschätzung (nur Singular)</span>
+      <span class="frx">l'estime, la considération</span></div>
+    <div class="paar"><span class="de">der Autoritätsgradient, -en</span>
+      <span class="frx">l'écart hiérarchique</span></div>
+    <div class="paar"><span class="de">der Fixierungsfehler, -</span>
+      <span class="frx">l'erreur de fixation (rester bloqué sur une idée)</span></div>
+    <div class="paar"><span class="de">die Fehlerkultur (nur Singular)</span>
+      <span class="frx">la culture de l'erreur</span></div>
+    <div class="paar"><span class="de">der blinde Fleck, -en</span>
+      <span class="frx">l'angle mort (ce que les autres voient et pas moi)</span></div>
+    <div class="paar"><span class="de">die Resilienz (nur Singular)</span>
+      <span class="frx">la résilience</span></div>
+  </div>
+</section>
+
+<section id="fallLos">
+  <h2>Der Fall Frau Los — und der Arbeitsauftrag mit den zehn Fragen</h2>
+
+  <div class="merk">
+    <span class="t">Die Situation, gekürzt — der Wortlaut steht in deiner Datei</span>
+    <p>Frau Los sitzt vormittags auf einem Sessel am Gang. Ihre <b>gebückte Körperhaltung</b>
+      und der <b>starr auf den Boden gerichtete Blick</b> irritieren den Pflegefachmann Thomas.
+      Er <b>bleibt vor ihr stehen — sein Angebot der Kontaktaufnahme</b>. Nach einiger Zeit hebt
+      sie den Kopf. <b>Keiner von beiden sagt etwas.</b> Dann zeigt Frau Los auf den Sessel
+      neben sich; Thomas setzt sich, und sie beginnt zu sprechen.</p>
+    <p>Sie erzählt von ihrem Gedächtnis (<b>„Mein Gedächtnis ist ein Wirrwarr!“</b>), vom
+      <b>Neffen, der sie abholen wollte</b> und nicht kommt, von den Freunden, die sich
+      <b>„verflüchtigt“</b> haben — und davon, dass sie <b>Englisch und Französisch an einer
+      Hochschule unterrichtet</b> hat. <b>„Und dann ist es mit mir bergab gegangen. Mein Gehirn
+      hat ausgelassen. Wieso? — Das ist mir ein Rätsel.“</b></p>
+    <p>Irgendwann bemerkt Thomas, dass sie <b>seine Hand hält</b> — <b>„und dieses Festhalten
+      empfindet Thomas als Auftrag“</b>. Nach einigen Minuten <b>drückt sie die Hand leicht und
+      lässt los</b>, dann <b>nickt</b> sie. Das sind für Thomas die
+      <b>„Fassungszeichen“</b>. Insgesamt hat er <b>eine Stunde</b> mit ihr verbracht.</p>
+    <p class="fr">Une heure. Sans rien « faire ». C'est exactement ce que le cours appelle du
+      <b>travail</b>.</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Warum dieser Fall genau die These 1 beweist</span>
+    <p><b>Thomas hat eine Stunde lang nichts getan, was in einer Dokumentation auftaucht.</b>
+      Keine Maßnahme, kein Handgriff, kein Wert. Er hat <b>dagestanden, sich gesetzt, zugehört
+      und eine Hand gehalten</b>.</p>
+    <p>Genau das meint der Satz <b>„Gefühlsarbeit gilt als Nichtleistung“</b>. Der Fall ist so
+      geschrieben, dass man es nicht übersehen kann — <b>und die letzte Frage des
+      Arbeitsauftrags verlangt, dass du das bewertest</b>.</p>
+  </div>
+
+  <h3>Die zehn Fragen — im Wortlaut, und keine ist beantwortet</h3>
+  <ol>
+    <li><b>Lesen</b> Sie das Fallbeispiel.</li>
+    <li><b>Nennen</b> Sie die für den Fall relevanten <b>Ressourcen</b>, über die Frau Los
+      verfügt.</li>
+    <li><b>Beschreiben</b> Sie die Auffälligkeiten, die Frau Los im Rahmen der
+      <b>nonverbalen Kommunikation</b> zeigt.</li>
+    <li><b>Formulieren</b> Sie, in welchem <b>emotionalen Zustand</b> sich Frau Los befindet.</li>
+    <li><b>Erklären</b> Sie die <b>kommunikativen Signale</b>, die Frau Los zu Beginn
+      sendet.</li>
+    <li><b>Formulieren</b> Sie, welches <b>übergeordnete Pflegeziel</b> Thomas verfolgt.</li>
+    <li><b>Beschreiben</b> Sie, welchem <b>menschlichen Grundbedürfnis</b> er damit nachkommen
+      möchte.</li>
+    <li><b>Beschreiben</b> Sie, <b>auf welche Art und Weise</b> Thomas Gefühlsarbeit leistet.</li>
+    <li><b>Erläutern</b> Sie die Signale am Ende, die zeigen, dass Frau Los fertig ist.</li>
+    <li><b>Bewerten</b> Sie, ob hier eine <b>gelungene Gefühlsarbeit</b> geleistet wurde.
+      <b>Begründen</b> Sie Ihre Aussage.</li>
+  </ol>
+
+  <div class="warnung">
+    <span class="t">Die Datei heißt „Erwartungshorizont“ — enthält aber keine Antworten</span>
+    <p>Oben auf dem Blatt steht <b>„Erwartungshorizont“</b>. Darunter folgen nur die zehn
+      Fragen. <b>Die erwarteten Antworten stehen nicht darin.</b> Entweder wurden sie mündlich
+      besprochen, oder das Blatt ist unvollständig. <b>Ich habe nichts ergänzt.</b></p>
+    <p><b>Aber sieh dir die Operatoren an:</b> <i>Nennen</i> (AFB I) → <i>Beschreiben</i> (I) →
+      <i>Erklären</i> → <i>Erläutern</i> (II) → <b><i>Bewerten</i> mit Begründung (III)</b>.
+      Das ist <b>exakt die Struktur deiner Pflegeklausuren</b> — aufsteigend, und die letzte
+      Frage ist die teuerste.</p>
+    <p>Bei Frage 10 gilt deshalb die Regel von deiner Lesen-Seite: erst die <b>Einschätzung</b>,
+      dann die <b>Kette</b> — <i>Ursache → Wirkung → Gefahr → deshalb</i>. Nicht nur „ja, das
+      war gut“.</p>
+    <p class="fr">La feuille s'appelle « corrigé » mais ne contient que les questions. Écris tes
+      réponses et envoie-les.</p>
+  </div>
+</section>
+
+<section id="notfall">
+  <h2>Kommunikation in Notfallsituationen</h2>
+  <p class="lead"><b>CE 06 / UE 1 und 2.</b> Hier geht es nicht mehr um den Patienten, sondern
+    um das <b>Team</b>.</p>
+
+  <div class="gefahr">
+    <span class="t">Drei Zahlen, die den ganzen Block begründen</span>
+    <p><b>80–90 % der Behandlungsfehler in Notfallsituationen</b> lassen sich auf
+      <b>menschliche Faktoren</b> zurückführen (St. Pierre et al. 2020, S. 6).</p>
+    <p><b>Jeder dritte Fehler auf Intensivstationen</b> ist durch <b>mangelhafte
+      Kommunikation</b> bedingt (Gireud et al. 1993, zitiert aus Stemmler 2017).</p>
+    <p>Im Gesundheitswesen ist das Risiko, <b>Mobbingopfer</b> zu werden, <b>7-mal höher</b> als
+      in anderen Berufszweigen (Tewes 2015).</p>
+    <p class="fr">80 à 90 % des erreurs en urgence viennent du facteur humain. Un tiers des
+      erreurs en réanimation vient d'un problème de communication.</p>
+  </div>
+
+  <h3>Die fünf Basics</h3>
+  <ul>
+    <li>Kommunikation findet <b>immer mehrdimensional</b> statt</li>
+    <li>Kommunikation ist <b>immer eine wechselseitige Interaktion</b></li>
+    <li><b>Das Umfeld beeinflusst das Verständnis</b> einer Nachricht</li>
+    <li>Die <b>nonverbale Kommunikation unterstreicht das verbal Gesagte</b></li>
+    <li>Durch die <b>unterschiedlichen Perspektiven</b> kommt es schnell zu
+      Missverständnissen</li>
+  </ul>
+
+  <h3>Die acht Hindernisse</h3>
+  <p><b>Stress</b> · <b>Fixierungsfehler</b> · <b>Autoritätsgradient</b> ·
+    <b>Human Factors</b> · <b>Umgebungsfaktoren</b> · <b>Teamdynamik</b> ·
+    <b>technisiertes Handlungsfeld</b> · <b>Patienten-Interaktion</b></p>
+
+  <h3>Stress — akut und chronisch</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Akute Stressfaktoren</th><th>Chronische Stressfaktoren</th></tr></thead>
+      <tbody>
+        <tr><td>Privater Stress · <b>akustische Alarme</b> · Zeitdruck ·
+          <b>Komplexität der Tätigkeit</b> · Müdigkeit · schlechte Teambedingungen ·
+          <b>fachliche Überforderung</b> · <b>unklare Verantwortung und Kompetenzen</b></td>
+          <td>Privater Stress · <b>chronischer Schlafmangel</b> · regelmäßig zu lange
+            Arbeitszeiten · <b>zunehmende Arbeitsverdichtung</b> · zunehmender Leistungsdruck ·
+            <b>mangelnde Unterstützung der Vorgesetzten</b> · <b>mangelhafte Fehlerkultur</b> ·
+            <b>fehlende Kultur im Umgang mit Leid und Tod</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Der Autoritätsgradient — das wichtigste Wort dieses Blocks für dich</span>
+    <p><b>Definition aus der Folie:</b> <b>„Der zu große — oder auch nicht existierende —
+      hierarchische Unterschied zwischen Personen.“</b></p>
+    <p>Die fünf Folgen, die die Folie nennt:</p>
+    <p><b>Zweifel und Bedenken an Therapie und Pflege werden nicht geäußert</b> · geringere
+      eigene Entwicklung durch fehlenden Diskussions- und Handlungsspielraum ·
+      <b>Angst vor Sanktionen oder Mobbing</b> · einseitige Perspektiven auf Therapie und
+      Pflege · <b>höhere Patientengefährdung aufgrund von unangesprochenen Fehlanordnungen oder
+      Pflegefehlern</b>.</p>
+    <p><b>Lies den letzten Punkt noch einmal.</b> Wenn eine Auszubildende eine Fehlanordnung
+      bemerkt und sie nicht anspricht, <b>ist das laut dieser Folie kein Respekt, sondern eine
+      Patientengefährdung</b>. Das ist ein Satz aus deinen eigenen Unterlagen, auf den du dich
+      berufen kannst.</p>
+    <p class="fr">Ne pas oser signaler une erreur, ce n'est pas du respect — c'est une mise en
+      danger. C'est écrit dans <b>tes</b> documents.</p>
+  </div>
+
+  <h3>Human Factors</h3>
+  <p><b>Definition:</b> die <b>psychischen, kognitiven und sozialen Fähigkeiten</b> eines
+    Menschen, die den Umgang mit anderen Menschen und mit dem technischen Umfeld beeinflussen.
+    Dazu zählt das Handout: Umgang mit <b>Entscheidungsfindung</b> · <b>schnelles
+    Auffassungsvermögen bei Veränderungen</b> · Umgang mit Zeitdruck und hohem Stressniveau ·
+    <b>Adaptionsfähigkeit</b> an verschiedene Situationen und Teams ·
+    <b>Selbstreflexion und Grenzwahrnehmung</b>.</p>
+
+  <h3>Die fünf Strategien</h3>
+  <div class="karten">
+    <div class="karte"><h4>Algorithmen</h4>
+      <p>z. B. der <b>BLS-Algorithmus</b>. Das <b>Abarbeiten aller Schritte vermindert, dass
+        etwas vergessen wird</b>.</p></div>
+    <div class="karte"><h4>Akronyme</h4>
+      <p>Anfangsbuchstaben als ein Wort: <b>ABCDE-Schema</b>, <b>H's und HITS</b>,
+        <b>die 5-R-Regel</b>, <b>die 5 W's</b>. Sie dienen als <b>Eselsbrücken</b> und
+        vereinfachen das Abarbeiten.</p></div>
+    <div class="karte"><h4>Closed-Loop-Kommunikation</h4>
+      <p>Verbessert laut Fazit die <b>Anwendungssicherheit einer Intervention</b> und die
+        Kommunikation im Team.</p></div>
+    <div class="karte"><h4>Crisis/Crew Resource Management</h4>
+      <p>Teamkommunikation · <b>strukturierte Entscheidungsfindung im Team</b> ·
+        <b>Teamführung</b> · <b>Rollen- und Aufgabenverteilung</b> · Identifikation von
+        Schwachstellen · <b>Sensibilisieren für Fehler und deren Ursachen</b> ·
+        <b>Trainieren seltener Situationen</b>.</p></div>
+    <div class="karte"><h4>Debriefing</h4>
+      <p>nach der durchlebten Situation.</p></div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Was hier ein Name bleibt — und dein Arbeitsauftrag ist</span>
+    <p>Der Foliensatz sagt ausdrücklich: <b>„Recherchieren Sie bitte zu folgenden Begriffen“</b>
+      — Algorithmen, Akronyme, <b>Closed Loop</b>, <b>CRM</b>, Debriefing. Und weiter:
+      <b>„Machen Sie sich mit dem Begriff des CRM vertraut und beschreiben Sie, was im Rahmen
+      dieses Konzepts zu beachten ist.“</b> Unbekannte Begriffe sollst du <b>bei Novaheal</b>
+      nachschlagen, die <b>Leitsätze des CRM</b> stehen <b>bei ILIAS</b>.</p>
+    <p><b>Also:</b> Was <b>Closed Loop</b> genau bedeutet, was der <b>Fixierungsfehler</b> ist,
+      wofür <b>5 R</b> und <b>FOR-DEC</b> stehen — <b>das erklärt keine deiner Dateien</b>.
+      Genannt werden nur die Namen und, für die CRM-Leitsätze, <b>Rall und Gaba</b>.</p>
+    <p><b>Ich löse das nicht aus dem Gedächtnis auf</b>, denn deine Dozentin nennt zwei
+      bestimmte Quellen. Schlag sie dort nach und schick mir deine Zusammenfassung.</p>
+    <p class="fr">Closed Loop, FOR-DEC, 5 R : seuls les <b>noms</b> sont dans tes documents.
+      Le contenu est sur Novaheal et ILIAS — va le chercher, je corrige ensuite.</p>
+  </div>
+</section>
+
+<section id="selbst">
+  <h2>Selbstreflexion und Resilienz — der Workshop</h2>
+  <p class="lead">Ein eigener Workshop vom <b>18.07.2025</b> mit <b>Michèle Podkowa</b>
+    (Psychologie B.Sc., Empirische Bildungsforschung M.A., systemische Beratung DGSF).</p>
+
+  <h3>Was Selbstreflexion ist — drei Definitionen</h3>
+  <div class="karten">
+    <div class="karte"><h4>Donald Schön</h4>
+      <p>Zwei Arten: <b>Reflection-in-action</b> — Nachdenken über das eigene Tun
+        <b>im Moment</b>. Und <b>Reflection-on-action</b> — <b>nachträgliches</b> Nachdenken
+        über eine Situation.</p></div>
+    <div class="karte"><h4>John Dewey</h4>
+      <p>Reflexion als <b>bewusstes Nachdenken über Erfahrungen</b> zur Weiterentwicklung des
+        eigenen Handelns.</p></div>
+    <div class="karte"><h4>David Boud</h4>
+      <p>Ein Prozess, bei dem Erfahrungen <b>analysiert und bewertet</b> werden, um daraus zu
+        lernen.</p></div>
+  </div>
+
+  <h3>Das Gibbs-Reflexionsmodell — sechs Schritte</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div><h4>Beschreibung</h4>
+      <p>Was ist passiert?</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div><h4>Gefühle</h4>
+      <p>Wie habe ich mich gefühlt?</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div><h4>Bewertung</h4>
+      <p>Was war gut, was war schlecht?</p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div><h4>Analyse</h4>
+      <p>Warum ist es so gelaufen? Welche Faktoren haben eine Rolle gespielt?</p></div></div>
+    <div class="stufe"><span class="nr n2">5</span><div><h4>Schlussfolgerung</h4>
+      <p>Was hätte ich anders machen können?</p></div></div>
+    <div class="stufe"><span class="nr n2">6</span><div><h4>Aktionsplan</h4>
+      <p>Was nehme ich für die Zukunft mit? Wie kann ich mich verbessern?</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Das Beispiel aus dem Workshop</span>
+    <p>Eine Praxisanleiterin sieht, dass eine Auszubildende eine Injektion nicht korrekt
+      vorbereitet hat. <b>Statt sofort zu kritisieren, reflektiert sie:</b></p>
+    <p><b>Beschreibung:</b> Die Schülerin hat das Desinfektionsmittel vergessen. ·
+      <b>Gefühle:</b> Ich war unsicher, wie ich richtig reagiere. ·
+      <b>Bewertung:</b> Es war gut, dass ich ruhig geblieben bin, aber ich hätte anders erklären
+      können. · <b>Analyse:</b> Vielleicht war sie nervös oder hatte es nicht richtig gelernt. ·
+      <b>Schlussfolgerung:</b> Ich sollte ihr eine ruhigere Lernumgebung bieten. ·
+      <b>Aktionsplan:</b> Beim nächsten Mal frage ich gezielt nach, ob alle Schritte klar
+      sind.</p>
+    <p><b>Gibbs ist derselbe Aufbau wie der Pflegeprozess und wie der Vierschritt aus der
+      Ethik</b> — nur auf dich selbst angewendet. Das ist meine Einordnung, aber sie erspart
+      dir, ein viertes Schema zu lernen.</p>
+    <p class="fr">Gibbs, c'est la même structure que le processus de soins — appliquée à
+      toi-même.</p>
+  </div>
+
+  <h3>Das Johari-Fenster — vier Felder</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Feld</th><th>Wem bekannt</th><th>Beispiel</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Öffentlicher Bereich</td><td>mir <b>und</b> anderen</td>
+          <td>alles, was ich offen zeige — Fachwissen, Kommunikation</td></tr>
+        <tr><td class="k">Blinder Fleck</td><td><b>anderen</b>, aber mir nicht</td>
+          <td>was andere an mir bemerken und ich nicht sehe — <b>Nervosität, unbewusste
+            Angewohnheiten</b></td></tr>
+        <tr><td class="k">Verborgener Bereich</td><td><b>mir</b>, anderen nicht</td>
+          <td>Gedanken, Gefühle oder <b>Unsicherheiten, die ich für mich behalte</b></td></tr>
+        <tr><td class="k">Unbekannter Bereich</td><td><b>niemandem</b></td>
+          <td>verborgene <b>Potenziale</b> oder unbewusste Verhaltensweisen</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>Das Feld, das nur durch <b>Feedback</b> kleiner wird, ist der <b>blinde Fleck</b>. Deshalb
+    ist Feedback im Johari-Modell kein Angriff, sondern die einzige verfügbare Information über
+    dieses Feld.</p>
+
+  <h3>Die fünf Bestandteile emotionaler Intelligenz</h3>
+  <p><b>Selbstwahrnehmung</b> (eigene Stärken, Schwächen und Emotionen erkennen) ·
+    <b>Selbstregulation</b> (mit eigenen Emotionen umgehen, um situationsangemessen zu handeln) ·
+    <b>Motivation</b> · <b>Empathie</b> · <b>soziale Kompetenz</b>.</p>
+
+  <h3>Die vier typischen Denkfehler</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Denkfehler</th><th>Was er macht</th><th>Das Beispiel aus dem
+        Workshop</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Bestätigungsfehler</td>
+          <td>Wir suchen nur Informationen, die unsere Meinung bestätigen.</td>
+          <td>„Der Auszubildende ist unmotiviert“ → man sieht nur, wenn er langsam arbeitet,
+            <b>ignoriert aber seine Fortschritte</b>.</td></tr>
+        <tr><td class="k">Negativitätsbias</td>
+          <td>Negative Erlebnisse bleiben stärker im Gedächtnis als positive.</td>
+          <td>Eine <b>fehlerhafte</b> Injektion bleibt stärker im Kopf als <b>viele korrekt
+            ausgeführte</b>.</td></tr>
+        <tr><td class="k">Katastrophendenken</td>
+          <td>Man übertreibt mögliche negative Folgen.</td>
+          <td>„Wenn ich einen Fehler mache, verliere ich den Respekt des Teams.“</td></tr>
+        <tr><td class="k">Personalisierung</td>
+          <td>Man bezieht Dinge zu sehr auf sich selbst.</td>
+          <td>„Der Patient war unzufrieden — ich habe bestimmt etwas falsch gemacht.“</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Warum ich diese Tabelle für dich hervorhebe</span>
+    <p>Der <b>Negativitätsbias</b> und das <b>Katastrophendenken</b> sind genau die Muster, die
+      beim Lernen in einer Fremdsprache am meisten schaden: <b>Eine misslungene Formulierung
+      bleibt im Kopf, hundert gelungene nicht.</b></p>
+    <p><b>Das ist meine Anwendung</b>, der Workshop spricht von Pflegesituationen. Aber der
+      Mechanismus ist derselbe — und ihn zu benennen ist der erste Schritt, den der Workshop
+      unter <b>Emotionsregulation</b> nennt: <b>Gefühle erkennen und benennen</b> ·
+      <b>Distanz schaffen</b> — Emotionen sind vorübergehend · <b>Perspektivwechsel:</b> Wie
+      würde eine neutrale Person die Situation sehen? · <b>konstruktiv statt defensiv
+      reflektieren — Fehler als Lernchance</b>.</p>
+    <p class="fr">Une phrase ratée reste en tête, cent réussies non. C'est le biais de
+      négativité — le nommer, c'est déjà le désamorcer.</p>
+  </div>
+
+  <h3>Somatische Marker und Resilienz</h3>
+  <p><b>Somatische Marker</b> sind <b>körperliche Reaktionen, die unser Gehirn mit bestimmten
+    Erfahrungen oder Entscheidungen verknüpft</b> — ein <b>biologisches Bewertungssystem, das
+    durch Erfahrung entsteht</b>. Sie helfen, <b>schneller und sicherer</b> zu entscheiden,
+    müssen aber <b>bewusst wahrgenommen und hinterfragt</b> werden, um Fehleinschätzungen zu
+    vermeiden.</p>
+  <p>Beispiele aus dem Workshop: <b>ein ungutes Bauchgefühl</b>, wenn eine Vitalwertveränderung
+    übersehen wurde · <b>Nervosität</b> vor einem schwierigen Gespräch · <b>Erleichterung</b>,
+    wenn eine Entscheidung sich als richtig erwiesen hat.</p>
+  <p><b>Resilienz</b> ist die <b>„Fähigkeit, sich an stressige, besonders belastende oder
+    schwierige Situationen anzupassen, sie zu bewältigen und gestärkt aus ihnen
+    herauszugehen“</b> (M. Rolfe, 2019). Zu <b>Stress</b> sagt der Workshop: Die Körperreaktion
+    <b>darf kein Dauerzustand sein</b> — es muss <b>unbedingt eine Entspannungs- und
+    Regenerationsphase</b> folgen, sonst macht Dauerstress krank (<b>Burnout, Depression,
+    Herz-Kreislauf-Erkrankungen</b>).</p>
+</section>
+
+<section id="offen">
+  <h2>Was fehlt — und was du noch schuldest</h2>
+
+  <div class="warnung">
+    <span class="t">Drei Inhalte, die nur als Namen dastehen</span>
+    <p><b>1. Die fünf Axiome nach Watzlawick</b> — Inhalt in <b>Pflege Heute 39.2.1,
+      S. 1205–1206</b>, nicht im Ordner. Dozentin: <i>„Nutzen Sie ausschließlich die angegebene
+      Literatur!“</i></p>
+    <p><b>2. Closed Loop, CRM-Leitsätze nach Rall und Gaba, Fixierungsfehler, FOR-DEC,
+      5 R, H's und HITS</b> — Recherche bei <b>Novaheal</b> und <b>ILIAS</b>, ebenfalls nicht
+      im Ordner.</p>
+    <p><b>3. Die vier Fragen „Was hören wir, wenn …“</b> zu den überentwickelten Ohren — die
+      Folie fragt, antwortet nicht.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Alle Übungen sind unbearbeitet</span>
+    <p>Die fünf Ohr-Zuordnungen · die vier Äußerungsanalysen · der Fall <b>Herr Vage</b> · der
+      Fall <b>Frau Fogel</b> · die zehn Fragen zu <b>Frau Los</b> · die acht Sätze der
+      Spiegelübung · die schreibbasierte Reflexion (½–1 Seite) · das Arbeitsblatt
+      <b>„Kraftbaum“</b> und die drei <b>Werte-Arbeitsblätter</b> — <b>keines dieser
+      Arbeitsblätter liegt im Ordner</b>, nur ihre Namen in den Folien.</p>
+    <p>Die Datei zum Fall Frau Los heißt <b>„Erwartungshorizont“</b>, enthält aber
+      <b>nur die Fragen</b>.</p>
+    <p class="fr">Rien n'est corrigé. Écris tes réponses — c'est le seul moyen que je puisse
+      corriger.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Brücken zu deinen anderen Seiten</span>
+    <p><b>Psychiatrische Pflege:</b> <b>Deeskalation und Rapport</b> bauen auf denselben drei
+      Rogers-Haltungen auf; die <b>vier Angstgrade nach Peplau</b> sagen dir, ab wann Erklären
+      sinnlos wird.</p>
+    <p><b>Verantwortliches Pflegehandeln:</b> Der <b>Autoritätsgradient</b> ist die
+      Systemerklärung für den Fall <b>Ernst und Paul</b> — warum jemand schweigt, obwohl er
+      etwas bemerkt hat.</p>
+    <p><b>Menschen mit Behinderung:</b> <b>„Nichts über uns ohne uns“</b> ist derselbe Gedanke
+      wie Rogers' Grundfrage.</p>
+    <p><b>Rehabilitation:</b> In <b>Phase 4</b> nach Schaeffer/Moers fühlen sich die Erkrankten
+      <b>bagatellisiert</b> — das ist eine Beschreibung von <b>fehlendem aktivem
+      Zuhören</b>.</p>
+    <p><b>Notfälle &amp; Reanimation:</b> Die Algorithmen und Akronyme dort sind genau die
+      Strategien, die dieser Block aus der <b>Kommunikationsperspektive</b> erklärt.</p>
+  </div>
+</section>
+
+<details class="quelle">
+  <summary>Die zehn Quellen — jede einzeln genannt</summary>
+  <div class="inh">
+    <ul>
+      <li><b>Kommunikationsmodelle..pdf</b> — Foliensatz <b>CE 03: Pflegeerfahrungen
+        reflektieren – verständigungsorientiert kommunizieren</b>, <b>Rütten-Sieben M.A.,
+        2022</b>. Trägt den ersten Teil der Seite: Sender-Empfänger, Eisberg, Schulz von Thun,
+        Watzlawick, Rogers, aktives Zuhören und die Spiegelübung.</li>
+      <li><b>Uebung Schulz von Thun..pdf</b> — Übungsblatt <b>CE 03 / UE 2</b> mit den fünf
+        Ohr-Zuordnungen, vier Äußerungsanalysen und den Fällen <b>Herr Vage</b> und
+        <b>Frau Fogel</b>. Unbearbeitet.</li>
+      <li><b>Gefuehlsarbeit PF.pdf</b> — Foliensatz <b>CE 06 / UE 1</b>: Definition nach
+        Strauss und Dunkel, These 1 und 2, die Typen der Gefühlsarbeit und die Ziele der
+        Fassungsarbeit. Nennt als Quelle Srocke (2007) und Neumann-Ponesch/Höller (2011).</li>
+      <li><b>Fallbeispiel - Gefuehlsarbeit.pdf</b> — der Fall <b>Frau Los</b>, aus
+        S. Neumann-Ponesch, A. Höller (2011): <i>Es besteht freie Wahlmöglichkeit! Gefühlsarbeit
+        in Pflege und Betreuung</i>, Springer.</li>
+      <li><b>Arbeitsauftrag zum Fallbeispiel - Gefuehlsarbeit.pdf</b> — die zehn Fragen.
+        Überschrieben mit <b>„Erwartungshorizont“</b>, <b>enthält aber keine Antworten</b>.</li>
+      <li><b>Kommunikation in Notfallsituationen (1).pdf</b> — Foliensatz <b>CE 06 / UE 1 und
+        2</b>: Hindernisse, Autoritätsgradient, Human Factors, Strategien, CRM.</li>
+      <li><b>Handout Kommunikation in Notfallsituationen.pdf</b> — dasselbe als Handout, mit
+        den ausführlicheren Listen zu Human Factors und Akronymen.</li>
+      <li><b>Praesentation_Selbstreflexion_18.07.2025.pdf</b> — Workshop <b>Selbstreflexion und
+        Resilienz</b>, <b>Michèle Podkowa</b>: Gibbs, Johari, emotionale Intelligenz,
+        Denkfehler, somatische Marker, Ressourcen, Werte, Stress und Resilienz.</li>
+      <li><b>Arbeitsblatt_Uebung Selbstreflexion.pdf</b> — das zugehörige Übungsblatt.</li>
+      <li><b>Artikel_Gefuehlsarbeit in Pflege und Betreuung.pdf</b> — der Hintergrundartikel zum
+        Buch von Neumann-Ponesch und Höller.</li>
+    </ul>
+    <p>Alle aus deinem Google-Drive-Ordner, geteilt am 18.09.2026.</p>
+    <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> die Kette zum Klingel-Beispiel und
+      ihre Verbindung zur Sturzprophylaxe · der Hinweis, dass die letzten drei Sätze der
+      Spiegelübung in den Bereich der <b>Suizidalität</b> gehören · die Einordnung von
+      <b>Gibbs</b> als derselbe Aufbau wie der Pflegeprozess · die Anwendung des
+      <b>Negativitätsbias</b> auf das Sprachenlernen · der Hinweis auf die
+      <b>Operatorenfolge</b> im Arbeitsauftrag zu Frau Los · und alle Brücken zu deinen anderen
+      Zusammenfassungen.</p>
+    <p><b>Was ich bewusst NICHT ergänzt habe:</b> den Inhalt der fünf Axiome, die Bedeutung von
+      Closed Loop, CRM-Leitsätzen, Fixierungsfehler, FOR-DEC und 5 R, und die Antworten auf die
+      vier Ohren-Fragen. Zu allem davon verweisen deine Dozenten auf bestimmte Quellen, die
+      nicht im Ordner liegen.</p>
+    <p>Die französischen Zeilen und die Vokabelübersetzungen sind von mir ergänzt.</p>
+  </div>
+</details>
+
+</main>
+
+<footer>
+  <p>Kommunikation, Gefühlsarbeit und Selbstreflexion · CE 03 und CE 06 — gebaut aus deinen
+    eigenen Unterlagen.<br>
+    Wo etwas fehlt, nur als Name dasteht oder von mir stammt, steht es oben ausdrücklich dabei.</p>
+</footer>
