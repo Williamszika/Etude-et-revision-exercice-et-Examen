@@ -1151,10 +1151,60 @@ hat sie beim nächsten Öffnen. Neu gebaut wird die App nur, wenn sich `app/` ä
 
 | | |
 |---|---|
-| Gerüst | Flutter 3.47.4, Dart 3.13.3, nur Android |
-| Prüfen | `cd app && flutter analyze && flutter test` — 14 Tests auf `logik/zyklus.dart` |
-| Bauen | `flutter build apk --release --split-per-abi` (arm64 ≈ 17 MB) |
+| Gerüst | Flutter 3.47.5, Dart 3.13.4, nur Android |
+| Prüfen | `cd app && flutter analyze && flutter test` — **38 Tests**, davon 24 auf `logik/zyklus.dart` |
+| Bauen | `flutter build apk --release --split-per-abi` (arm64 ≈ 18 MB) |
 | Ohne Flutter | `.github/workflows/app-bauen.yml` → Actions → App bauen → Artifacts |
+
+#### Flutter im Sitzungscontainer installieren — geht, dauert ~10 Minuten
+
+**Am 19.09.2026 auf ihren Wunsch gemacht:** *„installe flotter dans ce centenaire."* Vorher hieß
+es in mehreren Commits „Flutter ist in diesem Container nicht installiert" und jede App-Änderung
+musste blind gepusht und in der CI geprüft werden. Das ist nicht nötig.
+
+**Der Container ist flüchtig.** Nach dem Sitzungsende ist die Installation weg — sie gehört
+**nicht** ins Repo und **nicht** in `.gitignore`. Deshalb steht hier das Rezept, nicht das
+Ergebnis. In einer neuen Sitzung wieder von vorn:
+
+```bash
+# 1. Version holen (nicht raten — die stabile wandert)
+curl -sS https://storage.googleapis.com/flutter_infra_release/releases/releases_linux.json \
+  -o /tmp/fl.json
+python3 -c "import json;d=json.load(open('/tmp/fl.json'));h=d['current_release']['stable'];\
+print([d['base_url']+'/'+r['archive'] for r in d['releases'] \
+if r['hash']==h and r['channel']=='stable'][0])"
+
+# 2. Entpacken (1,5 GB Download, ~4 GB entpackt — Platz vorher mit df prüfen)
+mkdir -p /opt/flutter-dl && curl -sSL <URL> -o /opt/flutter-dl/flutter.tar.xz
+cd /opt && tar xf /opt/flutter-dl/flutter.tar.xz && rm /opt/flutter-dl/flutter.tar.xz
+
+# 3. Git-Warnung abstellen, sonst bricht jeder flutter-Befehl ab
+git config --global --add safe.directory /opt/flutter
+
+# 4. Umgebung — das Android SDK liegt schon da, es muss nur verdrahtet werden
+export PATH="/opt/flutter/bin:$PATH" ANDROID_HOME=/opt/android ANDROID_SDK_ROOT=/opt/android
+flutter config --android-sdk /opt/android
+```
+
+**Was der Container schon mitbringt:** `/opt/android` mit Build-Tools 35 und 36, Platforms
+android-35 und android-36, NDK und Platform-Tools · **JDK 21**. Ein Android-SDK muss also
+**nicht** heruntergeladen werden — `flutter doctor` findet es nur nicht von allein, weil
+`ANDROID_HOME` nicht gesetzt ist.
+
+**Zwei Meldungen, die kein Fehler sind** und nicht „behoben" werden dürfen:
+
+- *„Woah! You appear to be trying to run flutter as root."* — im Container läuft alles als root.
+  Nur eine Warnung, kein Abbruch.
+- *„Caught exception: Already watching path: …/app/android"* beim Gradle-Lauf. Der Build geht
+  danach normal zu Ende und schreibt die APK.
+
+**Was hier nicht geht:** `flutter build ios` (braucht macOS — dafür ist der `iphone`-Job in der
+CI da) · Chrome fürs Web · GTK für Linux-Desktop. Alles drei ist für dieses Projekt egal, die
+App ist reines Android.
+
+**Und die CI bleibt trotzdem der Maßstab.** Sie baut auf `ubuntu-latest` mit **JDK 17** und
+`channel: stable` über `subosito/flutter-action`, der Container hier mit JDK 21 und einer von
+Hand geholten Version. Läuft etwas lokal grün und in der CI rot, gewinnt die CI.
 
 **Was die App kann und die Webseite nicht:** offline weiterlaufen · die **deutsche Stimme
 des Telefons** für Diktat, Vorlesen und Aussprache (kein Guthaben, kein Konto, kein Netz) ·
