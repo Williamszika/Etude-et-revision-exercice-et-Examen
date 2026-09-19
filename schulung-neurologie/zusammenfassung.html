@@ -1,0 +1,962 @@
+<title>Wenn die Leitung unterbrochen ist</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#4a3d8f;--accent-deep:#372c70;--accent-soft:#e6e3f5;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#a79ee0;--accent-deep:#c0b8ee;--accent-soft:#221d3a;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#a79ee0;--accent-deep:#c0b8ee;--accent-soft:#221d3a;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#4a3d8f;--accent-deep:#372c70;--accent-soft:#e6e3f5;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 07 / UE 03 und UE 04 · Neurologie</p>
+  <h1>Wenn die Leitung unterbrochen ist</h1>
+  <p class="sub">Multiple Sklerose und die pflegerischen Besonderheiten bei neurologischen
+    Defiziten — Neglect, Hemiplegie, die Schulter, die aus der Pfanne rutscht.</p>
+  <div class="meta">
+    <span>CE 07 / UE 03 · UE 04</span>
+    <span>Pflege Heute Kap. 37.13.1</span>
+    <span>4 Quellen</span>
+    <span>Niveau B1</span>
+    <span>Stand 19.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#anschluss">Anschluss an die Anatomie</a>
+  <a href="#ms">Multiple Sklerose</a>
+  <a href="#schub">Was ein Schub ist</a>
+  <a href="#symptome">Die Symptome</a>
+  <a href="#verlauf">Die vier Verlaufsformen</a>
+  <a href="#diagnostik">Diagnostik</a>
+  <a href="#therapie">Therapie</a>
+  <a href="#cortison">Exkurs Cortison</a>
+  <a href="#neglect">Neglect und Pusher</a>
+  <a href="#plegie">Plegien und Paresen</a>
+  <a href="#schulter">Die Schulter</a>
+  <a href="#lumbal">Lumbalpunktion</a>
+  <a href="#sht">Leichtes SHT</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="anschluss">
+  <h2>Warum diese Seite direkt an die Anatomie anschließt</h2>
+  <p class="lead">Du hast das Neuron schon gelernt. Hier siehst du, was passiert, wenn es
+    kaputtgeht.</p>
+
+  <div class="merk">
+    <span class="t">Die eine Verbindung, die du dir merken musst</span>
+    <p>In deiner Zusammenfassung <b>Die Organe und das Nervensystem</b> steht die
+      <b>saltatorische Erregungsleitung</b>: Der Reiz springt von einem Schnürring zum nächsten,
+      <b>weil die Markscheide dazwischen isoliert</b>. Das macht die Leitung schnell.</p>
+    <p>Multiple Sklerose zerstört <b>genau diese Markscheiden</b>. Ergebnis:
+      <b>verlangsamte oder keine Reizleitung</b>. Alle Symptome der MS kommen von diesem einen
+      Satz.</p>
+    <p class="fr">Tu as déjà appris la gaine de myéline. La SEP la détruit — tout le reste en
+      découle.</p>
+  </div>
+
+  <p>Der Foliensatz <b>Multiple Sklerose</b> (CE 07 / UE 03) hat dafür sogar eine eigene Folie mit
+    dem Titel <b>„Wiederholung Erregungsleitung“</b>. Das ist kein Zufall: Deine Dozentin baut die
+    Krankheit auf der Physiologie auf. Wer die Erregungsleitung kann, kann die MS erklären.</p>
+</section>
+
+<section id="ms">
+  <h2>Multiple Sklerose — die Krankheit mit den 1.000 Gesichtern</h2>
+
+  <div class="merk">
+    <span class="t">Die Definition, wörtlich aus dem Foliensatz</span>
+    <p>„<b>Chronisch fortschreitende</b>, meist <b>schubweise verlaufende</b>,
+      <b>entzündliche Erkrankung des zentralen Nervensystems</b>.“</p>
+    <p>Vier Wörter, vier Prüfungspunkte: <b>chronisch</b> · <b>schubweise</b> ·
+      <b>entzündlich</b> · <b>ZNS</b>.</p>
+  </div>
+
+  <h3>Die Namen</h3>
+  <div class="karten">
+    <div class="karte"><h4>MS</h4><p>die gebräuchliche Abkürzung</p></div>
+    <div class="karte"><h4>Encephalomyelitis disseminata</h4>
+      <p>der medizinische Name: <i>Encephalo-</i> Gehirn, <i>-myelitis</i> Entzündung des
+        Rückenmarks, <i>disseminata</i> verstreut</p></div>
+    <div class="karte"><h4>„Krankheit mit den 1.000 Gesichtern“</h4>
+      <p>weil die Symptome davon abhängen, <b>welche ZNS-Region</b> betroffen ist</p></div>
+  </div>
+
+  <h3>Ursachen — und hier steht ausdrücklich: unbekannt</h3>
+  <div class="warnung">
+    <span class="t">Der Satz, den man beim Abschreiben oft weglässt</span>
+    <p>Die Folie nennt drei vermutete Zusammenhänge — <b>genetische Veränderung des
+      Gerinnungsfaktors XII</b>, das <b>Epstein-Barr-Virus</b> (Kreuzreaktion) und
+      <b>Vitamin-D-Mangel</b> — und schreibt darunter:</p>
+    <p>„<b>Zu keiner vermuteten Ursache gibt es einen belastbaren Beweis.</b>“</p>
+    <p>Wenn du in einer Klausur nach der Ursache gefragt wirst, ist die richtige Antwort also
+      <b>„unbekannt“</b> — und danach die drei Vermutungen. Nicht umgekehrt.</p>
+    <p class="fr">La cause est <b>inconnue</b>. Les trois hypothèses viennent après, jamais à la
+      place.</p>
+  </div>
+
+  <h3>Risikofaktoren</h3>
+  <ul>
+    <li><b>Rauchen</b></li>
+    <li><b>Genetische Prädisposition:</b> Autoimmunerkrankungen in der Familie</li>
+    <li><b>Epstein-Barr-Virus-Infekt im Kindesalter</b></li>
+  </ul>
+
+  <h3>Epidemiologie — die Zahlen aus dem Foliensatz</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Was</th><th>Zahl</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Erkrankungsalter</td><td>zwischen dem <b>20. und 40. Lebensjahr</b>;
+          selten im Kindesalter</td></tr>
+        <tr><td class="k">Weltweit</td><td><b>2 Millionen</b> Betroffene</td></tr>
+        <tr><td class="k">Deutschland</td><td>ca. <b>130.000</b> Betroffene</td></tr>
+        <tr><td class="k">Frauen</td><td><b>3× häufiger</b> als Männer</td></tr>
+        <tr><td class="k">Raucher</td><td><b>1,5× häufiger</b></td></tr>
+        <tr><td class="k">Geografie</td><td><b>nördliche Breitengrade häufiger</b> als der
+          globale Süden</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Pathophysiologie — die Kette in der richtigen Reihenfolge</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Helferzellen zeigen den T-Lymphozyten das Myelin an</h4>
+      <p>Das körpereigene Myelin wird als fremd markiert — das ist der Autoimmun-Anteil.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Entzündungsreaktion am Axon</h4>
+      <p><b>Herdartige</b> Entzündung — nicht überall gleichzeitig, sondern in einzelnen
+        Herden. Daher <i>disseminata</i>.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Zerstörung der Markscheiden — Demyelinisierung</h4>
+      <p>Kann <b>das gesamte ZNS</b> betreffen.</p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div>
+      <h4>Verlangsamte oder keine Reizleitung</h4>
+      <p>Das ist der Moment, in dem aus der Zellschädigung ein <b>Symptom</b> wird.</p></div></div>
+    <div class="stufe"><span class="nr n2">5</span><div>
+      <h4>Teilweise Zerstörung der Blut-Hirn-Schranke</h4>
+      <p>Folge: <b>höhere Gefahr für ZNS-Infekte</b>. Die Läsionen sind im CT sichtbar.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">So sieht eine AFB-III-Antwort dazu aus</span>
+    <p><b>Ursache:</b> Das Immunsystem greift die Markscheiden an. →
+      <b>Wirkung:</b> Die Reizleitung wird langsamer oder fällt aus. →
+      <b>Gefahr:</b> Je nach betroffener Region fallen Sehen, Gehen, Blasenkontrolle oder
+      Sprechen aus, und die geschädigte Blut-Hirn-Schranke lässt Erreger ins ZNS. →
+      <b>Deshalb:</b> beobachte ich gezielt Sehstörungen, Gangbild und Miktion und melde jede
+      neue Auffälligkeit, die <b>länger als 24 Stunden</b> anhält.</p>
+    <p class="fr">Cause → effet → danger → donc je fais X. C'est la chaîne exigée en AFB III.</p>
+  </div>
+</section>
+
+<section id="schub">
+  <h2>Was genau ein Schub ist — drei Bedingungen</h2>
+  <p class="lead">Das ist eine Definitionsfrage, wie sie in einer Klausur gestellt wird.</p>
+
+  <div class="karten">
+    <div class="karte"><h4>1 · Neurologische Ausfälle</h4>
+      <p>Es muss ein <b>Ausfall</b> sein, keine Müdigkeit.</p></div>
+    <div class="karte"><h4>2 · Länger als 24 Stunden</h4>
+      <p>Kürzer ist kein Schub.</p></div>
+    <div class="karte"><h4>3 · Kein anderer Auslöser</h4>
+      <p>Zum Beispiel <b>kein Infekt</b>, der die Symptome erklärt.</p></div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Die Regel, die man leicht übersieht</span>
+    <p>„<b>Innerhalb von 30 Tagen erneut auftretende Symptome — kein neuer Schub.</b>“</p>
+    <p>Zwischen den Schüben liegen die <b>Remissionsphasen</b>.</p>
+  </div>
+</section>
+
+<section id="symptome">
+  <h2>Die Symptome — immer abhängig von der betroffenen Region</h2>
+
+  <div class="merk">
+    <span class="t">Der Satz vor allen Symptomen</span>
+    <p>„Immer <b>abhängig von der betroffenen ZNS-Region</b>. Viele <b>heterogene</b>
+      Symptome.“</p>
+    <p>Häufig betroffen: <b>Hirnstamm · Kleinhirn · Rückenmark · Sehnerv</b>.</p>
+  </div>
+
+  <h3>Früh und spät</h3>
+  <div class="paare">
+    <div class="paar"><span class="de">Frühsymptome</span>
+      <span class="frx">Sehstörungen · Blasenentleerungsstörungen ·
+        Parästhesien und Sensibilitätsstörungen („Ameisenlaufen“)</span></div>
+    <div class="paar"><span class="de">Spätsymptome</span>
+      <span class="frx">Koordinationsstörungen · Plegien und Paresen · Schmerzen ·
+        Sprach- und Sprechstörungen</span></div>
+  </div>
+
+  <h3>Nach Systemen geordnet</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Bereich</th><th>Was der Foliensatz nennt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Augen</td>
+          <td><b>Sehnerventzündung</b> — <b>Erstsymptom bei 30 %</b> der MS-Patienten,
+            meist <b>nur ein Auge</b>. Schleierbildung, verschwommene Sicht, Visusminderung;
+            <b>Doppelbilder</b> bei Augenmuskelparese.</td></tr>
+        <tr><td class="k">Sensibilität</td>
+          <td><b>Vibrations- und Lagesinn</b> besonders häufig betroffen, kribbelnde
+            Parästhesien. In der Spätphase <b>neuralgische Schmerzen</b> und
+            <b>Trigeminusneuralgie</b>.</td></tr>
+        <tr><td class="k">Miktion</td>
+          <td><b>75 %</b> betroffen. Inkontinenz <b>schon bei kleinen Harnmengen</b> bis zum
+            völligen unwillkürlichen Harnverlust — oder umgekehrt <b>Harnverhalt</b>.</td></tr>
+        <tr><td class="k">Motorik</td>
+          <td><b>Spastiken</b>, Mono-, Hemi-, Quattro- und Tetraparese,
+            <b>tageszeitlich schwankend</b>. Spätphase: <b>Dysarthrie</b> (Sprechstörung) und
+            <b>Dysphagie</b> (Schluckstörung). Folgen: <b>Kontrakturen, Skoliose,
+            Schmerzen</b>.</td></tr>
+        <tr><td class="k">Kleinhirn</td>
+          <td><b>Gang-, Rumpf- und Standataxie</b>; überschießende, zu kurze und unflüssige
+            Bewegungsabläufe.</td></tr>
+        <tr><td class="k">Psyche</td>
+          <td><b>über 50 %</b> betroffen: Depressionen, Konzentrations- und
+            Gedächtnisstörungen, in der Spätphase dementielle Veränderungen — und
+            <b>Fatigue, auch unabhängig vom Behinderungsgrad</b>.</td></tr>
+        <tr><td class="k">Sexualität</td>
+          <td>Erektionsstörungen beim Mann, Lubrikationsstörungen bei der Frau.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Zwei Punkte, die in der Pflege den Unterschied machen</span>
+    <p><b>Die Symptome schwanken tageszeitlich.</b> Was eine Patientin morgens konnte, kann sie
+      abends vielleicht nicht mehr. Das ist <b>kein Nachlassen der Mitarbeit</b> — es gehört zur
+      Krankheit. Plane die anstrengenden Dinge dorthin, wo es geht.</p>
+    <p><b>Fatigue ist unabhängig vom Behinderungsgrad.</b> Jemand, der gut läuft, kann trotzdem
+      erschöpft sein. Auch das ist keine Bequemlichkeit.</p>
+    <p class="fr">La fatigue de la SEP n'a rien à voir avec le degré de handicap. Ce n'est pas de
+      la paresse.</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Dysphagie — hier trifft es dein anderes Material</span>
+    <p>Steht <b>Dysphagie</b> in der Symptomliste, ist die <b>Aspirationsprophylaxe</b> das
+      Thema. In deinem Drive-Ordner liegen dazu eigene Blätter
+      (<i>Aspirationsprophylaxe, PH-Auszug</i> und der Arbeitsauftrag dazu) — sie sind
+      <b>noch nicht zusammengefasst</b> und kommen in einem späteren Block.</p>
+  </div>
+
+  <h3>Die Wörter, die du dafür brauchst</h3>
+  <div class="paare">
+    <div class="paar"><span class="de">die Markscheide, -n</span>
+      <span class="frx">la gaine de myéline</span></div>
+    <div class="paar"><span class="de">die Demyelinisierung (nur Singular)</span>
+      <span class="frx">la démyélinisation</span></div>
+    <div class="paar"><span class="de">der Schub, ¨-e</span>
+      <span class="frx">la poussée</span></div>
+    <div class="paar"><span class="de">die Remission, -en</span>
+      <span class="frx">la rémission</span></div>
+    <div class="paar"><span class="de">die Parästhesie, -n</span>
+      <span class="frx">la paresthésie (fourmillements)</span></div>
+    <div class="paar"><span class="de">die Parese, -n / die Plegie, -n</span>
+      <span class="frx">la parésie (paralysie partielle) / la plégie (paralysie complète)</span></div>
+    <div class="paar"><span class="de">die Ataxie, -n</span>
+      <span class="frx">l'ataxie (troubles de la coordination)</span></div>
+    <div class="paar"><span class="de">die Dysarthrie (nur Singular)</span>
+      <span class="frx">la dysarthrie (trouble de l'articulation)</span></div>
+    <div class="paar"><span class="de">die Dysphagie (nur Singular)</span>
+      <span class="frx">la dysphagie (trouble de la déglutition)</span></div>
+    <div class="paar"><span class="de">die Fatigue (nur Singular)</span>
+      <span class="frx">la fatigue pathologique de la SEP</span></div>
+    <div class="paar"><span class="de">die Spastik, -en</span>
+      <span class="frx">la spasticité</span></div>
+    <div class="paar"><span class="de">die Kontraktur, -en</span>
+      <span class="frx">la rétraction, la contracture</span></div>
+  </div>
+</section>
+
+<section id="verlauf">
+  <h2>Die vier Verlaufsformen</h2>
+  <p class="lead">Vier Abkürzungen — und eine davon trifft fast alle.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Form</th><th>Anteil</th><th>Was sie kennzeichnet</th></tr></thead>
+      <tbody>
+        <tr><td class="k">KIS / benigne MS<br>Klinisch-isoliertes Syndrom</td><td>—</td>
+          <td>Einmalige, isolierte Frühsymptome · teilweise Demyelinisierung im CT sichtbar ·
+            weitestgehende Symptomfreiheit · lange Zeiten ohne Progredienz ·
+            <b>Therapie: Beobachten</b></td></tr>
+        <tr><td class="k">RRMS<br>schubförmig, <i>relapsing-remitting</i></td>
+          <td><b>85–90 %</b></td>
+          <td>Einzelne Symptome bilden sich <b>schubweise</b> aus · vollständige oder teilweise
+            Remission · <b>ohne Behandlung durchschnittlich 1,8 Schübe pro Jahr</b></td></tr>
+        <tr><td class="k">SPMS<br>sekundär progredient</td><td>—</td>
+          <td>Anfangs einzelne Schübe, <b>später progredienter Verlauf</b> mit Zunahme der
+            Symptome · <b>Hauptursache: unzureichende Therapie/Schubprophylaxe</b></td></tr>
+        <tr><td class="k">PPMS<br>primär progredient</td><td>ca. <b>10 %</b></td>
+          <td><b>Keine Schübe</b> · von Beginn an progredienter Verlauf ·
+            <b>axonale Schädigung stark ausgeprägt</b>, weniger entzündliches Geschehen</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Der Satz, der eine Begründungsfrage beantwortet</span>
+    <p>Bei der <b>SPMS</b> steht als Hauptursache <b>„unzureichende Therapie/Schubprophylaxe“</b>.
+      Das ist die fertige Begründung dafür, <b>warum die Dauertherapie auch in beschwerdefreien
+      Zeiten weiterlaufen muss</b> — und damit ein Beratungsauftrag der Pflege.</p>
+    <p class="fr">Le traitement continue même quand ça va bien — sinon la forme rémittente
+      devient progressive.</p>
+  </div>
+</section>
+
+<section id="diagnostik">
+  <h2>Diagnostik — vom Verdacht zur Diagnose</h2>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Verfahren</th><th>Was es zeigt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Anamnese</td><td>Episoden und Schübe ·
+          <b>Familienanamnese auf Autoimmunerkrankungen</b></td></tr>
+        <tr><td class="k">Sehtests</td><td>auch <b>differentialdiagnostisch</b></td></tr>
+        <tr><td class="k">EEG</td><td><b>Verlangsamte evozierte Potentiale bei 75 %</b> der
+          MS-Patienten, vor allem die <b>visuell</b> evozierten Potentiale — ein Hinweis auf eine
+          <b>Störung der Reizleitung</b></td></tr>
+        <tr><td class="k">CT (Schädel und HWS)</td><td><b>mit Kontrastmittel</b> · Darstellung
+          der Läsionen · <b>zeigt auch klinisch stumme Herde</b></td></tr>
+        <tr><td class="k">MRT</td><td><b>Goldstandard</b> · keine Strahlenbelastung · bessere
+          Bildqualität</td></tr>
+        <tr><td class="k">Liquoruntersuchung</td><td><b>per Lumbalpunktion</b> · Nachweis
+          <b>erhöhter Immunglobuline</b> · Ausschluss chronisch-entzündlicher ZNS-Infekte
+          (<b>HIV, Neuro-Lues/Syphilis, Borreliose</b>) und anderer demyelinisierender
+          Erkrankungen</td></tr>
+        <tr><td class="k">Optische Kohärenztomographie</td><td>Untersuchung der <b>Netzhaut</b>
+          mit einem Breitband-Laser — lässt Rückschlüsse auf den <b>Sehnerv</b> zu</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Am Ende werden die Ergebnisse in <b>Scores und Schemata</b> zusammengeführt:
+    <b>Multiple Sclerosis Functional Composite Scale</b>, <b>Expanded Disability Status Scale</b>
+    und die <b>McDonald-Kriterien</b>, die laut Foliensatz <b>seit 2001 Goldstandard</b> sind und
+    MRT, Liquoruntersuchung, EEG und Anamnese zusammenführen.</p>
+
+  <div class="warnung">
+    <span class="t">Eine Stelle, die du im Kurs nachfragen solltest</span>
+    <p>Auf der MRT-Folie steht als vierter Punkt <b>„Kein Einsatz von Kontrastmittel“</b> —
+      während auf der CT-Folie ausdrücklich <b>„Mit Kontrastmittel“</b> steht.</p>
+    <p>Ich habe das <b>nicht stillschweigend geändert</b> und auch nichts dazugeschrieben: So
+      steht es in deiner Datei. <b>Frag im Kurs nach</b>, ob damit gemeint ist, dass beim MRT
+      kein <i>jodhaltiges</i> Kontrastmittel nötig ist — das wäre der Vorteil gegenüber dem CT —
+      oder ob es wirklich ganz ohne geht.</p>
+    <p class="fr">Une diapo dit « pas de produit de contraste » pour l'IRM. Demande en cours ce
+      qui est exactement visé — je n'invente pas la réponse.</p>
+  </div>
+</section>
+
+<section id="therapie">
+  <h2>Therapie — vier Stufen, je nach Stadium</h2>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Im Schub</h4>
+      <p><b>Glucocorticoide</b>, konkret <b>Prednisolon 500–1000 mg für 3–5 Tage</b>.
+        Wirkung: <b>Rückgang ödematöser Schwellungen im ZNS</b> und
+        <b>Wiederherstellung der Blut-Hirn-Schranke</b>.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Schubprophylaxe</h4>
+      <p><b>Langzeitcortisontherapie</b> und <b>β-Interferone</b>: Sie greifen
+        <b>tief in die Entzündungskaskade</b> ein und <b>verhindern die Durchlässigkeit der
+        Blut-Hirn-Schranke</b>. <b>Reduzieren die Schübe um 30–40 %</b>.
+        Nebenwirkung: <b>grippeähnliche Symptome</b>.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Eskalation</h4>
+      <p>Bei anhaltenden, nicht kontrollierbaren Schüben: <b>monoklonale Antikörper</b>
+        (z. B. <b>Natalizumab</b>) — <b>Schubkontrolle und -prophylaxe bis zu 70 %</b>, aber
+        <b>seltene, starke, letale Nebenwirkungen</b> möglich; nur bei
+        <b>schwer-aktiven Schüben</b> zugelassen. Außerdem <b>Plasmapherese</b> mit
+        Albuminsubstitution und <b>Chemotherapie</b> (erschwert das Freisetzen der Lymphozyten
+        aus den Lymphknoten; Nebenwirkungen: erhöhte Infektanfälligkeit, Übelkeit,
+        Erbrechen).</p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div>
+      <h4>Symptomatische Therapie</h4>
+      <p><b>Begleitend</b>, teils <b>palliativ</b>, <b>ausgerichtet an den Beschwerden</b>, mit
+        dem Ziel, die <b>Lebensqualität</b> zu verbessern.</p></div></div>
+  </div>
+
+  <h3>Symptomatisch — nicht­medikamentös und medikamentös</h3>
+  <div class="karten">
+    <div class="karte"><h4>Ohne Medikamente</h4>
+      <p><b>Aktivierende Pflege</b> · Physiotherapie · Logopädie · Ergotherapie</p></div>
+    <div class="karte"><h4>Gegen die Spastik</h4>
+      <p><b>Baclofen</b>, <b>Gabapentin</b> (off-label-use) · <b>Nabiximols-Spray</b>
+        (THC + Cannabidiol) · <b>Benzodiazepine nur als ultima ratio</b> ·
+        <b>Botulinum-A-Toxin</b> · <b>Baclofen intrathekal</b></p></div>
+    <div class="karte"><h4>Gegen die Schmerzen</h4>
+      <p><b>Analgesie an den Betroffenen angepasst</b></p></div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Warum die Spasmolyse keine reine Verbesserung ist</span>
+    <p>Der Foliensatz nennt unter „Spasmolyse“ ausdrücklich auch die Kehrseite:
+      <b>Muskelrelaxierung</b> → <b>Verlust der Beweglichkeit</b> →
+      <b>Unfähigkeit zu gehen</b>.</p>
+    <p>Denn die Spastik hält manche Patienten überhaupt erst aufrecht. Wer sie wegnimmt, nimmt
+      unter Umständen auch die Stehfähigkeit. Das ist genau die Art Abwägung, die in einer
+      <b>Beurteilen</b>-Aufgabe verlangt wird.</p>
+    <p class="fr">Enlever la spasticité peut enlever aussi la capacité de tenir debout. C'est une
+      question de pesée, pas d'amélioration automatique.</p>
+  </div>
+
+  <h3>Pflege- und Behandlungsplan</h3>
+  <p>Der Foliensatz verlangt ihn <b>angepasst an Symptomatik und Verlauf</b> — an <b>Symptome</b>,
+    <b>Remission</b> und <b>Schubhäufigkeit</b>, weil die Pflegeanlässe <b>in
+    unterschiedlichster Intensität</b> auftreten. Zwei Sätze daraus gehören direkt in deine
+    Pflegeplanung:</p>
+  <div class="merk">
+    <span class="t">Zwei Vorgaben für deine Pflegeplanung</span>
+    <p>„<b>Pflegeziele stets ressourcenerhaltend formulieren.</b>“ — also nicht „Frau X kann
+      wieder allein gehen“, sondern das, was <b>erhalten</b> werden soll.</p>
+    <p>„<b>Pflegeanamnese unerlässlich.</b>“</p>
+    <p>Beides passt genau auf das, was auf deiner Seite <b>Pflegeplanung in fünf Tagen</b> unter
+      <b>SMART</b> und <b>Nah-/Fernziel</b> steht.</p>
+  </div>
+
+  <p><b>Wichtige Organisationen</b>, die der Foliensatz nennt:
+    <b>Kompetenznetzwerk Multiple Sklerose</b> und
+    <b>Deutsche Multiple Sklerose Gesellschaft (DMSG)</b>.</p>
+</section>
+
+<section id="cortison">
+  <h2>Exkurs Cortison — dreimal dieselbe Substanz, drei Überschriften</h2>
+  <p class="lead">Der Foliensatz widmet dem Cortison drei eigene Folien. Die Überschriften sind
+    schon die Antwort: <b>Wundermittel · Teufelszeug · unverzichtbar</b>.</p>
+
+  <div class="karten">
+    <div class="karte"><h4>Wundermittel</h4>
+      <p><b>Körpereigenes Hormon der Nebennierenrinde</b>. Der Name kommt von
+        <i>Cortex</i> = Rinde. Eigentlich sind es mehrere Steroide, gemeint ist heute vor allem
+        das <b>Cortisol</b>. Synthetische Herstellung möglich.</p>
+      <p>Es <b>löst eine Immunsuppression aus</b>, wirkt <b>schnell — teilweise in Sekunden</b>
+        (je nach Applikationsform) und reduziert <b>indirekt Schwellungen und Ödeme</b> als
+        Entzündungsreaktion.</p></div>
+    <div class="karte"><h4>Teufelszeug</h4>
+      <p><b>Die Cortisolproduktion des Körpers sinkt unter Therapie.</b></p>
+      <p>Bei Langzeiteinnahme: <b>Pergamenthaut</b> · <b>Gewichtszunahme</b> (Hyperglykämie) ·
+        <b>gesteigerte Infektanfälligkeit</b>.</p></div>
+    <div class="karte"><h4>Unverzichtbar</h4>
+      <p><b>Möglichst niedrige Dosis</b> · <b>ausschleichen</b>, teilweise über Wochen ·
+        <b>Einnahme möglichst morgens</b>, weil der körpereigene Spiegel morgens am höchsten ist
+        und <b>Cortisol wach macht</b> · <b>lokal schlägt systemisch</b>, falls möglich ·
+        <b>Blutzuckerkontrollen</b>.</p></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die eine Kette, die du daraus mitnehmen sollst</span>
+    <p><b>Ursache:</b> Unter der Therapie stellt der Körper die eigene Cortisolproduktion
+      herunter. → <b>Wirkung:</b> Die Nebennierenrinde arbeitet nicht mehr auf Anforderung. →
+      <b>Gefahr:</b> Wird das Medikament plötzlich abgesetzt, fehlt das Hormon schlagartig. →
+      <b>Deshalb:</b> wird <b>ausgeschlichen</b>, teilweise über Wochen — und deshalb ist
+      „Ich habe die Tabletten einfach weggelassen“ ein Satz, bei dem du sofort hellhörig wirst.</p>
+    <p class="fr">On ne stoppe jamais la cortisone d'un coup. On la diminue lentement.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Zwei Formulierungen, die ich nicht korrigiert habe</span>
+    <p>Auf der Teufelszeug-Folie steht: „Rasches Absetzen führt zu <b>akutem Nierenversagen</b>
+      und Blutdruckschwankungen.“ Cortisol kommt aus der <b>Nebennierenrinde</b> — das ist ein
+      Organ <i>auf</i> der Niere, aber nicht die Niere selbst. <b>Ob hier die Nebenniere gemeint
+      ist, kann ich nicht aus deinen Unterlagen belegen</b>, deshalb steht es hier unverändert.
+      <b>Frag im Kurs nach.</b></p>
+    <p>Auf der Eskalationsfolie steht „Progressive <b>multifaktorielle</b>
+      Leukenzephalopatie“. In der Fachliteratur heißt diese Erkrankung
+      <b>multifokal</b>. Auch das ist <b>nicht stillschweigend geändert</b> — du sollst die Folie
+      wiedererkennen.</p>
+  </div>
+</section>
+
+<section id="neglect">
+  <h2>Neglect und Pusher-Syndrom</h2>
+  <p class="lead">Aus dem zweiten Foliensatz: <b>Neurologische Defizite und pflegerische
+    Besonderheiten</b>, CE 07 / UE 04. Hier geht es nicht mehr um eine Krankheit, sondern um
+    <b>Defizite</b> — egal, wodurch sie entstanden sind.</p>
+
+  <div class="merk">
+    <span class="t">Neglect — die Definition</span>
+    <p><b>Fehlende Wahrnehmung einer Körperhälfte.</b> Reize, die diese Körperhälfte betreffen,
+      werden <b>ausgeblendet</b> — auch <b>optische und akustische</b> Reize. Im Extremfall kann
+      die betroffene Körperhälfte sogar <b>als Fremdkörper gewertet</b> werden.</p>
+    <p>Die beiden Sätze, die der Foliensatz als Beispiel nennt und die du auf Station hören
+      wirst: <b>„Ich habe alles aufgegessen“</b> oder <b>„Wieso gab es heute nur so
+      wenig?“</b> — gesagt vor einem halb vollen Teller.</p>
+    <p class="fr">Un neglect, ce n'est pas « il ne voit pas ». C'est « pour lui, ce côté
+      n'existe pas ».</p>
+  </div>
+
+  <h3>Pusher-Syndrom</h3>
+  <p>Der Foliensatz schreibt es als „Pusher-Syndorm“ — gemeint ist das <b>Pusher-Syndrom</b>.
+    Es tritt <b>oft als Teil des Neglect</b> auf:</p>
+  <ul>
+    <li>Betroffene <b>schieben den Körper zur betroffenen Seite</b></li>
+    <li>Die <b>empfundene Körpermitte ist nicht die reale Körpermitte</b></li>
+    <li><b>Frühzeitige Intervention kann das Syndrom abmildern</b>: <b>Unterlagern mit Kissen</b>,
+      <b>Keile</b>, <b>schiefe Ebene</b></li>
+  </ul>
+
+  <h3>Assessment: die Catherine-Bergego-Skala (CBS)</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Was</th><th>Wie</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Zweck</td><td>Beurteilung <b>einzelner Bereiche</b></td></tr>
+        <tr><td class="k">Items</td><td><b>10 Items</b> werden abgefragt</td></tr>
+        <tr><td class="k">Punkte</td><td><b>0 bis 3</b> pro Item</td></tr>
+        <tr><td class="k">Auswertung</td><td><b>Je höher die Punktzahl, desto schwerer der
+          Neglect</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warnung">
+    <span class="t">Die Folie stellt eine Frage und beantwortet sie nicht</span>
+    <p>Als letzter Punkt steht dort nur: <b>„Kritik?“</b> — mit Fragezeichen. Die Antwort wurde
+      im Unterricht erarbeitet und steht <b>nicht in der Datei</b>. Ich schreibe hier keine
+      Kritik hin, die nicht aus deinen Unterlagen stammt. <b>Das ist eine offene Frage für
+      dich.</b></p>
+  </div>
+
+  <h3>Die Folgen — und damit die Begründung für alles Weitere</h3>
+  <div class="gefahr">
+    <span class="t">Vier Folgen, die alle zusammenhängen</span>
+    <p>Betroffene <b>nehmen die vernachlässigte Seite nicht wahr</b> und sind
+      <b>überzeugt, alles „normal“ zu können</b>. Daraus folgt:</p>
+    <p><b>Hohes Risiko für Stürze oder Verletzungen</b> · <b>hohes Dekubitusrisiko</b> ·
+      <b>hohe Kontrakturgefahr</b>.</p>
+    <p class="fr">La personne est convaincue qu'elle peut tout faire normalement. C'est de là
+      que viennent les chutes.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die AFB-III-Kette, die du hier schon fertig hast</span>
+    <p><b>Ursache:</b> Der Neglect blendet eine Körperhälfte aus. →
+      <b>Wirkung:</b> Die Betroffene ist überzeugt, alles normal zu können, und bewegt sich
+      entsprechend. → <b>Gefahr:</b> Stürze, Verletzungen, Dekubitus und Kontrakturen, weil die
+      Seite weder bewegt noch entlastet wird. → <b>Deshalb:</b> lenke ich die Reize bei der
+      Körperpflege <b>von der gesunden auf die betroffene Seite</b>, spreche von der gesunden
+      Seite an, beginne Bewegungen über die betroffene Seite — und plane Sturz-, Dekubitus- und
+      Kontrakturprophylaxe von Anfang an mit ein.</p>
+  </div>
+
+  <h3>Was die Pflege konkret tut</h3>
+  <ul>
+    <li><b>Neurophysiologische Ganzkörperwäsche</b> — <b>Reize von der gesunden auf die
+      betroffene Seite lenken</b>. Sie ist <b>Teil der basalen Stimulation</b>.
+      <b>Zeitpunkt, Ausmaß usw. nach Abstimmung mit dem Betroffenen.</b></li>
+    <li><b>Anwendung des Bobath-Konzeptes</b></li>
+    <li>Generell gilt: <b>frühzeitiger Beginn</b>, die Wahrnehmung fördern</li>
+  </ul>
+
+  <div class="warnung">
+    <span class="t">„Wichtig“ — die Folie, die du zweimal lesen solltest</span>
+    <p><b>Betroffene nicht überfordern.</b> Ein <b>schlagartiger „Beweis“</b> einer
+      vernachlässigten Körperhälfte <b>ist nicht möglich</b> — Betroffene <b>ignorieren diese
+      Seite schlicht</b>.</p>
+    <p>Es ist ein <b>schrittweiser, langer Prozess des ganzen Teams</b>, und
+      <b>Unsicherheiten sollen vermieden werden</b>.</p>
+    <p>Und die beiden Sätze, die sich scheinbar widersprechen und es nicht tun:</p>
+    <p><b>Die Ansprache beginnt über die gesunde Seite</b> — sonst kommt sie gar nicht an.
+      <b>Die Bewegung beginnt über die betroffene Seite</b> — genau die soll wieder ins
+      Bewusstsein kommen.</p>
+    <p class="fr">On <b>parle</b> du côté sain. On <b>bouge</b> en commençant par le côté
+      atteint. Ce n'est pas une contradiction.</p>
+  </div>
+</section>
+
+<section id="plegie">
+  <h2>Plegien und Paresen — sechs Regeln für die Mobilisation</h2>
+
+  <div class="karten">
+    <div class="karte"><h4>Grad regelmäßig testen</h4>
+      <p>Der <b>Grad der Parese</b> wird <b>regelmäßig getestet</b> — er ist nicht
+        festgeschrieben.</p></div>
+    <div class="karte"><h4>Die versteckte Falle</h4>
+      <p>Betroffene können beispielsweise <b>den eigenen Arm festhalten</b> — <b>haben dann aber
+        keine Hand mehr frei</b>. Wer das nicht mitdenkt, plant eine Mobilisation, die gar nicht
+        gehen kann.</p></div>
+    <div class="karte"><h4>Flächig, nicht punktuell</h4>
+      <p><b>Flächige Berührungen statt punktueller</b> — das <b>vermeidet die Entstehung von
+        Spastiken</b>.</p></div>
+    <div class="karte"><h4>Nichts in die betroffene Extremität</h4>
+      <p><b>Keine Punktionen, Blutabnahmen oder Infusionen</b> an der betroffenen
+        Extremität.</p></div>
+    <div class="karte"><h4>Kleidung</h4>
+      <p><b>Kleidung darf nicht einschnüren.</b></p></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Warum „flächig statt punktuell“ eine Begründung ist, keine Vorliebe</span>
+    <p>Ein punktueller Reiz an einer gelähmten Extremität kann den Muskeltonus erhöhen. Der
+      Foliensatz sagt die Folge direkt: <b>Es vermeidet die Entstehung von Spastiken.</b>
+      Das ist eine <b>Prophylaxe</b> — mit derselben Logik wie Dekubitus- oder
+      Kontrakturprophylaxe.</p>
+    <p class="fr">Toucher à plat, pas du bout des doigts — c'est une prophylaxie, pas une
+      préférence.</p>
+  </div>
+</section>
+
+<section id="schulter">
+  <h2>Die Schulter bei Hemiplegie — der Teil mit den Händen</h2>
+  <p class="lead">Zwei Probleme, die man verhindern kann, wenn man weiß, woran es liegt.</p>
+
+  <h3>Die schmerzhafte Schulter</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Unphysiologische Bewegung des Arms / falsches Handling</h4>
+      <p>Das ist die Ursache, die der Foliensatz nennt — <b>nicht</b> die Krankheit
+        selbst.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Anfangs nur Schmerzen in Bewegung</h4>
+      <p>Das ist das Fenster, in dem man noch etwas ändern kann.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Später auch Schmerzen in Ruhe</h4>
+      <p>Dann ist es nicht mehr nur ein Handling-Problem.</p></div></div>
+  </div>
+
+  <h3>Die Subluxation</h3>
+  <div class="merk">
+    <span class="t">Der Mechanismus in vier Schritten</span>
+    <p><b>Muskuläre Dysbalance.</b> Bei Gesunden <b>hält der Muskeltonus die Schulter in
+      Position</b>. → <b>Bei Erschlaffung rutscht der Oberarm aus der Gelenkpfanne.</b> →
+      <b>Es entsteht eine tastbare Lücke.</b></p>
+    <p>Diese <b>tastbare Lücke</b> ist dein Befund. Du brauchst kein Gerät dafür — nur die
+      Hand und das Wissen, dass es sie gibt.</p>
+    <p class="fr">Le tonus musculaire maintient l'épaule en place. S'il disparaît, l'humérus
+      glisse — et on sent un creux.</p>
+  </div>
+
+  <h3>Subluxationsprophylaxe — vier Handgriffe</h3>
+  <ul>
+    <li><b>Das Gewicht des Arms übernehmen</b> — <b>Griff oberhalb des Ellbogengelenks</b></li>
+    <li><b>Leichte Außenrotation</b>, den Arm <b>am Körper führen</b></li>
+    <li><b>Beim Liegen wenig Gewicht auf die Schulter</b></li>
+    <li><b>Im Sitzen und Stehen den Arm lagern</b> — <b>viel Unterstützungsfläche</b></li>
+  </ul>
+
+  <div class="gefahr">
+    <span class="t">Der Griff, auf den es ankommt</span>
+    <p><b>Oberhalb des Ellbogengelenks</b> — nicht an der Hand, nicht am Unterarm. Wer den
+      gelähmten Arm an der Hand zieht, hängt das ganze Gewicht an ein Gelenk, das kein
+      Muskeltonus mehr hält. <b>Genau so entsteht die Subluxation, die man verhindern
+      wollte.</b></p>
+    <p class="fr">Jamais tirer par la main. Toujours au-dessus du coude.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Vier Folien in dieser Datei sind reine Bilder</span>
+    <p><b>„Neurophysiologische Ganzkörperwaschung“</b>, <b>„Subluxation — Normalzustand /
+      Subluxation“</b>, <b>„Subluxationsprophylaxe“</b> und <b>„Positionierung auf die betroffene
+      Seite“</b> bestehen nur aus einer Überschrift und einer Abbildung.</p>
+    <p>Das heißt: <b>Die Durchführung selbst — Reihenfolge der Waschung, genaue Positionierung —
+      steht nicht in deiner Datei.</b> Ich schreibe sie nicht aus dem Gedächtnis dazu. Wenn du
+      das Handout oder die Fotos aus dem Unterricht hast, schick sie, dann kommt der Abschnitt
+      hier hinein.</p>
+    <p class="fr">Quatre diapos ne contiennent qu'une image. Je n'écris pas la technique de
+      mémoire — envoie le polycopié.</p>
+  </div>
+</section>
+
+<section id="lumbal">
+  <h2>Die Lumbalpunktion — die Positionierung ist deine Aufgabe</h2>
+  <p class="lead">Die Liquoruntersuchung wird <b>per Lumbalpunktion</b> gewonnen — das steht in
+    der MS-Diagnostik. Wie die Patientin dabei liegt oder sitzt, macht <b>die Pflege</b>.</p>
+
+  <div class="merk">
+    <span class="t">Was auf dem Bild steht — und was nur ich darauf sehe</span>
+    <p><b>Beschriftet</b> ist auf der Abbildung genau eines: die Einstichstelle in der
+      Vergrößerung, zwischen <b>LWK 4</b> und <b>LWK 5</b>.</p>
+    <p><b>Gezeichnet</b> sind zwei Positionen: <b>sitzend</b>, mit rundem Rücken nach vorn
+      gebeugt, den Kopf gesenkt, die Füße auf einem Schemel und die Arme auf den Oberschenkeln —
+      und <b>seitlich liegend</b>, zusammengerollt, mit einem Gurt fixiert.</p>
+    <p>Beide Male ist der Rücken <b>maximal rund</b>. Das ist der ganze Sinn der Position: Die
+      Dornfortsätze gehen auseinander und die Nadel findet den Weg zwischen LWK 4 und LWK 5.</p>
+    <p class="fr">Dos rond au maximum, dans les deux positions. C'est tout l'intérêt.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Die Materialliste ist eine Zuordnungsaufgabe — sie ist unbeschriftet</span>
+    <p>Die Abbildung teilt das Material in zwei Felder: <b>STERIL</b> (Buchstaben <b>a bis g</b>)
+      und <b>UN-STERIL</b> (<b>h bis k</b>). <b>Die Buchstaben tragen keine Namen.</b> Es ist
+      also eine Aufgabe: benennen, was zu welchem Buchstaben gehört.</p>
+    <p>Ich <b>erkenne</b> auf der Zeichnung Tupfer in einer Schale, eine Desinfektionsflasche,
+      eine Pinzette, sterile Handschuhe, Spritzen, eine Punktionsnadel mit Mandrin, eine feine
+      Nadel, Röhrchen und einen Mund-Nasen-Schutz. <b>Das ist meine Lesart des Bildes, keine
+      Beschriftung aus deiner Datei</b> — deshalb ordne ich sie den Buchstaben nicht zu.
+      <b>Das ist deine Übung.</b></p>
+    <p class="fr">Les lettres a–k ne sont pas légendées : c'est l'exercice. Je ne devine pas à ta
+      place.</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die Trennlinie, die das Bild zeigt</span>
+    <p>Das Bild trennt <b>steril</b> und <b>unsteril</b> ausdrücklich in zwei Kästen. Das ist die
+      eigentliche Botschaft der Abbildung: <b>Was auf das sterile Feld kommt und was nicht, ist
+      eine Entscheidung, die vorher getroffen wird</b> — nicht eine, die man im Moment der
+      Punktion trifft.</p>
+  </div>
+
+  <div class="paare">
+    <div class="paar"><span class="de">die Lumbalpunktion, -en</span>
+      <span class="frx">la ponction lombaire</span></div>
+    <div class="paar"><span class="de">der Liquor (nur Singular)</span>
+      <span class="frx">le liquide céphalo-rachidien</span></div>
+    <div class="paar"><span class="de">der Lendenwirbelkörper, - (LWK)</span>
+      <span class="frx">la vertèbre lombaire</span></div>
+    <div class="paar"><span class="de">der Dornfortsatz, ¨-e</span>
+      <span class="frx">l'apophyse épineuse</span></div>
+    <div class="paar"><span class="de">steril / unsteril</span>
+      <span class="frx">stérile / non stérile</span></div>
+  </div>
+</section>
+
+<section id="sht">
+  <h2>Leichtes Schädel-Hirn-Trauma — ein Absatz, aber ein wichtiger</h2>
+  <p class="lead">Die dritte Datei ist ein einziger Auszug aus <b>Pflege Heute, Kap. 37.13.1</b>.
+    Mehr steht nicht darin — aber dieser eine Absatz enthält eine vollständige
+    Begründungskette.</p>
+
+  <div class="merk">
+    <span class="t">Der Auszug, wörtlich</span>
+    <p>„Beim leichten Schädel-Hirn-Trauma sind außer der <b>symptomatischen Behandlung von
+      Kopfschmerz, Übelkeit und Erbrechen</b> sowie <b>kurzzeitiger Bettruhe</b>
+      <b>keine speziellen Maßnahmen</b> nötig. Allerdings soll der Patient <b>wegen der Gefahr
+      eines intrakraniellen Hämatoms</b> in den <b>ersten 12–24 Std. stationär beobachtet</b>
+      werden.“</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Warum dieser Satz eine Beurteilen-Aufgabe ist</span>
+    <p><b>Ursache:</b> Bei der Gewalteinwirkung kann ein Gefäß im Schädel verletzt worden sein. →
+      <b>Wirkung:</b> Eine Blutung entwickelt sich <b>langsam</b>, oft erst über Stunden. →
+      <b>Gefahr:</b> Ein <b>intrakranielles Hämatom</b> — der Schädel gibt nicht nach, also steigt
+      der Druck auf das Gehirn. → <b>Deshalb:</b> bleibt die Patientin <b>12 bis 24 Stunden
+      stationär unter Beobachtung</b>, obwohl sie sich in den ersten Stunden <b>völlig
+      unauffällig</b> zeigen kann.</p>
+    <p><b>Das ist der Grund, aus dem „dem geht es doch gut“ hier die falsche Einschätzung ist.</b>
+      Genau solche Sätze sind in einer <b>Beurteilen</b>-Aufgabe der Fallstrick.</p>
+    <p class="fr">« Il va bien » n'est pas un argument : l'hématome met des heures à se former.
+      C'est pour ça qu'on surveille 12 à 24 heures.</p>
+  </div>
+
+  <p>Die Verbindung zu deiner Anatomie-Zusammenfassung: Dort stehen die <b>Bewusstseinslagen</b>
+    — <b>Somnolenz, Sopor, Koma</b> — und die Erstmaßnahmen. Genau danach wird in diesen 12 bis
+    24 Stunden geschaut.</p>
+</section>
+
+<section id="offen">
+  <h2>Was fehlt — und was du selbst noch machen musst</h2>
+
+  <div class="warnung">
+    <span class="t">Der Arbeitsauftrag zur MS ist ein Link, kein Text</span>
+    <p>Die letzte Folie des MS-Foliensatzes besteht nur aus einer Adresse:
+      <b>learningapps.org/watch?v=ps4w1m8q524</b>. Was für eine Übung sich dahinter verbirgt und
+      welche Lösung sie hat, <b>steht nicht in deinen Unterlagen</b> — ich habe sie nicht
+      geöffnet und rate auch nicht.</p>
+    <p>Mach die Übung selbst und <b>schick mir, was du geantwortet hast</b>. Dann korrigiere ich
+      sie.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Fünf Lücken, die diese Seite nicht schließen kann</span>
+    <p><b>1. Die vier Bild-Folien</b> (Ganzkörperwaschung, Subluxation, Subluxationsprophylaxe,
+      Positionierung auf die betroffene Seite) — siehe oben. Die <b>Durchführung</b> fehlt.</p>
+    <p><b>2. Die Kritik an der Catherine-Bergego-Skala</b> — die Folie fragt, antwortet aber
+      nicht.</p>
+    <p><b>3. Die Materialliste der Lumbalpunktion</b> — unbeschriftet, das ist die Aufgabe.</p>
+    <p><b>4. Das Bobath-Konzept</b> wird <b>genannt, aber nicht erklärt.</b> In deinem
+      Drive-Ordner liegt dazu keine eigene Datei. Ich schreibe hier keine Bobath-Anleitung aus
+      dem Gedächtnis hin — das wäre genau der Fehler, den diese Seiten vermeiden sollen.</p>
+    <p><b>5. Zum SHT</b> gibt es nur diesen einen Absatz. Schweregrade, Glasgow Coma Scale,
+      Pupillenkontrolle, das Vorgehen beim <b>mittelschweren und schweren</b> SHT — davon steht
+      <b>nichts</b> in den vier Dateien dieses Blocks.</p>
+    <p class="fr">Cinq trous, tous nommés. Je ne les remplis pas de mémoire.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Was ich dabei gefunden habe und was daraus wird</span>
+    <p>Im selben Drive-Ordner liegt ein Foliensatz <b>„Bewusstsein, Wahrnehmung und
+      Verhalten“</b> — darin steht die <b>vollständige Glasgow Coma Scale</b> mit allen
+      Punktwerten, die vierte Bewusstseinsstufe <b>Benommenheit</b> (die auf deiner
+      Anatomie-Seite noch fehlt) und die Unterscheidung <b>quantitativ / qualitativ</b>.</p>
+    <p>Er gehört zu einem eigenen Thema — <b>Beobachtung</b> — zusammen mit Atem-, Puls-,
+      Haut-, Stuhl- und Urinbeobachtung. Deshalb kommt er <b>als eigener Block</b>, nicht hier
+      hineingequetscht. Er steht jetzt im Plan.</p>
+  </div>
+</section>
+
+<details class="quelle">
+  <summary>Die vier Quellen — jede einzeln genannt</summary>
+  <div class="inh">
+    <ul>
+      <li><b>Multiple Sklerose.pdf</b> — Foliensatz <b>CE 07 / UE 03</b>. Trägt den größten Teil
+        dieser Seite: Definition, Epidemiologie, Pathophysiologie, Symptome, Verlaufsformen,
+        Diagnostik, Therapie und den Cortison-Exkurs. Endet mit einem LearningApps-Link ohne
+        weiteren Text.</li>
+      <li><b>Pflegerische Besonderheiten Neurologie.pdf</b> — Foliensatz
+        <b>CE 07 / UE 04</b>: Neglect, Pusher-Syndrom, Catherine-Bergego-Skala, Plegien und
+        Paresen, schmerzhafte Schulter, Subluxation und ihre Prophylaxe. Vier Folien enthalten
+        nur Abbildungen.</li>
+      <li><b>Pflege bei leichtem SHT — Auszug aus PH.pdf</b> — ein einziger Absatz, zitiert aus
+        <b>Pflege Heute, Kap. 37.13.1</b>.</li>
+      <li><b>Positionierung Lumbalpunktion.jpg</b> — eine Abbildung. Beschriftet ist nur
+        <b>LWK 4 / LWK 5</b> sowie die Felder <b>STERIL</b> und <b>UN-STERIL</b> mit den
+        Buchstaben a–k.</li>
+    </ul>
+    <p>Alle vier aus deinem Google-Drive-Ordner, geteilt am 18.09.2026. Jede Zahl, jeder
+      Prozentwert und jede Dosisangabe auf dieser Seite steht so in einer dieser Dateien.</p>
+    <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> die vier
+      <i>Ursache → Wirkung → Gefahr → deshalb</i>-Ketten, die Merkkästen mit den Bezügen zu deiner
+      Anatomie- und Pflegeplanungs-Seite, meine Beschreibung der Lumbalpunktions-Abbildung und die
+      Hinweise auf die drei unklaren Formulierungen in den Folien
+      („Pusher-Syndorm“, „multifaktorielle Leukenzephalopatie“, „akutes Nierenversagen“ beim
+      Cortison-Absetzen).</p>
+    <p>Die französischen Zeilen und die Vokabelübersetzungen sind von mir ergänzt.</p>
+  </div>
+</details>
+
+</main>
+
+<footer>
+  <p>Neurologie · CE 07 / UE 03 und UE 04 — gebaut aus deinen eigenen Unterlagen.<br>
+    Wo etwas fehlt, unklar formuliert ist oder von mir stammt, steht es oben ausdrücklich dabei.</p>
+</footer>
