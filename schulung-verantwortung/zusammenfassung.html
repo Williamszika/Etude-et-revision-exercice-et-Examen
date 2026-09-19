@@ -1,0 +1,741 @@
+<title>Verantwortliches Pflegehandeln</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#7a5426;--accent-deep:#5d3f1b;--accent-soft:#f0e5d4;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#d5ae76;--accent-deep:#e8cfa5;--accent-soft:#3a2f20;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#d5ae76;--accent-deep:#e8cfa5;--accent-soft:#3a2f20;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#7a5426;--accent-deep:#5d3f1b;--accent-soft:#f0e5d4;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 03 / UE 02 · und ein Nachtrag zum Betreuungsrecht</p>
+  <h1>Verantwortliches Pflegehandeln</h1>
+  <p class="sub">Was „Verantwortung“ genau heißt — und ein Verfahren in sieben Schritten, mit dem
+    man eine moralisch schwierige Situation durchdenkt, statt aus dem Bauch zu entscheiden.</p>
+  <div class="meta">
+    <span>CE 03 / UE 02</span>
+    <span>Modell nach Heffels</span>
+    <span>3 Quellen</span>
+    <span>Niveau B1</span>
+    <span>Stand 19.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#klarstellung">Nicht Recht, sondern Ethik</a>
+  <a href="#konflikt">Konflikte</a>
+  <a href="#wort">Das Wort „verantwortlich“</a>
+  <a href="#drei">Die drei Teile</a>
+  <a href="#gesetz">Pflegeberufegesetz</a>
+  <a href="#entscheiden">Wie Menschen entscheiden</a>
+  <a href="#schritte">Vier Schritte</a>
+  <a href="#heffels">Das Modell nach Heffels</a>
+  <a href="#fall">Der Fall Ernst und Paul</a>
+  <a href="#betreuer">Rechte des Betreuers</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="klarstellung">
+  <h2>Warum diese Seite nicht zu „Recht in der Pflege“ gehört</h2>
+  <p class="lead">Ich hatte das im Plan falsch eingeordnet.</p>
+
+  <p>Im Arbeitsplan stand dieser Block als <b>„Recht in der Pflege“</b>. Beim Öffnen der Dateien
+    hat sich gezeigt: <b>Das stimmt nicht.</b> Die Hauptdatei ist ein Foliensatz aus
+    <b>CE 03 / UE 02</b> und behandelt <b>Ethik und Verantwortung</b>, nicht Paragraphen.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th></th><th>⚖️ Recht in der Pflege</th><th>🧭 Diese Seite</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Frage</td><td><b>Was ist erlaubt und was ist strafbar?</b></td>
+          <td><b>Was ist richtig — und wie begründe ich das?</b></td></tr>
+        <tr><td class="k">Kurs</td><td>CE 6 / UE 1 (RAin Welters)</td><td>CE 03 / UE 02</td></tr>
+        <tr><td class="k">Werkzeug</td><td>das strafrechtliche Prüfungsschema:
+          Tatbestand → Rechtswidrigkeit → Schuld</td>
+          <td>das <b>dialogische Modell nach Heffels</b>, sieben Phasen</td></tr>
+        <tr><td class="k">Ergebnis</td><td>strafbar / nicht strafbar, haftbar / nicht haftbar</td>
+          <td>eine <b>begründete Handlungsempfehlung</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Beide zusammen brauchst du</span>
+    <p>Im Fall unten (ein Kollege trinkt im Dienst) ist die <b>rechtliche</b> Lage schnell klar.
+      Schwierig ist die <b>Entscheidung</b>: melden oder erst reden? Wann? Bei wem?</p>
+    <p><b>Das Recht sagt, was du darfst. Die Ethik sagt, was du tun sollst.</b> Deine
+      Rechts-Zusammenfassung liegt weiter daneben — sie wird durch diese Seite nicht ersetzt.</p>
+    <p class="fr">Le droit dit ce qui est permis. L'éthique dit ce qu'il faut faire.</p>
+  </div>
+</section>
+
+<section id="konflikt">
+  <h2>Konflikte — und was ein <i>intrapersonaler</i> Konflikt ist</h2>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Konflikt allgemein</h4>
+      <ul>
+        <li>Auseinandersetzung <b>zwischen Personen, Gruppen</b> oder <b>innerhalb einer
+          Person</b></li>
+        <li>eine <b>Spannungssituation</b></li>
+        <li>führt oft zu <b>emotionalem Stress</b></li>
+        <li>ist von <b>individuellen Gefühlen</b> geprägt — Trauer, Enttäuschung</li>
+        <li>kann <b>körperliche Symptome</b> verursachen, z. B. <b>Schlaflosigkeit</b></li>
+      </ul>
+      <p><b>Ziel: konstruktive Konfliktlösung</b> — eine <b>gemeinsame</b> Lösung finden.</p>
+    </div>
+    <div class="karte">
+      <h4>Intrapersonaler Konflikt</h4>
+      <p>Auch <b>intrapsychischer Konflikt</b> genannt. Ein <b>innerer</b> Konflikt:
+        <b>widersprüchliche Ziele, Wünsche, Erwartungen oder Verpflichtungen</b>.</p>
+    </div>
+  </div>
+
+  <h3>Vier Beispiele aus dem Foliensatz</h3>
+  <ul>
+    <li><b>Persönliche Werte gegen berufliche Vorgaben</b></li>
+    <li><b>Unvereinbare Überzeugungen</b></li>
+    <li><b>Emotionale Überforderung</b> durch Sterbebegleitung</li>
+    <li><b>Berufliche Verantwortung gegen private/familiäre Verpflichtungen</b></li>
+  </ul>
+
+  <div class="merk">
+    <span class="t">Warum das für dich mehr ist als eine Definition</span>
+    <p>Ein innerer Konflikt fühlt sich nicht wie ein Konflikt an — er fühlt sich wie
+      <b>Erschöpfung</b> oder <b>schlechtes Gewissen</b> an. Der Foliensatz sagt ausdrücklich,
+      dass er <b>körperliche Symptome</b> machen kann.</p>
+    <p><b>Ihn zu benennen ist der erste Schritt</b>: „Das ist kein Charakterfehler von mir, das
+      sind zwei Pflichten, die sich widersprechen.“</p>
+    <p class="fr">Un conflit intérieur ne ressemble pas à un conflit. Il ressemble à de
+      l'épuisement ou à de la mauvaise conscience.</p>
+  </div>
+
+  <div class="paare">
+    <div class="paar"><span class="de">der Konflikt, -e</span>
+      <span class="frx">le conflit</span></div>
+    <div class="paar"><span class="de">die Auseinandersetzung, -en</span>
+      <span class="frx">la confrontation, le différend</span></div>
+    <div class="paar"><span class="de">die Überzeugung, -en</span>
+      <span class="frx">la conviction</span></div>
+    <div class="paar"><span class="de">die Verpflichtung, -en</span>
+      <span class="frx">l'obligation</span></div>
+    <div class="paar"><span class="de">die Überforderung (nur Singular)</span>
+      <span class="frx">le fait d'être dépassé, la surcharge</span></div>
+    <div class="paar"><span class="de">die Sterbebegleitung (nur Singular)</span>
+      <span class="frx">l'accompagnement de fin de vie</span></div>
+  </div>
+</section>
+
+<section id="wort">
+  <h2>Was „verantwortlich“ wörtlich heißt</h2>
+
+  <div class="merk">
+    <span class="t">Die Definition aus dem Foliensatz</span>
+    <p><b>„verantwortlich“</b> = etwas zu verantworten und verantwortlich sein,
+      <b>Antwort geben können</b> — <b>gute Gründe anführen</b>.</p>
+    <p>Und noch einmal, als eigene Folie: <b>„Verantwortung heißt: Antwort-Geben-können.“</b></p>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Wort</th><th>Bedeutung laut Foliensatz</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Handeln</td><td><b>bewusstes Tun</b></td></tr>
+        <tr><td class="k">Verhalten</td><td><b>routiniertes Tun</b>, Agieren <b>ohne
+          Denkanstrengung</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Der Unterschied, um den es geht</span>
+    <p><b>Verantwortlich bist du für dein Handeln — nicht für dein Verhalten.</b> Deshalb heißt
+      der Kurs <i>verantwortliches Pflege<b>handeln</b></i> und nicht <i>-verhalten</i>.</p>
+    <p>Und: „Pflegepersonen sind für <b>das Tun oder das Lassen</b> verantwortlich.“ <b>Nichts
+      zu tun ist auch eine Entscheidung</b> — und die musst du genauso begründen können.</p>
+    <p class="fr">Tu réponds de ce que tu fais — et de ce que tu ne fais pas.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Eine unklare Stelle in der Folie</span>
+    <p>Im Foliensatz steht: <i>„Handeln“ = bewusstes Tun, <b>Tun mit Verdacht</b></i>. „Tun mit
+      Verdacht“ ergibt hier keinen Sinn — mit hoher Wahrscheinlichkeit ist <b>„Tun mit
+      Bedacht“</b> gemeint (also überlegt, mit Absicht). <b>Ich habe es nicht stillschweigend
+      geändert.</b> Frag im Kurs nach.</p>
+  </div>
+</section>
+
+<section id="drei">
+  <h2>Die drei Teile der Verantwortung</h2>
+  <p class="lead">Aus dem Foliensatz: Verantwortung hat <b>drei Untereinheiten</b>.</p>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Zuständigkeit</h4>
+      <p>Für einen <b>Gegenstands- oder Aufgabenbereich</b> zuständig sein.</p>
+      <p><b>Beispiele aus der Folie:</b> Sauberkeit im Haushalt · Erledigen von Arbeitsaufträgen ·
+        <b>Wundversorgung</b>.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Kompetenz</h4>
+      <p>Das innere <b>„Denken-Können“</b>. Die <b>notwendigen Erkenntnisse und Fertigkeiten
+        müssen vorliegen</b>, um eine Tätigkeit <b>sach- und fachgerecht</b> auszuführen.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Reichweite</h4>
+      <p><b>„Nach bestem Wissen und Gewissen“</b> — die <b>Folgen im Blick behalten</b>, die zu
+        verantworten sind.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Das Beispiel mit den drei Schrauben</span>
+    <p>Aus dem Foliensatz, wörtlich als Denkaufgabe gestellt:</p>
+    <ul>
+      <li>Eine Person soll <b>drei Schrauben</b> zur Fertigung eines Geräts fertigstellen.</li>
+      <li>Sie erfährt, dass dieses Gerät mit weiteren Bausteinen <b>für ein Kriegsgerät</b>
+        eingesetzt wird.</li>
+      <li><b>Ist diese Person nun mitverantwortlich für die Tötung von Menschen?</b></li>
+    </ul>
+    <p><b>Die Folie gibt keine Antwort</b> — das ist Absicht. Es geht um die <b>Reichweite</b>:
+      Wie weit reicht die Verantwortung für die Folgen einer kleinen, für sich genommen
+      harmlosen Handlung?</p>
+    <p><b>Und genau das ist die Frage im Fall unten:</b> Ernst hat nicht getrunken. Aber wie weit
+      reicht seine Verantwortung, wenn er es weiß und schweigt?</p>
+    <p class="fr">La question n'est pas « qu'ai-je fait ? », mais « jusqu'où vont les
+      conséquences de ce que j'ai fait — ou tu ».</p>
+  </div>
+
+  <h3>Vier Aussagen zum Positionieren</h3>
+  <p>Im Unterricht wurde der Kurs aufgeteilt: <b>rechts im Raum</b> = „Dafür bin ich voll
+    verantwortlich“, <b>links</b> = „Dafür bin ich nicht verantwortlich“. Die vier Aussagen:</p>
+  <div class="paare">
+    <div class="paar"><span class="de">Wenn eine examinierte Pflegekraft mir etwas delegiert,
+      bin ich verantwortlich für das Ergebnis.</span></div>
+    <div class="paar"><span class="de">Wenn ich merke, dass etwas schiefläuft, aber nichts sage,
+      bin ich mitverantwortlich.</span></div>
+    <div class="paar"><span class="de">Für Stürze sind alte Menschen selbst
+      verantwortlich.</span></div>
+    <div class="paar"><span class="de">Ich darf eine Aufgabe ablehnen, wenn ich sie mir nicht
+      zutraue.</span></div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Warum gerade diese vier — und wo die Antworten stehen</span>
+    <p>Jede der vier Aussagen trifft <b>einen der drei Teile</b>: Nr. 1 die <b>Zuständigkeit</b>
+      (Delegation), Nr. 2 die <b>Reichweite</b> (Unterlassen), Nr. 4 die <b>Kompetenz</b>
+      („zutrauen“).</p>
+    <p><b>Zu Nr. 1 und Nr. 4 steht die rechtliche Antwort in deiner Rechts-Zusammenfassung</b> —
+      Abschnitt <i>Delegation — die drei Verantwortungen</i>. Dort ist es kein Meinungsbild,
+      sondern geregelt: Wer delegiert, trägt die <b>Anordnungsverantwortung</b>; wer übernimmt,
+      die <b>Durchführungsverantwortung</b> — <b>und die Pflicht, abzulehnen, wenn er es nicht
+      kann</b>.</p>
+  </div>
+</section>
+
+<section id="gesetz">
+  <h2>Was das Pflegeberufegesetz dazu sagt</h2>
+
+  <p>Der Foliensatz zitiert drei Aufgaben als <b>vorbehaltene</b> Tätigkeiten:</p>
+  <ul>
+    <li>„<b>Erhebung und Feststellung des individuellen Pflegebedarfs</b> und die <b>Planung der
+      Pflege</b>“</li>
+    <li>„<b>Organisation, Gestaltung und Steuerung des Pflegeprozesses</b>“</li>
+    <li>„<b>Analyse, Evaluation, Sicherung und Entwicklung der Qualität</b> in der Pflege“</li>
+  </ul>
+  <p>Daraus folgt laut Folie: <b>Selbstständigkeit innerhalb des Aufgabenbereiches</b> —
+    <b>Verantwortung übernehmen</b>.</p>
+
+  <div class="merk">
+    <span class="t">Der Zusammenhang zu deiner Pflegeplanung</span>
+    <p>Der <b>erste</b> dieser drei Punkte ist genau das, was du auf der Seite
+      <b>Pflegeplanung</b> übst: Pflegebedarf feststellen und die Pflege planen.</p>
+    <p><b>Das ist kein Schulstoff, sondern per Gesetz deine Aufgabe</b> — und niemand sonst darf
+      sie dir abnehmen. Deshalb steht sie auch in der Prüfung.</p>
+  </div>
+</section>
+
+<section id="entscheiden">
+  <h2>Wie Menschen tatsächlich entscheiden</h2>
+  <p class="lead">Vier Wege sind wenig rational, drei sind rational. Beide Listen stehen so im
+    Foliensatz.</p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Weniger rational</h4>
+      <ul>
+        <li><b>Intuition</b> — „aus dem Gefühl heraus“</li>
+        <li><b>Erfahrung</b> — „damit habe ich gute Erfahrung gemacht“</li>
+        <li><b>Tradition</b> — „das machen wir immer so“</li>
+        <li><b>Versuch und Irrtum</b> — „ich versuche es mal so“</li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Rational</h4>
+      <ul>
+        <li><b>Wissenschaft</b> — „auf Grundlage der Evidenz“</li>
+        <li><b>Problemlösung</b> — der Problemlösungsprozess</li>
+        <li><b>Nach speziellen Handlungsalternativen</b> oder aus einer bestimmten Haltung
+          heraus — <b>dialogisches Modell / Algorithmus des verantwortlichen Handelns</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Der Satz, den man aus dieser Folie ableiten kann — und der in eine Klausur
+      passt</span>
+    <p>„<b>Das machen wir immer so</b>“ ist im Foliensatz ausdrücklich als <b>wenig rational</b>
+      eingestuft. Das ist eine harte Aussage über den Stationsalltag — und genau die Begründung,
+      warum es <b>Expertenstandards</b> gibt.</p>
+    <p><b>Wichtig:</b> „weniger rational“ heißt <b>nicht „falsch“</b>. Erfahrung und Intuition
+      sind in einer Notfallsituation unverzichtbar. Die Folie sagt nur: Sie sind <b>kein
+      Ersatz für eine Begründung</b>, wenn man gefragt wird, <b>warum</b>.</p>
+  </div>
+</section>
+
+<section id="schritte">
+  <h2>Die vier Schritte verantwortlichen Handelns</h2>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>SEHEN</h4><p>Situationswahrnehmung</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>DENKEN &amp; URTEILEN</h4><p>Handlungsbestimmung</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>HANDELN</h4><p>Handlungsdurchführung</p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div>
+      <h4>EVALUIEREN</h4><p>Nachdenken und bewerten</p></div></div>
+  </div>
+
+  <p>Dazu die <b>Handlungsrechtfertigung</b> — im Foliensatz mit dem Satz kommentiert:
+    <b>„Hinterher ist man immer schlauer.“</b></p>
+
+  <div class="merk">
+    <span class="t">Warum dieser Vierschritt dir bekannt vorkommt</span>
+    <p><b>SEHEN → DENKEN → HANDELN → EVALUIEREN</b> ist derselbe Aufbau wie der
+      <b>Pflegeprozess</b>: <i>Informationen sammeln → Problem erkennen und Ziel setzen →
+      Maßnahmen durchführen → evaluieren</i>.</p>
+    <p>Es ist also <b>kein neues Verfahren</b>, sondern dasselbe Denken, angewendet auf eine
+      <b>moralische</b> statt auf eine pflegerische Frage.</p>
+    <p class="fr">C'est la même structure que le processus de soins, appliquée à une question
+      morale.</p>
+  </div>
+</section>
+
+<section id="heffels">
+  <h2>Das dialogische Modell nach Heffels — sieben Phasen</h2>
+  <p class="lead">Das eigentliche Werkzeug dieser Unterrichtseinheit. Lern die sieben
+    Hauptfragen.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th class="k">Phase</th><th>Hauptfragen</th></tr></thead>
+      <tbody>
+        <tr><td class="k">1 · Situationsdeutung</td>
+          <td><b>Was liegt vor? Wer ist beteiligt? Wer hat welche Ansicht, Erwartung, Erfahrung,
+            Einstellung?</b></td></tr>
+        <tr><td class="k">2 · Problembestimmung</td>
+          <td><b>Was ist das moralische Problem? Welche Werte und/oder Normen kollidieren? Was
+            ist die Herausforderung?</b></td></tr>
+        <tr><td class="k">3 · Zielbestimmung</td>
+          <td><b>Worum geht es im Kern? Was soll erreicht werden?</b></td></tr>
+        <tr><td class="k">4 · Beachtung allgemeiner Vorgaben</td>
+          <td><b>Was muss berücksichtigt werden?</b> Zum Beispiel: <b>Gesetze, Leitbilder,
+            Richtlinien, fachliche Standards</b> (z. B. Expertenstandard), <b>ICN-Kodex,
+            ethische Prinzipien, Pflege-Charta</b></td></tr>
+        <tr><td class="k">5 · Handlungsmöglichkeiten</td>
+          <td><b>Welche Maßnahmen können gewählt werden, um das Ziel zu erreichen?</b></td></tr>
+        <tr><td class="k">6 · Entscheidungsfindung</td>
+          <td><b>Welche der Maßnahmen hat die höchste Wirkung und die geringsten
+            Nebenwirkungen?</b></td></tr>
+        <tr><td class="k">7 · Evaluieren</td>
+          <td><b>Wie wird die getroffene Entscheidung eingeschätzt?</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die zwei Phasen, an denen es hängt</span>
+    <p><b>Phase 2</b> ist der Kern: <b>„Welche Werte und/oder Normen kollidieren?“</b> Wenn du
+      die beiden widerstreitenden Werte <b>benennen</b> kannst, ist die Aufgabe halb gelöst. Ein
+      moralisches Problem ist <b>immer</b> ein Zusammenstoß von zwei Dingen, die beide gut
+      sind.</p>
+    <p><b>Phase 6</b> ist die Formel, mit der du entscheidest: <b>höchste Wirkung bei geringsten
+      Nebenwirkungen</b>. Nicht „was fühlt sich richtig an“, sondern eine Abwägung, die man
+      aufschreiben kann.</p>
+    <p class="fr">Phase 2 : nomme les deux valeurs qui s'opposent. Phase 6 : effet maximal,
+      effets secondaires minimaux.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Warum „dialogisch“?</span>
+    <p>Das Modell heißt <b>dialogisch</b>, weil Phase 1 ausdrücklich fragt: <b>„Wer hat welche
+      Ansicht, Erwartung, Erfahrung, Einstellung?“</b> — <b>alle</b> Beteiligten, nicht nur du.</p>
+    <p>Im Unterricht wurde es entsprechend in <b>Gruppen</b> angewendet, die Ergebnisse auf einem
+      <b>A3-Blatt</b> festgehalten und dem Kurs vorgestellt.</p>
+  </div>
+</section>
+
+<section id="fall">
+  <h2>Der Fall Ernst und Paul — deine offene Aufgabe</h2>
+
+  <div class="gefahr">
+    <span class="t">Die Situation, wörtlich aus dem Arbeitsauftrag</span>
+    <p>„Der Pflegefachmann <b>Ernst</b> beobachtet, wie der Pflegefachmann <b>Paul</b> während
+      des Dienstes <b>Alkohol konsumiert</b>. Auf Ansprache sagt Paul: <b>‚Du, das ist doch nicht
+      so schlimm, ich habe ja nur genippt!‘</b> <b>Zwei Tage später</b> nimmt Ernst bei Paul
+      einen <b>leichten Alkoholgeruch</b> wahr. Er weiß, dass Paul zurzeit <b>Schwierigkeiten in
+      der Ehe und finanzielle Sorgen</b> hat. <b>Was soll Ernst tun?</b>“</p>
+    <p><b>Der Auftrag:</b> die Situation mit dem dialogischen Modell <b>bewerten</b> — und am
+      Ende „eine gemeinsame <b>begründete Handlungsempfehlung</b>“ abgeben.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Der Titel ist schon die halbe Aufgabe</span>
+    <p>Der Arbeitsauftrag heißt: <b>„Verdacht bei Kollegen: Fürsorge oder Loyalitätsbruch?“</b></p>
+    <p>Diese Überschrift <b>nennt die beiden Werte</b>, die zusammenstoßen. Genau das fragt
+      Phase 2. <b>Fang dort an</b>.</p>
+  </div>
+
+  <h3>Phase 1 und 2 — als Beispiel, wie man es aufschreibt</h3>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>1 · Situationsdeutung</h4>
+      <p><b>Was liegt vor:</b> Alkoholkonsum im Dienst, <b>zweimal</b> beobachtet — einmal
+        gesehen, zwei Tage später gerochen. Es ist also <b>kein einmaliges Ereignis</b>.</p>
+      <p><b>Wer ist beteiligt:</b> Paul · Ernst · <b>die Patienten</b> · das Team · die
+        Leitung · Pauls Familie.</p>
+      <p><b>Wer hat welche Sicht:</b> Paul spielt es herunter („nur genippt“) — das ist
+        <b>Bagatellisierung</b>, kein Einsehen. Ernst weiß um die private Notlage und steht
+        zwischen Mitgefühl und Pflicht. <b>Die Patienten wissen von nichts und können sich nicht
+        schützen.</b></p>
+    </div>
+    <div class="karte">
+      <h4>2 · Problembestimmung</h4>
+      <p><b>Die kollidierenden Werte:</b></p>
+      <ul>
+        <li><b>Loyalität und Fürsorge gegenüber dem Kollegen</b> — er ist in einer Notlage, eine
+          Meldung kann seine Existenz treffen</li>
+        <li><b>Fürsorge und Schutz gegenüber den Patienten</b> — sie sind auf eine
+          <b>handlungsfähige</b> Pflegekraft angewiesen und haben <b>keine Wahl</b></li>
+      </ul>
+      <p><b>Die Herausforderung:</b> Beide Seiten sind <b>Fürsorge</b>. Es ist kein Konflikt
+        zwischen gut und schlecht, sondern <b>zwischen zwei Schutzpflichten</b> — und eine
+        Gruppe kann sich nicht selbst schützen.</p>
+    </div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Phase 3 bis 7 schreibst du — das ist deine Aufgabe, nicht meine</span>
+    <p>Ich habe die ersten beiden Phasen ausgeführt, damit du <b>siehst, wie ausführlich</b> eine
+      Phase sein muss. <b>Die restlichen fünf gehören dir.</b> Hier die Fragen, auf deinen Fall
+      gemünzt:</p>
+    <ul>
+      <li><b>3 · Ziel:</b> Worum geht es im Kern — Paul bestrafen? Patienten schützen? Paul
+        helfen? <b>Schreib einen Satz</b>, der das Ziel benennt.</li>
+      <li><b>4 · Vorgaben:</b> Was ist zu berücksichtigen? Die Folie nennt die Liste:
+        <b>Gesetze, Leitbilder, Richtlinien, fachliche Standards, ICN-Kodex, ethische Prinzipien,
+        Pflege-Charta</b>. <b>Denk hier auch an deine Rechts-Zusammenfassung</b> — Stichworte
+        <i>Garantenstellung</i>, <i>§ 223 StGB</i>, <i>§ 323c StGB</i>,
+        <i>Durchführungsverantwortung</i>.</li>
+      <li><b>5 · Möglichkeiten:</b> Sammle <b>mindestens vier</b>: nichts tun · noch einmal
+        allein mit Paul sprechen · die Leitung informieren · ihn nach Hause schicken · ihm
+        konkrete Hilfe anbieten (Suchtberatung, betriebliche Sozialberatung).</li>
+      <li><b>6 · Entscheidung:</b> Welche hat die <b>höchste Wirkung bei den geringsten
+        Nebenwirkungen</b>? <b>Vergleiche mindestens zwei</b> gegeneinander und schreib das
+        „weil“ dazu.</li>
+      <li><b>7 · Evaluieren:</b> Woran würdest du <b>nach vier Wochen</b> merken, ob deine
+        Entscheidung richtig war?</li>
+    </ul>
+    <p class="fr">Les cinq dernières phases sont ton travail. J'ai fait les deux premières pour
+      te montrer le niveau de détail attendu.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Warum du gerade diese Aufgabe schreiben solltest</span>
+    <p>Sie verlangt <b>„bewerten“</b> und eine <b>„begründete Handlungsempfehlung“</b> — das ist
+      <b>AFB III</b>, also <b>Beurteilen</b>. Genau der Operator, bei dem deine schriftlichen
+      Noten wegbrechen, während deine praktischen bei 1,89 liegen.</p>
+    <p>Und der Aufbau ist vorgegeben: erst die <b>Einschätzung</b>, dann die <b>Maßnahmen</b>.
+      Die sieben Phasen <b>sind</b> dieses Gerüst.</p>
+    <p><b>Schreib sie auf und schick sie mir.</b> Ich korrigiere zweimal: den Inhalt gegen das
+      Modell, und die Sprache gegen deine sieben Baustellen.</p>
+  </div>
+</section>
+
+<section id="betreuer">
+  <h2>Nachtrag: Welche Rechte hat ein gesetzlicher Betreuer?</h2>
+  <p class="lead">Eine eigene kleine Datei im Ordner. Sie gehört zum Betreuungsrecht und ergänzt
+    deine Rechts-Zusammenfassung.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Recht</th><th>Was gilt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">1 · Ersatz von Aufwendungen</td>
+          <td>Der Betreuer muss Auslagen <b>nicht aus eigener Tasche</b> zahlen. Zwei Wege:
+            <b>jede Ausgabe mit Beleg</b> sammeln und <b>innerhalb von 15 Monaten</b> beim
+            Gericht einreichen (z. B. <b>0,42 € pro Kilometer</b>) — oder die <b>Pauschale von
+            425 € pro Jahr</b> ohne Belege.<br>
+            Ist die betreute Person <b>mittellos</b>, zahlt <b>der Staat</b>. Die 425 € sind
+            <b>bis 3 000 € im Jahr steuerfrei</b>.</td></tr>
+        <tr><td class="k">2 · Haftpflichtversicherung</td>
+          <td>Der Betreuer haftet für Fehler — <b>absichtlich oder fahrlässig</b> — und auch
+            dafür, wenn er <b>etwas vergisst und nicht tut</b>, was er tun sollte. Dann muss er
+            <b>Schadensersatz</b> zahlen.<br>
+            <b>Berufliche</b> Betreuer: Versicherung ist <b>Pflicht</b>, sonst keine
+            Registrierung. <b>Ehrenamtliche</b>: bekommen sie <b>kostenlos</b> vom
+            Betreuungsgericht als <b>Gruppenversicherung</b>.</td></tr>
+        <tr><td class="k">3 · Vergütung</td>
+          <td>Betreuungen werden <b>normalerweise ehrenamtlich</b> geführt. Berufliche Betreuer
+            erhalten eine <b>monatliche Fallpauschale</b>, abhängig von <b>Qualifikation</b>,
+            <b>Dauer</b>, <b>Wohnort</b> der Person und ihrem <b>Vermögen</b>. Die Pauschale
+            <b>deckt die Aufwendungsersätze mit ab</b>. Bei Mittellosigkeit zahlt der
+            Staat.</td></tr>
+        <tr><td class="k">4 · Hilfe durch Behörden und Vereine</td>
+          <td><b>Betreuungsgericht</b> → Rechtsfragen, Genehmigungen, Jahresberichte ·
+            <b>zuständige Behörde</b> → praktische Fragen und Hilfsangebote wie Pflegedienste
+            oder Mahlzeiten · <b>Betreuungsverein</b> → Beratung und Erfahrungsaustausch.<br>
+            Am Anfang sind <b>Einführung und Fortbildung</b> wichtig.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Das Ziel hinter allen vier Punkten</span>
+    <p>Wörtlich aus der Datei: „Das Betreuungsrecht hat ein wichtiges Ziel: <b>Der Betreuer soll
+      nicht allein sein!</b> … Der Betreuer ist nicht allein — er hat ein <b>System der
+      Begleitung und Beratung</b>.“</p>
+    <p><b>Für dich auf Station heißt das:</b> Wenn ein Angehöriger als Betreuer überfordert
+      wirkt, ist das kein persönliches Versagen — es gibt <b>drei Stellen</b>, auf die du ihn
+      hinweisen kannst.</p>
+    <p class="fr">Le tuteur n'est pas seul : tribunal, administration, association — trois
+      adresses à connaître.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Was diese Datei <em>nicht</em> ist</span>
+    <p>Sie beschreibt die <b>Rechte des Betreuers</b>, also Geld, Versicherung und
+      Unterstützung. Sie sagt <b>nichts</b> über seine <b>Befugnisse</b> — welche
+      Entscheidungen er treffen darf, welche Aufgabenkreise es gibt, wann das Gericht
+      <b>genehmigen</b> muss.</p>
+    <p><b>Dazu steht etwas in deiner Rechts-Zusammenfassung</b>, Abschnitt <i>Wer darf
+      entscheiden, wenn der Patient es nicht kann</i>. Die beiden Seiten ergänzen sich.</p>
+  </div>
+</section>
+
+<section id="offen">
+  <h2>Was fehlt — und was du selbst noch schuldest</h2>
+
+  <div class="gefahr">
+    <span class="t">Der Arbeitsauftrag aus dem Foliensatz — vier Teile, alle offen</span>
+    <p><b>1.</b> Eine Tabelle <b>in eigenen Worten</b>: <b>Werte · Normen · Leitlinien ·
+      Richtlinien</b> — je mit <b>Erklärung</b> und <b>Beispiel aus der Pflege</b>.</p>
+    <p><b>2.</b> Wiederholung von <b>Ethik &amp; Pflege-Charta</b> (Fr. Nix, CE 1 / UE 6):</p>
+    <ul>
+      <li>a) <b>ICN-Kodex</b> und <b>Pflege-Charta</b> definieren</li>
+      <li>b) die <b>vier Verantwortungsbereiche des ICN-Kodex</b> nennen</li>
+      <li>c) <b>einen Artikel der Pflege-Charta</b> nennen, der für dich am schwierigsten
+        umzusetzen ist</li>
+      <li>d) die <b>vier Prinzipien der Medizinethik</b> nennen und beschreiben</li>
+    </ul>
+    <p><b>Nichts davon liegt im Ordner</b> — weder deine Bearbeitung noch der Foliensatz von
+      Frau Nix aus CE 1 / UE 6, auf den verwiesen wird.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Warum ich diese vier Punkte nicht einfach beantworte</span>
+    <p>ICN-Kodex, Pflege-Charta und die vier Prinzipien der Medizinethik <b>sind mir bekannt</b>.
+      Aber sie stehen <b>nicht in deinen Unterlagen</b>, und deine Dozentin verweist auf einen
+      <b>bestimmten</b> Foliensatz. Würde ich sie aus dem Gedächtnis hinschreiben, hättest du
+      Formulierungen, die in deinem Kurs so vielleicht nie gefallen sind — und du würdest sie
+      für geprüft halten.</p>
+    <p><b>Schick mir den Foliensatz von Frau Nix</b>, dann kommt der Abschnitt hier hinein.
+      Punkt 2c kann dir ohnehin niemand abnehmen: Welcher Artikel <b>für dich</b> am
+      schwersten ist, weißt nur du.</p>
+    <p class="fr">Je connais ces notions, mais elles ne sont pas dans tes documents. Envoie-moi
+      le cours de Mme Nix.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Drei weitere Lücken</span>
+    <ul>
+      <li>Die Folien <b>12, 13, 14</b> („Beispiele: Verantwortung in der Pflege“) und die Folien
+        <b>26 bis 31</b> enthalten <b>nur Bilder oder Situationskarten ohne Text</b> — daraus
+        lässt sich nichts zitieren. Die <b>vier Gruppensituationen</b> des Schlussauftrags sind
+        damit nicht bekannt.</li>
+      <li>Die <b>Reflexionsfragen</b> zu Beginn („Woran denken Sie als erstes, wenn Sie
+        <i>Verantwortung in der Pflege</i> hören?“ und „Wie zeigen Sie im Alltag, dass Sie
+        Verantwortung für das Wohl Ihrer Pflegeempfänger übernehmen?“) sollten auf einem
+        A4-Blatt festgehalten werden — <b>dein Blatt liegt nicht im Ordner</b>.</li>
+      <li><b>Das Beispiel mit dem alkoholisierten Freund</b>, der Auto fahren will, steht als
+        Übungsfrage im Foliensatz — <b>ohne Musterlösung</b>. Es ist die Vorübung zum Fall
+        Ernst/Paul.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="quellen">
+  <h2>Woraus diese Seite gebaut ist</h2>
+  <details class="quelle">
+    <summary>Die drei Quellen — jede einzeln genannt</summary>
+    <div class="inh">
+      <ul>
+        <li><b>verantwortliches Pflegehandeln.pdf</b> — Foliensatz <b>CE 03 / UE 02</b>,
+          33 Folien. Trägt fast die ganze Seite. Als Literatur nennt er:
+          <b>Heffels, Wolfgang / Storms, Anna (2021): <i>Ethisch urteilen und handeln</i>.
+          Göttingen: Vandenhoeck &amp; Ruprecht Verlage.</b></li>
+        <li><b>Auftrag Verdacht bei Kollegen.pdf</b> — Arbeitsauftrag <b>CE 3 / UE 2</b>, mit dem
+          Fall Ernst/Paul und der leeren Sieben-Phasen-Tabelle. <b>Nicht ausgefüllt.</b></li>
+        <li><b>Welche Rechte hat ein gesetzlicher Betreuer_.pdf</b> — vier Punkte zum
+          Betreuungsrecht.</li>
+      </ul>
+      <p>Alle drei aus deinem Google-Drive-Ordner, geteilt am 18.09.2026. <b>Jede Zahl und jede
+        Definition auf dieser Seite steht so in einer dieser Dateien.</b></p>
+      <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> die ausgeführten Phasen 1 und 2 zum
+        Fall Ernst/Paul — das ist <b>ein Beispiel dafür, wie man es aufschreibt</b>, keine
+        Musterlösung der Dozentin. Ebenso die Merkkästen, in denen ich Zusammenhänge zu deiner
+        Rechts-Zusammenfassung, zur Pflegeplanung und zum Pflegeprozess herstelle.</p>
+      <p>Die französischen Zeilen und die Vokabelübersetzungen sind von mir ergänzt.</p>
+    </div>
+  </details>
+</section>
+
+</main>
+
+<footer>
+  <p>Verantwortliches Pflegehandeln · CE 03 / UE 02 — gebaut aus deinen eigenen Unterlagen.<br>
+    Wo etwas fehlt, unklar formuliert ist oder von mir stammt, steht es oben ausdrücklich dabei.</p>
+</footer>
