@@ -214,7 +214,11 @@ class _Kopf extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'DIE 21 GRAMMATIKTHEMEN',
+                // Nicht fest verdrahten: Am 19.09.2026 wurde aus 21 Bloecken 29,
+                // und hier stand danach weiter "DIE 21 GRAMMATIKTHEMEN" ueber
+                // einem Band mit 29 Feldern. Sie hat es auf dem Screenshot
+                // gesehen, bevor ich es gemerkt habe.
+                'DIE ${daten.themenGesamt} GRAMMATIKTHEMEN',
                 style: TextStyle(
                   fontSize: 9.5,
                   fontWeight: FontWeight.w700,
@@ -225,7 +229,7 @@ class _Kopf extends StatelessWidget {
               Flexible(
                 child: Text(
                   wdh
-                      ? 'Dezember · Wiederholung'
+                      ? 'Wiederholung'
                       : (block > 0 ? 'Thema $block von ${daten.themenGesamt}' : ''),
                   textAlign: TextAlign.right,
                   overflow: TextOverflow.ellipsis,
@@ -252,7 +256,13 @@ class _Kopf extends StatelessWidget {
               const SizedBox(width: 9),
               _Zahl(wert: woerter, was: 'Vokabeln'),
               const SizedBox(width: 9),
-              _Zahl(wert: rest, was: 'Tage bis 31.12.'),
+              // Das Datum kommt aus etappeEnde, nicht aus dem Quelltext.
+              // Die Zahl darueber war schon richtig (134 Tage bis zum
+              // 31.01.2027), nur die Beschriftung sagte noch 31.12.
+              _Zahl(
+                wert: rest,
+                was: 'Tage bis ${Zyklus.kurzesDatum(daten.etappeEnde)}',
+              ),
             ],
           ),
         ],

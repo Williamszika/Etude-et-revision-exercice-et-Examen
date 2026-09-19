@@ -98,7 +98,7 @@ class _TagSeiteState extends State<TagSeite> {
             style: TextStyle(fontSize: 13.5, color: Stil.weich(context)),
           ),
           const SizedBox(height: 12),
-          _Kopfzeilen(z: z, uebung: uebung),
+          _Kopfzeilen(z: z, uebung: uebung, themenGesamt: widget.daten.themenGesamt),
           if (uebung) ...[
             const SizedBox(height: 12),
             if (fehlt)
@@ -137,9 +137,17 @@ class _TagSeiteState extends State<TagSeite> {
 }
 
 class _Kopfzeilen extends StatelessWidget {
-  const _Kopfzeilen({required this.z, required this.uebung});
+  const _Kopfzeilen({
+    required this.z,
+    required this.uebung,
+    required this.themenGesamt,
+  });
   final Map<String, dynamic> z;
   final bool uebung;
+
+  /// Aus `app-daten.json`, nicht aus dem Zyklus der Lektion: Lektionen, die
+  /// vor dem 19.09.2026 geschrieben wurden, tragen dort noch `gesamt: 21`.
+  final int themenGesamt;
 
   @override
   Widget build(BuildContext context) {
@@ -186,7 +194,7 @@ class _Kopfzeilen extends StatelessWidget {
           _Zeile('Grammatik', textVon(z['grammatik']),
               nr: z['grammatikNr'] == null
                   ? null
-                  : 'G${z['grammatikNr']} von 21'),
+                  : 'G${z['grammatikNr']} von $themenGesamt'),
       ],
     );
   }
