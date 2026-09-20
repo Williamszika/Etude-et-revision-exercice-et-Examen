@@ -1163,3 +1163,92 @@ viel zugetraut, einmal zu wenig.
   der Einzelwerte, *„damit sich kein Zahlendreher einschleicht"*. **Dieselbe Entscheidung wie
   beim Kreuzworträtsel-Gitter.**
 - **`Ergebnisse Gruppenvorstellung.pdf`** — weiterhin 45 MB gegen 10 MB Downloadgrenze.
+
+---
+
+## 20.09.2026, nachts — die Bildfolien der zwei Präsentationen, und ein Fehler zum zweiten Mal
+
+**Die Regel dieses Tages zum dritten Mal angewandt** — und diesmal auf die einzige Stelle, an
+der noch pauschal „lässt sich nicht auswerten" stand: die **Bildfolien der beiden
+Präsentationen** auf der Pädiatrie-Seite. Wörtlich stand dort *„Mehrere Folien sind reine
+Grafiken ohne Text und lassen sich deshalb **nicht auswerten**"* und *„Ohne Text und damit
+**nicht auswertbar**"* — zusammen **vierzehn Folien**.
+
+**Von elf angesehenen Folien trugen zehn Inhalt.** Beide PDFs wurden aus dem Drive geholt, die
+Seiten mit `pdftoppm` gerendert und einzeln angesehen; das Stufenschema und die BGA zusätzlich
+bei 300 bzw. 400 dpi nachgeprüft, weil es Medikamenten- und Laborzahlen sind.
+
+| Folie | Was wirklich drauf ist |
+|---|---|
+| Asthma S. 14 *Behandlungsstrategie* | **Das vollständige Stufenschema**, sechs Stufen, Langzeit- und Bedarfstherapie getrennt, mit der Ipratropiumbromid-Leiste quer darunter |
+| Asthma S. 21 *Atemerleichternde Maßnahmen* | **Fünf benannte Positionen** (Kutschersitz · Paschasitz · Stuhlstütze · Wandstellung · Torwartstellung), die **Lippenbremse** in zwei Fotos, ein **Säugling in Bauchlage** |
+| Asthma S. 8 *Was passiert mit den Bronchien?* | Drei Mechanismen, **englisch beschriftet**: tightened muscles · inflamed and thickened airway wall · mucus → *narrowed airway* |
+| Asthma S. 11 *Arten des Peak-Flow-Meters* | Drei Geräte: eins mit **Kinder-Windrad**, ein elektronisches mit **FEV₁** und Ampelbalken, eins mit Skala **60–800 und drei verschiebbaren Ampelmarkern** |
+| Asthma S. 12 *Peak-Flow-Werte* | Zwei Tabellen (Jungen/Männer, Mädchen/Frauen), Alter **5–80**, Größe **135–195 cm** — **und keine Einheit** |
+| Asthma S. 13 *Symptome* | **Gar keine Bildfolie**: ein Gruppenauftrag mit **drei Fragen** |
+| Asthma S. 18 *Inhalationsprodukte* | Herstellerbild, Reihe **CHILD → ADULT**: Masken- und Mundstückgrößen |
+| Asthma S. 15 *Medikamente* | **Wirklich nur ein Foto**, unbeschriftet — die einzige leere von den acht |
+| Dm S. 9 *Insulin und Glukagon* | Der **ganze Regelkreis**: BZ ↓ → Glukagon (α-Zellen) → Leber; BZ ↑ → Insulin (β-Zellen) → Fett- und Muskelzellen. Quelle im Bild: **I care Pflege, Thieme 2020** |
+| Dm S. 10 *Pathogenese* | Eine **vollständige Definition als Bildtext**, dazu **GLUT4** und **Insulinrezeptor** |
+| Dm S. 11 *Schema der abfallenden Insulinproduktion* | **Manifestation bei 20 % Restzellen**, davor „Auslösendes Ereignis", danach die **Remissionsphase** — die stand vorher nirgends |
+| Dm S. 13 *BGA bei Erstmanifestation* | Ein **echter Laborausdruck** mit Referenzbereichen: pH **6,885** · BE **−26,7** · SBC **5,7** · pCO₂ **31,5** · Na **123** · Cl **89** · **Glukose 114** |
+| Dm S. 29 (**ohne Titel**) | Das **Pumpensystem am Bauch** — Sensor, Infusion set, Pumpe — und ein **Kindergürtel mit Feuerwehrautos** |
+
+**Der schönste Einzelfund** ist das pCO₂ von 31,5: **Das ist die Kußmaul-Atmung als Messwert.**
+Die Seite hatte die Kette Insulinmangel → Ketone → Azidose → Kußmaul schon; jetzt steht die
+Gegenregulation als Zahl daneben.
+
+### Die Entscheidung, die bestehen bleibt
+
+**Die 416 Einzelwerte der Peak-Flow-Tabellen werden nicht abgeschrieben.** Das ist dieselbe
+Entscheidung wie beim Kreuzworträtselgitter — **eine Entscheidung, keine Unlesbarkeit**, und der
+Unterschied steht auf der Seite. Stattdessen steht dort, was sicher ist und mehr wert als
+Einzelzahlen: **die Tabelle nennt keine Einheit**, und **bei 5, 10 und 15 Jahren sind die Werte
+fast identisch** — beim Kind entscheidet also die **Größe**, nicht das Alter. Das präzisiert
+einen Satz auf der Asthma-Seite, der „von Größe **und** Alter" sagte.
+
+### Der eigentliche Fehler — und er ist der von gestern
+
+**Die Asthma-Seite hatte sieben dieser Folien längst ausgewertet.** Stufenschema, fünf
+Positionen, Lippenbremse, Baby in Bauchlage, beide Peak-Flow-Tabellen, die drei Fragen des
+Gruppenauftrags — **alles stand dort schon**, teils seit Tagen. **Nur die Pädiatrie-Seite führte
+es weiter als „nicht auswertbar".**
+
+Das ist **exakt die CRM-Fehlerart von gestern** (Reanimation gefunden, Kommunikation weiter als
+Lücke), **zum zweiten Mal in zwei Tagen und mit sieben Folien statt einer Datei**. Gestern wurde
+daraus notiert, es müsse eine Gegenprobe geben. **Heute wurde sie wieder erst hinterher
+gemacht** — nach dem Auswerten, nicht davor. Hätte ich sie vorher gemacht, wäre die halbe
+Arbeit dieses Abends unnötig gewesen.
+
+**Ab jetzt gilt, und diesmal als erster Schritt, nicht als letzter:** *Bevor irgendetwas als
+Lücke geschrieben oder eine Datei neu ausgewertet wird, wird die ganze Sammlung nach dem
+Dateinamen und nach den Stichwörtern durchsucht.* `Grep` über alle `schulung-*/` kostet Sekunden.
+
+### Drei Stellen, an denen die Asthma-Seite genauer war
+
+Beim Vergleich zeigte sich, dass ihre Beschreibungen **besser** waren als mein Entwurf:
+**Paschasitz** ist *aufrecht* im Sessel, nicht zurückgelehnt · **Stuhlstütze** heißt *verkehrt
+herum* auf dem Stuhl · **Torwartstellung** hat die Hände auf den *Oberschenkeln*, nicht auf den
+Knien. **Alle drei wurden von dort übernommen**, und im Fall Lea steht jetzt dabei, dass der
+Falltext *„auf den Knien"* sagt.
+
+### Zwei Selbstkorrekturen und eine offene Frage
+
+1. **„Antil-IL-4-R-Antikörper".** So steht Stufe 6 auf der Folie, mit einem zusätzlichen `l`.
+   **Die Asthma-Seite hatte das stillschweigend geglättet.** Beide Seiten sagen es jetzt —
+   dieselbe Lehre wie bei **CRM-Leitsatz 14**: Eine Vermutung wird als Vermutung genannt, nicht
+   als Korrektur ausgeführt.
+2. **Die Glukose von 114 mg/dl** bei einem pH von 6,885 passt nicht zum Bild einer
+   Erstmanifestation mit Ketoazidose. **Das wird nicht wegerklärt** und keine andere Zahl
+   erfunden — es steht als Frage für den Unterricht auf der Seite, zusammen mit dem
+   abgeschnittenen Feld `sABNAR: „arteriell N"`.
+
+### Was offen bleibt
+
+**Neu benannt, weil es in ihren Unterlagen nirgends steht:** die **Einheit** der
+Peak-Flow-Tabelle · die **Bedeutung der Ampelfarben** · die **Schweregrade des akuten
+Asthmaanfalls** (Frage 3 des Gruppenauftrags, auf der Asthma-Seite schon als Lücke vermerkt) ·
+**FEV₁**.
+
+**Unverändert offen:** `QR AB Rehabilitation.PNG` (Werkzeugproblem) · die vier
+**Intertrigo-Fotos** in `Text Intertrigo.pdf` · `Ergebnisse Gruppenvorstellung.pdf` (45 MB).
