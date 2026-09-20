@@ -1,0 +1,936 @@
+<title>Mangelernährung</title>
+<style>
+  :root{
+    --paper:#f3f1ec;--paper-2:#e8e4da;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#8a5a1c;--accent-deep:#6b4413;--accent-soft:#f3e7d6;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#6b6030;--bezbg:#efe9d6;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#dfb072;--accent-deep:#f0c78e;--accent-soft:#2c2114;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#c8bd7e;--bezbg:#25220f;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#dfb072;--accent-deep:#f0c78e;--accent-soft:#2c2114;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#c8bd7e;--bezbg:#25220f;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#f3f1ec;--paper-2:#e8e4da;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#8a5a1c;--accent-deep:#6b4413;--accent-soft:#f3e7d6;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#6b6030;--bezbg:#efe9d6;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 02 / UE 03 · Die Selbstpflege unterstützen — Ernährung</p>
+  <h1>Mangelernährung — warum jemand nicht isst</h1>
+  <p class="sub">Screening und Assessment, der Teufelskreis, die Ursachen in den drei Settings —
+    und die sieben Fälle aus deinem Arbeitsauftrag, zu denen es <b>keine</b> Musterlösung gibt.</p>
+  <div class="meta">
+    <span>CE 02 · UE 03</span>
+    <span>5 Quellen</span>
+    <span>Mit Teil-Lösung</span>
+    <span>Niveau B1</span>
+    <span>Stand 20.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#was">Was es ist</a>
+  <a href="#symptome">Symptome</a>
+  <a href="#ursachen">Ursachen</a>
+  <a href="#kreis">Der Teufelskreis</a>
+  <a href="#bmi">BMI und Gewicht</a>
+  <a href="#settings">Die drei Settings</a>
+  <a href="#screening">Screening und Assessment</a>
+  <a href="#pemu">Der PEMU-Bogen</a>
+  <a href="#essen">Beim Essen helfen</a>
+  <a href="#massnahmen">Maßnahmen</a>
+  <a href="#faelle">Die sieben Fälle</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="was">
+  <h2>Was Mangelernährung ist</h2>
+  <div class="merk">
+    <span class="t">Die Definition der Folie</span>
+    <p>Ein <b>Zustand, der entsteht, wenn über einen längeren Zeitraum hinweg nicht ausreichend
+      Energie und lebenswichtige Nährstoffe aufgenommen werden</b>, um den Bedarf des Körpers zu
+      decken. Das führt zu <b>negativen Auswirkungen auf den Ernährungs- und Gesundheitszustand
+      sowie auf die physiologischen Funktionen</b>.</p>
+    <p><b>Fachbegriff: Malnutrition.</b> Oft als Folge <b>schwerer Krankheiten</b> wie Tumor oder
+      Herzinsuffizienz — oder <b>altersbedingt</b>.</p>
+    <p class="fr">Le terme technique est <b>Malnutrition</b>. Et la définition insiste sur la
+      <b>durée</b> : ce n'est pas un repas sauté, c'est un état installé.</p>
+  </div>
+
+  <h3>Die drei Formen — und warum die Unterscheidung zählt</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Form</th><th>Was fehlt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Qualitative<br>Mangelernährung</td>
+          <td>Eine <b>Unterversorgung</b> besteht — <b>zu wenige Vitamine, Mineralstoffe,
+            Proteine</b> und so weiter</td></tr>
+        <tr><td class="k">Quantitative<br>Mangelernährung</td>
+          <td>Es wird <b>zu wenig Nahrung</b> aufgenommen — <b>zu wenig Kalorien</b></td></tr>
+        <tr><td class="k">Globale<br>Mangelernährung</td>
+          <td><b>Es fehlt an beidem.</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="gefahr">
+    <span class="t">Die Folgerung, um die es in diesem ganzen Kapitel geht</span>
+    <p><b>Eine qualitative Mangelernährung sieht man dem Gewicht nicht an.</b> Jemand kann
+      normalgewichtig oder sogar adipös sein <b>und</b> mangelernährt — wenn das, was er isst, die
+      falschen Bausteine liefert.</p>
+    <p><b>Zwei der sieben Fälle</b> in deinem Arbeitsauftrag weiter unten sind genau dafür gebaut:
+      eine Frau, die ausreichend isst, aber <b>fast nur Toastbrot und Kaffee</b>, und eine Frau
+      mit <b>95 kg</b>, die <b>kaum frisches Gemüse und Obst</b> zu sich nimmt. <b>Das ist kein
+      Zufall, das ist die Prüfungsfrage.</b></p>
+    <p class="fr">Une malnutrition <b>qualitative</b> ne se voit pas sur la balance. On peut être
+      en surpoids <b>et</b> dénutri — et deux des sept cas sont faits exactement pour ça.</p>
+  </div>
+</section>
+
+<section id="symptome">
+  <h2>Die Symptome</h2>
+  <div class="karten">
+    <div class="karte"><h4>Wie der Mensch wirkt</h4><p><b>Erschöpfung</b> · <b>Mattigkeit</b> ·
+      <b>Energiemangel</b> · <b>Apathie</b> · <b>Schwäche</b> · <b>Abwehrschwäche</b> ·
+      <b>Desorientierung</b></p></div>
+    <div class="karte"><h4>Was du an der Haut siehst</h4><p><b>Blasse Hautfarbe</b> ·
+      <b>Hautfalten</b> an <b>Armen, Bauch und Gesäß</b> · <b>trockene, schuppige Haut</b> ·
+      <b>Mundrisse oder wunde Stellen</b></p></div>
+    <div class="karte"><h4>Was an Form verloren geht</h4><p><b>Hervorstehende Knochen</b> im
+      Gesicht, an der Wirbelsäule und an den Rippen · <b>Verlust von Unterhautfettgewebe</b> mit
+      <b>eingefallenen Augen</b></p></div>
+  </div>
+  <div class="merk">
+    <span class="t">Zwei Symptome, die man nie der Ernährung zuordnet</span>
+    <p><b>Apathie</b> und <b>Desorientierung</b> stehen in derselben Liste wie die eingefallenen
+      Augen. Ein Mensch, der plötzlich verwirrt wirkt, wird auf vieles hin untersucht — <b>auf die
+      Essmenge selten</b>.</p>
+    <p>Und <b>Abwehrschwäche</b> ist die Brücke zu allem anderen: Sie erklärt, warum
+      Mangelernährung in der nächsten Liste als Ursache für <b>Infektionen, Dekubitus und
+      langsame Wundheilung</b> auftaucht.</p>
+    <p class="fr">L'apathie et la désorientation figurent dans la même liste que les yeux creusés.
+      On cherche beaucoup de causes à une confusion — rarement l'assiette.</p>
+  </div>
+</section>
+
+<section id="ursachen">
+  <h2>Risikofaktoren und Ursachen — die vier Gruppen</h2>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Gruppe</th><th>Beispiele der Folie</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Nicht essen <b>können</b></td>
+          <td><b>Übelkeit, Erbrechen</b> · Erkrankungen im <b>Mundraum</b> · <b>kognitive
+            Einschränkungen</b> (Demenz) · <b>Sehstörung</b> · Beeinträchtigung der
+            <b>Mobilität der Arme und Hände</b> — Lähmungen, <b>Tremor</b></td></tr>
+        <tr><td class="k">Nicht essen <b>wollen</b></td>
+          <td><b>Soziale Isolation</b> · <b>unpassende Zeiten</b> · <b>das Essen schmeckt
+            nicht</b> · psychische Erkrankungen, z. B. <b>Anorexia nervosa</b></td></tr>
+        <tr><td class="k">Erkrankungen</td>
+          <td><b>Gastritis</b> · chronisch entzündliche <b>Darmerkrankungen</b> · <b>COPD</b> ·
+            <b>Demenz</b> · <b>Tumore</b></td></tr>
+        <tr><td class="k">Medikamente</td>
+          <td><b>Polypharmazie</b> führt zu <b>Inappetenz</b> (Appetitlosigkeit) ·
+            <b>Benzodiazepine</b> · <b>Digitalispräparate</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="gefahr">
+    <span class="t">Die Einteilung „können“ gegen „wollen“ ist die wichtigste der Seite</span>
+    <p>Sie entscheidet über die <b>Maßnahme</b>, und die beiden Antworten sind entgegengesetzt:</p>
+    <p><b>Wer nicht essen <u>kann</u></b>, braucht etwas <b>Technisches</b> — angepasstes
+      Besteck, eine andere Konsistenz, Anleitung, Zahnbehandlung, einen anderen Zeitpunkt.</p>
+    <p><b>Wer nicht essen <u>will</u></b>, braucht etwas <b>Soziales</b> — Gesellschaft, andere
+      Essenszeiten, Lieblingsspeisen, ein Gespräch über die Gründe.</p>
+    <p><b>Und der häufigste Fehler:</b> Wer beim Nicht-Wollen mit Hilfsmitteln antwortet oder beim
+      Nicht-Können mit Zureden, verfehlt beide Male die Ursache. <b>Deshalb steht im PEMU-Bogen
+      weiter unten als erste Frage: „Warum isst die/der Betroffene zu wenig?“</b></p>
+    <p class="fr">Ne pas <b>pouvoir</b> manger appelle une réponse technique ; ne pas
+      <b>vouloir</b> appelle une réponse sociale. Se tromper de moitié, c'est manquer la cause.</p>
+  </div>
+</section>
+
+<section id="kreis">
+  <h2>Der Teufelskreis der Mangelernährung</h2>
+  <p class="lead">Die Folie listet die Komplikationen, die aus einer Mangelernährung entstehen —
+    und mehrere davon <b>verstärken die Mangelernährung selbst</b>. Daher der Name.</p>
+  <div class="karten">
+    <div class="karte"><h4>Körperlich</h4><p><b>Muskelschwäche</b> · <b>Sturzrisiko</b> ·
+      <b>Anfälligkeit für Infektionen</b> · <b>höheres Risiko für Druckgeschwüre</b> ·
+      <b>langsame Wundheilung</b></p></div>
+    <div class="karte"><h4>Geistig und sozial</h4><p><b>Probleme beim Denken und Verstehen</b> ·
+      <b>Einsamkeit</b></p></div>
+    <div class="karte"><h4>Im Verlauf</h4><p><b>Schwierigkeiten bei der Genesung</b></p></div>
+  </div>
+  <div class="gefahr">
+    <span class="t">Warum es wirklich ein Kreis ist — die Ketten, die zurücklaufen</span>
+    <p><b>Muskelschwäche</b> → der Mensch kommt schlechter zum Tisch, hält das Besteck schlechter
+      → <b>er isst weniger</b>.</p>
+    <p><b>Probleme beim Denken und Verstehen</b> → er vergisst zu essen, weiß mit dem Teller
+      nichts anzufangen → <b>er isst weniger</b>. Genau diesen Punkt nennt der PEMU-Bogen als
+      <b>1 a: kognitive Überforderung</b>.</p>
+    <p><b>Einsamkeit</b> → allein isst man weniger → und weniger Kraft heißt weniger Teilnahme →
+      <b>noch mehr Einsamkeit</b>.</p>
+    <p><b>Dekubitus und offene Wunden</b> → <b>erhöhter Energie- und Nährstoffbedarf</b> — der
+      PEMU-Bogen nennt genau das als eigene Screeningfrage. Der Körper braucht mehr, gerade wenn
+      er weniger bekommt.</p>
+    <p><b>Das ist eine fertige <i>Begründen</i>-Antwort</b>: Nenne <b>eine</b> Komplikation und
+      zeig, wie sie zur Ursache zurückführt. Damit hast du die Kette
+      <i>Ursache → Wirkung → Gefahr → deshalb</i> in einem Zug.</p>
+    <p class="fr">Choisis <b>une</b> complication et montre comment elle revient nourrir la cause.
+      C'est le cercle, et c'est la réponse complète.</p>
+  </div>
+</section>
+
+<section id="bmi">
+  <h2>Das Risiko erfassen — BMI und Gewichtsverlust</h2>
+  <p class="lead">Die Folie nennt <b>zwei</b> Schritte: die <b>Berechnung des BMI</b> und die
+    <b>Betrachtung des Gewichtsverlustes</b> — beabsichtigt oder unbeabsichtigt.</p>
+
+  <div class="merk">
+    <span class="t">Die Zahl, die man sich merkt</span>
+    <p><b>Ein Verlust von 5 % des Körpergewichts über 6 Monate gilt als auffällig.</b></p>
+    <p><b>Im PEMU-Bogen</b> weiter unten steht dieselbe Sache zweistufig und strenger:
+      <b>≥ 5 % in 1 Monat</b> oder <b>≥ 10 % in 6 Monaten</b> — <b>oder weit gewordene
+      Kleidung</b>.</p>
+    <p><b>Der letzte Zusatz ist der praktischste des ganzen Kapitels:</b> Wenn niemand weiß, was
+      jemand vor einem halben Jahr gewogen hat — und das ist der Normalfall bei einer Aufnahme —
+      dann ist <b>„Ist Ihnen die Hose zu weit geworden?“</b> eine verwertbare Frage. Der
+      PEMU-Leitfaden sagt das ausdrücklich.</p>
+    <p class="fr">Personne ne connaît le poids d'il y a six mois. Mais « votre pantalon est-il
+      devenu trop large ? » — ça, on peut le demander.</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Wiegen — vier Bedingungen, sonst ist die Zahl wertlos</span>
+    <ul style="margin-bottom:0;">
+      <li><b>Morgens</b>, nach dem Toilettengang <b>und vor dem Essen</b></li>
+      <li><b>Leicht bekleidet</b></li>
+      <li><b>Immer dieselbe Waage</b> benutzen</li>
+    </ul>
+    <p style="margin-top:12px;"><b>Warum das kein Detail ist:</b> Der Gewichtsverlauf ist das
+      <b>einzige</b> Kriterium, das eine Veränderung über die Zeit misst. Eine andere Waage, eine
+      andere Uhrzeit oder Straßenkleidung können leicht ein bis zwei Kilo ausmachen — und
+      <b>genau in dieser Größenordnung liegt die 5-%-Grenze</b> bei einem leichten Menschen. Bei
+      43 kg sind 5 % nur <b>2,15 kg</b>.</p>
+    <p class="fr">Chez une personne de 43 kg, 5 % font 2,15 kg — c'est l'écart que produisent une
+      autre balance et des vêtements de ville. D'où les quatre conditions.</p>
+  </div>
+
+  <h3>Was der BMI kann und was nicht — die Antwort aus dem Lösungsblatt</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Vorteile</th><th>Nachteile</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Grober Überblick</b> · Vergleich <b>Größe zu Gewicht</b> ·
+            <b>kostengünstig</b> · <b>an jedem Ort umsetzbar</b> · <b>schnelle
+            Berechnung</b></td>
+          <td><b>Keine Aussage über den Ernährungszustand</b> · <b>Fett- und Muskelmasse werden
+            nicht beachtet</b> · <b>falsche Bewertung</b> bei Menschen mit <b>Ödemen,
+            Amputationen, Wirbelsäulenveränderungen</b> · <b>die Geschlechter werden nicht
+            beachtet</b></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:14.5px;color:var(--ink-soft);">Das steht so im <b>Lösungsblatt deiner
+    Dozentin</b> — es ist die Antwort auf Aufgabe 2 des Arbeitsauftrags. <b>Der erste Nachteil ist
+    der entscheidende:</b> „Keine Aussage über den Ernährungszustand.“ Der BMI misst, wie schwer
+    jemand im Verhältnis zu seiner Größe ist — <b>nicht, ob er ernährt ist</b>.</p>
+
+  <div class="merk">
+    <span class="t">Der BMI im Alter wird anders bewertet</span>
+    <p>Die Folie: Der BMI <b>„muss im Alter neu bewertet werden, da der ideale BMI im höheren
+      Alter ansteigt und ein etwas höherer BMI nicht zwangsläufig schlecht ist“</b> — ein
+      <b>BMI zwischen 25 und 30</b> wird <b>„oft als gesundheitsförderlich angesehen“</b>.</p>
+    <p><b>Die Grenze, ab der anders bewertet wird, nennt die Folie mit 64 Jahren</b>
+      („Bewertung BMI ab 64 Jahren“).</p>
+    <p><b>Was daraus folgt:</b> Derselbe Zahlenwert bedeutet bei einer 30-Jährigen und einer
+      80-Jährigen nicht dasselbe. Wer bei einer alten Frau einen BMI von 26 als „zu hoch“
+      einordnet und ihr Essen reduziert, handelt gegen diese Folie.</p>
+    <p class="fr">Le même chiffre ne veut pas dire la même chose à 30 ans et à 80 ans. Au-delà de
+      64 ans, un BMI entre 25 et 30 est souvent considéré comme <b>favorable</b>.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Die Bewertungstabelle selbst ist ein Bild — und wird hier nicht ersetzt</span>
+    <p>Auf den Folien stehen zwei Tabellen: <b>„Bewertung BMI“</b> (mit dem Wort
+      <b>Dystrophie</b>) und <b>„Bewertung BMI ab 64 Jahren“</b>. <b>Beide sind reine
+      Bildfolien</b> — ihre Zahlengrenzen sind im vorliegenden Dokument <b>nicht auslesbar</b>.</p>
+    <p><b>Ich schreibe hier keine Grenzwerte hin.</b> Es gibt gängige Einteilungen, aber sie
+      stehen nicht in deinen Unterlagen, und <b>in der Klausur gilt die Tabelle deiner
+      Dozentin</b> — die sich für Ältere ausdrücklich von der üblichen unterscheidet. <b>Schreib
+      dir die beiden Tabellen von der Folie ab</b> oder schick mir ein Foto, dann stehen sie hier.</p>
+    <p class="fr">Les deux tableaux de classification sont des images illisibles. Je n'invente pas
+      de seuils — surtout pas ici, où ceux de ta formatrice diffèrent des usuels.</p>
+  </div>
+</section>
+
+<section id="settings">
+  <h2>Die Ursachen in den drei Settings</h2>
+  <p class="lead">Das ist <b>Aufgabe 3 des Arbeitsauftrags — und sie ist gelöst</b>: Die Tabelle
+    steht im Lösungsblatt deiner Dozentin.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Krankenhaus</th><th>Ambulante Pflege</th><th>Stationäre Langzeitpflege</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>Akute Erkrankungen mit erhöhtem Energiebedarf</b> (z. B. Pneumonie) ·
+            <b>ungewohnte Umgebung</b> · <b>Nahrung schmeckt nicht</b> · <b>Angst und Stress</b> ·
+            <b>Appetitlosigkeit</b> durch Schmerzen oder Medikamentennebenwirkungen ·
+            <b>Personalmangel</b> für die Unterstützung bei der Nahrungsaufnahme · <b>wenig
+            abwechslungsreiches Essen</b> · <b>Nüchternzeiten</b> vor OPs oder Diagnostik ·
+            <b>Unterbrechungen</b> durch Visite, Besuch, Medikamente, Infusionstherapie</td>
+          <td><b>Schwierigkeiten bei der Zubereitung</b> · <b>Einsamkeit</b> ·
+            <b>Demenz / kognitive Einschränkungen</b> · <b>keine ausgewogene Ernährung aus
+            einfacher Handhabbarkeit</b> · <b>finanzielle Ursachen</b> · <b>fehlende
+            Hilfsmittel</b>, z. B. bei Dysphagie</td>
+          <td><b>Alter</b> · <b>schlechter Zahnstatus</b> · <b>Schluckstörungen / Dysphagie</b> ·
+            <b>Depressionen</b> · <b>Demenz</b> · <b>Multimorbidität</b> · <b>Störfaktoren</b>:
+            Personal, Mitbewohnerinnen, Visitenzeiten, Therapieangebote, Personalmangel,
+            Zeitmangel · <b>auftretende Erkrankungen</b>, z. B. Infektionen ·
+            <b>Polypharmazie</b> · <b>soziale Isolation</b></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="merk">
+    <span class="t">Drei Beobachtungen zu dieser Tabelle, die Punkte bringen</span>
+    <p><b>1 · In allen drei Spalten steht die Organisation, nicht die Krankheit.</b>
+      Personalmangel, Nüchternzeiten, Visitenzeiten, Unterbrechungen, Zeitmangel. <b>Das sind
+      Bedingungen, keine Diagnosen</b> — und sie sind der Grund, warum Mangelernährung ein
+      <b>Pflegethema</b> ist und kein rein medizinisches.</p>
+    <p><b>2 · Nur im Krankenhaus steht der erhöhte Bedarf.</b> Dort isst jemand womöglich
+      normal — und ist trotzdem im Minus, weil Fieber und Infektion mehr verbrauchen. Das ist der
+      Fall, den man am leichtesten übersieht.</p>
+    <p><b>3 · Nur in der ambulanten Pflege stehen die Finanzen.</b> Und „keine ausgewogene
+      Ernährung aus einfacher Handhabbarkeit“ heißt im Klartext: <b>Was man mit einer Hand aus
+      der Packung essen kann, ist selten Gemüse.</b></p>
+    <p class="fr">Dans les trois colonnes, ce sont des <b>conditions</b> qui reviennent, pas des
+      maladies. C'est pour ça que la dénutrition est un sujet de <b>soins</b>.</p>
+  </div>
+</section>
+
+<section id="screening">
+  <h2>Screening und Assessment — zwei Wörter, die man nicht verwechseln darf</h2>
+  <div class="gefahr">
+    <span class="t">Die Definitionen, wörtlich von der Folie</span>
+    <p><b>Screening</b> = ein <b>schneller, standardisierter Prozess, der dazu dient, Risiken zu
+      identifizieren</b>.</p>
+    <p><b>Assessment</b> = eine <b>umfassendere, detailliertere Untersuchung, die darauf abzielt,
+      die Art und das Ausmaß eines Problems genauer zu bestimmen</b>.</p>
+    <p><b>Kurz:</b> Das Screening fragt <b>ob</b>. Das Assessment fragt <b>warum und wie
+      schlimm</b>. Das Screening bekommen <b>alle</b>, das Assessment nur die, bei denen das
+      Screening angeschlagen hat.</p>
+    <p class="fr">Le dépistage demande <b>si</b>. L'évaluation demande <b>pourquoi</b> et
+      <b>à quel point</b>. Le premier est pour tout le monde, le second pour ceux qu'il a
+      repérés.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Der Auszug aus dem Expertenstandard „Ernährungsmanagement“</span>
+    <p>„Die Pflegefachkraft erfasst bei <b>allen</b> Pflegeempfängerinnen und Pflegeempfängern
+      <b>zu Beginn des pflegerischen Auftrags</b> im Rahmen der Pflegeanamnese, <b>bei akuten
+      Veränderungen</b> und <b>in individuell festzulegenden Abständen</b> Anzeichen für eine
+      <b>drohende oder bestehende</b> Mangelernährung (Screening). Sind entsprechende Anzeichen
+      vorhanden, führt sie eine <b>tiefergehende Einschätzung</b> der Ernährungssituation und der
+      sie beeinflussenden Faktoren durch (vertieftes Assessment).“</p>
+    <p><b>Der Aufbau ist genau derselbe wie beim Expertenstandard Kontinenzförderung</b>: alle
+      screenen, bei Auffälligkeit vertiefen, in festgelegten Abständen wiederholen. <b>Wenn du
+      einen Expertenstandard verstanden hast, kennst du die Bauform aller.</b></p>
+    <p class="fr">Même architecture que le standard Continence : dépister tout le monde,
+      approfondir si ça sonne, répéter à intervalles définis.</p>
+  </div>
+
+  <h3>Die vier Instrumente — und wofür welches</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Instrument</th><th>Gedacht für</th></tr></thead>
+      <tbody>
+        <tr><td class="k">NRS<br>Nutritional Risk Score</td><td>z. B. für <b>Krankenhäuser</b></td></tr>
+        <tr><td class="k">MNA / MNA-SF<br>Mini Nutritional Assessment<br>(short form)</td>
+          <td>z. B. für <b>geriatrische Einrichtungen</b></td></tr>
+        <tr><td class="k">MUST<br>Malnutrition Universal<br>Screening Tool</td>
+          <td>z. B. für die <b>ambulante Versorgung</b></td></tr>
+        <tr><td class="k">PEMU<br>Pflegerische Erfassung von<br>Mangelernährung und Ursachen</td>
+          <td>z. B. als <b>detaillierteres Assessment bei auffälligem Screening-Ergebnis</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:14.5px;color:var(--ink-soft);"><b>Merk dir die Zuordnung über das
+    Setting</b> — Krankenhaus, Geriatrie, ambulant, vertieftes Assessment. Und beachte, dass
+    <b>PEMU als einziges nicht nach dem Ort, sondern nach der Stufe</b> eingeordnet ist: Es ist
+    das Werkzeug <b>nach</b> dem Screening, nicht daneben.</p>
+</section>
+
+<section id="pemu">
+  <h2>Der PEMU-Bogen — der einzige, der vollständig vorliegt</h2>
+  <p class="lead"><b>Pflegerische Erfassung von Mangelernährung und deren Ursachen in der
+    stationären Langzeit-/Altenpflege.</b> Von den vier genannten Instrumenten liegt <b>nur
+    dieses</b> in deinem Ordner — dafür vollständig, mit Screening, Ess-/Trinkprotokoll,
+    Assessment und Leitfaden.</p>
+  <p style="font-size:14.5px;color:var(--ink-soft);">Quelle laut Bogen: Instrument des
+    Projektverbundes <b>Institut für Pflegewissenschaft der Universität Witten/Herdecke</b> und
+    <b>Institut für Ernährungs- und Lebensmittelwissenschaften der Universität Bonn</b>;
+    beschrieben in <b>Schreier, Volkert, Bartholomeyczik</b>, in: Bartholomeyczik/Halek (Hrsg.),
+    <i>Assessmentinstrumente in der Pflege</i>, Hannover: Schlütersche 2009, S. 137–149.</p>
+
+  <h3>Teil 1 · Das Screening — sechs Fragen, zweimal drei</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Risiko für <b>Nahrungs</b>mangel</th><th>Risiko für <b>Flüssigkeits</b>mangel</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><b>1 · Zeichen von Nahrungsmangel</b><br>
+            äußerer Eindruck <b>unterernährt/untergewichtig</b> · <b>nur wenn ermittelbar:
+            BMI &lt; 20</b> · <b>unbeabsichtigter Gewichtsverlust</b> (≥ 5 % in 1 Monat;
+            ≥ 10 % in 6 Monaten <b>oder weit gewordene Kleidung</b>)<br><br>
+            <b>2 · Auffällig geringe Essmenge</b><br>
+            z. B. <b>mehr als ¼ Essensreste bei ⅔ der Mahlzeiten</b><br><br>
+            <b>3 · Erhöhter Energie-/Nährstoffbedarf und Verluste</b><br>
+            z. B. <b>Hyperaktivität</b>, Stresssituationen, akute Krankheit, <b>Fieber</b>,
+            offene Wunden wie <b>Dekubitus</b> oder <b>Ulcus cruris</b>, <b>Diarrhö</b>,
+            Erbrechen, <b>Blutverlust</b></td>
+          <td><b>1 · Zeichen von Flüssigkeitsmangel</b><br>
+            z. B. <b>plötzliche/unerwartete Verwirrtheit</b>, <b>trockene Schleimhäute</b>,
+            <b>konzentrierter Urin</b><br><br>
+            <b>2 · Auffällig geringe Trinkmengen</b><br>
+            z. B. <b>weniger als 1000 ml pro Tag über mehrere Tage</b><br><br>
+            <b>3 · Erhöhter Flüssigkeitsbedarf</b><br>
+            z. B. <b>Fieber</b>, <b>stark geheizte Räume</b>, <b>Sommerhitze</b></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="gefahr">
+    <span class="t">Die Regel, die den ganzen Bogen steuert</span>
+    <p><b>„Die tiefergehende Untersuchung der Ernährungssituation soll dann erfolgen, wenn
+      <u>ein</u> Punkt im Screening mit Ja beantwortet wurde.“</b></p>
+    <p><b>Ein</b> Kreuz, nicht drei. Kein Punktesystem, keine Summe. <b>Das ist eine sehr
+      niedrige Schwelle — mit Absicht.</b></p>
+    <p><b>Und ein Detail, das man leicht übersieht:</b> Beim BMI steht <b>„nur wenn
+      ermittelbar“</b>. Der Leitfaden erklärt warum: Wenn die Körpergröße nicht zu ermitteln ist
+      oder <b>Störvariablen wie Ödeme oder fehlende Gliedmaßen</b> die Berechnung verhindern,
+      <b>kann auf den BMI-Wert verzichtet werden</b>. <b>Das Fehlen des BMI hält den Bogen nicht
+      auf.</b></p>
+    <p class="fr">Une seule croix suffit pour passer à l'évaluation approfondie. Et si le BMI
+      n'est pas calculable, on s'en passe — le formulaire continue.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Wann und wie oft — die Regeln des Leitfadens</span>
+    <ul style="margin-bottom:0;">
+      <li><b>Screening bei allen</b> im Rahmen der Pflegeanamnese (z. B. Einzug) und danach
+        <b>alle drei Monate</b>.</li>
+      <li><b>Umgehende Wiederholung</b>, wenn Ereignisse eintreten, die sich negativ auswirken
+        könnten — <b>verminderte Essmengen, fieberhafte Infektionskrankheiten</b>.</li>
+      <li><b>Wöchentliche Gewichtserfassung</b>, wenn nicht anders festgelegt, <b>bis sich der
+        Zustand stabilisiert hat</b> oder ein festgelegtes Gewicht erreicht ist.</li>
+      <li><b>Ess-/Trinkprotokoll: sieben aufeinanderfolgende Tage</b>, fortlaufend und so genau
+        wie möglich — und <b>weiterführen</b>, um die Wirkung der Maßnahmen zu überprüfen.</li>
+    </ul>
+    <p style="margin-top:12px;"><b>Die Verzehrmenge wird mit Symbolen erfasst:</b> nichts ○ ·
+      ¼ ◔ · ½ ◐ · ¾ ◕ · alles ●, dazu die <b>Portionsgröße</b> (klein / mittel / groß). Bei der
+      Trinkmenge wird <b>pro geleertem Gefäß ein Strich</b> in die Spalte der passenden
+      Gefäßgröße eingetragen.</p>
+    <p class="fr">Sept jours de suite pour le relevé, et on <b>continue</b> après pour vérifier
+      que les mesures agissent.</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Der Satz, der über allem steht — und der dich vielleicht überrascht</span>
+    <p><b>„Bei der Erfassung der Ernährungssituation sind Autonomie und Selbstbestimmung zu
+      berücksichtigen, und das Bedürfnis nach Ruhe und Passivität muss oberste Priorität
+      haben.“</b></p>
+    <p>Die Beispiele des Leitfadens: <b>In der Sterbephase kann auf die Gewichtserfassung
+      verzichtet werden</b>, ebenso <b>könnten festgelegte Trinkmengen neu definiert werden</b>.</p>
+    <p><b>Damit setzt das Instrument seine eigene Grenze.</b> Der Wunsch des Menschen steht
+      <b>über</b> dem Bogen — und zwar mit den Worten <b>„oberste Priorität“</b>. Wer in einer
+      <i>Beurteilen</i>-Aufgabe zu einem sterbenden Menschen schreibt, man müsse trotzdem wiegen
+      und die Trinkmenge erreichen, hat genau diesen Satz übersehen.</p>
+    <p class="fr">Le besoin de repos et de passivité a la <b>priorité absolue</b> — l'instrument
+      pose lui-même sa limite. En fin de vie, on peut renoncer à peser.</p>
+  </div>
+
+  <h3>Teil 2 · Das Assessment — „Warum isst die/der Betroffene zu wenig?“</h3>
+  <p>Der Bogen gliedert die Antwort in <b>vier Gruppen</b>. Sie sind der Grund, warum PEMU mehr
+    ist als eine Checkliste: <b>Er fragt nicht, ob jemand zu wenig isst, sondern woran es
+    liegt.</b></p>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Körperlich oder kognitiv bedingte Beeinträchtigung</h4>
+      <p><b>a</b> kognitive Überforderung (weiß nichts mit dem Essen anzufangen, <b>vergisst zu
+        schlucken</b>) · <b>b</b> Funktionseinschränkungen der Arme oder Hände (Erreichbarkeit,
+        <b>kann Besteck nicht greifen, kann nicht schneiden</b>) · <b>c</b> schlechter Zustand
+        des Mundes (<b>Mundtrockenheit</b>, Schleimhautdefekte) · <b>d</b> Kaufunktion und
+        Zahnprobleme · <b>e</b> <b>Schluckstörungen</b> (verschluckt sich leicht, <b>hustet oft
+        beim Essen</b>, vermeidet bestimmte Konsistenz) · <b>f</b> <b>Müdigkeit beim Essen</b>
+        (Verdacht auf Medikamentennebenwirkung, veränderter Schlaf-Wach-Rhythmus) · <b>g</b>
+        Beeinträchtigung der <b>Seh- oder Hörfähigkeit</b></p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Fehlende Lust zum Essen, kein Appetit, Ablehnen des Essens</h4>
+      <p><b>a</b> besondere psychische Belastung (<b>Einsamkeit, Depressivität</b>) · <b>b</b>
+        akute Krankheit · <b>c</b> <b>Schmerzen</b> · <b>d</b> <b>Bewegungsmangel</b> ·
+        <b>e</b> Verdacht auf Medikamentennebenwirkungen (<b>Art und Anzahl der Präparate</b>) ·
+        <b>f</b> auffallend <b>reduzierter Geschmacks- und Geruchssinn</b> · <b>g</b> keine
+        ausreichenden <b>Informationen über die Speisen</b> · <b>h</b> <b>kulturelle, religiöse
+        Gründe</b> · <b>i</b> individuelle Abneigungen, Vorlieben, Gewohnheiten · <b>j</b>
+        <b>Angst vor Unverträglichkeiten oder Allergien</b></p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Umgebungsfaktoren</h4>
+      <p><b>a</b> die Esssituation wird als <b>unangenehm</b> empfunden (<b>Geräusche, Gerüche,
+        Tischnachbarn</b>) · <b>b</b> <b>inadäquate Essenszeiten</b> (Zeitpunkt, Dauer,
+        <b>Anpassungsmöglichkeit</b>) · <b>c</b> <b>Hilfsmittelangebot</b> · <b>d</b> <b>die
+        Beziehung zu den Versorgungspersonen</b></p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div>
+      <h4>Essensangebot</h4>
+      <p><b>a</b> Unzufriedenheit mit dem üblichen Angebot (Gewohnheiten, soziale, kulturelle,
+        religiöse Bedürfnisse, <b>Menge, Geschmack, Temperatur, Aussehen</b>) · <b>b</b>
+        <b>unangemessene Konsistenz</b> · <b>c</b> <b>nicht akzeptierte verordnete Diät</b> ·
+        <b>d</b> <b>Verdacht auf inadäquate Diät</b> · <b>e</b> Einschätzung des Angebots
+        (Speisenplanung, Abwechslung, Menüzusammenstellung)</p></div></div>
+  </div>
+  <div class="merk">
+    <span class="t">Zwei Einträge, die sich niemand selbst ins Formular schreiben würde</span>
+    <p><b>3 d — „Beziehung zu den Versorgungspersonen“.</b> In einem Ernährungsbogen steht als
+      möglicher Grund fürs Nicht-Essen: <b>die Beziehung zu dir</b>. Das ist ungewöhnlich ehrlich
+      für ein Assessmentinstrument, und es ist ein Punkt, den man nur im Team besprechen kann.</p>
+    <p><b>4 d — „Verdacht auf inadäquate Diät“.</b> Also: <b>Die verordnete Kost selbst könnte
+      falsch sein.</b> Der Bogen erlaubt der Pflege ausdrücklich, das aufzuschreiben.</p>
+    <p><b>Und der Punkt, an dem der Bogen wirklich anders arbeitet:</b> Der Leitfaden verlangt,
+      dass die Aspekte <b>„präzisiert und ausformuliert“</b> eingetragen werden, <b>damit
+      Handlungen ableitbar sind</b> — und er zeigt das an Beispielen. Statt „isst wenig“ steht
+      dort: <b>„Führt Speisen und Getränke nur nach verbaler Aufforderung und durch Nachahmung
+      zum Mund“</b> → Maßnahme: <b>anleitende Unterstützung während der Mahlzeiten</b>. Oder:
+      <b>„Prothese offensichtlich zu locker“</b> → <b>zahnärztliche Abklärung</b>. Oder:
+      <b>„Zwischen 11 und 14 Uhr überwiegend schläfrig, am späten Nachmittag sehr aktiv“</b> →
+      <b>Anpassen der Mahlzeiten an die tageszeitlichen Aktivitätsschwankungen</b>.</p>
+    <p><b>Das ist dasselbe Prinzip wie PE(S)R auf deiner Pflegeplanungsseite:</b> Je genauer das
+      Problem formuliert ist, desto selbstverständlicher ergibt sich die Maßnahme. <b>Das dritte
+      Beispiel ist das schönste</b> — niemand ändert die Diagnose, man verschiebt das
+      Mittagessen.</p>
+    <p class="fr">« Mange peu » ne produit aucune mesure. « Ne porte la nourriture à la bouche que
+      sur consigne verbale » en produit une immédiatement. C'est exactement le PE(S)R.</p>
+  </div>
+  <p><b>Für die Flüssigkeit</b> ist der Bogen genauso gebaut — mit einem Grund, den man kennen
+    muss: <b>„Wunsch nach geringer Urinausscheidung — z. B. Angst vor Inkontinenz, häufige
+    Toilettengänge.“</b> Menschen trinken zu wenig, <b>damit sie nicht einnässen</b>. Das
+    verbindet dieses Thema direkt mit der <b>Kontinenzförderung</b>: Wer dort die Kontinenz
+    verbessert, verbessert hier die Trinkmenge — <b>und umgekehrt</b>.</p>
+</section>
+
+<section id="essen">
+  <h2>Worauf du achtest, wenn du jemanden beim Essen unterstützt</h2>
+  <p class="lead">Ein eigenes Blatt, nach <b>Pflege Heute Kap. 7.5.2</b>. Es ist die praktischste
+    Liste des ganzen Blocks — und fast jeder Punkt ist eine Haltungsfrage, keine Technik.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Punkt</th><th>Wörtlich</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Vorher</td><td><b>Informationen einholen:</b> Hat der Mensch eine
+          <b>Schluckstörung</b>? Welche bzw. wie viel Unterstützung braucht er? Braucht er eine
+          <b>besondere Kostform oder Diät</b>?</td></tr>
+        <tr><td class="k">Position</td><td>Die richtige Position einnehmen lassen —
+          <b>aufrecht sitzend</b></td></tr>
+        <tr><td class="k">Deine Position</td><td><b>Anreichen auf Augenhöhe</b></td></tr>
+        <tr><td class="k">Gespräch</td><td><b>Kommunizieren</b> — übers Essen <b>und auch
+          Small Talk</b></td></tr>
+        <tr><td class="k">Atmosphäre</td><td>Für eine <b>möglichst angenehme Atmosphäre</b>
+          sorgen</td></tr>
+        <tr><td class="k">Wer führt</td><td><b>Die Reihenfolge und das Tempo bestimmt der
+          Patient bzw. Bewohner</b></td></tr>
+        <tr><td class="k">Wie viel Hilfe</td><td><b>So viel wie nötig, so wenig wie möglich</b> —
+          um die Selbstständigkeit zu fördern: <b>„z. B. das Marmeladendöschen öffnen, aber das
+          Brot selbst schmieren lassen“</b></td></tr>
+        <tr><td class="k">Die Entscheidung</td><td><b>Der Patient bzw. Bewohner hat das letzte
+          Wort, ob und wie viel er isst und trinkt — nicht zwingen</b></td></tr>
+        <tr><td class="k">Portionen</td><td><b>Portionsgrößen anpassen</b> — nachfragen:
+          <b>„Passt es so?“</b></td></tr>
+        <tr><td class="k">Hygiene</td><td>Auf die Hygiene achten — <b>gewaschene Hände</b></td></tr>
+        <tr><td class="k">Der Platz</td><td><b>Den Essplatz vorbereiten:</b> aufräumen,
+          saubermachen, <b>lüften</b>, <b>Serviette bereitlegen</b></td></tr>
+        <tr><td class="k">Hilfsmittel</td><td>Ggf. Hilfsmittel einsetzen — <b>„zu den
+          Hilfsmitteln beim Essen gehören auch die Zahnprothese, die Brille und das
+          Hörgerät“</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="gefahr">
+    <span class="t">Der letzte Punkt ist der, den man sich merken soll</span>
+    <p><b>Zahnprothese, Brille und Hörgerät sind Esshilfsmittel.</b></p>
+    <p>Ohne <b>Prothese</b> kann jemand nicht kauen. Ohne <b>Brille</b> sieht er nicht, was auf
+      dem Teller liegt — und isst nur, was er erkennt. Ohne <b>Hörgerät</b> nimmt er nicht am
+      Tischgespräch teil, und das ist der Punkt <b>„gesellig und am Tisch“</b> aus den
+      Maßnahmen weiter unten.</p>
+    <p><b>Der siebte Fall deines Arbeitsauftrags ist genau das:</b> Herr M., 88 Jahre,
+      <b>schwerhörig</b>, nimmt im Speisesaal kaum an Gesprächen teil <b>und verweigert deshalb
+      oft die Mahlzeiten</b>. <b>Die Maßnahme steht in dieser Zeile</b>, nicht im
+      Ernährungsplan.</p>
+    <p class="fr">La prothèse, les lunettes et l'appareil auditif sont des <b>aides au repas</b>.
+      Le septième cas de ton devoir se résout dans cette ligne-là.</p>
+  </div>
+  <div class="merk">
+    <span class="t">Drei Punkte, die zusammen eine Haltung ergeben</span>
+    <p><b>„Die Reihenfolge und das Tempo bestimmt der Patient.“</b> — <b>„So viel wie nötig, so
+      wenig wie möglich.“</b> — <b>„Der Patient hat das letzte Wort, ob und wie viel er isst.
+      Nicht zwingen.“</b></p>
+    <p>Alle drei sagen dasselbe: <b>Die Mahlzeit gehört ihm, nicht dir.</b> Und das ist der
+      Punkt, an dem Zeitdruck und gute Pflege wirklich kollidieren — schneller geht es immer,
+      wenn man selbst führt.</p>
+    <p><b>Für eine <i>Beurteilen</i>-Aufgabe:</b> Wenn jemand das Essen ablehnt, ist die erste
+      Frage <b>nicht</b>, wie man ihn doch noch dazu bringt, sondern <b>warum</b> — und das
+      Instrument dafür ist der <a href="#pemu">PEMU-Bogen</a>.</p>
+    <p class="fr">Le repas lui appartient. Et c'est exactement là que la pression du temps entre
+      en conflit avec le soin.</p>
+  </div>
+</section>
+
+<section id="massnahmen">
+  <h2>Prophylaktische Maßnahmen</h2>
+  <div class="warnung">
+    <span class="t">Zwei Folien im Wortwolken-Format</span>
+    <p>Die beiden Folien mit den prophylaktischen Maßnahmen sind als <b>Stichwortbilder</b>
+      aufgebaut, nicht als Fließtext. Die Begriffe sind lesbar, <b>ihre Erläuterungen nicht</b> —
+      und ein Wort ist im Scan sichtbar verrutscht („Cesellig“ statt <b>gesellig</b>). <b>Was
+      hier steht, sind die Stichwörter selbst</b>; was die Dozentin mündlich dazu gesagt hat,
+      steht nicht in der Datei.</p>
+  </div>
+  <div class="karten">
+    <div class="karte"><h4>Die Umgebung</h4><p><b>Frische Luft</b> · <b>gesellig und am
+      Tisch</b> · <b>Setting</b> · das <b>Äußere</b></p></div>
+    <div class="karte"><h4>Die Darreichung</h4><p><b>Kleine Häppchen</b> · <b>Hilfsmittel
+      nutzen</b> · <b>Form der Nahrungszufuhr</b> · <b>Zusammensetzung der Nahrung und
+      Nahrungsmittelwahl</b></p></div>
+    <div class="karte"><h4>Die Person</h4><p><b>Kulturelle und religiöse Bedürfnisse
+      beachten</b> · <b>Zähne putzen</b></p></div>
+    <div class="karte"><h4>Medizinisch</h4><p><b>Erkrankungsspezifische Maßnahmen</b> ·
+      <b>Medikamente</b> · <b>Wunden</b> · <b>spezielle Maßnahmen bei Operationen im
+      Gastrointestinaltrakt</b></p></div>
+    <div class="karte"><h4>Und immer</h4><p><b>Informieren, Beraten und Anleiten</b></p></div>
+  </div>
+  <div class="gefahr">
+    <span class="t">Der eine Satz, der auf der Folie als „Merke“ steht</span>
+    <p style="font-family:var(--serif);font-size:1.2rem;"><b>„Oral vor enteral vor
+      parenteral!“</b></p>
+    <p><b>Die Reihenfolge ist eine Rangfolge, keine Aufzählung.</b> Erst der Mund. Wenn das nicht
+      geht, die Sonde in den Magen-Darm-Trakt. Und erst wenn auch das nicht geht, über die Vene.</p>
+    <p><b>Warum die Reihenfolge so und nicht anders ist:</b> Jeder Schritt nach rechts nimmt dem
+      Menschen mehr — <b>Geschmack, Geselligkeit, Selbstbestimmung</b> — und bringt mehr Risiken
+      mit. Der Darm, der nicht benutzt wird, verliert außerdem an Funktion.</p>
+    <p><b>Das ist ein Satz, der in einer Klausur als ganze Antwort taugt</b>, wenn du die
+      Rangfolge <b>begründest</b>: nicht „das macht man so“, sondern <b>„weil jede Stufe mehr
+      wegnimmt, als sie ersetzt“</b>.</p>
+    <p class="fr">Ce n'est pas une liste, c'est un <b>ordre de priorité</b>. Chaque étape vers la
+      droite retire davantage : le goût, la table, l'autonomie.</p>
+  </div>
+</section>
+
+<section id="faelle">
+  <h2>Die sieben Fälle — dein Arbeitsauftrag</h2>
+  <p class="lead">Aufgabe 1 lautet: <b>Entscheiden Sie pro Fall, ob eine qualitative oder eine
+    quantitative Mangelernährung vorliegt. Berechnen Sie ebenfalls den BMI und bewerten Sie
+    diesen.</b></p>
+
+  <div class="warnung">
+    <span class="t">Wichtig: Die Lösung deiner Dozentin beantwortet diese Aufgabe NICHT</span>
+    <p>Das Lösungsblatt <i>Lösung AA Mangelernährung</i> enthält <b>nur die Antworten auf Aufgabe
+      2</b> (Vor- und Nachteile des BMI) <b>und Aufgabe 3</b> (Ursachen pro Setting). Beide
+      stehen oben auf dieser Seite. <b>Die sieben Fälle sind nicht gelöst.</b></p>
+    <p><b>Was ich hier tue und was nicht:</b> Den <b>BMI rechne ich aus</b> — das ist Arithmetik
+      mit ihren eigenen Zahlen, keine Fachaussage. Die <b>Einordnung qualitativ oder
+      quantitativ</b> und die <b>Bewertung des BMI</b> lasse ich offen: die erste, weil sie genau
+      die Denkleistung ist, um die es geht; die zweite, weil <b>die Bewertungstabelle deiner
+      Dozentin eine unlesbare Bildfolie ist</b> und ich keine fremden Grenzwerte einsetze.</p>
+    <p class="fr">Je calcule les BMI — c'est de l'arithmétique. Je ne classe pas à ta place, et je
+      n'invente pas les seuils : le tableau de ta formatrice est illisible.</p>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>#</th><th>Der Fall</th><th>BMI<br>(gerechnet)</th><th>Qualitativ oder
+        quantitativ?</th></tr></thead>
+      <tbody>
+        <tr><td class="k">1</td><td><b>Herr M., 46 Jahre</b>, 1,72 m, 54 kg. <b>Er isst kaum, da
+          er keinen Appetit hat.</b> Seine Kleidung ist ihm in den letzten Monaten <b>viel zu
+          groß</b> geworden.</td><td class="k">18,3</td><td><i>deine Antwort</i></td></tr>
+        <tr><td class="k">2</td><td><b>Frau M., 83 Jahre</b>, 1,60 m, 65 kg. Sie isst
+          <b>täglich ausreichend</b>, jedoch <b>fast nur Toastbrot und Kaffee</b>. Obst, Gemüse
+          und Eiweißprodukte lehnt sie ab.</td><td class="k">25,4</td><td><i>deine Antwort</i></td></tr>
+        <tr><td class="k">3</td><td><b>Herr M., 53 Jahre</b>, 1,75 m, 58 kg. Aufgrund von
+          <b>Zahnproblemen</b> kann er nur <b>weiche Kost</b> essen und meidet deshalb viele
+          Speisen.</td><td class="k">18,9</td><td><i>deine Antwort</i></td></tr>
+        <tr><td class="k">4</td><td><b>Frau B., 91 Jahre</b>, 1,58 m, 43 kg. Sie ist <b>dement</b>
+          und <b>vergisst häufig, die Mahlzeiten zu essen</b>.</td><td class="k">17,2</td>
+          <td><i>deine Antwort</i></td></tr>
+        <tr><td class="k">5</td><td><b>Frau L., 74 Jahre</b>, 1,65 m, 95 kg. Sie nimmt täglich
+          <b>viele hochkalorische Lebensmittel</b> zu sich, allerdings <b>kaum frisches Gemüse
+          und Obst</b>.</td><td class="k">34,9</td><td><i>deine Antwort</i></td></tr>
+        <tr><td class="k">6</td><td><b>Frau K., 79 Jahre</b>, 1,62 m, 51 kg. Sie isst <b>sehr
+          wenig</b>, bevorzugt <b>Kekse und Kuchen</b> und <b>lehnt warme Mahlzeiten ab</b>.</td>
+          <td class="k">19,4</td><td><i>deine Antwort</i></td></tr>
+        <tr><td class="k">7</td><td><b>Herr M., 88 Jahre</b>, 1,70 m, 80 kg. Er ist
+          <b>schwerhörig</b> und nimmt im Speisesaal <b>kaum an Gesprächen teil</b>, weshalb er
+          <b>Mahlzeiten oft verweigert</b>.</td><td class="k">27,7</td><td><i>deine Antwort</i></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:14.5px;color:var(--ink-soft);">Gerechnet mit <b>BMI = Gewicht in kg ÷
+    (Größe in m)²</b>, auf eine Nachkommastelle gerundet. <b>Rechne sie einmal selbst nach</b> —
+    in der Klausur hast du meine Zahlen nicht.</p>
+
+  <div class="merk">
+    <span class="t">Drei Hinweise, mit denen du die Aufgabe selbst lösen kannst</span>
+    <p><b>1 · Lies in jedem Fall den Satz über das Essverhalten, nicht die Zahlen.</b> Die Frage
+      „qualitativ oder quantitativ“ beantwortet sich aus <b>dem, was gegessen wird</b> — nicht
+      aus dem Gewicht. <b>Zu wenig</b> → quantitativ. <b>Genug, aber einseitig</b> → qualitativ.
+      <b>Beides</b> → global.</p>
+    <p><b>2 · Zwei Fälle haben absichtlich einen hohen BMI.</b> Sie sind der Beweis dafür, dass
+      Gewicht und Ernährungszustand zwei verschiedene Dinge sind — genau das, was das
+      Lösungsblatt bei den Nachteilen des BMI schreibt.</p>
+    <p><b>3 · Fall 6 ist der schwierigste.</b> Frau K. isst <b>sehr wenig</b> <i>und</i>
+      bevorzugt <b>Kekse und Kuchen</b>. Lies beide Hälften des Satzes, bevor du dich
+      entscheidest.</p>
+    <p><b>Schreib deine Zuordnungen auf Deutsch und schick sie mir</b> — mit einer kurzen
+      Begründung pro Fall. Ich korrigiere Inhalt und Sprache.</p>
+    <p class="fr">La réponse est dans la phrase sur <b>ce que la personne mange</b>, pas dans les
+      chiffres. Et le cas 6 contient les deux moitiés — lis-le jusqu'au bout.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Der zweite Arbeitsauftrag lässt sich gar nicht bearbeiten</span>
+    <p>Die letzte Folie stellt drei Aufgaben: <b>das Fallbeispiel „Herr Wasilewski“ lesen</b>,
+      <b>das Instrument „Nutritional Risk Screening“ anwenden</b> und <b>insgesamt vier
+      Pflegemaßnahmen planen</b>.</p>
+    <p><b>Beides fehlt im Ordner:</b> das Fallbeispiel <b>Herr Wasilewski</b> und der
+      <b>NRS-Bogen</b> selbst — vom NRS steht in deinen Unterlagen nur der Name und das Setting
+      („z. B. für Krankenhäuser“). <b>Hier wird weder ein Fall erfunden noch ein Bogen
+      nachgebaut.</b></p>
+    <p><b>Was du stattdessen tun kannst:</b> Nimm den <a href="#pemu">PEMU-Bogen</a>, der
+      vollständig vorliegt, und wende ihn auf <b>Fall 4 (Frau B.)</b> oder <b>Fall 7 (Herr M.)</b>
+      an. Die vier Maßnahmen ergeben sich dann fast von selbst — <b>weil der Bogen nach den
+      Ursachen fragt</b>.</p>
+    <p class="fr">Ni le cas Wasilewski ni le formulaire NRS ne sont dans le dossier. Prends le
+      PEMU, qui est complet, et applique-le au cas 4 ou au cas 7.</p>
+  </div>
+</section>
+
+<section id="offen">
+  <h2>Was auf dieser Seite fehlt — und warum</h2>
+  <div class="warnung">
+    <span class="t">Vier Lücken, ausdrücklich benannt</span>
+    <p><b>1 · Die beiden BMI-Bewertungstabellen</b> sind Bildfolien. Grenzwerte werden hier nicht
+      eingesetzt.</p>
+    <p><b>2 · Das Fallbeispiel „Herr Wasilewski“</b> und <b>3 · der NRS-Bogen</b> liegen nicht
+      im Ordner — damit ist der zweite Arbeitsauftrag nicht bearbeitbar.</p>
+    <p><b>4 · Von den vier genannten Instrumenten liegt nur PEMU vor.</b> MNA, MNA-SF und MUST
+      stehen nur als Namen mit Setting da.</p>
+    <p>Dazu: <b>Der Expertenstandard „Ernährungsmanagement“ selbst ist nicht im Ordner</b> —
+      zitiert ist nur der eine Auszug, den die Folie wiedergibt. Und die <b>Maßnahmenfolien sind
+      Stichwortbilder</b>, ohne die mündlichen Erläuterungen.</p>
+    <p class="fr">Quatre manques, tous nommés. Aucun n'est comblé de mémoire.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Brücken zu deinen anderen Seiten</span>
+    <p><b>Kontinenzförderung:</b> „Wunsch nach geringer Urinausscheidung — Angst vor Inkontinenz“
+      steht im PEMU als Grund fürs Nicht-Trinken. <b>Die beiden Themen hängen direkt
+      zusammen</b>, und der Aufbau der beiden Expertenstandards ist identisch.</p>
+    <p><b>Wahrnehmen ist nicht Beobachten:</b> Dort stehen Haut, Stuhl und die
+      Beobachtungskriterien, die du für das Screening brauchst.</p>
+    <p><b>Pflegeplanung:</b> Der PEMU-Leitfaden verlangt genau das, was PE(S)R verlangt —
+      <b>präzise ausformulierte Probleme, damit Maßnahmen ableitbar sind</b>.</p>
+    <p><b>Das kranke Kind:</b> Dort steht die Säuglingsernährung im ersten Lebenshalbjahr — die
+      andere Seite desselben Themas.</p>
+  </div>
+
+  <div class="pruef">
+    <h4>Acht Fragen zur Selbstprüfung</h4>
+    <ol>
+      <li><b>Nennen</b> Sie die drei Formen der Mangelernährung.</li>
+      <li><b>Nennen</b> Sie die vier Ursachengruppen und geben Sie zu jeder ein Beispiel.</li>
+      <li><b>Beschreiben</b> Sie den Unterschied zwischen Screening und Assessment.</li>
+      <li><b>Erklären</b> Sie, warum Zahnprothese, Brille und Hörgerät als Hilfsmittel beim Essen
+        gelten.</li>
+      <li><b>Erarbeiten</b> Sie aus der Settingtabelle alle Ursachen, die <b>nicht</b> am
+        Menschen liegen, sondern an der Organisation.</li>
+      <li><b>Erläutern</b> Sie am PEMU-Leitfaden, warum das Problem „präzisiert und ausformuliert“
+        werden muss — mit einem Beispiel aus dem Bogen.</li>
+      <li><b>Begründen</b> Sie den Merksatz „oral vor enteral vor parenteral“. Schreiben Sie die
+        ganze Kette.</li>
+      <li><b>Beurteilen</b> Sie: Eine 91-jährige Bewohnerin mit fortgeschrittener Demenz ist in
+        der Sterbephase. Sie hat in vier Wochen 6 % ihres Gewichts verloren und trinkt seit Tagen
+        unter 500 ml. Die Kollegin will das Gewicht wöchentlich erfassen und eine feste Trinkmenge
+        festlegen. Wie beurteilen Sie das?</li>
+    </ol>
+    <p style="margin:10px 0 0;"><b>Frage 8 ist die, auf die es ankommt</b>, und die Antwort steht
+      <b>nicht</b> bei den Zahlen. Sie steht im <a href="#pemu">Leitfaden</a> — in dem Satz über
+      Autonomie und das Bedürfnis nach Ruhe. <b>Schreib deine Antwort auf Deutsch und schick sie
+      mir</b>: erst die Einschätzung, dann die Begründung, dann was du konkret tun würdest.</p>
+  </div>
+
+  <details class="quelle">
+    <summary>Die fünf Quellen dieser Seite</summary>
+    <div class="inh">
+      <ul>
+        <li><b>Mangelernährung.pdf</b> — Foliensatz <b>CE 02 / UE 03 „Die Selbstpflege
+          unterstützen — Ernährung“</b>: Definition, Symptome, die drei Formen, Ursachen,
+          Teufelskreis, BMI und Gewichtsverlust, der Auszug aus dem Expertenstandard
+          Ernährungsmanagement, die vier Assessmentinstrumente und die Maßnahmenfolien.
+          <b>Hauptquelle.</b></li>
+        <li><b>AA Mangelernährung.pdf</b> — der Arbeitsauftrag: <b>die sieben Fälle</b>
+          (Einzelarbeit) und die drei Aufgaben der Partnerarbeit.</li>
+        <li><b>Lösung AA Mangelernährung.pdf</b> — das Lösungsblatt der Dozentin.
+          <b>Beantwortet nur Aufgabe 2 und 3</b>; die sieben Fälle bleiben offen.</li>
+        <li><b>Ernährung_PEMU.pdf</b> — der vollständige <b>PEMU-Bogen</b> mit Screening,
+          Ess-/Trinkprotokoll, Assessment für Nahrung und Flüssigkeit und dem Leitfaden zum
+          Instrument. Quelle laut Bogen: Universität Witten/Herdecke und Universität Bonn,
+          beschrieben in Schreier, Volkert, Bartholomeyczik (2009).</li>
+        <li><b>Worauf ich achten muss, wenn ich beim Essen unterstütze.pdf</b> — die zwölf
+          Punkte, nach <b>Pflege Heute Kap. 7.5.2</b>.</li>
+      </ul>
+      <p>Alle aus deinem Google-Drive-Ordner, geteilt am 18.09.2026.</p>
+      <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> die Rückläufe im Teufelskreis ·
+        die Gegenüberstellung „nicht können = technisch, nicht wollen = sozial“ · die Rechnung,
+        dass 5 % bei 43 kg nur 2,15 kg sind · die sieben BMI-Werte (Arithmetik aus ihren Zahlen) ·
+        die drei Lösungshinweise zu den Fällen · die Begründung des Merksatzes
+        „oral vor enteral vor parenteral“ · die Brücken zu den anderen Seiten · und alle
+        Prüfungsfragen. Die französischen Zeilen sind von mir.</p>
+      <p><b>Was ich bewusst NICHT ergänzt habe:</b> die Grenzwerte der beiden
+        BMI-Bewertungstabellen, die Zuordnung qualitativ/quantitativ in den sieben Fällen, das
+        Fallbeispiel Herr Wasilewski, den NRS-Bogen und die Inhalte von MNA, MNA-SF und MUST.</p>
+    </div>
+  </details>
+</section>
+
+</main>
+
+<footer>
+  <p>Mangelernährung · CE 02 / UE 03 — gebaut aus deinen eigenen Unterlagen.<br>
+    Wo etwas fehlt, nur als Bild vorliegt oder von mir stammt, steht es oben ausdrücklich dabei.</p>
+</footer>
