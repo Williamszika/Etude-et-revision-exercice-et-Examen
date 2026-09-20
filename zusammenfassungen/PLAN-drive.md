@@ -836,3 +836,49 @@ durch ihren **Namen** — gesucht worden war nach *Muskelgewebe*, sie heißen *S
 **Damit bleibt aus den 44 Titeln nur noch Pädiatrie/Geburtshilfe** (Impfkalender 2026 · BZgA
 *Das Baby* · Die Motorische Entwicklung · Präsentation 3 Keimzellenbildung · Gruppe 2
 Erkrankungen im Wochenbett) sowie `Ergebnisse Gruppenvorstellung.pdf` (45 MB, reine Bilder).
+
+---
+
+## 20.09.2026, spätabends — der letzte Block: Pädiatrie/Geburtshilfe
+
+**Zuerst eine Korrektur an der Liste oben.** Dort stand der **Impfkalender 2026** als offen.
+**Das war falsch:** Er hat seit dem **15.09.2026** eine eigene Seite
+(`schulung-impfungen/impfkalender.html` → `https://claude.ai/artifact/NjWaoqAWqGs3Vg4uQ4t6QS`),
+gebaut aus dem PNG desselben Plakats, **mit allen Fußnoten a bis n**. Er steht nur nicht in der
+Liste der 📖 Zusammenfassungen, weil er **vor** dem Neustart vom 16.09.2026 entstanden ist.
+Nachgeprüft, nicht vermutet: die Fußnoten zu Nirsevimab, PCV13/15/20, Frühgeborenen und dem
+Jahrgang 1970 stehen dort wörtlich.
+
+**Eingearbeitet, beide auf die Geburtshilfe-Seite (11 → 13 Quellen):**
+
+`2025-10-13 AA pathologisches Wochenbett.pdf` — der Arbeitsauftrag der Dozentin. Neuer Abschnitt
+`#puerperal` mit der vollständigen **Landkarte** der puerperalen Erkrankungen und dem
+**Neun-Punkte-Schema a bis i**. Der eigentliche Fund ist nicht die Krankheitsliste, sondern die
+Gliederung: **a bis f sind Wissen, g, h und i sind ihre eigene Leistung** — *g* fragt „für wie
+gefährlich halten **Sie** …“, *h* trägt als einziger Punkt ein **Ausrufezeichen** (*Pflege!*),
+*i* fragt nach dem Erleben der Frau. Genau der Bruch zwischen 1,89 praktisch und 3,64 schriftlich.
+
+`Praesentation 3 Keimzellenbildung, Chromosomenanomalien, Praenataldiagnostik.pdf` — bringt
+**fünf** Ergänzungen: 11.–14. SSW für die Nackentransparenz (dort stand ein Strich) ·
+**Nondisjunction** Meiose I gegen II · **1 : 700** und das Risiko nach Alter · die Kennzeichen
+des Down-Syndroms · die drei **gonosomalen** Anomalien.
+
+**Damit ist eine Behauptung dieser Seite widerlegt worden** — die Seite sagte, „die
+Präsentationen 1 bis 5 decken sich inhaltlich mit dem Skript“. Für Nr. 3 stimmte das nicht ganz.
+Für 1, 2, 4 und 5 steht jetzt **„ungeprüft“** statt einer Feststellung. Das ist derselbe Fehler
+wie bei den übersehenen Dateinamen, nur andersherum: **nicht nachgesehen heißt nicht geprüft.**
+
+**Gelesen und bewusst nicht verwendet:** `Gruppe 2 Arbeitsauftrag Erkrankungen im Wochenbett.pdf`
+— sechs Seiten, sauber nach a bis i, zu Lochialstau, Endometritis, Myometritis, Endomyometritis.
+Es ist eine **Ausarbeitung von Mitschülerinnen**, also nach der Repo-Regel keine Quelle. Fair
+dazugesagt und auf der Seite auch so formuliert: Die Dozentin **erlaubt ChatGPT ausdrücklich**
+unter Angabe plus mindestens einer weiteren Quelle, und die Gruppe nennt vier Quellen — was
+fehlt, ist die Zuordnung, welcher Satz woher stammt.
+
+**Zwei Dateien bleiben draußen, weil sie Scans ohne Textebene sind:** `BZgA-Broschuere Das
+Baby.pdf` und der Auszug `Die Motorische Entwicklung`. Die Textebene enthält nur die Quellenzeile
+(shop.bzga.de, abgerufen 22.07.2024). Sie ließen sich über `pdftoppm` + Bildlesen erschließen —
+**noch nicht gemacht**, und als offener Punkt hier vermerkt statt stillschweigend weggelassen.
+
+**Die 44 Titel des Drive-Ordners sind damit abgearbeitet.** Offen bleiben nur noch die beiden
+Scans oben und `Ergebnisse Gruppenvorstellung.pdf` (45 MB, reine Bilder).
