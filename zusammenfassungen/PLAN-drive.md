@@ -1040,3 +1040,66 @@ Mangelernährungs-Foliensatz · die **„Leiter"** im Foliensatz *Grundprinzipie
 
 **Für keine davon gilt „nicht lesbar“, bevor es versucht wurde.** Was danach immer noch nicht
 geht, bekommt den Grund dazugeschrieben.
+
+---
+
+## 20.09.2026, spätabends (2) — drei weitere Dateien, und ein neues Werkzeug
+
+Die Liste der Dateien mit dem Vermerk „kein Text“ / „nur Bild“ weiter abgearbeitet.
+
+### Was dazugekommen ist
+
+| Datei | Stand vorher | Stand jetzt |
+|---|---|---|
+| **Pflegehilsmittel und Angebote Ambulantes Setting.pdf** | „nicht auslesbar, **Inhalt unbekannt**“ | Eine Seite, **Gruppenarbeit von Jayden Wiese**, vollständig gelesen. Steht auf der Hilfsmittel-Seite, als Schülerarbeit gekennzeichnet |
+| **Mangelernaehrung.pdf**, Folien 10 und 11 | „**zwei** Tabellen, **beide** unlesbare Bildfolien“ | **Zweimal falsch.** Folie 10 ist lesbar und steht jetzt vollständig da; Folie 11 ist **gar keine Tabelle**, sondern zwei Textzeilen |
+| **Grundprinzipien.pdf**, Folie „Einordnung der Prinzipien“ | „enthält **offenbar nur ein Bild**“ | Die Folie ist **vollständig leer** — nur die Überschrift. Die „Leiter“ war nie in dieser Datei |
+
+**Der Fehler beim Mangelernährungs-Foliensatz ist der ärgerlichste des Tages**, weil er ohne
+jede Datei zu bemerken gewesen wäre: Die Seite **zitiert** Folie 11 wörtlich in einem Kasten —
+und behauptet zwei Absätze später, dieselbe Folie sei unlesbar. **Eine Seite muss gegen sich
+selbst gelesen werden**, nicht nur gegen die Quellen.
+
+Und bei der Leiter zeigt sich der Unterschied zwischen *„ich weiß es nicht“* und *„offenbar“*:
+Das Wort **offenbar** hat eine Vermutung wie einen Befund aussehen lassen. Jetzt steht dort ein
+Befund — die Folie ist leer —, und daraus folgt eine brauchbare Handlungsanweisung: **nicht
+weiter in der PDF suchen, sondern eine Mitschülerin nach einem Foto fragen.**
+
+### Neu: QR-Codes lassen sich hier auflösen
+
+`zbar` (`pyzbar` + `libzbar0`) ist installierbar und liest die Codes aus den gerenderten
+Seitenbildern zuverlässig — auch die gestalteten mit Logo in der Mitte, an denen OpenCV
+scheitert. **Damit fällt eine ganze Klasse von Lücken weg**, die bisher als „QR nicht
+aufgelöst“ dastand.
+
+| Code | Wo | Führt zu |
+|---|---|---|
+| Foliensatz *Grundprinzipien*, Folie 5 | Gesundheitssystem | die **TaskCards-Pinnwand** des Kurses — genau die, von der die Seite sagte, sie liege nicht im Ordner |
+| `QR Code Google Doks.pdf` (Marie Renerken) | noch keiner Seite zugeordnet | ein geteiltes **Google-Doc** |
+| `QR AB Rehabilitation.PNG` | Rehabilitation | **noch offen** — siehe unten |
+
+**Zwei Regeln dazu, und sie gelten ab jetzt:**
+
+1. **Aufgelöst heißt nicht geöffnet.** Der Link kommt auf die Seite, die Website wird **nicht**
+   besucht. Es sind fremde Seiten mit den Beiträgen ihres ganzen Kurses; ob sie dort etwas
+   ausgewertet haben will, entscheidet sie.
+2. **Der TaskCards-Link trägt ein Zugangstoken.** Er steht nur deshalb auf der Seite, weil die
+   Seite privat ist und weil der QR-Code in ihrer eigenen Kursdatei denselben Link trägt. Der
+   Hinweis, ihn nicht weiterzugeben, steht daneben.
+
+**Beim Auflösen fiel noch etwas auf:** `QR Code Google Doks.pdf` hat eine Textebene, und die
+gibt die URL **um einen Bindestrich verkürzt** wieder — `10OuboBwPYAjk…` statt
+`10Ou-boBwPYAjk…`. **Der QR-Code ist die verlässlichere Quelle**, nicht der extrahierte Text.
+Ein Zeichen Unterschied, und der Link ist tot.
+
+### Was noch aussteht
+
+`QR AB Rehabilitation.PNG` ist **noch nicht aufgelöst** — nicht weil der Code unlesbar wäre,
+sondern weil die Bilddatei (9,6 kB) beim Übertragen aus dem Drive **unvollständig ankommt**:
+6 354 von 9 656 Bytes, damit fehlt dem QR zu viel. **Das ist ein Werkzeugproblem, kein
+Inhaltsproblem** — dritte Kategorie, wie die 10-MB-Grenze. Beim nächsten Lauf noch einmal.
+
+Weiterhin offen und ungetestet: `Teufelskreis aus Angst und Dyspnoe.pdf` · die
+**Peak-Flow-Werte für Kinder** und das **Stufenschema** aus der Asthma-Präsentation ·
+`Geschichte der Psychiatrie Jannan-Sticker.pdf` · das **Kreuzworträtsel-Gitter** ·
+`Kontinenzprofile 2024.pdf` · die **Zegelin-Folie** · die vier **Intertrigo-Fotos**.
