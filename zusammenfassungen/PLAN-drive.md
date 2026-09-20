@@ -1103,3 +1103,63 @@ Weiterhin offen und ungetestet: `Teufelskreis aus Angst und Dyspnoe.pdf` · die
 **Peak-Flow-Werte für Kinder** und das **Stufenschema** aus der Asthma-Präsentation ·
 `Geschichte der Psychiatrie Jannan-Sticker.pdf` · das **Kreuzworträtsel-Gitter** ·
 `Kontinenzprofile 2024.pdf` · die **Zegelin-Folie** · die vier **Intertrigo-Fotos**.
+
+---
+
+## 20.09.2026, abends — die Bilddateien. Sieben Dateien, sechs Selbstkorrekturen
+
+**Die Regel dieses Tages, ein zweites Mal angewandt:** *„keine Textebene" heißt nicht
+„nicht lesbar"* — und dazu eine neue, die sich an diesem Abend aufgedrängt hat:
+**eine Bilddatei ohne Text ist keine Datei ohne Inhalt.**
+
+| Datei | Was dastand | Was wirklich drin ist |
+|---|---|---|
+| `Geschichte der Psychiatrie Jannan-Sticker.pdf` | „Scan ohne Textebene — auslesbar ist nur die Zeile *2011; S. 19–26*" | **Acht vollständig lesbare Buchseiten**: Kap. 1.3 aus Stricker-Jannan, *Psychiatrie für Pflegeberufe*, Bildungsverlag EINS 2011, S. 19–26. Antike bis 2007. → neuer Abschnitt auf der Psychiatrie-Seite, 22 → 23 Quellen |
+| `Kontinenzprofile 2024.pdf` | „Bild ohne Textebene, auslesbar ist nur die Bildunterschrift, **inhaltlich nichts beigetragen**" | **Tabelle 4, S. 35 des Expertenstandards (DNQP)**, vollständig lesbar. Bestätigt die sechs Profile wörtlich **und** zeigt die zwei getrennten Beispielspalten Harn/Stuhl |
+| `festgenagelt_Zegelin[1] Einzelfolie.pdf` | „Schaubild; die Zuordnung der Wortgruppen zu den Pfeilen ist nicht sicher rekonstruierbar" | **Zwei** scharfe Folien, nicht eine. Dabei **zwei Fehler der Körperpflege-Seite** gefunden (Fünferliste als Viererliste gelesen, „Perspektiven der Pflegenden" als Überschrift missdeutet, „selbstbestimmter Wechsel" fehlte) |
+| `Teufelskreis aus Angst und Dyspnoe.pdf` | „der Inhalt des Schaubildes nicht auslesbar" | **Ein Filzstift-Blatt**: Titel, *Angst ↑*, *Dyspnoe ↑*, zwei gebogene Pfeile zum Kreis. **Mehr nicht** — und genau das steht jetzt da. Die zwei Pfeile sind der ganze Mehrwert: der Kreis wird **enger** |
+| `Kreuzworträtsel.pdf` | „Bild ohne Textebene: die Zahl der Kästchen pro Wort ist nicht auslesbar" | **Leeres Gitter**, alle 47 Nummern mit Richtungspfeil. 14 senkrecht, 33 waagerecht — die Richtungen stehen jetzt bei den Fragen. **Die Kästchenzahl bleibt bewusst draußen**: Sie müsste abgezählt werden, und eine falsche Länge wäre schlimmer als keine |
+| `CRM - Leitsaetze.png` | auf der **Kommunikations**-Seite: „nur ein Name, Inhalt bei ILIAS" | Die **vollständige InPASS-Kitteltaschenkarte** mit allen 15 Leitsätzen — und sie war am selben Tag schon auf der **Reanimations**-Seite eingearbeitet |
+| `IMG-20260217-WA0004/0005.jpg` | **nirgends erwähnt** | **Ein** Flipchart-Plakat *Hilfsmittel im Notfall* in zwei Hälften: Ambu-Beutel, Güdeltubus, Wendl-Tubus, Beatmungstuch |
+| `Denkstoerungen.jpg` · `Orientierungsstoerung.jpg` · `SRW …jpg` | **nirgends erwähnt** | Die Plakate der **Gruppen 1, 3 und 5** derselben Gruppenarbeit, von der bisher nur Gruppe 2 bekannt war |
+
+### Die neue Fehlerart: eine Seite gefunden, die andere nicht nachgezogen
+
+`CRM - Leitsaetze.png` ist der Fall, der nicht in die Reihe „übersehen" passt. Die Datei war
+**gefunden und ausgewertet** — auf der Reanimations-Seite, am selben Tag, mit allen fünfzehn
+Sätzen. **Die Kommunikations-Seite führte sie trotzdem weiter als Lücke**, obwohl der
+Arbeitsauftrag dazu genau dort steht.
+
+**Daraus folgt eine Prüfung, die es bisher nicht gab:** Wenn eine Datei eingearbeitet wird,
+muss geprüft werden, **welche anderen Seiten sie als offen führen**. Seiten müssen
+gegeneinander gelesen werden, nicht nur gegen die Dateien.
+
+### Die Selbstkorrektur, die am meisten lehrt — CRM-Leitsatz 14
+
+Auf der Reanimations-Seite stand Leitsatz 14 als *„Lenke **Deine** Aufmerksamkeit bewusst"*,
+mit dem Hinweis, aus dem Bild komme *„Lenke **eine** Aufmerksamkeit bewusst"* heraus, das
+ergebe keinen Satz, und alle anderen Leitsätze benutzten die Du-Form.
+
+**Das Blatt ist jetzt als Bild angesehen worden. Auf der Karte steht wirklich „eine".**
+
+Es war **kein Auslesefehler**. Ich hatte einen Satz repariert, der nicht kaputt war — weil ich
+annahm, das Werkzeug sei schuld. **Das ist derselbe Denkfehler wie bei den Dateien, die als
+„nicht lesbar" abgehakt waren**, nur mit umgekehrtem Vorzeichen: einmal wird dem Werkzeug zu
+viel zugetraut, einmal zu wenig.
+
+### Was bleibt
+
+- **`QR AB Rehabilitation.PNG`** — **immer noch nicht aufgelöst, und der Grund ist unverändert
+  ein Werkzeugproblem, kein Inhaltsproblem.** Die Datei ist 9 656 Bytes groß; ihr Base64-Text
+  hat 12 876 Zeichen und kommt vollständig aus dem Drive-Werkzeug zurück, lässt sich aber nicht
+  zuverlässig in eine Datei schreiben — der Transfer bricht ab. **Ein zweiter Versuch an diesem
+  Abend ist wieder abgebrochen und wurde verworfen, statt den Rest zu raten.** Der QR-Code
+  selbst wäre mit `pyzbar` lesbar.
+- **Die vier Intertrigo-Fotos** — sie liegen in `Text Intertrigo.pdf` und sind nicht als eigene
+  Dateien im Ordner; ungeprüft.
+- **Die Peak-Flow-Tabellen für Kinder** — **das ist keine Lücke aus Unlesbarkeit.** Die
+  Asthma-Seite beschreibt die beiden Tabellen (Jungen/Männer und Mädchen/Frauen, nach
+  Körpergröße 135–195 cm und Alter 5–80 Jahre) und verzichtet **bewusst** auf das Abschreiben
+  der Einzelwerte, *„damit sich kein Zahlendreher einschleicht"*. **Dieselbe Entscheidung wie
+  beim Kreuzworträtsel-Gitter.**
+- **`Ergebnisse Gruppenvorstellung.pdf`** — weiterhin 45 MB gegen 10 MB Downloadgrenze.
