@@ -990,3 +990,53 @@ einer **Prozentzahl** fragt.
 stehen bleibt, muss auf der Seite stehen, **wer sie schließen kann** — sie, die Dozentin oder
 niemand. „Offen" allein ist keine Auskunft. Eine Lücke, die niemand mehr schließen kann, ist
 ein Ergebnis und keine Aufgabe, und sie gehört auch so aufgeschrieben.
+
+---
+
+## 20.09.2026, spätabends — die Regel von heute Mittag auf den ganzen Ordner angewandt
+
+Heute Mittag wurde hier die Regel aufgeschrieben, dass bei jeder Lücke **der Grund** dabeistehen
+muss, weil *kein Text*, *zu groß zum Herunterladen* und *inhaltlich kein Kursstoff* drei
+verschiedene Dinge sind — und **nur die letzten beiden endgültig**.
+
+Danach standen quer über die zwanzig Seiten noch ein Dutzend Dateien mit dem Vermerk
+*„Scan ohne Textebene“*, *„nicht auslesbar“*, *„nur Bilder“*. **Das ist derselbe Fehlschluss, nur
+an anderer Stelle.** Also durchgegangen — hier die ersten drei, alle über `pdftoppm` und die
+Seitenbilder gelesen:
+
+| Datei | Stand vorher | Stand jetzt |
+|---|---|---|
+| **Rasur und Bartpflege.pdf** | „Scan ohne Textebene, nur die Titelseite lesbar“ | **Vollständig gelesen** — 2 Buchseiten, Lauber/Schmalstieg, S. 321–322, Kap. 9.2.6. Steht auf *„Heraussetzen" ist keine aktivierende Pflege* |
+| **Paul Kind nach Fahrradsturz.pdf** | „Scan ohne Textebene, nur die Quellenangabe“ | **Vollständig gelesen** — Kap. 5, Nadine Ohlemeyer, *Endspurt Pflege* 2009. Steht auf *Das kranke Kind* |
+| **Erhebung ABEDL.pdf** | „Scan eines **ausgefüllten** Formulars, **kaum lesbar**“ | **Zweimal falsch.** Es ist ein **Leerformular** und es ist **gut lesbar**. Steht auf *Das S steht in Klammern* |
+
+**Der dritte Fall ist der lehrreichste.** Dort war nicht nur die Lesbarkeit falsch eingeschätzt,
+sondern auch, **was die Datei überhaupt ist**. „Ausgefüllt“ stand da, obwohl kein einziges Kreuz
+darin ist. Das kam davon, dass aus einem unleserlichen Textauszug auf den Inhalt **geraten**
+wurde, statt hinzusehen. **Wenn eine Datei nicht lesbar erscheint, ist auch jede Aussage über
+ihren Inhalt ungedeckt** — nicht nur die Einzelheiten.
+
+### Was die drei Funde inhaltlich gebracht haben
+
+- **Das *Merke* des Rasur-Kapitels nennt drei Gründe für den Elektrorasierer** (motorische
+  Unruhe · Antikoagulantientherapie · Gerinnungsstörungen wie Hämophilie VIII und IX), ihr
+  Foliensatz nur einen — und das Buch formuliert es als **Handlungsanweisung**, die Folie als
+  Verbot. Zwei Quellen, eine Regel, jetzt belegbar.
+- **Der Fall Paul enthält die Verschlechterung mitten im Text** — auf dem Weg zur Station
+  erbricht er wieder und wird schläfriger. Wer bis zum Gips liest, übersieht den Fall.
+- **Der AEDL-Bogen bringt die fünf Hilfeformen als Kürzel** (A · B · U · TÜ · VÜ) und die
+  vorgedruckten **Pflegediagnosen** aller dreizehn AEDL — also fertige Problemformulierungen für
+  das **P** in P-E-S-R.
+
+### Was noch aussteht — dieselbe Behandlung
+
+Noch nicht nachgeprüft, alle mit dem Vermerk „kein Text“ oder „nur Bild“:
+`Pflegehilsmittel und Angebote Ambulantes Setting.pdf` (2 MB, Inhalt bisher **unbekannt**) ·
+`Teufelskreis aus Angst und Dyspnoe.pdf` · die **BMI-Bewertungstabellen** im
+Mangelernährungs-Foliensatz · die **„Leiter"** im Foliensatz *Grundprinzipien* · die
+**Peak-Flow-Werte für Kinder** und das **Stufenschema** aus den Pädiatrie-Präsentationen ·
+`Geschichte der Psychiatrie Jannan-Sticker.pdf` · das **Kreuzworträtsel-Gitter** ·
+`Kontinenzprofile 2024.pdf` · die **Zegelin-Folie** · `QR AB Rehabilitation.PNG`.
+
+**Für keine davon gilt „nicht lesbar“, bevor es versucht wurde.** Was danach immer noch nicht
+geht, bekommt den Grund dazugeschrieben.
