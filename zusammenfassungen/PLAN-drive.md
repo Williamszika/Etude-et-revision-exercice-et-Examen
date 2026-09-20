@@ -949,3 +949,44 @@ funktionieren wie beim Motorik-Auszug — er scheitert nur am Download.
 „nicht auswertbar“ vermerkt wird, muss **der Grund** dabeistehen — *kein Text*, *zu groß zum
 Herunterladen*, *inhaltlich nicht Kursstoff* sind drei verschiedene Dinge, und nur das zweite
 und dritte sind endgültig.
+
+---
+
+## 20.09.2026 — zwei offene Fragen sind entschieden, und zwar von ihr
+
+Am Ende des Drive-Ordners standen noch zwei Dinge offen, die **nur sie** entscheiden konnte.
+Sie hat beide in einem Zweizeiler beantwortet:
+
+> *„1- laisse tomber
+> 2- je les ais pas"*
+
+**1 — Die vier Krankheitsbilder des Wochenbetts** (Lochialstau, Endometritis, Myometritis,
+Endomyometritis). Die Frage war, ob sie sie selbst nach dem Schema a bis i schreibt, weil die
+Ausarbeitung der Gruppe 2 als Schülertext hier keine Quelle ist. **Antwort: fallen lassen.**
+
+Damit ist die Sache endgültig, und die Seite sagt es auch so:
+
+- Gruppe 2 bleibt **draußen**.
+- Gruppe 1 (Blutungen) und Gruppe 3 (Milchstau/Mastitis) bleiben **drin**, weiterhin als
+  Schülerarbeit gekennzeichnet — der ungleiche Maßstab bleibt benannt, nicht geglättet.
+- **Die vier Krankheitsbilder bleiben eine Lücke**, und das steht jetzt als Satz auf der Seite,
+  nicht als Bitte an sie. Im Skript der Dozentin stehen sie **nur als Namen**; es gibt keinen
+  Satz, den man wiedergeben könnte. Verweis: ihr *Pflege Heute* oder die Dozentin.
+- **Die Frage wird nicht wieder gestellt.** Wer das hier später liest: nicht noch einmal
+  nachhaken.
+
+**2 — Die sieben unbeantworteten Fragen des Skelettmuskulatur-Fragebogens.** **Antwort: sie hat
+sie nicht.** Das ist die wichtigere der beiden Auskünfte, denn sie verschiebt die Diagnose:
+Es war **keine offene Aufgabe bei ihr**, sondern eine **Lücke im Foliensatz selbst**. Der
+Fragebogen stellt elf Fragen, beantwortet vier im Text und hängt die anderen sieben an
+Bildtafeln — und eine Bildtafel beantwortet keine *Erklären-Sie*-Frage.
+
+Konsequenz auf der Seite: Der Absatz „schick sie mir" ist ersetzt durch einen **fertigen
+deutschen Satz, mit dem sie die Dozentin fragen kann**, plus die ausdrückliche Feststellung,
+dass hier **nichts aus dem Gedächtnis** ergänzt wird — Frage 1 schon gar nicht, weil sie nach
+einer **Prozentzahl** fragt.
+
+**Die Regel, die dabei sichtbar wird und die für den ganzen Ordner gilt:** Wenn eine Lücke
+stehen bleibt, muss auf der Seite stehen, **wer sie schließen kann** — sie, die Dozentin oder
+niemand. „Offen" allein ist keine Auskunft. Eine Lücke, die niemand mehr schließen kann, ist
+ein Ergebnis und keine Aufgabe, und sie gehört auch so aufgeschrieben.
