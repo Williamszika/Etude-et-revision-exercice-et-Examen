@@ -404,3 +404,43 @@ Inkontinenzversorgung, der laut Titel **Übungsfragen** enthält.
 `Worauf ich achten muss, wenn ich beim Essen unterstuetze.pdf`) sind ein eigenes Thema und
 bekommen eine eigene Seite. Der ursprüngliche Blockname „Kontinenz und Ernährung" fasste zwei
 Unterrichtsthemen zusammen, die nicht zusammengehören.
+
+### 20.09.2026 — die dritte neue Seite: Körperpflege, Mund und Bewegung
+
+`schulung-bewegung/zusammenfassung.html` → `https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW`
+(Favicon 🧼). **Siebzehn Dateien**, der letzte der drei Blöcke, die noch gar keine Seite hatten.
+
+Der Block war im Plan als „Bewegung, Sturz, Haut, Mundpflege — 9 offen" geführt. **Es sind 17**,
+weil bei der gezielten Suche noch `Text Intertrigo.pdf`, `Expert. St. Mobilitaet Kurz.pdf`,
+`festgenagelt_Zegelin[1] Einzelfolie.pdf`, `Die Rasur.pdf`, `Rasur und Bartpflege.pdf` und
+`Arbeitsauftrag zu dem Text Bart- und Rasurpflege.pdf` dazukamen — Titel, die keines der
+Stichwörter des ersten Durchgangs trafen.
+
+**Vier Dateien wurden bewusst nicht aufgenommen**, weil sie schon auf anderen Seiten stehen:
+`Hautbeobachtung.pdf` und `AA Kriterien der Beobachtung der Bewegung.pdf` (Seite *Wahrnehmen ist
+nicht Beobachten*), `Anatomie, Physiologie Haut.pdf` samt Quiz (Anatomie-Block) und
+`Pflegeproblem Bewegungseinschraenkung.pdf` (Frau Mai, Seite *Das S steht in Klammern*).
+
+**Was nicht ergänzt wurde — und warum es hier steht:**
+
+| Lücke | Warum nichts eingesetzt wurde |
+|---|---|
+| Die sechs Aufgaben der Sturzprophylaxe | Die genannte Quelle (*Pflege. Grundlagen und Interventionen*, Elsevier, **Kapitel 20**) liegt nicht im Ordner. Nur Tab. 20.6 daraus ist da. |
+| Sieben der neun Zeilen der AA-Tabelle Munderkrankungen | Sie sind im Original leer — **das ist der Arbeitsauftrag**, kein Scanfehler. Mit `pdftotext -layout` gegengeprüft. |
+| Der Text *Bart- und Rasurpflege* | Scan ohne Textebene; auslesbar ist nur die Titelseite. Der Arbeitsauftrag bezieht sich genau darauf. |
+| Die Zegelin-Einzelfolie | Schaubild; die Zuordnung der Wortgruppen zu den Pfeilen ist nicht sicher rekonstruierbar. Nur eindeutig lesbare Stichworte. |
+| Dekubitus | Der Expertenstandard Mobilität nennt ihn als Folge — **im Drive-Ordner gibt es keine Datei dazu.** |
+
+**Eine Zuordnung, die auf zwei Quellen beruht statt auf einer:** Die Prozentzahlen der drei
+Speicheldrüsen (25 / 70 / 5) stehen auf der Folie als **Pfeiltexte an einer Zeichnung**. Die
+Zuordnung folgt der Pfeilstellung und ist zusätzlich gegen die ältere Abschrift desselben
+Foliensatzes im Repo geprüft (`Wissen/092-anatomie-mund-und-zaehne.md`). Das steht auch auf der
+Seite selbst in einem aufklappbaren Kasten.
+
+**Der Abschnitt Bewegungsanamnese stammt nicht aus der Drive-Datei.** `Bewegungsanalyse.pdf`
+hat dort keine Textebene. Dasselbe Formular liegt als `PDFs/78-bewegungsanalyse.pdf` im Repo und
+war bereits abgeschrieben. Das ist auf der Seite offen vermerkt.
+
+**Damit sind alle drei neuen Seiten angelegt**, die im Plan standen: Kontinenz, Ernährung,
+Körperpflege/Bewegung. Offen bleiben die **Erweiterungen bestehender Seiten** und die Blöcke
+Praxiseinsatz/Reflexion (15 Dateien) sowie das übrige Querbeet.
