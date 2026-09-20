@@ -558,3 +558,44 @@ der Sozialversicherung, SGB IX/BTHG — gehört zur Gesundheitssystem-Seite), `5
 Lina K., unbearbeitet), `Ergebnisse Gruppenvorstellung.pdf` (**45 MB, 14 Seiten reine Bilder,
 keine Textebene**), sowie die Einzelfälle Frau Weber, Frau Schneider, Frau Schubert, Johanna
 und die Fallvignetten.
+
+### 20.09.2026, nachts — CE 04/UE 01 auf die Gesundheitssystem-Seite, mit einem heiklen Befund
+
+`1-4 DS.pdf` und `5-6 DS.pdf` sind auf die Seite *Gesunde stehen für Kranke ein* gewandert
+(7 → 9 Quellen). Drei neue Abschnitte: `#saeulen`, `#grade`, `#lina`.
+
+**Der Befund, der auf die Seite gehört und dort auch steht: Der Foliensatz ist mit KI
+zusammengestellt.** Sämtliche Quellenlinks tragen `?utm_source=chatgpt.com` — sie stammen aus
+einer ChatGPT-Antwort. Das ist **kein Grund, den Foliensatz zu verwerfen**: Die Links selbst
+führen zu `gesetze-im-internet.de`, zur Bundesagentur für Arbeit, zur Deutschen
+Rentenversicherung, zur DGUV und zu einem BMG-PDF — also zu **amtlichen, nachprüfbaren**
+Quellen. Es ist aber ein Grund, **jede Zahl und jeden Paragrafen vor der Verwendung
+nachzuschlagen**.
+
+**Und der Beleg dafür steckt im Foliensatz selbst:** Die Folie schreibt „SGB V § 11 — Auftrag
+der GKV". **Alle ihre eigenen Links führen zu § 1 SGB V**, und der Inhalt ist der des § 1
+(§ 11 heißt „Leistungsarten"). Die Zeile ist beim Auslesen zweispaltig zerfallen, deshalb ist
+nicht sicher, ob auf der Folie § 1 oder § 11 steht — **benannt statt korrigiert**, mit der
+Bitte nachzusehen.
+
+**Die zweite Geldtabelle dieser Seite.** Die erste kam aus einer Gruppenarbeit von
+Mitschülern und ist als ungeprüft markiert. Die neue ist **besser belegt** (BMG-PDF „Übersicht
+Leistungsbeträge 2025"), trägt aber dieselbe KI-Markierung. Auf der Seite stehen beide
+nebeneinander mit dem Unterschied — und mit derselben Regel: **nicht als Auskunft an einen
+Menschen, bevor an der Quelle nachgesehen wurde.**
+
+**Ein Argument für die Richtigkeit der Zahlen, das die Tabelle selbst liefert:** 2 × 599 € =
+1.198 € — genau der Beispielwert der Folie für Verhinderungspflege durch Angehörige bei PG 3.
+Die Tabelle ist in sich stimmig.
+
+**Nicht ergänzt:** Zu **Minijob**, **Teilzeitausbildung**, den Folgen der Teilzeit und der
+**Absicherung während der Reise-Auszeit** steht im ganzen Drive-Ordner **nichts**. Statt einer
+Antwort nennt die Seite die vier richtigen Adressaten: Minijob-Zentrale · Ausbildungsvertrag
+und Schule · Krankenkasse · Berufsgenossenschaft. Ebenso leer bleibt die Bildfolie **„Module
+(Bereiche der Pflegebedürftigkeit)"**.
+
+**Der Fall Lina K. ist bemerkenswert**, weil die geprüfte Person **ihre eigene Lage** hat:
+Auszubildende im 2. Lehrjahr, Schichtdienst, Nebenjob, Weg zwischen Schule und Praxis. Das
+Blatt betont dreimal dasselbe — *direkter Weg*, *unmittelbar nach Unterrichtsschluss*, von der
+Schule *zur Praxis*. Drei Betonungen, drei Abgrenzungskriterien; die Seite zeigt das, ohne die
+Aufgabe zu lösen.
