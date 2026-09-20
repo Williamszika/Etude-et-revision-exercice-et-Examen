@@ -658,3 +658,66 @@ Fallvignetten), Notfall und Hygiene (ABCDE Harbs · CRM-Leitsätze · Infektions
 Pädiatrie/Geburtshilfe (Impfkalender 2026 · BZgA *Das Baby* · Motorische Entwicklung ·
 Präsentation 3 Keimzellenbildung · Gruppe 2 Erkrankungen im Wochenbett) sowie
 `Ergebnisse Gruppenvorstellung.pdf` (45 MB, reine Bilder).
+
+### 20.09.2026, nachts — Notfall und Hygiene: ABCDE, CRM und das IfSG
+
+Die Zeile **„Notfall und Hygiene"** der 44er-Fundliste ist abgearbeitet — und sie war
+**vier** Dateien groß, nicht drei: `Infektionsschutzgesetz_IfSG_.pdf` stand gar nicht auf der
+Liste und kam erst bei der Suche mit dazu.
+
+**Die Dateien sind auf zwei bestehende Seiten gewandert, keine neue angelegt:**
+
+| Datei | Seite | neu |
+|---|---|---|
+| `20121015_ABCDE_Harbs.pdf` · `CRM - Leitsaetze.png` | *Reanimation nach Leitlinie* | `#abcde` · `#crm`, **3 → 5 Quellen** |
+| `Grundlage Infektionsschutzgesetzt .pdf` · `Infektionsschutzgesetz_IfSG_.pdf` | *Gesunde stehen für Kranke ein* | `#ifsg`, **9 → 11 Quellen** |
+
+**Warum das IfSG auf die Gesundheitssystem-Seite gehört:** Beide Dateien tragen die Kopfzeile
+**CE 04 / UE 01** — dieselbe Unterrichtseinheit, aus der auch `1-4 DS.pdf` und `5-6 DS.pdf`
+stammen. Die Seite hieß bisher „wer bezahlt"; jetzt steht dort auch das Gesetz, das **ihr eine
+eigene Pflicht auferlegt**.
+
+**Der Fund, der die Seite konkret macht:** Das Textblatt nennt **ihr** Gesundheitsamt mit
+Adresse, Telefon, Fax, Mail **und Öffnungszeiten** — Mo–Do 8–16, **Fr 8–12**. Daraus ergibt sich
+ohne jede Zutat die Frage, die der Arbeitsauftrag am Ende selbst stellt: Die Frist beträgt
+**24 Stunden**, das Amt ist **ab Freitagmittag zu**. **Wie das in ihrer Einrichtung geregelt
+ist, steht in keiner Datei** — die Seite beantwortet es deshalb nicht, sondern macht daraus
+eine Frage an die Praxisanleiterin.
+
+**Das Datumsproblem des ABCDE-Foliensatzes, offen auf die Seite gesetzt:** Er trägt
+*„Version 1.0 – Stand 02.04.2012"* und *„in Übereinstimmung mit den Leitlinien 2010"*, während
+die ganze übrige Seite auf den **ERC-Leitlinien 2021** beruht — **elf Jahre Abstand**. Das
+**Schema** ist das, was er beiträgt; seine **Zahlen** (Atemfrequenz 12–20/min,
+Rekapillarisierungszeit < 2 s, 10 Sekunden prüfen) stehen deshalb **mit Jahreszahl** dort und
+sind **nicht stillschweigend angeglichen**.
+
+**Fünf Begriffe bleiben unerklärt**, weil sie in ihren Unterlagen nirgends erklärt werden:
+**MONA**, **NIV**, **StifNeck®**, das **10-für-10-Prinzip** und **Fixierungsfehler**. Die
+letzten beiden sind die wahrscheinlichsten Prüfungsfragen des CRM-Blattes — und gerade deshalb
+nicht aus dem Gedächtnis ergänzt.
+
+**Eine Zeile als Lesart gekennzeichnet:** CRM-Leitsatz 14 kommt aus dem Bild als *„Lenke eine
+Aufmerksamkeit bewusst"*. Auf der Seite steht *„Lenke **Deine** Aufmerksamkeit bewusst"*, weil
+alle anderen vierzehn Sätze die Du-Form benutzen — **mit dem Hinweis, dass das meine Lesart
+ist**.
+
+**Und die Einordnung der beiden neuen Blätter, die nicht verschwiegen wird:** Das CRM-Plakat
+stammt von einem **privaten Institut** (InPASS), trägt **keine Jahreszahl**, und sein Beleg
+(*Miller's Anesthesia*, 8. Aufl.) liegt nicht im Ordner. Beim IfSG liegt **nicht der
+Gesetzestext** im Ordner, sondern **zwei Zusammenfassungen davon** — was auf der Seite steht,
+ist also, was ihre Dozentin über die Paragrafen sagt.
+
+**Drei Anschlüsse an vorhandene Seiten, die sich von selbst ergaben:** **AVPU** stand bisher
+nirgends, die **vollständige GCS** dagegen schon zweimal (Anatomie, Beobachtung) — der
+Wortunterschied *pathologische Beugung* gegen *Beugesynergien* ist keine Sachdifferenz, die
+Punktwerte sind identisch. Die **fünf Momente der Händedesinfektion** stehen jetzt **zweimal**
+im Repo, einmal als Pflegehandlung (Körperpflege-Seite) und einmal als **gesetzliche Pflicht**
+nach § 23 IfSG — und beide Begründungen zusammen sind AFB II. **SBAR** schließlich ist genau
+das, was ihr Notenspiegel vermissen lässt: ein **Schema**, das man hinschreibt, bevor man
+anfängt.
+
+**Offen aus den 44 bleiben jetzt nur noch:** die Einzelfälle (Frau Weber · Frau Schneider ist
+gestürzt · Fallbeispiel Frau Schubert · Fallweiterführung Johanna · Fallvignetten), der Block
+Pädiatrie/Geburtshilfe (Impfkalender 2026 · BZgA *Das Baby* · Die Motorische Entwicklung ·
+Präsentation 3 Keimzellenbildung · Gruppe 2 Erkrankungen im Wochenbett) und
+`Ergebnisse Gruppenvorstellung.pdf` (45 MB, reine Bilder, unbrauchbar).
