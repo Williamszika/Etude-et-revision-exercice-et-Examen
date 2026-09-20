@@ -1,0 +1,1375 @@
+<title>Kontinenz fördern</title>
+<style>
+  :root{
+    --paper:#eef2f1;--paper-2:#e1e8e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#1d6b74;--accent-deep:#144e55;--accent-soft:#dceaec;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#3a6b8a;--bezbg:#dde8f0;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#7ec6ce;--accent-deep:#9ad8df;--accent-soft:#12262a;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#8fb9d4;--bezbg:#16222c;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#7ec6ce;--accent-deep:#9ad8df;--accent-soft:#12262a;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#8fb9d4;--bezbg:#16222c;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef2f1;--paper-2:#e1e8e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#1d6b74;--accent-deep:#144e55;--accent-soft:#dceaec;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#3a6b8a;--bezbg:#dde8f0;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">CE 02 / UE 01 · Magdalena Kaul, Diplom-Berufspädagogin</p>
+  <h1>Kontinenz fördern — und das Schweigen darüber brechen</h1>
+  <p class="sub">Der Expertenstandard <b>Kontinenzförderung in der Pflege, 2. Aktualisierung
+    2024</b> — was sich gegenüber 2014 geändert hat, wie die Anamnese wirklich geführt wird, die
+    sechs Kontinenzprofile, und die Hautschädigung, die daraus entsteht.</p>
+  <div class="meta">
+    <span>CE 02 · UE 01</span>
+    <span>ES 2. Aktualisierung 2024</span>
+    <span>8 Quellen</span>
+    <span>Niveau B1</span>
+    <span>Stand 20.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#warum">Warum es niemand sagt</a>
+  <a href="#standard">Der Standard</a>
+  <a href="#zahlen">Die Zahlen</a>
+  <a href="#anamnese">Die Anamnese</a>
+  <a href="#risiko">Risikofaktoren</a>
+  <a href="#alarm">Alarmsignale</a>
+  <a href="#vertieft">Vertiefte Einschätzung</a>
+  <a href="#harn">Formen Harn</a>
+  <a href="#stuhl">Formen Stuhl</a>
+  <a href="#profile">Die sechs Profile</a>
+  <a href="#iad">IAD</a>
+  <a href="#katheter">Katheter</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="warum">
+  <h2>Warum dieses Thema anders ist als alle anderen</h2>
+  <p class="lead">Der Foliensatz fängt nicht mit Anatomie an, sondern mit vier Stichworten. Sie
+    erklären, warum du bei diesem Thema <b>fragen musst</b> — und nicht darauf warten kannst,
+    dass jemand es dir erzählt.</p>
+
+  <div class="gefahr">
+    <span class="t">Die vier Sätze zur Relevanz</span>
+    <ul style="margin-bottom:0;">
+      <li><b>Tabuisierung</b> des Themas</li>
+      <li><b>Stigmatisierung</b> der Betroffenen</li>
+      <li><b>Stilles Leiden aus Angst und Scham</b></li>
+      <li><b>Nur 25 % der Betroffenen suchen Hilfe</b></li>
+    </ul>
+    <p style="margin-top:12px;"><b>Drei von vier Menschen mit einer Inkontinenz sprechen nicht
+      darüber.</b> Wenn du nicht aktiv fragst, erfährst du nichts — und behandelst etwas, das du
+      gar nicht siehst. Genau deshalb schreibt der Standard die Frage <b>in die
+      Routineanamnese</b>.</p>
+    <p class="fr">Trois personnes sur quatre n'en parlent pas. Si tu ne demandes pas, tu ne sauras
+      pas — c'est pour ça que la question est <b>dans</b> l'anamnèse de routine.</p>
+  </div>
+
+  <h3>Was eine Inkontinenz im Leben anrichtet</h3>
+  <div class="karten">
+    <div class="karte"><h4>Im Alltag</h4><p>Einschränkungen im Alltag und im
+      <b>Bewegungsradius</b>.</p></div>
+    <div class="karte"><h4>Als Belastung</h4><p><b>Physisch, psychisch, sozial und
+      ökonomisch</b> — die Folie nennt ausdrücklich <b>Schuld</b> und <b>Scham</b>.</p></div>
+    <div class="karte"><h4>An Gefahren</h4><p>Zunahme von <b>Sturz</b>, <b>Infektionen</b>,
+      <b>Hautschädigung</b> — und ein <b>signifikant höheres Sterberisiko</b>.</p></div>
+    <div class="karte"><h4>An Lebensqualität</h4><p><b>Verlust der Lebensqualität</b> ·
+      zunehmende <b>Frustration, Isolation, Depression</b> · <b>sich nutzlos erleben</b>.</p></div>
+  </div>
+  <div class="merk">
+    <span class="t">Drei dieser Folgen sind Themen, die du schon kennst</span>
+    <p><b>Sturz</b> steht im Expertenstandard Sturzprophylaxe. <b>Hautschädigung</b> ist die
+      <a href="#iad">IAD</a> weiter unten. Und <b>Isolation, Depression, sich nutzlos erleben</b>
+      stehen wörtlich so in deinem Psychiatrie-Material unter den Pflegediagnosen.</p>
+    <p><b>Das ist die Struktur einer <i>Begründen</i>-Antwort:</b> Inkontinenz → häufigere
+      Toilettengänge, auch nachts, oft in Eile → <b>Sturz</b>. Inkontinenz → Ausscheidung auf der
+      Haut → <b>IAD</b>. Inkontinenz → Scham → Rückzug → <b>Isolation und Depression</b>.
+      <b>Drei Ketten aus einem einzigen Problem.</b></p>
+    <p class="fr">Trois chaînes partent du même problème : la chute, la peau, l'isolement. C'est
+      exactement ce qu'on te demande de dérouler en examen.</p>
+  </div>
+</section>
+
+<section id="standard">
+  <h2>Der Expertenstandard — und was sich 2024 geändert hat</h2>
+
+  <div class="gefahr">
+    <span class="t">Die rechtliche Änderung, die fast niemand kennt</span>
+    <p>Wörtlich von der Folie: <b>„Die gesetzliche Verpflichtung der Umsetzung (nach § 113a
+      SGB XI) besteht seit dem 01.07.23 nicht mehr!“</b></p>
+    <p><b>Aber</b> — und das ist der zweite Teil, ohne den der erste falsch verstanden wird:
+      Pflegeeinrichtungen sind nach <b>§ 11 (1) SGB XI</b> gesetzlich verpflichtet, <b>nach dem
+      allgemein anerkannten Stand medizinisch-pflegerischer Erkenntnisse</b> zu arbeiten. Die
+      Expertenstandards sind <b>eine wichtige Orientierungshilfe</b>, weil sie genau diesen Stand
+      abbilden — und sie werden <b>vom MDK bei der Bewertung von Pflegeeinrichtungen
+      herangezogen</b>.</p>
+    <p><b>Für die Klausur heißt das:</b> Die Antwort auf „Sind Expertenstandards verbindlich?“ ist
+      <b>nicht</b> einfach ja und <b>nicht</b> einfach nein. Sie lautet: <b>Die unmittelbare
+      Verpflichtung nach § 113a ist entfallen — die Pflicht zum anerkannten Stand nach § 11 (1)
+      besteht weiter, und der Standard beschreibt diesen Stand.</b></p>
+    <p class="fr">L'obligation directe a disparu au 01.07.2023 ; l'obligation de travailler selon
+      l'état reconnu des connaissances, elle, demeure. Ce n'est ni oui ni non — c'est ça, la
+      réponse.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Zielsetzung — in der neuen Fassung breiter</span>
+    <p>„Bei <b>jedem Menschen mit einem pflegerischen Unterstützungsbedarf</b> wird die Kontinenz
+      erhalten oder gefördert. Identifizierte <b>Harn- und/oder Stuhlinkontinenz</b> wird
+      beseitigt, weitestgehend reduziert bzw. kompensiert.“</p>
+    <p><b>Zwei Erweiterungen gegenüber 2014 stecken in diesem einen Satz:</b> Aus
+      <i>Patient/Bewohner</i> ist <b>jeder Mensch mit pflegerischem Unterstützungsbedarf</b>
+      geworden — und aus <i>Förderung der Harnkontinenz</i> ist
+      <b>Kontinenzförderung</b> geworden, also <b>Harn und Stuhl</b>.</p>
+    <p class="fr">Deux élargissements en une phrase : toute personne ayant besoin de soins, et
+      <b>urine et selles</b>, plus seulement l'urine.</p>
+  </div>
+
+  <h3>Die zwei Definitionen, die du wörtlich brauchst</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Begriff</th><th>Definition</th><th>Quelle</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Harninkontinenz</td><td><b>„Jeglicher unfreiwilliger
+          Harnverlust/Urinabgang.“</b></td><td>International Continence Society (ICS) 2023</td></tr>
+        <tr><td class="k">Kontinenz</td>
+          <td><b>„Die Fähigkeit, willkürlich und zur passenden Zeit an einem geeigneten Ort die
+            Blase zu entleeren.“</b> Und weiter: <b>„Kontinenz beinhaltet weiterhin die
+            Fähigkeit, Bedürfnisse zu kommunizieren, um Hilfestellungen zu erhalten, wenn
+            Einschränkungen beim selbständigen Toilettengang bestehen.“</b></td>
+          <td>nach dem ES</td></tr>
+        <tr><td class="k">Stuhlinkontinenz</td>
+          <td><b>„Der wiederkehrende unkontrollierte Stuhlgang über einen Zeitraum von mindestens
+            drei Monaten.“</b></td><td>United European Gastroenterology (UEG) 2022</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="gefahr">
+    <span class="t">Zwei Stellen in diesen Definitionen, an denen sich alles entscheidet</span>
+    <p><b>1 · Der zweite Satz der Kontinenz-Definition.</b> Kontinenz ist nicht nur
+      „nicht verlieren“. Sie schließt ausdrücklich die Fähigkeit ein, <b>Bedürfnisse zu
+      kommunizieren, um Hilfe zu bekommen</b>. Damit ist ein Mensch, der <b>nicht mehr um Hilfe
+      bitten kann</b>, in diesem Sinn nicht kontinent — <b>auch wenn die Blase funktioniert</b>.
+      Das erklärt, warum kognitive Einschränkungen in der Risikotabelle stehen.</p>
+    <p><b>2 · Die drei Monate bei der Stuhlinkontinenz</b> — und was der Foliensatz selbst dazu
+      sagt: <b>„Der genannte Zeitraum von mindestens drei Monaten ist weniger bedeutsam, da sich
+      unabhängig von der Dauer einer Stuhlinkontinenz in jedem Fall pflegerische Maßnahmen ergeben
+      können.“</b></p>
+    <p><b>Also:</b> Die Frist ist eine <b>Definitionsgrenze</b>, keine <b>Handlungsgrenze</b>.
+      Niemand wartet drei Monate. Wer das in einer Prüfung sauber trennt, hat den Punkt.</p>
+    <p class="fr">Le délai de trois mois sert à <b>définir</b>, pas à <b>attendre</b>. Personne
+      n'attend trois mois avant d'agir.</p>
+  </div>
+
+  <h3>Wie ein Expertenstandard aufgebaut ist — die drei Spalten</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">S</span><div><h4>Strukturkriterien</h4>
+      <p><b>Was muss vorhanden sein</b> — seitens der Pflegefachkraft und seitens der
+        Einrichtung? Kompetenz, Verfahrensregelungen, Materialien, Personalplanung, Hilfsmittel.</p></div></div>
+    <div class="stufe"><span class="nr">P</span><div><h4>Prozesskriterien</h4>
+      <p><b>Wie wird es gemacht, wie sind die Schritte?</b> Einschätzen, vertieft einschätzen,
+        informieren und beraten, planen, koordinieren, überprüfen.</p></div></div>
+    <div class="stufe"><span class="nr n2">E</span><div><h4>Ergebniskriterien</h4>
+      <p><b>Woran erkennen wir, dass es gemacht ist?</b> Risiken identifiziert, Profil
+        beschrieben, Betroffene kennen die Maßnahmen, Maßnahmenplan liegt vor, Profil erreicht.</p></div></div>
+  </div>
+  <p style="font-size:14.5px;color:var(--ink-soft);">Diese drei Fragen — <i>Was muss da sein? ·
+    Wie wird es gemacht? · Woran erkennen wir, dass es gemacht ist?</i> — stehen als Randnotizen
+    auf der Folie deiner Dozentin. <b>Sie gelten für jeden Expertenstandard</b>, nicht nur für
+    diesen: Dekubitus, Sturz, Schmerz, Ernährung sind genauso gebaut. <b>Wenn du diese drei
+    Fragen kannst, kannst du die Struktur aller.</b></p>
+
+  <div class="merk">
+    <span class="t">Der Satz aus P5, der wie eine Nebensache aussieht</span>
+    <p><b>„Auf die Bitte um Hilfe bei der Ausscheidung wird unverzüglich reagiert.“</b></p>
+    <p>Es ist der einzige Satz im ganzen Standard, der eine <b>Reaktionszeit</b> vorschreibt — und
+      er steht mitten in einem Kriterium über Koordination. <b>Unverzüglich</b> heißt: nicht nach
+      der Übergabe, nicht nach dem Verbandwechsel.</p>
+    <p><b>Und das Gegenstück in E6:</b> Ziel ist <b>„das individuell höchstmögliche Maß an
+      Kontinenz mit der größtmöglichen Selbstständigkeit“</b>. Nicht „trocken“ — sondern
+      <b>so selbstständig wie irgend möglich</b>.</p>
+    <p class="fr">« Sans délai » : ni après la transmission, ni après le pansement. Et l'objectif
+      n'est pas « sec », c'est <b>le plus d'autonomie possible</b>.</p>
+  </div>
+  <div class="warnung">
+    <span class="t">Was im Foliensatz abgebildet ist — und was nicht</span>
+    <p>Die große Tabelle mit allen S-, P- und E-Kriterien, die im Foliensatz abgedruckt ist,
+      stammt aus der <b>1. Aktualisierung 2014</b> und heißt dort noch <i>Förderung der
+      <u>Harn</u>kontinenz in der Pflege</i> (Stand März 2014). Aus der <b>2. Aktualisierung
+      2024</b> zitiert der Foliensatz <b>nur den Schritt 1</b> vollständig — S1, P1a, P1b, E1.</p>
+    <p><b>Die Schritte 2 bis 5 der neuen Fassung</b> (Planung und Steuerung · Information,
+      Schulung und Beratung · Umsetzung des Maßnahmenplans · Bewertung des Erfolgs) stehen im
+      Inhaltsverzeichnis der Folien, <b>aber ihre Kriterien sind in den vorliegenden Dateien nicht
+      abgedruckt</b>. <b>Hier wird nichts ergänzt.</b> Wenn du die Folien zu den Schritten 2–5
+      hast, schick sie mir.</p>
+    <p class="fr">Le tableau complet affiché date de <b>2014</b>. De la version 2024, seule
+      l'étape 1 est citée en entier. Je n'invente pas les étapes 2 à 5.</p>
+  </div>
+</section>
+
+<section id="zahlen">
+  <h2>Die Zahlen</h2>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>&nbsp;</th><th>Harninkontinenz</th><th>Stuhlinkontinenz</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Mit dem Alter</td><td colspan="2"><b>steigt bei beiden</b> mit
+          zunehmendem Alter an</td></tr>
+        <tr><td class="k">In Langzeitpflege­einrichtungen</td><td><b>bis zu 80 %</b></td>
+          <td><b>40–70 %</b></td></tr>
+        <tr><td class="k">In der Allgemeinbevölkerung</td>
+          <td>Frauen <b>10–58 %</b> · Inzidenzrate bei Männern <b>3–11 %</b></td>
+          <td><b>1–10 %</b> der Erwachsenen</td></tr>
+        <tr><td class="k">Geschlecht</td>
+          <td>Frauen häufiger betroffen</td>
+          <td>Frauen <b>4- bis 5-mal häufiger</b> als Männer — „durch die anatomischen
+            Gegebenheiten und Geburten“</td></tr>
+        <tr><td class="k">Besondere Gruppen</td>
+          <td>Nach <b>Prostataoperation ca. 25 %</b> der Männer inkontinent, <b>davon bis zu
+            einem Viertel dauerhaft</b> · bei <b>Schwangeren ca. 41 %</b>, zunehmend mit den
+            Schwangerschaftswochen</td>
+          <td>—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="merk">
+    <span class="t">Die Zahl, die man falsch liest</span>
+    <p><b>„Nach der Prostataoperation sind ca. 25 % der Männer inkontinent, davon bis zu einem
+      Viertel bleiben dauerhaft betroffen.“</b></p>
+    <p>Das sind <b>nicht</b> 25 % dauerhaft. Es ist <b>ein Viertel von einem Viertel</b>. Die
+      große Mehrheit derer, die nach der OP inkontinent sind, <b>wird es wieder los</b> — und das
+      ist genau die Information, die ein Mann nach der Prostatektomie braucht. <b>Rechne sie nicht
+      falsch nach oben</b>; sie ist ein Argument für Beratung und Training, nicht gegen die OP.</p>
+    <p class="fr">Ce n'est pas 25 % à vie : c'est un quart de ce quart. La plupart en sortent —
+      et c'est précisément l'information dont l'homme a besoin après l'opération.</p>
+  </div>
+</section>
+
+<section id="anamnese">
+  <h2>Die Kontinenzanamnese — wie das Gespräch geführt wird</h2>
+
+  <div class="merk">
+    <span class="t">Die Rahmenbedingungen, bevor irgendeine Frage fällt</span>
+    <ul style="margin-bottom:0;">
+      <li><b>Unmittelbar zu Beginn</b> des pflegerischen Auftrags bei <b>allen</b> Personen mit
+        pflegerischem Unterstützungsbedarf — nicht nur bei den Auffälligen.</li>
+      <li><b>Routinemäßig</b>, z. B. im Rahmen der pflegerischen Anamnese, wird nach ungewolltem
+        <b>Harn- und Stuhlverlust</b> gefragt.</li>
+      <li>Eine <b>respektvolle, empathische Grundhaltung</b> und ein <b>geschützter Rahmen</b>
+        sind erforderlich.</li>
+      <li>Je nach Setting kann es <b>zuerst</b> entscheidend sein, eine <b>ausreichende
+        Vertrauensbasis</b> herzustellen.</li>
+    </ul>
+    <p style="margin-top:12px;"><b>Der letzte Punkt widerspricht dem ersten — und das ist
+      gewollt.</b> „Sofort fragen“ und „erst Vertrauen aufbauen“ stehen beide da. Die Auflösung:
+      <b>Die Einschätzung beginnt sofort, das Gespräch darüber beginnt, wenn es tragfähig ist.</b>
+      Beobachten kannst du ab der ersten Minute.</p>
+    <p class="fr">« Demander tout de suite » et « d'abord créer la confiance » figurent tous les
+      deux. L'évaluation commence immédiatement ; la <b>conversation</b>, quand elle peut porter.</p>
+  </div>
+
+  <h3>Die Ersteinschätzung — drei Wege, und einer davon endet sofort</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div><h4>Identifikation</h4>
+      <p>Von <b>Risiken und Anzeichen</b> einer Inkontinenz.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div><h4>Etwas gefunden → vertiefen</h4>
+      <p>Werden Risiken oder Anzeichen identifiziert, <b>erfolgt eine vertiefte Einschätzung</b>
+        der Kontinenzsituation.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div><h4>Nichts gefunden → dokumentieren und Ende</h4>
+      <p>Ergeben sich <b>keine</b> Risiken und Anzeichen, ist <b>dies zu dokumentieren</b> —
+        z. B. mit einem einfachen Hinweis auf das Kontinenzprofil <b>„Kontinenz“</b> in der
+        Pflegeanamnese — und <b>die vertiefte Einschätzung entfällt</b>.</p></div></div>
+  </div>
+  <div class="gefahr">
+    <span class="t">Schritt 3 ist der, den man vergisst</span>
+    <p><b>„Nichts gefunden“ muss aufgeschrieben werden.</b> Ein leeres Feld heißt in der
+      Dokumentation nicht „unauffällig“ — es heißt <b>„nicht erhoben“</b>. Der Standard verlangt
+      deshalb ausdrücklich einen <b>positiven Eintrag</b>: das Profil <b>Kontinenz</b>.</p>
+    <p><b>Das ist eine Regel, die für jede Risikoeinschätzung gilt</b> — Dekubitus, Sturz,
+      Schmerz, Ernährung. <b>Kein Risiko ist auch ein Ergebnis, und Ergebnisse werden
+      dokumentiert.</b></p>
+    <p class="fr">Une case vide ne veut pas dire « rien à signaler », elle veut dire « pas
+      évalué ». L'absence de risque est aussi un résultat — donc on l'écrit.</p>
+  </div>
+
+  <h3>Die Initialfragen — wörtlich, wie sie empfohlen werden</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Einstieg Harninkontinenz</th><th>Einstieg Stuhlinkontinenz</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>• <b>Verlieren Sie ungewollt Urin?</b><br>
+            • Tragen Sie <b>Vorlagen oder andere Hilfsmittel</b>, um Urin aufzufangen?<br>
+            • Haben Sie Probleme, Ihre Harnblase zu <b>kontrollieren oder zu leeren</b>?</td>
+          <td>• <b>Verlieren Sie ungewollt Stuhlgang?</b><br>
+            • Haben Sie Probleme, <b>Darmwinde zurückzuhalten</b>, oder andere Probleme mit Ihrem
+              Darm?<br>
+            • Gibt es Probleme mit <b>verschmutzter Wäsche</b>?</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:14.5px;color:var(--ink-soft);">Der Standard sagt dazu: Die Fragen „sollten
+    <b>je nach Gegenüber, Anlass und Situation individuell formuliert</b> werden“ und bieten
+    <b>eine Orientierung für einen Gesprächseinstieg</b> — je nach Lage kann es sinnvoll sein,
+    zuerst ein <b>offen formuliertes Angebot</b> zu machen, über die Kontinenzsituation zu
+    sprechen.</p>
+
+  <h3>Die Nachfragen — sie führen schon zur Form</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Nachfragen Harn</th><th>Worauf sie zielen</th></tr></thead>
+      <tbody>
+        <tr><td>Kommt der Harndrang manchmal <b>sehr plötzlich</b>? · Verlieren Sie Urin schon
+          <b>auf dem Weg zur Toilette</b>?</td><td><a href="#harn">Dranginkontinenz</a></td></tr>
+        <tr><td>Verlieren Sie Urin, wenn Sie <b>husten, niesen, lachen</b> oder sich körperlich
+          betätigen?</td><td><a href="#harn">Belastungsinkontinenz</a></td></tr>
+        <tr><td>Müssen Sie <b>pressen</b>, um Wasser zu lassen? · Fühlt sich die Blase manchmal
+          <b>nicht richtig entleert</b> an?</td>
+          <td><a href="#harn">Inkontinenz bei chronischer Harnretention</a> → Restharn</td></tr>
+        <tr><td>Leiden Sie unter <b>wiederkehrenden Blasenentzündungen</b>?</td>
+          <td>Harnwegsinfekt als Ursache <b>oder</b> als Folge</td></tr>
+        <tr><td><b>Haben Sie bereits etwas unternommen</b>, um Ihre Situation zu verbessern?</td>
+          <td>die <b>Ressourcen</b> — Kompensationsstrategien, die schon laufen</td></tr>
+        <tr><td>Gab es <b>Manipulationen oder Eingriffe</b> — Katheteranlagen, Operationen,
+          Bestrahlungen im Beckenbereich?</td><td>Risikofaktoren aus der Vorgeschichte</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><b>Und bei Stuhl:</b> Wie lange besteht das Problem? · Ist der Stuhlgang häufiger <b>zu dünn
+    oder zu fest</b>? · Können Sie bei Stuhldrang <b>den Weg bis zur Toilette schaffen</b>? ·
+    Haben Sie das Gefühl, dass sich der Darm <b>nicht vollständig entleert</b>? · Verwenden Sie
+    Vorlagen oder Hilfsmittel — <b>auch solche, um den Darm kontrolliert zu entleeren</b>? · Sind
+    <b>Lebensmittelunverträglichkeiten</b> bekannt? · Gab es Operationen oder Bestrahlungen?</p>
+
+  <div class="gefahr">
+    <span class="t">Wenn die Fragen nicht beantwortet werden — worauf du dann achtest</span>
+    <p>Der Standard nennt diese <b>diskret zu beobachtenden Hinweise</b>: <b>häufige
+      Toilettengänge</b> · <b>Wäsche verstecken</b> · <b>Bett öfter abziehen</b> · <b>unruhiges
+      Verhalten</b> · <b>auffälliger Geruch</b> · <b>Hautveränderungen im Intimbereich</b> ·
+      <b>Stürze</b>.</p>
+    <p><b>Und die Stelle, an der besondere Vorsicht gilt.</b> Wörtlich: „Wenn Inkontinenzprobleme
+      in der Verbindung mit <b>sexualisierter Gewalt oder einer Vergewaltigung</b> vermutet
+      werden, bedeutet dies für die Betroffenen eine <b>doppelte Tabuisierung</b>.“ Mögliche
+      Hinweise: <b>Abwehrverhalten bei intimen Verrichtungen</b> · <b>nicht ohne Weiteres
+      erklärbare vaginale oder rektale Blutungen</b> · <b>Verletzungen im Intimbereich</b>.</p>
+    <p><b>Bei Verdacht</b>: „sollte das Gespräch <b>sehr behutsam</b> darauf gebracht werden, da
+      eine <b>Retraumatisierung</b> ausgelöst werden könnte.“ <b>Das ist keine Aufforderung zu
+      bohren</b> — es ist die Aufforderung, es zu <b>bemerken</b> und im Team weiterzugeben.</p>
+    <p class="fr">Double tabou. Ici on ne creuse pas : on <b>remarque</b>, et on transmet en
+      équipe.</p>
+  </div>
+</section>
+
+<section id="risiko">
+  <h2>Die Risikofaktoren — die Tabelle, die man einmal gesehen haben muss</h2>
+  <p class="lead">Aus dem Standard, S. 29–32. <b>Für alle Geschlechter</b>, außer wo markiert.
+    Ein Kreuz heißt: Dieser Faktor erhöht das Risiko für diese Inkontinenzform.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Risikofaktor</th><th>Harn</th><th>Stuhl</th></tr></thead>
+      <tbody>
+        <tr><td><b>Lebensalter</b></td><td>×</td><td>×</td></tr>
+        <tr><td><b>Pflegebedürftigkeit</b></td><td>×</td><td>×</td></tr>
+        <tr><td><b>Kognitive Beeinträchtigungen</b> — z. B. postoperatives oder
+          posttraumatisches Delir, Demenz</td><td>×</td><td>×</td></tr>
+        <tr><td><b>Körperliche Beeinträchtigungen</b> — Mobilität, <b>Fingerfertigkeit</b>,
+          Störungen der Sinneswahrnehmung</td><td>×</td><td>×</td></tr>
+        <tr><td><b>Neurogene Erkrankungen</b> — Apoplex, Multiple Sklerose, Morbus Parkinson,
+          Rückenmarksverletzungen, Tumore</td><td>×</td><td>×</td></tr>
+        <tr><td><b>Veränderungen/Operation der Prostata</b></td><td>× <i>(nur Männer)</i></td><td>—</td></tr>
+        <tr><td><b>Erkrankungen des Darms</b> — Tumore, Morbus Crohn, Colitis ulcerosa,
+          Rektum-/Analprolaps, Rektozele</td><td>—</td><td>×</td></tr>
+        <tr><td><b>Erkrankungen der Blase</b> — Tumore, Zystozele</td><td>×</td><td>—</td></tr>
+        <tr><td><b>Anomalien/Traumata/OP im Urogenitaltrakt</b> — orthotope Neoblase,
+          Geschlechtsangleichung, <b>Genitalverstümmelung, Genitalbeschneidung</b></td>
+          <td>×</td><td>×</td></tr>
+        <tr><td><b>Anomalien/Traumata/OP im Bereich Rektum, Anus, Damm</b> — Hämorrhoiden,
+          Fisteln, Analwarzen, <b>höhergradige Geburtsverletzungen</b></td><td>×</td><td>×</td></tr>
+        <tr><td><b>Enterostomarückverlegung</b></td><td>—</td><td>×</td></tr>
+        <tr><td><b>Medikamente</b> — auf die Harnkontinenz z. B. <b>Anticholinergika, Diuretika,
+          Opioide</b>; auf die Stuhlkontinenz z. B. <b>Opioide, Psychopharmaka</b></td>
+          <td>×</td><td>×</td></tr>
+        <tr><td><b>Obstipation, chronische Diarrhöen</b> — z. B. durch Chemotherapeutika,
+          Antibiotika, Opioide</td><td>×</td><td>×</td></tr>
+        <tr><td><b>Harnwegsinfektionen</b></td><td>×</td><td>—</td></tr>
+        <tr><td><b>Bestrahlungen im Beckenbereich</b></td><td>×</td><td>×</td></tr>
+        <tr><td><b>Belastung des Beckenbodens</b> — Schwangerschaft und Entbindung,
+          Lageveränderung des Uterus, Hysterektomie, Uterusprolaps, <b>Adipositas, schweres
+          körperliches Arbeiten, chronischer Husten</b></td>
+          <td>× <i>(bes. Frauen)</i></td><td>×</td></tr>
+        <tr><td><b>Folgen sexualisierter Gewalt</b> — Verletzungen im Beckenboden-, Vaginal-,
+          Harnröhren-, Damm- oder Analbereich</td><td>×</td><td>×</td></tr>
+        <tr><td><b>Folge von Sexualpraktiken</b></td><td>×</td><td>×</td></tr>
+        <tr><td><b>Pathologische Verhaltensweisen</b> — <b>langes Einhalten</b>, häufige
+          vorsorgende Toilettengänge</td><td>×</td><td>×</td></tr>
+        <tr><td><b>Umgebungsfaktoren</b> — schlechte räumliche Bedingungen, <b>erschwerte
+          Zugänglichkeit einer Toilette</b>, fehlende Hilfsmittel</td><td>×</td><td>×</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="merk">
+    <span class="t">Die drei Zeilen, die zeigen, worum es in diesem Standard wirklich geht</span>
+    <p><b>Fingerfertigkeit.</b> Wer den Knopf nicht aufbekommt, ist inkontinent — nicht wegen der
+      Blase.</p>
+    <p><b>Umgebungsfaktoren.</b> Eine Toilette, die zu weit weg, zu schlecht erreichbar oder
+      besetzt ist, steht in einer <b>medizinischen Risikotabelle</b>.</p>
+    <p><b>Pathologische Verhaltensweisen — „langes Einhalten“.</b> Das macht fast jeder im
+      Schichtdienst. Es steht hier als <b>Risikofaktor</b>.</p>
+    <p><b>Was daraus folgt:</b> Ein erheblicher Teil dieser Tabelle ist <b>nicht Krankheit,
+      sondern Umstand</b> — und Umstände kann Pflege ändern. <b>Genau das ist der Grund, warum es
+      diesen Standard gibt.</b></p>
+    <p class="fr">Le bouton qu'on n'arrive pas à défaire, les toilettes trop loin, se retenir trop
+      longtemps : ce ne sont pas des maladies, ce sont des <b>circonstances</b>. Et les
+      circonstances, les soins peuvent les changer.</p>
+  </div>
+
+  <h3>Die Anzeichen und Symptome</h3>
+  <p>Unwillkürlicher Harn- und/oder Stuhlverlust <b>bei körperlicher Betätigung</b> ·
+    unwillkürlicher Verlust <b>einhergehend mit Drang</b> · <b>Gefühl der nicht vollständig
+    entleerten</b> Blase bzw. des Rektums · <b>erfolglose</b> Blasen- bzw. Darmentleerungsversuche ·
+    häufiger plötzlicher und <b>unbeherrschbarer Drang ohne Verlust</b> · <b>verzögerter Beginn</b>
+    der Miktion bzw. Defäkation · <b>ständiger Harnabgang bzw. Stuhlschmieren, bemerkt oder
+    unbemerkt</b> · <b>Brennen beim Wasserlassen, das Gefühl wund zu sein</b> · Obstipation oder
+    Diarrhö · Meteorismus · Schmerzen.</p>
+</section>
+
+<section id="alarm">
+  <h2>Yellow Flags und Red Flags</h2>
+  <div class="gefahr">
+    <span class="t">Warum es diese Unterscheidung überhaupt gibt</span>
+    <p>„Die Anzeichen einer Inkontinenz können <b>auch gleichzeitig Symptome anderer Erkrankungen</b>
+      sein.“ Deshalb muss bei der Einschätzung unterschieden werden, ob es sich um <b>Alarmsignale
+      für schwerwiegende gesundheitliche Probleme</b> handeln könnte.</p>
+    <p><b>Yellow Flags</b> = engmaschige Beobachtung. <b>Red Flags</b> = sofortiges Handeln.
+      <b>Und in beiden Fällen gilt derselbe Satz:</b> „<b>In beiden Fällen muss sofort eine
+      Information an die behandelnden Ärzte bzw. Ärztinnen erfolgen.</b>“</p>
+    <p><b>Das überrascht</b> — man erwartet, dass nur Rot gemeldet wird. <b>Nein: Gelb auch.</b>
+      Der Unterschied liegt nicht im Melden, sondern im <b>Tempo des Handelns</b>.</p>
+    <p class="fr">On croit que seul le rouge se signale. Non : le jaune aussi. La différence n'est
+      pas dans le signalement, elle est dans le <b>rythme d'action</b>.</p>
+  </div>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>&nbsp;</th><th>Harnausscheidung</th><th>Stuhlausscheidung</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Yellow Flags<br><span style="font-weight:400">engmaschig beobachten</span></td>
+          <td>Harninkontinenz durch <b>Delir, Infektionen, Medikamente</b></td>
+          <td><b>Stuhlinkontinenz</b> · Stuhlinkontinenz durch <b>Delir, Infektionen,
+            Medikamente</b> · <b>vermehrte Durchfälle</b></td></tr>
+        <tr><td class="k">Red Flags<br><span style="font-weight:400">sofort handeln</span></td>
+          <td><b>Hämaturie</b> (Blut im Urin) · <b>Dysurie</b> (schmerzhaftes Wasserlassen) ·
+            <b>Paresen/Parästhesien</b> · <b>Überlaufsymptomatik</b> · <b>Druckgefühl in der
+            Vagina</b></td>
+          <td><b>Schmerzen beim Stuhlgang</b> · <b>Blutungen beim Stuhlgang</b> ·
+            <b>Blutauflagerungen</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="merk">
+    <span class="t">Eine Zeile verdient besondere Aufmerksamkeit</span>
+    <p><b>Stuhlinkontinenz steht als Yellow Flag — für sich allein</b>, ohne weitere Bedingung.
+      Das heißt: Eine neu auftretende Stuhlinkontinenz ist <b>an sich</b> ein Warnzeichen und
+      gehört gemeldet, auch wenn sonst nichts auffällt.</p>
+    <p>Und <b>Paresen und Parästhesien</b> als Red Flag bei der Harnausscheidung: Lähmungen oder
+      Missempfindungen <b>zusammen</b> mit einer neuen Blasenstörung sind ein neurologisches
+      Alarmsignal. <b>Das ist die Zeile, bei der man nicht bis zur Visite wartet.</b></p>
+    <p class="fr">Une incontinence fécale nouvelle est <b>à elle seule</b> un signal. Et des
+      paresthésies avec un trouble vésical récent : on n'attend pas la visite.</p>
+  </div>
+</section>
+
+<section id="vertieft">
+  <h2>Die vertiefte Einschätzung</h2>
+  <p class="lead">Sie „dient der <b>systematischen Erfassung</b> der Kontinenzsituation“ und wird
+    von der Pflegefachkraft <b>eingeleitet und durchgeführt</b> — bzw. bei anderen Berufsgruppen
+    angeregt und im Rahmen der Steuerung des Pflegeprozesses <b>zusammengeführt</b>.</p>
+
+  <h3>Was immer erhoben wird</h3>
+  <div class="karten">
+    <div class="karte"><h4>Trinken und Essen</h4><p>Bevorzugte Getränke und Nahrungsmittel — das
+      Skript nennt <b>Kaffee, bestimmte Teesorten, Spargel, Kohl, Ballaststoffe und Alkohol</b>
+      als harn- oder stuhltreibend. Die <b>durchschnittliche Trinkmenge</b> wird erfragt oder im
+      <b>Miktionsprotokoll</b> erfasst. <b>Lebensmittelallergien</b> werden erfragt.</p></div>
+    <div class="karte"><h4>Medikamente</h4><p>Wird geprüft, ob sie die Ausscheidung
+      beeinflussen. Dann: <b>Information an den Arzt</b> zur Anpassung — und manchmal reicht es,
+      <b>die Einnahmezeit anzupassen</b>, etwa bei <b>Diuretika oder Laxanzien</b>.</p></div>
+    <div class="karte"><h4>Funktionelle Fähigkeiten</h4><p>Welche Tätigkeiten und Bewegungen
+      gehen <b>selbstständig</b>, welche mit Unterstützung — und <b>welche Förderpotenziale</b>
+      bestehen.</p></div>
+    <div class="karte"><h4>Inspektion</h4><p>Des <b>Urogenital- und Analbereichs</b>:
+      Hautbeschaffenheit (Schleimhautatrophie, Hämorrhoiden, Gewebsveränderungen, Verletzungen,
+      Entzündungen) — und ausdrücklich <b>auf Anzeichen einer <a href="#iad">IAD</a></b>.</p></div>
+    <div class="karte"><h4>Vorgeschichte</h4><p>Operationen an Blase oder Darm · bei
+      <b>Männern ab 55 Jahren</b> Vorerkrankungen der Prostata · <b>Berufs- und
+      Sozialanamnese</b>: Heben und Tragen schwerer Gewichte in Beruf oder Freizeit, wegen der
+      <b>Überbelastung des Beckenbodens</b>.</p></div>
+    <div class="karte"><h4>Hilfsmittel</h4><p>Die vorhandene <b>Hilfsmittelversorgung</b> wird
+      erfasst.</p></div>
+  </div>
+  <div class="merk">
+    <span class="t">Die Einnahmezeit statt der Dosis</span>
+    <p>„In einigen Fällen kann es sinnvoll sein, die <b>Einnahme- oder Tageszeit</b> der
+      individuellen Kontinenzsituation anzupassen, z. B. bei <b>Diuretika oder Laxanzien</b>.“</p>
+    <p><b>Das ist eine der wirksamsten und billigsten Maßnahmen des ganzen Standards.</b> Ein
+      Diuretikum am späten Nachmittag bedeutet eine durchwachte, nasse Nacht; dasselbe Medikament
+      am Morgen bedeutet nichts davon. <b>Die Dosis bleibt gleich, die Wirkung auf das Leben ist
+      eine andere.</b> Und es ist eine <b>pflegerische</b> Beobachtung, die zu einer ärztlichen
+      Entscheidung führt.</p>
+    <p class="fr">Le même diurétique, la même dose — mais le matin au lieu de l'après-midi. C'est
+      une observation <b>infirmière</b> qui change une nuit entière.</p>
+  </div>
+
+  <h3>Spezifisch bei Harninkontinenz — fünf Werkzeuge</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Werkzeug</th><th>Wann und wie</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Hinweise auf<br>Harnwegsinfekte</td>
+          <td>Bei <b>plötzlich auftretender</b> Harninkontinenz und/oder <b>schmerzhafter
+            Miktion</b>. Schnelltest des Harns auf <b>Blut, Leukozyten und Nitrit</b>; bei
+            Infektion <b>ärztlich</b> medikamentös behandeln</td></tr>
+        <tr><td class="k">Blasenverweilkatheter</td>
+          <td>Bei Aufnahme ermitteln, <b>wann und warum</b> er gelegt wurde, und die
+            <b>Notwendigkeit</b> mit dem Arzt besprechen. Bei Entlassung oder Verlegung sind
+            <b>Zeitpunkt und Grund der Anlage weiterzugeben</b></td></tr>
+        <tr><td class="k">Miktionsprotokoll</td>
+          <td><b>Objektiviert</b> Trink- und Ausscheidungssituation: <b>Art, Menge und Uhrzeit</b>
+            der Flüssigkeitsaufnahme, Zeiten, Mengen und Intervalle, Inkontinenzereignisse.
+            <b>Empfohlen 3 bis maximal 5 Tage, jeweils über 24 Stunden</b> — „Aufwand und Nutzen
+            sind fachlich abzuwägen“</td></tr>
+        <tr><td class="k">Restharnbestimmung</td>
+          <td><b>Idealerweise sonographisch</b>, mit dem Arzt besprochen. Bei <b>rezidivierenden
+            Harnwegsinfekten</b>, dem <b>Gefühl der nicht vollständig entleerten Blase</b>,
+            <b>Toilettengängen in kurzen Abständen</b>, <b>Nachträufeln</b> oder Risikofaktoren.
+            <b>Die Messung wird unmittelbar — maximal 10 Minuten — nach der Miktion
+            durchgeführt</b></td></tr>
+        <tr><td class="k">Vorlagengewichtstest</td>
+          <td>Erfasst <b>quantitativ</b>, wie viel Flüssigkeit in einer festgelegten Zeit
+            unwillkürlich ausgeschieden wird. <b>Der Gewichtsunterschied zwischen trockener und
+            nasser Vorlage ergibt die Urinmenge.</b> <b>Keine routinemäßige Durchführung!</b> —
+            nur, wenn eine exakte Bestimmung für die Diagnostik erforderlich ist</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="gefahr">
+    <span class="t">Die 10 Minuten bei der Restharnbestimmung</span>
+    <p>Das ist die Art Zahl, nach der in einer Klausur gefragt wird — und sie hat einen Grund:
+      Nach zehn Minuten hat sich die Blase bereits wieder gefüllt, und der gemessene Wert wäre
+      <b>kein Restharn mehr</b>, sondern neuer Urin. <b>Zu spät gemessen heißt falsch hoch
+      gemessen</b> — und daraus folgen womöglich ein Katheter und eine Infektion, die niemand
+      gebraucht hätte.</p>
+    <p class="fr">Mesurer trop tard, c'est mesurer trop haut — et au bout, une sonde dont
+      personne n'avait besoin.</p>
+  </div>
+
+  <h3>Spezifisch bei Stuhlinkontinenz</h3>
+  <ul>
+    <li><b>Überprüfung der Schließfähigkeit des Anus</b> — durch <b>geschulte Pflegefachkräfte
+      oder ärztliches Personal</b>.</li>
+    <li><b>Hinweise auf Infekte</b> — bei auffälligem Stuhl eine <b>Stuhlprobe</b> zur Bestimmung
+      pathogener Keime initiieren.</li>
+    <li>Informationen zu <b>Vor- und Begleiterkrankungen</b>, ggf. proktologischen oder
+      gastroenterologischen Vorbefunden, und zu <b>funktionellen Einschränkungen</b>.</li>
+    <li><b>Stuhltagebuch</b> mit der <b>Bristol Stool Scale</b> für die Beschaffenheit, dazu
+      <b>Dauer und Sitzposition</b>, Häufigkeit, Menge und Konsistenz —
+      <b>Richtwert 7 bis 14 Tage</b>.</li>
+    <li><b>Stuhldrainagesystem:</b> Indikation und Verweildauer werden dokumentiert, <b>Indikation
+      und Lage sind täglich zu prüfen</b>, die <b>Liegedauer richtet sich nach den
+      Herstellerangaben</b>.</li>
+  </ul>
+  <p style="font-size:14.5px;color:var(--ink-soft);"><b>Merk dir die zwei Zeiträume
+    nebeneinander:</b> Miktionsprotokoll <b>3–5 Tage</b>, Stuhltagebuch <b>7–14 Tage</b>. Der
+    Unterschied ist kein Zufall — Stuhlgang ist seltener, also braucht man länger, um ein Muster
+    zu sehen.</p>
+
+  <h3>Die psychosoziale Seite</h3>
+  <div class="merk">
+    <span class="t">Zwei Instrumente, und wofür welches</span>
+    <p><b>King's Health Questionnaire (KHQ)</b> bei der <b>Harn</b>inkontinenz ·
+      <b>Cleveland-Clinic-Score (CCS)</b> bei der <b>Stuhl</b>inkontinenz. Sie erfassen
+      <b>Einschränkungen, Leidensdruck und Belastungserleben</b>.</p>
+    <p><b>Erfragt werden außerdem die Bewältigungsstrategien:</b> die <b>Hygienepräferenz</b> ·
+      <b>Isolation und Rückzug</b> im Hinblick auf den Aufenthalt <b>in der Nähe einer
+      Toilette</b> · Erfahrungen mit und <b>Ängste vor Inkontinenzereignissen in der
+      Öffentlichkeit</b> · <b>Schamerleben und der Umgang damit</b> · Auswirkungen auf
+      <b>Berufsalltag und Freizeit</b> · <b>finanzielle Belastungen</b>.</p>
+    <p><b>Und zum Thema Sexualität</b> sagt der Standard, es sei <b>stets mitzubedenken</b> — in
+      zweierlei Hinsicht: als <b>Risikofaktor</b> (Verletzungen, erlebte sexuelle Gewalt) und im
+      <b>Kontext von Scham und Rückzug</b> bei bestehender Inkontinenz. Das Gesprächsangebot ist
+      <b>individuell am Gegenüber und an der Situation auszurichten</b>.</p>
+    <p class="fr">Deux échelles, une par type. Et la sexualité se pense toujours — comme facteur
+      de risque <b>et</b> comme conséquence.</p>
+  </div>
+  <p>Für die Beschreibung der psychosozialen Belastung nennt der Standard das
+    Klassifikationssystem <b>NANDA-I</b> mit den Diagnosen <b>Gefahr der Machtlosigkeit ·
+    Machtlosigkeit · Hoffnungslosigkeit · chronischer Kummer · geringes Selbstwertgefühl</b>.</p>
+</section>
+
+<section id="harn">
+  <h2>Die Formen der Harninkontinenz</h2>
+  <div class="warnung">
+    <span class="t">Warum die Form überhaupt bestimmt wird</span>
+    <p>Wörtlich aus dem Foliensatz: <b>„Die ärztliche Diagnose wird oft nicht differenziert
+      gestellt. Sie ist aber ausschlaggebend für eine professionelle Auswahl von wirksamen
+      Maßnahmen.“</b></p>
+    <p><b>Das ist ein bemerkenswert direkter Satz.</b> Er sagt: Die Diagnose ist oft unscharf —
+      und genau deshalb muss die Pflege selbst genau beschreiben, <b>wie</b> der Urin verloren
+      geht. Denn <b>Beckenbodentraining hilft bei Belastungsinkontinenz und nicht bei
+      Überlaufinkontinenz</b>; Toilettentraining hilft bei Drang und nicht bei einer Fistel.</p>
+    <p class="fr">Le diagnostic médical est souvent imprécis — et c'est justement pour ça que ta
+      description compte : la mesure dépend de la forme.</p>
+  </div>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Form</th><th>Definition nach dem ES (S. 78–79)</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Belastungsinkontinenz<br>(Stressinkontinenz)</td>
+          <td>Unfreiwilliger Urinverlust <b>synchron mit körperlicher Belastung</b> — Hustenstoß,
+            Niesen, Laufen, Lasten heben. <b>Ursache:</b> Beckenbodenschwäche durch Geburten,
+            Adipositas, Vergrößerung oder Lageveränderung der Gebärmutter, Verletzungen oder
+            Operationen</td></tr>
+        <tr><td class="k">Dranginkontinenz</td>
+          <td>Unwillkürlicher Harnverlust, der <b>mit einem Harndrang einhergeht oder diesem
+            unmittelbar vorausgeht</b>. Als Häufigkeit gilt herkömmlich <b>Entleeren
+            &gt; 8× / 24 h</b></td></tr>
+        <tr><td class="k">Überaktive Blase</td>
+          <td>Häufiger Harndrang <b>mit oder ohne</b> Dranginkontinenz, häufig mit
+            <b>Nykturie</b> — <b>ohne Harnwegsinfektion und ohne andere offensichtliche
+            Pathologie</b>. Primäre urodynamische Anomalie: <b>Detrusorüberaktivität</b></td></tr>
+        <tr><td class="k">Mischinkontinenz</td>
+          <td><b>Belastungs- und Dranginkontinenz zusammen</b></td></tr>
+        <tr><td class="k">Extraurethrale<br>Inkontinenz</td>
+          <td>Ständiger Urinverlust <b>über andere Kanäle als die Harnröhre</b> — z. B.
+            <b>Blasen-Scheiden-Fistel</b></td></tr>
+        <tr><td class="k">Inkontinenz bei<br>chronischer Harnretention</td>
+          <td><b>Unvollständige Blasenentleerung (Restharnbildung)</b>, mit oder ohne
+            unfreiwilligen Urinverlust. Die Blase <b>kann nach dem Wasserlassen tastbar sein,
+            ohne Schmerzen</b>. Bei Prostataerkrankungen, Verengung der Urethra durch Steine,
+            Tumore, Verwachsungen</td></tr>
+        <tr><td class="k">Neurogene<br>Blasenentleerungsstörung</td>
+          <td>Durch <b>neurologische Beeinträchtigungen</b> verursacht — in <b>spastischer</b>
+            (unwillkürliche Kontraktionen) oder <b>schlaffer</b> (hypoton, fehlende Kontraktionen)
+            Form</td></tr>
+        <tr><td class="k">Unkategorisierbare<br>Inkontinenz</td>
+          <td>Unfreiwilliger Urinverlust, der <b>auf Basis von Symptomen oder Befunden nicht
+            eindeutig zuzuordnen</b> ist</td></tr>
+        <tr><td class="k">Kontinuierliche<br>Harninkontinenz</td>
+          <td>Klage über <b>kontinuierlichen</b> unfreiwilligen Harnverlust</td></tr>
+        <tr><td class="k">Unmerkliche<br>Harninkontinenz</td>
+          <td>Die Person ist sich des Urinverlusts <b>bewusst, weiß aber nicht, wie oder wann</b>
+            er aufgetreten ist</td></tr>
+        <tr><td class="k">Sexuelle<br>Erregungsinkontinenz</td>
+          <td>Unfreiwilliger Urinverlust <b>während sexueller Erregung</b>, Vorspiel und/oder
+            Selbstbefriedigung</td></tr>
+        <tr><td class="k">Klimakturie</td>
+          <td>Unwillkürlicher Urinverlust <b>zum Zeitpunkt des Orgasmus</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="gefahr">
+    <span class="t">Die Warnung, die im Foliensatz in Großbuchstaben steht</span>
+    <p><b>„Achtung!!!“</b> — zur <b>akuten</b> Harnretention: Sie ist <b>in der Regel
+      schmerzhaft</b>, und meist besteht die <b>Unfähigkeit, Wasser zu lassen</b>.</p>
+    <p><b>Aber:</b> Eine akute Harnretention kann <b>ohne Schmerzen</b> verlaufen — der
+      Foliensatz nennt drei Situationen: <b>nach der Geburt</b>, <b>bei Regionalanästhesien</b>
+      und <b>beim Bandscheibenvorfall</b>.</p>
+    <p><b>Warum das lebenswichtig ist:</b> In genau diesen drei Situationen ist die Schmerzmeldung
+      ausgeschaltet oder überdeckt. Wer auf den Schmerz wartet, bemerkt nichts — <b>und die Blase
+      füllt sich weiter</b>. Deshalb wird nach Geburt und nach Regionalanästhesie <b>die
+      Blasenentleerung aktiv überwacht</b>, statt auf eine Beschwerde zu warten.</p>
+    <p><b>Die Kette für eine AFB-III-Antwort:</b> Regionalanästhesie → Schmerz- und
+      Druckempfindung ausgeschaltet → Harnverhalt wird nicht bemerkt → Blasenüberdehnung →
+      <b>deshalb kontrolliere ich aktiv, ob und wann Wasser gelassen wurde</b>.</p>
+    <p class="fr">Après un accouchement ou sous anesthésie locorégionale, la rétention peut être
+      <b>indolore</b>. Attendre la douleur, c'est ne rien voir venir.</p>
+  </div>
+</section>
+
+<section id="stuhl">
+  <h2>Stuhlkontinenz — Anatomie, Vorgang, Formen</h2>
+
+  <h3>Der Enddarm, wie der Foliensatz ihn beschreibt</h3>
+  <p>Der <b>Enddarm ist 20 cm lang</b> und beginnt mit dem <b>Mastdarm (Rektum)</b>. Daran
+    schließt sich der <b>Analkanal</b> an, der <b>von Schließmuskeln und Hämorrhoiden
+    abgedichtet</b> wird; er ist <b>3 bis 6 cm lang</b> und von der <b>Analschleimhaut
+    (Anoderm)</b> ausgekleidet. Das Anoderm <b>enthält viele Nervenfasern</b> und überträgt die
+    Signale, die dem Körper helfen, <b>Beschaffenheit des Stuhls und Füllzustand zu
+    erkennen</b>.</p>
+  <div class="merk">
+    <span class="t">Hämorrhoiden sind kein Krankheitsname</span>
+    <p>Sie stehen hier bei den <b>normalen</b> Strukturen: Sie dichten den Analkanal <b>ab</b>.
+      Erst wenn sie sich vergrößern, werden sie zum <b>Hämorrhoidalleiden</b> — und stehen dann
+      in der <a href="#risiko">Risikotabelle</a>.</p>
+    <p><b>Und das Anoderm erklärt ein Symptom:</b> Weil dort die Nervenfasern sitzen, die
+      <b>fest, flüssig oder Luft</b> unterscheiden, führt eine Schädigung dieser Schleimhaut
+      dazu, dass jemand <b>Luft und Stuhl nicht mehr auseinanderhalten</b> kann. Das ist keine
+      Unaufmerksamkeit — das ist ein <b>Sensibilitätsverlust</b>.</p>
+    <p class="fr">Ne plus distinguer un gaz d'une selle n'est pas de l'inattention : c'est une
+      perte de <b>sensibilité</b>.</p>
+  </div>
+
+  <h3>Der Defäkationsvorgang — Schritt für Schritt</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div><h4>Dehnungsrezeptoren werden alarmiert</h4>
+      <p>Wenn sich der Enddarm füllt, werden die <b>Dehnungsrezeptoren in der Analschleimhaut</b>
+        alarmiert.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div><h4>Signal zum Großhirn und zurück</h4>
+      <p>Über Nervenbahnen geht ein Signal zum <b>Großhirn</b>, wird dort verarbeitet und
+        zurückgeleitet. Es bewirkt, dass sich der <b>innere Schließmuskel öffnet</b> und
+        <b>das Gefühl des Stuhldrangs</b> entsteht.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div><h4>Beckenboden entspannt</h4>
+      <p>Der Beckenboden <b>entspannt und senkt sich leicht</b>. Die Muskulatur des Enddarms kann
+        den Stuhl nach außen schieben.</p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div><h4>Auf der Toilette: willentlich öffnen</h4>
+      <p>Dort entspannt man <b>willentlich auch den äußeren Schließmuskel</b>.</p></div></div>
+    <div class="stufe"><span class="nr n2">5</span><div><h4>Oder: hinauszögern</h4>
+      <p>Durch <b>Anspannen von Beckenboden-, Bauchmuskulatur und äußerem Schließmuskel</b>.
+        Dann <b>schließt sich auch der innere Schließmuskel wieder</b> und der Stuhldrang lässt
+        für eine gewisse Zeit nach.</p></div></div>
+  </div>
+  <div class="merk">
+    <span class="t">Innen und außen — die Unterscheidung, um die sich alles dreht</span>
+    <p><b>Innerer Afterschließmuskel: nicht willentlich.</b> <b>Äußerer Afterschließmuskel:
+      willentlich.</b></p>
+    <p><b>Daraus folgt direkt der Unterschied zwischen zwei Formen weiter unten:</b> Wer den
+      <b>äußeren</b> Muskel nicht mehr rechtzeitig halten kann, hat eine
+      <b>Stuhldranginkontinenz</b> — er merkt es und schafft es nicht. Wer die <b>Wahrnehmung</b>
+      gar nicht mehr hat, hat eine <b>passive Stuhlinkontinenz</b> — er merkt es nicht.</p>
+    <p><b>Und Schritt 5 erklärt den Risikofaktor „langes Einhalten“:</b> Wer den Drang immer
+      wieder wegdrückt, trainiert dem Körper ab, ihn zu melden.</p>
+    <p class="fr">Le muscle <b>interne</b> ne s'obéit pas ; l'<b>externe</b> oui. Toute la
+      distinction entre « je le sens et je n'y arrive pas » et « je ne le sens pas » tient là.</p>
+  </div>
+
+  <h3>Die Formen der Stuhlinkontinenz</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Form</th><th>Definition nach dem ES</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Stuhldranginkontinenz</td><td>Unfreiwilliger Stuhlverlust
+          <b>verbunden mit Stuhldrang</b></td></tr>
+        <tr><td class="k">Passive (nicht wahrnehmbare)<br>Stuhlinkontinenz</td>
+          <td>Unfreiwillige Verschmutzung mit flüssigem oder festem Stuhl <b>ohne Empfindung und
+            ohne Stuhldrang</b></td></tr>
+        <tr><td class="k">Überlauf-Stuhlinkontinenz</td><td>Aufgrund eines <b>übervollen
+          Rektums oder einer Kotstauung</b></td></tr>
+        <tr><td class="k">Koitale Stuhlinkontinenz</td><td><b>Beim Geschlechtsverkehr</b></td></tr>
+        <tr><td class="k">Neurogene Stuhlinkontinenz</td><td>Aufgrund einer <b>gestörten
+          Innervation</b> des Kontinenzorgans</td></tr>
+        <tr><td class="k">Muskuläre Stuhlinkontinenz</td><td>Aufgrund <b>muskulärer
+          Störungen</b> des Kontinenzorgans</td></tr>
+        <tr><td class="k">Konsistenzbedingte<br>Stuhlinkontinenz</td>
+          <td>Aufgrund <b>unpassender Stuhlkonsistenz</b> — zu flüssig, zu breiig</td></tr>
+        <tr><td class="k">Mischinkontinenz</td><td>Aufgrund <b>multikausaler
+          Zusammenhänge</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="gefahr">
+    <span class="t">Die Überlauf-Stuhlinkontinenz — die Falle, in die man tappt</span>
+    <p>Ein <b>übervolles Rektum</b> oder eine <b>Kotstauung</b> führt dazu, dass flüssiger Stuhl
+      daran <b>vorbeiläuft</b>. Von außen sieht es aus wie <b>Durchfall</b>.</p>
+    <p><b>Und die Behandlung wäre genau falsch herum:</b> Wer das als Diarrhö behandelt und
+      stopfende Mittel gibt, <b>verschlimmert die Stauung</b>. Deshalb steht
+      <b>Obstipation</b> in der <a href="#risiko">Risikotabelle</a> auch als Risikofaktor für
+      Stuhl<b>in</b>kontinenz — was zuerst widersinnig klingt.</p>
+    <p><b>Für eine <i>Beurteilen</i>-Aufgabe:</b> Bei „Durchfall“ bei einem immobilen, obstipierten
+      oder opioidbehandelten Menschen <b>zuerst an eine Überlaufsituation denken</b> — und das
+      begründen.</p>
+    <p class="fr">Une occlusion fécale ressemble à une diarrhée. Traiter comme une diarrhée
+      aggrave tout. C'est pour ça que la constipation figure comme facteur de risque
+      d'<b>in</b>continence.</p>
+  </div>
+
+  <h3>Die Gradeinteilung aus der AWMF-Leitlinie</h3>
+  <p style="font-size:14.5px;color:var(--ink-soft);">Aus der <b>AWMF-Leitlinie für Neurogene
+    Darmfunktionsstörungen bei Querschnittslähmung (2019)</b>, zitiert im Foliensatz. Der
+    Foliensatz merkt ausdrücklich an: <b>die Skala ist nicht validiert</b>.</p>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Grad</th><th>Was nicht gehalten werden kann</th><th>Bezeichnung</th></tr></thead>
+      <tbody>
+        <tr><td class="k">I</td><td>nur <b>Darmgase (Winde)</b></td><td>Anale Inkontinenz</td></tr>
+        <tr><td class="k">II a</td><td><b>Schleimabgang</b></td><td>Anale Inkontinenz</td></tr>
+        <tr><td class="k">II b</td><td><b>Stuhlschmieren</b></td><td>Stuhlinkontinenz</td></tr>
+        <tr><td class="k">III</td><td><b>dünne Stühle</b> — Bristol Stool Scale 5–7</td>
+          <td>Stuhlinkontinenz</td></tr>
+        <tr><td class="k">IV</td><td><b>feste Stühle</b> — Bristol Stool Scale 1–4</td>
+          <td>Stuhlinkontinenz</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><b>Die Grenze zwischen II a und II b ist die Grenze zwischen den beiden Begriffen:</b> Bis
+    zum Schleim heißt es <b>anale</b> Inkontinenz, ab dem Stuhlschmieren <b>Stuhl</b>inkontinenz.
+    Und die <b>Definition der ICS</b> unterscheidet parallel dazu die <b>Blähungsinkontinenz</b>
+    vom eigentlichen Stuhlverlust, während die <b>UEG-Definition</b> Schleim und Flatulenz
+    <b>ausdrücklich ausschließt</b>.</p>
+  <div class="warnung">
+    <span class="t">Drei Definitionen, die sich nicht decken — und der Foliensatz sagt es selbst</span>
+    <p><b>„In der Literatur existiert keine allgemein gültige, evidenzbasierte Definition der
+      Stuhlinkontinenz.“</b> Der Foliensatz stellt deshalb <b>drei</b> nebeneinander: <b>ICS
+      (2019)</b>, <b>AWMF (2019)</b> und <b>UEG (2022)</b>.</p>
+    <p><b>Wenn in einer Klausur nach der Definition gefragt wird</b>, nenne die <b>UEG-Definition
+      von 2022</b> — sie ist die, die der Expertenstandard selbst als Definition führt — und füge
+      an, dass es <b>keine allgemein gültige</b> gibt. <b>Das ist keine Unsicherheit, das ist
+      Genauigkeit.</b></p>
+    <p class="fr">Pas de définition unique — et le dire, ce n'est pas hésiter, c'est être précis.</p>
+  </div>
+</section>
+
+<section id="profile">
+  <h2>Die sechs Kontinenzprofile</h2>
+  <p class="lead">Das Herzstück des Standards. Ein Profil ist <b>kein Schweregrad</b> — es
+    beschreibt, <b>wie viel Selbstständigkeit</b> jemand bei seiner Ausscheidung hat.</p>
+
+  <div class="merk">
+    <span class="t">Drei Fragen bestimmen jedes Profil</span>
+    <ol style="margin-bottom:0;">
+      <li><b>Sind unwillkürliche Harn- oder Stuhlverluste aufgetreten — ja oder nein?</b>
+        → Das klärt, ob das Profil im Bereich <b>Kontinenz</b> oder <b>Inkontinenz</b>
+        liegt.</li>
+      <li><b>Werden Maßnahmen zum Kontinenzerhalt</b> durchgeführt (<i>erreichte Kontinenz</i>)
+        <b>oder Maßnahmen zur Kompensation</b> (<i>kompensierte Inkontinenz</i>)?</li>
+      <li><b>Ist die Person im Management</b> — Beschaffung, Organisation, Durchführung —
+        <b>auf andere angewiesen oder nicht</b> (<i>abhängig</i> vs. <i>unabhängig</i>)?</li>
+    </ol>
+    <p style="margin-top:12px;"><b>Drei Ja/Nein-Fragen, sechs mögliche Antworten.</b> Wenn du die
+      drei Fragen kannst, brauchst du die Tabelle nicht auswendig.</p>
+    <p class="fr">Trois questions binaires, six profils. Retiens les questions, pas le tableau.</p>
+  </div>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Profil</th><th>Merkmale</th><th>Beispiel</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Kontinenz</td>
+          <td><b>Kein</b> unwillkürlicher Verlust · <b>keine</b> personelle Hilfe ·
+            <b>keine</b> Hilfsmittel</td>
+          <td>Die Ausscheidung findet <b>willkürlich, an einem geeigneten Ort, zu einer
+            geeigneten Zeit</b> statt</td></tr>
+        <tr><td class="k">Unabhängig<br>erreichte Kontinenz</td>
+          <td><b>Kein</b> unwillkürlicher Verlust · <b>keine</b> personelle Hilfe ·
+            <b>selbstständige Durchführung von Maßnahmen</b></td>
+          <td>Selbstständig bei Medikamenten, mobilen Toilettenhilfen, <b>intermittierendem
+            Selbstkatheterismus</b>, Blasentraining · beim Stuhl: Medikamente,
+            <b>Darmerziehung</b>, Hilfsmittel, Training</td></tr>
+        <tr><td class="k">Abhängig<br>erreichte Kontinenz</td>
+          <td><b>Kein</b> unwillkürlicher Verlust · <b>personelle Unterstützung</b> bei der
+            Durchführung notwendig</td>
+          <td>Management und Anwendung werden <b>von einer anderen Person übernommen</b> — oder
+            es werden <b>begleitete Toilettengänge zu festgelegten Zeiten</b>
+            durchgeführt</td></tr>
+        <tr><td class="k">Unabhängig<br>kompensierte Inkontinenz</td>
+          <td><b>Unwillkürlicher Verlust</b> · <b>keine</b> personelle Unterstützung bei der
+            Hilfsmittelversorgung</td>
+          <td>Selbstständig mit aufsaugenden Hilfsmitteln, <b>Kondomurinal</b>, suprapubischem
+            oder transurethralem Katheter samt Ableitung · beim Stuhl: Analtampon,
+            <b>anale Irrigation</b></td></tr>
+        <tr><td class="k">Abhängig<br>kompensierte Inkontinenz</td>
+          <td><b>Unwillkürlicher Verlust</b> · <b>personelle Unterstützung</b> bei der
+            Versorgung notwendig</td>
+          <td>Management und Anwendung kompensierender Maßnahmen werden <b>von einer anderen
+            Person übernommen</b></td></tr>
+        <tr><td class="k">Nicht kompensierte<br>Inkontinenz</td>
+          <td><b>Unwillkürlicher Verlust</b> · personelle Unterstützung und Versorgungsmaßnahmen
+            werden <b>nicht in Anspruch genommen</b></td>
+          <td>Menschen, die <b>nicht über ihre Inkontinenz sprechen wollen</b> und deshalb keine
+            Hilfe annehmen — oder die aufgrund <b>kognitiver Erkrankungen</b> nicht akzeptieren
+            <b>bzw. die Hilfsmittel entfernen</b></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Das letzte Profil ist das wichtigste — und es ist kein Versagen</span>
+    <p><b>„Nicht kompensierte Inkontinenz“</b> ist das einzige Profil, das nicht beschreibt, wie
+      jemand versorgt wird, sondern <b>dass er es nicht wird</b>. Und die beiden Beispiele des
+      Standards sagen, warum: <b>Scham</b> — oder <b>kognitive Erkrankung</b>, bei der die
+      Hilfsmittel entfernt werden.</p>
+    <p><b>Damit schließt sich der Kreis zum Anfang dieser Seite:</b> „Nur 25 % der Betroffenen
+      suchen Hilfe.“ Dieses Profil ist die <b>dokumentierte Form dieses Schweigens</b> — und
+      darum ist es ein Auftrag, kein Etikett. <b>Wer so dokumentiert wird, braucht keine bessere
+      Vorlage, sondern ein Gespräch.</b></p>
+    <p class="fr">Ce profil ne décrit pas une prise en charge, il décrit son <b>absence</b>. Et
+      les deux raisons données sont la honte et la maladie cognitive. Ce n'est pas une étiquette,
+      c'est une mission.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Wie ein Profil festgelegt wird — vier Regeln</span>
+    <ul style="margin-bottom:0;">
+      <li>Bei Problemen mit <b>beidem</b> wird die Situation <b>für Harn und Stuhl getrennt</b>
+        ermittelt.</li>
+      <li>Bei <b>unterschiedlicher Tag-/Nachtsituation</b> ist es zielführend, <b>je ein Profil
+        für Tag und Nacht</b> zu verwenden.</li>
+      <li>Festlegung und Zielsetzung sollten <b>gemeinsam mit der betroffenen Person</b>
+        erfolgen; bei <b>kognitiven Einschränkungen</b> nach Möglichkeit die <b>Angehörigen
+        einbeziehen</b>.</li>
+      <li>In <b>Langzeitpflegeeinrichtungen</b> wird ein <b>Beobachtungszeitraum von ca. 14
+        Tagen</b> empfohlen.</li>
+    </ul>
+    <p style="margin-top:12px;"><b>Ein Mensch kann also vier Profile gleichzeitig haben:</b>
+      Harn am Tag, Harn in der Nacht, Stuhl am Tag, Stuhl in der Nacht. Das klingt nach Bürokratie
+      und ist es nicht — <b>es ist der Unterschied zwischen „nachts eine Vorlage“ und „rund um die
+      Uhr eine Vorlage“.</b></p>
+    <p class="fr">Quatre profils pour une seule personne, ce n'est pas de la bureaucratie : c'est
+      la différence entre une protection la nuit et une protection en permanence.</p>
+  </div>
+
+  <h3>Wann die Einschätzung wiederholt wird</h3>
+  <p><b>Zu Beginn</b> eines Pflegeauftrags · <b>individuell wiederholt</b> je nach Situation ·
+    <b>bei Änderung des Gesundheitszustands</b> — nach Krankenhausaufenthalten, bei
+    Akuterkrankungen, <b>nach psychischen Belastungen</b> · und <b>bei Veränderungen im sozialen
+    und Wohnumfeld</b>.</p>
+  <p style="font-size:14.5px;color:var(--ink-soft);"><b>„Nach psychischen Belastungen“</b> und
+    <b>„bei Veränderungen im Wohnumfeld“</b> sind die zwei Auslöser, an die niemand denkt. Ein
+    Umzug, ein Todesfall, ein Zimmerwechsel — und das Profil stimmt nicht mehr.</p>
+</section>
+
+<section id="iad">
+  <h2>Die inkontinenzassoziierte Dermatitis (IAD)</h2>
+  <p class="lead">Aus dem Textblatt <b>CE 02 / UE 01</b>. Der Begriff wurde <b>2005</b> in einer
+    Expertenrunde in den USA geprägt und <b>2014 erstmals im Expertenstandard</b> aufgegriffen —
+    im Volksmund heißt sie <b>Windeldermatitis, Windelausschlag, Windelallergie</b>.</p>
+
+  <div class="merk">
+    <span class="t">Die Definition</span>
+    <p>Die IAD ist eine <b>irritative Kontaktdermatitis</b>, bei der es durch <b>Kontakt der Haut
+      mit Urin und Stuhl</b> zu <b>schmerzhaften Entzündungsprozessen</b> kommt.</p>
+    <p><b>Und der Satz, aus dem die ganze Prophylaxe folgt:</b> <b>„Je länger der Kontakt mit der
+      Haut besteht, umso größer ist das Risiko für eine IAD.“</b></p>
+    <p class="fr">Plus le contact dure, plus le risque est grand. Toute la prévention tient dans
+      cette phrase.</p>
+  </div>
+
+  <h3>Was du siehst</h3>
+  <p><b>Flächige Rötung</b> (rosa bis hochrot) <b>mit diffusen Rändern</b> zur Hautumgebung ·
+    <b>Schwellung</b> · evtl. <b>Blasen mit serösem Exsudat</b> · evtl. <b>blutende Areale</b> ·
+    evtl. <b>oberflächliche Hautdefekte</b> · <b>erhöhte Hauttemperatur</b> im Vergleich zur
+    nicht betroffenen Haut · evtl. <b>sekundäre Hautinfektion</b> (z. B. Staphylokokken). Die
+    Veränderungen <b>gehen mit Schmerzen einher</b> und beeinträchtigen die Lebensqualität.</p>
+
+  <h3>Wer gefährdet ist</h3>
+  <p><b>Nicht jeder Mensch mit Inkontinenz entwickelt eine IAD — es müssen mehrere Faktoren
+    zusammenkommen.</b> Gefährdet sind Personen mit: <b>Stuhl- und Doppelinkontinenz</b> ·
+    <b>hoher Defäkationsfrequenz von flüssigem Stuhl ≥ 3×/24 h</b> · <b>eingeschränkter Mobilität
+    und/oder Sensorik</b> · <b>schlechtem Gesundheits- oder Ernährungszustand</b> · <b>trockener,
+    vulnerabler Altershaut</b> (Hautbarriere im Alter geschwächt, Regeneration verlangsamt) ·
+    <b>individuellen Hautveränderungen</b>.</p>
+
+  <h3>Die vier Mechanismen</h3>
+  <div class="karten">
+    <div class="karte"><h4>Hyperhydration</h4><p>Durch <b>zu viel Feuchtigkeit</b> — Urin, Stuhl,
+      <b>Okklusion durch Hilfsmittel</b> — <b>weicht die oberste Schicht der Epidermis auf</b>
+      und verliert ihre Barriere- und Schutzfunktion.</p></div>
+    <div class="karte"><h4>Physikalische Irritation</h4><p>Die feuchtigkeitsgeschädigte Haut ist
+      <b>sehr verletzlich gegenüber Reibung</b> — beim <b>Waschen und Trocknen</b>, durch
+      <b>saugende Hilfsmittel</b>, Kleidung, Sitz- und Liegeflächen.</p></div>
+    <div class="karte"><h4>Chemische Irritation</h4><p><b>Ammoniak</b> als Abbauprodukt des Urins
+      verschiebt den <b>pH-Wert der Haut von ca. 5 (sauer) auf 6–7 (alkalisch)</b>. Dazu
+      schädigen <b>eiweiß- und fettspaltende Enzyme des Stuhls</b> die Haut. <b>Auch vermehrte
+      Reinigungsprozeduren spielen eine Rolle.</b></p></div>
+    <div class="karte"><h4>Biologische Irritation</h4><p>Durch die reduzierte Schutzfunktion
+      entsteht eine <b>verminderte Abwehr gegen pathologische Keimbesiedlung</b> — Gefahr der
+      Sekundärinfektion mit <b>Candida</b> oder <b>Staphylococcus aureus</b>.</p></div>
+  </div>
+  <div class="gefahr">
+    <span class="t">Waschen schadet — und das ist die schwerste Umstellung</span>
+    <p>Zwei der vier Mechanismen nennen die <b>Pflege selbst</b> als Ursache: <b>Reibung beim
+      Waschen und Trocknen</b> und <b>vermehrte Reinigungsprozeduren</b>.</p>
+    <p><b>Die Konsequenz steht wörtlich im Text:</b> <b>„Häufiges Waschen der betroffenen
+      Hautareale ist zu hinterfragen. Schonende Reinigung muss nach jeder Stuhlausscheidung, aber
+      nicht nach jeder Urinausscheidung erfolgen.“</b></p>
+    <p><b>Das ist die Kette, die du in einer <i>Begründen</i>-Aufgabe schreibst:</b> Urin macht
+      die Haut alkalisch und weich → die Barriere ist geschwächt → <b>jedes Waschen reibt und
+      entfettet zusätzlich</b> → die Barriere wird noch schwächer → <b>deshalb wird nach Urin
+      nicht jedes Mal gewaschen, nach Stuhl dagegen immer.</b></p>
+    <p class="fr">Laver après chaque urine <b>aggrave</b>. Après chaque selle, on lave toujours.
+      C'est contre-intuitif, et c'est écrit noir sur blanc.</p>
+  </div>
+
+  <h3>Wie gereinigt und geschützt wird</h3>
+  <ul>
+    <li><b>Weiche Materialien, vorsichtig, ohne starkes Reiben oder Rubbeln.</b></li>
+    <li><b>Wasser eher sparsam</b>, und <b>lauwarm oder kühl</b> — <b>zu warmes Wasser entfettet
+      die Haut zusätzlich</b>.</li>
+    <li><b>pH-neutrale Reinigungsprodukte</b>, sparsam. <b>Die „klassische“ Seife ist alkalisch
+      und deshalb nicht zu verwenden.</b> Die waschaktive Substanz <b>darf nicht auf der Haut
+      bleiben</b>.</li>
+    <li><b>Rückfettung mit einer Wasser-in-Öl-Lotion (W/O)</b>, möglichst <b>ohne aggressive
+      Konservierungsstoffe und ohne allergene Duftstoffe</b>. Produkte werden <b>nach Hauttyp und
+      Erscheinungsbild</b> gewählt.</li>
+    <li><b>Barrieresubstanzen / Hautprotektoren</b> als Creme oder Spray setzen den Kontakt
+      zwischen Ausscheidung und Haut herab; sie <b>wirken zum Teil zwischen sieben und 72
+      Stunden</b>.</li>
+    <li><b>Saugende Hilfsmittel</b> sind selbst ein wirksamer Schutz — <b>richtige Größe,
+      richtige Saugstärke und korrekte Anlegetechnik</b> verhindern zusätzliche Reibung. Sie
+      werden gewechselt, <b>wenn ihre Aufnahmekapazität erreicht ist</b>. Bei körperfernen
+      Hilfsmitteln auf <b>atmungsaktive</b> Produkte achten.</li>
+    <li>Für Männer kommt ein <b>Kondomurinal</b> in Betracht; bei <b>Diarrhö</b> kann ein
+      <b>Fäkalkollektor</b> die Haut vor flüssigem Stuhl schützen.</li>
+  </ul>
+  <p><b>Und der Satz, der alles zusammenfasst:</b> <b>„Entscheidend ist das Fernhalten der
+    Ausscheidung von der Haut.“</b> Die eigentliche Prävention ist deshalb nicht die Creme,
+    sondern die <b>Kontinenzförderung selbst</b> — das steht so im Text.</p>
+
+  <div class="gefahr">
+    <span class="t">IAD oder Dekubitus? — die Unterscheidung, die du treffen musst</span>
+    <div class="scroll">
+      <table>
+        <thead><tr><th>&nbsp;</th><th>IAD</th><th>Dekubitus</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Ursache</td><td><b>Feuchtigkeit</b> und wiederholter Harn- und
+            Stuhlkontakt</td><td><b>Druck</b> bzw. <b>Druckverweildauer</b></td></tr>
+          <tr><td class="k">Mechanismus</td><td>eine <b>„top-down“-Läsion</b> — von der
+            Oberfläche nach innen</td>
+            <td>eine <b>ischämische Läsion</b>, aus der eine <b>Nekrose oder ein Geschwür</b>
+              folgen kann — eine <b>„bottom-up“-Läsion</b></td></tr>
+          <tr><td class="k">Ort</td><td>im <b>perianalen</b> Bereich, wo die Ausscheidung
+            hinkommt</td><td><b>über Knochenvorsprüngen</b></td></tr>
+          <tr><td class="k">Rand</td><td><b>diffuse Ränder</b>, flächige Rötung</td>
+            <td>—</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><b>Der Text sagt ausdrücklich:</b> „Diese pflegerische Einschätzung müssen Pflegende
+      treffen; dazu bedarf es einer <b>speziellen Kompetenz</b>“ — und „Pflegende müssen in dieser
+      Unterscheidung <b>gut geschult</b> werden“.</p>
+    <p><b>Die Merkhilfe:</b> <b>Oben nass — unten Druck.</b> Die IAD kommt <b>von außen nach
+      innen</b>, der Dekubitus <b>von innen nach außen</b>. Und wo <b>kein Knochen</b> ist, ist es
+      <b>kein Dekubitus</b>.</p>
+    <p><b>Warum es zählt:</b> Die Maßnahmen sind gegensätzlich. Gegen den Dekubitus:
+      <b>Druck wegnehmen</b>, umlagern. Gegen die IAD: <b>Feuchtigkeit wegnehmen</b>, Barriere
+      aufbauen, <b>seltener waschen</b>. Wer verwechselt, lagert jemanden um, dessen Problem das
+      Waschwasser war.</p>
+    <p class="fr">Humidité par le haut, pression par le bas. Et là où il n'y a pas d'os, ce n'est
+      pas une escarre.</p>
+  </div>
+  <div class="merk">
+    <span class="t">Die eine Bedingung, ohne die die Diagnose nicht gestellt werden darf</span>
+    <p><b>„Ohne Inkontinenz keine IAD.“</b> Wörtlich: Liegt keine Harn- oder Stuhlinkontinenz vor,
+      <b>oder</b> werden die Ausscheidungen abgeleitet, <b>ohne dass Hautkontakt entsteht</b>
+      (z. B. Fäkalkollektor), <b>kann die Diagnose IAD nicht gestellt werden</b>.</p>
+    <p>Die Zahlen dazu, soweit sie gesichert sind: international <b>Prävalenz 5,6 bis 50 %</b>,
+      <b>Inzidenz 3,4 bis 25 %</b> — der Text sagt selbst, sie seien <b>„nicht vollständig
+      gesichert“</b>. Eine deutsche Studie von <b>2021</b> in 47 Pflegeheimen und sieben
+      Krankenhäusern ergab <b>4,4 % in Pflegeheimen</b> und <b>12 % in Krankenhäusern</b>.</p>
+    <p class="fr">Pas d'incontinence, pas de DAI. Et si les excreta n'atteignent pas la peau non
+      plus.</p>
+  </div>
+</section>
+
+<section id="katheter">
+  <h2>Transurethrale Katheterisierung — die Handlungsschritte</h2>
+  <div class="warnung">
+    <span class="t">Diese Anleitung ist unvollständig</span>
+    <p>Das Blatt <i>Handlungsschritte Katheterisierung</i> beschreibt die <b>kombinierte
+      Handschuh- und Pinzettenmethode beim Mann</b>. Im vorliegenden Scan sind <b>nur die
+      Schritte 1 bis 15 lesbar</b> — die Anleitung <b>bricht beim Öffnen des Instillagels ab</b>.
+      <b>Die eigentliche Katheteranlage fehlt.</b></p>
+    <p><b>Hier wird sie nicht aus dem Gedächtnis ergänzt</b> — bei einer aseptischen Maßnahme
+      wäre das grob fahrlässig. <b>Schick mir die restlichen Seiten</b>, dann kommt der Rest
+      dazu.</p>
+    <p class="fr">Seules les étapes 1 à 15 sont lisibles. Je ne complète pas un geste aseptique
+      de mémoire — envoie-moi la suite.</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Das Prinzip — es steht über allen Schritten</span>
+    <p><b>„Unbedingte aseptische und atraumatische Vorgehensweise.“</b></p>
+    <p><b>Die Indikation zur Legung eines transurethralen Katheters stellt der Arzt.</b></p>
+    <p><b>„Die transurethrale Katheterisierung ist ein Eingriff in den Intimbereich und sollte
+      wenn möglich von einer Pflegeperson gleichen Geschlechts durchgeführt werden.“</b></p>
+    <p><b>Vor dem Legen ist eine Genitalreinigung durchzuführen</b> — sie ist <b>nicht</b> Teil
+      der sterilen Prozedur, sondern geht ihr voraus.</p>
+    <p class="fr">Aseptique et atraumatique. L'indication vient du médecin. Et si possible, une
+      soignante du même sexe.</p>
+  </div>
+
+  <h3>Die lesbaren Schritte</h3>
+  <ol>
+    <li><b>Patienten informieren</b></li>
+    <li><b>Abwurf bereitstellen</b></li>
+    <li><b>Wischdesinfektion</b> des Arbeitsplatzes</li>
+    <li><b>Händedesinfektion</b></li>
+    <li><b>Urinableitungssystem auspacken</b> und so am Bett anbringen, dass das <b>untere
+      Ableitungsventil nicht mit dem Boden in Berührung kommt</b>. Die <b>Konnektionsstelle</b>
+      des Schlauches muss <b>in greifbarer Nähe</b> deponiert werden (evtl. unter der Matratze
+      fixieren) — <b>die Verschlusskappe darf dabei nicht entfernt werden</b></li>
+    <li><b>Lagerung:</b> Rückenlage, flache oder leichte Oberkörperhochlagerung für
+      <b>unproblematische Sicht auf die Harnröhrenöffnung</b>; bei <b>Prostatahypertrophie ein
+      kleines Kissen unter das Becken</b>. Beine möglichst gespreizt, <b>Fersenabstand ca.
+      50 cm</b>. Zum Bettschutz eine Unterlage unter das Gesäß</li>
+    <li><b>Katheterset öffnen</b> — das <b>Einschlagtuch als sterile Arbeitsfläche belassen</b></li>
+    <li><b>Sterile Unterlage zwischen den Beinen</b> ausbreiten. <b>Bei unruhigen Patienten immer
+      mit zwei Pflegekräften katheterisieren</b></li>
+    <li><b>Katheter und Gleitmittel vorsichtig auf die sterile Fläche fallen lassen</b></li>
+    <li><b>Desinfektionsmittelflasche öffnen</b></li>
+    <li><b>Einen</b> sterilen Handschuh anziehen; mit der sterilen Hand den <b>anderen
+      Handschuh und das Schlitztuch</b> neben die Nierenschale legen, die <b>Blockerspritze</b>
+      auf die sterile Fläche legen</li>
+    <li><b>Tupfer in der Nierenschale</b> mit Schleimhautdesinfektionsmittel übergießen — sie
+      sollen <b>gut getränkt</b> sein; <b>vorher den ersten Tropfen ausgießen und
+      verwerfen</b></li>
+    <li><b>Zweiten sterilen Handschuh</b> anziehen</li>
+    <li><b>Lochtuch</b> mit dem Schlitz über die Genitalregion legen — <b>Penis und
+      Harnröhrenöffnung bleiben frei</b>, dabei die sterilen Handschuhe nicht unsteril machen</li>
+    <li><b>Katheter ganz auspacken</b> und wieder auf die sterile Fläche ablegen,
+      <b>Instillagel öffnen</b></li>
+  </ol>
+
+  <div class="merk">
+    <span class="t">Drei Details, die erklären, warum sie dastehen</span>
+    <p><b>Schritt 5 — das Ableitungsventil darf den Boden nicht berühren.</b> Ein Ventil am Boden
+      wird bei der nächsten Entleerung zur <b>Eintrittspforte für Keime</b> in ein geschlossenes
+      System. Dasselbe gilt später für den Beutel: <b>immer unterhalb des Blasenniveaus, nie auf
+      dem Boden</b>.</p>
+    <p><b>Schritt 12 — den ersten Tropfen verwerfen.</b> Die Flaschenöffnung ist nach dem Öffnen
+      nicht steril; der erste Tropfen spült sie ab. <b>Dieselbe Regel kennst du aus anderen
+      Bereichen</b>, und sie wird in Prüfungen gern gefragt.</p>
+    <p><b>Schritt 8 — bei unruhigen Patienten immer zu zweit.</b> Nicht wegen der Kraft, sondern
+      wegen der <b>Sterilität</b>: Wer gleichzeitig halten und steril arbeiten muss, verliert
+      eines von beidem.</p>
+    <p class="fr">Trois détails qui ont tous la même raison : garder le système fermé et stérile.</p>
+  </div>
+</section>
+
+<section id="offen">
+  <h2>Was auf dieser Seite fehlt — und warum</h2>
+  <div class="warnung">
+    <span class="t">Drei Lücken, ausdrücklich benannt</span>
+    <p><b>1 · Die Schritte 2 bis 5 des Expertenstandards.</b> Planung und Steuerung der
+      Interventionen · Information, Schulung und Beratung · Umsetzung des Maßnahmenplans ·
+      Bewertung des Erfolgs. Sie stehen im <b>Inhaltsverzeichnis</b> des Foliensatzes, aber ihre
+      Kriterien sind in den vorliegenden Dateien <b>nicht abgedruckt</b>. <b>Damit fehlt auf
+      dieser Seite der ganze Maßnahmenteil</b> — Beckenbodentraining, Toilettentraining,
+      Blasentraining, Hilfsmittelauswahl im Einzelnen.</p>
+    <p><b>2 · Die Katheteranlage</b> ab Schritt 16 — siehe oben.</p>
+    <p><b>3 · Drei Dateien aus deinem Ordner sind noch nicht eingearbeitet:</b>
+      <i>1Skript Kontinenzanamnese.pdf</i>, <i>Kontinenzprofile 2024.pdf</i>,
+      <i>AB SV Risikofaktoren für Inkontinenz.pdf</i> und
+      <i>Artikel-Bedeutung ableitende Inkontinenzversorgung incl. Fragen.pdf</i> — die letzte
+      enthält laut Titel <b>Fragen</b>, die hierher gehören.</p>
+    <p class="fr">Il manque toute la partie « mesures » du standard : elle n'est pas dans les
+      fichiers. Je ne l'invente pas.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Was schon auf einer anderen Seite steht</span>
+    <p>Deine Seite <b>Wahrnehmen ist nicht Beobachten</b> (CE 02 / UE 1, 4 und 5) enthält bereits
+      einen Abschnitt zu <b>Urin und Miktion</b> — Pollakisurie, Algurie und Dysurie, Nykturie,
+      Harnverhalt, Restharn — und eine Liste von Inkontinenz-Risikofaktoren, die dort bis zu
+      <b>Türgriffen und Beleuchtung</b> geht.
+      <a href="https://claude.ai/artifact/8DRf2WvteNqwi5XFRwTqkt">Dort nachschlagen</a>.</p>
+    <p><b>Die beiden Seiten überschneiden sich absichtlich nicht.</b> Dort stehen die
+      <b>Beobachtungsbegriffe</b> — was du siehst und wie es heißt. Hier steht der
+      <b>Expertenstandard</b> — wie eingeschätzt, eingeordnet und geplant wird. Die drei
+      Inkontinenzformen auf der Beobachtungsseite stehen dort in einer <b>Lückenfassung</b>; die
+      vollständige Liste ist <a href="#harn">hier</a>.</p>
+    <p><b>Und ein Fall fehlt noch beiden Seiten:</b> der <b>Inkontinenzfall Frau Melinek</b>, der
+      auf der Beobachtungsseite als offener Auftrag steht. Wenn du das Blatt findest, schick es
+      mir — es gehört hierher.</p>
+    <p class="fr">Les deux pages se complètent sans se répéter : là-bas les <b>termes
+      d’observation</b>, ici le <b>standard</b> et la démarche.</p>
+  </div>
+
+  <div class="pruef">
+    <h4>Acht Fragen zur Selbstprüfung</h4>
+    <ol>
+      <li><b>Nennen</b> Sie die sechs Kontinenzprofile.</li>
+      <li><b>Nennen</b> Sie die drei Fragen, mit denen ein Kontinenzprofil bestimmt wird.</li>
+      <li><b>Beschreiben</b> Sie den Unterschied zwischen Belastungs- und Dranginkontinenz, mit
+        je einem Beispiel.</li>
+      <li><b>Erklären</b> Sie, warum Kontinenz nach der Definition des Standards auch die
+        Fähigkeit umfasst, Bedürfnisse zu kommunizieren.</li>
+      <li><b>Erarbeiten</b> Sie aus der Risikotabelle fünf Faktoren, die <b>nicht</b> Krankheiten
+        sind, sondern Umstände — und sagen Sie zu jedem, was Pflege daran ändern kann.</li>
+      <li><b>Erläutern</b> Sie am Text, warum nach jeder Stuhlausscheidung gereinigt wird, aber
+        nicht nach jeder Urinausscheidung.</li>
+      <li><b>Begründen</b> Sie, warum die Restharnbestimmung innerhalb von zehn Minuten nach der
+        Miktion erfolgen muss. Schreiben Sie die ganze Kette.</li>
+      <li><b>Beurteilen</b> Sie: Eine immobile Bewohnerin mit Opioidtherapie hat seit zwei Tagen
+        „Durchfall“ und eine flächige, hochrote Rötung am Gesäß mit diffusen Rändern. Wie
+        beurteilen Sie beides — und was folgt daraus?</li>
+    </ol>
+    <p style="margin:10px 0 0;"><b>Frage 8 enthält zwei Fallen auf einmal:</b> die
+      <a href="#stuhl">Überlauf-Situation</a> und die Unterscheidung
+      <a href="#iad">IAD gegen Dekubitus</a>. <b>Schreib deine Antwort auf Deutsch und schick sie
+      mir</b> — erst die Einschätzung, dann die Kette, dann die Maßnahmen.</p>
+  </div>
+
+  <details class="quelle">
+    <summary>Die acht Quellen dieser Seite</summary>
+    <div class="inh">
+      <ul>
+        <li><b>1. PPP Kontinenzförderung Einführung, Kontinenzanamnese.pdf</b> — Foliensatz
+          <b>Magdalena Kaul, Mai 2025</b> zur <b>2. Aktualisierung 2024</b>: Verbindlichkeit,
+          Relevanz, Prävalenz, Definitionen, Anamnese, Risikofaktoren, Alarmsignale, vertiefte
+          Einschätzung. <b>Hauptquelle dieser Seite.</b></li>
+        <li><b>2. PPP Inkontinenzformen, Kontinenzprofile.pdf</b> — Foliensatz
+          <b>Magdalena Kaul, Mai 2024</b>, Teil 2: Formen der Harn- und Stuhlinkontinenz,
+          Anatomie und Defäkationsvorgang, die <b>sechs Kontinenzprofile</b>, erweiterte
+          pflegerische Kontinenzexpertise.</li>
+        <li><b>Text Inkontinenz-assoziierte Dermatitis (IAD).pdf</b> — Textblatt CE 02 / UE 01.
+          Grundlage des Abschnitts <a href="#iad">IAD</a>, einschließlich der Unterscheidung
+          gegen den Dekubitus.</li>
+        <li><b>Handlungsschritte Katheterisierung.pdf</b> — kombinierte Handschuh- und
+          Pinzettenmethode beim Mann. <b>Nur die Schritte 1–15 lesbar.</b></li>
+        <li><b>1Skript Kontinenzanamnese.pdf</b> · <b>Kontinenzprofile 2024.pdf</b> ·
+          <b>AB SV Risikofaktoren für Inkontinenz.pdf</b> ·
+          <b>Artikel-Bedeutung ableitende Inkontinenzversorgung incl. Fragen.pdf</b> —
+          <b>im Ordner vorhanden, auf dieser Seite noch nicht eingearbeitet.</b></li>
+      </ul>
+      <p>Alle aus deinem Google-Drive-Ordner, geteilt am 18.09.2026. Der Expertenstandard selbst
+        ist <b>nicht</b> im Ordner — zitiert wird, was die Foliensätze aus ihm wiedergeben, mit
+        den dort angegebenen Seitenzahlen (S. 29–32, 77–81).</p>
+      <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> die drei Ketten im ersten Abschnitt
+        (Sturz, Haut, Isolation) · die Auflösung des Widerspruchs „sofort fragen“ gegen „erst
+        Vertrauen“ · der Hinweis, dass ein Viertel von einem Viertel nicht ein Viertel ist · die
+        Erklärung, warum die 10-Minuten-Grenze bei der Restharnbestimmung gilt · die Verbindung
+        zwischen Anoderm und dem Unterscheiden von Luft und Stuhl · die Merkhilfe
+        <i>oben nass, unten Druck</i> · die Begründungen der drei Katheterdetails · und alle
+        Prüfungsfragen. Die französischen Zeilen sind von mir.</p>
+      <p><b>Was ich bewusst NICHT ergänzt habe:</b> die Kriterien der Schritte 2–5 des
+        Expertenstandards, die konkreten Trainings- und Hilfsmittelmaßnahmen und die
+        Katheteranlage ab Schritt 16.</p>
+    </div>
+  </details>
+</section>
+
+</main>
+
+<footer>
+  <p>Kontinenzförderung · CE 02 / UE 01 — gebaut aus deinen eigenen Unterlagen.<br>
+    Wo etwas fehlt, abgeschnitten ist oder von mir stammt, steht es oben ausdrücklich dabei.</p>
+</footer>
+

@@ -360,3 +360,47 @@ nicht von ihrer Recht-Dozentin, deren Blätter keinen Strafrahmen nennen.
 Dateien mit **unterschiedlichen Verfasserlisten** — im Kapitel 14.5 als *Gold, Schlegel, Stein,
 Elsevier 2018*, im Fall Frau Braun als *Calia C. und Gold K. (2018), Urban & Fischer*. Beide
 nennen K. Gold, Titel und Jahr stimmen überein. Das steht so auf der Seite.
+
+### Neue Seite: Kontinenzförderung — 20.09.2026
+
+Die erste der drei Seiten, die es noch gar nicht gab. **Vier von acht Kontinenz-Dateien
+eingearbeitet**, Seite unter `schulung-kontinenz/` →
+`https://claude.ai/artifact/9sE6cUYk1Q3VugvVEUhUHi` (Favicon 🚽).
+
+Grundlage sind die beiden Foliensätze von **Magdalena Kaul** zum **Expertenstandard
+Kontinenzförderung in der Pflege, 2. Aktualisierung 2024** (Mai 2024 und Mai 2025), dazu das
+IAD-Textblatt und die Katheteranleitung.
+
+**Drei Funde, die über das Thema hinausgehen:**
+
+1. **Die gesetzliche Verpflichtung nach § 113a SGB XI besteht seit dem 01.07.2023 nicht mehr.**
+   Das steht wörtlich auf ihrer Folie. Die Pflicht nach § 11 (1) SGB XI zum allgemein
+   anerkannten Stand bleibt, und der MDK zieht die Standards weiterhin heran. Das betrifft
+   **alle** Expertenstandards, nicht nur diesen — auf den älteren Seiten der Sammlung sollte es
+   bei Gelegenheit nachgetragen werden.
+2. **Die Kontinenz-Definition schließt das Kommunizieren von Bedürfnissen ein.** Damit ist ein
+   Mensch, der nicht mehr um Hilfe bitten kann, in diesem Sinn nicht kontinent — das erklärt,
+   warum kognitive Einschränkungen in der Risikotabelle stehen.
+3. **Ein erheblicher Teil der Risikotabelle sind keine Krankheiten, sondern Umstände** —
+   Fingerfertigkeit, Erreichbarkeit der Toilette, langes Einhalten. Genau daran kann Pflege
+   etwas ändern.
+
+**Zwei Lücken stehen auf der Seite benannt, nicht gefüllt:** Von der 2. Aktualisierung 2024 ist
+in den Dateien **nur Schritt 1** abgedruckt (Einschätzung); die Schritte 2–5 — Planung,
+Beratung, Umsetzung, Bewertung — fehlen, **damit fehlt der ganze Maßnahmenteil**. Und die
+Katheteranleitung bricht im Scan **nach Schritt 15** ab, vor der eigentlichen Anlage; bei einer
+aseptischen Maßnahme wird das nicht aus dem Gedächtnis ergänzt.
+
+**Überschneidung geprüft, nicht gerateraten:** Die Seite *Wahrnehmen ist nicht Beobachten*
+enthält bereits Urin und Miktion sowie eine Risikofaktorenliste. Beide Seiten sind gegeneinander
+abgegrenzt und verlinkt: dort die **Beobachtungsbegriffe**, hier der **Standard und die
+Systematik**. Der dort offene **Inkontinenzfall Frau Melinek** gehört hierher.
+
+**Noch offen im Kontinenzblock:** vier Dateien, darunter der Artikel zur ableitenden
+Inkontinenzversorgung, der laut Titel **Übungsfragen** enthält.
+
+**Ernährung/Mangelernährung ist NICHT Teil dieser Seite.** Die fünf Ernährungsdateien
+(`Mangelernaehrung.pdf`, `AA Mangelernaehrung.pdf` mit **Lösungsblatt**, `Ernaehrung_PEMU.pdf`,
+`Worauf ich achten muss, wenn ich beim Essen unterstuetze.pdf`) sind ein eigenes Thema und
+bekommen eine eigene Seite. Der ursprüngliche Blockname „Kontinenz und Ernährung" fasste zwei
+Unterrichtsthemen zusammen, die nicht zusammengehören.
