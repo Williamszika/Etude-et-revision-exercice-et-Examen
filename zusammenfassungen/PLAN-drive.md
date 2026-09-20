@@ -599,3 +599,62 @@ Auszubildende im 2. Lehrjahr, Schichtdienst, Nebenjob, Weg zwischen Schule und P
 Blatt betont dreimal dasselbe — *direkter Weg*, *unmittelbar nach Unterrichtsschluss*, von der
 Schule *zur Praxis*. Drei Betonungen, drei Abgrenzungskriterien; die Seite zeigt das, ohne die
 Aufgabe zu lösen.
+
+### 20.09.2026, nachts — Anatomie: Grundbegriffe, Bauchspeicheldrüse, Muskelgewebe
+
+Der **Anatomie-Rest** aus der 44er-Fundliste ist auf die Seite *Die Organe und das
+Nervensystem* gewandert. **Fünf** Dateien statt der vier geplanten (die Titelsuche hatte
+`Praesentation Anatomie  Vertiefung  Muskelgewebe.pdf` mit **zwei Leerzeichen im Namen**
+übersehen), **7 → 12 Quellen**, drei neue Abschnitte: `#grundbegriffe`, `#pankreas`, `#muskel`.
+
+**Der Fund mit dem größten Hebel** ist das unscheinbarste Blatt: `Anatomische Grundbegriffe.pdf`
+erklärt **keinen einzigen Vorgang**, sondern nur Wörter — Richtungsangaben, Abkürzungen,
+Organadjektive, Ortsangaben und **18 Vor- und Nachsilben**. Genau das trifft ihre Baustelle:
+Ihr Notenspiegel bricht bei **Mechanismen** ein (Blut/Herz 3,99 · Pneumonie 5,37), und ein
+Mechanismus lässt sich nicht beschreiben, wenn die Wörter Black Boxes sind. Auf der Seite steht
+deshalb die Brücke zu ihren **eigenen anderen Seiten**: *hyper-/hypo-* → Hypertonie/Hypotonie ·
+*poly-* → Polyurie/Polydipsie bei Clara · *-itis* → Peritonitis (Katheter) · *derma-* + *-itis*
+→ inkontinenzassoziierte Dermatitis · *-ose* → Parodontose. **Nur Wörter, die nachweislich schon
+in ihren Unterlagen stehen.**
+
+**Die Bauchspeicheldrüse — und damit die fünfte Korrektur desselben Tages.** Die Seite behauptete
+seit dem 19.09., zu **acht** Organen liege nichts vor, darunter das Pankreas. Es liegen **zwei**
+Dateien dazu im Ordner. Es sind also **sieben**. Der Kasten steht datiert auf der Seite, mit dem
+Grund: *nicht gefunden heißt nicht nicht vorhanden*.
+
+**Und eine Lehre, die neu ist und nicht in die bisherige Reihe gehört:** `read_file_content`
+lieferte für `Anatomische Grundbegriffe.pdf` **fünf Zeilen** — das Inhaltsverzeichnis. Hätte ich
+das als Befund genommen, stünde jetzt „Bildfolien ohne Textebene“ auf der Seite. Erst
+`pdftoppm` + visuelles Lesen der vier Seiten zeigte: **die Datei ist vollständig lesbar**, nur
+als Scan. **Eine schwache Textextraktion ist kein Beleg für eine leere Datei.**
+
+**Benannt statt korrigiert:** Auf dem Pankreas-Plakat stehen **Sekretin und Cholecystokinin in
+der Spalte der produzierten Hormone**; das Textblatt derselben UE ordnet sie der
+**Duodenalschleimhaut** zu und sagt, sie *stimulieren* die Drüse nur. Das Plakat ist
+handgeschrieben, die Spalten sind schwer zu trennen — **entschieden wurde nichts**, die Rückfrage
+steht auf der Seite. Ebenso der pH-Wert („ca. pH 1–8“ auf dem Plakat gegen 7–8 im Textblatt).
+Und: das Textblatt endet mit einem **quizlet.com-Link** — Internetquelle, nichts daraus übernommen.
+
+**Zwei Stellen bleiben offen, weil ihre Unterlagen dort aufhören:**
+
+- **Muskelkater.** Die **letzte** Folie des Muskel-Foliensatzes trägt nur die Überschrift
+  *„Muskelkater: Wie kommt es dazu?“* — danach kommt nichts. Die naheliegende Vermutung (Laktat
+  aus Frage 8) ist **genau die Falle**: Die Folie hat Laktat schon behandelt und stellt die
+  Frage **trotzdem getrennt** noch einmal. **Nicht ergänzt.**
+- **Frage 2 — wo welcher Muskeltyp sitzt.** Der Foliensatz antwortet mit **sieben Bildtafeln**
+  statt mit einer Liste. Auf der Seite steht, **was die Tafeln zeigen** (Uterus/Tuben · Magen und
+  Duodenum · Schichtaufbau einer Arterie · Bronchien beim Asthmaanfall · Herz von innen ·
+  Muskelübersicht · Zwischenrippenmuskeln), und die dritte Spalte bleibt leer — **die Zuordnung
+  ist die Aufgabe.**
+
+**Einmal korrigiert, bevor es online ging:** Der Begründungs-Kasten zum Pankreas trug zuerst die
+Kette *„Enzyme spalten Eiweiß → die Drüse besteht aus Eiweiß → sie verdaut sich selbst“*. **Das
+steht so nicht im Textblatt** — dort steht nur *„damit sie das Drüsengewebe nicht selbst
+andauen“*. Die Kette ist jetzt auf genau das zurückgeschnitten, was dasteht.
+
+**Damit ist die Anatomie-Zeile der Fundliste abgearbeitet.** Offen aus den 44 bleiben: die
+Einzelfälle (Frau Weber · Frau Schneider · Frau Schubert · Fallweiterführung Johanna ·
+Fallvignetten), Notfall und Hygiene (ABCDE Harbs · CRM-Leitsätze · Infektionsschutzgesetz),
+Pädiatrie/Geburtshilfe (Impfkalender 2026 · BZgA *Das Baby* · Motorische Entwicklung ·
+Präsentation 3 Keimzellenbildung · Gruppe 2 Erkrankungen im Wochenbett) sowie
+`Ergebnisse Gruppenvorstellung.pdf` (45 MB, reine Bilder).
