@@ -721,3 +721,81 @@ gestürzt · Fallbeispiel Frau Schubert · Fallweiterführung Johanna · Fallvig
 Pädiatrie/Geburtshilfe (Impfkalender 2026 · BZgA *Das Baby* · Die Motorische Entwicklung ·
 Präsentation 3 Keimzellenbildung · Gruppe 2 Erkrankungen im Wochenbett) und
 `Ergebnisse Gruppenvorstellung.pdf` (45 MB, reine Bilder, unbrauchbar).
+
+### 20.09.2026, nachts — die Einzelfälle: eine neue Seite und zwei Anbauten
+
+Die Zeile **„Einzelfälle ohne Zuordnung"** der 44er-Fundliste ist abgearbeitet. Sie enthielt
+**fünf** Titel; tatsächlich waren es **sechs** Dateien, und sie gehören in **drei** Richtungen:
+
+| Datei | wohin | Ergebnis |
+|---|---|---|
+| `Frau Schneider ist gestuerzt AA.pdf` · `KH-Bilder Fr. Schneider.pdf` · `Frau Weber.pdf` | **neue Seite** *„Ich verstehe das alles nicht"* | 🦴 `https://claude.ai/artifact/7vpMftH4kNi6TdwbqZPVDZ` |
+| `Fallbeispiel Frau Schubert.pdf` | *Wenn die Leitung unterbrochen ist* (MS) | `#schubert`, **4 → 5 Quellen** |
+| `Fallweiterfuehrung Johanna.pdf` | *Werde ich so verstanden, wie ich es meine?* | `#johanna`, **14 → 15 Quellen** |
+| `Fallvignetten.pdf` | **war schon eingearbeitet** — Herr Paul S. und Frau Elisabeth S. stehen auf *„Ich will aber keine Fremden im Haus"* | nichts zu tun |
+
+**`KH-Bilder Fr. Schneider.pdf` stand auf keiner Liste.** Der Name sagt „Bilder", die Datei ist
+durchgehend **Text** — und zwar genau der Lehrbuchauszug zu **Osteoporose, Arthrose und Morbus
+Bechterew**, der die elf Aufgaben des Falls beantwortet. **Fall und Antwort lagen im selben
+Ordner und waren nie zusammengelegt worden.**
+
+**Der Befund, der die neue Seite trägt:** Beide Fälle laufen auf **dieselbe Szene** zu. Bei Frau
+Schneider fragt die Patientin *„Was passiert denn, wenn ich nochmal falle?"*, und der Fall sagt
+nur *„PFK Anne kann Frau Schneider beruhigen"* — **womit, steht nicht da**. Bei Frau Weber fragt
+die Bewohnerin **dreimal warum**, und der Pflegeschüler muss zugeben, **dass er es nicht erklären
+kann**. Beide Blätter prüfen nicht das Tun, sondern das **Begründen** — genau der Operator, an
+dem ihre schriftlichen Noten hängen (praktisch 1,89 / schriftlich 3,64).
+
+**Der zweite Befund, den die Dozentin offenbar bewusst gebaut hat:** Die Gangbeschreibung ist bei
+beiden Frauen fast **wortgleich** — Oberkörper nach vorn gebeugt, kleine Schritte, steife Finger
+— nur bei Frau Schneider *„etwas"* und *„leicht"*, bei Frau Weber *„stark verformt"* und
+*„stark"*. **Dasselbe Bild in zwei Stadien.** Die Vergleichstabelle steht auf der Seite und ist
+als meine Arbeit gekennzeichnet.
+
+**Und der dritte, der aus dem Fachtext kommt:** Unter den **Komplikationen des Morbus Bechterew**
+steht *„Osteoporose (durch Entzündung und Bewegungsmangel)"*. Damit ist Frau Schneiders
+Osteoporose **keine zufällige zweite Krankheit**, sondern eine Folge der ersten — und sie hat
+**beide** genannten Ursachen, die Entzündung und den Bewegungsmangel, den sie selbst beschreibt.
+Daraus ergibt sich die vollständige AFB-III-Kette, die auf der Seite steht.
+
+**Vier Stellen, an denen ihre eigenen Unterlagen aufhören — alle benannt, keine gefüllt:**
+
+- **Die rheumatoide Arthritis** von Frau Weber steht in **keiner** der drei Dateien. Damit ist
+  ihre **erste Frage** (warum kühlen, wenn sonst Wärme hilft) nicht beantwortbar. Was der Auszug
+  liefert, ist die **Unterscheidung**, an der die Antwort hängt — Arthrose *„nichtentzündlich,
+  degenerativ"* gegen Morbus Bechterew *„entzündlich-rheumatisch"* —, und bei der Arthrose steht
+  *„Wärme-/Kältebehandlung je nach Verträglichkeit"*. **Die Folgerung daraus ist nicht gezogen.**
+- **Der Auszug definiert Arthrose und Morbus Bechterew, die Osteoporose nicht** — obwohl
+  **Aufgabe 3 genau diese Definition verlangt**.
+- **Aufgabe 1 und 2** (Aufbau und Entstehung des Knochens) stehen nirgends; auf der Anatomie-Seite
+  ist **Skelett** ausdrücklich als Lücke geführt.
+- **Tannenbaumphänomen** und **Osteosynthese** werden benutzt und nicht erklärt.
+
+**Einmal korrigiert, bevor es online ging:** Der Entwurf behauptete, **Fosamax® sei ein
+Alendronat-Präparat** und verband damit die beiden Fälle über den Wirkstoff. **Das steht so
+nicht in ihren Dateien** — bei Frau Schneider steht die Gruppe in der Klammer („Biphosphonat"),
+bei Frau Webers *Alendron* steht **gar nichts**. Ebenso zurückgenommen: die stillschweigende
+Gleichsetzung von **Vigantoletten** mit dem Vitamin-D-Eintrag der Therapieliste. Beides steht
+jetzt als **ausdrücklich offene Frage** auf der Seite, mit der Aufforderung nachzuschlagen.
+
+**Beim Fall Schubert** ist die Beobachtung, die auf die Seite gehört, die **Formulierung der
+Aufgabe 6**: nicht *„Erklären Sie den Begriff"*, sondern *„Erklären Sie **Frau Schubert** den
+Begriff"* — die Adressatin ist eine 32-Jährige, die *„bleich und den Tränen nah"* vor dem
+Untersuchungszimmer sitzt. **Eine fachlich richtige Antwort kann hier trotzdem falsch sein.**
+
+**Beim Fall Johanna** schließt sich eine Lücke dieser Seite zur Hälfte: Der Patient heißt
+**Herr Sommer** und stammt aus der Fallbeschreibung *„mein Praxiseinsatz"* — **der Ausgangsfall
+selbst fehlt weiterhin**, ebenso Maria und Simon. Und **Aufgabe 3** (gesprächshemmende Faktoren)
+ist aus dem Ordner **nicht** zu beantworten; das Blatt nennt die Quelle selbst (*Pflege Heute*
+39.3.2, S. 1211–1212), und das Buch liegt nicht vor.
+
+**Neu gefunden und noch nicht bearbeitet:** `Praesentation Anatomie  Skelettmuskulatur.pdf` und
+`Fragen zum Thema Skelettmuskulatur.pdf` — **dasselbe Paar-Muster wie beim Muskelgewebe**
+(Fragebogen + Foliensatz, der ihn beantwortet), nur unter dem Wort *Skelettmuskulatur* statt
+*Muskelgewebe*, weshalb die Titelsuche des letzten Durchgangs sie übersehen hat. Der Foliensatz
+beantwortet **die Fragen 2, 3, 9 und 10**; die übrigen sieben sind **reine Bildtafeln**. Gehört
+auf die Anatomie-Seite, kommt als Nächstes.
+
+**Offen aus den 44 bleibt damit nur noch der Block Pädiatrie/Geburtshilfe** (Impfkalender 2026 ·
+BZgA *Das Baby* · Die Motorische Entwicklung · Präsentation 3 Keimzellenbildung · Gruppe 2
+Erkrankungen im Wochenbett) sowie `Ergebnisse Gruppenvorstellung.pdf` (45 MB, reine Bilder).

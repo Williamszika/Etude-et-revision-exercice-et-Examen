@@ -1,0 +1,1058 @@
+<title>Ich verstehe das alles nicht</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#8a5a1f;--accent-deep:#6d4614;--accent-soft:#f6ecd9;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#dcb473;--accent-deep:#ecc98f;--accent-soft:#2c2313;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#dcb473;--accent-deep:#ecc98f;--accent-soft:#2c2313;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#8a5a1f;--accent-deep:#6d4614;--accent-soft:#f6ecd9;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Erkrankungen des Bewegungsapparates · zwei Fallbeispiele</p>
+  <h1>„Ich verstehe das alles nicht“</h1>
+  <p class="sub">Zwei Fälle deiner Dozentin, ein Lehrbuchauszug — und beide Fälle enden damit,
+    dass jemand aus der Pflege <b>nicht erklären kann, warum</b>.</p>
+  <div class="meta">
+    <span>Osteoporose</span>
+    <span>Arthrose</span>
+    <span>Morbus Bechterew</span>
+    <span>3 Quellen</span>
+    <span>Niveau B1</span>
+    <span>Stand 20.09.2026</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#warum">Warum diese Seite</a>
+  <a href="#schneider">Fall Frau Schneider</a>
+  <a href="#osteoporose">Osteoporose</a>
+  <a href="#arthrose">Arthrose</a>
+  <a href="#bechterew">Morbus Bechterew</a>
+  <a href="#weber">Fall Frau Weber</a>
+  <a href="#sortieren">Die Symptome sortieren</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="warum">
+  <h2>Warum diese Seite — und warum sie am Ende offen bleibt</h2>
+  <p class="lead">Drei Dateien aus deinem Drive-Ordner gehören zusammen und hatten bisher keine
+    Seite: zwei <b>Fallbeispiele</b> und der <b>Lehrbuchauszug</b>, der sie beantwortet.</p>
+
+  <p>Am 20.09.2026 dazugekommen: <i>Frau Schneider ist gestuerzt AA.pdf</i>,
+    <i>KH-Bilder Fr. Schneider.pdf</i> und <i>Frau Weber.pdf</i>. Die erste und die dritte Datei
+    sind <b>Fälle mit Aufgaben</b>, die zweite ist der <b>Fachtext</b> dazu — Osteoporose,
+    Arthrose und Morbus Bechterew.</p>
+
+  <div class="merk">
+    <span class="t">Beide Fälle laufen auf dieselbe Szene zu</span>
+    <p>Bei <b>Frau Schneider</b> fragt die Patientin: <b>„Was passiert denn, wenn ich nochmal
+      falle?“</b> — und der Fall sagt nur: <i>„PFK Anne kann Frau Schneider beruhigen.“</i>
+      <b>Womit</b> sie beruhigt, steht nicht da. Das sollst du schreiben.</p>
+    <p>Bei <b>Frau Weber</b> fragt die Bewohnerin drei Mal <b>warum</b> — und der Pflegeschüler
+      Tim muss zugeben, <b>dass er es nicht erklären kann</b>. Der Fall endet mit diesem
+      Eingeständnis.</p>
+    <p><b>Das ist kein Zufall.</b> Beide Fälle prüfen nicht, ob du etwas tust, sondern ob du es
+      <b>begründen</b> kannst — der Operator, an dem deine schriftlichen Noten hängen.</p>
+    <p class="fr">Les deux cas se terminent au même endroit : quelqu'un doit expliquer
+      <b>pourquoi</b>, et n'y arrive pas. C'est exactement l'opérateur qui te coûte des points.</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Und darum bleibt diese Seite an mehreren Stellen leer</span>
+    <p>Der Lehrbuchauszug deckt <b>Osteoporose, Arthrose und Morbus Bechterew</b> ab.
+      <b>Frau Weber hat aber eine rheumatoide Arthritis</b> — und die steht in <b>keiner</b>
+      deiner drei Dateien. Genauso fehlt der <b>Aufbau des Knochens</b>, nach dem Aufgabe 1
+      fragt.</p>
+    <p><b>Ich schreibe es nicht aus dem Gedächtnis dazu.</b> Wo die Antwort fehlt, steht hier,
+      dass sie fehlt — und wo deine Unterlagen den <b>halben</b> Weg liefern, steht, wie weit
+      sie reichen.</p>
+  </div>
+</section>
+
+<section id="schneider">
+  <h2>Der Fall — Frau Schneider ist gestürzt</h2>
+  <p class="lead">67 Jahre, Glatteis, mediale Oberschenkelhalsfraktur. Und drei Krankheiten
+    gleichzeitig.</p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Was passiert ist</h4>
+      <ul>
+        <li><b>67 Jahre</b>, Sturz bei <b>Glatteis</b>, vom Ehemann in die Notaufnahme
+          gebracht</li>
+        <li>Starke Schmerzen in der <b>rechten Hüfte</b>, kann mit dem Bein <b>nicht
+          auftreten</b></li>
+        <li>Schmerzen auch im <b>Iliosakralbereich</b> und im <b>rechten Arm</b></li>
+        <li>Erste <b>Hämatome</b> im Hüftbereich</li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Was das Röntgen zeigt</h4>
+      <ul>
+        <li><b>Mediale Oberschenkelhalsfraktur</b> — bestätigt</li>
+        <li><b>Verknöcherung des Iliosakralbereiches</b></li>
+        <li>Weitere Verletzungen: <b>keine</b></li>
+        <li>Stationäre Aufnahme, <b>Osteosynthese am nächsten Morgen</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Die Werte aus der Dokumentation</h4>
+      <ul>
+        <li>Größe <b>1,68 m</b>, Gewicht <b>93 kg</b>, <b>BMI 34</b></li>
+        <li>RR <b>160/90 mmHg</b></li>
+        <li>HF <b>94</b>, rhythmisch</li>
+        <li>AF <b>19</b>, <b>oberflächlich</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Was sie selbst erzählt — ihre Krankengeschichte in ihren Worten</h3>
+  <div class="merk">
+    <span class="t">Das Aufnahmegespräch, gekürzt aber im Wortlaut</span>
+    <p>„Als ich ausgerutscht bin, habe ich versucht mich im Fallen zu drehen, damit ich nicht auf
+      meinen Steiß falle, denn <b>da habe ich eh schon Probleme mit</b>. Im Alter von
+      <b>32 Jahren</b> wurde bei mir <b>Morbus Bechterew</b> festgestellt. Ich hatte immer so
+      starke Rückenschmerzen. Das kam bestimmt davon, <b>dass ich so viel sitze</b>. Ich bin
+      Verwaltungsangestellte und habe lange Arbeitstage, <b>da bleibt nicht viel Zeit für
+      Bewegung</b>. Ich habe dann immer eine <b>Ibu 600</b> genommen, was wiederum <b>meinem
+      Magen nicht gut bekommen</b> ist. <b>Seit 2 Jahren</b> machen mir auch meine Gelenke
+      Probleme. <b>Vor allem meine Finger.</b> Ich brauche immer was, bis ich in die Gänge
+      komme. Der Arzt hat mir gesagt das sei <b>Arthrose</b> …“</p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Drei Sätze, in denen die halbe Aufgabe schon steckt</span>
+    <ul>
+      <li><b>„Das kam bestimmt davon, dass ich so viel sitze.“</b> — Sie stellt selbst eine
+        Ursachenvermutung auf. Ob sie stimmt, ist genau eine Prüfungsfrage: Der Fachtext nennt
+        für Morbus Bechterew eine <b>autoimmun (mit-)bedingte Erkrankung mit letztlich unklarer
+        Ursache</b>. <b>Nicht Sitzen.</b></li>
+      <li><b>„Da bleibt nicht viel Zeit für Bewegung.“</b> — <b>Bewegungsmangel</b> steht im
+        Fachtext bei der Osteoporose unter den <b>vermeidbaren</b> Risikofaktoren, und die
+        Therapie beider anderen Krankheiten heißt <b>Bewegungstherapie</b>. Ein Satz, drei
+        Anschlüsse.</li>
+      <li><b>„Ich brauche immer was, bis ich in die Gänge komme.“</b> — Der Fachtext nennt genau
+        das beim Arthrose-Schmerz: <b>„Anlaufschmerzen nach längerer Ruhe“</b> und
+        <b>„Der Krankheitsbeginn wird von den Patienten häufig als Steifigkeit
+        beschrieben“</b>.</li>
+    </ul>
+    <p class="fr">Ses propres phrases contiennent déjà la moitié des réponses — et une erreur
+      qu'il faut repérer : ce n'est pas la position assise qui cause la spondylarthrite.</p>
+  </div>
+
+  <h3>Was die Ärzte und die Pflege danach feststellen</h3>
+  <ul>
+    <li>Der Stationsarzt lässt die <b>Knochendichte</b> messen — <b>„Die Untersuchung bestätigt
+      den Verdacht“</b></li>
+    <li>Angeordnet werden <b>Fosamax® (Biphosphonat) 70 mg, einmal wöchentlich</b> und
+      <b>Vigantoletten 1000 I.E., 1× täglich</b></li>
+    <li>Beim Gang zum Waschbecken beobachtet PFK Anne: <b>schnell erschöpft</b> · <b>Oberkörper
+      nach vorne gebeugt</b> · <b>Knie und Hüfte leicht gebeugt</b> · <b>kleine Schritte</b> ·
+      <b>hält sich krampfhaft an allem fest</b> · <b>Finger etwas steif</b>, im Laufe der
+      Versorgung <b>beweglicher</b></li>
+  </ul>
+
+  <div class="pruef">
+    <h4>Die elf Aufgaben deiner Dozentin — wörtlich, unbearbeitet</h4>
+    <p><i>„Bei Frau Schneider zeigen sich verschiedene Erkrankungen des Bewegungsapparates. Da
+      die Osteoporose neu diagnostiziert wurde und entsprechend neue Medikamente angeordnet
+      wurde, beschäftigen wir uns zunächst mit der Osteoporose.“</i></p>
+    <ol>
+      <li><b>Beschreiben</b> Sie, wie ist ein Knochen aufgebaut.
+        <span style="opacity:.7">→ <b>steht in keiner deiner Dateien</b></span></li>
+      <li><b>Erklären</b> Sie, wie ein Knochen entsteht.
+        <span style="opacity:.7">→ <b>steht in keiner deiner Dateien</b></span></li>
+      <li><b>Definieren</b> Sie „Osteoporose“.
+        <span style="opacity:.7">→ <b>der Fachtext definiert Arthrose und M. Bechterew, die
+        Osteoporose aber nicht</b></span></li>
+      <li><b>Erklären</b> Sie die Relevanz des Krankheitsbildes für unsere Gesellschaft.
+        <span style="opacity:.7">→ keine Zahlen in deinen Dateien</span></li>
+      <li><b>Beschreiben</b> Sie die Ursachen für eine Osteoporose.
+        <span style="opacity:.7">→ <a href="#osteoporose">Formen und Risikofaktoren</a></span></li>
+      <li><b>Erklären</b> Sie, warum vornehmlich bei Frauen.
+        <span style="opacity:.7">→ der Schlüssel steht im Fachtext, siehe unten</span></li>
+      <li><b>Beschreiben</b> Sie das diagnostische Verfahren.
+        <span style="opacity:.7">→ <a href="#osteoporose">Diagnostik</a>, vier Punkte</span></li>
+      <li><b>Benennen</b> Sie die Symptome der Osteoporose <b>bei Frau Schneider</b>.
+        <span style="opacity:.7">→ <a href="#sortieren">die Sortieraufgabe</a></span></li>
+      <li><b>Beschreiben</b> Sie die Therapie bei Osteoporose.
+        <span style="opacity:.7">→ <a href="#osteoporose">Therapie</a>, mit Mengenangaben</span></li>
+      <li><b>Erklären</b> Sie, worauf Anne bei ihrer pflegerischen Versorgung besonders achten
+        muss. <span style="opacity:.7">→ steht so nicht da; die Bausteine schon</span></li>
+      <li><b>Bereiten</b> Sie ein <b>Beratungsgespräch bezüglich der Ernährung</b> bei
+        Osteoporose für Anne vor.
+        <span style="opacity:.7">→ die <b>Mengen</b> stehen im Fachtext, die
+        <b>Lebensmittel</b> nicht</span></li>
+    </ol>
+    <p><b>Achte auf die Operatoren.</b> <i>Beschreiben</i> und <i>Benennen</i> sind <b>AFB I</b>
+      — sachlich darstellen, die geforderte Anzahl liefern. Aber <b>fünfmal</b> steht
+      <i>Erklären</i> da, und <i>Erklären</i> verlangt bei dir immer eine <b>verständliche
+      Erklärung plus ein eigenes Beispiel</b>. Aufgabe 11 ist noch eine Stufe höher: Ein
+      <b>Beratungsgespräch vorbereiten</b> heißt, den Fachinhalt in <b>Sätze für einen
+      Menschen</b> zu übersetzen.</p>
+  </div>
+</section>
+
+<section id="osteoporose">
+  <h2>Osteoporose — aus dem Lehrbuchauszug</h2>
+  <p class="lead">Das ist die Krankheit, um die der Fall gebaut ist.</p>
+
+  <div class="warnung">
+    <span class="t">Eine Lücke gleich am Anfang</span>
+    <p>Der Auszug beginnt mit <b>„Osteoporose — Formen“</b>. Für <b>Arthrose</b> und
+      <b>Morbus Bechterew</b> steht jeweils ein vollständiger Definitionssatz da — <b>für die
+      Osteoporose nicht</b>. <b>Aufgabe 3 verlangt aber genau diese Definition.</b></p>
+    <p><b>Ich schreibe sie nicht aus dem Gedächtnis hin.</b> Was du aus dem Auszug ableiten
+      kannst: Es geht um <b>Knochendichte</b> (sie wird gemessen), um <b>Knochenumsatz</b>
+      (hoch bei Typ I, niedrig bei Typ II) und um <b>Frakturen</b> (die Diagnostik sucht nach
+      unbemerkten Wirbelkörperfrakturen). <b>Diese drei Wörter sind das Gerüst — den Satz musst
+      du aus dem Unterricht oder aus Pflege Heute holen.</b></p>
+  </div>
+
+  <h3>Die Formen</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">primär<br>Typ I</span><div>
+      <h4>Postmenopausale Osteoporose</h4>
+      <p>Vor allem bei <b>postmenopausalen Frauen</b>. Hauptrisikofaktor <b>Östrogenmangel</b>,
+        mit <b>hohem Knochenumsatz</b>.</p></div></div>
+    <div class="stufe"><span class="nr">primär<br>Typ II</span><div>
+      <h4>Senile Osteoporose</h4>
+      <p>Bei <b>Männern und Frauen über 70 Jahren</b>, mit <b>niedrigem
+        Knochenumsatz</b>.</p></div></div>
+    <div class="stufe"><span class="nr n2">sekundär</span><div>
+      <h4>Infolge einer bekannten Grunderkrankung</h4>
+      <p>Zum Beispiel <b>Hyperthyreose</b>, <b>Cushing-Syndrom</b>, <b>Magen-Darm-Erkrankungen
+        mit verminderter Nährstoffresorption</b>, <b>Medikamentennebenwirkung</b> (z. B.
+        <b>Glukokortikoidlangzeittherapie</b>), <b>Alkoholmissbrauch</b>,
+        <b>Rauchen</b>.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Aufgabe 6 — warum vornehmlich Frauen? Der Schlüssel steht in Typ I</span>
+    <p><b>Typ I heißt „postmenopausal“, und der Hauptrisikofaktor heißt „Östrogenmangel“.</b>
+      Unter den unvermeidbaren Risikofaktoren steht es ein zweites Mal: <b>„Weibliches
+      Geschlecht, Östrogenmangel nach der Menopause“</b>.</p>
+    <p><b>Der Fachtext sagt also, dass es am Östrogenmangel liegt — er sagt nicht, was Östrogen
+      am Knochen tut.</b> Für eine <i>Erklären</i>-Antwort brauchst du diesen Zwischenschritt,
+      und er steht in deinen Dateien nicht. <b>Frag danach, statt ihn zu erfinden.</b></p>
+    <p class="fr">Tes documents disent <b>que</b> c'est la carence en œstrogènes. Ils ne disent
+      pas <b>ce que</b> l'œstrogène fait à l'os — et c'est ce chaînon qu'exige un « expliquer ».</p>
+  </div>
+
+  <h3>Risikofaktoren — die Zweiteilung ist die Botschaft</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Unvermeidbar</h4>
+      <ul>
+        <li><b>Genetische Veranlagung</b></li>
+        <li><b>Höheres Lebensalter</b></li>
+        <li><b>Weibliches Geschlecht</b>, Östrogenmangel nach der Menopause</li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Vermeidbar</h4>
+      <ul>
+        <li><b>Kalzium-, Vitamin-D-Mangel</b></li>
+        <li><b>Bewegungsmangel</b></li>
+        <li><b>Unterernährung, niedriger BMI</b></li>
+        <li><b>Alkoholmissbrauch, Rauchen</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Warum diese Zweiteilung mehr ist als eine Gliederung</span>
+    <p><b>Die rechte Spalte ist die Beratung.</b> Über unvermeidbare Faktoren kann man mit einem
+      Menschen nicht sprechen — über die vier rechts schon. <b>Aufgabe 11 (Beratungsgespräch)
+      hat ihre Gliederung damit schon fertig.</b></p>
+    <p><b>Und eine Beobachtung zu Frau Schneider, die dir auffallen soll:</b> Sie hat
+      <b>BMI 34</b>, also <b>nicht</b> den niedrigen BMI der Risikoliste. <b>Ein Risikofaktor,
+      der bei ihr nicht zutrifft.</b> Aufgabe 5 fragt nach den Ursachen <i>der</i> Osteoporose —
+      wer dabei blind die Liste abschreibt, ohne zu prüfen, was auf <i>sie</i> zutrifft, hat die
+      Aufgabe halb gelöst.</p>
+  </div>
+
+  <h3>Symptome</h3>
+  <ul>
+    <li><b>Deformierung von Wirbelkörpern</b></li>
+    <li><b>Tannenbaumphänomen</b></li>
+    <li><b>Rückenschmerzen</b></li>
+  </ul>
+  <div class="warnung">
+    <span class="t">„Tannenbaumphänomen“ steht ohne Erklärung da</span>
+    <p>Der Auszug nennt den Begriff und <b>erklärt ihn nicht</b>. In keiner anderen deiner
+      Dateien steht er. <b>Hier steht deshalb keine Erklärung</b> — frag im Unterricht nach.
+      Es ist ein typischer Begriff, nach dem in einer Klausur gefragt wird, gerade weil er so
+      bildhaft ist.</p>
+  </div>
+
+  <h3>Diagnostik — die vier Punkte</h3>
+  <ol>
+    <li><b>Anamnese und Untersuchung</b>, einschließlich <b>Einschätzung des individuellen
+      Sturzrisikos</b>, ggf. ergänzt durch <b>Mobilitätstests</b></li>
+    <li><b>Knochendichtemessung</b></li>
+    <li>Ggf. <b>bildgebende Verfahren</b> zur Diagnostik von <b>bis dahin unbemerkten
+      Wirbelkörperfrakturen</b></li>
+    <li><b>Blutuntersuchungen</b> zur Differenzialdiagnose und zur <b>Suche nach
+      Kontraindikationen der Medikamente</b></li>
+  </ol>
+
+  <div class="merk">
+    <span class="t">Punkt 1 ist der, den man überliest — und er gehört dir</span>
+    <p><b>Die Einschätzung des Sturzrisikos steht in der Diagnostik der Osteoporose.</b> Nicht
+      in der Therapie, nicht in der Pflege — in der <b>Diagnostik</b>. Das heißt: Sie ist Teil
+      der Krankheitsfeststellung, und sie ist <b>genau das, was Pflege macht</b>.</p>
+    <p>Auf deiner Seite <b>„Heraussetzen“ ist keine aktivierende Pflege</b> steht der
+      vollständige <b>GODO-Erhebungsbogen</b> mit allen Risikogruppen — <b>das ist das
+      Instrument für diesen Punkt</b>. Und Frau Schneider ist bereits <b>gestürzt</b>: Bei ihr
+      ist es keine Vorsorge mehr, sondern die Frage nach dem <b>zweiten</b> Sturz.</p>
+    <p class="fr">L'évaluation du risque de chute figure dans le <b>diagnostic</b>, pas dans les
+      soins — et c'est précisément le travail infirmier. L'outil est sur ton autre page.</p>
+  </div>
+
+  <h3>Therapie</h3>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Säule</th><th>Was der Auszug sagt</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Kalzium und Vitamin D</td>
+          <td>Versorgung von <b>1.000 mg</b> bzw. <b>20 μg täglich</b></td></tr>
+        <tr><td class="k">Bewegung</td><td><b>Bewegungstherapie</b></td></tr>
+        <tr><td class="k">Medikamente</td>
+          <td><b>Bisphosphonate</b> · <b>selektive Östrogen-Rezeptor-Modulatoren</b> wie
+            Raloxifen (z. B. Evista®) · <b>Parathormon/-analoga</b> etwa Teriparatid
+            (z. B. Forsteo®) · <b>Antikörper Denosumab</b> (z. B. Prolia®)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die Brücke zwischen Text und Fall — und sie trägt beide Fälle</span>
+    <p>Frau Schneider bekommt <b>Fosamax® (Biphosphonat)</b>. In der Therapieliste steht
+      <b>Bisphosphonate</b> an erster Stelle. <b>Das ist dieselbe Gruppe</b> — der Fall benutzt
+      nur den Handelsnamen.</p>
+    <p><b>Und hier ist die Stelle, an der ich aufhören muss.</b> Frau Weber nimmt
+      <b>Alendron</b>. <b>Ob Alendron zu den Bisphosphonaten gehört, steht in keiner deiner
+      drei Dateien</b> — bei Frau Schneider steht die Wirkstoffgruppe in der Klammer, bei Frau
+      Weber nicht. <b>Die Vermutung liegt nahe, und ich behaupte sie trotzdem nicht.</b>
+      <b>Schlag den Namen nach</b> — und wenn es stimmt, hast du die beiden Fälle mit einem
+      einzigen Wort verbunden.</p>
+    <p><b>Was ebenfalls nicht dasteht:</b> <b>warum</b> diese Tablette nicht mit Mineralwasser
+      genommen werden darf. Frau Weber fragt genau das — siehe <a href="#weber">unten</a>.
+      <b>In keiner deiner drei Dateien steht die Antwort.</b></p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Und die zweite Tablette, die Frau Schneider bekommt</span>
+    <p><b>Vigantoletten 1000 I.E., 1× täglich.</b> Der Fachtext nennt als Therapiesäule
+      <b>Kalzium- und Vitamin-D-Versorgung</b> — <b>1.000 mg</b> Kalzium bzw. <b>20 μg</b>
+      Vitamin D täglich.</p>
+    <p><b>Was ich dabei nicht behaupte:</b> dass Vigantoletten das Vitamin-D-Präparat dieser
+      Zeile sind. <b>Der Fall nennt den Wirkstoff nicht</b> — anders als bei Fosamax®, wo
+      „Biphosphonat“ in der Klammer steht. <b>Nachschlagen, nicht raten.</b></p>
+    <p><b>Und noch etwas, das dir auffallen soll:</b> Der Fachtext rechnet in
+      <b>Mikrogramm (μg)</b>, die Verordnung in <b>Internationalen Einheiten (I.E.)</b> —
+      <b>zwei verschiedene Einheiten</b>. Ob sie einander entsprechen, steht in deinen
+      Unterlagen nicht, und ich rechne es nicht vor. <b>Dass hier zwei Einheiten
+      nebeneinanderstehen, ist genau die Art Detail, die eine gute Antwort erwähnt.</b></p>
+  </div>
+</section>
+
+<section id="arthrose">
+  <h2>Arthrose</h2>
+  <p class="lead">Die zweite Diagnose von Frau Schneider — und die einzige der drei, die der
+    Auszug als <b>nicht entzündlich</b> beschreibt.</p>
+
+  <div class="merk">
+    <span class="t">Die Definition, wörtlich</span>
+    <p>„Arthrose: <b>nichtentzündliche, degenerative und irreversible Gelenkzerstörung</b>,
+      verursacht durch ein <b>Missverhältnis zwischen Belastung und Belastbarkeit</b>.
+      Leitsymptome <b>langsam über Jahre zunehmender Schmerz und Beweglichkeitseinschränkung</b>.
+      Erkrankungshäufigkeit mit steigendem Lebensalter zunehmend, <b>Frauen häufiger und oft
+      schwerer betroffen als Männer</b>.“</p>
+    <p><b>Drei Wörter zum Behalten: nichtentzündlich · degenerativ · irreversibel.</b>
+      <i>Irreversibel</i> heißt: Sie geht nicht zurück. Die ganze Therapie zielt deshalb nicht
+      auf Heilung, sondern auf <b>Schmerz und Beweglichkeit</b>.</p>
+    <p class="fr">Non inflammatoire · dégénérative · <b>irréversible</b>. Le traitement ne vise
+      donc pas la guérison mais la douleur et la mobilité.</p>
+  </div>
+
+  <h3>Ursache</h3>
+  <p>Als Ursache wird das <b>Missverhältnis zwischen Belastbarkeit und Belastung eines
+    Gelenks</b> angesehen.</p>
+  <div class="karten">
+    <div class="karte"><h4>Primär</h4><p><b>Ohne feststellbare Ursache.</b></p></div>
+    <div class="karte"><h4>Sekundär</h4>
+      <p><b>Mit feststellbarer Ursache.</b> Zahlreiche innere und äußere Risikofaktoren spielen
+        in <b>individuell unterschiedlicher Gewichtung</b> eine Rolle: <b>genetische
+        Faktoren</b> · <b>Geschlecht</b> · <b>Hormone</b> · <b>Medikamente</b> · <b>einseitige
+        Belastungen</b> · <b>unbemerkte Mikrotraumata</b> · bei den Gelenken der unteren
+        Extremität auch das <b>Gewicht</b>.</p></div>
+  </div>
+
+  <h3>Symptome — der Schmerz hat einen Tagesverlauf</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div>
+      <h4>Belastungs- und bewegungsabhängiger Schmerz</h4>
+      <p><b>Zu Tagesbeginn gering, im Verlauf zunehmend.</b> <b>Nachts bestehen in der Regel
+        keine Schmerzen.</b></p></div></div>
+    <div class="stufe"><span class="nr">2</span><div>
+      <h4>Der Beginn fühlt sich wie Steifigkeit an</h4>
+      <p>„Der Krankheitsbeginn wird von den Patienten <b>häufig als Steifigkeit</b>
+        beschrieben“, begleitet von <b>diffusen Gelenk- und Muskelschmerzen</b>.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div>
+      <h4>Belastungsschmerz, später Anlaufschmerz</h4>
+      <p><b>Belastungsschmerzen</b> nach längerer oder besonders starker Belastung. <b>Später
+        zusätzlich Anlaufschmerzen nach längerer Ruhe.</b></p></div></div>
+    <div class="stufe"><span class="nr n2">4</span><div>
+      <h4>Deformierung und Bewegungseinschränkung</h4>
+      <p>Im Verlauf entwickeln sich <b>(sichtbare) Gelenkdeformierung</b> und
+        <b>Bewegungseinschränkung</b>.</p></div></div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Der Satz „nachts keine Schmerzen“ ist ein Unterscheidungsmerkmal</span>
+    <p>Er steht nicht zufällig da. <b>Ein Schmerz, der tagsüber zunimmt und nachts weg ist,
+      verhält sich anders als ein entzündlicher Schmerz.</b> Der Auszug beschreibt Morbus
+      Bechterew dagegen mit <b>chronischem Rückenschmerz</b> als Leitsymptom, ohne diesen
+      Tagesverlauf.</p>
+    <p><b>Was deine Unterlagen nicht sagen:</b> wie sich ein entzündlicher Schmerz im Tagesverlauf
+      verhält. <b>Das ist die Hälfte, die fehlt</b> — und genau sie brauchst du bei
+      <a href="#weber">Frau Webers erster Frage</a>.</p>
+  </div>
+
+  <h3>Diagnostik</h3>
+  <p>Anamnese der <b>Symptome und Bewegungseinschränkungen</b>, zum Beispiel:</p>
+  <ul>
+    <li><b>Bei der Hüfte</b> ist zunächst die <b>Innenrotation</b> eingeschränkt</li>
+    <li><b>Im Kniegelenk</b> ist die <b>Kniestreckung</b> eingeschränkt</li>
+  </ul>
+
+  <h3>Therapie — vier Ebenen</h3>
+  <div class="karten">
+    <div class="karte">
+      <h4>Allgemeinmaßnahmen</h4>
+      <ul>
+        <li><b>„Bewegung ohne (zu starke) Belastung“</b></li>
+        <li><b>Keine</b> Sportarten mit <b>stoßartigen</b> Belastungen (z. B. Sprünge), sondern
+          <b>gleichmäßige</b>: <b>Fahrradfahren, Schwimmen, Walken</b></li>
+        <li>Schuhe mit dicken, <b>puffernden Sohlen</b></li>
+        <li><b>Abbau von Übergewicht</b></li>
+        <li><b>Meiden von Überlastung</b> — Beispiel des Textes: <b>stundenlange Gartenarbeit
+          mit ständigem Auf-die-Knie-Gehen und Wiederaufrichten</b></li>
+        <li><b>Körperliche Schonung nur bei starken Schmerzen</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Physikalische Therapie</h4>
+      <p>Sie soll <b>Muskelverspannungen mindern</b>, die <b>Gelenkbeweglichkeit bessern</b>,
+        <b>Kraft und Koordination</b> und damit die <b>Gelenkstabilität</b> fördern.</p>
+      <ul>
+        <li><b>Wärme-/Kältebehandlung — „je nach Verträglichkeit“</b></li>
+        <li><b>Massagen, Elektro-, Ultraschalltherapie</b></li>
+        <li><b>Extensionen</b> (Streckbehandlung zur Gelenkentlastung)</li>
+        <li><b>Aktive und passive</b> physiotherapeutische Übungen</li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Medikamentöse Therapie</h4>
+      <ul>
+        <li><b>Analgetika</b></li>
+        <li><b>Nichtsteroidale Antirheumatika</b> in aktiven Phasen</li>
+        <li><b>Intraartikuläre Glukokortikoidinjektionen</b></li>
+        <li><b>Intraartikuläre Hyaluronsäureinjektionen</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Operative Therapie</h4>
+      <ul>
+        <li>Zugrundeliegende <b>Gelenkfehlstellung beseitigen</b></li>
+        <li><b>Endoprothetischer Gelenkersatz</b></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="merk">
+    <span class="t">„Bewegung ohne zu starke Belastung“ — der Satz, der wie ein Widerspruch klingt</span>
+    <p>Arthrose entsteht durch ein <b>Missverhältnis zwischen Belastung und Belastbarkeit</b> —
+      und die Therapie heißt trotzdem <b>Bewegung</b>. <b>Das ist kein Widerspruch, sondern die
+      ganze Logik:</b> Nicht die Bewegung schadet, sondern die <b>zu starke, stoßartige,
+      einseitige</b>. Deshalb steht in der Liste <b>Schwimmen und Radfahren</b> und nicht
+      <b>Springen</b>.</p>
+    <p><b>Wer das in einem Satz sagen kann, hat eine <i>Erklären</i>-Aufgabe beantwortet</b> —
+      und kann es auch einem Menschen erklären, der glaubt, er müsse sich schonen.</p>
+    <p class="fr">Ce n'est pas le mouvement qui abîme, c'est la charge <b>brusque</b> et
+      <b>unilatérale</b>. D'où la natation et le vélo, et pas le saut.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Und ausgerechnet hier steht Wärme und Kälte nebeneinander</span>
+    <p>Die physikalische Therapie der Arthrose nennt <b>„Wärme-/Kältebehandlung (je nach
+      Verträglichkeit)“</b> — also <b>beides</b>, entschieden nach dem, was der Mensch
+      verträgt. <b>Keine Regel, kein Warum.</b></p>
+    <p>Frau Weber bekommt dagegen bei einem <b>Schub</b> ein <b>Kühlpack</b>, obwohl ihr sonst
+      Wärme hilft. <b>Der Unterschied zwischen „je nach Verträglichkeit“ und „im Schub kühlen“
+      steht in deinen Dateien nicht.</b> Das ist die Lücke, die Tim nicht füllen konnte — und
+      ich fülle sie auch nicht.</p>
+  </div>
+</section>
+
+<section id="bechterew">
+  <h2>Morbus Bechterew — ankylosierende Spondylitis</h2>
+  <p class="lead">Frau Schneiders älteste Diagnose: mit <b>32 Jahren</b> festgestellt.</p>
+
+  <div class="merk">
+    <span class="t">Die Definition, wörtlich</span>
+    <p>„Morbus Bechterew (<b>ankylosierende Spondylitis, AS</b>): <b>entzündlich-rheumatische
+      Gelenkerkrankung</b> mit hauptsächlicher <b>Sakroiliitis</b> (Entzündung der Sakroiliakal-
+      = Kreuzbein-Darmbein-Gelenke) und <b>Spondylarthritis</b> (Entzündung der Wirbelsäule),
+      die <b>bis zur völligen Wirbelsäulenversteifung</b> führen kann. Mit einer Häufigkeit von
+      ca. <b>0,5 % der Erwachsenen</b> <b>zweithäufigste</b> entzündlich-rheumatische
+      Gelenkerkrankung.“</p>
+    <p><b>Und damit ist Frau Schneiders Röntgenbefund erklärt:</b> „Verknöcherung des
+      Iliosakralbereiches“ — das ist genau die Stelle, die die Definition nennt. <b>Der Fall
+      und der Fachtext greifen hier direkt ineinander.</b></p>
+    <p class="fr"><i>Ankylosierend</i> = qui soude, qui raidit. <i>Sakroiliitis</i> =
+      inflammation des articulations sacro-iliaques — exactement la zone du compte rendu
+      radiologique.</p>
+  </div>
+
+  <p><b>Ursache:</b> eine <b>autoimmun (mit-)bedingte Erkrankung mit letztlich unklarer
+    Ursache</b>.</p>
+
+  <h3>Symptome</h3>
+  <ul>
+    <li><b>Leitsymptom: chronischer Rückenschmerz</b></li>
+    <li>Evtl. Entzündung <b>peripherer Gelenke</b> — häufigstes Befallsmuster eine
+      <b>asymmetrische Oligoarthritis der unteren Extremität</b></li>
+    <li>Evtl. <b>Sehnenansatzentzündungen</b>, ebenfalls bevorzugt der unteren Extremität
+      (z. B. der <b>Achillessehne</b>)</li>
+    <li>Evtl. Beteiligung weiterer Organe — bei ca. <b>⅓ eine Augenbeteiligung</b></li>
+  </ul>
+
+  <h3>Diagnostik</h3>
+  <div class="gefahr">
+    <span class="t">Der Satz, der erklärt, warum es bei ihr so lange gedauert hat</span>
+    <p>„Aufgrund der <b>Häufigkeit und Vieldeutigkeit von Rückenschmerzen</b> … anfänglich fehlen
+      neben dem chronischen Rückenschmerz weitere Zeichen, <b>daher vergehen oft Jahre bis zur
+      Diagnosestellung</b>.“</p>
+    <p><b>Frau Schneider sagt selbst: „Ich hatte immer so starke Rückenschmerzen. Das kam
+      bestimmt davon, dass ich so viel sitze.“</b> Genau diese Erklärung hat sie — und
+      vermutlich auch andere — jahrelang zufriedengestellt. <b>Das ist keine Nebenbemerkung des
+      Falles, sondern sein Kern.</b></p>
+    <p class="fr">Le dos fait mal à tout le monde : c'est pour ça que le diagnostic met des
+      années. Sa propre explication — « je suis trop assise » — fait partie du retard.</p>
+  </div>
+
+  <ul>
+    <li><b>Wichtigste Laboruntersuchung</b> neben den Entzündungswerten: das Merkmal
+      <b>HLA-B27</b> (HLA = <i>human leukocyte antigen</i>), das in <b>knapp 90 %</b> vorhanden
+      ist</li>
+    <li><b>Bildgebung:</b> <b>MRT</b> zur Darstellung entzündlicher Veränderungen und zur
+      <b>Frühdiagnostik</b> · <b>CT</b> und <b>Röntgen</b> für Veränderungen der
+      Knochenstruktur</li>
+  </ul>
+
+  <h4>Die ASAS-Klassifikationskriterien</h4>
+  <p>Die Diagnose „steht“, wenn ein <b>unter 45-Jähriger</b> (Alter zu Beginn der Beschwerden)
+    <b>Rückenschmerzen über drei Monate</b> hat <b>und</b>:</p>
+  <ul>
+    <li>eine <b>durch bildgebende Verfahren gesicherte Sakroiliitis</b> hat und <b>mindestens
+      eins</b> der folgenden Kriterien erfüllt, <b>oder</b></li>
+    <li><b>HLA-B27 positiv</b> ist und <b>mindestens zwei</b> der folgenden Kriterien positiv
+      sind</li>
+  </ul>
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Die elf Kriterien</th></tr></thead>
+      <tbody>
+        <tr><td>Entzündlicher Rückenschmerz</td></tr>
+        <tr><td>Periphere Arthritis</td></tr>
+        <tr><td>Enthesitis (entzündlicher Sehnenansatzschmerz) der Ferse</td></tr>
+        <tr><td>Uveitis (Entzündung der mittleren Augenhaut, z. B. Iridozyklitis)</td></tr>
+        <tr><td>Daktylitis (Entzündung von Finger oder Zehe)</td></tr>
+        <tr><td>Psoriasis (Schuppenflechte)</td></tr>
+        <tr><td>Morbus Crohn / Colitis ulcerosa</td></tr>
+        <tr><td>Gutes Ansprechen auf nichtsteroidale Antirheumatika</td></tr>
+        <tr><td>Positive Familienanamnese für eine Spondylarthritis</td></tr>
+        <tr><td>HLA-B27 positiv</td></tr>
+        <tr><td>Erhöhtes CRP</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p><b>Beachte die Zählung:</b> <b>HLA-B27</b> steht <b>zweimal</b> — einmal als
+    Eingangsbedingung des zweiten Weges und einmal in der Kriterienliste. So steht es im Text;
+    <b>nicht korrigiert</b>.</p>
+
+  <h3>Komplikationen — und hier schließt sich der Kreis</h3>
+  <ul>
+    <li>Fortschreitende <b>Beweglichkeitseinschränkung der Wirbelsäule</b>, u. a. mit
+      <b>verstärkter BWS-Kyphose</b>, <b>HWS-Lordose</b> und <b>restriktiver
+      Lungenfunktionsstörung</b></li>
+    <li><b>Erhöhtes kardiovaskuläres Risiko</b></li>
+    <li><b>Osteoporose</b> — <b>„durch Entzündung und Bewegungsmangel“</b></li>
+  </ul>
+
+  <div class="gefahr">
+    <span class="t">Die eine Zeile, aus der die ganze Fallkonstruktion hervorgeht</span>
+    <p><b>„Osteoporose (durch Entzündung und Bewegungsmangel)“</b> steht unter den
+      <b>Komplikationen des Morbus Bechterew</b>.</p>
+    <p><b>Damit ist Frau Schneiders Osteoporose keine zufällige zweite Krankheit, sondern eine
+      Folge der ersten.</b> Und sie hat <b>beide</b> Ursachen: die <b>Entzündung</b> des
+      Bechterew und den <b>Bewegungsmangel</b>, den sie selbst beschreibt („lange Arbeitstage,
+      da bleibt nicht viel Zeit für Bewegung“).</p>
+    <p><b>Das ist die Kette, die eine <i>Begründen</i>-Antwort braucht:</b>
+      Morbus Bechterew seit dem 32. Lebensjahr → <b>Entzündung und Bewegungsmangel</b> →
+      <b>Osteoporose</b> → <b>Knochen bricht beim Sturz auf Glatteis</b> → <b>deshalb</b> wird
+      die Knochendichte gemessen und ein Bisphosphonat angesetzt. <b>Ursache → Wirkung → Gefahr
+      → deshalb tue ich X.</b></p>
+    <p class="fr">L'ostéoporose de Mme Schneider n'est pas une seconde maladie par hasard : le
+      texte la nomme comme <b>complication</b> de la spondylarthrite. Voilà la chaîne complète
+      qu'attend un « begründen ».</p>
+  </div>
+
+  <h3>Therapie</h3>
+  <ul>
+    <li><b>Schmerzlinderung</b></li>
+    <li><b>Bewegungstherapie</b> — zur <b>Minimierung von Knochen- und Gelenkschäden</b> und
+      zum <b>Erhalt der Beweglichkeit</b></li>
+    <li><b>Medikamentös:</b> nichtsteroidale Antirheumatika · <b>TNFα-Blocker</b> ·
+      <b>Interleukin-17-Hemmer</b> · Glukokortikoidinjektion in einzelne Gelenke</li>
+    <li><b>Operationen:</b> <b>Aufrichtungsoperationen der Wirbelsäule</b> · <b>Implantation
+      einer Hüft-TEP</b> bei ausgeprägten, schmerzhaften Hüftgelenkschäden</li>
+  </ul>
+
+  <div class="merk">
+    <span class="t">Dreimal Bewegungstherapie auf einer Seite</span>
+    <p>Sie steht in der Therapie der <b>Osteoporose</b>, in den Allgemeinmaßnahmen der
+      <b>Arthrose</b> und in der Therapie des <b>Morbus Bechterew</b>. <b>Drei verschiedene
+      Krankheiten, eine gemeinsame Maßnahme</b> — und bei Frau Schneider alle drei gleichzeitig.</p>
+    <p><b>Damit ist die Antwort auf Aufgabe 10 („Worauf muss Anne besonders achten?“) zur
+      Hälfte da:</b> Bewegung ist nicht optional, sondern <b>Therapie</b> — und genau deshalb
+      kommt der Physiotherapeut schon am Tag nach der Operation. <b>Was Anne sagen kann, wenn
+      Frau Schneider fragt „Was passiert denn, wenn ich nochmal falle?“, ist damit noch nicht
+      beantwortet</b> — aber der Grund, warum sie trotzdem aufstehen soll, schon.</p>
+  </div>
+</section>
+
+<section id="weber">
+  <h2>Der zweite Fall — Frau Weber legt Wert auf Selbständigkeit</h2>
+  <p class="lead">72 Jahre, Seniorenresidenz, seit Jahren krank. <b>Dieselbe Krankheitsfamilie,
+    zwanzig Jahre später.</b></p>
+
+  <div class="karten">
+    <div class="karte">
+      <h4>Ihre Diagnosen</h4>
+      <ul>
+        <li><b>Rheumatoide Arthritis</b></li>
+        <li><b>Sekundäre Osteoporose</b></li>
+        <li><b>Arterielle Hypertonie</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Ihre Medikamente</h4>
+      <ul>
+        <li><b>Diclo 75 mg Retard</b> 1-0-0-0</li>
+        <li><b>Pantoprazol 40 mg</b> 1-0-0-0</li>
+        <li><b>Ramipril 2,5 mg</b> 1-0-0-0</li>
+        <li><b>Bedarf: Prednison 10 mg</b> morgens bei akuten Schüben, für 3 Tage</li>
+        <li>dazu laut Berichteblatt: <b>Alendron</b></li>
+      </ul>
+    </div>
+    <div class="karte">
+      <h4>Was gestern war</h4>
+      <ul>
+        <li><b>Rheumaschub</b></li>
+        <li>Bedarfsmedikation <b>Prednisolon</b> und <b>Kühlpack für beide Hände</b></li>
+        <li>Schmerzintensität <b>7 auf der NRS</b></li>
+        <li>Hinweis: <b>Alendron nicht mit Mineralwasser</b> einnehmen</li>
+        <li><b>BZ-Kontrolle</b> durchgeführt</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Die Beschreibung ihres Gangs — vergleich sie Wort für Wort mit Frau Schneider</span>
+    <div class="scroll" style="margin:10px 0 0;">
+      <table>
+        <thead><tr><th>Frau Schneider (67, Krankenhaus)</th><th>Frau Weber (72, Seniorenresidenz)</th></tr></thead>
+        <tbody>
+          <tr><td>„Der Oberkörper ist <b>nach vorne gebeugt</b>“</td>
+            <td>„Den Oberkörper hat sie <b>stark nach vorne gebeugt</b>“</td></tr>
+          <tr><td>„Sie macht <b>kleine Schritte</b>“</td>
+            <td>„ihr Gang war sehr unsicher, <b>tippelnd und kleinschrittig</b>“</td></tr>
+          <tr><td>„<b>hält sich krampfhaft an allem fest</b>“</td>
+            <td>„Sie konnte damit <b>die Griffe vom Rollator gar nicht richtig greifen</b>“</td></tr>
+          <tr><td>„Die <b>Finger</b> wirken <b>etwas steif</b>“</td>
+            <td>„Ihre Hände … waren <b>stark verformt</b> und wirkten <b>recht steif</b>“</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="margin-top:10px;"><b>Das ist nicht zufällig ähnlich.</b> Deine Dozentin hat zwei
+      Fälle gebaut, die <b>dasselbe Bild in zwei Stadien</b> zeigen: bei Frau Schneider
+      <i>etwas</i> steif und <i>leicht</i> gebeugt, bei Frau Weber <b>stark verformt</b> und
+      <b>stark</b> gebeugt. <b>Dazwischen liegen Jahre.</b></p>
+    <p class="fr">Deux cas, la même description à deux stades. Chez l'une « un peu raide », chez
+      l'autre « fortement déformée ». Ce n'est pas un hasard d'écriture.</p>
+  </div>
+
+  <h3>Was der Fall über Pflege sagt — und das ist sein eigentliches Thema</h3>
+  <div class="merk">
+    <span class="t">Die Übergabe der Kollegin, wörtlich</span>
+    <p>„Frau Weber legt <b>sehr viel Wert auf Selbständigkeit</b>. Sie sagt dir auch ganz genau,
+      was du machen musst. <b>Frag sie einfach, wenn du unsicher bist.</b> Eigentlich braucht
+      sie <b>nur jemanden, der ihr zur Seite steht, damit sie sich sicher fühlt</b>, denn sie
+      hat <b>große Angst zu fallen</b>. Sie wäscht sich sogar den Intimbereich selber. Nur die
+      Beine und den Rücken waschen wir.“</p>
+    <p><b>Das ist eine der wenigen Stellen in deinem ganzen Ordner, an der eine Übergabe zeigt,
+      wie sie sein soll:</b> Sie nennt <b>die Haltung</b> (Selbständigkeit), <b>das Gefühl</b>
+      (Angst zu fallen), <b>den Auftrag</b> (zur Seite stehen) und <b>die Grenze</b> (nur Beine
+      und Rücken). <b>Kein Handgriff ohne seinen Grund.</b></p>
+  </div>
+
+  <div class="pruef">
+    <h4>Frau Webers drei Fragen — und was deine Unterlagen dazu hergeben</h4>
+    <p>Der Fall endet damit, dass Tim keine davon beantworten kann. <b>Hier steht ehrlich, wie
+      weit deine eigenen Dateien reichen.</b></p>
+    <ol>
+      <li><b>„Warum sollte ich meine Hände gestern kühlen? Sonst hilft mir eher Wärme.“</b><br>
+        <b>Nicht beantwortbar aus deinen Dateien.</b> Deine <b>rheumatoide Arthritis</b> steht in
+        <b>keiner</b> der drei Dateien — der Fachtext behandelt Osteoporose, Arthrose und Morbus
+        Bechterew. <b>Was er liefert, ist die Unterscheidung</b>, an der die Antwort hängt:
+        Arthrose ist <b>„nichtentzündlich, degenerativ“</b>, Morbus Bechterew ist
+        <b>„entzündlich-rheumatisch“</b>. Und bei der Arthrose steht <b>„Wärme-/Kältebehandlung
+        je nach Verträglichkeit“</b>. <b>Die Folgerung daraus steht nirgends, und ich ziehe sie
+        nicht.</b></li>
+      <li><b>„Warum soll ich ständig Joghurt und Fisch essen?“</b><br>
+        <b>Halb beantwortbar.</b> Der Fachtext nennt als Therapiesäule <b>Kalzium- und
+        Vitamin-D-Versorgung von 1.000 mg bzw. 20 μg täglich</b> — und <b>Kalzium-,
+        Vitamin-D-Mangel</b> steht bei den <b>vermeidbaren</b> Risikofaktoren. <b>Welches
+        Lebensmittel welchen Stoff liefert, steht in keiner deiner Dateien.</b> Genau diese
+        Übersetzung ist <b>Aufgabe 11 des ersten Falles</b> — sie ist deine Arbeit, nicht
+        meine.</li>
+      <li><b>„Warum darf ich die eine Tablette nicht mit Mineralwasser nehmen?“</b><br>
+        <b>Nicht beantwortbar aus deinen Dateien.</b> Der Fachtext nennt
+        <b>Bisphosphonate</b> als erste Medikamentengruppe, und Frau Schneider bekommt
+        <b>Fosamax® (Biphosphonat)</b>. Bei Frau Webers <b>Alendron</b> steht <b>keine
+        Wirkstoffgruppe dabei</b>. Ob es dieselbe Gruppe ist, <b>sagen deine Dateien nicht</b> —
+        und <b>warum</b> Mineralwasser stört, erst recht nicht.</li>
+    </ol>
+    <p><b>Drei Fragen, eine halbe Antwort.</b> Das ist kein Versagen deiner Unterlagen — der
+      Fall ist <b>so gebaut</b>. Er will, dass du merkst, wo dein Wissen aufhört. <b>Schreib die
+      drei Antworten selbst auf, nachdem du im Unterricht oder in Pflege Heute nachgesehen hast,
+      und schick sie mir — ich korrigiere Sprache und Aufbau.</b></p>
+  </div>
+
+  <div class="gefahr">
+    <span class="t">Und eine Stelle, die nicht nur fachlich ist</span>
+    <p>Frau Weber erzählt: Als sie gefragt habe, warum sie kühlen solle, habe Sr. Brigitte
+      gesagt, <b>„momentan habe sie keine Zeit, mir dies zu erklären, das habe sie ja schon
+      mehrfach getan“</b>.</p>
+    <p><b>Dieser Satz steht nicht zufällig im Fall.</b> Eine Erklärung, die beim ersten Mal nicht
+      angekommen ist, ist <b>keine Erklärung gewesen</b> — und „das habe ich schon mehrfach
+      gesagt“ ist eine Antwort auf das eigene Genervtsein, nicht auf die Frage der Bewohnerin.</p>
+    <p>Auf deiner Seite <b>Werde ich so verstanden, wie ich es meine?</b> stehen dafür die
+      <b>gesprächshemmenden Faktoren</b> und die <b>patientenzentrierte Gesprächsführung nach
+      Rogers</b>. <b>Dieser Fall ist ein Beispiel dafür — in einer Aufgabe über Knochen.</b></p>
+    <p class="fr">« Je n'ai pas le temps de vous l'expliquer, je l'ai déjà fait plusieurs fois »
+      — une explication qui n'est pas passée la première fois n'en était pas une. Ce cas parle
+      de communication autant que d'os.</p>
+  </div>
+</section>
+
+<section id="sortieren">
+  <h2>Aufgabe 8 — die Symptome sortieren</h2>
+  <p class="lead">Frau Schneider hat <b>drei</b> Krankheiten. Die Aufgabe fragt nach den
+    Symptomen <b>der Osteoporose</b>. <b>Das ist die eigentliche Schwierigkeit.</b></p>
+
+  <p>Hier steht <b>keine Lösung</b> — die Zuordnung ist die Aufgabe. Was hier steht, ist
+    <b>beides nebeneinander</b>: was im Fall beobachtet wurde, und was der Fachtext welcher
+    Krankheit zuordnet.</p>
+
+  <div class="scroll">
+    <table>
+      <thead><tr><th>Beobachtung aus dem Fall</th><th>Wo steht etwas Ähnliches im Fachtext?</th>
+        <th>Deine Zuordnung</th></tr></thead>
+      <tbody>
+        <tr><td class="k">Starke Rückenschmerzen seit Jahren</td>
+          <td><b>Osteoporose</b> nennt „Rückenschmerzen“ · <b>M. Bechterew</b> nennt
+            „chronischer Rückenschmerz“ als <b>Leitsymptom</b></td><td>…</td></tr>
+        <tr><td class="k">Oberkörper nach vorne gebeugt</td>
+          <td><b>Osteoporose</b>: „Deformierung von Wirbelkörpern“ · <b>M. Bechterew</b>:
+            „verstärkte BWS-Kyphose“</td><td>…</td></tr>
+        <tr><td class="k">Verknöcherung des Iliosakralbereiches (Röntgen)</td>
+          <td><b>M. Bechterew</b>: „Sakroiliitis“, <b>Ankylose</b> = Versteifung</td>
+          <td>…</td></tr>
+        <tr><td class="k">Steife Finger, im Laufe der Versorgung beweglicher</td>
+          <td><b>Arthrose</b>: „Anlaufschmerzen nach längerer Ruhe“, „Beginn häufig als
+            Steifigkeit beschrieben“</td><td>…</td></tr>
+        <tr><td class="k">Oberschenkelhalsfraktur nach einem Sturz</td>
+          <td><b>Osteoporose</b>: die Diagnostik sucht nach <b>Frakturen</b>; die
+            Knochendichtemessung wurde <b>deswegen</b> veranlasst</td><td>…</td></tr>
+        <tr><td class="k">Schnell erschöpft</td>
+          <td><b>steht bei keiner der drei Krankheiten</b></td><td>…</td></tr>
+        <tr><td class="k">Kleine Schritte, hält sich krampfhaft fest</td>
+          <td><b>steht bei keiner der drei Krankheiten</b> — der Fachtext nennt dafür nur das
+            <b>Sturzrisiko</b> in der Diagnostik</td><td>…</td></tr>
+        <tr><td class="k">AF 19, oberflächlich</td>
+          <td><b>M. Bechterew</b>, Komplikationen: „<b>restriktive
+            Lungenfunktionsstörung</b>“</td><td>…</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="merk">
+    <span class="t">Zwei Hinweise, die dir die Arbeit nicht abnehmen, aber die Richtung zeigen</span>
+    <p><b>1 · Manche Zeilen haben zwei Kandidaten — und das ist Absicht.</b> „Rückenschmerzen“
+      steht bei <b>beiden</b>. Eine gute Antwort sagt <b>nicht</b> „gehört zur Osteoporose“,
+      sondern <b>„lässt sich nicht eindeutig zuordnen, weil …“</b>. Das ist keine Ausrede,
+      sondern die richtige Antwort auf eine <i>Beurteilen</i>-Frage.</p>
+    <p><b>2 · Die letzte Zeile ist die schönste.</b> <b>AF 19, oberflächlich</b> steht in der
+      Dokumentation, ohne Kommentar. Im Fachtext steht die <b>restriktive
+      Lungenfunktionsstörung</b> als Komplikation des Morbus Bechterew. <b>Wer diese beiden
+      Zeilen verbindet, hat den Fall wirklich gelesen.</b></p>
+    <p class="fr">Certaines lignes ont deux candidats, et c'est voulu. Répondre « on ne peut pas
+      trancher, parce que… » est la bonne réponse, pas une esquive.</p>
+  </div>
+
+  <div class="pruef">
+    <h4>Schick mir das</h4>
+    <p>Füll die dritte Spalte aus — auf Deutsch, in ganzen Sätzen, nicht in Stichworten.
+      <b>Bei jeder Zeile ein „weil“.</b> Das ist gleichzeitig deine Klausurübung und dein
+      Schreibtraining. <b>Ich korrigiere Inhalt, Satzbau und Wortwahl.</b></p>
+  </div>
+</section>
+
+<section id="offen">
+  <h2>Was auf dieser Seite fehlt — und warum</h2>
+
+  <div class="gefahr">
+    <span class="t">Die rheumatoide Arthritis fehlt ganz</span>
+    <p>Frau Weber hat sie als <b>erste Diagnose</b>, und der Fachtext behandelt sie <b>nicht</b>
+      — er deckt Osteoporose, Arthrose und Morbus Bechterew ab. Damit sind <b>Frau Webers
+      erste Frage</b> (kühlen oder wärmen) und der Zusammenhang ihres <b>Rheumaschubs</b> mit
+      dem <b>Prednisolon</b> aus deinen Unterlagen nicht zu beantworten. <b>Nichts davon ist
+      ergänzt.</b></p>
+    <p><b>Achtung, die Namen ähneln sich und meinen Verschiedenes:</b> <i>Arthrose</i> beschreibt
+      der Auszug als <b>nichtentzündlich</b>, <i>rheumatoide Arthritis</i> ist eine andere
+      Erkrankung. <b>Verwechsle sie nicht, nur weil beide „Gelenke“ heißen.</b></p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Drei Aufgaben ohne Grundlage im Ordner</span>
+    <ul>
+      <li><b>Aufgabe 1 — Aufbau des Knochens.</b> Steht in keiner deiner Dateien. Auch die
+        Anatomie-Seite hat dazu nichts: Dort ist <b>Skelett</b> ausdrücklich als Lücke
+        vermerkt.</li>
+      <li><b>Aufgabe 2 — wie ein Knochen entsteht.</b> Ebenfalls nirgends.</li>
+      <li><b>Aufgabe 4 — Relevanz für die Gesellschaft.</b> Der Auszug nennt für Morbus
+        Bechterew eine Häufigkeit (<b>0,5 %</b>), für die <b>Osteoporose keine einzige Zahl</b>.
+        <b>Ich erfinde keine Häufigkeiten.</b></li>
+    </ul>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Zwei Begriffe, die der Auszug benutzt und nicht erklärt</span>
+    <p><b>Tannenbaumphänomen</b> (bei den Osteoporose-Symptomen) und <b>Osteosynthese</b> (im
+      Fall, als die Operation beschrieben wird). <b>Beide stehen ohne Erklärung da</b>, beide
+      sind typische Klausurbegriffe. <b>Nicht ergänzt.</b></p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Und was von mir stammt</span>
+    <p>Die <b>Vergleichstabelle Schneider ↔ Weber</b>, die Beobachtung, dass ihr <b>BMI 34</b>
+      einem Risikofaktor <b>widerspricht</b>, die <b>Sortiertabelle</b> zu Aufgabe 8, der
+      Hinweis auf die <b>zwei Einheiten</b> bei Vitamin D (μg gegen I.E.) und die
+      Kette <i>Bechterew → Entzündung und Bewegungsmangel → Osteoporose → Fraktur</i>.
+      <b>Alle Bausteine stehen in deinen Dateien</b> — das Zusammensetzen ist meins, und es
+      steht hier, damit du es unterscheiden kannst.</p>
+    <p>Die französischen Zeilen sind ebenfalls von mir.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">Die Brücken zu deinen anderen Seiten</span>
+    <p><b>„Heraussetzen“ ist keine aktivierende Pflege:</b> dort der <b>GODO-Erhebungsbogen</b>
+      zum Sturzrisiko, die <b>Sturzdokumentation</b> und die <b>fünf Phasen der
+      Bettlägerigkeit</b> — genau das, was nach Frau Schneiders Operation droht, wenn sie
+      liegen bleibt.</p>
+    <p><b>Werde ich so verstanden, wie ich es meine?:</b> dort die
+      <b>gesprächshemmenden Faktoren</b> — für die Szene mit Sr. Brigitte.</p>
+    <p><b>Die Organe und das Nervensystem:</b> dort seit dem 20.09.2026 das Vokabelblatt
+      <b>Anatomische Grundbegriffe</b>. Damit lassen sich die Wörter dieser Seite zerlegen:
+      <b>Osteo-</b> (Knochen) · <b>-itis</b> (Entzündung, wie in <i>Sakroiliitis</i>,
+      <i>Enthesitis</i>, <i>Uveitis</i>, <i>Daktylitis</i>) · <b>-ose</b> (chronisch
+      degenerativer Prozess, wie in <i>Arthrose</i> und <i>Osteoporose</i>) · <b>Spondyl-</b>
+      für die Wirbelsäule. <b>Vier Silben, und die halbe Seite liest sich von selbst.</b></p>
+  </div>
+</section>
+
+<section id="quellen">
+  <h2>Woraus diese Seite gebaut ist</h2>
+  <details class="quelle">
+    <summary>Die drei Dateien — jede einzeln genannt</summary>
+    <div class="inh">
+      <ul>
+        <li><b>Frau Schneider ist gestuerzt AA.pdf</b> — Fallbeispiel mit <b>elf Aufgaben</b>,
+          <b>unbearbeitet</b>. Quelle für den ganzen Abschnitt
+          <a href="#schneider">Fall Frau Schneider</a>.</li>
+        <li><b>KH-Bilder Fr. Schneider.pdf</b> — der <b>Lehrbuchauszug</b> zu
+          <b>Osteoporose</b>, <b>Arthrose</b> und <b>Morbus Bechterew</b>. <b>Trägt jede
+          Fachangabe dieser Seite.</b> Der Dateiname nennt „Bilder“, die Datei enthält aber
+          durchgehend Text. <b>Ohne Angabe von Verlag, Auflage oder Seitenzahl</b> — ich kann
+          also nicht sagen, aus welchem Buch er stammt.</li>
+        <li><b>Frau Weber.pdf</b> — zweites Fallbeispiel, mit Zeilennummern, <b>ohne eigene
+          Aufgabenliste</b>: Die Aufgaben stecken als <b>drei Fragen der Bewohnerin</b> im Text.
+          Quelle für <a href="#weber">Fall Frau Weber</a>.</li>
+      </ul>
+      <p>Alle drei aus deinem Google-Drive-Ordner, geteilt am 18.09.2026, eingearbeitet am
+        <b>20.09.2026</b>. <b>Nichts auf dieser Seite stammt von außerhalb dieser Dateien</b> —
+        keine Zahl, kein Fachbegriff, keine Norm. Wo etwas fehlt, steht im Abschnitt
+        <a href="#offen">Was fehlt</a>, dass es fehlt.</p>
+      <p><b>Die Fälle sind Unterrichtsmaterial deiner Dozentin, kein Lehrbuch.</b> Der Auszug
+        liest sich wie ein Lehrbuchtext, trägt aber keine Quellenangabe. <b>Für eine Klausur
+        gilt, was im Unterricht gesagt wurde</b> — diese Seite ist die Aufbereitung, nicht die
+        Autorität.</p>
+    </div>
+  </details>
+</section>
+
+</main>
+
+<footer>
+  <p>Erkrankungen des Bewegungsapparates · zwei Fallbeispiele und ein Lehrbuchauszug — gebaut
+    aus deinen eigenen Unterlagen, ohne Zusätze.<br>Wo etwas fehlt oder von mir stammt, steht es
+    oben ausdrücklich dabei.</p>
+</footer>
