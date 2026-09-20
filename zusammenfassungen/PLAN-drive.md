@@ -917,3 +917,35 @@ bereits eine eigene Schulung". **Die Seite hatte recht, meine Liste nicht.**
 **Elternratgeber**, und die Dozentin hat daraus selbst das eine Kapitel gezogen, das sie für den
 Kurs wollte. Das ist ein inhaltlicher Grund, kein technischer — wenn sie mehr daraus will, wird
 zuerst die Seitenzahl genannt.
+
+---
+
+## 20.09.2026, nachts — `Ergebnisse Gruppenvorstellung.pdf` nachgeprüft
+
+**Anlass:** Nachdem sich „keine Textebene = nicht lesbar“ beim Motorik-Auszug als falsch erwiesen
+hat, war dieselbe Begründung bei dieser Datei nicht mehr haltbar. Oben steht sie mehrfach als
+*„45 MB, reine Bilder, unbrauchbar“*. **Nachgeprüft statt stehen gelassen.**
+
+**Was stimmt:** Die Datei hat **14 Seiten**, und jede Seite ist **eine reine Bildseite ohne
+Textebene** — `read_file_content` gibt nur `Page 1 … Page 14` zurück, sonst nichts.
+
+**Was nicht stimmte, ist das Wort „unbrauchbar“.** Der wirkliche Grund ist ein anderer, und er
+ist technischer Natur: **`download_file_content` verweigert Dateien über 10 MB.** Die Datei ist
+**45 MB**. Ich komme also gar nicht an die Bytes heran und kann sie deshalb nicht — wie beim
+Motorik-Auszug — in Seitenbilder umwandeln und lesen.
+
+**Der Unterschied ist wichtig:** „unbrauchbar“ klingt nach einer Aussage über den *Inhalt*. Es
+ist aber eine Aussage über **mein Werkzeug**. Der Weg über `pdftoppm` würde hier genauso
+funktionieren wie beim Motorik-Auszug — er scheitert nur am Download.
+
+**Damit ist es kein toter Punkt, sondern einer mit drei Auswegen:**
+1. Die Datei **kleiner exportieren** (in Drive: Vorschau → Drucken → als PDF speichern, oder ein
+   Komprimierungswerkzeug) und die kleinere Fassung in den Ordner legen.
+2. Die **14 Seiten einzeln als Foto oder PNG** schicken.
+3. Sagen, **welche Gruppe** darin vorgestellt wird — dann lässt sich prüfen, ob der Inhalt
+   ohnehin schon über den zugehörigen Arbeitsauftrag auf einer Seite steht.
+
+**Und die Regel, die daraus folgt und die für den ganzen Ordner gilt:** Wenn etwas hier als
+„nicht auswertbar“ vermerkt wird, muss **der Grund** dabeistehen — *kein Text*, *zu groß zum
+Herunterladen*, *inhaltlich nicht Kursstoff* sind drei verschiedene Dinge, und nur das zweite
+und dritte sind endgültig.
