@@ -799,3 +799,40 @@ auf die Anatomie-Seite, kommt als Nächstes.
 **Offen aus den 44 bleibt damit nur noch der Block Pädiatrie/Geburtshilfe** (Impfkalender 2026 ·
 BZgA *Das Baby* · Die Motorische Entwicklung · Präsentation 3 Keimzellenbildung · Gruppe 2
 Erkrankungen im Wochenbett) sowie `Ergebnisse Gruppenvorstellung.pdf` (45 MB, reine Bilder).
+
+---
+
+## 20.09.2026, abends — die Skelettmuskulatur (Anatomie-Seite, 12 → 14 Quellen)
+
+Das oben angekündigte Paar ist eingearbeitet. Neuer Abschnitt `#skelett` auf
+`schulung-anatomie-organe/zusammenfassung.html`, zwischen `#muskel` und `#nerven`.
+
+**Was aus dem Foliensatz auf die Seite kam:** die Befestigung über Muskelsehnen am Knochen, der
+Verlauf über ein oder zwei Gelenke, die willkürliche Steuerung · **keine Schrittmacherzellen**,
+Impuls aus dem Gehirn über Rückenmark und periphere Nerven · die drei Funktionen (Bewegung,
+Haltefunktion, **Wärmeproduktion**) · spindelförmig gegen platt, Muskelbauch, mehrköpfige Muskeln,
+**Aponeurose** · Agonist und Antagonist am Ellbogengelenk (Abb. 7.10).
+
+**Die vier beantworteten Fragen:** 2 (Testosteron wirkt muskelaufbauend) · 3 (Maximum mit etwa
+30 Jahren, danach **Ersatz durch Fett**) · 9 (Zwerchfell senkt die Kuppel, äußere
+Zwischenrippenmuskeln heben den Brustkorb, Thoraxvolumen nimmt zu) · 10 (die vollständige Liste
+der Hilfseinatmer).
+
+**Die sieben, die offen bleiben und nicht ergänzt wurden:** 1 Prozentanteil am Körpergewicht ·
+4 zwei Möglichkeiten gegen den Muskelabbau · 5 **Sarkopenie** · 6 **Parese gegen Plegie** ·
+7 vier Muskeln für i. m.-Injektionen · 8 das Warum der korrekten Injektionsstelle im Gesäß ·
+11 **Beckenboden**. Unter diesen Fragen stehen nur Atlastafeln. Auf der Seite steht deshalb
+eine Tabelle, **was die Tafeln zeigen** — unter Frage 8 ist der *N. ischiadicus* eingezeichnet,
+unter Frage 11 *M. levator ani* und *M. sphincter ani externus* —, ausdrücklich mit dem Satz,
+dass die Tafel den Nerv zeigt, **das Warum aber nicht formuliert**.
+
+**Zwei Dinge, die als meine Zutat gekennzeichnet sind:** die Kette *Gehirn → Rückenmark →
+peripherer Nerv → Muskel* für eine *Begründen*-Aufgabe, und die Beobachtung, dass sichtbar
+mitarbeitende Hilfseinatmer **kein normales Atmen** mehr sind. Die Folie zählt nur auf.
+
+**Das Muster zum siebten Mal:** Die Dateien sind nicht durch ihren Inhalt durchgefallen, sondern
+durch ihren **Namen** — gesucht worden war nach *Muskelgewebe*, sie heißen *Skelettmuskulatur*.
+
+**Damit bleibt aus den 44 Titeln nur noch Pädiatrie/Geburtshilfe** (Impfkalender 2026 · BZgA
+*Das Baby* · Die Motorische Entwicklung · Präsentation 3 Keimzellenbildung · Gruppe 2
+Erkrankungen im Wochenbett) sowie `Ergebnisse Gruppenvorstellung.pdf` (45 MB, reine Bilder).
