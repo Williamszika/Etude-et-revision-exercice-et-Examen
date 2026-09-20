@@ -471,3 +471,47 @@ alle acht eingearbeitet. Zwei neue Abschnitte: `#symptome` und `#ableitend`.
 
 **Der Fall Frau Melinek bleibt offen**, ebenso der ganze Maßnahmenteil (Schritte 2–5 des
 Standards) und die Katheteranlage ab Schritt 16.
+
+### 20.09.2026, spät — drei Lücken, die ich selbst erfunden hatte
+
+Eine systematische Nachzählung (382 Drive-Titel gegen `schulungen.json`, alle
+`schulung-*/*.html` und die 151 Dokumente in `Wissen/`, mit Normalisierung der Umlaute und
+85-%-Teilwortabgleich) ergab **44 Titel ohne Spur**. Darunter waren **drei Dateien, die genau
+die Lücken füllen, die ich am selben Tag auf drei Seiten als „fehlt" ausgewiesen hatte.**
+
+| Was ich behauptet hatte | Die Datei, die es widerlegt | Warum sie durchfiel |
+|---|---|---|
+| Körperpflege-Seite: „Fall Herr Frings und *Übung Demonstrationsraum* liegen in ILIAS, nicht im Ordner." | `PF Uebung Demontrationsraum.pdf` | **Tippfehler im Dateinamen** — „Demontrationsraum" ohne *s*. Meine Titelsuche nach `Demonstrationsraum` fand sie nicht. |
+| Ernährungs-Seite: „Von den vier Instrumenten liegt **nur PEMU** vor." | `MNA PDF.pdf` | Der Name enthält **kein Themenwort** — drei Buchstaben und „PDF". Meine Suche lief über Themenwörter. |
+| Kontinenz-Seite: „der ganze Maßnahmenteil fehlt, darunter das Blasentraining." | `Textauszuege zum Arbeitsauftrag suprapubische Harndrainage.pdf` + `Arbeitsauftrag suprapubische Harndrainage.pdf` | Sie gehören zu **CE 05 / UE 10**, nicht zu CE 02 — ich hatte den Block nach Unterrichtseinheit abgegrenzt statt nach Inhalt. |
+
+**Das ist derselbe Fehler wie am Vormittag bei `Recherche Medikamente.pdf` und
+`Mit schelchten Gedanken umgehen.pdf`** — nach Name oder Ablageort geurteilt, statt die Datei
+zu öffnen. Er ist jetzt **vier Mal** an einem Tag passiert.
+
+**Die Konsequenz für künftige Durchgänge:** Eine Datei gilt erst dann als eingeordnet, wenn
+ihr **Inhalt** gelesen wurde. Die Suche nach Titelstichwörtern ist eine Vorsortierung, kein
+Befund — und bevor auf einer Seite „liegt nicht vor" geschrieben wird, muss der **ganze
+Ordner** gegen die Behauptung geprüft sein, nicht nur der Themenblock.
+
+**Alle drei Korrekturen stehen offen auf den Seiten selbst**, jeweils als eigener Kasten mit
+dem Datum — nicht stillschweigend ausgebessert.
+
+**Was die 44 sonst noch enthalten**, geordnet und nicht angefangen:
+
+- **Mein Praxiseinsatz / Einstiegsaufträge / Reflexion:** `Auftrag der aeltere Patient` +
+  `Musterloesung der aeltere Pat.` · `Auftrag Routine trotz Engpass` ·
+  `Begruessung und Verabschiedung Fragen Fallbeispiel mein Praxiseinsatz` ·
+  `Arbeitsauftrag - Schuelerversion` · `Ergebnisse Gruppenvorstellung` · `1-4 DS` · `5-6 DS`
+- **Einzelfälle ohne Zuordnung:** `Frau Weber` · `Frau Schneider ist gestuerzt AA` ·
+  `Fallbeispiel Frau Schubert` · `Fallweiterfuehrung Johanna` · `Fallvignetten`
+- **Anatomie:** `Anatomische Grundbegriffe` · `Bauchspeicheldruese` + `Die Bauchspeicheldruese` ·
+  `Fragen zum Thema Muskelgewebe des Koerpers`
+- **Notfall und Hygiene:** `20121015_ABCDE_Harbs` · `CRM - Leitsaetze.png` ·
+  `Grundlage Infektionsschutzgesetzt`
+- **Pädiatrie/Geburtshilfe:** `Uebersichtstabelle` (**die Infektionstabelle — und sie ist
+  tatsächlich leer, das war richtig**) · `Impfkalender 2026` · `BZgA-Broschuere Das Baby` ·
+  `Die Motorische Entwicklung` · `Praesentation 3 Keimzellenbildung …` ·
+  `Gruppe 2 Arbeitsauftrag Erkrankungen im Wochenbett`
+- **Bleiben draußen:** acht Hausarbeiten von Mitschülerinnen, die beiden `IMG-`-Fotos,
+  `QR Code Google Doks`, `IMG_4045.Gruppe 3.jpeg`.
