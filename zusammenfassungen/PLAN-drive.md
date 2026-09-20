@@ -283,3 +283,34 @@ Sie muss dazu nichts mehr sagen.
 **Zwei Dateien sind Scans ohne Textebene** und stehen so auf der Seite:
 *Paul Kind nach Fahrradsturz.pdf* (nur die Quellenangabe auslesbar) und
 *Teufelskreis aus Angst und Dyspnoe.pdf* (nur der Titel).
+
+### Psychiatrie, zweiter Durchgang am 20.09.2026 — drei Dateien, die falsch eingeschätzt waren
+
+Die Seite *Psychiatrische Pflege* geht von 17 auf **20 Quellen**. Drei Dateien standen in der
+Liste „noch offen“ und sind es in Wirklichkeit nie gewesen:
+
+| Datei | Was angenommen wurde | Was drinsteht |
+|---|---|---|
+| `Recherche Medikamente.pdf` | ein leeres Aufgabenblatt, „Ergebnisse liegen nicht vor“ | **das Lehrbuchkapitel 20.14 selbst** — alle fünf Psychopharmaka-Gruppen mit Wirkmechanismus, Anwendung, Nebenwirkungen |
+| `POK PD Psychiatrie.pdf` | unklar | **Handbuch der Pflegediagnosen der LWL-Kliniken**, POK 1–5 im PES-System |
+| `Basisdaten dgppn.pdf` | unklar | **DGPPN-Basisdaten April 2024** — Prävalenz, Versorgung, Kosten, Unterbringung |
+
+**Die Lehre daraus:** Eine Datei nach ihrem Namen einzuordnen reicht nicht. *„Recherche
+Medikamente“* klang nach Arbeitsauftrag und war die Antwort darauf — und die Seite hat deshalb
+zwei Tage lang behauptet, ein Teil des Stoffs sei nicht verfügbar.
+
+**Eine Frage an die Dozentin hat sich damit erledigt:** Die Folie ordnet **Amitriptylin** den
+**MAO-Hemmern** zu; das Kapitel ordnet es eindeutig den **trizyklischen** Antidepressiva zu und
+schreibt **Saroten**. Die Abweichung bleibt auf der Seite stehen — aber sie weiß jetzt, was sie
+in der Klausur schreibt.
+
+**Eine Datei ist falsch einsortiert gewesen:** `Pflegerische Interaktion.pdf` trägt **CE 03 UE 2,
+Sarah Koster** und behandelt **Kommunikation** (verbal/nonverbal/paraverbal, Kongruenz, Rogers'
+drei Grundhaltungen), nicht Psychiatrie. Sie gehört zu CE 03 und steht jetzt nicht mehr in der
+Offen-Liste der Psychiatrieseite.
+
+**Was in der Psychiatrie wirklich offen bleibt:** `Artikel Nervenarzt.pdf` ·
+`Mit schlechten Gedanken umgehen.pdf` · `Pflege in der Psychiatrie-Pflege konkret.pdf` ·
+`Peplau Arbeitsauftrag.pdf` · `Geschichte der Psychiatrie Jannan-Sticker.pdf` (Scan ohne
+Textebene) · das Kreuzworträtsel-**Gitter** (Bild) · und die **Antidementiva**, die im
+Arbeitsauftrag stehen, aber in keinem vorliegenden Kapitel.
