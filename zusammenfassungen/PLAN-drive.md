@@ -70,7 +70,11 @@ Musterlösungen, Skripte, Broschüren, dazu Hausarbeiten von Mitschülerinnen.
 ## Stand am 19.09.2026 — alle fünfzehn Blöcke fertig
 
 Der ursprüngliche Plan ist **vollständig abgearbeitet**, und der am 19.09. neu hinzugekommene
-**Block 15 (Beobachtung)** ebenfalls. Damit ist der ganze Drive-Ordner durchgearbeitet.
+**Block 15 (Beobachtung)** ebenfalls.
+
+> **Am 20.09.2026 nachgezählt — der Satz „damit ist der ganze Drive-Ordner durchgearbeitet"
+> stand hier und war falsch.** Er ist gestrichen. Was stattdessen stimmt, steht im Abschnitt
+> „Die Prüfung vom 20.09.2026" ganz unten.
 
 **Was durchgehend gleich gehandhabt wurde:**
 
@@ -120,3 +124,96 @@ die vorhandene Schulung **ergänzt** statt eine zweite anzulegen.
   der die Folie bisher nur *„GCS erheben“* sagte.
 - Einige Dateien sind **Fotos von Tafelbildern** (`IMG_…jpg`, `Folie 15.pdf`). Sie werden
   gelesen, aber wo die Aufnahme unleserlich ist, wird das vermerkt.
+
+---
+
+## Die Prüfung vom 20.09.2026 — der Ordner ist **nicht** durchgearbeitet
+
+Am 20.09.2026 wurde der Drive-Ordner `13gADJgaO76ggn4v0ofl9PC1QaBm4oRL8` vollständig
+durchgeblättert (fünf Seiten, bis kein `nextPageToken` mehr kam) und Datei für Datei gegen drei
+Dinge gehalten: die Quellenlisten in `schulungen/schulungen.json`, die Texte der
+Zusammenfassungsseiten und die 151 Dokumente in `Wissen/`. **Der Satz „damit ist der ganze
+Drive-Ordner durchgearbeitet" hat dieser Prüfung nicht standgehalten.**
+
+**Die Zahlen, wie sie sind:**
+
+| | |
+|---|---|
+| Dateien im Ordner (verschiedene Titel) | **382** — nicht „rund 478"; diese Zahl war zu hoch |
+| **Hausarbeiten von Mitschülerinnen** (Name im Dateinamen) | **20** — nach der Hausarbeiten-Regel bewusst draußen |
+| irgendwo erfasst — Quellenliste, Seitentext oder `Wissen/` | **196** |
+| **ohne jede Spur im Repo** | **166** |
+
+**Ein Zwischenschritt, der hier festgehalten gehört, weil er das Ergebnis umgeworfen hat:**
+Der erste Durchlauf verglich nur die Drive-Titel mit den Quellenlisten und den Seiten und kam
+auf 243 fehlende Dateien. Das war **falsch** — er hatte `Wissen/` nicht mitgeprüft, wo die
+Dateien unter umbenannten Namen liegen (`Anatomie, Physiologie Haut.pdf` →
+`Wissen/093-anatomie-physiologie-haut.md`). 58 angeblich fehlende Dateien waren dort längst
+verarbeitet. **Der erste Befund wurde nicht veröffentlicht, sondern korrigiert.**
+
+### Wo die Lücken wirklich sind
+
+„Erfasst" heißt: die Datei ist in einer Quellenliste genannt, steht im Text einer Seite **oder**
+ist als `Wissen/`-Dokument verarbeitet. Das ist die milde Messlatte — sie sagt nicht, dass der
+Inhalt auf einer Zusammenfassungsseite steht.
+
+| Themenhaufen | Dateien | erfasst | Hausarbeiten | **offen** |
+|---|---|---|---|---|
+| **Psychiatrie** | 43 | 9 | 13 | **21** |
+| **Schwangerschaft, Geburt, Wochenbett, Neugeborenes** | 26 | 10 | 0 | **16** |
+| **Kontinenz · Ausscheidung · Ernährung** | 39 | 25 | 0 | **14** |
+| **Pädiatrie** | 16 | 6 | 0 | **10** |
+| **Recht** | 16 | 5 | 1 | **10** |
+| **Bewegung · Sturz · Bettlägerigkeit** | 24 | 16 | 0 | **8** |
+| **Notfall · Reanimation · CRM** | 16 | 8 | 0 | **8** |
+| **Körperpflege · Mund · Haut** | 19 | 15 | 0 | **4** |
+| übriges (Kommunikation, Kultur, Behinderung, Gesundheitssystem, Reha, Organe …) | 192 | 107 | 6 | **79** |
+
+**Die drei größten Einzellücken, konkret benannt:**
+
+1. **Psychiatrie** — 21 Dozentendateien stehen nirgends: Peplau-Pflegemodell und
+   -Arbeitsauftrag samt Übungsfragen, psychopathologischer Befund (Erhebungsbogen **und**
+   Übersicht), Milieutherapie, Psychoedukation, geriatrische Depressionsskala, Fallbeispiel
+   Depression, Situation Depressionen, POK PD, Basisdaten DGPPN, Artikel Nervenarzt, Artikel
+   Zwangsstörung (Kinder), typische Zwänge, Kreuzworträtsel samt Fragenblatt, Übungsfragen zu
+   den vier Doppelstunden, Geschichte der Psychiatrie (Jannan-Sticker), beide Arbeitsaufträge
+   dazu, *Mit schlechten Gedanken umgehen*, *Pflege in der Psychiatrie — Pflege konkret*,
+   *Pflegerische Interaktion*. Die Seite nennt **9** Quellen. Das ist der größte Block im
+   Ordner und der **laufende Kurs**.
+2. **Schwangerschaft, Geburt, Wochenbett** — 16 offen, darunter die **fünf nummerierten
+   Präsentationen** (weibliche Geschlechtsorgane · Hormonsystem und Menstruationszyklus ·
+   Keimzellenbildung und Pränataldiagnostik · Befruchtung und Embryonalentwicklung ·
+   Schwangerschaft/Geburt/Wochenbett), dazu Sectio mit Arbeitsauftrag, Stillen,
+   Wöchnerinnenpflege CE 10 UE 01, pathologisches Wochenbett, Fallbeispiel Nick
+   (Neugeborenenikterus), Ernährung im ersten Lebenshalbjahr, BZgA-Broschüre *Das Baby*.
+3. **Pädiatrie** — 10 offen: die Fallbeispiele (Clara ×2, Lea, Sven, Stephan), prä- und
+   postoperative Pflege bei Kindern (Pflege Heute Pädiatrie Kap. 2.8), Mia und das RS-Virus,
+   Asthma-Präsentation samt Medikamentenblatt, Impfkalender 2026, Durchfallerkrankungen.
+
+### Zwei harte Fehler, die dabei aufgefallen sind
+
+1. **`Fallbeispiel Frau Schwarz.pdf` liegt im Drive-Ordner.** Die Beobachtungsseite sagt, es
+   liege „in ILIAS" — das steht so auf dem Foliensatz der Dozentin und war korrekt
+   wiedergegeben, hat aber zu dem Schluss geführt, der Fall sei nicht bearbeitbar. Er ist es:
+   die Datei ist da (Drive-ID `1WQRIp30xEl5xgtEhIm0orCbFF6V6J7Xe`, 313 kB, 18.09.2026).
+   **Auf der Seite und in `schulungen.json` korrigiert.**
+2. **`Gemini_Generated_Image_nhr2jjnhr2jjnhr2.jpg` wurde nie geöffnet.** Es ist die **einzige**
+   Datei vom **19.09.2026** (05:48); alle anderen 381 sind vom 18.09. Sie ist also **nach** dem
+   Durchgang dazugekommen. Der Name sagt, dass es ein mit Gemini erzeugtes Bild ist — was
+   darauf zu sehen ist und wozu es gehört, ist unbekannt. **Nachfragen, bevor damit gearbeitet
+   wird**, denn ein KI-erzeugtes Bild ist keine Unterrichtsquelle. Ebenfalls nie geöffnet:
+   `Praesentation Dm Typ1.pdf` (Diabetes mellitus Typ 1) — sie passt in keinen der 15 Blöcke.
+
+### Was daraus folgt
+
+Die fünfzehn Blöcke sind fertig. **Der Ordner ist es nicht.** Vorschlag für die Reihenfolge —
+**nichts davon wird ohne ihre Entscheidung angefangen**, weil es durchweg bedeutet, bereits
+veröffentlichte Seiten umzubauen:
+
+1. **Psychiatrie** — größter Rückstand, laufender Kurs.
+2. **Schwangerschaft/Geburt** — die fünf Präsentationen sind der Kern des Blocks und fehlen.
+3. **Pädiatrie** — die Fallbeispiele sind genau das AFB-II/III-Training, das ihr Notenspiegel verlangt.
+4. **Recht** — die **Lösungen** zu beiden Übungsfallsätzen liegen vor und sind nicht ausgewertet.
+5. **Kontinenz/Ernährung** und **Bewegung/Sturz** — in `Wissen/` verarbeitet, aber ohne eigene
+   Zusammenfassungsseite. Hier wäre zu klären, ob sie eine solche Seite überhaupt will oder ob
+   der Lern-Hub reicht.
