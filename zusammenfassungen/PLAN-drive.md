@@ -515,3 +515,46 @@ dem Datum — nicht stillschweigend ausgebessert.
   `Gruppe 2 Arbeitsauftrag Erkrankungen im Wochenbett`
 - **Bleiben draußen:** acht Hausarbeiten von Mitschülerinnen, die beiden `IMG-`-Fotos,
   `QR Code Google Doks`, `IMG_4045.Gruppe 3.jpeg`.
+
+### 20.09.2026, nachts — CE 03 / UE 02: das dialogische Modell mit Musterlösung
+
+Aus den 44 Titeln ohne Spur ist der **Block „verantwortliches Pflegehandeln"** herausgelöst und
+auf die Seite *Werde ich so verstanden, wie ich es meine?* gesetzt worden (CE 03 / UE 2 — dieselbe
+Unterrichtseinheit). Vier Dateien, **11 → 14 Quellen**.
+
+**Der Fund:** `Musterloesung der aeltere Pat.pdf` ist eine **vollständig ausgefüllte
+Musterlösung ihrer Dozentin** — alle sieben Phasen des dialogischen Modells am Fall Herrn
+Möller. Das ist nach der Haftungsklausur das **zweite ausgearbeitete Schema**, das in ihren
+Unterlagen liegt, und es adressiert genau die Lücke des Notenspiegels: praktisch 1,89,
+schriftlich 3,64, weil das Schema fehlt und nicht das Wissen.
+
+**Was die Seite daraus macht** (und was davon meines ist): die Gegenüberstellung mit dem
+Pflegeprozess nach Fiechter/Meier, die Beobachtung, dass Phase 5 auch die schlechten Optionen
+sammelt, dass Phase 6 ihre eigene Sicherung enthält, dass die Lösung den **dritten Weg** wählt
+und dass Phase 7 zu Recht nur aus Fragen besteht. Die vier Punkte sind als meine Arbeit
+gekennzeichnet.
+
+**Benannt statt korrigiert:** Phase 1 der Musterlösung schreibt „Spannungsfeld Autonomie vs.
+Würde", Phase 2 stellt Autonomie und Würde gemeinsam gegen Fürsorge und Nicht-Schaden. Die
+beiden Sätze passen nicht ganz zusammen; geändert wurde nichts.
+
+**Der zweite Fall bleibt ungelöst** — `Auftrag Routine trotz Engpass.pdf` ist im Original eine
+leere Vorlage. Die Seite gibt zwei Richtungshinweise und keine Lösung.
+
+**Und ein drittes Blatt fand seinen Platz:** `Arbeitsauftrag - Schuelerversion.pdf` (vier
+Situationen zu den quantitativen Bewusstseinsstörungen) gehört auf die Beobachtungsseite,
+direkt unter die vier Stufen. **Die Lücken bleiben leer** — die Antworten stehen zwei
+Absätze darüber, das ist die Aufgabe.
+
+**Neu benannte Lücke:** Die drei Fallbeispiele **Maria, Simon und Johanna** aus „mein
+Praxiseinsatz" liegen nicht im Ordner. Ohne sie sind Frage 1 und 2 des Begrüßungsblatts nicht
+bearbeitbar. Das trifft sich mit der schon bekannten Lücke in der Tabelle *persönliche
+Beziehung vs. Rollenbeziehung*, wo die Zeile **Begrüßung** unleserlich ist — **dieselbe Frage,
+an zwei Stellen offen.**
+
+**Noch nicht zugeordnet** aus derselben Fundliste: `1-4 DS.pdf` (CE 04 / UE 01, die fünf Säulen
+der Sozialversicherung, SGB IX/BTHG — gehört zur Gesundheitssystem-Seite), `5-6 DS.pdf`
+(Arbeitsblatt vom 06.10.25: Wegeunfall, Minijob, Teilzeitausbildung, Reise-Auszeit — Fall
+Lina K., unbearbeitet), `Ergebnisse Gruppenvorstellung.pdf` (**45 MB, 14 Seiten reine Bilder,
+keine Textebene**), sowie die Einzelfälle Frau Weber, Frau Schneider, Frau Schubert, Johanna
+und die Fallvignetten.
