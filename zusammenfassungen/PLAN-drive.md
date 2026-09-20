@@ -444,3 +444,30 @@ war bereits abgeschrieben. Das ist auf der Seite offen vermerkt.
 **Damit sind alle drei neuen Seiten angelegt**, die im Plan standen: Kontinenz, Ernährung,
 Körperpflege/Bewegung. Offen bleiben die **Erweiterungen bestehender Seiten** und die Blöcke
 Praxiseinsatz/Reflexion (15 Dateien) sowie das übrige Querbeet.
+
+### 20.09.2026 — Kontinenzblock abgeschlossen, die letzten vier Dateien
+
+Die Seite *Kontinenz fördern* stand seit ihrem Bau mit **vier von acht** Dateien da. Jetzt sind
+alle acht eingearbeitet. Zwei neue Abschnitte: `#symptome` und `#ableitend`.
+
+| Datei | Was wirklich drinstand |
+|---|---|
+| `1Skript Kontinenzanamnese.pdf` | **Deckt sich zu rund 95 % mit dem ersten Foliensatz**, der schon Hauptquelle war. Eigenständig sind nur drei Dinge: der volle Symptomkatalog (vier Gruppen, 17 Miktionsbeschwerden), der Satz über Kompensationsstrategien **bei bestehender Kontinenz**, und die Feststellung, dass die Expertengruppe **kein Einschätzungsinstrument empfiehlt**. |
+| `AB SV Risikofaktoren fuer Inkontinenz.pdf` | Dieselben zwanzig Zeilen wie die Tabelle S. 29–32, aber mit einer **vierten Spalte „Begründung/Erläuterung“, die auf allen fünf Seiten leer ist**. Mit `pdftotext -layout` verifiziert. **Das ist die Aufgabe, nicht ein Scanfehler.** |
+| `Kontinenzprofile 2024.pdf` | **Bild ohne Textebene.** Auslesbar ist nur die Bildunterschrift. Inhaltlich nichts beigetragen — die sechs Profile standen längst aus dem zweiten Foliensatz auf der Seite. |
+| `Artikel-Bedeutung ableitende Inkontinenzversorgung incl. Fragen.pdf` | **Die eigentliche Ausbeute.** BVMed-Artikel mit Arbeitsauftrag (3 Aufgaben, Operatoren *Erklären* und *Begründen*). |
+
+**Zwei Dinge, die dabei ehrlich benannt werden mussten:**
+
+1. **Der BVMed-Artikel ist rund zwanzig Jahre alt und von einem Industrieverband.** CDC 1997,
+   Bundesgesundheitsblatt 1999, Daten von 2000 bis 2003. Seine Hygieneargumente stützen sich auf
+   RKI und CDC, seine wirtschaftlichen Abschnitte sind Interessenvertretung. Beides steht als
+   Warnung auf der Seite, zusammen mit dem Hinweis, dass seine Rechtslage zur Kostenübernahme
+   **nicht als geltendes Recht** benutzt werden darf.
+2. **Zwei ihrer eigenen Dateien widersprechen sich bei der Prävalenz.** Artikel: 7–21 % der
+   Frauen, 2–3 % der Männer. Foliensatz zum ES 2024: 10–58 % bzw. 3–11 %. Das ist kein Fehler,
+   sondern zwanzig Jahre Abstand — aber für die Klausur gelten die neuen Zahlen. Der Widerspruch
+   steht als eigener Kasten da, statt eine der beiden Zahlen wegzulassen.
+
+**Der Fall Frau Melinek bleibt offen**, ebenso der ganze Maßnahmenteil (Schritte 2–5 des
+Standards) und die Katheteranlage ab Schritt 16.
