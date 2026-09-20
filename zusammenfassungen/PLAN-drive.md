@@ -882,3 +882,38 @@ Baby.pdf` und der Auszug `Die Motorische Entwicklung`. Die Textebene enthält nu
 
 **Die 44 Titel des Drive-Ordners sind damit abgearbeitet.** Offen bleiben nur noch die beiden
 Scans oben und `Ergebnisse Gruppenvorstellung.pdf` (45 MB, reine Bilder).
+
+---
+
+## 20.09.2026, nachts — die zwei Scans, und eine Lehre daraus
+
+**„Keine Textebene" heißt nicht „nicht lesbar".** Der Auszug
+`Die Motorische Entwicklung - Auszug aus der BZgA-Broschuere Das Baby.doc.pdf` stand auf der
+Geburtshilfe-Seite als unauswertbar — die Textebene enthielt nur die Quellenzeile. Über
+`pdftoppm -r 150 -png` und das Lesen der fünf Seitenbilder ist er **vollständig** zu lesen.
+Das ist derselbe Fehlertyp wie die übersehenen Dateinamen, nur eine Stufe später: **nicht die
+Datei war leer, sondern der Weg war falsch.**
+
+**Das Dokument ist von `L. Grove`** (PDF-Autor, 22.07.2024) — also ein von der Dozentin
+zusammengestellter Kursauszug, nicht irgendein Elternheft. Es steht jetzt auf der Seite
+**Das kranke Kind** (19 → 20 Quellen), neuer Abschnitt `#motorik`, weil es zum **gesunden
+Säugling** gehört und nicht ins Wochenbett.
+
+**Auf der Seite steht ausdrücklich:** Es ist trotzdem **Elternliteratur** einer Behörde (BZgA),
+kein Lehrbuch — die Altersangaben sind in einer Klausur mit ihrer Herkunft zu nennen.
+
+**Der inhaltliche Fund:** die sechs Etappen der Körpermotorik · der Satz *„Bringen Sie Ihr Baby
+nicht in Positionen wie Sitzen oder Stehen, die es nicht selbstständig erreichen kann"* — derselbe
+Gedanke wie das *Heraussetzen* bei alten Menschen, als meine Verbindung gekennzeichnet · zwei
+Geräte mit je **zwei** Gründen (Gehfrei, Babywippe) · und die Kette **90–95 %**: Fast alle
+Bewegungsauffälligkeiten verschwinden von selbst, aber die übrigen sind von ihnen **anfangs nicht
+zu unterscheiden** — *deshalb* wird trotzdem kontrolliert.
+
+**Noch eine Korrektur an meiner eigenen Liste:** Der **Impfkalender 2026** stand bei mir als
+offen. Die Pädiatrie-Seite wusste es besser — dort steht seit Langem „liegt im Ordner, hat aber
+bereits eine eigene Schulung". **Die Seite hatte recht, meine Liste nicht.**
+
+**Nicht ausgewertet bleibt** die vollständige `BZgA-Broschuere Das Baby.pdf` (8 MB): Sie ist ein
+**Elternratgeber**, und die Dozentin hat daraus selbst das eine Kapitel gezogen, das sie für den
+Kurs wollte. Das ist ein inhaltlicher Grund, kein technischer — wenn sie mehr daraus will, wird
+zuerst die Seitenzahl genannt.
