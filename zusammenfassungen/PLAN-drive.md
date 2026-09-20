@@ -217,3 +217,69 @@ veröffentlichte Seiten umzubauen:
 5. **Kontinenz/Ernährung** und **Bewegung/Sturz** — in `Wissen/` verarbeitet, aber ohne eigene
    Zusammenfassungsseite. Hier wäre zu klären, ob sie eine solche Seite überhaupt will oder ob
    der Lern-Hub reicht.
+
+---
+
+## Nachzählung vom 20.09.2026, abends — nach der Pädiatrie-Erweiterung
+
+**Methode vereinheitlicht.** Die Zahlen vom Vormittag (196 erfasst / 166 offen, später
+225 / 137) stammen aus einem lockereren Abgleich als der hier. **Beide Stände sind deshalb
+noch einmal mit demselben strengen Verfahren gerechnet** — Drive-Titel gegen (a) die
+`datei`-Felder in `schulungen/schulungen.json`, (b) den Text aller
+`schulung-*/zusammenfassung.html` und (c) die Dateinamen und Köpfe aller 151 Dokumente in
+`Wissen/`. Nur so sind die zwei Zahlen vergleichbar.
+
+| | Dateien |
+|---|---|
+| im Drive-Ordner gesamt | **382** |
+| vor der Pädiatrie-Erweiterung ohne Spur | **172** |
+| danach ohne Spur | **161** |
+| heute dazugekommen | **11** |
+| davon Hausarbeiten von Mitschülerinnen (bleiben draußen, keine Fachquelle) | **22** |
+| **echte offene Fachdateien** | **139** |
+
+**Die 161 nach Themen:**
+
+| Block | offen | Hat schon eine Seite? |
+|---|---|---|
+| Psychiatrie | 22 | ja — *Psychiatrische Pflege*, *Zwangsstörungen* |
+| **Kontinenz und Ernährung** | **19** | **nein** |
+| Praxiseinsatz, Reflexion, Einstiegsaufträge | 15 | teils (CE 03) |
+| Recht und Strafrecht | 9 | ja — *Recht in der Pflege* |
+| **Bewegung, Sturz, Haut, Mundpflege** | **9** (+ ein Teil des Rests) | **nein** |
+| **Thrombose und Injektionen** | **9** | **nein** (nur `Wissen/109-thrombose.md`) |
+| Wochenbett und Neugeborenes | 9 | ja — *Schwangerschaft, Geburt, Wochenbett* |
+| Anatomie und Organe | 7 | ja — *Die Organe und das Nervensystem* |
+| Notfall und Reanimation | 6 | ja — zwei Seiten |
+| Pädiatrie | 2 | ja — *Das kranke Kind* |
+| übriges, quer durch alle Fächer | 54 | gemischt |
+
+**Daraus folgt für die Frage „wie viele Zusammenfassungen noch?“:** Es sind **drei neue
+Seiten**, die es noch gar nicht gibt — Kontinenz/Ernährung, Bewegung/Sturz/Haut/Mund,
+Thrombose/Injektion —, und **acht bestehende Seiten**, die erweitert werden. Die Zahl der
+offenen **Dateien** (139) ist nicht die Zahl der offenen **Seiten**.
+
+**Die drei neuen Seiten werden erst angelegt, wenn sie es sagt** — das ist ihre Entscheidung,
+nicht meine.
+
+### Heute erledigt — Pädiatrie, von 6 auf 19 Quellen
+
+Neu: das leere Durchfall-Arbeitsblatt als Selbsttest · Diabetes mellitus Typ 1 (CE 10 UE 5) ·
+Asthma bronchiale (CE 10 UE 5) · die sechs Fallbeispiele mit ihren echten Aufgaben ·
+Säuglingsernährung im ersten Lebenshalbjahr.
+
+**Zwei Einträge in „Was fehlt“ waren falsch und sind korrigiert:**
+
+1. *„Fünf Fallbeispiele ohne Bearbeitung — das sind Aufgabenstellungen, keine Inhalte.“*
+   Zu kurz gedacht. Die Aufgabenstellung zeigt, **welche Operatoren die Dozentin benutzt**.
+2. Der Fall **„Sven kann kaum atmen“** stand in der Liste — **eine Datei dieses Namens gibt es
+   im Drive-Ordner nicht** (gegen alle 382 Titel geprüft). An seiner Stelle steht
+   *Stephan will das Bett nicht mehr verlassen*.
+
+**Und eine offene Frage an sie hat sich von selbst beantwortet:** *Praesentation Dm Typ1.pdf*
+trägt auf Folie 2 „CE 10, UE 5“ und auf Folie 3 „Fallbeispiel — Clara, die Wasserratte“.
+Sie muss dazu nichts mehr sagen.
+
+**Zwei Dateien sind Scans ohne Textebene** und stehen so auf der Seite:
+*Paul Kind nach Fahrradsturz.pdf* (nur die Quellenangabe auslesbar) und
+*Teufelskreis aus Angst und Dyspnoe.pdf* (nur der Titel).
