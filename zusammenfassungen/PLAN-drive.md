@@ -333,3 +333,30 @@ gelandet waren. **Vor jedem „liegt nicht vor“ die Datei wirklich öffnen.**
 Scan nicht sicher lesbar. Sie steht dort als offene Stelle, nicht geraten. Und der
 Arbeitsauftrag zur nonverbalen Kommunikation verweist auf **Pflege Heute 39.1.2**, das nicht
 vorliegt: Die fünf Fragen stehen auf der Seite, die Antworten nicht.
+
+### Psychiatrie abgeschlossen — 22 Quellen, 20.09.2026 abends
+
+Die letzte offene Datei mit Textebene war `Pflege in der Psychiatrie-Pflege konkret.pdf`. Sie ist
+das **vollständige Lehrbuchkapitel 14.5 „Besonderheiten der Pflege in der Psychiatrie"**,
+S. 260–274 (rund 79.000 Zeichen) — Arbeitsfelder, Bezugspflege, Nähe und Distanz mit dem
+Abstinenzgebot, das multiprofessionelle Team nach PsychPV, die Handlungsfelder, Beobachtung mit
+den fünf Verzerrern, Aufnahme und Erstkontakt, Aggression, und der ganze Teil zu
+Zwangsmaßnahmen.
+
+**Damit ist der Psychiatrie-Block des Drive-Ordners durchgearbeitet.** Offen bleiben dort nur
+noch: `Geschichte der Psychiatrie Jannan-Sticker.pdf` (Scan ohne Textebene), das
+Kreuzworträtsel-**Gitter** (Bild) und die **Hausarbeiten von Mitschülerinnen**, die keine
+Fachquelle sind.
+
+**Die stärkste Verbindung, die dabei entstanden ist:** Das Kapitel schreibt, dass aus einem
+rechtfertigenden Notstand eine **Freiheitsberaubung nach § 239 StGB** wird, wenn die Fixierung
+bestehen bleibt, obwohl die Gefahr vorbei ist. Das ist wörtlich ihr **Klausurfall 3** auf der
+Recht-Seite (Sabine, Bauchgurt) — dort prüft sie § 239, hier steht die Fortsetzung: nicht nur
+das Anlegen, auch das **Nicht-Lösen** kann strafbar sein. Der Strafrahmen („bis zu zehn Jahren")
+steht auf der Seite **mit dem ausdrücklichen Hinweis**, dass er aus diesem Lehrbuch stammt und
+nicht von ihrer Recht-Dozentin, deren Blätter keinen Strafrahmen nennen.
+
+**Eine Ungereimtheit ist vermerkt, nicht aufgelöst:** Derselbe Buchtitel erscheint in zwei
+Dateien mit **unterschiedlichen Verfasserlisten** — im Kapitel 14.5 als *Gold, Schlegel, Stein,
+Elsevier 2018*, im Fall Frau Braun als *Calia C. und Gold K. (2018), Urban & Fischer*. Beide
+nennen K. Gold, Titel und Jahr stimmen überein. Das steht so auf der Seite.
