@@ -314,3 +314,22 @@ Offen-Liste der Psychiatrieseite.
 `Peplau Arbeitsauftrag.pdf` · `Geschichte der Psychiatrie Jannan-Sticker.pdf` (Scan ohne
 Textebene) · das Kreuzworträtsel-**Gitter** (Bild) · und die **Antidementiva**, die im
 Arbeitsauftrag stehen, aber in keinem vorliegenden Kapitel.
+
+### Drei Dateien, die auf der falschen Seite lagen — 20.09.2026
+
+| Datei | War gelistet unter | Gehört zu | Ergebnis |
+|---|---|---|---|
+| `Mit schelchten Gedanken umgehen.pdf` | „noch offen“ (Psychiatrie) | **Zwangsstörungen** | Der zweite Text des Arbeitsauftrags. Die Seite behauptete, er liege nicht vor, und trug an drei Stellen eine Rekonstruktion. **Vertauschte Buchstaben im Dateinamen** — deshalb übersehen. Jetzt eigener Abschnitt, Ausarbeitung neu geschrieben, 5 → 6 Quellen. |
+| `Artikel Nervenarzt.pdf` | „noch offen“ (Psychiatrie) | **Zwangsstörungen** | War **schon eingearbeitet** (Voderholzer, Der Nervenarzt 2022) — nur in der Offen-Liste vergessen. Nichts zu tun. |
+| `Pflegerische Interaktion.pdf` | „noch offen“ (Psychiatrie) | **Kommunikation** | Foliensatz **CE 03 UE 2, Sarah Koster**. Neuer Abschnitt, 10 → 11 Quellen. |
+
+**Die Lehre, zum zweiten Mal an einem Tag:** Eine Datei nach ihrem Namen oder ihrem Ablageort
+einzuordnen reicht nicht. Erst *„Recherche Medikamente“* (klang nach Aufgabenblatt, war die
+Antwort), dann drei Dateien, die nur deshalb als offen galten, weil sie im Psychiatrie-Block
+gelandet waren. **Vor jedem „liegt nicht vor“ die Datei wirklich öffnen.**
+
+**Was beim Öffnen sonst noch auffiel:** Auf der Kommunikationsseite bleibt eine Tabellenzeile
+(*Begrüßung*, persönliche Beziehung gegen Rollenbeziehung) **leer** — die Spaltenzuordnung ist im
+Scan nicht sicher lesbar. Sie steht dort als offene Stelle, nicht geraten. Und der
+Arbeitsauftrag zur nonverbalen Kommunikation verweist auf **Pflege Heute 39.1.2**, das nicht
+vorliegt: Die fünf Fragen stehen auf der Seite, die Antworten nicht.
