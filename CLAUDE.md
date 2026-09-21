@@ -456,11 +456,17 @@ An allen anderen Tagen wird eine Lektion geschrieben — jeden Tag.
 ### Ablauf
 
 0. **Zuerst retten, dann arbeiten.** Das ist der Fehler, der bisher am häufigsten passiert ist
-   (31.08., 01.09., 02.–04.09., 05.09., 07.09., **09.09., 10.09.**): Die Routine veröffentlicht
-   eine Lektion, aber sie committet sie nie — beim nächsten Build ist sie weg. Also **vor allem anderen**:
+   (31.08., 01.09., 02.–04.09., 05.09., 07.09., 09.09., 10.09., **21.09.**): Die Routine
+   veröffentlicht eine Lektion, aber sie committet sie nie — beim nächsten Build ist sie weg.
+   Also **vor allem anderen**:
    `Artifact action:"read"` auf die Deutsch-täglich-URL, `const LEKTIONEN` aus der gespeicherten
    Datei ziehen und **jede** Lektion, deren Datum nicht in `lektionen/` liegt, dort als JSON
    anlegen. Erst danach weitermachen.
+
+   **Und wenn das heutige Datum darunter ist, ist der Tag damit erledigt:** dann wird
+   **keine neue Lektion geschrieben**, sondern nur gebaut, committet, veröffentlicht und mit
+   `pruefen.py` nachgewiesen. Wird dieser Schritt übersprungen, entstehen **zwei Lektionen für
+   denselben Tag** — genau das ist am 21.09.2026 passiert.
 1. `ls deutsch-taeglich/lektionen/`, die **neueste** Lektion lesen.
    Ihr Block `zyklus` sagt, wo wir stehen: `{woche, gesamt: 16, thema, themaNr, tag, fokus,
    start, lektion, durchgang}`.
@@ -508,6 +514,44 @@ An allen anderen Tagen wird eine Lektion geschrieben — jeden Tag.
    und derselben `url`. Danach **`deutsch-taeglich/wortschatz.html`** mit ihrer eigenen `url`
    mitveröffentlichen — sie ist beim Build neu entstanden.
 7. `git status` muss sauber sein. Ist er es nicht, war Schritt 5 unvollständig — nachholen.
+8. **Nachweisen, nicht annehmen.** Nach dem Publish noch einmal `Artifact action:"read"` auf
+   die Deutsch-täglich-URL, dann:
+
+   ```bash
+   python3 deutsch-taeglich/pruefen.py <die gespeicherte artifact-…html>
+   ```
+
+   Das Skript prüft neun Dinge und endet mit Exitcode 0 nur, wenn alle neun stimmen: die Datei
+   liegt im Arbeitsbaum · git verfolgt sie · sie ist committet · `origin/<branch>` steht auf
+   demselben Commit · der Inhalt im Commit ist derselbe wie auf der Platte · das HTML enthält
+   `LEKTIONEN` · das heutige Datum steht darin · und Seite und Repo sind **Wort für Wort
+   identisch**. Weicht etwas ab, nennt es den Block. **Erst bei Exitcode 0 gilt der Tag als
+   fertig** — vorher wird ihr nicht gemeldet, die Lektion sei da.
+
+   An einem Übungstag sagt das Skript selbst, dass es nichts nachzuweisen gibt.
+
+### Schritt 0 und Schritt 8 gehören zusammen — ihre Anweisung vom 21.09.2026
+
+> *„il faut toujours la publier dans le dépôt et verifier si elle as été publier"*
+
+**Am 21.09.2026 ist der Fehler zum neunten Mal passiert** (nach dem 31.08., 01.09., 02.–04.09.,
+05.09., 07.09., 09.09., 10.09.): Die 5:30-Routine hat die Lektion 6 veröffentlicht und nie
+committet. Diesmal kam ein zweiter Schaden dazu: Weil **Schritt 0 übersprungen** wurde, war
+nicht aufgefallen, dass es die Lektion schon gab — und es entstand **eine zweite Lektion für
+denselben Tag**. Aufgelöst wurde es zugunsten der veröffentlichten Fassung; die zweite liegt in
+der Historie von Commit `5bf7deb`.
+
+**Daraus folgt eine Klammer, die nicht aufgeht:**
+
+| | |
+|---|---|
+| **Schritt 0 — vor dem Schreiben** | `Artifact action:"read"`, `LEKTIONEN` ansehen. Steht das **heutige** Datum schon darin, wird **nichts Neues geschrieben** — die Lektion wird ins Repo zurückgeholt, geprüft und committet. Das ist Regel 0, nur eine Stufe früher: **Regel 0 gilt nicht nur für die Datei in `lektionen/`, sondern auch für die Lektion im Artifact.** |
+| **Schritt 8 — nach dem Publish** | `pruefen.py`. Exitcode 0 oder der Tag ist nicht fertig. |
+
+**Die zwei Sätze, die dabei nie wieder verwechselt werden dürfen:** „Ich habe sie
+veröffentlicht" heißt **nicht** „sie ist gesichert". Gesichert ist sie, wenn sie im Commit auf
+`origin` liegt. Und „ich habe sie committet" heißt **nicht** „sie ist auf ihrer Seite". Beides
+wird einzeln nachgewiesen, mit dem Skript, nicht aus dem Gedächtnis.
 
 ### Der Wochenrhythmus — kein Grammatik-Zyklus mehr
 
