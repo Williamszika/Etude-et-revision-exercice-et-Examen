@@ -1,0 +1,1371 @@
+<title>Diabetes mellitus</title>
+<style>
+  :root{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#1f6a78;--accent-deep:#14505b;--accent-soft:#dcecef;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#6cc0cf;--accent-deep:#9dd8e3;--accent-soft:#14303a;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
+    --accent:#6cc0cf;--accent-deep:#9dd8e3;--accent-soft:#14303a;
+    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
+    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
+    --pharm:#6cadd9;--pharmbg:#122736;}
+  :root[data-theme="light"]{
+    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
+    --accent:#1f6a78;--accent-deep:#14505b;--accent-soft:#dcecef;
+    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
+    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
+    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+
+  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
+    border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
+    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
+  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
+    border-radius:999px;background:var(--card);color:var(--ink-soft);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
+    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
+    white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
+    background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:52px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
+    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
+  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  b,strong{font-weight:700;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
+  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
+  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
+  .karte p:last-child{margin-bottom:0;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
+    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
+    text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  tbody tr:nth-child(even) td{background:var(--paper);}
+
+  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .merk p:last-child{margin-bottom:0;}
+  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--accent-deep);display:block;margin-bottom:6px;}
+
+  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .warnung p:last-child{margin-bottom:0;}
+  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--warn);display:block;margin-bottom:6px;}
+
+  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
+    padding:14px 18px;margin:18px 0;}
+  .gefahr p:last-child{margin-bottom:0;}
+  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+    color:var(--notfall);display:block;margin-bottom:6px;}
+
+  .stufen{display:grid;gap:10px;margin:18px 0;}
+  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
+    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
+  .stufe .nr.n2{background:var(--accent);}
+  .stufe h4{margin:0 0 4px;}
+  .stufe p{margin:0;font-size:15.5px;}
+  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
+
+  .paare{display:grid;gap:9px;margin:18px 0;}
+  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
+    border-radius:0 10px 10px 0;padding:11px 15px;}
+  .paar .de{font-weight:600;}
+  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
+
+  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
+    overflow:hidden;}
+  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
+    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
+  details.quelle>summary::-webkit-details-marker{display:none;}
+  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
+  details.quelle[open]>summary::before{content:"－";}
+  details.quelle .inh{padding:0 17px 15px;}
+  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
+
+  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
+    padding:16px 18px;margin:20px 0;}
+  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
+  .pruef ol{margin:0;}
+
+  a{color:var(--accent-deep);}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
+    text-align:center;color:var(--ink-soft);font-size:14px;}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  html{scroll-behavior:smooth;}
+</style>
+<header class="hero">
+  <p class="eyebrow">CE 07 · UE 2 · Chronische Erkrankungen</p>
+  <h1>Diabetes mellitus beim Erwachsenen</h1>
+  <p class="sub">Vom Blutzucker über das Insulin bis zu den Notfällen — und die sechs Fallbeispiele,
+    zu denen deine Dozentin <b>die Lösungen selbst eingetragen</b> hat. Dazu die Vorbereitung auf die
+    mündliche Besprechung zum Fall <b>Frau Lehmann</b>.</p>
+  <div class="meta">
+    <span>11 Dateien · 23.09.2026</span>
+    <span>B. Braun · E. Borgs · Diabetesberaterinnen DDG</span>
+    <span>Luisenhospital Aachen</span>
+    <span>Niveau B1</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#grundlagen">Was ist Diabetes</a>
+  <a href="#typen">Typ 1 · Typ 2 · andere</a>
+  <a href="#insulin">Was Insulin tut</a>
+  <a href="#therapie">Therapie</a>
+  <a href="#insuline">Die Insuline</a>
+  <a href="#formen">Therapieformen</a>
+  <a href="#spritzen">Spritzen & Lagern</a>
+  <a href="#messen">Messen</a>
+  <a href="#hypo">Unterzuckerung</a>
+  <a href="#hyper">Überzuckerung</a>
+  <a href="#faelle">6 Fallbeispiele</a>
+  <a href="#lehmann">Fall Frau Lehmann</a>
+  <a href="#zahlen">Zahlen, die nicht passen</a>
+  <a href="#woerter">Wörter</a>
+  <a href="#pruef">Selbsttest</a>
+  <a href="#offen">Was fehlt</a>
+</nav>
+
+<main>
+
+<section id="quellen">
+  <div class="merk">
+    <span class="t">Woraus diese Seite gebaut ist</span>
+    <p>Aus <b>elf Dateien</b>, die du am <b>23.09.2026</b> in den Drive-Ordner gelegt hast. Die meisten
+      stammen von zwei <b>Diabetesberaterinnen DDG</b>: <b>Beate Braun</b> (Luisenhospital Aachen) für
+      Hyperglykämie, Unterzuckerung und Injektionstechnik, <b>Elisabeth Borgs</b> für Insuline,
+      Insulintherapie und Stoffwechselselbstkontrolle. Dazu ein Foliensatz ohne Autorin
+      (<i>Diabetes mellitus KPS-2026</i>), eine Folge über die Insulinwirkung, die
+      <b>Fallbeispiele mit Lösungen</b> und die <b>Aufgabe zu Frau Lehmann</b> (CE 07 UE 2).</p>
+    <p><b>Nichts auf dieser Seite kommt von außerhalb dieser Dateien.</b> Wo ich zwei deiner Seiten
+      miteinander verbinde, steht <i>„Herleitung“</i> dabei. Wo deine Dateien sich widersprechen,
+      steht es im Abschnitt <a href="#zahlen">Zahlen, die nicht passen</a>, und es wird
+      <b>nicht</b> still geglättet.</p>
+    <p class="fr">Tout vient de tes onze fichiers. Là où ils se contredisent, je le dis au lieu de
+      choisir en silence.</p>
+  </div>
+
+  <div class="warnung">
+    <span class="t">Drei deiner Seiten gehören dazu</span>
+    <p>Diabetes steht schon an drei anderen Stellen deiner Sammlung — und das hier ersetzt keine davon:</p>
+    <ul>
+      <li><a href="https://claude.ai/artifact/GdWSxzmHV46chBzi78YNar" target="_blank" rel="noopener">Das
+        kranke Kind</a> — <b>Typ 1 beim Kind</b>, Fall Clara, Pumpe und Sensor, KE-Rechnung.</li>
+      <li><a href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj" target="_blank" rel="noopener">Anatomie
+        der Organe</a> — die <b>Bauchspeicheldrüse</b>, endokrin und exokrin, die Langerhans-Inseln.</li>
+      <li><a href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d" target="_blank" rel="noopener">Notfälle</a>
+        — die <b>Hypoglykämie</b> als Notfall, neben Epilepsie und Fieberkrampf.</li>
+    </ul>
+    <p><b>Achtung:</b> Die Grenze der Unterzuckerung steht auf der Notfallseite <b>anders</b> als hier.
+      Das ist kein Tippfehler auf einer der Seiten, sondern zwei verschiedene Unterlagen — siehe
+      <a href="#zahlen">Zahlen, die nicht passen</a>.</p>
+  </div>
+</section>
+
+<section id="grundlagen">
+  <h2>Was ist Diabetes mellitus?</h2>
+  <p class="lead">Eine Definition, vier Diagnosekriterien und eine Umrechnungstabelle — das ist das
+    Grundgerüst jeder Klausurfrage zu diesem Thema.</p>
+
+  <div class="merk">
+    <span class="t">Definition — wörtlich von der Folie</span>
+    <p>„Gruppe <b>metabolischer Störungen</b>, die sich durch eine <b>Hyperglykämie</b> auszeichnen.
+      Ursache ist entweder eine <b>gestörte Insulinsekretion</b> oder eine <b>gestörte
+      Insulinwirkung</b> oder auch beides.“</p>
+    <p>„Die chronische Hyperglykämie beim Diabetes mellitus ist mit <b>Langzeitschäden,
+      Funktionsstörungen und Funktionsausfall</b> an verschiedenen Organen verbunden, insbesondere an
+      <b>Augen, Nieren, Nerven, Herz und Blutgefäßen</b>.“</p>
+    <p class="fr">Deux causes possibles : le pancréas ne produit pas assez d'insuline, ou l'insuline
+      n'agit plus bien — ou les deux. Et le sucre trop élevé abîme à la longue yeux, reins, nerfs, cœur,
+      vaisseaux.</p>
+  </div>
+
+  <h3>Die vier Diagnosekriterien (Deutsche Diabetes Gesellschaft 2017)</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div><h4>Gelegenheits-Plasmaglukose</h4>
+      <p><b>&gt; 200 mg/dl (11,1 mmol/l)</b> zu irgendeinem Zeitpunkt des Tages</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div><h4>Nüchtern-Plasmaglukose</h4>
+      <p><b>&gt; 126 mg/dl (7,0 mmol/l)</b> — <i>nüchtern</i> heißt: keine Kalorienzufuhr über
+      <b>mindestens 8 Stunden</b></p></div></div>
+    <div class="stufe"><span class="nr">3</span><div><h4>2-Stunden-Wert im OGTT</h4>
+      <p><b>&gt; 200 mg/dl (11,1 mmol/l)</b> — nach WHO-Kriterien mit <b>75 g Glucose</b> in Wasser</p></div></div>
+    <div class="stufe"><span class="nr">4</span><div><h4>HbA1c</h4>
+      <p><b>≥ 6,5 % (≥ 48 mmol/mol Hb)</b> — bei krankhaft verändertem Hämoglobin nicht immer beurteilbar</p></div></div>
+  </div>
+  <p><b>Wichtig:</b> Ohne eindeutige klinische Symptome soll ein einzelnes Kriterium durch einen
+    <b>zweiten Test an einem anderen Tag</b> bestätigt werden.</p>
+
+  <h3>Der orale Glucose-Toleranztest (OGTT)</h3>
+  <div class="scroll"><table>
+    <thead><tr><th></th><th>Normal</th><th>Gestörte Glucosetoleranz</th><th>Diabetes mellitus</th></tr></thead>
+    <tbody>
+      <tr><td class="k">nüchtern</td><td>&lt; 100 mg/dl</td><td>≥ 100 mg/dl</td><td>≥ 126 mg/dl</td></tr>
+      <tr><td class="k">nach 2 Stunden</td><td>&lt; 140 mg/dl</td><td>≥ 140 mg/dl</td><td>≥ 200 mg/dl</td></tr>
+    </tbody>
+  </table></div>
+  <p>Alle Werte beziehen sich auf <b>venöses Plasma</b> und müssen mit einem <b>Laborgerät</b>
+    gemessen werden. Menschen mit <b>gestörter Glucosetoleranz</b> sind <b>Risikopatienten</b> — für
+    den Diabetes und für die <b>Makroangiopathie</b>. Ihnen sollen <b>lebensmodifizierende Maßnahmen</b>
+    empfohlen werden.</p>
+
+  <div class="warnung">
+    <span class="t">Ein Satz auf der Folie, der sich selbst widerspricht</span>
+    <p>Unter der OGTT-Tabelle steht: <i>„Ist ein einziger Wert auffällig, ist die Diagnose
+      gesichert.“</i> Drei Folien vorher steht: <i>„Ohne eindeutige klinische Symptome sollte ein
+      einzelnes Kriterium durch einen zweiten Test an einem anderen Tag bestätigt werden.“</i>
+      <b>Beides steht im selben Foliensatz.</b> In der Klausur: den <b>zweiten Satz</b> nennen, er ist
+      der vorsichtigere — und wenn Zeit ist, sagen, dass die Folie beides enthält.</p>
+    <p class="fr">La même présentation dit « un seul test suffit » et « confirmer par un deuxième test ».
+      Cite la version prudente.</p>
+  </div>
+
+  <h3>mg/dl und mmol/l — die Umrechnung</h3>
+  <p>Auf deinen Folien stehen beide Einheiten durcheinander. Die Regel der Folie:</p>
+  <div class="karten">
+    <div class="karte"><h4>mmol/l → mg/dl</h4><p><b>× 18</b> (genau 18,016)<br>
+      5 mmol/l = 90 mg/dl · 10 mmol/l = 180 mg/dl</p></div>
+    <div class="karte"><h4>mg/dl → mmol/l</h4><p><b>× 0,0555</b><br>
+      126 mg/dl = 7 mmol/l · 200 mg/dl ≈ 11,1 mmol/l</p></div>
+  </div>
+
+  <h3>HbA1c — das „Blutzuckergedächtnis“</h3>
+  <p>Der HbA1c zeigt den <b>Anteil des roten Blutfarbstoffs, an den Zucker gebunden ist</b>. Er ist
+    ein Gedächtnis für die <b>Lebenszeit der Erythrozyten — 120 Tage</b>. Das funktioniert, weil
+    <b>Erythrozyten Glucose unabhängig vom Insulin aufnehmen</b>.</p>
+  <p><b>Norm:</b> 20–44 mmol/mol (4,0–5,6 %, laborabhängig). <b>Diabetes:</b> ab 6,5 %.</p>
+  <p class="fr">L'HbA1c montre le sucre des trois derniers mois : le globule rouge vit 120 jours et
+    absorbe le glucose sans avoir besoin d'insuline.</p>
+</section>
+
+<section id="typen">
+  <h2>Typ 1, Typ 2 — und alles andere</h2>
+  <p class="lead">Die Einteilung nach der American Diabetes Association (ADA 2017/2018), wie sie auf
+    deinen Folien steht.</p>
+
+  <div class="karten">
+    <div class="karte"><h4>I. Typ 1</h4><p><b>ß-Zelldestruktion</b> → <b>absoluter Insulinmangel</b>,
+      immunologisch vermittelt. Subform idiopathisch (selten). Dazu <b>LADA</b> (<i>latent autoimmune
+      diabetes in adults</i>) — der langsame Typ 1 beim Erwachsenen.</p></div>
+    <div class="karte"><h4>II. Typ 2</h4><p>Von der <b>Insulinresistenz mit relativem Insulinmangel</b>
+      bis zum <b>sekretorischen Defekt mit Insulinresistenz</b>.</p></div>
+    <div class="karte"><h4>III. Andere spezifische Typen</h4><p>u. a. genetische Defekte (MODY),
+      <b>Krankheiten des exokrinen Pankreas</b> (Pankreatitis, Mukoviszidose, Hämochromatose),
+      Endokrinopathien (Cushing, Hyperthyreose …), <b>medikamentös</b> (Glukokortikoide,
+      Neuroleptika …), Infektionen (Röteln, CMV), genetische Syndrome (Down, Turner …).</p></div>
+    <div class="karte"><h4>IV. Gestationsdiabetes</h4><p>Glukosetoleranzstörung, die <b>erstmals in
+      der Schwangerschaft</b> mit einem 75-g-oGTT diagnostiziert wird.</p></div>
+  </div>
+
+  <h3>Gestationsdiabetes — die Werte der WHO</h3>
+  <p>Screening mit <b>75 g Glucose</b> in der <b>24.–28. Schwangerschaftswoche</b>, morgens nüchtern.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Zeitpunkt</th><th>Grenzwert</th></tr></thead>
+    <tbody>
+      <tr><td class="k">nüchtern</td><td>≥ 92 mg/dl (5,1 mmol/l)</td></tr>
+      <tr><td class="k">nach 1 Stunde</td><td>≥ 180 mg/dl (10,0 mmol/l)</td></tr>
+      <tr><td class="k">nach 2 Stunden</td><td>≥ 153 mg/dl (8,5 mmol/l)</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>Bereits ein erhöhter Wert reicht zur Diagnose.</b> Ausnahme: Ein Diabetes, der schon vor der
+    Schwangerschaft bestand, wird nach den normalen Kriterien diagnostiziert.</p>
+
+  <h3>Typ 1 und Typ 2 nebeneinander — die Tabelle der Folie</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Kriterium</th><th>Typ 1</th><th>Typ 2</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Ursache</td><td>autoimmun, genetische Prädisposition</td><td>genetische Prädisposition, multifaktoriell</td></tr>
+      <tr><td class="k">Pathogenese</td><td>Autoantikörper, absoluter Insulinmangel</td><td>Insulinresistenz und -sekretionsstörung bis zum Insulinmangel</td></tr>
+      <tr><td class="k">Beginn</td><td>Polyurie, Polydipsie, Hyperglykämie, Ketoazidose</td><td>langsamer Beginn, Folgeerkrankungen, moderate Hyperglykämie</td></tr>
+      <tr><td class="k">Alter</td><td>Kindheit bis Erwachsenenalter</td><td>Erwachsenenalter</td></tr>
+      <tr><td class="k">Vererbungsrisiko</td><td>gering (3–7 %)</td><td>groß (40 %)</td></tr>
+      <tr><td class="k">Häufigkeit</td><td>5–10 %</td><td>90–95 %</td></tr>
+      <tr><td class="k">Gewicht</td><td>Normalgewicht</td><td>meist Übergewicht</td></tr>
+      <tr><td class="k">Insulinresistenz</td><td>nein</td><td>ja</td></tr>
+      <tr><td class="k">Autoantikörper</td><td>ja</td><td>nein</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Wie Typ 1 entsteht</h3>
+  <p><b>Genetische Prädisposition</b> + <b>Virusinfektion</b> → <b>Autoimmunerkrankung</b> →
+    Antikörper gegen die <b>B-Zellen</b> und das eigene Insulin → Schädigung und Zerstörung der
+    B-Zelle (<b>Insulitis</b>) → Typ-1-Diabetes.</p>
+  <p>Eine Kurve auf der Folie zeigt den Verlauf: <b>Anlage</b> → <b>Auslöser</b> → die
+    Insulinproduktion fällt über <b>Jahre</b> von 100 % ab → <b>Manifestation</b> erst bei etwa
+    <b>10–20 %</b> → danach eine kurze <b>Remissionsphase</b>, dann fällt sie weiter.
+    Dieselbe Kurve, genauer erklärt, steht auf deiner
+    <a href="https://claude.ai/artifact/GdWSxzmHV46chBzi78YNar" target="_blank" rel="noopener">Kinderseite</a>.</p>
+
+  <h3>Wie Typ 2 entsteht — die Grafik aus dem Thieme-Verlag</h3>
+  <p>Die Folie (Spinas/Fischli, <i>Endokrinologie und Stoffwechsel kompakt</i>, Thieme 2011) zeigt
+    einen <b>Teufelskreis mit drei Organen</b>:</p>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">Muskel</span><div><p><b>↓ Glukoseaufnahme</b> —
+      Insulinresistenz</p></div></div>
+    <div class="stufe"><span class="nr">Leber</span><div><p><b>↓ Glukoseaufnahme, ↑ Glukoseproduktion</b></p></div></div>
+    <div class="stufe"><span class="nr n2">Pankreas</span><div><p>Die Hyperglykämie ist eine
+      <b>Dauerstimulation</b> — dazu <b>Gluko- und Lipotoxizität</b> → <b>ß-Zellversagen</b>:
+      ↓ Insulinsynthese, ↓ ß-Zellvermehrung, ↑ ß-Zelltod, α-Zellen ≫ ß-Zellen →
+      ↓ glukoseinduzierte Insulinsekretion, ↑ Glukagonsekretion → noch <b>mehr</b> Hyperglykämie.</p></div></div>
+  </div>
+  <p class="fr">Le cercle vicieux : le muscle et le foie ne répondent plus à l'insuline, le sucre monte,
+    le pancréas s'épuise à force d'être stimulé, et le sucre monte encore.</p>
+
+  <h3>Was einen Typ 2 fördert</h3>
+  <ul>
+    <li><b>familiäre Belastung</b></li>
+    <li><b>Alter</b> — die Diabeteshäufigkeit steigt, die Glucosetoleranz nimmt ab</li>
+    <li><b>Lebensstil</b> — sozialer Status, Bewegungsmangel, ballaststoffarme und fettreiche Kost, Rauchen</li>
+    <li><b>metabolisches Syndrom</b></li>
+    <li><b>Medikamente</b>, die den Glucosestoffwechsel verschlechtern — z. B. <b>Cortison</b></li>
+    <li>ein früherer <b>Gestationsdiabetes</b> · <b>endokrine Erkrankungen</b></li>
+  </ul>
+
+  <h3>Das metabolische Syndrom — „Wohlstandssyndrom“</h3>
+  <p><b>Ursache:</b> Insulinresistenz der Skelettmuskulatur → dadurch Hyperinsulinämie →
+    vorzeitige <b>Arteriosklerose</b>. Dazu gehören:</p>
+  <ul>
+    <li>stammbetonte Adipositas</li>
+    <li>pathologische Glukosetoleranz oder Diabetes</li>
+    <li>Hyperlipoproteinämie (zu viel Blutfett)</li>
+    <li>Hyperurikämie (zu viel Harnsäure)</li>
+    <li>essentielle Hypertonie</li>
+  </ul>
+  <p><b>Apfel gegen Birne:</b> Die Folie zeigt zwei Figuren. Der <b>Apfeltyp</b> (Fett oberhalb der
+    Hüfte) hat <b>mehr viszerales Fett</b> und <b>mehr gewichtsbezogene Gesundheitsrisiken</b>, der
+    <b>Birnentyp</b> (Fett unterhalb der Hüfte) weniger. Und eine eigene Folie sagt:
+    <b>Rauchen</b> ist neben Diabetes, Hypertonie und Fettstoffwechselstörungen ein zusätzlicher
+    Risikofaktor — besonders für den <b>Herzinfarkt</b>.</p>
+</section>
+
+<section id="insulin">
+  <h2>Was Insulin im Körper tut</h2>
+  <p class="lead">Eine eigene Datei (<i>Insulin.pdf</i>) erklärt das in fünf Punkten und mit Bildern —
+    mit einer Tür, einem Ofen und einem Donut.</p>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">a</span><div><h4>Zucker in die Zelle</h4>
+      <p>Insulin baut <b>GLUT4</b> in die Zellwand von <b>Skelettmuskel- und Fettzellen</b> ein. Auf
+      dem Bild ist GLUT4 eine <b>Tür</b> in der Zelle, der Zucker steht davor. <b>Insulin öffnet
+      die Tür.</b></p></div></div>
+    <div class="stufe"><span class="nr">b</span><div><h4>Zucker verwerten und speichern</h4>
+      <p><b>Glykolyse ↑</b> (der Zucker wird verbrannt — auf dem Bild ein <b>Ofen</b>) und
+      <b>Glykogensynthese ↑</b> (der Zucker wird gespeichert). Gespeichert werden laut Folie
+      <b>100–150 g Glykogen in der Leber</b> und <b>250 g in der Muskulatur</b>.<br>
+      Gleichzeitig <b>Glykogenolyse ↓</b> und <b>Gluconeogenese ↓</b> in der Leber: Die Leber gibt
+      keinen Zucker mehr ab und baut keinen neuen aus Laktat, Aminosäuren und Glycerin.</p></div></div>
+    <div class="stufe"><span class="nr">c</span><div><h4>Fett</h4>
+      <p>Fettspeicher werden aufgefüllt: <b>Fettsäuresynthese und Lipogenese ↑</b>,
+      <b>Fettabbau und Lipolyse ↓</b>.</p></div></div>
+    <div class="stufe"><span class="nr">d</span><div><h4>Eiweiß</h4>
+      <p><b>Aminosäuresynthese ↑ → Proteinbiosynthese ↑</b>, vor allem im Skelettmuskel.</p></div></div>
+    <div class="stufe"><span class="nr n2">e</span><div><h4>Kalium</h4>
+      <p>Die <b>Na⁺/K⁺-ATPase</b> wird in allen Zellen angeregt → <b>Kalium wandert in die Zellen</b>.</p></div></div>
+  </div>
+
+  <div class="merk">
+    <span class="t">Punkt e erklärt eine Zeile auf zwei anderen Folien — Herleitung</span>
+    <p>Bei der Behandlung der Ketoazidose und des hyperosmolaren Komas steht auf den Folien jedes Mal
+      <b>„Kaliumsubstitution“</b>, bei der Ketoazidose sogar <i>„abhängig vom Serumkalium und Ausmaß
+      der Azidose“</i>. Die Folien sagen nicht, warum. <b>Punkt e sagt es:</b> Wer Insulin
+      i. v. bekommt, dessen Kalium wandert in die Zellen — im Blut wird es knapp. Diese Verbindung ist
+      <b>meine</b>; beide Hälften stehen in deinen Dateien.</p>
+    <p class="fr">L'insuline fait entrer le potassium dans les cellules. Donc quand on en donne en
+      perfusion, le potassium du sang baisse — c'est pour ça qu'on en rajoute.</p>
+  </div>
+
+  <h3>Insulin beim gesunden Menschen</h3>
+  <ul>
+    <li><b>basale Sekretion:</b> ca. 1 IE pro Stunde bzw. ca. 0,35 IE/kg KG</li>
+    <li><b>zur Mahlzeit (prandial):</b> ca. 1,35 IE pro BE und ca. 0,45 IE pro 100 kcal Eiweiß oder Fett</li>
+    <li><b>bei Muskelarbeit:</b> Insulinproduktion sinkt, Gluconeogenese steigt</li>
+    <li><b>bei Alkohol:</b> Insulinproduktion sinkt, <b>Gluconeogenese sinkt</b></li>
+    <li>Der Blutzucker wird zwischen <b>50 und 140 mg/dl</b> eingeregelt.</li>
+  </ul>
+  <p><b>Auch ohne Essen</b> — zum Beispiel nachts — braucht der Körper Insulin, damit die Zellen Zucker
+    bekommen. Dieser Zucker kommt aus der <b>Leber</b>: Sie gibt ständig Zucker aus dem
+    Glykogenspeicher frei, füllt den Speicher beim Essen wieder auf und kann Traubenzucker auch aus
+    anderen Stoffen bilden. <b>Das ist der Grund hinter einem Satz, den deine Dozentin in
+    <a href="#faelle">Fallbeispiel 2</a> selbst eingetragen hat:</b> <i>„Basalinsulin muss gespritzt
+    werden!“</i> — an einem Tag, an dem die Patientin nichts zu Mittag isst. Die Verbindung der beiden
+    Folien ist meine Herleitung.</p>
+</section>
+<section id="therapie">
+  <h2>Therapie — die Ziele und die drei Säulen</h2>
+
+  <h3>Therapieziele</h3>
+  <ul>
+    <li>Symptomfreiheit, körperliche Leistungsfähigkeit und Wohlbefinden erhalten</li>
+    <li>dauerhafte Normalisierung von <b>Glucose- und Lipidstoffwechsel</b></li>
+    <li>Normalisierung des Körpergewichts</li>
+    <li><b>Vermeidung von Hyper- und Hypoglykämien</b></li>
+    <li>Prävention von <b>Mikro- und Makroangiopathie</b></li>
+  </ul>
+
+  <div class="merk">
+    <span class="t">Im Alter gelten andere Ziele — eine eigene Folie</span>
+    <p><b>Relativierte Therapieziele</b> im fortgeschrittenen Lebensalter: Erhalt der
+      <b>Lebensqualität</b> · Symptomfreiheit · Normalisierung des Glucosestoffwechsels <b>„nicht um
+      jeden Preis“</b> · Vermeidung akuter Entgleisungen (Coma diabeticum, Hypoglykämien) ·
+      <b>Sekundärprävention von Fußkomplikationen</b> · normaler Blutdruck (gegen Herzinfarkt und
+      Schlaganfall) · <b>realistische</b> Gewichtsreduktion.</p>
+    <p>Das ist wichtig für die Station: Bei einer 80-jährigen Bewohnerin ist ein etwas höherer Wert
+      <b>kein Fehler</b>, eine Unterzuckerung dagegen <b>immer eine Gefahr</b>. Die Fallbeispiele
+      zeigen genau das — siehe <a href="#faelle">Beispiel 4</a>.</p>
+    <p class="fr">Chez la personne âgée, on ne vise pas la glycémie parfaite « à tout prix » :
+      on évite surtout les hypos et on protège la qualité de vie.</p>
+  </div>
+
+  <h3>Die drei Säulen nach Elliot Joslin (1922)</h3>
+  <p>Die Folie schreibt drei Wörter senkrecht nebeneinander: <b>DIÄT · SCHULUNG · MEDIKAMENTE</b>.
+    Keine Säule trägt allein.</p>
+  <div class="karten">
+    <div class="karte"><h4>Bewegung</h4><p>wirkt günstig auf Befinden, Blutfette, Blutdruck,
+      Körpergewicht, Blutzucker — und <b>verbessert die Insulinresistenz</b>. Im Alltag die aktive
+      Fortbewegung fördern (Radfahren).</p></div>
+    <div class="karte"><h4>Ernährung</h4><p>orientiert sich an den <b>Essgewohnheiten und
+      Lebensumständen</b> des Patienten — <i>„da sonst keine Akzeptanz“</i>.</p></div>
+    <div class="karte"><h4>Medikamente</h4><p>Insulin — und zusätzlich Medikamente gegen
+      Fettstoffwechselstörung und Bluthochdruck.</p></div>
+  </div>
+  <div class="warnung">
+    <span class="t">Was diese Folien nicht haben</span>
+    <p><b>Tabletten gegen Diabetes</b> (orale Antidiabetika) werden auf keiner deiner elf Folien
+      erklärt. Zwei stehen nur als Name in den Fallbeispielen: <b>Metformin 1000 1-0-1</b> und
+      <b>Januvia 25 mg 1-0-0</b>. Wie sie wirken, steht nirgends — deshalb auch hier nicht.</p>
+  </div>
+</section>
+
+<section id="insuline">
+  <h2>Die Insuline</h2>
+  <p class="lead">Foliensatz von Elisabeth Borgs, <b>Stand November 2025</b>. Sechs Arten, und für
+    jede drei Zahlen: wann es anfängt, wann es am stärksten wirkt, wie lange es wirkt.</p>
+
+  <div class="scroll"><table>
+    <thead><tr><th>Insulin</th><th>Wirkeintritt</th><th>Maximum</th><th>Wirkdauer</th><th>Aussehen</th><th>Handelsnamen (Folie)</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Normalinsulin (Altinsulin)</td><td>15–20 min</td><td>2 h</td><td>4–6 h, dosisabhängig</td><td><b>klar</b></td><td>Huminsulin Normal · Actrapid*</td></tr>
+      <tr><td class="k">Verzögerungsinsulin (NPH)</td><td>45 min</td><td>4–6 h</td><td>8–12 h</td><td><b>trüb</b></td><td>Huminsulin Basal · Protaphane*</td></tr>
+      <tr><td class="k">Mischinsulin (Normal + NPH)</td><td>15–20 min</td><td>4–6 h</td><td>8–12 h</td><td><b>trüb</b></td><td>Huminsulin Profil III · Actraphane 30/50*</td></tr>
+      <tr><td class="k">kurzwirksames Analogon</td><td><b>sofort</b></td><td>1 h</td><td>2–3 h</td><td>klar</td><td>Humalog (Lispro) · NovoRapid (Aspart) · Apidra (Glulisin) · Fiasp · Lyumjev</td></tr>
+      <tr><td class="k">Glargin</td><td>2–4 h</td><td>„wird nicht beschrieben“</td><td>bis 24 h</td><td></td><td>Lantus (100 IE/ml) · Toujeo (300 IE/ml, nur Einmalpen)</td></tr>
+      <tr><td class="k">Detemir</td><td>60 min</td><td>3–14 h</td><td>16–20 h</td><td></td><td>Levemir*</td></tr>
+      <tr><td class="k">Degludec (ultralang)</td><td>mehrere Stunden</td><td>—</td><td><b>mehr als 42 h</b></td><td></td><td>Tresiba 100 / 200</td></tr>
+      <tr><td class="k">Icodec (ultralang)</td><td colspan="3">wird <b>1× pro Woche</b> gespritzt, seit September 2024</td><td></td><td>Awiqli</td></tr>
+      <tr><td class="k">Mischanalogon (Protamin)</td><td>sofort</td><td>1–4 h</td><td>meist 8–12 h</td><td><b>trüb</b></td><td>NovoMix 30 · Humalog Mix 25/50</td></tr>
+    </tbody>
+  </table></div>
+  <p>* <b>Laut Folie „wird Ende 2025 vom Markt genommen“</b>: Actrapid, Protaphane, Actraphane und
+    Levemir. Stand der Folie ist November 2025 — ob es inzwischen so gekommen ist, steht in deinen
+    Unterlagen nicht.</p>
+
+  <div class="merk">
+    <span class="t">Warum ein Analogon schneller ist als Normalinsulin — das Bild der Folie</span>
+    <p>Im Unterhautfettgewebe liegt Insulin als <b>6er-Gruppe</b> (Hexamer). Beim <b>kurzwirksamen
+      Analogon</b> zerfällt die 6er-Gruppe <b>sofort</b> in einzelne Moleküle, die direkt ins Blut
+      gehen. Beim <b>Normalinsulin</b> zerfällt sie <b>sehr langsam</b>, erst in drei 2er-Gruppen und
+      dann in einzelne Moleküle. Beim <b>langwirkenden Analogon</b> ist es umgekehrt: Die
+      <i>„Hexamere bleiben länger zusammen“</i>.</p>
+    <p><b>Dazu passt eine Zeile der Folie:</b> Mischanaloga brauchen <b>keinen Spritz-Ess-Abstand</b>. (Die Folie verbindet die beiden Punkte nicht selbst — das ist meine Verbindung.)</p>
+    <p class="fr">L'insuline se range en paquets de six. L'analogue rapide se défait tout de suite,
+      l'insuline normale lentement — c'est toute la différence de vitesse.</p>
+  </div>
+
+  <h3>Trüb oder klar — das zählt beim Spritzen</h3>
+  <p><b>Trüb</b> sind nur <b>NPH-Insuline</b> (Huminsulin Basal) und alle <b>Mischinsuline</b>. Sie
+    müssen vor dem Spritzen <b>20-mal geschwenkt, nicht geschüttelt</b> werden. Alle anderen sind klar.</p>
+
+  <h3>Konzentrationen — die Falle mit U40</h3>
+  <ul>
+    <li><b>U100</b> = 1 ml enthält 100 IE — Durchstechflaschen, Patronen, Einmalpens</li>
+    <li><b>U200</b> = 200 IE/ml, <b>U300</b> = 300 IE/ml (Toujeo) — nur im Einmalpen, für große Insulinmengen</li>
+    <li><b>U40</b> = 40 IE/ml — steht auf der Borgs-Folie bei den Durchstechflaschen, auf der Braun-Folie gar nicht mehr</li>
+    <li>Spritzen: <b>orange Kappe = U100</b>, <b>rote Kappe = U40</b></li>
+  </ul>
+  <div class="gefahr">
+    <span class="t">Die Regel auf der Folie von Beate Braun</span>
+    <p><b>„Insulin U100 nur mit Spritze für U 100 aufziehen.“</b> Wer U100-Insulin in eine
+      U40-Spritze zieht, gibt <b>zweieinhalbmal so viel</b> Insulin wie gedacht — das ist die Rechnung
+      100 : 40, sie steht so nicht auf der Folie, folgt aber direkt aus den beiden Zahlen.</p>
+  </div>
+
+  <h3>Wie lange hält die Wirkung? — zwei Folien sagen es verschieden</h3>
+  <p>Die <b>Austauschtabelle</b> am Ende desselben Foliensatzes (Stand Oktober 2025) nennt andere
+    Wirkdauern als die Einzelfolien davor. Beides steht in deiner Datei:</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Insulin</th><th>Einzelfolie</th><th>Austauschtabelle</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Normalinsulin</td><td>4–6 h</td><td>ca. 4 h</td></tr>
+      <tr><td class="k">Verzögerungsinsulin</td><td>8–12 h</td><td>8–10 h</td></tr>
+      <tr><td class="k">Levemir (Detemir)</td><td>16–20 h</td><td>12–14 h</td></tr>
+    </tbody>
+  </table></div>
+  <p>Für die Klausur: die <b>Einzelfolie</b> nennen, sie ist die ausführlichere — und bei Levemir dazu
+    sagen, dass die Tabelle weniger angibt.</p>
+</section>
+
+<section id="formen">
+  <h2>Die Formen der Insulintherapie</h2>
+  <p class="lead">Von einer Spritze am Abend bis zur Pumpe, die selbst rechnet.</p>
+
+  <div class="stufen">
+    <div class="stufe"><span class="nr">BOT</span><div><h4>Basisoptimierte orale Therapie</h4>
+      <p>Zur Nacht ein <b>langwirkendes Insulin</b> als „Bettzeit-Dosis“ (Lantus, Toujeo oder NPH),
+      tagsüber <b>Tabletten</b> für die Mahlzeiten. Die Folie gibt ein Beispielschema nach dem
+      Nüchternzucker: unter 70–80 mg/dl <b>kein Insulin</b> · über 120 → +2 IE · über 140 → +4 ·
+      über 160 → +6 · über 180 → +8 IE Lantus.</p></div></div>
+    <div class="stufe"><span class="nr">SIT</span><div><h4>Supplementäre Insulintherapie</h4>
+      <p>= <b>prandiale</b> Therapie: Normalinsulin oder kurzes Analogon <b>nur zu den Mahlzeiten</b>,
+      nach Plan und BZ-Höhe. Bei Typ 2 manchmal <b>allein ausreichend, ohne Basis</b>.</p></div></div>
+    <div class="stufe"><span class="nr">CT</span><div><h4>Konventionelle Therapie</h4>
+      <p>Nur <b>2–3 Injektionen</b>, meist Mischinsulin. Braucht ein <b>festes BE-Gerüst</b> und
+      regelmäßiges Essen. <b>Hohes Hypoglykämierisiko am späten Vormittag und in der ersten
+      Nachthälfte.</b> Die Folie sagt: <i>„Leben wird durch die vorhandenen Wirkprofile des Insulins
+      bestimmt.“</i> Vorteil laut Grafik: <b>nur wenige Messungen und Injektionen</b>.</p></div></div>
+    <div class="stufe"><span class="nr">ICT</span><div><h4>Intensivierte konventionelle Therapie (= FIT)</h4>
+      <p><b>4–5 Injektionen</b> täglich, <b>4–6 Messungen</b>. Mehr Freiheit: Mahlzeiten dürfen
+      ausfallen, flexible Essenszeiten, leichtere Anpassung bei Sport. Aufbau: Gesamtinsulin
+      <b>zur Hälfte Basis, zur Hälfte Mahlzeiteninsulin</b>; die Basis <b>2/3 morgens, 1/3 abends</b>;
+      dazu BE-Faktoren und Korrekturfaktoren.</p></div></div>
+    <div class="stufe"><span class="nr n2">CSII</span><div><h4>Insulinpumpe</h4>
+      <p>In der Pumpe ist <b>nur Normalinsulin oder kurzes Analogon</b>. Die Basalrate lässt sich
+      <b>pro Stunde</b> einstellen — gesenkt bei Sport, gesenkt oder erhöht bei Krankheit.</p></div></div>
+    <div class="stufe"><span class="nr n2">AID</span><div><h4>Automated Insulin Delivery</h4>
+      <p>Sensor (CGM) + Pumpe + <b>Algorithmus</b>, der in Echtzeit rechnet. Manche Systeme geben bei
+      steigendem Zucker selbst einen Korrekturbolus und <b>stoppen</b> die Zufuhr bei drohendem Abfall.</p></div></div>
+  </div>
+
+  <h3>Wann eine Pumpe — und wann nicht</h3>
+  <p><b>Indikationen laut Folie:</b> schwere Hypoglykämien · häufige schwere Hypoglykämien · ausgeprägtes
+    <b>Dawn-Phänomen</b> · Hypoglykämie-Wahrnehmungsstörung · Kinder.</p>
+  <p><b>„Sicher nicht“</b> — ebenfalls wörtlich: nicht für jeden Menschen mit Diabetes, auch nicht bei
+    jedem Typ 1 · nicht auf Patientenwunsch · nicht zur Verbesserung der Lebensqualität · nur
+    „ausreichende“ Versorgung, nur absolut Notwendiges.</p>
+
+  <h3>Dawn und Dusk — der Bedarf schwankt über den Tag</h3>
+  <p>Eine Grafik zeigt den <b>nahrungsunabhängigen (basalen) Insulinbedarf</b>:</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Uhrzeit</th><th>Bedarf</th><th>Name</th></tr></thead>
+    <tbody>
+      <tr><td class="k">ca. 6 Uhr</td><td><b>höchster</b></td><td>Dawn-Phänomen (Morgendämmerung)</td></tr>
+      <tr><td class="k">ca. 12 Uhr</td><td>niedriger</td><td></td></tr>
+      <tr><td class="k">ca. 18 Uhr</td><td>hoher</td><td>Dusk-Phänomen (Abenddämmerung)</td></tr>
+      <tr><td class="k">nachts, nach 24 Uhr</td><td><b>niedrigster</b></td><td></td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>Die Basis austesten</h3>
+  <p><b>Voraussetzungen:</b> gesund fühlen · am Vortag normal gegessen, kein Alkohol, kein übermäßiger
+    Sport · letzte Kohlenhydratmahlzeit nicht länger als 12 Stunden her · seit dem letzten Bolus
+    mindestens 5–6 Stunden (bei Analoga 4–5) · Ausgangszucker zwischen <b>80 und 180 mg/dl</b>.</p>
+  <p><b>Vorgehen:</b> Tag A ohne Frühstück, Tag B ohne Mittagessen, Tag C ohne Abendessen, Tag D
+    Nachttest · nur Basisinsulin · keine Bewegung · <b>alle 60–90 Minuten</b> messen · steigt oder
+    fällt der Zucker, die Basis um <b>10–20 %</b> ändern.</p>
+
+  <h3>Was die Insulinwirkung verändert</h3>
+  <div class="karten">
+    <div class="karte"><h4>Beim Spritzen</h4><p>Art und Dosis · <b>Spritzstelle</b> (Bauch,
+      Oberschenkel, Gesäß) · <b>Tiefe</b> (subkutan, i. m., i. v.) · Konzentration ·
+      <b>Temperatur: Hitze beschleunigt, Kälte verlangsamt</b> · Bewegung · Tageszeit</p></div>
+    <div class="karte"><h4>Beim Menschen</h4><p>Gewicht · Bewegung · Ernährung · <b>Stress, z. B.
+      OP</b> · Essenszeiten · <b>Cortison</b> · Hormone, Menstruation · Pubertät · Hitze, Kälte ·
+      Diabetesdauer · hohe Werte · völlige Ruhe · <b>Wundheilungsstörungen, Infekte</b> · Alkohol ·
+      Pankreatektomie · Schwangerschaft</p></div>
+  </div>
+</section>
+
+<section id="spritzen">
+  <h2>Spritzen und Lagern</h2>
+  <p class="lead">Foliensatz von Beate Braun. Das ist der Teil, den du morgen auf Station brauchst.</p>
+
+  <p><b>Insulin gehört ins Unterhautfettgewebe</b> (Subcutis) — nicht in die Haut, nicht in den Muskel.</p>
+
+  <div class="scroll"><table>
+    <thead><tr><th>Region</th><th>Aufnahme</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Bauch</td><td><b>am schnellsten</b></td></tr>
+      <tr><td class="k">Gesäß</td><td>langsam</td></tr>
+      <tr><td class="k">Oberschenkel</td><td>langsam</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>Empfehlung:</b> die Spritzstellen <b>innerhalb einer Region</b> wechseln. <b>Nicht</b> spritzen in:
+    Verhärtungen, Verdickungen, blaue Flecken, Leberflecken, Narben, andere Hautveränderungen.
+    Bei den <b>langwirkenden Analoga</b> sagt die Borgs-Folie: Bauch oder Oberschenkel, <b>aber immer
+    gleichbleibend</b>.</p>
+
+  <h3>Die Technik Schritt für Schritt</h3>
+  <ol>
+    <li><b>Trübes Insulin 20-mal schwenken</b>, nicht schütteln.</li>
+    <li>Dosis am Pen einstellen.</li>
+    <li>Schutzkappe entfernen.</li>
+    <li><b>Hautfalte bilden</b> — <b>nicht</b> bei Pennadeln von 4–6 mm.</li>
+    <li>Im <b>45–90-Grad-Winkel</b> einstechen.</li>
+    <li>Kolben ganz herunterdrücken.</li>
+    <li><b>Langsam bis 10 zählen</b>, dann die Hautfalte loslassen.</li>
+    <li>Kanüle herausziehen.</li>
+  </ol>
+
+  <div class="merk">
+    <span class="t">Zwei Sätze, die überraschen</span>
+    <p><b>Keine Hautdesinfektion nötig</b> — <i>„wegen der desinfizierenden Wirkung der
+      Insulinzusätze“</i>.</p>
+    <p><b>Ein Blutstropfen</b> nach dem Spritzen heißt: Es wurde vermutlich ein <b>kleines Gefäß</b>
+      getroffen.</p>
+    <p class="fr">On ne désinfecte pas la peau : les additifs de l'insuline le font déjà. Une goutte
+      de sang = un petit vaisseau touché.</p>
+  </div>
+
+  <h3>Lipohypertrophie</h3>
+  <p>Veränderungen der Haut, wenn <b>immer in dieselbe Stelle</b> gespritzt wird. Die Folge können
+    <b>„unerklärliche“ Blutzuckerwerte</b> sein. Die Folie zeigt drei Fotos: zweimal der Bauch,
+    einmal die Oberschenkel.</p>
+
+  <h3>Pennadeln sind Einmalprodukte</h3>
+  <p>Mit drei Ausrufezeichen auf der Folie. Das Foto daneben zeigt dieselbe Nadel <b>neu, nach 1×,
+    2×, 3× und 4× Gebrauch</b> — beim vierten Mal ist die Spitze verbogen und zerfasert.</p>
+
+  <h3>Lagerung</h3>
+  <div class="karten">
+    <div class="karte"><h4>Vorrat</h4><p><b>Kühlschrank, 2–8 °C</b>, kein Frost ·
+      Verwendbarkeitsdatum beachten</p></div>
+    <div class="karte"><h4>In Benutzung</h4><p><b>Muss nicht in den Kühlschrank.</b> Nicht länger als
+      <b>4 Wochen</b> benutzen — <b>Anbruchdatum aufschreiben</b>. <b>Toujeo: 6 Wochen.</b></p></div>
+    <div class="karte"><h4>Nie</h4><p><b>über 37 °C</b> · in der <b>Sonne</b></p></div>
+  </div>
+</section>
+
+<section id="messen">
+  <h2>Messen — die Stoffwechselselbstkontrolle</h2>
+  <p class="lead">Foliensatz von Elisabeth Borgs. Was ein Mensch mit Diabetes selbst kontrolliert, wie
+    man richtig misst — und was ein Sensor kann und nicht kann.</p>
+
+  <p><b>Selbstkontrollen:</b> Gewicht · Blutdruck · Harnzucker (<i>„veraltet“</i>) · Blutzucker ·
+    Aceton · Mikroalbuminurie.</p>
+
+  <h3>Blutzucker messen — richtig</h3>
+  <ol>
+    <li><b>Hände waschen und gut abtrocknen.</b></li>
+    <li>Kalte Finger massieren, kneten.</li>
+    <li><b>Fingerbeere seitlich</b> anstechen.</li>
+    <li>Andere Stellen (Daumenballen, Arm, Bauch, Oberschenkel) <b>nur bei Nüchternwerten</b>.</li>
+    <li>Genug Blut an die Teststreifenkante halten (Sip-in) oder aufsetzen.</li>
+  </ol>
+
+  <div class="warnung">
+    <span class="t">Die Fehlerquellen — auswendig lernen</span>
+    <p>unsaubere Hände · <b>Desinfektion</b> · zu wenig Blut · <b>„Melken“ der Fingerbeere</b> · falsche
+      Lagerung oder Codierung der Teststreifen · Verfallsdatum · Außentemperatur · Teststreifen
+      außerhalb der Originalverpackung.</p>
+    <p class="fr">Désinfecter le doigt et « traire » la pulpe faussent la mesure. On lave et on sèche
+      les mains, c'est tout.</p>
+  </div>
+
+  <p><b>Wann messen?</b> Immer therapieabhängig · vor den Hauptmahlzeiten, evtl. 2 Stunden danach · vor dem
+    Schlafengehen · <b>3–4-mal täglich, auch ohne Mahlzeit</b> · in besonderen Situationen (Sport,
+    Krankheit, Urlaub). <b>Warum?</b> Sicherheit im Alltag (auch beim Autofahren), Überblick über die
+    Stoffwechsellage, Dosis anpassen und Trends erkennen, Zusammenarbeit mit Arzt und Beraterin.</p>
+
+  <h3>Aceton kontrollieren</h3>
+  <p>Mit <b>Blut oder Urin</b> und Teststreifen. <b>Wann?</b></p>
+  <ul>
+    <li>bei Blutzuckerwerten über <b>240–260 mg/dl</b></li>
+    <li>bei <b>Übelkeit, Bauchschmerzen, Erbrechen</b></li>
+    <li>bei <b>fieberhaften Infekten</b></li>
+  </ul>
+  <p><b>Wann ist Aceton positiv?</b> Bei <b>absolutem Insulinmangel</b> mit Blutzuckeranstieg und
+    Entgleisung — <b>und bei bewusster Gewichtsabnahme</b> (<b>Hungerazeton</b>). Ein positiver
+    Aceton-Test allein heißt also noch nicht Ketoazidose.</p>
+
+  <h3>Sensoren — CGM und FGM</h3>
+  <div class="karten">
+    <div class="karte"><h4>CGM</h4><p><i>continuous glucose monitoring</i>: Sensor im
+      Unterhautfettgewebe misst <b>„Gewebezucker“</b> alle 5 Minuten oder jede Minute, zeigt
+      <b>Trends</b>, hat <b>Alarme</b>. Mit oder ohne Pumpe.</p></div>
+    <div class="karte"><h4>FGM</h4><p><i>Flash Glukose Messsystem</i>: der Sensor wird mit dem
+      Lesegerät <b>„gescannt“</b> (Abstand 1–4 cm), am Oberarm oder Bauch.</p></div>
+  </div>
+  <div class="gefahr">
+    <span class="t">Gewebezucker ist nicht Blutzucker</span>
+    <p>Die Glucose braucht Zeit, um vom Blut ins Gewebe zu kommen. Bei <b>schnellen Schwankungen, zum
+      Beispiel beim Sport, „hinkt“ der Sensor hinterher</b>. Im Alltag stimmen die Werte meist überein.
+      Wie groß die Verzögerung ist, steht in deinen Dateien <b>dreimal verschieden</b> — siehe
+      <a href="#zahlen">Zahlen, die nicht passen</a>.</p>
+  </div>
+  <p><b>Grenzen laut Folie:</b> nicht in der <b>Sauna</b> oder beim <b>Schwimmen</b> ·
+    <b>nicht ins MRT — das gilt auch für Insulinpumpen!</b> · Sender und Empfänger höchstens 6 m
+    auseinander · ohne Kalibrierung ungenau bis zum Ausfall · Pflasterunverträglichkeit ·
+    Tragedauer 10 Tage (Dexcom) bis 14 Tage (FreeStyle Libre 3). Das implantierte <b>Eversense</b>
+    liegt bis zu 180 Tage unter der Haut des Oberarms.</p>
+</section>
+<section id="hypo">
+  <h2>Unterzuckerung — Hypoglykämie</h2>
+  <p class="lead">Foliensatz von Beate Braun, Luisenhospital Aachen. Das ist der Notfall, der dir auf
+    Station am häufigsten begegnen wird.</p>
+
+  <div class="scroll"><table>
+    <thead><tr><th>Stufe</th><th>Wert</th><th>Was es heißt</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Stufe 1</td><td>BZ <b>≤ 70 mg/dl</b> (≤ 3,9 mmol/l)</td><td></td></tr>
+      <tr><td class="k">Stufe 2</td><td>BZ <b>&lt; 54 mg/dl</b> (&lt; 3,0 mmol/l)</td><td></td></tr>
+      <tr><td class="k">schwere Unterzuckerung</td><td>— kein Wert —</td><td><b>Fremdhilfe ist notwendig</b>: Glukagon (Spritze oder Spray) durch Angehörige, Glukose-Injektion durch den Arzt</td></tr>
+    </tbody>
+  </table></div>
+  <p class="fr">La gravité ne se mesure pas au chiffre : une hypo est « sévère » dès qu'on a besoin de
+    l'aide de quelqu'un d'autre.</p>
+
+  <h3>Die Zeichen — zwei Gruppen</h3>
+  <div class="karten">
+    <div class="karte"><h4>Autonom — kommen zuerst</h4><p>durch die hormonelle Gegenregulation, meist
+      <b>unter 60 mg/dl</b>: <b>Schweißausbruch, Zittern, Herzklopfen, Heißhunger</b>, Schwindel,
+      Kribbeln in den Lippen, Angst, Nervosität.</p></div>
+    <div class="karte"><h4>Neuroglykopen — Zucker fehlt im Gehirn</h4><p><b>Aufmerksamkeit:</b>
+      unkonzentriert, müde, langsam · <b>Denken:</b> Gedächtnis, Verständnis, Handlungsablauf gestört,
+      uneinsichtig, <b>verwirrt</b> · <b>Gefühl:</b> <b>aggressiv</b>, albern, Alpträume ·
+      <b>Bewegung:</b> ungeschickt, <b>Torkeln, Stolpern, weiche Knie</b> · <b>Sprache:</b> verwaschen ·
+      <b>Sehen:</b> Flimmern, Doppeltsehen · <b>Krampfanfälle · Bewusstlosigkeit</b></p></div>
+  </div>
+  <div class="gefahr">
+    <span class="t">Der wichtigste Satz der Folie</span>
+    <p><b>„Anzeichen können sich ändern, schwächer werden oder ausbleiben!“</b></p>
+    <p>Und dazu passt die Notfallseite: Eine Hypoglykämie <b>sieht oft aus wie ein epileptischer
+      Anfall oder wie ein aggressiver, verwirrter Mensch</b>. Ein Bewohner, der plötzlich
+      „unmöglich“ ist, kann schlicht unterzuckert sein.</p>
+  </div>
+
+  <h3>Was tun — bei Bewusstsein</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div><h4>„Erst essen, dann messen!“</h4>
+      <p><b>Schnelle Kohlenhydrate</b>, z. B. <b>2 KE</b> als Traubenzucker, Saft, Cola.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div><h4>Jede Bewegung unterbrechen</h4></div></div>
+    <div class="stufe"><span class="nr">3</span><div><h4>Blutzucker messen · Ursache suchen · dokumentieren</h4></div></div>
+    <div class="stufe"><span class="nr">4</span><div><h4>Danach 1–2 langsame KE</h4>
+      <p>eine Scheibe Brot, Kekse, Schokolade, Obst.</p></div></div>
+  </div>
+
+  <h3>Was tun — schwere Unterzuckerung</h3>
+  <ol>
+    <li><b>Stabile Seitenlage</b></li>
+    <li><b>Atemwege freimachen</b></li>
+    <li><b>Glukagon</b> spritzen oder in ein Nasenloch sprühen</li>
+    <li><b>Notarzt</b> — bei Unsicherheit oder wenn Glukagon nicht wirkt</li>
+  </ol>
+  <div class="karten">
+    <div class="karte"><h4>Glukagon-Spritze</h4><p>Ein orangefarbenes Notfallset mit Fläschchen und
+      Spritze; die Bildfolge im Deckel zeigt: Flüssigkeit ins Fläschchen spritzen, schwenken,
+      aufziehen, spritzen.</p></div>
+    <div class="karte"><h4>Baqsimi-Nasenspray</h4><p><b>3 mg Glukagon</b> · in <b>ein</b> Nasenloch ·
+      <b>kein Einatmen nötig</b> · zugelassen ab 4 Jahren.</p></div>
+  </div>
+  <p><b>Glukagon</b> kann von <b>geschulten Angehörigen</b> gegeben werden. Es setzt die
+    <b>Zuckerreserven der Leber</b> frei (Glykogenolyse und Gluconeogenese) und <b>wirkt innerhalb von
+    10 Minuten</b>. <b>Danach sofort 4–6 Täfelchen Traubenzucker oder 1–2 Gläser Saft oder Cola.</b></p>
+  <div class="warnung">
+    <span class="t">Bei Bewusstlosigkeit nichts in den Mund</span>
+    <p>Das steht so auf deiner <a href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d" target="_blank" rel="noopener">Notfallseite</a>:
+      <i>„Bei Bewusstlosen niemals oral Zucker geben — Aspirationsgefahr!“</i> Der Traubenzucker kommt
+      <b>erst, wenn der Mensch nach dem Glukagon wieder wach ist</b>.</p>
+  </div>
+
+  <h3>Ursachen</h3>
+  <p>zu viel Insulin · zu wenig oder zu spät gegessen · starke körperliche Anstrengung ·
+    <b>Alkohol</b> (die Leber gibt keinen Zucker mehr frei) · <b>Erbrechen, Durchfall</b>.</p>
+
+  <h3>Vorbeugen</h3>
+  <ul>
+    <li>regelmäßig messen · Warnsignale wahrnehmen · <b>Traubenzucker immer dabei</b> · das Umfeld informieren</li>
+    <li>Aufzieh-, Spritz- und Dosierfehler vermeiden · KE richtig schätzen</li>
+    <li>vor Bewegung Zusatz-KE und/oder weniger Insulin</li>
+    <li><b>Alkohol:</b> keine Exzesse · bei größeren Mengen langsam wirkende Kohlenhydrate dazu und
+      häufiger messen · <b>BZ unter 120 mg/dl verlangt Zusatz-KE</b></li>
+  </ul>
+  <div class="merk">
+    <span class="t">„Achtung“ — eine Folie genau für die Pflege</span>
+    <p>Menschen mit Diabetes <b>nach längerem Krankenhausaufenthalt</b> auf körperliche Bewegung
+      vorbereiten. Bei einer <b>Therapieänderung</b> erneut auf mögliche Unterzuckerungen hinweisen.
+      <b>Patienten müssen die Wirkweise des neuen Insulins kennen.</b></p>
+    <p>Und der Schlusssatz, zweimal auf der Folie: <i>„Gelegentliche leichte Unterzuckerungen sind bei
+      einer guten Blutzuckereinstellung mit Insulintherapie nicht zu vermeiden.“</i></p>
+  </div>
+</section>
+
+<section id="hyper">
+  <h2>Überzuckerung — Hyperglykämie, Ketoazidose, hyperosmolares Koma</h2>
+  <p class="lead">Wieder Beate Braun. Die Folie mit dem Insulinmangel erklärt alle drei auf einmal —
+    das ist die Kette für jede <b>Begründen</b>-Frage.</p>
+
+  <h3>Was bei Insulinmangel passiert — drei Wege</h3>
+  <div class="stufen">
+    <div class="stufe"><span class="nr">1</span><div><h4>Hoher Blutzucker</h4>
+      <p>Der Zucker kommt nicht in die Zellen, <b>die Leber produziert ungehemmt Zucker</b>. Der BZ
+      übersteigt die <b>Nierenschwelle</b> → <b>Zucker im Urin</b> → <b>Zucker zieht Wasser aus dem
+      Körper</b> → Austrocknung der Gewebe (bis Nierenversagen und Schock), Müdigkeit,
+      <b>verstärkter Durst, Polyurie</b> — und zusätzlich <b>Verlust an Blutsalzen</b>: Wadenkrämpfe,
+      Herzrhythmusstörungen.</p></div></div>
+    <div class="stufe"><span class="nr">2</span><div><h4>Eiweißabbau (Proteolyse)</h4>
+      <p>Abgeschlagenheit, <b>Gewichtsverlust</b>, Muskelschwund.</p></div></div>
+    <div class="stufe"><span class="nr n2">3</span><div><h4>Fettabbau (Lipolyse)</h4>
+      <p>Die Fettverbrennung ist <b>unvollständig</b> → <b>Aceton und andere Ketonkörper</b> (im Urin,
+      in der Atemluft) → <b>Übersäuerung des Blutes</b> → Übelkeit, Erbrechen, Bauchschmerzen und eine
+      <b>verstärkte, tiefe Atmung</b> (Hyperventilation).</p></div></div>
+  </div>
+  <p class="fr">Sans insuline : le sucre reste dans le sang et part dans les urines en emportant l'eau
+    (soif, déshydratation) ; le corps brûle ses graisses de travers et fabrique de l'acétone qui
+    acidifie le sang.</p>
+
+  <h3>Zeichen einer Hyperglykämie</h3>
+  <p><b>Durst · häufiges Wasserlassen</b> · Müdigkeit, Antriebsarmut · Kraftlosigkeit · Sehstörungen ·
+    <b>Juckreiz</b> · Hautentzündungen · <b>schlecht heilende Wunden</b> · Infektionen an den
+    Geschlechtsorganen · Harnwegsinfekte · Gewichtsverlust.</p>
+
+  <h3>Ketoazidose — die Definition der Folie</h3>
+  <p>Eine durch Ketonkörper verursachte <b>metabolische Azidose</b>: Blutzucker <b>über 240 mg/dl</b> ·
+    <b>pH unter 7,25</b> · zu niedriges Bikarbonat · Ketonurie · Glucosurie.</p>
+  <p><b>Anzeichen:</b> Übelkeit, Erbrechen, <b>Bauchschmerzen</b>, Muskelschwere,
+    <b>Acetongeruch der Atemluft</b>, <b>angestrengte, tiefe Atmung</b>, Müdigkeit, Schläfrigkeit.</p>
+
+  <h3>Wie viel Keton ist zu viel? — die Ampel der Folie</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Blut-Keton</th><th>Urin-Keton</th><th>Was tun</th></tr></thead>
+    <tbody>
+      <tr><td class="k">&lt; 0,6 mmol/l — normal</td><td>negativ</td><td>alles okay</td></tr>
+      <tr><td class="k">0,6–1,5 mmol/l — Keton erhöht</td><td>Spur oder wenig (+)</td><td>15–30 g schnelle Kohlenhydrate und 300–500 ml Flüssigkeit pro Stunde · schnelles Insulin nach der Kohlenhydrataufnahme (stündlich) · Ketone alle 1–2 Stunden kontrollieren · Glucose messen · Hilfe holen, wenn die Werte nicht normal werden</td></tr>
+      <tr><td class="k">1,5–3,0 mmol/l — DKA entwickelt sich</td><td>moderat (++)</td><td>Behandlungsvorschläge umsetzen · Kontakt mit dem Diabetes-Team oder medizinische Hilfe</td></tr>
+      <tr><td class="k">&gt; 3,0 mmol/l — DKA liegt vor</td><td>stark (+++ / ++++)</td><td><b>sofort medizinische Hilfe</b></td></tr>
+    </tbody>
+  </table></div>
+  <p><b>Fußnote der Folie:</b> <i>„Urinketon-Werte hängen vom Flüssigkeitshaushalt und anderen
+    Faktoren ab und korrelieren nicht eng mit den Blutketon-Werten.“</i> Das brauchst du für
+    <a href="#lehmann">Frau Lehmann</a>.</p>
+
+  <h3>Das Vorgehen bei hohem Zucker — das Flussschema</h3>
+  <p>Auslöser: <b>Übelkeit, Erbrechen, Bauchschmerzen und/oder BZ über 250 mg/dl</b> → Aceton im Urin
+    testen oder Blutketone messen.</p>
+  <div class="karten">
+    <div class="karte"><h4>Aceton – oder + (Blutketone 0,6–1,5)</h4><p><b>Korrektur wie üblich</b>
+      spritzen — 3 Stunden nach dem letzten Bolus.</p></div>
+    <div class="karte"><h4>Aceton ++ oder +++ (Blutketone über 1,5) = Entgleisung</h4><p>
+      <b>Unterstützung holen — „Sie dürfen nicht einschlafen“</b> · die <b>doppelte Korrekturmenge</b>
+      (auf 150 mg/dl) des kurzwirksamen Insulins · <b>1–1,5 l Wasser pro Stunde</b>, nichts mit KE,
+      keine Bewegung · <b>alle 2 Stunden</b> Aceton und BZ kontrollieren.</p></div>
+  </div>
+  <p>Bleibt Aceton bei ++/+++: <b>wieder die doppelte Korrekturmenge</b>, weiter trinken, nicht essen.
+    Fällt es: bei BZ <b>unter 180</b> → 2 BE langwirkende KE essen, ohne Insulin dafür; bei <b>über 180</b>
+    → Korrektur wie üblich.</p>
+  <div class="gefahr">
+    <span class="t">Unbedingt zum Arzt, wenn …</span>
+    <p>Übelkeit, Erbrechen, Bauchschmerzen stärker werden · <b>nicht genug getrunken werden kann</b> ·
+      nach <b>6 Stunden</b> Aceton noch ++/+++ oder Ketone über 1,5 · der BZ nicht deutlich sinkt.</p>
+  </div>
+
+  <h3>Das hyperosmolare Koma — vor allem bei Typ 2</h3>
+  <p>Tritt vor allem bei <b>Typ-2-Diabetes</b> auf, z. B. bei <b>schweren Infekten</b> oder unter
+    <b>Diuretika</b>. Relativer Insulinmangel: weniger Zucker wird verwertet, die Leber gibt mehr frei.
+    Weil noch <b>etwas Insulin vorhanden</b> ist, entsteht <b>keine Ketose</b>.</p>
+  <p><b>Zeichen:</b> BZ <b>über 600 bis über 1000 mg/dl</b> · starke Glucosurie · fortschreitende
+    <b>Dehydratation mit Elektrolytstörungen</b> · Bewusstseinsstörung bis Koma ·
+    <b>Volumenmangelschock</b> · akutes Nierenversagen.</p>
+
+  <div class="scroll"><table>
+    <thead><tr><th>Im Krankenhaus</th><th>Ketoazidose</th><th>hyperosmolares Koma</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Flüssigkeit</td><td>sofort · Wasser-Elektrolyt-Haushalt ausgleichen</td><td>mit <b>physiologischer Kochsalzlösung</b></td></tr>
+      <tr><td class="k">Insulin</td><td>intravenös</td><td>intravenös</td></tr>
+      <tr><td class="k">Kalium</td><td>abhängig vom Serumkalium und der Azidose</td><td>Kaliumsubstitution</td></tr>
+      <tr><td class="k">Glukose</td><td>bei BZ <b>unter 200 mg/dl</b> Glukose i. v. dazu</td><td>ab BZ <b>unter 200 mg/dl</b> glukosehaltige Infusion</td></tr>
+    </tbody>
+  </table></div>
+  <div class="warnung">
+    <span class="t">Deine Kinderseite sagt beim hyperosmolaren Syndrom etwas anderes</span>
+    <p>Auf der Seite <a href="https://claude.ai/artifact/GdWSxzmHV46chBzi78YNar" target="_blank" rel="noopener">Das
+      kranke Kind</a> steht beim HHS: <i>„Normalisierung der Osmolarität durch Flüssigkeitsgabe —
+      dadurch sinkt der Blutzucker von selbst, deshalb keine Insulingabe“</i>. Die Folie von Beate
+      Braun nennt beim hyperosmolaren Koma <b>„Insulinzufuhr intravenös“</b>. Zwei Unterlagen, zwei
+      Aussagen — <b>nicht aufgelöst</b>. Frag die Dozentin, welche für eure Klausur gilt.</p>
+  </div>
+</section>
+<section id="faelle">
+  <h2>Sechs Fallbeispiele — mit den Lösungen der Dozentin</h2>
+  <p class="lead">Die Datei <i>Fallbeispiele Diabetes 2026</i> zeigt echte BZ-Tagesprofile von der
+    Station. Bei fünf von sechs Beispielen folgt eine zweite Folie mit der <b>Auflösung —
+    handschriftlich ins Profil eingetragen</b>. Das ist der wertvollste Teil dieses Ordners: So denkt
+    eine Diabetesberaterin, Tag für Tag.</p>
+
+  <div class="merk">
+    <span class="t">So liest du die Tabellen</span>
+    <p>Obere Zeile = <b>gemessener Blutzucker</b> in mg/dl zu den Uhrzeiten. Darunter = <b>gespritzte
+      Einheiten</b>. „KE 5/6/5“ = Kohlenhydrateinheiten zu Frühstück, Mittag, Abend. Erst die
+      Folie ohne Lösung ansehen und selbst überlegen — dann aufklappen.</p>
+  </div>
+
+  <h3>Beispiel 1 — Heimbewohnerin, geb. 1948, NovoMix 30, KE 4/6/5</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Datum</th><th>8:00</th><th>12:00</th><th>17:00</th><th>22:00</th><th>3:00</th><th>Insulin</th></tr></thead>
+    <tbody>
+      <tr><td class="k">6.3.</td><td>123</td><td>169</td><td>174</td><td>156</td><td>121</td><td>20 morgens · 16 abends</td></tr>
+      <tr><td class="k">7.3.</td><td>130</td><td>197</td><td>172</td><td>137</td><td>118</td><td>20 · 16</td></tr>
+    </tbody>
+  </table></div>
+  <div class="warnung"><span class="t">Keine Frage, keine Lösung</span>
+    <p>Zu diesem Beispiel steht in der Datei <b>nur das Profil</b>. Was du selbst sehen kannst: kein
+      Wert unter 118, keiner über 197, die Nacht um 3 Uhr ruhig. Ob die Dozentin hier etwas ändern
+      würde, steht nirgends — <b>nicht erfunden</b>.</p></div>
+
+  <h3>Beispiel 2 — geb. 1950, KE 5/5/5, erst Gastroskopie, dann Koloskopie</h3>
+  <p><b>Frage der Folie:</b> Welche Therapie, welche Insuline, welcher Typ?</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Datum</th><th>8:00</th><th>12:00</th><th>17:00</th><th>22:00</th><th>3:00</th><th>Mahlzeiten-Insulin</th><th>Basal (nachts)</th></tr></thead>
+    <tbody>
+      <tr><td class="k">6.3.</td><td>189</td><td>209</td><td>185</td><td>194</td><td>186</td><td>8 · 6 · 6</td><td>8</td></tr>
+      <tr><td class="k">7.3.</td><td>165</td><td>161</td><td>156</td><td>130</td><td>143</td><td>8 · 6 · 6</td><td>8</td></tr>
+      <tr><td class="k">8.3.</td><td>197</td><td>162</td><td>146</td><td>131</td><td>124</td><td>? → 9 · 6 · 6</td><td>? → 8</td></tr>
+      <tr><td class="k">9.3. Gastroskopie</td><td>192</td><td>172</td><td>151</td><td>140</td><td>138</td><td><b>— · 6 · 6</b></td><td>8</td></tr>
+      <tr><td class="k">10.3.</td><td>126</td><td>151</td><td>136</td><td>130</td><td>143</td><td>7 · 6 · 6</td><td>8</td></tr>
+      <tr><td class="k">11.3. führt ab</td><td>133</td><td>139</td><td>137</td><td>131</td><td>124</td><td><b>7 · — · —</b></td><td><b>8</b></td></tr>
+      <tr><td class="k">12.3. Koloskopie</td><td>134</td><td colspan="6"><b>kein Bolus, da nüchtern</b></td></tr>
+    </tbody>
+  </table></div>
+  <details class="quelle"><summary>Die Lösung der Dozentin</summary><div class="inh">
+    <ul>
+      <li><b>Typ 1 oder Typ 2</b> — beides möglich; die Therapie ist eine <b>Basis-Bolus-Therapie</b>.</li>
+      <li><b>Mahlzeiteninsulin:</b> ein kurzwirksames Analogon, z. B. Humalog, Liprolog, NovoRapid, Apidra.</li>
+      <li><b>Basal:</b> z. B. Toujeo/Lantus oder Tresiba.</li>
+      <li>9.3.: <b>„Kein Essensinsulin vor der Gastroskopie.“</b></li>
+      <li>11.3. (die Patientin bekommt kein Mittagessen und führt ab): mittags und abends <b>„Kein Bolus,
+        da kein Essen und guter BZ“</b> — <b>aber: „Basalinsulin muss gespritzt werden!“</b></li>
+      <li>12.3.: <b>„Kein Bolus, da nüchtern.“</b></li>
+    </ul>
+    <p><b>Die Regel dahinter:</b> Das Mahlzeiteninsulin gehört zur <b>Mahlzeit</b> — fällt sie aus, fällt
+      es aus. Das Basalinsulin gehört zum <b>Körper</b> — es läuft weiter, auch wenn nichts gegessen
+      wird (siehe <a href="#insulin">Was Insulin tut</a>).</p>
+    <p class="fr">Pas de repas = pas d'insuline des repas. Mais l'insuline basale, elle, on la fait
+      toujours.</p>
+  </div></details>
+
+  <h3>Beispiel 3 — geb. 1959, Januvia 25 mg 1-0-0, Humalog 200, Toujeo 18 IE, KE 5/6/5</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Datum</th><th>8:00</th><th>12:00</th><th>17:00</th><th>22:00</th><th>3:00</th><th>Humalog</th><th>Toujeo</th></tr></thead>
+    <tbody>
+      <tr><td class="k">4.3.</td><td>176</td><td>161</td><td>153</td><td>144</td><td>179</td><td>4 · 2 · 7</td><td>18</td></tr>
+      <tr><td class="k">5.3.</td><td>161</td><td>275</td><td>194</td><td>189</td><td>x</td><td>4 · 8 · 7</td><td>18</td></tr>
+      <tr><td class="k">6.3.</td><td>201</td><td>216</td><td>167</td><td>148</td><td>x</td><td>8 · 10 · 8</td><td>? → <b>20</b></td></tr>
+      <tr><td class="k">7.3.</td><td>158</td><td>217</td><td></td><td></td><td></td><td>8 · 10 · ?</td><td></td></tr>
+    </tbody>
+  </table></div>
+  <details class="quelle"><summary>Die Lösung der Dozentin</summary><div class="inh">
+    <p>6.3.: <b>„Etwas mehr Toujeo injiziert, da leichter Anstieg nachts“</b> — von 18 auf 20 Einheiten.</p>
+    <p><b>Die Regel dahinter:</b> Ein Anstieg <b>in der Nacht</b>, wenn niemand isst, ist ein
+      <b>Basalproblem</b> — also wird das <b>Basalinsulin</b> angepasst, nicht das Mahlzeiteninsulin.</p>
+  </div></details>
+
+  <h3>Beispiel 4 — geb. 1945, 10 KE am Tag, HbA1c 14,5 %, kommt mit Lantus 12-0-0-6 und Apidra</h3>
+  <p><b>Fragen der Folie:</b> BZ-Ziel? Zwischenmahlzeiten? Umstellung auf Mischinsulin geplant — welches?</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Datum</th><th>8</th><th>10</th><th>12</th><th>15</th><th>18</th><th>20</th><th>22</th><th>3</th><th>5</th><th>Insulin</th></tr></thead>
+    <tbody>
+      <tr><td class="k">1.3.</td><td></td><td></td><td></td><td></td><td>349</td><td>300</td><td>224</td><td>175</td><td></td><td>+10 · 6 Lantus</td></tr>
+      <tr><td class="k">2.3.</td><td>201</td><td>362</td><td>297</td><td>289</td><td>217</td><td>285</td><td>307</td><td><b>76</b></td><td>130</td><td>Apidra 4·6·4·4·4 · 16 Lantus · <b>+2 KE</b> um 3 Uhr</td></tr>
+      <tr><td class="k">3.3.</td><td>141</td><td></td><td>202</td><td></td><td><b>87</b></td><td>166</td><td>131</td><td>160</td><td></td><td>8·6·4 · 16 Lantus</td></tr>
+      <tr><td class="k">4.3.</td><td>144</td><td></td><td>154</td><td></td><td>180</td><td></td><td>104</td><td>121</td><td></td><td>10·3·8 · 16 Lantus = <b>37 IE gesamt</b></td></tr>
+    </tbody>
+  </table></div>
+  <details class="quelle"><summary>Die Lösung der Dozentin</summary><div class="inh">
+    <ul>
+      <li><b>BZ-Ziel:</b> am 1. Tag <b>200–250 mg/dl</b>, danach <b>150–180 mg/dl, bis der Augenbefund
+        vorliegt</b>.</li>
+      <li><b>Keine Zwischenmahlzeiten.</b></li>
+      <li>2.3.: <b>„keine weitere Lantusgabe abends, da Lantus nur 1x täglich gespritzt wird“</b>.</li>
+      <li>4.3.: <b>„Ab dem nächsten Tag Mischinsulin, da Lantus bis zum nächsten Morgen wirkt.“</b>
+        Am 4.3. insgesamt <b>37 Einheiten</b>.</li>
+      <li>Mischinsulin: <b>NovoMix 30 oder Humalog Mix 25</b> möglich. Beginn am 5.3. mit
+        <b>36 IE NovoMix 30</b>: 22 morgens, 14 abends.</li>
+    </ul>
+    <div class="scroll"><table>
+      <thead><tr><th>Datum</th><th>8</th><th>12</th><th>15</th><th>17</th><th>22</th><th>3</th><th>NovoMix 30</th></tr></thead>
+      <tbody>
+        <tr><td class="k">5.3.</td><td>222</td><td><b>406</b></td><td>227</td><td>127</td><td>120</td><td><b>86</b></td><td>22 · (+6) · 14</td></tr>
+        <tr><td class="k">6.3.</td><td>139</td><td><b>69</b> +1 KE</td><td></td><td></td><td></td><td></td><td><b>28 · 10</b></td></tr>
+      </tbody>
+    </table></div>
+    <p>6.3.: <b>„Da am Vortag tagsüber hohe BZ, Dosiserhöhung morgens. Abends Reduktion sinnvoll, bei
+      niedrigem BZ nachts.“</b></p>
+    <p><b>Die Regel dahinter:</b> Beim Mischinsulin deckt die <b>Morgendosis den Tag</b>, die
+      <b>Abenddosis die Nacht</b>. Zu hoch am Tag → morgens mehr. Zu niedrig in der Nacht → abends weniger.</p>
+    <p><b>Warum das Ziel bis zum Augenbefund höher liegt</b>, schreibt die Dozentin nicht dazu. Das ist
+      eine gute Frage für den Unterricht — hier wird es nicht erfunden.</p>
+  </div></details>
+
+  <h3>Beispiel 5 — Mann, geb. 1953, Demenz, Toujeo + NovoRapid, Metformin 1000 1-0-1</h3>
+  <p><b>Aufgabe der Folie:</b> CT ist geplant — <b>Therapievorschlag!</b> Am 3.3. brauchte er
+    <b>insgesamt 90 Einheiten</b> (24 NovoRapid · 24 · 16 · 26 Toujeo), Werte 205 · 290 · 132 · 98 · 102 · 163.</p>
+  <details class="quelle"><summary>Die Lösung der Dozentin</summary><div class="inh">
+    <p><b>CT z. B. mit Humalog Mix 50 und Mix 25, „da er sehr viel Insulin tagsüber benötigt!“</b></p>
+    <div class="scroll"><table>
+      <thead><tr><th>Datum</th><th>8</th><th>12</th><th>17</th><th>22</th><th>3</th><th>morgens</th><th>mittags</th><th>abends</th></tr></thead>
+      <tbody>
+        <tr><td class="k">4.3.</td><td>165</td><td>278</td><td>82</td><td>79 +2 KE</td><td>98</td><td>40 (50/50)</td><td>30 (50/50)</td><td>20 (25/75)</td></tr>
+        <tr><td class="k">5.3.</td><td>106</td><td>214</td><td>153</td><td>80 +2 KE</td><td>108</td><td>2×22 (50/50)</td><td>22 (50/50)</td><td><b>16</b> (25/75)</td></tr>
+        <tr><td class="k">6.3.</td><td>124</td><td>203</td><td>133</td><td>88 +2 KE</td><td><b>51</b> +2 KE (danach 127)</td><td>2×24 (50/50)</td><td>22 (50/50)</td><td><b>12</b> (25/75)</td></tr>
+        <tr><td class="k">7.3.</td><td>214</td><td>183</td><td></td><td></td><td></td><td>2×26 (50/50)</td><td>20 (50/50)</td><td>12 (25/75)</td></tr>
+      </tbody>
+    </table></div>
+    <ul>
+      <li>5.3.: <b>„Da in der vorherigen Nacht niedrige BZ, abends Reduktion auf 16 E.“</b></li>
+      <li>6.3.: <b>„Wieder niedrige BZ nachts vom 5. auf 6.3., deshalb weitere Reduktion abends auf 12 E.“</b>
+        — und die Frage daneben: <b>„Hat der Patient sein Abendessen gegessen?“</b></li>
+      <li>7.3.: <b>„Morgens Erhöhung der Dosis, da mittags immer noch zu hohe BZ.“</b></li>
+    </ul>
+    <p><b>„2×22“</b> steht so auf der Folie; was genau damit gemeint ist, erklärt sie nicht.</p>
+    <div class="merk"><span class="t">Die Frage mit dem Abendessen — genau dein Beruf</span>
+      <p>Die Dozentin fragt nicht zuerst nach dem Insulin, sondern: <b>Hat er gegessen?</b> Bei einem
+        Menschen mit <b>Demenz</b> weiß das oft nur die Pflege. Eine nächtliche Unterzuckerung kann
+        einfach heißen, dass der Teller voll zurückging. <b>Das ist eine Beobachtung, die in die
+        Übergabe gehört.</b> (Die Verbindung von Demenz und Essen ist meine Herleitung; die Frage
+        steht auf der Folie.)</p></div>
+  </div></details>
+
+  <h3>Beispiel 6 — geb. 1962, KE 6/6/5</h3>
+  <p><b>Fragen der Folie:</b> Welcher Typ? Welche Therapie? Welches Insulin?</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Datum</th><th>8:00</th><th>12:00</th><th>17:00</th><th>22:00</th><th>3:00</th><th>Insulin</th></tr></thead>
+    <tbody>
+      <tr><td class="k">18.2.</td><td>84</td><td>121</td><td>121</td><td>143</td><td>95</td><td>6 · 8 · 4</td></tr>
+      <tr><td class="k">19.2.</td><td>106</td><td>129</td><td>102</td><td>107</td><td>93</td><td>8 · 8 · 4</td></tr>
+      <tr><td class="k">20.2.</td><td>94</td><td>93</td><td>113</td><td>126</td><td>111</td><td>8 · 6 · 4</td></tr>
+    </tbody>
+  </table></div>
+  <details class="quelle"><summary>Die Lösung der Dozentin</summary><div class="inh">
+    <p><b>Typ-2-Diabetes, supplementäre Insulintherapie (SIT)</b>, z. B. mit Humalog, NovoRapid, Apidra
+      oder Lyumjev/Fiasp.</p>
+    <p><b>Woran man es sieht (Herleitung aus zwei Folien):</b> Es wird <b>nur zu den Mahlzeiten</b>
+      gespritzt, und die Nachtwerte um 3 Uhr sind trotzdem ruhig (93–111). Die Borgs-Folie sagt: SIT ist
+      <i>„bei Typ-2 Diabetikern manchmal als alleinige Therapie d. h. ohne Basis ausreichend“</i>. Der
+      Körper macht seine Basis also noch selbst.</p>
+  </div></details>
+</section>
+
+<section id="lehmann">
+  <h2>Fall Frau Lehmann — Vorbereitung auf die mündliche Besprechung</h2>
+  <p class="lead">CE 07 UE 2, chronische Erkrankungen. Die Aufgabe: <i>„Wiederholen und vertiefen Sie
+    das Krankheitsbild Diabetes mellitus anhand der Fallbeschreibung von Frau Lehmann. Nutzen Sie dazu
+    die Inhalte und Unterlagen aus dieser Woche. Bereiten Sie sich auf eine mündliche Besprechung vor.“
+    — Zeit: 45 Minuten.</i></p>
+
+  <h3>Der Fall in zehn Zeilen</h3>
+  <ul>
+    <li>geb. 1952, aufgenommen mit <b>hyperglykämisch entgleistem Diabetes Typ 2</b> (ED 2014, Insulin seit 2016)</li>
+    <li><b>HbA1c 15,1 %</b> · diabetische <b>Polyneuropathie</b> · multifaktorielle <b>Gangstörung</b></li>
+    <li>außerdem: chronische Niereninsuffizienz CKD IV · Herzinsuffizienz Stadium 2 · Hypertonie · COPD ·
+      <b>Adipositas Grad III</b> (165 cm, 112 kg, BMI 41,1)</li>
+    <li>zu Hause: <b>konventionelle Therapie mit Humalog Mix 25</b> — drei Wochen lang <b>BZ über 500</b>,
+      vermehrter <b>Durst</b>, vermehrtes <b>Wasserlassen</b></li>
+    <li>auf Station: BZ <b>300–400 mg/dl</b> · Keton im Urin <b>einfach positiv</b> · <b>pH 7,39</b></li>
+    <li>Therapie: CT pausiert → <b>Insulinperfusor</b> + <b>2 l Vollelektrolytlösung</b> täglich →
+      BZ über <b>5 Tage langsam</b> auf <b>150–180 mg/dl</b></li>
+    <li>danach <b>Basis-Bolus: 60 IE Toujeo um 20 Uhr + Apidra zu den Mahlzeiten</b></li>
+    <li>Ernährungsschulung (BE, Lebensmittel, Gewichtsreduktion) · Füße untersucht: Stechen, Taubheit,
+      Wadenkrämpfe, <b>reduziertes Vibrationsempfinden</b> (Stimmgabel) · Augen: <b>keine</b> diabetischen Veränderungen</li>
+    <li>verwitwet seit 3 Jahren · <b>Erdgeschosswohnung</b> in Aachen · die <b>Tochter</b> wohnt nah und hilft im Haushalt</li>
+    <li>mit <b>Rollator</b> mobil, keine langen Strecken — sie wird <b>schnell kurzatmig</b></li>
+  </ul>
+
+  <div class="warnung"><span class="t">Wichtig vorab</span>
+    <p>Zu diesem Fall gibt es <b>keinen Erwartungshorizont</b> in deinen Dateien. Die Antworten unten
+      sind aus den Folien dieser Woche <b>abgeleitet</b> — jede Antwort nennt, woher sie kommt. Sie sind
+      eine Vorbereitung, kein Lösungsblatt.</p></div>
+
+  <h3>Neun Fragen, mit denen du in die Besprechung gehst</h3>
+
+  <details class="quelle"><summary>1 · Nennen — Warum ist es ein Typ 2?</summary><div class="inh">
+    <p>Die Diagnose sagt es. <b>Passend</b> zur Tabelle der Folie: Erstdiagnose im <b>Erwachsenenalter</b>
+      (mit 62), <b>starkes Übergewicht</b> (BMI 41,1 — „meist Übergewicht“), <b>Folgeerkrankungen</b>
+      (Polyneuropathie). <i>Quelle: Differentialtabelle Typ 1 / Typ 2.</i></p></div></details>
+
+  <details class="quelle"><summary>2 · Erklären — Warum hatte sie Durst und musste so oft Wasser lassen?</summary><div class="inh">
+    <p>Der BZ lag über der <b>Nierenschwelle</b> → Zucker im Urin → <b>Zucker zieht Wasser aus dem
+      Körper</b> → viel Urin (Polyurie) → der Körper trocknet aus → <b>Durst</b>. Beispiel: Wie Salz,
+      das Wasser anzieht. <i>Quelle: Folie „Insulinmangel“ (Braun) und Symptomtabelle (KPS-Foliensatz).</i></p></div></details>
+
+  <details class="quelle"><summary>3 · Beurteilen — Hatte Frau Lehmann eine Ketoazidose?</summary><div class="inh">
+    <p><b>Einschätzung: Nach den Kriterien der Folie nein</b> — es ist eine hyperglykämische Entgleisung
+      <b>ohne</b> Ketoazidose.</p>
+    <p><b>Begründung:</b> Die Folie verlangt BZ über 240 <b>und</b> pH unter 7,25 <b>und</b> Ketonurie.
+      Der Zucker war hoch genug (300–400), <b>aber der pH lag bei 7,39</b> — das Blut war nicht sauer.
+      Das Keton im Urin war nur <b>einfach positiv</b>; in der Ampel der Folie ist „+“ die Stufe
+      <b>„Keton erhöht“</b>, nicht „DKA“. Und die Fußnote sagt, dass Urinketone nur locker mit den
+      Blutketonen zusammenhängen.</p>
+    <p><b>Die Kette:</b> Insulin fehlt (Ursache) → Zucker bleibt im Blut, etwas Fett wird abgebaut
+      (Wirkung) → noch keine Übersäuerung, aber Austrocknung durch die Polyurie (Gefahr) →
+      <b>deshalb</b> Flüssigkeit, Insulin i. v. und Kontrolle.</p>
+    <p><b>Und ein hyperosmolares Koma?</b> Auch nicht nach der Folie: Dort stehen BZ <b>über 600</b> und
+      Bewusstseinsstörungen — beides steht im Fall nicht.</p></div></details>
+
+  <details class="quelle"><summary>4 · Ableiten — Warum Vollelektrolytlösung, und warum wird Kalium überwacht?</summary><div class="inh">
+    <p><b>Flüssigkeit:</b> weil sie durch die Polyurie Wasser <b>und Blutsalze</b> verloren hat (Folie
+      „Insulinmangel“). <b>Kalium:</b> weil das Insulin aus dem Perfusor Kalium <b>in die Zellen</b>
+      schiebt (Datei <i>Insulin</i>, Punkt e) — im Blut kann es dann knapp werden. Die
+      Therapiefolien nennen bei der Entgleisung deshalb jedes Mal die Kaliumsubstitution.
+      <i>Das „deshalb“ ist meine Verbindung zweier Folien.</i></p></div></details>
+
+  <details class="quelle"><summary>5 · Erarbeiten — Warum wurde der Zucker so langsam gesenkt?</summary><div class="inh">
+    <p><b>Das steht im Fall nicht.</b> Zwei Spuren in deinen Unterlagen: In <b>Fallbeispiel 4</b> liegt
+      das Ziel ebenfalls bei <b>150–180 mg/dl, „bis der Augenbefund vorliegt“</b> — und bei Frau
+      Lehmann wurden die Augen untersucht. Auf deiner <b>Kinderseite</b> steht bei der Ketoazidose,
+      dass der Zucker langsam gesenkt wird, um ein <b>Hirnödem</b> zu vermeiden. Ob einer dieser Gründe
+      für Frau Lehmann gilt, sagt keine Folie. <b>Genau das ist eine gute Frage an die Dozentin in der
+      Besprechung.</b></p></div></details>
+
+  <details class="quelle"><summary>6 · Beschreiben — Was ist ihre neue Therapie?</summary><div class="inh">
+    <p>Eine <b>Basis-Bolus-Therapie</b> (ICT): <b>Toujeo</b> ist Glargin in <b>300 IE/ml</b>, wirkt bis
+      24 Stunden, gibt es nur als Einmalpen und darf <b>6 Wochen</b> im Anbruch benutzt werden.
+      <b>Apidra</b> (Glulisin) ist ein kurzwirksames Analogon: wirkt sofort, Maximum nach 1 Stunde,
+      2–3 Stunden lang. Vorher hatte sie eine CT mit Mischinsulin — laut Folie mit festem BE-Gerüst und
+      <b>hohem Unterzuckerungsrisiko am späten Vormittag und in der ersten Nachthälfte</b>.
+      <i>Quellen: Insulin-Tabelle, Therapieformen, Lagerung.</i></p></div></details>
+
+  <details class="quelle"><summary>7 · Begründen — Was muss sie jetzt neu lernen?</summary><div class="inh">
+    <p>Weil die Therapie <b>gewechselt</b> hat, sagt die Braun-Folie ausdrücklich: <b>„Bei
+      Therapieänderung auf mögliche Unterzuckerungen erneut hinweisen — Patienten müssen die Wirkweise
+      des neuen Insulins kennen.“</b> Dazu: <b>BE</b> schätzen (die Ernährungsschulung läuft schon) ·
+      <b>Spritztechnik</b> mit Wechsel der Stelle (Lipohypertrophie) · <b>Lagerung</b> ·
+      <b>Hypo-Zeichen und Traubenzucker immer dabei</b> · <b>Blutzucker selbst messen</b> — bei einer ICT
+      4–6-mal am Tag.</p></div></details>
+
+  <details class="quelle"><summary>8 · Beurteilen — Welche Gefahr kommt durch die neue Therapie dazu?</summary><div class="inh">
+    <p><b>Einschätzung: ein erhöhtes Sturzrisiko</b> — das ist meine Verbindung aus zwei Stellen,
+      keine Aussage der Folien.</p>
+    <p><b>Kette:</b> Mehr Insulin und ein neues Schema (Ursache) → Unterzuckerungen werden möglich; die
+      Folie sagt, gelegentliche leichte Hypos seien <i>„nicht zu vermeiden“</i> (Wirkung) → zu den
+      Zeichen einer Hypo gehören <b>Torkeln, Stolpern, weiche Knie</b>, und Frau Lehmann hat schon eine
+      <b>Gangstörung</b>, eine <b>Polyneuropathie</b> und geht mit dem <b>Rollator</b> (Gefahr) →
+      <b>deshalb</b> Hypo-Zeichen mit ihr und ihrer Tochter besprechen, Traubenzucker griffbereit,
+      Sturzrisiko beobachten.</p></div></details>
+
+  <details class="quelle"><summary>9 · Erläutern — Welche Folgeschäden zeigt der Fall schon?</summary><div class="inh">
+    <p>Die Definition nennt <b>Augen, Nieren, Nerven, Herz und Blutgefäße</b>. Im Fall sieht man:</p>
+    <ul>
+      <li><b>Nerven:</b> die diabetische Polyneuropathie — das sieht man daran, dass sie über
+        <i>„Stechen-, Taubheitsgefühle und Wadenkrämpfe“</i> klagt und das <b>Vibrationsempfinden</b> beim
+        Stimmgabeltest reduziert ist.</li>
+      <li><b>Augen:</b> <b>keine</b> Veränderungen — das steht ausdrücklich im Fall.</li>
+      <li><b>Nieren, Herz:</b> Sie hat eine CKD IV und eine Herzinsuffizienz. <b>Ob diese vom Diabetes
+        kommen, sagt der Fall nicht</b> — also in der Besprechung nicht behaupten.</li>
+    </ul>
+    <p>Dazu die <b>relativierten Therapieziele im Alter</b>: Sekundärprävention von
+      <b>Fußkomplikationen</b> — deshalb wurden ihre Füße untersucht.</p></div></details>
+
+  <div class="merk"><span class="t">Ihre Ressourcen — für die Pflegeplanung</span>
+    <p>Tochter in der Nähe, die schon im Haushalt hilft · Erdgeschoss, keine Treppen · mit Rollator
+      mobil · nimmt an der Ernährungsschulung teil. <b>Grenzen:</b> keine langen Strecken wegen
+      Kurzatmigkeit — die Folie verlangt deshalb auch nur eine <b>realistische</b> Gewichtsreduktion.</p>
+  </div>
+</section>
+<section id="zahlen">
+  <h2>Zahlen, die nicht zusammenpassen</h2>
+  <p class="lead">Deine Unterlagen stammen von verschiedenen Menschen und aus verschiedenen Jahren. An
+    diesen Stellen sagen sie Verschiedenes. <b>Ich habe keine davon „korrigiert“</b> — in der Klausur
+    zählt, was <b>deine</b> Dozentin unterrichtet hat. Deshalb: bei der nächsten Gelegenheit fragen.</p>
+
+  <div class="scroll"><table>
+    <thead><tr><th>Was</th><th>Quelle A</th><th>Quelle B</th><th>Quelle C</th></tr></thead>
+    <tbody>
+      <tr><td class="k">Grenze der Unterzuckerung</td>
+        <td><b>Braun:</b> Stufe 1 ≤ 70 mg/dl (3,9), Stufe 2 &lt; 54 mg/dl (3,0)</td>
+        <td><b>Notfallseite:</b> &lt; 3,5 mmol/l (63 mg/dl)</td>
+        <td><b>Kinderseite:</b> ohne Wert — leicht = Selbsthilfe, schwer = Fremdhilfe</td></tr>
+      <tr><td class="k">Aceton testen ab</td>
+        <td><b>Braun, Textfolie:</b> BZ über 240 mg/dl</td>
+        <td><b>Braun, Flussschema:</b> über 250 mg/dl</td>
+        <td><b>Borgs:</b> über 240–260 mg/dl</td></tr>
+      <tr><td class="k">Ketoazidose: pH</td>
+        <td><b>Braun:</b> unter 7,25</td>
+        <td><b>Kinderseite:</b> leicht &lt; 7,3 · mittel ≤ 7,2 · schwer ≤ 7,1</td>
+        <td></td></tr>
+      <tr><td class="k">Hyperosmolares Koma: BZ</td>
+        <td><b>Braun:</b> über 600 bis über 1000 mg/dl</td>
+        <td><b>Kinderseite (HHS):</b> über 540 mg/dl</td>
+        <td></td></tr>
+      <tr><td class="k">Hyperosmolar: Insulin?</td>
+        <td><b>Braun:</b> „Insulinzufuhr intravenös“</td>
+        <td><b>Kinderseite:</b> „deshalb keine Insulingabe“</td>
+        <td></td></tr>
+      <tr><td class="k">Sensor hinkt nach um</td>
+        <td><b>Borgs, CGM:</b> 5–20 min</td>
+        <td><b>Borgs, FGM:</b> 5–10 min</td>
+        <td><b>Kinderseite:</b> 5–15 min</td></tr>
+      <tr><td class="k">Wirkdauer Normalinsulin · NPH · Levemir</td>
+        <td><b>Borgs, Einzelfolien:</b> 4–6 h · 8–12 h · 16–20 h</td>
+        <td><b>Borgs, Austauschtabelle:</b> ca. 4 h · 8–10 h · 12–14 h</td>
+        <td></td></tr>
+      <tr><td class="k">Diagnose sicher nach</td>
+        <td><b>KPS-Foliensatz, OGTT:</b> „ein einziger Wert“</td>
+        <td><b>derselbe Satz, drei Folien vorher:</b> ohne Symptome mit zweitem Test bestätigen</td>
+        <td></td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="warnung">
+    <span class="t">Zwei Wörter, die auf einer Folie vertauscht sind</span>
+    <p>Die Borgs-Folie <i>„Was Insulin bewirkt“</i> schreibt: <i>„hemmt die Zuckerneubildung in der
+      Leber (<b>Glykogenolyse</b>)“</i>. <b>Deine zwei anderen Dateien trennen die Wörter:</b>
+      <i>Insulin.pdf</i> nennt <b>Glykogenolyse und Gluconeogenese</b> nebeneinander, und die
+      Glukagon-Folie von Beate Braun auch. <b>Glykogenolyse</b> = den Glykogen<b>speicher</b> abbauen.
+      <b>Gluconeogenese</b> = Zucker <b>neu</b> bilden (aus Laktat, Aminosäuren, Glycerin). In der
+      Klausur: <b>beide Wörter getrennt</b> benutzen.</p>
+  </div>
+
+  <div class="merk">
+    <span class="t">KE oder BE?</span>
+    <p>Beate Braun rechnet in <b>KE</b> (2 KE Traubenzucker), die Fälle von Frau Lehmann und das
+      Flussschema in <b>BE</b> (2 BE essen). Deine
+      <a href="https://claude.ai/artifact/GdWSxzmHV46chBzi78YNar" target="_blank" rel="noopener">Kinderseite</a>
+      erklärt den Unterschied: <b>1 KE = 10 g</b> Kohlenhydrate, <b>1 BE = 12 g</b>. Das ist kein
+      Widerspruch, aber es ist <b>nicht dasselbe</b> — immer nachsehen, welche Einheit auf dem Plan steht.</p>
+  </div>
+</section>
+
+<section id="woerter">
+  <h2>Die Wörter dieser Seite</h2>
+  <div class="paare">
+    <div class="paar"><span class="de">die Hyperglykämie, -n</span><span class="frx">l'hyperglycémie — trop de sucre dans le sang</span></div>
+    <div class="paar"><span class="de">die Hypoglykämie, -n · die Unterzuckerung, -en</span><span class="frx">l'hypoglycémie</span></div>
+    <div class="paar"><span class="de">die Insulinresistenz (nur Singular)</span><span class="frx">la résistance à l'insuline — l'insuline est là mais n'agit plus</span></div>
+    <div class="paar"><span class="de">der absolute / relative Insulinmangel</span><span class="frx">le manque total / partiel d'insuline</span></div>
+    <div class="paar"><span class="de">die Nierenschwelle, -n</span><span class="frx">le seuil rénal — au-dessus, le sucre passe dans l'urine</span></div>
+    <div class="paar"><span class="de">die Glukosurie · die Ketonurie</span><span class="frx">du sucre / des corps cétoniques dans l'urine</span></div>
+    <div class="paar"><span class="de">die Ketoazidose, -n</span><span class="frx">l'acidocétose</span></div>
+    <div class="paar"><span class="de">das hyperosmolare Koma</span><span class="frx">le coma hyperosmolaire — surtout diabète de type 2, sans acétone</span></div>
+    <div class="paar"><span class="de">die Polyurie · die Polydipsie</span><span class="frx">uriner beaucoup · boire beaucoup</span></div>
+    <div class="paar"><span class="de">das Basalinsulin · das Bolusinsulin</span><span class="frx">l'insuline de fond · l'insuline des repas</span></div>
+    <div class="paar"><span class="de">das Mischinsulin, -e</span><span class="frx">l'insuline mélangée (rapide + lente) — trouble</span></div>
+    <div class="paar"><span class="de">die Pennadel, -n · der Einmalpen, -s</span><span class="frx">l'aiguille du stylo · le stylo jetable</span></div>
+    <div class="paar"><span class="de">die Hautfalte, -n</span><span class="frx">le pli cutané</span></div>
+    <div class="paar"><span class="de">die Lipohypertrophie, -n</span><span class="frx">la lipohypertrophie — bosse sous la peau à force de piquer au même endroit</span></div>
+    <div class="paar"><span class="de">die Fingerbeere, -n</span><span class="frx">la pulpe du doigt</span></div>
+    <div class="paar"><span class="de">die Polyneuropathie, -n</span><span class="frx">la polyneuropathie — nerfs abîmés, surtout aux pieds</span></div>
+    <div class="paar"><span class="de">das Vibrationsempfinden (nur Singular)</span><span class="frx">la sensibilité aux vibrations (test au diapason)</span></div>
+    <div class="paar"><span class="de">die Glykogenolyse · die Gluconeogenese</span><span class="frx">vider la réserve de glycogène · fabriquer du sucre neuf</span></div>
+  </div>
+</section>
+
+<section id="pruef">
+  <h2>Selbsttest — in der Reihenfolge der Klausur</h2>
+  <p class="lead">Erst selbst antworten, laut oder schriftlich. Dann aufklappen.</p>
+
+  <details class="quelle"><summary>1 · Nennen Sie die vier Diagnosekriterien des Diabetes mellitus.</summary><div class="inh">
+    <p>Gelegenheits-Plasmaglukose &gt; 200 mg/dl · Nüchtern-Plasmaglukose &gt; 126 mg/dl · 2-h-Wert im
+      OGTT &gt; 200 mg/dl · HbA1c ≥ 6,5 %.</p></div></details>
+  <details class="quelle"><summary>2 · Beschreiben Sie die korrekte Insulininjektion mit dem Pen.</summary><div class="inh">
+    <p>Trübes Insulin 20-mal schwenken · Dosis einstellen · Kappe ab · Hautfalte (nicht bei 4–6 mm) ·
+      45–90° einstechen · Kolben ganz herunter · bis 10 zählen · Falte los · Nadel heraus. Keine
+      Desinfektion; Stelle innerhalb der Region wechseln; Nadel nur einmal benutzen.</p></div></details>
+  <details class="quelle"><summary>3 · Erklären Sie den Unterschied zwischen Typ 1 und Typ 2 — mit Beispiel.</summary><div class="inh">
+    <p>Typ 1: Die B-Zellen werden vom eigenen Immunsystem zerstört → <b>absoluter</b> Insulinmangel,
+      meist junge, normalgewichtige Menschen, Insulin von Anfang an. Typ 2: Das Insulin wirkt nicht
+      mehr richtig (<b>Resistenz</b>), später erschöpft sich die Bauchspeicheldrüse, meist Erwachsene
+      mit Übergewicht. <b>Beispiel:</b> Clara auf der Kinderseite (Typ 1) gegen Frau Lehmann (Typ 2).</p></div></details>
+  <details class="quelle"><summary>4 · Erarbeiten Sie aus Fallbeispiel 2, was am Tag einer Untersuchung mit dem Insulin passiert.</summary><div class="inh">
+    <p>Nüchtern vor der Gastroskopie <b>kein Essensinsulin</b>; am Abführtag ohne Mittag- und Abendessen
+      <b>kein Bolus</b> — aber das <b>Basalinsulin wird gespritzt</b>; am Tag der Koloskopie
+      <b>kein Bolus, da nüchtern</b>.</p></div></details>
+  <details class="quelle"><summary>5 · Erläutern Sie am Fall von Frau Lehmann, dass sie eine Polyneuropathie hat.</summary><div class="inh">
+    <p>Das sieht man daran, dass sie über <i>„Stechen-, Taubheitsgefühle und Wadenkrämpfe in den
+      Beinen“</i> klagt und beim Stimmgabeltest ein <i>„reduziertes Vibrationsempfinden“</i> festgestellt
+      wurde.</p></div></details>
+  <details class="quelle"><summary>6 · Leiten Sie ab, was Sie tun, wenn ein Bewohner mit Insulin um 3 Uhr einen BZ von 51 mg/dl hat.</summary><div class="inh">
+    <p>Er ist ansprechbar → <b>„Erst essen, dann messen“</b>: schnelle KE (die Dozentin gab in Beispiel
+      5 <b>+2 KE</b>), danach langsame KE, messen, dokumentieren und <b>die Ursache suchen</b> — weil
+      eine nächtliche Unterzuckerung oft von zu viel Abendinsulin oder einem nicht gegessenen Abendessen
+      kommt (Beispiel 5: <i>„Hat der Patient sein Abendessen gegessen?“</i>). Dann weitergeben, damit über die <b>Abenddosis</b> entschieden wird — genau so hat die Dozentin in Beispiel 5 reagiert.</p></div></details>
+  <details class="quelle"><summary>7 · Begründen Sie, warum bei einem Menschen mit Insulinmangel Aceton in der Atemluft riecht.</summary><div class="inh">
+    <p><b>Weil</b> ohne Insulin kein Zucker in die Zellen kommt (Ursache), baut der Körper
+      stattdessen Fett ab — <b>dabei</b> entstehen durch die unvollständige Verbrennung Aceton und andere
+      Ketonkörper (Wirkung). Sie gehen in Urin und Atemluft und <b>übersäuern</b> das Blut — bis zur
+      Ketoazidose mit tiefer Atmung, Erbrechen und Bewusstseinsstörung (Gefahr). <b>Deshalb</b> teste
+      ich bei BZ über 240 mg/dl oder bei Übelkeit und Bauchschmerzen auf Ketone.</p></div></details>
+  <details class="quelle"><summary>8 · Beurteilen Sie: Eine Bewohnerin mit Insulin ist plötzlich aggressiv, schwitzt und will nicht mehr kooperieren.</summary><div class="inh">
+    <p><b>Einschätzung: Verdacht auf Hypoglykämie — bis zum Beweis des Gegenteils.</b> Aggressivität
+      gehört zu den neuroglykopenen, Schwitzen zu den autonomen Zeichen; die Folie warnt, dass
+      Anzeichen sich ändern können. <b>Maßnahmen:</b> ist sie wach und kann schlucken → schnelle KE,
+      dann messen; ist sie nicht mehr ansprechbar → Seitenlage, Atemwege frei, Glukagon, Notarzt —
+      <b>nichts in den Mund</b>.</p></div></details>
+</section>
+
+<section id="offen">
+  <h2>Was fehlt — und warum</h2>
+  <ul>
+    <li><b><i>endokrine_exokrine Funktion Pankreas.pdf</i></b> ist <b>nur ein Bild</b>: eine anatomische
+      Zeichnung der Bauchspeicheldrüse mit aufgeschnittenem Gang, <b>ohne eine einzige Beschriftung</b>.
+      Über die endokrine und exokrine Funktion steht darin <b>nichts</b>. Diese Funktion steht auf deiner
+      <a href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj" target="_blank" rel="noopener">Anatomie-Seite</a>
+      — aus einem anderen Blatt.</li>
+    <li><b><i>Physio_Diabetes.pdf</i></b> ist ebenfalls nur ein Bild: der Verdauungstrakt mit drei
+      Beschriftungen — <b>Speicheldrüse</b> und zweimal <b>Amylase</b> (in der Speicheldrüse und in der
+      Bauchspeicheldrüse). Was es mit Diabetes zu tun haben soll, sagt die Datei nicht.</li>
+    <li><b><i>Stoffwechselselbstkontrolle</i></b> (6,5 MB) ließ sich <b>nicht herunterladen</b>, nur als
+      Text lesen. Mehrere Folien darin haben <b>keinen Text</b> — zwei tragen nur den Quellenhinweis
+      <i>Heinemann et al., Diabetologie 2018</i>, eine heißt <i>„Dokumentation am PC“</i>. <b>Was auf
+      diesen Bildern steht, weiß ich nicht.</b> Die Preisliste der Sensoren ist bewusst nicht übernommen.</li>
+    <li><b>Fallbeispiel 1</b> hat weder Frage noch Lösung.</li>
+    <li><b>Frau Lehmann</b> hat keinen Erwartungshorizont — die Antworten oben sind abgeleitet.</li>
+    <li><b>Tabletten gegen Diabetes</b> (Metformin, Januvia) stehen nur als Namen in den Fällen — ihre
+      Wirkung steht in keiner Datei.</li>
+    <li><b>Folgeerkrankungen</b> — Mikro- und Makroangiopathie, diabetischer Fuß, Nephropathie,
+      Retinopathie — werden nur <b>genannt</b>, nicht erklärt.</li>
+    <li>Im Flussschema von Beate Braun ist unter <i>„Aceton – oder +“</i> eine Zeile
+      <b>abgeschnitten</b> (<i>„Einfache Erh…“</i>) — nicht lesbar.</li>
+    <li>Die <b>Wirkkurven</b> der Insuline sind Grafiken. Ihre Zahlen stehen als Text auf den Folien
+      daneben und sind in die Tabelle oben übernommen; die Kurven selbst nicht.</li>
+    <li><b>Warum das BZ-Ziel „bis zum Augenbefund“ höher liegt</b> (Beispiel 4), erklärt keine Folie.</li>
+  </ul>
+</section>
+
+</main>
+
+<footer>
+  <p>Diabetes mellitus beim Erwachsenen · CE 07 UE 2 · gebaut am 23.09.2026 aus elf Dateien deines
+    Drive-Ordners · nichts von außerhalb.</p>
+  <p><a href="https://claude.ai/artifact/7nrNDXtzTUdMquigJJzvZj" target="_blank" rel="noopener">📖 Alle Zusammenfassungen</a></p>
+</footer>

@@ -1252,3 +1252,49 @@ Asthmaanfalls** (Frage 3 des Gruppenauftrags, auf der Asthma-Seite schon als Lü
 
 **Unverändert offen:** `QR AB Rehabilitation.PNG` (Werkzeugproblem) · die vier
 **Intertrigo-Fotos** in `Text Intertrigo.pdf` · `Ergebnisse Gruppenvorstellung.pdf` (45 MB).
+
+---
+
+## 23.09.2026 — elf neue Dateien: Diabetes mellitus beim Erwachsenen
+
+Sie hat am Abend des 23.09. elf PDFs in den Ordner gelegt (`createdTime` 20:31 UTC) und dazu
+geschrieben: *„je viens d'ajouter des pads au dossier drive. Continue les zusammensfassungs"*.
+Alle elf gehören zu **einem** Thema: **Diabetes mellitus**, CE 07 UE 2 (chronische Erkrankungen).
+
+**Erst gesucht, dann geschrieben** — die Regel vom 20.09. Diabetes stand schon an drei Stellen:
+Kinderseite (Typ 1, Fall Clara), Anatomie (Pankreas), Notfälle (Hypoglykämie). **Keine davon ist
+ersetzt**, die neue Seite verlinkt alle drei und nennt, wo sie ihnen widerspricht.
+
+→ `schulung-diabetes/zusammenfassung.html`
+
+| Datei | Autorin | Inhalt | Zustand |
+|---|---|---|---|
+| Diabetes mellitus KPS-2026 | — | Definition, DDG-Kriterien, OGTT, Klassifikation ADA, Typ 1/2, Therapieziele | Text + 4 Bildfolien gelesen |
+| Hyperglykaemie und Ketoazidose KPS 2026 | B. Braun | Hyperglykämie, Ketoazidose, hyperosmolares Koma | **2 Bildfolien (Keton-Ampel, Flussschema) bei 220 dpi abgeschrieben** |
+| Unterzuckerung KPS 2026 | B. Braun | Stufen, Zeichen, Maßnahmen, Glukagon | vollständig |
+| Injektiontechnik und Lagerung KPS 2026 | B. Braun | Regionen, Technik, Lagerung, Lipohypertrophie | vollständig |
+| Insulintherapie- Insuline 11-2025 | E. Borgs | Insulinarten, Therapieformen, Pumpe, Dawn/Dusk | Text + Bildfolien gelesen |
+| Stoffwechselselbstkontrolle 11-2025 | E. Borgs | BZ-Messung, Aceton, CGM/FGM | **nur als Text** — Download scheiterte dreimal (6,5 MB); die Bildfolien sind **ungesehen** |
+| Insulin | — | fünf Wirkungen des Insulins, GLUT4, Glykogen 100–150 g / 250 g | vollständig |
+| Fallbeispiele Diabetes 2026 | — | **sechs BZ-Profile, fünf mit Lösung der Dozentin** | vollständig, Spalten am Bild geprüft |
+| Fall Frau Lehmann_Aufgabenstellung 1 | — | Fall + mündliche Besprechung, 45 min | **kein Erwartungshorizont** |
+| endokrine_exokrine Funktion Pankreas | — | **nur eine unbeschriftete Zeichnung** | trotz Titel kein Inhalt zur Funktion |
+| Physio_Diabetes | — | Verdauungstrakt mit drei Beschriftungen (Speicheldrüse, 2× Amylase) | kein Bezug zu Diabetes erkennbar |
+
+**Der Fund:** die Fallbeispiele — fünf echte Stations-Tagesprofile mit den handschriftlich
+eingetragenen Entscheidungen der Dozentin (*„Basalinsulin muss gespritzt werden!“*, *„Hat der
+Patient sein Abendessen gegessen?“*). Das ist die beste Vorlage für AFB-III-Antworten zu Diabetes.
+
+**Acht Widersprüche benannt, keiner aufgelöst**, darunter zwei gegen bestehende Seiten:
+Hypoglykämie-Grenze (Braun ≤ 70 / < 54 mg/dl gegen Notfallseite < 63 mg/dl) und beim
+hyperosmolaren Koma **Insulin i. v.** (Braun) gegen **„keine Insulingabe“** (Kinderseite).
+Dazu eine vertauschte Begrifflichkeit auf einer Borgs-Folie („Zuckerneubildung (Glykogenolyse)“),
+die sich aus ihren eigenen zwei anderen Dateien klären lässt.
+
+**Ein eigener Fehler, vor dem Veröffentlichen gefunden:** Beim Abschreiben von Fallbeispiel 4
+aus der Textebene waren zwei Zeilen um eine Spalte verrutscht (der Wert 87 stand bei 12 Uhr statt
+bei 18 Uhr). Am Seitenbild geprüft und korrigiert. **Tabellen aus PDFs immer am Bild gegenlesen**
+— `pdftotext` behält die Werte, aber nicht zuverlässig die Spalten.
+
+**Offen, nicht blockierend:** Die zwei Widersprüche gegen die Kinder- und die Notfallseite
+stehen bisher **nur auf der neuen Seite**. Auf den beiden alten Seiten fehlt noch der Rückverweis.
