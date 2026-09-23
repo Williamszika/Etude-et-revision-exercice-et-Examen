@@ -553,6 +553,39 @@ veröffentlicht" heißt **nicht** „sie ist gesichert". Gesichert ist sie, wenn
 `origin` liegt. Und „ich habe sie committet" heißt **nicht** „sie ist auf ihrer Seite". Beides
 wird einzeln nachgewiesen, mit dem Skript, nicht aus dem Gedächtnis.
 
+### Die Ursache der neun Ausfälle — gefunden am 23.09.2026
+
+Sie fragte: *„mais pourquoi cela avais échouer"*. Die Antwort stand nicht im Repo, sondern **in
+der Routine selbst** (`trig_016JhNDqnRTPczpcX5TPsGi3`, täglich `30 3 * * *` UTC).
+
+**Ihr Prompt war seit dem 26.08.2026 nicht mehr geändert worden.** Alles, was seitdem in dieser
+Datei beschlossen wurde, kam bei ihr nie an. Der alte Text (gesichert in
+`deutsch-taeglich/routine/prompt-alt-2026-08-26.md`) verlangte unter anderem:
+
+| Der alte Prompt sagte | `CLAUDE.md` sagt seitdem |
+|---|---|
+| **erst veröffentlichen (Schritt 3), dann committen (Schritt 4)** | **erst committen, dann veröffentlichen** — seit 10.09. |
+| **jeden Tag** eine Datei, 5-Tage-Zyklus mit `satzbau` | **jeden zweiten Tag**, 29 Themenblöcke, kein `satzbau` |
+| Diktat jeden zweiten Tag, **Niveau B2** | Diktat in jeder Lektion, **B1** |
+| kein Schritt 0, kein Nachweis | Schritt 0 retten, Schritt 8 `pruefen.py` |
+
+Die Routine bekam also **zwei widersprüchliche Anleitungen** — ihren Prompt und `CLAUDE.md` —
+und musste jeden Morgen raten, welche gilt. Die Reihenfolge „erst publizieren, dann committen"
+aus dem alten Prompt erklärt die Ausfälle vom 31.08. bis 21.09. vollständig.
+
+**Am 23.09.2026 lief sie um 05:34 Berlin, 14 Minuten lang, und meldete „SUCCEEDED"** — aber es
+landete **nichts** auf `origin` und **nichts** auf der Seite. „SUCCEEDED" heißt nur, dass die
+Sitzung ohne Absturz endete, nicht, dass eine Lektion entstanden ist. **Was sie in diesen 14
+Minuten genau getan hat, ist nicht einsehbar** — das Protokoll der Sitzung ist von hier aus nicht
+lesbar. Das nicht als geklärt ausgeben.
+
+**Neuer Prompt seit dem 23.09.2026:** `deutsch-taeglich/routine/prompt.md` — kurz, verweist für
+alle Inhalte auf `CLAUDE.md`, und legt nur die Reihenfolge fest: retten → rechnen → schreiben →
+bauen → **committen** → **veröffentlichen** → **`pruefen.py`**. **Regel ab jetzt:** Wird der
+Ablauf hier geändert, wird **am selben Tag** geprüft, ob `prompt.md` und die Routine noch dazu
+passen. Eine Anweisung, die nur in `CLAUDE.md` steht, erreicht die 5:30-Routine nur, wenn ihr
+Prompt sie dorthin schickt.
+
 ### Der Wochenrhythmus — kein Grammatik-Zyklus mehr
 
 **Die alten 13 Grammatikthemen sind abgeschafft.** Deutsch täglich folgt jetzt der Prüfung
