@@ -1296,5 +1296,6 @@ aus der Textebene waren zwei Zeilen um eine Spalte verrutscht (der Wert 87 stand
 bei 18 Uhr). Am Seitenbild geprüft und korrigiert. **Tabellen aus PDFs immer am Bild gegenlesen**
 — `pdftotext` behält die Werte, aber nicht zuverlässig die Spalten.
 
-**Offen, nicht blockierend:** Die zwei Widersprüche gegen die Kinder- und die Notfallseite
-stehen bisher **nur auf der neuen Seite**. Auf den beiden alten Seiten fehlt noch der Rückverweis.
+**Rückverweise gesetzt (23.09., auf ihr „oui“):** Die Kinderseite trägt beim HHS jetzt einen
+Nachtrag mit der Gegenaussage von Beate Braun, die Notfallseite bei der Hypoglykämie die zweite
+Grenze (≤ 70 / < 54 mg/dl). Auf keiner der beiden Seiten wurde der alte Wert geändert.
