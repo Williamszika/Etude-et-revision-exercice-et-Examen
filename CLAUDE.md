@@ -555,6 +555,10 @@ wird einzeln nachgewiesen, mit dem Skript, nicht aus dem Gedächtnis.
 
 ### Die Ursache der neun Ausfälle — gefunden am 23.09.2026
 
+> **Überholt am 25.09.2026:** Die Erklärung unten war unvollständig. Die eigentliche Ursache
+> war, dass die Routine-Sitzungen **kein Repo angehängt** hatten und nie pushen konnten —
+> siehe „Die eigentliche Ursache aller zehn Ausfälle" weiter unten.
+
 Sie fragte: *„mais pourquoi cela avais échouer"*. Die Antwort stand nicht im Repo, sondern **in
 der Routine selbst** (`trig_016JhNDqnRTPczpcX5TPsGi3`, täglich `30 3 * * *` UTC).
 
@@ -595,15 +599,40 @@ Lektion 8 wurde von Hand geschrieben (Commit `3bd641d`) und mit `pruefen.py` nac
 
 **Was sichtbar ist** (aus den Sitzungsdaten, nicht aus dem Protokoll): rund **54 000
 Ausgabe-Token** — also sehr wahrscheinlich die ganze Lektion — und **kein einziger Commit**.
-Die Lektion ist also geschrieben und dann mit der Sitzung verloren gegangen. **Warum die
-Sitzung vor dem Commit endete, ist nicht einsehbar.** Nicht als geklärt ausgeben.
 
-Ihre Anweisung: *„reparte tout afin que cela ne se répète pas"*. Daraus zwei Änderungen:
+### Die eigentliche Ursache aller zehn Ausfälle — gefunden am 25.09.2026
+
+**Die Routine-Sitzungen hatten nie das Repository angehängt.** Die Sitzung vom 25.09. zeigt in
+ihren Daten **keine `sources` und keine `outcomes`** — die Hauptsitzung dagegen hat beides
+(Repo + Branch mit Push-Recht). Eine Routine mit „frischer Sitzung pro Lauf" startet ohne Repo;
+sie konnte das öffentliche Repo höchstens lesen und das Artifact veröffentlichen (dafür braucht
+es kein Git), aber **nie pushen**.
+
+**Der Beweis im Log:** Seit dem 29.08.2026 (so weit reicht der Klon) stammen **alle 184
+Commits** auf dem Branch aus **einer einzigen Sitzung** — der Hauptsitzung. **Keine einzige
+Lektion wurde je von der Routine gepusht.** Jede Lektion in `lektionen/` ist von Hand gerettet
+oder geschrieben worden. Das erklärt alle zehn Ausfälle vollständig — auch die neun, die am
+23.09. dem alten Prompt zugeschrieben wurden. **Der alte Prompt war falsch, aber er war nicht
+die Ursache;** die Reihenfolge „erst committen" hätte ohne Push-Recht nichts gerettet.
+
+**Die Reparatur, auf ihre Anweisung** *„reparte tout afin que cela ne se répète pas"*:
 
 | | |
 |---|---|
-| **Sicherungscommit** | `routine/prompt.md` verlangt jetzt, die Lektions-JSON **sofort nach dem Schreiben** zu committen und zu pushen — **vor** dem Build. Dazu: nie mit einer Frage enden; scheitert ein Schritt, trotzdem alles Vorhandene committen. |
-| **Kontrolle 07:10** | Eine zweite Routine (`CRON_TZ=Europe/Berlin 10 7 * * *`, frische Sitzung, Prompt in `routine/kontrolle.md`) prüft mit `pruefen.py`. Exit 0 → nichts tun. Sonst holt sie den Ablauf nach — erst retten, nur wenn die Lektion nirgends ist, neu schreiben. |
+| **Routine-Sitzung mit Repo** | `session_01N2nNNcM7V6vRXgfzwcRS2h` („🇩🇪 Deutsch täglich — Routine-Sitzung (mit Repo)"), angelegt mit Repo **und** `outcome_branch` = unser Branch. **Push getestet:** Commit `a697d01` „Routine-Sitzung: Push-Test" kam aus ihr. |
+| **5:30** | `trig_01XoXWWfZfjRZUdjhbhyUjDK`, `CRON_TZ=Europe/Berlin 27 5 * * *`, feuert **in diese Sitzung** (nicht mehr in eine frische). Arbeitet `routine/prompt.md` ab. |
+| **Kontrolle 07:10** | `trig_01E2xpXSBNKDg1VAuXSMCjjL`, `CRON_TZ=Europe/Berlin 10 7 * * *`, **dieselbe Sitzung**, arbeitet `routine/kontrolle.md` ab: `pruefen.py`, Exit 0 → nichts tun, sonst nachholen. |
+| **Sicherungscommit** | `routine/prompt.md`: Lektions-JSON **sofort nach dem Schreiben** committen und pushen, vor dem Build. Nie mit einer Frage enden. |
+| **alte Routine** | `trig_016JhNDqnRTPczpcX5TPsGi3` ist **ausgeschaltet, nicht gelöscht** (Historie bleibt). **Nicht wieder einschalten** — sie hat kein Repo. |
+
+**Regel ab jetzt:** Eine Routine, die committen soll, feuert **in eine Sitzung mit
+angehängtem Repo und Branch** — nie in eine frische Sitzung ohne `sources`. Wer eine neue
+Routine anlegt, prüft das mit einem Push-Test, **bevor** er sie für fertig erklärt.
+
+**Noch nicht bewiesen:** dass der erste echte Lauf (26.09., Übungstag; 27.09., Lektion 9)
+durchläuft. Das zeigt erst `pruefen.py` an diesem Morgen. Die Routine-Sitzung wird mit jedem
+Tag länger; das Kontextfenster fasst das per Zusammenfassung ab — fällt es trotzdem aus,
+fängt die 07:10-Kontrolle es auf.
 
 **Regel 0 gilt für die Kontrolle genauso:** Liegt `lektionen/<heute>.json` schon da, wird sie
 nicht überschrieben. Die Kontrolle ist ein Netz, keine zweite Autorin.
