@@ -18,6 +18,10 @@ Reihenfolge — nicht umstellen:
 
 4. Lektion schreiben — **Struktur exakt wie die neueste Datei in `lektionen/`**, alle Regeln aus `CLAUDE.md` (Niveau B1, 15–18 Vokabeln mit mindestens vier Mechanismusbegriffen aus ihrem Material in `Wissen/`, `lesen` 150–200 Wörter mit AFB II und III, `leben`, `deklination`, `telc`-Badge mit B1-Namen, nichts aus früheren Lektionen wiederholen). **Nichts erfinden**: keine Normen, Zahlen oder Quellen, die nicht in ihren Unterlagen stehen.
 
+   **Sofort danach — Sicherungscommit, noch vor dem Build:**
+   `git add deutsch-taeglich/lektionen/ && git commit -m "Deutsch täglich: Lektion N (<datum>) — Sicherung" && git push -u origin claude/nursing-exam-prep-workflow-gvn5u0`
+   Grund: Am 25.09.2026 hat die Routine rund 54 000 Ausgabe-Token erzeugt — also sehr wahrscheinlich die ganze Lektion — und trotzdem lag danach nichts auf `origin`. Eine geschriebene, aber nicht gepushte Lektion ist verloren, sobald die Sitzung endet.
+
 5. `python3 deutsch-taeglich/build.py`
 
 6. **ERST COMMITTEN UND PUSHEN** — `git add -A && git commit && git pull --rebase … && git push -u origin claude/nursing-exam-prep-workflow-gvn5u0`. Bei Netzwerkfehler bis zu 4× wiederholen (2, 4, 8, 16 s).
@@ -25,5 +29,9 @@ Reihenfolge — nicht umstellen:
 7. **DANN veröffentlichen:** `deutsch-taeglich/index.html` auf die URL oben (ohne Favicon), danach `deutsch-taeglich/wortschatz.html` auf https://claude.ai/code/artifact/d3bfc347-9ff4-4842-86b4-e5c9e203877c. Wird ein Publish abgelehnt, weil die Live-Version nicht gelesen wurde: die genannte Datei vollständig lesen, dann erneut.
 
 8. **Nachweisen:** noch einmal `Artifact action:"read"` auf die Deutsch-täglich-URL, dann `python3 deutsch-taeglich/pruefen.py <gespeicherte-html-datei>`. **Nur bei Exitcode 0 ist der Tag fertig.** Sonst den genannten Fehler beheben und Schritt 6–8 wiederholen. Gelingt es nicht, das ehrlich in die Abschlussnachricht schreiben.
+
+**Nie mit einer Frage aufhören und nie auf eine Antwort warten** — niemand liest mit, die Sitzung endet dann einfach. Wenn etwas unklar ist: die vernünftigste Entscheidung nach `CLAUDE.md` treffen, sie in die Commit-Nachricht schreiben, weitermachen. Wenn ein Schritt scheitert: **trotzdem alles committen und pushen, was schon da ist**, dann den Fehler melden.
+
+Um 07:10 Berlin läuft eine zweite Routine (`routine/kontrolle.md`), die nachsieht, ob dieser Lauf fertig geworden ist, und ihn sonst nachholt. Das ist ein Netz, kein Ersatz — dieser Lauf soll trotzdem vollständig sein.
 
 Am Ende eine kurze Nachricht auf Französisch: Lektion oder Übungstag, Lektionsnummer, Thema, Grammatik, der Link — und die Zeile, die `pruefen.py` am Schluss ausgegeben hat.

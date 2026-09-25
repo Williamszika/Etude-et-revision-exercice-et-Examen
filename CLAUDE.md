@@ -586,6 +586,28 @@ Ablauf hier geändert, wird **am selben Tag** geprüft, ob `prompt.md` und die R
 passen. Eine Anweisung, die nur in `CLAUDE.md` steht, erreicht die 5:30-Routine nur, wenn ihr
 Prompt sie dorthin schickt.
 
+### Der zehnte Ausfall — 25.09.2026, und das Netz dagegen
+
+**Trotz des neuen Prompts ist es am 25.09.2026 wieder passiert.** Die Routine lief
+05:34–05:43 Berlin, meldete „SUCCEEDED" — und auf `origin` und auf der Seite war **nichts**.
+Aufgefallen ist es **ihr**, nicht uns: *„pourquoi le täglisch Deutcg ne continue pas ?"*
+Lektion 8 wurde von Hand geschrieben (Commit `3bd641d`) und mit `pruefen.py` nachgewiesen.
+
+**Was sichtbar ist** (aus den Sitzungsdaten, nicht aus dem Protokoll): rund **54 000
+Ausgabe-Token** — also sehr wahrscheinlich die ganze Lektion — und **kein einziger Commit**.
+Die Lektion ist also geschrieben und dann mit der Sitzung verloren gegangen. **Warum die
+Sitzung vor dem Commit endete, ist nicht einsehbar.** Nicht als geklärt ausgeben.
+
+Ihre Anweisung: *„reparte tout afin que cela ne se répète pas"*. Daraus zwei Änderungen:
+
+| | |
+|---|---|
+| **Sicherungscommit** | `routine/prompt.md` verlangt jetzt, die Lektions-JSON **sofort nach dem Schreiben** zu committen und zu pushen — **vor** dem Build. Dazu: nie mit einer Frage enden; scheitert ein Schritt, trotzdem alles Vorhandene committen. |
+| **Kontrolle 07:10** | Eine zweite Routine (`CRON_TZ=Europe/Berlin 10 7 * * *`, frische Sitzung, Prompt in `routine/kontrolle.md`) prüft mit `pruefen.py`. Exit 0 → nichts tun. Sonst holt sie den Ablauf nach — erst retten, nur wenn die Lektion nirgends ist, neu schreiben. |
+
+**Regel 0 gilt für die Kontrolle genauso:** Liegt `lektionen/<heute>.json` schon da, wird sie
+nicht überschrieben. Die Kontrolle ist ein Netz, keine zweite Autorin.
+
 ### Der Wochenrhythmus — kein Grammatik-Zyklus mehr
 
 **Die alten 13 Grammatikthemen sind abgeschafft.** Deutsch täglich folgt jetzt der Prüfung
