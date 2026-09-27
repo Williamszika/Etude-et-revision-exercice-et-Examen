@@ -118,6 +118,14 @@
   .status{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;justify-self:start;border-radius:5px;padding:2px 8px}
   .status.da{background:var(--green-soft);color:var(--green)}
   .status.bald{background:var(--amber-soft);color:var(--amber)}
+  .rasterkarte .oeffnen{justify-self:start;margin-top:4px;border:1px solid var(--blue);background:var(--sheet);color:var(--blue);border-radius:8px;padding:5px 12px;font-weight:700;font-size:14px}
+
+  /* Auswahl der Aufsichtsarbeit */
+  .kopien{display:flex;gap:6px;flex-wrap:wrap;scroll-margin-top:76px}
+  .kopien button{border:1px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:8px;padding:8px 14px;font-weight:700;font-size:15px;text-align:left;display:grid;gap:1px}
+  .kopien button small{font-weight:400;font-size:12.5px;color:var(--ink-soft)}
+  .kopien button[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 -3px 0 var(--ink)}
+  .bogen[hidden]{display:none}
 
   /* Ablauf praktisch */
   .ablauf{display:grid;gap:0;border:1px solid var(--line);border-radius:6px;background:var(--sheet);overflow:hidden}
@@ -186,34 +194,283 @@
 
   <div class="raster" aria-label="Die drei Prüfungsbereiche">
     <div class="rasterkarte">
-      <span class="status bald">kommt als Nächstes</span>
+      <span class="status da">bereit</span>
       <h4>Prüfungsbereich 1</h4>
       <p class="klein">Pflegeprozess in akuten und dauerhaften Situationen · Interaktion und
       Beziehung · Lebensgestaltung, Autonomie, Entwicklung</p>
-      <p class="klein">Stoff z. B. aus <i>Demenz im Krankenhaus</i>, <i>Mangelernährung</i>,
-      <i>Kontinenz fördern</i></p>
+      <p class="klein">Fall: <b>Ehepaar S.</b>, zu Hause · Stoff aus <i>Demenz</i>,
+      <i>Mangelernährung</i>, <i>Beratung ambulant</i></p>
+      <button type="button" class="oeffnen" data-aa="aa1">Arbeit 1 öffnen</button>
     </div>
     <div class="rasterkarte">
-      <span class="status da">Beispiel unten</span>
+      <span class="status da">bereit</span>
       <h4>Prüfungsbereich 2</h4>
       <p class="klein">Menschen mit gesundheitlichen Problemlagen · Gesundheitsförderung,
       Prävention, <b>Beratung</b> · Entscheidungen begründen</p>
-      <p class="klein">Stoff hier: <i>Diabetes mellitus beim Erwachsenen</i></p>
+      <p class="klein">Fall: <b>Frau Lehmann</b>, Krankenhaus · Stoff aus <i>Diabetes mellitus
+      beim Erwachsenen</i></p>
+      <button type="button" class="oeffnen" data-aa="aa2">Arbeit 2 öffnen</button>
     </div>
     <div class="rasterkarte">
-      <span class="status bald">kommt danach</span>
+      <span class="status da">bereit</span>
       <h4>Prüfungsbereich 3</h4>
       <p class="klein">Kritische und krisenhafte Situationen · ärztliche Anordnungen eigenständig
       durchführen · ethische Entscheidungen</p>
-      <p class="klein">Stoff z. B. aus <i>Notfälle</i>, <i>Asthma</i> (Kind), <i>Verantwortliches
-      Pflegehandeln</i></p>
+      <p class="klein">Fall: <b>Paul, 6 Jahre</b>, Kinderstation · Stoff aus <i>Das kranke
+      Kind</i>, <i>Beobachten</i>, <i>Recht</i>, <i>Verantwortliches Pflegehandeln</i></p>
+      <button type="button" class="oeffnen" data-aa="aa3">Arbeit 3 öffnen</button>
     </div>
   </div>
   <p class="fr">La loi demande que les trois cas varient en âge, en milieu social et culturel et en
-  lieu de soins (§ 14 al. 2). Ici : une femme âgée à l'hôpital ; ensuite un enfant et une personne
-  en soins de longue durée.</p>
+  lieu de soins (§ 14 al. 2). Ici : un couple âgé à domicile (copie 1), une femme âgée à l'hôpital
+  (copie 2), un enfant de 6 ans en pédiatrie (copie 3). Fais une copie par jour, en 120 minutes,
+  comme à l'examen.</p>
 
-  <article class="bogen" aria-labelledby="aa2-titel">
+  <nav class="kopien" aria-label="Aufsichtsarbeit wählen">
+    <button type="button" data-aa="aa1" aria-pressed="false">Arbeit 1<small>Ehepaar S. · zu Hause</small></button>
+    <button type="button" data-aa="aa2" aria-pressed="false">Arbeit 2<small>Frau Lehmann · Klinik</small></button>
+    <button type="button" data-aa="aa3" aria-pressed="false">Arbeit 3<small>Paul · Kinderstation</small></button>
+  </nav>
+
+  <!-- ===== Aufsichtsarbeit 1 ===== -->
+  <article class="bogen" data-aa="aa1" aria-labelledby="aa1-titel">
+    <dl class="bogenkopf">
+      <div><dt>Aufsichtsarbeit</dt><dd>1 von 3</dd></div>
+      <div><dt>Prüfungsbereich</dt><dd>1 · Pflegeprozess</dd></div>
+      <div><dt>Bearbeitungszeit</dt><dd>120 Minuten</dd></div>
+      <div><dt>Versorgungsbereich</dt><dd>Ambulant · zu Hause</dd></div>
+    </dl>
+    <div class="bogeninhalt">
+      <div class="uhr" data-uhr="120" data-key="aa1">
+        <span class="anzeige" aria-live="off">120:00</span>
+        <span class="was">Stell die Uhr, bevor du den Fall liest — wie am Prüfungstag.</span>
+        <button type="button" class="los">Start</button>
+        <button type="button" class="zurueck">Zurücksetzen</button>
+      </div>
+
+      <div class="fall">
+        <h3 id="aa1-titel">Fallsituation: Ehepaar S.</h3>
+        <p>Sie machen als Pflegefachkraft bei Ehepaar S. zu Hause einen <b>Beratungsbesuch nach
+        § 37 Abs. 3 SGB XI</b>.</p>
+        <p><b>Herr Paul S., 79 Jahre</b>, Pflegegrad 3: Herzinsuffizienz mit
+        <b>Belastungsdyspnoe</b> und <b>Nykturie</b> · Cox- und Gonarthrose, dadurch eingeschränkte
+        Mobilität. Er hat lange als Arzt gearbeitet und war immer sehr selbstständig.</p>
+        <p><b>Frau Elisabeth S., 76 Jahre</b>, Pflegegrad 1 (vor fast einem Jahr festgestellt):
+        <b>fortgeschrittene Demenz</b> mit Orientierungs- und Gedächtnisstörungen. Im Gespräch wirkt
+        sie unbeteiligt.</p>
+        <p><b>Die Tochter Christine</b> ist berufstätig und kann nicht jeden Tag da sein. Für sie und
+        das Ehepaar ist die Belastung psychisch und körperlich hoch.</p>
+        <p>Herr S. sagt gleich zu Beginn: „Also ich sag direkt: Wir kommen hier eigentlich ganz gut
+        klar. Ich weiß nicht, ob wir diesen ganzen Kram wirklich brauchen.“ Und später: „Ich will
+        aber keine Fremden im Haus.“</p>
+        <p class="zusatz"><b>Übungsergänzungen — von mir, nicht aus deinem Material:</b> Christine ist
+        beim Besuch dabei. Sie erzählt, dass der Mutter die Hosen in den letzten Monaten weit geworden
+        sind. Mittags lässt die Mutter das Essen oft stehen; sie isst nur, wenn ihr Mann sie auffordert
+        und es ihr vormacht. Frau S. ist 1,62 m groß und wiegt heute 49 kg. Christine sagt: „Ab jetzt
+        reiche ich Mama das Essen an. Dann wird sie wenigstens satt, und es geht schneller.“</p>
+        <p class="quelle">Quelle: <a href="https://claude.ai/artifact/5LgrWHNpcxisLNKYoX8tXq" target="_blank" rel="noopener">„Ich will aber keine Fremden im Haus“</a> → Das Ehepaar S. · Der Beratungsbesuch.
+        Die Original-Fallbeschreibung liegt nicht in deinem Ordner — die Angaben sind aus dem
+        Beratungsgespräch und den Gruppenarbeiten zusammengetragen, so steht es auf deiner Seite.
+        Dazu: <a href="https://claude.ai/code/artifact/34db66f4-1177-46be-9bee-5da1f01af89c" target="_blank" rel="noopener">Demenz</a> ·
+        <a href="https://claude.ai/artifact/Thd63qgdREbvJPoxnrKBQ6" target="_blank" rel="noopener">Mangelernährung</a> ·
+        <a href="https://claude.ai/artifact/TrSt6YCQmxZ1aMJ8Q9qYaL" target="_blank" rel="noopener">Verantwortliches Pflegehandeln</a></p>
+      </div>
+
+      <div class="aufgaben" data-teil="schriftlich1">
+        <div class="aufgabe" data-id="a1-1">
+          <div class="zeile"><span class="nr">1</span><span class="op">Nennen</span><span class="afb">AFB I</span></div>
+          <p class="frage">Nennen Sie die vier Ansatzpunkte demenzsensibler Pflege und ordnen Sie
+          jedem Ansatzpunkt eine Maßnahme für Frau S. zu Hause zu.</p>
+          <textarea id="a-a1-1" aria-label="Antwort Aufgabe 1"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <ul>
+              <li><b>Orientierung</b> → große Uhr, Kalender mit Datum, vertraute Fotos; Brille und
+              Hörgerät verfügbar machen</li>
+              <li><b>Kommunikation</b> → kurze, konkrete Sätze, jeweils eine Information, Zeit zum
+              Antworten lassen, ruhig wiederholen statt auf das Erinnern zu bestehen</li>
+              <li><b>Biografie und Angehörige</b> → mit Herrn S. und Christine klären: Welche
+              Gewohnheiten geben ihr Sicherheit? Was beruhigt sie? Wie zeigt sie Schmerzen?</li>
+              <li><b>Körperliche Bedürfnisse</b> → auf Schmerz, Hunger, Durst, Ausscheidung und Schlaf
+              achten</li>
+            </ul>
+            <p class="herl">„Nennen“ = vier Ansatzpunkte, vier Zuordnungen, keine Begründung. Quelle:
+            Demenz → „Demenzsensible Pflege — die vier Ansatzpunkte“ (Folien 11–15); Uhr und Kalender
+            auch in deiner eigenen Gruppenarbeit („Orientierung im Alltag“). Die Folien sind für das
+            Krankenhaus geschrieben — sie nach Hause zu übertragen ist die Leistung in dieser Aufgabe.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="a1-2">
+          <div class="zeile"><span class="nr">2</span><span class="op">Beschreiben</span><span class="afb">AFB I</span></div>
+          <p class="frage">Beschreiben Sie den Unterschied zwischen Screening und Assessment und den
+          Aufbau des PEMU-Bogens.</p>
+          <textarea id="a-a1-2" aria-label="Antwort Aufgabe 2"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <p><b>Screening</b> = ein schneller, standardisierter Prozess, der Risiken identifiziert —
+            er fragt <i>ob</i>, und alle bekommen ihn. <b>Assessment</b> = eine umfassendere,
+            detailliertere Untersuchung von Art und Ausmaß des Problems — sie fragt <i>warum</i> und
+            <i>wie schlimm</i>, und nur bei auffälligem Screening.</p>
+            <p><b>PEMU, Teil 1 — Screening:</b> sechs Fragen, je drei zu Nahrung (Zeichen von
+            Nahrungsmangel · auffällig geringe Essmenge · erhöhter Bedarf) und zu Flüssigkeit (Zeichen
+            von Flüssigkeitsmangel · geringe Trinkmengen · erhöhter Bedarf). <b>Ein Ja reicht</b> für
+            das vertiefte Assessment. <b>Teil 2 — Assessment:</b> „Warum isst die/der Betroffene zu
+            wenig?“ in vier Gruppen: körperlich oder kognitiv bedingte Beeinträchtigung · fehlende Lust,
+            kein Appetit · Umgebungsfaktoren · Essensangebot. Dazu ein Ess-/Trinkprotokoll über sieben
+            Tage.</p>
+            <p class="herl">Zwei Teile verlangt → beide sichtbar getrennt. Quelle: Mangelernährung →
+            „Screening und Assessment“, „Der PEMU-Bogen“. Achtung: PEMU ist für die stationäre
+            Langzeitpflege gebaut; für ambulant nennt deine Folie das MUST, das dir nicht vorliegt.
+            PEMU hier zu benutzen ist meine Übertragung.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="a1-3">
+          <div class="zeile"><span class="nr">3</span><span class="op">Erarbeiten</span><span class="afb">AFB II</span></div>
+          <p class="frage">Erarbeiten Sie aus dem Fall alle Hinweise auf eine drohende oder bestehende
+          Mangelernährung bei Frau S. Berechnen und bewerten Sie dazu ihren BMI.</p>
+          <textarea id="a-a1-3" aria-label="Antwort Aufgabe 3"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <ul>
+              <li>Hosen weit geworden → <b>unbeabsichtigter Gewichtsverlust</b>; „weit gewordene
+              Kleidung“ ist im PEMU-Screening ein eigenes Kriterium</li>
+              <li>lässt das Mittagessen oft stehen → auffällig geringe Essmenge? Ob „mehr als ¼
+              Essensreste bei ⅔ der Mahlzeiten“ zutrifft, zeigt erst das Protokoll</li>
+              <li>isst nur nach Aufforderung und Vormachen → <b>kognitive Überforderung</b> (PEMU 1a)</li>
+              <li>Demenz steht bei „nicht essen können“ <i>und</i> bei den Erkrankungen, die zu
+              Mangelernährung führen</li>
+            </ul>
+            <p><b>BMI:</b> 49 ÷ (1,62 × 1,62) = 49 ÷ 2,6244 = <b>18,7</b>. Nach der Tabelle knapp
+            Normalgewicht (18,5–25,0). <b>Aber:</b> Frau S. ist 76 — über 64 wird der BMI anders
+            bewertet, der ideale Wert steigt. Im PEMU ist ein BMI unter 20 ein Zeichen von
+            Nahrungsmangel; im MNA gibt ein BMI unter 19 bei Frage F null Punkte.</p>
+            <p><b>Schluss:</b> Die Zahl beruhigt nicht — auffällig ist die Veränderung. Ein Ja im
+            Screening reicht → vertieftes Assessment.</p>
+            <p class="herl">„Erarbeiten“ = alles aus dem Fall belegbar. Die Zahlen stehen in den
+            Übungsergänzungen. Quelle: Mangelernährung → BMI-Tabelle, „BMI im Alter“, PEMU, MNA.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="a1-4">
+          <div class="zeile"><span class="nr">4</span><span class="op">Erläutern</span><span class="afb">AFB II</span></div>
+          <p class="frage">Erläutern Sie an den Aussagen von Herrn S., welche zwei Werte in dieser
+          Beratung aufeinandertreffen. Erläutern Sie auch, wie die Pflegefachkraft das Gespräch
+          eröffnen kann, ohne Herrn S. zu übergehen.</p>
+          <textarea id="a-a1-4" aria-label="Antwort Aufgabe 4"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <p><b>Selbstbestimmung:</b> Das sieht man daran, dass er sagt „Wir kommen hier eigentlich
+            ganz gut klar“ und „Ich will aber keine Fremden im Haus“ — und daran, dass er immer sehr
+            selbstständig war.</p>
+            <p><b>Fürsorge und Sicherheit:</b> Das sieht man an seinem Sturzrisiko (Nykturie, Dyspnoe,
+            Arthrose), an der Demenz seiner Frau und an der hohen Belastung der Tochter.</p>
+            <p>Das ist Phase 2 nach Heffels: Welche Werte kollidieren? Zwei Dinge, die beide gut sind.</p>
+            <p><b>Eröffnung</b> wie im Beratungsgespräch: offen fragen — „Wie geht es Ihnen beiden im
+            Moment?“ — und das Ziel benennen: „Der heutige Besuch dient dazu, Ihre aktuelle
+            Pflegesituation gemeinsam anzuschauen und zu überlegen, wo wir Sie entlasten und
+            unterstützen können.“ Frau S. direkt ansprechen, auch wenn sie unbeteiligt wirkt.</p>
+            <p class="herl">„Erläutern“ = belegt am Text. Quelle: Verantwortliches Pflegehandeln →
+            Heffels Phase 2; „Ich will aber keine Fremden im Haus“ → Der Beratungsbesuch, Schritte 1
+            und 2.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="a1-5">
+          <div class="zeile"><span class="nr">5</span><span class="op">Ableiten</span><span class="afb">AFB II</span></div>
+          <p class="frage">Leiten Sie vier Maßnahmen ab, die Herrn S. nachts vor einem Sturz schützen.
+          Binden Sie jede Maßnahme mit einem „weil“ an den Fall.</p>
+          <textarea id="a-a1-5" aria-label="Antwort Aufgabe 5"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <ul>
+              <li><b>Durchgehende Nachtbeleuchtung</b>, weil er wegen der Nykturie nachts mehrmals
+              aufsteht und sonst im Dunkeln geht.</li>
+              <li><b>Aufstehhilfe (Bettgalgen)</b>, weil Hüft- und Kniearthrose das Aufstehen
+              erschweren.</li>
+              <li><b>Nachtstuhl</b>, weil er so den Weg zur Toilette verkürzt — mit Atemnot und
+              Schmerzen ist jeder Meter ein Risiko.</li>
+              <li><b>Bettschutzeinlagen</b>, weil er dann nicht hetzen muss, wenn er es nachts nicht
+              rechtzeitig schafft.</li>
+            </ul>
+            <p>Die Begründung aus dem Gespräch, wörtlich: „Aufgrund Ihrer Arthrose und der nächtlichen
+            Atemnot besteht ein erhöhtes Sturzrisiko.“</p>
+            <p class="herl">„Ableiten“ = Maßnahme <b>plus das weil</b>. Die vier Empfehlungen stehen so
+            im Beratungsgespräch; die einzelnen weil-Sätze sind meine Zuordnung — der letzte ganz
+            besonders.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="a1-6">
+          <div class="zeile"><span class="nr">6</span><span class="op">Begründen</span><span class="afb iii">AFB III</span></div>
+          <p class="frage">Drei Tage später ruft Christine an: Ihre Mutter sei seit heute Morgen
+          plötzlich viel verwirrter als sonst — mal unruhig, mal kaum ansprechbar. Christine meint:
+          „Das ist halt die Demenz.“ Begründen Sie, warum Sie das nicht so stehen lassen, und was Sie
+          tun.</p>
+          <p class="zusatz">Diese Situation ist von mir ergänzt.</p>
+          <textarea id="a-a1-6" aria-label="Antwort Aufgabe 6"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <p class="kette">Plötzlicher Beginn, schwankender Verlauf, veränderte Aufmerksamkeit
+            (Ursache) → eine Demenz beginnt schleichend; akuter Beginn und schwankender Verlauf gehören
+            zum Delir — und ein Delir kann zusätzlich zur Demenz auftreten (Wirkung) → dahinter kann
+            eine körperliche Ursache stecken: PEMU nennt „plötzliche/unerwartete Verwirrtheit“ als
+            Zeichen von Flüssigkeitsmangel, die Demenz-Folie nennt Schmerz, Durst, Ausscheidung,
+            Infektionen, Medikamente. Wer „das ist die Demenz“ sagt, macht eine akute Verschlechterung
+            unsichtbar (Gefahr) → deshalb: Veränderung genau beobachten und beschreiben, Trinkmenge,
+            Urin, Temperatur und Schmerz erfragen, Informationen weitergeben, eine zeitnahe ärztliche
+            Abklärung veranlassen</p>
+            <p class="herl">Quelle: Demenz → „Demenz oder Delir“, „Die wichtige Konsequenz für die
+            Pflege“; Mangelernährung → PEMU, Flüssigkeit. Die Verbindung beider Stellen ist von mir —
+            genau diese Verbindung ist AFB III.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="a1-7">
+          <div class="zeile"><span class="nr">7</span><span class="op">Beurteilen</span><span class="afb iii">AFB III</span></div>
+          <p class="frage">Beurteilen Sie Christines Vorschlag, ihrer Mutter ab jetzt das Essen
+          anzureichen.</p>
+          <textarea id="a-a1-7" aria-label="Antwort Aufgabe 7" style="min-height:160px"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <p><b>Einschätzung zuerst:</b> Christines Sorge ist fachlich berechtigt — es gibt Hinweise
+            auf eine Mangelernährung. Als Dauerlösung ist vollständiges Anreichen aber nicht angemessen,
+            weil Frau S. mit Anleitung noch selbst isst.</p>
+            <p class="kette">Demenz → kognitive Überforderung → sie isst nur nach Aufforderung und
+            Vormachen → wer ganz anreicht, nimmt ihr diese Fähigkeit und bestimmt selbst Reihenfolge und
+            Tempo → Gefahr: Verlust von Selbstständigkeit, und die Mangelernährung bleibt trotzdem →
+            deshalb anleitende Unterstützung</p>
+            <ul>
+              <li>PEMU-Leitfaden, wörtlich: „Führt Speisen und Getränke nur nach verbaler Aufforderung und
+              durch Nachahmung zum Mund“ → <b>anleitende Unterstützung während der Mahlzeiten</b></li>
+              <li>gemeinsam am Tisch essen, vormachen, auffordern · so viel wie nötig, so wenig wie
+              möglich · Reihenfolge und Tempo bestimmt sie · nicht zwingen</li>
+              <li>Brille, Zahnprothese und Hörgerät sind Esshilfsmittel</li>
+              <li>Ess-/Trinkprotokoll über sieben Tage · wöchentlich wiegen: morgens, nach der Toilette,
+              leicht bekleidet, immer dieselbe Waage</li>
+              <li>Christine entlasten und anleiten: Betreuungsdienst oder Tagespflege
+              (Beratungsgespräch), Angehörigenschulung (eure Gruppenarbeit)</li>
+            </ul>
+            <p class="herl">Beurteilen = Einschätzung <b>vor</b> den Maßnahmen. Wer nur „nein“
+            schreibt, übersieht, dass die Tochter fachlich recht hat. Quelle: Mangelernährung →
+            PEMU-Leitfaden, „Beim Essen unterstützen“, Wiegen.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="abgabe">
+        <p><b>Fertig?</b> Kopier alle Antworten und schick sie mir. Ich korrigiere den Inhalt gegen
+        deine Zusammenfassungen und die Sprache gegen deine sieben Baustellen.</p>
+        <p class="fr">Copie tes réponses et envoie-les-moi : je corrige le fond et la langue.</p>
+        <button type="button" data-kopie="schriftlich1">Antworten kopieren</button>
+        <textarea class="ausgabe" hidden readonly aria-label="Antworten zum Kopieren"></textarea>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== Aufsichtsarbeit 2 ===== -->
+  <article class="bogen" data-aa="aa2" aria-labelledby="aa2-titel">
     <dl class="bogenkopf">
       <div><dt>Aufsichtsarbeit</dt><dd>2 von 3</dd></div>
       <div><dt>Prüfungsbereich</dt><dd>2 · Beratung</dd></div>
@@ -384,6 +641,235 @@
         deine Zusammenfassung und die Sprache gegen deine sieben Baustellen.</p>
         <p class="fr">Copie tes réponses et envoie-les-moi : je corrige le fond et la langue.</p>
         <button type="button" data-kopie="schriftlich">Antworten kopieren</button>
+        <textarea class="ausgabe" hidden readonly aria-label="Antworten zum Kopieren"></textarea>
+      </div>
+    </div>
+  </article>
+
+  <!-- ===== Aufsichtsarbeit 3 ===== -->
+  <article class="bogen" data-aa="aa3" aria-labelledby="aa3-titel">
+    <dl class="bogenkopf">
+      <div><dt>Aufsichtsarbeit</dt><dd>3 von 3</dd></div>
+      <div><dt>Prüfungsbereich</dt><dd>3 · Krise, Anordnung, Ethik</dd></div>
+      <div><dt>Bearbeitungszeit</dt><dd>120 Minuten</dd></div>
+      <div><dt>Versorgungsbereich</dt><dd>Kinderstation</dd></div>
+    </dl>
+    <div class="bogeninhalt">
+      <div class="uhr" data-uhr="120" data-key="aa3">
+        <span class="anzeige" aria-live="off">120:00</span>
+        <span class="was">Stell die Uhr, bevor du den Fall liest — wie am Prüfungstag.</span>
+        <button type="button" class="los">Start</button>
+        <button type="button" class="zurueck">Zurücksetzen</button>
+      </div>
+
+      <div class="fall">
+        <h3 id="aa3-titel">Fallsituation: Paul, 6 Jahre</h3>
+        <p>Paul ist das „Nesthäkchen“ der Familie und feiert heute seinen <b>6. Geburtstag</b>; seine
+        Geschwister sind 13 und 15. Von den Großeltern bekommt er sein erstes eigenes Fahrrad. Die
+        Mutter ermahnt ihn, nicht allein und nicht ohne Helm loszufahren. Heimlich fährt er doch eine
+        Runde, rutscht aus und fällt auf die rechte Seite. Ein Nachbar hat gesehen, dass der Junge für
+        kurze Zeit das Bewusstsein verloren hatte.</p>
+        <p><b>14.30 Uhr</b>, Einlieferung mit dem Rettungswagen, die Eltern sind dabei. Der Vater
+        berichtet, Paul sei einige Sekunden bewusstlos gewesen. Paul kann sich an nichts erinnern, klagt
+        über Kopfschmerzen und Schwindel und hat schon auf dem Weg mehrfach erbrochen. Schürfwunden an
+        Stirn, rechtem Arm und Bein; die Wunde an der Stirn ist druckempfindlich und geschwollen. Als
+        der Arzt mit ihm spricht, ist er <b>wach, aber desorientiert</b>. Die Pupillen reagieren prompt
+        und sind isokor. Der Arzt äußert den Verdacht auf ein <b>Schädel-Hirn-Trauma</b>.</p>
+        <p>Das Röntgenbild des rechten Unterarms zeigt eine Epiphysenfugenlösung und eine Fraktur; der
+        Arm wird mit einem Unterarmgips ruhiggestellt.</p>
+        <p>Auf dem Weg zur Kinderstation erbricht Paul wieder und wird <b>zunehmend müder und
+        schläfriger</b>. Der Arzt legt einen peripheren Zugang am linken Unterarm; die Pflegekraft
+        fixiert den Arm in einer Schiene. Paul stöhnt vor Schmerzen und klammert sich an seine Mutter,
+        die bei ihm bleiben darf. Die Pflegekraft gibt 1 Suppositorium Paracetamol 250 mg, sagt der
+        Mutter, dass Paul vorläufig <b>Nahrungskarenz</b> einhalten muss, und misst noch einmal den
+        Blutdruck: 90/50 mmHg.</p>
+        <p class="zusatz"><b>Übungsergänzungen — von mir, nicht aus deinem Material:</b> Das Paracetamol
+        ist ärztlich angeordnet (der Fall sagt das nicht ausdrücklich). Um 17 Uhr kommen die Großeltern
+        mit dem Geburtstagskuchen. Paul weint, er hat Hunger und möchte ein Stück. Die Mutter sagt:
+        „Heute ist doch sein Geburtstag. Ein kleines Stück kann nicht schaden.“</p>
+        <p class="quelle">Quelle: <a href="https://claude.ai/artifact/GdWSxzmHV46chBzi78YNar" target="_blank" rel="noopener">Das kranke Kind</a> → „Paul, Kind nach Fahrradsturz“ — ein Prüfungsfall aus
+        <i>Endspurt Pflege</i> (Nauerth u. a., 2009). Dazu:
+        <a href="https://claude.ai/artifact/8DRf2WvteNqwi5XFRwTqkt" target="_blank" rel="noopener">Wahrnehmen ist nicht Beobachten</a> ·
+        <a href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo" target="_blank" rel="noopener">Neurologie (leichtes SHT)</a> ·
+        <a href="https://claude.ai/code/artifact/56f4b6ba-ea38-4780-bd8b-1b6374e4ae14" target="_blank" rel="noopener">Recht (Delegation)</a> ·
+        <a href="https://claude.ai/artifact/TrSt6YCQmxZ1aMJ8Q9qYaL" target="_blank" rel="noopener">Verantwortliches Pflegehandeln</a></p>
+      </div>
+
+      <div class="aufgaben" data-teil="schriftlich3">
+        <div class="aufgabe" data-id="a3-1">
+          <div class="zeile"><span class="nr">1</span><span class="op">Nennen</span><span class="afb">AFB I</span></div>
+          <p class="frage">Nennen Sie die vier Stufen der quantitativen Bewusstseinsstörung mit je einem
+          Kennzeichen.</p>
+          <textarea id="a-a3-1" aria-label="Antwort Aufgabe 1"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <ul>
+              <li><b>Benommenheit</b> — verlangsamtes Denken und Handeln, orientiert</li>
+              <li><b>Somnolenz</b> — abnorm schläfrig, kurz weckbar, gerade noch orientiert</li>
+              <li><b>Sopor</b> — schlafähnlich, reagiert nur noch auf starke Außenreize gezielt</li>
+              <li><b>Koma</b> — bewusstlos, keine Reaktion auf Ansprache</li>
+            </ul>
+            <p class="herl">Quelle: Wahrnehmen ist nicht Beobachten → „Die vier quantitativen Stufen“.
+            Deine Anatomie-Seite nennt nur drei — die Folie nennt vier.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="a3-2">
+          <div class="zeile"><span class="nr">2</span><span class="op">Beschreiben</span><span class="afb">AFB I</span></div>
+          <p class="frage">Beschreiben Sie Aufbau und Auswertung der Glasgow Coma Scale.</p>
+          <textarea id="a-a3-2" aria-label="Antwort Aufgabe 2"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <p><b>Aufbau:</b> drei Bereiche, jeweils die beste Reaktion — Augen öffnen (1–4 Punkte),
+            verbale Reaktion (1–5), motorische Reaktion (1–6). Die Angaben in Klammern gelten für Kinder
+            unter 2 Jahren; für Paul gilt die normale Spalte.</p>
+            <p><b>Auswertung:</b> Die Punkte werden addiert. 15 = keine Bewusstseinsstörung; je weniger
+            Punkte, desto schwerer. Der niedrigste Wert ist 3, nicht 0.</p>
+            <p class="herl">Zwei Teile verlangt → getrennt schreiben. Quelle: Wahrnehmen ist nicht
+            Beobachten → Glasgow Coma Scale (Pflege Heute, Tab. 37.2).</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="a3-3">
+          <div class="zeile"><span class="nr">3</span><span class="op">Erarbeiten</span><span class="afb">AFB II</span></div>
+          <p class="frage">Erarbeiten Sie aus dem Fall alle Hinweise auf ein Schädel-Hirn-Trauma und auf
+          eine Verschlechterung. Ordnen Sie Pauls Bewusstseinslage um 14.30 Uhr und auf dem Weg zur
+          Station ein.</p>
+          <textarea id="a-a3-3" aria-label="Antwort Aufgabe 3"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <p><b>Hinweise auf SHT:</b> Sturz ohne Helm · kurze Bewusstlosigkeit · Erinnerungslücke ·
+            Kopfschmerz · Schwindel · mehrfaches Erbrechen · Stirnwunde druckempfindlich und geschwollen
+            · desorientiert.</p>
+            <p><b>Verschlechterung:</b> erneutes Erbrechen · zunehmend müder und schläfriger.</p>
+            <p><b>Einordnung:</b> 14.30 Uhr wach, aber desorientiert → <b>qualitative</b> Störung (wach,
+            aber der Inhalt ist gestört). Danach zunehmend schläfrig → Beginn einer <b>quantitativen</b>
+            Störung. Beides in einem Kind, in einer Stunde.</p>
+            <p><b>Nicht überbewerten:</b> Pupillen „prompt und isokor“ ist ein Ausgangswert, keine
+            Entwarnung. 90/50 mmHg: Ob das für einen Sechsjährigen normal ist, steht nicht in deinen
+            Unterlagen — dokumentieren, nicht bewerten.</p>
+            <p class="herl">„Erarbeiten“ = nur aus dem Fall. Die Einordnung qualitativ → quantitativ
+            steht so in deiner Pädiatrie-Zusammenfassung beim Fall Paul.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="a3-4">
+          <div class="zeile"><span class="nr">4</span><span class="op">Erläutern</span><span class="afb">AFB II</span></div>
+          <p class="frage">Erläutern Sie am Fall, welche Verluste Paul im Krankenhaus erlebt. Nennen Sie
+          zu jedem Verlust eine pflegerische Antwort.</p>
+          <textarea id="a-a3-4" aria-label="Antwort Aufgabe 4"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <ul>
+              <li><b>Bezugsperson:</b> Das sieht man daran, dass er sich an die Mutter klammert →
+              Mitaufnahme eines Elternteils (die Mutter darf bleiben — steht im Fall)</li>
+              <li><b>Gewohnte Umgebung:</b> Er sollte heute zu Hause Geburtstag feiern → eigene Sachen,
+              gewohnte Rituale</li>
+              <li><b>Freunde und Geschwister:</b> Geschwister 13 und 15, Großeltern → Besuch oder
+              Videokontakt</li>
+              <li><b>Unabhängigkeit:</b> rechts Gips, links Schiene — beide Arme sind belegt → Hilfe
+              beim Waschen und bei der Toilette; ihn selbst entscheiden lassen, wo es geht</li>
+            </ul>
+            <p class="herl">„Erläutern“ = belegt am Fall. Quelle: Das kranke Kind → „Die vier
+            Verluste“ (AKIK). Die Verbindung zu den zwei belegten Armen steht auf deiner Seite als
+            Lesart, nicht im Fall.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="a3-5">
+          <div class="zeile"><span class="nr">5</span><span class="op">Ableiten</span><span class="afb">AFB II</span></div>
+          <p class="frage">Paul erhält auf ärztliche Anordnung 1 Suppositorium Paracetamol 250 mg.
+          Leiten Sie ab, welche Verantwortung die Pflegefachkraft dabei trägt und worauf sie bei Paul
+          achtet.</p>
+          <textarea id="a-a3-5" aria-label="Antwort Aufgabe 5" style="min-height:160px"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <p><b>Die drei Verantwortungen:</b> Anordnungsverantwortung → beim Arzt ·
+            Übernahmeverantwortung → sie prüft: Kann ich das? Darf ich das? Bin ich eingewiesen? Wenn
+            nein, muss sie ablehnen · Durchführungsverantwortung → sorgfältige, richtige Durchführung.</p>
+            <ul>
+              <li><b>Darreichungsform:</b> Kinderfreundliche Formen wie Saft sind zu bevorzugen — hier
+              ein Zäpfchen, weil Paul erbricht und nichts essen darf</li>
+              <li><b>ehrlich und kindgerecht erklären</b>, was passiert, weil Ehrlichkeit die
+              Bereitschaft des Kindes erhöht</li>
+              <li><b>die Mutter einbeziehen</b>, weil die Kommunikation mit Kindern oft im Dreieck mit
+              den Eltern läuft</li>
+              <li><b>Schmerz vorher und nachher einschätzen:</b> Paul selbst, die Mutter, eigene
+              Beobachtung (Mimik, Muskeltonus, Puls); ab Schulkindalter Gesichterskala — da er
+              desorientiert ist, kann auch die KUSS-Skala passen („bei Sprach- und
+              Verständnisschwierigkeiten“)</li>
+            </ul>
+            <p class="herl">„Ableiten“ = Maßnahme plus weil. Quelle: Recht → „Delegation — die drei
+            Verantwortungen“; Das kranke Kind → Medikamente, Kommunikation, Schmerzskalen. Das „weil“
+            beim Zäpfchen ist meine Herleitung aus dem Fall.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="a3-6">
+          <div class="zeile"><span class="nr">6</span><span class="op">Begründen</span><span class="afb iii">AFB III</span></div>
+          <p class="frage">Begründen Sie, warum Paul stationär überwacht wird, obwohl er bei der Aufnahme
+          wach war, und worauf Sie in den nächsten Stunden achten.</p>
+          <textarea id="a-a3-6" aria-label="Antwort Aufgabe 6"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <p class="kette">Sturz auf den Kopf mit kurzer Bewusstlosigkeit — dabei kann ein Gefäß im
+            Schädel verletzt worden sein (Ursache) → eine Blutung entwickelt sich langsam, oft erst über
+            Stunden (Wirkung) → Gefahr eines intrakraniellen Hämatoms: Der Schädel gibt nicht nach, der
+            Druck auf das Gehirn steigt; bei Paul zeigen erneutes Erbrechen und zunehmende Schläfrigkeit,
+            dass es schon in diese Richtung gehen kann (Gefahr) → deshalb 12–24 Stunden stationäre
+            Beobachtung, auch wenn er zuerst unauffällig wirkt</p>
+            <p><b>Worauf achten:</b> Bewusstseinslage im Verlauf (Stufen, GCS) · Pupillen — der Befund
+            von 14.30 Uhr ist der Ausgangswert · Erbrechen · Kopfschmerz und Schwindel · Blutdruck ·
+            Schmerz. Dazu kurzzeitige Bettruhe; keine Haarwäsche bei SHT. Jede Veränderung sofort dem
+            Arzt melden.</p>
+            <p class="herl">Quelle: Neurologie → „Leichtes Schädel-Hirn-Trauma“ (Pflege Heute
+            37.13.1, 12–24 Std.); „Heraussetzen“ ist keine aktivierende Pflege → Haarwäsche. Wie oft und
+            wie genau die Pupillen kontrolliert werden, steht nicht in deinen Unterlagen — nicht dazuerfinden.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="a3-7">
+          <div class="zeile"><span class="nr">7</span><span class="op">Beurteilen</span><span class="afb iii">AFB III</span></div>
+          <p class="frage">Beurteilen Sie die Situation um 17 Uhr: Die Mutter möchte Paul ein Stück
+          Geburtstagskuchen geben. Gehen Sie nach dem Modell von Heffels vor.</p>
+          <textarea id="a-a3-7" aria-label="Antwort Aufgabe 7" style="min-height:180px"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <p><b>Einschätzung zuerst:</b> Heute gibt es keinen Kuchen. Die Nahrungskarenz ist ärztlich
+            angeordnet; aufheben darf sie nur der Arzt. Paul erbricht wiederholt und wird schläfriger.</p>
+            <ol>
+              <li><b>Situationsdeutung:</b> Paul hat Hunger, Angst und Geburtstag · die Mutter ist
+              besorgt und will ihm eine Freude machen · die Großeltern sind gekommen · du hast eine
+              Anordnung und die Verantwortung.</li>
+              <li><b>Problembestimmung:</b> Wohlbefinden des Kindes und der Wunsch der Familie gegen
+              Sicherheit und Fürsorge — dazu die Norm der ärztlichen Anordnung.</li>
+              <li><b>Ziel:</b> Paul bleibt sicher <i>und</i> hat trotzdem einen Geburtstag.</li>
+              <li><b>Vorgaben:</b> ärztliche Anordnung · Durchführungsverantwortung.</li>
+              <li><b>Möglichkeiten:</b> ein Stück geben · einfach nein sagen · den Arzt fragen · ohne
+              Essen feiern (Kerzen auspusten, singen, Geschenk, den Kuchen für später aufheben) · ehrlich
+              erklären.</li>
+              <li><b>Entscheidung:</b> Arzt fragen + ohne Essen feiern + ehrlich erklären — höchste
+              Wirkung, geringste Nebenwirkungen. „Einfach nein“ ist sicher, lässt aber Paul und die
+              Mutter allein.</li>
+              <li><b>Evaluation:</b> Ist Paul ruhiger? Trägt die Mutter die Entscheidung mit?</li>
+            </ol>
+            <p class="kette">SHT-Verdacht, Erbrechen, zunehmende Schläfrigkeit (Ursache) → der Arzt hat
+            Nahrungskarenz angeordnet (Wirkung) → hebe ich sie eigenmächtig auf, handle ich gegen die
+            Anordnung und trage die Folgen (Gefahr) → deshalb Rücksprache mit dem Arzt und bis dahin
+            feiern ohne Essen</p>
+            <p class="herl"><b>Warum</b> Nahrungskarenz angeordnet ist, steht nicht in deinen
+            Unterlagen — deine Pädiatrie-Seite nennt das ausdrücklich als offene Frage an die Dozentin.
+            Die Antwort braucht es hier nicht: Die Anordnung gilt, bis der Arzt sie ändert. Quelle:
+            Verantwortliches Pflegehandeln → Heffels; Recht → Delegation; Das kranke Kind → Fall Paul.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="abgabe">
+        <p><b>Fertig?</b> Kopier alle Antworten und schick sie mir. Ich korrigiere den Inhalt gegen
+        deine Zusammenfassungen und die Sprache gegen deine sieben Baustellen.</p>
+        <p class="fr">Copie tes réponses et envoie-les-moi : je corrige le fond et la langue.</p>
+        <button type="button" data-kopie="schriftlich3">Antworten kopieren</button>
         <textarea class="ausgabe" hidden readonly aria-label="Antworten zum Kopieren"></textarea>
       </div>
     </div>
@@ -684,7 +1170,8 @@
 </section>
 
 <footer>
-  <p><b>Examenswerkstatt</b> · Übungsbeispiel vom 27.09.2026 · Fälle und Erwartungshorizonte aus deinen
+  <p><b>Examenswerkstatt</b> · Stand 27.09.2026 · drei Aufsichtsarbeiten, ein mündlicher und ein
+  praktischer Teil · Fälle und Erwartungshorizonte aus deinen
   eigenen Zusammenfassungen; Abläufe und Zeiten aus der PflAPrV. Was von mir stammt, ist gelb markiert.</p>
   <p>Kein offizielles Prüfungsmaterial. Die echten Aufgaben stellt die Bezirksregierung auf Vorschlag
   deiner Schule.</p>
@@ -709,7 +1196,22 @@
   }
   tabs.forEach(t=>t.addEventListener('click',()=>{ zeige(t.getAttribute('aria-controls')); window.scrollTo({top:0}); }));
   const start=(location.hash||'').slice(1);
-  zeige(['schriftlich','muendlich','praktisch','stoff'].includes(start)?start:(S.get('reiter')||'schriftlich'));
+
+  /* Aufsichtsarbeiten: immer nur eine zeigen */
+  const boegen=[...document.querySelectorAll('#schriftlich .bogen[data-aa]')];
+  const kopien=[...document.querySelectorAll('.kopien [data-aa]')];
+  function waehle(aa){
+    if(!boegen.some(b=>b.dataset.aa===aa)) aa='aa1';
+    boegen.forEach(b=>b.hidden=b.dataset.aa!==aa);
+    kopien.forEach(k=>k.setAttribute('aria-pressed',k.dataset.aa===aa));
+    S.set('aa',aa);
+  }
+  kopien.forEach(k=>k.addEventListener('click',()=>waehle(k.dataset.aa)));
+  document.querySelectorAll('.oeffnen[data-aa]').forEach(b=>b.addEventListener('click',()=>{
+    waehle(b.dataset.aa); document.querySelector('.kopien').scrollIntoView({block:'start'}); }));
+  if(/^aa[123]$/.test(start)){ waehle(start); zeige('schriftlich'); }
+  else { waehle(S.get('aa')||'aa1');
+    zeige(['schriftlich','muendlich','praktisch','stoff'].includes(start)?start:(S.get('reiter')||'schriftlich')); }
 
   /* Aufgaben: Antwort speichern, Erwartungshorizont, Selbsteinschätzung */
   document.querySelectorAll('.aufgabe').forEach(a=>{
@@ -760,7 +1262,9 @@
   document.querySelectorAll('[data-kopie]').forEach(b=>{
     b.addEventListener('click',()=>{
       const teil=b.dataset.kopie, box=b.closest('.abgabe').querySelector('.ausgabe');
-      const kopf={schriftlich:'Examenswerkstatt · Schriftlich · Aufsichtsarbeit 2 (Frau Lehmann)',
+      const kopf={schriftlich1:'Examenswerkstatt · Schriftlich · Aufsichtsarbeit 1 (Ehepaar S.)',
+                  schriftlich:'Examenswerkstatt · Schriftlich · Aufsichtsarbeit 2 (Frau Lehmann)',
+                  schriftlich3:'Examenswerkstatt · Schriftlich · Aufsichtsarbeit 3 (Paul)',
                   muendlich:'Examenswerkstatt · Mündlich (Stephan)',praktisch:'Examenswerkstatt · Praktisch'}[teil];
       const zeilen=[kopf,''];
       document.querySelectorAll('.aufgaben[data-teil="'+teil+'"] .aufgabe').forEach(a=>{

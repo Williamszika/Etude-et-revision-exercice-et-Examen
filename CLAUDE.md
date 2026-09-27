@@ -1517,7 +1517,7 @@ ein vollständiges Beispiel pro Teil, damit sie sieht, wie es aussieht.
 
 | Reiter | Beispiel | Aufbau |
 |---|---|---|
-| Schriftlich | Aufsichtsarbeit 2 von 3, **Prüfungsbereich 2**, Fall Frau Lehmann (Diabetes) | 120-Min-Uhr · 7 Aufgaben mit Operator + AFB · Erwartungshorizont als roter Korrekturrand |
+| Schriftlich | **alle drei Aufsichtsarbeiten** (seit 27.09.2026 abends): **1** Ehepaar S. zu Hause (PB 1 · Demenz, Mangelernährung, Beratungsbesuch § 37 Abs. 3 SGB XI) · **2** Frau Lehmann, Klinik (PB 2 · Diabetes) · **3** Paul, 6 J., Kinderstation (PB 3 · leichtes SHT, Bewusstsein/GCS, Delegation, Heffels) | Auswahlknöpfe „Arbeit 1/2/3“, immer nur eine sichtbar · je 120-Min-Uhr · je 7 Aufgaben mit Operator + AFB (2× I, 3× II, 2× III) · Erwartungshorizont als roter Korrekturrand · „Antworten kopieren“ getrennt pro Arbeit (`data-teil` = `schriftlich1` / `schriftlich` / `schriftlich3`) |
 | Mündlich | Fall Stephan (Asthma, 7 J.) + Heffels | Fragen nach **KB III, IV, V** · Antwortgerüst Einschätzung → weil → Kette → deshalb |
 | Praktisch | zwei Menschen (Fallbeispiel 5 + Frau Lehmann) | Ablauf § 16 · PE(S)R vorgemacht · 20-Min-Uhren für Fallvorstellung und Reflexion |
 | Deine Quellen | alle 38 Zusammenfassungen | nach Prüfungsbereich sortiert — **meine Zuordnung, als Vorschlag gekennzeichnet** |
@@ -1530,8 +1530,16 @@ einer **anderen** Altersstufe als der praktische (§ 15 Abs. 2). **Keine Punktza
 die Bewertung der echten Prüfung steht nicht in ihren Unterlagen. „Antworten kopieren" gibt ihr
 einen Text zum Schicken; korrigiert wird Inhalt **und** Sprache (sieben Baustellen).
 
-**Offen:** Aufsichtsarbeit 1 (Vorschlag: Demenz/Mangelernährung, Langzeitpflege) und 3
-(Vorschlag: Kind im Asthmaanfall oder Notfall, mit ärztlicher Anordnung und Ethik).
+**Zwei Dinge, die in den Arbeiten 1 und 3 offen dastehen und nicht „repariert“ werden dürfen:**
+Die Original-Fallbeschreibung des Ehepaars S. liegt nicht in ihrem Ordner (der Fall ist aus dem
+Beratungsgespräch und Gruppenarbeiten zusammengetragen), und **warum** Paul Nahrungskarenz hat,
+steht nirgends in ihren Unterlagen — beides sagt die Seite selbst. Die Übungsergänzungen (Frau S.
+1,62 m / 49 kg, Christines Anreich-Vorschlag, das Delir-Telefonat, der Geburtstagskuchen) sind
+gelb markiert.
+
+**Offen:** Die Arbeiten 1 und 2 betreffen beide ältere Menschen; das Alter variiert nur über
+Arbeit 3. Eine zweite Runde mit anderen Fällen (z. B. Psychiatrie, Wochenbett, Langzeitpflege
+stationär) erst, wenn sie die erste Runde geschrieben hat.
 
 ---
 
