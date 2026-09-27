@@ -644,7 +644,7 @@ Pushen. Also getrennt:
 
 | Zeit (Berlin) | Routine | Sitzung | Aufgabe |
 |---|---|---|---|
-| **05:27** | `trig_01WgGfoiD2CsbZXFs6gbn5m7` | `session_01QDve65qv6wNYfYhzvKYct3` (Repo + Branch, Push getestet: `0ffb703`) | retten → schreiben → **Sicherungscommit** → build → push. **Kein Artifact-Publish.** |
+| **05:27** | `trig_012qYcB2ikqi4b1a7r2iFKBZ` | `session_01QDve65qv6wNYfYhzvKYct3` (Repo + Branch, Push getestet: `0ffb703`) | schreiben → **Sicherungscommit** → build → push. **Benutzt `Artifact` überhaupt nicht** — auch Lesen hing am 27.09. an einer Genehmigung. Schritt 0 (retten) entfällt dort, weil die 06:10-Routine nie eine Lektion schreibt, die nicht schon im Repo liegt. |
 | **06:10** | `trig_01KgKkk4N3ZASV42ErFjhbHz` | frisch pro Lauf, `auto` | öffentliches Repo klonen → build → **beide Seiten veröffentlichen** → `pruefen.py`. **Schreibt nie eine Lektion**, pusht nie. Fehlt an einem Lektionstag die JSON, meldet sie ⚠️ per Push. |
 
 **Getestet am 27.09.2026 abends:** Die 06:10-Routine lief in `auto`, hat beide Seiten
