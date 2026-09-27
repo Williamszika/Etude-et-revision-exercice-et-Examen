@@ -1508,6 +1508,33 @@ Planungsbeurteilung**. Ohne sie keine Bewertungspunkte erfinden.
 
 ---
 
+## Examenswerkstatt — das Examen üben
+
+`examen-werkstatt/index.html` → `https://claude.ai/artifact/DSb28UMxBWdwCNTNyMeHT5` (Icon „exam").
+Auf ihren Wunsch vom 27.09.2026: ein Link, der die **Zusammenfassungen** benutzt, um sie auf das
+**schriftliche, mündliche und praktische** Examen vorzubereiten. Stand: **Übungsbeispiel** — je
+ein vollständiges Beispiel pro Teil, damit sie sieht, wie es aussieht.
+
+| Reiter | Beispiel | Aufbau |
+|---|---|---|
+| Schriftlich | Aufsichtsarbeit 2 von 3, **Prüfungsbereich 2**, Fall Frau Lehmann (Diabetes) | 120-Min-Uhr · 7 Aufgaben mit Operator + AFB · Erwartungshorizont als roter Korrekturrand |
+| Mündlich | Fall Stephan (Asthma, 7 J.) + Heffels | Fragen nach **KB III, IV, V** · Antwortgerüst Einschätzung → weil → Kette → deshalb |
+| Praktisch | zwei Menschen (Fallbeispiel 5 + Frau Lehmann) | Ablauf § 16 · PE(S)R vorgemacht · 20-Min-Uhren für Fallvorstellung und Reflexion |
+| Deine Quellen | alle 38 Zusammenfassungen | nach Prüfungsbereich sortiert — **meine Zuordnung, als Vorschlag gekennzeichnet** |
+
+**Regeln für jede neue Aufgabe:** Fall und Erwartungshorizont **nur aus ihren Zusammenfassungen**,
+mit Quellenlink. Was von mir stammt (Übungsergänzungen, Herleitungen, Zuordnung), steht **gelb
+markiert** da. Die drei Aufsichtsarbeiten müssen in **Altersstufe, Umfeld und Versorgungsbereich
+variieren** (§ 14 Abs. 2 PflAPrV); der mündliche Fall kommt aus einem **anderen** Bereich und
+einer **anderen** Altersstufe als der praktische (§ 15 Abs. 2). **Keine Punktzahlen erfinden** —
+die Bewertung der echten Prüfung steht nicht in ihren Unterlagen. „Antworten kopieren" gibt ihr
+einen Text zum Schicken; korrigiert wird Inhalt **und** Sprache (sieben Baustellen).
+
+**Offen:** Aufsichtsarbeit 1 (Vorschlag: Demenz/Mangelernährung, Langzeitpflege) und 3
+(Vorschlag: Kind im Asthmaanfall oder Notfall, mit ärztlicher Anordnung und Ethik).
+
+---
+
 ## Schulungen und Klausuren
 
 - **`zusammenfassungen/`** — **der einzige Schulungs-Link. Nur die zusammengefassten Kurse und
