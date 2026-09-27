@@ -629,10 +629,33 @@ die Ursache;** die Reihenfolge „erst committen" hätte ohne Push-Recht nichts 
 angehängtem Repo und Branch** — nie in eine frische Sitzung ohne `sources`. Wer eine neue
 Routine anlegt, prüft das mit einem Push-Test, **bevor** er sie für fertig erklärt.
 
-**Noch nicht bewiesen:** dass der erste echte Lauf (26.09., Übungstag; 27.09., Lektion 9)
-durchläuft. Das zeigt erst `pruefen.py` an diesem Morgen. Die Routine-Sitzung wird mit jedem
-Tag länger; das Kontextfenster fasst das per Zusammenfassung ab — fällt es trotzdem aus,
-fängt die 07:10-Kontrolle es auf.
+**Ergebnis 27.09.2026 (Lektion 9):** Das **Sichern** hat funktioniert — die Routine-Sitzung hat
+die Lektion selbst gepusht (`0d5d0c4` Sicherung, `033fcb0` Build). Das **Veröffentlichen** nicht:
+Die Sitzung hing an **„Waiting on permission: Artifact"**. Eine Sitzung, die von hier aus
+angelegt wird, erbt den Modus `default`; `auto` ist von hier aus verboten, und auch
+`extra_allowed_tools: ["Artifact"]` hilft nicht (am selben Tag getestet, ebenfalls blockiert).
+Lektion 9 wurde von Hand veröffentlicht und mit `pruefen.py` nachgewiesen.
+
+### Seit dem 27.09.2026: zwei Routinen, zwei Aufgaben
+
+Eine Sitzung **mit Repo** kann pushen, aber nicht ohne Genehmigung veröffentlichen. Eine
+**frische** Routine-Sitzung läuft in `auto` und kann veröffentlichen, hat aber kein Repo zum
+Pushen. Also getrennt:
+
+| Zeit (Berlin) | Routine | Sitzung | Aufgabe |
+|---|---|---|---|
+| **05:27** | `trig_01WgGfoiD2CsbZXFs6gbn5m7` | `session_01QDve65qv6wNYfYhzvKYct3` (Repo + Branch, Push getestet: `0ffb703`) | retten → schreiben → **Sicherungscommit** → build → push. **Kein Artifact-Publish.** |
+| **06:10** | `trig_01KgKkk4N3ZASV42ErFjhbHz` | frisch pro Lauf, `auto` | öffentliches Repo klonen → build → **beide Seiten veröffentlichen** → `pruefen.py`. **Schreibt nie eine Lektion**, pusht nie. Fehlt an einem Lektionstag die JSON, meldet sie ⚠️ per Push. |
+
+**Getestet am 27.09.2026 abends:** Die 06:10-Routine lief in `auto`, hat beide Seiten
+veröffentlicht, `pruefen.py` danach 9/9. Der erste **echte** Doppellauf ist der 28.09. (Übungstag)
+bzw. 29.09. (Lektion 10) — erst dann ist es bewiesen.
+
+**Gelöscht bzw. aus:** `trig_01XoXWWfZfjRZUdjhbhyUjDK` und `trig_01E2xpXSBNKDg1VAuXSMCjjL`
+(beide feuerten in `session_01N2nNNcM7V6vRXgfzwcRS2h`, die am Publish hing — gelöscht, weil ein
+Prompt nur aus der eigenen Sitzung geändert werden darf). `trig_016JhNDqnRTPczpcX5TPsGi3` bleibt
+aus. **Der Prompt einer Routine lässt sich nur aus der Sitzung ändern, in die sie postet** — von
+woanders: löschen und neu anlegen (Name, Zeit und Ein/Aus gehen überall).
 
 **Regel 0 gilt für die Kontrolle genauso:** Liegt `lektionen/<heute>.json` schon da, wird sie
 nicht überschrieben. Die Kontrolle ist ein Netz, keine zweite Autorin.
