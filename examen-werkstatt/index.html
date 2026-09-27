@@ -1,0 +1,847 @@
+<title>Examenswerkstatt</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+  :root{
+    --paper:#f3f5f7; --sheet:#ffffff; --ink:#17212e; --ink-soft:#4f5b6b; --line:#d8dee6;
+    --blue:#24508f; --blue-soft:#e3ebf6; --red:#b3261e; --red-soft:#f8e3e1;
+    --green:#2e7a4f; --green-soft:#e1f1e7; --amber:#8a5d00; --amber-soft:#fbefd3;
+    --serif:"Literata","Iowan Old Style",Georgia,serif;
+    --sans:"Atkinson Hyperlegible","Segoe UI",system-ui,-apple-system,sans-serif;
+    --mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    color-scheme:dark;
+    --paper:#10151c; --sheet:#18202a; --ink:#e8edf3; --ink-soft:#a5b1c0; --line:#2b3644;
+    --blue:#86ade8; --blue-soft:#1a2a40; --red:#f08a80; --red-soft:#3a1e1c;
+    --green:#7fcf9c; --green-soft:#16301f; --amber:#e2b456; --amber-soft:#33280f;}}
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --paper:#10151c; --sheet:#18202a; --ink:#e8edf3; --ink-soft:#a5b1c0; --line:#2b3644;
+    --blue:#86ade8; --blue-soft:#1a2a40; --red:#f08a80; --red-soft:#3a1e1c;
+    --green:#7fcf9c; --green-soft:#16301f; --amber:#e2b456; --amber-soft:#33280f;}
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding-inline:18px;padding-block:0 90px}
+  h1,h2,h3,h4{font-family:var(--serif);text-wrap:balance;line-height:1.2;margin:0}
+  p{margin:0}
+  .fr{color:var(--ink-soft);font-size:15px;font-style:italic}
+  a{color:var(--blue)}
+  button{font:inherit;cursor:pointer}
+  :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+  /* Kopf */
+  header.kopf{padding-block:34px 18px;display:grid;gap:10px}
+  .kicker{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+  header.kopf h1{font-size:clamp(2rem,6vw,2.9rem);font-weight:700;letter-spacing:-.01em}
+  header.kopf .lead{max-width:62ch;color:var(--ink-soft)}
+  .regeln{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .regeln span{font-size:14px;border:1px solid var(--line);background:var(--sheet);border-radius:999px;padding:4px 12px}
+  .regeln b{color:var(--blue)}
+
+  /* Reiter */
+  nav.reiter{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);margin-inline:-18px;padding:10px 18px;display:flex;gap:6px;overflow-x:auto}
+  nav.reiter button{flex:0 0 auto;border:1px solid var(--line);background:var(--sheet);color:var(--ink-soft);border-radius:10px;padding:8px 14px;font-weight:700;font-size:15px}
+  nav.reiter button[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:var(--sheet)}
+  nav.reiter button small{font-weight:400;opacity:.8;margin-left:6px;font-size:12.5px}
+
+  section.teil{padding-top:26px;display:grid;gap:22px}
+  section.teil[hidden]{display:none}
+  .intro{display:grid;gap:8px;max-width:66ch}
+  .intro h2{font-size:1.65rem}
+  .rechts{font-family:var(--mono);font-size:12px;color:var(--ink-soft)}
+
+  /* Prüfungsbogen */
+  .bogen{background:var(--sheet);border:1px solid var(--line);border-radius:6px;box-shadow:0 1px 0 var(--line)}
+  .bogenkopf{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));border-bottom:2px solid var(--ink)}
+  .bogenkopf div{padding:10px 14px;border-right:1px solid var(--line)}
+  .bogenkopf div:last-child{border-right:0}
+  .bogenkopf dt{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+  .bogenkopf dd{margin:2px 0 0;font-weight:700}
+  .bogeninhalt{padding:18px 20px;display:grid;gap:16px}
+  @media (max-width:560px){.bogeninhalt{padding:16px 14px}}
+
+  .fall{font-family:var(--serif);font-size:1.02rem;line-height:1.75;border-left:3px solid var(--ink);padding-left:16px;display:grid;gap:8px}
+  .fall h3{font-size:1.15rem}
+  .fall ul{margin:0;padding-left:1.1em}
+  .quelle{font-size:13.5px;color:var(--ink-soft);display:flex;gap:6px;flex-wrap:wrap;align-items:baseline}
+  .quelle a{font-weight:700}
+  .zusatz{font-size:14px;background:var(--amber-soft);color:var(--ink);border-radius:6px;padding:8px 12px}
+  .zusatz b{color:var(--amber)}
+
+  /* Uhr */
+  .uhr{display:flex;flex-wrap:wrap;align-items:center;gap:10px;background:var(--blue-soft);border-radius:8px;padding:10px 14px}
+  .uhr .anzeige{font-family:var(--mono);font-size:1.7rem;font-weight:700;font-variant-numeric:tabular-nums;color:var(--blue);min-width:5.2ch}
+  .uhr .anzeige.um{color:var(--red)}
+  .uhr .was{font-size:14px;color:var(--ink-soft);flex:1 1 200px}
+  .uhr button{border:1px solid var(--blue);background:var(--sheet);color:var(--blue);border-radius:8px;padding:6px 12px;font-weight:700;font-size:14px}
+  .uhr button.los{background:var(--blue);color:var(--sheet)}
+
+  /* Aufgabe */
+  .aufgabe{border-top:1px solid var(--line);padding-top:16px;display:grid;gap:10px}
+  .aufgabe:first-of-type{border-top:0;padding-top:0}
+  .aufgabe .zeile{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+  .nr{font-family:var(--mono);font-weight:700;color:var(--ink-soft)}
+  .op{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;border-radius:5px;padding:2px 8px;background:var(--blue-soft);color:var(--blue)}
+  .afb{font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-radius:5px;padding:1px 7px;color:var(--ink-soft)}
+  .afb.iii{border-color:var(--red);color:var(--red)}
+  .frage{font-family:var(--serif);font-size:1.05rem;font-weight:600}
+  textarea{width:100%;min-height:110px;font:inherit;font-size:16px;line-height:1.55;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px 12px;resize:vertical;
+    background-image:repeating-linear-gradient(transparent,transparent 24.3px,var(--line) 24.3px,var(--line) 25px);background-attachment:local;background-position:0 9px}
+  textarea:focus{outline:2px solid var(--blue);outline-offset:1px}
+  .werkzeug{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .werkzeug button{border:1px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:8px;padding:6px 12px;font-size:14px}
+  .werkzeug .wz{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-left:auto}
+  .selbst{display:flex;gap:4px}
+  .selbst button{padding:5px 10px;font-size:13px}
+  .selbst button[aria-pressed="true"].g{background:var(--green-soft);border-color:var(--green);color:var(--green)}
+  .selbst button[aria-pressed="true"].t{background:var(--amber-soft);border-color:var(--amber);color:var(--amber)}
+  .selbst button[aria-pressed="true"].n{background:var(--red-soft);border-color:var(--red);color:var(--red)}
+
+  /* Erwartungshorizont = Korrekturrand */
+  .eh{border-left:3px solid var(--red);background:var(--red-soft);border-radius:0 6px 6px 0;padding:10px 14px;display:grid;gap:6px;font-size:15.5px}
+  .eh[hidden]{display:none}
+  .eh .kopfzeile{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--red)}
+  .eh ul,.eh ol{margin:0;padding-left:1.2em}
+  .eh .kette{font-family:var(--mono);font-size:13px;background:var(--sheet);border-radius:5px;padding:6px 9px;color:var(--ink)}
+  .eh .herl{font-size:13.5px;color:var(--ink-soft)}
+
+  .kasten{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:16px 18px;display:grid;gap:10px}
+  .kasten h3{font-size:1.2rem}
+  .kasten ul,.kasten ol{margin:0;padding-left:1.2em;display:grid;gap:4px}
+  .raster{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px}
+  .rasterkarte{background:var(--sheet);border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:6px;align-content:start}
+  .rasterkarte h4{font-size:1.02rem}
+  .rasterkarte .klein{font-size:14px;color:var(--ink-soft)}
+  .status{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;justify-self:start;border-radius:5px;padding:2px 8px}
+  .status.da{background:var(--green-soft);color:var(--green)}
+  .status.bald{background:var(--amber-soft);color:var(--amber)}
+
+  /* Ablauf praktisch */
+  .ablauf{display:grid;gap:0;border:1px solid var(--line);border-radius:6px;background:var(--sheet);overflow:hidden}
+  .schritt{display:grid;grid-template-columns:3.2rem 1fr;border-top:1px solid var(--line)}
+  .schritt:first-child{border-top:0}
+  .schritt .sn{font-family:var(--mono);font-weight:700;color:var(--blue);background:var(--blue-soft);display:grid;place-items:start center;padding-top:14px}
+  .schritt .si{padding:12px 16px;display:grid;gap:4px}
+  .schritt .dauer{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft)}
+
+  .tabelle{overflow-x:auto}
+  table{border-collapse:collapse;width:100%;min-width:560px;font-size:15px;background:var(--sheet)}
+  th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+  th{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper)}
+
+  .redemittel{display:grid;gap:6px}
+  .redemittel div{display:grid;grid-template-columns:minmax(0,1fr);gap:1px;border-bottom:1px dashed var(--line);padding-bottom:6px}
+
+  /* Stoffkarte */
+  .pb{display:grid;gap:10px}
+  .pb h3{font-size:1.2rem}
+  .pb .beschr{font-size:14.5px;color:var(--ink-soft);max-width:70ch}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chips a{text-decoration:none;font-size:14.5px;border:1px solid var(--line);background:var(--sheet);color:var(--ink);border-radius:8px;padding:5px 10px}
+  .chips a:hover{border-color:var(--blue);color:var(--blue)}
+  .chips a small{font-family:var(--mono);font-size:10.5px;color:var(--ink-soft);margin-left:4px}
+
+  .abgabe{display:grid;gap:8px;background:var(--blue-soft);border-radius:8px;padding:14px 16px}
+  .abgabe button{justify-self:start;border:0;background:var(--blue);color:var(--sheet);border-radius:8px;padding:9px 16px;font-weight:700}
+  .abgabe textarea{min-height:90px;font-family:var(--mono);font-size:13px;background-image:none}
+  footer{margin-top:50px;padding-top:18px;border-top:1px solid var(--line);font-size:14px;color:var(--ink-soft);display:grid;gap:6px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+<header class="kopf">
+  <p class="kicker">Staatliche Prüfung · Pflegefachfrau · Übungsbeispiel</p>
+  <h1>Examenswerkstatt</h1>
+  <p class="lead">Das Examen üben — schriftlich, mündlich, praktisch — mit Fällen aus <b>deinen eigenen
+  Zusammenfassungen</b>. Jede Aufgabe sagt, aus welcher Zusammenfassung sie kommt.</p>
+  <p class="fr">Ceci est un exemple : une épreuve complète pour chacune des trois parties, construite
+  uniquement à partir de tes cours résumés. Écris tes réponses, puis compare avec la marge rouge.</p>
+  <div class="regeln" aria-label="Die Regeln der Prüfung">
+    <span><b>3 Teile</b> · schriftlich, mündlich, praktisch</span>
+    <span>jeder Teil <b>einzeln</b> mindestens „ausreichend“</span>
+    <span>Vornote <b>25 %</b> je Teil</span>
+    <span class="rechts">§§ 13–16, 19 PflAPrV</span>
+  </div>
+</header>
+
+<nav class="reiter" role="tablist" aria-label="Prüfungsteile">
+  <button role="tab" id="t-schriftlich" aria-controls="schriftlich" aria-selected="true">Schriftlich<small>3 × 120 Min</small></button>
+  <button role="tab" id="t-muendlich" aria-controls="muendlich" aria-selected="false">Mündlich<small>30–45 Min</small></button>
+  <button role="tab" id="t-praktisch" aria-controls="praktisch" aria-selected="false">Praktisch<small>≤ 240 Min</small></button>
+  <button role="tab" id="t-stoff" aria-controls="stoff" aria-selected="false">Deine Quellen<small>38 Kurse</small></button>
+</nav>
+
+<!-- ===================== SCHRIFTLICH ===================== -->
+<section class="teil" id="schriftlich" role="tabpanel" aria-labelledby="t-schriftlich">
+  <div class="intro">
+    <h2>Der schriftliche Teil</h2>
+    <p>Drei Aufsichtsarbeiten zu je 120 Minuten, in der Regel an drei aufeinanderfolgenden
+    Werktagen — zu jedem Prüfungsbereich eine Fallbearbeitung. <b>Jede einzelne</b> muss mindestens
+    „ausreichend“ sein; ein Durchschnitt reicht nicht.</p>
+    <p class="rechts">§ 14 Abs. 1, 3 und 6 PflAPrV</p>
+  </div>
+
+  <div class="raster" aria-label="Die drei Prüfungsbereiche">
+    <div class="rasterkarte">
+      <span class="status bald">kommt als Nächstes</span>
+      <h4>Prüfungsbereich 1</h4>
+      <p class="klein">Pflegeprozess in akuten und dauerhaften Situationen · Interaktion und
+      Beziehung · Lebensgestaltung, Autonomie, Entwicklung</p>
+      <p class="klein">Stoff z. B. aus <i>Demenz im Krankenhaus</i>, <i>Mangelernährung</i>,
+      <i>Kontinenz fördern</i></p>
+    </div>
+    <div class="rasterkarte">
+      <span class="status da">Beispiel unten</span>
+      <h4>Prüfungsbereich 2</h4>
+      <p class="klein">Menschen mit gesundheitlichen Problemlagen · Gesundheitsförderung,
+      Prävention, <b>Beratung</b> · Entscheidungen begründen</p>
+      <p class="klein">Stoff hier: <i>Diabetes mellitus beim Erwachsenen</i></p>
+    </div>
+    <div class="rasterkarte">
+      <span class="status bald">kommt danach</span>
+      <h4>Prüfungsbereich 3</h4>
+      <p class="klein">Kritische und krisenhafte Situationen · ärztliche Anordnungen eigenständig
+      durchführen · ethische Entscheidungen</p>
+      <p class="klein">Stoff z. B. aus <i>Notfälle</i>, <i>Asthma</i> (Kind), <i>Verantwortliches
+      Pflegehandeln</i></p>
+    </div>
+  </div>
+  <p class="fr">La loi demande que les trois cas varient en âge, en milieu social et culturel et en
+  lieu de soins (§ 14 al. 2). Ici : une femme âgée à l'hôpital ; ensuite un enfant et une personne
+  en soins de longue durée.</p>
+
+  <article class="bogen" aria-labelledby="aa2-titel">
+    <dl class="bogenkopf">
+      <div><dt>Aufsichtsarbeit</dt><dd>2 von 3</dd></div>
+      <div><dt>Prüfungsbereich</dt><dd>2 · Beratung</dd></div>
+      <div><dt>Bearbeitungszeit</dt><dd>120 Minuten</dd></div>
+      <div><dt>Versorgungsbereich</dt><dd>Krankenhaus</dd></div>
+    </dl>
+    <div class="bogeninhalt">
+      <div class="uhr" data-uhr="120" data-key="aa2">
+        <span class="anzeige" aria-live="off">120:00</span>
+        <span class="was">Stell die Uhr, bevor du den Fall liest — wie am Prüfungstag.</span>
+        <button type="button" class="los">Start</button>
+        <button type="button" class="zurueck">Zurücksetzen</button>
+      </div>
+
+      <div class="fall">
+        <h3 id="aa2-titel">Fallsituation: Frau Lehmann</h3>
+        <p>Frau Lehmann, geboren 1952, wird mit einem <b>hyperglykämisch entgleisten Diabetes
+        mellitus Typ 2</b> aufgenommen (Erstdiagnose 2014, Insulin seit 2016). Zu Hause spritzt sie
+        Humalog Mix 25 (konventionelle Therapie). Seit drei Wochen misst sie Werte <b>über 500
+        mg/dl</b>, sie hat vermehrt Durst und muss häufig Wasser lassen.</p>
+        <p>Auf Station: BZ 300–400 mg/dl · Keton im Urin <b>einfach positiv</b> · pH <b>7,39</b> ·
+        HbA1c 15,1 %. Sie klagt über Stechen, Taubheitsgefühle und Wadenkrämpfe in den Beinen; beim
+        Stimmgabeltest ist das Vibrationsempfinden reduziert. Die Augen zeigen keine diabetischen
+        Veränderungen.</p>
+        <p>Weitere Diagnosen: CKD IV · Herzinsuffizienz Stadium 2 · Hypertonie · COPD · Adipositas
+        Grad III (165 cm, 112 kg) · multifaktorielle Gangstörung.</p>
+        <p>Die CT wird pausiert: Insulinperfusor und 2 l Vollelektrolytlösung täglich; der BZ sinkt
+        über fünf Tage langsam auf 150–180 mg/dl. Danach <b>Basis-Bolus-Therapie</b>: 60 IE
+        Toujeo um 20 Uhr, Apidra zu den Mahlzeiten. Sie nimmt an einer Ernährungsschulung teil.</p>
+        <p>Sie ist seit drei Jahren verwitwet und lebt in einer Erdgeschosswohnung in Aachen. Die
+        Tochter wohnt in der Nähe und hilft im Haushalt. Frau Lehmann geht mit dem Rollator, keine
+        langen Strecken, weil sie schnell kurzatmig wird.</p>
+        <p class="zusatz"><b>Übungsergänzung:</b> Die Tochter ist beim Entlassungsgespräch dabei.
+        (Dieser Satz ist von mir; alles andere steht so in deinem Fall.)</p>
+        <p class="quelle">Quelle: <a href="https://claude.ai/artifact/HTKB99uzuvaNbZ4HHCT8cx" target="_blank" rel="noopener">Diabetes mellitus beim Erwachsenen</a> → Fall Frau Lehmann (CE 07 UE 2)</p>
+      </div>
+
+      <div class="aufgaben" data-teil="schriftlich">
+        <div class="aufgabe" data-id="s1">
+          <div class="zeile"><span class="nr">1</span><span class="op">Nennen</span><span class="afb">AFB I</span></div>
+          <p class="frage">Nennen Sie die drei Säulen der Diabetestherapie nach Joslin und ordnen
+          Sie jeder Säule eine Maßnahme aus dem Fall zu.</p>
+          <textarea id="a-s1" aria-label="Antwort Aufgabe 1"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <ul>
+              <li><b>Diät</b> → Ernährungsschulung (BE, Lebensmittel, Gewichtsreduktion)</li>
+              <li><b>Schulung</b> → Schulung zur neuen Insulintherapie</li>
+              <li><b>Medikamente</b> → Toujeo (Basis) und Apidra (Mahlzeiten)</li>
+            </ul>
+            <p class="herl">„Nennen“ heißt: drei Säulen, drei Zuordnungen — keine Begründung.
+            Quelle: Abschnitt „Therapie — die drei Säulen“.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="s2">
+          <div class="zeile"><span class="nr">2</span><span class="op">Erklären</span></div>
+          <p class="frage">Erklären Sie, warum Frau Lehmann vor der Aufnahme so viel Durst hatte und so
+          oft Wasser lassen musste. Nutzen Sie ein Beispiel.</p>
+          <textarea id="a-s2" aria-label="Antwort Aufgabe 2"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <p class="kette">BZ über der Nierenschwelle → Zucker im Urin → Zucker zieht Wasser aus
+            dem Körper → viel Urin (Polyurie) → der Körper trocknet aus → Durst (Polydipsie)</p>
+            <p>Beispiel: wie Salz, das Wasser anzieht.</p>
+            <p class="herl">„Erklären“ verlangt die Erklärung <b>plus eigenes Beispiel</b>.
+            Quelle: Folie „Insulinmangel“ (Braun), Frage 2 zu Frau Lehmann.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="s3">
+          <div class="zeile"><span class="nr">3</span><span class="op">Beschreiben</span><span class="afb">AFB I</span></div>
+          <p class="frage">Beschreiben Sie die frühere und die neue Insulintherapie von Frau Lehmann.</p>
+          <textarea id="a-s3" aria-label="Antwort Aufgabe 3"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <p><b>Früher — CT:</b> 2–3 Injektionen, meist Mischinsulin (hier Humalog Mix 25); braucht
+            ein festes BE-Gerüst und regelmäßiges Essen; hohes Unterzuckerungsrisiko am späten
+            Vormittag und in der ersten Nachthälfte.</p>
+            <p><b>Neu — Basis-Bolus (ICT):</b> Toujeo = Glargin 300 IE/ml, wirkt bis 24 h, nur als
+            Einmalpen, im Anbruch 6 Wochen · Apidra = kurzwirksames Analogon, wirkt sofort, Maximum
+            nach 1 h, 2–3 h lang. 4–5 Injektionen, 4–6 Messungen am Tag.</p>
+            <p class="herl">Zwei Teile verlangt → beide sichtbar getrennt. Quelle: „Die Insuline“,
+            „Therapieformen“, „Lagerung“.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="s4">
+          <div class="zeile"><span class="nr">4</span><span class="op">Erläutern</span><span class="afb">AFB II</span></div>
+          <p class="frage">Erläutern Sie am Fall, dass bei Frau Lehmann bereits ein diabetischer
+          Folgeschaden vorliegt.</p>
+          <textarea id="a-s4" aria-label="Antwort Aufgabe 4"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <p><b>Nerven — diabetische Polyneuropathie.</b> Das sieht man daran, dass sie über
+            „Stechen-, Taubheitsgefühle und Wadenkrämpfe“ klagt und beim Stimmgabeltest das
+            Vibrationsempfinden reduziert ist.</p>
+            <p>Augen: <b>keine</b> Veränderungen — steht ausdrücklich im Fall. Niere und Herz: nicht
+            behaupten, dass sie vom Diabetes kommen; der Fall sagt es nicht.</p>
+            <p class="herl">„Erläutern“ = belegt am Text: „Das sieht man daran, dass …“.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="s5">
+          <div class="zeile"><span class="nr">5</span><span class="op">Beurteilen</span><span class="afb iii">AFB III</span></div>
+          <p class="frage">Beurteilen Sie, ob bei Frau Lehmann bei der Aufnahme eine Ketoazidose vorlag.</p>
+          <textarea id="a-s5" aria-label="Antwort Aufgabe 5"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <p><b>Einschätzung zuerst:</b> Nach den Kriterien der Folie keine Ketoazidose, sondern
+            eine hyperglykämische Entgleisung ohne Ketoazidose.</p>
+            <p><b>Begründung:</b> Die Folie verlangt BZ über 240 <i>und</i> pH unter 7,25 <i>und</i>
+            Ketonurie. Der BZ war hoch genug, aber pH 7,39 = nicht sauer. Keton „+“ ist in der Ampel
+            „Keton erhöht“, nicht „DKA“; Urinketone hängen nur locker mit Blutketonen zusammen.</p>
+            <p class="kette">Insulin fehlt → Zucker bleibt im Blut, etwas Fett wird abgebaut → noch
+            keine Übersäuerung, aber Austrocknung → deshalb Flüssigkeit, Insulin i. v., Kontrolle</p>
+            <p class="herl">Ohne Einschätzung am Anfang ist eine Beurteilen-Antwort falsch gebaut.
+            Quelle: „Ketoazidose — die Definition“, „Ampel“, Frage 3 zu Frau Lehmann.</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="s6">
+          <div class="zeile"><span class="nr">6</span><span class="op">Ableiten</span><span class="afb">AFB II</span></div>
+          <p class="frage">Leiten Sie vier Beratungsinhalte für Frau Lehmann und ihre Tochter vor der
+          Entlassung ab. Begründen Sie jeden Inhalt mit dem Fall.</p>
+          <textarea id="a-s6" aria-label="Antwort Aufgabe 6" style="min-height:160px"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont — vier aus diesen</p>
+            <ul>
+              <li><b>Wirkweise des neuen Insulins und Hypo-Gefahr</b>, weil sich die Therapie
+              geändert hat — die Folie verlangt genau das bei jeder Therapieänderung.</li>
+              <li><b>Hypo-Zeichen erkennen, Traubenzucker immer dabei, Umfeld informieren</b> — weil die
+              Tochter täglich da ist und helfen kann (Folie „Vorbeugen“).</li>
+              <li><b>Spritztechnik und Wechsel der Stelle</b>, weil sonst Lipohypertrophie und
+              „unerklärliche“ Werte drohen.</li>
+              <li><b>Lagerung:</b> Toujeo im Anbruch 6 Wochen, Anbruchdatum aufschreiben, nie über 37 °C.</li>
+              <li><b>BZ selbst messen</b> — bei ICT 4–6-mal täglich; Hände waschen und trocknen, nicht
+              desinfizieren, nicht „melken“.</li>
+              <li><b>Realistische Ziele im Alter:</b> Lebensqualität, Hypos vermeiden, realistische
+              Gewichtsreduktion — weil sie kurzatmig ist und keine langen Strecken geht.</li>
+            </ul>
+            <p class="herl">„Ableiten“ = Maßnahme <b>plus das weil</b>, das sie an den Fall bindet.
+            Das ist der Kern von Prüfungsbereich 2 (Beratung).</p>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="s7">
+          <div class="zeile"><span class="nr">7</span><span class="op">Begründen</span><span class="afb iii">AFB III</span></div>
+          <p class="frage">Begründen Sie, warum Frau Lehmann mit der neuen Therapie sturzgefährdet
+          sein kann, und was Sie deshalb tun.</p>
+          <textarea id="a-s7" aria-label="Antwort Aufgabe 7"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <p class="kette">Mehr Insulin, neues Schema (Ursache) → Unterzuckerungen werden möglich;
+            leichte Hypos sind laut Folie „nicht zu vermeiden“ (Wirkung) → Hypo-Zeichen sind u. a.
+            Torkeln, Stolpern, weiche Knie — dazu Gangstörung, Polyneuropathie, Rollator (Gefahr) →
+            deshalb Hypo-Zeichen mit ihr und der Tochter besprechen, Traubenzucker griffbereit,
+            Sturzrisiko beobachten</p>
+            <p class="herl">Die Verbindung Hypo → Sturz ist eine <b>Herleitung aus zwei Stellen</b>
+            deiner Zusammenfassung, keine Aussage der Folien. Im Examen ist genau diese Kette verlangt:
+            weil · dadurch · deshalb.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="abgabe">
+        <p><b>Fertig?</b> Kopier alle Antworten und schick sie mir. Ich korrigiere den Inhalt gegen
+        deine Zusammenfassung und die Sprache gegen deine sieben Baustellen.</p>
+        <p class="fr">Copie tes réponses et envoie-les-moi : je corrige le fond et la langue.</p>
+        <button type="button" data-kopie="schriftlich">Antworten kopieren</button>
+        <textarea class="ausgabe" hidden readonly aria-label="Antworten zum Kopieren"></textarea>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ===================== MÜNDLICH ===================== -->
+<section class="teil" id="muendlich" role="tabpanel" aria-labelledby="t-muendlich" hidden>
+  <div class="intro">
+    <h2>Der mündliche Teil</h2>
+    <p>Eine komplexe Fallsituation, 30 bis 45 Minuten, einzeln oder zu zweit, mit Vorbereitungszeit
+    unter Aufsicht. Geprüft werden die Kompetenzbereiche <b>III, IV und V</b>. Im Mittelpunkt: deine
+    <b>Berufsrolle</b> — Team, Einrichtung, Gesellschaft und ihr Einfluss auf dein Handeln.</p>
+    <p>Wichtig: Der Fall kommt aus einem <b>anderen Versorgungsbereich</b> und einer <b>anderen
+    Altersstufe</b> als deine praktische Prüfung.</p>
+    <p class="rechts">§ 15 Abs. 1–3 PflAPrV</p>
+    <p class="fr">À l'oral, on ne récite pas une maladie : on explique et justifie ton rôle de soignante.</p>
+  </div>
+
+  <article class="bogen" aria-labelledby="m-titel">
+    <dl class="bogenkopf">
+      <div><dt>Teil</dt><dd>Mündlich</dd></div>
+      <div><dt>Kompetenzbereiche</dt><dd>III · IV · V</dd></div>
+      <div><dt>Prüfung</dt><dd>30–45 Minuten</dd></div>
+      <div><dt>Versorgungsbereich</dt><dd>Kinderklinik</dd></div>
+    </dl>
+    <div class="bogeninhalt">
+      <div class="uhr" data-uhr="20" data-key="mvorb">
+        <span class="anzeige">20:00</span>
+        <span class="was">Vorbereitungszeit. Die Dauer legt deine Schule fest — hier 20 Minuten zum Üben.</span>
+        <button type="button" class="los">Start</button>
+        <button type="button" class="zurueck">Zurücksetzen</button>
+      </div>
+
+      <div class="fall">
+        <h3 id="m-titel">Fallsituation: Stephan, 7 Jahre</h3>
+        <p>Stephan ist 7 Jahre alt und geht in die erste Klasse. Mit 5 Jahren wurde ein Asthma
+        bronchiale diagnostiziert; seit einem Jahr war er anfallsfrei. Vor einer Woche hatte er
+        zweimal einen schweren Anfall <b>nach dem Sportunterricht</b>, jetzt dazu einen <b>Infekt der
+        oberen Luftwege</b>. Er hustet nachts und wacht häufig auf. Körperliche Anstrengung vermeidet er.</p>
+        <p>Nach einem erneuten schweren Anfall wird er stationär aufgenommen. Soll er das Bett
+        verlassen, um ins Spielzimmer zu gehen, verkrampft er sich und nestelt an der Bettdecke; er
+        sagt, er sei zu schwach oder habe keine Lust. <b>Bei Atemübungen im Bett arbeitet er aktiv
+        mit.</b> Die Eltern sind rund um die Uhr da und unterstützen ihn in seiner Passivität, die er
+        <b>aus Angst vor einem neuen Anfall</b> entwickelt hat.</p>
+        <p class="zusatz"><b>Übungsergänzung für die Berufsrolle:</b> Eine Kollegin sagt bei der
+        Übergabe: „Lass ihn liegen, das machen wir bei Asthmakindern immer so.“ (Dieser Satz ist von
+        mir; der Fall steht so in deinem Foliensatz.)</p>
+        <p class="quelle">Quelle: <a href="https://claude.ai/artifact/4L2BLAR9Q6Gsm4mci9Wc6N" target="_blank" rel="noopener">Asthma bronchiale</a> → Fall Stephan (CE 10 UE 5) · dazu <a href="https://claude.ai/artifact/TrSt6YCQmxZ1aMJ8Q9qYaL" target="_blank" rel="noopener">Verantwortliches Pflegehandeln</a></p>
+      </div>
+
+      <div class="kasten">
+        <h3>So baust du jede Antwort</h3>
+        <p>Die Prüfer hören auf dieselbe Kette wie in der Klausur — nur gesprochen.</p>
+        <div class="redemittel">
+          <div><b>1 · Einschätzung</b><span>„Ich schätze die Situation so ein: …“</span></div>
+          <div><b>2 · Begründung</b><span>„Das begründe ich damit, dass …“ · „Das sieht man daran, dass …“</span></div>
+          <div><b>3 · Kette</b><span>„Weil … , dadurch … , und deshalb …“</span></div>
+          <div><b>4 · Handeln</b><span>„Deshalb würde ich zuerst … und dann …“</span></div>
+          <div><b>Rettung</b><span>„Darf ich kurz überlegen?“ · „Meinen Sie damit …?“</span></div>
+        </div>
+        <p class="fr">Einfaches Deutsch ist kein schlechtes Deutsch : des phrases courtes, avec
+        « weil » et « deshalb », valent mieux qu'une phrase compliquée.</p>
+      </div>
+
+      <div class="aufgaben" data-teil="muendlich">
+        <div class="aufgabe" data-id="m1">
+          <div class="zeile"><span class="nr">1</span><span class="op">KB III</span><span class="afb">im Team handeln</span></div>
+          <p class="frage">Mit wem arbeiten Sie zusammen, damit Stephan wieder aktiver wird — und was
+          ist Ihre eigene Aufgabe dabei?</p>
+          <textarea id="a-m1" aria-label="Stichpunkte Frage 1"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Worauf die Prüfer hören</p>
+            <ul>
+              <li><b>Eltern:</b> sie gehören zur Pflege — die Unterrichtseinheit heißt „Unterstützung
+              chronisch kranker Kinder <i>und ihrer Familien</i>“.</li>
+              <li><b>Arzt:</b> Medikation, Sauerstoff nur nach ärztlicher Rücksprache und unter Monitoring.</li>
+              <li><b>Sporttherapeut:</b> herausfinden, welcher Sport geeignet ist — „Nicht: kein Sport“.</li>
+              <li><b>Asthmaschulung</b> für Schulkinder, mit Kind und Eltern.</li>
+              <li><b>Eigene Aufgabe:</b> den Pflegeprozess steuern — das ist eine vorbehaltene Tätigkeit.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="m2">
+          <div class="zeile"><span class="nr">2</span><span class="op">KB IV</span><span class="afb">Ethik und Recht</span></div>
+          <p class="frage">Die Eltern wollen Stephan schonen. Welche Werte stoßen hier zusammen, und
+          wie gehen Sie vor?</p>
+          <textarea id="a-m2" aria-label="Stichpunkte Frage 2"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Worauf die Prüfer hören</p>
+            <p>Das dialogische Modell nach Heffels, <b>Phase 1 und 2</b> laut gesprochen:</p>
+            <ul>
+              <li><b>Wer ist beteiligt, wer sieht was?</b> Stephan (Angst), Eltern (Schutz), Team.</li>
+              <li><b>Welche Werte kollidieren?</b> Schutz vor einem neuen Anfall — gegen Aktivität und
+              Entwicklung des Kindes. Beide sind Fürsorge.</li>
+              <li><b>Phase 6:</b> die Maßnahme mit der höchsten Wirkung und den geringsten
+              Nebenwirkungen — z. B. mit Atemübungen beginnen, die er schon im Bett mitmacht.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="aufgabe" data-id="m3">
+          <div class="zeile"><span class="nr">3</span><span class="op">KB V</span><span class="afb">wissenschaftlich begründen</span></div>
+          <p class="frage">Wie antworten Sie der Kollegin, die sagt: „Das machen wir immer so“?</p>
+          <textarea id="a-m3" aria-label="Stichpunkte Frage 3"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Worauf die Prüfer hören</p>
+            <ul>
+              <li>„Das machen wir immer so“ = <b>Tradition</b> — im Foliensatz ausdrücklich als
+              <b>wenig rational</b> eingestuft. Rational wäre: Wissenschaft, Problemlösung.</li>
+              <li>Fachlich begründen: Das Problem beim Asthma ist die <b>Ausatmung</b>; die kleinen
+              Bronchien haben keinen Knorpel und fallen zu. Atemerleichternde Positionen und
+              Lippenbremse halten sie offen.</li>
+              <li>Angst verengt zusätzlich — beim nichtallergischen Asthma ist psychische Belastung
+              selbst ein Auslöser. Liegen lassen verstärkt die Angst.</li>
+              <li>Die Ressource steht im Fall: Er macht Atemübungen im Bett mit — dort ansetzen.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="kasten">
+        <h3>Üben ohne Partnerin</h3>
+        <ol>
+          <li>Uhr starten, Fall lesen, Stichpunkte in die drei Felder.</li>
+          <li>Mit dem Handy aufnehmen: jede Frage <b>3–5 Minuten frei</b> sprechen, ohne abzulesen.</li>
+          <li>Aufnahme anhören: Hast du „weil“ und „deshalb“ gesagt? Kam die Einschätzung zuerst?</li>
+        </ol>
+        <p class="fr">Je ne peux pas écouter l'enregistrement. Envoie-moi ce que tu as dit (écrit) —
+        je corrige.</p>
+      </div>
+
+      <div class="abgabe">
+        <button type="button" data-kopie="muendlich">Stichpunkte kopieren</button>
+        <textarea class="ausgabe" hidden readonly aria-label="Stichpunkte zum Kopieren"></textarea>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ===================== PRAKTISCH ===================== -->
+<section class="teil" id="praktisch" role="tabpanel" aria-labelledby="t-praktisch" hidden>
+  <div class="intro">
+    <h2>Der praktische Teil</h2>
+    <p>Pflege an echten Menschen im Versorgungsbereich deines <b>Vertiefungseinsatzes</b>: mindestens
+    zwei Menschen, einer davon mit erhöhtem Pflegebedarf. Du wirst einzeln geprüft, von zwei
+    Prüferinnen, eine davon Praxisanleiterin.</p>
+    <p class="rechts">§ 16 Abs. 3–6 PflAPrV</p>
+    <p class="fr">Ta Zwischenprüfung du 1ᵉʳ avril 2027 a déjà cette structure : plan de soins →
+    présentation du cas → justifier. C'est la répétition générale.</p>
+  </div>
+
+  <div class="ablauf" aria-label="Ablauf des praktischen Teils">
+    <div class="schritt"><div class="sn">1</div><div class="si"><b>Vorbereitungsteil — den Pflegeplan schreiben</b><span class="dauer">angemessene Zeit, schriftlich oder elektronisch</span></div></div>
+    <div class="schritt"><div class="sn">2</div><div class="si"><b>Fallvorstellung</b><span class="dauer">höchstens 20 Minuten</span></div></div>
+    <div class="schritt"><div class="sn">3</div><div class="si"><b>Durchführung</b> der geplanten und der situativ nötigen Pflege<span class="dauer">mit Schritt 2 und 4 zusammen höchstens 240 Minuten</span></div></div>
+    <div class="schritt"><div class="sn">4</div><div class="si"><b>Reflexionsgespräch</b> — begründen, was du getan hast<span class="dauer">höchstens 20 Minuten</span></div></div>
+  </div>
+
+  <article class="bogen" aria-labelledby="p-titel">
+    <dl class="bogenkopf">
+      <div><dt>Teil</dt><dd>Praktisch · Übung</dd></div>
+      <div><dt>Menschen</dt><dd>2</dd></div>
+      <div><dt>Kern</dt><dd>vorbehaltene Tätigkeiten</dd></div>
+      <div><dt>Ort</dt><dd>Station (Beispiel)</dd></div>
+    </dl>
+    <div class="bogeninhalt">
+      <div class="fall">
+        <h3 id="p-titel">Deine zwei Menschen für diesen Übungsvormittag</h3>
+        <ul>
+          <li><b>Herr aus Fallbeispiel 5</b>, geb. 1953, <b>Demenz</b>, konventionelle Therapie mit
+          Humalog Mix 50 und Mix 25; in zwei Nächten hintereinander <b>niedrige BZ-Werte</b>. Die
+          Diabetesberaterin hat daneben geschrieben: <i>„Hat der Patient sein Abendessen gegessen?“</i>
+          → erhöhter Pflegebedarf.</li>
+          <li><b>Frau Lehmann</b> aus der schriftlichen Aufgabe, am Tag nach der Umstellung auf Toujeo
+          und Apidra.</li>
+        </ul>
+        <p class="zusatz"><b>Übungsaufbau:</b> Die Zusammenstellung der beiden auf einer Station ist
+        von mir. Im echten Examen bestimmt die Aufgabe dein Vertiefungseinsatz.</p>
+        <p class="quelle">Quelle: <a href="https://claude.ai/artifact/HTKB99uzuvaNbZ4HHCT8cx" target="_blank" rel="noopener">Diabetes mellitus beim Erwachsenen</a> → Fallbeispiel 5 und Fall Frau Lehmann · Aufbau nach <a href="https://claude.ai/code/artifact/2e1db357-3e32-4a56-9356-3e4fde3d5c88" target="_blank" rel="noopener">Zwischenprüfung</a></p>
+      </div>
+
+      <div class="kasten">
+        <h3>Schritt 1 · Ein Pflegeproblem nach PE(S)R — vorgemacht</h3>
+        <div class="tabelle">
+          <table>
+            <thead><tr><th>P · Problem</th><th>E · Ursache</th><th>S · Zeichen</th><th>R · Ressource</th></tr></thead>
+            <tbody><tr>
+              <td>Herr … ist gefährdet für eine nächtliche Hypoglykämie</td>
+              <td>abendliches Mischinsulin bei unsicherer Nahrungsaufnahme wegen Demenz</td>
+              <td>(potentielles Problem — noch keine Zeichen; in den Vornächten niedrige BZ)</td>
+              <td>ist ansprechbar und kann schlucken</td>
+            </tr></tbody>
+          </table>
+        </div>
+        <p class="zusatz"><b>Von mir formuliert.</b> Prüf die Form gegen dein Blatt der Dozentin
+        (<a href="https://claude.ai/artifact/7oBUx9XUzwTLT42DCUrqU5" target="_blank" rel="noopener">Das S steht in Klammern</a>) —
+        beim potentiellen Problem bleibt das S leer.</p>
+      </div>
+
+      <div class="aufgaben" data-teil="praktisch">
+        <div class="aufgabe" data-id="p1">
+          <div class="zeile"><span class="nr">1</span><span class="op">Pflegeplan</span></div>
+          <p class="frage">Schreiben Sie für Frau Lehmann ein aktuelles Pflegeproblem nach PE(S)R,
+          dazu ein Ziel und zwei Maßnahmen.</p>
+          <textarea id="a-p1" aria-label="Pflegeplan Frau Lehmann" style="min-height:150px"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Prüf selbst</p>
+            <ul>
+              <li>Steht im P der <b>Mensch</b> und nicht die Diagnose?</li>
+              <li>Ist die E eine Ursache <b>aus dem Fall</b> (z. B. Polyneuropathie, Gangstörung)?</li>
+              <li>Sind die S wörtlich belegbar (Stechen, Taubheit, Vibrationsempfinden reduziert)?</li>
+              <li>Ist die R eine echte Ressource (Tochter, Rollator, Erdgeschoss, nimmt an Schulung teil)?</li>
+              <li>Ziel: messbar und erreichbar? Maßnahmen: wer, was, wann, wie oft?</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="uhr" data-uhr="20" data-key="pfall">
+          <span class="anzeige">20:00</span>
+          <span class="was">Schritt 2 · Fallvorstellung — laut, ohne abzulesen.</span>
+          <button type="button" class="los">Start</button>
+          <button type="button" class="zurueck">Zurücksetzen</button>
+        </div>
+        <div class="kasten">
+          <h3>Gerüst für die Fallvorstellung</h3>
+          <ol>
+            <li>Wer ist die Person — Alter, Wohnsituation, Aufnahmegrund.</li>
+            <li>Medizinische Diagnosen und Medikamentenplan.</li>
+            <li>Die Problemanalyse: aktuelle <b>und</b> potentielle Probleme.</li>
+            <li>Die Planung erläutern: <b>wie</b> sie zustande kam — nicht vorlesen.</li>
+          </ol>
+          <p class="fr">C'est le schéma de ta Zwischenprüfung (CBG, septembre 2026).</p>
+        </div>
+
+        <div class="aufgabe" data-id="p2">
+          <div class="zeile"><span class="nr">2</span><span class="op">Durchführung</span></div>
+          <p class="frage">Sie messen bei Herrn … vor dem Frühstück den Blutzucker. Welche Fehler
+          vermeiden Sie, und was beobachten Sie beim Frühstück?</p>
+          <textarea id="a-p2" aria-label="Durchführung Blutzucker"></textarea>
+          <div class="eh" hidden>
+            <p class="kopfzeile">Erwartungshorizont</p>
+            <ul>
+              <li>Hände waschen und abtrocknen · Fingerbeere seitlich · <b>nicht desinfizieren, nicht
+              „melken“</b> · genug Blut · Teststreifen in der Originalverpackung, Verfallsdatum.</li>
+              <li>Beim Frühstück: <b>Wie viel hat er gegessen?</b> — die Frage der Diabetesberaterin.
+              Bei Demenz weiß das oft nur die Pflege → in die Übergabe.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="uhr" data-uhr="20" data-key="prefl">
+          <span class="anzeige">20:00</span>
+          <span class="was">Schritt 4 · Reflexionsgespräch — du begründest, die Prüferinnen fragen nach.</span>
+          <button type="button" class="los">Start</button>
+          <button type="button" class="zurueck">Zurücksetzen</button>
+        </div>
+        <div class="aufgabe" data-id="p3">
+          <div class="zeile"><span class="nr">3</span><span class="op">Reflexion</span><span class="afb">KB I–V</span></div>
+          <p class="frage">Beantworten Sie zu Herrn … eine Frage je Kompetenzbereich.</p>
+          <div class="tabelle">
+            <table>
+              <thead><tr><th>KB</th><th>Frage im Stil deiner Zwischenprüfung</th></tr></thead>
+              <tbody>
+                <tr><td>I</td><td>Wie haben Sie den Pflegebedarf erhoben, und wie evaluieren Sie die nächtlichen Werte?</td></tr>
+                <tr><td>II</td><td>Wie beziehen Sie Herrn … trotz Demenz in seine Pflege ein?</td></tr>
+                <tr><td>III</td><td>Welche Beobachtung geben Sie an wen weiter, damit über die Abenddosis entschieden wird?</td></tr>
+                <tr><td>IV</td><td>Welche Standards oder Expertenstandards sind hier wichtig?</td></tr>
+                <tr><td>V</td><td>Mit welchem Wissen aus der Krankheitslehre begründen Sie Ihr Vorgehen?</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <textarea id="a-p3" aria-label="Reflexion" style="min-height:160px"></textarea>
+          <p class="herl fr">Die Fragetypen folgen dem Papier deiner Schule zur Zwischenprüfung (KB I–V).
+          Die Fragen selbst sind von mir auf diesen Fall übertragen.</p>
+        </div>
+      </div>
+
+      <div class="abgabe">
+        <button type="button" data-kopie="praktisch">Antworten kopieren</button>
+        <textarea class="ausgabe" hidden readonly aria-label="Antworten zum Kopieren"></textarea>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- ===================== STOFFKARTE ===================== -->
+<section class="teil" id="stoff" role="tabpanel" aria-labelledby="t-stoff" hidden>
+  <div class="intro">
+    <h2>Deine 38 Zusammenfassungen — nach Prüfungsbereich</h2>
+    <p>Aus diesen Seiten entstehen die Aufgaben. Jede Zusammenfassung steht bei dem Bereich, in den
+    ihr Stoff am meisten passt.</p>
+    <p class="zusatz"><b>Die Zuordnung ist mein Vorschlag</b>, keine Vorgabe der Schule. Viele Themen
+    passen in mehrere Bereiche — das ist Absicht, denn die Fälle sollen variieren.</p>
+  </div>
+  <div id="karte" class="raster" style="grid-template-columns:1fr"></div>
+</section>
+
+<footer>
+  <p><b>Examenswerkstatt</b> · Übungsbeispiel vom 27.09.2026 · Fälle und Erwartungshorizonte aus deinen
+  eigenen Zusammenfassungen; Abläufe und Zeiten aus der PflAPrV. Was von mir stammt, ist gelb markiert.</p>
+  <p>Kein offizielles Prüfungsmaterial. Die echten Aufgaben stellt die Bezirksregierung auf Vorschlag
+  deiner Schule.</p>
+  <p><a href="https://claude.ai/code/artifact/49b64d31-0eff-40f4-9beb-0d71627a5091" target="_blank" rel="noopener">🎓 So läuft die staatliche Prüfung ab</a> ·
+  <a href="https://claude.ai/artifact/7nrNDXtzTUdMquigJJzvZj" target="_blank" rel="noopener">📖 Alle Zusammenfassungen</a></p>
+</footer>
+</div>
+
+<script>
+(function(){
+  const S = {
+    get(k){ try{ return localStorage.getItem('ew:'+k); }catch(e){ return null; } },
+    set(k,v){ try{ localStorage.setItem('ew:'+k,v); }catch(e){} }
+  };
+
+  /* Reiter */
+  const tabs=[...document.querySelectorAll('nav.reiter [role=tab]')];
+  function zeige(id){
+    tabs.forEach(t=>{ const an=t.getAttribute('aria-controls')===id; t.setAttribute('aria-selected',an);
+      document.getElementById(t.getAttribute('aria-controls')).hidden=!an; });
+    S.set('reiter',id);
+  }
+  tabs.forEach(t=>t.addEventListener('click',()=>{ zeige(t.getAttribute('aria-controls')); window.scrollTo({top:0}); }));
+  const start=(location.hash||'').slice(1);
+  zeige(['schriftlich','muendlich','praktisch','stoff'].includes(start)?start:(S.get('reiter')||'schriftlich'));
+
+  /* Aufgaben: Antwort speichern, Erwartungshorizont, Selbsteinschätzung */
+  document.querySelectorAll('.aufgabe').forEach(a=>{
+    const id=a.dataset.id, ta=a.querySelector('textarea'), eh=a.querySelector('.eh');
+    const leiste=document.createElement('div'); leiste.className='werkzeug';
+    if(eh){
+      const b=document.createElement('button'); b.type='button'; b.textContent='Erwartungshorizont zeigen';
+      b.setAttribute('aria-expanded','false');
+      b.addEventListener('click',()=>{ eh.hidden=!eh.hidden; b.setAttribute('aria-expanded',!eh.hidden);
+        b.textContent=eh.hidden?'Erwartungshorizont zeigen':'Erwartungshorizont verbergen'; });
+      leiste.appendChild(b);
+      const sw=document.createElement('div'); sw.className='selbst'; sw.setAttribute('aria-label','Selbsteinschätzung');
+      [['g','✓ erreicht'],['t','~ teilweise'],['n','✗ fehlt']].forEach(([k,l])=>{
+        const x=document.createElement('button'); x.type='button'; x.className=k; x.textContent=l;
+        x.setAttribute('aria-pressed',S.get('se:'+id)===k);
+        x.addEventListener('click',()=>{ const neu=S.get('se:'+id)===k?'':k; S.set('se:'+id,neu);
+          sw.querySelectorAll('button').forEach(y=>y.setAttribute('aria-pressed',y.classList.contains(neu))); });
+        sw.appendChild(x);
+      });
+      leiste.appendChild(sw);
+    }
+    if(ta){
+      const wz=document.createElement('span'); wz.className='wz'; leiste.appendChild(wz);
+      const zaehl=()=>{ const n=ta.value.trim()?ta.value.trim().split(/\s+/).length:0; wz.textContent=n+' Wörter'; };
+      ta.value=S.get('a:'+id)||''; zaehl();
+      ta.addEventListener('input',()=>{ S.set('a:'+id,ta.value); zaehl(); });
+      ta.after(leiste);
+    }
+  });
+
+  /* Uhren */
+  document.querySelectorAll('.uhr').forEach(u=>{
+    const min=+u.dataset.uhr, anz=u.querySelector('.anzeige'), los=u.querySelector('.los'), zur=u.querySelector('.zurueck');
+    let rest=min*60, timer=null;
+    const fmt=s=>String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+    const male=()=>{ anz.textContent=fmt(rest); anz.classList.toggle('um',rest<=0); };
+    los.addEventListener('click',()=>{
+      if(timer){ clearInterval(timer); timer=null; los.textContent='Weiter'; return; }
+      if(rest<=0) return;
+      los.textContent='Pause';
+      timer=setInterval(()=>{ rest--; male(); if(rest<=0){ clearInterval(timer); timer=null; los.textContent='Zeit um'; } },1000);
+    });
+    zur.addEventListener('click',()=>{ clearInterval(timer); timer=null; rest=min*60; los.textContent='Start'; male(); });
+    male();
+  });
+
+  /* Antworten kopieren */
+  document.querySelectorAll('[data-kopie]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const teil=b.dataset.kopie, box=b.closest('.abgabe').querySelector('.ausgabe');
+      const kopf={schriftlich:'Examenswerkstatt · Schriftlich · Aufsichtsarbeit 2 (Frau Lehmann)',
+                  muendlich:'Examenswerkstatt · Mündlich (Stephan)',praktisch:'Examenswerkstatt · Praktisch'}[teil];
+      const zeilen=[kopf,''];
+      document.querySelectorAll('.aufgaben[data-teil="'+teil+'"] .aufgabe').forEach(a=>{
+        const nr=a.querySelector('.nr')?.textContent||'', op=a.querySelector('.op')?.textContent||'',
+              fr=a.querySelector('.frage')?.textContent.replace(/\s+/g,' ').trim()||'',
+              ant=a.querySelector('textarea')?.value.trim()||'(leer)',
+              se={g:'erreicht',t:'teilweise',n:'fehlt'}[S.get('se:'+a.dataset.id)]||'';
+        zeilen.push(nr+' · '+op+' — '+fr, ant, se?'Selbsteinschätzung: '+se:'', '');
+      });
+      const text=zeilen.join('\n');
+      box.value=text; box.hidden=false;
+      const fertig=()=>{ b.textContent='Kopiert ✓'; setTimeout(()=>b.textContent=b.dataset.kopie==='muendlich'?'Stichpunkte kopieren':'Antworten kopieren',2500); };
+      if(navigator.clipboard&&navigator.clipboard.writeText){
+        navigator.clipboard.writeText(text).then(fertig,()=>{ box.select(); b.textContent='Text markiert — jetzt kopieren'; });
+      } else { box.select(); b.textContent='Text markiert — jetzt kopieren'; }
+    });
+  });
+
+  /* Stoffkarte */
+  const Z=[
+    ['Prüfungsbereich 1','Pflegeprozess in akuten und dauerhaften Situationen · Interaktion · Lebensgestaltung, Autonomie, Entwicklung',[
+      ['Pflegeplanung in fünf Tagen','CE 02','https://claude.ai/code/artifact/d1d757ad-782d-4350-bcce-1337702a922f'],
+      ['Das S steht in Klammern','CE 02','https://claude.ai/artifact/7oBUx9XUzwTLT42DCUrqU5'],
+      ['Pflegeplanung schreiben','Pflegeprozess','https://claude.ai/code/artifact/e7b944ee-0965-48b4-8e24-837ed5450542'],
+      ['Wahrnehmen ist nicht Beobachten','CE 02','https://claude.ai/artifact/8DRf2WvteNqwi5XFRwTqkt'],
+      ['„Heraussetzen“ ist keine aktivierende Pflege','CE 02','https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW'],
+      ['Kontinenz fördern','CE 02','https://claude.ai/artifact/9sE6cUYk1Q3VugvVEUhUHi'],
+      ['Mangelernährung','CE 02','https://claude.ai/artifact/Thd63qgdREbvJPoxnrKBQ6'],
+      ['Demenz im Krankenhaus','CE 05','https://claude.ai/code/artifact/34db66f4-1177-46be-9bee-5da1f01af89c'],
+      ['„Ich verstehe das alles nicht“ — Bewegungsapparat','CE 05','https://claude.ai/artifact/7vpMftH4kNi6TdwbqZPVDZ'],
+      ['Neurodermitis & Krätze','CE 05','https://claude.ai/code/artifact/e6f67e90-150a-4c63-aa84-f64f89414ca4'],
+      ['Werde ich so verstanden, wie ich es meine?','CE 03','https://claude.ai/artifact/KjJpLUR84WMmRjtvaYbcBe'],
+      ['Lebensentwürfe verstehen','CE 09','https://claude.ai/code/artifact/95147bb8-4411-40dc-aa5e-254d3e7132d6'],
+      ['Kultursensible Pflege & LSBTI','CE 09','https://claude.ai/code/artifact/89d798fd-bf60-4c0d-a5f9-77c66bc03d02'],
+      ['Interkulturelle Pflege','CE 09','https://claude.ai/code/artifact/ea58472e-2151-40bb-aa03-acfaf7720a12'],
+      ['Kulturelle Vielfalt & Vorurteile','CE 09','https://claude.ai/code/artifact/9fc9f3d9-fa71-4700-aa8f-abf9a1f66749'],
+      ['Im Zentrum steht nicht die Kultur','CE 09','https://claude.ai/artifact/6eSGorPGbmC2bqvEWrJ1ef'],
+      ['Projekt EZIA — Haus Cadenbach','CE 09','https://claude.ai/code/artifact/f2095b7d-e78e-44b5-92b5-8c61381300f2'],
+      ['Vom „unkooperativen Patienten“ zur Phase','CE 07','https://claude.ai/artifact/CKhoKCGu3yZGWW6vGew8Jf']
+    ]],
+    ['Prüfungsbereich 2','Gesundheitliche Problemlagen · Gesundheitsförderung, Prävention, Beratung · pflegewissenschaftlich begründen',[
+      ['Diabetes mellitus beim Erwachsenen','CE 07','https://claude.ai/artifact/HTKB99uzuvaNbZ4HHCT8cx'],
+      ['Asthma bronchiale','CE 10','https://claude.ai/artifact/4L2BLAR9Q6Gsm4mci9Wc6N'],
+      ['Das kranke Kind','CE 10','https://claude.ai/artifact/GdWSxzmHV46chBzi78YNar'],
+      ['Schwangerschaft, Geburt, Wochenbett','CE 10','https://claude.ai/artifact/7jDjjoXVUurVqKjVaE6Viv'],
+      ['Hypotonie & Hypertonie','CE 05','https://claude.ai/code/artifact/316b844e-b1e6-4bb8-8163-3af3058de4fa'],
+      ['Die Organe und das Nervensystem','CE 05','https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj'],
+      ['Wenn die Leitung unterbrochen ist — MS','CE 07','https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo'],
+      ['Den Impfkalender 2026 lesen','Prävention','https://claude.ai/artifact/NjWaoqAWqGs3Vg4uQ4t6QS'],
+      ['„Ich will aber keine Fremden im Haus“ — Beratung ambulant','CE 08','https://claude.ai/artifact/5LgrWHNpcxisLNKYoX8tXq']
+    ]],
+    ['Prüfungsbereich 3','Kritische und krisenhafte Situationen · ärztliche Anordnungen · ethische Entscheidungen',[
+      ['Notfälle & Erste Hilfe','Notfall','https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d'],
+      ['Reanimation nach Leitlinie','Notfall','https://claude.ai/artifact/DMzjg36QUTCSPkvRVsPVHq'],
+      ['Blutgruppen & Transfusion','CE 05','https://claude.ai/code/artifact/d4e71c95-f8ed-4c2d-98f8-1248ce99def2'],
+      ['Psychiatrische Pflege','CE 11','https://claude.ai/artifact/FR1USYHEkkScdqes2CkGSU'],
+      ['Zwangsstörungen','CE 11','https://claude.ai/code/artifact/988e4e0d-a520-4053-a6ea-8b67fe64bd64'],
+      ['Verantwortliches Pflegehandeln','CE 03','https://claude.ai/artifact/TrSt6YCQmxZ1aMJ8Q9qYaL']
+    ]],
+    ['Mündlich · KB III–V','Berufsrolle, Team, Einrichtung, Gesellschaft — Recht und Ethik begründen',[
+      ['Verantwortliches Pflegehandeln','CE 03','https://claude.ai/artifact/TrSt6YCQmxZ1aMJ8Q9qYaL'],
+      ['Recht in der Pflege','CE 6','https://claude.ai/code/artifact/56f4b6ba-ea38-4780-bd8b-1b6374e4ae14'],
+      ['Gesunde stehen für Kranke ein — Gesundheitssystem','','https://claude.ai/artifact/WJpufytv6p72aQhdfnkCq4'],
+      ['Nicht die Menschen sind das Problem — Behinderung','CE 07','https://claude.ai/artifact/82NWpK4LJaTxo2ffdctZ6p'],
+      ['Werde ich so verstanden, wie ich es meine?','CE 03','https://claude.ai/artifact/KjJpLUR84WMmRjtvaYbcBe']
+    ]],
+    ['Praktisch · Vorbereitung','Pflegeplan, Fallvorstellung, Reflexion — und der Prüfungsrahmen',[
+      ['Zwischenprüfung — Ablauf der CBG','Prüfung','https://claude.ai/code/artifact/2e1db357-3e32-4a56-9356-3e4fde3d5c88'],
+      ['Pflegeplanung in fünf Tagen','CE 02','https://claude.ai/code/artifact/d1d757ad-782d-4350-bcce-1337702a922f'],
+      ['Die staatliche Abschlussprüfung','Ausbildung','https://claude.ai/code/artifact/49b64d31-0eff-40f4-9beb-0d71627a5091']
+    ]]
+  ];
+  const karte=document.getElementById('karte');
+  Z.forEach(([t,b,l])=>{
+    const d=document.createElement('div'); d.className='pb rasterkarte';
+    const h=document.createElement('h3'); h.textContent=t+' · '+l.length;
+    const p=document.createElement('p'); p.className='beschr'; p.textContent=b;
+    const c=document.createElement('div'); c.className='chips';
+    l.forEach(([n,f,u])=>{ const a=document.createElement('a'); a.href=u; a.target='_blank'; a.rel='noopener'; a.textContent=n;
+      if(f){ const s=document.createElement('small'); s.textContent=f; a.appendChild(s); } c.appendChild(a); });
+    d.append(h,p,c); karte.appendChild(d);
+  });
+})();
+</script>
