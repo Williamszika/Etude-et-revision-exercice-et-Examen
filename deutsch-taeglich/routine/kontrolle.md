@@ -7,7 +7,7 @@ Warum es dich gibt: Am 25.09.2026 meldete die 5:30-Routine „SUCCEEDED“ und h
 
 1. `git fetch origin claude/nursing-exam-prep-workflow-gvn5u0 && git checkout claude/nursing-exam-prep-workflow-gvn5u0 && git pull --rebase origin claude/nursing-exam-prep-workflow-gvn5u0`
 
-2. `t = (heute − 2026-09-11).days` (Datum in Europe/Berlin).
+2. **Seit 03.10.2026: `python3 deutsch-taeglich/heute.py` fragen, nie selbst rechnen** — es kennt die Pausen aus `pausen.json` (PAUSE → nichts schreiben). Die Regel dahinter: `t = (heute − 2026-09-11).days − Pausentage`.
    - **`t` ungerade → Übungstag.** `Artifact action:"read"` auf https://claude.ai/code/artifact/e499dbe3-e198-410a-94d3-9393e6b27c84 und nachsehen, ob die neueste Lektion aus `deutsch-taeglich/lektionen/` in `LEKTIONEN` steht. Wenn ja: **nichts tun**, eine Zeile melden, fertig. Wenn nein: `python3 deutsch-taeglich/build.py`, committen, pushen, veröffentlichen (Schritte 6–7 aus `routine/prompt.md`).
    - **`t` gerade → Lektionstag.** `Artifact action:"read"` auf dieselbe URL, dann `python3 deutsch-taeglich/pruefen.py <gespeicherte-html-datei>`.
      - **Exitcode 0 → alles in Ordnung. Nichts ändern, nichts committen.** Eine Zeile melden, fertig.

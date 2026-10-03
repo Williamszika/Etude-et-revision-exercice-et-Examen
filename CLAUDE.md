@@ -12,6 +12,38 @@ Zahlen oder Quellen nennen, die nicht in ihren eigenen Unterlagen (PDFs im Repo)
 
 Diese Anweisung gilt **immer** und hat Vorrang vor älteren Routine-Texten.
 
+### ⏸ Pausen — seit dem 03.10.2026 rechnet nur noch `heute.py`
+
+**Am 03.10.2026 hat sie gesagt:**
+
+> *„stopper le täglich deutsch pour une semaine a compter de demain. apres les 7 jours, il
+> reprend automatiquement."*
+
+**Pause: 04.10. – 10.10.2026.** An Pausentagen gibt es **keine Lektion und keinen Übungstag**;
+die Seite zeigt sie als ⏸. **Pausentage zählen im Plan nicht mit** — der ganze Kalender rückt um
+sieben Tage nach hinten, **keine Lektion fällt aus**:
+
+| | |
+|---|---|
+| 03.10. | Lektion 12 (letzte vor der Pause) |
+| 04.–10.10. | ⏸ Pause |
+| 11.10. | Übungstag (der, der sonst am 04.10. gewesen wäre) |
+| **12.10.** | **Lektion 13** — Block 7, Adjektivdeklination, Thema-Tag 1 |
+| Etappe endet | **07.02.2027** statt 31.01.2027 |
+
+**Die Formel `t = (heute − 2026-09-11).days` überall in dieser Datei gilt deshalb nur noch
+abzüglich der Pausentage.** Gerechnet wird **ausschließlich** in `deutsch-taeglich/heute.py`
+(liest `deutsch-taeglich/pausen.json`): `python3 deutsch-taeglich/heute.py` sagt PAUSE,
+UEBUNGSTAG oder LEKTIONSTAG und gibt an Lektionstagen den fertigen `zyklus`-Block aus.
+`build.py`, `pruefen.py`, die Seite und beide Routinen fragen dort nach. Am 03.10. gegen alle
+zwölf vorhandenen Lektionen geprüft: null Abweichungen.
+
+**Eine neue Pause** = ein Eintrag in `pausen.json`, sonst nichts. Die Messtermine
+(06.11., 31.12., 31.01.) sind **nicht** verschoben — das entscheidet sie, wenn es so weit ist.
+**Die App** rechnet mit dem wirksamen Start aus `app-daten.json` und zeigt die richtige
+Lektionsnummer; Pausentage erscheinen dort aber als Übungstage (die App kennt das Wort „Pause“
+noch nicht — dafür bräuchte es eine neue App-Version).
+
 ### Neustart am 11.09.2026 — der einzige gültige Anfang
 
 **Am 10.09.2026 abends hat sie alles zurückgesetzt:**
@@ -644,7 +676,7 @@ Pushen. Also getrennt:
 
 | Zeit (Berlin) | Routine | Sitzung | Aufgabe |
 |---|---|---|---|
-| **05:27** | `trig_012qYcB2ikqi4b1a7r2iFKBZ` | `session_01QDve65qv6wNYfYhzvKYct3` (Repo + Branch, Push getestet: `0ffb703`) | schreiben → **Sicherungscommit** → build → push. **Benutzt `Artifact` überhaupt nicht** — auch Lesen hing am 27.09. an einer Genehmigung. Schritt 0 (retten) entfällt dort, weil die 06:10-Routine nie eine Lektion schreibt, die nicht schon im Repo liegt. |
+| **05:27** | `trig_01VRtDx16gERnHrg4kP8fNEc` (seit 03.10.2026, mit Pausen; der alte `trig_012qYcB2ikqi4b1a7r2iFKBZ` ist **aus**, nicht gelöscht) | `session_01QDve65qv6wNYfYhzvKYct3` (Repo + Branch, Push getestet: `0ffb703`) | schreiben → **Sicherungscommit** → build → push. **Benutzt `Artifact` überhaupt nicht** — auch Lesen hing am 27.09. an einer Genehmigung. Schritt 0 (retten) entfällt dort, weil die 06:10-Routine nie eine Lektion schreibt, die nicht schon im Repo liegt. |
 | **06:10** | `trig_01KgKkk4N3ZASV42ErFjhbHz` | frisch pro Lauf, `auto` | öffentliches Repo klonen → build → **beide Seiten veröffentlichen** → `pruefen.py`. **Schreibt nie eine Lektion**, pusht nie. Fehlt an einem Lektionstag die JSON, meldet sie ⚠️ per Push. |
 
 **Getestet am 27.09.2026 abends:** Die 06:10-Routine lief in `auto`, hat beide Seiten

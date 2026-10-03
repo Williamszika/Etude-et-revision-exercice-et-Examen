@@ -11,7 +11,7 @@ Reihenfolge — nicht umstellen:
 
 2. **Schritt 0 — zuerst retten.** `Artifact action:"read"` auf https://claude.ai/code/artifact/e499dbe3-e198-410a-94d3-9393e6b27c84. Aus der gespeicherten Datei `const LEKTIONEN` ziehen. Jede Lektion, deren Datum nicht in `deutsch-taeglich/lektionen/` liegt, dort als JSON anlegen. **Steht das heutige Datum schon darin, wird heute KEINE neue Lektion geschrieben** — nur zurückholen, prüfen, weiter mit Schritt 5.
 
-3. **Rechnen, nicht raten:** `t = (heute − 2026-09-11).days`.
+3. **Rechnen, nicht raten:** **Seit 03.10.2026: `python3 deutsch-taeglich/heute.py` fragen, nie selbst rechnen** — es kennt die Pausen aus `pausen.json` (PAUSE → nichts schreiben). Die Regel dahinter: `t = (heute − 2026-09-11).days − Pausentage`.
    - `t` ungerade → **Übungstag. Keine Datei schreiben.** Weiter mit Schritt 5.
    - `lektionen/<heute>.json` existiert schon → nicht anfassen. Weiter mit Schritt 5.
    - `t` gerade → Lektionstag: `lektion = t//2+1`, `themaBlock = t//4+1`, `themenTag = (t//2)%2+1`, Rest wie in `CLAUDE.md`. Samstag → zusätzlich `probe`.
