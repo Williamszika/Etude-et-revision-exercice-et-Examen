@@ -610,7 +610,7 @@
 <header class="hero">
   <div class="heroin">
     <div>
-      <p class="eyebrow">Etappe 1 · A2 → B1 · bis 31.01.2027</p>
+      <p class="eyebrow">Etappe 1 · A2 → B1 · bis __ENDE_LANG__</p>
       <h1>Deutsch täglich</h1>
       <p class="hero-sub">Eine Lektion <b>jeden zweiten Tag</b>, dazwischen ein Übungstag.
       Jedes Grammatikthema zwei Lektionen lang: <i>entdecken</i>, dann <i>anwenden</i>.</p>
@@ -688,7 +688,14 @@
 
 <script>
 const LEKTIONEN = __DATA__;   // neueste zuerst
-const START_DATUM = "__START__";   // erster Lektionstag der Etappe
+const START_DATUM = "__START__";   // wirksamer Start: 11.09. + Pausentage bis heute
+/* Pausen (seit 03.10.2026, Quelle: pausen.json). Pausentage zählen im Plan nicht mit:
+   keine Lektion, kein Übungstag — danach geht es genau dort weiter, wo es aufgehört hat. */
+const PAUSEN = __PAUSEN__;
+function pauseVon(iso){
+  for(const p of PAUSEN){ if(iso>=p.von&&iso<=p.bis) return p; }
+  return null;
+}
 
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 function bold(s){return esc(s).replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>');}
@@ -1850,6 +1857,7 @@ function baueTage(){
   for(let d=new Date(erste); d<=ende; d.setDate(d.getDate()+1)){
     const iso=isoVon(d);
     if(nachDatum[iso]){ letzte=nachDatum[iso]; out.push({typ:'lektion',datum:iso,l:letzte}); }
+    else if(letzte&&pauseVon(iso)){ out.push({typ:'pause',datum:iso,l:letzte,p:pauseVon(iso)}); }
     else if(letzte){ out.push({typ:'uebung',datum:iso,l:letzte}); }
   }
   return out.reverse();          /* neueste zuerst */
@@ -1863,10 +1871,10 @@ function buildBar(){
   TAGE.forEach((e,i)=>{
     const b=document.createElement('button');
     const kurz=fmtDate(e.datum).kurz;
-    b.textContent=(e.typ==='uebung'?'✎ ':'')+
+    b.textContent=(e.typ==='uebung'?'✎ ':(e.typ==='pause'?'⏸ ':''))+
       (i===0?'Heute · '+kurz : i===1?'Gestern · '+kurz : kurz);
-    b.title=e.typ==='uebung'?'Übungstag — nur Übungen':'Lektion';
-    if(e.typ==='uebung') b.classList.add('ue-tab');
+    b.title=e.typ==='uebung'?'Übungstag — nur Übungen':(e.typ==='pause'?'Pause':'Lektion');
+    if(e.typ==='uebung'||e.typ==='pause') b.classList.add('ue-tab');
     b.onclick=()=>{cur=i;render();};
     bar.appendChild(b);
   });
@@ -1937,6 +1945,35 @@ function hoertextVon(l){
 /* Die ganze Seite eines Übungstags: NUR Übungen zur Lektion davor.
    Kein Verb, kein Wortschatz, keine Grammatikerklärung, keine Aussprache —
    die stehen weiterhin unter ihrem eigenen Tag in der Leiste oben. */
+function naechsterTag(iso){
+  const d=alsDatum(iso); if(!d) return iso; d.setDate(d.getDate()+1); return isoVon(d);
+}
+function pausentageZwischen(von,bis){      /* Pausentage in (von, bis] */
+  let n=0;
+  PAUSEN.forEach(p=>{
+    const a=p.von>von?p.von:naechsterTag(von), b=p.bis<bis?p.bis:bis;
+    const da=alsDatum(a), db=alsDatum(b);
+    if(da&&db&&db>=da) n+=Math.round((db-da)/86400000)+1;
+  });
+  return n;
+}
+function renderPauseSeite(l,eintrag){
+  const p=eintrag.p, weiter=naechsterTag(p.bis);
+  const nr=(l.zyklus&&l.zyklus.lektion)||'';
+  let h='<section class="uetag">'+
+    '<div class="kopf"><h3>Pause</h3>'+
+    '<span class="k-ue">'+fmtDate(p.von).kurz+' – '+fmtDate(p.bis).kurz+'</span></div>'+
+    '<p class="warum">Diese Woche gibt es <b>keine Lektion und keinen Übungstag</b>. '+
+    'Am <b>'+fmtDate(weiter).kurz+'</b> geht es von selbst weiter — genau dort, wo du '+
+    'aufgehört hast: nach Lektion '+esc(nr)+'. <b>Keine Lektion fällt aus</b>; der ganze Plan '+
+    'rückt um die Pausentage nach hinten.</p>'+
+    '<p class="fr">C\u2019est la pause que tu as demandée. Rien à faire cette semaine. '+
+    'Le '+fmtDate(weiter).kurz+', ça reprend tout seul, sans perdre de leçon. Si tu veux '+
+    'quand même réviser, ton vocabulaire est juste en dessous — c\u2019est facultatif.</p>'+
+    '</section>';
+  h+=renderVokabeln(l.vokabeln,'ue',eintrag.datum);
+  return h;
+}
 function renderUebungstagSeite(l,datum){
   if(!l) return '';
   const d=alsDatum(datum), tag=d?WOCHENTAGE[d.getDay()]:'';
@@ -1971,10 +2008,12 @@ function render(){
   const akt=bar.children[cur];
   if(akt&&akt.scrollIntoView) akt.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
   const eintrag=TAGE[cur]; if(!eintrag) return;
-  const l=eintrag.l, ueb=eintrag.typ==='uebung';
+  const l=eintrag.l, pause=eintrag.typ==='pause', ueb=eintrag.typ==='uebung'||pause;
   document.getElementById('dayTitle').textContent=fmtDate(eintrag.datum).lang;
   const nr=(l.zyklus&&l.zyklus.lektion)||(LEKTIONEN.indexOf(l)>=0?LEKTIONEN.length-LEKTIONEN.indexOf(l):1);
-  document.getElementById('daySub').textContent = ueb
+  document.getElementById('daySub').textContent = pause
+    ? 'Pause · Deutsch täglich geht am '+fmtDate(naechsterTag(eintrag.p.bis)).kurz+' weiter'
+    : ueb
     ? 'Übungstag · nur Übungen zur Lektion '+nr+' vom '+fmtDate(l.datum).kurz
     : 'Lektion '+nr+' · '+(l.thema||'Verb · Wortschatz · Grammatik');
   /* Blätter-Leiste */
@@ -1983,7 +2022,8 @@ function render(){
   bZurueck.textContent = bZurueck.disabled ? '‹ Anfang' : '‹ '+tagName(cur+1);
   bVor.textContent = bVor.disabled ? 'Heute ›' : tagName(cur-1)+' ›';
   document.getElementById('wo').textContent =
-    cur===0 ? (ueb?'Heute ist Übungstag — nur Übungen':'Du bist bei der heutigen Lektion')
+    pause ? (cur===0?'Heute ist Pause':'Pause am '+fmtDate(eintrag.datum).kurz)
+    : cur===0 ? (ueb?'Heute ist Übungstag — nur Übungen':'Du bist bei der heutigen Lektion')
             : (ueb?'Übungstag vom ':'Lektion vom ')+fmtDate(eintrag.datum).kurz;
   /* Zyklus-Leiste */
   const zEl=document.getElementById('zyklus');
@@ -2013,8 +2053,16 @@ function render(){
         const diff=dStart?Math.round((d-dStart)/TAG):i;
         /* Lektionstag = jeder `takt`-te Tag ab themenStart; davor (Vorlauf) jeder Tag */
         const dTh=alsDatum(z.themenStart), takt=z.takt||1;
-        const tHier=dTh?Math.round((d-dTh)/TAG):null;
-        const tLek =(dTh&&dLek)?Math.round((dLek-dTh)/TAG):null;
+        const pTage=dTh?pausentageZwischen(isoVon(dTh),isoVon(d)):0;
+        const tHier=dTh?Math.round((d-dTh)/TAG)-pTage:null;
+        if(pauseVon(isoVon(d))){
+          const kls0=(i===0?'jetzt ':'')+'uebung';
+          tage+='<button type="button" disabled class="'+kls0+'" title="'+attr(lbl+' · Pause')+'">'+
+                esc(lbl)+'</button>';
+          continue;
+        }
+        const tLek =(dTh&&dLek)?Math.round((dLek-dTh)/TAG)
+                    -pausentageZwischen(isoVon(dTh),isoVon(dLek)):null;
         const istLek=(tHier===null)?(diff>=0)
                     :(tHier<0?(diff>=0):(tHier%takt===0));
         if(istLek){
@@ -2040,7 +2088,7 @@ function render(){
     tage+='</div>';
     zEl.innerHTML='<span class="zy-phase">'+
                     esc(ueb?(WOCHENTAGE[(alsDatum(eintrag.datum)||new Date()).getDay()]+
-                             ' · Übungstag'):((z.tag||'')+' · '+(z.fokus||'Lektion')))+'</span>'+
+                             (pause?' · Pause':' · Übungstag')):((z.tag||'')+' · '+(z.fokus||'Lektion')))+'</span>'+
                   (z.etappe?'<span class="zy-etappe">Etappe '+esc(z.etappe)+'</span>':'')+
                   (z.phase?'<span class="zy-tt">'+esc(z.phase)+'</span>':
                    z.themenTag?'<span class="zy-tt">Thema-Tag <b>'+z.themenTag+'</b> von 2 · '+
@@ -2085,7 +2133,9 @@ function render(){
   AKT_DATUM=eintrag.datum;
   AKT_TAG=1;
   const hoertext=hoertextVon(l);
-  document.getElementById('content').innerHTML = ueb
+  document.getElementById('content').innerHTML = pause
+    ? renderPauseSeite(l,eintrag)
+    : ueb
     ? renderUebungstagSeite(l,eintrag.datum)
     : renderBlock(l.verb,'verb',cur)+renderBlock(l.wortschatz,'voc',cur)
       +renderVokabeln(l.vokabeln,cur,eintrag.datum)+renderBlock(l.grammatik,'gram',cur)
@@ -2105,7 +2155,7 @@ function render(){
    Alles wird aus den Lektionen und dem heutigen Datum gerechnet, nichts ist
    fest eingetragen. Das Ziel ist, dass sie beim Öffnen sofort sieht, wie weit
    sie ist — und nicht nur die Lektion von heute. */
-const ETAPPE_ENDE='2027-01-31', LEKTIONEN_GESAMT=72, THEMEN_GESAMT=29;
+const ETAPPE_ENDE='__ENDE__', LEKTIONEN_GESAMT=72, THEMEN_GESAMT=29;
 function zeichneFortschritt(){
   const start=START_DATUM||'2026-09-11';
   const t=Math.round((alsDatum(heuteISO())-alsDatum(start))/86400000);
@@ -2167,7 +2217,7 @@ function zeichneFortschritt(){
   if(kz) kz.innerHTML=
      '<div><div class="z">'+LEKTIONEN.length+'</div><div class="b">Lektionen da</div></div>'
     +'<div><div class="z">'+woerter+'</div><div class="b">Vokabeln gesammelt</div></div>'
-    +'<div><div class="z">'+rest+'</div><div class="b">Tage bis zum 31.12.</div></div>';
+    +'<div><div class="z">'+rest+'</div><div class="b">Tage bis zum '+fmtDate(ETAPPE_ENDE).kurz+'</div></div>';
 }
 zeichneFortschritt();
 

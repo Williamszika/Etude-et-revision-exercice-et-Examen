@@ -45,9 +45,13 @@ def git(*args):
     return r.returncode, r.stdout.strip(), r.stderr.strip()
 
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import heute as kalender  # noqa: E402  — die einzige Stelle, die rechnet (mit Pausen)
+
+
 def heute_ist_lektionstag(heute):
-    t = (heute - START).days
-    return t >= 0 and t % 2 == 0, t
+    s = kalender.status(heute)
+    return s['art'] == 'LEKTIONSTAG', s
 
 
 def pruefe_repo(datum):
@@ -124,12 +128,18 @@ def pruefe_seite(html, datum, lektion):
 
 
 def main():
-    heute = date.today()
+    heute = kalender.heute_berlin()
     datum = heute.isoformat()
-    lektionstag, t = heute_ist_lektionstag(heute)
+    lektionstag, s = heute_ist_lektionstag(heute)
 
-    print('Heute: %s · t = (heute − 2026-09-11) = %d → %s'
-          % (datum, t, 'LEKTIONSTAG' if lektionstag else 'Übungstag'))
+    if s['art'] == 'PAUSE':
+        print('Heute: %s · PAUSE (%s bis %s) — keine Lektion, nichts nachzuweisen.'
+              % (datum, s['von'], s['bis']))
+        print('Es geht am %s automatisch weiter.' % s['weiter'])
+        return 0
+
+    print('Heute: %s · t = (heute − 2026-09-11 − Pausentage) = %d → %s'
+          % (datum, s.get('t', -1), 'LEKTIONSTAG' if lektionstag else 'Übungstag'))
 
     if not lektionstag:
         print('\nÜbungstag: Es entsteht keine Datei in lektionen/. Die Vorlage baut den')

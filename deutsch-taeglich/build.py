@@ -38,9 +38,24 @@ START = '2026-09-11'
 if lekt:
     START = (lekt[-1].get('zyklus') or {}).get('start') or START
 
+# Pausen (seit 03.10.2026): Pausentage zählen im Plan nicht mit. Gerechnet wird nur in
+# heute.py. Seite und App bekommen den *wirksamen* Start — 11.09. plus die Pausentage bis
+# heute —, damit ihre alte Formel t = (heute − start) wieder die richtige Lektion ergibt.
+import sys as _sys
+_sys.path.insert(0, BASE)
+import heute as kalender  # noqa: E402
+_heute = kalender.heute_berlin()
+if lekt:
+    START = kalender.effektiver_start(_heute).isoformat()
+ETAPPE_ENDE = kalender.etappe_ende().isoformat()
+PAUSEN = [{'von': v.isoformat(), 'bis': b.isoformat()} for v, b, _ in kalender.pausen()]
+
 data = json.dumps(lekt, ensure_ascii=False).replace('</', '<\\/')
 tpl = open(os.path.join(BASE, '_template.html'), encoding='utf-8').read()
-out = tpl.replace('__DATA__', data).replace('__START__', START)
+out = (tpl.replace('__DATA__', data).replace('__START__', START)
+          .replace('__ENDE__', ETAPPE_ENDE)
+          .replace('__ENDE_LANG__', '.'.join(reversed(ETAPPE_ENDE.split('-'))))
+          .replace('__PAUSEN__', json.dumps(PAUSEN)))
 open(os.path.join(BASE, 'index.html'), 'w', encoding='utf-8').write(out)
 print(f"{len(lekt)} Lektion(en) · "
       f"{'neueste: ' + lekt[0]['datum'] if lekt else 'Neustart, Beginn ' + START} · "
@@ -109,7 +124,8 @@ app_daten = {
     'start': START,
     'lektionenGesamt': 72,
     'themenGesamt': 29,
-    'etappeEnde': '2027-01-31',
+    'etappeEnde': ETAPPE_ENDE,
+    'pausen': PAUSEN,
     'lektionen': lekt,          # neueste zuerst, wie im Template
 }
 app_pfad = os.path.join(BASE, 'app-daten.json')
