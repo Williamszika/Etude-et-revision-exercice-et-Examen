@@ -610,7 +610,7 @@
 <header class="hero">
   <div class="heroin">
     <div>
-      <p class="eyebrow">Etappe 1 · A2 → B1 · bis 07.02.2027</p>
+      <p class="eyebrow">Etappe 1 · A2 → B1 · bis 15.02.2027</p>
       <h1>Deutsch täglich</h1>
       <p class="hero-sub">Eine Lektion <b>jeden zweiten Tag</b>, dazwischen ein Übungstag.
       Jedes Grammatikthema zwei Lektionen lang: <i>entdecken</i>, dann <i>anwenden</i>.</p>
@@ -691,7 +691,7 @@ const LEKTIONEN = [{"datum": "2026-10-03", "thema": "Etappe B1 · Lektion 12: We
 const START_DATUM = "2026-09-13";   // wirksamer Start: 11.09. + Pausentage bis heute
 /* Pausen (seit 03.10.2026, Quelle: pausen.json). Pausentage zählen im Plan nicht mit:
    keine Lektion, kein Übungstag — danach geht es genau dort weiter, wo es aufgehört hat. */
-const PAUSEN = [{"von": "2026-10-04", "bis": "2026-10-10"}];
+const PAUSEN = [{"von": "2026-10-04", "bis": "2026-10-18"}];
 function pauseVon(iso){
   for(const p of PAUSEN){ if(iso>=p.von&&iso<=p.bis) return p; }
   return null;
@@ -2155,7 +2155,7 @@ function render(){
    Alles wird aus den Lektionen und dem heutigen Datum gerechnet, nichts ist
    fest eingetragen. Das Ziel ist, dass sie beim Öffnen sofort sieht, wie weit
    sie ist — und nicht nur die Lektion von heute. */
-const ETAPPE_ENDE='2027-02-07', LEKTIONEN_GESAMT=72, THEMEN_GESAMT=29;
+const ETAPPE_ENDE='2027-02-15', LEKTIONEN_GESAMT=72, THEMEN_GESAMT=29;
 function zeichneFortschritt(){
   const start=START_DATUM||'2026-09-11';
   const t=Math.round((alsDatum(heuteISO())-alsDatum(start))/86400000);

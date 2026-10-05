@@ -19,17 +19,20 @@ Diese Anweisung gilt **immer** und hat Vorrang vor älteren Routine-Texten.
 > *„stopper le täglich deutsch pour une semaine a compter de demain. apres les 7 jours, il
 > reprend automatiquement."*
 
-**Pause: 04.10. – 10.10.2026.** An Pausentagen gibt es **keine Lektion und keinen Übungstag**;
+**Am 05.10.2026 verlängert:** *„stopper le täglich deutsch jusqu'au 18/10/2026 et a partir du
+19, il reprend automatiquement."* Dafür wurde nur `bis` in `pausen.json` geändert.
+
+**Pause: 04.10. – 18.10.2026 (15 Tage).** An Pausentagen gibt es **keine Lektion und keinen Übungstag**;
 die Seite zeigt sie als ⏸. **Pausentage zählen im Plan nicht mit** — der ganze Kalender rückt um
-sieben Tage nach hinten, **keine Lektion fällt aus**:
+fünfzehn Tage nach hinten, **keine Lektion fällt aus**:
 
 | | |
 |---|---|
 | 03.10. | Lektion 12 (letzte vor der Pause) |
-| 04.–10.10. | ⏸ Pause |
-| 11.10. | Übungstag (der, der sonst am 04.10. gewesen wäre) |
-| **12.10.** | **Lektion 13** — Block 7, Adjektivdeklination, Thema-Tag 1 |
-| Etappe endet | **07.02.2027** statt 31.01.2027 |
+| 04.–18.10. | ⏸ Pause |
+| 19.10. | Übungstag (der, der sonst am 04.10. gewesen wäre) — Wiedereinstieg mit Lektion 12 |
+| **20.10.** | **Lektion 13** — Block 7, Adjektivdeklination, Thema-Tag 1 |
+| Etappe endet | **15.02.2027** statt 31.01.2027 |
 
 **Die Formel `t = (heute − 2026-09-11).days` überall in dieser Datei gilt deshalb nur noch
 abzüglich der Pausentage.** Gerechnet wird **ausschließlich** in `deutsch-taeglich/heute.py`
