@@ -85,13 +85,28 @@ def _d(iso):
     return date.fromisoformat(iso)
 
 
-def pausen():
-    """Liste von (von, bis, grund), beide Tage eingeschlossen."""
+def _roh():
     pfad = os.path.join(BASE, 'pausen.json')
     if not os.path.exists(pfad):
         return []
-    roh = json.load(open(pfad, encoding='utf-8')).get('pausen', [])
-    return [(_d(p['von']), _d(p['bis']), p.get('grund', '')) for p in roh]
+    return json.load(open(pfad, encoding='utf-8')).get('pausen', [])
+
+
+def pausen():
+    """Alle Pausen als (von, bis, grund), beide Tage eingeschlossen — auch die,
+    die im Plan mitzählen (siehe zaehlende_pausen)."""
+    return [(_d(p['von']), _d(p['bis']), p.get('grund', '')) for p in _roh()]
+
+
+def verschiebende_pausen():
+    """Nur die Pausen, die den Plan nach hinten schieben.
+
+    Eine Pause mit `"zaehlt": true` ist zwar ein Pausentag (keine Lektion, kein
+    Übungstag), läuft im Plan aber mit — so fällt nur ein Übungstag weg, nie eine
+    Lektion. Eingeführt am 05.10.2026 für den 19.10.: sie wollte am 20.10. mit
+    Lektion 13 neu anfangen, ohne Übungstag davor."""
+    return [(_d(p['von']), _d(p['bis']), p.get('grund', ''))
+            for p in _roh() if not p.get('zaehlt')]
 
 
 def in_pause(d):
@@ -104,7 +119,7 @@ def in_pause(d):
 def pausentage_bis(d):
     """Pausentage vom Start bis einschließlich d."""
     n = 0
-    for von, bis, _ in pausen():
+    for von, bis, _ in verschiebende_pausen():
         if von > d:
             continue
         n += (min(bis, d) - von).days + 1
@@ -112,7 +127,7 @@ def pausentage_bis(d):
 
 
 def pausentage_gesamt():
-    return sum((bis - von).days + 1 for von, bis, _ in pausen())
+    return sum((bis - von).days + 1 for von, bis, _ in verschiebende_pausen())
 
 
 def effektiver_start(d):
@@ -140,6 +155,8 @@ def status(d):
     p = in_pause(d)
     if p:
         nach = p[1] + timedelta(days=1)
+        while in_pause(nach):                 # direkt anschließende Pausen überspringen
+            nach += timedelta(days=1)
         return {'art': 'PAUSE', 'datum': d.isoformat(), 'von': p[0].isoformat(),
                 'bis': p[1].isoformat(), 'weiter': nach.isoformat()}
     t = t_von(d)

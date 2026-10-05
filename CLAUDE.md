@@ -30,7 +30,7 @@ fünfzehn Tage nach hinten, **keine Lektion fällt aus**:
 |---|---|
 | 03.10. | Lektion 12 (letzte vor der Pause) |
 | 04.–18.10. | ⏸ Pause |
-| 19.10. | Übungstag (der, der sonst am 04.10. gewesen wäre) — Wiedereinstieg mit Lektion 12 |
+| 19.10. | ⏸ Pause — aber **mitzählend** (`"zaehlt": true` in `pausen.json`): dieser Tag wäre der Übungstag gewesen; er fällt weg, ohne den Plan zu verschieben. Ihr Wunsch vom 05.10.: *„pour que je reprenne le 20"* |
 | **20.10.** | **Lektion 13** — Block 7, Adjektivdeklination, Thema-Tag 1 |
 | Etappe endet | **15.02.2027** statt 31.01.2027 |
 
@@ -46,6 +46,62 @@ zwölf vorhandenen Lektionen geprüft: null Abweichungen.
 **Die App** rechnet mit dem wirksamen Start aus `app-daten.json` und zeigt die richtige
 Lektionsnummer; Pausentage erscheinen dort aber als Übungstage (die App kennt das Wort „Pause“
 noch nicht — dafür bräuchte es eine neue App-Version).
+
+### Der Tagesplan — seit dem 05.10.2026, ab Lektion 13
+
+Sie bat um Vorschläge, *„afin que je puisse bien étudier, bien comprendre et bien m'exercer
+aussi et sans soucis"*, und sagte dann zu allen: *„oui fais tout pour que je reprenne le 20"*.
+Ausgangslage: Eine Lektion hatte **15 Blöcke** (~50 000 Zeichen) für 60 Minuten — sie wusste
+nicht, wo anfangen und wann sie fertig ist. **Die Inhalte bleiben alle; die Seite ordnet sie.**
+
+**Lektionstag = sieben Pflichtschritte, 60 Minuten, je mit Haken „fertig“:**
+
+| # | Schritt | Min | Blöcke |
+|---|---|---|---|
+| 1 | Wiederholen | 5 | 3 Wörter der vorigen Lektion (FR → DE, automatisch) + fällige Wörter |
+| 2 | Neue Vokabeln | 10 | `vokabeln` |
+| 3 | Grammatik | 10 | **`kurzregel`** + `grammatik` + `deklination` |
+| 4 | Lesen und schreiben | 15 | `lesen` |
+| 5 | Diktat | 10 | `diktat` |
+| 6 | Im Leben | 5 | `leben` |
+| 7 | Sprechen | 5 | `aussprache` + 60-Sekunden-Aufnahme 🎙️ |
+
+Danach sichtbar: `probe` (samstags). **Eingeklappt als „Bonus“:** `verb`, `wortschatz`, `satzbau`,
+`training`, `telc`, `uebersetzung`. Die Blöcke werden **weiter geschrieben** wie bisher — nur
+nicht mehr als Pflicht angezeigt.
+
+**Übungstag = drei Schritte, 30 Minuten:** Wörter wiederholen 10 · Mein Fehlerheft 5 · Übungen
+zur letzten Lektion 15. **Sonntag** zusätzlich der **Wochenrückblick** (Grammatikthemen der
+Woche, ihre Kurzregeln, wie viele Wörter sitzen, Mini-Test mit 10 Wörtern). Alles automatisch
+aus den Lektionen — dafür wird nichts geschrieben.
+
+**Neues Pflichtfeld ab Lektion 13: `kurzregel`** — direkt nach `grammatik`:
+
+```json
+"kurzregel": {"fr": "die Regel in EINEM französischen Satz, Schlüsselwörter **fett**",
+              "de": "dieselbe Regel kurz auf Deutsch",
+              "beispiele": ["drei deutsche Beispielsätze mit **fett** markierter Stelle", "…", "…"]}
+```
+
+Vorbild ist Lektion 12 (`2026-10-03.json`, dort am 05.10. nachgetragen). Nur Grammatik, die
+wirklich in dieser Lektion behandelt wird — kein neuer Stoff.
+
+**Wiederholung im Abstand (im Browser, `localStorage`):** Jedes Wort aus `vokabeln` kommt ab dem
+Tag nach seiner Lektion in die Wiederholung; richtig → nächste Stufe (1 · 2 · 4 · 7 · 15 · 30
+Tage), falsch → morgen wieder. Höchstens **15 Karten pro Tag**. Läuft nur auf dem Gerät, auf dem
+sie die Seite öffnet (iPhone ≠ Mac). Die App hat das **nicht**.
+
+**Ihr Fehlerheft — `deutsch-taeglich/fehlerheft.json`. Pflicht bei jeder Korrektur:** Schickt sie
+Antworten (der Knopf „📤 Antworten sammeln“ macht daraus einen Text), wird **jeder echte Fehler**
+dort eingetragen — `{datum, falsch, richtig, baustelle (1–7), kettenglied (1–5, nur bei
+Deklination), regel (ein Satz Französisch)}`, neueste zuerst. Nur ihre wirklichen Fehler, nie
+erfundene. Danach `build.py`, committen, veröffentlichen. Die Übungstage zeigen fünf davon.
+
+**Hinweis „Test de niveau“:** steht auf Lektions- und Pausenseiten, solange in
+`einstufungen.json` eine Messung `"status": "offen"` hat.
+
+**Die Aufnahme 🎙️ ist ungeprüft auf ihrem Gerät:** Ob der Artifact-Rahmen auf dem iPhone das
+Mikrofon freigibt, ist nicht getestet. Die Seite sagt sonst selbst: App „Sprachmemos“ nehmen.
 
 ### Neustart am 11.09.2026 — der einzige gültige Anfang
 
@@ -1253,7 +1309,7 @@ Tages sollen zu dieser Stufe passen und nicht darüber hinausgehen.
 
 ### Pflichtinhalt jeder Lektion (an jedem Lektionstag)
 
-Verb des Tages (mit Konjugation und Bedeutung) · Wortschatz-Block (ein Ausdruck **zum Thema der
+**`kurzregel`** (seit Lektion 13, siehe „Der Tagesplan“) · Verb des Tages (mit Konjugation und Bedeutung) · Wortschatz-Block (ein Ausdruck **zum Thema der
 Lektion**) · **`vokabeln`-Block mit 15–18 Wörtern** · **`leben`-Block mit einer echten Alltagssituation** ·
 Grammatik-Block ·
 **`deklination`-Block mit drei Kettensätzen** ·

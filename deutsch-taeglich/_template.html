@@ -605,6 +605,89 @@
   footer{margin-top:50px;padding-top:20px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:13.5px;text-align:center;}
   @media (max-width:620px){.block{padding:16px 15px;} body{font-size:16.5px;}}
   @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
+  /* ---- Seit 05.10.2026: Tagesplan, Wiederholung, Fehlerheft ---- */
+  .plan{position:relative;background:var(--card);border:1px solid var(--line);border-left:4px solid var(--accent);
+    border-radius:4px 14px 14px 4px;padding:14px 18px;margin:6px 0 18px;}
+  .plan-k{font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--ink-soft);}
+  .plan-k b{color:var(--accent-deep);font-size:13px;}
+  .plan ol{list-style:none;margin:10px 0 6px;padding:0;display:flex;flex-wrap:wrap;gap:6px;}
+  .plan ol a{display:inline-block;font-size:13.5px;text-decoration:none;color:var(--ink);background:var(--paper-2);
+    border:1px solid var(--line);border-radius:999px;padding:5px 12px;}
+  .plan ol a small{font-family:var(--mono);color:var(--ink-soft);}
+  .plan ol a.ok{background:var(--missbg);border-color:var(--miss);color:var(--miss);}
+  .plan ol a.ok::before{content:"✓ ";}
+  .plan-fr{margin:4px 0 0;font-size:14px;color:var(--ink-soft);font-style:italic;}
+  .sk{scroll-margin-top:64px;border-top:2px solid var(--line);padding-top:14px;margin-top:22px;}
+  .sk-kopf{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:6px;}
+  .sk-kopf h3{margin:0;font-family:var(--serif);font-size:1.3rem;}
+  .sk-nr{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--card);background:var(--accent);
+    border-radius:999px;width:28px;height:28px;display:inline-grid;place-items:center;}
+  .sk-min{font-family:var(--mono);font-size:12px;color:var(--ink-soft);}
+  .sk-fertig{margin-left:auto;font-size:14px;display:flex;gap:6px;align-items:center;cursor:pointer;
+    border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:var(--card);}
+  .sk-fertig input{width:18px;height:18px;accent-color:var(--miss);}
+  .sk-hinweis{font-size:15px;color:var(--ink-soft);margin:4px 0 10px;}
+  .sk-unter{font-family:var(--serif);font-size:1.05rem;margin:16px 0 6px;}
+  .abfr{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:10px 13px;margin:8px 0;}
+  .af-fr{font-weight:600;}
+  .af-fr i{font-family:var(--mono);font-size:10.5px;font-style:normal;color:var(--ink-soft);}
+  .af-reihe{display:flex;gap:8px;margin-top:7px;}
+  .af-reihe input{flex:1;min-width:0;font:inherit;font-size:16px;padding:8px 11px;border:1px solid var(--line);
+    border-radius:9px;background:var(--paper);color:var(--ink);}
+  .af-reihe button,.af-erg button{font:inherit;font-size:14px;border:1px solid var(--accent);color:var(--accent);
+    background:var(--card);border-radius:9px;padding:7px 13px;cursor:pointer;}
+  .af-erg{margin-top:6px;font-size:15px;}
+  .af-erg.gut{color:var(--miss);} .af-erg.nein{color:var(--extra);}
+  .af-erg button{padding:3px 8px;font-size:13px;}
+  .srs{background:var(--vocbg);border-radius:12px;padding:14px 16px;margin:8px 0;}
+  .srs-kopf{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11.5px;color:var(--voc);}
+  .srs-fr{font-family:var(--serif);font-size:1.35rem;margin:8px 0 2px;}
+  .srs-fr i{font-family:var(--mono);font-size:11px;font-style:normal;color:var(--ink-soft);}
+  .srs-auftrag{font-size:14px;color:var(--ink-soft);margin:0 0 8px;}
+  .srs-de{background:var(--card);border-radius:9px;padding:10px 12px;margin:8px 0;font-size:16px;}
+  .srs-voll{font-size:13.5px;color:var(--ink-soft);}
+  .srs-bsp{font-size:14.5px;color:var(--ink-soft);margin-top:5px;}
+  .srs-knoepfe{display:flex;gap:8px;flex-wrap:wrap;}
+  .srs-knoepfe[hidden],.srs-de[hidden],.fh-l[hidden]{display:none;}
+  .srs-knoepfe button{font:inherit;font-size:15px;border-radius:10px;padding:9px 16px;cursor:pointer;
+    border:1px solid var(--voc);background:var(--card);color:var(--voc);}
+  .srs-knoepfe button.ja{background:var(--miss);border-color:var(--miss);color:var(--card);}
+  .srs-knoepfe button.nein{border-color:var(--extra);color:var(--extra);}
+  .srs-fertig{font-size:15px;color:var(--voc);font-weight:600;}
+  .kurzregel{border:2px solid var(--gram);border-radius:12px;padding:12px 16px;margin:8px 0 14px;background:var(--grambg);}
+  .kr-k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gram);}
+  .kr-fr{font-size:16.5px;font-weight:600;margin:6px 0;}
+  .kr-de{font-size:15px;color:var(--ink-soft);margin:0 0 6px;}
+  .kurzregel ul{margin:4px 0 0;padding-left:1.2em;}
+  .aufn{border:2px dashed var(--say);border-radius:12px;padding:12px 16px;margin:12px 0;background:var(--card);}
+  .aufn-k{font-family:var(--serif);font-weight:600;color:var(--say);}
+  .aufn-reihe{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:8px 0;}
+  .aufn-reihe button{font:inherit;font-size:15px;border:0;border-radius:10px;padding:9px 16px;cursor:pointer;
+    background:var(--say);color:var(--card);}
+  .aufn audio{width:100%;margin-top:6px;}
+  .fh{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--extra);border-radius:0 11px 11px 0;
+    padding:10px 13px;margin:8px 0;}
+  .fh-f{color:var(--extra);}
+  .fh-l{margin-top:7px;color:var(--miss);}
+  .fh-r{font-size:14px;color:var(--ink-soft);margin-top:3px;}
+  .senden{border:2px solid var(--accent);border-radius:14px;padding:16px 18px;margin:26px 0 0;background:var(--accent-soft);}
+  .senden h3{margin:0 0 6px;font-family:var(--serif);}
+  .senden button{font:inherit;font-size:15px;font-weight:700;border:0;border-radius:10px;padding:10px 18px;cursor:pointer;
+    background:var(--accent);color:var(--card);margin-top:6px;}
+  .senden-aus{width:100%;min-height:120px;margin-top:10px;font-family:var(--mono);font-size:13px;border-radius:9px;
+    border:1px solid var(--line);padding:9px;background:var(--card);color:var(--ink);}
+  details.bonus{margin:26px 0 0;border:1px solid var(--line);border-radius:14px;background:var(--paper-2);}
+  details.bonus>summary{cursor:pointer;padding:13px 18px;font-weight:700;font-size:16px;}
+  details.bonus>summary small{font-weight:400;color:var(--ink-soft);font-size:13px;margin-left:6px;}
+  .bonus-in{padding:0 12px 10px;}
+  .mess{display:block;text-decoration:none;color:var(--ink);background:var(--tgbg);border:1px solid var(--tg);
+    border-radius:12px;padding:11px 15px;margin:0 0 14px;font-size:15px;}
+  .mess b{color:var(--tg);}
+  .rueck{background:var(--lbbg);border:2px solid var(--lb);border-radius:14px;padding:16px 18px;margin:0 0 18px;}
+  .rk-k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--lb);}
+  .rueck h3{font-family:var(--serif);margin:6px 0;}
+  .kr-mini{font-size:15px;border-left:3px solid var(--gram);padding-left:10px;}
+
 </style>
 
 <header class="hero">
@@ -1951,14 +2034,299 @@ function naechsterTag(iso){
 function pausentageZwischen(von,bis){      /* Pausentage in (von, bis] */
   let n=0;
   PAUSEN.forEach(p=>{
+    if(p.zaehlt) return;
     const a=p.von>von?p.von:naechsterTag(von), b=p.bis<bis?p.bis:bis;
     const da=alsDatum(a), db=alsDatum(b);
     if(da&&db&&db>=da) n+=Math.round((db-da)/86400000)+1;
   });
   return n;
 }
+/* ===================== Seit 05.10.2026: der Tagesplan =====================
+   Ihr Wunsch: « fais tout » — Plan du jour mit Pflicht/Bonus, Rappel, Regel in
+   einem Satz, Wiederholung der Wörter im richtigen Abstand, Sonntagsrückblick,
+   Aufnahme zum Sprechen, Antworten sammeln, persönliches Fehlerheft. */
+const FEHLERHEFT = __FEHLER__;
+const MESSUNG_OFFEN = __MESSUNG_OFFEN__;
+function lsGet(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function lsSet(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function lsDel(k){ try{ localStorage.removeItem(k); }catch(e){} }
+function plusTage(iso,n){ const d=alsDatum(iso); if(!d) return iso; d.setDate(d.getDate()+n); return isoVon(d); }
+function weiterNach(iso){ let n=naechsterTag(iso); while(pauseVon(n)) n=naechsterTag(n); return n; }
+function hashZahl(s){ let h=0; for(const c of String(s)) h=(h*31+c.charCodeAt(0))>>>0; return h; }
+/* „die Erkältung, -en“ → „die Erkältung“ · „einnehmen (nimmt ein …)“ → „einnehmen“ */
+function wortKern(de){ return String(de||'').replace(/\*\*/g,'').split(/[,(]/)[0].trim(); }
+function normWort(s){ return String(s||'').toLowerCase().replace(/[.!?;:„“"]/g,'').replace(/\s+/g,' ').trim(); }
+function ohneDoppelte(liste){ const g=new Set(); return liste.filter(w=>w&&!g.has(w.de)&&g.add(w.de)); }
+function auswahl(liste,n,saat){
+  const a=ohneDoppelte(liste); if(!a.length) return [];
+  const out=[], s=hashZahl(saat)%a.length;
+  for(let i=0;i<a.length&&out.length<n;i++) out.push(a[(s+i*7)%a.length]);
+  return ohneDoppelte(out);
+}
+
+/* ---- Abfrage FR → DE (Rappel, Sonntagstest) ---- */
+function renderAbfrage(woerter,praefix){
+  return woerter.map((w,i)=>{ const id=praefix+'-'+i;
+    return '<div class="abfr"><div class="af-fr">'+esc(w.fr||'')+
+      (w.wortart?' <i>'+esc(w.wortart)+'</i>':'')+'</div>'+
+      '<div class="af-reihe"><input type="text" id="'+id+'" autocomplete="off" autocapitalize="off"'+
+      ' spellcheck="false" placeholder="auf Deutsch — Nomen mit Artikel" data-los="'+attr(wortKern(w.de))+'">'+
+      '<button type="button" onclick="abfrPruef(\''+id+'\')">Prüfen</button></div>'+
+      '<div class="af-erg" id="'+id+'-e"></div></div>'; }).join('');
+}
+function abfrPruef(id){
+  const inp=document.getElementById(id), e=document.getElementById(id+'-e'); if(!inp||!e) return;
+  const los=inp.dataset.los||'', ok=normWort(inp.value)===normWort(los);
+  e.className='af-erg '+(ok?'gut':'nein');
+  e.innerHTML=(ok?'✅ Richtig — ':'Richtig ist: ')+'<b>'+esc(los)+'</b> '+
+    '<button type="button" data-t="'+attr(los)+'" onclick="speak(this.dataset.t,0.9)">🔊</button>';
+}
+
+/* ---- Rappel: drei Wörter der vorigen Lektion ---- */
+function vorigeLektion(l){ const i=LEKTIONEN.indexOf(l); return i>=0?LEKTIONEN[i+1]:null; }
+function renderRappel(l){
+  const v=vorigeLektion(l);
+  const ws=(v&&v.vokabeln&&v.vokabeln.woerter)||[];
+  if(!ws.length) return '';
+  return '<p class="sk-hinweis">Drei Wörter aus der Lektion vom '+fmtDate(v.datum).kurz+
+    ' — erst schreiben, dann prüfen, nicht nachschauen.</p>'+
+    renderAbfrage(auswahl(ws,3,l.datum),'rap-'+l.datum);
+}
+
+/* ---- Wörter im richtigen Abstand wiederholen (1 · 2 · 4 · 7 · 15 · 30 Tage) ---- */
+const SRS_INT=[1,2,4,7,15,30], SRS_MAX=15;
+let SRS_Q=[], SRS_I=0;
+function srsZustand(de){ try{ return JSON.parse(lsGet('srs:'+de)||'null'); }catch(e){ return null; } }
+function srsWarteschlange(){
+  const heute=heuteISO(), m=new Map();
+  LEKTIONEN.slice().reverse().forEach(l=>{
+    if(l.datum>=heute) return;                         /* neue Wörter erst ab dem Tag danach */
+    ((l.vokabeln&&l.vokabeln.woerter)||[]).forEach(w=>{ if(w.de&&!m.has(w.de)) m.set(w.de,{w:w}); });
+  });
+  const faellig=[], neu=[];
+  m.forEach(k=>{ const z=srsZustand(k.w.de); if(!z) neu.push(k); else if(z.f<=heute){ k.z=z; faellig.push(k); } });
+  faellig.sort((a,b)=>a.z.f<b.z.f?-1:(a.z.f>b.z.f?1:0));
+  return faellig.concat(neu);
+}
+function renderSRS(){ return '<div class="srs" id="srs"></div>'; }
+function srsStart(){
+  if(!document.getElementById('srs')) return;
+  const heute=heuteISO(), done=+(lsGet('srs-tag-'+heute)||0);
+  SRS_Q=srsWarteschlange().slice(0,Math.max(0,SRS_MAX-done)); SRS_I=0; srsZeige();
+}
+function srsZeige(){
+  const el=document.getElementById('srs'); if(!el) return;
+  const heute=heuteISO(), done=+(lsGet('srs-tag-'+heute)||0);
+  if(SRS_I>=SRS_Q.length){
+    el.innerHTML='<div class="srs-fertig">'+(done?'✅ Heute '+done+' Wörter wiederholt. Morgen kommen die nächsten.'
+      :'Heute ist kein Wort fällig. 🎉')+'</div>';
+    return;
+  }
+  const k=SRS_Q[SRS_I], w=k.w, kern=wortKern(w.de);
+  el.innerHTML='<div class="srs-kopf"><span>Karte '+(SRS_I+1)+' von '+SRS_Q.length+'</span><span>'+
+      (k.z?'Wiederholung':'neu')+'</span></div>'+
+    '<div class="srs-fr">'+esc(w.fr||'')+(w.wortart?' <i>'+esc(w.wortart)+'</i>':'')+'</div>'+
+    '<p class="srs-auftrag">Sag das deutsche Wort laut — mit Artikel —, dann deck auf.</p>'+
+    '<div class="srs-de" id="srs-de" hidden><b>'+esc(kern)+'</b>'+
+      (w.de!==kern?' <span class="srs-voll">'+esc(w.de)+'</span>':'')+
+      (w.beispiel?'<div class="srs-bsp">'+bold(w.beispiel)+'</div>':'')+'</div>'+
+    '<div class="srs-knoepfe" id="srs-k1"><button type="button" onclick="srsAuf()">Aufdecken</button></div>'+
+    '<div class="srs-knoepfe" id="srs-k2" hidden>'+
+      '<button type="button" class="ja" onclick="srsAntwort(true)">✓ Gewusst</button>'+
+      '<button type="button" class="nein" onclick="srsAntwort(false)">✗ Noch nicht</button>'+
+      '<button type="button" data-t="'+attr(kern)+'" onclick="speak(this.dataset.t,0.9)">🔊</button></div>';
+}
+function srsAuf(){
+  document.getElementById('srs-de').hidden=false;
+  document.getElementById('srs-k1').hidden=true;
+  document.getElementById('srs-k2').hidden=false;
+}
+function srsAntwort(ok){
+  const k=SRS_Q[SRS_I]; if(!k) return;
+  const heute=heuteISO(), z=srsZustand(k.w.de)||{b:-1};
+  const b=ok?Math.min(z.b+1,SRS_INT.length-1):0;
+  lsSet('srs:'+k.w.de,JSON.stringify({b:b,f:plusTage(heute,ok?SRS_INT[b]:1)}));
+  lsSet('srs-tag-'+heute,String(+(lsGet('srs-tag-'+heute)||0)+1));
+  SRS_I++; srsZeige();
+}
+
+/* ---- Die Regel in einem Satz ---- */
+function renderKurzregel(k){
+  if(!k||!k.fr) return '';
+  return '<div class="kurzregel"><div class="kr-k">La règle en une phrase</div>'+
+    '<p class="kr-fr">'+bold(k.fr)+'</p>'+(k.de?'<p class="kr-de">'+bold(k.de)+'</p>':'')+
+    ((k.beispiele||[]).length?'<ul>'+k.beispiele.map(b=>'<li>'+bold(b)+'</li>').join('')+'</ul>':'')+'</div>';
+}
+
+/* ---- Sprechen: sich selbst aufnehmen und anhören ---- */
+let AUF_REC=null, AUF_T=null;
+function renderAufnahme(){
+  return '<div class="aufn"><div class="aufn-k">🎙️ Dich selbst hören</div>'+
+    '<p>Sprich <b>60 Sekunden</b> frei über das Thema der Lektion. Dann hör dich an: Hast du '+
+    '<b>weil</b> und <b>deshalb</b> benutzt? Steht das Verb richtig?</p>'+
+    '<div class="aufn-reihe"><button type="button" id="aufBtn" onclick="aufnahme()">● Aufnehmen</button>'+
+    '<span id="aufStand"></span></div><audio id="aufAudio" controls hidden></audio>'+
+    '<p class="fr">L’enregistrement reste sur ton téléphone. Si le micro est bloqué ici, '+
+    'utilise l’app Dictaphone : 60 secondes, puis réécoute.</p></div>';
+}
+async function aufnahme(){
+  const btn=document.getElementById('aufBtn'), st=document.getElementById('aufStand'),
+        au=document.getElementById('aufAudio');
+  if(!btn||!st||!au) return;
+  if(AUF_REC&&AUF_REC.state==='recording'){ AUF_REC.stop(); return; }
+  if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia||!window.MediaRecorder){
+    st.textContent='Hier geht keine Aufnahme — nimm die App „Sprachmemos“.'; return; }
+  try{
+    const s=await navigator.mediaDevices.getUserMedia({audio:true});
+    const teile=[]; AUF_REC=new MediaRecorder(s);
+    AUF_REC.ondataavailable=e=>{ if(e.data&&e.data.size) teile.push(e.data); };
+    AUF_REC.onstop=()=>{
+      clearInterval(AUF_T); s.getTracks().forEach(t=>t.stop());
+      au.src=URL.createObjectURL(new Blob(teile,{type:AUF_REC.mimeType||'audio/mp4'}));
+      au.hidden=false; btn.textContent='● Noch einmal';
+      st.textContent='Hör dich jetzt an.';
+    };
+    AUF_REC.start(); let n=60; btn.textContent='■ Stopp'; st.textContent='Aufnahme läuft … '+n+' s';
+    AUF_T=setInterval(()=>{ n--; st.textContent='Aufnahme läuft … '+n+' s'; if(n<=0&&AUF_REC.state==='recording') AUF_REC.stop(); },1000);
+  }catch(e){ st.textContent='Das Mikrofon ist hier gesperrt — nimm die App „Sprachmemos“.'; }
+}
+
+/* ---- Mein Fehlerheft ---- */
+function renderFehlerheft(datum){
+  if(!FEHLERHEFT.length) return '<p class="sk-hinweis">Dein Fehlerheft ist noch leer. Schick mir deine '+
+    'Antworten (Knopf ganz unten). Jeder Fehler, den ich korrigiere, kommt hierher — und an den '+
+    'Übungstagen übst du genau diese Sätze noch einmal.</p>';
+  const n=FEHLERHEFT.length, s=hashZahl(datum)%n, pick=[];
+  for(let i=0;i<Math.min(5,n);i++) pick.push(FEHLERHEFT[(s+i)%n]);
+  return '<p class="sk-hinweis"><b>'+n+'</b> Fehler gesammelt — deine eigenen. Hier fünf davon: '+
+    'schreib es richtig, dann vergleiche.</p>'+pick.map((f,i)=>{ const id='fh-'+datum+'-'+i;
+      return '<div class="fh"><div class="fh-f">✗ '+esc(f.falsch||'')+'</div>'+
+        '<div class="af-reihe"><input type="text" id="'+id+'" autocomplete="off" spellcheck="false" placeholder="richtig:">'+
+        '<button type="button" onclick="document.getElementById(\''+id+'-l\').hidden=false">Lösung</button></div>'+
+        '<div class="fh-l" id="'+id+'-l" hidden>✓ <b>'+esc(f.richtig||'')+'</b>'+
+        (f.baustelle?' · Baustelle '+esc(f.baustelle):'')+(f.kettenglied?' · Glied '+esc(f.kettenglied):'')+
+        (f.regel?'<div class="fh-r">'+esc(f.regel)+'</div>':'')+'</div></div>'; }).join('');
+}
+
+/* ---- Antworten sammeln und an Claude schicken ---- */
+function renderSenden(){
+  return '<section class="senden"><h3>📤 Deine Antworten an Claude schicken</h3>'+
+    '<p>Ein Knopf sammelt alles, was du heute geschrieben hast. Füge es im Chat ein — ich korrigiere '+
+    'Inhalt und Sprache, ordne jeden Fehler einer Baustelle zu und trage ihn in dein Fehlerheft ein.</p>'+
+    '<button type="button" onclick="sammleAntworten(this)">Antworten sammeln und kopieren</button>'+
+    '<textarea class="senden-aus" id="sendenAus" readonly hidden aria-label="Gesammelte Antworten"></textarea></section>';
+}
+function sammleAntworten(btn){
+  const out=document.getElementById('sendenAus'), e=TAGE[cur]; if(!out||!e) return;
+  const l=e.l, z=[];
+  z.push('Deutsch täglich · '+(e.typ==='uebung'?'Übungstag':'Lektion '+((l&&l.zyklus&&l.zyklus.lektion)||''))+
+         ' · '+fmtDate(e.datum).lang, '');
+  document.querySelectorAll('#content textarea, #content input[type=text]').forEach(t=>{
+    if(t===out||!t.value.trim()) return;
+    const box=t.closest('.auf,.le-schritt,.abfr,.fh,.block,.sk,section');
+    let frage='';
+    if(box){ const q=box.querySelector('.frage,.fr2,.af-fr,.fh-f,h4,h3'); if(q) frage=q.textContent.replace(/\s+/g,' ').trim(); }
+    z.push('— '+(frage||'Antwort').slice(0,160), t.value.trim(), '');
+  });
+  if(z.length<=2) z.push('(Noch keine Antworten geschrieben.)');
+  const text=z.join('\n'); out.value=text; out.hidden=false;
+  const ok=()=>{ btn.textContent='Kopiert ✓ — jetzt im Chat einfügen'; };
+  if(navigator.clipboard&&navigator.clipboard.writeText)
+    navigator.clipboard.writeText(text).then(ok,()=>{ out.select(); btn.textContent='Text markiert — jetzt kopieren'; });
+  else { out.select(); btn.textContent='Text markiert — jetzt kopieren'; }
+}
+
+/* ---- Hinweis: Einstufungstest noch offen ---- */
+function renderMesshinweis(){
+  if(!MESSUNG_OFFEN) return '';
+  return '<a class="mess" href="https://claude.ai/code/artifact/ea512258-b4a4-47d8-8959-12d7cd441bf9" '+
+    'target="_blank" rel="noopener"><b>📏 Test de niveau encore à faire</b> — une fois, environ 45 min. '+
+    'Ensuite les leçons sont réglées sur ton vrai niveau. Envoie-moi tes résultats.</a>';
+}
+
+/* ---- Sonntag: Wochenrückblick ---- */
+function renderWochenrueckblick(datum){
+  const d=alsDatum(datum); if(!d||d.getDay()!==0) return '';
+  const von=plusTage(datum,-6);
+  const woche=LEKTIONEN.filter(x=>x.datum>=von&&x.datum<=datum);
+  if(!woche.length) return '';
+  const themen=[...new Set(woche.map(x=>x.zyklus&&x.zyklus.grammatik).filter(Boolean))];
+  const alle=[]; woche.forEach(x=>((x.vokabeln&&x.vokabeln.woerter)||[]).forEach(w=>alle.push(w)));
+  const sitzt=ohneDoppelte(alle).filter(w=>{ const z=srsZustand(w.de); return z&&z.b>=2; }).length;
+  return '<section class="rueck"><div class="rk-k">Sonntag · Wochenrückblick · 10 Min</div>'+
+    '<h3>Was du diese Woche gelernt hast</h3>'+
+    (themen.length?'<ul>'+themen.map(t=>'<li>'+esc(t)+'</li>').join('')+'</ul>':'')+
+    woche.filter(x=>x.kurzregel&&x.kurzregel.fr).map(x=>'<p class="kr-mini">'+bold(x.kurzregel.fr)+'</p>').join('')+
+    '<p><b>'+ohneDoppelte(alle).length+'</b> neue Wörter — davon sitzen <b>'+sitzt+'</b> schon sicher '+
+    '(mindestens zweimal richtig in der Wiederholung).</p>'+
+    '<h4>Mini-Test: 10 Wörter</h4>'+renderAbfrage(auswahl(alle,10,datum),'rk-'+datum)+
+    '<p class="fr">Le bilan du dimanche : ce que tu as vu cette semaine, et un petit test.</p></section>';
+}
+
+/* ---- Der Plan: Pflicht in Schritten, der Rest als Bonus ---- */
+const PLAN_SCHRITTE=[
+  {id:'wdh',min:5,de:'Wiederholen'},{id:'vok',min:10,de:'Neue Vokabeln'},
+  {id:'gram',min:10,de:'Grammatik'},{id:'lesen',min:15,de:'Lesen und schreiben'},
+  {id:'diktat',min:10,de:'Diktat'},{id:'leben',min:5,de:'Im Leben'},{id:'sprechen',min:5,de:'Sprechen'}];
+const UE_SCHRITTE=[
+  {id:'u-wdh',min:10,de:'Wörter wiederholen'},{id:'u-fehler',min:5,de:'Mein Fehlerheft'},
+  {id:'u-ueben',min:15,de:'Übungen zur letzten Lektion'}];
+function planKey(datum,id){ return 'plan-'+datum+'-'+id; }
+function renderPlanKopf(datum,schritte,titel,fr){
+  const fertig=schritte.filter(s=>lsGet(planKey(datum,s.id))).length,
+        min=schritte.reduce((a,s)=>a+s.min,0);
+  return '<nav class="plan" aria-label="Dein Plan heute"><div class="plan-k"><b>'+titel+'</b> · '+min+
+    ' Min · <span id="planStand">'+fertig+' von '+schritte.length+' erledigt</span></div><ol>'+
+    schritte.map((s,i)=>'<li><a href="#sk-'+s.id+'" id="pl-'+s.id+'" class="'+
+      (lsGet(planKey(datum,s.id))?'ok':'')+'">'+(i+1)+' · '+esc(s.de)+' <small>'+s.min+'′</small></a></li>').join('')+
+    '</ol><p class="plan-fr">'+fr+'</p></nav>';
+}
+function renderSchritt(datum,s,nr,inhalt){
+  const an=!!lsGet(planKey(datum,s.id));
+  return '<section class="sk" id="sk-'+s.id+'"><div class="sk-kopf"><span class="sk-nr">'+nr+'</span>'+
+    '<h3>'+esc(s.de)+'</h3><span class="sk-min">'+s.min+' Min</span>'+
+    '<label class="sk-fertig"><input type="checkbox" data-plan="'+s.id+'"'+(an?' checked':'')+'> fertig</label></div>'+
+    inhalt+'</section>';
+}
+function planVerdrahten(datum,schritte){
+  document.querySelectorAll('input[data-plan]').forEach(cb=>cb.addEventListener('change',()=>{
+    const k=planKey(datum,cb.dataset.plan);
+    if(cb.checked) lsSet(k,'1'); else lsDel(k);
+    const a=document.getElementById('pl-'+cb.dataset.plan); if(a) a.classList.toggle('ok',cb.checked);
+    const n=schritte.filter(s=>lsGet(planKey(datum,s.id))).length;
+    const st=document.getElementById('planStand');
+    if(st) st.textContent=n+' von '+schritte.length+' erledigt'+(n===schritte.length?' 🎉':'');
+  }));
+}
+function renderLektionsSeite(l,datum,idx){
+  const hoertext=hoertextVon(l);
+  const teile={
+    wdh: renderRappel(l)+'<h4 class="sk-unter">Deine fälligen Wörter</h4>'+renderSRS(),
+    vok: renderVokabeln(l.vokabeln,idx,datum),
+    gram: renderKurzregel(l.kurzregel)+(l.grammatik?renderBlock(l.grammatik,'gram',idx):'')+
+          renderDeklination(l.deklination,idx),
+    lesen: renderLesen(l.lesen,idx),
+    diktat: renderDiktat(l.diktat,(l.zyklus&&l.zyklus.etappe)||'B2'),
+    leben: renderLeben(l.leben,idx),
+    sprechen: renderSay(l.aussprache,idx)+renderAufnahme()
+  };
+  let h=renderMesshinweis()+renderWochenrueckblick(datum)+
+    renderPlanKopf(datum,PLAN_SCHRITTE,'Dein Plan heute',
+      'Fais les étapes dans l’ordre et coche « fertig » à la fin de chacune. Une heure, et c’est fini. '+
+      'Tout ce qui est plus bas, dans « Bonus », est facultatif.');
+  PLAN_SCHRITTE.forEach((s,i)=>{ h+=renderSchritt(datum,s,i+1,teile[s.id]||''); });
+  h+=renderProbe(l.probe,'probe'+idx,hoertext);
+  h+='<details class="bonus"><summary>Bonus — für mehr <small>facultatif : verbe du jour, exercices, '+
+     'telc, traduction</small></summary><div class="bonus-in">'+
+     (l.verb?renderBlock(l.verb,'verb',idx):'')+(l.wortschatz?renderBlock(l.wortschatz,'voc',idx):'')+
+     renderSatzbau(l.satzbau,idx)+renderTraining(l.training,idx)+
+     renderTraining(l.telc,'telc'+idx,{telc:true,kls:'k-telc',hoertext:hoertext,badge:fokusBadge(l)})+
+     renderTrans(l.uebersetzung,idx)+'</div></details>';
+  return h+renderSenden();
+}
+
 function renderPauseSeite(l,eintrag){
-  const p=eintrag.p, weiter=naechsterTag(p.bis);
+  const p=eintrag.p, weiter=weiterNach(p.bis);
   const nr=(l.zyklus&&l.zyklus.lektion)||'';
   let h='<section class="uetag">'+
     '<div class="kopf"><h3>Pause</h3>'+
@@ -1971,7 +2339,8 @@ function renderPauseSeite(l,eintrag){
     'Le '+fmtDate(weiter).kurz+', ça reprend tout seul, sans perdre de leçon. Si tu veux '+
     'quand même réviser, ton vocabulaire est juste en dessous — c\u2019est facultatif.</p>'+
     '</section>';
-  h+=renderVokabeln(l.vokabeln,'ue',eintrag.datum);
+  h+=renderMesshinweis();
+  h+='<section class="sk"><div class="sk-kopf"><h3>Wenn du magst: deine Wörter</h3><span class="sk-min">freiwillig</span></div>'+renderSRS()+'</section>';
   return h;
 }
 function renderUebungstagSeite(l,datum){
@@ -1992,16 +2361,23 @@ function renderUebungstagSeite(l,datum){
     'weiterkommst. <b>Schick mir deine Antworten.</b> Jeder Deklinationsfehler bekommt sein '+
     '<b>Kettenglied</b>, jeder andere Fehler seine <b>Baustelle</b>.</div>'+
     '</section>';
-  h+=renderVokabeln(l.vokabeln,'ue',datum);
-  h+=renderDeklination(l.deklination,'ue');
-  h+=renderLesen(l.lesen,'ue',{nurUebungen:true});
-  h+=renderTraining(l.training,'ue');
-  h+=renderLeben(l.leben,'ue');
-  h+=renderTraining(l.telc,'uetelc',{telc:true,kls:'k-telc',hoertext:hoertextVon(l),
+  h+=renderPlanKopf(datum,UE_SCHRITTE,'Dein Übungstag',
+      'Une demi-heure : d’abord tes mots, puis tes propres fautes, puis les exercices de la dernière leçon.');
+  h+=renderSchritt(datum,UE_SCHRITTE[0],1,renderSRS());
+  h+=renderSchritt(datum,UE_SCHRITTE[1],2,renderFehlerheft(datum));
+  let ueb='';
+  ueb+=renderVokabeln(l.vokabeln,'ue',datum);
+  ueb+=renderDeklination(l.deklination,'ue');
+  ueb+=renderLesen(l.lesen,'ue',{nurUebungen:true});
+  ueb+=renderTraining(l.training,'ue');
+  ueb+=renderLeben(l.leben,'ue');
+  ueb+=renderTraining(l.telc,'uetelc',{telc:true,kls:'k-telc',hoertext:hoertextVon(l),
       badge:fokusBadge(l)});
-  h+=renderDiktat(l.diktat,(l.zyklus&&l.zyklus.etappe)||"B2");
-  h+=renderTrans(l.uebersetzung,'ue');
-  return h;
+  ueb+=renderDiktat(l.diktat,(l.zyklus&&l.zyklus.etappe)||"B2");
+  ueb+=renderTrans(l.uebersetzung,'ue');
+  h+=renderSchritt(datum,UE_SCHRITTE[2],3,'<p class="sk-hinweis">Wähle, was du heute brauchst — '+
+     'mindestens die Kette und das Diktat.</p>'+ueb);
+  return renderWochenrueckblick(datum)+h+renderSenden();
 }
 function render(){
   [...bar.children].forEach((b,i)=>b.classList.toggle('active',i===cur));
@@ -2012,7 +2388,7 @@ function render(){
   document.getElementById('dayTitle').textContent=fmtDate(eintrag.datum).lang;
   const nr=(l.zyklus&&l.zyklus.lektion)||(LEKTIONEN.indexOf(l)>=0?LEKTIONEN.length-LEKTIONEN.indexOf(l):1);
   document.getElementById('daySub').textContent = pause
-    ? 'Pause · Deutsch täglich geht am '+fmtDate(naechsterTag(eintrag.p.bis)).kurz+' weiter'
+    ? 'Pause · Deutsch täglich geht am '+fmtDate(weiterNach(eintrag.p.bis)).kurz+' weiter'
     : ueb
     ? 'Übungstag · nur Übungen zur Lektion '+nr+' vom '+fmtDate(l.datum).kurz
     : 'Lektion '+nr+' · '+(l.thema||'Verb · Wortschatz · Grammatik');
@@ -2137,18 +2513,13 @@ function render(){
     ? renderPauseSeite(l,eintrag)
     : ueb
     ? renderUebungstagSeite(l,eintrag.datum)
-    : renderBlock(l.verb,'verb',cur)+renderBlock(l.wortschatz,'voc',cur)
-      +renderVokabeln(l.vokabeln,cur,eintrag.datum)+renderBlock(l.grammatik,'gram',cur)
-    +renderSatzbau(l.satzbau,cur)+renderDeklination(l.deklination,cur)+renderLesen(l.lesen,cur)
-    +renderTraining(l.training,cur)+renderLeben(l.leben,cur)
-    +renderTraining(l.telc,'telc'+cur,{telc:true,kls:'k-telc',hoertext:hoertext,
-        badge:fokusBadge(l)})
-    +renderProbe(l.probe,'probe'+cur,hoertext)
-    +renderSay(l.aussprache,cur)+renderDiktat(l.diktat,(l.zyklus&&l.zyklus.etappe)||"B2")+renderTrans(l.uebersetzung,cur);
+    : renderLektionsSeite(l,eintrag.datum,cur);
   probeSchloss();
   if(document.querySelector('.dk-tempo')) dkSetRate(dkRate);
   tgWiederherstellen();
   vokabelnHerstellen();
+  planVerdrahten(eintrag.datum,pause?[]:(eintrag.typ==='uebung'?UE_SCHRITTE:PLAN_SCHRITTE));
+  srsStart();
   window.scrollTo({top:0,behavior:'smooth'});
 }
 /* ---- Fortschritt im Kopf: Ring, Themenband, drei Kennzahlen ----

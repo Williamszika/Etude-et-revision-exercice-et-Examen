@@ -48,14 +48,27 @@ _heute = kalender.heute_berlin()
 if lekt:
     START = kalender.effektiver_start(_heute).isoformat()
 ETAPPE_ENDE = kalender.etappe_ende().isoformat()
-PAUSEN = [{'von': v.isoformat(), 'bis': b.isoformat()} for v, b, _ in kalender.pausen()]
+PAUSEN = [{'von': p['von'], 'bis': p['bis'], **({'zaehlt': True} if p.get('zaehlt') else {})}
+          for p in kalender._roh()]
+
+# Seit 05.10.2026: ihr persönliches Fehlerheft (wird bei jeder Korrektur ergänzt) und
+# ob die Einstufungsmessung 1 noch offen ist (dann zeigt die Seite einen Hinweis).
+_fp = os.path.join(BASE, 'fehlerheft.json')
+FEHLER = json.load(open(_fp, encoding='utf-8')).get('fehler', []) if os.path.exists(_fp) else []
+try:
+    _ein = json.load(open(os.path.join(BASE, 'einstufungen.json'), encoding='utf-8'))
+    MESSUNG_OFFEN = any(m.get('status') == 'offen' for m in _ein.get('messungen', []))
+except Exception:
+    MESSUNG_OFFEN = False
 
 data = json.dumps(lekt, ensure_ascii=False).replace('</', '<\\/')
 tpl = open(os.path.join(BASE, '_template.html'), encoding='utf-8').read()
 out = (tpl.replace('__DATA__', data).replace('__START__', START)
           .replace('__ENDE__', ETAPPE_ENDE)
           .replace('__ENDE_LANG__', '.'.join(reversed(ETAPPE_ENDE.split('-'))))
-          .replace('__PAUSEN__', json.dumps(PAUSEN)))
+          .replace('__PAUSEN__', json.dumps(PAUSEN))
+          .replace('__FEHLER__', json.dumps(FEHLER, ensure_ascii=False).replace('</', '<\\/'))
+          .replace('__MESSUNG_OFFEN__', 'true' if MESSUNG_OFFEN else 'false'))
 open(os.path.join(BASE, 'index.html'), 'w', encoding='utf-8').write(out)
 print(f"{len(lekt)} Lektion(en) · "
       f"{'neueste: ' + lekt[0]['datum'] if lekt else 'Neustart, Beginn ' + START} · "
