@@ -1636,7 +1636,7 @@ stationär) erst, wenn sie die erste Runde geschrieben hat.
 
 ## Diagnoseliste — „Zehn Diagnosen, ein Mensch“
 
-`diagnosen/index.html` (Icon „medical“). Auf ihren Wunsch vom 06.10.2026: *„Je vais te donner
+`diagnosen/index.html` → `https://claude.ai/artifact/6gNtzKpV7BpNZcuUuFHLLY` (Icon „medical“). Auf ihren Wunsch vom 06.10.2026: *„Je vais te donner
 une liste de maladie fais des recherches la dessus et parle moi de toute ses maladies."* Zehn
 Zeilen (Syringomyelie/-bulbie, Rückenmarkschädigung, Spinalkanalstenose, Krallenhände,
 Blasenlähmung, Sonstige Miktionsstörungen, essentielle Hypertonie, paranoide Schizophrenie,
