@@ -1,0 +1,630 @@
+<title>Zehn Diagnosen, ein Mensch</title>
+<style>
+  /* Layout: Lernseite wie ihre Zusammenfassungen — Kopf, Sprungleiste, eine Spalte, je Diagnose ein Abschnitt mit Herkunftsmarken */
+  :root{
+    --paper:#eef0f3;--paper-2:#e2e6ec;--card:#fbfcfd;--ink:#171c24;--ink-soft:#4a5463;--line:#cbd2dc;
+    --accent:#2f4f86;--accent-deep:#213c6b;--accent-soft:#dce4f2;
+    --du:#256b4a;--dubg:#dfeee6;          /* Deine Unterlagen */
+    --net:#1f5f86;--netbg:#dbe8f1;        /* Internetquelle */
+    --ich:#7a5a08;--ichbg:#f8edc8;        /* meine Folgerung */
+    --bad:#a33f34;--badbg:#f6e1de;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#10141a;--paper-2:#0b0e13;--card:#181e27;--ink:#e8ecf2;--ink-soft:#9ca7b6;--line:#29313d;
+    --accent:#8fb0e6;--accent-deep:#aac4ee;--accent-soft:#16233a;
+    --du:#6fc292;--dubg:#14281c;--net:#6cadd9;--netbg:#122736;--ich:#e0b84f;--ichbg:#2c2410;
+    --bad:#e08a7c;--badbg:#301b17;color-scheme:dark;}}
+  :root[data-theme="dark"]{
+    --paper:#10141a;--paper-2:#0b0e13;--card:#181e27;--ink:#e8ecf2;--ink-soft:#9ca7b6;--line:#29313d;
+    --accent:#8fb0e6;--accent-deep:#aac4ee;--accent-soft:#16233a;
+    --du:#6fc292;--dubg:#14281c;--net:#6cadd9;--netbg:#122736;--ich:#e0b84f;--ichbg:#2c2410;
+    --bad:#e08a7c;--badbg:#301b17;color-scheme:dark;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
+    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-deep);}
+  a:focus-visible,button:focus-visible,summary:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  header.hero{padding-block:44px 28px;padding-inline:20px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:62ch;margin:0 auto 16px;color:var(--ink-soft);font-size:15.5px;}
+  .legende{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+
+  .tag{display:inline-block;max-width:100%;white-space:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;
+    padding:3px 9px;border-radius:999px;font-style:normal;vertical-align:1px;}
+  .tag.du{background:var(--dubg);color:var(--du);}
+  .tag.net{background:var(--netbg);color:var(--net);}
+  .tag.ich{background:var(--ichbg);color:var(--ich);}
+  .tag.icd{background:var(--accent-soft);color:var(--accent-deep);}
+
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
+    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;color:var(--ink-soft);
+    padding:6px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);background:var(--card);}
+
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:50px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  h2 .nr{font-family:var(--mono);font-size:.9rem;color:var(--accent);margin-right:8px;vertical-align:4px;}
+  .lead{color:var(--ink-soft);margin:0 0 20px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.18rem;font-weight:600;margin:26px 0 8px;}
+  p{margin:0 0 14px;max-width:70ch;}
+  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
+  li{margin:5px 0;}
+  .fr{font-style:italic;color:var(--ink-soft);}
+  .fr::before{content:"🇫🇷 ";font-style:normal;}
+
+  .kasten{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid var(--line);background:var(--card);}
+  .kasten > :last-child{margin-bottom:0;}
+  .kasten.du{background:var(--dubg);border-color:transparent;}
+  .kasten.net{background:var(--netbg);border-color:transparent;}
+  .kasten.ich{background:var(--ichbg);border-color:transparent;}
+  .kasten.bad{background:var(--badbg);border-color:transparent;}
+  .kasten .kopf{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 8px;font-weight:700;}
+  .quelle{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:8px;overflow-wrap:anywhere;}
+
+  .scroll{overflow-x:auto;margin:16px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:36rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;
+    color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.code{font-family:var(--mono);font-size:13.5px;white-space:nowrap;font-variant-numeric:tabular-nums;}
+
+  .kette{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:12px 0 16px;}
+  .kette span{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:15px;}
+  .kette i{font-style:normal;color:var(--accent);font-weight:700;}
+  .kette span.ende{background:var(--badbg);border-color:transparent;}
+
+  .raster{display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:12px;margin:14px 0;}
+  .raster > div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-width:0;}
+  .raster h4{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 6px;}
+  .raster ul{margin:0;}
+
+  .woerter{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:6px 14px;margin:10px 0 0;padding:0;list-style:none;font-size:15px;}
+  .woerter li{margin:0;}
+  .woerter b{font-weight:700;}
+
+  details.loes{margin:10px 0 0;}
+  details.loes summary{cursor:pointer;font-family:var(--mono);font-size:12px;color:var(--accent-deep);}
+  details.loes > div{margin-top:8px;padding:12px 14px;border-left:3px solid var(--du);background:var(--card);border-radius:0 8px 8px 0;}
+  .aufgabe{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;}
+  .aufgabe .op{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 4px;}
+  textarea{width:100%;min-height:6.5rem;font:inherit;font-size:15.5px;padding:10px 12px;border-radius:8px;
+    border:1px solid var(--line);background:var(--paper);color:var(--ink);resize:vertical;}
+  button{font:inherit;font-size:14px;padding:9px 16px;border-radius:999px;border:1px solid var(--accent);
+    background:var(--accent);color:var(--card);cursor:pointer;}
+  #kopiert{font-family:var(--mono);font-size:12px;color:var(--du);margin-left:10px;}
+  #sammel{margin-top:12px;}
+  footer{max-width:60rem;margin:0 auto;padding-block:20px 60px;padding-inline:18px;color:var(--ink-soft);font-size:14px;border-top:1px solid var(--line);}
+  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;}}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Diagnoseliste · Neurologie · Urologie · Psychiatrie</p>
+  <h1>Zehn Diagnosen, ein Mensch</h1>
+  <p class="sub">Deine Liste, Diagnose für Diagnose: was sie bedeutet, wie sie entsteht, was du siehst und was du als Pflegefachkraft tust. Dazu: wie die Diagnosen bei einem Menschen zusammenhängen können.</p>
+  <div class="legende">
+    <span class="tag du">aus deinen Unterlagen</span>
+    <span class="tag net">Internetquelle</span>
+    <span class="tag ich">meine Folgerung</span>
+  </div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#ueberblick">Überblick</a>
+  <a href="#zusammenhang">Zusammenhang</a>
+  <a href="#grundlage">Anatomie</a>
+  <a href="#syrinx">Syringomyelie</a>
+  <a href="#rueckenmark">Rückenmark</a>
+  <a href="#stenose">Spinalkanalstenose</a>
+  <a href="#kralle">Krallenhand</a>
+  <a href="#blase">Blasenlähmung</a>
+  <a href="#miktion">Miktionsstörungen</a>
+  <a href="#hypertonie">Hypertonie</a>
+  <a href="#schizo">Schizophrenie</a>
+  <a href="#offen">Zwei offene Zeilen</a>
+  <a href="#pflege">Pflege-Prioritäten</a>
+  <a href="#test">Selbsttest</a>
+  <a href="#quellen">Quellen</a>
+</nav>
+
+<main>
+
+<section id="ueberblick">
+  <h2>Der Überblick</h2>
+  <p class="lead">Die Kodes sind im amtlichen Verzeichnis <b>ICD-10-GM 2026</b> (BfArM) nachgeschlagen. Drei Wörter deiner Liste stehen dort <b>nicht wörtlich</b> als Titel: <i>Blasenlähmung</i>, <i>Rückenmarkschädigung</i> und <i>Krallenhände</i>. Für sie steht hier der Kode, der am besten passt. Welcher Kode in der Akte wirklich steht, siehst du in der Akte selbst.</p>
+  <p class="fr">Les codes viennent de la CIM-10-GM 2026 officielle. Pour trois mots de ta liste, il n'existe pas de titre identique : j'indique le code le plus proche. Le vrai code est dans le dossier du patient.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Deine Zeile</th><th>Kode</th><th>Amtlicher Titel</th><th>In einem Satz</th></tr></thead>
+    <tbody>
+      <tr><td>Syringomyelie und Syringobulbie</td><td class="code">G95.0</td><td>Syringomyelie und Syringobulbie</td><td>Eine mit Flüssigkeit gefüllte Höhle im Rückenmark bzw. im Hirnstamm.</td></tr>
+      <tr><td>Rückenmarkschädigung</td><td class="code">G95.9 ?</td><td>Krankheit des Rückenmarkes, nicht näher bezeichnet</td><td>Das Rückenmark ist geschädigt; die Ursache steht in einer anderen Zeile.</td></tr>
+      <tr><td>Spinalkanalstenose</td><td class="code">M48.0-</td><td>Spinal(kanal)stenose</td><td>Der Wirbelkanal ist eng und drückt auf Nerven oder Rückenmark.</td></tr>
+      <tr><td>Krallenhände</td><td class="code">M21.54 ?</td><td>Erworbene Klauenhand … : Hand</td><td>Die kleinen Handmuskeln fallen aus, die Finger krümmen sich zur Kralle.</td></tr>
+      <tr><td>Blasenlähmung</td><td class="code">G95.80/81 ?</td><td>Harnblasenlähmung bei Schädigung des oberen / unteren motorischen Neurons</td><td>Die Blase arbeitet nicht mehr richtig, weil die Nerven geschädigt sind.</td></tr>
+      <tr><td>Sonstige Miktionsstörungen</td><td class="code">R39.1</td><td>Sonstige Miktionsstörungen</td><td>Ein Symptom: schwacher oder gespaltener Harnstrahl, verzögertes Wasserlassen.</td></tr>
+      <tr><td>Essentielle Hypertonie, n. n. bez.</td><td class="code">I10.9-</td><td>Essentielle Hypertonie, nicht näher bezeichnet</td><td>Bluthochdruck ohne eine einzelne Grundkrankheit als Ursache.</td></tr>
+      <tr><td>Paranoide Schizophrenie</td><td class="code">F20.0</td><td>Paranoide Schizophrenie</td><td>Eine Psychose mit Wahn und meist Stimmenhören.</td></tr>
+      <tr><td>Gehirn, nicht näher bezeichnet</td><td class="code">G93.9 ?</td><td>Krankheit des Gehirns, nicht näher bezeichnet</td><td>Unvollständig — siehe <a href="#offen">Zwei offene Zeilen</a>.</td></tr>
+      <tr><td>Sonstige näher bezeichnete …</td><td class="code">?</td><td>Titelanfang ohne Ende</td><td>Unvollständig — siehe <a href="#offen">Zwei offene Zeilen</a>.</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:14px;color:var(--ink-soft)">Ein <b>?</b> heißt: Der Kode passt am besten zu deinem Wort. Bestätigt ist er erst, wenn er so in der Akte steht. Die Reihenfolge ist umgestellt: erst die Ursache, dann die Folgen.</p>
+</section>
+
+<section id="zusammenhang">
+  <h2>Wie die Diagnosen zusammenhängen können</h2>
+  <p class="lead">Die Liste ist kein Durcheinander. Sieben der zehn Zeilen lassen sich an <b>einer</b> Stelle festmachen: am Rückenmark. Zwei stehen für sich: der Blutdruck und die Psyche.</p>
+  <div class="kasten ich">
+    <p class="kopf"><span class="tag ich">meine Folgerung</span> Die Ketten sind möglich — keine Befunde</p>
+    <p>Jedes einzelne Glied ist belegt (siehe die Abschnitte). Dass es bei <b>diesem</b> Menschen genau so verläuft, steht nicht in der Liste. Prüf es an der Akte oder frag im Team.</p>
+  </div>
+  <h3>Kette 1 — die Hände</h3>
+  <div class="kette"><span>Syringomyelie</span><i>→</i><span>Höhle drückt im Halsmark</span><i>→</i><span>Rückenmarkschädigung</span><i>→</i><span>kleine Handmuskeln schwinden</span><i>→</i><span class="ende">Krallenhände</span></div>
+  <h3>Kette 2 — die Blase</h3>
+  <div class="kette"><span>Rückenmarkschädigung</span><i>→</i><span>Nervenweg zur Blase gestört</span><i>→</i><span>Blasenlähmung (neurogene Blase)</span><i>→</i><span class="ende">Miktionsstörung · Restharn · Infekt</span></div>
+  <h3>Kette 3 — der Hirnstamm</h3>
+  <div class="kette"><span>Syringobulbie</span><i>→</i><span>Höhle im Hirnstamm</span><i>→</i><span>Schlucken, Sprechen, Gesichtsgefühl gestört</span><i>→</i><span class="ende">Aspirationsgefahr</span></div>
+  <h3>Kette 4 — die Enge</h3>
+  <div class="kette"><span>Spinalkanalstenose</span><i>→</i><span>Druck auf Rückenmark und Nervenwurzeln</span><i>→</i><span class="ende">mehr Schaden: Gang, Gefühl, Blase</span></div>
+  <h3>Wo sich die Diagnosen gegenseitig stören — das ist für die Pflege das Wichtigste</h3>
+  <ul>
+    <li><b>Volle Blase → Blutdruck schießt hoch.</b> Bei Rückenmarkschädigung kann eine überdehnte Blase eine <i>autonome Dysreflexie</i> auslösen: plötzlicher, gefährlicher Blutdruckanstieg mit Schwitzen und klopfendem Kopfschmerz. Das sieht aus wie eine Hypertonie-Entgleisung — die Ursache ist aber die Blase. <span class="tag net">AWMF 043-048</span></li>
+    <li><b>Antipsychotika und die Blase.</b> Medikamente mit anticholinerger Wirkung können einen Harnverhalt auslösen. <span class="tag net">MSD Manual</span> In deinem Psychiatrie-Kurs steht <i>Harnsperre</i> unter den Akutnebenwirkungen. <span class="tag du">deine Unterlagen</span> Bei einer neurogenen Blase ist das doppelt gefährlich.</li>
+    <li><b>Antipsychotika und das Herz-Kreislauf-Risiko.</b> Gewichtszunahme und Diabetes (vor allem Olanzapin) kommen zur Hypertonie dazu. <span class="tag du">deine Unterlagen</span></li>
+    <li><b>Kein Schmerz als Warnsignal.</b> Ohne Schmerz- und Temperaturgefühl merkt der Mensch weder Verbrennung noch Wunde. Und eine volle Blase meldet sich vielleicht nicht. <span class="tag ich">meine Folgerung</span></li>
+  </ul>
+  <p class="fr">Le point clé pour toi : vessie pleine → la tension peut monter brutalement. Devant un pic de tension chez ce patient, pense d'abord à la vessie.</p>
+</section>
+
+<section id="grundlage">
+  <h2>Was du schon weißt — die Anatomie dahinter</h2>
+  <p class="lead">Drei Sätze aus deinem Anatomie-Kurs erklären fast die ganze Liste.</p>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Unterlagen</span> Die Organe und das Nervensystem</p>
+    <ul>
+      <li><b>Die Kette der Bewegung:</b> Gehirn → Rückenmark → peripherer Nerv → Muskel. Reißt die Kette an irgendeiner Stelle, bewegt sich der Muskel nicht mehr — obwohl der Muskel selbst gesund ist.</li>
+      <li><b>Rückenmark (Medulla spinalis):</b> das Reflexzentrum. Es leitet außerdem die Befehle aus dem Großhirn weiter.</li>
+      <li><b>Hirnstamm mit dem verlängerten Mark (Medulla oblongata):</b> steuert Herz-Kreislauf, Atmung, Schlucken und Brechen, Niesen und Husten. „Schädigungen oft tödlich oder mit schweren Einschränkungen verbunden.“</li>
+      <li><b>Liquor:</b> Gehirn und Rückenmark schwimmen darin; er schützt gegen Stoß und Reibung.</li>
+    </ul>
+    <p class="quelle"><a href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">→ Die Organe und das Nervensystem</a></p>
+  </div>
+  <p>Damit verstehst du: Eine Höhle im Rückenmark unterbricht die Kette. Eine Höhle im Hirnstamm trifft das Schlucken. Und eine Störung des Liquorflusses ist genau das, was die Höhle entstehen lässt.</p>
+  <p class="fr">Ton cours d'anatomie suffit pour comprendre presque toute la liste : moelle = relais et réflexes, tronc cérébral = respiration et déglutition.</p>
+</section>
+
+<section id="syrinx">
+  <h2><span class="nr">G95.0</span>Syringomyelie und Syringobulbie</h2>
+  <p class="lead"><b>Syrinx</b> heißt Röhre oder Höhle. Im Rückenmark (oder im Hirnstamm) bildet sich ein Hohlraum, der mit Flüssigkeit gefüllt ist. Er wird langsam größer und drückt auf das Nervengewebe von innen.</p>
+  <p class="fr">Une cavité remplie de liquide se forme dans la moelle (syringomyélie) ou dans le tronc cérébral (syringobulbie) et écrase les fibres de l'intérieur.</p>
+
+  <h3>Wie sie entsteht</h3>
+  <div class="kette"><span>Liquor kann nicht frei fließen</span><i>→</i><span>Flüssigkeit sammelt sich im Mark</span><i>→</i><span>Höhle wächst</span><i>→</i><span class="ende">Nervenfasern werden zerstört</span></div>
+  <ul>
+    <li>Ursache ist <b>immer eine Liquorzirkulationsstörung</b>. <span class="tag net">Amboss</span></li>
+    <li>In <b>mindestens der Hälfte</b> der Fälle steckt eine angeborene Fehlbildung am Übergang zwischen Schädel und Halswirbelsäule dahinter (<b>Chiari-Malformation</b>). Weitere Ursachen: Narben nach Rückenmarkverletzung, Tumoren — etwa ein Drittel der Menschen mit Rückenmarkstumor entwickelt eine Syrinx. <span class="tag net">MSD Manual</span></li>
+  </ul>
+
+  <h3>Woran du sie erkennst</h3>
+  <div class="raster">
+    <div><h4>Gefühl</h4><ul>
+      <li><b>Dissoziierte Sensibilitätsstörung:</b> Schmerz und Temperatur fallen aus — Berührung, Lage- und Vibrationssinn bleiben.</li>
+      <li>Typisch wie ein Umhang: Nacken, Schultern, Arme.</li>
+      <li>Verbrennungen und Schnitte werden nicht bemerkt.</li></ul></div>
+    <div><h4>Bewegung</h4><ul>
+      <li>Schwäche, Muskelschwund und Muskelzucken an Händen und Armen.</li>
+      <li>Krallenhände.</li>
+      <li>Später: spastische Lähmung der Beine.</li></ul></div>
+    <div><h4>Weiteres</h4><ul>
+      <li>Blasen- und Mastdarmstörungen.</li>
+      <li>Kyphoskoliose — oft Jahre vor den Nervenzeichen.</li>
+      <li>Charcot-Gelenk (Gelenk zerstört sich ohne Schmerz).</li></ul></div>
+    <div><h4>Nur Syringobulbie</h4><ul>
+      <li>Schwindel, Augenzittern (Nystagmus).</li>
+      <li>Gefühlsverlust im Gesicht, Zungenschwund.</li>
+      <li><b>Sprechstörung (Dysarthrie), Schluckstörung (Dysphagie)</b>, Heiserkeit.</li></ul></div>
+  </div>
+  <p style="font-size:14px"><span class="tag net">MSD Manual · Amboss · Radiopaedia</span></p>
+
+  <div class="kasten net">
+    <p class="kopf"><span class="tag net">Internetquelle</span> Warum gerade Schmerz und Temperatur?</p>
+    <p>Die Fasern für Schmerz und Temperatur kreuzen im Rückenmark <b>direkt vor dem Zentralkanal</b> auf die andere Seite — genau dort, wo die Höhle sitzt. Die Fasern für Berührung und Lage laufen weiter außen und bleiben verschont. Deshalb heißt die Störung <i>dissoziiert</i> (getrennt).</p>
+    <p class="fr">Les fibres de la douleur et de la température croisent juste devant le canal central — là où se trouve la cavité. Le toucher passe ailleurs et reste intact.</p>
+  </div>
+
+  <h3>Diagnostik und Therapie</h3>
+  <ul>
+    <li><b>MRT</b> von Rückenmark und Gehirn — mit Kontrastmittel, wenn ein Tumor vermutet wird. Röntgen der Wirbelsäule wegen der Skoliose. <span class="tag net">MSD · Amboss</span></li>
+    <li>Die <b>Ursache beseitigen</b>, z. B. Druckentlastung am Hinterhauptsloch bei Chiari-Malformation. Bei schneller Verschlechterung ein <b>Shunt</b>, der die Flüssigkeit ableitet. Sonst: Physiotherapie und Schmerztherapie. <span class="tag net">MSD · Amboss</span></li>
+    <li><b>Wichtig für das Gespräch mit dem Patienten:</b> Die Operation macht schwere Schäden meist <b>nicht rückgängig</b>. Ziel ist, das Fortschreiten zu stoppen. <span class="tag net">MSD</span></li>
+  </ul>
+
+  <h3>Was du in der Pflege tust</h3>
+  <div class="kasten ich">
+    <p class="kopf"><span class="tag ich">meine Folgerung aus den Symptomen</span></p>
+    <ul>
+      <li><b>Verbrennungen verhindern:</b> Badewasser mit dem Thermometer messen, keine Wärmflasche, heiße Tassen und Teller sichern.</li>
+      <li><b>Haut und Hände täglich ansehen</b> — der Patient spürt Wunden nicht, du musst sie sehen.</li>
+      <li><b>Schlucken beobachten</b> (Syringobulbie): Husten beim Essen, feuchte Stimme, Essensreste im Mund → Aspirationsgefahr melden.</li>
+      <li><b>Sturzgefahr</b> bei spastischen Beinen einschätzen.</li>
+      <li><b>Blase:</b> siehe <a href="#blase">Blasenlähmung</a>.</li>
+    </ul>
+  </div>
+  <h3>Wörter</h3>
+  <ul class="woerter">
+    <li><b>die Syrinx</b> — la cavité (syrinx)</li>
+    <li><b>der Hohlraum, ⸚e</b> — la cavité</li>
+    <li><b>der Liquor</b> — le liquide céphalorachidien</li>
+    <li><b>die Sensibilität</b> — la sensibilité</li>
+    <li><b>dissoziiert</b> — dissocié</li>
+    <li><b>die Atrophie</b> — l'atrophie (fonte musculaire)</li>
+    <li><b>die Dysphagie</b> — la dysphagie (trouble de la déglutition)</li>
+    <li><b>die Dysarthrie</b> — la dysarthrie (trouble de l'articulation)</li>
+  </ul>
+</section>
+
+<section id="rueckenmark">
+  <h2><span class="nr">G95.9 ?</span>Rückenmarkschädigung</h2>
+  <p class="lead">Das ist keine eigene Krankheit, sondern eine <b>Folge</b>. Eine Ursache — hier sehr wahrscheinlich die Syrinx und/oder die Stenose — hat das Rückenmark geschädigt. Welche Zeichen auftreten, hängt davon ab, <b>wo</b> und <b>wie stark</b>.</p>
+  <p class="fr">Ce n'est pas une maladie à part : c'est la conséquence. La cause est dans une autre ligne de la liste.</p>
+  <div class="kasten net">
+    <p class="kopf"><span class="tag net">gesund.bund.de · BfArM</span> Was dazugehört</p>
+    <p>Taubheit, Kribbeln oder Schmerz · gestörte Bewegung von Armen und Beinen · Blasen- und Darmstörungen.</p>
+    <p>Das Wort „Rückenmarkschädigung“ steht in keinem Kode-Titel wörtlich. Möglich sind G95.9 (Krankheit des Rückenmarkes, n. n. bez.), G95.2 (Rückenmarkkompression, n. n. bez.) oder G99.2* (Myelopathie bei anderenorts klassifizierten Krankheiten, z. B. bei Spondylose).</p>
+  </div>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Unterlagen</span> Expertenstandard Kontinenz</p>
+    <p>In der Tabelle der Risikofaktoren stehen <b>neurogene Erkrankungen — Apoplex, Multiple Sklerose, Morbus Parkinson, Rückenmarksverletzungen, Tumore</b> — mit Kreuz bei Harn- <b>und</b> Stuhlinkontinenz.</p>
+    <p class="quelle"><a href="https://claude.ai/artifact/9sE6cUYk1Q3VugvVEUhUHi">→ Kontinenz fördern</a></p>
+  </div>
+  <h3>Was du beobachtest</h3>
+  <p><span class="tag ich">meine Folgerung</span> Sensibilität (spürt er Berührung, warm/kalt?) · Kraft und Gang · Blase und Darm · Haut (Dekubitus, unbemerkte Wunden) · Schmerz. Und vor allem: <b>Veränderungen</b>. Wird es schlechter, ist das eine Meldung an den Arzt wert.</p>
+  <p class="fr">Ce que tu observes : sensibilité, force et marche, vessie et intestin, peau, douleur — et surtout tout ce qui change.</p>
+</section>
+
+<section id="stenose">
+  <h2><span class="nr">M48.0-</span>Spinalkanalstenose</h2>
+  <p class="lead">Der Wirbelkanal, in dem Rückenmark und Nervenwurzeln liegen, wird <b>eng</b>. Meist langsam über Jahre, durch Verschleiß von Bandscheiben und Wirbelgelenken. Seltener nach Verletzungen, Operationen, Infektionen oder durch Tumoren.</p>
+  <p class="fr">Le canal rachidien se rétrécit, en général lentement, par usure. Il comprime les racines nerveuses ou la moelle.</p>
+  <p>Die 5. Stelle des Kodes nennt den Ort: <b>M48.02</b> Halswirbelsäule · <b>M48.04</b> Brustwirbelsäule · <b>M48.06</b> Lendenwirbelsäule · <b>M48.07</b> lumbosakral · <b>M48.09</b> nicht näher bezeichnet. <span class="tag net">BfArM</span></p>
+  <div class="raster">
+    <div><h4>Lendenwirbelsäule</h4><ul>
+      <li>Rückenschmerz, ausstrahlend in Gesäß und Beine.</li>
+      <li>Schlimmer beim <b>Stehen und Gehen</b>, besser beim <b>Sitzen und Vorbeugen</b>.</li>
+      <li>Fachwort: <b>Claudicatio spinalis</b> — der Patient muss beim Gehen stehen bleiben.</li></ul></div>
+    <div><h4>Halswirbelsäule</h4><ul>
+      <li>Nacken- und Armschmerz, Gefühlsstörungen in Händen, Armen, Beinen.</li>
+      <li>Wird das Halsmark gedrückt (<b>Myelopathie</b>): Gangstörung, steife (spastische) Beine, manchmal Blasen- und Mastdarmstörungen.</li></ul></div>
+  </div>
+  <p style="font-size:14px"><span class="tag net">gesund.bund.de · MSD Manual</span></p>
+  <h3>Diagnostik und Therapie</h3>
+  <ul>
+    <li>Neurologische Untersuchung (Gefühl, Lähmungen, Reflexe, Gang), danach <b>MRT</b>. <span class="tag net">gesund.bund.de</span></li>
+    <li><b>Konservativ:</b> Bewegungsübungen, entzündungshemmende Medikamente, Spritzen an die Nervenwurzel (Infiltration).</li>
+    <li><b>Operativ:</b> Dekompression (Erweiterung des Kanals) — wenn das Rückenmark geschädigt ist oder die konservative Behandlung nicht hilft. <span class="tag net">gesund.bund.de</span></li>
+  </ul>
+  <div class="kasten bad">
+    <p class="kopf">Notfall — sofort melden <span class="tag net">gesund.bund.de</span></p>
+    <p><b>Plötzlich</b> auftretende Störungen beim Wasserlassen oder beim Stuhlgang und ein Taubheitsgefühl im Gesäß- und Genitalbereich müssen <b>schnell ärztlich behandelt</b> werden.</p>
+    <p class="fr">Apparition brutale de troubles urinaires ou fécaux + perte de sensibilité au niveau du siège et des organes génitaux : on prévient le médecin immédiatement.</p>
+  </div>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Unterlagen</span> Die Verbindung zur Blase</p>
+    <p>Dein Kontinenz-Kurs nennt den <b>Bandscheibenvorfall</b> als eine der drei Situationen, in denen ein akuter Harnverhalt <b>ohne Schmerzen</b> verlaufen kann (neben Geburt und Regionalanästhesie). Wer auf den Schmerz wartet, bemerkt nichts.</p>
+    <p class="quelle"><a href="https://claude.ai/artifact/9sE6cUYk1Q3VugvVEUhUHi">→ Kontinenz fördern</a></p>
+  </div>
+  <p><span class="tag ich">meine Folgerung</span> <b>Sturzrisiko</b> einschätzen (Gangstörung, Schmerz beim Gehen). Gehstrecke und Pausen beobachten — sie zeigen, ob es schlechter wird.</p>
+</section>
+
+<section id="kralle">
+  <h2><span class="nr">M21.54 ?</span>Krallenhände</h2>
+  <p class="lead">Eine typische Stellung der Hand: Die <b>Fingergrundgelenke sind überstreckt</b>, die <b>Mittel- und Endgelenke gebeugt</b>. Die Finger sehen aus wie eine Kralle.</p>
+  <p class="fr">Main en griffe : premières phalanges en hyperextension, les autres articulations en flexion.</p>
+  <h3>Wie sie entsteht</h3>
+  <div class="kette"><span>Nerv oder Rückenmark geschädigt</span><i>→</i><span>kleine Handmuskeln fallen aus</span><i>→</i><span>lange Beuger und Strecker ziehen allein</span><i>→</i><span class="ende">Kralle</span></div>
+  <ul>
+    <li>Ausgefallen sind die kleinen Muskeln zwischen den Mittelhandknochen (<i>Mm. interossei</i>) und ein Teil der <i>Mm. lumbricales</i>. Mit der Zeit schwinden sie sichtbar. <span class="tag net">DocCheck</span></li>
+    <li>Klassische Ursache ist eine Lähmung des <b>Ellennervs (Ulnarisparese)</b>. Bei Syringomyelie beginnt der Muskelschwund an den Händen und führt zu Krallenhänden. <span class="tag net">DocCheck · Radiopaedia</span></li>
+    <li><span class="tag ich">Lehrbuchwissen, nicht eigens belegt</span> Die kleinen Handmuskeln werden aus den Rückenmarksegmenten <b>C8/Th1</b> versorgt — dem unteren Halsmark, wo die Syrinx oft sitzt.</li>
+  </ul>
+  <p><b>Der Kode:</b> „Krallenhand“ steht in keinem Titel. Am nächsten kommt <b>M21.54</b> „Erworbene Klauenhand, Klumphand, erworbener Klauenfuß und Klumpfuß: Hand“. <span class="tag net">BfArM</span></p>
+  <h3>Was du in der Pflege tust</h3>
+  <div class="kasten ich">
+    <p class="kopf"><span class="tag ich">meine Folgerung</span></p>
+    <ul>
+      <li><b>Kontrakturen vorbeugen:</b> Finger durchbewegen, Schienen nach Anordnung der Ergotherapie.</li>
+      <li><b>Handinnenfläche</b> waschen, gut trocknen, ansehen — in der geschlossenen Hand entsteht Feuchtigkeit (Mazeration).</li>
+      <li><b>Hilfsmittel</b> für Essen und Körperpflege: dicke Griffe, rutschfeste Unterlage.</li>
+      <li><b>Selbstständigkeit</b> fördern: Er macht, was er kann — du übernimmst nur, was nicht geht.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="blase">
+  <h2><span class="nr">G95.80/81 ?</span>Blasenlähmung — die neurogene Blase</h2>
+  <p class="lead">„Blasenlähmung“ ist das Alltagswort. Fachlich heißt es <b>neurogene Blasenentleerungsstörung</b> (oder neurogene Blasenfunktionsstörung): Die Blase arbeitet nicht richtig, weil die <b>Nerven</b> gestört sind — nicht die Blase selbst.</p>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Unterlagen</span> Expertenstandard Kontinenz — die Definition</p>
+    <p>„Durch neurologische Beeinträchtigungen verursacht — in <b>spastischer</b> (unwillkürliche Kontraktionen) oder <b>schlaffer</b> (hypoton, fehlende Kontraktionen) Form.“</p>
+    <p class="quelle"><a href="https://claude.ai/artifact/9sE6cUYk1Q3VugvVEUhUHi">→ Kontinenz fördern</a></p>
+  </div>
+  <div class="scroll"><table>
+    <thead><tr><th></th><th>Spastische Blase</th><th>Schlaffe Blase</th></tr></thead>
+    <tbody>
+      <tr><td><b>Wo der Schaden sitzt</b> <span class="tag net">MSD</span></td><td>oberhalb von Th12 oder im Gehirn</td><td>im Sakralmark (S2–S4) oder an peripheren Nerven</td></tr>
+      <tr><td><b>Was die Blase tut</b></td><td>zieht sich unwillkürlich zusammen</td><td>zieht sich nicht zusammen, wird groß</td></tr>
+      <tr><td><b>Was du siehst</b></td><td>häufiges Wasserlassen, nachts (Nykturie), Drang, Urinverlust</td><td>Restharn, Überlaufinkontinenz, tastbare Blase</td></tr>
+      <tr><td><b>Kode</b> <span class="tag net">BfArM</span></td><td>G95.80 — oberes motorisches Neuron</td><td>G95.81 — unteres motorisches Neuron</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:14px">Ohne Ursache im Rückenmark wird stattdessen <b>N31.-</b> kodiert. N31 schließt die Rückenmarkschädigung ausdrücklich aus — sie gehört zu G95.8-. <span class="tag net">BfArM</span></p>
+
+  <h3>Die Folgen, gegen die du arbeitest</h3>
+  <p>Wiederkehrende <b>Harnwegsinfekte</b> · <b>Harnsteine</b> · Rückstau von Urin bis in die Niere (Hydronephrose, Reflux). <span class="tag net">MSD</span></p>
+
+  <h3>Was getan wird</h3>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Unterlagen</span> Katheter-Kurs und Kontinenz-Kurs</p>
+    <ul>
+      <li><b>Intermittierender (Selbst-)Katheterismus (ISK)</b> bei neurogener Blasenentleerungsstörung, z. B. bei Querschnittsgelähmten — <b>2–10 Mal pro Tag</b>.</li>
+      <li>Hilfsmittel bei neurogener Blasenfunktionsstörung haben ein Ziel: <b>Inkontinenz vermeiden, Schäden am Harntrakt vermeiden, Infektionen vorbeugen</b>.</li>
+      <li>Katheterisieren durch Pflegende: <b>aseptisch</b> und atraumatisch, mit sterilem Set.</li>
+      <li><b>Restharnbestimmung</b> unmittelbar — <b>maximal 10 Minuten</b> — nach dem Wasserlassen. Später gemessen ist neuer Urin dabei: der Wert ist falsch hoch.</li>
+    </ul>
+    <p class="quelle">Wissen/054 Harnblasenkatheter · Wissen/089 Ableitende Inkontinenzversorgung · <a href="https://claude.ai/artifact/9sE6cUYk1Q3VugvVEUhUHi">Kontinenz fördern</a></p>
+  </div>
+  <div class="kasten net">
+    <p class="kopf"><span class="tag net">AWMF-Leitlinie 043-048 · MSD Manual</span> Was die Leitlinie dazu sagt</p>
+    <ul>
+      <li>Der intermittierende Katheterismus geht, wenn möglich, <b>vor</b> dem Dauerkatheter.</li>
+      <li>Pro Katheterisierung höchstens <b>500 ml</b> beim Erwachsenen. Liegt die Menge unter 100 ml oder über 500 ml, muss das Schema überprüft werden.</li>
+      <li>Ein <b>Trink- und Katheterprotokoll</b> führen; ideal sind 1500–2000 ml Urin pro Tag.</li>
+      <li>Bei spastischer Blase: Anticholinergika (sie dämpfen die Blasenmuskel-Kontraktionen).</li>
+    </ul>
+  </div>
+  <div class="kasten bad">
+    <p class="kopf">Gefahr: autonome Dysreflexie <span class="tag net">AWMF 043-048</span></p>
+    <p>Eine <b>überdehnte Blase</b> — oder der Katheterismus selbst — kann einen <b>plötzlichen, kritischen Blutdruckanstieg</b> auslösen. Zeichen: Schwitzen, Gänsehaut, klopfender Kopfschmerz. <b>Zuerst die Ursache beseitigen: Blase entleeren.</b></p>
+    <p><span class="tag ich">Lehrbuchwissen</span> Das betrifft vor allem Menschen mit hoher Rückenmarksschädigung.</p>
+    <p class="fr">Dysréflexie autonome : vessie trop pleine → tension qui explose, sueurs, mal de tête pulsatile. On vide d'abord la vessie.</p>
+  </div>
+  <h3>Wörter</h3>
+  <ul class="woerter">
+    <li><b>die Blasenentleerungsstörung, -en</b> — trouble de la vidange vésicale</li>
+    <li><b>der Restharn</b> — le résidu post-mictionnel</li>
+    <li><b>der Harnverhalt</b> — la rétention urinaire</li>
+    <li><b>die Überlaufinkontinenz</b> — l'incontinence par regorgement</li>
+    <li><b>katheterisieren</b> — sonder</li>
+    <li><b>der Detrusor</b> — le muscle vésical</li>
+  </ul>
+</section>
+
+<section id="miktion">
+  <h2><span class="nr">R39.1</span>Sonstige Miktionsstörungen</h2>
+  <p class="lead">Ein Kode aus Kapitel R — das ist ein <b>Symptom</b>, keine Krankheit. Dazu gehören laut Verzeichnis: <b>gespaltener Harnstrahl · schwacher Harnstrahl · verzögerte Miktion</b>. <span class="tag net">BfArM</span></p>
+  <p><span class="tag ich">meine Folgerung</span> Bei diesem Menschen ist das sehr wahrscheinlich das <b>Zeichen</b> der neurogenen Blase von oben — es beschreibt, was beim Wasserlassen auffällt.</p>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Unterlagen</span> Die Nachfragen aus dem Expertenstandard</p>
+    <p>„Müssen Sie pressen, um Wasser zu lassen? · Fühlt sich die Blase manchmal nicht richtig entleert an?“ — Sie zielen auf die <b>Inkontinenz bei chronischer Harnretention</b>: Restharn, die Blase kann nach dem Wasserlassen <b>tastbar</b> sein, <b>ohne Schmerzen</b>.</p>
+    <p>Auch der gespaltene, gedrehte Harnstrahl steht in deinem Beobachtungs-Kurs bei der Miktionsbeobachtung.</p>
+    <p class="quelle"><a href="https://claude.ai/artifact/9sE6cUYk1Q3VugvVEUhUHi">→ Kontinenz fördern</a> · <a href="https://claude.ai/artifact/8DRf2WvteNqwi5XFRwTqkt">→ Wahrnehmen ist nicht Beobachten</a></p>
+  </div>
+  <p><b>Was du tust:</b> Harnstrahl, Häufigkeit und Menge beobachten · <b>Miktionsprotokoll</b> führen · Restharn nach Anordnung bestimmen (innerhalb von 10 Minuten) · auf Infektzeichen achten (trüber Urin, Geruch, Brennen, Fieber).</p>
+</section>
+
+<section id="hypertonie">
+  <h2><span class="nr">I10.9-</span>Essentielle Hypertonie, nicht näher bezeichnet</h2>
+  <p class="lead"><b>Essentiell</b> = <b>primär</b>: Bluthochdruck, für den man <b>keine einzelne Grundkrankheit</b> findet. Mehrere Risikofaktoren kommen zusammen. Die 5. Stelle sagt: <b>I10.90</b> ohne, <b>I10.91</b> mit Angabe einer hypertensiven Krise. <span class="tag net">BfArM</span></p>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Unterlagen</span> Hypotonie &amp; Hypertonie — Fall Frau Krause</p>
+    <ul>
+      <li><b>Primär gegen sekundär:</b> Sekundär ist die Form, bei der man eine andere Ursache sucht und findet. Primär: keine auslösende Erkrankung, sondern Risikofaktoren.</li>
+      <li><b>Werte:</b> optimal &lt; 120/80 mmHg · normal &lt; 130/85 mmHg. In der 24-Stunden-Messung: Durchschnitt <b>≥ 130/80 mmHg</b> → Diagnose Hypertonie.</li>
+      <li><b>Gefährdete Organe:</b> Gehirn, Herz, Lunge, Nieren — Schlaganfall, Herzinfarkt, Risse in der Hauptschlagader, Gehirnblutung, Wasser in der Lunge, Nierenprobleme.</li>
+      <li><b>Entgleisung:</b> über 180 systolisch und über 110 diastolisch, <b>ohne</b> Organschaden — Ruhe, nach etwa 30 Minuten neu messen.</li>
+      <li><b>Notfall:</b> Organschaden — Atemnot, Brustenge, Verwirrtheit, Lähmungen, Seh- oder Sprechstörungen, Krampfanfall, Bewusstlosigkeit → <b>112</b>. Der Wert allein entscheidet nicht.</li>
+    </ul>
+    <p class="quelle"><a href="https://claude.ai/code/artifact/316b844e-b1e6-4bb8-8163-3af3058de4fa">→ Hypotonie &amp; Hypertonie</a></p>
+  </div>
+  <div class="kasten net">
+    <p class="kopf"><span class="tag net">ESC 2024 · NVL Hypertonie 2023</span> Die Zielwerte — zwei Leitlinien, zwei Antworten</p>
+    <ul>
+      <li><b>ESC (europäisch) 2024:</b> Für die meisten Behandelten systolisch <b>120–129 mmHg</b>, wenn vertragen. Ausnahmen u. a. bei Schwindel beim Aufstehen, über 85 Jahren, Gebrechlichkeit.</li>
+      <li><b>Nationale VersorgungsLeitlinie (Deutschland) 2023:</b> Zielkorridor <b>120/70 bis 160/90 mmHg</b>, ideal <b>&lt; 140/90</b> — gemeinsam mit dem Patienten festgelegt.</li>
+    </ul>
+    <p>Merke für die Prüfung: Den Zielwert legt der Arzt fest. Du misst richtig, dokumentierst und meldest.</p>
+  </div>
+  <h3>Was du bei <i>diesem</i> Menschen besonders bedenkst</h3>
+  <div class="kasten ich">
+    <p class="kopf"><span class="tag ich">meine Folgerung</span></p>
+    <ul>
+      <li><b>Ein plötzlich hoher Wert ist hier zweideutig.</b> Bevor du an eine Entgleisung der Hypertonie denkst: <b>Ist die Blase voll?</b> Wann wurde zuletzt katheterisiert? (Autonome Dysreflexie, siehe oben.)</li>
+      <li><b>Schwindel beim Aufstehen</b> beobachten: Blutdrucksenker und manche Antipsychotika (Clozapin — orthostatische Hypotonie, laut deinem Psychiatrie-Kurs) können sich addieren → Sturz.</li>
+      <li>Hypertonie macht oft <b>lange keine Beschwerden</b>. Deshalb zählt die regelmäßige Messung, nicht das Befinden.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="schizo">
+  <h2><span class="nr">F20.0</span>Paranoide Schizophrenie</h2>
+  <p class="lead">Die häufigste Form der Schizophrenie. Im Vordergrund stehen <b>anhaltende, oft paranoide Wahnvorstellungen</b> (Verfolgung, Beeinträchtigung), meist mit <b>akustischen Halluzinationen</b> — Stimmenhören. Störungen von Stimmung, Antrieb und Sprache fehlen oder fallen wenig auf. <span class="tag net">BfArM, Definition zu F20.0</span></p>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Unterlagen</span> Psychiatrische Pflege · Notfälle</p>
+    <ul>
+      <li>Das Durchleben akuter Psychosen — <b>phasenweise oder dauerhaft</b>. Patienten hören Stimmen, Verfolgungswahn, kompletter Verlust des Bezugs zur Wirklichkeit möglich.</li>
+      <li>Gestörte Affektivität: stark wechselnde Gefühle; Gefühlsleere, starre Mimik, Teilnahmslosigkeit, kein Augenkontakt.</li>
+      <li><b>Kein „gespaltene Persönlichkeit“!</b> „Schizophrenie“ heißt „gespaltener Geist“ — gemeint ist die Spaltung zwischen Denken, Fühlen und Wahrnehmen, nicht mehrere Personen in einem Menschen.</li>
+      <li><b>Halluzination</b> = Wahrnehmung ohne äußeren Reiz. <b>Illusion</b> = ein echter Reiz, falsch gedeutet.</li>
+      <li><b>Umgang mit Wahn und Stimmen — nicht mitspielen, nicht wegdiskutieren:</b> „Ich höre die Stimmen nicht — aber ich glaube Ihnen, dass Sie sie hören. Das macht Ihnen Angst, oder?“</li>
+    </ul>
+    <p class="quelle"><a href="https://claude.ai/artifact/FR1USYHEkkScdqes2CkGSU">→ Psychiatrische Pflege</a> · <a href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">→ Notfälle &amp; Erste Hilfe</a></p>
+  </div>
+  <h3>Symptome — in zwei Gruppen</h3>
+  <div class="raster">
+    <div><h4>Positiv- / Plussymptome</h4><ul><li>Wahn</li><li>Stimmenhören</li><li>Gefühl, beobachtet oder von außen gesteuert zu werden (Ich-Störungen)</li></ul></div>
+    <div><h4>Negativ- / Minussymptome</h4><ul><li>Antriebslosigkeit</li><li>Konzentrationsstörungen</li><li>emotionale Verflachung</li></ul></div>
+  </div>
+  <p style="font-size:14px"><span class="tag net">gesund.bund.de</span> Ursache: nicht geklärt. Es gilt das <b>Vulnerabilitäts-Stress-Modell</b>: Veranlagung plus Belastung (Stress, Drogen, große Lebensveränderungen) lösen die Krankheit aus. Diagnose: Symptome seit mindestens einem Monat; körperliche Ursachen ausschließen.</p>
+
+  <h3>Therapie — die Antipsychotika</h3>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Unterlagen</span> Psychopharmaka</p>
+    <ul>
+      <li>Sie helfen bei der Schizophrenie vor allem gegen die <b>Plussymptome</b>. Goldstandard bei akuten Psychosen: <b>atypische</b> Antipsychotika (Ausnahme Clozapin wegen der Nebenwirkungen).</li>
+      <li><b>Typisch</b> (z. B. Haloperidol): nur Dopamin → Hauptproblem <b>EPS</b> (Parkinsonoid, Früh- und Spätdyskinesien an Gesicht und Zunge, manchmal irreversibel).</li>
+      <li><b>Atypisch</b> (z. B. Olanzapin, Risperidon, Clozapin, Quetiapin): Dopamin und Serotonin → Hauptproblem <b>Gewichtszunahme</b>; Olanzapin auch Diabetes.</li>
+      <li><b>Clozapin → Agranulozytose</b> → regelmäßige Blutbildkontrollen. Fieber und Halsschmerzen unter Clozapin sofort melden.</li>
+      <li><b>Malignes neuroleptisches Syndrom:</b> selten, lebensbedrohlich — hohes Fieber, Rigor, Bewusstseinsstörung.</li>
+      <li>Haloperidol als <b>Depot</b>: wirkt nach i. m.-Gabe bis zu 4 Wochen.</li>
+    </ul>
+    <p><b>Die Kette für eine Begründen-Aufgabe:</b> keine Krankheitseinsicht → eigenmächtiges Absetzen → akute Verschlechterung → deshalb Einnahme beobachten, aufklären, wo sinnvoll Depot.</p>
+    <p class="quelle"><a href="https://claude.ai/artifact/FR1USYHEkkScdqes2CkGSU">→ Psychiatrische Pflege</a></p>
+  </div>
+  <div class="kasten net">
+    <p class="kopf"><span class="tag net">S3-Leitlinie Schizophrenie (AWMF 038-009) · gesund.bund.de</span></p>
+    <ul>
+      <li>Antipsychotika gegen akute Beschwerden <b>und</b> zur Rückfallvorbeugung — dazu Psychotherapie und Psychoedukation.</li>
+      <li>Bei der Auswahl auf Spätdyskinesien, Sedierung, Herz-, Stoffwechsel- und Hormonwirkungen achten. Steigt das Gewicht um mehr als 3 %: Ernährungsberatung und Bewegung.</li>
+      <li><b>Suizid:</b> etwa 5 % der Erkrankten nehmen sich das Leben — besonders gefährdet sind unbehandelte akute Phasen und die Zeit nach der Entlassung. Suizidalität soll <b>offen und empathisch angesprochen</b> werden.</li>
+    </ul>
+  </div>
+  <h3>Was du in der Pflege tust</h3>
+  <ul>
+    <li>Ruhig, klar, verlässlich sprechen. Wahn weder bestätigen noch dagegen argumentieren. <span class="tag du">deine Unterlagen</span></li>
+    <li>Medikamenteneinnahme beobachten. <span class="tag du">deine Unterlagen</span></li>
+    <li>Bewegungsstörungen, Gewicht, Blutdruck beobachten. <span class="tag ich">Folgerung aus der Leitlinie</span></li>
+    <li><b>Bei diesem Menschen zusätzlich:</b> Restharn und Blase im Blick behalten — Harnsperre gehört zu den Akutnebenwirkungen der Psychopharmaka in deinem Kurs. <span class="tag du">deine Unterlagen</span></li>
+  </ul>
+</section>
+
+<section id="offen">
+  <h2>Zwei offene Zeilen</h2>
+  <p class="lead">Zwei Zeilen deiner Liste sind <b>abgeschnitten</b>. So, wie sie dastehen, lässt sich kein sicherer Kode finden. Ich rate nicht — hier steht, was in Frage kommt.</p>
+  <p class="fr">Deux lignes de ta liste sont coupées. Je ne devine pas : voici les possibilités. Regarde la ligne complète dans le dossier.</p>
+  <h3>„Gehirn, nicht näher bezeichnet“</h3>
+  <div class="scroll"><table>
+    <thead><tr><th>Kode</th><th>Amtlicher Titel</th><th>Was es heißt</th></tr></thead>
+    <tbody>
+      <tr><td class="code">G93.9</td><td>Krankheit des Gehirns, nicht näher bezeichnet</td><td>eine Hirnerkrankung ohne genauere Angabe</td></tr>
+      <tr><td class="code">C71.9</td><td>C71 Bösartige Neubildung des Gehirns → <i>Gehirn, nicht näher bezeichnet</i></td><td>bösartiger Hirntumor</td></tr>
+      <tr><td class="code">D33.2</td><td>D33 Gutartige Neubildung des Gehirns und anderer Teile des ZNS → <i>Gehirn, nicht näher bezeichnet</i></td><td>gutartiger Hirntumor</td></tr>
+      <tr><td class="code">D43.2</td><td>D43 Neubildung unsicheren oder unbekannten Verhaltens des Gehirns und des ZNS → <i>Gehirn, nicht näher bezeichnet</i></td><td>Hirntumor, Verhalten unklar</td></tr>
+    </tbody>
+  </table></div>
+  <p><span class="tag ich">meine Einschätzung</span> In einer Liste mit lauter Rückenmark-Diagnosen passt <b>G93.9</b> am besten, weil dein Wortlaut genau dessen Ende ist. Sicher ist das nicht. Für die drei Tumorkodes gilt: Tumoren können eine Syrinx verursachen. <span class="tag net">MSD</span> Ob das hier so ist, steht nirgends.</p>
+  <h3>„Sonstige näher bezeichnete …“</h3>
+  <p>Dieser Anfang steht vor sehr vielen Kodes, die auf <b>.8</b> enden. In der Nähe deiner Liste gibt es zwei: <b>G95.8-</b> „Sonstige näher bezeichnete Krankheiten des Rückenmarkes“ (dazu gehören die Harnblasenlähmungen G95.80/81) und <b>G93.8-</b> „Sonstige näher bezeichnete Krankheiten des Gehirns“. <span class="tag net">BfArM</span></p>
+  <div class="kasten ich">
+    <p class="kopf"><span class="tag ich">Bitte nachsehen</span></p>
+    <p>Schau in der Akte oder im Programm nach, wie die beiden Zeilen <b>vollständig</b> heißen, und schick sie mir. Dann ergänze ich beide Abschnitte.</p>
+  </div>
+</section>
+
+<section id="pflege">
+  <h2>Pflege-Prioritäten für diesen Menschen</h2>
+  <p class="lead">Wenn du nur sechs Dinge behältst, dann diese. Sie verbinden die Diagnosen miteinander. <span class="tag ich">meine Zusammenstellung aus den Abschnitten oben</span></p>
+  <ol>
+    <li><b>Blase regelmäßig entleeren lassen</b> (Katheter nach Plan, Protokoll, Restharn in 10 Minuten). Das verhindert Infekte, Nierenschäden und die autonome Dysreflexie.</li>
+    <li><b>Blutdruckspitze = erst an die Blase denken</b>, dann an die Hypertonie. Und Notfallzeichen kennen → 112.</li>
+    <li><b>Haut und Hände jeden Tag ansehen</b>, Wasser messen, keine Wärmflasche — er spürt Hitze und Wunden nicht.</li>
+    <li><b>Schlucken beobachten</b> — bei Syringobulbie droht Aspiration.</li>
+    <li><b>Sturz vorbeugen</b> — Gangstörung, spastische Beine, Blutdrucksenker, Antipsychotika.</li>
+    <li><b>Psychisch stabil halten</b> — Medikamente beobachten, ruhig und klar sprechen, Suizidgedanken offen ansprechen.</li>
+  </ol>
+  <p class="fr">Six priorités : vider la vessie selon le plan · pic de tension = penser d'abord à la vessie · inspecter peau et mains, mesurer l'eau · surveiller la déglutition · prévenir les chutes · stabilité psychique et risque suicidaire.</p>
+</section>
+
+<section id="test">
+  <h2>Selbsttest</h2>
+  <p class="lead">Schreib zuerst, dann klapp die Lösung auf. Deine Texte bleiben in diesem Browser gespeichert. Mit dem Knopf unten schickst du sie mir — ich korrigiere Inhalt <b>und</b> Sprache.</p>
+
+  <div class="aufgabe"><p class="op">Nennen · AFB I</p>
+    <p>Nennen Sie drei Symptome der Syringomyelie und eines der Syringobulbie.</p>
+    <textarea id="t1" data-frage="Nennen: drei Symptome Syringomyelie, eines Syringobulbie"></textarea>
+    <details class="loes"><summary>Lösung zeigen</summary><div>Syringomyelie: Ausfall von Schmerz- und Temperaturempfinden bei erhaltener Berührung (dissoziierte Sensibilitätsstörung) · Muskelschwund an den Händen / Krallenhände · Blasen- und Mastdarmstörungen · später spastische Beine · Kyphoskoliose. Syringobulbie: Schluckstörung, Sprechstörung, Gefühlsverlust im Gesicht, Schwindel.</div></details></div>
+
+  <div class="aufgabe"><p class="op">Erklären</p>
+    <p>Erklären Sie den Unterschied zwischen einer spastischen und einer schlaffen neurogenen Blase. Geben Sie ein eigenes Beispiel.</p>
+    <textarea id="t2" data-frage="Erklären: spastische vs. schlaffe neurogene Blase"></textarea>
+    <details class="loes"><summary>Lösung zeigen</summary><div>Spastisch: Die Blase zieht sich unwillkürlich zusammen — häufiges Wasserlassen, Drang, Urinverlust; der Schaden sitzt höher (oberhalb Th12 oder im Gehirn). Schlaff: Die Blase zieht sich nicht zusammen, wird groß, es bleibt Restharn, Urin läuft über (Überlaufinkontinenz); der Schaden sitzt im Sakralmark oder an den peripheren Nerven. Beispiel: Ein Mann hat 400 ml Restharn und verliert ständig kleine Mengen Urin — das passt zur schlaffen Blase.</div></details></div>
+
+  <div class="aufgabe"><p class="op">Erläutern · AFB II</p>
+    <p>Erläutern Sie, warum ein Mensch mit Syringomyelie sich die Hand an einer heißen Tasse verbrennen kann, ohne es zu merken.</p>
+    <textarea id="t3" data-frage="Erläutern: Verbrennung ohne Schmerz bei Syringomyelie"></textarea>
+    <details class="loes"><summary>Lösung zeigen</summary><div>Die Fasern für Schmerz und Temperatur kreuzen im Rückenmark direkt vor dem Zentralkanal. Genau dort sitzt die Höhle und zerstört sie. Deshalb meldet die Hand weder „heiß“ noch „Schmerz“ — die Berührung spürt er aber noch, er hält die Tasse also fest. Das sieht man daran, dass die Störung „dissoziiert“ heißt: Ein Teil der Gefühle fällt aus, ein anderer bleibt.</div></details></div>
+
+  <div class="aufgabe"><p class="op">Ableiten · AFB II</p>
+    <p>Leiten Sie aus der Diagnose „Spinalkanalstenose“ zwei Pflegemaßnahmen ab.</p>
+    <textarea id="t4" data-frage="Ableiten: zwei Maßnahmen bei Spinalkanalstenose"></textarea>
+    <details class="loes"><summary>Lösung zeigen</summary><div>1. Sturzrisiko einschätzen und vorbeugen (Gehhilfe, Pausen, feste Schuhe), <b>weil</b> der Patient beim Gehen Schmerzen und eine Gangstörung haben kann. 2. Blase und Darm sowie das Gefühl im Gesäßbereich beobachten und Veränderungen sofort melden, <b>weil</b> eine plötzliche Blasen- oder Darmstörung ein Notfall ist.</div></details></div>
+
+  <div class="aufgabe"><p class="op">Begründen · AFB III</p>
+    <p>Bei Herrn X misst du plötzlich 210/115 mmHg. Er schwitzt und klagt über klopfenden Kopfschmerz. Er wurde seit sieben Stunden nicht katheterisiert. Begründen Sie, was Sie zuerst tun.</p>
+    <textarea id="t5" data-frage="Begründen: 210/115, Schwitzen, Kopfschmerz, 7 h nicht katheterisiert"></textarea>
+    <details class="loes"><summary>Lösung zeigen</summary><div><b>Ursache:</b> Die Blase ist wahrscheinlich überdehnt. <b>Wirkung:</b> Bei einer Rückenmarkschädigung kann die volle Blase eine autonome Dysreflexie auslösen — der Blutdruck steigt plötzlich stark an, mit Schwitzen und Kopfschmerz. <b>Gefahr:</b> Der Blutdruck kann gefährlich hoch bleiben (Gehirn, Herz). <b>Deshalb</b> beseitige ich zuerst die Ursache: Ich entleere die Blase (Katheter nach Anordnung), messe danach den Blutdruck erneut und informiere den Arzt. Ich behandle es nicht einfach als Entgleisung der Hypertonie, weil dann die Ursache bliebe.</div></details></div>
+
+  <div class="aufgabe"><p class="op">Beurteilen · AFB III</p>
+    <p>Herr X sagt: „Ich nehme die Tabletten nicht mehr. Die Stimmen sind weg, und ich muss davon nur ständig aufs Klo und es geht nicht.“ Beurteilen Sie die Situation.</p>
+    <textarea id="t6" data-frage="Beurteilen: Patient will Antipsychotikum absetzen, Probleme beim Wasserlassen"></textarea>
+    <details class="loes"><summary>Lösung zeigen</summary><div><b>Einschätzung zuerst:</b> Zwei ernste Probleme gleichzeitig — Rückfallgefahr und ein möglicher Harnverhalt. <b>Rückfall:</b> Die Stimmen sind weg, <b>weil</b> das Medikament wirkt. Setzt er es eigenmächtig ab, droht eine akute Verschlechterung (Kette aus deinem Kurs: keine Krankheitseinsicht → Absetzen → Verschlechterung). <b>Blase:</b> „Muss ständig, aber es geht nicht“ kann Restharn bzw. Harnverhalt bedeuten — Psychopharmaka können eine Harnsperre auslösen, und er hat schon eine neurogene Blase. <b>Maßnahmen:</b> ernst nehmen, nicht drohen; Restharn bestimmen bzw. Blase kontrollieren; Arzt informieren (Nebenwirkung, eventuell anderes Präparat oder Depot); aufklären, dass man das Problem lösen kann, ohne das Medikament einfach wegzulassen.</div></details></div>
+
+  <button type="button" id="sammel">📤 Antworten kopieren</button><span id="kopiert" aria-live="polite"></span>
+  <textarea id="ausgabe" hidden readonly aria-label="Gesammelte Antworten"></textarea>
+</section>
+
+<section id="quellen">
+  <h2>Quellen</h2>
+  <h3><span class="tag du">deine Unterlagen</span></h3>
+  <ul>
+    <li><a href="https://claude.ai/artifact/9sE6cUYk1Q3VugvVEUhUHi">Kontinenz fördern</a> (Expertenstandard Kontinenzförderung)</li>
+    <li>Wissen/054 Harnblasenkatheter · Wissen/089 Ableitende Inkontinenzversorgung · Wissen/090 Risikofaktoren</li>
+    <li><a href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Die Organe und das Nervensystem</a></li>
+    <li><a href="https://claude.ai/code/artifact/316b844e-b1e6-4bb8-8163-3af3058de4fa">Hypotonie &amp; Hypertonie</a></li>
+    <li><a href="https://claude.ai/artifact/FR1USYHEkkScdqes2CkGSU">Psychiatrische Pflege</a> · <a href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle &amp; Erste Hilfe</a></li>
+    <li><a href="https://claude.ai/artifact/8DRf2WvteNqwi5XFRwTqkt">Wahrnehmen ist nicht Beobachten</a></li>
+  </ul>
+  <p style="font-size:14px">Zu Syringomyelie, Spinalkanalstenose und Krallenhand gibt es in deinen Unterlagen <b>nichts</b>. Alles dazu kommt aus dem Internet.</p>
+  <h3><span class="tag net">Internetquellen</span> — nicht deine Unterlagen</h3>
+  <ul class="quelle" style="font-size:13px">
+    <li>BfArM, ICD-10-GM 2026: <a href="https://klassifikationen.bfarm.de/icd-10-gm/kode-suche/htmlgm2026/block-g90-g99.htm">G90–G99</a> · <a href="https://klassifikationen.bfarm.de/icd-10-gm/kode-suche/htmlgm2026/block-n30-n39.htm">N30–N39</a> · <a href="https://klassifikationen.bfarm.de/icd-10-gm/kode-suche/htmlgm2026/block-r30-r39.htm">R30–R39</a> · <a href="https://klassifikationen.bfarm.de/icd-10-gm/kode-suche/htmlgm2026/block-m20-m25.htm">M20–M25</a> · <a href="https://klassifikationen.bfarm.de/icd-10-gm/kode-suche/htmlgm2026/block-m45-m49.htm">M45–M49</a> · <a href="https://klassifikationen.bfarm.de/icd-10-gm/kode-suche/htmlgm2026/block-i10-i15.htm">I10–I15</a> · <a href="https://klassifikationen.bfarm.de/icd-10-gm/kode-suche/htmlgm2026/block-f20-f29.htm">F20–F29</a> · <a href="https://klassifikationen.bfarm.de/icd-10-gm/kode-suche/htmlgm2026/block-c69-c72.htm">C69–C72</a> · <a href="https://klassifikationen.bfarm.de/icd-10-gm/kode-suche/htmlgm2026/block-d10-d36.htm">D10–D36</a> · <a href="https://klassifikationen.bfarm.de/icd-10-gm/kode-suche/htmlgm2026/block-d37-d48.htm">D37–D48</a></li>
+    <li>MSD Manual: <a href="https://www.msdmanuals.com/de/profi/neurologische-krankheiten/erkrankungen-des-r%C3%BCckenmarks/syrinx-des-r%C3%BCckenmarks-oder-hirnstamms">Syrinx</a> · <a href="https://www.msdmanuals.com/de-de/profi/urogenitaltrakt/miktionsst%C3%B6rungen/neurogene-blasenentleerungsst%C3%B6rung">Neurogene Blasenentleerungsstörung</a> · <a href="https://www.msdmanuals.com/de/profi/urogenitaltrakt/miktionsst%C3%B6rungen/harnretention">Harnretention</a> · <a href="https://www.msdmanuals.com/de/profi/neurologische-krankheiten/erkrankungen-des-r%C3%BCckenmarks/zervikale-spondylose-und-spondylotische-zervikale-myelopathie">Zervikale Myelopathie</a></li>
+    <li><a href="https://www.amboss.com/de/wissen/syringomyelie">Amboss: Syringomyelie</a> · <a href="https://radiopaedia.org/articles/syringomyelia">Radiopaedia: Syringomyelia</a> · <a href="https://flexikon.doccheck.com/de/Krallenhand">DocCheck: Krallenhand</a></li>
+    <li>gesund.bund.de: <a href="https://gesund.bund.de/spinalkanalstenose">Spinalkanalstenose</a> · <a href="https://gesund.bund.de/schizophrenie">Schizophrenie</a> · <a href="https://gesund.bund.de/icd-code-suche/g95-9">G95.9</a></li>
+    <li>AWMF: <a href="https://register.awmf.org/assets/guidelines/043-048l_S2k_Management-Durchfuehrung-Intermittierender-Katheterismus-neurogene-Dysfunktion-unterer-Harntrakt_2026-02.pdf">S2k 043-048 Intermittierender Katheterismus</a> · <a href="https://register.awmf.org/assets/guidelines/038-009k_S3_Schizophrenie_2026-07.pdf">S3 038-009 Schizophrenie</a></li>
+    <li><a href="https://www.escardio.org/news/news-room/congress-news/2024-esc-clinical-practice-guidelines-for-the-management-of-elevated-blood-pressure-and-hypertension/">ESC 2024 Hypertonie</a> · <a href="https://www.akdae.de/arzneimitteltherapie/arzneiverordnung-in-der-praxis/ausgaben-archiv/ausgaben-ab-2015/ausgabe/artikel/2023/2023-2/was-bringt-die-nvl-hypertonie-neues-1">AkdÄ zur NVL Hypertonie 2023</a></li>
+  </ul>
+</section>
+
+</main>
+<footer>Stand 06.10.2026 · Lernseite, kein ärztlicher Befund. Was bei deinem Patienten gilt, entscheiden Akte, Arzt und Team.</footer>
+
+<script>
+(function(){
+  var felder = document.querySelectorAll('textarea[data-frage]');
+  function lies(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function schreib(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+  felder.forEach(function(t){
+    var k = 'diag-' + t.id, v = lies(k);
+    if (v) t.value = v;
+    t.addEventListener('input', function(){ schreib(k, t.value); });
+  });
+  var knopf = document.getElementById('sammel'), aus = document.getElementById('ausgabe'), info = document.getElementById('kopiert');
+  knopf.addEventListener('click', function(){
+    var text = 'Zehn Diagnosen — meine Antworten\n\n';
+    felder.forEach(function(t, i){ text += (i+1) + '. ' + t.dataset.frage + '\n' + (t.value.trim() || '(leer)') + '\n\n'; });
+    aus.value = text;
+    function zeigen(){ aus.hidden = false; aus.focus(); aus.select(); info.textContent = 'Markiert — jetzt kopieren und mir schicken.'; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(function(){ info.textContent = 'Kopiert ✓ — einfach in den Chat einfügen.'; }, zeigen);
+    } else { zeigen(); }
+  });
+})();
+</script>

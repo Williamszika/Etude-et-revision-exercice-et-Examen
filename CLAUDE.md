@@ -1634,6 +1634,18 @@ stationär) erst, wenn sie die erste Runde geschrieben hat.
 
 ---
 
+## Diagnoseliste — „Zehn Diagnosen, ein Mensch“
+
+`diagnosen/index.html` (Icon „medical“). Auf ihren Wunsch vom 06.10.2026: *„Je vais te donner
+une liste de maladie fais des recherches la dessus et parle moi de toute ses maladies."* Zehn
+Zeilen (Syringomyelie/-bulbie, Rückenmarkschädigung, Spinalkanalstenose, Krallenhände,
+Blasenlähmung, Sonstige Miktionsstörungen, essentielle Hypertonie, paranoide Schizophrenie,
+„Gehirn, nicht näher bezeichnet“, „Sonstige näher bezeichnete …“). Jede Aussage trägt eine
+Herkunftsmarke: **grün = ihre Unterlagen**, **blau = Internetquelle**, **gelb = meine Folgerung**.
+Kodes aus ICD-10-GM 2026 (BfArM). **Zu Syringomyelie, Spinalkanalstenose und Krallenhand gibt es in
+ihren Unterlagen nichts.** Zwei Zeilen sind abgeschnitten — sie wurde gebeten, den vollen Wortlaut
+aus der Akte zu schicken; **nicht raten**. Kein Kurs, deshalb **nicht** in `schulungen.json`.
+
 ## Schulungen und Klausuren
 
 - **`zusammenfassungen/`** — **der einzige Schulungs-Link. Nur die zusammengefassten Kurse und
