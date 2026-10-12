@@ -1659,6 +1659,20 @@ der Name, den sie der Seite geben wollte (Diktat unverständlich), ihr Setting (
 — für Heim/ambulant fehlt die Vorlage der Fallvorstellung) und ob die Diagnoseliste vom 06.10. derselbe
 Patient ist. Alles Prüfungsformale nur aus `schulung-zwischenpruefung/quellen/`.
 
+## Prüfungsfall Herr J. — ihr Praxisfall, eigene Seite
+
+`schulung-zwischenpruefung/fall-herr-j.html` → `https://claude.ai/artifact/3YxmYUzhoeCBWFvhCcgpSS` (Icon „patient“). Am 12.10.2026
+aus ihren Drive-Fotos gebaut (SIS ambulant 27.05.2026, Diagnoseblatt 07.10.2026, Medikationsplan
+12.05.2026, AEDL-Planung des Dienstes 2021, Praxisaufgabe 1,5 h / 3 Probleme). **Derselbe Patient wie
+die Diagnoseliste** — dort sind seitdem die echten Kodes C71.9 (Hirntumor) und N36.8 (Harnröhre) eingetragen;
+die erste Zeile (Blasenlähmung, Spinalkanalstenose, Rückenmarkschädigung, Krallenhände) hat keinen Kode.
+**Datenschutz:** nur „Herr J., 54 Jahre“ — nie Name, Geburtsdatum, Arztnamen; die Fotos liegen **nie** im
+Repo. Setting **ambulant**; Vorlage der ambulanten Fallvorstellung fehlt weiter. **Offen, von ihr zu klären:**
+Kreuze der Risikomatrix (auf dem Foto nicht sicher lesbar), Pflegegrad, Diabetes fehlt auf dem Diagnoseblatt
+trotz Metformin/Insulin, Indikation für Escitalopram und ASS, Katheterart, Bettseitenteil bei gesetzlicher
+Vertretung (ihre Unterlagen decken den Fall nicht ab). Arzneifakten zu Perazin, Escitalopram, HCT, ASS,
+Metformin sind **Internetquellen** (Beipackzettel, Rote-Hand-Brief 2011) und so markiert.
+
 ## Diagnoseliste — „Zehn Diagnosen, ein Mensch“
 
 `diagnosen/index.html` → `https://claude.ai/artifact/6gNtzKpV7BpNZcuUuFHLLY` (Icon „medical“). Auf ihren Wunsch vom 06.10.2026: *„Je vais te donner
