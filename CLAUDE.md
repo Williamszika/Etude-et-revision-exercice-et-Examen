@@ -64,7 +64,7 @@ nicht, wo anfangen und wann sie fertig ist. **Die Inhalte bleiben alle; die Seit
 | 4 | Lesen und schreiben | 15 | `lesen` |
 | 5 | Diktat | 10 | `diktat` |
 | 6 | Im Leben | 5 | `leben` |
-| 7 | Sprechen | 5 | `aussprache` + 60-Sekunden-Aufnahme 🎙️ |
+| 7 | **Sprechen fürs Examen** (seit 12.10.2026) | **10** | **`pruefungsdeutsch`** + 60-Sekunden-Aufnahme 🎙️ der Prüfungsantwort · `aussprache` wandert in den Bonus |
 
 Danach sichtbar: `probe` (samstags). **Eingeklappt als „Bonus“:** `verb`, `wortschatz`, `satzbau`,
 `training`, `telc`, `uebersetzung`. Die Blöcke werden **weiter geschrieben** wie bisher — nur
@@ -85,6 +85,50 @@ aus den Lektionen — dafür wird nichts geschrieben.
 
 Vorbild ist Lektion 12 (`2026-10-03.json`, dort am 05.10. nachgetragen). Nur Grammatik, die
 wirklich in dieser Lektion behandelt wird — kein neuer Stoff.
+
+### Prüfungsdeutsch — seit dem 12.10.2026, Pflicht ab Lektion 13
+
+Ihr Ziel hat sich verschoben. Am 12.10.2026: *„Vraiment, je veux très bien comprendre l'allemand
+… pour pouvoir parler, comprendre et bien écrire … Parce que je veux passer mon examen de la
+troisième année.“* Auf die Frage, was sich ändern soll, hat sie **„Allemand d'examen“** gewählt
+(nicht: täglich Sprechen per Diktierfunktion, nicht: Einstufungstest, nicht: jeden Tag eine
+Lektion). **Reprise bleibt der 20.10.2026** — so hat sie es bestätigt.
+
+**Jede Lektion bekommt einen Block `pruefungsdeutsch`**: eine echte Prüfungssituation des
+Pflegeexamens, in der sie die Grammatik der Lektion **sprechend oder schreibend** benutzt.
+
+```json
+"pruefungsdeutsch": {
+  "teil": "praktische Prüfung | mündliche Prüfung | schriftliche Prüfung | Zwischenprüfung",
+  "situation": "der Moment, z. B. „Reflexionsgespräch nach der Pflege — die Prüferin fragt“",
+  "titel": "…",
+  "fr": "ein, zwei Sätze Französisch: was gefragt wird und welche Grammatik der Lektion hilft",
+  "frage": "die Frage der Prüferin, wörtlich, B1",
+  "redemittel": [{"de": "Satzanfang mit **fett** markierter Grammatik", "fr": "…"}],
+  "fehler": [{"falsch": "…", "richtig": "…", "warum": "… Baustelle n, ggf. Kettenglied n"}],
+  "auftrag": "60 Sekunden laut antworten, dann aufschreiben — mit konkreter Grammatik-Vorgabe",
+  "muster": "Musterantwort, B1, mit weil/denn/deshalb — bei Begründen die ganze Kette",
+  "quelle": "aus welcher ihrer Zusammenfassungen der Fall stammt"
+}
+```
+
+**Regeln:**
+- **4–5 `redemittel`, 1–2 `fehler`**, eine `frage`, eine `muster`. Die Musterantwort ist
+  **gesprochenes** Deutsch auf B1: kurze Sätze, Perfekt, *weil/denn/deshalb* — kein Lehrbuchtext.
+- **Fachinhalt nur aus ihren Unterlagen** (`schulung-*/zusammenfassung.html`, `Wissen/`,
+  `schulung-zwischenpruefung/quellen/`), `quelle` nennt die Stelle. Kein erfundener Standard,
+  keine Zahl, die dort nicht steht. Fehlt der Inhalt, eine andere Situation wählen.
+- **Die Grammatik der Lektion muss in der Antwort gebraucht werden** (`fehler` zeigt die Falle
+  genau dieser Grammatik). Der Block ist Sprachtraining am Prüfungsstoff, kein Fachunterricht.
+- **`teil` rotiert** über die Prüfungsteile aus `examen-abschluss/examen.html`: schriftlich
+  (Fallbearbeitung mit Operator) · mündlich (komplexe Fallsituation, KB III–V) · praktisch
+  (Fallvorstellung, Reflexionsgespräch, Übergabe) · Zwischenprüfung (Fallvorstellung 10 Min,
+  Erläuterung der Planung, Prüfungsgespräch). Über die Lektionen **keine Frage zweimal**.
+- **Die Seite:** Schritt 7 heißt dann „Sprechen fürs Examen“, **10 Min**, Gesamtplan **65 Min**
+  (vorher 60 — ihr am 12.10. so gesagt); die Aufnahme beantwortet die Prüfungsfrage;
+  `aussprache` steht im Bonus. Am Übungstag kommt dieselbe Frage **ohne** Redemittel und Fehler
+  noch einmal. Vorbild: Lektion 12 (`2026-10-03.json`, am 12.10. nachgetragen).
+- **Die App** kennt den Block nicht (bräuchte eine neue App-Version).
 
 **Wiederholung im Abstand (im Browser, `localStorage`):** Jedes Wort aus `vokabeln` kommt ab dem
 Tag nach seiner Lektion in die Wiederholung; richtig → nächste Stufe (1 · 2 · 4 · 7 · 15 · 30
@@ -1309,7 +1353,7 @@ Tages sollen zu dieser Stufe passen und nicht darüber hinausgehen.
 
 ### Pflichtinhalt jeder Lektion (an jedem Lektionstag)
 
-**`kurzregel`** (seit Lektion 13, siehe „Der Tagesplan“) · Verb des Tages (mit Konjugation und Bedeutung) · Wortschatz-Block (ein Ausdruck **zum Thema der
+**`kurzregel`** (seit Lektion 13, siehe „Der Tagesplan“) · **`pruefungsdeutsch`** (seit Lektion 13, siehe „Prüfungsdeutsch“) · Verb des Tages (mit Konjugation und Bedeutung) · Wortschatz-Block (ein Ausdruck **zum Thema der
 Lektion**) · **`vokabeln`-Block mit 15–18 Wörtern** · **`leben`-Block mit einer echten Alltagssituation** ·
 Grammatik-Block ·
 **`deklination`-Block mit drei Kettensätzen** ·
