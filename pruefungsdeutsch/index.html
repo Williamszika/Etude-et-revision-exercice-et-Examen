@@ -1,0 +1,309 @@
+<title>Prüfungsdeutsch Pflege</title>
+<style>
+  /* Layout: ein Trainingsheft — Kopf, Antwortgerüst, Filter nach Prüfungsteil, je Situation eine Karte mit Frage, Hilfen, Schreibfeld, Muster */
+  :root{
+    --paper:#eef1f0;--paper-2:#e1e7e5;--card:#fbfcfc;--ink:#172022;--ink-soft:#4a5759;--line:#cad4d2;
+    --accent:#1d5c63;--accent-deep:#14454b;--accent-soft:#d6e8e8;
+    --frage:#7b3a5e;--fragebg:#f3e3ec;
+    --du:#256b4a;--dubg:#dfeee6;--ich:#7a5a08;--ichbg:#f8edc8;
+    --bad:#a33f34;--badbg:#f6e1de;--ok:#256b4a;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e8eeee;--ink-soft:#9eabad;--line:#2a3436;
+    --accent:#77c0c6;--accent-deep:#97d3d8;--accent-soft:#122a2d;
+    --frage:#e2a4c6;--fragebg:#2e1a26;
+    --du:#6fc292;--dubg:#14281c;--ich:#e0b84f;--ichbg:#2c2410;--bad:#e08a7c;--badbg:#301b17;--ok:#6fc292;color-scheme:dark;}}
+  :root[data-theme="dark"]{
+    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e8eeee;--ink-soft:#9eabad;--line:#2a3436;
+    --accent:#77c0c6;--accent-deep:#97d3d8;--accent-soft:#122a2d;
+    --frage:#e2a4c6;--fragebg:#2e1a26;
+    --du:#6fc292;--dubg:#14281c;--ich:#e0b84f;--ichbg:#2c2410;--bad:#e08a7c;--badbg:#301b17;--ok:#6fc292;color-scheme:dark;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-deep);}
+  a:focus-visible,button:focus-visible,summary:focus-visible,textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  header.hero{padding-block:42px 26px;padding-inline:20px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:60ch;margin:0 auto 14px;color:var(--ink-soft);font-size:15.5px;}
+  .legende{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .tag{display:inline-block;max-width:100%;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;vertical-align:1px;}
+  .tag.du{background:var(--dubg);color:var(--du);} .tag.ich{background:var(--ichbg);color:var(--ich);}
+  main{max-width:56rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:44px;}
+  h2{font-family:var(--serif);font-size:clamp(1.45rem,4vw,1.95rem);font-weight:600;margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 18px;max-width:66ch;}
+  p{margin:0 0 12px;max-width:70ch;}
+  .fr{font-style:italic;color:var(--ink-soft);} .fr::before{content:"🇫🇷 ";font-style:normal;}
+  .kasten{border-radius:12px;padding:14px 18px;margin:14px 0;background:var(--card);border:1px solid var(--line);}
+  .kasten > :last-child{margin-bottom:0;}
+
+  /* Antwortgerüst: echte Reihenfolge */
+  .geruest{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:8px;margin:14px 0;list-style:none;padding:0;counter-reset:g;}
+  .geruest li{counter-increment:g;background:var(--card);border:1px solid var(--line);border-top:3px solid var(--accent);border-radius:8px;padding:10px 12px;margin:0;}
+  .geruest li::before{content:counter(g);font-family:var(--mono);font-weight:700;color:var(--accent-deep);margin-right:6px;}
+  .geruest b{display:inline;} .geruest i{display:block;font-size:14px;color:var(--ink-soft);margin-top:3px;font-style:normal;}
+  .rettung{list-style:none;padding:0;margin:10px 0;display:grid;gap:6px;max-width:none;}
+  .rettung li{margin:0;background:var(--card);border:1px dashed var(--accent);border-radius:8px;padding:8px 12px;}
+  .rettung li span{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;}
+
+  .filter{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;gap:6px;overflow-x:auto;
+    background:var(--paper-2);border-bottom:1px solid var(--line);padding:9px 12px;margin-inline:-18px;}
+  .filter button{flex:0 0 auto;font:inherit;font-family:var(--mono);font-size:12px;padding:6px 13px;border-radius:999px;
+    border:1px solid var(--line);background:var(--card);color:var(--ink-soft);cursor:pointer;white-space:nowrap;}
+  .filter button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--card);}
+
+  .sit{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:18px 0;}
+  .sit-kopf{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:0 0 6px;}
+  .sit-nr{font-family:var(--mono);font-weight:700;font-size:13px;color:var(--card);background:var(--accent);border-radius:999px;width:28px;height:28px;display:inline-grid;place-items:center;}
+  .pill{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;background:var(--accent-soft);color:var(--accent-deep);}
+  .pill.gram{background:var(--paper-2);color:var(--ink-soft);}
+  .erledigt{margin-left:auto;font-size:13.5px;display:flex;gap:6px;align-items:center;cursor:pointer;}
+  .erledigt input{width:18px;height:18px;accent-color:var(--ok);}
+  .sit h3{font-family:var(--serif);font-size:1.25rem;font-weight:600;margin:6px 0 8px;text-wrap:balance;}
+  .frage{background:var(--fragebg);border-left:4px solid var(--frage);border-radius:0 12px 12px 0;padding:12px 16px;margin:10px 0 14px;}
+  .frage .wer{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--frage);margin:0 0 4px;}
+  .frage p{margin:0;font-size:1.08rem;}
+  .hoer{font:inherit;font-size:13px;color:var(--frage);background:transparent;border:1px solid var(--frage);border-radius:999px;padding:4px 12px;cursor:pointer;margin-top:8px;}
+  details.hilfe{margin:10px 0;border:1px solid var(--line);border-radius:10px;background:var(--paper);}
+  details.hilfe > summary{cursor:pointer;padding:9px 14px;font-weight:600;font-size:15px;color:var(--accent-deep);}
+  details.hilfe > div{padding:0 14px 12px;}
+  .red{list-style:none;padding:0;margin:0;max-width:none;}
+  .red li{margin:0;padding:8px 0;border-bottom:1px dashed var(--line);}
+  .red li:last-child{border-bottom:none;}
+  .red button{font:inherit;font-size:12px;line-height:1;color:var(--accent-deep);background:transparent;border:1px solid var(--line);border-radius:6px;padding:4px 7px;margin-right:6px;cursor:pointer;vertical-align:1px;}
+  .red .f2{display:block;font-size:13.5px;color:var(--ink-soft);font-style:italic;}
+  .falle{border-left:3px solid var(--bad);background:var(--badbg);border-radius:0 10px 10px 0;padding:9px 13px;margin:8px 0;font-size:15px;}
+  .falle s{color:var(--bad);} .falle b.r{color:var(--ok);}
+  .auftrag{font-weight:600;margin:12px 0 6px;}
+  textarea{width:100%;min-height:8rem;font:inherit;font-size:15.5px;padding:10px 12px;border-radius:9px;border:1px solid var(--line);
+    border-left:3px solid var(--accent);background:var(--paper);color:var(--ink);resize:vertical;}
+  details.muster{margin:10px 0 0;}
+  details.muster > summary{cursor:pointer;font-family:var(--mono);font-size:12px;color:var(--accent-deep);}
+  details.muster > div{margin-top:8px;padding:12px 14px;border-left:3px solid var(--du);background:var(--dubg);border-radius:0 8px 8px 0;}
+  .quelle{font-size:13px;color:var(--ink-soft);margin:10px 0 0;}
+  .senden{margin-top:30px;}
+  .senden button{font:inherit;font-size:15px;padding:10px 18px;border-radius:999px;border:1px solid var(--accent);background:var(--accent);color:var(--card);cursor:pointer;}
+  #kopiert{font-family:var(--mono);font-size:12px;color:var(--ok);margin-left:10px;}
+  #ausgabe{margin-top:10px;}
+  footer{max-width:56rem;margin:0 auto;padding-block:20px 60px;padding-inline:18px;color:var(--ink-soft);font-size:14px;border-top:1px solid var(--line);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Zwischenprüfung · Staatsexamen · schriftlich · mündlich · praktisch</p>
+  <h1>Prüfungsdeutsch Pflege</h1>
+  <p class="sub">So klingt eine gute Antwort in der Pflegeprüfung. Jede Situation hier kommt aus deinen eigenen Kursen. Du hörst die Frage, antwortest laut, schreibst auf, was du gesagt hast — und schickst es mir.</p>
+  <div class="legende"><span class="tag du">Fachinhalt aus deinen Unterlagen</span><span class="tag ich">Sprachhilfen von mir</span></div>
+</header>
+
+<main>
+
+<section id="so">
+  <h2>So baust du jede Antwort</h2>
+  <p class="lead">Vier Teile, immer in dieser Reihenfolge. Das ist das Schema, mit dem du die Haftungsklausur fehlerfrei geschrieben hast — hier wird es gesprochen.</p>
+  <ol class="geruest">
+    <li><b>Einschätzung</b><i>„Das ist eine Blutdruck-Entgleisung, kein Notfall.“</i></li>
+    <li><b>weil</b><i>„…, weil keine Notfallzeichen da sind.“</i></li>
+    <li><b>die Kette</b><i>Ursache → Wirkung → Gefahr</i></li>
+    <li><b>deshalb</b><i>„Deshalb messe ich nach 30 Minuten noch einmal.“</i></li>
+  </ol>
+  <p class="fr">D'abord ton jugement en une phrase, puis « weil », puis la chaîne cause → effet → danger, puis « deshalb » + ce que tu fais.</p>
+  <h3 style="font-family:var(--serif);font-size:1.15rem;margin:22px 0 6px">Wenn es eng wird — diese Sätze retten dich</h3>
+  <ul class="rettung">
+    <li>„Darf ich kurz überlegen?“<span>Gagner quelques secondes, c'est permis.</span></li>
+    <li>„Meinen Sie …, oder meinen Sie …?“<span>Reformuler la question si tu n'es pas sûre.</span></li>
+    <li>„Können Sie die Frage bitte noch einmal sagen?“</li>
+    <li>„Das weiß ich nicht sicher. Ich würde im Standard nachschauen und die Praxisanleiterin fragen.“<span>Dire « je ne sais pas » + comment tu chercherais : c'est une réponse professionnelle.</span></li>
+    <li>„Ich korrigiere mich: …“<span>Se corriger soi-même, c'est bien vu.</span></li>
+  </ul>
+  <div class="kasten">
+    <p><b>Tipp fürs iPhone:</b> Tippe ins Schreibfeld und dann auf das <b>Mikrofon der Tastatur</b>. Sprich deine Antwort auf Deutsch — das iPhone schreibt mit. Was es falsch versteht, zeigt dir, welche Wörter du noch deutlicher aussprechen musst.</p>
+    <p class="fr">Dicte ta réponse avec le micro du clavier : les mots que l'iPhone comprend mal sont ceux à mieux prononcer.</p>
+  </div>
+</section>
+
+<section id="situationen">
+  <h2>Die Situationen</h2>
+  <p class="lead">Wähle einen Prüfungsteil oder mach alle der Reihe nach. Hak ab, was du geschafft hast.</p>
+  <div class="filter" role="group" aria-label="Nach Prüfungsteil filtern" id="filter"></div>
+  <div id="liste"></div>
+  <div class="senden">
+    <button type="button" id="sammel">📤 Meine Antworten kopieren</button><span id="kopiert" aria-live="polite"></span>
+    <textarea id="ausgabe" hidden readonly aria-label="Gesammelte Antworten"></textarea>
+    <p style="margin-top:10px">Füge den Text im Chat ein. Ich korrigiere <b>Inhalt und Sprache</b> und sage dir bei jedem Fehler, welche deiner sieben Baustellen es ist.</p>
+  </div>
+</section>
+
+</main>
+<footer>Stand 12.10.2026 · Fachinhalte nur aus deinen Zusammenfassungen (Quelle unter jeder Situation). Deutsch täglich bleibt davon unberührt und beim Ziel B1. Für deinen eigenen Praxisfall: <a href="https://claude.ai/artifact/NYEURgPmZ47bMpZYz3K3FV">Zwischenprüfung üben</a>.</footer>
+
+<script>
+const TEILE=['schriftlich','mündlich','praktisch','Zwischenprüfung'];
+const S=[
+{id:'essen',teil:'praktisch',gram:'Wo? / Wohin? · Perfekt',
+ situation:'Reflexionsgespräch nach der Pflege — die Prüferin fragt',
+ titel:'Die Hilfe beim Essen begründen',
+ frage:'Sie haben Herrn M. beim Mittagessen unterstützt. Erklären Sie uns bitte, was Sie gemacht haben und warum.',
+ red:[['Vorher habe ich mich informiert, ob er eine **Schluckstörung** hat.','Avant, je me suis renseignée : a-t-il un trouble de la déglutition ?'],
+      ['Ich habe ihn aufrecht **an den Tisch** gesetzt.','Je l’ai assis bien droit à table. (Wohin? → Akkusativ)'],
+      ['Ich habe mich **auf Augenhöhe neben ihn** gesetzt.','Je me suis assise à côté de lui, à hauteur des yeux.'],
+      ['Die Reihenfolge und das Tempo hat **er** bestimmt.','C’est lui qui a décidé de l’ordre et du rythme.'],
+      ['So viel Hilfe **wie nötig**, so wenig **wie möglich**.','Autant d’aide que nécessaire, aussi peu que possible.']],
+ fallen:[['Ich habe ihn am Tisch gesetzt.','Ich habe ihn an den Tisch gesetzt.','setzen = Bewegung → Wohin? → Akkusativ. Baustelle 1 (Kasus).'],
+         ['Er hat an den Tisch gesessen.','Er hat am Tisch gesessen.','sitzen = Zustand → Wo? → Dativ (an dem = am). Baustelle 1.']],
+ auftrag:'Antworte 60 Sekunden laut. Dann schreib auf, was du gesagt hast — mit zweimal weil.',
+ muster:'Vorher habe ich mich informiert, ob Herr M. eine **Schluckstörung** hat, wie viel Unterstützung er braucht und ob er eine besondere Kostform bekommt. Dann habe ich ihm seine **Brille** und seine **Zahnprothese** gegeben, **weil** sie beim Essen Hilfsmittel sind: Ohne Prothese kann er nicht kauen, ohne Brille sieht er nicht, was auf dem Teller liegt. Ich habe ihn aufrecht **an den Tisch** gesetzt und mich **auf Augenhöhe neben ihn** gesetzt. Beim Essen habe ich mit ihm gesprochen. Das Marmeladendöschen habe ich geöffnet, aber das Brot hat er selbst geschmiert, **weil** er das noch kann. Die Reihenfolge und das Tempo hat er bestimmt. Als er satt war, habe ich ihn **nicht gezwungen** — er hat das letzte Wort, ob und wie viel er isst.',
+ quelle:['Mangelernährung — „Worauf du achtest, wenn du jemanden beim Essen unterstützt“ (nach Pflege Heute Kap. 7.5.2)','https://claude.ai/artifact/Thd63qgdREbvJPoxnrKBQ6']},
+
+{id:'krause',teil:'mündlich',gram:'weil · deshalb · Zahlen sprechen',
+ situation:'Fallsituation — die Prüferin fragt',
+ titel:'Frau Krause: 198/112 mmHg — Entgleisung oder Notfall?',
+ frage:'Frau Krause, 82 Jahre, hat einen Blutdruck von 198 zu 112. Ihr Gesicht ist leicht gerötet, sie hat ein Druckgefühl im Kopf. Ihre Blutdrucktabletten hat sie heute Morgen nicht genommen. Wie schätzen Sie die Situation ein, und was tun Sie?',
+ red:[['Ich schätze das als **Blutdruck-Entgleisung** ein, **nicht als Notfall**.','Je l’évalue comme un emballement tensionnel, pas comme une urgence.'],
+      ['Der obere Wert liegt **über 180**, der untere **über 110**.','La systolique est au-dessus de 180, la diastolique au-dessus de 110.'],
+      ['Es gibt **keine Notfallzeichen**: keine Atemnot, keine Brustenge, keine Lähmungen.','Il n’y a aucun signe d’urgence.'],
+      ['**Deshalb** sorge ich für Ruhe und messe **nach etwa 30 Minuten** noch einmal.','C’est pourquoi je la mets au calme et je remesure après environ 30 minutes.'],
+      ['**Wenn** Notfallzeichen auftreten, rufe ich **sofort 112**.','Si des signes d’urgence apparaissent, j’appelle immédiatement le 112.']],
+ fallen:[['…, weil der Wert ist über 180.','…, weil der Wert über 180 liegt.','Nach weil steht das Verb am Ende. Baustelle 3 (Verbstellung).'],
+         ['Ich rufe dem Arzt an.','Ich rufe den Arzt an.','anrufen + Akkusativ. Baustelle 7 (feste Verbverbindung) und 1.']],
+ auftrag:'Antworte laut nach dem Gerüst: Einschätzung → weil → Kette → deshalb. Dann aufschreiben.',
+ muster:'Ich schätze das als **Blutdruck-Entgleisung** ein, nicht als Notfall. Der Wert erfüllt die Definition: oben über 180, unten über 110. Ihre Zeichen — das gerötete Gesicht und das Druckgefühl im Kopf — sind genau die Zeichen einer Entgleisung. **Notfallzeichen** hat sie nicht: keine Atemnot, keine Brustenge, keine Verwirrtheit, keine Lähmungen, keine Seh- oder Sprechstörungen. Entscheidend ist nämlich nicht nur der Wert, sondern **ob Organe geschädigt werden**. **Deshalb** sorge ich zuerst für Ruhe, helfe ihr, sich zu entspannen, und messe nach etwa 30 Minuten noch einmal. Ich informiere den Arzt, **weil** sie ihre Blutdruckmedikamente nicht eingenommen hat — darüber darf ich nicht allein entscheiden. Und ich beobachte sie weiter: **Wenn** Notfallzeichen auftreten, rufe ich sofort 112.',
+ quelle:['Hypotonie & Hypertonie — Fall Frau Krause, AWMF-Patientenblatt Entgleisung/Notfall','https://claude.ai/code/artifact/316b844e-b1e6-4bb8-8163-3af3058de4fa']},
+
+{id:'restharn',teil:'schriftlich',gram:'Verb auf Position 2 · deshalb',
+ situation:'Aufsichtsarbeit · Operator Begründen',
+ titel:'Restharn: warum innerhalb von zehn Minuten?',
+ frage:'Begründen Sie, warum die Restharnbestimmung innerhalb von zehn Minuten nach der Miktion durchgeführt wird.',
+ red:[['Die Messung wird **unmittelbar — höchstens zehn Minuten —** nach dem Wasserlassen durchgeführt.','La mesure se fait juste après la miction, au maximum 10 minutes.'],
+      ['**Nach zehn Minuten** hat sich die Blase **bereits wieder gefüllt**.','Après dix minutes, la vessie s’est déjà remplie à nouveau.'],
+      ['Der Wert wäre dann **falsch hoch**.','La valeur serait alors faussement élevée.'],
+      ['**Daraus folgt** womöglich ein Katheter, den niemand gebraucht hätte.','Il en découlerait peut-être une sonde dont personne n’avait besoin.']],
+ fallen:[['Nach zehn Minuten die Blase hat sich gefüllt.','Nach zehn Minuten hat sich die Blase gefüllt.','Steht etwas anderes auf Position 1, kommt das Verb auf Position 2. Baustelle 3.'],
+         ['Deshalb man misst sofort.','Deshalb misst man sofort.','deshalb besetzt Position 1 → Verb direkt danach. Baustelle 3.']],
+ auftrag:'Schreib die Begründung in 4–5 Sätzen. Die ganze Kette muss sichtbar sein: Ursache → Wirkung → Gefahr → deshalb.',
+ muster:'Die Restharnbestimmung wird unmittelbar, höchstens zehn Minuten nach der Miktion durchgeführt. **Ursache:** Nach dem Wasserlassen füllt sich die Blase sofort wieder. **Wirkung:** Nach zehn Minuten hat sich die Blase bereits wieder gefüllt, und man misst nicht mehr den Restharn, sondern neuen Urin — der Wert ist **falsch hoch**. **Gefahr:** Aus einem falsch hohen Wert folgen womöglich ein Katheter und eine Infektion, die niemand gebraucht hätte. **Deshalb** messe ich sofort nach dem Wasserlassen.',
+ quelle:['Kontinenz fördern — Expertenstandard, Restharnbestimmung','https://claude.ai/artifact/9sE6cUYk1Q3VugvVEUhUHi']},
+
+{id:'stimmen',teil:'mündlich',gram:'Siezen · Dativ (Ihnen)',
+ situation:'Kompetenzbereich II — Kommunikation',
+ titel:'Ein Patient hört Stimmen: Was sagen Sie?',
+ frage:'Ein Patient mit Schizophrenie sagt zu Ihnen: „Die Stimmen sagen, dass hier alle gegen mich sind.“ Was antworten Sie ihm, und warum?',
+ red:[['**Nicht mitspielen und nicht wegdiskutieren.**','Ni jouer le jeu, ni vouloir le convaincre.'],
+      ['„Ich höre die Stimmen nicht — aber ich **glaube Ihnen**, dass Sie sie hören.“','Je n’entends pas les voix, mais je vous crois quand vous dites les entendre.'],
+      ['„Das macht **Ihnen** Angst, oder?“','Ça vous fait peur, n’est-ce pas ?'],
+      ['So erkenne ich **sein Gefühl** an, und **die Realität** bleibt klar.','Je reconnais son émotion, et la réalité reste claire.']],
+ fallen:[['Ich glaube dir.','Ich glaube Ihnen.','Patienten werden gesiezt — Ihnen mit großem I. Baustelle 6 (Siezen).'],
+         ['Das macht Sie Angst.','Das macht Ihnen Angst.','Angst machen + Dativ: wem? → Ihnen. Baustelle 1 (Kasus).']],
+ auftrag:'Sag zuerst den Satz zum Patienten, dann erkläre der Prüferin in zwei Sätzen, warum du so antwortest.',
+ muster:'Zum Patienten sage ich: „Ich höre die Stimmen nicht — aber ich glaube Ihnen, dass Sie sie hören. Das macht Ihnen Angst, oder?“ Ich spiele **nicht mit**, **weil** eine falsche Bestätigung — „Ja, ich höre sie auch“ — eine Lüge ist und den Wahn verstärkt. Ich diskutiere es aber auch **nicht weg**, **weil** er sich mit „Da ist niemand“ nicht ernst genommen fühlt. So erkenne ich sein Gefühl an, und die Realität bleibt klar.',
+ quelle:['Notfälle & Erste Hilfe — Kapitel 22 Schizophrenie, „Umgang mit Wahn und Stimmen“','https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d']},
+
+{id:'clozapin',teil:'schriftlich',gram:'Nebensatz mit weil · Genus',
+ situation:'Aufsichtsarbeit · Operator Beurteilen',
+ titel:'Clozapin, Fieber und Halsschmerzen',
+ frage:'Eine Patientin nimmt Clozapin (Leponex). Heute hat sie Fieber und Halsschmerzen. Beurteilen Sie die Situation.',
+ red:[['**Erst die Einschätzung:** Das kann eine **Agranulozytose** sein.','D’abord l’évaluation : cela peut être une agranulocytose.'],
+      ['Clozapin hat **weniger Bewegungsstörungen**, **dafür** die Agranulozytose.','La clozapine donne moins de troubles moteurs, mais en contrepartie l’agranulocytose.'],
+      ['Deshalb sind **regelmäßige Blutbildkontrollen** nötig.','C’est pourquoi des contrôles sanguins réguliers sont nécessaires.'],
+      ['Ich **informiere sofort** den Arzt.','J’informe immédiatement le médecin.']],
+ fallen:[['…, weil Fieber kann Agranulozytose sein.','…, weil Fieber ein Zeichen einer Agranulozytose sein kann.','Nach weil steht das Verb am Ende. Baustelle 3.'],
+         ['die Fieber','das Fieber','Genus lernen mit dem Wort: das Fieber. Baustelle 2 (Genus).']],
+ auftrag:'Schreib 4–5 Sätze. Beim Operator Beurteilen kommt die Einschätzung zuerst, dann die Maßnahmen.',
+ muster:'**Einschätzung:** Fieber und Halsschmerzen unter Clozapin können Zeichen einer **Agranulozytose** sein — das ist die gefährliche Nebenwirkung dieses Medikaments. Clozapin hat weniger Bewegungsstörungen als andere Antipsychotika, **dafür** die Agranulozytose; **deshalb** wird es nur zurückhaltend eingesetzt und braucht regelmäßige Blutbildkontrollen. **Maßnahme:** Ich behandle das nicht als einfache Erkältung, sondern informiere **sofort** den Arzt, damit das Blutbild kontrolliert wird.',
+ quelle:['Psychiatrische Pflege — Psychopharmaka, Antipsychotika','https://claude.ai/artifact/FR1USYHEkkScdqes2CkGSU']},
+
+{id:'harnverhalt',teil:'mündlich',gram:'dass-Satz · nach + Dativ',
+ situation:'Fallsituation — die Prüferin fragt nach',
+ titel:'Harnverhalt ohne Schmerzen',
+ frage:'Eine Patientin hatte eine Regionalanästhesie. Sie sagt, sie hat keine Schmerzen. Warum kontrollieren Sie trotzdem, ob sie Wasser gelassen hat?',
+ red:[['Ein akuter Harnverhalt ist **meistens schmerzhaft** — **aber nicht immer**.','Une rétention aiguë est en général douloureuse — mais pas toujours.'],
+      ['**Nach einer Regionalanästhesie** ist die Schmerzmeldung ausgeschaltet.','Après une anesthésie locorégionale, le signal de douleur est coupé.'],
+      ['Sie merkt nicht, **dass ihre Blase voll ist**.','Elle ne remarque pas que sa vessie est pleine.'],
+      ['Deshalb **warte ich nicht auf eine Beschwerde**, sondern kontrolliere aktiv.','Donc je n’attends pas qu’elle se plaigne, je contrôle activement.']],
+ fallen:[['…, dass ihre Blase ist voll.','…, dass ihre Blase voll ist.','dass schickt das Verb ans Ende. Baustelle 3.'],
+         ['nach die Anästhesie','nach der Anästhesie','nach verlangt immer Dativ. Baustelle 1.']],
+ auftrag:'Antworte mit der ganzen Kette — das ist eine Begründen-Frage.',
+ muster:'Ein akuter Harnverhalt ist in der Regel schmerzhaft, aber er kann auch **ohne Schmerzen** verlaufen — zum Beispiel nach der Geburt, bei einer Regionalanästhesie oder bei einem Bandscheibenvorfall. **Ursache:** Durch die Regionalanästhesie ist die Schmerz- und Druckempfindung ausgeschaltet. **Wirkung:** Die Patientin merkt nicht, dass ihre Blase voll ist. **Gefahr:** Die Blase wird überdehnt. **Deshalb** warte ich nicht auf eine Beschwerde, sondern kontrolliere aktiv, ob und wann sie Wasser gelassen hat.',
+ quelle:['Kontinenz fördern — „Achtung!!!“ zur akuten Harnretention','https://claude.ai/artifact/9sE6cUYk1Q3VugvVEUhUHi']},
+
+{id:'pesr',teil:'Zwischenprüfung',gram:'weil + Perfekt',
+ situation:'Erläuterung der Pflegeplanung — die Lehrerin fragt',
+ titel:'Warum hat die Sturzgefahr kein S?',
+ frage:'Bei Ihrem Problem „Sturzgefahr“ haben Sie keine Symptome eingetragen. Warum nicht?',
+ red:[['Die Sturzgefahr ist ein **potentielles** Problem.','Le risque de chute est un problème potentiel.'],
+      ['Sie ist **noch nicht eingetreten** — es gibt also **keine Symptome**.','Il ne s’est pas encore produit — il n’y a donc pas de symptômes.'],
+      ['**Deshalb** steht das S in Klammern: P E (S) R.','C’est pour ça que le S est entre parenthèses.'],
+      ['**Stattdessen** habe ich die **Risikofaktoren** und das **Assessment** eingetragen.','À la place, j’ai noté les facteurs de risque et l’évaluation.']],
+ fallen:[['…, weil es ist noch nicht passiert.','…, weil es noch nicht eingetreten ist.','weil → Verb ans Ende; Perfekt: eingetreten ist. Baustelle 3.'],
+         ['Sturz Gefahr','Sturzgefahr','Komposita schreibt man zusammen. Baustelle 5.']],
+ auftrag:'Antworte in drei Sätzen — kurz und sicher. Diese Frage kommt in der Zwischenprüfung fast sicher.',
+ muster:'Die Sturzgefahr ist ein **potentielles** Problem. Ein potentielles Problem ist eine Gefahr, es ist **noch nicht eingetreten** — **deshalb** kann es keine Symptome haben, und das S steht in Klammern. Stattdessen habe ich in der Vorlage die **individuellen Risikofaktoren** und das **Assessment mit dem Gefährdungsgrad** eingetragen.',
+ quelle:['Zwischenprüfung — PE(S)R und die Vorlage für potentielle Probleme','https://claude.ai/code/artifact/2e1db357-3e32-4a56-9356-3e4fde3d5c88']},
+
+{id:'lambrecht',teil:'Zwischenprüfung',gram:'Präsens · Dativ nach in/mit',
+ situation:'Fallvorstellung, Block 4 — biografische Daten',
+ titel:'Herr Lambrecht: seine Lebenssituation',
+ frage:'Erzählen Sie uns bitte etwas über die Lebenssituation von Herrn Lambrecht und wie er seine Situation erlebt.',
+ red:[['Herr Lambrecht ist **seit drei Jahren Witwer**.','Il est veuf depuis trois ans.'],
+      ['Er lebt **allein in einer großen Wohnung ohne Aufzug**.','Il vit seul dans un grand appartement sans ascenseur.'],
+      ['Sein Sohn wohnt **weit weg** und hat Familie und Beruf.','Son fils habite loin et a une famille et un travail.'],
+      ['Über seine Situation sagt er selbst: „…“','Sur sa situation, il dit lui-même : « … »']],
+ fallen:[['Er ist seit drei Jahren Witwe.','Er ist seit drei Jahren Witwer.','der Witwer (Mann) — die Witwe (Frau). Baustelle 2.'],
+         ['in einer große Wohnung','in einer großen Wohnung','in + Dativ (Wo?) → einer großen. Baustelle 1.']],
+ auftrag:'Sprich 1–2 Minuten, wie in der Fallvorstellung. Benutze ein Zitat von ihm.',
+ muster:'Herr Lambrecht ist 76 Jahre alt und seit drei Jahren **Witwer**. Er lebt allein **in einer großen Wohnung** ohne Aufzug, deshalb kommt er kaum noch raus. Sein Sohn wohnt weit weg und hat Familie und Beruf; er hat eine Putzhilfe organisiert. Früher war Herr Lambrecht Lackierer, das hat ihm Freude gemacht. Er hat sein Leben lang geraucht, eine Schachtel am Tag. Im Moment wirkt er apathisch und in sich gekehrt. Über seine Situation sagt er: „Ich wünschte, ich wäre zu Hause, da interessiert es auch keinen, wenn ich sterbe.“ Diesen Satz nehme ich ernst — er gehört zu ABEDL 13, existenzielle Erfahrungen.',
+ quelle:['Fallbeispiel Herr Lambrecht (CE 01 · UE 10) — Zeilen 9–17 und 34–37','https://claude.ai/code/artifact/2e1db357-3e32-4a56-9356-3e4fde3d5c88']}
+];
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function bold(s){return esc(s).replace(/\*\*([^*]+)\*\*/g,'<b>$1</b>');}
+function plain(s){return String(s).replace(/\*\*/g,'');}
+function lies(k){try{return localStorage.getItem(k);}catch(e){return null;}}
+function schreib(k,v){try{localStorage.setItem(k,v);}catch(e){}}
+function sprich(t){ if(!('speechSynthesis' in window)) return; speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(t); u.lang='de-DE'; u.rate=.9;
+  const v=speechSynthesis.getVoices().find(x=>x.lang&&x.lang.startsWith('de')); if(v) u.voice=v; speechSynthesis.speak(u); }
+
+function karte(s,i){
+  return '<article class="sit" data-teil="'+esc(s.teil)+'" id="s-'+s.id+'">'+
+   '<div class="sit-kopf"><span class="sit-nr">'+(i+1)+'</span><span class="pill">'+esc(s.teil)+'</span><span class="pill gram">'+esc(s.gram)+'</span>'+
+   '<label class="erledigt"><input type="checkbox" data-ok="'+s.id+'"> geschafft</label></div>'+
+   '<h3>'+esc(s.titel)+'</h3>'+
+   '<div class="frage"><div class="wer">'+esc(s.situation)+'</div><p>„'+esc(s.frage)+'“</p>'+
+   '<button type="button" class="hoer" data-say="'+esc(s.frage)+'">🔊 Frage anhören</button></div>'+
+   '<details class="hilfe"><summary>Hilfe: So kannst du anfangen</summary><div><ul class="red">'+
+   s.red.map(r=>'<li><button type="button" data-say="'+esc(plain(r[0]))+'" aria-label="vorlesen">🔊</button>'+bold(r[0])+'<span class="f2">'+esc(r[1])+'</span></li>').join('')+
+   '</ul>'+s.fallen.map(f=>'<div class="falle"><s>'+esc(f[0])+'</s> → <b class="r">'+esc(f[1])+'</b><br>'+esc(f[2])+'</div>').join('')+'</div></details>'+
+   '<p class="auftrag">'+esc(s.auftrag)+'</p>'+
+   '<textarea id="t-'+s.id+'" data-frage="'+esc(s.titel)+'" placeholder="Was hast du gesagt? Schreib es hier auf …"></textarea>'+
+   '<details class="muster"><summary>Musterantwort zeigen — erst nach deinem Versuch</summary><div>'+bold(s.muster)+'</div></details>'+
+   '<p class="quelle">Fachinhalt aus: <a href="'+esc(s.quelle[1])+'">'+esc(s.quelle[0])+'</a></p></article>';
+}
+document.getElementById('liste').innerHTML=S.map(karte).join('');
+const filter=document.getElementById('filter');
+filter.innerHTML=['alle'].concat(TEILE).map(t=>{const n=t==='alle'?S.length:S.filter(s=>s.teil===t).length;
+  return '<button type="button" data-f="'+esc(t)+'" aria-pressed="'+(t==='alle')+'">'+esc(t==='alle'?'Alle':t)+' · '+n+'</button>';}).join('');
+filter.addEventListener('click',e=>{const b=e.target.closest('button'); if(!b) return;
+  filter.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(x===b)));
+  document.querySelectorAll('.sit').forEach(a=>{a.hidden=!(b.dataset.f==='alle'||a.dataset.teil===b.dataset.f);});});
+document.addEventListener('click',e=>{const b=e.target.closest('[data-say]'); if(b) sprich(b.dataset.say);});
+document.querySelectorAll('textarea[data-frage]').forEach(t=>{const k='pd-'+t.id,v=lies(k); if(v) t.value=v;
+  t.addEventListener('input',()=>schreib(k,t.value));});
+document.querySelectorAll('input[data-ok]').forEach(c=>{const k='pd-ok-'+c.dataset.ok; c.checked=lies(k)==='1';
+  c.addEventListener('change',()=>schreib(k,c.checked?'1':'0'));});
+document.getElementById('sammel').addEventListener('click',function(){
+  const aus=document.getElementById('ausgabe'),info=document.getElementById('kopiert');
+  let text='Prüfungsdeutsch — meine Antworten\n\n',n=0;
+  document.querySelectorAll('textarea[data-frage]').forEach(t=>{ if(!t.value.trim()) return; n++;
+    text+='— '+t.dataset.frage+'\n'+t.value.trim()+'\n\n';});
+  if(!n) text+='(Noch keine Antwort geschrieben.)';
+  aus.value=text;
+  const zeigen=()=>{aus.hidden=false;aus.focus();aus.select();info.textContent='Markiert — jetzt kopieren und mir schicken.';};
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(()=>{info.textContent='Kopiert ✓ — im Chat einfügen.';},zeigen); else zeigen();
+});
+</script>

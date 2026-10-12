@@ -1634,6 +1634,18 @@ stationär) erst, wenn sie die erste Runde geschrieben hat.
 
 ---
 
+## Prüfungsdeutsch Pflege — eigener Link, NICHT Teil von Deutsch täglich
+
+`pruefungsdeutsch/index.html` (Icon „speech“). Am 12.10.2026 wollte sie Deutsch für ihr Examen im
+3. Jahr. Ein Block in Deutsch täglich wurde gebaut und **am selben Tag auf ihren Wunsch wieder
+entfernt** (Revert `b1ed808`): *„Créer un autre lien. Et le [Deutsch täglich] ne doit pas changer. Ça
+doit toujours rester avec l'objectif d'avoir le niveau B1.“* **Deutsch täglich bleibt B1 und
+unverändert — Prüfungsdeutsch nie wieder dort einbauen.**
+Die Seite: Antwortgerüst (Einschätzung → weil → Kette → deshalb), Rettungssätze, Filter nach
+Prüfungsteil, je Situation Frage der Prüferin (🔊), Redemittel, Fehler mit Baustelle, Schreibfeld,
+Musterantwort, Quelle. Stand: 8 Situationen. **Fachinhalt nur aus ihren Zusammenfassungen**, mit Link.
+Neue Situationen kommen ins Array `S` im Skript.
+
 ## Zwischenprüfung üben — ihr Praxisfall, dann weitere Fälle
 
 `schulung-zwischenpruefung/ueben.html` → `https://claude.ai/artifact/NYEURgPmZ47bMpZYz3K3FV` (Icon „exam“). Auf ihren Wunsch vom 12.10.2026: Sie nennt die
