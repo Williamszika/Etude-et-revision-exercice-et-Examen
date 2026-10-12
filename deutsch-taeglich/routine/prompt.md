@@ -16,7 +16,7 @@ Reihenfolge — nicht umstellen:
    - `lektionen/<heute>.json` existiert schon → nicht anfassen. Weiter mit Schritt 5.
    - `t` gerade → Lektionstag: `lektion = t//2+1`, `themaBlock = t//4+1`, `themenTag = (t//2)%2+1`, Rest wie in `CLAUDE.md`. Samstag → zusätzlich `probe`.
 
-4. Lektion schreiben — **Struktur exakt wie die neueste Datei in `lektionen/`**, alle Regeln aus `CLAUDE.md` (Niveau B1, 15–18 Vokabeln mit mindestens vier Mechanismusbegriffen aus ihrem Material in `Wissen/`, `lesen` 150–200 Wörter mit AFB II und III, `leben`, `deklination`, `telc`-Badge mit B1-Namen, **seit Lektion 13 `kurzregel` und `pruefungsdeutsch`** — Abschnitte „Der Tagesplan“ und „Prüfungsdeutsch“ in `CLAUDE.md`, Vorbild Lektion 12, nichts aus früheren Lektionen wiederholen). **Nichts erfinden**: keine Normen, Zahlen oder Quellen, die nicht in ihren Unterlagen stehen.
+4. Lektion schreiben — **Struktur exakt wie die neueste Datei in `lektionen/`**, alle Regeln aus `CLAUDE.md` (Niveau B1, 15–18 Vokabeln mit mindestens vier Mechanismusbegriffen aus ihrem Material in `Wissen/`, `lesen` 150–200 Wörter mit AFB II und III, `leben`, `deklination`, `telc`-Badge mit B1-Namen, nichts aus früheren Lektionen wiederholen). **Nichts erfinden**: keine Normen, Zahlen oder Quellen, die nicht in ihren Unterlagen stehen.
 
    **Sofort danach — Sicherungscommit, noch vor dem Build:**
    `git add deutsch-taeglich/lektionen/ && git commit -m "Deutsch täglich: Lektion N (<datum>) — Sicherung" && git push -u origin claude/nursing-exam-prep-workflow-gvn5u0`
