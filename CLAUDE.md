@@ -1672,6 +1672,12 @@ Kreuze der Risikomatrix (auf dem Foto nicht sicher lesbar), Pflegegrad, Diabetes
 trotz Metformin/Insulin, Indikation für Escitalopram und ASS, Katheterart, Bettseitenteil bei gesetzlicher
 Vertretung (ihre Unterlagen decken den Fall nicht ab). Arzneifakten zu Perazin, Escitalopram, HCT, ASS,
 Metformin sind **Internetquellen** (Beipackzettel, Rote-Hand-Brief 2011) und so markiert.
+**Seit dem 12.10.2026 abends** (ihre Frage: *„je ne sais pas par quoi commencer, comment détecter les
+Pflegeprobleme … en lisant son diagnose. Ajoute dans le lien, étape par étape …“*): oben **„Dein Weg“** mit
+**9 Etappen** (je Ziel, Zeit, „So gehst du vor“ auf Französisch, „Geschafft, wenn …“, Haken mit Balken im
+`localStorage`) und **Etappe 2 „Von der Diagnose zum Pflegeproblem“** — sechs Fragen, Zitat ihres Blatts
+(Definition Pflegeproblem, die vier ★-ABEDL), Beispiel Blasenlähmung, sechs Übungszeilen mit Lösung. Die
+Abschnittsüberschriften tragen die Etappennummern; bei Änderungen beides zusammen pflegen.
 
 ## Diagnoseliste — „Zehn Diagnosen, ein Mensch“
 

@@ -121,17 +121,42 @@
   .frage .kb{font-family:var(--mono);font-size:11px;color:var(--accent-deep);margin-right:6px;}
   .vorlesen{background:transparent;border:1px solid var(--line);color:var(--accent-deep);padding:2px 9px;font-size:13px;margin-left:6px;vertical-align:1px;}
   #kopiert{font-family:var(--mono);font-size:12px;color:var(--du);margin-left:10px;}
+  /* Der Weg: nummerierte Etappen mit Haken */
+  .weg-stand{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin:0 0 16px;}
+  .weg-stand .balken{flex:1 1 12rem;height:10px;border-radius:99px;background:var(--paper-2);overflow:hidden;border:1px solid var(--line);}
+  .weg-stand .balken span{display:block;height:100%;width:0;background:var(--accent);transition:width .3s;}
+  .weg-stand output{font-family:var(--mono);font-size:13px;font-variant-numeric:tabular-nums;color:var(--accent-deep);}
+  ol.weg{list-style:none;padding:0;margin:0;display:grid;gap:12px;max-width:none;}
+  ol.weg > li{margin:0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:2.6rem 1fr;gap:6px 14px;}
+  ol.weg > li.fertig{border-color:var(--du);background:var(--dubg);}
+  ol.weg .nr{font-family:var(--serif);font-size:1.6rem;line-height:1;color:var(--accent-deep);text-align:center;padding-top:2px;}
+  ol.weg > li.fertig .nr{color:var(--du);}
+  ol.weg > li > div{min-width:0;}
+  ol.weg h3{margin:0 0 2px;}
+  ol.weg .zeit{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 8px;}
+  ol.weg h4{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:10px 0 4px;font-weight:600;}
+  ol.weg ol,ol.weg ul{margin:0 0 6px;}
+  ol.weg ul.ok{list-style:none;padding:0;} ol.weg ul.ok li::before{content:"✓ ";color:var(--du);font-weight:700;}
+  ol.weg .unten{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;}
+  ol.weg label.haken{display:inline-flex;align-items:center;gap:8px;font-weight:600;cursor:pointer;}
+  ol.weg label.haken input{width:1.15rem;height:1.15rem;accent-color:var(--du);}
+  .methode{list-style:none;padding:0;display:grid;gap:8px;max-width:none;counter-reset:m;}
+  .methode li{counter-increment:m;margin:0;display:grid;grid-template-columns:2rem 1fr;gap:10px;align-items:start;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px;}
+  .methode li::before{content:counter(m);font-family:var(--mono);font-weight:700;color:var(--accent-deep);background:var(--accent-soft);border-radius:8px;text-align:center;padding:3px 0;}
+  .methode li > div{min-width:0;}
+  .methode .de{display:block;font-weight:700;}
   footer{max-width:60rem;margin:0 auto;padding-block:20px 60px;padding-inline:18px;color:var(--ink-soft);font-size:14px;border-top:1px solid var(--line);}
 </style>
 
 <header class="hero">
   <p class="eyebrow">Zwischenprüfung üben · Fall aus deinem Praxiseinsatz · ambulant</p>
   <h1>Prüfungsfall Herr J.</h1>
-  <p class="sub">Ein Mann, 54 Jahre, im Rollstuhl, von einem ambulanten Pflegedienst versorgt. Alles hier steht in seinen Unterlagen, die du fotografiert hast — oder ist markiert. Lies, schreib mit der Uhr, und üb das Gespräch.</p>
+  <p class="sub">Ein Mann, 54 Jahre, im Rollstuhl, von einem ambulanten Pflegedienst versorgt. Alles hier steht in seinen Unterlagen, die du fotografiert hast — oder ist markiert. <b>Fang oben bei „Dein Weg“ an</b> und arbeite eine Etappe nach der anderen ab.</p>
   <div class="legende"><span class="tag akte">aus seiner Akte</span><span class="tag du">deine Unterlagen</span><span class="tag net">Internetquelle</span><span class="tag ich">meine Lösung / Folgerung</span></div>
 </header>
 
 <nav class="toc" aria-label="Inhalt">
+  <a href="#weg">Dein Weg</a>
   <a href="#auftrag">Auftrag</a>
   <a href="#steckbrief">Steckbrief</a>
   <a href="#sis">SIS</a>
@@ -139,6 +164,7 @@
   <a href="#medikamente">Medikamente</a>
   <a href="#planung2021">Alte Planung</a>
   <a href="#auffaellig">Auffällig</a>
+  <a href="#diagnose-problem">Diagnose → Problem</a>
   <a href="#probleme">Probleme</a>
   <a href="#pesr">PE(S)R</a>
   <a href="#vorstellen">Vorstellen</a>
@@ -147,6 +173,118 @@
 </nav>
 
 <main>
+
+<section id="weg">
+  <h2>Dein Weg — Schritt für Schritt</h2>
+  <p class="lead">Neun Etappen, in dieser Reihenfolge. Jede hat drei Teile: <b>was du tust</b>, <b>wie lange</b>, und <b>woran du merkst, dass du sie geschafft hast</b>. Hak sie ab — der Balken merkt es sich in deinem Browser. <span class="tag ich">meine Ordnung</span></p>
+  <p class="fr">Ne fais pas tout en même temps. Une étape, puis la suivante. 20 à 40 minutes par jour suffisent ; les jours de service lourd, une seule question de l'étape 8 compte aussi.</p>
+  <div class="weg-stand"><div class="balken" aria-hidden="true"><span id="wegBalken"></span></div><output id="wegZahl" aria-live="polite">0 von 9 erledigt</output></div>
+  <ol class="weg">
+    <li id="e1"><span class="nr">1</span><div>
+      <h3>Herrn J. kennenlernen</h3>
+      <p class="zeit">2 × 30 Minuten · nur lesen und sprechen</p>
+      <p>Avant d'écrire quoi que ce soit, tu dois connaître ton patient comme une collègue à la relève (Übergabe).</p>
+      <h4>So gehst du vor</h4>
+      <ol><li>Lis le <b>Steckbrief</b> et la <b>SIS</b>. Souligne dans ta tête ses propres phrases : ce sont tes meilleures preuves.</li><li>Lis les <b>Diagnosen</b>. Pour chacune, ouvre la page « Zehn Diagnosen, ein Mensch » et lis seulement « Ursachen & Symptome ».</li><li>Lis les <b>Medikamente</b> : pour chaque médicament, cache la carte et réponds à voix haute aux 6 questions.</li><li>Lis <b>Alte Planung</b> et <b>Auffällig</b>, puis fais l'exercice « Vergleichen » (10 min).</li></ol>
+      <h4>Geschafft, wenn …</h4>
+      <ul class="ok"><li>tu peux présenter Herr J. en 3 phrases <b>sans regarder</b> : „Herr J. ist 54 Jahre alt … Er braucht Hilfe bei … Er kann selbst …“</li><li>tu connais pour chaque médicament : Gruppe · wofür bei ihm · eine Nebenwirkung · was du beobachtest</li><li>tu peux nommer 3 choses qui ne collent pas dans son dossier</li></ul>
+      <div class="unten"><a href="#steckbrief">→ Steckbrief, SIS, Diagnosen, Medikamente</a><label class="haken"><input type="checkbox" class="erledigt" data-key="e1"> erledigt</label></div>
+    </div></li>
+    <li id="e2"><span class="nr">2</span><div>
+      <h3>Von der Diagnose zum Pflegeproblem — die Methode</h3>
+      <p class="zeit">30 Minuten</p>
+      <p>Un diagnostic n'est <b>pas</b> un problème de soins. Ici tu apprends la méthode en 6 questions qui transforme un diagnostic en problème.</p>
+      <h4>So gehst du vor</h4>
+      <ol><li>Lis la méthode et l'exemple « Blasenlähmung » entièrement fait.</li><li>Remplis les 6 lignes de l'exercice <b>toi-même</b>, sans regarder la solution.</li><li>Compare avec ma solution. Là où c'est différent : demande-toi <i>quelle question</i> tu as sautée.</li></ol>
+      <h4>Geschafft, wenn …</h4>
+      <ul class="ok"><li>pour chaque ligne, tu as écrit la <b>conséquence dans le corps</b>, l'<b>ABEDL</b>, et <b>aktuell</b> ou <b>potentiell</b></li><li>tu as vérifié chaque problème dans la SIS — et tu as compris pourquoi la Schizophrénie n'est <b>pas</b> un problème actuel chez lui</li></ul>
+      <div class="unten"><a href="#diagnose-problem">→ Diagnose → Problem</a><label class="haken"><input type="checkbox" class="erledigt" data-key="e2"> erledigt</label></div>
+    </div></li>
+    <li id="e3"><span class="nr">3</span><div>
+      <h3>Alle Pflegeprobleme finden</h3>
+      <p class="zeit">20 Minuten mit Uhr</p>
+      <p>Maintenant toute la liste, ABEDL par ABEDL — comme au 1<sup>er</sup> jour de l'examen (document 4 : „alle Pflegeprobleme“).</p>
+      <h4>So gehst du vor</h4>
+      <ol><li>Démarre la montre de 20 minutes.</li><li>Passe les 13 ABEDL dans l'ordre, en commençant par les 4 ★ (1, 2, 3, 13).</li><li>Écris deux listes séparées : <b>AKTUELL</b> et <b>POTENTIELL</b>. Chaque problème en une phrase : „Herr J. kann … nicht selbst …, weil …“ ou „Gefahr einer …, weil …“.</li><li>Seulement après : ouvre ma liste et complète la tienne <b>dans une autre couleur</b> (ou entre crochets).</li></ol>
+      <h4>Geschafft, wenn …</h4>
+      <ul class="ok"><li>tu as au moins <b>6 problèmes actuels</b> et <b>5 potentiels</b></li><li>chaque problème contient un <b>weil</b></li><li>aucun problème n'est juste un nom de maladie</li></ul>
+      <div class="unten"><a href="#probleme">→ Problemliste</a><label class="haken"><input type="checkbox" class="erledigt" data-key="e3"> erledigt</label></div>
+    </div></li>
+    <li id="e4"><span class="nr">4</span><div>
+      <h3>Die wichtigsten auswählen</h3>
+      <p class="zeit">10 Minuten</p>
+      <p>3 problèmes pour la Praxisaufgabe, 4 pour l'examen. L'examinatrice demandera : „Warum gerade diese?“</p>
+      <h4>So gehst du vor</h4>
+      <ol><li>Pour chaque problème, pose les 3 questions : <b>Was bedroht ihn am meisten? Was betrifft ihn jeden Tag? Was kann die Pflege beeinflussen?</b></li><li>Choisis tes 3 (+1) et écris pour chacun <b>une phrase avec weil</b>.</li><li>Compare avec mon choix — un autre choix est juste s'il est bien justifié.</li></ol>
+      <h4>Geschafft, wenn …</h4>
+      <ul class="ok"><li>tu as écrit pour chaque problème choisi : „Ich habe es gewählt, weil …“</li></ul>
+      <div class="unten"><a href="#probleme">→ Auswahl</a><label class="haken"><input type="checkbox" class="erledigt" data-key="e4"> erledigt</label></div>
+    </div></li>
+    <li id="e5"><span class="nr">5</span><div>
+      <h3>PE(S)R schreiben — ein Problem pro Tag</h3>
+      <p class="zeit">3 Tage × 30–40 Minuten</p>
+      <p>Le cœur de l'examen. Un seul problème par jour, mais complet.</p>
+      <h4>So gehst du vor</h4>
+      <ol><li>Lis d'abord le <b>modèle complet</b> (Gefahr einer Harnwegsinfektion) et regarde comment chaque ligne est construite.</li><li>Jour 1 : Körperpflege und Ankleiden · Jour 2 : Stuhlinkontinenz und Haut · Jour 3 : Blutzucker.</li><li>Écris dans cet ordre : <b>P → E → (S) → R → Nahziel → Fernziel → Maßnahmen → Begründung</b>.</li><li>Relis avec la liste « Geschafft, wenn » ci-dessous, puis envoie-le-moi avec 📤.</li></ol>
+      <h4>Geschafft, wenn …</h4>
+      <ul class="ok"><li><b>P</b> : „Herr J. kann … nicht …“ ou „Gefahr einer …“ — pas un nom de maladie</li><li><b>S</b> seulement pour un problème <b>aktuell</b> ; pour un potentiell : les facteurs de risque</li><li><b>R</b> : ce qu'il peut encore faire — et la <b>Hilfeform</b> correspond à cette ressource (pas de vollständige Übernahme pour ce qu'il sait faire)</li><li><b>Ziel</b> SMART : qui, quoi, comment on le mesure, jusqu'à quand</li><li>chaque <b>Maßnahme</b> répond aux W-Fragen : Wer? Was? Wie/womit? Wann? Wie oft?</li><li><b>Begründung</b> : au moins un Expertenstandard, un diagnostic ou un médicament</li></ul>
+      <div class="unten"><a href="#pesr">→ PE(S)R</a><label class="haken"><input type="checkbox" class="erledigt" data-key="e5"> erledigt</label></div>
+    </div></li>
+    <li id="e6"><span class="nr">6</span><div>
+      <h3>Die Praxisaufgabe am Stück</h3>
+      <p class="zeit">1,5 Stunden mit Uhr</p>
+      <p>Exactement le format de ton stage : Fallvorstellung · liste de tous les problèmes · 3 problèmes planifiés (Problem – Ziel – Maßnahme – Begründung).</p>
+      <h4>So gehst du vor</h4>
+      <ol><li>Prépare : SIS, Diagnosen, Medikamente ouverts. Rien d'autre.</li><li>Démarre la montre de 1:30:00. Répartition conseillée : 15 min Fallvorstellung · 15 min liste · 3 × 20 min planification.</li><li>Quand la montre passe au rouge : arrête-toi, note où tu en es. C'est une information, pas un échec.</li></ol>
+      <h4>Geschafft, wenn …</h4>
+      <ul class="ok"><li>les 3 parties sont là, même si elles sont courtes</li><li>tu sais quelle partie t'a pris trop de temps</li></ul>
+      <div class="unten"><a href="#pesr">→ Uhr 1,5 h</a><label class="haken"><input type="checkbox" class="erledigt" data-key="e6"> erledigt</label></div>
+    </div></li>
+    <li id="e7"><span class="nr">7</span><div>
+      <h3>Vorstellen und erläutern — laut</h3>
+      <p class="zeit">10 + 20 Minuten · Sprachmemos</p>
+      <p>À l'oral, on ne lit pas : „Kein Vorlesen der Pflegeplanung, sondern erläutern wie diese zustande gekommen ist.“</p>
+      <h4>So gehst du vor</h4>
+      <ol><li>Fais une fiche avec <b>au maximum 5 mots-clés</b> par bloc (4 blocs).</li><li>Démarre la montre de 10 min, enregistre-toi, présente Herr J.</li><li>Réécoute-toi, écris ce que tu as dit dans le champ, compare avec le modèle.</li><li>Ensuite l'Erläuterung (20 min) : pour chaque problème, le chemin — woher? warum dieses? PE(S)R, warum dieses Ziel? warum diese Hilfeform? woran merkst du, dass es wirkt?</li></ol>
+      <h4>Geschafft, wenn …</h4>
+      <ul class="ok"><li>tu as parlé <b>10 minutes sans lire</b> une phrase entière</li><li>les 4 blocs sont là, et tu as cité <b>une phrase de lui</b></li><li>pour chaque problème tu as dit au moins un <b>weil</b></li></ul>
+      <div class="unten"><a href="#vorstellen">→ Fallvorstellung</a><label class="haken"><input type="checkbox" class="erledigt" data-key="e7"> erledigt</label></div>
+    </div></li>
+    <li id="e8"><span class="nr">8</span><div>
+      <h3>Das Prüfungsgespräch</h3>
+      <p class="zeit">3 Fragen pro Tag · 10 Minuten</p>
+      <p>15 minutes de questions sur les 5 domaines de compétences. On s'y entraîne par petites doses.</p>
+      <h4>So gehst du vor</h4>
+      <ol><li>Chaque jour, 3 questions : appuie sur 🔊, écoute, réponds <b>à voix haute</b> avant de lire quoi que ce soit.</li><li>Schéma : <b>Antwort in einem Satz → weil → Beispiel aus seinem Fall → deshalb tue ich …</b></li><li>Écris ta réponse en 2–3 phrases, puis ouvre la Musterantwort.</li><li>Si tu bloques : „Darf ich kurz überlegen?“ — c'est permis.</li></ol>
+      <h4>Geschafft, wenn …</h4>
+      <ul class="ok"><li>tu as répondu aux 13 questions au moins une fois</li><li>chaque réponse contient un <b>weil</b> et un exemple de <b>Herr J.</b></li></ul>
+      <div class="unten"><a href="#fragen">→ Fragen KB I–V</a><label class="haken"><input type="checkbox" class="erledigt" data-key="e8"> erledigt</label></div>
+    </div></li>
+    <li id="e9"><span class="nr">9</span><div>
+      <h3>Generalprobe — die Zwischenprüfung</h3>
+      <p class="zeit">3 Stunden mit Uhr · un jour de congé</p>
+      <p>Le vrai format du 1<sup>er</sup> jour : 5 documents en 3 heures.</p>
+      <h4>So gehst du vor</h4>
+      <ol><li>Démarre la montre de 3:00:00.</li><li>Écris : 1 Fallvorstellung · 2 Medikamentenplan · 3 Diagnosen · 4 alle Pflegeprobleme · 5 <b>vier</b> Probleme nach PE(S)R.</li><li>Envoie-moi le tout avec 📤. Je corrige le contenu et l'allemand (Baustellen).</li></ol>
+      <h4>Geschafft, wenn …</h4>
+      <ul class="ok"><li>les 5 documents sont là au bout de 3 heures</li><li>tu as eu le temps de relire au moins 10 minutes</li></ul>
+      <div class="unten"><a href="#pesr">→ Uhr 3 h</a><label class="haken"><input type="checkbox" class="erledigt" data-key="e9"> erledigt</label></div>
+    </div></li>
+  </ol>
+  <div class="kasten ich" style="margin-top:16px">
+    <p class="kopf"><span class="tag ich">nebenbei, im Praxiseinsatz</span> Was du vor Ort klärst</p>
+    <ul>
+      <li>die <b>Kreuze der Risikomatrix</b> in der SIS (Seite 2–3)</li>
+      <li>seinen <b>Pflegegrad</b></li>
+      <li>ob ein <b>Diabetes</b> diagnostiziert ist — und wer den Blutzucker misst</li>
+      <li>wofür er <b>Escitalopram</b> und <b>ASS</b> bekommt</li>
+      <li>welcher <b>Katheter</b> liegt (durch die Harnröhre oder suprapubisch)</li>
+      <li>ob er <b>Movicol</b> noch bekommt · ob sein Wunsch zum <b>Bettseitenteil</b> schriftlich dokumentiert ist</li>
+      <li>die <b>Vorlage der Fallvorstellung</b> für die ambulante Pflege (Praxisanleitung fragen)</li>
+    </ul>
+    <p>Schreib mir die Antworten — dann passe ich die Seite an. <a href="#auffaellig">→ warum diese Punkte zählen</a></p>
+  </div>
+</section>
 
 <section id="auftrag">
   <h2>Dein Auftrag — zwei Formate</h2>
@@ -432,8 +570,78 @@
   </ul>
 </section>
 
+<section id="diagnose-problem">
+  <h2>Etappe 2 — von der Diagnose zum Pflegeproblem</h2>
+  <p class="lead">Eine Diagnose ist <b>kein</b> Pflegeproblem. Sie gibt dir eine <b>Spur</b>. Das Problem ist, was <b>dieser Mensch</b> deshalb nicht selbst kann — oder was ihn bedroht.</p>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">wörtlich von deinem Blatt „Pflegeplanung“</span></p>
+    <p>„Pflegeprobleme sind vorhanden: Wenn Veränderungen (psych./phys.) sich auf die Selbständigkeit auswirken. Wenn die Gefahr besteht, dass aus einer Einschränkung eine Schädigung entsteht oder sich weitere Einschränkungen entwickeln.“</p>
+    <p>Die ABEDL mit Stern sollst du zuerst ansehen: <b>1 Kommunizieren · 2 Sich bewegen · 3 Vitale Funktionen · 13 Existenzielle Erfahrungen</b> — sie sind „häufig prioritär verursachend für Pflegeprobleme auch in den anderen ABEDLs“.</p>
+    <p class="quelle"><a href="https://claude.ai/code/artifact/d1d757ad-782d-4350-bcce-1337702a922f">→ Pflegeplanung in fünf Tagen, Tag 1</a></p>
+  </div>
+
+  <h3>Die sechs Fragen — für jede Diagnose, in dieser Reihenfolge</h3>
+  <ol class="methode">
+    <li><div><span class="de">Was macht die Krankheit im Körper?</span>La conséquence, en une phrase simple. Sur la page des diagnostics : « Ursachen & Symptome ».</div></li>
+    <li><div><span class="de">Welche ABEDL sind betroffen?</span>D'abord les 4 ★, puis toute la grille de 1 à 13.</div></li>
+    <li><div><span class="de">Wirkt es sich auf seine Selbständigkeit aus?</span>Oui → problème <span class="tag akt">aktuell</span> — il est déjà là.</div></li>
+    <li><div><span class="de">Besteht die Gefahr einer Schädigung?</span>Oui → problème <span class="tag pot">potentiell</span> — pas encore là, mais il menace.</div></li>
+    <li><div><span class="de">Stimmt das bei IHM? Was kann er noch?</span>Vérifie dans la SIS, dans tes observations, dans ses phrases. Ce qu'il sait encore faire = la <b>ressource (R)</b>.</div></li>
+    <li><div><span class="de">Und die Medikamente?</span>Ils créent leurs propres risques (chute, hypoglycémie, saignement). Ton blatt le dit aussi : „Was sagen Diagnosen und Medikamente dazu?“</div></li>
+  </ol>
+
+  <h3>Einmal ganz vorgemacht — Blasenlähmung</h3>
+  <div class="pesr">
+    <div><span>1 Folge</span><span>Die Blase entleert sich nicht mehr richtig, weil die Nerven geschädigt sind → er hat einen Dauerkatheter.</span></div>
+    <div><span>2 ABEDL</span><span>6 Ausscheiden · 11 Für Sicherheit sorgen (Infektion)</span></div>
+    <div><span>3 aktuell?</span><span><b>Ja:</b> Herr J. kann seinen Urinbeutel nicht selbst leeren, weil seine Hände zu ungeschickt sind (SIS: Feinmotorik).</span></div>
+    <div><span>4 potentiell?</span><span><b>Ja:</b> Gefahr einer Harnwegsinfektion, weil ein Dauerkatheter liegt.</span></div>
+    <div><span>5 bei ihm?</span><span>SIS bestätigt Katheter und Feinmotorik. Ressource: akzeptiert den Katheter, macht die Urologie-Termine selbst, sagt, wenn etwas nicht stimmt.</span></div>
+    <div><span>6 Medikamente</span><span>ASS → auf Blut im Urin achten · HCT → mehr Urin, Trinkmenge beachten.</span></div>
+  </div>
+  <p><span class="tag ich">meine Lösung</span> Daraus werden zwei Zeilen in deiner Problemliste — eine aktuelle und eine potentielle. Genau so entsteht das Muster in Etappe 5.</p>
+
+  <div class="kasten bad">
+    <p class="kopf">Die Falle, die die Prüfer sofort sehen</p>
+    <p>„Problem: paranoide Schizophrenie“ ist <b>kein</b> Pflegeproblem — das ist eine Diagnose. Die Prüferin fragt dann: „Woran sehen Sie das bei ihm?“ Bei Herrn J. sagt die SIS: Er äußert seine Bedürfnisse klar, „es bestehen keine Schwierigkeiten“. <b>Gleiche Diagnose heißt nicht gleiches Problem.</b></p>
+  </div>
+
+  <h3>Jetzt du — sechs Zeilen</h3>
+  <p>Schreib für jede Zeile die sechs Antworten kurz hin: <i>Folge → ABEDL → aktuell? → potentiell? → bei ihm? → Medikamente?</i></p>
+  <div class="aufgabe">
+    <p class="op">Diagnose → Problem · 30 Minuten</p>
+    <div class="uhr" data-sek="1800"><output>30:00</output><button type="button" class="start">Uhr starten</button><button type="button" class="leise zurueck">Zurück</button></div>
+    <p><b>a) Rückenmarkschädigung / Querschnitt</b></p>
+    <textarea id="dp-quer" data-frage="Diagnose → Problem: Rückenmarkschädigung / Querschnitt" style="min-height:5rem" placeholder="Folge: … → ABEDL: … → aktuell: … → potentiell: … → bei ihm: … → Medikamente: …"></textarea>
+    <p><b>b) Krallenhände</b></p>
+    <textarea id="dp-hand" data-frage="Diagnose → Problem: Krallenhände" style="min-height:5rem"></textarea>
+    <p><b>c) Paranoide Schizophrenie</b></p>
+    <textarea id="dp-schizo" data-frage="Diagnose → Problem: Paranoide Schizophrenie" style="min-height:5rem"></textarea>
+    <p><b>d) Essentielle Hypertonie + HCT</b></p>
+    <textarea id="dp-rr" data-frage="Diagnose → Problem: Hypertonie + HCT" style="min-height:5rem"></textarea>
+    <p><b>e) Metformin + NovoRapid</b> (Medikament ohne Diagnose)</p>
+    <textarea id="dp-bz" data-frage="Diagnose → Problem: Metformin + NovoRapid" style="min-height:5rem"></textarea>
+    <p><b>f) Stuhl alle 4–5 Tage in der Schutzhose</b></p>
+    <textarea id="dp-stuhl" data-frage="Diagnose → Problem: Stuhlausscheidung" style="min-height:5rem"></textarea>
+    <details class="loes"><summary>Meine Lösung zeigen — erst nach deinem Versuch</summary><div>
+      <div class="scroll"><table>
+        <thead><tr><th>Diagnose / Medikament</th><th>Folge</th><th>ABEDL</th><th>Ergebnis bei Herrn J.</th></tr></thead>
+        <tbody>
+          <tr><td>a) Querschnitt</td><td>Lähmung</td><td>2, 4, 7</td><td><span class="tag akt">aktuell</span> Unterkörper/Rücken waschen, ankleiden · <span class="tag pot">potentiell</span> Dekubitus (sitzt den ganzen Tag), Sturz beim Transfer · R: E-Rollstuhl selbstständig, Physiotherapie</td></tr>
+          <tr><td>b) Krallenhände</td><td>die Hände greifen schlecht</td><td>4, 6, 11</td><td><span class="tag akt">aktuell</span> kann Tabletten nicht selbst richten, Urinbeutel nicht leeren · R: putzt Zähne, wäscht Oberkörper vorne</td></tr>
+          <tr><td>c) Schizophrenie</td><td>Psychose</td><td>1, 13</td><td><b>kein aktuelles Problem</b> — SIS: kommuniziert klar → Ressource. Perazin: auf Müdigkeit, Bewegungsstörungen und Schwindel achten.</td></tr>
+          <tr><td>d) Hypertonie + HCT</td><td>Blutdruck sinkt, auch beim Aufrichten</td><td>3, 11</td><td><span class="tag pot">potentiell</span> Schwindel beim Transfer → Sturz (dazu Perazin: Blutdruckabfall)</td></tr>
+          <tr><td>e) Metformin + NovoRapid</td><td>Blutzucker kann zu tief fallen</td><td>3, 5</td><td><span class="tag pot">potentiell</span> Unterzuckerung · und: die Diagnose fehlt → im Team klären</td></tr>
+          <tr><td>f) Stuhl</td><td>Stuhl wird nicht gehalten; selten</td><td>6, 4</td><td><span class="tag akt">aktuell</span> Stuhlinkontinenz · <span class="tag pot">potentiell</span> Hautschaden (IAD), Obstipation (dein Kurs: weniger als 3 pro Woche) · R: merkt den Stuhl</td></tr>
+        </tbody>
+      </table></div>
+      <p><span class="tag ich">meine Lösung</span> Die ABEDL-Nummern sind ein Vorschlag. Was zählt: Folge → Selbständigkeit oder Gefahr → bei ihm geprüft.</p>
+    </div></details>
+  </div>
+</section>
+
 <section id="probleme">
-  <h2>Schritt 1 — alle Pflegeprobleme finden</h2>
+  <h2>Etappe 3 + 4 — alle Probleme finden, dann auswählen</h2>
   <p class="lead">Geh die 13 ABEDL durch und schreib <b>jedes</b> Problem auf, das in den Unterlagen steckt — aktuelle und potentielle getrennt. Erst danach wählst du aus. <span class="tag du">deine Unterlagen: ABEDL, aktuell/potentiell</span></p>
   <details class="loes" style="margin-bottom:12px"><summary>Die 13 ABEDL als Erinnerung</summary><div style="border-left-color:var(--du);background:var(--card)">
     <p>1 Kommunizieren · 2 Sich bewegen · 3 Vitale Funktionen aufrechterhalten · 4 Sich pflegen · 5 Essen und trinken · 6 Ausscheiden · 7 Sich kleiden · 8 Ruhen und schlafen · 9 Sich beschäftigen · 10 Sich als Mann oder Frau fühlen · 11 Für Sicherheit sorgen · 12 Soziale Bereiche des Lebens sichern · 13 Mit existenziellen Erfahrungen des Lebens umgehen <span class="tag du">deine Unterlagen</span></p>
@@ -481,7 +689,7 @@
 </section>
 
 <section id="pesr">
-  <h2>Schritt 2 — planen nach PE(S)R</h2>
+  <h2>Etappe 5, 6 und 9 — planen nach PE(S)R</h2>
   <p class="lead">Ein Problem ganz durchgespielt, damit du siehst, wie es aussieht. Die anderen schreibst du — mit Leitfragen. Erst die Uhr, dann das Muster.</p>
 
   <div class="format">
@@ -545,7 +753,7 @@
 </section>
 
 <section id="vorstellen">
-  <h2>Schritt 3 — Herrn J. vorstellen</h2>
+  <h2>Etappe 7 — Herrn J. vorstellen und die Planung erläutern</h2>
   <p class="lead">10 Minuten, vier Blöcke. Die Blöcke stammen aus der Vorlage deiner Schule für das <b>Krankenhaus</b>. <span class="tag du">deine Unterlagen</span> Für die <b>ambulante</b> Pflege fehlt dir die Vorlage noch — frag deine Praxisanleitung danach. Bis dahin passen die vier Blöcke gut.</p>
   <div class="aufgabe">
     <p class="op">Fallvorstellung · 10 Minuten · laut sprechen, dann aufschreiben</p>
@@ -569,7 +777,7 @@
 </section>
 
 <section id="fragen">
-  <h2>Schritt 4 — die Fragen im Prüfungsgespräch</h2>
+  <h2>Etappe 8 — die Fragen im Prüfungsgespräch</h2>
   <p class="lead">15 Minuten, alle fünf Kompetenzbereiche. Diese Fragen sind <b>meine Vorhersage</b> für genau diesen Fall — die Bereiche und ihre Themen stehen in deinen Unterlagen. <span class="tag du">KB I–V</span> <span class="tag ich">die Fragen</span> Tipp auf 🔊, hör die Frage, antworte laut — dann schreib die Antwort kurz auf.</p>
   <p>Antwortschema: <b>Antwort in einem Satz → weil → Beispiel aus seinem Fall → deshalb tue ich …</b></p>
 
@@ -669,6 +877,12 @@
       try{ speechSynthesis.cancel(); var u=new SpeechSynthesisUtterance(t); u.lang='de-DE'; u.rate=.9; if(stimme) u.voice=stimme; speechSynthesis.speak(u); }catch(e){}
     });
   });
+  var haken=document.querySelectorAll('.erledigt'), balken=document.getElementById('wegBalken'), zahl=document.getElementById('wegZahl');
+  function stand(){ var n=0; haken.forEach(function(c){ if(c.checked) n++; c.closest('li').classList.toggle('fertig',c.checked); });
+    balken.style.width=(n/haken.length*100)+'%'; zahl.textContent=n+' von '+haken.length+' erledigt'; }
+  haken.forEach(function(c){ c.checked = lies('hj-'+c.dataset.key)==='1';
+    c.addEventListener('change',function(){ schreib('hj-'+c.dataset.key,c.checked?'1':'0'); stand(); }); });
+  stand();
   var aus=document.getElementById('ausgabe'), info=document.getElementById('kopiert');
   document.getElementById('sammel').addEventListener('click',function(){
     var text='Prüfungsfall Herr J. — meine Antworten\n\n';
