@@ -1636,7 +1636,7 @@ stationär) erst, wenn sie die erste Runde geschrieben hat.
 
 ## Zwischenprüfung üben — ihr Praxisfall, dann weitere Fälle
 
-`schulung-zwischenpruefung/ueben.html` (Icon „exam“). Auf ihren Wunsch vom 12.10.2026: Sie nennt die
+`schulung-zwischenpruefung/ueben.html` → `https://claude.ai/artifact/NYEURgPmZ47bMpZYz3K3FV` (Icon „exam“). Auf ihren Wunsch vom 12.10.2026: Sie nennt die
 Zwischenprüfung vom **01.04.2027** „examen blanc“. Sie hat im Praxiseinsatz Unterlagen eines Patienten
 bekommen und will damit **die fünf Dokumente schreiben** und **das Prüfungsgespräch üben** (auch
 Medikamente), danach **weitere Fälle** — und lernen, *„comment parler, comment discuter“*.
