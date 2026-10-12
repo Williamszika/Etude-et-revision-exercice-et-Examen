@@ -1,0 +1,682 @@
+<title>Prüfungsfall Herr J.</title>
+<style>
+  /* Layout: Fallakte zum Üben — Steckbrief, SIS, Diagnosen, Medikamente, Auffälliges, Aufgaben mit Uhr, Fragen */
+  :root{
+    --paper:#eef1f0;--paper-2:#e1e6e4;--card:#fbfcfc;--ink:#172020;--ink-soft:#4a5756;--line:#c9d2d0;
+    --accent:#1f6a6a;--accent-deep:#164f50;--accent-soft:#d9ecea;
+    --du:#256b4a;--dubg:#dfeee6;--net:#1f5f86;--netbg:#dbe8f1;--ich:#7a5a08;--ichbg:#f8edc8;
+    --bad:#a33f34;--badbg:#f6e1de;--akt:#a8394a;--aktbg:#f5e0e3;--pot:#8a5a12;--potbg:#f7ecd7;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#111616;--paper-2:#0c1010;--card:#1a2121;--ink:#e7eeed;--ink-soft:#9fadab;--line:#2b3535;
+    --accent:#7cc7c4;--accent-deep:#9dd8d5;--accent-soft:#132827;
+    --du:#6fc292;--dubg:#14281c;--net:#6cadd9;--netbg:#122736;--ich:#e0b84f;--ichbg:#2c2410;
+    --bad:#e08a7c;--badbg:#301b17;--akt:#e08a98;--aktbg:#2c171c;--pot:#dcae63;--potbg:#2b2114;color-scheme:dark;}}
+  :root[data-theme="dark"]{
+    --paper:#111616;--paper-2:#0c1010;--card:#1a2121;--ink:#e7eeed;--ink-soft:#9fadab;--line:#2b3535;
+    --accent:#7cc7c4;--accent-deep:#9dd8d5;--accent-soft:#132827;
+    --du:#6fc292;--dubg:#14281c;--net:#6cadd9;--netbg:#122736;--ich:#e0b84f;--ichbg:#2c2410;
+    --bad:#e08a7c;--badbg:#301b17;--akt:#e08a98;--aktbg:#2c171c;--pot:#dcae63;--potbg:#2b2114;color-scheme:dark;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-deep);}
+  a:focus-visible,button:focus-visible,summary:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  header.hero{padding-block:44px 28px;padding-inline:20px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:62ch;margin:0 auto 16px;color:var(--ink-soft);font-size:15.5px;}
+  .legende{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .tag{display:inline-block;max-width:100%;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;font-style:normal;vertical-align:1px;white-space:normal;}
+  .tag.du{background:var(--dubg);color:var(--du);} .tag.ich{background:var(--ichbg);color:var(--ich);} .tag.net{background:var(--netbg);color:var(--net);}
+  .tag.akte{background:var(--accent-soft);color:var(--accent-deep);}
+  .tag.akt{background:var(--aktbg);color:var(--akt);} .tag.pot{background:var(--potbg);color:var(--pot);}
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);background:var(--card);}
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:50px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 20px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.18rem;font-weight:600;margin:26px 0 8px;}
+  h4{margin:0 0 6px;font-size:1rem;}
+  p{margin:0 0 14px;max-width:70ch;} ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;} li{margin:5px 0;}
+  .fr{font-style:italic;color:var(--ink-soft);} .fr::before{content:"🇫🇷 ";font-style:normal;}
+  .kasten{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid var(--line);background:var(--card);}
+  .kasten > :last-child{margin-bottom:0;}
+  .kasten.du{background:var(--dubg);border-color:transparent;} .kasten.ich{background:var(--ichbg);border-color:transparent;} .kasten.bad{background:var(--badbg);border-color:transparent;} .kasten.net{background:var(--netbg);border-color:transparent;}
+  .kasten .kopf{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 8px;font-weight:700;}
+  .quelle{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:8px;overflow-wrap:anywhere;}
+
+  /* Steckbrief: Karteikarte */
+  dl.steck{display:grid;grid-template-columns:minmax(8rem,12rem) 1fr;gap:0;margin:16px 0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card);max-width:none;}
+  dl.steck dt,dl.steck dd{margin:0;padding:9px 14px;border-bottom:1px solid var(--line);min-width:0;}
+  dl.steck dt{font-family:var(--mono);font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2);}
+  dl.steck dt:last-of-type,dl.steck dd:last-of-type{border-bottom:0;}
+  @media (max-width:520px){dl.steck{grid-template-columns:1fr;} dl.steck dt{border-bottom:0;padding-bottom:2px;} }
+
+  /* SIS-Themenfelder */
+  .tf{display:grid;gap:12px;margin:14px 0;}
+  .tf article{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0;}
+  .tf .nr{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 2px;}
+  .tf h3{margin:0 0 8px;}
+  blockquote{margin:0 0 10px;padding:8px 12px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 8px 8px 0;font-family:var(--serif);font-size:1.02rem;}
+  blockquote::before{content:"Er sagt: ";font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent-deep);}
+  .fk{margin:0;} .fk::before{content:"Pflegefachkraft: ";font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);}
+
+  .scroll{overflow-x:auto;margin:16px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k,.code{font-family:var(--mono);font-weight:700;white-space:nowrap;}
+  td.dos{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+
+  /* Medikamentenkarten */
+  .meds{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,22rem),1fr));gap:12px;margin:14px 0;}
+  .med{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0;}
+  .med header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 10px;margin:0 0 8px;}
+  .med h3{margin:0;font-size:1.12rem;}
+  .med .dos{font-family:var(--mono);font-size:12.5px;color:var(--accent-deep);font-variant-numeric:tabular-nums;}
+  .med ol{padding-left:1.2rem;margin:0;} .med li{margin:4px 0;font-size:15px;}
+  .med li::marker{font-family:var(--mono);color:var(--ink-soft);}
+
+  /* Auffälligkeiten */
+  .funde{list-style:none;padding:0;display:grid;gap:10px;max-width:none;counter-reset:f;}
+  .funde li{counter-increment:f;margin:0;display:grid;grid-template-columns:2.2rem 1fr;gap:12px;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bad);border-radius:0 10px 10px 0;padding:12px 14px;}
+  .funde li::before{content:counter(f);font-family:var(--mono);font-weight:700;color:var(--bad);background:var(--badbg);border-radius:8px;text-align:center;padding:4px 0;height:fit-content;}
+  .funde li > div{min-width:0;}
+  .funde b.t{display:block;}
+
+  /* Aufgaben */
+  .aufgabe{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;}
+  .aufgabe .op{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 4px;}
+  textarea{width:100%;min-height:9rem;font:inherit;font-size:15.5px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);resize:vertical;}
+  textarea.gross{min-height:18rem;}
+  button{font:inherit;font-size:14px;padding:9px 16px;border-radius:999px;border:1px solid var(--accent);background:var(--accent);color:var(--card);cursor:pointer;}
+  button.leise{background:transparent;color:var(--accent-deep);}
+  .uhr{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:10px 0;}
+  .uhr output{font-family:var(--mono);font-size:1.5rem;font-variant-numeric:tabular-nums;min-width:6ch;}
+  details.loes{margin:10px 0 0;}
+  details.loes summary{cursor:pointer;font-family:var(--mono);font-size:12px;color:var(--accent-deep);}
+  details.loes > div{margin-top:8px;padding:12px 14px;border-left:3px solid var(--ich);background:var(--ichbg);border-radius:0 8px 8px 0;}
+  details.loes > div > :last-child{margin-bottom:0;}
+  .format{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,17rem),1fr));gap:12px;margin:14px 0;}
+  .format > div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;min-width:0;}
+  .format .gross-zahl{font-family:var(--serif);font-size:2rem;line-height:1;color:var(--accent-deep);margin:0 0 6px;}
+  .pesr{display:grid;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;margin:10px 0;max-width:none;}
+  .pesr > div{display:grid;grid-template-columns:7.5rem 1fr;border-bottom:1px solid var(--line);}
+  .pesr > div:last-child{border-bottom:0;}
+  .pesr > div > span:first-child{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2);padding:8px 10px;}
+  .pesr > div > span:last-child{padding:8px 12px;min-width:0;background:var(--card);}
+  @media (max-width:520px){.pesr > div{grid-template-columns:1fr;}}
+  .satz{display:grid;gap:6px;margin:10px 0 16px;padding:0;list-style:none;max-width:none;}
+  .satz li{margin:0;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:8px 12px;}
+  .satz li .fr{display:block;font-size:14px;} .satz li .fr::before{content:"";}
+  .frage{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:10px 0;}
+  .frage p.q{margin:0 0 6px;font-weight:600;}
+  .frage .kb{font-family:var(--mono);font-size:11px;color:var(--accent-deep);margin-right:6px;}
+  .vorlesen{background:transparent;border:1px solid var(--line);color:var(--accent-deep);padding:2px 9px;font-size:13px;margin-left:6px;vertical-align:1px;}
+  #kopiert{font-family:var(--mono);font-size:12px;color:var(--du);margin-left:10px;}
+  footer{max-width:60rem;margin:0 auto;padding-block:20px 60px;padding-inline:18px;color:var(--ink-soft);font-size:14px;border-top:1px solid var(--line);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Zwischenprüfung üben · Fall aus deinem Praxiseinsatz · ambulant</p>
+  <h1>Prüfungsfall Herr J.</h1>
+  <p class="sub">Ein Mann, 54 Jahre, im Rollstuhl, von einem ambulanten Pflegedienst versorgt. Alles hier steht in seinen Unterlagen, die du fotografiert hast — oder ist markiert. Lies, schreib mit der Uhr, und üb das Gespräch.</p>
+  <div class="legende"><span class="tag akte">aus seiner Akte</span><span class="tag du">deine Unterlagen</span><span class="tag net">Internetquelle</span><span class="tag ich">meine Lösung / Folgerung</span></div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#auftrag">Auftrag</a>
+  <a href="#steckbrief">Steckbrief</a>
+  <a href="#sis">SIS</a>
+  <a href="#diagnosen">Diagnosen</a>
+  <a href="#medikamente">Medikamente</a>
+  <a href="#planung2021">Alte Planung</a>
+  <a href="#auffaellig">Auffällig</a>
+  <a href="#probleme">Probleme</a>
+  <a href="#pesr">PE(S)R</a>
+  <a href="#vorstellen">Vorstellen</a>
+  <a href="#fragen">Fragen</a>
+  <a href="#senden">Senden</a>
+</nav>
+
+<main>
+
+<section id="auftrag">
+  <h2>Dein Auftrag — zwei Formate</h2>
+  <p class="lead">Du übst denselben Menschen zweimal: einmal im Format der <b>Praxisaufgabe</b> aus deinem Einsatz, einmal im Format der <b>Zwischenprüfung</b> am 1. April 2027.</p>
+  <div class="format">
+    <div>
+      <p class="gross-zahl">1,5 h · 3 Probleme</p>
+      <h4>Praxisaufgabe <span class="tag akte">dein Aufgabenblatt</span></h4>
+      <ul>
+        <li>Mit der Praxisanleitung einen Patienten wählen, biografische Daten sammeln, ihn in Pflegesituationen begleiten, <b>alle Unterlagen</b> recherchieren.</li>
+        <li>Schreiben: <b>Fallvorstellung</b> · <b>Liste aller Probleme</b> · Pflegeplanung für die <b>3 relevantesten</b> Probleme (Problem – Ziel – Maßnahme – Begründung).</li>
+        <li>Der Praxisanleitung vorstellen. Bearbeitungszeit <b>1,5 Stunden</b>.</li>
+      </ul>
+    </div>
+    <div>
+      <p class="gross-zahl">3 h · 4 Probleme</p>
+      <h4>Zwischenprüfung, 1. Tag <span class="tag du">deine Unterlagen</span></h4>
+      <ul>
+        <li>Fünf Dokumente: <b>Fallvorstellung</b> · <b>Medikamentenplan</b> · <b>Diagnosen</b> · <b>alle Pflegeprobleme</b> · <b>4 Probleme nach PE(S)R</b> geplant.</li>
+        <li>Abgabe bis <b>11 Uhr</b> an die Schule, als eine Datei.</li>
+        <li>Am 2. Tag 45 Minuten: 10 Fallvorstellung · 20 Erläuterung („kein Vorlesen“) · 15 Prüfungsgespräch.</li>
+      </ul>
+      <p class="quelle"><a href="https://claude.ai/code/artifact/2e1db357-3e32-4a56-9356-3e4fde3d5c88">→ Die Zwischenprüfung — was genau passiert</a></p>
+    </div>
+  </div>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Notiz vom 02.10.</span> Was du dir selbst aufgeschrieben hast</p>
+    <ul>
+      <li>Der Patient darf <b>keine Demenz</b> haben, muss <b>kommunizieren können</b>, Pflegegrad 3 oder ein mittlerer Grad.</li>
+      <li><b>Alles recherchieren</b>, bevor das Gespräch kommt — Expertenstandards usw. Die Fragen sind wie eine <b>Übergabe</b>.</li>
+    </ul>
+    <p>Herr J. passt: Er „ist in der Lage, seine Bedürfnisse und Probleme dem Pflegepersonal mitzuteilen und klar zu formulieren“. <span class="tag akte">SIS</span> Seinen <b>Pflegegrad</b> zeigen deine Fotos nicht — bitte nachsehen.</p>
+  </div>
+  <div class="kasten bad">
+    <p class="kopf">Schweigepflicht</p>
+    <p>Auf dieser Seite steht <b>kein Name, kein Geburtsdatum, keine Adresse, kein Arztname</b>. Er heißt hier „Herr J.“, sein Alter ist 54. Halte es in deinen eigenen Texten genauso — in der Prüfung gibst du die Unterlagen anonymisiert ab. § 203 StGB steht in deinem Recht-Kurs. <span class="tag du">deine Unterlagen</span></p>
+    <p class="fr">Ni nom, ni date de naissance, ni adresse, ni noms de médecins sur cette page. Les photos restent hors du dépôt.</p>
+  </div>
+</section>
+
+<section id="steckbrief">
+  <h2>Herr J. auf einen Blick</h2>
+  <p class="lead">Aus der SIS (Gespräch am 27.05.2026), dem Diagnoseblatt (07.10.2026), dem Medikationsplan (12.05.2026) und der alten Pflegeplanung (2021). <span class="tag akte">seine Akte</span></p>
+  <dl class="steck">
+    <dt>Alter</dt><dd>54 Jahre, Mann</dd>
+    <dt>Versorgung</dt><dd>ambulanter Pflegedienst (SIS „ambulant“), morgens und abends</dd>
+    <dt>Wohnen · Familie</dt><dd>wohnt zu Hause; aufgewachsen in einer großen Pflegefamilie mit mehreren Generationen unter einem Dach; die <b>Pflegemutter</b> („meine Mama“) macht Haushalt, Einkauf und meist das Essen</dd>
+    <dt>Recht</dt><dd>„Der Pat. wird <b>gesetzlich vertreten</b>.“</dd>
+    <dt>Arbeit</dt><dd>Werkstatt für Menschen mit Behinderung (WfbM), Industrieservice, behindertengerechter Arbeitsplatz, Kollegenkreis</dd>
+    <dt>Bewegung</dt><dd><b>querschnittsgelähmt</b>, Elektro-Rollstuhl; bewegt sich damit selbstständig im und außerhalb des Hauses</dd>
+    <dt>Ausscheidung</dt><dd><b>Dauerkatheter</b>; Stuhlgang in der Schutzhose, alle 4–5 Tage</dd>
+    <dt>Hände</dt><dd>Problem in der <b>Feinmotorik</b> („Schwierigkeiten mit meinen Händen“) — z. B. Medikamente nehmen, Urinbeutel leeren</dd>
+    <dt>Kopf · Psyche</dt><dd>kommuniziert klar; in <b>psychiatrischer Behandlung</b></dd>
+    <dt>Therapie</dt><dd>regelmäßig Physiotherapie; Urologie (Katheterwechsel)</dd>
+    <dt>Pflegegrad</dt><dd><i>steht nicht auf deinen Fotos — nachsehen</i></dd>
+  </dl>
+</section>
+
+<section id="sis">
+  <h2>Die SIS — seine Sätze und die der Fachkraft</h2>
+  <p class="lead">Seine eigenen Sätze sind dein bestes Material: für Kompetenzbereich II („Was hat er selbst gesagt?“) und für das S und R in PE(S)R. <span class="tag akte">SIS ambulant, 27.05.2026</span></p>
+  <blockquote>Ich kann mich nicht selbstständig versorgen, weil ich im Rollstuhl sitze. Ich brauche Unterstützung bei unterschiedlichen …, wenn ich wieder daheim bin, um schlafen gehen zu können. Es ist schwierig für mich aufzustehen … das, was ich alleine machen kann, das erledige ich auch.</blockquote>
+  <p class="fr">C'est sa réponse à la question d'ouverture « Was bewegt Sie? Was brauchen Sie? Was können wir für Sie tun? ». Les « … » marquent ce qui est coupé ou illisible sur la photo.</p>
+  <div class="tf">
+    <article>
+      <p class="nr">Themenfeld 1</p><h3>Kognitive und kommunikative Fähigkeiten</h3>
+      <p class="fk">Er ist in der Lage, seine Bedürfnisse und Probleme dem Pflegepersonal mitzuteilen und klar zu formulieren. Es bestehen keine Schwierigkeiten.</p>
+    </article>
+    <article>
+      <p class="nr">Themenfeld 2</p><h3>Mobilität und Beweglichkeit</h3>
+      <blockquote>Ich kann mich nicht alleine versorgen und für den Tag oder Abend vorbereiten. Ich brauche Hilfe beim Aufstehen, …</blockquote>
+      <p class="fk">Bewegt sich selbstständig im und außerhalb des Hauses mit dem Rollstuhl fort, nimmt am Arbeitsalltag teil. <b>Transfer vom Bett in den Rollstuhl und umgekehrt</b> sowie Positionswechsel im Rollstuhl kann er durchführen.</p>
+    </article>
+    <article>
+      <p class="nr">Themenfeld 3</p><h3>Krankheitsbezogene Anforderungen und Belastungen</h3>
+      <blockquote>… weil ich an den Rollstuhl angewiesen bin. Ich akzeptiere meine Einschränkungen. Die Schwestern und … helfen mir, … zu überwinden. Das hilft mir sehr. Ich will, dass Sie weiterhin zu mir kommen.</blockquote>
+      <p class="fk">Vollständige Akzeptanz gegenüber seiner Erkrankung. Es wird darauf hingearbeitet, dass er seine Aktivität mit Unterstützung des Pflegepersonals und des Physiotherapeuten <b>beibehalten</b> kann. Parallel in <b>psychiatrischer Behandlung</b>; beruflich in einer WfbM; von der Pflegemutter betreut.</p>
+    </article>
+    <article>
+      <p class="nr">Themenfeld 4</p><h3>Selbstversorgung</h3>
+      <blockquote>Ich erledige alles, was ich selbst machen kann, das ist mir auch wichtig. Wenn ich merke, dass ich etwas nicht alleine machen kann, dann sage ich es und bitte um Unterstützung. Das läuft zwischen uns unproblematisch.</blockquote>
+      <p class="fk">Braucht bei der Körperpflege Unterstützung. Kann selbstständig <b>Zähne putzen und den Oberkörper vorne waschen</b>. Sucht seine Kleidung selbst aus, wird aber nach der Ganzwaschung <b>komplett angekleidet</b>. Problem in der <b>Feinmotorik</b>: manches dauert länger oder braucht Hilfe, z. B. <b>Medikamenteneinnahme</b> oder <b>Urinbeutel entleeren</b>. Trägt einen <b>Dauerkatheter</b>. Stuhlgang in der Schutzhose <b>alle 4–5 Tage</b>. Isst selbst; die Zubereitung macht in der Regel die Pflegemutter.</p>
+    </article>
+    <article>
+      <p class="nr">Themenfeld 5</p><h3>Leben in sozialen Beziehungen</h3>
+      <blockquote>Ich arbeite in einer Werkstatt im Industrieservice, weil es dort einen behindertengerechten Arbeitsplatz gibt. Dort habe ich einen Kollegenkreis. Mit manchen Leuten verbringe ich auch die Freizeit zusammen, z. B. bei Geburtstagen feiern oder Spielabenden. Es geht mir gut.</blockquote>
+      <p class="fk">In einer großen Pflegefamilie aufgewachsen, mehrere Generationen unter einem Dach. Enge Bindung zu den Familienmitgliedern und zur Pflegemutter. Gute soziale Anbindung — trotz deutlicher körperlicher Einschränkungen, die im Alltag stark präsent sind.</p>
+    </article>
+    <article>
+      <p class="nr">Themenfeld 6 (ambulant)</p><h3>Haushaltsführung</h3>
+      <blockquote>Ich kann kein Haushalt alleine machen, dabei hilft mir meistens meine Mama. Manchmal auch Geschwister, aber sie haben ihr eigenes Leben, das verstehe ich. Ich habe Schwierigkeiten mit meinen Händen, ich versuche es trotzdem, auch im Sitzen funktioniert einiges.</blockquote>
+      <p class="fk">Die Pflegemutter übernimmt Haushaltsführung und Einkäufe. Mittagessen manchmal in der Werkstatt, sonst zu Hause, wo er bei Vorbereitungen hilft.</p>
+    </article>
+  </div>
+  <div class="kasten ich">
+    <p class="kopf"><span class="tag ich">Bitte selbst ablesen</span> Die Risikomatrix</p>
+    <p>Die Matrix (Dekubitus · Sturz · Inkontinenz · Schmerz · Ernährung · Sonstiges, je „ja/nein“, „weitere Einschätzung notwendig“, „Beratung“) steht auf Seite 2 und 3. Auf dem Foto kann ich die <b>Kreuze nicht sicher den Spalten zuordnen</b>. Ich rate nicht. Schreib mir, wo die Kreuze sind — die Matrix ist im Gespräch eine sichere Frage zu Kompetenzbereich I und IV.</p>
+  </div>
+</section>
+
+<section id="diagnosen">
+  <h2>Die Diagnosen</h2>
+  <p class="lead">So stehen sie auf dem Diagnoseblatt vom 07.10.2026. Der Status ist überall „keine Angabe“. <span class="tag akte">Diagnoseblatt</span> Jede Diagnose ist ausführlich erklärt auf deiner Seite <a href="https://claude.ai/artifact/6gNtzKpV7BpNZcuUuFHLLY">→ Zehn Diagnosen, ein Mensch</a>.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Kode</th><th>Diagnose</th><th>seit</th><th>Was es für die Pflege heißt <span class="tag ich">kurz</span></th></tr></thead>
+    <tbody>
+      <tr><td class="k">—</td><td>Blasenlähmung · Spinalkanalstenose · Rückenmarkschädigung · Krallenhände <i>(eine Zeile, ohne Kode)</i></td><td>2018</td><td>Dauerkatheter; Querschnitt; Hände greifen schlecht</td></tr>
+      <tr><td class="k">G95.0</td><td>Syringomyelie und Syringobulbie</td><td></td><td>Höhle im Rückenmark → Lähmung, gestörtes Schmerz- und Temperaturempfinden</td></tr>
+      <tr><td class="k">R39.1</td><td>Sonstige Miktionsstörungen</td><td>2023</td><td>gehört zur Blase</td></tr>
+      <tr><td class="k">N36.8</td><td>Sonstige näher bezeichnete Krankheiten der Harnröhre</td><td>2023</td><td>welche, steht nicht da — Katheterart klären</td></tr>
+      <tr><td class="k">I10.9</td><td>Essentielle Hypertonie, n. n. bez.</td><td></td><td>Blutdruck messen; HCT</td></tr>
+      <tr><td class="k">F20.0</td><td>Paranoide Schizophrenie</td><td></td><td>Perazin; psychiatrische Behandlung</td></tr>
+      <tr><td class="k">C71.9</td><td>Bösartige Neubildung: Gehirn, nicht näher bezeichnet</td><td>2019</td><td>Hirntumor — Art und Behandlung stehen nicht da</td></tr>
+    </tbody>
+  </table></div>
+  <p style="font-size:14px;color:var(--ink-soft)">Leere Felder bei „seit“: Die Jahreszahl ist auf dem Foto nicht sicher lesbar.</p>
+  <div class="kasten bad">
+    <p class="kopf">Was auf dem Blatt fehlt</p>
+    <p><b>Diabetes mellitus</b> steht nicht auf dem Diagnoseblatt — aber er bekommt <b>Metformin</b> und <b>Insulin nach Blutzucker</b>. Das ist ein Punkt für das Prüfungsgespräch. Mehr unten bei <a href="#auffaellig">Auffällig</a>.</p>
+  </div>
+</section>
+
+<section id="medikamente">
+  <h2>Seine Medikamente — sechs Fragen pro Mittel</h2>
+  <p class="lead">Der Medikationsplan, ausgedruckt am 12.05.2026. <span class="tag akte">Medikationsplan</span> Zu jedem Mittel die sechs Fragen aus deiner Übungsseite: Name · Gruppe · warum <i>er</i> · Wirkung · Nebenwirkungen · was tust du.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Wirkstoff</th><th>Stärke</th><th>mo-mi-ab-na</th><th>Hinweis</th></tr></thead>
+    <tbody>
+      <tr><td>Perazin</td><td class="dos">25 mg</td><td class="dos">1-1-0-0</td><td></td></tr>
+      <tr><td>Escitalopram</td><td class="dos">10 mg</td><td class="dos">0-0-1-0</td><td></td></tr>
+      <tr><td>Baclofen</td><td class="dos">10 mg</td><td class="dos">½-0-½-0</td><td></td></tr>
+      <tr><td>Acetylsalicylsäure (ASS)</td><td class="dos">100 mg</td><td class="dos">0-1-0-0</td><td>jeden 2. Tag</td></tr>
+      <tr><td>Hydrochlorothiazid (HCT)</td><td class="dos">25 mg</td><td class="dos">1-0-0-0</td><td></td></tr>
+      <tr><td>Metformin</td><td class="dos">500 mg</td><td class="dos">1-0-1-0</td><td></td></tr>
+      <tr><td>Insulin aspart (NovoRapid FlexPen)</td><td class="dos">nach BZ</td><td class="dos">bei Bedarf</td><td>BZ 160–200 mg/dl → 6 IE · 200–240 → 8 IE · über 240 → 10 IE · danach BZ nach 2 h</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="meds">
+    <article class="med">
+      <header><h3>Perazin</h3><span class="dos">25 mg · 1-1-0-0</span></header>
+      <ol>
+        <li>Wirkstoff Perazin.</li>
+        <li><b>Neuroleptikum</b> (Antipsychotikum) aus der Gruppe der Phenothiazine, mittelpotent. <span class="tag net">chemie.de</span></li>
+        <li>Wegen seiner <b>paranoiden Schizophrenie</b>.</li>
+        <li>Blockiert im Gehirn Dopamin-Rezeptoren (D2). <span class="tag net">Beipackzettel</span></li>
+        <li>Häufig: <b>Müdigkeit</b>, <b>Bewegungsstörungen</b> (EPS), <b>Blutdruckabfall beim Aufrichten</b>, Herzrasen; gelegentlich Mundtrockenheit; selten Verstopfung und <b>Störungen beim Wasserlassen</b>; sehr selten Agranulozytose; das <b>QT-Intervall</b> kann sich verlängern. <span class="tag net">Beipackzettel</span></li>
+        <li><b>Fieber, Halsschmerzen, Entzündungen im Mund</b> sofort dem Arzt melden (Blutbild). Auf Schwindel beim Transfer achten. <span class="tag net">Beipackzettel</span></li>
+      </ol>
+      <p class="quelle">Neuroleptika allgemein: <a href="https://claude.ai/artifact/FR1USYHEkkScdqes2CkGSU">→ Psychiatrische Pflege</a> <span class="tag du">deine Unterlagen</span> — Perazin selbst steht dort nicht.</p>
+    </article>
+    <article class="med">
+      <header><h3>Escitalopram</h3><span class="dos">10 mg · 0-0-1-0</span></header>
+      <ol>
+        <li>Wirkstoff Escitalopram.</li>
+        <li><b>SSRI</b> — selektiver Serotonin-Wiederaufnahmehemmer. Dein Kurs nennt als SSRI Citalopram, Fluoxetin, Sertralin. <span class="tag du">deine Unterlagen</span></li>
+        <li><b>Warum er es bekommt, steht nirgends.</b> SSRI gibt man bei Depression oder Angststörungen. <span class="tag net">Beipackzettel</span> — eine solche Diagnose steht nicht auf seinem Blatt. Nachfragen.</li>
+        <li>Erhöht die Menge Serotonin im Gehirn. <span class="tag net">Beipackzettel</span></li>
+        <li>Übelkeit (sehr häufig), Schlafstörungen, Schwindel, Schwitzen; selten <b>Natriummangel</b> (häufiger mit Diuretika); <b>QT-Verlängerung</b>; <b>Blutungen</b> (blaue Flecken, Magen-Darm). <span class="tag net">Beipackzettel</span></li>
+        <li>Puls und Rhythmus beobachten; bei Herzrasen, unregelmäßigem Puls oder Ohnmacht sofort den Arzt. Nicht plötzlich absetzen. <span class="tag net">Beipackzettel</span></li>
+      </ol>
+      <p class="quelle"><a href="https://claude.ai/artifact/FR1USYHEkkScdqes2CkGSU">→ Psychiatrische Pflege</a> (SSRI als Gruppe)</p>
+    </article>
+    <article class="med">
+      <header><h3>Baclofen</h3><span class="dos">10 mg · ½-0-½-0</span></header>
+      <ol>
+        <li>Wirkstoff Baclofen.</li>
+        <li>Ein Mittel <b>gegen die Spastik</b> (Spasmolytikum). <span class="tag du">deine Unterlagen</span></li>
+        <li>Bei Querschnitt und Rückenmarkschädigung: gegen die Spastik. <span class="tag ich">meine Folgerung</span> — eine Spastik steht so nicht auf seinem Blatt.</li>
+        <li>Entspannt die Muskeln.</li>
+        <li>Dein Kurs nennt die Kehrseite: <b>Muskelrelaxierung → Verlust der Beweglichkeit</b>. „Die Spastik hält manche Patienten überhaupt erst aufrecht.“ <span class="tag du">deine Unterlagen</span></li>
+        <li>Beobachten, ob er beim Transfer und beim kurzen Stehen am Bett <b>noch Halt hat</b>; Veränderungen dem Arzt und der Physiotherapie melden. <span class="tag ich">meine Folgerung</span></li>
+      </ol>
+      <p class="quelle"><a href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">→ Wenn die Leitung unterbrochen ist</a> (Neurologie)</p>
+    </article>
+    <article class="med">
+      <header><h3>ASS 100</h3><span class="dos">100 mg · 0-1-0-0 · jeden 2. Tag</span></header>
+      <ol>
+        <li>Acetylsalicylsäure, niedrig dosiert.</li>
+        <li><b>Thrombozytenaggregationshemmer</b>. <span class="tag net">Beipackzettel</span></li>
+        <li><b>Warum er es bekommt, steht nirgends.</b> Üblich zur Vorbeugung von Herzinfarkt und Schlaganfall. <span class="tag net">Beipackzettel</span></li>
+        <li>Verhindert, dass Blutplättchen verkleben → weniger Blutgerinnsel. <span class="tag net">Beipackzettel</span></li>
+        <li>Magenbeschwerden; Blutungen aus Magen/Darm, Nase, Zahnfleisch, Haut, <b>Blut im Urin</b>. <span class="tag net">Beipackzettel</span></li>
+        <li><b>Schwarzer Stuhl</b> oder blutiges Erbrechen → sofort Arzt. Beim Katheterbeutel auf <b>roten Urin</b> achten. Vor Eingriffen (auch Zahnarzt) Bescheid geben. <span class="tag net">Beipackzettel</span> · Katheterbezug <span class="tag ich">meine Folgerung</span></li>
+      </ol>
+    </article>
+    <article class="med">
+      <header><h3>Hydrochlorothiazid</h3><span class="dos">25 mg · 1-0-0-0</span></header>
+      <ol>
+        <li>Wirkstoff Hydrochlorothiazid (HCT).</li>
+        <li><b>Diuretikum</b> (Thiazid). <span class="tag net">Beipackzettel</span></li>
+        <li>Wegen der <b>Hypertonie</b>.</li>
+        <li>Mehr Urin → weniger Flüssigkeit → Blutdruck sinkt. <span class="tag net">Beipackzettel</span></li>
+        <li><b>Kalium und Natrium sinken</b>; <b>Blutzucker kann steigen</b>; Harnsäure steigt; Blutdruckabfall beim Aufrichten, besonders bei Flüssigkeitsmangel. <span class="tag net">Beipackzettel</span></li>
+        <li>Morgens geben, wie im Plan. Auf Trinkmenge, Schwindel beim Transfer und Zeichen von Kaliummangel achten (Müdigkeit, Muskelschwäche, Verstopfung, Rhythmusstörungen); Blutzucker im Blick behalten. <span class="tag net">Beipackzettel</span></li>
+      </ol>
+      <p class="quelle"><a href="https://claude.ai/code/artifact/316b844e-b1e6-4bb8-8163-3af3058de4fa">→ Hypotonie &amp; Hypertonie</a></p>
+    </article>
+    <article class="med">
+      <header><h3>Metformin</h3><span class="dos">500 mg · 1-0-1-0</span></header>
+      <ol>
+        <li>Wirkstoff Metformin.</li>
+        <li><b>Biguanid</b>, ein orales Antidiabetikum. <span class="tag net">Beipackzettel</span></li>
+        <li>Für einen <b>Diabetes mellitus Typ 2</b> — der auf seinem Diagnoseblatt <b>fehlt</b>.</li>
+        <li>Der Körper reagiert besser auf das eigene Insulin → Blutzucker sinkt. <span class="tag net">MSD Manual</span></li>
+        <li>Am Anfang oft Übelkeit, Durchfall, Bauchschmerzen; sehr selten <b>Laktatazidose</b> (Notfall). <b>Allein</b> macht es keine Unterzuckerung. <span class="tag net">Beipackzettel</span></li>
+        <li>Mit oder nach dem Essen geben. Bei Erbrechen, Durchfall, Fieber, wenig Trinken: Arzt fragen, ob pausiert wird. <span class="tag net">Beipackzettel</span></li>
+      </ol>
+      <p class="quelle">In deinem Diabetes-Kurs kommt Metformin nur in Fallbeispielen vor, die Wirkung wird dort nicht erklärt. <a href="https://claude.ai/artifact/HTKB99uzuvaNbZ4HHCT8cx">→ Diabetes mellitus</a></p>
+    </article>
+    <article class="med">
+      <header><h3>NovoRapid</h3><span class="dos">Insulin aspart · nach BZ-Schema</span></header>
+      <ol>
+        <li>Handelsname NovoRapid FlexPen, Wirkstoff Insulin aspart.</li>
+        <li><b>Kurzwirksames Insulinanalogon</b>: Wirkeintritt <b>sofort</b>, Maximum nach <b>1 h</b>, Dauer <b>2–3 h</b>, klar. <span class="tag du">deine Unterlagen</span></li>
+        <li>Nur wenn der Blutzucker zu hoch ist — nach dem Schema auf dem Plan. <span class="tag akte">Medikationsplan</span></li>
+        <li>Senkt den Blutzucker schnell.</li>
+        <li><b>Unterzuckerung</b>: Stufe 1 ab ≤ 70 mg/dl. Zeichen: Schwitzen, Zittern, Herzklopfen, Heißhunger — und im Kopf: unkonzentriert, verwirrt, aggressiv. „Anzeichen können sich ändern, schwächer werden oder ausbleiben!“ <span class="tag du">deine Unterlagen</span></li>
+        <li>BZ messen, Dosis nach Schema, <b>nach 2 h erneut messen</b> (so steht es im Plan). Weil es sofort wirkt, gehört es zu einer Mahlzeit. <span class="tag du">deine Unterlagen</span></li>
+      </ol>
+      <p class="quelle"><a href="https://claude.ai/artifact/HTKB99uzuvaNbZ4HHCT8cx">→ Diabetes mellitus</a> (Insulintabelle, Hypoglykämie)</p>
+    </article>
+  </div>
+
+  <div class="kasten net">
+    <p class="kopf"><span class="tag net">Internetquelle</span> Zwei Kombinationen, nach denen die Prüfer fragen können</p>
+    <ul>
+      <li><b>Escitalopram + Perazin:</b> Beide können das <b>QT-Intervall</b> im EKG verlängern. Ein Rote-Hand-Brief des Herstellers (2011) nennt Escitalopram zusammen mit anderen QT-verlängernden Mitteln <b>kontraindiziert</b>. HCT senkt Kalium und Magnesium — das macht es nicht besser.</li>
+      <li><b>Escitalopram + ASS:</b> Das Risiko für <b>Blutungen</b> (vor allem Magen-Darm) steigt.</li>
+    </ul>
+    <p><b>Was du daraus machst — und was nicht:</b> Du setzt <b>nichts</b> ab und änderst nichts. Du sagst im Gespräch: „Mir ist aufgefallen, dass … Das würde ich mit der Pflegefachkraft besprechen, damit der Arzt oder die Apotheke es prüft.“ Das ist Kompetenzbereich III (Zusammenarbeit) und zeigt, dass du mitdenkst. <span class="tag ich">meine Formulierung</span></p>
+  </div>
+  <p class="quelle">Internetquellen: Beipackzettel <a href="https://medikamio.com/de-de/medikamente/perazin-neuraxpharm-25-mg/pil">Perazin</a> · <a href="https://medikamio.com/de-de/medikamente/escitalopram-1a-pharma-10-mg-filmtabletten/pil">Escitalopram</a> · <a href="https://static.shop-apotheke.com/pdf/Beipackzettel-hct-ratiopharm-25-mg-tabletten-100-st-01550398-bz.pdf">HCT</a> · <a href="https://www.medikamente-per-klick.de/images/products/medikamenteperklick/beipackzettel/01343682.pdf">ASS 100</a> · <a href="https://medikamio.com/de-de/medikamente/metformin-stada-500-mg-filmtabletten/pil">Metformin</a> · <a href="https://www.chemie.de/lexikon/Perazin.html">chemie.de Perazin</a> · <a href="https://www.akdae.de/fileadmin/user_upload/akdae/Arzneimittelsicherheit/RHB/Archiv/2011/20111205.pdf">Rote-Hand-Brief Escitalopram 2011</a> · <a href="https://www.msdmanuals.com/de/heim/hormon-und-stoffwechselerkrankungen/diabetes-mellitus-dm-und-st%C3%B6rungen-des-blutzuckerstoffwechsels/medikament%C3%B6se-behandlung-von-diabetes-mellitus">MSD Manual</a>. Maßgeblich ist immer die Fachinformation des Präparats, das er wirklich bekommt.</p>
+</section>
+
+<section id="planung2021">
+  <h2>Die alte Pflegeplanung — von 2021</h2>
+  <p class="lead">Der Pflegedienst hat drei handschriftliche Planungen nach AEDL (Hilfegrad 0–3), vom 31.08. und 02.09.2021. <span class="tag akte">Pflegeplanung des Dienstes</span> Sie ist <b>fünf Jahre alt</b>. Du darfst sie lesen — aber deine Planung schreibst du selbst, nach PE(S)R.</p>
+  <div class="scroll"><table>
+    <thead><tr><th>Nr. · AEDL</th><th>Problem und Ursache</th><th>Ressourcen</th><th>Ziele</th><th>Maßnahmen (Auszug)</th></tr></thead>
+    <tbody>
+      <tr><td class="k">1 · AEDL 4 + 7</td><td>Körperpflege und An-/Auskleiden nicht allein möglich. Ursache: Erkrankung; keine Koordination der Extremitäten, Rollstuhl.</td><td>äußert Wünsche; Pflegemutter legt Kleidung und Pflegemittel bereit; wäscht Oberkörper vorne; Zahnpflege selbst; geht selbst zum Friseur; organisiert die Fußpflege</td><td>fühlt sich wohl und gepflegt; Ressourcen erhalten</td><td>morgens (Mo–Fr ca. 7:30, Sa–So ca. 10:00) und abends (21:00–21:30); Urinbeutel leeren; Unterkörper und Intimpflege im Bett; eincremen; Inkontinenzmaterial bei Bedarf; Unterkörper ankleiden nach Wunsch; <b>Transfer in den Rollstuhl unterstützen</b>; Rücken waschen; Oberbekleidung anreichen; 1×/Woche Fußbad und Haarwäsche; hält sich am Bettseitenteil fest und kann kurz stehen → Kleidung und Urinbeutel richten</td></tr>
+      <tr><td class="k">6 · AEDL 6</td><td>Urin- und stuhlinkontinent, Intertrigogefahr. Merkt Stuhl, kann ihn nicht halten; kann nicht zur Toilette; Dauerkatheter.</td><td>akzeptiert den DK; vereinbart DK-Wechsel beim Urologen selbst; akzeptiert die Pflegekräfte; holt Inkontinenzmaterial selbst; merkt den Stuhl; lässt den Beutelwechsel ca. alle 10 Tage zu</td><td>sauber und gepflegt; Intertrigo vermeiden; Obstipation vermeiden; Ressourcen erhalten</td><td>Beutel morgens und abends leeren; Intimpflege morgens und abends; Haut täglich ansehen; Pflegemutter sagen, wenn Material bestellt werden muss; <b>Movicol bei Bedarf</b>; Katheterpflege; Urin beobachten (Farbe, Geruch, Aussehen), Entzündungszeichen; Arzt informieren. Hilfegrad 3.</td></tr>
+      <tr><td class="k">11 · AEDL 11 (+3)</td><td>sturzgefährdet; muss Medikamente nehmen. Kann nicht gehen, Rollstuhl; möchte nachts das Bettseitenteil oben; Feinmotorik reicht nicht, um Tabletten zu richten.</td><td>stimmt der Übernahme zu; holt Medikamente selbst; äußert Wünsche; nutzt seine Ressourcen; versichert; hat Therapeuten</td><td>Ressourcen erhalten; Medikamenteneinnahme gewährleistet</td><td>Medikamente nach Verordnung mit einem Glas Wasser geben; Nebenwirkungen beobachten und besprechen; beim Transfer Bett ↔ Rollstuhl anwesend sein; <b>Bettseitenteil auf seinen Wunsch hochziehen</b>; beim Aufstehen am Bett unterstützen, Kleidung richten; Rollstuhl und Bett auf Schäden prüfen</td></tr>
+    </tbody>
+  </table></div>
+  <div class="aufgabe">
+    <p class="op">Vergleichen · 10 Minuten</p>
+    <p>Leg die Planung von 2021 neben die SIS von 2026. <b>Was hat sich verändert? Was fehlt 2021 ganz?</b> Schreib mindestens vier Punkte.</p>
+    <textarea id="vergleich" data-frage="Vergleich Planung 2021 ↔ SIS 2026" placeholder="1. Transfer: 2021 … — 2026 …"></textarea>
+    <details class="loes"><summary>Meine Lösung zeigen — erst nach deinem Versuch</summary><div>
+      <ol>
+        <li><b>Transfer:</b> 2021 „PK unterstützt den Transfer“ — 2026 „Transfer vom Bett in den Rollstuhl und umgekehrt kann er durchführen“. Aber er selbst sagt 2026: „Ich brauche Hilfe beim Aufstehen.“ → Widerspruch, den du <b>beobachten und klären</b> musst.</li>
+        <li><b>Medikamente:</b> 2021 steht kein Blutzucker in der Planung. 2026 bekommt er Metformin und Insulin nach Schema → eine neue Gefahr (Unter-/Überzuckerung), die <b>gar nicht geplant</b> ist.</li>
+        <li><b>Movicol bei Bedarf</b> steht 2021 in der Planung — auf dem Medikationsplan 2026 steht es nicht. Bekommt er es noch?</li>
+        <li><b>Arbeit und Freizeit</b> (Werkstatt, Spielabende) stehen nur in der SIS — sie sind seine wichtigsten Ressourcen.</li>
+        <li><b>Diagnosen seit 2023</b> (Miktionsstörungen, Harnröhre) können 2021 noch nicht drin sein.</li>
+      </ol>
+      <p>Der Satz für die Prüfung: „Die Planung von 2021 wurde <b>nicht evaluiert</b>. Ich habe sie mit der SIS von 2026 verglichen und meine Planung neu geschrieben.“ Das ist Kompetenzbereich I — <b>Evaluation</b> gehört zum Pflegeprozess. <span class="tag ich">meine Lösung</span></p>
+    </div></details>
+  </div>
+</section>
+
+<section id="auffaellig">
+  <h2>Was in der Akte nicht zusammenpasst</h2>
+  <p class="lead">Genau solche Stellen suchen die Prüfer. Wer sie selbst anspricht, zeigt: Ich habe <b>alle Unterlagen recherchiert</b> — so steht es in deinem Auftrag. Sag sie im Gespräch als <b>Beobachtung plus nächster Schritt</b>, nie als Vorwurf. <span class="tag ich">meine Auswahl</span></p>
+  <ol class="funde">
+    <li><div><b class="t">Blutzuckermittel ohne Diabetes-Diagnose</b>Metformin 1-0-1 und NovoRapid nach Schema — auf dem Diagnoseblatt steht kein Diabetes. Dazu: HCT kann den Blutzucker erhöhen. <span class="tag net">Beipackzettel</span><br><i>Nächster Schritt:</i> „Ich würde im Team klären, ob die Diagnose fehlt.“</div></li>
+    <li><div><b class="t">Wer misst den Blutzucker — und wann?</b>Das Schema sagt, wie viel Insulin bei welchem Wert, und „BZ nach 2 Stunden“. Wer misst und zu welchen Zeiten, steht auf deinen Fotos nicht. Mit seinen Händen (Feinmotorik) kann er das wahrscheinlich nicht selbst. <span class="tag ich">meine Folgerung</span></div></li>
+    <li><div><b class="t">Escitalopram und ASS — wofür?</b>Für beide steht keine passende Diagnose auf dem Blatt (z. B. Depression, Herz-Kreislauf). Und zusammen mit Perazin bzw. ASS gibt es die <a href="#medikamente">zwei Kombinationen</a> (QT-Zeit, Blutung). <span class="tag net">Internetquelle</span></div></li>
+    <li><div><b class="t">Transfer: 2021 Hilfe, 2026 selbstständig, er sagt „Hilfe beim Aufstehen“</b>Drei Aussagen, drei Stände. In der Prüfung zählt, was <b>du beobachtet</b> hast.</div></li>
+    <li><div><b class="t">Bettseitenteil nachts oben — auf seinen Wunsch</b>Er wird gesetzlich vertreten. Dein Recht-Kurs: Ein Bettgitter ist Freiheitsentziehung, „wenn es gegen den Willen geschieht“; mit Einwilligung eines einwilligungsfähigen Patienten ist es erlaubt, „zur Beweissicherung immer schriftlich“. Dein Psychiatrie-Kurs: „Bei Betreuten braucht auch die regelmäßige, dauerhafte Fixierung (Bauchgurt, Bettgitter zur Nacht) einen richterlichen Beschluss.“ Und der Expertenstandard Sturzprophylaxe: FEM „erhöhen paradoxerweise das Sturzrisiko“. <span class="tag du">deine Unterlagen</span><br>
+      Den Fall „Bettgitter auf eigenen Wunsch, aber mit gesetzlichem Vertreter“ behandeln deine Unterlagen <b>nicht</b>. Fragen, die du stellen kannst: Ist sein Wunsch schriftlich dokumentiert? Weiß der gesetzliche Vertreter davon? Kann er das Seitenteil mit seinen Händen <b>selbst herunterlassen</b>? <span class="tag ich">meine Fragen</span></div></li>
+    <li><div><b class="t">Stuhlgang alle 4–5 Tage</b>Dein Kurs definiert Obstipation als „weniger als 3 Stuhlgänge pro Woche“ und nennt Querschnittslähmung und Psychopharmaka als Ursachen. <span class="tag du">deine Unterlagen</span> Ist das sein gewohnter Rhythmus — oder schon eine Obstipation? Und Movicol steht nicht mehr auf dem Plan.</div></li>
+    <li><div><b class="t">Hirntumor und Harnröhre ohne Angaben</b>C71.9 seit 2019 und N36.8 seit 2023 — keine Art, keine Behandlung. Liegt der Katheter durch die Harnröhre oder suprapubisch? Dein Kurs nennt Harnröhrenverletzungen und -verengungen als Grund für einen suprapubischen Katheter. <span class="tag du">deine Unterlagen</span></div></li>
+    <li><div><b class="t">Risikomatrix und Pflegegrad</b>Die Kreuze der Matrix kann ich auf dem Foto nicht sicher lesen, den Pflegegrad zeigen die Fotos nicht. Beides gehört in deine Fallvorstellung.</div></li>
+  </ol>
+  <h3>So sagst du es im Gespräch <span class="tag ich">meine Satzanfänge</span></h3>
+  <ul class="satz">
+    <li>„Beim Lesen der Unterlagen ist mir aufgefallen, dass …“</li>
+    <li>„Das passt nicht ganz zu …, deshalb habe ich … gefragt / würde ich … klären.“</li>
+    <li>„Das entscheide nicht ich, das entscheidet der Arzt. Meine Aufgabe ist, es weiterzugeben und zu dokumentieren.“</li>
+  </ul>
+</section>
+
+<section id="probleme">
+  <h2>Schritt 1 — alle Pflegeprobleme finden</h2>
+  <p class="lead">Geh die 13 ABEDL durch und schreib <b>jedes</b> Problem auf, das in den Unterlagen steckt — aktuelle und potentielle getrennt. Erst danach wählst du aus. <span class="tag du">deine Unterlagen: ABEDL, aktuell/potentiell</span></p>
+  <details class="loes" style="margin-bottom:12px"><summary>Die 13 ABEDL als Erinnerung</summary><div style="border-left-color:var(--du);background:var(--card)">
+    <p>1 Kommunizieren · 2 Sich bewegen · 3 Vitale Funktionen aufrechterhalten · 4 Sich pflegen · 5 Essen und trinken · 6 Ausscheiden · 7 Sich kleiden · 8 Ruhen und schlafen · 9 Sich beschäftigen · 10 Sich als Mann oder Frau fühlen · 11 Für Sicherheit sorgen · 12 Soziale Bereiche des Lebens sichern · 13 Mit existenziellen Erfahrungen des Lebens umgehen <span class="tag du">deine Unterlagen</span></p>
+  </div></details>
+  <div class="aufgabe">
+    <p class="op">Problemliste · 20 Minuten</p>
+    <div class="uhr" data-sek="1200"><output>20:00</output><button type="button" class="start">Uhr starten</button><button type="button" class="leise zurueck">Zurück</button></div>
+    <textarea id="problemliste" class="gross" data-frage="Liste aller Pflegeprobleme" placeholder="AKTUELL&#10;1. ABEDL 4: Herr J. kann … nicht selbst …, weil …&#10;&#10;POTENTIELL&#10;1. Gefahr einer …, weil …"></textarea>
+    <details class="loes"><summary>Meine Liste zeigen — erst nach deinem Versuch</summary><div>
+      <p><span class="tag akt">aktuell</span></p>
+      <ol>
+        <li><b>ABEDL 4 Sich pflegen:</b> kann Rücken, Unterkörper und Intimbereich nicht selbst waschen (Querschnitt, Feinmotorik). R: putzt Zähne und wäscht den Oberkörper vorne selbst.</li>
+        <li><b>ABEDL 7 Sich kleiden:</b> kann sich nicht selbst ankleiden. R: sucht seine Kleidung selbst aus.</li>
+        <li><b>ABEDL 6 Ausscheiden (Urin):</b> Blasenlähmung, Dauerkatheter; kann den Urinbeutel nicht selbst leeren (Feinmotorik).</li>
+        <li><b>ABEDL 6 Ausscheiden (Stuhl):</b> stuhlinkontinent, Schutzhose, Stuhlgang alle 4–5 Tage. R: merkt den Stuhl.</li>
+        <li><b>ABEDL 3/11 Medikamente:</b> kann seine Tabletten wegen der Hände nicht selbst richten und nehmen. R: stimmt der Übernahme zu.</li>
+        <li><b>ABEDL 2 Sich bewegen:</b> querschnittsgelähmt; braucht nach eigener Aussage Hilfe beim Aufstehen. R: fährt den E-Rollstuhl selbstständig, Physiotherapie.</li>
+        <li><b>ABEDL 5/12:</b> kann nicht kochen und keinen Haushalt führen. R: Pflegemutter übernimmt, er hilft im Sitzen.</li>
+      </ol>
+      <p><span class="tag pot">potentiell</span></p>
+      <ol>
+        <li><b>Gefahr einer Harnwegsinfektion</b> — Dauerkatheter, Diabetes (dein Kurs nennt beides als Risikofaktor).</li>
+        <li><b>Gefahr einer Hautschädigung (IAD, Intertrigo)</b> — Stuhlinkontinenz, Schutzhose, eingeschränkte Mobilität.</li>
+        <li><b>Gefahr eines Dekubitus</b> — sitzt den ganzen Tag im Rollstuhl, Querschnitt. Ob die Matrix das ankreuzt: nachsehen.</li>
+        <li><b>Sturzgefahr beim Transfer</b> — Lähmung; Blutdrucksenker, Antidepressivum, Neuroleptikum; 7 Medikamente (Polypharmazie: mehr als 4).</li>
+        <li><b>Gefahr einer Unter- oder Überzuckerung</b> — Insulin nach Schema, Metformin, HCT.</li>
+        <li><b>Gefahr einer Obstipation</b> — Stuhl alle 4–5 Tage, Querschnitt, Psychopharmaka.</li>
+        <li><b>Blutungsgefahr</b> — ASS zusammen mit Escitalopram.</li>
+      </ol>
+      <p><span class="tag ich">meine Lösung</span> Die Zuordnung zu den ABEDL ist ein Vorschlag — wichtig ist, dass jedes Problem drin ist.</p>
+    </div></details>
+  </div>
+
+  <h3>Auswählen — 3 für die Praxisaufgabe, 4 für die Prüfung</h3>
+  <p>Drei Fragen helfen beim Auswählen: <b>Was bedroht ihn am meisten? Was betrifft ihn jeden Tag? Was kann die Pflege wirklich beeinflussen?</b> <span class="tag ich">meine Kriterien</span></p>
+  <details class="loes"><summary>Meine Auswahl zeigen — erst nach deiner eigenen</summary><div>
+    <ol>
+      <li><b>Körperpflege und Ankleiden</b> (aktuell) — jeden Tag, zweimal, und voller Ressourcen, die du erhalten kannst.</li>
+      <li><b>Gefahr einer Harnwegsinfektion beim Dauerkatheter</b> (potentiell) — die Pflege beeinflusst sie direkt.</li>
+      <li><b>Stuhlinkontinenz mit Gefahr der Hautschädigung</b> (aktuell + potentiell).</li>
+      <li><i>nur für die Prüfung:</i> <b>Gefahr einer Unter- oder Überzuckerung</b> — Insulin nach Schema, und die Diagnose fehlt.</li>
+    </ol>
+    <p>Andere Auswahl? Gut — wenn du sie <b>begründen</b> kannst. Genau danach fragt die Erläuterung („Warum ist es eins der wichtigsten?“). <span class="tag ich">meine Lösung</span></p>
+  </div></details>
+</section>
+
+<section id="pesr">
+  <h2>Schritt 2 — planen nach PE(S)R</h2>
+  <p class="lead">Ein Problem ganz durchgespielt, damit du siehst, wie es aussieht. Die anderen schreibst du — mit Leitfragen. Erst die Uhr, dann das Muster.</p>
+
+  <div class="format">
+    <div>
+      <p class="op" style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 4px">Praxisaufgabe · 1,5 Stunden</p>
+      <p>Fallvorstellung · Liste aller Probleme · <b>3 Probleme</b>: Problem – Ziel – Maßnahme – Begründung.</p>
+      <div class="uhr" data-sek="5400"><output>1:30:00</output><button type="button" class="start">Uhr starten</button><button type="button" class="leise zurueck">Zurück</button></div>
+    </div>
+    <div>
+      <p class="op" style="font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 4px">Zwischenprüfung · 3 Stunden</p>
+      <p>Fallvorstellung · Medikamentenplan · Diagnosen · alle Probleme · <b>4 Probleme nach PE(S)R</b>.</p>
+      <div class="uhr" data-sek="10800"><output>3:00:00</output><button type="button" class="start">Uhr starten</button><button type="button" class="leise zurueck">Zurück</button></div>
+    </div>
+  </div>
+
+  <h3>Das Muster — Gefahr einer Harnwegsinfektion</h3>
+  <p><span class="tag pot">potentiell</span> Deshalb steht das S in Klammern: Es gibt noch keine Symptome, sondern <b>Risikofaktoren</b>. <span class="tag du">deine Unterlagen</span></p>
+  <div class="pesr">
+    <div><span>P · Problem</span><span>Herr J. hat aufgrund des Dauerkatheters die Gefahr einer Harnwegsinfektion.</span></div>
+    <div><span>E · Ursache</span><span>Dauerkatheter bei Blasenlähmung (Rückenmarkschädigung); Diabetes-Medikation (Diabetes ist ein Risikofaktor); Krankheit der Harnröhre (N36.8); er kann den Urinbeutel wegen der Feinmotorik nicht selbst leeren.</span></div>
+    <div><span>(S) · Risiko</span><span>keine Symptome — potentielles Problem. Risikofaktoren laut deinem Kurs: Diabetes mellitus, Fehler in der Katheterpflege, Keime im Auffangbeutel.</span></div>
+    <div><span>R · Ressource</span><span>akzeptiert den Katheter; vereinbart die Wechsel beim Urologen selbst; kommuniziert klar und sagt, wenn etwas nicht stimmt; Pflegemutter bestellt das Material.</span></div>
+    <div><span>Nahziel</span><span>Der Urin von Herrn J. ist bei jeder Versorgung bis zur Evaluation am [Datum in 2 Wochen] klar, ohne Flocken und ohne auffälligen Geruch; er hat kein Fieber.</span></div>
+    <div><span>Fernziel</span><span>Herr J. nennt bis zum [Datum in 6 Wochen] drei Zeichen einer Harnwegsinfektion und meldet sie dem Pflegedienst selbst.</span></div>
+    <div><span>Maßnahmen</span><span>
+      <b>1 PP</b> leert <b>morgens und abends</b> bei der Versorgung den Urinbeutel — <i>vollständige Übernahme</i>, weil seine Hände das nicht schaffen.<br>
+      <b>1 PP</b> führt <b>2× täglich</b> die Intimpflege mit Katheterpflege durch (Krusten entfernen); vorher Händedesinfektion, so wenig wie möglich am System manipulieren.<br>
+      <b>1 PP</b> beobachtet bei jeder Versorgung den Urin nach <b>F-B-G-M</b> (Farbe, Beimengungen, Geruch, Menge) und den Durchfluss, achtet auf Knicke und Zug.<br>
+      <b>1 PP</b> achtet darauf, dass der Beutel <b>immer unter Blasenniveau</b> hängt und das Ablaufventil nicht den Boden berührt — auch am Rollstuhl.<br>
+      <b>1 PFK</b> <i>berät</i> Herrn J. einmal pro Woche zu Trinkmenge und Infektzeichen (trüb, Flocken, Geruch, Fieber), bis er sie selbst nennen kann.<br>
+      Auffälligkeiten → sofort PFK informieren, die den Arzt informiert; dokumentieren.
+    </span></div>
+    <div><span>Begründung</span><span>Expertenstandard <b>Kontinenzförderung</b>; sein Kontinenzprofil (Harn): <b>abhängig kompensierte Inkontinenz</b> — der Katheter kompensiert, die Pflege übernimmt das Management. Dein Kurs: geschlossenes System, Beutel unter Blasenniveau, Ventil nicht am Boden („Eintrittspforte für Keime“), 2× täglich Intimpflege, trüber/flockiger Urin → Harnwegsinfektion. Medikamente: <b>ASS</b> → auf Blut im Urin achten; <b>HCT</b> → Flüssigkeit beachten.</span></div>
+  </div>
+  <p class="quelle"><span class="tag du">deine Unterlagen</span> <a href="https://claude.ai/artifact/9sE6cUYk1Q3VugvVEUhUHi">Kontinenz fördern</a> (Kontinenzprofile, Beutel, CAUTI-Risikofaktoren) · Lernmaterial 08 Harn/Katheter (Pflege bei DK, F-B-G-M) · <a href="https://claude.ai/code/artifact/d1d757ad-782d-4350-bcce-1337702a922f">Pflegeplanung in fünf Tagen</a> (W-Fragen, Hilfeformen, SMART). <span class="tag ich">Die Formulierungen und die Daten sind meine — die Wochenberatung ist ein Vorschlag.</span></p>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Unterlagen</span> Was du an diesem Muster prüfen kannst</p>
+    <ul>
+      <li>Jede Maßnahme beantwortet die W-Fragen: <b>Wer? Was? Wie und womit (Hilfeform)? Wann? Wie oft?</b></li>
+      <li>Die Hilfeform kommt aus der Ressource: Beutel leeren = Übernahme (Hände), Infektzeichen = <b>Beratung</b> (er kommuniziert klar).</li>
+      <li>Das Ziel ist SMART: Wer, was, woran gemessen, bis wann.</li>
+    </ul>
+  </div>
+
+  <h3>Jetzt du — die anderen Probleme</h3>
+  <div class="aufgabe">
+    <p class="op">Problem: Körperpflege und Ankleiden <span class="tag akt">aktuell</span></p>
+    <p>Leitfragen: Was genau kann er nicht — und <b>was kann er</b> (Zähne, Oberkörper vorne, Kleidung wählen, eincremen)? Welche Hilfeform passt zu welchem Teil? Wie erhältst du die Ressourcen? Und der Transfer: Was hast <b>du</b> beobachtet?</p>
+    <textarea id="p-pflege" class="gross" data-frage="PE(S)R Körperpflege und Ankleiden" placeholder="P: Herr J. kann …&#10;E: …&#10;S: …&#10;R: …&#10;Ziel: …&#10;Maßnahmen (Wer? Was? Wie/womit? Wann? Wie oft?): …&#10;Begründung: …"></textarea>
+  </div>
+  <div class="aufgabe">
+    <p class="op">Problem: Stuhlinkontinenz und Haut <span class="tag akt">aktuell</span> <span class="tag pot">potentiell</span></p>
+    <p>Leitfragen: Was sagt dein Kurs zur IAD („Ohne Inkontinenz keine IAD“, Reinigung nach jeder Stuhlausscheidung)? Welches Kontinenzprofil hat er beim Stuhl? Alle 4–5 Tage — Obstipation? Was steht 2021 zum Movicol?</p>
+    <textarea id="p-stuhl" class="gross" data-frage="PE(S)R Stuhlinkontinenz und Haut" placeholder="P: …"></textarea>
+  </div>
+  <div class="aufgabe">
+    <p class="op">Problem: Gefahr einer Unter- oder Überzuckerung <span class="tag pot">potentiell</span> — nur für das Prüfungsformat</p>
+    <p>Leitfragen: Ab welchem Wert ist es eine Unterzuckerung (Stufe 1, Stufe 2)? Welche Zeichen — und warum können sie bei ihm fehlen? Was sagt das Schema bei 210 mg/dl? Wer misst? Was machst du mit der fehlenden Diagnose?</p>
+    <textarea id="p-bz" class="gross" data-frage="PE(S)R Blutzucker" placeholder="P: …"></textarea>
+  </div>
+</section>
+
+<section id="vorstellen">
+  <h2>Schritt 3 — Herrn J. vorstellen</h2>
+  <p class="lead">10 Minuten, vier Blöcke. Die Blöcke stammen aus der Vorlage deiner Schule für das <b>Krankenhaus</b>. <span class="tag du">deine Unterlagen</span> Für die <b>ambulante</b> Pflege fehlt dir die Vorlage noch — frag deine Praxisanleitung danach. Bis dahin passen die vier Blöcke gut.</p>
+  <div class="aufgabe">
+    <p class="op">Fallvorstellung · 10 Minuten · laut sprechen, dann aufschreiben</p>
+    <p>Sprich frei, mit höchstens fünf Stichwörtern pro Block. Nimm dich auf (App „Sprachmemos“) und schreib danach auf, was du gesagt hast.</p>
+    <div class="uhr" data-sek="600"><output>10:00</output><button type="button" class="start">Uhr starten</button><button type="button" class="leise zurueck">Zurück</button></div>
+    <textarea id="vorstellung" class="gross" data-frage="Fallvorstellung Herr J. (10 Minuten)" placeholder="1 Krankheitsdaten und Verlauf …&#10;2 Diagnosen und Medikation …&#10;3 Pflegerische Daten …&#10;4 Biografische Daten …"></textarea>
+    <details class="loes"><summary>Muster zeigen — erst nach deinem Versuch</summary><div>
+      <p><b>1 · Krankheitsdaten und Verlauf.</b> „Ich stelle Ihnen Herrn J. vor. Er ist 54 Jahre alt und wird zu Hause von unserem ambulanten Pflegedienst versorgt, morgens und abends. Auf seinem Diagnoseblatt steht seit 2018 eine Rückenmarkschädigung mit Spinalkanalstenose, Blasenlähmung und Krallenhänden, dazu eine Syringomyelie. Er ist querschnittsgelähmt und fährt einen Elektro-Rollstuhl. Seit 2019 ist ein bösartiger Hirntumor bekannt, seit 2023 Miktionsstörungen und eine Krankheit der Harnröhre. Er hat einen Dauerkatheter.“</p>
+      <p><b>2 · Diagnosen und Medikation.</b> „Die Diagnosen und den Medikamentenplan sehen Sie auf dem Blatt. Für die Pflege sind drei Punkte besonders wichtig: der Katheter, die paranoide Schizophrenie — dafür bekommt er Perazin — und der Blutzucker: Er bekommt Metformin und NovoRapid nach Schema. Ein Diabetes steht aber nicht auf dem Diagnoseblatt; das kläre ich mit dem Team.“</p>
+      <p><b>3 · Pflegerische Daten.</b> „Herr J. kann seine Bedürfnisse klar äußern. Er putzt sich die Zähne und wäscht den Oberkörper vorne selbst. Rücken, Unterkörper und Intimbereich waschen wir, und wir ziehen ihn ganz an — die Kleidung sucht er selbst aus. Wegen seiner Hände kann er den Urinbeutel nicht leeren und seine Tabletten nicht selbst richten. Den Stuhl hat er alle vier bis fünf Tage in der Schutzhose. Den Transfer ins Bett und in den Rollstuhl macht er laut SIS selbst. Die Pflegeprobleme im Einzelnen sehen Sie in meiner Problemliste.“</p>
+      <p><b>4 · Biografische Daten.</b> „Herr J. ist in einer großen Pflegefamilie aufgewachsen und hat eine enge Bindung zu seiner Pflegemutter. Sie macht den Haushalt und den Einkauf. Er arbeitet in einer Werkstatt für Menschen mit Behinderung, im Industrieservice, und verbringt seine Freizeit mit Kollegen — Geburtstage, Spielabende. Er wird gesetzlich vertreten. Über sich sagt er: ‚Ich akzeptiere meine Einschränkungen.‘ und ‚Es geht mir gut.‘“</p>
+      <p class="quelle">Alles aus SIS, Diagnoseblatt und Medikationsplan. Den Pflegegrad und die Risikomatrix setzt du selbst ein. <span class="tag ich">meine Formulierung</span></p>
+    </div></details>
+  </div>
+  <div class="aufgabe">
+    <p class="op">Erläuterung · 20 Minuten · nicht vorlesen</p>
+    <p>Erkläre für jedes deiner Probleme den <b>Weg</b>: Woher hast du die Information? Warum gerade dieses Problem? PE(S)R in eigenen Worten. Warum dieses Ziel? Warum diese Hilfeform? Woran merkst du, dass es gewirkt hat? <span class="tag ich">meine Ordnung</span> — die sechs Schritte stehen auf deiner <a href="https://claude.ai/artifact/NYEURgPmZ47bMpZYz3K3FV">Übungsseite</a>.</p>
+    <div class="uhr" data-sek="1200"><output>20:00</output><button type="button" class="start">Uhr starten</button><button type="button" class="leise zurueck">Zurück</button></div>
+    <textarea id="erlaeuterung" class="gross" data-frage="Erläuterung der Planung (20 Minuten)" placeholder="Problem 1: Die Information habe ich aus … Ich habe dieses Problem gewählt, weil …"></textarea>
+  </div>
+</section>
+
+<section id="fragen">
+  <h2>Schritt 4 — die Fragen im Prüfungsgespräch</h2>
+  <p class="lead">15 Minuten, alle fünf Kompetenzbereiche. Diese Fragen sind <b>meine Vorhersage</b> für genau diesen Fall — die Bereiche und ihre Themen stehen in deinen Unterlagen. <span class="tag du">KB I–V</span> <span class="tag ich">die Fragen</span> Tipp auf 🔊, hör die Frage, antworte laut — dann schreib die Antwort kurz auf.</p>
+  <p>Antwortschema: <b>Antwort in einem Satz → weil → Beispiel aus seinem Fall → deshalb tue ich …</b></p>
+
+  <div class="frage"><p class="q"><span class="kb">KB I</span><span class="text">Welche Risiken wurden bei Herrn J. eingeschätzt, und womit?</span><button type="button" class="vorlesen" aria-label="Frage vorlesen">🔊</button></p>
+    <textarea id="f1" data-frage="KB I · Risiken eingeschätzt — womit?" style="min-height:5rem"></textarea>
+    <details class="loes"><summary>Musterantwort</summary><div><p>„Im ambulanten Dienst gibt es die SIS. Darin ist die Risikomatrix: Dekubitus, Sturz, Inkontinenz, Schmerz, Ernährung. Bei Herrn J. ist … angekreuzt. [Du liest es ab.] Für die Ausscheidung habe ich zusätzlich das <b>Kontinenzprofil</b> bestimmt.“</p></div></details></div>
+
+  <div class="frage"><p class="q"><span class="kb">KB I</span><span class="text">Welches Kontinenzprofil hat Herr J.?</span><button type="button" class="vorlesen" aria-label="Frage vorlesen">🔊</button></p>
+    <textarea id="f2" data-frage="KB I · Kontinenzprofil" style="min-height:5rem"></textarea>
+    <details class="loes"><summary>Musterantwort</summary><div><p>„Ich habe die drei Fragen gestellt: Gibt es einen unwillkürlichen Verlust? Ja. Wird er kompensiert? Ja, beim Urin mit dem Katheter, beim Stuhl mit der Schutzhose. Macht er das selbst? Nein, das Management übernehmen wir. <b>Also: abhängig kompensierte Inkontinenz.</b>“ Dein Kurs erlaubt getrennte Profile für Harn und Stuhl, wenn sich die Selbstständigkeit unterscheidet. <span class="tag du">Kontinenz fördern</span></p></div></details></div>
+
+  <div class="frage"><p class="q"><span class="kb">KB I</span><span class="text">Die Pflegeplanung ist von 2021. Was machst du damit?</span><button type="button" class="vorlesen" aria-label="Frage vorlesen">🔊</button></p>
+    <textarea id="f3" data-frage="KB I · Alte Planung" style="min-height:5rem"></textarea>
+    <details class="loes"><summary>Musterantwort</summary><div><p>„Sie muss <b>evaluiert</b> werden, weil sich seitdem viel verändert hat — zum Beispiel macht er den Transfer laut SIS jetzt selbst, und die Blutzuckermedikamente stehen gar nicht drin. Deshalb habe ich die Planung mit der SIS von 2026 verglichen und neu geschrieben.“</p></div></details></div>
+
+  <div class="frage"><p class="q"><span class="kb">KB II</span><span class="text">Wie erlebt Herr J. selbst seine Situation?</span><button type="button" class="vorlesen" aria-label="Frage vorlesen">🔊</button></p>
+    <textarea id="f4" data-frage="KB II · Sein Erleben" style="min-height:5rem"></textarea>
+    <details class="loes"><summary>Musterantwort</summary><div><p>„Er hat gesagt: ‚Ich akzeptiere meine Einschränkungen.‘ und ‚Es geht mir gut.‘ Wichtig ist ihm, alles selbst zu machen, was er kann. Er bittet um Hilfe, wenn er sie braucht, und sagt: ‚Ich will, dass Sie weiterhin zu mir kommen.‘ Deshalb plane ich so, dass er seine Ressourcen <b>behält</b> — ich nehme ihm nichts ab, was er selbst kann.“</p></div></details></div>
+
+  <div class="frage"><p class="q"><span class="kb">KB II</span><span class="text">Er hat eine paranoide Schizophrenie. Worauf achtest du im Gespräch?</span><button type="button" class="vorlesen" aria-label="Frage vorlesen">🔊</button></p>
+    <textarea id="f5" data-frage="KB II · Kommunikation bei Schizophrenie" style="min-height:5rem"></textarea>
+    <details class="loes"><summary>Musterantwort</summary><div><p>„Ich bin ehrlich: nicht lügen, mit offenen Karten spielen. Ich sage vorher, was ich tue. Ich gehe vorsichtig mit der Blickführung um, weil sie bei schizophrenen Patienten das Vertrauen in Frage stellen kann. Ich vermeide Fragen mit ‚Wieso, weshalb, warum‘. Bei Herrn J. ist die Kommunikation laut SIS klar und ohne Schwierigkeiten.“ <span class="tag du">Psychiatrische Pflege</span></p></div></details></div>
+
+  <div class="frage"><p class="q"><span class="kb">KB III</span><span class="text">Mit wem arbeitest du bei Herrn J. zusammen?</span><button type="button" class="vorlesen" aria-label="Frage vorlesen">🔊</button></p>
+    <textarea id="f6" data-frage="KB III · Zusammenarbeit" style="min-height:5rem"></textarea>
+    <details class="loes"><summary>Musterantwort</summary><div><p>„Mit dem Hausarzt (Medikamente, Blutzucker), dem Urologen (Katheterwechsel — den Termin macht er selbst), der psychiatrischen Behandlung, dem Physiotherapeuten, der Werkstatt, seiner Pflegemutter und seinem gesetzlichen Vertreter. Und mit der Apotheke, wenn es um Wechselwirkungen geht.“ <span class="tag akte">aus der SIS und der Planung</span></p></div></details></div>
+
+  <div class="frage"><p class="q"><span class="kb">KB III</span><span class="text">Dir fällt auf, dass er Escitalopram und Perazin zusammen bekommt. Was tust du?</span><button type="button" class="vorlesen" aria-label="Frage vorlesen">🔊</button></p>
+    <textarea id="f7" data-frage="KB III · Wechselwirkung" style="min-height:5rem"></textarea>
+    <details class="loes"><summary>Musterantwort</summary><div><p>„Ich ändere nichts selbst. Ich habe gelesen, dass beide Mittel das QT-Intervall verlängern können. Das gebe ich an die Pflegefachkraft weiter, damit der Arzt oder die Apotheke es prüft, und ich dokumentiere es. Bis dahin achte ich auf Herzrasen, einen unregelmäßigen Puls oder Ohnmacht.“ <span class="tag net">Beipackzettel, Rote-Hand-Brief</span></p></div></details></div>
+
+  <div class="frage"><p class="q"><span class="kb">KB IV</span><span class="text">Nachts ist das Bettseitenteil oben — auf seinen Wunsch. Ist das in Ordnung?</span><button type="button" class="vorlesen" aria-label="Frage vorlesen">🔊</button></p>
+    <textarea id="f8" data-frage="KB IV · Bettseitenteil" style="min-height:5rem"></textarea>
+    <details class="loes"><summary>Musterantwort</summary><div><p>„Ein Bettgitter ist eine freiheitsentziehende Maßnahme, wenn es gegen den Willen geschieht. Herr J. wünscht es selbst und kann sich klar äußern — mit seiner Einwilligung ist es erlaubt; sie muss <b>schriftlich</b> dokumentiert sein. Weil er gesetzlich vertreten wird, würde ich klären, ob der Vertreter Bescheid weiß; bei Betreuten braucht ein dauerhaftes Bettgitter zur Nacht laut meinem Psychiatrie-Unterricht einen richterlichen Beschluss. Außerdem gilt der Expertenstandard Sturzprophylaxe: Freiheitsentziehende Maßnahmen erhöhen das Sturzrisiko. Und ich prüfe, ob er das Seitenteil mit seinen Händen selbst herunterlassen kann.“ <span class="tag du">Recht, Psychiatrie, Sturz</span> — wie beides zusammenpasst, sagen deine Unterlagen nicht. <span class="tag ich">offen</span></p></div></details></div>
+
+  <div class="frage"><p class="q"><span class="kb">KB IV</span><span class="text">Welche Expertenstandards wendest du an — und warum?</span><button type="button" class="vorlesen" aria-label="Frage vorlesen">🔊</button></p>
+    <textarea id="f9" data-frage="KB IV · Expertenstandards" style="min-height:5rem"></textarea>
+    <details class="loes"><summary>Musterantwort</summary><div><p>„<b>Kontinenzförderung</b>, weil er einen Dauerkatheter hat und stuhlinkontinent ist. <b>Sturzprophylaxe</b>, weil er beim Transfer gefährdet ist: Er hat Lähmungen, ein Kontinenzproblem, er nimmt Blutdrucksenker und ein Antidepressivum und insgesamt sieben Medikamente — Polypharmazie heißt mehr als vier. <b>Dekubitusprophylaxe</b>, wenn die Risikomatrix es zeigt, weil er den ganzen Tag sitzt.“ <span class="tag du">Lernmaterial 05 Sturz</span></p></div></details></div>
+
+  <div class="frage"><p class="q"><span class="kb">KB V</span><span class="text">Sein Blutzucker ist 230 mg/dl. Was tust du?</span><button type="button" class="vorlesen" aria-label="Frage vorlesen">🔊</button></p>
+    <textarea id="f10" data-frage="KB V · BZ 230" style="min-height:5rem"></textarea>
+    <details class="loes"><summary>Musterantwort</summary><div><p>„Nach seinem Schema bekommt er bei 200 bis 240 mg/dl <b>8 IE NovoRapid</b>. NovoRapid ist ein kurzwirksames Analogon: Es wirkt sofort, am stärksten nach einer Stunde, zwei bis drei Stunden lang. Deshalb gehört es zu einer Mahlzeit. Nach zwei Stunden messe ich wieder, so steht es im Plan, und ich achte auf Zeichen einer Unterzuckerung.“ <span class="tag akte">Plan</span> <span class="tag du">Diabetes</span></p></div></details></div>
+
+  <div class="frage"><p class="q"><span class="kb">KB V</span><span class="text">Er schwitzt plötzlich, zittert und ist verwirrt. Was denkst du, was tust du?</span><button type="button" class="vorlesen" aria-label="Frage vorlesen">🔊</button></p>
+    <textarea id="f11" data-frage="KB V · Verdacht Hypoglykämie" style="min-height:5rem"></textarea>
+    <details class="loes"><summary>Musterantwort</summary><div><p>„<b>Verdacht auf Unterzuckerung</b> — er bekommt Insulin. Wenn er wach ist: ‚Erst essen, dann messen‘ — 2 KE als Traubenzucker, Saft oder Cola. Ist er bewusstlos: niemals Zucker in den Mund, wegen der Aspirationsgefahr, sondern stabile Seitenlage und Notruf. Danach dokumentieren und den Arzt informieren.“ <span class="tag du">Diabetes</span></p></div></details></div>
+
+  <div class="frage"><p class="q"><span class="kb">KB V</span><span class="text">Er bekommt Baclofen. Wofür — und was ist die Kehrseite?</span><button type="button" class="vorlesen" aria-label="Frage vorlesen">🔊</button></p>
+    <textarea id="f12" data-frage="KB V · Baclofen" style="min-height:5rem"></textarea>
+    <details class="loes"><summary>Musterantwort</summary><div><p>„Baclofen wirkt gegen die Spastik. Die Kehrseite: Die Muskeln entspannen sich, und manche Patienten verlieren Beweglichkeit, weil die Spastik sie aufrecht hält. Bei Herrn J. ist das wichtig, weil er sich am Bettseitenteil festhält und kurz steht, um die Kleidung zu richten. Deshalb beobachte ich, ob er noch Halt hat, und melde Veränderungen.“ <span class="tag du">Neurologie</span></p></div></details></div>
+
+  <div class="frage"><p class="q"><span class="kb">KB V</span><span class="text">Welche Widerstandsressourcen hat Herr J.?</span><button type="button" class="vorlesen" aria-label="Frage vorlesen">🔊</button></p>
+    <textarea id="f13" data-frage="KB V · Widerstandsressourcen" style="min-height:5rem"></textarea>
+    <details class="loes"><summary>Musterantwort</summary><div><p>„Seine Pflegefamilie und besonders die Pflegemutter; seine Arbeit in der Werkstatt mit Kollegen; Freizeit mit Freunden; die Physiotherapie; und seine Haltung: Er akzeptiert seine Einschränkungen und sagt, es geht ihm gut.“ <span class="tag akte">SIS</span></p></div></details></div>
+</section>
+
+<section id="senden">
+  <h2>Antworten schicken</h2>
+  <p class="lead">Alles, was du auf dieser Seite schreibst, bleibt in deinem Browser gespeichert. Mit dem Knopf wird daraus ein Text für den Chat.</p>
+  <button type="button" id="sammel">📤 Antworten kopieren</button><span id="kopiert" aria-live="polite"></span>
+  <textarea id="ausgabe" hidden readonly aria-label="Gesammelte Antworten"></textarea>
+  <p style="margin-top:14px">Ich korrigiere <b>Inhalt</b> (fehlt etwas, stimmt PE(S)R, passt die Hilfeform zur Ressource) und <b>Sprache</b> (mit Baustelle). Danach kommt die nächste Runde.</p>
+  <p class="fr">Tout ce que tu écris reste dans ton navigateur. Le bouton en fait un texte à m'envoyer : je corrige le fond et l'allemand.</p>
+</section>
+
+</main>
+<footer>Stand 12.10.2026 · Grundlage: seine SIS (27.05.2026), Diagnoseblatt (07.10.2026), Medikationsplan (12.05.2026), Pflegeplanung des Dienstes (2021), deine Praxisaufgabe und „Gestaltung und Durchführung der Zwischenprüfung 2026“. Lernseite, kein ärztlicher Rat. Eine Punkteverteilung steht in keiner deiner Unterlagen — hier wird keine erfunden.</footer>
+
+<script>
+(function(){
+  function lies(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function schreib(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+  document.querySelectorAll('textarea[data-frage]').forEach(function(t){
+    var k='hj-'+t.id, v=lies(k); if(v) t.value=v;
+    t.addEventListener('input',function(){ schreib(k,t.value); });
+  });
+  function fmt(n){ var a=Math.abs(n), h=Math.floor(a/3600), m=Math.floor(a%3600/60), s=a%60;
+    var z=function(x){return (x<10?'0':'')+x;};
+    return (n<0?'+':'')+(h?h+':'+z(m):m)+':'+z(s); }
+  document.querySelectorAll('.uhr[data-sek]').forEach(function(u){
+    var voll=+u.dataset.sek, rest=voll, tick=null, out=u.querySelector('output'), st=u.querySelector('.start');
+    function zeige(){ out.textContent=fmt(rest); out.style.color = rest<0 ? 'var(--bad)' : ''; }
+    st.addEventListener('click',function(){
+      if(tick){ clearInterval(tick); tick=null; st.textContent='Weiter'; return; }
+      tick=setInterval(function(){ rest--; zeige(); },1000); st.textContent='Pause';
+    });
+    u.querySelector('.zurueck').addEventListener('click',function(){ if(tick){clearInterval(tick);tick=null;} rest=voll; st.textContent='Uhr starten'; zeige(); });
+    zeige();
+  });
+  var stimme=null;
+  function waehle(){ try{ var v=speechSynthesis.getVoices(); stimme=v.filter(function(x){return /^de/i.test(x.lang);})[0]||null; }catch(e){} }
+  if('speechSynthesis' in window){ waehle(); try{ speechSynthesis.onvoiceschanged=waehle; }catch(e){} }
+  document.querySelectorAll('.vorlesen').forEach(function(b){
+    if(!('speechSynthesis' in window)){ b.hidden=true; return; }
+    b.addEventListener('click',function(){
+      var t=b.parentNode.querySelector('.text').textContent;
+      try{ speechSynthesis.cancel(); var u=new SpeechSynthesisUtterance(t); u.lang='de-DE'; u.rate=.9; if(stimme) u.voice=stimme; speechSynthesis.speak(u); }catch(e){}
+    });
+  });
+  var aus=document.getElementById('ausgabe'), info=document.getElementById('kopiert');
+  document.getElementById('sammel').addEventListener('click',function(){
+    var text='Prüfungsfall Herr J. — meine Antworten\n\n';
+    document.querySelectorAll('textarea[data-frage]').forEach(function(t){ if(t.value.trim()) text+='## '+t.dataset.frage+'\n'+t.value.trim()+'\n\n'; });
+    if(text.indexOf('##')<0) text+='(noch nichts geschrieben)\n';
+    aus.value=text;
+    function zeigen(){ aus.hidden=false; aus.focus(); aus.select(); info.textContent='Markiert — jetzt kopieren und mir schicken.'; }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(function(){ info.textContent='Kopiert ✓ — einfach in den Chat einfügen.'; },zeigen); } else zeigen();
+  });
+})();
+</script>
