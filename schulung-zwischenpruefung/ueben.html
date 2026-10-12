@@ -1,0 +1,373 @@
+<title>Zwischenprüfung üben</title>
+<style>
+  /* Layout: Trainingsseite im System ihrer Zusammenfassungen — Plan, Unterlagen, drei Sprechteile, Übung, Herkunftsmarken */
+  :root{
+    --paper:#eff0f2;--paper-2:#e3e5ea;--card:#fcfcfd;--ink:#181b22;--ink-soft:#4b5262;--line:#ccd1da;
+    --accent:#6b3f86;--accent-deep:#52306a;--accent-soft:#ebe1f1;
+    --du:#256b4a;--dubg:#dfeee6;--net:#1f5f86;--netbg:#dbe8f1;--ich:#7a5a08;--ichbg:#f8edc8;
+    --bad:#a33f34;--badbg:#f6e1de;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#121318;--paper-2:#0d0e12;--card:#1b1d24;--ink:#e9eaf0;--ink-soft:#a0a6b4;--line:#2c2f38;
+    --accent:#c4a0dc;--accent-deep:#d6b9ea;--accent-soft:#2a1f33;
+    --du:#6fc292;--dubg:#14281c;--net:#6cadd9;--netbg:#122736;--ich:#e0b84f;--ichbg:#2c2410;
+    --bad:#e08a7c;--badbg:#301b17;color-scheme:dark;}}
+  :root[data-theme="dark"]{
+    --paper:#121318;--paper-2:#0d0e12;--card:#1b1d24;--ink:#e9eaf0;--ink-soft:#a0a6b4;--line:#2c2f38;
+    --accent:#c4a0dc;--accent-deep:#d6b9ea;--accent-soft:#2a1f33;
+    --du:#6fc292;--dubg:#14281c;--net:#6cadd9;--netbg:#122736;--ich:#e0b84f;--ichbg:#2c2410;
+    --bad:#e08a7c;--badbg:#301b17;color-scheme:dark;}
+
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-deep);}
+  a:focus-visible,button:focus-visible,summary:focus-visible,textarea:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+  header.hero{padding-block:44px 28px;padding-inline:20px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 10px;}
+  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);margin:0 0 12px;line-height:1.06;text-wrap:balance;}
+  header.hero p.sub{max-width:62ch;margin:0 auto 16px;color:var(--ink-soft);font-size:15.5px;}
+  .legende{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .tag{display:inline-block;max-width:100%;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:999px;font-style:normal;vertical-align:1px;}
+  .tag.du{background:var(--dubg);color:var(--du);} .tag.ich{background:var(--ichbg);color:var(--ich);} .tag.net{background:var(--netbg);color:var(--net);}
+  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
+  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap;}
+  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);background:var(--card);}
+  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
+  section{padding-top:50px;}
+  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;margin:0 0 6px;line-height:1.16;text-wrap:balance;}
+  .lead{color:var(--ink-soft);margin:0 0 20px;max-width:66ch;}
+  h3{font-family:var(--serif);font-size:1.18rem;font-weight:600;margin:26px 0 8px;}
+  p{margin:0 0 14px;max-width:70ch;} ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;} li{margin:5px 0;}
+  .fr{font-style:italic;color:var(--ink-soft);} .fr::before{content:"🇫🇷 ";font-style:normal;}
+  .kasten{border-radius:12px;padding:14px 18px;margin:16px 0;border:1px solid var(--line);background:var(--card);}
+  .kasten > :last-child{margin-bottom:0;}
+  .kasten.du{background:var(--dubg);border-color:transparent;} .kasten.ich{background:var(--ichbg);border-color:transparent;} .kasten.bad{background:var(--badbg);border-color:transparent;}
+  .kasten .kopf{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:0 0 8px;font-weight:700;}
+  .quelle{font-family:var(--mono);font-size:12px;color:var(--ink-soft);margin-top:8px;overflow-wrap:anywhere;}
+
+  /* Plan: echte Reihenfolge, deshalb nummeriert */
+  ol.plan{list-style:none;padding:0;margin:14px 0;display:grid;gap:10px;max-width:none;counter-reset:s;}
+  ol.plan li{counter-increment:s;display:grid;grid-template-columns:2.2rem 1fr;gap:12px;align-items:start;margin:0;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;}
+  ol.plan li::before{content:counter(s);font-family:var(--mono);font-weight:700;color:var(--accent-deep);background:var(--accent-soft);border-radius:8px;text-align:center;padding:4px 0;}
+  ol.plan li > div{min-width:0;}
+  ol.plan b{display:block;}
+  ol.plan .wer{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
+  ol.plan li.jetzt{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset;}
+
+  .zeitband{display:flex;height:2.4rem;border-radius:8px;overflow:hidden;margin:14px 0 6px;font-family:var(--mono);font-size:12px;}
+  .zeitband span{display:flex;align-items:center;justify-content:center;color:var(--card);background:var(--accent);min-width:0;white-space:nowrap;overflow:hidden;}
+  .zeitband span:nth-child(2){background:var(--accent-deep);} .zeitband span:nth-child(3){background:var(--ink-soft);}
+
+  .satz{display:grid;gap:6px;margin:10px 0 16px;padding:0;list-style:none;max-width:none;}
+  .satz li{margin:0;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:8px 12px;}
+  .satz li .fr{display:block;font-size:14px;}
+  .satz li .fr::before{content:"";}
+  .scroll{overflow-x:auto;margin:16px 0;}
+  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
+  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);text-align:left;vertical-align:bottom;}
+  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
+  td.k{font-weight:700;white-space:nowrap;}
+  .check{list-style:none;padding:0;max-width:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));gap:6px 18px;}
+  .check li{margin:0;display:flex;gap:8px;align-items:flex-start;}
+  .check input{margin-top:5px;accent-color:var(--accent);}
+  details.loes{margin:10px 0 0;}
+  details.loes summary{cursor:pointer;font-family:var(--mono);font-size:12px;color:var(--accent-deep);}
+  details.loes > div{margin-top:8px;padding:12px 14px;border-left:3px solid var(--du);background:var(--card);border-radius:0 8px 8px 0;}
+  .aufgabe{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin:14px 0;}
+  .aufgabe .op{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-deep);margin:0 0 4px;}
+  textarea{width:100%;min-height:9rem;font:inherit;font-size:15.5px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink);resize:vertical;}
+  button{font:inherit;font-size:14px;padding:9px 16px;border-radius:999px;border:1px solid var(--accent);background:var(--accent);color:var(--card);cursor:pointer;}
+  button.leise{background:transparent;color:var(--accent-deep);}
+  .uhr{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:10px 0;}
+  .uhr output{font-family:var(--mono);font-size:1.5rem;font-variant-numeric:tabular-nums;min-width:5ch;}
+  #kopiert{font-family:var(--mono);font-size:12px;color:var(--du);margin-left:10px;}
+  .warte{border:2px dashed var(--line);border-radius:12px;padding:22px;text-align:center;color:var(--ink-soft);}
+  .warte b{color:var(--ink);}
+  footer{max-width:60rem;margin:0 auto;padding-block:20px 60px;padding-inline:18px;color:var(--ink-soft);font-size:14px;border-top:1px solid var(--line);}
+</style>
+
+<header class="hero">
+  <p class="eyebrow">Zwischenprüfung · Donnerstag, 1. April 2027 · CBG Aachen</p>
+  <h1>Zwischenprüfung üben</h1>
+  <p class="sub">Erst dein echter Fall aus dem Praxiseinsatz — von den fünf Dokumenten bis zum Prüfungsgespräch. Danach weitere Fälle. Und dazwischen: wie du sprichst, damit die 45 Minuten gut laufen.</p>
+  <div class="legende"><span class="tag du">aus deinen Unterlagen</span><span class="tag ich">meine Methode / Folgerung</span></div>
+</header>
+
+<nav class="toc" aria-label="Inhalt">
+  <a href="#plan">Der Plan</a>
+  <a href="#unterlagen">Was ich brauche</a>
+  <a href="#fall">Dein Fall</a>
+  <a href="#tag2">Der 2. Tag</a>
+  <a href="#vorstellen">Fallvorstellung</a>
+  <a href="#erlaeutern">Erläuterung</a>
+  <a href="#gespraech">Prüfungsgespräch</a>
+  <a href="#medikamente">Medikamente</a>
+  <a href="#jetzt">Jetzt üben</a>
+</nav>
+
+<main>
+
+<section id="plan">
+  <h2>Der Plan</h2>
+  <p class="lead">Neun Schritte. Der markierte ist der nächste.</p>
+  <h3>Teil 1 — dein Fall aus dem Praxiseinsatz</h3>
+  <ol class="plan">
+    <li class="jetzt"><div><span class="wer">du</span><b>Die Unterlagen schicken — anonymisiert</b>Fotos oder Scans reichen. Was genau, steht <a href="#unterlagen">gleich darunter</a>.</div></li>
+    <li><div><span class="wer">ich</span><b>Den Fall aufbereiten</b>Diagnosen und Medikamente erklärt, die Informationen nach den 13 ABEDL sortiert — <i>ohne</i> dir die Planung vorwegzunehmen.</div></li>
+    <li><div><span class="wer">du · 3 Stunden mit Uhr</span><b>Die fünf Dokumente selbst schreiben</b>Wie am 1. Prüfungstag: Fallvorstellung, Medikamentenplan, Diagnosen, alle Pflegeprobleme, vier Probleme nach PE(S)R.</div></li>
+    <li><div><span class="wer">ich</span><b>Korrektur — Inhalt und Sprache</b>Was fachlich fehlt, was die Prüfer fragen werden, und deine Sprachfehler mit Baustelle.</div></li>
+    <li><div><span class="wer">du · 10 Minuten laut</span><b>Die Fallvorstellung sprechen</b>Mit Uhr. Aufnehmen (App „Sprachmemos“), dann aufschreiben, was du gesagt hast, und mir schicken.</div></li>
+    <li><div><span class="wer">du · 20 Minuten</span><b>Die Planung erläutern — nicht vorlesen</b>Für jedes der vier Probleme: woher, warum, wozu.</div></li>
+    <li><div><span class="wer">wir beide</span><b>Das Prüfungsgespräch</b>Ich stelle dir die Fragen der Prüfer — zu allen fünf Kompetenzbereichen und zu jedem Medikament — du antwortest schriftlich oder als Sprachnachricht-Text, ich korrigiere.</div></li>
+  </ol>
+  <h3>Teil 2 — weitere Fälle</h3>
+  <ol class="plan" start="8" style="counter-reset:s 7">
+    <li><div><span class="wer">schon da</span><b>Herr Lambrecht — Linksherzinsuffizienz</b>Dein Fall aus CE 01, mit Musterlösung: <a href="https://claude.ai/code/artifact/2e1db357-3e32-4a56-9356-3e4fde3d5c88">Ablauf</a> · Fall-Seite im Repo <code>schulung-zwischenpruefung/fall-lambrecht.html</code>.</div></li>
+    <li><div><span class="wer">neu</span><b>Fälle aus anderen Bereichen</b>Andere Altersstufe, anderes Setting (Heim, ambulant, Krankenhaus) — jeweils aus deinen eigenen Unterlagen gebaut.</div></li>
+  </ol>
+  <p class="fr">D'abord TON patient de stage, du dossier jusqu'à l'oral. Ensuite d'autres cas. Le plan avance pas à pas ; l'étape encadrée est la prochaine.</p>
+</section>
+
+<section id="unterlagen">
+  <h2>Was ich von dir brauche</h2>
+  <div class="kasten bad">
+    <p class="kopf">Zuerst: anonymisieren — Schweigepflicht</p>
+    <p>Die Unterlagen gehören einem echten Menschen. Die Verletzung von Privatgeheimnissen steht in deinem Recht-Kurs (§ 203 StGB). <span class="tag du">deine Unterlagen</span> Bevor du fotografierst, deck ab oder schwärze:</p>
+    <ul>
+      <li><b>Name</b> (nimm Initialen oder einen erfundenen Namen, z. B. „Herr M.“)</li>
+      <li><b>Geburtsdatum</b> → schreib nur das <b>Alter</b></li>
+      <li>Adresse, Telefonnummer, Versichertennummer, Fallnummer, Barcodes, Etiketten</li>
+      <li>Namen von Angehörigen, Ärzten und Kolleginnen</li>
+    </ul>
+    <p class="fr">Cache le nom, la date de naissance (garde seulement l'âge), l'adresse, les numéros et les noms des proches et des médecins. Le secret professionnel s'applique aussi à moi.</p>
+  </div>
+  <h3>Diese Unterlagen helfen am meisten</h3>
+  <p>Hak ab, was du schon hast. <span class="tag ich">meine Liste</span></p>
+  <ul class="check">
+    <li><input type="checkbox" id="u1"><label for="u1"><b>Diagnosenliste</b> — mit dem <i>vollen</i> Wortlaut</label></li>
+    <li><input type="checkbox" id="u2"><label for="u2"><b>Medikamentenplan</b> — Name, Dosis, Uhrzeit, Bedarf</label></li>
+    <li><input type="checkbox" id="u3"><label for="u3"><b>Stammblatt / Anamnese</b> — Alter, Wohnsituation, Pflegegrad</label></li>
+    <li><input type="checkbox" id="u4"><label for="u4"><b>Pflegebericht</b> der letzten Tage</label></li>
+    <li><input type="checkbox" id="u5"><label for="u5"><b>Assessments</b> — Sturz, Dekubitus, Schmerz, Ernährung, Kontinenz</label></li>
+    <li><input type="checkbox" id="u6"><label for="u6"><b>Vitalwerte</b>, Gewicht, Größe, Trinkmenge</label></li>
+    <li><input type="checkbox" id="u7"><label for="u7"><b>Die vorhandene Pflegeplanung</b> der Station (wenn es eine gibt)</label></li>
+    <li><input type="checkbox" id="u8"><label for="u8"><b>Deine Notizen aus dem Gespräch</b> — mit wörtlichen Sätzen des Patienten</label></li>
+  </ul>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Unterlagen</span> Warum die wörtlichen Sätze so wichtig sind</p>
+    <p>Am 2. Tag fragen die Prüfer zu Kompetenzbereich II nach seinen „Äußerungen über sein subjektives Erleben“. Ein Zitat beweist, dass du wirklich mit ihm gesprochen hast — und liefert dir gleich das Symptom und die Ursache für PE(S)R. Für das Gespräch gibt es deinen <b>Gesprächsleitfaden nach den 13 ABEDL</b>.</p>
+    <p class="quelle">Gestaltung und Durchführung der Zwischenprüfung 2026 · Gesprächsleitfaden Pflegebedarf (<code>schulung-zwischenpruefung/gespraechsleitfaden.html</code>)</p>
+  </div>
+  <p><b>Und sag mir:</b> Krankenhaus, Heim oder ambulant? Für das Krankenhaus hast du die Vorlage der Fallvorstellung. Für Heim und ambulant fehlt sie mir noch — wenn du dort bist, bitte mitschicken.</p>
+</section>
+
+<section id="fall">
+  <h2>Dein Fall</h2>
+  <div class="warte">
+    <p><b>Hier steht bald dein Patient.</b></p>
+    <p>Sobald deine Unterlagen da sind: die Informationen nach ABEDL, jede Diagnose und jedes Medikament erklärt, dein Schreibfeld für die fünf Dokumente mit 3-Stunden-Uhr und der Fragenkatalog für das Prüfungsgespräch.</p>
+    <p class="fr">Ton patient apparaîtra ici dès que tu m'envoies les documents.</p>
+  </div>
+</section>
+
+<section id="tag2">
+  <h2>Der 2. Prüfungstag in einer Minute</h2>
+  <div class="zeitband" role="img" aria-label="45 Minuten: 10 Minuten Fallvorstellung, 20 Minuten Erläuterung, 15 Minuten Prüfungsgespräch">
+    <span style="flex:10">10 · Fall</span><span style="flex:20">20 · Erläuterung</span><span style="flex:15">15 · Gespräch</span>
+  </div>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Unterlagen</span></p>
+    <ul>
+      <li><b>45 Minuten</b>, Praxisanleiterin und Lehrer zusammen.</li>
+      <li><b>10 Min Fallvorstellung</b> nach der Struktur der Vorlage.</li>
+      <li><b>20 Min Erläuterung der Pflegeplanung:</b> „Kein Vorlesen der Pflegeplanung, sondern erläutern wie diese zustande gekommen ist.“</li>
+      <li><b>15 Min Prüfungsgespräch</b> zu den fünf Kompetenzbereichen.</li>
+      <li>Geprüft wird <b>genau die Planung, die du am 1. Tag geschrieben hast</b>.</li>
+    </ul>
+    <p class="quelle"><a href="https://claude.ai/code/artifact/2e1db357-3e32-4a56-9356-3e4fde3d5c88">→ Die Zwischenprüfung — was genau passiert</a></p>
+  </div>
+</section>
+
+<section id="vorstellen">
+  <h2>Die Fallvorstellung — 10 Minuten</h2>
+  <p class="lead">Vier Blöcke, in dieser Reihenfolge — das ist die Vorlage deiner Schule für das Krankenhaus. <span class="tag du">deine Unterlagen</span> Unter jedem Block: Sätze, mit denen du anfangen kannst. <span class="tag ich">meine Satzanfänge</span></p>
+
+  <h3>1 · Krankheitsdaten und Verlauf <small style="font-family:var(--mono);font-size:12px;color:var(--ink-soft)">≈ 2–3 Min</small></h3>
+  <ul class="satz">
+    <li>„Ich stelle Ihnen Herrn/Frau M. vor. Er/Sie ist … Jahre alt.“</li>
+    <li>„Er wurde am … als <b>Notfall</b> / <b>geplant</b> / <b>aus</b> … <b>verlegt</b> aufgenommen.“<span class="fr">Aufnahmeart : urgence, programmée ou transfert.</span></li>
+    <li>„Der Grund für die Aufnahme war …“ — „Die Einweisungsdiagnose ist …“</li>
+    <li>„Seit der Aufnahme ist Folgendes passiert: Zuerst …, danach …, seit … geht es ihm …“</li>
+  </ul>
+
+  <h3>2 · Diagnosen und Medikation <small style="font-family:var(--mono);font-size:12px;color:var(--ink-soft)">≈ 1–2 Min — der kürzeste Block</small></h3>
+  <p>Die Liste liegt den Prüfern vor. Du liest sie <b>nicht</b> vor — du sagst, was davon für die Pflege zählt. <span class="tag du">deine Unterlagen</span></p>
+  <ul class="satz">
+    <li>„Die Diagnosen sehen Sie auf dem Blatt. Für die Pflege sind vor allem drei wichtig: …“</li>
+    <li>„Wegen der … bekommt er …. Darauf achte ich besonders, weil …“</li>
+  </ul>
+
+  <h3>3 · Pflegerische Daten <small style="font-family:var(--mono);font-size:12px;color:var(--ink-soft)">≈ 2–3 Min</small></h3>
+  <ul class="satz">
+    <li>„Am Anfang brauchte er Hilfe bei …. Inzwischen kann er … wieder selbst.“</li>
+    <li>„Der Pflegebedarf hat sich so entwickelt: …“</li>
+    <li>„Die Pflegeprobleme im Einzelnen sehen Sie in meiner Problemanalyse.“</li>
+  </ul>
+
+  <h3>4 · Biografische Daten <small style="font-family:var(--mono);font-size:12px;color:var(--ink-soft)">≈ 2–3 Min</small></h3>
+  <ul class="satz">
+    <li>„Herr M. ist verheiratet / verwitwet / lebt allein. Er hat … Kinder, die …“</li>
+    <li>„Früher hat er als … gearbeitet. Er interessiert sich für …“</li>
+    <li>„Über seine Situation sagt er selbst: ‚…‘“ <span class="fr">Une citation de lui : c'est ton meilleur atout.</span></li>
+    <li>„Ein großer Einschnitt in seinem Leben war …“</li>
+  </ul>
+  <div class="kasten ich">
+    <p class="kopf"><span class="tag ich">meine Tipps</span></p>
+    <ul>
+      <li><b>Kurze Sätze.</b> Ein Satz, eine Information. Einfaches Deutsch ist kein schlechtes Deutsch.</li>
+      <li><b>Stichwortzettel statt Text:</b> pro Block drei bis fünf Stichwörter. Wer einen ganzen Text abliest, verliert den Blick zu den Prüfern.</li>
+      <li><b>Laut üben, mit Uhr.</b> Die Uhr unten im Teil <a href="#jetzt">Jetzt üben</a> läuft 10 Minuten.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="erlaeutern">
+  <h2>Die Erläuterung — 20 Minuten, nicht vorlesen</h2>
+  <p class="lead">Die Prüfer haben dein Blatt vor sich. Sie wollen den <b>Weg</b> hören. Für jedes deiner vier Probleme dieselben sechs Schritte. <span class="tag ich">meine Ordnung</span> — die Fragen dahinter stehen in deinen Unterlagen. <span class="tag du">deine Unterlagen</span></p>
+  <div class="scroll"><table>
+    <thead><tr><th>Schritt</th><th>Die Frage dahinter</th><th>So fängst du an</th></tr></thead>
+    <tbody>
+      <tr><td class="k">1 Woher</td><td>Woher hast du die Information?</td><td>„Das habe ich im Gespräch erfahren — er hat gesagt: ‚…‘“ · „Das steht im Assessment …“ · „Das habe ich bei der Körperpflege beobachtet.“</td></tr>
+      <tr><td class="k">2 Warum dieses</td><td>Warum ist es eins der vier wichtigsten?</td><td>„Ich habe dieses Problem gewählt, <b>weil</b> es … verursacht.“ · „Wenn ich hier nichts tue, droht …“</td></tr>
+      <tr><td class="k">3 P E (S) R</td><td>Problem, Ursache, Symptome, Ressource</td><td>„Das Problem ist …. Es entsteht durch …. Man sieht es daran, dass …. Er kann aber noch …“</td></tr>
+      <tr><td class="k">4 Ziel</td><td>Warum dieses Ziel? SMART?</td><td>„Mein Nahziel ist: Herr M. geht bis zum … selbstständig …. Das ist realistisch, weil …“</td></tr>
+      <tr><td class="k">5 Maßnahme</td><td>Warum diese Maßnahme und diese Hilfeform?</td><td>„Ich habe <b>Anleitung</b> gewählt und keine Übernahme, <b>weil</b> er … noch selbst kann.“</td></tr>
+      <tr><td class="k">6 Evaluation</td><td>Woran merkst du, ob es gewirkt hat?</td><td>„Ich überprüfe das am …. Erreicht ist das Ziel, wenn …“</td></tr>
+    </tbody>
+  </table></div>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Unterlagen</span> Zwei Fallen, die sicher geprüft werden</p>
+    <ul>
+      <li><b>Das S steht in Klammern:</b> Ein potentielles Problem hat <b>keine</b> Symptome — es ist noch nicht eingetreten. Dort stehen stattdessen Risikofaktoren und Assessment.</li>
+      <li><b>Die Hilfeform muss zur Ressource passen.</b> Wer schreibt „wäscht das Gesicht selbst“ und dann „vollständige Übernahme“ plant, hat die Ressource weggeplant.</li>
+    </ul>
+  </div>
+  <p class="fr">Pour chaque problème : d'où vient l'info → pourquoi ce problème → PE(S)R → pourquoi cet objectif → pourquoi cette aide → comment tu vérifies. Raconte le chemin, ne lis pas la feuille.</p>
+</section>
+
+<section id="gespraech">
+  <h2>Das Prüfungsgespräch — 15 Minuten</h2>
+  <p class="lead">Die Beispielfragen aus deinen Unterlagen, je Kompetenzbereich. <span class="tag du">deine Unterlagen</span></p>
+  <div class="scroll"><table>
+    <thead><tr><th>Bereich</th><th>Worum es geht</th><th>Beispielfrage</th></tr></thead>
+    <tbody>
+      <tr><td class="k">I</td><td>Pflegeprozess: Erhebung, Assessments, Maßnahmen, Evaluation</td><td>„Welches Assessment hast du benutzt?“</td></tr>
+      <tr><td class="k">II</td><td>Kommunikation: seine Situation, sein Erleben, seine Beteiligung</td><td>„Was hat er selbst gesagt?“</td></tr>
+      <tr><td class="k">III</td><td>Team und andere Berufsgruppen</td><td>„Wer im Team muss das wissen?“ — z. B. Schmerzen: Warum braucht der Arzt deine Beobachtung für die Schmerztherapie?</td></tr>
+      <tr><td class="k">IV</td><td>Recht, Qualität, Expertenstandards, Pflegegrad</td><td>„Welcher Expertenstandard gilt?“ — z. B. Risikofaktoren der Sturzgefährdung</td></tr>
+      <tr><td class="k">V</td><td>Krankheitslehre, Konzepte: Salutogenese, basale Stimulation, Biografiearbeit, Kultur</td><td>„Welche Widerstandsressourcen hat er?“</td></tr>
+    </tbody>
+  </table></div>
+  <h3>So antwortest du — drei Bausteine</h3>
+  <p><span class="tag ich">meine Methode</span> — sie folgt dem Schema „Einschätzung → weil → Kette → deshalb“, das du aus der Examenswerkstatt kennst.</p>
+  <ul class="satz">
+    <li><b>Erst die Antwort in einem Satz:</b> „Ich habe den Expertenstandard Sturzprophylaxe angewendet.“</li>
+    <li><b>Dann der Grund, mit weil:</b> „…, weil er nachts aufsteht und dabei unsicher geht.“</li>
+    <li><b>Dann das Beispiel aus deinem Fall:</b> „Zum Beispiel ist er am … fast gestürzt. Deshalb habe ich …“</li>
+  </ul>
+  <h3>Wenn es eng wird — diese Sätze retten dich</h3>
+  <ul class="satz">
+    <li>„Darf ich kurz überlegen?“ <span class="fr">Gagner 5 secondes — c'est permis.</span></li>
+    <li>„Meinen Sie …, oder meinen Sie …?“ <span class="fr">Reformuler la question si tu n'es pas sûre.</span></li>
+    <li>„Können Sie die Frage bitte noch einmal sagen?“</li>
+    <li>„Das weiß ich nicht sicher. Ich würde im Standard der Station nachschauen und die Praxisanleiterin fragen.“ <span class="fr">Dire honnêtement « je ne sais pas » + comment tu chercherais : c'est une réponse professionnelle.</span></li>
+    <li>„Ich korrigiere mich: …“ <span class="fr">Se corriger soi-même, c'est bien vu.</span></li>
+  </ul>
+</section>
+
+<section id="medikamente">
+  <h2>Fragen zu Medikamenten</h2>
+  <p class="lead">Zu jedem Medikament auf dem Plan sechs Fragen. Wer sie für jedes Medikament beantworten kann, ist sicher. <span class="tag ich">meine Methode</span></p>
+  <div class="scroll"><table>
+    <thead><tr><th>#</th><th>Frage</th><th>Satzanfang</th></tr></thead>
+    <tbody>
+      <tr><td class="k">1</td><td>Wie heißt es — Handelsname und Wirkstoff?</td><td>„Leponex, der Wirkstoff ist Clozapin.“</td></tr>
+      <tr><td class="k">2</td><td>Zu welcher Gruppe gehört es?</td><td>„Das ist ein … / Es gehört zu den …“</td></tr>
+      <tr><td class="k">3</td><td>Wofür bekommt <i>dieser</i> Patient es?</td><td>„Er bekommt es wegen seiner …“</td></tr>
+      <tr><td class="k">4</td><td>Wie wirkt es — in einem einfachen Satz?</td><td>„Es wirkt, indem es …“</td></tr>
+      <tr><td class="k">5</td><td>Welche Nebenwirkungen beobachte ich?</td><td>„Ich achte besonders auf …“</td></tr>
+      <tr><td class="k">6</td><td>Was tue ich als Pflegekraft?</td><td>„Deshalb … ich … / Ich melde dem Arzt, wenn …“</td></tr>
+    </tbody>
+  </table></div>
+  <div class="kasten du">
+    <p class="kopf"><span class="tag du">deine Unterlagen · Psychiatrische Pflege</span> Ein Beispiel ganz durchgespielt: Clozapin</p>
+    <ol>
+      <li><b>Leponex</b>, Wirkstoff <b>Clozapin</b>.</li>
+      <li>Ein <b>atypisches Antipsychotikum</b>.</li>
+      <li>Zum Beispiel bei einer <b>Schizophrenie</b> — gegen die Plussymptome wie Wahn und Stimmenhören.</li>
+      <li>Es blockiert <b>Dopamin- und Serotoninrezeptoren</b>.</li>
+      <li>Weniger Bewegungsstörungen (EPS) als andere, dafür die <b>Agranulozytose</b>; außerdem Blutdruckabfall beim Aufstehen (orthostatische Hypotonie) und Müdigkeit (Sedierung).</li>
+      <li><b>Blutbild</b> regelmäßig kontrollieren lassen. <b>Fieber oder Halsschmerzen sofort melden</b> — das kann die Agranulozytose sein. Langsam aufstehen lassen → <b>Sturzgefahr</b>.</li>
+    </ol>
+    <p class="quelle"><a href="https://claude.ai/artifact/FR1USYHEkkScdqes2CkGSU">→ Psychiatrische Pflege</a></p>
+  </div>
+  <p class="fr">Pour chaque médicament : nom et principe actif · groupe · pourquoi CE patient · comment il agit · effets secondaires à surveiller · ce que tu fais. Les vraies fiches viendront avec le plan de médicaments de ton patient.</p>
+</section>
+
+<section id="jetzt">
+  <h2>Jetzt schon üben — mit Herrn Lambrecht</h2>
+  <p class="lead">Bis deine Unterlagen da sind: Den Fall Herr Lambrecht (Linksherzinsuffizienz) kennst du aus CE 01. Stell ihn in 10 Minuten vor — erst sprechen, dann aufschreiben, was du gesagt hast.</p>
+  <div class="aufgabe">
+    <p class="op">Fallvorstellung · 10 Minuten · vier Blöcke</p>
+    <p>Stell Herrn Lambrecht vor, wie am 2. Prüfungstag. Situation: Tag 3 nach der Aufnahme.</p>
+    <div class="uhr"><output id="uhr" aria-live="off">10:00</output><button type="button" id="uhrStart">Uhr starten</button><button type="button" class="leise" id="uhrReset">Zurück auf 10:00</button></div>
+    <textarea id="lambrecht" data-frage="Fallvorstellung Herr Lambrecht (10 Minuten)" placeholder="Schreib hier auf, was du gesagt hast …"></textarea>
+    <details class="loes"><summary>Muster zeigen — erst nach deinem Versuch</summary><div>
+      <p><b>1 · Krankheitsdaten und Verlauf.</b> „Ich stelle Ihnen Herrn Lambrecht vor. Er ist 76 Jahre alt. Er kam als Notfall mit dem Rettungswagen in die internistische Notaufnahme. Er hatte starke Atemnot in Ruhe, eine Zyanose, man hörte ein Brodeln über der Lunge, sein Blutdruck war 90/50, sein Puls 120. Die Diagnose war eine dekompensierte Linksherzinsuffizienz. Er bekam über einen ZVK Lasix am Perfusor, Sauerstoff 2 Liter, absolute Bettruhe, einen Liter Trinkmenge pro Tag und natriumarme Kost. Nach drei Tagen ist er stabil: Der ZVK ist entfernt, er bekommt Lasix jetzt als Tablette und dazu Digimerck.“</p>
+      <p><b>2 · Diagnosen und Medikation.</b> „Neben der Linksherzinsuffizienz ist eine KHK bekannt. Für die Pflege ist vor allem wichtig: Er bekommt ein Diuretikum und hat eine Trinkmengenbeschränkung von einem Liter — und einen Blasenkatheter zur Bilanzierung lehnt er ab.“</p>
+      <p><b>3 · Pflegerische Daten.</b> „Am Anfang hatte er absolute Bettruhe. Jetzt ist er noch sehr schwach. Zu den Mahlzeiten wird er mit Hilfe in den Stuhl mobilisiert. Dabei bekommt er Atemnot mit leichter Zyanose. Die Morgenpflege lehnt er zurzeit ab.“</p>
+      <p><b>4 · Biografische Daten.</b> „Herr Lambrecht ist seit drei Jahren Witwer und lebt allein in einer großen Wohnung ohne Aufzug. Er kommt kaum noch raus. Sein Sohn wohnt weit weg und hat Familie und Beruf; er hat eine Putzhilfe organisiert. Früher war Herr Lambrecht Lackierer, das hat ihm Freude gemacht. Er hat sein Leben lang geraucht, eine Schachtel am Tag. Er wirkt apathisch und sagt: ‚Ich wünschte, ich wäre zu Hause, da interessiert es auch keinen, wenn ich sterbe.‘“</p>
+      <p class="quelle">Alles aus dem Fallbeispiel Herr Lambrecht (CE 01, UE 10) — nichts dazuerfunden. Den Satz „Ich wünschte …“ würden die Prüfer in Bereich II und V aufgreifen.</p>
+    </div></details>
+  </div>
+  <button type="button" id="sammel">📤 Antworten kopieren</button><span id="kopiert" aria-live="polite"></span>
+  <textarea id="ausgabe" hidden readonly aria-label="Gesammelte Antworten"></textarea>
+  <p style="margin-top:14px">Schick mir den Text — ich korrigiere, ob alle vier Blöcke da sind, was fehlt, und deine Sprache.</p>
+</section>
+
+</main>
+<footer>Stand 12.10.2026 · Grundlage: Gestaltung und Durchführung der Zwischenprüfung 2026 (CBG Aachen), Pflegeplanung PE(S)R, Struktur Vorstellung Pflegebedürftiger im Krankenhaus. Eine Punkteverteilung steht in keiner deiner Unterlagen — hier wird keine erfunden.</footer>
+
+<script>
+(function(){
+  function lies(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+  function schreib(k,v){ try { localStorage.setItem(k,v); } catch(e){} }
+  document.querySelectorAll('textarea[data-frage]').forEach(function(t){
+    var k='zp-'+t.id, v=lies(k); if(v) t.value=v;
+    t.addEventListener('input',function(){ schreib(k,t.value); });
+  });
+  document.querySelectorAll('.check input').forEach(function(c){
+    var k='zp-'+c.id; c.checked = lies(k)==='1';
+    c.addEventListener('change',function(){ schreib(k,c.checked?'1':'0'); });
+  });
+  var rest=600, tick=null, out=document.getElementById('uhr'), start=document.getElementById('uhrStart');
+  function zeige(){ var m=Math.floor(Math.abs(rest)/60), s=Math.abs(rest)%60; out.textContent=(rest<0?'+':'')+m+':'+(s<10?'0':'')+s; out.style.color = rest<0 ? 'var(--bad)' : ''; }
+  start.addEventListener('click',function(){
+    if(tick){ clearInterval(tick); tick=null; start.textContent='Weiter'; return; }
+    tick=setInterval(function(){ rest--; zeige(); },1000); start.textContent='Pause';
+  });
+  document.getElementById('uhrReset').addEventListener('click',function(){ if(tick){clearInterval(tick);tick=null;} rest=600; start.textContent='Uhr starten'; zeige(); });
+  var aus=document.getElementById('ausgabe'), info=document.getElementById('kopiert');
+  document.getElementById('sammel').addEventListener('click',function(){
+    var text='Zwischenprüfung üben — meine Antworten\n\n';
+    document.querySelectorAll('textarea[data-frage]').forEach(function(t){ text+=t.dataset.frage+'\n'+(t.value.trim()||'(leer)')+'\n\n'; });
+    aus.value=text;
+    function zeigen(){ aus.hidden=false; aus.focus(); aus.select(); info.textContent='Markiert — jetzt kopieren und mir schicken.'; }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(function(){ info.textContent='Kopiert ✓ — einfach in den Chat einfügen.'; },zeigen); } else zeigen();
+  });
+})();
+</script>

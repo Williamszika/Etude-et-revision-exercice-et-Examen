@@ -1634,6 +1634,19 @@ stationär) erst, wenn sie die erste Runde geschrieben hat.
 
 ---
 
+## Zwischenprüfung üben — ihr Praxisfall, dann weitere Fälle
+
+`schulung-zwischenpruefung/ueben.html` (Icon „exam“). Auf ihren Wunsch vom 12.10.2026: Sie nennt die
+Zwischenprüfung vom **01.04.2027** „examen blanc“. Sie hat im Praxiseinsatz Unterlagen eines Patienten
+bekommen und will damit **die fünf Dokumente schreiben** und **das Prüfungsgespräch üben** (auch
+Medikamente), danach **weitere Fälle** — und lernen, *„comment parler, comment discuter“*.
+Plan auf der Seite: Unterlagen anonymisiert schicken (§ 203 StGB) → ich bereite auf, **ohne die Planung
+vorwegzunehmen** → sie schreibt in 3 Stunden → Korrektur Inhalt + Sprache → Fallvorstellung 10 Min →
+Erläuterung 20 Min → Prüfungsgespräch. Abschnitt „Dein Fall“ wartet auf ihre Unterlagen. **Offen:**
+der Name, den sie der Seite geben wollte (Diktat unverständlich), ihr Setting (Krankenhaus/Heim/ambulant
+— für Heim/ambulant fehlt die Vorlage der Fallvorstellung) und ob die Diagnoseliste vom 06.10. derselbe
+Patient ist. Alles Prüfungsformale nur aus `schulung-zwischenpruefung/quellen/`.
+
 ## Diagnoseliste — „Zehn Diagnosen, ein Mensch“
 
 `diagnosen/index.html` → `https://claude.ai/artifact/6gNtzKpV7BpNZcuUuFHLLY` (Icon „medical“). Auf ihren Wunsch vom 06.10.2026: *„Je vais te donner
