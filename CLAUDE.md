@@ -1678,6 +1678,14 @@ Pflegeprobleme … en lisant son diagnose. Ajoute dans le lien, étape par étap
 `localStorage`) und **Etappe 2 „Von der Diagnose zum Pflegeproblem“** — sechs Fragen, Zitat ihres Blatts
 (Definition Pflegeproblem, die vier ★-ABEDL), Beispiel Blasenlähmung, sechs Übungszeilen mit Lösung. Die
 Abschnittsüberschriften tragen die Etappennummern; bei Änderungen beides zusammen pflegen.
+**Musterlösung als PDF (14.10.2026)**, auf ihren Wunsch *„fais … depuis le début … jusqu'au Pflegeplanung … fais son
+PDF pour moi“*: `schulung-zwischenpruefung/musterloesung-herr-j.html` → `musterloesung-herr-j.pdf` (21 Seiten,
+gerendert mit Chromium `page.pdf`, A4). Inhalt: Ablauf · Gespräch · Diagnose→Problem · die fünf Dokumente (Fallvorstellung
+nach den 4 Blöcken der KH-Vorlage, Medikamentenplan, Diagnosen, Problemanalyse A1–A6/P1–P7, vier Planungen in den
+Spalten der Schulvorlagen: Körperpflege, Stuhl/Haut, HWI, Hypoglykämie) · Medikamente geben · Fallvorstellung und
+Erläuterung als Sprechtext · 17 Fragen KB I–V · offene Punkte · Methode in 12 Schritten. Herkunftsmarken wie auf der Seite.
+**Hilfeformen nur die fünf ihres Blatts** (Beaufsichtigung, Anleitung, Unterstützung, teilweise/vollständige Übernahme) —
+„Beratung“ ist keine; am 14.10. auf der Seite korrigiert. Bei Änderungen HTML ändern und PDF neu rendern.
 
 ## Diagnoseliste — „Zehn Diagnosen, ein Mensch“
 

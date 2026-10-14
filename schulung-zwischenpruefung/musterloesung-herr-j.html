@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Musterlösung Zwischenprüfung — Herr J.</title>
+<style>
+  @page { size: A4; margin: 16mm 15mm 18mm 15mm; }
+  :root{
+    --ink:#1b2222; --soft:#4d5a59; --line:#c9d2d0; --accent:#1f6a6a; --accent-soft:#e3f0ef;
+    --du:#256b4a; --dubg:#e2f0e8; --net:#1f5f86; --netbg:#dfeaf3; --ich:#7a5a08; --ichbg:#faf0cf;
+    --akte:#164f50; --aktebg:#d9ecea; --bad:#a33f34; --badbg:#f7e3e0; --fr:#4a3f8f; --frbg:#ecebf8;
+    --akt:#a8394a; --aktbg:#f5e0e3; --pot:#8a5a12; --potbg:#f7ecd7;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-print-color-adjust:exact; print-color-adjust:exact;}
+  body{margin:0;font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;font-size:10pt;line-height:1.45;color:var(--ink);}
+  h1,h2,h3,h4{font-family:Georgia,"Palatino Linotype",serif;font-weight:600;line-height:1.2;margin:0;}
+  h2{font-size:17pt;color:var(--accent);margin:0 0 3mm;padding-bottom:2mm;border-bottom:1.5pt solid var(--accent);}
+  h3{font-size:12.5pt;margin:5mm 0 2mm;}
+  h4{font-size:10.5pt;margin:3.5mm 0 1.5mm;}
+  p{margin:0 0 2.2mm;} ul,ol{margin:0 0 2.5mm;padding-left:5.5mm;} li{margin:0.6mm 0;}
+  .teil{break-before:page;}
+  .keep{break-inside:avoid;}
+  .eyebrow{font-family:"Consolas","Menlo",monospace;font-size:8pt;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 1.5mm;}
+  .lead{color:var(--soft);font-size:10.5pt;}
+  /* Herkunft */
+  .t{display:inline-block;font-family:"Consolas","Menlo",monospace;font-size:6.8pt;letter-spacing:.04em;text-transform:uppercase;padding:0.3mm 1.6mm;border-radius:6pt;vertical-align:1pt;white-space:nowrap;}
+  .t.du{background:var(--dubg);color:var(--du);} .t.net{background:var(--netbg);color:var(--net);}
+  .t.ich{background:var(--ichbg);color:var(--ich);} .t.akte{background:var(--aktebg);color:var(--akte);}
+  .t.akt{background:var(--aktbg);color:var(--akt);} .t.pot{background:var(--potbg);color:var(--pot);}
+  /* Kästen */
+  .box{border-radius:5pt;padding:3mm 4mm;margin:2.5mm 0 3.5mm;break-inside:avoid;}
+  .box > :last-child{margin-bottom:0;}
+  .box .kopf{font-weight:700;margin-bottom:1.5mm;}
+  .fr{background:var(--frbg);border-left:3pt solid var(--fr);}
+  .fr .kopf{color:var(--fr);}
+  .fr .kopf::before{content:"🇫🇷  ";}
+  .du{background:var(--dubg);} .ich{background:var(--ichbg);} .bad{background:var(--badbg);} .net{background:var(--netbg);}
+  .sag{background:#f4f6f6;border-left:3pt solid var(--accent);font-family:Georgia,serif;font-size:10.3pt;}
+  .sag .kopf{font-family:"Segoe UI",Arial,sans-serif;color:var(--accent);}
+  .sag p{margin-bottom:2mm;}
+  .zeit{font-family:"Consolas","Menlo",monospace;font-size:8pt;color:var(--soft);font-weight:400;}
+  /* Tabellen */
+  table{border-collapse:collapse;width:100%;margin:2mm 0 3.5mm;font-size:8.8pt;}
+  th{background:#e7ecec;font-family:"Consolas","Menlo",monospace;font-size:7.2pt;letter-spacing:.05em;text-transform:uppercase;text-align:left;padding:1.6mm 2mm;border:0.6pt solid var(--line);vertical-align:bottom;}
+  td{padding:1.6mm 2mm;border:0.6pt solid var(--line);vertical-align:top;}
+  tr{break-inside:avoid;}
+  td.k{font-weight:700;white-space:nowrap;}
+  td.m{font-family:"Consolas","Menlo",monospace;font-size:8.3pt;white-space:nowrap;}
+  /* Planungstabelle wie die Vorlage */
+  table.plan{font-size:8.6pt;}
+  table.plan th{width:25%;}
+  table.plan td{line-height:1.38;}
+  table.plan td b.lab{display:block;font-family:"Consolas","Menlo",monospace;font-size:7pt;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);margin-top:1.6mm;}
+  table.plan td b.lab:first-child{margin-top:0;}
+  table.plan ol{padding-left:4mm;margin:0;} table.plan li{margin:0.8mm 0;}
+  .planhead{display:flex;justify-content:space-between;align-items:baseline;gap:4mm;margin:5mm 0 1mm;break-after:avoid;}
+  .planhead h3{margin:0;}
+  /* Deckblatt */
+  .deck{height:255mm;display:flex;flex-direction:column;justify-content:space-between;}
+  .deck h1{font-size:30pt;color:var(--accent);margin:0 0 4mm;}
+  .deck .unter{font-size:13pt;color:var(--soft);max-width:150mm;}
+  .deck .legende{display:grid;grid-template-columns:auto 1fr;gap:2mm 4mm;align-items:center;font-size:9.5pt;max-width:150mm;}
+  .toc{columns:2;column-gap:10mm;font-size:9.5pt;}
+  .toc li{break-inside:avoid;}
+  .ablauf{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin:2mm 0 3mm;}
+  .ablauf > div{border:0.8pt solid var(--line);border-radius:5pt;padding:3mm 4mm;}
+  .ablauf .gross{font-family:Georgia,serif;font-size:15pt;color:var(--accent);margin:0 0 1mm;}
+  .schritte{counter-reset:s;list-style:none;padding:0;}
+  .schritte > li{counter-increment:s;display:grid;grid-template-columns:7mm 1fr;gap:3mm;margin:0 0 2.2mm;break-inside:avoid;}
+  .schritte > li::before{content:counter(s);font-family:Georgia,serif;font-size:13pt;color:var(--accent);text-align:center;}
+  .qa{border:0.6pt solid var(--line);border-radius:5pt;padding:2.5mm 3.5mm;margin:0 0 2.5mm;break-inside:avoid;}
+  .qa .q{font-weight:700;margin-bottom:1.2mm;}
+  .qa .kb{font-family:"Consolas","Menlo",monospace;font-size:7.5pt;color:#fff;background:var(--accent);border-radius:4pt;padding:0.3mm 1.6mm;margin-right:2mm;}
+  .qa .a{font-family:Georgia,serif;}
+  .klein{font-size:8.5pt;color:var(--soft);}
+</style>
+</head>
+<body>
+
+<!-- ============ DECKBLATT ============ -->
+<section class="deck">
+  <div>
+    <p class="eyebrow">Zwischenprüfung · CBG Aachen · Übungsfall aus dem Praxiseinsatz · ambulant</p>
+    <h1>Musterlösung<br>Herr J.</h1>
+    <p class="unter">Der ganze Weg an einem Beispiel: vom Gespräch mit dem Patienten über die fünf Dokumente des 1. Prüfungstages bis zur Fallvorstellung, der Erläuterung und dem Prüfungsgespräch am 2. Tag — mit den Sätzen, die du sagen kannst.</p>
+  </div>
+  <div class="box fr">
+    <p class="kopf">À quoi sert ce dossier</p>
+    <p>C'est un <b>exemple complet et corrigé</b> pour un vrai patient de ton stage. Lis-le une première fois en entier pour voir comment tout s'enchaîne. Ensuite, lis-le partie par partie et refais chaque document <b>toi-même</b>, sans regarder. Puis compare.</p>
+    <p>Ce n'est pas un texte à apprendre par cœur. Ce que tu dois retenir, c'est la <b>manière de faire</b>. Le jour de l'examen, tu auras un autre patient, mais tu feras exactement les mêmes étapes.</p>
+  </div>
+  <div>
+    <p style="font-weight:700;margin-bottom:2mm">Woher jede Aussage kommt</p>
+    <div class="legende">
+      <span class="t akte">Akte</span><span>aus seinen Unterlagen: SIS ambulant (27.05.2026), Diagnoseblatt (07.10.2026), Medikationsplan (12.05.2026), Pflegeplanung des Dienstes (2021)</span>
+      <span class="t du">Unterricht</span><span>aus deinen eigenen Kursunterlagen (CBG)</span>
+      <span class="t net">Internet</span><span>Beipackzettel und andere Internetquellen — nicht aus deinem Unterricht</span>
+      <span class="t ich">Muster</span><span>meine Formulierung, Auswahl oder Folgerung — ein Vorschlag, keine Norm</span>
+    </div>
+    <p class="klein" style="margin-top:5mm">Datenschutz: Name, Geburtsdatum, Adresse und Arztnamen sind weggelassen (Schweigepflicht, § 203 StGB aus deinem Recht-Kurs). Er heißt hier „Herr J.“, 54 Jahre. · Stand 14.10.2026 · Lernmaterial, kein ärztlicher Rat.</p>
+  </div>
+</section>
+
+<!-- ============ INHALT + ABLAUF ============ -->
+<section class="teil">
+  <h2>Inhalt</h2>
+  <ol class="toc">
+    <li>Die Prüfung in einer Seite</li>
+    <li>Schritt 1 — Informationen sammeln und das Gespräch</li>
+    <li>Schritt 2 — von der Diagnose zum Pflegeproblem</li>
+    <li>Dokument 1 — Zusammenfassung der Fallvorstellung</li>
+    <li>Dokument 2 — Medikamentenplan</li>
+    <li>So gibst du Herrn J. seine Medikamente</li>
+    <li>Dokument 3 — Übersicht über die Diagnosen</li>
+    <li>Dokument 4 — vollständige Problemanalyse</li>
+    <li>Dokument 5 — Pflegeplanung der vier wichtigsten Probleme</li>
+    <li>Tag 2 — Fallvorstellung (10 Minuten), gesprochen</li>
+    <li>Tag 2 — Erläuterung der Planung (20 Minuten)</li>
+    <li>Tag 2 — Prüfungsgespräch (15 Minuten)</li>
+    <li>Was noch offen ist — vor Ort klären</li>
+    <li>Die Methode für jeden neuen Patienten</li>
+    <li>Quellen</li>
+  </ol>
+
+  <h2 style="margin-top:8mm">1 · Die Prüfung in einer Seite</h2>
+  <p>So steht es in „Gestaltung und Durchführung der Zwischenprüfung“ (Stand 09.2026). <span class="t du">Unterricht</span></p>
+  <div class="ablauf">
+    <div>
+      <p class="gross">Tag 1 · 3 Stunden</p>
+      <p>Frühdienst 8:00–11:00 Uhr, mit der Praxisanleitung. Im ambulanten Dienst: <b>feste Tour mit der PA an drei Tagen vor dem 1. Prüfungstag</b>.</p>
+      <p><b>Abgabe bis 11:00 Uhr</b> an die Pflegeschule:</p>
+      <ol>
+        <li>Zusammenfassung der Fallvorstellung (nach Vorlage)</li>
+        <li>Medikamentenplan</li>
+        <li>Übersicht über die medizinischen Diagnosen</li>
+        <li>vollständige Problemanalyse — <b>alle</b> aktuellen und potentiellen Probleme</li>
+        <li>ausführliche Pflegeplanung der <b>vier wichtigsten</b> Probleme nach PE(S)R (Planungsvorlagen benutzen)</li>
+      </ol>
+    </div>
+    <div>
+      <p class="gross">Tag 2 · 45 Minuten</p>
+      <p>Praxisanleitung und Lehrer:in gemeinsam.</p>
+      <ul>
+        <li><b>10 Min</b> mündliche Fallvorstellung</li>
+        <li><b>20 Min</b> Erläuterung der Pflegeplanung — „Kein Vorlesen der Pflegeplanung, sondern erläutern wie diese zustande gekommen ist“</li>
+        <li><b>15 Min</b> Prüfungsgespräch zu den Kompetenzbereichen I–V</li>
+      </ul>
+      <p>I Pflegeprozess und Pflegediagnostik · II Kommunikation und Beratung · III Intra- und Interprofessionalität · IV Gesetzliche und ethische Handlungsgrundlagen · V Wissenschaftliche und berufsethische Handlungsgrundlagen</p>
+    </div>
+  </div>
+  <div class="box fr">
+    <p class="kopf">Ce qui compte vraiment</p>
+    <p>Le 1<sup>er</sup> jour, on évalue tes <b>documents</b>. Le 2<sup>e</sup> jour, on évalue si tu sais <b>expliquer comment tu es arrivée</b> à ce plan. Les deux reposent sur la même chose : chaque problème doit venir de ce que <b>ce patient</b> ne peut pas faire, et chaque mesure doit avoir un <b>weil</b>.</p>
+    <p>Pour le choix du patient, le document de l'école demande : un degré de dépendance moyen (repère : Pflegegrad 3) et un patient qui peut communiquer. Herr J. communique clairement. Son Pflegegrad n'est pas sur tes photos : vérifie-le.</p>
+  </div>
+</section>
+
+<!-- ============ SCHRITT 1 ============ -->
+<section class="teil">
+  <p class="eyebrow">Tag 1 · vor dem Schreiben</p>
+  <h2>2 · Schritt 1 — Informationen sammeln und das Gespräch</h2>
+  <p>Am 1. Tag prüft Kompetenzbereich II das <b>Gespräch mit dem Pflegebedürftigen zur Erhebung des Pflegebedarfs</b>. Du sollst ihn „bei der Erhebung des Pflegebedarfs und der Pflegeplanung aktiv mit einbeziehen“. <span class="t du">Unterricht</span></p>
+
+  <h3>Was du zusammenträgst — bei Herrn J.</h3>
+  <table>
+    <thead><tr><th style="width:28%">Unterlage</th><th>Was du dort findest</th></tr></thead>
+    <tbody>
+      <tr><td class="k">SIS ambulant</td><td>seine eigenen Sätze, die Einschätzung der Fachkraft in sechs Themenfeldern, die Risikomatrix <span class="t akte">Akte</span></td></tr>
+      <tr><td class="k">Diagnoseblatt</td><td>alle Diagnosen mit ICD-Kode und Jahr <span class="t akte">Akte</span></td></tr>
+      <tr><td class="k">Medikationsplan</td><td>sieben Mittel, davon Insulin nach Blutzuckerschema <span class="t akte">Akte</span></td></tr>
+      <tr><td class="k">alte Pflegeplanung (2021)</td><td>drei Planungen nach AEDL — <b>fünf Jahre alt</b>, nicht evaluiert <span class="t akte">Akte</span></td></tr>
+      <tr><td class="k">deine Beobachtung</td><td>was du in den drei Tagen der festen Tour selbst siehst: Transfer, Waschen, Haut, Urin, Stimmung</td></tr>
+      <tr><td class="k">das Gespräch</td><td>seine Wünsche, sein Erleben, was er selbst kann und will</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Das Gespräch — Fragen, die du stellen kannst <span class="t ich">Muster</span></h3>
+  <table>
+    <thead><tr><th style="width:42%">Frage</th><th>Seine Antwort aus der SIS <span class="t akte">Akte</span></th></tr></thead>
+    <tbody>
+      <tr><td>„Was bewegt Sie im Augenblick? Was brauchen Sie? Was können wir für Sie tun?“ <span class="t du">Eingangsfrage der SIS</span></td><td>„Ich kann mich nicht selbstständig versorgen, weil ich im Rollstuhl sitze. … Es ist schwierig für mich aufzustehen … das, was ich alleine machen kann, das erledige ich auch.“</td></tr>
+      <tr><td>„Was können Sie bei der Körperpflege selbst machen?“</td><td>„Ich erledige alles, was ich selbst machen kann, das ist mir auch wichtig. Wenn ich merke, dass ich etwas nicht alleine machen kann, dann sage ich es und bitte um Unterstützung.“</td></tr>
+      <tr><td>„Wie geht es Ihnen mit Ihrer Erkrankung?“</td><td>„Ich akzeptiere meine Einschränkungen. … Das hilft mir sehr. Ich will, dass Sie weiterhin zu mir kommen.“</td></tr>
+      <tr><td>„Was machen Sie gern? Wer ist Ihnen wichtig?“</td><td>„Ich arbeite in einer Werkstatt im Industrieservice … Mit manchen Leuten verbringe ich auch die Freizeit zusammen, z. B. bei Geburtstagen feiern oder Spielabenden. Es geht mir gut.“</td></tr>
+      <tr><td>„Wer hilft Ihnen im Haushalt?“</td><td>„Ich kann kein Haushalt alleine machen, dabei hilft mir meistens meine Mama. … Ich habe Schwierigkeiten mit meinen Händen, ich versuche es trotzdem, auch im Sitzen funktioniert einiges.“</td></tr>
+      <tr><td>„Wobei brauchen Sie abends Hilfe?“</td><td>„Ich brauche Hilfe beim Aufstehen, …“ — <i>und abends</i> „um schlafen gehen zu können“</td></tr>
+    </tbody>
+  </table>
+  <div class="box fr">
+    <p class="kopf">Pourquoi ses phrases exactes sont si précieuses</p>
+    <p>Chaque citation te sert trois fois : comme <b>symptôme (S)</b> ou <b>ressource (R)</b> dans ton PE(S)R, comme preuve que tu as <b>parlé avec lui</b> (domaine II), et dans ta présentation orale. Note toujours ses mots exacts entre guillemets. Pour l'entretien, ton guide d'entretien selon les 13 ABEDL est sur la page « Gesprächsleitfaden ».</p>
+  </div>
+</section>
+
+<!-- ============ SCHRITT 2 ============ -->
+<section class="teil">
+  <p class="eyebrow">Tag 1 · denken, bevor du schreibst</p>
+  <h2>3 · Schritt 2 — von der Diagnose zum Pflegeproblem</h2>
+  <div class="box du">
+    <p class="kopf">Wörtlich von deinem Blatt „Pflegeplanung“ <span class="t du">Unterricht</span></p>
+    <p>„Pflegeprobleme sind vorhanden: Wenn Veränderungen (psych./phys.) sich auf die Selbständigkeit auswirken. Wenn die Gefahr besteht, dass aus einer Einschränkung eine Schädigung entsteht oder sich weitere Einschränkungen entwickeln.“</p>
+    <p>ABEDL 1, 2, 3 und 13 mit Stern: „fokussieren, da sie häufig prioritär verursachend sind für Pflegeprobleme auch in den anderen ABEDLs!“ — und: „Bitte zusätzlich berücksichtigen! – Prophylaxen-Expertenstandards – Diagnosen – Medikamentöse Therapie“.</p>
+  </div>
+  <h3>Sechs Fragen an jede Diagnose <span class="t ich">Muster</span></h3>
+  <ol class="schritte">
+    <li><div><b>Was macht die Krankheit im Körper?</b> — die Folge in einem einfachen Satz.</div></li>
+    <li><div><b>Welche ABEDL sind betroffen?</b> — erst 1, 2, 3, 13, dann alle dreizehn.</div></li>
+    <li><div><b>Wirkt es sich auf seine Selbständigkeit aus?</b> → ja = <span class="t akt">aktuell</span></div></li>
+    <li><div><b>Besteht die Gefahr einer Schädigung?</b> → ja = <span class="t pot">potentiell</span></div></li>
+    <li><div><b>Stimmt das bei IHM? Was kann er noch?</b> — in SIS, Beobachtung, Gespräch prüfen → Ressource (R).</div></li>
+    <li><div><b>Und die Medikamente?</b> — sie bringen eigene Gefahren mit.</div></li>
+  </ol>
+  <h3>Bei Herrn J. angewendet <span class="t ich">Muster</span></h3>
+  <table>
+    <thead><tr><th style="width:20%">Diagnose / Mittel</th><th style="width:22%">Folge im Körper</th><th style="width:9%">ABEDL</th><th>Ergebnis bei Herrn J.</th></tr></thead>
+    <tbody>
+      <tr><td>Blasenlähmung</td><td>Blase entleert sich nicht richtig → Dauerkatheter</td><td>6, 11</td><td><span class="t akt">aktuell</span> kann den Urinbeutel nicht selbst leeren (Hände) · <span class="t pot">potentiell</span> Harnwegsinfektion</td></tr>
+      <tr><td>Rückenmarkschädigung, Querschnitt</td><td>Lähmung</td><td>2, 4, 7</td><td><span class="t akt">aktuell</span> Unterkörper, Rücken, Intimbereich waschen; ankleiden · <span class="t pot">potentiell</span> Dekubitus, Sturz beim Transfer</td></tr>
+      <tr><td>Krallenhände</td><td>die Hände greifen schlecht (Feinmotorik)</td><td>3, 4, 6, 11</td><td><span class="t akt">aktuell</span> Tabletten richten und nehmen, Urinbeutel leeren</td></tr>
+      <tr><td>Paranoide Schizophrenie</td><td>Psychose</td><td>1, 13</td><td><b>kein aktuelles Problem</b> — SIS: „keine Schwierigkeiten“ in der Kommunikation → <b>Ressource</b></td></tr>
+      <tr><td>Hypertonie + HCT, Perazin</td><td>Blutdruck sinkt, auch beim Aufrichten</td><td>3, 11</td><td><span class="t pot">potentiell</span> Schwindel beim Transfer → Sturz</td></tr>
+      <tr><td>Metformin + NovoRapid</td><td>Blutzucker kann zu tief fallen</td><td>3, 5</td><td><span class="t pot">potentiell</span> Unterzuckerung — und: Diabetes fehlt auf dem Diagnoseblatt</td></tr>
+      <tr><td>Stuhl alle 4–5 Tage in der Schutzhose</td><td>Stuhl wird nicht gehalten</td><td>6, 4</td><td><span class="t akt">aktuell</span> Stuhlinkontinenz · <span class="t pot">potentiell</span> Hautschaden (IAD), Obstipation</td></tr>
+      <tr><td>ASS + Escitalopram</td><td>Blut gerinnt langsamer</td><td>3, 11</td><td><span class="t pot">potentiell</span> Blutungen (auch Blut im Urin)</td></tr>
+    </tbody>
+  </table>
+  <div class="box bad">
+    <p class="kopf">Die Falle, die die Prüfer sofort sehen</p>
+    <p>„Problem: paranoide Schizophrenie“ ist eine <b>Diagnose</b>, kein Pflegeproblem. Die Frage kommt dann sofort: „Woran sehen Sie das bei ihm?“ Gleiche Diagnose heißt nicht gleiches Problem.</p>
+  </div>
+</section>
+
+<!-- ============ DOKUMENT 1 ============ -->
+<section class="teil">
+  <p class="eyebrow">Tag 1 · Dokument 1 von 5</p>
+  <h2>4 · Zusammenfassung der Fallvorstellung</h2>
+  <div class="box fr">
+    <p class="kopf">Quel modèle utiliser</p>
+    <p>Ton école prévoit un modèle pour les soins de longue durée stationnaires et ambulants — <b>tu ne l'as pas encore</b> (demande-le à ta Praxisanleiterin). Ici, j'utilise les 4 blocs du modèle « Krankenhaus » que tu as, adaptés au soin ambulant. Le modèle dit lui-même : diagnostics et médicaments sont visibles dans les documents joints, et l'état actuel de dépendance dans la liste des problèmes et la planification. La Fallvorstellung reste donc <b>courte</b>.</p>
+  </div>
+
+  <div class="box sag">
+    <p class="kopf">Zusammenfassung der Fallvorstellung — Herr J. <span class="t ich">Muster</span></p>
+    <h4>Krankheitsdaten / -verlauf</h4>
+    <p><i>Warum wird Herr J. vom Pflegedienst versorgt?</i> Herr J., 54 Jahre, ist querschnittsgelähmt und sitzt im Elektro-Rollstuhl. Auf seinem Diagnoseblatt stehen seit 2018 eine Rückenmarkschädigung mit Spinalkanalstenose, Blasenlähmung und Krallenhänden sowie eine Syringomyelie. Seit 2019 ist ein bösartiger Hirntumor bekannt (C71.9), seit 2023 Miktionsstörungen und eine Erkrankung der Harnröhre. Er hat einen Dauerkatheter. Er wird morgens und abends vom ambulanten Pflegedienst versorgt; das Erstgespräch zur SIS fand am 27.05.2026 statt.</p>
+    <p><i>Therapie:</i> regelmäßige Physiotherapie, urologische Betreuung (Katheterwechsel), psychiatrische Behandlung.</p>
+    <h4>Aktuelle Diagnosen und Medikation</h4>
+    <p>siehe beigefügtes Diagnoseblatt und Medikamentenplan.</p>
+    <h4>Pflegerische Daten</h4>
+    <p>Herr J. kann seine Bedürfnisse klar äußern. Er putzt selbst die Zähne und wäscht selbst den Oberkörper vorne. Rücken, Unterkörper und Intimbereich werden vom Pflegedienst gewaschen; nach der Ganzwaschung wird er komplett angekleidet, die Kleidung sucht er selbst aus. Wegen seiner Feinmotorik kann er den Urinbeutel nicht leeren und seine Medikamente nicht selbst richten. Der Stuhlgang erfolgt alle 4–5 Tage in der Schutzhose. Den Transfer vom Bett in den Rollstuhl führt er laut SIS selbst durch; er selbst nennt „Hilfe beim Aufstehen“ als Bedarf. Die Planung des Dienstes stammt von 2021 und wurde mit der SIS von 2026 neu bewertet. Der aktuelle Stand steht in der beigefügten Problemanalyse und Pflegeplanung.</p>
+    <h4>Biografische Daten</h4>
+    <p><i>Name, Alter:</i> Herr J., 54 Jahre (anonymisiert). <i>Pflegegrad:</i> [aus der Akte eintragen]. Er wird gesetzlich vertreten.</p>
+    <p><i>Subjektives Erleben:</i> „Ich akzeptiere meine Einschränkungen.“ — „Es geht mir gut.“ Ihm ist wichtig, alles selbst zu machen, was er kann: „das, was ich alleine machen kann, das erledige ich auch.“</p>
+    <p><i>Familie und Kontakte:</i> aufgewachsen in einer großen Pflegefamilie mit mehreren Generationen unter einem Dach; enge Bindung zur Pflegemutter, die Haushalt, Einkauf und meist das Kochen übernimmt. Geschwister helfen manchmal.</p>
+    <p><i>Beruf und Interessen:</i> arbeitet in einer Werkstatt für Menschen mit Behinderung (Industrieservice), Freizeit mit Kollegen — Geburtstage, Spielabende.</p>
+  </div>
+  <p class="klein">Alle Inhalte <span class="t akte">Akte</span>. Gliederung nach der Vorlage „Vorstellung des Pflegebedürftigen im Krankenhaus“ <span class="t du">Unterricht</span>, für ambulant angepasst <span class="t ich">Muster</span>.</p>
+</section>
+
+<!-- ============ DOKUMENT 2 ============ -->
+<section class="teil">
+  <p class="eyebrow">Tag 1 · Dokument 2 von 5</p>
+  <h2>5 · Medikamentenplan</h2>
+  <p>Laut Medikationsplan, ausgedruckt am 12.05.2026. <span class="t akte">Akte</span> Die Spalten rechts sind dein Wissen — genau danach wird am 2. Tag gefragt.</p>
+  <table>
+    <thead><tr><th style="width:15%">Wirkstoff</th><th style="width:12%">Dosis · Zeit</th><th style="width:15%">Gruppe</th><th style="width:15%">Wofür bei ihm</th><th style="width:21%">Worauf ich achte</th><th>Was ich tue</th></tr></thead>
+    <tbody>
+      <tr><td><b>Perazin</b></td><td class="m">25 mg<br>1-1-0-0</td><td>Neuroleptikum (Phenothiazin) <span class="t net">Internet</span></td><td>paranoide Schizophrenie</td><td>Müdigkeit, Bewegungsstörungen (EPS), Blutdruckabfall beim Aufrichten, Herzrasen; selten Miktionsstörungen, Verstopfung; QT-Verlängerung möglich <span class="t net">Beipackzettel</span></td><td>Fieber, Halsschmerzen, Entzündungen im Mund sofort melden (Blutbild); beim Transfer auf Schwindel achten</td></tr>
+      <tr><td><b>Escitalopram</b></td><td class="m">10 mg<br>0-0-1-0</td><td>SSRI (Antidepressivum) <span class="t du">Unterricht: Gruppe</span></td><td><b>steht nicht da</b> — keine passende Diagnose auf dem Blatt</td><td>Übelkeit, Schwindel, Schwitzen; Natriummangel (mit Diuretika häufiger); QT-Verlängerung; Blutungen <span class="t net">Beipackzettel</span></td><td>Puls und Rhythmus beobachten; nicht plötzlich absetzen; Indikation im Team klären</td></tr>
+      <tr><td><b>Baclofen</b></td><td class="m">10 mg<br>½-0-½-0</td><td>Mittel gegen die Spastik <span class="t du">Unterricht</span></td><td>Spastik bei Rückenmarkschädigung <span class="t ich">Folgerung</span></td><td>Muskeln entspannen sich → „Verlust der Beweglichkeit“; die Spastik hält manche Patienten aufrecht <span class="t du">Unterricht</span></td><td>beobachten, ob er beim Stehen am Bett noch Halt hat; Veränderungen melden</td></tr>
+      <tr><td><b>ASS</b></td><td class="m">100 mg<br>0-1-0-0<br>jeden 2. Tag</td><td>Thrombozyten&shy;aggregations&shy;hemmer <span class="t net">Internet</span></td><td><b>steht nicht da</b> — üblich: Vorbeugung Herzinfarkt/Schlaganfall</td><td>Magenbeschwerden; Blutungen (Nase, Zahnfleisch, Haut, Magen-Darm, <b>Blut im Urin</b>) <span class="t net">Beipackzettel</span></td><td>schwarzer Stuhl → sofort Arzt; Urinbeutel auf rote Farbe prüfen</td></tr>
+      <tr><td><b>Hydrochlorothiazid</b></td><td class="m">25 mg<br>1-0-0-0</td><td>Diuretikum (Thiazid) <span class="t net">Internet</span></td><td>Hypertonie</td><td>Kalium und Natrium sinken; <b>Blutzucker kann steigen</b>; Blutdruckabfall beim Aufrichten <span class="t net">Beipackzettel</span></td><td>morgens geben; Trinkmenge, Schwindel, Muskelschwäche beobachten</td></tr>
+      <tr><td><b>Metformin</b></td><td class="m">500 mg<br>1-0-1-0</td><td>Biguanid (orales Antidiabetikum) <span class="t net">Internet</span></td><td>Diabetes Typ 2 — <b>fehlt auf dem Diagnoseblatt</b></td><td>anfangs Übelkeit, Durchfall; sehr selten Laktatazidose; <b>allein</b> keine Unterzuckerung <span class="t net">Beipackzettel</span></td><td>mit oder nach dem Essen geben; bei Erbrechen, Durchfall, Fieber Arzt fragen</td></tr>
+      <tr><td><b>Insulin aspart</b> (NovoRapid FlexPen)</td><td class="m">nach BZ-Schema</td><td>kurzwirksames Insulinanalogon <span class="t du">Unterricht</span></td><td>erhöhter Blutzucker</td><td>Wirkeintritt <b>sofort</b>, Maximum 1 h, Dauer 2–3 h <span class="t du">Unterricht</span>; Unterzuckerung</td><td>siehe Schema und Hypoglykämie unten</td></tr>
+    </tbody>
+  </table>
+  <div class="box du keep">
+    <p class="kopf">Das Insulinschema <span class="t akte">Akte</span></p>
+    <table style="margin:0;width:auto">
+      <tr><th>Blutzucker</th><td class="m">160–200 mg/dl</td><td class="m">200–240 mg/dl</td><td class="m">über 240 mg/dl</td></tr>
+      <tr><th>NovoRapid</th><td class="m">6 IE</td><td class="m">8 IE</td><td class="m">10 IE</td></tr>
+    </table>
+    <p style="margin-top:2mm">Danach: Blutzucker nach 2 Stunden erneut messen.</p>
+  </div>
+  <div class="box net keep">
+    <p class="kopf">Zwei Kombinationen, die du ansprechen solltest <span class="t net">Internet</span></p>
+    <ul>
+      <li><b>Escitalopram + Perazin:</b> beide können das QT-Intervall im EKG verlängern. Ein Rote-Hand-Brief des Herstellers (2011) nennt Escitalopram mit anderen QT-verlängernden Mitteln kontraindiziert. HCT senkt Kalium und Magnesium und kann das verstärken.</li>
+      <li><b>Escitalopram + ASS:</b> höheres Blutungsrisiko, vor allem im Magen-Darm-Trakt.</li>
+    </ul>
+    <p><b>Was du tust:</b> nichts ändern. Weitergeben an die Pflegefachkraft, damit Arzt oder Apotheke prüfen; dokumentieren. Das ist Kompetenzbereich III.</p>
+  </div>
+</section>
+
+<!-- ============ MEDIKAMENTE GEBEN ============ -->
+<section class="teil">
+  <p class="eyebrow">Praxis · so machst du es</p>
+  <h2>6 · So gibst du Herrn J. seine Medikamente</h2>
+  <div class="box fr">
+    <p class="kopf">« Comment faire les médicaments » — deux choses différentes</p>
+    <p><b>1. En pratique</b>, chez lui : les donner correctement et en sécurité (ci-dessous). <b>2. À l'examen</b> : savoir répondre à 6 questions sur chaque médicament (le tableau de la page précédente).</p>
+  </div>
+  <h3>Vor jeder Gabe — die R-Regel</h3>
+  <p>Richtiger Patient · richtiges Arzneimittel · richtige Dosierung · richtige Applikationsart · richtiger Zeitpunkt · (richtige Dokumentation). <span class="t du">Unterricht — dort als „Ergänzung“ markiert</span></p>
+  <h3>Tabletten — morgens und abends</h3>
+  <ol class="schritte">
+    <li><div><b>Warum du sie gibst:</b> Herr J. kann seine Tabletten wegen der Feinmotorik nicht selbst richten; er „stimmt der Übernahme zu“. <span class="t akte">Planung 2021</span></div></li>
+    <li><div><b>Mit dem Plan vergleichen</b> (R-Regel), dann „nach Verordnung mit einem Glas Wasser“ geben. <span class="t akte">Planung 2021</span></div></li>
+    <li><div><b>Metformin</b> mit oder nach dem Essen <span class="t net">Beipackzettel</span>; <b>HCT</b> morgens; <b>ASS</b> nur jeden 2. Tag — im Plan abhaken, welcher Tag es ist.</div></li>
+    <li><div><b>Nebenwirkungen beobachten und mit ihm besprechen</b> <span class="t akte">Planung 2021</span> — er kann sie klar benennen.</div></li>
+    <li><div><b>Dokumentieren.</b> Auffälliges an die Pflegefachkraft.</div></li>
+  </ol>
+  <h3>Insulin nach Blutzucker</h3>
+  <ol class="schritte">
+    <li><div><b>Blutzucker messen</b> (wann, steht in der ärztlichen Anordnung — auf deinen Fotos nicht zu sehen; nachsehen).</div></li>
+    <li><div><b>Im Schema ablesen:</b> z. B. 230 mg/dl → 8 IE. <span class="t akte">Akte</span></div></li>
+    <li><div><b>Mit einer Mahlzeit:</b> NovoRapid wirkt sofort und gehört zur Mahlzeit. <span class="t du">Unterricht</span></div></li>
+    <li><div><b>Spritzen:</b> ins Unterhautfettgewebe; Bauch nimmt am schnellsten auf; Stellen innerhalb einer Region wechseln; nicht in Verhärtungen, blaue Flecken, Narben. Dosis einstellen → Kappe ab → Hautfalte (nicht bei 4–6-mm-Nadeln) → 45–90° einstechen → Kolben ganz drücken → <b>langsam bis 10 zählen</b> → herausziehen. <span class="t du">Unterricht</span></div></li>
+    <li><div><b>Nach 2 Stunden erneut messen</b> und dokumentieren. <span class="t akte">Akte</span></div></li>
+  </ol>
+  <div class="box bad keep">
+    <p class="kopf">Unterzuckerung — was du sofort tust <span class="t du">Unterricht</span></p>
+    <p><b>Werte:</b> Stufe 1 ≤ 70 mg/dl · Stufe 2 &lt; 54 mg/dl · schwer = Fremdhilfe nötig. <b>Zeichen:</b> Schwitzen, Zittern, Herzklopfen, Heißhunger — und im Kopf: unkonzentriert, verwirrt, aggressiv. „Anzeichen können sich ändern, schwächer werden oder ausbleiben!“</p>
+    <p><b>Wach:</b> „Erst essen, dann messen!“ — 2 KE als Traubenzucker, Saft oder Cola · Bewegung unterbrechen · messen, Ursache suchen, dokumentieren · danach 1–2 langsame KE.<br><b>Bewusstlos:</b> nichts in den Mund (Aspirationsgefahr) · stabile Seitenlage · Atemwege frei · Glukagon · Notarzt.</p>
+  </div>
+</section>
+
+<!-- ============ DOKUMENT 3 ============ -->
+<section class="teil">
+  <p class="eyebrow">Tag 1 · Dokument 3 von 5</p>
+  <h2>7 · Übersicht über die medizinischen Diagnosen</h2>
+  <p>Diagnoseblatt vom 07.10.2026; Status überall „keine Angabe“. <span class="t akte">Akte</span> Titel nach ICD-10-GM 2026 <span class="t net">BfArM</span>.</p>
+  <table>
+    <thead><tr><th style="width:9%">Kode</th><th style="width:27%">Diagnose</th><th style="width:7%">seit</th><th style="width:28%">Kurz erklärt</th><th>Bedeutung für die Pflege</th></tr></thead>
+    <tbody>
+      <tr><td class="m">—</td><td>Blasenlähmung · Spinalkanalstenose · Rückenmarkschädigung · Krallenhände (eine Zeile ohne Kode)</td><td>2018</td><td>Nervenschaden im Rückenmark: Blase, Beine und Hände betroffen</td><td>Dauerkatheter; Hilfe bei Körperpflege und Kleiden; Feinmotorik</td></tr>
+      <tr><td class="m">G95.0</td><td>Syringomyelie und Syringobulbie</td><td></td><td>mit Flüssigkeit gefüllte Höhle im Rückenmark bzw. Hirnstamm</td><td>Lähmung; gestörtes Schmerz- und Temperaturempfinden → Haut und Wassertemperatur prüfen <span class="t ich">Folgerung</span></td></tr>
+      <tr><td class="m">R39.1</td><td>Sonstige Miktionsstörungen</td><td>2023</td><td>ein Symptom beim Wasserlassen</td><td>gehört zur Blase; Katheter</td></tr>
+      <tr><td class="m">N36.8</td><td>Sonstige näher bezeichnete Krankheiten der Harnröhre</td><td>2023</td><td>eine Erkrankung der Harnröhre</td><td>welche, steht nicht da → Katheterart klären</td></tr>
+      <tr><td class="m">I10.9</td><td>Essentielle Hypertonie, n. n. bez.</td><td></td><td>Bluthochdruck ohne einzelne Grundkrankheit</td><td>HCT; Blutdruck, Schwindel beim Transfer</td></tr>
+      <tr><td class="m">F20.0</td><td>Paranoide Schizophrenie</td><td></td><td>Psychose mit Wahn, oft Stimmenhören</td><td>Perazin; psychiatrische Behandlung; bei ihm: kommuniziert klar</td></tr>
+      <tr><td class="m">C71.9</td><td>Bösartige Neubildung: Gehirn, nicht näher bezeichnet</td><td>2019</td><td>bösartiger Hirntumor</td><td>Art und Behandlung stehen nicht da → nicht raten, nachfragen</td></tr>
+    </tbody>
+  </table>
+  <p class="klein">Leere Felder bei „seit“: auf dem Foto nicht sicher lesbar. Ausführlich: Seite „Zehn Diagnosen, ein Mensch“.</p>
+  <div class="box bad keep">
+    <p class="kopf">Schreib dazu, was fehlt</p>
+    <p><b>Diabetes mellitus</b> steht nicht auf dem Diagnoseblatt, obwohl er Metformin und Insulin bekommt. Für <b>Escitalopram</b> und <b>ASS</b> steht keine passende Diagnose da. Ein Satz unter der Tabelle genügt: „Hinweis: Für Metformin/Insulin, Escitalopram und ASS ist keine Diagnose dokumentiert — Rücksprache mit dem Hausarzt angeregt.“ <span class="t ich">Muster</span></p>
+  </div>
+</section>
+
+<!-- ============ DOKUMENT 4 ============ -->
+<section class="teil">
+  <p class="eyebrow">Tag 1 · Dokument 4 von 5</p>
+  <h2>8 · Vollständige Problemanalyse</h2>
+  <p>„Vollständige Problemanalyse, Auflistung aller Pflegeprobleme (aktuelle und potentielle)“ <span class="t du">Unterricht</span>. Jedes Problem in einem Satz mit <b>weil</b>, daneben die Ressource. <span class="t ich">Muster</span></p>
+  <h3><span class="t akt">aktuell</span> Aktuelle Pflegeprobleme</h3>
+  <table>
+    <thead><tr><th style="width:6%">Nr.</th><th style="width:12%">ABEDL</th><th style="width:47%">Problem (P) und Ursache (E)</th><th>Ressource (R)</th></tr></thead>
+    <tbody>
+      <tr><td class="k">A1 ★</td><td>4 Sich pflegen · 7 Sich kleiden</td><td>Herr J. kann Rücken, Unterkörper und Intimbereich nicht selbst waschen und sich nicht selbst ankleiden, weil er querschnittsgelähmt ist und seine Hände schlecht greifen.</td><td>putzt Zähne, wäscht Oberkörper vorne, cremt sich ein, sucht Kleidung aus; sagt, was er braucht</td></tr>
+      <tr><td class="k">A2 ★</td><td>6 Ausscheiden</td><td>Herr J. kann den Stuhl nicht halten und sich danach nicht selbst reinigen, weil die Nervenversorgung gestört ist (Stuhl alle 4–5 Tage in der Schutzhose).</td><td>merkt den Stuhl; akzeptiert die Hilfe; holt Inkontinenzmaterial selbst</td></tr>
+      <tr><td class="k">A3</td><td>6 Ausscheiden</td><td>Herr J. kann den Urin nicht spontan lassen und den Urinbeutel nicht selbst leeren, weil die Blase gelähmt ist und die Feinmotorik fehlt; er hat einen Dauerkatheter.</td><td>akzeptiert den Katheter; macht die Urologie-Termine selbst</td></tr>
+      <tr><td class="k">A4</td><td>3 · 11</td><td>Herr J. kann seine Medikamente nicht selbst richten und einnehmen, weil seine Hände zu ungeschickt sind.</td><td>stimmt der Übernahme zu; besorgt die Medikamente selbst</td></tr>
+      <tr><td class="k">A5</td><td>2 Sich bewegen</td><td>Herr J. kann nicht gehen und braucht nach eigener Aussage Hilfe beim Aufstehen, weil er querschnittsgelähmt ist.</td><td>fährt den E-Rollstuhl selbstständig drinnen und draußen; Transfer laut SIS selbst; Physiotherapie; schätzt Risiken gut ein</td></tr>
+      <tr><td class="k">A6</td><td>5 · 12</td><td>Herr J. kann keinen Haushalt führen und nicht kochen, weil seine Hände schlecht greifen.</td><td>Pflegemutter übernimmt; er hilft im Sitzen</td></tr>
+    </tbody>
+  </table>
+  <h3><span class="t pot">potentiell</span> Potentielle Pflegeprobleme</h3>
+  <table>
+    <thead><tr><th style="width:6%">Nr.</th><th style="width:12%">ABEDL</th><th style="width:47%">Gefahr (P) und Risikofaktoren (E)</th><th>Ressource (R)</th></tr></thead>
+    <tbody>
+      <tr><td class="k">P1 ★</td><td>6 · 11</td><td>Gefahr einer Harnwegsinfektion, weil ein Dauerkatheter liegt und Blutzuckermittel einen Diabetes nahelegen.</td><td>sagt, wenn etwas nicht stimmt</td></tr>
+      <tr><td class="k">P2 ★</td><td>3 · 5 · 11</td><td>Gefahr einer Unterzuckerung, weil er Insulin nach Schema und Metformin bekommt.</td><td>kommuniziert klar; isst selbstständig</td></tr>
+      <tr><td class="k">P3</td><td>4 · 6</td><td>Gefahr einer Hautschädigung (IAD, Intertrigo), weil Stuhl in der Schutzhose auf der Haut liegt und er sich wenig bewegt.</td><td>merkt den Stuhl; lässt Hautkontrolle zu</td></tr>
+      <tr><td class="k">P4</td><td>2 · 4</td><td>Gefahr eines Dekubitus, weil er den ganzen Tag im Rollstuhl sitzt und querschnittsgelähmt ist.</td><td>wechselt die Position im Bett und im Rollstuhl selbst</td></tr>
+      <tr><td class="k">P5</td><td>11</td><td>Sturzgefahr beim Transfer, weil er gelähmt ist, Blutdrucksenker und Psychopharmaka nimmt (7 Medikamente) und nachts das Bettseitenteil oben ist.</td><td>schätzt Risiken gut ein; Physiotherapie</td></tr>
+      <tr><td class="k">P6</td><td>6</td><td>Gefahr einer Obstipation, weil der Stuhl nur alle 4–5 Tage kommt, er querschnittsgelähmt ist und Psychopharmaka nimmt.</td><td>merkt den Stuhl</td></tr>
+      <tr><td class="k">P7</td><td>3 · 11</td><td>Blutungsgefahr, weil er ASS und Escitalopram zusammen bekommt.</td><td>kann Beschwerden benennen</td></tr>
+    </tbody>
+  </table>
+  <p class="klein">★ = die vier, die in Dokument 5 ausführlich geplant werden. Obstipation: „weniger als 3 Stuhlgänge pro Woche“ <span class="t du">Unterricht</span>. Sturz-Risikofaktoren laut Expertenstandard: Lähmungen, Kontinenzproblem, Antihypertensiva, Antidepressiva, Polypharmazie (mehr als 4 Medikamente), FEM <span class="t du">Unterricht</span>.</p>
+  <div class="box fr keep">
+    <p class="kopf">Pourquoi ces quatre-là</p>
+    <p>L'école dit : « Auszubildender setzt nach fachlicher Einschätzung die Gewichtung ». Mes trois critères <span class="t ich">Muster</span> : <b>qu'est-ce qui le menace le plus ?</b> (infection, hypoglycémie) · <b>qu'est-ce qui le touche tous les jours ?</b> (toilette, selles) · <b>sur quoi les soins ont-ils une vraie influence ?</b> (tout ce qui précède). J'ai pris deux problèmes aktuell et deux potentiell. Un autre choix est juste aussi, <b>si tu sais le justifier</b>. Pour la Praxisaufgabe (3 problèmes), garde A1, A2 et P1.</p>
+  </div>
+</section>
+
+<!-- ============ DOKUMENT 5 ============ -->
+<section class="teil">
+  <p class="eyebrow">Tag 1 · Dokument 5 von 5</p>
+  <h2>9 · Pflegeplanung der vier wichtigsten Probleme</h2>
+  <p>In den Spalten der Planungsvorlagen deiner Schule: <b>Pflegeproblem — Pflegeziele — Pflegemaßnahmen — Begründungen</b>. <span class="t du">Unterricht</span> Alle Formulierungen <span class="t ich">Muster</span>; die Daten der Ziele (Evaluation) setzt du nach deinem Prüfungstag.</p>
+  <div class="box fr">
+    <p class="kopf">Les règles de ta feuille, à vérifier pour chaque problème</p>
+    <ul>
+      <li><b>P</b> : quel est le problème ? · <b>E</b> : pourquoi l'a-t-il ? · <b>(S)</b> : comment le problème se montre-t-il ? — <b>pas pour un problème potentiel</b> · <b>R</b> : que peut-il encore faire, aides comprises.</li>
+      <li><b>Objectifs SMART</b> : spécifique, mesurable, acceptable (formulé de façon positive et active), réaliste, daté. Nahziel et Fernziel. L'objectif décrit un <b>comportement ou un état</b> du patient.</li>
+      <li><b>Mesures</b> : WER (1 ou 2 PFK/PFA/PP) · WAS · WIE und WOMIT (avec la Hilfeform) · WANN · WIE OFT.</li>
+      <li><b>Hilfeformen</b> : Beaufsichtigung · Anleitung · Unterstützung · teilweise Übernahme · vollständige Übernahme — choisie <b>d'après la ressource</b>.</li>
+      <li><b>Begründung</b> : „Prophylaxen-Expertenstandards · Diagnosen · Medikamentöse Therapie“ (le cadre jaune de ta feuille).</li>
+    </ul>
+  </div>
+
+  <!-- Problem 1 -->
+  <div class="planhead"><h3>Problem 1 · Körperpflege und Ankleiden</h3><span class="t akt">aktuelles Problem</span></div>
+  <table class="plan">
+    <thead><tr><th>Pflegeproblem / Ursachen (E) / Symptome (S) / Ressourcen (R)</th><th>Pflegeziele</th><th>Pflegemaßnahmen</th><th>Begründungen</th></tr></thead>
+    <tbody><tr>
+      <td><b class="lab">P</b>Herr J. kann Rücken, Unterkörper und Intimbereich nicht selbst waschen und sich nicht selbst ankleiden.
+        <b class="lab">E</b>Querschnittslähmung bei Rückenmarkschädigung und Syringomyelie; Krallenhände (Feinmotorik).
+        <b class="lab">S</b>wird nach der Ganzwaschung komplett angekleidet; „Ich kann mich nicht selbstständig versorgen, weil ich im Rollstuhl sitze.“
+        <b class="lab">R</b>putzt selbstständig die Zähne und wäscht den Oberkörper vorne; cremt sich selbst ein; sucht seine Kleidung selbst aus; äußert Wünsche klar; akzeptiert weibliche und männliche Pflegekräfte; Pflegemutter legt Kleidung und Pflegemittel bereit.</td>
+      <td><b class="lab">Nahziel</b>Herr J. wäscht bis zur Evaluation in 2 Wochen bei jeder Morgenpflege Gesicht, Oberkörper vorne und Zähne selbstständig.
+        <b class="lab">Fernziel</b>Herr J. äußert bei der Evaluation in 6 Wochen, dass er sich gepflegt und wohl fühlt; seine Haut ist bei jeder Kontrolle intakt.</td>
+      <td><ol>
+        <li><b>1 PP</b> führt <b>Mo–Fr ca. 7:30 Uhr, Sa–So ca. 10:00 Uhr</b> die Morgenpflege durch: Unterkörper und Intimpflege im Bett — <i>vollständige Übernahme</i>.</li>
+        <li><b>1 PP</b> stellt Waschschüssel und Zahnputzzeug im Bad bereit; Herr J. wäscht Oberkörper vorne und putzt die Zähne selbst — <i>Unterstützung</i>.</li>
+        <li><b>1 PP</b> wäscht täglich morgens den Rücken — <i>teilweise Übernahme</i>.</li>
+        <li><b>1 PP</b> ist beim Transfer Bett ↔ Rollstuhl anwesend — <i>Beaufsichtigung</i>.</li>
+        <li><b>1 PP</b> zieht ihn nach seinen Wünschen an; Herr J. wählt die Kleidung — <i>vollständige Übernahme</i>.</li>
+        <li><b>1 PP</b> sieht bei jeder Pflege die Haut an (Gesäß, Leisten, Füße) und dokumentiert.</li>
+        <li><b>1 PP</b> abends <b>21:00–21:30 Uhr</b>: Auskleiden, Intimpflege, Lagerung im Bett.</li>
+        <li><b>1×/Woche</b> Fußbad und Haarwäsche durch 1 PP.</li>
+      </ol></td>
+      <td><b class="lab">Diagnosen</b>Querschnitt, Syringomyelie, Krallenhände erklären, was er nicht kann.
+        <b class="lab">Ressourcen erhalten</b>Er sagt: „das, was ich alleine machen kann, das erledige ich auch.“ Die Hilfeform kommt aus der Ressource — keine Übernahme dessen, was er selbst kann.
+        <b class="lab">Haut</b>Syringomyelie: gestörtes Schmerz- und Temperaturempfinden → er bemerkt Hautschäden nicht selbst <span class="t ich">Folgerung</span>.
+        <b class="lab">Akte</b>Zeiten und Abläufe aus der Planung des Dienstes 2021; Ankleiden nach SIS 2026.</td>
+    </tr></tbody>
+  </table>
+
+  <!-- Problem 2 -->
+  <div class="planhead"><h3>Problem 2 · Stuhlinkontinenz und Haut</h3><span class="t akt">aktuelles Problem</span></div>
+  <table class="plan">
+    <thead><tr><th>Pflegeproblem / Ursachen (E) / Symptome (S) / Ressourcen (R)</th><th>Pflegeziele</th><th>Pflegemaßnahmen</th><th>Begründungen</th></tr></thead>
+    <tbody><tr>
+      <td><b class="lab">P</b>Herr J. kann den Stuhl nicht halten und sich nach dem Stuhlgang nicht selbst reinigen; dadurch ist seine Haut im Gesäß- und Intimbereich gefährdet.
+        <b class="lab">E</b>gestörte Nervenversorgung bei Rückenmarkschädigung; Querschnitt; Feinmotorik.
+        <b class="lab">S</b>Stuhlgang alle 4–5 Tage in der Schutzhose; kann nicht zur Toilette.
+        <b class="lab">R</b>merkt, wenn Stuhl kommt; akzeptiert die Hilfe; holt Inkontinenzmaterial selbst; Pflegemutter bestellt Material.</td>
+      <td><b class="lab">Nahziel</b>Die Haut von Herrn J. im Gesäß-, Intim- und Leistenbereich ist bei jeder Kontrolle bis zur Evaluation in 2 Wochen intakt (keine Rötung).
+        <b class="lab">Fernziel</b>Herr J. ist nach jedem Stuhlgang innerhalb kurzer Zeit wieder sauber und trocken versorgt; sein Stuhlrhythmus ist bis zur Evaluation in 6 Wochen mit dem Arzt besprochen.</td>
+      <td><ol>
+        <li><b>1 PP</b> reinigt den Intimbereich <b>nach jeder Stuhlausscheidung</b> schonend: weiche Materialien, nicht reiben, lauwarmes Wasser sparsam, pH-neutrales Produkt, trocken tupfen — <i>vollständige Übernahme</i>.</li>
+        <li><b>1 PP</b> trägt danach Hautschutz auf (Barrierecreme; Rückfettung mit W/O-Lotion) — nach Hautzustand.</li>
+        <li><b>1 PP</b> legt eine Schutzhose in passender Größe und Saugstärke an; Wechsel, wenn die Kapazität erreicht ist.</li>
+        <li><b>1 PP</b> kontrolliert bei jeder Pflege die Haut (Gesäß, Leisten, Hautfalten) und dokumentiert.</li>
+        <li><b>1 PP</b> dokumentiert jeden Stuhlgang (Tag, Menge, Konsistenz).</li>
+        <li><b>1 PFK</b> spricht den Stuhlrhythmus und das Movicol aus der alten Planung mit dem Hausarzt ab.</li>
+        <li>Herr J. sagt Bescheid, wenn er Stuhl merkt; PP versorgt ihn dann beim nächsten Besuch bzw. nach Absprache.</li>
+      </ol></td>
+      <td><b class="lab">Expertenstandard Kontinenzförderung</b>Kontinenzprofil Stuhl: <b>abhängig kompensierte Inkontinenz</b> — Management übernimmt eine andere Person.
+        <b class="lab">IAD</b>„Je länger der Kontakt mit der Haut besteht, umso größer ist das Risiko für eine IAD.“ „Schonende Reinigung muss nach jeder Stuhlausscheidung, aber nicht nach jeder Urinausscheidung erfolgen.“ „Entscheidend ist das Fernhalten der Ausscheidung von der Haut.“
+        <b class="lab">Obstipation</b>„weniger als 3 Stuhlgänge pro Woche“; Ursachen u. a. Querschnittslähmung, Psychopharmaka.
+        <b class="lab">Medikamente</b>Perazin: selten Verstopfung <span class="t net">Beipackzettel</span>.</td>
+    </tr></tbody>
+  </table>
+  <p class="klein">Quellen Problem 2: Kontinenz fördern (IAD, Kontinenzprofile), Lernmaterial 09 Stuhl <span class="t du">Unterricht</span>.</p>
+
+  <!-- Problem 3 -->
+  <div class="planhead"><h3>Problem 3 · Gefahr einer Harnwegsinfektion</h3><span class="t pot">potentielles Problem</span></div>
+  <table class="plan">
+    <thead><tr><th>Pflegeproblem / Ursachen (E) / Informationen / Risikofaktoren / Assessment / Ressourcen</th><th>Pflegeziele</th><th>Pflegemaßnahmen</th><th>Begründungen</th></tr></thead>
+    <tbody><tr>
+      <td><b class="lab">P</b>Gefahr einer Harnwegsinfektion.
+        <b class="lab">E</b>Dauerkatheter bei Blasenlähmung (Rückenmarkschädigung).
+        <b class="lab">Pflegerelevante Informationen</b>Krankheit der Harnröhre (N36.8) seit 2023; Katheterart nicht dokumentiert.
+        <b class="lab">Individuelle Risikofaktoren</b>Dauerkatheter; Blutzuckermittel (Diabetes ist ein Risikofaktor); kann den Beutel nicht selbst leeren.
+        <b class="lab">Assessment / Gefährdungsgrad</b>Risikomatrix der SIS, Feld Inkontinenz [ablesen]; Urinbeobachtung F-B-G-M.
+        <b class="lab">R</b>akzeptiert den Katheter; macht die Urologie-Termine selbst; kommuniziert klar.</td>
+      <td><b class="lab">Nahziel</b>Der Urin von Herrn J. ist bei jeder Versorgung bis zur Evaluation in 2 Wochen klar, ohne Flocken und ohne auffälligen Geruch; er hat kein Fieber.
+        <b class="lab">Fernziel</b>Herr J. nennt bis zur Evaluation in 6 Wochen drei Zeichen einer Harnwegsinfektion und meldet sie selbst dem Pflegedienst.</td>
+      <td><ol>
+        <li><b>1 PP</b> leert <b>morgens und abends</b> den Urinbeutel — <i>vollständige Übernahme</i> (Hände).</li>
+        <li><b>1 PP</b> führt <b>2× täglich</b> die Intimpflege mit Katheterpflege durch (Krusten entfernen); vorher Händedesinfektion; so wenig wie möglich am System manipulieren.</li>
+        <li><b>1 PP</b> beobachtet bei jeder Versorgung den Urin nach <b>F-B-G-M</b> (Farbe, Beimengungen, Geruch, Menge), den Durchfluss, Knicke und Zug.</li>
+        <li><b>1 PP</b> achtet darauf, dass der Beutel <b>immer unter Blasenniveau</b> hängt und das Ablaufventil den Boden nicht berührt — auch am Rollstuhl.</li>
+        <li><b>1 PFK</b> erklärt Herrn J. einmal pro Woche die Infektzeichen (trüb, Flocken, Geruch, Fieber) und lässt sie wiederholen — <i>Anleitung</i>.</li>
+        <li>Auffälligkeiten (trüb, flockig, Blut, Fieber) → PFK informiert den Arzt; dokumentieren.</li>
+      </ol></td>
+      <td><b class="lab">Expertenstandard Kontinenzförderung</b>Kontinenzprofil Harn: <b>abhängig kompensierte Inkontinenz</b>.
+        <b class="lab">Katheterpflege</b>geschlossenes System; Beutel unter Blasenniveau; Ventil nicht am Boden — „Eintrittspforte für Keime“; 2× täglich Intimpflege; trüb/flockig → Harnwegsinfektion.
+        <b class="lab">Risikofaktoren</b>Diabetes mellitus, Fehler in der Katheterpflege, Keime im Auffangbeutel.
+        <b class="lab">Medikamente</b>ASS → Blut im Urin; HCT → mehr Urin, Trinkmenge beachten <span class="t net">Beipackzettel</span>.</td>
+    </tr></tbody>
+  </table>
+  <p class="klein">Quellen Problem 3: Kontinenz fördern; Lernmaterial 08 Harn/Katheter <span class="t du">Unterricht</span>.</p>
+
+  <!-- Problem 4 -->
+  <div class="planhead"><h3>Problem 4 · Gefahr einer Unterzuckerung</h3><span class="t pot">potentielles Problem</span></div>
+  <table class="plan">
+    <thead><tr><th>Pflegeproblem / Ursachen (E) / Informationen / Risikofaktoren / Assessment / Ressourcen</th><th>Pflegeziele</th><th>Pflegemaßnahmen</th><th>Begründungen</th></tr></thead>
+    <tbody><tr>
+      <td><b class="lab">P</b>Gefahr einer Unterzuckerung (Hypoglykämie).
+        <b class="lab">E</b>Insulin aspart nach Blutzuckerschema; Metformin.
+        <b class="lab">Pflegerelevante Informationen</b>Diabetes steht nicht auf dem Diagnoseblatt; HCT kann den Blutzucker erhöhen; die Pflegemutter kocht.
+        <b class="lab">Individuelle Risikofaktoren</b>kurzwirksames Insulin (Wirkung sofort, Maximum nach 1 h); kann wegen der Hände nicht selbst messen und spritzen.
+        <b class="lab">Assessment</b>Blutzuckerwerte laut Anordnung; Schema.
+        <b class="lab">R</b>kommuniziert klar und kann Beschwerden benennen; isst selbstständig; eng mit der Pflegemutter verbunden.</td>
+      <td><b class="lab">Nahziel</b>Der Blutzucker von Herrn J. liegt bis zur Evaluation in 2 Wochen bei jeder Messung über 70 mg/dl.
+        <b class="lab">Fernziel</b>Herr J. nennt bis zur Evaluation in 6 Wochen drei Zeichen einer Unterzuckerung und sagt sofort Bescheid, wenn er sie spürt.</td>
+      <td><ol>
+        <li><b>1 PFK</b> misst den Blutzucker zu den ärztlich angeordneten Zeiten und dokumentiert — <i>vollständige Übernahme</i>.</li>
+        <li><b>1 PFK</b> spritzt NovoRapid nur nach Schema und nur zu einer Mahlzeit; misst <b>nach 2 Stunden</b> erneut.</li>
+        <li><b>1 PFK</b> erklärt Herrn J. die Zeichen (Schwitzen, Zittern, Herzklopfen, Heißhunger, Verwirrtheit) und lässt sie wiederholen — <i>Anleitung</i>, 1×/Woche bis zur Evaluation.</li>
+        <li><b>1 PFK</b> informiert die Pflegemutter über die Zeichen und die Sofortmaßnahme (Traubenzucker).</li>
+        <li>Traubenzucker liegt in seiner Reichweite (am Rollstuhl).</li>
+        <li>Bei Verdacht: „Erst essen, dann messen“ — 2 KE schnelle Kohlenhydrate; bewusstlos → nichts oral, stabile Seitenlage, Notruf.</li>
+        <li><b>1 PFK</b> klärt mit dem Hausarzt die fehlende Diagnose und die Messzeiten.</li>
+      </ol></td>
+      <td><b class="lab">Diagnose / Therapie</b>Diabetes nur aus der Medikation erkennbar → Rücksprache.
+        <b class="lab">Medikamentöse Therapie</b>kurzwirksames Analogon: Wirkeintritt sofort, Maximum 1 h, Dauer 2–3 h; Mahlzeiteninsulin.
+        <b class="lab">Hypoglykämie</b>Stufe 1 ≤ 70 mg/dl; „Anzeichen können sich ändern, schwächer werden oder ausbleiben!“; Sofortmaßnahmen wach / bewusstlos.
+        <b class="lab">Ressource</b>Er kann sich klar äußern → <i>Anleitung</i> passt, er wird selbst zum „Frühwarnsystem“.</td>
+    </tr></tbody>
+  </table>
+  <p class="klein">Quellen Problem 4: Diabetes mellitus beim Erwachsenen <span class="t du">Unterricht</span>; Medikationsplan <span class="t akte">Akte</span>. „Traubenzucker in Reichweite“ ist mein Vorschlag <span class="t ich">Muster</span>.</p>
+</section>
+
+<!-- ============ TAG 2: FALLVORSTELLUNG ============ -->
+<section class="teil">
+  <p class="eyebrow">Tag 2 · 10 Minuten</p>
+  <h2>10 · Die Fallvorstellung — so sprichst du</h2>
+  <div class="box fr">
+    <p class="kopf">Comment le faire</p>
+    <p>Ne lis pas ce texte à voix haute le jour J. Fais-toi une fiche avec <b>5 mots-clés au maximum par bloc</b>, et parle librement. Des phrases courtes. Regarde les examinatrices. Entraîne-toi avec un chronomètre et enregistre-toi (Sprachmemos).</p>
+  </div>
+  <div class="box sag">
+    <p class="kopf">1 · Krankheitsdaten und Verlauf <span class="zeit">≈ 2½ Min</span></p>
+    <p>„Ich stelle Ihnen Herrn J. vor. Er ist 54 Jahre alt und wird zu Hause von unserem ambulanten Pflegedienst versorgt — morgens und abends.</p>
+    <p>Herr J. ist querschnittsgelähmt und fährt einen Elektro-Rollstuhl. Seit 2018 ist eine Rückenmarkschädigung bekannt, mit einer Spinalkanalstenose, einer Blasenlähmung und Krallenhänden, dazu eine Syringomyelie. 2019 kam ein bösartiger Hirntumor dazu, 2023 Miktionsstörungen und eine Erkrankung der Harnröhre. Er hat einen Dauerkatheter.</p>
+    <p>Er bekommt regelmäßig Physiotherapie, geht zum Urologen und ist in psychiatrischer Behandlung.“</p>
+  </div>
+  <div class="box sag">
+    <p class="kopf">2 · Diagnosen und Medikation <span class="zeit">≈ 1½ Min</span></p>
+    <p>„Die Diagnosen und den Medikamentenplan haben Sie vor sich. Für die Pflege sind drei Punkte besonders wichtig.</p>
+    <p>Erstens der Querschnitt mit Dauerkatheter und Stuhlinkontinenz. Zweitens die paranoide Schizophrenie — dafür bekommt er Perazin. Drittens der Blutzucker: Er bekommt Metformin und NovoRapid nach Schema. Mir ist aufgefallen, dass ein Diabetes nicht auf dem Diagnoseblatt steht. Das habe ich mit der Pflegefachkraft besprochen.“</p>
+  </div>
+  <div class="box sag">
+    <p class="kopf">3 · Pflegerische Daten <span class="zeit">≈ 3 Min</span></p>
+    <p>„Herr J. kann seine Bedürfnisse klar äußern. Bei der Morgenpflege putzt er selbst die Zähne und wäscht den Oberkörper vorne. Rücken, Unterkörper und Intimbereich waschen wir, und wir ziehen ihn an — die Kleidung sucht er selbst aus.</p>
+    <p>Wegen seiner Hände kann er den Urinbeutel nicht leeren und seine Tabletten nicht selbst richten. Den Stuhlgang hat er alle vier bis fünf Tage in der Schutzhose.</p>
+    <p>Den Transfer ins Bett und in den Rollstuhl macht er laut SIS selbst. Ich habe beobachtet, dass … <i>[deine Beobachtung]</i>.</p>
+    <p>Die Pflegeplanung des Dienstes war von 2021. Ich habe sie mit der SIS von 2026 verglichen und neu geschrieben. Die Probleme im Einzelnen sehen Sie in meiner Problemanalyse.“</p>
+  </div>
+  <div class="box sag">
+    <p class="kopf">4 · Biografische Daten <span class="zeit">≈ 2½ Min</span></p>
+    <p>„Herr J. ist in einer großen Pflegefamilie aufgewachsen, mit mehreren Generationen unter einem Dach. Er hat eine sehr enge Bindung zu seiner Pflegemutter — er nennt sie ‚meine Mama‘. Sie macht den Haushalt, den Einkauf und meistens das Essen.</p>
+    <p>Er arbeitet in einer Werkstatt für Menschen mit Behinderung, im Industrieservice. Mit Kollegen feiert er Geburtstage und macht Spielabende. Er wird gesetzlich vertreten. Sein Pflegegrad ist … <i>[eintragen]</i>.</p>
+    <p>Über seine Situation sagt er: ‚Ich akzeptiere meine Einschränkungen.‘ Und: ‚Es geht mir gut.‘ Wichtig ist ihm, alles selbst zu machen, was er kann.“</p>
+  </div>
+</section>
+
+<!-- ============ TAG 2: ERLÄUTERUNG ============ -->
+<section class="teil">
+  <p class="eyebrow">Tag 2 · 20 Minuten · nicht vorlesen</p>
+  <h2>11 · Die Erläuterung der Pflegeplanung</h2>
+  <div class="box fr">
+    <p class="kopf">Raconter le chemin, pas lire la feuille</p>
+    <p>Les examinatrices ont ta planification devant elles. Elles veulent entendre <b>comment tu y es arrivée</b>. Pour chaque problème (≈ 5 min), toujours les mêmes 6 pas <span class="t ich">Muster</span> : <b>1 d'où vient l'info · 2 pourquoi ce problème · 3 PE(S)R avec tes mots · 4 pourquoi cet objectif · 5 pourquoi cette Hilfeform · 6 comment tu vérifies</b>.</p>
+  </div>
+  <div class="box sag">
+    <p class="kopf">Problem 1 · Körperpflege und Ankleiden <span class="zeit">≈ 5 Min</span></p>
+    <p><b>Woher:</b> „Das habe ich aus der SIS, aus der alten Planung und weil ich ihn drei Tage bei der Morgenpflege begleitet habe. Er hat selbst gesagt: ‚das, was ich alleine machen kann, das erledige ich auch.‘“</p>
+    <p><b>Warum dieses:</b> „Ich habe es gewählt, weil es ihn jeden Tag zweimal betrifft und weil hier viele Ressourcen sind, die wir erhalten müssen.“</p>
+    <p><b>PE(S)R:</b> „Das Problem ist, dass er Rücken, Unterkörper und Intimbereich nicht selbst waschen und sich nicht anziehen kann. Die Ursache ist die Querschnittslähmung und die Krallenhände. Man sieht es daran, dass er komplett angekleidet wird. Er kann aber die Zähne putzen, den Oberkörper vorne waschen und die Kleidung auswählen.“</p>
+    <p><b>Ziel:</b> „Mein Nahziel ist, dass er diese Teile weiter selbst macht. Das ist realistisch, weil er es heute schon kann — es geht ums Erhalten.“</p>
+    <p><b>Hilfeform:</b> „Beim Oberkörper habe ich <i>Unterstützung</i> gewählt und keine Übernahme, weil er es selbst kann. Beim Unterkörper <i>vollständige Übernahme</i>, weil die Lähmung es nicht zulässt.“</p>
+    <p><b>Evaluation:</b> „Ich überprüfe in zwei Wochen, ob er es noch selbst macht, und frage ihn, ob er sich gepflegt fühlt.“</p>
+  </div>
+  <div class="box sag">
+    <p class="kopf">Problem 2 · Stuhlinkontinenz und Haut <span class="zeit">≈ 5 Min</span></p>
+    <p>„Die Information kommt aus der SIS: Stuhlgang alle vier bis fünf Tage in der Schutzhose. Ich habe es gewählt, <b>weil</b> der Stuhl auf der Haut liegt und das eine IAD auslösen kann — je länger der Kontakt, desto größer das Risiko. Sein Kontinenzprofil ist abhängig kompensiert: Die Schutzhose kompensiert, aber wir übernehmen das Management. Deshalb reinige ich nach jedem Stuhlgang schonend und schütze die Haut. Und weil alle vier bis fünf Tage weniger als dreimal pro Woche ist, spreche ich den Rhythmus mit dem Arzt ab. Ich überprüfe bei jeder Pflege die Haut: Ziel erreicht, wenn keine Rötung da ist.“</p>
+  </div>
+  <div class="box sag">
+    <p class="kopf">Problem 3 · Gefahr einer Harnwegsinfektion <span class="zeit">≈ 5 Min</span></p>
+    <p>„Das ist ein potentielles Problem — deshalb habe ich keine Symptome geschrieben, sondern Risikofaktoren: der Dauerkatheter, die Blutzuckermittel und dass er den Beutel nicht selbst leeren kann. Ich habe es gewählt, <b>weil</b> wir die Infektion durch richtige Katheterpflege direkt verhindern können. Den Beutel leeren wir vollständig, weil seine Hände es nicht schaffen. Die Infektzeichen erkläre ich ihm aber — das ist <i>Anleitung</i> —, weil er sich klar äußern kann und es dann selbst meldet. Ich überprüfe bei jeder Versorgung den Urin nach Farbe, Beimengungen, Geruch und Menge.“</p>
+  </div>
+  <div class="box sag">
+    <p class="kopf">Problem 4 · Gefahr einer Unterzuckerung <span class="zeit">≈ 5 Min</span></p>
+    <p>„Das habe ich aus dem Medikationsplan: Er bekommt Insulin nach Blutzucker und Metformin. Aufgefallen ist mir, dass ein Diabetes nicht auf dem Diagnoseblatt steht — das habe ich weitergegeben. Ich habe das Problem gewählt, <b>weil</b> eine Unterzuckerung ein Notfall ist und NovoRapid sofort wirkt, mit dem Maximum nach einer Stunde. Mein Ziel ist, dass der Blutzucker bei jeder Messung über 70 liegt, weil ab 70 die Stufe 1 beginnt. Er soll außerdem die Zeichen kennen, weil sie sich ändern oder ausbleiben können — dann ist er selbst ein Frühwarnsystem. Ich überprüfe das an den dokumentierten Werten und indem ich ihn nach den Zeichen frage.“</p>
+  </div>
+</section>
+
+<!-- ============ TAG 2: PRÜFUNGSGESPRÄCH ============ -->
+<section class="teil">
+  <p class="eyebrow">Tag 2 · 15 Minuten</p>
+  <h2>12 · Das Prüfungsgespräch — Fragen und Antworten</h2>
+  <p>Die Bereiche und Beispielfragen stehen in deinen Unterlagen <span class="t du">Unterricht</span>; die Fragen zu Herrn J. und die Antworten sind meine Vorhersage <span class="t ich">Muster</span>.</p>
+  <div class="box fr">
+    <p class="kopf">Le schéma de réponse — toujours le même</p>
+    <p><b>Réponse en une phrase → weil → exemple tiré de Herr J. → deshalb tue ich …</b> Et si tu bloques : « Darf ich kurz überlegen? » · « Meinen Sie …, oder meinen Sie …? » · « Das weiß ich nicht sicher. Ich würde im Standard nachschauen und die Praxisanleitung fragen. »</p>
+  </div>
+
+  <div class="qa"><p class="q"><span class="kb">KB I</span>Wie haben Sie den Pflegebedarf erhoben?</p><p class="a">„Mit der SIS, dem Diagnoseblatt, dem Medikationsplan und der alten Planung — und vor allem im Gespräch mit Herrn J. und durch meine Beobachtung in drei Tagen fester Tour. Zum Beispiel hat er mir gesagt, dass er alles selbst macht, was er kann. Deshalb habe ich bei jeder Maßnahme geprüft, welche Hilfeform zu seiner Ressource passt.“</p></div>
+  <div class="qa"><p class="q"><span class="kb">KB I</span>Welche Assessments haben Sie benutzt?</p><p class="a">„Die Risikomatrix der SIS: Dekubitus, Sturz, Inkontinenz, Schmerz, Ernährung. Bei ihm ist … angekreuzt <i>[ablesen]</i>. Für die Ausscheidung habe ich das Kontinenzprofil bestimmt: abhängig kompensierte Inkontinenz, weil der Katheter und die Schutzhose kompensieren, das Management aber wir übernehmen.“</p></div>
+  <div class="qa"><p class="q"><span class="kb">KB I</span>Die Planung des Dienstes ist von 2021. Was bedeutet das?</p><p class="a">„Sie wurde nicht evaluiert. 2021 stand ‚Transfer unterstützen‘, die SIS von 2026 sagt, er macht ihn selbst — und die Blutzuckermittel fehlen in der alten Planung ganz. Deshalb habe ich neu geplant. Evaluation gehört zum Pflegeprozess.“</p></div>
+  <div class="qa"><p class="q"><span class="kb">KB I</span>Wie evaluieren Sie Problem 1?</p><p class="a">„In zwei Wochen prüfe ich, ob er Gesicht, Oberkörper vorne und Zähne noch selbst wäscht, und ich frage ihn, ob er sich gepflegt fühlt. Erreicht ist das Ziel, wenn beides stimmt und die Haut intakt ist.“</p></div>
+
+  <div class="qa"><p class="q"><span class="kb">KB II</span>Wie erlebt Herr J. seine Situation?</p><p class="a">„Er hat gesagt: ‚Ich akzeptiere meine Einschränkungen.‘ und ‚Es geht mir gut.‘ Er will so viel wie möglich selbst machen und sagt: ‚Ich will, dass Sie weiterhin zu mir kommen.‘ Deshalb plane ich so, dass er seine Ressourcen behält.“</p></div>
+  <div class="qa"><p class="q"><span class="kb">KB II</span>Wie haben Sie ihn an der Planung beteiligt?</p><p class="a">„Ich habe ihn gefragt, was er selbst machen will und was ihm wichtig ist, zum Beispiel, dass er seine Kleidung selbst aussucht. Das steht jetzt als Ressource in der Planung. Die Ziele zu den Infekt- und Unterzuckerungszeichen sind so formuliert, dass er selbst aktiv wird.“</p></div>
+  <div class="qa"><p class="q"><span class="kb">KB II</span>Er hat eine paranoide Schizophrenie. Worauf achten Sie im Gespräch?</p><p class="a">„Ich bin ehrlich — nicht lügen, mit offenen Karten spielen. Ich gehe vorsichtig mit der Blickführung um, weil sie bei schizophrenen Patienten das Vertrauen in Frage stellen kann. Fragen mit ‚Wieso, weshalb, warum‘ vermeide ich. Bei Herrn J. ist die Kommunikation laut SIS ohne Schwierigkeiten.“ <span class="t du">Unterricht Psychiatrie</span></p></div>
+
+  <div class="qa"><p class="q"><span class="kb">KB III</span>Mit wem stimmen Sie die Planung ab?</p><p class="a">„Mit dem Team und der Pflegefachkraft, dem Hausarzt (Medikamente, Blutzucker, fehlende Diagnosen), dem Urologen (Katheter), der psychiatrischen Behandlung, dem Physiotherapeuten (Transfer, Stehen), der Pflegemutter und dem gesetzlichen Vertreter.“</p></div>
+  <div class="qa"><p class="q"><span class="kb">KB III</span>Warum braucht der Arzt Ihre Beobachtungen?</p><p class="a">„Weil er das Insulinschema und die Medikamente nach unseren Werten anpasst. Wenn ich die Blutzuckerwerte und die Zeichen einer Unterzuckerung dokumentiere, kann er die Dosis richtig einstellen. Dasselbe gilt für Baclofen: Wenn er beim Stehen keinen Halt mehr hat, muss der Arzt das wissen.“ <span class="t du">nach der Beispielfrage „Schmerzen“ deiner Unterlagen</span></p></div>
+  <div class="qa"><p class="q"><span class="kb">KB III</span>Ihnen fällt Escitalopram zusammen mit Perazin auf. Was tun Sie?</p><p class="a">„Ich ändere nichts selbst. Beide können das QT-Intervall verlängern. Ich gebe es an die Pflegefachkraft weiter, damit Arzt oder Apotheke es prüfen, und dokumentiere es. Bis dahin achte ich auf Herzrasen, unregelmäßigen Puls oder Ohnmacht.“ <span class="t net">Internet</span></p></div>
+
+  <div class="qa"><p class="q"><span class="kb">KB IV</span>Welche Risikofaktoren zur Sturzgefährdung nennt der Expertenstandard — und welche hat Herr J.?</p><p class="a">„Der Standard unterscheidet personen-, medikamenten- und umgebungsbezogene Faktoren. Herr J. hat Lähmungen, ein Kontinenzproblem, er nimmt Blutdrucksenker und ein Antidepressivum und insgesamt sieben Medikamente — Polypharmazie heißt mehr als vier. Dazu kommt das Bettseitenteil: Freiheitsentziehende Maßnahmen erhöhen das Sturzrisiko.“ <span class="t du">Lernmaterial 05</span></p></div>
+  <div class="qa"><p class="q"><span class="kb">KB IV</span>Nachts ist das Bettseitenteil oben — auf seinen Wunsch. Ist das in Ordnung?</p><p class="a">„Ein Bettgitter ist Freiheitsentziehung, wenn es gegen den Willen geschieht. Herr J. wünscht es und kann sich klar äußern; mit seiner Einwilligung ist es erlaubt — sie muss schriftlich dokumentiert sein. Weil er gesetzlich vertreten wird, würde ich klären, ob der Vertreter Bescheid weiß; bei Betreuten braucht ein dauerhaftes Bettgitter zur Nacht laut meinem Unterricht einen richterlichen Beschluss. Ich prüfe auch, ob er es mit seinen Händen selbst herunterlassen kann.“ <span class="t du">Recht, Psychiatrie</span> — wie beides zusammenpasst, sagen deine Unterlagen nicht <span class="t ich">offen</span></p></div>
+  <div class="qa"><p class="q"><span class="kb">KB IV</span>Welchen Pflegegrad hat Herr J.?</p><p class="a">„Er hat Pflegegrad … <i>[aus der Akte]</i>.“ — <b>Diese Frage steht ausdrücklich in deinen Unterlagen. Vorher nachsehen!</b></p></div>
+
+  <div class="qa"><p class="q"><span class="kb">KB V</span>Welche Widerstandsressourcen hat Herr J.? (Salutogenese)</p><p class="a">„Seine Pflegefamilie und vor allem die Pflegemutter; seine Arbeit in der Werkstatt mit Kollegen; Freizeit mit Freunden; die Physiotherapie; und seine Haltung: Er akzeptiert seine Einschränkungen und sagt, es geht ihm gut.“</p></div>
+  <div class="qa"><p class="q"><span class="kb">KB V</span>Was ist eine Syringomyelie — und was bedeutet sie für die Pflege?</p><p class="a">„Eine mit Flüssigkeit gefüllte Höhle im Rückenmark. Sie kann Lähmungen und ein gestörtes Schmerz- und Temperaturempfinden machen. Deshalb kontrolliere ich die Haut bei jeder Pflege und prüfe die Wassertemperatur, weil er Verletzungen oder Hitze nicht selbst bemerkt.“ <span class="t net">Internet</span> · Pflege <span class="t ich">Folgerung</span></p></div>
+  <div class="qa"><p class="q"><span class="kb">KB V</span>Wäre basale Stimulation bei ihm sinnvoll? Und Biografiearbeit?</p><p class="a">„Basale Stimulation steht bei ihm nicht im Vordergrund, weil er wach ist und klar kommuniziert. Biografiearbeit schon: Die Pflegefamilie und die Arbeit sind seine Kraftquellen — ich beziehe die Pflegemutter ein und plane die Zeiten so, dass er zur Arbeit kann.“ <span class="t ich">Folgerung</span></p></div>
+</section>
+
+<!-- ============ OFFEN ============ -->
+<section class="teil">
+  <h2>13 · Was noch offen ist — vor Ort klären</h2>
+  <p>Diese Punkte stehen nicht in deinen Fotos. In der Prüfung wirst du danach gefragt. <b>Nicht raten — nachsehen.</b></p>
+  <table>
+    <thead><tr><th style="width:34%">Was</th><th style="width:30%">Wo / wen fragen</th><th>Wofür</th></tr></thead>
+    <tbody>
+      <tr><td>Kreuze der Risikomatrix (SIS S. 2–3)</td><td>SIS im Original</td><td>KB I und IV, Assessment in Problem 3</td></tr>
+      <tr><td>Pflegegrad</td><td>Akte / Pflegedienstleitung</td><td>Fallvorstellung, KB IV</td></tr>
+      <tr><td>Diabetes diagnostiziert? Messzeiten BZ? Wer misst?</td><td>Hausarzt, ärztliche Anordnung</td><td>Dokument 3, Problem 4</td></tr>
+      <tr><td>Indikation Escitalopram und ASS</td><td>Hausarzt / Psychiatrie</td><td>Medikamentenplan</td></tr>
+      <tr><td>Katheterart (transurethral oder suprapubisch)</td><td>Akte, Urologe</td><td>Problem 3, Diagnose N36.8</td></tr>
+      <tr><td>Bekommt er Movicol noch?</td><td>Medikationsplan, PFK</td><td>Problem 2</td></tr>
+      <tr><td>Bettseitenteil: Einwilligung schriftlich? Vertreter informiert?</td><td>Akte, PFK</td><td>KB IV</td></tr>
+      <tr><td>Vorlage Fallvorstellung ambulant</td><td>Praxisanleitung / Schule</td><td>Dokument 1</td></tr>
+      <tr><td>deine eigenen Beobachtungen (Transfer, Haut, Urin, Stimmung)</td><td>drei Tage feste Tour</td><td>Fallvorstellung Block 3</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ METHODE ============ -->
+<section class="teil">
+  <h2>14 · Die Methode für jeden neuen Patienten</h2>
+  <div class="box fr">
+    <p class="kopf">Ce que tu refais avec chaque patient</p>
+    <p>Voici les 12 pas de ce dossier, sans Herr J. C'est cette liste que tu suivras avec les prochains patients que je te donnerai — et le jour de l'examen.</p>
+  </div>
+  <ol class="schritte">
+    <li><div><b>Unterlagen sammeln:</b> SIS bzw. Anamnese, Diagnoseblatt, Medikationsplan, alte Planung, Pflegebericht, Assessments.</div></li>
+    <li><div><b>Gespräch führen</b> und seine Sätze wörtlich notieren — was er braucht, was er kann, was ihm wichtig ist.</div></li>
+    <li><div><b>Jede Diagnose mit den sechs Fragen</b> durchgehen: Folge → ABEDL → aktuell? → potentiell? → bei ihm? → Medikamente?</div></li>
+    <li><div><b>Jedes Medikament mit den sechs Fragen:</b> Name · Gruppe · warum bei ihm · Wirkung · Nebenwirkung · was tue ich.</div></li>
+    <li><div><b>Widersprüche suchen:</b> Medikament ohne Diagnose, alte Planung gegen neue SIS, Fehlendes.</div></li>
+    <li><div><b>Problemliste:</b> alle 13 ABEDL, aktuell und potentiell getrennt, jedes mit <i>weil</i> und Ressource.</div></li>
+    <li><div><b>Vier auswählen</b> und je einen Satz mit <i>weil</i> schreiben.</div></li>
+    <li><div><b>PE(S)R:</b> P · E · S (nur aktuell) bzw. Risikofaktoren · R.</div></li>
+    <li><div><b>Ziele SMART</b>, Nah- und Fernziel, als Zustand oder Verhalten des Patienten.</div></li>
+    <li><div><b>Maßnahmen mit allen W-Fragen</b> und der Hilfeform, die zur Ressource passt.</div></li>
+    <li><div><b>Begründung:</b> Expertenstandard · Diagnose · Medikament.</div></li>
+    <li><div><b>Tag 2 vorbereiten:</b> Stichwortzettel (5 pro Block), Erläuterung in sechs Schritten, Fragen KB I–V laut üben.</div></li>
+  </ol>
+
+  <h2 style="margin-top:8mm">15 · Quellen</h2>
+  <p><span class="t akte">Akte</span> SIS ambulant (27.05.2026) · Diagnoseblatt (07.10.2026) · Medikationsplan (12.05.2026) · Pflegeplanung des Dienstes Nr. 1, 6, 11 (2021) · Praxisaufgabe.</p>
+  <p><span class="t du">Unterricht</span> Gestaltung und Durchführung der Zwischenprüfung (Stand 09.2026) · Vorstellung des Pflegebedürftigen im Krankenhaus · Pflegeplanung PE(S)R (Blatt) · Vorlagen aktuelle/potentielle Probleme · Kontinenz fördern (Kontinenzprofile, IAD, Katheter) · Lernmaterial 05 (Sturz), 08 (Harn/Katheter), 09 (Stuhl), 11 (R-Regel) · Diabetes mellitus beim Erwachsenen · Psychiatrische Pflege · Neurologie (Baclofen, Spastik) · Recht in der Pflege (FEM).</p>
+  <p><span class="t net">Internet</span> Beipackzettel Perazin-neuraxpharm 25 mg, Escitalopram 1A Pharma 10 mg, HCT-ratiopharm 25 mg, ASS-ratiopharm 100 mg TAH, Metformin STADA 500 mg (medikamio.com u. a.) · chemie.de (Perazin) · Rote-Hand-Brief Escitalopram, Lundbeck, 05.12.2011 (akdae.de) · MSD Manual (Metformin) · BfArM ICD-10-GM 2026. Maßgeblich ist immer die Fachinformation des Präparats, das er wirklich bekommt.</p>
+  <p class="klein">Eine Punkteverteilung oder ein Notenschlüssel steht in keiner deiner Unterlagen — hier wird keiner erfunden. Das Beurteilungsprotokoll Teil 1 (Planungsbeurteilung) liegt dir noch nicht vor.</p>
+</section>
+
+</body>
+</html>
