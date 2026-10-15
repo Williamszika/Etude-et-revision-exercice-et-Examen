@@ -36,7 +36,11 @@ comprendre, savoir lire … Est-ce que cela peut faire quatre mois?"* Auf Nachfr
 **75 Min × 6 Tage ≈ 130 h (in der Spanne, ihr Wahl)** · 90 Min ≈ 155 h. Stress senkt das Behalten, das Leben auf
 Deutsch hilft — beides steht in keiner Zahl. **Ob B1 erreicht ist, sagt die Messung, nicht der Kalender.**
 
-**Messungen** (`einstufungen.json`): **16.10.2026** Start (offen) · **14.12.2026** Zwischenmessung · **15.02.2027** Abschluss.
+**Messungen** (`einstufungen.json`): **keine Startmessung** · **14.12.2026** Zwischenmessung · **15.02.2027** Abschluss.
+**Am 15.10.2026 hat sie den Einstufungstest am Start abgelehnt:** *„Laissez tomber le test de niveau. J'ai déjà mon
+niveau A2. Et je veux passer au niveau B1."* Messung 1 steht auf `entfallen`, der Hinweis „Test de niveau“ erscheint
+nicht mehr. **A2 ist ihre Angabe und die Arbeitsgrundlage — nicht wieder einen Starttest vorschlagen.** Die beiden
+späteren Messungen prüfen B1, nicht A2; ob sie die macht, entscheidet sie, wenn es so weit ist.
 
 **Gerechnet wird nur in `deutsch-taeglich/heute.py`** (`--plan` listet alle 105 Lektionstage mit Thema).
 Den `zyklus`-Block **genau so übernehmen**, wie `heute.py` ihn ausgibt — neue Felder: `takt: 1`, `ruhetag: 0`
