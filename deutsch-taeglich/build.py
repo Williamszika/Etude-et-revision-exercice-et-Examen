@@ -32,21 +32,12 @@ for d in lekt:
         d['diktat']['audio'] = rel.replace(os.sep, '/')
         tonspuren.append(rel.replace(os.sep, '/'))
 
-# Erster Lektionstag der laufenden Etappe. Steht in einer Lektion (zyklus.start),
-# sonst hier — damit die Seite auch ohne Lektion sagen kann, wann es losgeht.
-START = '2026-09-11'
-if lekt:
-    START = (lekt[-1].get('zyklus') or {}).get('start') or START
-
-# Pausen (seit 03.10.2026): Pausentage zählen im Plan nicht mit. Gerechnet wird nur in
-# heute.py. Seite und App bekommen den *wirksamen* Start — 11.09. plus die Pausentage bis
-# heute —, damit ihre alte Formel t = (heute − start) wieder die richtige Lektion ergibt.
+# Erster Lektionstag der laufenden Etappe — seit dem Neustart vom 16.10.2026 kommt er
+# nur noch aus heute.py (dort auch Sonntage als Ruhetage und die Pausen).
 import sys as _sys
 _sys.path.insert(0, BASE)
 import heute as kalender  # noqa: E402
-_heute = kalender.heute_berlin()
-if lekt:
-    START = kalender.effektiver_start(_heute).isoformat()
+START = kalender.START.isoformat()
 ETAPPE_ENDE = kalender.etappe_ende().isoformat()
 PAUSEN = [{'von': p['von'], 'bis': p['bis'], **({'zaehlt': True} if p.get('zaehlt') else {})}
           for p in kalender._roh()]
@@ -67,6 +58,7 @@ out = (tpl.replace('__DATA__', data).replace('__START__', START)
           .replace('__ENDE__', ETAPPE_ENDE)
           .replace('__ENDE_LANG__', '.'.join(reversed(ETAPPE_ENDE.split('-'))))
           .replace('__PAUSEN__', json.dumps(PAUSEN))
+          .replace('__LEKTIONEN_GESAMT__', str(kalender.LEKTIONEN_GESAMT))
           .replace('__FEHLER__', json.dumps(FEHLER, ensure_ascii=False).replace('</', '<\\/'))
           .replace('__MESSUNG_OFFEN__', 'true' if MESSUNG_OFFEN else 'false'))
 open(os.path.join(BASE, 'index.html'), 'w', encoding='utf-8').write(out)

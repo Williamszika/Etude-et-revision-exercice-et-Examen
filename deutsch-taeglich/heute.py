@@ -2,25 +2,28 @@
 """Was ist heute bei Deutsch täglich? — die einzige Stelle, an der das gerechnet wird.
 
     python3 deutsch-taeglich/heute.py              # heute (Europe/Berlin)
-    python3 deutsch-taeglich/heute.py 2026-10-12   # ein beliebiges Datum
+    python3 deutsch-taeglich/heute.py 2026-10-20   # ein beliebiges Datum
     python3 deutsch-taeglich/heute.py --json       # dasselbe als JSON
+    python3 deutsch-taeglich/heute.py --plan       # alle Lektionstage mit Thema
 
 Antwort ist eine von vier Arten:
 
     PAUSE        — nichts schreiben (Pausen stehen in pausen.json)
-    UEBUNGSTAG   — nichts schreiben
+    UEBUNGSTAG   — nichts schreiben (sonntags: Ruhetag mit Wochenrückblick, `ruhetag: true`)
     LEKTIONSTAG  — Lektion schreiben; die Zeile nennt alle zyklus-Felder
     VORHER       — vor dem Start der Etappe
 
-Die Regel aus CLAUDE.md, erweitert um die Pausen (seit 03.10.2026):
+**Neustart am 16.10.2026** (ihr Wunsch vom 15.10.2026: von null anfangen, B1 in vier Monaten,
+75 Minuten am Tag, sechs Tage die Woche). Die Regel:
 
-    t = (heute − 2026-09-11).days − (Pausentage bis heute)
-    t gerade  → Lektionstag, lektion = t // 2 + 1, themaBlock = t // 4 + 1
-    t ungerade → Übungstag
+    Lektionstag  = jeder Tag ab 16.10.2026 außer Sonntag und außer Pausentagen
+    lektion      = Zahl der Lektionstage vom 16.10. bis heute (1, 2, 3 …)
+    themaBlock   = (lektion − 1) // 3 + 1        — drei Lektionen pro Grammatikthema (1 … 29)
+    themenTag    = (lektion − 1) %  3 + 1        — 1 entdecken · 2 üben · 3 anwenden
+    ab Lektion 88: Wiederholung bis zum Ende (15.02.2027, ohne Pausen)
 
-Pausentage zählen nicht mit: Der ganze Plan rückt um die Zahl der Pausentage
-nach hinten, keine Lektion fällt aus. Die Routinen, build.py und pruefen.py
-fragen hier nach, statt selbst zu rechnen.
+Pausentage zählen nicht mit: Der Plan rückt nach hinten, keine Lektion fällt aus. Die
+Routinen, build.py und pruefen.py fragen hier nach, statt selbst zu rechnen.
 """
 import json
 import os
@@ -28,11 +31,11 @@ import sys
 from datetime import date, datetime, timedelta
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-START = date(2026, 9, 11)
-PLAN_ENDE = date(2027, 1, 31)        # Ende der Etappe ohne Pausen
-LEKTIONEN_GESAMT = 72
+START = date(2026, 10, 16)
+PLAN_ENDE = date(2027, 2, 15)        # Ende der Etappe ohne Pausen
+RUHETAG = 6                          # Sonntag (Python weekday); in JS getDay() = 0
+PRO_THEMA = 3                        # Lektionen pro Grammatikthema
 THEMEN_GESAMT = 29
-
 GRAMMATIK = [
     'Verbstellung und Satzklammer',
     'Nebensätze: weil, dass, wenn/als, obwohl, damit',
@@ -116,73 +119,94 @@ def in_pause(d):
     return None
 
 
-def pausentage_bis(d):
-    """Pausentage vom Start bis einschließlich d."""
-    n = 0
-    for von, bis, _ in verschiebende_pausen():
-        if von > d:
-            continue
-        n += (min(bis, d) - von).days + 1
+def ist_lektionstag(d):
+    return d >= START and d.weekday() != RUHETAG and not in_pause(d)
+
+
+def lektion_von(d):
+    """Zahl der Lektionstage vom Start bis einschließlich d."""
+    if d < START:
+        return 0
+    n, x = 0, START
+    while x <= d:
+        if ist_lektionstag(x):
+            n += 1
+        x += timedelta(days=1)
     return n
 
 
-def pausentage_gesamt():
-    return sum((bis - von).days + 1 for von, bis, _ in verschiebende_pausen())
+def _lektionstage_ohne_pausen(bis):
+    n, x = 0, START
+    while x <= bis:
+        if x.weekday() != RUHETAG:
+            n += 1
+        x += timedelta(days=1)
+    return n
 
 
-def effektiver_start(d):
-    """Der Start, mit dem die alte Formel t = (d − start) für d wieder stimmt."""
-    return START + timedelta(days=pausentage_bis(d))
+LEKTIONEN_GESAMT = _lektionstage_ohne_pausen(PLAN_ENDE)
+
+
+def datum_von_lektion(n):
+    """Der Kalendertag der n-ten Lektion (mit Pausen)."""
+    x, k = START, 0
+    while True:
+        if ist_lektionstag(x):
+            k += 1
+            if k == n:
+                return x
+        x += timedelta(days=1)
 
 
 def etappe_ende():
-    return PLAN_ENDE + timedelta(days=pausentage_gesamt())
+    return datum_von_lektion(LEKTIONEN_GESAMT)
 
 
-def t_von(d):
-    return (d - START).days - pausentage_bis(d)
+def pausentage_gesamt():
+    return sum((bis - von).days + 1 for von, bis, _ in verschiebende_pausen() if bis >= START)
 
 
-def datum_von_t(t):
-    """Der (nicht pausierte) Kalendertag, an dem der Plan bei t steht."""
-    d = START + timedelta(days=t)
-    while in_pause(d) or t_von(d) < t:
-        d += timedelta(days=1)
-    return d
+def effektiver_start(d):
+    """Für die Seite und die App: der Start der Etappe (kein Verschieben mehr nötig)."""
+    return START
+
+
+def probe_am(d):
+    """Probeprüfung jeden zweiten Samstag, erstmals am 24.10.2026."""
+    erste = date(2026, 10, 24)
+    return d.weekday() == 5 and d >= erste and ((d - erste).days // 7) % 2 == 0
 
 
 def status(d):
     p = in_pause(d)
     if p:
         nach = p[1] + timedelta(days=1)
-        while in_pause(nach):                 # direkt anschließende Pausen überspringen
+        while in_pause(nach) or nach.weekday() == RUHETAG:
             nach += timedelta(days=1)
         return {'art': 'PAUSE', 'datum': d.isoformat(), 'von': p[0].isoformat(),
                 'bis': p[1].isoformat(), 'weiter': nach.isoformat()}
-    t = t_von(d)
-    if t < 0:
-        return {'art': 'VORHER', 'datum': d.isoformat(), 't': t}
-    if t % 2:
-        return {'art': 'UEBUNGSTAG', 'datum': d.isoformat(), 't': t,
-                'lektionVorher': t // 2 + 1}
-    lektion = t // 2 + 1
-    z = {'woche': (d - date(2026, 9, 8)).days // 7 + 1, 'gesamt': THEMEN_GESAMT,
-         'etappe': 'B1', 'takt': 2}
-    if t >= THEMEN_GESAMT * 4:
+    if d < START:
+        return {'art': 'VORHER', 'datum': d.isoformat(), 'start': START.isoformat()}
+    if d.weekday() == RUHETAG:
+        return {'art': 'UEBUNGSTAG', 'datum': d.isoformat(), 'ruhetag': True,
+                'lektionVorher': lektion_von(d)}
+    lektion = lektion_von(d)
+    z = {'woche': (d - START).days // 7 + 1, 'gesamt': THEMEN_GESAMT, 'etappe': 'B1',
+         'takt': 1, 'ruhetag': 0, 'themenTage': PRO_THEMA}
+    if lektion > THEMEN_GESAMT * PRO_THEMA:
         z['phase'] = 'Wiederholung'
+        themen_start = d
     else:
-        block = t // 4 + 1
-        themen_tag = (t // 2) % 2 + 1
+        block = (lektion - 1) // PRO_THEMA + 1
+        themen_tag = (lektion - 1) % PRO_THEMA + 1
         z.update({'thema': THEMEN[(block - 1) % 16], 'themaNr': (block - 1) % 16 + 1,
                   'grammatik': GRAMMATIK[block - 1], 'grammatikNr': block,
                   'themaBlock': block, 'themenTag': themen_tag})
-        start_block = datum_von_t(t - 2 * (themen_tag - 1))
+        themen_start = datum_von_lektion(lektion - themen_tag + 1)
     z.update({'tag': WOCHENTAGE[d.weekday()], 'fokus': REIHE[(lektion - 1) % 5],
-              'start': START.isoformat(),
-              'themenStart': (start_block if 'themaBlock' in z else d).isoformat(),
+              'start': START.isoformat(), 'themenStart': themen_start.isoformat(),
               'lektion': lektion})
-    return {'art': 'LEKTIONSTAG', 'datum': d.isoformat(), 't': t,
-            'probe': d.weekday() == 5, 'zyklus': z}
+    return {'art': 'LEKTIONSTAG', 'datum': d.isoformat(), 'probe': probe_am(d), 'zyklus': z}
 
 
 def heute_berlin():
@@ -193,8 +217,22 @@ def heute_berlin():
         return date.today()
 
 
+def plan():
+    """Alle Lektionstage der Etappe mit Grammatikthema — für die Planseite."""
+    out = []
+    for n in range(1, LEKTIONEN_GESAMT + 1):
+        d = datum_von_lektion(n)
+        out.append((n, d, status(d)['zyklus']))
+    return out
+
+
 def main():
-    args = [a for a in sys.argv[1:] if a != '--json']
+    args = [a for a in sys.argv[1:] if not a.startswith('--')]
+    if '--plan' in sys.argv:
+        for n, d, z in plan():
+            print('%3d  %s %s  %s' % (n, d.isoformat(), WOCHENTAGE[d.weekday()][:2],
+                  z.get('phase') or 'G%d/%d %s' % (z['grammatikNr'], z['themenTag'], z['grammatik'])))
+        return
     d = _d(args[0]) if args else heute_berlin()
     s = status(d)
     if '--json' in sys.argv:
@@ -204,16 +242,18 @@ def main():
         print('%s · PAUSE (%s bis %s) — nichts schreiben. Es geht am %s weiter.'
               % (s['datum'], s['von'], s['bis'], s['weiter']))
     elif s['art'] == 'UEBUNGSTAG':
-        print('%s · UEBUNGSTAG (t = %d) — nichts schreiben.' % (s['datum'], s['t']))
+        print('%s · UEBUNGSTAG%s — nichts schreiben.'
+              % (s['datum'], ' (Sonntag: Ruhetag mit Wochenrückblick)' if s.get('ruhetag') else ''))
     elif s['art'] == 'VORHER':
-        print('%s · VORHER — die Etappe hat noch nicht begonnen.' % s['datum'])
+        print('%s · VORHER — die Etappe beginnt am %s.' % (s['datum'], s['start']))
     else:
         z = s['zyklus']
-        print('%s · LEKTIONSTAG · Lektion %d%s (t = %d)'
-              % (s['datum'], z['lektion'], ' + Probeprüfung (Samstag)' if s['probe'] else '', s['t']))
+        print('%s · LEKTIONSTAG · Lektion %d von %d%s'
+              % (s['datum'], z['lektion'], LEKTIONEN_GESAMT,
+                 ' + Probeprüfung (Samstag)' if s['probe'] else ''))
         print('zyklus = ' + json.dumps(z, ensure_ascii=False))
-    print('Etappe endet am %s (%d Pausentage im Plan).'
-          % (etappe_ende().isoformat(), pausentage_gesamt()))
+    print('Etappe: %s bis %s · %d Lektionen (%d Pausentage im Plan).'
+          % (START.isoformat(), etappe_ende().isoformat(), LEKTIONEN_GESAMT, pausentage_gesamt()))
 
 
 if __name__ == '__main__':

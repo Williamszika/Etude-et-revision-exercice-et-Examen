@@ -138,12 +138,15 @@ def main():
         print('Es geht am %s automatisch weiter.' % s['weiter'])
         return 0
 
-    print('Heute: %s · t = (heute − 2026-09-11 − Pausentage) = %d → %s'
-          % (datum, s.get('t', -1), 'LEKTIONSTAG' if lektionstag else 'Übungstag'))
+    if s['art'] == 'VORHER':
+        print('Heute: %s · die Etappe beginnt am %s — nichts nachzuweisen.' % (datum, s['start']))
+        return 0
+    print('Heute: %s · %s' % (datum, ('LEKTIONSTAG · Lektion %d' % s['zyklus']['lektion']) if lektionstag
+          else ('Sonntag — Ruhetag' if s.get('ruhetag') else 'Übungstag')))
 
     if not lektionstag:
-        print('\nÜbungstag: Es entsteht keine Datei in lektionen/. Die Vorlage baut den')
-        print('Übungstag aus dem leeren Tag von selbst. Nichts nachzuweisen.')
+        print('\nKeine Lektion heute: Es entsteht keine Datei in lektionen/. Die Vorlage baut')
+        print('den Tag (Ruhetag bzw. Übungstag) von selbst. Nichts nachzuweisen.')
         return 0
 
     print('\nIm Repo:')

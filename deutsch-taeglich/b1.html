@@ -33,7 +33,7 @@
   body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
     line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
 
-  header.hero{padding:46px 20px 30px;text-align:center;border-bottom:1px solid var(--line);
+  header.hero{padding:46px 16px 30px;text-align:center;border-bottom:1px solid var(--line);
     background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
   .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
     color:var(--accent-deep);margin:0 0 10px;}
@@ -52,13 +52,19 @@
   .leiter .st-b1{background:var(--b1bg);} .leiter .st-b1 b{color:var(--b1);}
   .leiter .st-b2 b{color:var(--b2);}
 
+  /* Kennzahlen unter der Leiter */
+  .zahlen{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:640px;margin:14px auto 0;}
+  .zahlen span{font-family:var(--mono);font-size:12px;color:var(--ink-soft);background:var(--card);
+    border:1px solid var(--line);border-radius:999px;padding:5px 12px;white-space:nowrap;}
+  .zahlen span b{color:var(--b1);}
+
   nav.toc{position:sticky;top:0;z-index:30;background:var(--paper-2);border-bottom:1px solid var(--line);
     padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
   nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
     color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;white-space:nowrap;}
   nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);background:var(--card);}
 
-  main{max-width:60rem;margin:0 auto;padding:0 18px 90px;}
+  main{max-width:60rem;margin:0 auto;padding:0 16px 90px;}
   section{padding-top:50px;}
   h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
     margin:0 0 6px;line-height:1.16;text-wrap:balance;}
@@ -80,27 +86,31 @@
     text-transform:uppercase;color:var(--ink-soft);font-weight:600;}
   tbody tr:last-child td{border-bottom:none;}
   td.n,th.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+  tr.wahl td{background:var(--b1bg);}
+  tr.zwischen td{background:var(--paper-2);font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--accent-deep);font-weight:700;padding:7px 13px;}
 
   .warn{background:var(--warnbg);border-left:4px solid var(--warn);border-radius:10px;padding:15px 18px;margin:16px 0;}
   .gut{background:var(--goodbg);border-left:4px solid var(--good);border-radius:10px;padding:15px 18px;margin:16px 0;}
   .info{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:10px;padding:15px 18px;margin:16px 0;}
   .achtung{background:var(--badbg);border-left:4px solid var(--bad);border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .franz{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--b2);
+    border-radius:10px;padding:15px 18px;margin:16px 0;}
+  .franz p{margin:8px 0 0;}
 
-  /* Die 21 Lektionen */
+  /* Die 29 Themenblöcke */
   .lekliste{display:grid;gap:8px;margin:18px 0;}
-  .lek{display:grid;grid-template-columns:3.2rem 5.6rem 1fr auto;gap:13px;align-items:baseline;
+  .lek{display:grid;grid-template-columns:3.2rem 9.6rem 1fr;gap:13px;align-items:baseline;
     background:var(--card);border:1px solid var(--line);border-radius:11px;padding:11px 15px;}
   .lek .nr{font-family:var(--mono);font-size:12.5px;font-weight:700;color:var(--b1);}
   .lek .dt{font-family:var(--mono);font-size:12.5px;color:var(--ink-soft);font-variant-numeric:tabular-nums;}
-  .lek .gr{font-size:15px;}
+  .lek .gr{font-size:15px;min-width:0;}
   .lek .gr i{display:block;font-style:normal;font-size:13px;color:var(--ink-soft);margin-top:1px;}
-  .lek .fk{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.05em;
-    border-radius:6px;padding:3px 8px;white-space:nowrap;color:var(--card);}
   .lek.heute{border-color:var(--b1);border-width:2px;background:var(--b1bg);}
   .lek.vorbei{opacity:.5;}
   @media (max-width:640px){
     .lek{grid-template-columns:3.2rem 1fr;}
-    .lek .dt{grid-column:2;} .lek .gr{grid-column:1 / -1;} .lek .fk{grid-column:1 / -1;justify-self:start;}
+    .lek .dt{grid-column:2;} .lek .gr{grid-column:1 / -1;}
   }
   .lek .tage{display:flex;gap:5px;flex-wrap:wrap;margin-top:6px;grid-column:1 / -1;}
   .lek .tage span{font-family:var(--mono);font-size:11px;border:1px solid var(--line);
@@ -108,6 +118,7 @@
     white-space:nowrap;}
   .lek .tage span b{color:var(--b1);font-weight:700;}
   .lek .tage span.heute{border-color:var(--b1);background:var(--b1bg);color:var(--ink);}
+  .lek .tage span.probe{border-color:var(--warn);}
   .runde-wahl{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0 6px;}
   .runde-wahl button{font:inherit;font-size:14px;font-weight:600;color:var(--ink-soft);
     background:var(--card);border:1px solid var(--line);border-radius:10px;padding:9px 15px;
@@ -116,8 +127,6 @@
   .runde-wahl button:focus-visible{outline:2px solid var(--b1);outline-offset:2px;}
   .runde-wahl button.an{background:var(--b1);border-color:var(--b1);color:var(--card);}
   .runde-wahl button small{display:block;font-weight:400;font-size:12px;opacity:.8;}
-  .lek .rd{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.05em;
-    color:var(--b1);background:var(--b1bg);border-radius:5px;padding:2px 7px;margin-left:7px;}
   .legende{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;}
   .legende span{font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.05em;
     border-radius:6px;padding:4px 10px;color:var(--card);}
@@ -128,36 +137,41 @@
   .kann .k h4{margin:0 0 6px;font-family:var(--serif);font-size:1.06rem;color:var(--kf);}
   .kann .k ul{margin:0;padding-left:1.1em;font-size:14.5px;}
 
-  footer{border-top:1px solid var(--line);margin-top:70px;padding:30px 20px 50px;
+  footer{border-top:1px solid var(--line);margin-top:70px;padding:30px 16px 50px;
     text-align:center;color:var(--ink-soft);font-size:14px;}
   footer a{color:var(--accent-deep);}
 </style>
 
 <header class="hero">
-  <p class="eyebrow">Deutsch täglich · Etappe 1 · 11.09.2026 – 31.01.2027</p>
+  <p class="eyebrow">Deutsch täglich · Etappe 1 · 16.10.2026 – 15.02.2027</p>
   <h1>Der Weg zu B1</h1>
-  <p class="sub"><b>Neustart am 11.09.2026</b> — alles Frühere ist gelöscht. Dein Plan, so wie du
-    ihn festgelegt hast: <em>„une leçon chaque deux jours, et cela jusqu'à en Décembre."</em>
-    Ergebnis: <b>72 Lektionen</b>, eine jeden zweiten Tag, mit einem <b>Übungstag</b> dazwischen.
-    Jeder der <b>29 Grammatikblöcke</b> bekommt
-    <b>zwei Lektionen</b> — <i>entdecken → anwenden</i>. Die ganze B1-Grammatik ist am
-    <b>3. Januar</b> durch; der <b>ganze Januar</b> ist dann Anwendung und Wiederholung.
-    <br><b style="color:var(--good)">Verlängert am 19.09.2026</b> auf deinen Wunsch
-    (<em>„on prolonge jusqu'à la fin du mois de Janvier"</em>) — die acht neuen Blöcke 22–29
-    tragen genau das, was vorher gefehlt hat.</p>
+  <p class="sub"><b>Neustart am Freitag, 16.10.2026, mit Lektion 1.</b> Dein Wunsch vom 15.10.:
+    <em>„J'aimerais qu'on reprenne le Deutsch täglich … à zéro, mais à partir de demain, pour avoir
+    le niveau B1 … savoir parler, savoir écrire, savoir comprendre, savoir lire … Est-ce que cela
+    peut faire quatre mois?"</em> Gewählt hast du <b>75 Minuten an sechs Tagen pro Woche</b> und
+    <b>vier Monate bis zum 15.02.2027</b>. Ergebnis: <b>105 Lektionen</b>, jeden Tag von Montag bis
+    Samstag; der <b>Sonntag ist Ruhetag</b>. Jeder der <b>29 Grammatikblöcke</b> bekommt
+    <b>drei Lektionen</b> — <i>entdecken → üben → anwenden</i>. Am <b>25.01.2027</b> ist die
+    ganze B1-Grammatik durch; danach kommen <b>18 Lektionen Wiederholung</b>.</p>
   <div class="leiter">
-    <div class="st-a2"><b>A2</b><span>dein Start<br>11.09.2026</span></div>
-    <div class="st-b1"><b>B1</b><span>das Ziel dieser Etappe<br>31.01.2027</span></div>
+    <div class="st-a2"><b>A2</b><span>dein Start<br>16.10.2026</span></div>
+    <div class="st-b1"><b>B1</b><span>das Ziel dieser Etappe<br>15.02.2027</span></div>
     <div class="st-b2"><b>B2</b><span>Etappe 2, danach<br>ohne festes Datum</span></div>
+  </div>
+  <div class="zahlen">
+    <span><b>105</b> Lektionen</span>
+    <span><b>Mo–Sa</b> · So Ruhetag</span>
+    <span><b>75</b> Min pro Tag</span>
+    <span><b>29</b> Blöcke × 3</span>
   </div>
 </header>
 
 <nav class="toc">
   <a href="#ehrlich">Die ehrliche Rechnung</a>
   <a href="#kann">Was B1 heißt</a>
-  <a href="#lektionen">Die 21 Lektionen</a>
+  <a href="#lektionen">Die 29 Themenblöcke</a>
   <a href="#grammatik">Die B1-Grammatik</a>
-  <a href="#tag">Ein Lerntag, zwei Übungstage</a>
+  <a href="#tag">Ein Lerntag</a>
   <a href="#messung">Die Messung</a>
 </nav>
 
@@ -166,62 +180,62 @@
 <section id="ehrlich">
   <h2>Die ehrliche Rechnung — bevor wir anfangen</h2>
   <p class="lead">Ich sage dir das einmal, klar, und dann arbeiten wir. Du sollst wissen, worauf
-    du dich einlässt — nicht, damit du aufhörst, sondern damit du entscheidest.</p>
+    du dich einlässt — nicht, damit du aufhörst, sondern damit du entscheidest. Das hast du am
+    15.10. getan; hier steht, zwischen was du gewählt hast.</p>
 
   <div class="tabelle">
     <table>
-      <thead><tr><th>Was</th><th class="n">Zahl</th><th>Woher</th></tr></thead>
+      <thead><tr><th>Variante (vier Monate, 6 Tage pro Woche)</th><th class="n">Stunden</th><th>Verglichen mit 112–225 h</th></tr></thead>
       <tbody>
-        <tr><td><b>72 Lektionen à 60 Minuten</b> (jeden zweiten Tag)</td>
-            <td class="n">72 h</td><td>dein Takt vom 10.09., verlängert am 19.09.</td></tr>
-        <tr><td><b>72 Übungstage à 30 Minuten</b> (die Tage dazwischen)</td>
-            <td class="n">36 h</td><td>gerechnet</td></tr>
-        <tr><td><b>Zusammen bis zum 31.01.2027</b></td><td class="n"><b>≈ 108 h</b></td>
-            <td>gerechnet</td></tr>
-        <tr><td><b>Übliche Schätzung für A2 → B1</b><br><span class="fr">nachgeprüft am 19.09.2026</span></td>
+        <tr><td>60 Min pro Lektionstag</td><td class="n">≈ 105 h</td>
+            <td>knapp <b>unter</b> der Untergrenze</td></tr>
+        <tr class="wahl"><td><b>75 Min pro Lektionstag — deine Wahl</b><br>
+            <span class="fr">105 Lektionen × 75 Min</span></td><td class="n"><b>≈ 131 h</b></td>
+            <td><b>in der Spanne</b> — im unteren Teil</td></tr>
+        <tr><td>90 Min pro Lektionstag</td><td class="n">≈ 155 h</td>
+            <td>in der Spanne</td></tr>
+        <tr><td><b>Übliche Schätzung für A2 → B1</b></td>
             <td class="n">≈ 112 – 225 h</td>
             <td>Goethe-Institut: <b>A2 = 200–350</b>, <b>B1 = 350–650 Unterrichtseinheiten</b>
-              à 45 Min (kumulativ). Die Differenz ist die Strecke A2 → B1.
-              <b>Internetquelle, nicht deine Unterlagen</b> — und Erfahrungswerte, keine Norm.</td></tr>
-        <tr><td>Frühere Fassungen dieses Plans</td><td class="n">41 · 62 · 128 · 84 h</td>
-            <td>alle abgelöst — das hier ist der gültige Stand</td></tr>
+              à 45 Min (kumulativ). Die Differenz, <b>150–300 UE</b>, ist die Strecke A2 → B1.
+              <b>Internetquelle, nicht deine Unterlagen</b> — Erfahrungswerte, keine Norm.</td></tr>
       </tbody>
     </table>
   </div>
 
   <div class="warn"><b>Was das bedeutet — und was nicht.</b>
-    <p style="margin:8px 0 0;"><b>Der Stoff passt — einmal ganz durch, plus ein ganzer Monat
-    Wiederholung.</b> Die B1-Grammatik ist eine <em>abzählbare Liste</em>: 21 Themen. Jedes
-    bekommt <b>zwei Lektionen</b>, und am <b>3. Januar</b> ist die Liste vollständig durch.
+    <p style="margin:8px 0 0;"><b>Der Stoff passt — einmal ganz durch, und danach drei Wochen
+    Wiederholung.</b> Die B1-Grammatik ist eine <em>abzählbare Liste</em>: 29 Blöcke. Jeder
+    bekommt <b>drei Lektionen</b>, und am <b>25.01.2027</b> ist die Liste vollständig durch.
     Nichts wird weggelassen; du kannst es unten Zeile für Zeile nachprüfen.</p>
-    <p style="margin:10px 0 0;"><b>Was die Verlängerung bringt — und was sie nicht bringt.</b>
-    Mit 108 Stunden liegst du <em>immer noch knapp darunter</em> — die Spanne fängt bei rund
-    112 Stunden an. Aber der Abstand ist von 28 Stunden auf 4 geschrumpft. Ich sage das so
-    genau, weil ich vorher auf dieser Seite einmal „innerhalb der Spanne“ geschrieben hatte:
-    das war falsch gerechnet. Die elf Lücken haben <b>eigene
-    Lektionen</b> statt einer Randnotiz. Was sich <em>nicht</em> ändert: die Grammatik läuft
-    <b>einmal</b> durch, nicht zweimal, und ob es sitzt, entscheidet weiter die Messung.</p>
+    <p style="margin:10px 0 0;"><b>„In der Spanne“ heißt nicht „sicher genug“.</b> Mit rund 131
+    Stunden liegst du innerhalb der üblichen Schätzung, aber eher im unteren Teil — nicht in der
+    Mitte. Und zwei Dinge stehen in keiner dieser Zahlen: <b>Stress senkt das Behalten</b> —
+    müde nach einer Schicht lernt man weniger als ausgeruht. Und <b>du lebst und arbeitest auf
+    Deutsch</b> — das hilft jeden Tag mit, auch ohne Lektion.</p>
     <p style="margin:10px 0 0;"><b>Was ich nicht verspreche:</b> dass der Kalender entscheidet.
-    Du hast gesagt, du willst sprechen, schreiben, hören und verstehen können. Der
-    Plan ist genau darauf gebaut — aber ob es <em>sitzt</em>, sagt die Abschlussmessung am
-    <b>31. Januar 2027</b>, nicht das Datum.
+    Du hast gesagt, du willst sprechen, schreiben, verstehen und lesen können. Der Plan ist genau
+    darauf gebaut — aber ob es <em>sitzt</em>, sagt die Abschlussmessung am
+    <b>15. Februar 2027</b>, nicht das Datum.
     <span class="fr">Ce sont les mesures qui trancheront, pas le calendrier. Je ne te dirai
-    jamais « tu as le B1 » parce que 56 leçons sont faites.</span></p>
+    jamais « tu as le B1 » parce que 105 leçons sont faites.</span></p>
   </div>
 
-  <div class="gut"><b>Warum der Januar der wichtigste Monat ist.</b> Ab dem <b>5. Januar 2027</b>
-    kommt <b>kein neues Grammatikthema</b> mehr. Die 14 Januarlektionen nehmen gezielt das, was
-    in den Probeprüfungen und in deinen eingeschickten Texten schwach war: ganze Aufgaben, freies
-    Schreiben, Sprechen, Hören unter Zeit. Genau das, was du dir vorgenommen hast.
+  <div class="gut"><b>Warum die letzten drei Wochen die wichtigsten sind.</b> Ab dem
+    <b>26.01.2027</b> kommt <b>kein neues Grammatikthema</b> mehr. Die 18 Lektionen bis zum
+    15.02.2027 nehmen gezielt das, was in den Probeprüfungen und in deinen eingeschickten Texten
+    schwach war: ganze Aufgaben, freies Schreiben, Sprechen, Hören unter Zeit.
     <p style="margin:10px 0 0;"><b>Und wenn ein Tag ausfällt?</b> Dann fällt er aus. Du arbeitest
-    im Schichtdienst — das ist eingeplant, kein Versagen. Die Seite macht aus dem leeren Tag von
-    selbst einen Übungstag mit der letzten Lektion, und am nächsten Morgen geht es normal weiter.
-    Ich rechne dir nichts vor und mahne dich nicht.</p></div>
+    im Schichtdienst — das ist eingeplant, kein Versagen. Die Lektion bleibt auf der Seite stehen,
+    und du machst sie, wenn du kannst. Ich rechne dir nichts vor und mahne dich nicht.</p></div>
+
+  <p style="font-size:13.5px;color:var(--ink-soft);margin:14px 0 0;">Der frühere Start am
+    11.09.2026 wurde am 15.10.2026 auf deinen Wunsch zurückgesetzt; seine Lektionen sind gelöscht.</p>
 </section>
 
 <section id="kann">
   <h2>Was B1 konkret heißt</h2>
-  <p class="lead">Damit „B1“ nicht ein Wort bleibt: Das hier musst du am 31.01.2027 können. Es ist die
+  <p class="lead">Damit „B1“ nicht ein Wort bleibt: Das hier musst du am 15.02.2027 können. Es ist die
     Messlatte, an der ich dich am Ende prüfe.</p>
   <div class="kann">
     <div class="k" style="--kf:var(--le);"><h4>Lesen</h4><ul>
@@ -245,7 +259,7 @@
       <li>einen Vorschlag machen und auf einen Vorschlag antworten</li>
       <li>sagen, was man will und warum, ohne mittendrin abzubrechen</li></ul></div>
     <div class="k" style="--kf:var(--sb);"><h4>Grammatik und Wortschatz</h4><ul>
-      <li>die 29 Grammatikblöcke unten — <b>alle</b>, jeder mit zwei Lektionen, bis 03.01.2027</li>
+      <li>die 29 Grammatikblöcke unten — <b>alle</b>, jeder mit drei Lektionen, bis 25.01.2027</li>
       <li>rund <b>2400 Wörter</b> verstehen (A2 sind rund 1300) — so steht es in der
         Wortliste des Goethe-/ÖSD-Zertifikats B1; dort heißt es ausdrücklich
         <em>„zumindest rezeptiv"</em>, also verstehen, nicht alle selbst benutzen</li>
@@ -264,11 +278,12 @@
 </section>
 
 <section id="lektionen">
-  <h2>Die 21 Themenblöcke</h2>
-  <p class="lead">Jeder Block sind <b>zwei Lektionen</b> mit demselben Grammatikthema und
-    demselben Wortfeld — <b>entdecken</b>, dann <b>anwenden</b>. Weil dazwischen ein Übungstag
-    liegt, dauert ein Block <b>vier Kalendertage</b>. Der Fertigkeits-Fokus wechselt mit jeder
-    Lektion, also übst du dieselbe Regel in <b>zwei verschiedenen Fertigkeiten</b>.</p>
+  <h2>Die 29 Themenblöcke</h2>
+  <p class="lead">Jeder Block sind <b>drei Lektionen</b> mit demselben Grammatikthema und
+    demselben Wortfeld — <b>entdecken</b>, dann <b>üben</b>, dann <b>anwenden</b>. Gelernt wird
+    von Montag bis Samstag; fällt ein Sonntag in den Block, dauert er vier statt drei
+    Kalendertage. Der Fertigkeits-Fokus wechselt mit jeder Lektion, also übst du dieselbe Regel
+    in <b>drei verschiedenen Fertigkeiten</b>.</p>
   <div class="runde-wahl" id="rundeWahl"></div>
   <div class="legende">
     <span style="background:var(--le);">LV Lesen</span>
@@ -277,17 +292,18 @@
     <span style="background:var(--sa);">SA Schreiben</span>
     <span style="background:var(--ma);">MA Sprechen</span>
   </div>
-  <p style="font-size:14.5px;color:var(--ink-soft);margin:0 0 4px;">Der Zwei-Tage-Takt beginnt am
-    <b>11.09.2026</b> mit Lektion 1. Es gibt keinen Vorlauf — alles Frühere wurde gelöscht.</p>
+  <p style="font-size:14.5px;color:var(--ink-soft);margin:0 0 4px;">Lektion 1 ist
+    <b>Freitag, 16.10.2026</b>, Lektion 105 <b>Montag, 15.02.2027</b>. Ein orange umrandeter
+    Tag hat zusätzlich die <b>Probeprüfung</b> (jeden zweiten Samstag, ab 22:00).</p>
   <div class="lekliste" id="lekliste"></div>
 </section>
 
 <section id="grammatik">
   <h2>Die B1-Grammatik — die vollständige Liste</h2>
-  <p class="lead">Das ist der Grund, warum zwei Monate für den <em>Stoff</em> reichen: B1-Grammatik
-    ist endlich. Hier steht sie ganz, und jede Zeile hat ihren Tag.</p>
+  <p class="lead">Das ist der Grund, warum vier Monate für den <em>Stoff</em> reichen: B1-Grammatik
+    ist endlich. Hier steht sie ganz, und jede Zeile hat ihre drei Lektionen.</p>
   <div class="tabelle"><table>
-    <thead><tr><th class="n">Nr.</th><th>Thema</th><th>Warum es für dich zählt</th></tr></thead>
+    <thead><tr><th class="n">Nr.</th><th>Thema</th><th>Warum es für dich zählt</th><th class="n">Wann</th></tr></thead>
     <tbody id="gramtab"></tbody>
   </table></div>
   <div class="info"><b>Die acht Blöcke mit dem Etikett <span style="font-family:var(--mono);
@@ -297,11 +313,10 @@
     dabei sind <b>elf Lücken</b> aufgefallen: Futur I, n-Deklination, Partizipien als Adjektive,
     Relativsätze mit Präposition, Passiv mit Modalverb, Konjunktiv II der Vergangenheit,
     zweiteilige Konnektoren und vier weitere.
-    <p style="margin:8px 0 0;">Zuerst waren sie als grüne <span style="color:var(--good)">+</span
-    >-Zeilen in die alten Blöcke gequetscht. Weil du die Etappe <b>bis Ende Januar verlängert</b>
-    hast, haben sie jetzt <b>eigene Blöcke</b> — und stehen zusätzlich als <span
-    style="color:var(--good)">+</span>-Zeile schon einmal kurz in dem alten Block, zu dem sie
-    gehören. Zweimal mit Wochen Abstand: genau so bleibt eine Regel hängen.</p>
+    <p style="margin:8px 0 0;">Sie haben <b>eigene Blöcke</b> (22–29) mit je drei Lektionen — und
+    stehen zusätzlich als <span style="color:var(--good)">+</span>-Zeile schon einmal kurz in dem
+    früheren Block, zu dem sie gehören. Zweimal mit Wochen Abstand: genau so bleibt eine Regel
+    hängen.</p>
     <span class="fr">Ces huit blocs viennent d'une comparaison avec des listes B1 publiques sur
     internet — ce ne sont pas tes documents.</span></div>
   <div class="achtung"><b>Vier davon sind deine Baustellen.</b> Nr. 5 (Kasus) und Nr. 7
@@ -312,67 +327,99 @@
 </section>
 
 <section id="tag">
-  <h2>Ein Lerntag, ein Übungstag</h2>
-  <p class="lead">Was in den 60 bzw. 30 Minuten wirklich passiert.</p>
+  <h2>Ein Lerntag — 75 Minuten in zwei Blöcken</h2>
+  <p class="lead">Acht Schritte, jeder mit Haken „fertig“. Zwischen den beiden Blöcken darfst du
+    eine Pause machen.</p>
   <div class="tabelle"><table>
-    <thead><tr><th>Wann</th><th>Was drin ist</th><th class="n">Zeit</th></tr></thead>
+    <thead><tr><th class="n">#</th><th>Schritt</th><th>Was drin ist</th><th class="n">Min</th></tr></thead>
     <tbody>
-      <tr><td><b>Jeden Morgen 5:30</b><br><span class="fr">une leçon par jour</span></td>
-        <td>Verb des Tages mit voller Konjugation · Ausdruck des Tages · das Grammatikthema der
-          Lektion · <b>die Kette</b> an drei Sätzen (Deklination Schritt für Schritt) · ein
-          <b>Text von 150–200 Wörtern</b> mit Fragen, Wortschatztabelle und Konnektorenübungen ·
-          die <b>Fertigkeit des Tages</b> · Aussprache · <b>Diktat</b> · 5 Übersetzungen
-          FR→DE · 3 Alltagsmissionen</td><td class="n">60 Min</td></tr>
-      <tr><td><b>Der Tag dazwischen</b><br><span class="fr">jour d'exercices</span></td>
-        <td><b>Nichts Neues.</b> Nur die Übungen der letzten Lektion — Vokabeln, die Kette, die
-          Textaufgaben, die Alltagssätze, das Diktat. Mit <b>leeren Feldern</b>: du fängst wirklich
-          neu an.</td><td class="n">30 Min</td></tr>
-      <tr><td><b>Alle zwei Wochen samstags</b><br>erstmals 19.09.</td>
-        <td>Fällt der Lektionstag auf einen Samstag, kommt die <b>Probeprüfung</b> dazu — ab 22:00
-          freigeschaltet, im echten Format und unter Zeit.</td><td class="n">+ 45 Min</td></tr>
-      <tr><td><b>04.12.2026 – 03.01.2027</b><br><span class="fr">les huit nouveaux blocs</span></td>
-        <td><b>Blöcke 22–29.</b> Die acht Themen, die im ersten Plan gefehlt haben — Futur I,
-          n-Deklination, Partizipien, Passiv Perfekt, Konjunktiv II der Vergangenheit,
-          zweiteilige Konnektoren, Relativsätze mit Präposition, Wortbildung.</td>
-        <td class="n">60 Min</td></tr>
-      <tr><td><b>Ab 05.01.2027</b><br><span class="fr">le mois de janvier</span></td>
-        <td><b>Kein neues Grammatikthema mehr.</b> 14 Lektionen, die gezielt wiederholen, was
-          schwach war — ganze Aufgaben, freies Schreiben, Sprechen und Hören unter Zeit.</td>
-        <td class="n">60 Min</td></tr>
+      <tr class="zwischen"><td colspan="4">Block 1 · 45 Minuten</td></tr>
+      <tr><td class="n">1</td><td><b>Wiederholen</b></td>
+        <td>Wörter der vorigen Lektionen, die heute wieder fällig sind (Französisch → Deutsch)</td>
+        <td class="n">5</td></tr>
+      <tr><td class="n">2</td><td><b>Neue Vokabeln</b></td>
+        <td>15–18 Wörter aus dem Wortfeld des Blocks, Nomen mit Artikel und Plural, jedes mit Beispielsatz</td>
+        <td class="n">10</td></tr>
+      <tr><td class="n">3</td><td><b>Grammatik</b></td>
+        <td>die Kurzregel in einem Satz · das Grammatikthema des Blocks · <b>die Kette</b> an drei Sätzen</td>
+        <td class="n">10</td></tr>
+      <tr><td class="n">4</td><td><b>Lesen und schreiben</b></td>
+        <td>ein Text von 150–200 Wörtern · nacherzählen, zusammenfassen, Fragen beantworten — selbst formulieren</td>
+        <td class="n">20</td></tr>
+      <tr class="zwischen"><td colspan="4">Block 2 · 30 Minuten</td></tr>
+      <tr><td class="n">5</td><td><b>Diktat</b></td>
+        <td>hören und mitschreiben, danach vergleichen</td><td class="n">10</td></tr>
+      <tr><td class="n">6</td><td><b>Sprechen</b></td>
+        <td><b>Shadowing</b> (direkt hinter der Stimme nachsprechen) · Aussprache ·
+          <b>60-Sekunden-Aufnahme</b> 🎙️</td><td class="n">10</td></tr>
+      <tr><td class="n">7</td><td><b>Im Leben</b></td>
+        <td>eine echte Alltagssituation: was du sagst, was du hörst, und ein Auftrag für heute</td>
+        <td class="n">5</td></tr>
+      <tr><td class="n">8</td><td><b>Mein Fehlerheft</b></td>
+        <td>deine eigenen Fehler aus den Korrekturen — richtig hinschreiben</td><td class="n">5</td></tr>
     </tbody>
   </table></div>
-  <div class="info"><b>Wo steckt das Üben?</b> An drei Stellen. <b>Am Tag danach</b> — der
-    Übungstag nimmt genau die Lektion von gestern. <b>In der zweiten Lektion des Themas</b> —
-    dieselbe Regel, aber anwenden statt erklären. <b>Und im ganzen Januar</b>, der nichts
-    anderes ist als Wiederholung.
-    <span class="fr">Trois niveaux de répétition : le lendemain, la deuxième leçon du thème, et
-    tout le mois de décembre.</span></div>
+
+  <div class="tabelle"><table>
+    <thead><tr><th>Wann</th><th>Was passiert</th></tr></thead>
+    <tbody>
+      <tr><td><b>Montag bis Samstag</b></td>
+        <td>eine Lektion, 75 Minuten, die acht Schritte oben.</td></tr>
+      <tr><td><b>Sonntag</b><br><span class="fr">jour de repos</span></td>
+        <td><b>Ruhetag — keine Lektion.</b> Wer mag: ein freiwilliger <b>Wochenrückblick</b> von
+          etwa 10 Minuten (die Grammatik der Woche, ihre Kurzregeln, ein Mini-Test mit Wörtern).</td></tr>
+      <tr><td><b>Jeden zweiten Samstag</b><br>erstmals 24.10.2026</td>
+        <td>Zur Lektion kommt die <b>Probeprüfung</b> dazu — ab 22:00 freigeschaltet, unter Zeit.</td></tr>
+      <tr><td><b>Übungstag</b></td>
+        <td>Es gibt <b>keinen</b> Übungstag mehr zwischen zwei Lektionen. Er erscheint nur, wenn an
+          einem Lektionstag die Lektion fehlt — dann zeigt die Seite die Übungen der letzten Lektion.</td></tr>
+      <tr><td><b>26.01. – 15.02.2027</b><br><span class="fr">la répétition</span></td>
+        <td><b>Kein neues Grammatikthema mehr.</b> 18 Lektionen, die gezielt wiederholen, was
+          schwach war — ganze Aufgaben, freies Schreiben, Sprechen und Hören unter Zeit.</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="franz"><span class="lbl">🇫🇷 En français — ta méthode chaque jour</span>
+    <p><b>Du lundi au samedi, une leçon de 75 minutes, en deux blocs.</b></p>
+    <p><b>Bloc 1 (45 min) :</b> répéter les mots (5) · nouveaux mots (10) · grammaire (10) ·
+      lire et écrire (20).<br>
+      <b>Bloc 2 (30 min) :</b> dictée (10) · parler — shadowing et enregistrement de 60 secondes (10) ·
+      dans la vie (5) · mon carnet d'erreurs (5).</p>
+    <p>Entre les deux blocs, tu peux faire une pause. <b>Le dimanche, c'est repos</b> : pas de leçon.
+      Si tu en as envie, un récapitulatif de la semaine d'environ 10 minutes — facultatif.</p></div>
+
+  <div class="info"><b>Wo steckt das Üben?</b> An vier Stellen. <b>Am Anfang jeder Lektion</b> —
+    Schritt 1 holt die Wörter zurück, die fällig sind. <b>Im Fehlerheft</b> — jeden Tag deine
+    eigenen Fehler. <b>In der zweiten und dritten Lektion jedes Blocks</b> — dieselbe Regel, erst
+    üben, dann anwenden. <b>Und in den 18 Wiederholungslektionen</b> am Schluss.
+    <span class="fr">La répétition est dans chaque leçon : au début, dans le carnet d'erreurs,
+    dans les leçons 2 et 3 de chaque bloc, et dans les trois dernières semaines.</span></div>
   <div class="gut"><b>Was du jedes Mal tun musst, damit es wirkt:</b> <b>schick mir deine
     Antworten.</b> Ich korrigiere sie — jeden Deklinationsfehler ordne ich dem <b>Kettenglied</b>
     zu (1 Bestimmer · 2 Fall · 3 Genus · 4 Artikel · 5 Endung), jeden anderen seiner
-    <b>Baustelle</b>. Ohne deine Texte kann ich unterrichten, aber nicht korrigieren — und
-    Korrektur ist der Teil, der dich wirklich weiterbringt.</div>
+    <b>Baustelle</b>, und er kommt in dein Fehlerheft. Ohne deine Texte kann ich unterrichten,
+    aber nicht korrigieren — und Korrektur ist der Teil, der dich wirklich weiterbringt.</div>
 </section>
 
 <section id="messung">
   <h2>Woran wir merken, ob es funktioniert</h2>
-  <p class="lead">Nicht am Gefühl. An denselben Aufgaben, zu drei festen Zeitpunkten.</p>
+  <p class="lead">Nicht am Gefühl. An denselben Aufgaben, zu drei festen Zeitpunkten — mit dem
+    <a href="https://claude.ai/code/artifact/ea512258-b4a4-47d8-8959-12d7cd441bf9" target="_blank"
+    rel="noopener">📏 Einstufungstest</a>.</p>
   <div class="tabelle"><table>
     <thead><tr><th class="n">Wann</th><th>Was</th><th>Wofür</th></tr></thead>
     <tbody>
-      <tr><td class="n">11.09.2026</td><td>Einstufungstest, Messung 1</td>
+      <tr><td class="n">16.10.2026</td><td>Einstufungstest, Messung 1 · <b>Start</b></td>
         <td>Dein Startpunkt in Zahlen. Du sagst A2 — der Test zeigt, ob das für alle fünf
           Fertigkeiten gilt oder ob eine davon schon höher oder niedriger liegt.</td></tr>
-      <tr><td class="n">06.11.2026</td><td>Einstufungstest, Messung 2</td>
-        <td>Nach acht Wochen. Genau dieselben Aufgaben — nur so sind die Zahlen vergleichbar.</td></tr>
-      <tr><td class="n">31.12.2026</td><td>Einstufungstest, Messung 3</td>
-        <td>Zwischenmessung am Jahresende, mitten in den neuen Blöcken 22–29.</td></tr>
-      <tr><td class="n">03.01.2027</td><td>Grammatik komplett</td>
-        <td>Alle 29 B1-Blöcke durch, jeder mit zwei Lektionen. Ab hier kein neuer Stoff.</td></tr>
-      <tr><td class="n">31.01.2027</td><td>Einstufungstest, Messung 4 · <b>Abschlussmessung</b></td>
-        <td>Nach acht Wochen und am Ende der Etappe. Ich sage dir ehrlich, ob B1 erreicht ist,
-          in welchen Fertigkeiten nicht, und ob Etappe 2 (B2) anfängt oder ob wir B1
-          verlängern.</td></tr>
+      <tr><td class="n">14.12.2026</td><td>Einstufungstest, Messung 2 · <b>Zwischenmessung</b></td>
+        <td>Nach acht Wochen, mitten in der Grammatik (Lektion 51). Genau dieselben Aufgaben — nur so
+          sind die Zahlen vergleichbar.</td></tr>
+      <tr><td class="n">25.01.2027</td><td>Grammatik komplett</td>
+        <td>Alle 29 B1-Blöcke durch, jeder mit drei Lektionen. Ab hier kein neuer Stoff.</td></tr>
+      <tr><td class="n">15.02.2027</td><td>Einstufungstest, Messung 3 · <b>Abschlussmessung</b></td>
+        <td>Am Ende der Etappe. Ich sage dir ehrlich, ob B1 erreicht ist, in welchen Fertigkeiten
+          nicht, und ob Etappe 2 (B2) anfängt oder ob wir B1 verlängern.</td></tr>
     </tbody>
   </table></div>
   <div class="info"><b>Und die Prüfung?</b> Es gibt <b>keinen Termin</b>, und ich setze keinen.
@@ -396,7 +443,8 @@
         target="_blank" rel="noopener">🧭 Meine sieben Baustellen</a> ·
      <a href="https://claude.ai/code/artifact/46864e04-1000-4201-8cf3-d76d6c889c1d"
         target="_blank" rel="noopener">🎯 Prüfungsplan B2</a></p>
-  <p>Etappe 1 · Niveau B1 · 11.09.2026 – 31.01.2027 · 72 Lektionen · 29 Themenblöcke · Januar = Wiederholung ·
+  <p>Etappe 1 · Niveau B1 · 16.10.2026 – 15.02.2027 · 105 Lektionen, Mo–Sa, 75 Min ·
+    29 Themenblöcke à 3 Lektionen · ab 26.01.2027 Wiederholung ·
     <span class="fr">Les estimations d'heures sur cette page sont des ordres de grandeur
     généraux, pas des données de tes documents.</span></p>
 </footer>
@@ -405,10 +453,119 @@
 (function(){
   "use strict";
 
-  var START=new Date(2026,8,11);         /* 11.09.2026 — Lektion 1, Block 1, Tag 1 */
-  var ENDE =new Date(2027,0,31);         /* 31.01.2027 — Ende der Etappe 1 */
-  var TAG=86400000;
-  var ROLLEN=['entdecken','anwenden'];
+  var START=new Date(2026,9,16);         /* 16.10.2026 — Lektion 1, Block 1, Thema-Tag 1 */
+  var ENDE =new Date(2027,1,15);         /* 15.02.2027 — Lektion 105, Ende der Etappe 1 */
+  var ROLLEN=['entdecken','üben','anwenden'];
+
+  /* Alle 105 Lektionstage — erzeugt aus `python3 deutsch-taeglich/heute.py --plan`.
+     [lektion, datum, themaBlock (0 = Wiederholung), themenTag, fokus-Index, probe] */
+  var PLAN=/*PLAN*/[
+    [1,"2026-10-16",1,1,0,0],
+    [2,"2026-10-17",1,2,1,0],
+    [3,"2026-10-19",1,3,2,0],
+    [4,"2026-10-20",2,1,3,0],
+    [5,"2026-10-21",2,2,4,0],
+    [6,"2026-10-22",2,3,0,0],
+    [7,"2026-10-23",3,1,1,0],
+    [8,"2026-10-24",3,2,2,1],
+    [9,"2026-10-26",3,3,3,0],
+    [10,"2026-10-27",4,1,4,0],
+    [11,"2026-10-28",4,2,0,0],
+    [12,"2026-10-29",4,3,1,0],
+    [13,"2026-10-30",5,1,2,0],
+    [14,"2026-10-31",5,2,3,0],
+    [15,"2026-11-02",5,3,4,0],
+    [16,"2026-11-03",6,1,0,0],
+    [17,"2026-11-04",6,2,1,0],
+    [18,"2026-11-05",6,3,2,0],
+    [19,"2026-11-06",7,1,3,0],
+    [20,"2026-11-07",7,2,4,1],
+    [21,"2026-11-09",7,3,0,0],
+    [22,"2026-11-10",8,1,1,0],
+    [23,"2026-11-11",8,2,2,0],
+    [24,"2026-11-12",8,3,3,0],
+    [25,"2026-11-13",9,1,4,0],
+    [26,"2026-11-14",9,2,0,0],
+    [27,"2026-11-16",9,3,1,0],
+    [28,"2026-11-17",10,1,2,0],
+    [29,"2026-11-18",10,2,3,0],
+    [30,"2026-11-19",10,3,4,0],
+    [31,"2026-11-20",11,1,0,0],
+    [32,"2026-11-21",11,2,1,1],
+    [33,"2026-11-23",11,3,2,0],
+    [34,"2026-11-24",12,1,3,0],
+    [35,"2026-11-25",12,2,4,0],
+    [36,"2026-11-26",12,3,0,0],
+    [37,"2026-11-27",13,1,1,0],
+    [38,"2026-11-28",13,2,2,0],
+    [39,"2026-11-30",13,3,3,0],
+    [40,"2026-12-01",14,1,4,0],
+    [41,"2026-12-02",14,2,0,0],
+    [42,"2026-12-03",14,3,1,0],
+    [43,"2026-12-04",15,1,2,0],
+    [44,"2026-12-05",15,2,3,1],
+    [45,"2026-12-07",15,3,4,0],
+    [46,"2026-12-08",16,1,0,0],
+    [47,"2026-12-09",16,2,1,0],
+    [48,"2026-12-10",16,3,2,0],
+    [49,"2026-12-11",17,1,3,0],
+    [50,"2026-12-12",17,2,4,0],
+    [51,"2026-12-14",17,3,0,0],
+    [52,"2026-12-15",18,1,1,0],
+    [53,"2026-12-16",18,2,2,0],
+    [54,"2026-12-17",18,3,3,0],
+    [55,"2026-12-18",19,1,4,0],
+    [56,"2026-12-19",19,2,0,1],
+    [57,"2026-12-21",19,3,1,0],
+    [58,"2026-12-22",20,1,2,0],
+    [59,"2026-12-23",20,2,3,0],
+    [60,"2026-12-24",20,3,4,0],
+    [61,"2026-12-25",21,1,0,0],
+    [62,"2026-12-26",21,2,1,0],
+    [63,"2026-12-28",21,3,2,0],
+    [64,"2026-12-29",22,1,3,0],
+    [65,"2026-12-30",22,2,4,0],
+    [66,"2026-12-31",22,3,0,0],
+    [67,"2027-01-01",23,1,1,0],
+    [68,"2027-01-02",23,2,2,1],
+    [69,"2027-01-04",23,3,3,0],
+    [70,"2027-01-05",24,1,4,0],
+    [71,"2027-01-06",24,2,0,0],
+    [72,"2027-01-07",24,3,1,0],
+    [73,"2027-01-08",25,1,2,0],
+    [74,"2027-01-09",25,2,3,0],
+    [75,"2027-01-11",25,3,4,0],
+    [76,"2027-01-12",26,1,0,0],
+    [77,"2027-01-13",26,2,1,0],
+    [78,"2027-01-14",26,3,2,0],
+    [79,"2027-01-15",27,1,3,0],
+    [80,"2027-01-16",27,2,4,1],
+    [81,"2027-01-18",27,3,0,0],
+    [82,"2027-01-19",28,1,1,0],
+    [83,"2027-01-20",28,2,2,0],
+    [84,"2027-01-21",28,3,3,0],
+    [85,"2027-01-22",29,1,4,0],
+    [86,"2027-01-23",29,2,0,0],
+    [87,"2027-01-25",29,3,1,0],
+    [88,"2027-01-26",0,0,2,0],
+    [89,"2027-01-27",0,0,3,0],
+    [90,"2027-01-28",0,0,4,0],
+    [91,"2027-01-29",0,0,0,0],
+    [92,"2027-01-30",0,0,1,1],
+    [93,"2027-02-01",0,0,2,0],
+    [94,"2027-02-02",0,0,3,0],
+    [95,"2027-02-03",0,0,4,0],
+    [96,"2027-02-04",0,0,0,0],
+    [97,"2027-02-05",0,0,1,0],
+    [98,"2027-02-06",0,0,2,0],
+    [99,"2027-02-08",0,0,3,0],
+    [100,"2027-02-09",0,0,4,0],
+    [101,"2027-02-10",0,0,0,0],
+    [102,"2027-02-11",0,0,1,0],
+    [103,"2027-02-12",0,0,2,0],
+    [104,"2027-02-13",0,0,3,1],
+    [105,"2027-02-15",0,0,4,0]
+  ]/*PLAN-ENDE*/;
 
   /* Die 29 Grammatikblöcke der Etappe B1 — 1–21 ursprünglich, 22–29 ab 19.09.2026 */
   var GRAMMATIK=[
@@ -463,12 +620,12 @@
     ['Indirekte Fragen mit ob und W-Wort','Ich weiß nicht, ob … / Können Sie mir sagen, wo …',
      'Höflich fragen — und Verb wieder ans Ende.'],
     ['Wiederholung und B1-Standfestigkeit','die zehn Fehler, die B1 kosten, an einem ganzen Text',
-     'Der Abschluss: alles zusammen, unter Zeit, an einem Stück.',
+     'Alles bis hierher zusammen, unter Zeit, an einem Stück.',
      'Wortbildung wird hier nur angerissen — ganz dran ist sie in Block 29'],
     /* --- ab hier die acht Blöcke vom 19.09.2026 --- */
-    ['Futur I','werden + Infinitiv — Vorhersage und Vermutung',
+    ['Futur I','werden + Infinitiv — Vorhersage und Vermutung · dazu nicht/nur brauchen … zu',
      'Über morgen reden. Hat im ersten Plan ganz gefehlt.','',1],
-    ['n-Deklination','der Patient → den Patienten, der Kollege, der Mensch, der Praktikant',
+    ['n-Deklination','der Patient → den Patienten, der Kollege, der Mensch · dazu falls',
      'Deine häufigsten Nomen. Trifft Baustelle 1 UND 2 auf einmal.','',1],
     ['Partizipien als Adjektive und Adjektive als Nomen',
      'der schlafende Patient, die gebrochene Hüfte, der Kranke, etwas Wichtiges',
@@ -476,7 +633,7 @@
     ['Passiv Perfekt und Passiv mit Modalverben','ist gelagert worden · muss gelagert werden',
      'Steht in jedem Pflegetext, den du liest und schreibst.','',1],
     ['Konjunktiv II der Vergangenheit','hätte gemacht, wäre gewesen · irreale Bedingung · als ob',
-     'Was gewesen wäre. Der Plan hatte nur die Gegenwartsformen.','',1],
+     'Was gewesen wäre. Der Plan hatte zuerst nur die Gegenwartsformen.','',1],
     ['Zweiteilige Konnektoren','sowohl … als auch · weder … noch · entweder … oder · zwar … aber',
      'Dazu indem und sodass. Alles neu, alles B1.','',1],
     ['Relativsätze mit Präposition, was und wo',
@@ -486,7 +643,7 @@
      'Deine Baustelle 5, endlich mit eigener Lektion.','',1]
   ];
 
-  /* Die 16 Themenbereiche — der Wortschatz jeder Lektion */
+  /* Die 16 Themenbereiche — der Wortschatz jedes Blocks */
   var THEMEN=['Angaben zur eigenen Person',
     'Der menschliche Körper, Gesundheit und Körperpflege','Wohnen','Orte','Tägliches Leben',
     'Essen und Trinken','Erziehung, Ausbildung, Lernen','Arbeit und Beruf',
@@ -494,122 +651,106 @@
     'Freizeit und Unterhaltung','Medien und moderne Informationstechniken',
     'Gesellschaft, Staat, Regierung','Beziehungen zu anderen Menschen und Kulturen'];
 
-  var REIHE=[['LV','Lesen','var(--le)'],['HV','Hören','var(--ho)'],
-             ['SB','Grammatik im Text','var(--sb)'],['SA','Schreiben','var(--sa)'],
-             ['MA','Sprechen','var(--ma)']];
+  var REIHE=[['LV','Lesen'],['HV','Hören'],['SB','Grammatik im Text'],
+             ['SA','Schreiben'],['MA','Sprechen']];
 
-  function dat(d){
-    var W=['So','Mo','Di','Mi','Do','Fr','Sa'];
-    return W[d.getDay()]+' '+('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.';
-  }
+  function iso2d(s){ var p=s.split('-'); return new Date(+p[0],+p[1]-1,+p[2]); }
+  function z2(n){ return ('0'+n).slice(-2); }
+  function tm(d){ return z2(d.getDate())+'.'+z2(d.getMonth()+1)+'.'; }
+  function voll(d){ return tm(d)+d.getFullYear(); }
+  function wt(d){ return ['So','Mo','Di','Mi','Do','Fr','Sa'][d.getDay()]; }
+  function spanne(a,b){ return (a.getFullYear()===b.getFullYear()?tm(a):voll(a))+'–'+voll(b); }
+
+  /* Lektionen nach Block gruppieren (0 = Wiederholung) */
+  var GRUPPEN={};
+  PLAN.forEach(function(p){
+    var k=p[2]; (GRUPPEN[k]=GRUPPEN[k]||[]).push(p);
+  });
+  function von(k){ return iso2d(GRUPPEN[k][0][1]); }
+  function bis(k){ var g=GRUPPEN[k]; return iso2d(g[g.length-1][1]); }
 
   var heute=new Date(); heute.setHours(0,0,0,0);
   var liste=document.getElementById('lekliste');
   var wahl=document.getElementById('rundeWahl');
 
-  var BLOECKE=29;                         /* 29 Themenblöcke à 2 Lektionen = 4 Kalendertage */
+  function tagChips(k,mitRolle){
+    var tage=document.createElement('div'); tage.className='tage';
+    GRUPPEN[k].forEach(function(p){
+      var dx=iso2d(p[1]);
+      var sp=document.createElement('span');
+      var cls=[];
+      if(dx.getTime()===heute.getTime())cls.push('heute');
+      if(p[5])cls.push('probe');
+      sp.className=cls.join(' ');
+      var sb=document.createElement('b'); sb.textContent='L'+p[0];
+      sp.appendChild(sb);
+      sp.appendChild(document.createTextNode(' '+wt(dx)+' '+tm(dx)+
+        (mitRolle?' · '+ROLLEN[p[3]-1]:'')+' · '+REIHE[p[4]][0]+(p[5]?' · Probeprüfung':'')));
+      tage.appendChild(sp);
+    });
+    return tage;
+  }
+
+  function zeile(k,nrText,titel,unter){
+    var a=von(k), e=bis(k);
+    var row=document.createElement('div');
+    var laeuft=(heute>=a&&heute<=e);
+    row.className='lek'+(laeuft?' heute':(e<heute?' vorbei':''));
+    row.setAttribute('data-block',String(k));
+    var nr=document.createElement('div'); nr.className='nr'; nr.textContent=nrText;
+    var dt=document.createElement('div'); dt.className='dt'; dt.textContent=spanne(a,e);
+    var gr=document.createElement('div'); gr.className='gr';
+    var bb=document.createElement('b'); bb.textContent=titel;
+    var it=document.createElement('i'); it.textContent=unter;
+    gr.appendChild(bb); gr.appendChild(it);
+    gr.appendChild(tagChips(k,k!==0));
+    row.appendChild(nr); row.appendChild(dt); row.appendChild(gr);
+    liste.appendChild(row);
+  }
+
   var ANSICHT=[
-    ['Grammatik · Block 1–21','11.09. – 02.12.2026'],
-    ['Die acht neuen · Block 22–29','04.12.2026 – 03.01.2027'],
-    ['Januar · Wiederholung','05.01. – 31.01.2027']
+    ['Alles',1,29,true],
+    ['Grammatik · Block 1–21',1,21,false],
+    ['Die acht neuen · Block 22–29',22,29,false],
+    ['Wiederholung · 18 Lektionen',0,0,true]
   ];
 
-  function zeichne(nurTeil){
+  function zeichne(j){
+    var v=ANSICHT[j];
     liste.textContent='';
-
-    if(!nurTeil || nurTeil===1 || nurTeil===2){
-      var vonB = (nurTeil===2) ? 21 : 0;
-      var bisB = (nurTeil===1) ? 21 : BLOECKE;
-      for(var b=vonB;b<bisB;b++){
-        var d0=new Date(START); d0.setDate(d0.getDate()+b*4);   /* Lektion 1 des Blocks */
-        var d1=new Date(d0);    d1.setDate(d1.getDate()+2);     /* Lektion 2 des Blocks */
-        var bis=new Date(d1);   bis.setDate(bis.getDate()+1);
-        var g=GRAMMATIK[b];
-        var laeuft=(heute>=d0&&heute<bis);
-
-        var row=document.createElement('div');
-        row.className='lek'+(laeuft?' heute':(d1<heute?' vorbei':''));
-
-        var nr=document.createElement('div'); nr.className='nr'; nr.textContent='B'+(b+1);
-        var dt=document.createElement('div'); dt.className='dt';
-        dt.textContent=dat(d0)+'–'+('0'+d1.getDate()).slice(-2)+'.'+('0'+(d1.getMonth()+1)).slice(-2)+'.';
-        var gr=document.createElement('div'); gr.className='gr';
-        var bb=document.createElement('b'); bb.textContent=g[0];
-        var it=document.createElement('i');
-        it.textContent='Wortschatz: '+THEMEN[b%16];
-        gr.appendChild(bb); gr.appendChild(it);
-
-        var tage=document.createElement('div'); tage.className='tage';
-        [d0,d1].forEach(function(dx,t){
-          var lek=Math.round((dx-START)/TAG)/2+1;      /* fortlaufende Lektionsnummer */
-          var f=REIHE[(lek-1)%5];
-          var sp=document.createElement('span');
-          if(dx.getTime()===heute.getTime())sp.className='heute';
-          var sb=document.createElement('b'); sb.textContent='L'+lek;
-          sp.appendChild(sb);
-          sp.appendChild(document.createTextNode(
-            ' '+dat(dx)+' · '+ROLLEN[t]+' · '+f[0]+(dx.getDay()===6?' · Probeprüfung':'')));
-          tage.appendChild(sp);
-        });
-        gr.appendChild(tage);
-
-        row.appendChild(nr); row.appendChild(dt); row.appendChild(gr);
-        liste.appendChild(row);
+    if(v[1]>0){
+      for(var b=v[1];b<=v[2];b++){
+        zeile(b,'B'+b,GRAMMATIK[b-1][0],'Wortschatz: '+THEMEN[(b-1)%16]+' · Lektion '+
+          GRUPPEN[b][0][0]+'–'+GRUPPEN[b][GRUPPEN[b].length-1][0]);
       }
     }
-
-    if(!nurTeil || nurTeil===3){
-      var dez0=new Date(START); dez0.setDate(dez0.getDate()+116);  /* 05.01.2027 */
-      var row2=document.createElement('div');
-      var laeuftDez=(heute>=dez0&&heute<=ENDE);
-      row2.className='lek'+(laeuftDez?' heute':(ENDE<heute?' vorbei':''));
-      var nr2=document.createElement('div'); nr2.className='nr'; nr2.textContent='DEZ';
-      var dt2=document.createElement('div'); dt2.className='dt';
-      dt2.textContent=dat(dez0)+'–31.01.';
-      var gr2=document.createElement('div'); gr2.className='gr';
-      var b2=document.createElement('b'); b2.textContent='Wiederholung und Anwendung';
-      var i2=document.createElement('i');
-      i2.textContent='Kein neues Grammatikthema. 14 Lektionen, die gezielt das wiederholen, '+
-                     'was in den Probeprüfungen und deinen Texten schwach war.';
-      b2.textContent='Wiederholung und Anwendung — der ganze Januar';
-      gr2.appendChild(b2); gr2.appendChild(i2);
-      var tage2=document.createElement('div'); tage2.className='tage';
-      for(var d=dez0.getTime(); d<=ENDE.getTime(); d+=2*TAG){
-        var dx=new Date(d);
-        var lek=Math.round((dx-START)/TAG)/2+1;
-        var f=REIHE[(lek-1)%5];
-        var sp=document.createElement('span');
-        if(dx.getTime()===heute.getTime())sp.className='heute';
-        var sb=document.createElement('b'); sb.textContent='L'+lek;
-        sp.appendChild(sb);
-        sp.appendChild(document.createTextNode(
-          ' '+dat(dx)+' · '+f[0]+(dx.getDay()===6?' · Probeprüfung':'')));
-        tage2.appendChild(sp);
-      }
-      gr2.appendChild(tage2);
-      row2.appendChild(nr2); row2.appendChild(dt2); row2.appendChild(gr2);
-      liste.appendChild(row2);
+    if(v[3]&&GRUPPEN[0]){
+      zeile(0,'WH','Wiederholung und Anwendung',
+        'Kein neues Grammatikthema. Lektion '+GRUPPEN[0][0][0]+'–'+
+        GRUPPEN[0][GRUPPEN[0].length-1][0]+' wiederholen gezielt, '+
+        'was in den Probeprüfungen und deinen Texten schwach war.');
     }
   }
 
   var knoepfe=[];
-  function setzeTeil(r){
-    knoepfe.forEach(function(k,j){
-      var an=(j===0?0:j)===r;
-      k.classList.toggle('an',an);
-      k.setAttribute('aria-pressed',an?'true':'false');
+  function setze(j){
+    knoepfe.forEach(function(k,i){
+      k.classList.toggle('an',i===j);
+      k.setAttribute('aria-pressed',i===j?'true':'false');
     });
-    zeichne(r);
+    zeichne(j);
   }
-  [['Alles','11.09.2026 – 31.01.2027']].concat(ANSICHT).forEach(function(x,j){
+  ANSICHT.forEach(function(x,j){
+    var a=x[1]>0?von(x[1]):von(0);
+    var e=x[3]?bis(0):bis(x[2]);
     var k=document.createElement('button');
     k.type='button';
     k.appendChild(document.createTextNode(x[0]));
-    var sm=document.createElement('small'); sm.textContent=x[1]; k.appendChild(sm);
-    k.addEventListener('click',function(){ setzeTeil(j===0?0:j); });
+    var sm=document.createElement('small'); sm.textContent=spanne(a,e); k.appendChild(sm);
+    k.addEventListener('click',function(){ setze(j); });
     knoepfe.push(k); wahl.appendChild(k);
   });
-  setzeTeil(0);
+  setze(0);
 
   var tb=document.getElementById('gramtab');
   GRAMMATIK.forEach(function(g,i){
@@ -637,7 +778,9 @@
       bb.appendChild(nb);
     }
     var c=document.createElement('td'); c.textContent=g[2];
-    tr.appendChild(a); tr.appendChild(b); tr.appendChild(c);
+    var w=document.createElement('td'); w.className='n';
+    if(GRUPPEN[i+1]) w.textContent=spanne(von(i+1),bis(i+1));
+    tr.appendChild(a); tr.appendChild(b); tr.appendChild(c); tr.appendChild(w);
     tb.appendChild(tr);
   });
 })();

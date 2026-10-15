@@ -11,12 +11,12 @@ Reihenfolge — nicht umstellen:
 
 2. **Schritt 0 — zuerst retten.** `Artifact action:"read"` auf https://claude.ai/code/artifact/e499dbe3-e198-410a-94d3-9393e6b27c84. Aus der gespeicherten Datei `const LEKTIONEN` ziehen. Jede Lektion, deren Datum nicht in `deutsch-taeglich/lektionen/` liegt, dort als JSON anlegen. **Steht das heutige Datum schon darin, wird heute KEINE neue Lektion geschrieben** — nur zurückholen, prüfen, weiter mit Schritt 5.
 
-3. **Rechnen, nicht raten:** **Seit 03.10.2026: `python3 deutsch-taeglich/heute.py` fragen, nie selbst rechnen** — es kennt die Pausen aus `pausen.json` (PAUSE → nichts schreiben). Die Regel dahinter: `t = (heute − 2026-09-11).days − Pausentage`.
-   - `t` ungerade → **Übungstag. Keine Datei schreiben.** Weiter mit Schritt 5.
+3. **Rechnen, nicht raten:** `python3 deutsch-taeglich/heute.py` fragen, nie selbst rechnen. **Seit dem Neustart am 16.10.2026:** Lektionstag ist **jeder Tag außer Sonntag** (und außer Pausen aus `pausen.json`); drei Lektionen pro Grammatikthema (`themenTag` 1 entdecken · 2 üben · 3 anwenden); ab Lektion 88 Wiederholung; Ende 15.02.2027.
+   - `UEBUNGSTAG` (sonntags `ruhetag: true`) oder `PAUSE` oder `VORHER` → **keine Datei schreiben.** Weiter mit Schritt 5.
    - `lektionen/<heute>.json` existiert schon → nicht anfassen. Weiter mit Schritt 5.
-   - `t` gerade → Lektionstag: `lektion = t//2+1`, `themaBlock = t//4+1`, `themenTag = (t//2)%2+1`, Rest wie in `CLAUDE.md`. Samstag → zusätzlich `probe`.
+   - `LEKTIONSTAG` → den `zyklus`-Block **genau so übernehmen, wie `heute.py` ihn ausgibt**. Steht `"probe": true` → zusätzlich der Block `probe`.
 
-4. Lektion schreiben — **Struktur exakt wie die neueste Datei in `lektionen/`**, alle Regeln aus `CLAUDE.md` (Niveau B1, 15–18 Vokabeln mit mindestens vier Mechanismusbegriffen aus ihrem Material in `Wissen/`, `lesen` 150–200 Wörter mit AFB II und III, `leben`, `deklination`, `telc`-Badge mit B1-Namen, nichts aus früheren Lektionen wiederholen). **Nichts erfinden**: keine Normen, Zahlen oder Quellen, die nicht in ihren Unterlagen stehen.
+4. Lektion schreiben — **Struktur exakt wie die neueste Datei in `lektionen/`** (ist `lektionen/` leer, wie direkt nach dem Neustart: `deutsch-taeglich/routine/muster-lektion.json` — nur die Struktur, nicht den Inhalt), alle Regeln aus `CLAUDE.md` (Niveau B1, 15–18 Vokabeln mit mindestens vier Mechanismusbegriffen aus ihrem Material in `Wissen/`, `lesen` 150–200 Wörter mit AFB II und III, `leben`, `deklination`, `telc`-Badge mit B1-Namen, nichts aus früheren Lektionen wiederholen). **Nichts erfinden**: keine Normen, Zahlen oder Quellen, die nicht in ihren Unterlagen stehen.
 
    **Sofort danach — Sicherungscommit, noch vor dem Build:**
    `git add deutsch-taeglich/lektionen/ && git commit -m "Deutsch täglich: Lektion N (<datum>) — Sicherung" && git push -u origin claude/nursing-exam-prep-workflow-gvn5u0`

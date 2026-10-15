@@ -258,8 +258,8 @@
   .zyklus .thema b{color:var(--ink);}
   .zyklus .thema .nr{font-family:var(--mono);font-style:normal;font-size:11.5px;color:var(--tg);
     background:var(--tgbg);border-radius:999px;padding:2px 8px;margin-left:5px;}
-  .zy-punkte{display:flex;gap:5px;}
-  .zy-punkte i{width:26px;height:6px;border-radius:99px;background:var(--line);display:block;}
+  .zy-punkte{display:flex;flex-wrap:wrap;gap:4px;max-width:100%;}
+  .zy-punkte i{width:14px;height:6px;border-radius:99px;background:var(--line);display:block;}
   .zy-punkte i.on{background:var(--tg);}
   /* Zyklus-Tage anklickbar */
   .zy-tage{display:flex;gap:5px;flex-wrap:wrap;width:100%;}
@@ -687,6 +687,7 @@
   .rk-k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--lb);}
   .rueck h3{font-family:var(--serif);margin:6px 0;}
   .kr-mini{font-size:15px;border-left:3px solid var(--gram);padding-left:10px;}
+  .sk-block{font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin:18px 0 6px;}
 
 </style>
 
@@ -695,8 +696,9 @@
     <div>
       <p class="eyebrow">Etappe 1 · A2 → B1 · bis __ENDE_LANG__</p>
       <h1>Deutsch täglich</h1>
-      <p class="hero-sub">Eine Lektion <b>jeden zweiten Tag</b>, dazwischen ein Übungstag.
-      Jedes Grammatikthema zwei Lektionen lang: <i>entdecken</i>, dann <i>anwenden</i>.</p>
+      <p class="hero-sub">Eine Lektion <b>jeden Tag außer Sonntag</b>, 75 Minuten in zwei Blöcken.
+      Jedes Grammatikthema drei Lektionen lang: <i>entdecken</i>, <i>üben</i>, <i>anwenden</i>.
+      Sonntag ist Ruhetag mit Wochenrückblick.</p>
       <span class="streak" id="streak"></span>
     </div>
     <div class="ring" id="ring">
@@ -707,7 +709,7 @@
       </svg>
       <div class="mitte">
         <div class="gross" id="ringNr">—</div>
-        <div class="klein" id="ringVon">von 72</div>
+        <div class="klein" id="ringVon">von __LEKTIONEN_GESAMT__</div>
       </div>
     </div>
   </div>
@@ -761,8 +763,8 @@
       <span class="fr" style="display:block;margin-top:5px;">Safari → Partager → Sur l'écran
       d'accueil. Il faut du réseau pour ouvrir la page, le reste marche sur l'appareil.</span>
     </span>
-    Deutsch täglich · neue Lektion <b>jeden zweiten Tag</b> um 5:30 (Berlin) ·
-    dazwischen ein <b>Übungstag</b> · <b>alle zwei Wochen samstags 22:00</b> die Probeprüfung ·
+    Deutsch täglich · neue Lektion <b>Montag bis Samstag</b> um 5:30 (Berlin) ·
+    <b>Sonntag Ruhetag</b> mit Wochenrückblick · <b>alle zwei Wochen samstags 22:00</b> die Probeprüfung ·
     <a href="https://claude.ai/code/artifact/ea512258-b4a4-47d8-8959-12d7cd441bf9"
        target="_blank" rel="noopener" style="color:var(--accent-deep);">📏 Einstufungstest</a> ·
     Erklärungen auf Deutsch (B1) mit französischer Hilfe für schwere Stellen.
@@ -1945,6 +1947,10 @@ function baueTage(){
   }
   return out.reverse();          /* neueste zuerst */
 }
+function istRuhetag(e){
+  const d=alsDatum(e.datum);
+  return !!(d&&d.getDay()===0&&e.l&&e.l.zyklus&&e.l.zyklus.ruhetag!==undefined);
+}
 function tagName(i){
   const e=TAGE[i]; if(!e) return '';
   return i===0?'Heute':(i===1?'Gestern':fmtDate(e.datum).kurz);
@@ -1954,9 +1960,10 @@ function buildBar(){
   TAGE.forEach((e,i)=>{
     const b=document.createElement('button');
     const kurz=fmtDate(e.datum).kurz;
-    b.textContent=(e.typ==='uebung'?'✎ ':(e.typ==='pause'?'⏸ ':''))+
+    const ru=e.typ==='uebung'&&istRuhetag(e);
+    b.textContent=(ru?'☾ ':(e.typ==='uebung'?'✎ ':(e.typ==='pause'?'⏸ ':'')))+
       (i===0?'Heute · '+kurz : i===1?'Gestern · '+kurz : kurz);
-    b.title=e.typ==='uebung'?'Übungstag — nur Übungen':(e.typ==='pause'?'Pause':'Lektion');
+    b.title=ru?'Ruhetag':(e.typ==='uebung'?'Übungstag — nur Übungen':(e.typ==='pause'?'Pause':'Lektion'));
     if(e.typ==='uebung'||e.typ==='pause') b.classList.add('ue-tab');
     b.onclick=()=>{cur=i;render();};
     bar.appendChild(b);
@@ -2264,10 +2271,12 @@ function renderWochenrueckblick(datum){
 }
 
 /* ---- Der Plan: Pflicht in Schritten, der Rest als Bonus ---- */
+/* Seit dem Neustart vom 16.10.2026: 75 Minuten in zwei Blöcken (45 + 30). */
 const PLAN_SCHRITTE=[
-  {id:'wdh',min:5,de:'Wiederholen'},{id:'vok',min:10,de:'Neue Vokabeln'},
-  {id:'gram',min:10,de:'Grammatik'},{id:'lesen',min:15,de:'Lesen und schreiben'},
-  {id:'diktat',min:10,de:'Diktat'},{id:'leben',min:5,de:'Im Leben'},{id:'sprechen',min:5,de:'Sprechen'}];
+  {id:'wdh',min:5,de:'Wiederholen',block:1},{id:'vok',min:10,de:'Neue Vokabeln',block:1},
+  {id:'gram',min:10,de:'Grammatik',block:1},{id:'lesen',min:20,de:'Lesen und schreiben',block:1},
+  {id:'diktat',min:10,de:'Diktat',block:2},{id:'sprechen',min:10,de:'Sprechen',block:2},
+  {id:'leben',min:5,de:'Im Leben',block:2},{id:'fehler',min:5,de:'Mein Fehlerheft',block:2}];
 const UE_SCHRITTE=[
   {id:'u-wdh',min:10,de:'Wörter wiederholen'},{id:'u-fehler',min:5,de:'Mein Fehlerheft'},
   {id:'u-ueben',min:15,de:'Übungen zur letzten Lektion'}];
@@ -2308,13 +2317,18 @@ function renderLektionsSeite(l,datum,idx){
     lesen: renderLesen(l.lesen,idx),
     diktat: renderDiktat(l.diktat,(l.zyklus&&l.zyklus.etappe)||'B2'),
     leben: renderLeben(l.leben,idx),
-    sprechen: renderSay(l.aussprache,idx)+renderAufnahme()
+    sprechen: '<p class="sk-hinweis">Erst nachsprechen: Satz anhören, sofort laut wiederholen (Shadowing). '+
+              'Dann 60 Sekunden frei sprechen und aufnehmen.</p>'+renderSay(l.aussprache,idx)+renderAufnahme(),
+    fehler: renderFehlerheft(datum)
   };
   let h=renderMesshinweis()+renderWochenrueckblick(datum)+
     renderPlanKopf(datum,PLAN_SCHRITTE,'Dein Plan heute',
-      'Fais les étapes dans l’ordre et coche « fertig » à la fin de chacune. Une heure, et c’est fini. '+
-      'Tout ce qui est plus bas, dans « Bonus », est facultatif.');
-  PLAN_SCHRITTE.forEach((s,i)=>{ h+=renderSchritt(datum,s,i+1,teile[s.id]||''); });
+      '<b>Bloc 1 (45 min)</b> : étapes 1 à 4, le matin ou à la pause. <b>Bloc 2 (30 min)</b> : étapes 5 à 8, le soir. '+
+      'Coche « fertig » à la fin de chaque étape. Tout ce qui est plus bas, dans « Bonus », est facultatif.');
+  PLAN_SCHRITTE.forEach((s,i)=>{
+    if(i===0||PLAN_SCHRITTE[i-1].block!==s.block)
+      h+='<p class="sk-block">Block '+s.block+' · '+(s.block===1?'45 Min — morgens oder in der Pause':'30 Min — abends')+'</p>';
+    h+=renderSchritt(datum,s,i+1,teile[s.id]||''); });
   h+=renderProbe(l.probe,'probe'+idx,hoertext);
   h+='<details class="bonus"><summary>Bonus — für mehr <small>facultatif : verbe du jour, exercices, '+
      'telc, traduction</small></summary><div class="bonus-in">'+
@@ -2343,15 +2357,29 @@ function renderPauseSeite(l,eintrag){
   h+='<section class="sk"><div class="sk-kopf"><h3>Wenn du magst: deine Wörter</h3><span class="sk-min">freiwillig</span></div>'+renderSRS()+'</section>';
   return h;
 }
+function renderRuhetagSeite(l,datum){
+  let h='<section class="uetag">'+
+    '<div class="kopf"><h3>Ruhetag</h3><span class="k-ue">Sonntag · keine Lektion</span></div>'+
+    '<p class="warum">Heute ist <b>Ruhetag</b>. Ausruhen gehört zum Lernen. '+
+    'Wer mag, macht den <b>Wochenrückblick</b> (10 Minuten) und wiederholt die fälligen Wörter. '+
+    'Morgen früh kommt die nächste Lektion.</p>'+
+    '<p class="fr">Dimanche, c’est repos : c’est aussi ça qui fait tenir sur quatre mois. '+
+    'Si tu en as envie, fais le bilan de la semaine (10 min) et tes mots du jour — c’est facultatif.</p>'+
+    '</section>';
+  h+=renderWochenrueckblick(datum);
+  h+='<section class="sk"><div class="sk-kopf"><h3>Wenn du magst: deine Wörter</h3><span class="sk-min">freiwillig</span></div>'+renderSRS()+'</section>';
+  return h+renderSenden();
+}
 function renderUebungstagSeite(l,datum){
   if(!l) return '';
   const d=alsDatum(datum), tag=d?WOCHENTAGE[d.getDay()]:'';
+  if(d&&d.getDay()===RUHETAG&&l.zyklus&&l.zyklus.ruhetag!==undefined) return renderRuhetagSeite(l,datum);
   let h='<section class="uetag">'+
     '<div class="kopf"><h3>Übungstag</h3>'+
     '<span class="k-ue">'+esc(tag)+' · nur Übungen</span></div>'+
     '<p class="warum">Heute gibt es <b>keine neue Lektion</b>. Was hier steht, sind '+
     '<b>nur die Aufgaben</b> zur Lektion vom '+fmtDate(l.datum).kurz+' — ohne den Lernstoff. '+
-    'Die nächste Lektion kommt morgen.</p>'+
+    'Das passiert nur, wenn die Lektion des Tages ausgefallen ist. Die nächste kommt morgen.</p>'+
     '<p class="fr">Aujourd’hui : rien de nouveau, <b>que des exercices</b> — plus le '+
     '<b>vocabulaire d’hier à réviser</b>. Refais-les sans '+
     'rouvrir la leçon d’hier — c’est en cherchant que ça rentre. Tes réponses d’aujourd’hui '+
@@ -2385,10 +2413,13 @@ function render(){
   if(akt&&akt.scrollIntoView) akt.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
   const eintrag=TAGE[cur]; if(!eintrag) return;
   const l=eintrag.l, pause=eintrag.typ==='pause', ueb=eintrag.typ==='uebung'||pause;
+  const ruhe=ueb&&!pause&&istRuhetag(eintrag);
   document.getElementById('dayTitle').textContent=fmtDate(eintrag.datum).lang;
   const nr=(l.zyklus&&l.zyklus.lektion)||(LEKTIONEN.indexOf(l)>=0?LEKTIONEN.length-LEKTIONEN.indexOf(l):1);
   document.getElementById('daySub').textContent = pause
     ? 'Pause · Deutsch täglich geht am '+fmtDate(weiterNach(eintrag.p.bis)).kurz+' weiter'
+    : ruhe
+    ? 'Ruhetag · Wochenrückblick, wenn du magst · nach Lektion '+nr
     : ueb
     ? 'Übungstag · nur Übungen zur Lektion '+nr+' vom '+fmtDate(l.datum).kurz
     : 'Lektion '+nr+' · '+(l.thema||'Verb · Wortschatz · Grammatik');
@@ -2399,6 +2430,7 @@ function render(){
   bVor.textContent = bVor.disabled ? 'Heute ›' : tagName(cur-1)+' ›';
   document.getElementById('wo').textContent =
     pause ? (cur===0?'Heute ist Pause':'Pause am '+fmtDate(eintrag.datum).kurz)
+    : ruhe ? (cur===0?'Heute ist Ruhetag':'Ruhetag am '+fmtDate(eintrag.datum).kurz)
     : cur===0 ? (ueb?'Heute ist Übungstag — nur Übungen':'Du bist bei der heutigen Lektion')
             : (ueb?'Übungstag vom ':'Lektion vom ')+fmtDate(eintrag.datum).kurz;
   /* Zyklus-Leiste */
@@ -2420,6 +2452,26 @@ function render(){
     const dLekDiff=(dStart&&dLek)?Math.round((dLek-dStart)/TAG):0;
     for(let i=1;i<=gw;i++)p+='<i class="'+(i<=imDg?'on':'')+'"></i>';
     let tage='<div class="zy-tage">';
+    if(z.ruhetag!==undefined){
+      /* Neustart 16.10.2026: Lektion jeden Tag außer Sonntag, drei Lektionen pro Thema */
+      let zaehler=z.lektion||1;
+      for(let i=0;i<7;i++){
+        const d=dLek?new Date(dLek):null; if(!d) break;
+        d.setDate(d.getDate()+i);
+        const iso=isoVon(d), lbl=W[d.getDay()]+' '+String(d.getDate()).padStart(2,'0')+'.';
+        let kls=(i===0?'jetzt ':''), tip='';
+        if(pauseVon(iso)){ kls+='uebung'; tip='Pause'; }
+        else if(d.getDay()===z.ruhetag){ kls+='uebung'; tip='Ruhetag · Wochenrückblick, wenn du magst'; }
+        else{
+          if(iso>l.datum) zaehler++;
+          const ln=iso>l.datum?zaehler:(z.lektion||1);
+          const tt=ln<=THEMEN_GESAMT*PRO_THEMA?' · Thema-Tag '+(((ln-1)%PRO_THEMA)+1)+' von '+PRO_THEMA:' · Wiederholung';
+          kls+=probeAm(d)?'probetag':'lektionstag';
+          tip='Lektion '+ln+' · '+REIHE[(ln-1)%5]+tt+(probeAm(d)?' · dazu die Probeprüfung':'');
+        }
+        tage+='<button type="button" disabled class="'+kls+'" title="'+attr(lbl+' · '+tip)+'">'+esc(lbl)+'</button>';
+      }
+    } else {
     for(let i=0;i<7;i++){
       let art='Übungstag', lbl='', tip='';
       const d=dLek?new Date(dLek):null;
@@ -2461,14 +2513,15 @@ function render(){
       tage+='<button type="button" disabled class="'+kls+'"'+
             ' title="'+attr(lbl+' · '+tip)+'">'+esc(lbl)+'</button>';
     }
+    }
     tage+='</div>';
     zEl.innerHTML='<span class="zy-phase">'+
                     esc(ueb?(WOCHENTAGE[(alsDatum(eintrag.datum)||new Date()).getDay()]+
-                             (pause?' · Pause':' · Übungstag')):((z.tag||'')+' · '+(z.fokus||'Lektion')))+'</span>'+
+                             (pause?' · Pause':(ruhe?' · Ruhetag':' · Übungstag'))):((z.tag||'')+' · '+(z.fokus||'Lektion')))+'</span>'+
                   (z.etappe?'<span class="zy-etappe">Etappe '+esc(z.etappe)+'</span>':'')+
                   (z.phase?'<span class="zy-tt">'+esc(z.phase)+'</span>':
-                   z.themenTag?'<span class="zy-tt">Thema-Tag <b>'+z.themenTag+'</b> von 2 · '+
-                    esc(['entdecken','anwenden'][z.themenTag-1]||'')+'</span>':'')+
+                   z.themenTag?'<span class="zy-tt">Thema-Tag <b>'+z.themenTag+'</b> von '+(z.themenTage||2)+' · '+
+                    esc(((z.themenTage||2)===3?['entdecken','üben','anwenden']:['entdecken','anwenden'])[z.themenTag-1]||'')+'</span>':'')+
                   '<span class="zy-punkte">'+p+'</span>'+
                   (z.thema?'<span class="thema">Thema: <b>'+esc(z.thema)+'</b>'+
                     (z.themaNr?' <i class="nr">T'+z.themaNr+' von 16</i>':'')+'</span>':'')+
@@ -2526,18 +2579,27 @@ function render(){
    Alles wird aus den Lektionen und dem heutigen Datum gerechnet, nichts ist
    fest eingetragen. Das Ziel ist, dass sie beim Öffnen sofort sieht, wie weit
    sie ist — und nicht nur die Lektion von heute. */
-const ETAPPE_ENDE='__ENDE__', LEKTIONEN_GESAMT=72, THEMEN_GESAMT=29;
+const ETAPPE_ENDE='__ENDE__', LEKTIONEN_GESAMT=__LEKTIONEN_GESAMT__, THEMEN_GESAMT=29, PRO_THEMA=3, RUHETAG=0;
+/* Seit dem Neustart am 16.10.2026: Lektionstag = jeder Tag ab Start außer Sonntag und Pausen. */
+function lektionAm(iso){
+  const a=alsDatum(START_DATUM), b=alsDatum(iso); if(!a||!b||b<a) return 0;
+  let n=0; for(let d=new Date(a); d<=b; d.setDate(d.getDate()+1)){
+    if(d.getDay()!==RUHETAG && !pauseVon(isoVon(d))) n++; }
+  return n;
+}
+function probeAm(d){
+  const erste=alsDatum('2026-10-24'); if(!d||!erste||d.getDay()!==6||d<erste) return false;
+  return Math.floor(Math.round((d-erste)/86400000)/7)%2===0;
+}
 function zeichneFortschritt(){
-  const start=START_DATUM||'2026-09-11';
-  const t=Math.round((alsDatum(heuteISO())-alsDatum(start))/86400000);
   const neueste=LEKTIONEN.length?LEKTIONEN[0]:null;
   const z=(neueste&&neueste.zyklus)||{};
 
   /* Lektionsnummer: was in der Lektion steht, sonst aus dem Datum gerechnet. */
-  let lektion=z.lektion||(t>=0?Math.floor(t/2)+1:0);
+  let lektion=z.lektion||lektionAm(heuteISO());
   lektion=Math.max(0,Math.min(LEKTIONEN_GESAMT,lektion));
-  const wdh=t>=THEMEN_GESAMT*4;                     /* ab 05.01.2027: Wiederholung */
-  let block=z.themaBlock||(t>=0?Math.floor(t/4)+1:0);
+  const wdh=lektion>THEMEN_GESAMT*PRO_THEMA;       /* ab Lektion 88: Wiederholung */
+  let block=z.themaBlock||(lektion>0?Math.floor((lektion-1)/PRO_THEMA)+1:0);
   block=Math.max(0,Math.min(THEMEN_GESAMT,block));
 
   const nr=document.getElementById('ringNr');
@@ -2571,7 +2633,7 @@ function zeichneFortschritt(){
   }
   const bj=document.getElementById('bandJetzt');
   if(bj){
-    bj.innerHTML=wdh?'<b>Januar · Wiederholung</b>'
+    bj.innerHTML=wdh?'<b>Wiederholung bis zum Ende</b>'
       :(block?('Thema <b>'+block+' von '+THEMEN_GESAMT+'</b>'
         +(z.grammatik?' · '+z.grammatik:'')):'');
   }
@@ -2603,24 +2665,26 @@ if(!TAGE.length){
   document.getElementById('datebar').style.display='none';
   document.getElementById('blaettern').style.display='none';
   document.getElementById('dayTitle').textContent='Es geht am '+lang+' los';
-  document.getElementById('daySub').textContent='Lektion 1 · Etappe B1 · jeden zweiten Tag';
+  document.getElementById('daySub').textContent='Lektion 1 · Etappe B1 · Montag bis Samstag, 75 Minuten';
   document.getElementById('content').innerHTML=
     '<div class="block"><span class="kind k-tg">Neustart</span>'+
     '<h3>Morgen früh um 5:30 steht hier deine erste Lektion.</h3>'+
-    '<p class="fr">On repart de zéro. Tout ce qui a été fait avant a été effacé — '+
-    'la première leçon de la nouvelle étape arrive demain matin.</p>'+
-    '<div class="tipbox"><b>Was dich ab '+lang+' erwartet, jeden zweiten Tag:</b>'+
+    '<p class="fr">On repart de zéro. Les anciennes leçons ont été effacées — '+
+    'la première leçon arrive le '+lang+' à 5h30. Une leçon par jour du lundi au samedi, '+
+    '75 minutes en deux blocs ; le dimanche, repos et petit bilan.</p>'+
+    '<div class="tipbox"><b>Was dich ab '+lang+' erwartet, jeden Tag außer Sonntag:</b>'+
     '<ul class="ex">'+
     '<li><span class="de">Verb des Tages</span><span class="tr">mit voller Konjugation</span></li>'+
     '<li><span class="de">15–18 Vokabeln</span><span class="tr">mit Artikel, Beispielsatz und Abfrage</span></li>'+
-    '<li><span class="de">Ein Grammatikthema</span><span class="tr">zwei Lektionen lang: entdecken, dann anwenden</span></li>'+
+    '<li><span class="de">Ein Grammatikthema</span><span class="tr">drei Lektionen lang: entdecken, üben, anwenden</span></li>'+
     '<li><span class="de">Die Kette</span><span class="tr">Deklination an drei Sätzen</span></li>'+
     '<li><span class="de">Ein Text von 150–200 Wörtern</span><span class="tr">nacherzählen, zusammenfassen, erklären</span></li>'+
     '<li><span class="de">Im Leben</span><span class="tr">was du sagst und was du hören wirst</span></li>'+
     '<li><span class="de">Diktat, Aussprache, fünf Übersetzungen</span><span class="tr">jeden Lektionstag</span></li>'+
     '</ul></div>'+
-    '<div class="goldbox"><b>Am Tag dazwischen</b> ist Übungstag: nichts Neues, nur die '+
-    'Übungen der letzten Lektion mit leeren Feldern.</div>'+
+    '<div class="goldbox"><b>Block 1 (45 Min):</b> Wiederholen · neue Vokabeln · Grammatik · Lesen und schreiben.<br>'+
+    '<b>Block 2 (30 Min):</b> Diktat · Sprechen · Im Leben · dein Fehlerheft.<br>'+
+    '<b>Sonntag:</b> Ruhetag — wer mag, macht den Wochenrückblick (10 Min).</div>'+
     '</div>';
 }else{
   document.getElementById('streak').textContent='📚 '+LEKTIONEN.length+' Lektion'+

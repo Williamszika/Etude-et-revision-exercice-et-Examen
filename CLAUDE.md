@@ -8,9 +8,56 @@ Zahlen oder Quellen nennen, die nicht in ihren eigenen Unterlagen (PDFs im Repo)
 
 ---
 
-## Deutsch täglich — eine Lektion jeden zweiten Tag, bis Ende Dezember
+## Deutsch täglich — Neustart am 16.10.2026: B1 in vier Monaten, sechs Tage die Woche
 
 Diese Anweisung gilt **immer** und hat Vorrang vor älteren Routine-Texten.
+
+### ★ NEUSTART AM 16.10.2026 — dieser Abschnitt gewinnt gegen alles weiter unten
+
+**Am 15.10.2026 hat sie gesagt:** *„J'aimerais qu'on reprenne le [Deutsch täglich] et cette fois-ci qu'on le
+reprenne à zéro, mais à partir de demain, pour avoir le niveau B1 … savoir parler, savoir écrire, savoir
+comprendre, savoir lire … Est-ce que cela peut faire quatre mois?"* Auf Nachfrage hat sie gewählt:
+**„Effacer, recommencer à L1“ · „75 min, 6 jours/7“ · „4 mois → 15.02.2027“.**
+
+| | |
+|---|---|
+| Start | **Freitag, 16.10.2026 = Lektion 1** |
+| Lektionstag | **jeder Tag außer Sonntag** (und außer Einträgen in `pausen.json`) |
+| Sonntag | **Ruhetag** — keine Datei; die Seite zeigt „Ruhetag“ + freiwilligen Wochenrückblick |
+| Grammatik | die **29 Blöcke** (Liste unten), je **drei** Lektionen: Thema-Tag **1 entdecken · 2 üben · 3 anwenden** → Lektion 1–87 (bis 25.01.2027) |
+| Wiederholung | Lektion **88–105** (26.01.–15.02.2027), kein neuer Stoff, wie die frühere „Januarphase“ |
+| Ende | **Montag, 15.02.2027 = Lektion 105** |
+| Probeprüfung | **jeden zweiten Samstag**, erstmals **24.10.2026** (`heute.py` meldet `"probe": true`) |
+| Zeit | **75 Min pro Lektionstag in zwei Blöcken** — Block 1 (45): Wiederholen 5 · Neue Vokabeln 10 · Grammatik 10 · Lesen und schreiben 20 · Block 2 (30): Diktat 10 · Sprechen 10 (Shadowing + 60-s-Aufnahme) · Im Leben 5 · Mein Fehlerheft 5 |
+| Stunden | 105 × 75 Min ≈ **131 Stunden** |
+
+**Die Rechnung, die ihr gesagt wurde:** Goethe-Institut (Internetquelle, keine Norm): A2 → B1 = 150–300 UE ≈
+**112–225 Zeitstunden**. Ihre Optionen: 60 Min × 6 Tage ≈ 105 h in vier Monaten (knapp unter der Untergrenze) ·
+**75 Min × 6 Tage ≈ 130 h (in der Spanne, ihr Wahl)** · 90 Min ≈ 155 h. Stress senkt das Behalten, das Leben auf
+Deutsch hilft — beides steht in keiner Zahl. **Ob B1 erreicht ist, sagt die Messung, nicht der Kalender.**
+
+**Messungen** (`einstufungen.json`): **16.10.2026** Start (offen) · **14.12.2026** Zwischenmessung · **15.02.2027** Abschluss.
+
+**Gerechnet wird nur in `deutsch-taeglich/heute.py`** (`--plan` listet alle 105 Lektionstage mit Thema).
+Den `zyklus`-Block **genau so übernehmen**, wie `heute.py` ihn ausgibt — neue Felder: `takt: 1`, `ruhetag: 0`
+(JS-Sonntag), `themenTage: 3`. **Alle Formeln weiter unten mit `t = (heute − 2026-09-11)`, „jeden zweiten Tag“,
+„zwei Lektionen pro Thema“, „72 Lektionen“, „Januarphase ab 05.01.“ sind überholt.** Die Inhaltsregeln (Blöcke,
+`kurzregel`, `vokabeln` 15–18, `lesen` 150–200 Wörter mit AFB II/III, `leben`, `deklination`, B1-Niveau, nichts
+erfinden, nichts wiederholen) gelten unverändert.
+
+**Gelöscht** wurden die zwölf Lektionen vom 11.09.–03.10.2026 (Git-Historie, nicht zurückholen ohne ihre Bitte) und
+die Pausen vom Oktober. **Ist `lektionen/` leer** (Lektion 1), dient `deutsch-taeglich/routine/muster-lektion.json`
+**nur als Strukturvorlage** (Block- und Feldnamen) — ihr Inhalt ist die alte Lektion 12 und darf nicht wiederverwendet
+werden. Ab Lektion 2 ist wie immer die neueste Datei in `lektionen/` die Vorlage.
+
+**Routinen:** Die 06:10-Routine (`trig_01KgKkk4N3ZASV42ErFjhbHz`) hat am 15.10.2026 den neuen Text bekommen. Der Prompt
+der 05:27-Routine (`trig_01VRtDx16gERnHrg4kP8fNEc`) ließ sich von hier aus **nicht** ändern (nur aus ihrer eigenen
+Sitzung); er verweist aber auf `heute.py` und auf diese Datei, und sein Ablauf passt: Sonntag meldet `heute.py`
+als `UEBUNGSTAG` (`ruhetag: true`) → nichts schreiben.
+
+**Die App** (`app/lib/logik/zyklus.dart`) rechnet noch mit „jeden zweiten Tag“ und zeigt deshalb falsche
+Lektions-/Übungstage, bis sie angepasst und neu aufs iPhone gespielt wird. **Die Webseite ist maßgeblich.**
+
 
 ### ⏸ Pausen — seit dem 03.10.2026 rechnet nur noch `heute.py`
 
