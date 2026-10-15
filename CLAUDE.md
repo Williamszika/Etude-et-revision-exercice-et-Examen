@@ -42,6 +42,17 @@ niveau A2. Et je veux passer au niveau B1."* Messung 1 steht auf `entfallen`, de
 nicht mehr. **A2 ist ihre Angabe und die Arbeitsgrundlage — nicht wieder einen Starttest vorschlagen.** Die beiden
 späteren Messungen prüfen B1, nicht A2; ob sie die macht, entscheidet sie, wenn es so weit ist.
 
+**Kursaufbau wie an einer Sprachschule — ihr Wunsch vom 15.10.2026:** *„comme une personne qui a … eu son
+certificat de niveau A2 … il doit passer au niveau B1 … si j'arrive à valider … je passe au niveau B1. Et après, on
+fera du niveau B1 au niveau B2."* Also: **A2 ✓** → **Kurs B1.1** (L1–51, 16.10.–14.12.2026, Abschluss **Modultest
+B1.1**) → **Kurs B1.2** (L52–105, 15.12.2026–15.02.2027, Abschluss **Abschlussprüfung B1**) → **Kurs B2** erst nach
+bestandener B1-Prüfung. **Bestehensregel:** Lesen, Hören, Schreiben, Sprechen je einzeln ab **60 %** (Grenze aus ihrem
+telc-Handbuch); alle vier bestanden = B1 bestanden. Fehlt eine Fertigkeit → gezielte Zusatzlektionen, dann erneut
+prüfen — **nicht durchwinken**. Die Seite zeigt „Kurs B1.1/B1.2“ statt „Etappe B1“ (Grenze `lektion <= 51` im
+Template). Beide Prüfungen sind **noch zu schreiben** (vor dem 14.12. bzw. 15.02.) — eigene Aufgaben im Format der
+echten Prüfungen, **kein offizielles Zertifikat**, und so muss es auf der Prüfungsseite stehen. Festgehalten in
+`einstufungen.json` → `versetzung`.
+
 **Gerechnet wird nur in `deutsch-taeglich/heute.py`** (`--plan` listet alle 105 Lektionstage mit Thema).
 Den `zyklus`-Block **genau so übernehmen**, wie `heute.py` ihn ausgibt — neue Felder: `takt: 1`, `ruhetag: 0`
 (JS-Sonntag), `themenTage: 3`. **Alle Formeln weiter unten mit `t = (heute − 2026-09-11)`, „jeden zweiten Tag“,

@@ -694,7 +694,7 @@
 <header class="hero">
   <div class="heroin">
     <div>
-      <p class="eyebrow">Etappe 1 · A2 → B1 · bis __ENDE_LANG__</p>
+      <p class="eyebrow">A2 ✓ · Kurs B1 · Abschlussprüfung __ENDE_LANG__ · dann B2</p>
       <h1>Deutsch täglich</h1>
       <p class="hero-sub">Eine Lektion <b>jeden Tag außer Sonntag</b>, 75 Minuten in zwei Blöcken.
       Jedes Grammatikthema drei Lektionen lang: <i>entdecken</i>, <i>üben</i>, <i>anwenden</i>.
@@ -2518,7 +2518,9 @@ function render(){
     zEl.innerHTML='<span class="zy-phase">'+
                     esc(ueb?(WOCHENTAGE[(alsDatum(eintrag.datum)||new Date()).getDay()]+
                              (pause?' · Pause':(ruhe?' · Ruhetag':' · Übungstag'))):((z.tag||'')+' · '+(z.fokus||'Lektion')))+'</span>'+
-                  (z.etappe?'<span class="zy-etappe">Etappe '+esc(z.etappe)+'</span>':'')+
+                  (z.etappe?'<span class="zy-etappe">'+(z.etappe==='B1'&&z.lektion
+                      ? 'Kurs '+(z.lektion<=51?'B1.1':'B1.2')   /* B1.1 = L1–51 bis Modultest 14.12.2026 */
+                      : 'Etappe '+esc(z.etappe))+'</span>':'')+
                   (z.phase?'<span class="zy-tt">'+esc(z.phase)+'</span>':
                    z.themenTag?'<span class="zy-tt">Thema-Tag <b>'+z.themenTag+'</b> von '+(z.themenTage||2)+' · '+
                     esc(((z.themenTage||2)===3?['entdecken','üben','anwenden']:['entdecken','anwenden'])[z.themenTag-1]||'')+'</span>':'')+
