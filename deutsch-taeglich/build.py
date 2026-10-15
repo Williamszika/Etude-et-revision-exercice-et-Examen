@@ -127,8 +127,13 @@ print(f"Wortschatz: {sum(len(x['woerter']) for x in ws)} Wörter aus {len(ws)} L
 app_daten = {
     'stand': datetime.date.today().isoformat(),
     'start': START,
-    'lektionenGesamt': 72,
-    'themenGesamt': 29,
+    'lektionenGesamt': kalender.LEKTIONEN_GESAMT,
+    'themenGesamt': kalender.THEMEN_GESAMT,
+    # Seit dem Neustart 16.10.2026: Lektion Mo–Sa, Sonntag Ruhetag (Dart-Wochentag 7),
+    # drei Lektionen pro Thema, das ganze Programm zweimal. Die App rechnet damit.
+    'ruhetag': 7,
+    'proThema': kalender.PRO_THEMA,
+    'durchgaenge': kalender.DURCHGAENGE,
     'etappeEnde': ETAPPE_ENDE,
     'pausen': PAUSEN,
     'lektionen': lekt,          # neueste zuerst, wie im Template

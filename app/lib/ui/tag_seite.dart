@@ -91,14 +91,23 @@ class _TagSeiteState extends State<TagSeite> {
             fehlt
                 ? 'Die Lektion von heute ist noch nicht angekommen'
                 : uebung
-                    ? 'Übungstag · nur Übungen zur Lektion vom '
-                        '${Zyklus.kurzesDatum(l.datum)}'
+                    ? (widget.tag.ruhetag
+                        ? 'Sonntag · Ruhetag — wenn du magst: Übungen zur Lektion vom '
+                            '${Zyklus.kurzesDatum(l.datum)}'
+                        : 'Übungstag · nur Übungen zur Lektion vom '
+                            '${Zyklus.kurzesDatum(l.datum)}')
                     : 'Lektion ${z['lektion'] ?? ''} · '
                         '${z['fokus'] ?? ''}',
             style: TextStyle(fontSize: 13.5, color: Stil.weich(context)),
           ),
           const SizedBox(height: 12),
-          _Kopfzeilen(z: z, uebung: uebung, themenGesamt: widget.daten.themenGesamt),
+          _Kopfzeilen(
+            z: z,
+            uebung: uebung,
+            ruhetag: widget.tag.ruhetag,
+            themenGesamt: widget.daten.themenGesamt,
+            proDurchgang: widget.daten.takt.proDurchgang,
+          ),
           if (uebung) ...[
             const SizedBox(height: 12),
             if (fehlt)
@@ -141,9 +150,15 @@ class _Kopfzeilen extends StatelessWidget {
     required this.z,
     required this.uebung,
     required this.themenGesamt,
+    this.ruhetag = false,
+    this.proDurchgang = 87,
   });
   final Map<String, dynamic> z;
   final bool uebung;
+  final bool ruhetag;
+
+  /// Lektionen pro Durchgang — bis hierher Kurs B1.1, danach B1.2.
+  final int proDurchgang;
 
   /// Aus `app-daten.json`, nicht aus dem Zyklus der Lektion: Lektionen, die
   /// vor dem 19.09.2026 geschrieben wurden, tragen dort noch `gesamt: 21`.
@@ -170,14 +185,25 @@ class _Kopfzeilen extends StatelessWidget {
         ));
 
     if (uebung) {
-      plus('Übungstag', Stil.blockFarbe(context, 'probe'));
+      plus(ruhetag ? 'Ruhetag' : 'Übungstag', Stil.blockFarbe(context, 'probe'));
     }
-    if (z['etappe'] != null) {
+    final nr = zahlVon(z['lektion']);
+    if (z['etappe'] == 'B1' && nr != null) {
+      final dg = zahlVon(z['durchgang']);
+      plus('Kurs ${nr <= proDurchgang ? 'B1.1' : 'B1.2'}'
+          '${dg != null ? ' · Durchgang $dg' : ''}',
+          Stil.blockFarbe(context, 'aussprache'));
+    } else if (z['etappe'] != null) {
       plus('Etappe ${z['etappe']}', Stil.blockFarbe(context, 'aussprache'));
     }
     if (z['themenTag'] != null) {
       final t = zahlVon(z['themenTag']) ?? 1;
-      plus('Thema-Tag $t von 2 · ${t == 1 ? 'entdecken' : 'anwenden'}',
+      final von = zahlVon(z['themenTage']) ?? 2;
+      const rollen3 = ['entdecken', 'üben', 'anwenden'];
+      final rolle = von == 3
+          ? rollen3[(t - 1).clamp(0, 2)]
+          : (t == 1 ? 'entdecken' : 'anwenden');
+      plus('Thema-Tag $t von $von · $rolle',
           Stil.blockFarbe(context, 'leben'));
     }
 

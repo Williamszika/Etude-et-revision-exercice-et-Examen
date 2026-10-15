@@ -86,8 +86,13 @@ der 05:27-Routine (`trig_01VRtDx16gERnHrg4kP8fNEc`) ließ sich von hier aus **ni
 Sitzung); er verweist aber auf `heute.py` und auf diese Datei, und sein Ablauf passt: Sonntag meldet `heute.py`
 als `UEBUNGSTAG` (`ruhetag: true`) → nichts schreiben.
 
-**Die App** (`app/lib/logik/zyklus.dart`) rechnet noch mit „jeden zweiten Tag“ und zeigt deshalb falsche
-Lektions-/Übungstage, bis sie angepasst und neu aufs iPhone gespielt wird. **Die Webseite ist maßgeblich.**
+**Die App** (`app/lib/logik/zyklus.dart`) ist **seit dem 15.10.2026 angepasst** (ihre Bitte *„mettre a jour l'app sur
+le iphone“*): Klasse `Takt` in `daten/modelle.dart`, Lektion Mo–Sa, Sonntag = Ruhetag (☾), drei Lektionen pro Thema,
+zwei Durchgänge, Pausen mit `zaehlt`; Etikett „Kurs B1.1/B1.2 · Durchgang n“. `build.py` schreibt dafür `ruhetag`,
+`proThema`, `durchgaenge` und `lektionenGesamt` aus `heute.py` in `app-daten.json`. `flutter analyze` sauber,
+**34 Tests grün** (Sollwerte aus `heute.py --plan`). **Auf ihr iPhone kommt das nur, wenn sie auf dem Mac den
+Befehl aus `app/IPHONE.md` ausführt** — von hier aus kann ich nichts installieren. Die Vorschauseite
+`app/vorschau/` ist **nicht** angepasst (Stand September).
 
 
 ### ⏸ Pausen — seit dem 03.10.2026 rechnet nur noch `heute.py`

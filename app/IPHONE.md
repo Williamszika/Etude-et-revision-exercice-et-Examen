@@ -35,6 +35,12 @@ les corrections faites entre-temps.
 **Tes réponses et tes coches de vocabulaire sont conservées** — elles sont sur le téléphone,
 pas dans l'app.
 
+### 15.10.2026 — mise à jour pour le nouveau rythme
+
+L'app connaît maintenant le nouveau plan : une leçon du lundi au samedi, le dimanche repos (☾),
+le programme B1 deux fois, 186 leçons jusqu'au 20.05.2027. Pour l'avoir sur l'iPhone, c'est
+**la même commande que ci-dessus** (elle fait le `git pull` puis réinstalle).
+
 ### Deux messages qui ne sont pas des erreurs
 
 - *« The following plugins do not support Swift Package Manager: flutter_tts »* — un

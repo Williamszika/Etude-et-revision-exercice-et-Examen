@@ -1,20 +1,24 @@
 import '../daten/modelle.dart';
 
-/// Die Rechnung hinter Deutsch täglich — dieselbe wie im Web-Template und in
-/// `CLAUDE.md`, nur in Dart.
+/// Die Rechnung hinter Deutsch täglich — dieselbe wie `deutsch-taeglich/heute.py`,
+/// nur in Dart.
 ///
-///     t = (heute − 11.09.2026).days
-///     t gerade und ≥ 0  →  Lektionstag,  lektion = t ~/ 2 + 1   (1 … 72)
-///     t ungerade        →  Übungstag
-///     themaBlock        =  t ~/ 4 + 1                            (1 … 29)
+/// **Seit dem Neustart am 16.10.2026** (und der Wahl vom 15.10.2026 abends,
+/// das ganze B1-Programm zweimal zu machen):
 ///
-/// Ab t ≥ themenGesamt × 4 (mit 29 Blöcken also ab t = 116, dem 05.01.2027)
-/// läuft die Wiederholungsphase: kein neues Grammatikthema mehr.
+///     Lektionstag  = jeder Tag ab Start außer Sonntag und außer Pausentagen
+///     lektion      = Zahl der Lektionstage vom Start bis heute (1 … 186)
+///     durchgang    = 1 für Lektion 1–87, 2 für Lektion 88–174
+///     themaBlock   = ((lektion − 1) ~/ 3) % 29 + 1
+///     themenTag    = (lektion − 1) % 3 + 1   — entdecken · üben · anwenden
+///     ab Lektion 175: Wiederholung bis zum 20.05.2027
 ///
-/// **Am 19.09.2026 wurde die Etappe bis zum 31.01.2027 verlängert** — vorher
-/// 56 Lektionen und 21 Blöcke bis zum 31.12.2026. Die Grenze der
-/// Wiederholungsphase stand damals als feste 82 im Code und musste von Hand
-/// mitgezogen werden; deshalb rechnet sie sich jetzt aus `themenGesamt`.
+/// Eine Pause mit `zaehlt: true` ist ein Tag ohne Lektion, läuft im Plan aber
+/// mit — wie in `heute.py`.
+///
+/// Vorher (bis 15.10.2026) stand hier „jeden zweiten Tag ist Lektionstag“.
+/// Mit dieser Regel zeigte die App nach dem Neustart jeden zweiten Tag einen
+/// falschen Übungstag und zählte die Lektionen nur halb so schnell.
 class Zyklus {
   const Zyklus._();
 
@@ -41,36 +45,62 @@ class Zyklus {
   static int tageZwischen(String von, String bis) =>
       tagVon(bis).difference(tagVon(von)).inDays;
 
-  /// t für ein Datum.
-  static int t(String start, String datum) => tageZwischen(start, datum);
-
-  static bool istLektionstag(String start, String datum) {
-    final x = t(start, datum);
-    return x >= 0 && x.isEven;
+  static Map<String, dynamic>? _pause(Takt k, String datum) {
+    for (final p in k.pausen) {
+      final von = (p['von'] ?? '') as String, bis = (p['bis'] ?? '') as String;
+      if (von.isNotEmpty && datum.compareTo(von) >= 0 && datum.compareTo(bis) <= 0) {
+        return p;
+      }
+    }
+    return null;
   }
 
-  static bool istUebungstag(String start, String datum) {
-    final x = t(start, datum);
-    return x >= 0 && x.isOdd;
+  static bool istPause(Takt k, String datum) => _pause(k, datum) != null;
+
+  static bool istRuhetag(Takt k, String datum) =>
+      tagVon(datum).weekday == k.ruhetag;
+
+  /// Heute gehört eine Lektion hin.
+  static bool istLektionstag(Takt k, String datum) =>
+      tageZwischen(k.start, datum) >= 0 &&
+      !istRuhetag(k, datum) &&
+      !istPause(k, datum);
+
+  /// Kein Lektionstag, aber nach dem Start (Sonntag oder Pause).
+  static bool istUebungstag(Takt k, String datum) =>
+      tageZwischen(k.start, datum) >= 0 && !istLektionstag(k, datum);
+
+  /// Die Lektionsnummer an diesem Tag (Zahl der Lektionstage bis einschließlich
+  /// heute), gedeckelt auf `gesamt`.
+  static int lektionsNr(Takt k, String datum, int gesamt) {
+    if (tageZwischen(k.start, datum) < 0) return 0;
+    final ende = tagVon(datum);
+    var n = 0;
+    for (var x = tagVon(k.start); !x.isAfter(ende); x = x.add(const Duration(days: 1))) {
+      final iso = isoVon(x);
+      if (x.weekday == k.ruhetag) continue;
+      final p = _pause(k, iso);
+      if (p != null && p['zaehlt'] != true) continue;
+      n++;
+    }
+    return n > gesamt ? gesamt : n;
   }
 
-  static int lektionsNr(String start, String datum, int gesamt) {
-    final x = t(start, datum);
-    if (x < 0) return 0;
-    final n = x ~/ 2 + 1;
-    return n < 0 ? 0 : (n > gesamt ? gesamt : n);
-  }
+  /// Durchgang zu einer Lektionsnummer: 1, 2 … — 0 in der Wiederholung.
+  static int durchgangVon(Takt k, int lektion) =>
+      lektion < 1 || lektion > k.grammatikLektionen
+          ? 0
+          : (lektion - 1) ~/ k.proDurchgang + 1;
 
-  static int themenBlock(String start, String datum, int gesamt) {
-    final x = t(start, datum);
-    if (x < 0) return 0;
-    final n = x ~/ 4 + 1;
-    return n < 0 ? 0 : (n > gesamt ? gesamt : n);
-  }
+  static int blockVon(Takt k, int lektion) => lektion < 1
+      ? 0
+      : ((lektion - 1) ~/ k.proThema) % k.themenGesamt + 1;
 
-  static bool istWiederholung(String start, String datum,
-          [int themenGesamt = 29]) =>
-      t(start, datum) >= themenGesamt * 4;
+  static int themenBlock(Takt k, String datum) =>
+      blockVon(k, lektionsNr(k, datum, 1 << 30));
+
+  static bool istWiederholung(Takt k, String datum) =>
+      lektionsNr(k, datum, 1 << 30) > k.grammatikLektionen;
 
   static const wochentage = [
     'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag',
@@ -108,6 +138,7 @@ class Tag {
     required this.lektion,
     required this.uebung,
     this.fehlt = false,
+    this.ruhetag = false,
   });
 
   final String datum;
@@ -133,6 +164,9 @@ class Tag {
   /// stattdessen, dass etwas fehlt, und schickt sie auf die Webseite.
   final bool fehlt;
 
+  /// Seit dem 16.10.2026: Sonntag ist Ruhetag — keine Lektion geplant.
+  final bool ruhetag;
+
   static List<Tag> bauen(Daten d) {
     if (d.lektionen.isEmpty) return const [];
     final erste = Zyklus.tagVon(d.lektionen.last.datum);
@@ -151,11 +185,13 @@ class Tag {
       } else if (letzte != null) {
         // Kein Lektionsdatei für diesen Tag. Sagt der Takt, dass hier eine
         // hingehört, dann fehlt sie — sonst ist es ein geplanter Übungstag.
+        final k = d.takt;
         raus.add(Tag(
           datum: iso,
           lektion: letzte,
           uebung: true,
-          fehlt: Zyklus.istLektionstag(d.start, iso),
+          fehlt: Zyklus.istLektionstag(k, iso),
+          ruhetag: Zyklus.istRuhetag(k, iso),
         ));
       }
     }

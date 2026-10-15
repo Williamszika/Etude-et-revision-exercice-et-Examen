@@ -136,12 +136,14 @@ class _Kopf extends StatelessWidget {
         ? <String, dynamic>{}
         : daten.lektionen.first.zyklus;
 
+    final k = daten.takt;
     final lektion = zahlVon(z['lektion']) ??
-        Zyklus.lektionsNr(daten.start, heute, daten.lektionenGesamt);
-    final wdh =
-        Zyklus.istWiederholung(daten.start, heute, daten.themenGesamt);
-    final block = zahlVon(z['themaBlock']) ??
-        Zyklus.themenBlock(daten.start, heute, daten.themenGesamt);
+        Zyklus.lektionsNr(k, heute, daten.lektionenGesamt);
+    final wdh = lektion > k.grammatikLektionen;
+    final block = zahlVon(z['themaBlock']) ?? Zyklus.blockVon(k, lektion);
+    final durchgang = Zyklus.durchgangVon(k, lektion);
+    // Kurs B1.1 = Durchgang 1, Kurs B1.2 = Durchgang 2 und Wiederholung.
+    final kurs = lektion <= k.proDurchgang ? 'B1.1' : 'B1.2';
 
     var woerter = 0;
     for (final l in daten.lektionen) {
@@ -175,7 +177,7 @@ class _Kopf extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'ETAPPE 1 · A2 → B1',
+                      'A2 ✓ · KURS $kurs',
                       style: TextStyle(
                         fontSize: 10.5,
                         fontWeight: FontWeight.w700,
@@ -230,7 +232,10 @@ class _Kopf extends StatelessWidget {
                 child: Text(
                   wdh
                       ? 'Wiederholung'
-                      : (block > 0 ? 'Thema $block von ${daten.themenGesamt}' : ''),
+                      : (block > 0
+                          ? '${durchgang > 0 ? 'Durchgang $durchgang von ${k.durchgaenge} · ' : ''}'
+                              'Thema $block von ${daten.themenGesamt}'
+                          : ''),
                   textAlign: TextAlign.right,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
@@ -367,7 +372,7 @@ class _Leiste extends StatelessWidget {
                     if (t.uebung)
                       Padding(
                         padding: const EdgeInsets.only(right: 4),
-                        child: Text('✎',
+                        child: Text(t.ruhetag ? '☾' : '✎',
                             style: TextStyle(
                               fontSize: 12,
                               color: an ? Stil.kartenGrund(context) : f,
