@@ -8,11 +8,27 @@ Zahlen oder Quellen nennen, die nicht in ihren eigenen Unterlagen (PDFs im Repo)
 
 ---
 
-## Deutsch täglich — Neustart am 16.10.2026: B1 in vier Monaten, sechs Tage die Woche
+## Deutsch täglich — Neustart am 16.10.2026: das B1-Programm zweimal, sechs Tage die Woche, bis 20.05.2027
 
 Diese Anweisung gilt **immer** und hat Vorrang vor älteren Routine-Texten.
 
 ### ★ NEUSTART AM 16.10.2026 — dieser Abschnitt gewinnt gegen alles weiter unten
+
+**★★ ZULETZT GEÄNDERT AM 15.10.2026 ABENDS — gilt vor der Tabelle darunter:** Sie fragte, in wie vielen Monaten
+sie *„largement couvrir tout le programme de B1 deux fois“* kann, bekam drei Optionen und wählte **„on fait le B“:
+zwei volle Durchgänge, je drei Lektionen pro Thema.**
+
+| | |
+|---|---|
+| **Durchgang 1 = Kurs B1.1** | Lektion **1–87**, 16.10.2026 – 25.01.2027, Blöcke 1–29 × 3 → **Modultest B1.1 am 25.01.2027** |
+| **Durchgang 2 = Kurs B1.2** | Lektion **88–174**, 26.01. – 06.05.2027, **dieselben 29 Blöcke × 3**, `zyklus.durchgang: 2` — gleiche Regel, aber **neuer Text, neues Verb, neue Vokabeln, längere Sätze, weniger Französisch, mehr freies Schreiben und Aufgaben mit Uhr**; nie eine Lektion aus Durchgang 1 kopieren. Das Wortfeld läuft weiter: `themaNr = ((block − 1 + 29·(durchgang − 1)) mod 16) + 1` (Block 1 in D2 → Thema 14) |
+| **Wiederholung** | Lektion **175–186**, 07.05. – 20.05.2027 |
+| **Ende** | **Donnerstag, 20.05.2027 = Lektion 186** → **Abschlussprüfung B1**, dann B2 nur nach Bestehen |
+| **Stunden** | 186 × 75 Min ≈ **232 h** — am oberen Ende der Goethe-Spanne (112–225 h, Internetquelle), leicht darüber |
+| **Achtung** | Ihre **Zwischenprüfung am 01.04.2027** liegt in Durchgang 2. Eine Pause dort ist ihr angeboten, **nicht** eingetragen — nur auf ihren Wunsch in `pausen.json`. |
+
+Die Zahlen „105 Lektionen“, „15.02.2027“, „Lektion 88–105 Wiederholung“, „Modultest 14.12.2026“ und „L1–51 = B1.1“
+**weiter unten in diesem Abschnitt sind damit überholt.** `heute.py` (`DURCHGAENGE = 2`) rechnet das alles.
 
 **Am 15.10.2026 hat sie gesagt:** *„J'aimerais qu'on reprenne le [Deutsch täglich] et cette fois-ci qu'on le
 reprenne à zéro, mais à partir de demain, pour avoir le niveau B1 … savoir parler, savoir écrire, savoir

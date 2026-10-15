@@ -11,7 +11,7 @@ Reihenfolge — nicht umstellen:
 
 2. **Schritt 0 — zuerst retten.** `Artifact action:"read"` auf https://claude.ai/code/artifact/e499dbe3-e198-410a-94d3-9393e6b27c84. Aus der gespeicherten Datei `const LEKTIONEN` ziehen. Jede Lektion, deren Datum nicht in `deutsch-taeglich/lektionen/` liegt, dort als JSON anlegen. **Steht das heutige Datum schon darin, wird heute KEINE neue Lektion geschrieben** — nur zurückholen, prüfen, weiter mit Schritt 5.
 
-3. **Rechnen, nicht raten:** `python3 deutsch-taeglich/heute.py` fragen, nie selbst rechnen. **Seit dem Neustart am 16.10.2026:** Lektionstag ist **jeder Tag außer Sonntag** (und außer Pausen aus `pausen.json`); drei Lektionen pro Grammatikthema (`themenTag` 1 entdecken · 2 üben · 3 anwenden); ab Lektion 88 Wiederholung; Ende 15.02.2027.
+3. **Rechnen, nicht raten:** `python3 deutsch-taeglich/heute.py` fragen, nie selbst rechnen. **Seit dem Neustart am 16.10.2026:** Lektionstag ist **jeder Tag außer Sonntag** (und außer Pausen aus `pausen.json`); drei Lektionen pro Grammatikthema (`themenTag` 1 entdecken · 2 üben · 3 anwenden); **das ganze Programm zweimal**: Durchgang 1 = Lektion 1–87, Durchgang 2 = Lektion 88–174 (`durchgang: 2` — gleiche Regel, aber neuer Text, neue Vokabeln, längere Sätze, weniger Französisch, mehr freies Schreiben; nie eine Lektion aus Durchgang 1 kopieren); ab Lektion 175 Wiederholung; Ende 20.05.2027 (Lektion 186).
    - `UEBUNGSTAG` (sonntags `ruhetag: true`) oder `PAUSE` oder `VORHER` → **keine Datei schreiben.** Weiter mit Schritt 5.
    - `lektionen/<heute>.json` existiert schon → nicht anfassen. Weiter mit Schritt 5.
    - `LEKTIONSTAG` → den `zyklus`-Block **genau so übernehmen, wie `heute.py` ihn ausgibt**. Steht `"probe": true` → zusätzlich der Block `probe`.

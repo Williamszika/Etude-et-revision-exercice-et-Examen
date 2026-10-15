@@ -13,14 +13,16 @@ Antwort ist eine von vier Arten:
     LEKTIONSTAG  — Lektion schreiben; die Zeile nennt alle zyklus-Felder
     VORHER       — vor dem Start der Etappe
 
-**Neustart am 16.10.2026** (ihr Wunsch vom 15.10.2026: von null anfangen, B1 in vier Monaten,
-75 Minuten am Tag, sechs Tage die Woche). Die Regel:
+**Neustart am 16.10.2026** (ihr Wunsch vom 15.10.2026: von null anfangen, 75 Minuten am Tag,
+sechs Tage die Woche). **Seit dem 15.10.2026 abends: das ganze B1-Programm zweimal** (ihre
+Wahl „on fait le B“: zwei volle Durchgänge, je drei Lektionen pro Thema). Die Regel:
 
     Lektionstag  = jeder Tag ab 16.10.2026 außer Sonntag und außer Pausentagen
     lektion      = Zahl der Lektionstage vom 16.10. bis heute (1, 2, 3 …)
-    themaBlock   = (lektion − 1) // 3 + 1        — drei Lektionen pro Grammatikthema (1 … 29)
+    durchgang    = 1 für Lektion 1–87 (Kurs B1.1), 2 für Lektion 88–174 (Kurs B1.2)
+    themaBlock   = ((lektion − 1) // 3) % 29 + 1 — drei Lektionen pro Grammatikthema (1 … 29)
     themenTag    = (lektion − 1) %  3 + 1        — 1 entdecken · 2 üben · 3 anwenden
-    ab Lektion 88: Wiederholung bis zum Ende (15.02.2027, ohne Pausen)
+    ab Lektion 175: Wiederholung bis zum Ende (20.05.2027 = Lektion 186, ohne Pausen)
 
 Pausentage zählen nicht mit: Der Plan rückt nach hinten, keine Lektion fällt aus. Die
 Routinen, build.py und pruefen.py fragen hier nach, statt selbst zu rechnen.
@@ -32,10 +34,12 @@ from datetime import date, datetime, timedelta
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 START = date(2026, 10, 16)
-PLAN_ENDE = date(2027, 2, 15)        # Ende der Etappe ohne Pausen
+PLAN_ENDE = date(2027, 5, 20)        # Ende der Etappe ohne Pausen (Lektion 186)
 RUHETAG = 6                          # Sonntag (Python weekday); in JS getDay() = 0
 PRO_THEMA = 3                        # Lektionen pro Grammatikthema
 THEMEN_GESAMT = 29
+DURCHGAENGE = 2                      # das ganze B1-Programm zweimal
+GRAMMATIK_LEKTIONEN = THEMEN_GESAMT * PRO_THEMA * DURCHGAENGE   # 174
 GRAMMATIK = [
     'Verbstellung und Satzklammer',
     'Nebensätze: weil, dass, wenn/als, obwohl, damit',
@@ -193,13 +197,17 @@ def status(d):
     lektion = lektion_von(d)
     z = {'woche': (d - START).days // 7 + 1, 'gesamt': THEMEN_GESAMT, 'etappe': 'B1',
          'takt': 1, 'ruhetag': 0, 'themenTage': PRO_THEMA}
-    if lektion > THEMEN_GESAMT * PRO_THEMA:
+    if lektion > GRAMMATIK_LEKTIONEN:
         z['phase'] = 'Wiederholung'
         themen_start = d
     else:
-        block = (lektion - 1) // PRO_THEMA + 1
+        block = ((lektion - 1) // PRO_THEMA) % THEMEN_GESAMT + 1
         themen_tag = (lektion - 1) % PRO_THEMA + 1
-        z.update({'thema': THEMEN[(block - 1) % 16], 'themaNr': (block - 1) % 16 + 1,
+        z['durchgang'] = (lektion - 1) // (THEMEN_GESAMT * PRO_THEMA) + 1
+        # Wortfeld läuft über beide Durchgänge weiter: dieselbe Grammatik kommt im
+        # zweiten Durchgang in einem anderen Lebensbereich wieder (Block 1 → Thema 14 …).
+        feld = (block - 1 + THEMEN_GESAMT * (z['durchgang'] - 1)) % 16
+        z.update({'thema': THEMEN[feld], 'themaNr': feld + 1,
                   'grammatik': GRAMMATIK[block - 1], 'grammatikNr': block,
                   'themaBlock': block, 'themenTag': themen_tag})
         themen_start = datum_von_lektion(lektion - themen_tag + 1)
@@ -231,7 +239,7 @@ def main():
     if '--plan' in sys.argv:
         for n, d, z in plan():
             print('%3d  %s %s  %s' % (n, d.isoformat(), WOCHENTAGE[d.weekday()][:2],
-                  z.get('phase') or 'G%d/%d %s' % (z['grammatikNr'], z['themenTag'], z['grammatik'])))
+                  z.get('phase') or 'D%d G%d/%d %s' % (z['durchgang'], z['grammatikNr'], z['themenTag'], z['grammatik'])))
         return
     d = _d(args[0]) if args else heute_berlin()
     s = status(d)

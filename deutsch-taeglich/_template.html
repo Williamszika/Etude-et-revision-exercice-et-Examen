@@ -2465,7 +2465,7 @@ function render(){
         else{
           if(iso>l.datum) zaehler++;
           const ln=iso>l.datum?zaehler:(z.lektion||1);
-          const tt=ln<=THEMEN_GESAMT*PRO_THEMA?' · Thema-Tag '+(((ln-1)%PRO_THEMA)+1)+' von '+PRO_THEMA:' · Wiederholung';
+          const tt=ln<=GRAMMATIK_LEKTIONEN?' · Durchgang '+durchgangVon(ln)+' · Thema-Tag '+(((ln-1)%PRO_THEMA)+1)+' von '+PRO_THEMA:' · Wiederholung';
           kls+=probeAm(d)?'probetag':'lektionstag';
           tip='Lektion '+ln+' · '+REIHE[(ln-1)%5]+tt+(probeAm(d)?' · dazu die Probeprüfung':'');
         }
@@ -2519,7 +2519,7 @@ function render(){
                     esc(ueb?(WOCHENTAGE[(alsDatum(eintrag.datum)||new Date()).getDay()]+
                              (pause?' · Pause':(ruhe?' · Ruhetag':' · Übungstag'))):((z.tag||'')+' · '+(z.fokus||'Lektion')))+'</span>'+
                   (z.etappe?'<span class="zy-etappe">'+(z.etappe==='B1'&&z.lektion
-                      ? 'Kurs '+(z.lektion<=51?'B1.1':'B1.2')   /* B1.1 = L1–51 bis Modultest 14.12.2026 */
+                      ? 'Kurs '+(z.lektion<=PRO_DURCHGANG?'B1.1':'B1.2')+(durchgangVon(z.lektion)?' · Durchgang '+durchgangVon(z.lektion):'')   /* B1.1 = 1. Durchgang L1–87, B1.2 = 2. Durchgang + Wiederholung */
                       : 'Etappe '+esc(z.etappe))+'</span>':'')+
                   (z.phase?'<span class="zy-tt">'+esc(z.phase)+'</span>':
                    z.themenTag?'<span class="zy-tt">Thema-Tag <b>'+z.themenTag+'</b> von '+(z.themenTage||2)+' · '+
@@ -2582,6 +2582,9 @@ function render(){
    fest eingetragen. Das Ziel ist, dass sie beim Öffnen sofort sieht, wie weit
    sie ist — und nicht nur die Lektion von heute. */
 const ETAPPE_ENDE='__ENDE__', LEKTIONEN_GESAMT=__LEKTIONEN_GESAMT__, THEMEN_GESAMT=29, PRO_THEMA=3, RUHETAG=0;
+/* Seit 15.10.2026 abends: das B1-Programm zweimal — Durchgang 1 = L1–87 (Kurs B1.1), Durchgang 2 = L88–174 (Kurs B1.2). */
+const DURCHGAENGE=2, PRO_DURCHGANG=THEMEN_GESAMT*PRO_THEMA, GRAMMATIK_LEKTIONEN=PRO_DURCHGANG*DURCHGAENGE;
+function durchgangVon(ln){ return ln>0&&ln<=GRAMMATIK_LEKTIONEN?Math.floor((ln-1)/PRO_DURCHGANG)+1:0; }
 /* Seit dem Neustart am 16.10.2026: Lektionstag = jeder Tag ab Start außer Sonntag und Pausen. */
 function lektionAm(iso){
   const a=alsDatum(START_DATUM), b=alsDatum(iso); if(!a||!b||b<a) return 0;
@@ -2600,8 +2603,9 @@ function zeichneFortschritt(){
   /* Lektionsnummer: was in der Lektion steht, sonst aus dem Datum gerechnet. */
   let lektion=z.lektion||lektionAm(heuteISO());
   lektion=Math.max(0,Math.min(LEKTIONEN_GESAMT,lektion));
-  const wdh=lektion>THEMEN_GESAMT*PRO_THEMA;       /* ab Lektion 88: Wiederholung */
-  let block=z.themaBlock||(lektion>0?Math.floor((lektion-1)/PRO_THEMA)+1:0);
+  const wdh=lektion>GRAMMATIK_LEKTIONEN;           /* ab Lektion 175: Wiederholung */
+  const dg=durchgangVon(lektion);
+  let block=z.themaBlock||(lektion>0?(Math.floor((lektion-1)/PRO_THEMA)%THEMEN_GESAMT)+1:0);
   block=Math.max(0,Math.min(THEMEN_GESAMT,block));
 
   const nr=document.getElementById('ringNr');
@@ -2636,7 +2640,7 @@ function zeichneFortschritt(){
   const bj=document.getElementById('bandJetzt');
   if(bj){
     bj.innerHTML=wdh?'<b>Wiederholung bis zum Ende</b>'
-      :(block?('Thema <b>'+block+' von '+THEMEN_GESAMT+'</b>'
+      :(block?((dg?'Durchgang <b>'+dg+' von '+DURCHGAENGE+'</b> · ':'')+'Thema <b>'+block+' von '+THEMEN_GESAMT+'</b>'
         +(z.grammatik?' · '+z.grammatik:'')):'');
   }
 
