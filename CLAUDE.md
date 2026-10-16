@@ -86,6 +86,16 @@ der 05:27-Routine (`trig_01VRtDx16gERnHrg4kP8fNEc`) ließ sich von hier aus **ni
 Sitzung); er verweist aber auf `heute.py` und auf diese Datei, und sein Ablauf passt: Sonntag meldet `heute.py`
 als `UEBUNGSTAG` (`ruhetag: true`) → nichts schreiben.
 
+**Ansicht seit 16.10.2026 wieder wie früher — ihr Wunsch:** *„je veux que ça soit comme l'ancienne version"*
+(nach *„je ne sais pas comment bosser là-dessus"*). Auf ihre Rückfrage gewählt: **„La page comme avant“** — die
+Lektion steht wieder **Block für Block untereinander** (Verb · Wort · Vokabeln · Grammatik + Kurzregel · Kette ·
+Lesen · Training · Leben · Fertigkeit · Probe · Aussprache · Diktat · Übersetzung · „Antworten sammeln“), **ohne**
+Tagesplan in acht Schritten, ohne „fertig“-Haken, ohne Wiederholungskarten und Fehlerheft auf der Lektionsseite;
+der Übungstag ebenfalls ohne Schritte. **Der Kalender bleibt neu** (Mo–Sa, zwei Durchgänge, 20.05.2027); der
+Sonntag zeigt weiter die Ruhetag-Seite. Die Blöcke `kurzregel` usw. werden weiter geschrieben. **Den Tagesplan
+nicht wieder einbauen, außer sie bittet darum.** Die Tabelle „Zeit … 75 Min in zwei Blöcken“ oben ist nur noch
+Richtwert, nicht mehr Seitenaufbau.
+
 **Die App** (`app/lib/logik/zyklus.dart`) ist **seit dem 15.10.2026 angepasst** (ihre Bitte *„mettre a jour l'app sur
 le iphone“*): Klasse `Takt` in `daten/modelle.dart`, Lektion Mo–Sa, Sonntag = Ruhetag (☾), drei Lektionen pro Thema,
 zwei Durchgänge, Pausen mit `zaehlt`; Etikett „Kurs B1.1/B1.2 · Durchgang n“. `build.py` schreibt dafür `ruhetag`,

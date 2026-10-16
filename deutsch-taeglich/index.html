@@ -696,7 +696,7 @@
     <div>
       <p class="eyebrow">A2 ✓ · Kurs B1 · Abschlussprüfung 20.05.2027 · dann B2</p>
       <h1>Deutsch täglich</h1>
-      <p class="hero-sub">Eine Lektion <b>jeden Tag außer Sonntag</b>, 75 Minuten in zwei Blöcken.
+      <p class="hero-sub">Eine Lektion <b>jeden Tag außer Sonntag</b> — Block für Block, von oben nach unten.
       Jedes Grammatikthema drei Lektionen lang: <i>entdecken</i>, <i>üben</i>, <i>anwenden</i>.
       Sonntag ist Ruhetag mit Wochenrückblick.</p>
       <span class="streak" id="streak"></span>
@@ -2308,35 +2308,19 @@ function planVerdrahten(datum,schritte){
   }));
 }
 function renderLektionsSeite(l,datum,idx){
+  /* Seit 16.10.2026 wieder die alte Ansicht — ihr Wunsch « je veux que ça soit comme l'ancienne
+     version »: alle Blöcke untereinander, wie vor dem 05.10. und wie in der App. Kein Tagesplan in
+     acht Schritten mehr; die Kurzregel steht direkt nach der Grammatik. */
   const hoertext=hoertextVon(l);
-  const teile={
-    wdh: renderRappel(l)+'<h4 class="sk-unter">Deine fälligen Wörter</h4>'+renderSRS(),
-    vok: renderVokabeln(l.vokabeln,idx,datum),
-    gram: renderKurzregel(l.kurzregel)+(l.grammatik?renderBlock(l.grammatik,'gram',idx):'')+
-          renderDeklination(l.deklination,idx),
-    lesen: renderLesen(l.lesen,idx),
-    diktat: renderDiktat(l.diktat,(l.zyklus&&l.zyklus.etappe)||'B2'),
-    leben: renderLeben(l.leben,idx),
-    sprechen: '<p class="sk-hinweis">Erst nachsprechen: Satz anhören, sofort laut wiederholen (Shadowing). '+
-              'Dann 60 Sekunden frei sprechen und aufnehmen.</p>'+renderSay(l.aussprache,idx)+renderAufnahme(),
-    fehler: renderFehlerheft(datum)
-  };
-  let h=renderMesshinweis()+renderWochenrueckblick(datum)+
-    renderPlanKopf(datum,PLAN_SCHRITTE,'Dein Plan heute',
-      '<b>Bloc 1 (45 min)</b> : étapes 1 à 4, le matin ou à la pause. <b>Bloc 2 (30 min)</b> : étapes 5 à 8, le soir. '+
-      'Coche « fertig » à la fin de chaque étape. Tout ce qui est plus bas, dans « Bonus », est facultatif.');
-  PLAN_SCHRITTE.forEach((s,i)=>{
-    if(i===0||PLAN_SCHRITTE[i-1].block!==s.block)
-      h+='<p class="sk-block">Block '+s.block+' · '+(s.block===1?'45 Min — morgens oder in der Pause':'30 Min — abends')+'</p>';
-    h+=renderSchritt(datum,s,i+1,teile[s.id]||''); });
-  h+=renderProbe(l.probe,'probe'+idx,hoertext);
-  h+='<details class="bonus"><summary>Bonus — für mehr <small>facultatif : verbe du jour, exercices, '+
-     'telc, traduction</small></summary><div class="bonus-in">'+
-     (l.verb?renderBlock(l.verb,'verb',idx):'')+(l.wortschatz?renderBlock(l.wortschatz,'voc',idx):'')+
-     renderSatzbau(l.satzbau,idx)+renderTraining(l.training,idx)+
-     renderTraining(l.telc,'telc'+idx,{telc:true,kls:'k-telc',hoertext:hoertext,badge:fokusBadge(l)})+
-     renderTrans(l.uebersetzung,idx)+'</div></details>';
-  return h+renderSenden();
+  return (l.verb?renderBlock(l.verb,'verb',idx):'')+(l.wortschatz?renderBlock(l.wortschatz,'voc',idx):'')
+    +renderVokabeln(l.vokabeln,idx,datum)
+    +(l.grammatik?renderBlock(l.grammatik,'gram',idx):'')+renderKurzregel(l.kurzregel)
+    +renderSatzbau(l.satzbau,idx)+renderDeklination(l.deklination,idx)+renderLesen(l.lesen,idx)
+    +renderTraining(l.training,idx)+renderLeben(l.leben,idx)
+    +renderTraining(l.telc,'telc'+idx,{telc:true,kls:'k-telc',hoertext:hoertext,badge:fokusBadge(l)})
+    +renderProbe(l.probe,'probe'+idx,hoertext)
+    +renderSay(l.aussprache,idx)+renderDiktat(l.diktat,(l.zyklus&&l.zyklus.etappe)||'B2')
+    +renderTrans(l.uebersetzung,idx)+renderSenden();
 }
 
 function renderPauseSeite(l,eintrag){
@@ -2389,23 +2373,16 @@ function renderUebungstagSeite(l,datum){
     'weiterkommst. <b>Schick mir deine Antworten.</b> Jeder Deklinationsfehler bekommt sein '+
     '<b>Kettenglied</b>, jeder andere Fehler seine <b>Baustelle</b>.</div>'+
     '</section>';
-  h+=renderPlanKopf(datum,UE_SCHRITTE,'Dein Übungstag',
-      'Une demi-heure : d’abord tes mots, puis tes propres fautes, puis les exercices de la dernière leçon.');
-  h+=renderSchritt(datum,UE_SCHRITTE[0],1,renderSRS());
-  h+=renderSchritt(datum,UE_SCHRITTE[1],2,renderFehlerheft(datum));
-  let ueb='';
-  ueb+=renderVokabeln(l.vokabeln,'ue',datum);
-  ueb+=renderDeklination(l.deklination,'ue');
-  ueb+=renderLesen(l.lesen,'ue',{nurUebungen:true});
-  ueb+=renderTraining(l.training,'ue');
-  ueb+=renderLeben(l.leben,'ue');
-  ueb+=renderTraining(l.telc,'uetelc',{telc:true,kls:'k-telc',hoertext:hoertextVon(l),
+  h+=renderVokabeln(l.vokabeln,'ue',datum);
+  h+=renderDeklination(l.deklination,'ue');
+  h+=renderLesen(l.lesen,'ue',{nurUebungen:true});
+  h+=renderTraining(l.training,'ue');
+  h+=renderLeben(l.leben,'ue');
+  h+=renderTraining(l.telc,'uetelc',{telc:true,kls:'k-telc',hoertext:hoertextVon(l),
       badge:fokusBadge(l)});
-  ueb+=renderDiktat(l.diktat,(l.zyklus&&l.zyklus.etappe)||"B2");
-  ueb+=renderTrans(l.uebersetzung,'ue');
-  h+=renderSchritt(datum,UE_SCHRITTE[2],3,'<p class="sk-hinweis">Wähle, was du heute brauchst — '+
-     'mindestens die Kette und das Diktat.</p>'+ueb);
-  return renderWochenrueckblick(datum)+h+renderSenden();
+  h+=renderDiktat(l.diktat,(l.zyklus&&l.zyklus.etappe)||"B2");
+  h+=renderTrans(l.uebersetzung,'ue');
+  return h+renderSenden();
 }
 function render(){
   [...bar.children].forEach((b,i)=>b.classList.toggle('active',i===cur));
