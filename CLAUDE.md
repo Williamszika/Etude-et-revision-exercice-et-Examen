@@ -1794,7 +1794,7 @@ aus der Akte zu schicken; **nicht raten**. Kein Kurs, deshalb **nicht** in `schu
 
 ## Krankheiten verstehen — Fachartikel, eigener Link
 
-`krankheiten/index.html` → (URL nach dem ersten Publish hier eintragen) (Icon „book“). Auf ihren Wunsch vom 18.10.2026:
+`krankheiten/index.html` → `https://claude.ai/artifact/AYsBy6JvZNtRaCj5mVrdWv` (Icon „book“). Auf ihren Wunsch vom 18.10.2026:
 *„Je veux un autre lien … des articles … sur des maladies … les maladies dont on a eu à étudier jusqu'à présent …
 toute l'histoire de la maladie … la thérapie médicamenteuse, non médicamenteuse … avec des petites images
 d'illustration … maximum de 50 pages … aller faire des recherches sur Internet … de très bons articles."*
