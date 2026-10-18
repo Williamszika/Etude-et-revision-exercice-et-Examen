@@ -1792,6 +1792,21 @@ Kodes aus ICD-10-GM 2026 (BfArM). **Zu Syringomyelie, Spinalkanalstenose und Kra
 ihren Unterlagen nichts.** Zwei Zeilen sind abgeschnitten — sie wurde gebeten, den vollen Wortlaut
 aus der Akte zu schicken; **nicht raten**. Kein Kurs, deshalb **nicht** in `schulungen.json`.
 
+## Krankheiten verstehen — Fachartikel, eigener Link
+
+`krankheiten/index.html` → (URL nach dem ersten Publish hier eintragen) (Icon „book“). Auf ihren Wunsch vom 18.10.2026:
+*„Je veux un autre lien … des articles … sur des maladies … les maladies dont on a eu à étudier jusqu'à présent …
+toute l'histoire de la maladie … la thérapie médicamenteuse, non médicamenteuse … avec des petites images
+d'illustration … maximum de 50 pages … aller faire des recherches sur Internet … de très bons articles."*
+Oben eine **Bibliothek** mit 19 Krankheiten aus ihren Zusammenfassungen (je „wo gelernt“), darunter je ein Artikel
+als `<article id="…">`. **Artikel 1 = Schlaganfall** (ihr Beispiel „Schlaganfall“), 15 Kapitel, ≈ 8 600 Wörter,
+8 Inline-SVG-Abbildungen, je Kapitel „🇫🇷 En bref“, Selbsttest mit Operatoren, Glossar DE–FR, Quellenliste.
+**Herkunftsmarken wie auf der Diagnoseseite:** grün = ihre Unterlagen (mit Link), blau = Internetquelle (mit Link,
+abgerufen 18.10.2026), gelb = meine Folgerung. Die Fallgeschichte „Herr Weber“ ist ausdrücklich als erfunden markiert.
+**Bewusst nicht genannt, weil nicht belegt:** Blutdruckgrenzen um die Lyse, Überwachungsintervalle, Fahreignung,
+Bobath-Technik. **Nächster Artikel erst, wenn sie die Krankheit wählt**; dann in der Bibliothek von „geplant“ auf
+„fertig“ setzen und Kapitelnamen der Leseliste (`localStorage` `krankheiten-gelesen-v1`, Schlüssel `<id>-<kap>`) mitdenken.
+
 ## Schulungen und Klausuren
 
 - **`zusammenfassungen/`** — **der einzige Schulungs-Link. Nur die zusammengefassten Kurse und

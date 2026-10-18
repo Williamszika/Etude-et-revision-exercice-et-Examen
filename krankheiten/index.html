@@ -1,0 +1,1183 @@
+<title>Krankheiten verstehen</title>
+<meta name="description" content="Fachartikel zu den Krankheiten aus ihren Kursen — Artikel 1: der Schlaganfall.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+  /* Fachartikel-Bibliothek: warmes Papier, Ochsenblut als Akzent, Serifen zum langen Lesen.
+     Herkunftsmarken wie auf ihrer Diagnoseseite: grün = ihre Unterlagen, blau = Internet, gelb = meine Folgerung. */
+  :root{
+    --paper:#f5f1ea;--paper-2:#ebe5da;--card:#fffdf9;--ink:#1d1a17;--ink-soft:#57504a;--line:#d9d0c3;
+    --accent:#8c2f2b;--accent-deep:#6e2220;--accent-soft:#f1dcd6;
+    --du:#25694a;--dubg:#e1efe6;--net:#1f5c85;--netbg:#dde9f2;--ich:#7a5a08;--ichbg:#f7ecc9;
+    --fr:#3d4f8a;--frbg:#e5e8f4;
+    --blut:#b4332c;--blut-2:#e7a39b;--hirn:#e9d9cb;--hirn-2:#d8c2ae;--ader:#a7463f;--tot:#4d3a35;--pen:#e3b77c;
+    --serif:"Source Serif 4","Iowan Old Style",Georgia,serif;
+    --sans:"IBM Plex Sans","Segoe UI",system-ui,-apple-system,Arial,sans-serif;
+    --mono:"IBM Plex Mono","SFMono-Regular",Consolas,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --paper:#16130f;--paper-2:#0f0d0a;--card:#1f1b16;--ink:#ece6dc;--ink-soft:#a99f92;--line:#352f27;
+    --accent:#e48f82;--accent-deep:#f0aa9e;--accent-soft:#3a1d1a;
+    --du:#74c497;--dubg:#13281d;--net:#72b0dc;--netbg:#11263a;--ich:#e2bb55;--ichbg:#2d2510;
+    --fr:#a9b7ea;--frbg:#1c2140;
+    --blut:#e0675e;--blut-2:#7a2f2a;--hirn:#3b3129;--hirn-2:#54463a;--ader:#d06a62;--tot:#100c0a;--pen:#9b7438;
+    color-scheme:dark;}}
+  :root[data-theme="dark"]{
+    --paper:#16130f;--paper-2:#0f0d0a;--card:#1f1b16;--ink:#ece6dc;--ink-soft:#a99f92;--line:#352f27;
+    --accent:#e48f82;--accent-deep:#f0aa9e;--accent-soft:#3a1d1a;
+    --du:#74c497;--dubg:#13281d;--net:#72b0dc;--netbg:#11263a;--ich:#e2bb55;--ichbg:#2d2510;
+    --fr:#a9b7ea;--frbg:#1c2140;
+    --blut:#e0675e;--blut-2:#7a2f2a;--hirn:#3b3129;--hirn-2:#54463a;--ader:#d06a62;--tot:#100c0a;--pen:#9b7438;
+    color-scheme:dark;}
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.66;
+    -webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-deep);text-underline-offset:2px;}
+  a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+
+  #fortschritt{position:fixed;top:0;left:0;height:3px;width:0;background:var(--accent);z-index:60;transition:width .1s linear;}
+
+  .wrap{max-width:46rem;margin:0 auto;padding-inline:18px;}
+  .wide{max-width:62rem;margin:0 auto;padding-inline:18px;}
+
+  /* Kopf */
+  header.kopf{padding-block:52px 34px;border-bottom:1px solid var(--line);}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin:0 0 12px;}
+  header.kopf h1{font-size:clamp(2.3rem,7vw,3.6rem);line-height:1.02;margin:0 0 14px;font-weight:700;letter-spacing:-.01em;text-wrap:balance;}
+  header.kopf p.sub{font-size:1.1rem;color:var(--ink-soft);margin:0 0 20px;max-width:40rem;}
+  .legende{display:flex;flex-wrap:wrap;gap:8px;font-family:var(--sans);font-size:13.5px;}
+  .legende span{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;}
+  .legende .du{background:var(--dubg);color:var(--du);} .legende .net{background:var(--netbg);color:var(--net);}
+  .legende .ich{background:var(--ichbg);color:var(--ich);} .legende .fr{background:var(--frbg);color:var(--fr);}
+
+  /* Bibliothek */
+  section.bib{padding-block:36px 10px;}
+  .bib h2{font-size:1.5rem;margin:0 0 4px;}
+  .bib p.lead{font-family:var(--sans);font-size:15px;color:var(--ink-soft);margin:0 0 18px;max-width:44rem;}
+  .regal{display:grid;grid-template-columns:repeat(auto-fill,minmax(15rem,1fr));gap:10px;}
+  .buch{display:flex;flex-direction:column;gap:4px;padding:12px 14px;border-radius:10px;border:1px solid var(--line);
+    background:var(--card);font-family:var(--sans);font-size:14px;color:var(--ink);text-decoration:none;min-width:0;}
+  .buch b{font-family:var(--serif);font-size:1.05rem;line-height:1.25;}
+  .buch .woher{color:var(--ink-soft);font-size:12.5px;}
+  .buch .st{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);}
+  .buch.fertig{border:2px solid var(--accent);background:var(--accent-soft);}
+  .buch.fertig .st{color:var(--accent-deep);font-weight:600;}
+  a.buch.fertig:hover{transform:translateY(-1px);}
+
+  /* Artikel */
+  article{padding-block:30px 80px;}
+  .artkopf{padding-block:42px 18px;border-top:4px double var(--line);margin-top:30px;}
+  .artkopf .nr{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);}
+  .artkopf h2{font-size:clamp(2.1rem,6.4vw,3.2rem);line-height:1.05;margin:8px 0 10px;text-wrap:balance;}
+  .artkopf .unter{font-size:1.15rem;color:var(--ink-soft);font-style:italic;margin:0 0 14px;}
+  .meta{display:flex;flex-wrap:wrap;gap:6px 16px;font-family:var(--sans);font-size:13px;color:var(--ink-soft);}
+
+  nav.inhalt{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:var(--paper-2);border-block:1px solid var(--line);
+    display:flex;gap:4px;overflow-x:auto;padding:7px 10px;margin:22px 0 0;}
+  nav.inhalt a{flex:0 0 auto;font-family:var(--sans);font-size:12.5px;text-decoration:none;color:var(--ink-soft);padding:5px 10px;border-radius:999px;white-space:nowrap;}
+  nav.inhalt a.an{background:var(--card);color:var(--accent-deep);box-shadow:inset 0 0 0 1px var(--line);}
+  nav.inhalt a.gelesen::after{content:" ✓";color:var(--du);}
+
+  section.kap{padding-top:46px;}
+  .kap > h3{font-size:clamp(1.55rem,4.4vw,2.05rem);line-height:1.15;margin:0 0 6px;text-wrap:balance;}
+  .kap > h3 .k{display:block;font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;font-weight:400;}
+  .kap .vorspann{font-size:1.12rem;color:var(--ink-soft);margin:0 0 18px;}
+  h4{font-size:1.2rem;margin:28px 0 8px;}
+  p{margin:0 0 15px;}
+  ul,ol{margin:0 0 16px;padding-left:1.3rem;} li{margin:5px 0;}
+  strong{font-weight:700;}
+  .first::first-letter{float:left;font-size:3.4em;line-height:.86;padding:6px 8px 0 0;color:var(--accent);font-weight:700;}
+
+  /* Herkunftsmarken */
+  .q{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;
+    padding:1px 7px;border-radius:999px;vertical-align:2px;text-decoration:none;white-space:nowrap;font-style:normal;line-height:1.6;}
+  .q.du{background:var(--dubg);color:var(--du);} .q.net{background:var(--netbg);color:var(--net);} .q.ich{background:var(--ichbg);color:var(--ich);}
+  a.q:hover{text-decoration:underline;}
+
+  .kasten{border-radius:12px;padding:15px 18px;margin:20px 0;background:var(--card);border:1px solid var(--line);font-size:17px;}
+  .kasten > :last-child{margin-bottom:0;}
+  .kasten .kt{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin:0 0 6px;}
+  .kasten.du{background:var(--dubg);border-color:transparent;} .kasten.du .kt{color:var(--du);}
+  .kasten.net{background:var(--netbg);border-color:transparent;} .kasten.net .kt{color:var(--net);}
+  .kasten.ich{background:var(--ichbg);border-color:transparent;} .kasten.ich .kt{color:var(--ich);}
+  .kasten.merk{border-left:5px solid var(--accent);} .kasten.merk .kt{color:var(--accent);}
+  .enbref{border-radius:12px;padding:14px 18px;margin:24px 0 6px;background:var(--frbg);color:var(--ink);font-size:16.5px;}
+  .enbref .kt{font-family:var(--sans);font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--fr);margin:0 0 6px;}
+  .enbref p{margin:0 0 8px;} .enbref > :last-child{margin-bottom:0;}
+
+  figure{margin:24px 0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;overflow-x:auto;}
+  figure svg{display:block;width:100%;height:auto;max-width:100%;}
+  figcaption{font-family:var(--sans);font-size:13.5px;color:var(--ink-soft);margin-top:10px;line-height:1.5;}
+  svg text{font-family:var(--sans);fill:var(--ink);}
+  svg .klein{font-size:13px;fill:var(--ink-soft);}
+  svg .hirn{fill:var(--hirn);stroke:var(--hirn-2);stroke-width:2;}
+  svg .linie{stroke:var(--ink-soft);stroke-width:1.4;fill:none;}
+  svg .ader{stroke:var(--ader);fill:none;}
+  svg .blut{fill:var(--blut);} svg .blut2{fill:var(--blut-2);}
+  svg .tot{fill:var(--tot);} svg .pen{fill:var(--pen);}
+  svg .karte{fill:var(--card);stroke:var(--line);}
+  svg .akz{fill:var(--accent);} svg .akzs{stroke:var(--accent);fill:none;}
+  svg .du{fill:var(--du);} svg .net{fill:var(--net);}
+  svg .leer{fill:none;stroke:var(--ink);stroke-width:2;}
+
+  .scroll{overflow-x:auto;margin:18px 0;}
+  table{border-collapse:collapse;width:100%;font-family:var(--sans);font-size:14.5px;min-width:34rem;line-height:1.45;}
+  th{text-align:left;font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);background:var(--paper-2);padding:8px 10px;border:1px solid var(--line);vertical-align:bottom;}
+  td{padding:8px 10px;border:1px solid var(--line);vertical-align:top;background:var(--card);}
+
+  .kette{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:14px 0 18px;font-family:var(--sans);font-size:14.5px;}
+  .kette span{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px;}
+  .kette i{font-style:normal;color:var(--accent);font-weight:700;}
+  .kette span.ende{background:var(--accent-soft);border-color:transparent;}
+
+  .steck{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));gap:10px;margin:18px 0;}
+  .steck div{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-family:var(--sans);font-size:14.5px;line-height:1.45;min-width:0;}
+  .steck b{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;font-weight:600;}
+  .zahl{font-family:var(--serif);font-size:1.9rem;font-weight:700;line-height:1.05;display:block;font-variant-numeric:tabular-nums;}
+
+  details.frage{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:10px 0;font-size:16.5px;}
+  details.frage summary{cursor:pointer;padding:11px 14px;list-style:none;display:flex;gap:10px;align-items:baseline;}
+  details.frage summary::-webkit-details-marker{display:none;}
+  details.frage summary::before{content:"＋";color:var(--accent);font-family:var(--mono);}
+  details.frage[open] summary::before{content:"－";}
+  details.frage .op{font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--accent-deep);background:var(--accent-soft);padding:1px 7px;border-radius:999px;white-space:nowrap;}
+  details.frage .antw{padding:0 14px 12px 38px;border-top:1px dashed var(--line);padding-top:10px;}
+  details.frage .antw > :last-child{margin-bottom:0;}
+
+  .glossar{display:grid;grid-template-columns:1fr 1fr;gap:0;font-family:var(--sans);font-size:14.5px;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+  .glossar div{padding:7px 11px;border-bottom:1px solid var(--line);background:var(--card);min-width:0;overflow-wrap:anywhere;}
+  .glossar div:nth-child(odd){font-weight:600;}
+  .glossar div:nth-child(4n+1),.glossar div:nth-child(4n+2){background:var(--paper-2);}
+
+  label.gelesen{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-family:var(--sans);font-size:14px;color:var(--ink-soft);cursor:pointer;
+    padding:6px 12px;border:1px solid var(--line);border-radius:999px;background:var(--card);}
+  label.gelesen input{accent-color:var(--du);width:17px;height:17px;}
+
+  .quellen li{font-family:var(--sans);font-size:14px;overflow-wrap:anywhere;}
+  footer{border-top:1px solid var(--line);padding-block:26px 50px;font-family:var(--sans);font-size:13.5px;color:var(--ink-soft);}
+
+  @media (max-width:520px){
+    body{font-size:17px;}
+    figure svg{min-width:500px;}
+    figcaption{position:sticky;left:0;max-width:calc(100vw - 66px);}
+    .glossar{grid-template-columns:1fr;} .glossar div:nth-child(odd){border-bottom:none;padding-bottom:0;}
+    .glossar div:nth-child(4n+1),.glossar div:nth-child(4n+2){background:var(--card);}
+    .glossar div:nth-child(even){color:var(--ink-soft);}
+  }
+</style>
+
+<div id="fortschritt"></div>
+
+<header class="kopf">
+  <div class="wrap">
+    <p class="eyebrow">Fachartikel · aus deinen Kursen · tiefer erklärt</p>
+    <h1>Krankheiten verstehen</h1>
+    <p class="sub">Zu jeder Krankheit, die du in der Ausbildung gelernt hast, ein ausführlicher Artikel: wie sie entsteht, was sie im Körper macht, wen sie trifft, wie sie verläuft, wie man sie behandelt und was das für das Leben der Betroffenen bedeutet. Mit Abbildungen und am Ende jedes Kapitels einer Zusammenfassung auf Französisch.</p>
+    <div class="legende">
+      <span class="du">● Deine Unterlagen</span>
+      <span class="net">● Internetquelle</span>
+      <span class="ich">● Meine Folgerung</span>
+      <span class="fr">🇫🇷 En bref</span>
+    </div>
+  </div>
+</header>
+
+<section class="bib wide" id="bibliothek">
+  <h2>Die Bibliothek</h2>
+  <p class="lead">Diese Krankheiten kommen in deinen Zusammenfassungen vor. Jede bekommt nach und nach ihren eigenen Artikel. Unter jedem Titel steht, wo du sie schon gelernt hast. Die Reihenfolge ist ein Vorschlag, du kannst sie ändern.</p>
+  <div class="regal">
+    <a class="buch fertig" href="#schlaganfall"><span class="st">Artikel 1 · jetzt lesen ↓</span><b>Schlaganfall (Apoplex)</b><span class="woher">Notfälle · Anatomie · Neurologie · Körperpflege · Kontinenz · Herz-Kreislauf</span></a>
+    <div class="buch"><span class="st">geplant</span><b>Herzinfarkt und Angina Pectoris</b><span class="woher">Notfälle</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Thrombose und Lungenembolie</b><span class="woher">Notfälle · Thrombose (Wissen 109)</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Hypertonie und Hypotonie</b><span class="woher">Herz-Kreislauf</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Diabetes mellitus</b><span class="woher">Diabetes · Pädiatrie</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Asthma bronchiale</b><span class="woher">Asthma · Pädiatrie</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Multiple Sklerose</b><span class="woher">Neurologie</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Demenz</b><span class="woher">Demenz im Krankenhaus</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Delir</b><span class="woher">Notfälle · Psychiatrie</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Depression</b><span class="woher">Notfälle · Psychiatrie</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Schizophrenie</b><span class="woher">Notfälle · Psychiatrie</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Zwangsstörungen</b><span class="woher">Zwangsstörungen</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Epilepsie und Krampfanfälle</b><span class="woher">Notfälle</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Leichtes Schädel-Hirn-Trauma</b><span class="woher">Neurologie</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Osteoporose, Arthrose, Morbus Bechterew</b><span class="woher">Bewegungsapparat — Fälle</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Neurodermitis und Krätze</b><span class="woher">Neurodermitis &amp; Krätze</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Mangelernährung</b><span class="woher">Mangelernährung</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Harninkontinenz</b><span class="woher">Kontinenz fördern</span></div>
+    <div class="buch"><span class="st">geplant</span><b>Durchfallerkrankungen beim Kind</b><span class="woher">Pädiatrie</span></div>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<!-- ARTIKEL 1 · SCHLAGANFALL                                               -->
+<!-- ===================================================================== -->
+<article id="schlaganfall">
+  <div class="wrap artkopf">
+    <span class="nr">Artikel 1 · Neurologie · Notfall</span>
+    <h2>Der Schlaganfall</h2>
+    <p class="unter">Wenn im Gehirn das Blut ausbleibt — von der ersten Minute bis zum Leben danach</p>
+    <div class="meta"><span>15 Kapitel</span><span>ca. 75 Minuten Lesezeit</span><span>Stand 18.10.2026</span><span id="lesestand">0 von 15 Kapiteln gelesen</span></div>
+  </div>
+
+  <nav class="inhalt" id="inhalt" aria-label="Kapitel">
+    <a href="#k1">1 Auf einen Blick</a><a href="#k2">2 Ein Morgen</a><a href="#k3">3 Geschichte</a><a href="#k4">4 Das Gehirn</a>
+    <a href="#k5">5 Im Körper</a><a href="#k6">6 Wer · warum</a><a href="#k7">7 Symptome</a><a href="#k8">8 Erkennen</a>
+    <a href="#k9">9 Klinik</a><a href="#k10">10 Medikamente</a><a href="#k11">11 Ohne Medikamente</a><a href="#k12">12 Pflege</a>
+    <a href="#k13">13 Leben danach</a><a href="#k14">14 Prüfung</a><a href="#k15">15 Wörter · Quellen</a>
+  </nav>
+
+  <div class="wrap">
+
+  <!-- 1 ------------------------------------------------------------------ -->
+  <section class="kap" id="k1" data-kap="1">
+    <h3><span class="k">Kapitel 1</span>Auf einen Blick</h3>
+    <p class="vorspann">Bevor es in die Tiefe geht: das Wichtigste auf einer Seite. Wenn du nur fünf Minuten hast, lies dieses Kapitel.</p>
+
+    <p class="first">Ein Schlaganfall — auch <strong>Apoplex</strong>, <strong>Hirninsult</strong> oder <strong>Hirnschlag</strong> — bedeutet: Ein Teil des Gehirns bekommt plötzlich nicht mehr genug Blut. Ohne Blut kein Sauerstoff, ohne Sauerstoff sterben Nervenzellen. Deine Unterlagen sagen dazu einen Satz, den du nie vergessen solltest: Nach etwa <strong>drei Minuten</strong> ohne Sauerstoff sterben die ersten Gehirnzellen unwiederbringlich ab. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></p>
+
+    <p>Dein Dozent schreibt außerdem: Der Schlaganfall ist <strong>keine einheitliche Erkrankung</strong>. Das Wort ist ein Oberbegriff für viele Erkrankungen mit verschiedenen Ursachen — und deshalb auch mit verschiedenen Therapien. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></p>
+
+    <div class="steck">
+      <div><b>Zwei Grundformen</b>Gefäß<strong>verschluss</strong> (ischämisch, ca. 80 %) oder Hirn<strong>blutung</strong> (hämorrhagisch). <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></div>
+      <div><b>Pro Jahr in Deutschland</b><span class="zahl">≈ 270 000</span>Menschen, knapp 200 000 davon zum ersten Mal. <a class="q net" href="https://www.dsg-info.de/wp-content/uploads/2025/09/250825_Factsheet_Schlaganfall.pdf">DSG 2025</a></div>
+      <div><b>Leitsymptome</b>plötzlich, meist <strong>eine</strong> Körperseite: Lähmung, hängender Mundwinkel, Sprachstörung, Sehstörung, Schwindel. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a> <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a></div>
+      <div><b>Was du tust</b>FAST prüfen, <strong>Uhrzeit notieren</strong>, Arzt bzw. 112, Vitalzeichen, beruhigen. <strong>Keine blinde Antikoagulation.</strong> <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></div>
+      <div><b>Behandlung</b>Gerinnsel auflösen (Lyse) oder herausziehen (Thrombektomie) — auf einer <strong>Stroke Unit</strong>. Bei Blutung: Blutung stoppen. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a></div>
+      <div><b>Danach</b>häufigster Grund für erworbene Behinderung bei Erwachsenen; ein Jahr später sind rund 60 % noch auf Therapie, Hilfsmittel oder Pflege angewiesen. <a class="q net" href="https://www.dsg-info.de/wp-content/uploads/2025/09/250825_Factsheet_Schlaganfall.pdf">DSG 2025</a></div>
+    </div>
+
+    <div class="kasten merk">
+      <p class="kt">Der eine Satz</p>
+      <p><strong>Time is Brain</strong> — jede Minute zählt. Das steht in deinen Notfall-Unterlagen <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a>, und eine viel zitierte Rechnung aus den USA hat es in Zahlen gefasst: Bei einem großen, unbehandelten Gefäßverschluss gehen <strong>pro Minute etwa 1,9 Millionen Nervenzellen</strong> zugrunde. <a class="q net" href="https://pubmed.ncbi.nlm.nih.gov/16339467/">Saver 2006</a></p>
+    </div>
+
+    <div class="enbref"><p class="kt">🇫🇷 En bref</p>
+      <p>Un AVC (Schlaganfall), c'est une partie du cerveau qui ne reçoit soudain plus assez de sang. Deux grandes formes : un vaisseau <strong>bouché</strong> (environ 80 %) ou un vaisseau qui <strong>saigne</strong>. Les signes arrivent d'un coup, souvent d'un seul côté du corps. Chaque minute compte : on note l'heure, on alerte, on ne donne jamais d'anticoagulant « à l'aveugle ».</p>
+    </div>
+  </section>
+
+  <!-- 2 ------------------------------------------------------------------ -->
+  <section class="kap" id="k2" data-kap="2">
+    <h3><span class="k">Kapitel 2</span>Ein Morgen, der alles verändert</h3>
+    <p class="vorspann">Eine kleine Geschichte, damit die Fachbegriffe ein Gesicht bekommen.</p>
+
+    <div class="kasten ich">
+      <p class="kt">Von mir erfunden — zur Veranschaulichung</p>
+      <p>Diese Geschichte ist <strong>kein echter Fall</strong> und steht nicht in deinen Unterlagen. Ich habe sie aus den Symptomen und Maßnahmen gebaut, die in den folgenden Kapiteln mit Quelle belegt sind.</p>
+    </div>
+
+    <p>Herr Weber ist 72 Jahre alt. Er hat seit Jahren hohen Blutdruck, und manchmal vergisst er seine Tabletten. An einem Dienstagmorgen sitzt er mit seiner Frau beim Frühstück. Er will nach der Kaffeetasse greifen — aber die rechte Hand gehorcht nicht. Die Tasse fällt um.</p>
+    <p>„Was ist los?", fragt seine Frau. Herr Weber will antworten. Er weiß genau, was er sagen will, aber es kommen nur falsche, verwaschene Wörter heraus. Sein rechter Mundwinkel hängt nach unten.</p>
+    <p>Frau Weber erschrickt. Sie denkt zuerst: „Er ist nur müde, ich lasse ihn ein bisschen liegen." Dann erinnert sie sich an ein Plakat in der Apotheke: <em>Gesicht — Arme — Sprache — Zeit.</em> Sie bittet ihren Mann zu lächeln: Nur die linke Seite lächelt. Sie bittet ihn, beide Arme zu heben: Der rechte sinkt ab. Sie schaut auf die Uhr — 7:40 Uhr — und ruft die <strong>112</strong>.</p>
+    <p>Der Rettungsdienst bringt Herrn Weber in eine Klinik mit Stroke Unit. Dort zeigt die Bildgebung: kein Blut im Gehirn, sondern ein verschlossenes Gefäß in der <strong>linken</strong> Hirnhälfte. Weil Frau Weber die Uhrzeit kennt, weiß das Team: Es ist noch früh genug, um das Gerinnsel aufzulösen.</p>
+    <p>Herr Weber überlebt. Drei Wochen später kann er wieder kurze Sätze sprechen. Die rechte Hand ist noch schwach. Er beginnt eine Reha. Er muss neu lernen, sich anzuziehen — und er muss lernen, seine Tabletten jeden Tag zu nehmen.</p>
+
+    <p>In dieser kurzen Geschichte steckt fast alles, was du in diesem Artikel lernst:</p>
+    <ul>
+      <li>Warum die <strong>rechte</strong> Hand gelähmt ist, wenn das Problem <strong>links</strong> im Gehirn liegt (Kapitel 4).</li>
+      <li>Was ein „verschlossenes Gefäß" mit den Nervenzellen macht (Kapitel 5).</li>
+      <li>Warum der Bluthochdruck der wichtigste Risikofaktor ist (Kapitel 6).</li>
+      <li>Warum er die Wörter kennt, sie aber nicht herausbekommt (Kapitel 7).</li>
+      <li>Warum die Uhrzeit so wichtig war (Kapitel 8 und 9).</li>
+      <li>Was danach kommt — Medikamente, Reha, Pflege, Alltag (Kapitel 10–13).</li>
+    </ul>
+
+    <div class="enbref"><p class="kt">🇫🇷 En bref</p>
+      <p>Une histoire inventée pour donner un visage aux notions : un homme de 72 ans, hypertendu, perd soudain la force de la main droite et la parole. Sa femme fait le test FAST, note l'heure (7 h 40) et appelle le 112. Grâce à l'heure connue, on peut encore dissoudre le caillot. Tout l'article explique les étapes de cette histoire.</p>
+    </div>
+  </section>
+
+  <!-- 3 ------------------------------------------------------------------ -->
+  <section class="kap" id="k3" data-kap="3">
+    <h3><span class="k">Kapitel 3</span>Die Geschichte der Krankheit</h3>
+    <p class="vorspann">Vom „Schlag der Götter" bis zum Katheter im Gehirn — wie die Menschen den Schlaganfall verstanden haben.</p>
+
+    <div class="kasten net">
+      <p class="kt">Woher dieses Kapitel kommt</p>
+      <p>In deinen Unterlagen steht nichts zur Geschichte. Alles in diesem Kapitel stammt aus Internetquellen (medizinhistorische Fachartikel), die am Ende genannt sind.</p>
+    </div>
+
+    <h4>Das Wort: vom Schlag getroffen</h4>
+    <p>Schon <strong>Hippokrates</strong> (griechischer Arzt, etwa 460–370 v. Chr.) beschrieb Menschen, die plötzlich zusammenbrachen, nicht mehr sprechen konnten oder gelähmt waren. Er nannte das <strong>Apoplexia</strong> — ein griechisches Wort, das ungefähr „von einem Schlag niedergestreckt" bedeutet. <a class="q net" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5770005">PMC 5770005</a></p>
+    <p>Das deutsche Wort „Schlaganfall" trägt dieses Bild bis heute in sich: Der Mensch wird wie von einem <strong>Schlag</strong> getroffen. Auch das englische <em>stroke</em> (Schlag) meint dasselbe; in der englischen Medizin taucht es zuerst 1689 bei William Cole auf. <a class="q net" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5770005">PMC 5770005</a></p>
+    <p>Eine Ursache kannte man damals nicht. Über viele Jahrhunderte erklärte man die Krankheit mit der <strong>Säftelehre</strong> (Ungleichgewicht der Körpersäfte) oder sogar als göttliche Strafe. Der römische Arzt <strong>Galen</strong> dachte, der Fluss von „Lebensgeistern" zum Gehirn sei gestört. Diese Vorstellungen wurden erst im 18. Jahrhundert aufgegeben. <a class="q net" href="https://scielo.br/j/dn/a/f4JdPHFRmJnscPfdnQJyCZf/abstract/?lang=en">Dement Neuropsychol</a></p>
+
+    <h4>Der Blick ins Gehirn: Johann Jakob Wepfer, 1658</h4>
+    <p>Der Schweizer Arzt <strong>Johann Jakob Wepfer</strong> (1620–1695) tat etwas Neues: Er öffnete die Schädel von Menschen, die an einer Apoplexie gestorben waren, und schaute nach. 1658 veröffentlichte er seine Beobachtungen. Er fand bei mehreren Toten <strong>Blut im Gehirn</strong> — und zeigte damit, dass eine Apoplexie durch eine <strong>Hirnblutung</strong> entstehen kann. Er beschrieb auch eine zweite, „nicht-blutige" Form und die Verbindung der Arterien an der Hirnbasis, die später nach dem Engländer Willis benannt wurde. <a class="q net" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5770005">PMC 5770005</a></p>
+    <p>Damit war zum ersten Mal klar: Der Schlaganfall hat mit den <strong>Blutgefäßen</strong> zu tun. Genau diese Unterscheidung — blutig oder nicht blutig — ist bis heute die wichtigste Frage in der ersten Stunde.</p>
+
+    <h4>Die moderne Zeit: Bilder, Lyse, Katheter</h4>
+    <p>Heute kann man mit <strong>CT oder MRT</strong> innerhalb weniger Minuten sehen, ob ein Gefäß verschlossen ist oder ob es blutet. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a> Daraus wurden zwei Behandlungen möglich, die man früher nicht kannte:</p>
+    <ul>
+      <li>die <strong>Thrombolyse</strong> — ein Medikament, das das Gerinnsel auflöst, heute mit dem Wirkstoff <strong>Alteplase</strong> <a class="q net" href="https://www.aerzteblatt.de/nachrichten/124243/Neue-Leitlinie-zur-Therapie-des-ischaemischen-Schlaganfalls">Ärzteblatt</a>;</li>
+      <li>die <strong>Thrombektomie</strong> — ein Katheter, der durch die Gefäße bis ins Gehirn geschoben wird und das Gerinnsel herauszieht. Studien von 2018 (DAWN, DEFUSE 3) haben gezeigt, dass das bei ausgewählten Menschen sogar noch viele Stunden nach Beginn hilft. <a class="q net" href="https://www.aerzteblatt.de/nachrichten/80505/Zeitfenster-fuer-Thrombektomie-nach-Schlaganfall-laenger-als-gedacht">Ärzteblatt</a></li>
+    </ul>
+    <p>Dazu kamen die <strong>Stroke Units</strong> — spezialisierte Stationen nur für Schlaganfälle. Die deutsche Leitlinie sagt heute: Alle Patienten mit einem ischämischen Schlaganfall sollen dort behandelt werden. <a class="q net" href="https://www.aerzteblatt.de/archiv/ischaemischer-schlaganfall-kernpunkte-der-leitlinie-ed50f250-c836-422f-967e-f454c4c39ce5">Ärzteblatt</a></p>
+
+    <div class="kasten ich">
+      <p class="kt">Meine Folgerung</p>
+      <p>In 2 400 Jahren hat sich das Bild umgedreht: Früher war der Schlaganfall ein Schicksal, gegen das man nichts tun konnte. Heute ist er ein <strong>Notfall mit Uhr</strong> — wer schnell erkannt wird, hat echte Chancen. Deshalb ist das Erkennen (Kapitel 8) die wichtigste Aufgabe für dich als Pflegekraft.</p>
+    </div>
+
+    <div class="enbref"><p class="kt">🇫🇷 En bref</p>
+      <p>Hippocrate parlait déjà d'« apoplexie » (« frappé d'un coup »). Pendant des siècles, on l'expliquait par les humeurs ou une punition divine. En 1658, Wepfer trouve du sang dans le cerveau de personnes décédées : le lien avec les vaisseaux est établi. Aujourd'hui : scanner/IRM en quelques minutes, médicament qui dissout le caillot (thrombolyse), cathéter qui le retire (thrombectomie), et des unités spécialisées (Stroke Units).</p>
+    </div>
+  </section>
+
+  <!-- 4 ------------------------------------------------------------------ -->
+  <section class="kap" id="k4" data-kap="4">
+    <h3><span class="k">Kapitel 4</span>Was man vom Gehirn wissen muss</h3>
+    <p class="vorspann">Du hast das Gehirn schon in deiner Anatomie-Zusammenfassung gelernt. Hier holen wir genau das zurück, was du brauchst, um jedes Schlaganfall-Symptom zu verstehen.</p>
+
+    <h4>Jede Region hat eine Aufgabe</h4>
+    <p>Das Großhirn hat vier Lappen. Deine Anatomie-Unterlagen nennen ihre Hauptaufgaben: <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a></p>
+    <ul>
+      <li><strong>Stirnlappen</strong> (Lobus frontalis) — Bewegung steuern, und hier liegt das <strong>Broca-Sprachzentrum</strong> (Sprache bilden).</li>
+      <li><strong>Scheitellappen</strong> (Lobus parietalis) — das primäre <strong>sensorische</strong> Rindenfeld: Berührung, Gefühl.</li>
+      <li><strong>Schläfenlappen</strong> (Lobus temporalis) — <strong>Hören</strong> und das <strong>Wernicke-Sprachzentrum</strong> (Sprache verstehen).</li>
+      <li><strong>Hinterhauptlappen</strong> (Lobus occipitalis) — <strong>Sehen</strong>.</li>
+    </ul>
+    <p>Darunter liegen das <strong>Kleinhirn</strong> (Muskelspannung, Gleichgewicht, Koordination) und der <strong>Hirnstamm</strong> mit dem verlängerten Mark, das Herz-Kreislauf, Atmung, <strong>Schlucken</strong>, Husten und Brechen steuert. <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a></p>
+
+    <figure>
+      <svg viewBox="0 0 600 360" role="img" aria-labelledby="f1t">
+        <title id="f1t">Seitenansicht des Gehirns mit den vier Lappen, Kleinhirn und Hirnstamm</title>
+        <!-- Großhirn -->
+        <path class="hirn" d="M110 210 C 90 130, 160 60, 270 55 C 380 48, 470 80, 500 150 C 525 205, 500 255, 450 262 C 400 268, 360 250, 320 262 C 270 278, 200 280, 160 262 C 128 248, 115 232, 110 210 Z"/>
+        <!-- Lappengrenzen -->
+        <path class="linie" d="M300 56 C 292 110, 280 160, 262 205" stroke-dasharray="5 4"/>
+        <path class="linie" d="M150 225 C 220 205, 300 200, 380 214" stroke-dasharray="5 4"/>
+        <path class="linie" d="M420 82 C 420 140, 410 190, 420 255" stroke-dasharray="5 4"/>
+        <!-- Kleinhirn und Hirnstamm -->
+        <path class="hirn" d="M370 262 C 380 300, 450 312, 480 288 C 500 270, 480 252, 450 258 C 420 266, 395 262, 370 262 Z"/>
+        <path class="hirn" d="M315 262 C 318 300, 322 325, 330 345 L 355 345 C 352 320, 352 292, 360 262 Z"/>
+        <!-- Broca / Wernicke -->
+        <circle cx="205" cy="200" r="15" class="akz" opacity=".85"/>
+        <circle cx="335" cy="222" r="15" class="akz" opacity=".55"/>
+        <!-- Beschriftung -->
+        <text x="175" y="130" font-size="15" font-weight="600">Stirnlappen</text>
+        <text x="175" y="148" class="klein">Bewegung</text>
+        <text x="320" y="120" font-size="15" font-weight="600">Scheitellappen</text>
+        <text x="320" y="138" class="klein">Fühlen</text>
+        <text x="430" y="160" font-size="15" font-weight="600">Hinter-</text>
+        <text x="430" y="178" font-size="15" font-weight="600">hauptlappen</text>
+        <text x="430" y="196" class="klein">Sehen</text>
+        <text x="240" y="252" font-size="15" font-weight="600">Schläfenlappen</text>
+        <text x="240" y="268" class="klein">Hören</text>
+        <text x="455" y="320" font-size="13" font-weight="600">Kleinhirn</text>
+        <text x="365" y="342" font-size="13" font-weight="600">Hirnstamm</text>
+        <text x="365" y="356" class="klein">Atmung · Schlucken</text>
+        <!-- Legende Sprachzentren -->
+        <circle cx="30" cy="300" r="8" class="akz" opacity=".85"/><text x="45" y="305" font-size="13">Broca — Sprache bilden</text>
+        <circle cx="30" cy="325" r="8" class="akz" opacity=".55"/><text x="45" y="330" font-size="13">Wernicke — Sprache verstehen</text>
+        <text x="20" y="30" class="klein">vorne ←</text><text x="540" y="30" class="klein">→ hinten</text>
+      </svg>
+      <figcaption>Abbildung 1 · Das Gehirn von der linken Seite, stark vereinfacht. Die Aufgaben der Lappen stehen in deiner Anatomie-Zusammenfassung; die Zeichnung ist von mir und zeigt nur die Lage, keine genauen Grenzen.</figcaption>
+    </figure>
+
+    <h4>Die wichtigste Regel: über Kreuz</h4>
+    <p>Deine Anatomie-Zusammenfassung nennt eine Regel, die du dir merken musst: Die <strong>Pyramidenbahnen laufen über Kreuz</strong>. Die linke Hirnhälfte steuert die rechte Körperhälfte — und umgekehrt. Deshalb ist nach einem Schlaganfall <strong>links</strong> im Gehirn die <strong>rechte</strong> Körperseite gelähmt. Deine Unterlagen nennen das ausdrücklich „eine klassische Begründungsfrage". <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a></p>
+
+    <figure>
+      <svg viewBox="0 0 600 300" role="img" aria-labelledby="f2t">
+        <title id="f2t">Die Bahnen kreuzen: die linke Hirnhälfte steuert die rechte Körperseite</title>
+        <ellipse cx="240" cy="70" rx="70" ry="50" class="hirn"/>
+        <ellipse cx="360" cy="70" rx="70" ry="50" class="hirn"/>
+        <circle cx="230" cy="62" r="18" class="tot"/>
+        <text x="200" y="20" font-size="13" font-weight="600">linke Hälfte</text>
+        <text x="330" y="20" font-size="13" font-weight="600">rechte Hälfte</text>
+        <text x="208" y="105" class="klein">Schaden</text>
+        <path d="M240 115 C 250 170, 350 170, 360 230" class="akzs" stroke-width="4"/>
+        <path d="M360 115 C 350 170, 250 170, 240 230" class="linie" stroke-width="3"/>
+        <!-- Körper -->
+        <circle cx="300" cy="215" r="0" />
+        <rect x="190" y="230" width="100" height="56" rx="12" class="karte"/>
+        <rect x="310" y="230" width="100" height="56" rx="12" class="blut2"/>
+        <text x="200" y="262" font-size="13">linke Seite</text><text x="200" y="278" class="klein">bewegt sich</text>
+        <text x="320" y="262" font-size="13" font-weight="600">rechte Seite</text><text x="320" y="278" class="klein">gelähmt</text>
+        <text x="420" y="175" class="klein">Kreuzung</text>
+        <text x="420" y="189" class="klein">im Hirnstamm</text>
+      </svg>
+      <figcaption>Abbildung 2 · Die Kreuzung der Bewegungsbahnen. Schaden links → Lähmung rechts. Regel aus deiner Anatomie-Zusammenfassung; „Kreuzung im Hirnstamm" ist als Ort vereinfacht dargestellt <span class="q ich">meine Zeichnung</span>.</figcaption>
+    </figure>
+
+    <h4>Das Gehirn hat keinen Vorrat</h4>
+    <p>Das Gehirn braucht ständig Sauerstoff und Zucker, und es kann beides kaum speichern. Deine Notfall-Unterlagen: Nach <strong>drei Minuten</strong> ohne Sauerstoff sterben die ersten Gehirnzellen irreparabel ab. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a> Das Blut dafür kommt über die großen Halsschlagadern und die Gefäße an der Hirnbasis. In diesen Gefäßen — oder im Herzen — entstehen auch die Gerinnsel, die einen Schlaganfall auslösen. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a></p>
+
+    <div class="kasten ich">
+      <p class="kt">Meine Folgerung — der Schlüssel für alle Symptome</p>
+      <p>Wenn du weißt, <strong>welche</strong> Region betroffen ist, weißt du, <strong>welches</strong> Symptom kommt. Ist das Broca-Zentrum betroffen, fehlen die Worte. Ist es der Hinterhauptlappen, fehlt ein Teil des Sehens. Ist es der Hirnstamm, ist das Schlucken in Gefahr. Der Schlaganfall „macht" keine Symptome — er schaltet Aufgaben ab.</p>
+    </div>
+
+    <div class="enbref"><p class="kt">🇫🇷 En bref</p>
+      <p>Chaque région du cerveau a une tâche : lobe frontal = mouvement et production de la parole (Broca) ; lobe pariétal = sensibilité ; lobe temporal = audition et compréhension (Wernicke) ; lobe occipital = vision ; cervelet = équilibre ; tronc cérébral = respiration et déglutition. Les voies se <strong>croisent</strong> : un AVC à gauche paralyse le côté droit. Le cerveau n'a pas de réserve : après 3 minutes sans oxygène, les premières cellules meurent.</p>
+    </div>
+  </section>
+
+  <!-- 5 ------------------------------------------------------------------ -->
+  <section class="kap" id="k5" data-kap="5">
+    <h3><span class="k">Kapitel 5</span>Was im Körper passiert</h3>
+    <p class="vorspann">Die Pathophysiologie — also: was genau im Gehirn geschieht. Zwei Wege führen zum selben Ergebnis: Nervenzellen bekommen nicht, was sie brauchen.</p>
+
+    <h4>Weg 1 · Das verstopfte Gefäß (ischämischer Schlaganfall)</h4>
+    <p>Etwa <strong>80 %</strong> aller Schlaganfälle entstehen so: Ein Blutgefäß im Gehirn wird verschlossen. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a> Fachübersichten nennen 80 bis 85 %. <a class="q net" href="https://www.amboss.com/de/wissen/Isch%C3%A4mischer_Schlaganfall">AMBOSS</a> „Ischämie" heißt: zu wenig Blut im Gewebe.</p>
+    <p>Woher kommt das Gerinnsel? Laut gesund.bund.de meist aus den <strong>Halsschlagadern</strong> oder aus dem <strong>Herzen</strong>: Es löst sich dort, wird mit dem Blutstrom mitgerissen und bleibt in einem engeren Hirngefäß stecken. Seltener entsteht es im Gehirn selbst, zum Beispiel bei einer Entzündung der Gefäßwand. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a></p>
+
+    <div class="kette"><span>Gerinnsel im Herzen oder an der Halsschlagader</span><i>→</i><span>reißt ab, schwimmt mit</span><i>→</i><span>bleibt im Hirngefäß stecken</span><i>→</i><span>dahinter kein Blut</span><i>→</i><span class="ende">Nervenzellen sterben</span></div>
+
+    <figure>
+      <svg viewBox="0 0 600 300" role="img" aria-labelledby="f3t">
+        <title id="f3t">Gefäßverschluss mit Infarktkern und Penumbra</title>
+        <!-- Gefäßbaum -->
+        <path d="M40 150 L 230 150" class="ader" stroke-width="16" stroke-linecap="round"/>
+        <path d="M230 150 C 300 150, 330 90, 420 80" class="ader" stroke-width="9" stroke-linecap="round" opacity=".35"/>
+        <path d="M230 150 C 300 150, 330 210, 420 220" class="ader" stroke-width="9" stroke-linecap="round" opacity=".35"/>
+        <path d="M230 150 L 330 150" class="ader" stroke-width="9" stroke-linecap="round" opacity=".35"/>
+        <!-- Gerinnsel -->
+        <ellipse cx="226" cy="150" rx="18" ry="11" class="tot"/>
+        <text x="190" y="128" font-size="13" font-weight="600">Gerinnsel</text>
+        <!-- Versorgungsgebiet -->
+        <circle cx="440" cy="150" r="118" class="pen" opacity=".55"/>
+        <circle cx="440" cy="150" r="62" class="tot"/>
+        <text x="408" y="146" font-size="14" font-weight="600" style="fill:#f5efe6">Kern</text>
+        <text x="390" y="164" font-size="11" style="fill:#f5efe6">Zellen tot</text>
+        <text x="482" y="58" font-size="14" font-weight="600">Penumbra</text>
+        <text x="482" y="74" class="klein">bedroht, noch rettbar</text>
+        <text x="40" y="128" class="klein">Blutstrom →</text>
+        <text x="40" y="280" class="klein">Je länger der Verschluss dauert, desto mehr Penumbra wird zu Kern.</text>
+      </svg>
+      <figcaption>Abbildung 3 · Hinter dem Verschluss: ein Kern aus abgestorbenem Gewebe und ein Saum aus bedrohtem, aber noch rettbarem Gewebe (Penumbra). Den Begriff Penumbra nutzen die Studien zur Thrombektomie <a class="q net" href="https://doaj.org/article/eb12ea26750948df83aed4f779686b86">Stroke: VIN 2023</a>; die Zeichnung ist eine Vereinfachung <span class="q ich">meine Zeichnung</span>.</figcaption>
+    </figure>
+
+    <h4>Kern und Penumbra — warum Zeit Gehirn ist</h4>
+    <p>Hinter einem Verschluss stirbt nicht sofort alles. In der Mitte, wo gar kein Blut mehr ankommt, sterben die Zellen schnell: das ist der <strong>Infarktkern</strong>. Drumherum liegt ein Saum, in dem noch ein wenig Blut über Nachbargefäße ankommt — die Zellen arbeiten nicht mehr, aber sie leben noch. Diesen Saum nennt man <strong>Penumbra</strong> (lateinisch „Halbschatten"). Die Studien DAWN und DEFUSE 3 haben genau das Verhältnis zwischen Kern und Penumbra gemessen, um zu entscheiden, wer noch von einer Thrombektomie profitiert. <a class="q net" href="https://www.aerzteblatt.de/nachrichten/80505/Zeitfenster-fuer-Thrombektomie-nach-Schlaganfall-laenger-als-gedacht">Ärzteblatt</a> <a class="q net" href="https://doaj.org/article/eb12ea26750948df83aed4f779686b86">Stroke: VIN 2023</a></p>
+    <p>Die Penumbra ist das, <strong>was die Behandlung retten will</strong>. Mit jeder Minute wird mehr Penumbra zu Kern. Der amerikanische Neurologe Jeffrey Saver hat 2006 ausgerechnet, was das bei einem typischen großen Verschluss bedeutet: <strong>pro Minute rund 1,9 Millionen Nervenzellen</strong>, pro Stunde etwa 120 Millionen. Ohne Behandlung „altert" das Gehirn so pro Stunde um etwa 3,6 Jahre. Das sind Modellrechnungen, keine Messungen an einem einzelnen Menschen — aber sie zeigen die Größenordnung. <a class="q net" href="https://pubmed.ncbi.nlm.nih.gov/16339467/">Saver 2006</a></p>
+
+    <h4>Ein Prinzip, drei Organe</h4>
+    <p>Dein Dozent hat in den Notfall-Unterlagen den Satz geschrieben, den er „den wichtigsten Merksatz des ganzen Kapitels" nennt: Schlaganfall (Verschluss), Herzinfarkt und Lungenembolie sind <strong>dasselbe Ereignis in drei Organen</strong> — ein Gefäßverschluss. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></p>
+    <div class="scroll"><table>
+      <tr><th>Organ</th><th>Erkrankung</th><th>Was ist verstopft?</th></tr>
+      <tr><td>Gehirn</td><td>Apoplex (ischämisch)</td><td>Hirnarterie</td></tr>
+      <tr><td>Herz</td><td>Myokardinfarkt</td><td>Koronararterie</td></tr>
+      <tr><td>Lunge</td><td>Lungenembolie</td><td>Lungenarterie</td></tr>
+    </table></div>
+    <p>Auch deine Thrombose-Unterlagen ordnen den Schlaganfall bei den arteriellen Verschlüssen ein: Je nach betroffenem Bereich sind die Symptome verschieden, beim Schlaganfall sind es <strong>Bewusstseinsstörungen und neurologische Defizite</strong>. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/109-thrombose.md">Thrombose (Wissen 109)</a></p>
+
+    <h4>Weg 2 · Das geplatzte Gefäß (hämorrhagischer Schlaganfall)</h4>
+    <p>Bei den übrigen Schlaganfällen <strong>reißt ein Gefäß</strong>, und Blut tritt ins Gehirn aus. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a> Das schadet doppelt: Hinter der Rissstelle fehlt das Blut, und das ausgetretene Blut <strong>drückt</strong> auf das Hirngewebe. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a> Fachübersichten unterscheiden zwei Formen: <a class="q net" href="https://www.amboss.com/de/wissen/Isch%C3%A4mischer_Schlaganfall">AMBOSS</a></p>
+    <ul>
+      <li><strong>Blutung ins Hirngewebe</strong> (intrazerebrale Blutung) — etwa 10–15 % aller Schlaganfälle.</li>
+      <li><strong>Blutung unter die Hirnhaut</strong> (Subarachnoidalblutung, SAB) — etwa 5 %, meist durch ein geplatztes <strong>Aneurysma</strong>, also eine sackförmige Ausbuchtung der Gefäßwand.</li>
+    </ul>
+
+    <figure>
+      <svg viewBox="0 0 600 240" role="img" aria-labelledby="f4t">
+        <title id="f4t">Hirnblutung: das Blut drückt auf das umliegende Gewebe</title>
+        <rect x="20" y="20" width="560" height="200" rx="18" class="hirn"/>
+        <path d="M40 120 L 230 120" class="ader" stroke-width="12" stroke-linecap="round"/>
+        <path d="M262 120 L 330 120" class="ader" stroke-width="12" stroke-linecap="round" opacity=".3"/>
+        <ellipse cx="250" cy="120" rx="70" ry="52" class="blut" opacity=".85"/>
+        <text x="215" y="125" font-size="14" font-weight="600" style="fill:#fff">Blutung</text>
+        <path d="M330 80 l 40 -15 M335 120 l 45 0 M330 160 l 40 15 M170 80 l -40 -15 M170 160 l -40 15" class="akzs" stroke-width="3" marker-end="url(#pf)"/>
+        <defs><marker id="pf" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" class="akz"/></marker></defs>
+        <text x="400" y="110" font-size="14" font-weight="600">Druck auf das Gewebe</text>
+        <text x="400" y="128" class="klein">das Gehirn liegt in einem festen Schädel —</text>
+        <text x="400" y="143" class="klein">es kann nicht ausweichen</text>
+        <text x="40" y="100" class="klein">Gefäß reißt</text>
+      </svg>
+      <figcaption>Abbildung 4 · Bei der Blutung kommen zwei Schäden zusammen: fehlendes Blut hinter dem Riss und Druck durch das ausgetretene Blut <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a>. Der Satz zum festen Schädel ist meine Erklärung <span class="q ich">Folgerung</span>.</figcaption>
+    </figure>
+
+    <div class="kasten du">
+      <p class="kt">Aus deinen Unterlagen — die gefährliche Verwechslung</p>
+      <p>„Von außen sehen beide gleich aus — deshalb darf man nie ‚blind' blutverdünnend behandeln." Und: „Achtung! Keine blinde Antikoagulation! — es könnte eine Hirnblutung sein." <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></p>
+    </div>
+    <p>Hier liegt der Grund, warum in der Klinik <strong>zuerst</strong> ein Bild vom Gehirn gemacht wird und erst <strong>dann</strong> behandelt: Ein Medikament, das ein Gerinnsel auflöst, rettet beim Verschluss Gehirn — bei einer Blutung macht es die Blutung größer. <span class="q ich">Folgerung</span></p>
+
+    <h4>Die Warnung vorher: die TIA</h4>
+    <p>Manchmal verschwinden die typischen Symptome nach einiger Zeit <strong>von selbst</strong>, weil sich das Gerinnsel wieder auflöst. Das nennt man <strong>TIA</strong> — transitorische ischämische Attacke („vorübergehende Durchblutungsstörung"). Eine TIA ist kein Entwarnungssignal, sondern ein <strong>Warnsignal</strong>: Sie deutet auf ein erhöhtes Schlaganfall-Risiko hin. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a></p>
+    <div class="kasten ich"><p class="kt">Meine Folgerung für die Station</p><p>Wenn eine Bewohnerin sagt: „Heute Morgen war mein Arm für zehn Minuten taub, jetzt ist alles wieder gut" — dann ist das <strong>trotzdem</strong> eine Meldung an die Ärztin wert, sofort. Im Moment, in dem du es hörst, weißt du nicht, ob es eine TIA war oder der Anfang von etwas Größerem.</p></div>
+
+    <div class="enbref"><p class="kt">🇫🇷 En bref</p>
+      <p><strong>Vaisseau bouché</strong> (≈ 80 %) : un caillot venu du cœur ou de la carotide se coince dans une artère du cerveau. Au centre, les cellules meurent vite (le « noyau ») ; autour, une zone menacée mais encore sauvable (la « pénombre »). Chaque minute, environ 1,9 million de neurones disparaissent : c'est la pénombre qu'on veut sauver. AVC, infarctus et embolie pulmonaire = le même événement dans trois organes.</p>
+      <p><strong>Vaisseau qui saigne</strong> : le sang manque derrière la rupture et comprime le cerveau. Comme les deux formes se ressemblent de l'extérieur : jamais d'anticoagulant sans imagerie. La <strong>TIA</strong> (symptômes qui disparaissent seuls) est un signal d'alarme, pas une fausse alerte.</p>
+    </div>
+  </section>
+
+  <!-- 6 ------------------------------------------------------------------ -->
+  <section class="kap" id="k6" data-kap="6">
+    <h3><span class="k">Kapitel 6</span>Wen es trifft — und warum</h3>
+    <p class="vorspann">Kann man sich anstecken? Wer ist besonders gefährdet? Und was davon kann man ändern?</p>
+
+    <h4>Ansteckend? Nein.</h4>
+    <p>Ein Schlaganfall ist <strong>keine Infektion</strong>. Man kann ihn nicht von jemandem „bekommen". Er <strong>entsteht</strong> im eigenen Körper — meistens über Jahre, an Gefäßen, die durch Bluthochdruck, Rauchen oder Zucker langsam geschädigt werden, oder durch ein Gerinnsel aus dem Herzen. <span class="q ich">Folgerung aus den Quellen unten</span></p>
+
+    <h4>Wie häufig?</h4>
+    <div class="steck">
+      <div><b>pro Jahr</b><span class="zahl">≈ 270 000</span>Schlaganfälle in Deutschland, knapp 200 000 davon erstmals. <a class="q net" href="https://www.dsg-info.de/wp-content/uploads/2025/09/250825_Factsheet_Schlaganfall.pdf">DSG 2025</a></div>
+      <div><b>leben mit Folgen</b><span class="zahl">≈ 1,8 Mio.</span>Menschen in Deutschland. <a class="q net" href="https://www.dsg-info.de/wp-content/uploads/2025/09/250825_Factsheet_Schlaganfall.pdf">DSG 2025</a></div>
+      <div><b>Alter</b><span class="zahl">fast 80 %</span>der Betroffenen sind 60 oder älter — aber rund 30 000 sind jünger als 55. <a class="q net" href="https://www.dsg-info.de/wp-content/uploads/2025/09/250825_Factsheet_Schlaganfall.pdf">DSG 2025</a></div>
+      <div><b>Kinder</b><span class="zahl">≥ 300</span>Kinder pro Jahr, die Dunkelziffer ist vermutlich deutlich höher. <a class="q net" href="https://www.dsg-info.de/wp-content/uploads/2025/09/250825_Factsheet_Schlaganfall.pdf">DSG 2025</a></div>
+    </div>
+    <p>Anders gesagt: Pro Jahr erleiden etwa <strong>5 von 1 000</strong> Menschen einen Schlaganfall. Das Risiko steigt mit dem Alter, Männer sind im Durchschnitt etwas häufiger betroffen als Frauen. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a> Der Schlaganfall ist die <strong>dritthäufigste Todesursache</strong> in Deutschland. <a class="q net" href="https://www.dsg-info.de/wp-content/uploads/2025/09/250825_Factsheet_Schlaganfall.pdf">DSG 2025</a></p>
+
+    <h4>Die Risikofaktoren</h4>
+    <p>Eine große internationale Studie (INTERSTROKE) hat untersucht, was Menschen mit Schlaganfall von anderen unterscheidet. Ergebnis: <strong>Zehn Risikofaktoren</strong> erklären rund <strong>90 %</strong> aller Schlaganfälle — und der mit Abstand wichtigste ist der <strong>Bluthochdruck</strong>. <a class="q net" href="https://www.pharmazeutische-zeitung.de/ausgabe-262010/die-zehn-wichtigsten-risikofaktoren/">Pharm. Zeitung</a> <a class="q net" href="https://www.doccheck.com/de/detail/articles/814-ich-weiss-was-du-vor-dem-schlaganfall-getan-hast">DocCheck</a></p>
+    <div class="scroll"><table>
+      <tr><th>Risikofaktor</th><th>Warum er schadet (vereinfacht)</th><th>Woher</th></tr>
+      <tr><td><strong>Bluthochdruck</strong></td><td>Der Druck schädigt auf Dauer die Gefäßwände — sie werden steif, eng oder reißen.</td><td><a class="q du" href="https://claude.ai/code/artifact/316b844e-b1e6-4bb8-8163-3af3058de4fa">Herz-Kreislauf</a> <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></td></tr>
+      <tr><td><strong>Vorhofflimmern</strong> (anhaltend)</td><td>Das Herz schlägt unregelmäßig, im Vorhof steht Blut still, dort bilden sich Gerinnsel, die ins Gehirn wandern können.</td><td><a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a> <span class="q ich">Mechanismus: Folgerung</span></td></tr>
+      <tr><td><strong>Rauchen</strong></td><td>schädigt die Gefäße</td><td><a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></td></tr>
+      <tr><td><strong>Diabetes mellitus</strong></td><td>Zucker schädigt kleine und große Gefäße (Mikro- und Makroangiopathie)</td><td><a class="q du" href="https://claude.ai/artifact/HTKB99uzuvaNbZ4HHCT8cx">Diabetes</a> <a class="q net" href="https://www.doccheck.com/de/detail/articles/814-ich-weiss-was-du-vor-dem-schlaganfall-getan-hast">DocCheck</a></td></tr>
+      <tr><td>Bewegungsmangel, ungünstige Ernährung, Bauchfett, erhöhte Blutfette</td><td>gehören zu den zehn INTERSTROKE-Faktoren</td><td><a class="q net" href="https://www.doccheck.com/de/detail/articles/814-ich-weiss-was-du-vor-dem-schlaganfall-getan-hast">DocCheck</a></td></tr>
+      <tr><td>Herzerkrankungen, Alkohol, psychosozialer Stress</td><td>ebenfalls unter den zehn Faktoren</td><td><a class="q net" href="https://www.doccheck.com/de/detail/articles/814-ich-weiss-was-du-vor-dem-schlaganfall-getan-hast">DocCheck</a></td></tr>
+      <tr><td>erbliche Veranlagung, Alter</td><td>nicht änderbar</td><td><a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></td></tr>
+    </table></div>
+
+    <div class="kasten du">
+      <p class="kt">Aus deinen Unterlagen — die Verbindung zum Blutdruck</p>
+      <p>Dein AWMF-Blatt zum hypertensiven Notfall nennt das <strong>Gehirn an erster Stelle</strong> der gefährdeten Organe, mit <strong>Schlaganfall</strong> und <strong>Gehirnblutungen</strong> als möglichen Folgen. Anzeichen eines hypertensiven Notfalls sind unter anderem Verwirrtheit, <strong>Lähmungen, Seh- oder Sprechstörungen</strong> — also genau Schlaganfall-Zeichen. Dann gilt: sofort 112. <a class="q du" href="https://claude.ai/code/artifact/316b844e-b1e6-4bb8-8163-3af3058de4fa">Herz-Kreislauf</a></p>
+      <p>Und in deiner Diabetes-Zusammenfassung steht bei den Therapiezielen im Alter ausdrücklich: „normaler Blutdruck (gegen Herzinfarkt und <strong>Schlaganfall</strong>)". <a class="q du" href="https://claude.ai/artifact/HTKB99uzuvaNbZ4HHCT8cx">Diabetes</a></p>
+    </div>
+
+    <div class="kasten net">
+      <p class="kt">Die gute Nachricht</p>
+      <p>Die Deutsche Schlaganfall-Gesellschaft schreibt: Durch Bewegung, gute Ernährung, Nichtrauchen und wenig Alkohol verringert man das persönliche Risiko „enorm". <a class="q net" href="https://www.dsg-info.de/wp-content/uploads/2025/09/250825_Factsheet_Schlaganfall.pdf">DSG 2025</a> Ein großer Teil der Schlaganfälle gilt deshalb als vermeidbar. <a class="q net" href="https://www.schlaganfall-hilfe.de/fileadmin/files/SDSH/Presse/2023/schlaganfall_hilfe_zahlen_daten_fakten.pdf">Schlaganfall-Hilfe</a></p>
+    </div>
+
+    <div class="enbref"><p class="kt">🇫🇷 En bref</p>
+      <p>L'AVC <strong>ne s'attrape pas</strong> : il se fabrique dans le corps, souvent pendant des années. En Allemagne : environ 270 000 cas par an, presque 80 % chez les plus de 60 ans, mais aussi des jeunes et des enfants. Dix facteurs expliquent environ 90 % des AVC, et le premier est l'<strong>hypertension</strong>. Autres facteurs : fibrillation auriculaire, tabac, diabète, sédentarité, alimentation, graisses, alcool, stress. La plupart se modifient.</p>
+    </div>
+  </section>
+
+  <!-- 7 ------------------------------------------------------------------ -->
+  <section class="kap" id="k7" data-kap="7">
+    <h3><span class="k">Kapitel 7</span>Die Symptome — von leicht bis lebensbedrohlich</h3>
+    <p class="vorspann">Was der Mensch erlebt, was du siehst — und was im Gehirn dahintersteckt.</p>
+
+    <p>Typisch für alle Symptome: Sie kommen <strong>plötzlich</strong>, und sie betreffen meist <strong>nur eine Körperseite</strong>. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a> Dein Dozent nennt diese Liste: <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></p>
+    <div class="kasten du">
+      <p class="kt">Symptome — Notfall-Unterlagen</p>
+      <p>Sehstörungen · Sprach- und Sprachverständnisstörungen · Lähmungen und Taubheitsgefühle · Seitenneigung (durch Lähmung) · Schwindel mit Gangunsicherheit · sehr starke Kopfschmerzen · Pupillendifferenz · Wesensveränderung</p>
+    </div>
+
+    <figure>
+      <svg viewBox="0 0 600 320" role="img" aria-labelledby="f5t">
+        <title id="f5t">Halbseitige Zeichen am Körper</title>
+        <circle cx="300" cy="62" r="40" class="karte" stroke-width="2"/>
+        <path d="M300 22 A 40 40 0 0 1 300 102 Z" class="blut2"/>
+        <circle cx="285" cy="55" r="4" class="akz"/><circle cx="315" cy="57" r="4" class="akz"/>
+        <path d="M282 80 Q 295 86 300 82 Q 310 86 318 90" class="leer" stroke-width="2.5"/>
+        <rect x="255" y="110" width="90" height="110" rx="20" class="karte" stroke-width="2"/>
+        <rect x="300" y="110" width="45" height="110" rx="0" class="blut2"/>
+        <rect x="205" y="115" width="40" height="18" rx="9" class="karte" stroke-width="2" transform="rotate(-8 225 124)"/>
+        <rect x="355" y="128" width="40" height="18" rx="9" class="blut2" transform="rotate(18 375 137)"/>
+        <rect x="262" y="226" width="30" height="80" rx="12" class="karte" stroke-width="2"/>
+        <rect x="308" y="226" width="30" height="80" rx="12" class="blut2"/>
+        <text x="80" y="60" font-size="13" font-weight="600">Gesicht</text><text x="80" y="76" class="klein">Mundwinkel hängt</text>
+        <path d="M150 64 L 290 84" class="linie"/>
+        <text x="420" y="130" font-size="13" font-weight="600">Arm</text><text x="420" y="146" class="klein">sinkt ab, schwach</text>
+        <path d="M418 136 L 392 140" class="linie"/>
+        <text x="420" y="270" font-size="13" font-weight="600">Bein</text><text x="420" y="286" class="klein">knickt ein, Gangunsicherheit</text>
+        <path d="M418 276 L 340 270" class="linie"/>
+        <text x="40" y="200" font-size="13" font-weight="600">Seitenneigung</text><text x="40" y="216" class="klein">der Körper kippt zur</text><text x="40" y="230" class="klein">gelähmten Seite</text>
+        <text x="292" y="318" class="klein" text-anchor="end">gesunde Seite</text><text x="308" y="318" class="klein" style="fill:var(--accent)">betroffene Seite</text>
+      </svg>
+      <figcaption>Abbildung 5 · Halbseitenzeichen. Du schaust den Menschen an — seine <strong>linke</strong> Seite ist also von dir aus gesehen rechts. Hier ist seine linke Körperseite betroffen, das Problem liegt also in der <strong>rechten</strong> Hirnhälfte (Kapitel 4). Zeichnung von mir.</figcaption>
+    </figure>
+
+    <h4>Symptom für Symptom</h4>
+    <p>Die linke Spalte kommt aus deinen Unterlagen bzw. gesund.bund.de. Die rechte Spalte — welche Hirnregion dahintersteckt — habe ich aus deiner Anatomie-Zusammenfassung abgeleitet <span class="q ich">Folgerung</span>. Sie gilt als Faustregel, nicht für jeden Einzelfall.</p>
+    <div class="scroll"><table>
+      <tr><th>Symptom · Fachwort</th><th>Was der Mensch erlebt / was du siehst</th><th>Wo im Gehirn (Faustregel)</th></tr>
+      <tr><td><strong>Lähmung</strong> — Hemiparese (teilweise) / Hemiplegie (vollständig) <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></td><td>Arm und/oder Bein einer Seite schwach oder gar nicht beweglich; Gegenstände fallen aus der Hand; Sturz.</td><td>Bewegungsbahnen der Gegenseite (Stirnlappen, Bahnen in der Tiefe)</td></tr>
+      <tr><td><strong>Taubheitsgefühl</strong>, Gefühlsstörung</td><td>„Mein Arm fühlt sich pelzig/fremd an."</td><td>Scheitellappen der Gegenseite</td></tr>
+      <tr><td><strong>Hängender Mundwinkel</strong> <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></td><td>Gesicht schief, beim Lächeln nur eine Seite; Speichel läuft aus dem Mundwinkel.</td><td>Bewegungsbahnen der Gegenseite</td></tr>
+      <tr><td><strong>Aphasie</strong> — Sprach- und Sprachverständnisstörung</td><td>Findet die Wörter nicht, sagt falsche Wörter; oder spricht flüssig, versteht aber nicht, was man sagt.</td><td>Broca (Sprache bilden) / Wernicke (Sprache verstehen) — meist links</td></tr>
+      <tr><td><strong>Dysarthrie</strong> — Sprechstörung <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></td><td>Verwaschene, undeutliche Aussprache — die Sprache selbst ist da, die Muskeln gehorchen nicht.</td><td>Bewegungssteuerung von Mund und Zunge, Kleinhirn, Hirnstamm</td></tr>
+      <tr><td><strong>Dysphagie</strong> — Schluckstörung <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></td><td>Husten beim Trinken, „es läuft in den falschen Hals", Essensreste in der Wange, gurgelnde Stimme.</td><td>Hirnstamm (Schlucken) und Großhirn</td></tr>
+      <tr><td><strong>Sehstörung</strong> — Gesichtsfeldausfall <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></td><td>Eine Hälfte des Blickfelds fehlt; Doppelbilder; plötzlich Sehen nur auf einem Auge.</td><td>Hinterhauptlappen, Sehbahn</td></tr>
+      <tr><td><strong>Neglect</strong> <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></td><td>Eine Körperhälfte und eine Raumhälfte „existieren nicht": isst nur die halbe Portion und sagt „ich habe alles aufgegessen".</td><td>meist rechter Scheitellappen <span class="q ich">nicht in deinen Unterlagen — gilt als häufig, bitte im Kurs prüfen</span></td></tr>
+      <tr><td><strong>Schwindel, Gangunsicherheit, Ataxie</strong></td><td>Taumeln, kann nicht gerade gehen, greift daneben.</td><td>Kleinhirn (Gleichgewicht, Koordination)</td></tr>
+      <tr><td><strong>Sehr starke Kopfschmerzen</strong>, oft mit Übelkeit und Erbrechen <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></td><td>„Der schlimmste Kopfschmerz meines Lebens", plötzlich.</td><td>passt eher zur <strong>Blutung</strong> (Druck)</td></tr>
+      <tr><td><strong>Pupillendifferenz</strong></td><td>Eine Pupille ist deutlich größer als die andere.</td><td>Druck auf Nerven/Hirnstamm — Alarmzeichen</td></tr>
+      <tr><td><strong>Wesensveränderung</strong>, Verwirrtheit</td><td>„So kenne ich ihn gar nicht" — plötzlich unruhig, gleichgültig, verwirrt.</td><td>Stirnlappen, ausgedehnter Schaden</td></tr>
+    </table></div>
+
+    <h4>Das Unsichtbare: der Neglect</h4>
+    <p>Der Neglect ist das Symptom, das Angehörige am wenigsten verstehen. Deine Neurologie-Folien definieren ihn so: <strong>fehlende Wahrnehmung einer Körperhälfte</strong>. Reize auf dieser Seite werden ausgeblendet — auch was man sieht und hört. Im Extremfall wird die eigene Körperhälfte als Fremdkörper erlebt. Typische Sätze vor einem halb vollen Teller: „Ich habe alles aufgegessen" oder „Wieso gab es heute nur so wenig?" <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p>
+    <p>Oft gehört das <strong>Pusher-Syndrom</strong> dazu: Betroffene schieben ihren Körper aktiv zur betroffenen Seite, weil die empfundene Körpermitte nicht die echte Körpermitte ist. <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p>
+    <p>Gemessen wird der Neglect mit der <strong>Catherine-Bergego-Skala</strong>: 10 Items, je 0–3 Punkte, je höher, desto schwerer. <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p>
+
+    <h4>Die schweren Zeichen — wenn es lebensgefährlich wird</h4>
+    <p>Ein Schlaganfall kann leicht beginnen und schwer werden. Achte besonders auf:</p>
+    <ul>
+      <li><strong>Bewusstseinsstörung</strong> — von Schläfrigkeit bis Bewusstlosigkeit. Deine Thrombose-Unterlagen nennen Bewusstseinsstörungen als Schlaganfall-Zeichen. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/109-thrombose.md">Wissen 109</a> Die Abstufung (Somnolenz, Sopor, Koma) steht in deiner Anatomie-Zusammenfassung. <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a></li>
+      <li><strong>Pupillendifferenz</strong> — steht ausdrücklich auf der Symptomliste deines Dozenten. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></li>
+      <li><strong>Erbrechen und stärkste Kopfschmerzen</strong> — Hinweis auf Blutung bzw. steigenden Druck. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></li>
+      <li><strong>Schluckstörung mit Husten</strong> — Gefahr der Aspiration und Lungenentzündung (Kapitel 12). Deine Unterlagen: Die <strong>Aspirationspneumonie</strong> kann gerade bei alten und kranken Menschen einen schweren Verlauf nehmen, oft mit tödlichem Ausgang. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080</a></li>
+    </ul>
+    <div class="kasten ich"><p class="kt">Meine Folgerung — warum Bewusstsein und Pupillen so ernst sind</p><p>Wir haben gesehen: Bei einer Blutung (oder bei einer großen Schwellung) wird der Druck im festen Schädel größer. Steigt der Druck, wird der <strong>Hirnstamm</strong> bedrängt — und dort sitzen Atmung und Kreislauf (Kapitel 4). Eine neue Pupillendifferenz oder ein Mensch, der immer schwerer weckbar wird, ist deshalb kein „er ist müde", sondern ein Notfall im Notfall.</p></div>
+
+    <div class="enbref"><p class="kt">🇫🇷 En bref</p>
+      <p>Les signes arrivent <strong>d'un coup</strong> et d'<strong>un seul côté</strong> : paralysie (hémiparésie/hémiplégie), bouche qui tombe, troubles du langage (aphasie : ne trouve pas ou ne comprend pas les mots), parole mal articulée (dysarthrie), troubles de la déglutition (dysphagie), perte d'une moitié du champ visuel, vertiges, très fort mal de tête. Le <strong>neglect</strong> : une moitié du corps et de l'espace « n'existe plus ». Signes graves : somnolence qui augmente, pupilles inégales, vomissements, toux en buvant.</p>
+    </div>
+  </section>
+
+  <!-- 8 ------------------------------------------------------------------ -->
+  <section class="kap" id="k8" data-kap="8">
+    <h3><span class="k">Kapitel 8</span>Erkennen und handeln — deine ersten Minuten</h3>
+    <p class="vorspann">Als Pflegekraft bist du fast immer das erste Glied der Rettungskette. Was du in den ersten Minuten tust, entscheidet mit.</p>
+
+    <h4>Der FAST-Test</h4>
+    <p>Dein Dozent nennt ihn als Praxis-Tipp: <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></p>
+    <figure>
+      <svg viewBox="0 0 600 190" role="img" aria-labelledby="f6t">
+        <title id="f6t">FAST: Face, Arms, Speech, Time</title>
+        <g>
+          <rect x="10" y="10" width="135" height="170" rx="14" class="karte"/>
+          <circle cx="77" cy="62" r="30" class="leer"/><circle cx="66" cy="55" r="3" class="akz"/><circle cx="88" cy="55" r="3" class="akz"/>
+          <path d="M62 74 Q 75 80 80 76 Q 87 80 92 86" class="akzs" stroke-width="2.5"/>
+          <text x="22" y="122" font-size="22" font-weight="700" class="akz">F</text><text x="40" y="122" font-size="14" font-weight="600">ace</text>
+          <text x="22" y="142" class="klein">bitten zu lächeln —</text><text x="22" y="156" class="klein">hängt ein Mundwinkel?</text>
+        </g>
+        <g>
+          <rect x="157" y="10" width="135" height="170" rx="14" class="karte"/>
+          <circle cx="224" cy="40" r="12" class="leer"/><path d="M224 52 L224 90" class="leer"/>
+          <path d="M224 60 L 186 58" class="leer"/><path d="M224 60 L 262 74" class="akzs" stroke-width="2.5"/>
+          <text x="169" y="122" font-size="22" font-weight="700" class="akz">A</text><text x="187" y="122" font-size="14" font-weight="600">rms</text>
+          <text x="169" y="142" class="klein">beide Arme heben —</text><text x="169" y="156" class="klein">sinkt einer ab?</text>
+        </g>
+        <g>
+          <rect x="304" y="10" width="135" height="170" rx="14" class="karte"/>
+          <path d="M330 40 h 80 a 10 10 0 0 1 10 10 v 30 a 10 10 0 0 1 -10 10 h -50 l -15 14 v -14 h -15 a 10 10 0 0 1 -10 -10 v -30 a 10 10 0 0 1 10 -10 z" class="leer"/>
+          <text x="338" y="70" font-size="13" class="akz">„Heute ist…"</text>
+          <text x="316" y="122" font-size="22" font-weight="700" class="akz">S</text><text x="333" y="122" font-size="14" font-weight="600">peech</text>
+          <text x="316" y="142" class="klein">Satz nachsprechen —</text><text x="316" y="156" class="klein">verwaschen?</text>
+        </g>
+        <g>
+          <rect x="451" y="10" width="139" height="170" rx="14" class="akz" opacity=".14"/>
+          <circle cx="520" cy="58" r="30" class="leer"/><path d="M520 58 L520 38 M520 58 L534 66" class="akzs" stroke-width="3"/>
+          <text x="463" y="122" font-size="22" font-weight="700" class="akz">T</text><text x="479" y="122" font-size="14" font-weight="600">ime</text>
+          <text x="463" y="142" class="klein">Uhrzeit notieren,</text><text x="463" y="156" class="klein">sofort Hilfe holen!</text>
+        </g>
+      </svg>
+      <figcaption>Abbildung 6 · FAST, wie in deinen Notfall-Unterlagen. Piktogramme von mir.</figcaption>
+    </figure>
+    <p>Eine erweiterte Form heißt <strong>BE-FAST</strong>: Davor stehen <strong>B</strong> wie <em>Balance</em> (plötzliche Gleichgewichtsprobleme) und <strong>E</strong> wie <em>Eyes</em> (plötzliche Sehstörung, Doppelbilder). <a class="q net" href="https://flexikon.doccheck.com/de/FAST-Test">DocCheck</a> Sie fängt Schlaganfälle im Kleinhirn und im Sehbereich besser ein, bei denen Gesicht und Arme unauffällig sein können. <span class="q ich">Folgerung</span> Wichtig: Nicht jeder Schlaganfall zeigt sich im FAST-Test — bei Verdacht trotzdem den Notruf wählen. <a class="q net" href="https://flexikon.doccheck.com/de/FAST-Test">DocCheck</a></p>
+
+    <h4>Was du tust — aus deinen Unterlagen</h4>
+    <div class="kasten du">
+      <p class="kt">Maßnahmen bei Apoplex — Notfall-Unterlagen</p>
+      <ol>
+        <li><strong>Zügig reagieren</strong> — um Folgeschäden zu vermeiden.</li>
+        <li><strong>Keine blinde Antikoagulation!</strong> Es könnte eine Hirnblutung sein.</li>
+        <li><strong>Patienten beruhigen</strong> — um den Sauerstoffverbrauch zu senken.</li>
+        <li><strong>Vitalparameter erheben.</strong></li>
+        <li><strong>Arzt melden!</strong></li>
+        <li><strong>Zeitpunkt des Symptombeginns</strong> notieren — er entscheidet über die Therapie.</li>
+      </ol>
+      <p><a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a> · Strukturiert nach <strong>ABCD</strong> (Airway, Breathing, Circulation, Disability) — „symptomorientiert, nicht nach Diagnose". Bewusstsein prüfen: Person, Ort, Zeit, Situation.</p>
+    </div>
+
+    <h4>Was du nicht tust</h4>
+    <ul>
+      <li><strong>Nichts zu essen oder zu trinken geben</strong>, auch keine Tablette mit Wasser. Schlaganfall-Patienten gehören laut deinen Unterlagen zu den <strong>aspirationsgefährdeten</strong> Menschen; die Aspirationsgefahr wird „oft unterschätzt". <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Aspirationsprophylaxe (Wissen 080)</a> Dass deshalb vor dem ersten Schluck die Schluckfähigkeit geprüft werden muss, ist meine Folgerung daraus. <span class="q ich">Folgerung</span></li>
+      <li><strong>Kein Blutverdünner „zur Sicherheit"</strong> — siehe oben. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></li>
+      <li><strong>Nicht abwarten</strong>, „ob es besser wird". Auch wenn die Zeichen verschwinden: Es könnte eine TIA sein — Warnsignal (Kapitel 5).</li>
+      <li><strong>Den Menschen nicht allein lassen.</strong> Er kann stürzen, erbrechen, Angst haben. <span class="q ich">Folgerung</span></li>
+    </ul>
+
+    <h4>Die Rettungskette</h4>
+    <div class="kette"><span>Notfall erkennen (FAST)</span><i>→</i><span>Uhrzeit</span><i>→</i><span>112 bzw. innerklinisch Arzt / Notfallteam</span><i>→</i><span>Rettungswagen</span><i>→</i><span class="ende">Klinik mit Stroke Unit</span></div>
+    <p>Deine Unterlagen beschreiben die präklinische Kette (Notfall → Leitstelle → Rettungswagen → Notfallort → Transport → Klinik) und sagen: „Als Pflegekraft bist du fast immer das erste Glied — du entdeckst den Notfall und löst den Alarm aus." <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a> Bei Verdacht auf Schlaganfall sofort 112 — und wenn möglich in ein auf Schlaganfälle spezialisiertes Krankenhaus. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a></p>
+
+    <div class="kasten ich">
+      <p class="kt">Meine Folgerung — die Übergabe an den Rettungsdienst</p>
+      <p>Was das Team in der Klinik von dir braucht, kann man aus den Kapiteln 5 und 9 ableiten: <strong>Wann</strong> war der Mensch zuletzt sicher gesund? (Nicht: wann wurde er gefunden.) <strong>Welche Zeichen</strong> (FAST)? <strong>Vitalzeichen</strong>, Blutzucker wenn vorhanden. <strong>Nimmt er Blutverdünner?</strong> (Medikamentenplan mitgeben.) Wer ist die <strong>Kontaktperson</strong>?</p>
+      <p>Warum „zuletzt gesund" und nicht „gefunden"? Wer morgens mit Lähmung aufwacht, kann den Schlaganfall schon nachts bekommen haben. Die Uhr läuft dann nicht ab dem Aufwachen.</p>
+    </div>
+
+    <div class="enbref"><p class="kt">🇫🇷 En bref</p>
+      <p>Test <strong>FAST</strong> : Face (sourire — un coin de la bouche tombe ?), Arms (lever les deux bras — un bras retombe ?), Speech (répéter une phrase — parole pâteuse ?), Time (noter l'heure, alerter tout de suite). Version longue : BE-FAST (équilibre, yeux). Tu agis : rester calme, rassurer, constantes, prévenir le médecin / 112, noter l'heure du début. Tu ne fais pas : rien à boire ni à manger, pas d'anticoagulant, ne pas attendre, ne pas laisser la personne seule. À la transmission : « vu en bonne santé pour la dernière fois à … ».</p>
+    </div>
+  </section>
+
+  <!-- 9 ------------------------------------------------------------------ -->
+  <section class="kap" id="k9" data-kap="9">
+    <h3><span class="k">Kapitel 9</span>In der Klinik — Diagnose und Akuttherapie</h3>
+    <p class="vorspann">Vom Rettungswagen in die Röhre, von der Röhre zur Therapie. Ziel: Leben retten und Folgeschäden begrenzen.</p>
+
+    <h4>Erst das Bild, dann die Therapie</h4>
+    <p>In der Klinik wird mit <strong>CT oder MRT</strong> geklärt, was die Ursache ist. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a> Die Frage Nummer eins ist dieselbe wie bei Wepfer 1658: <strong>Blut oder kein Blut?</strong> Erst danach kann man entscheiden, ob ein Gerinnsel aufgelöst werden darf. <span class="q ich">Folgerung aus Kap. 5</span> Kommt jemand später als 4,5 Stunden nach Beginn, soll laut Leitlinie eine <strong>erweiterte Bildgebung</strong> (Perfusions-CT oder -MRT) folgen, weil je nach Befund trotzdem noch eine Behandlung möglich sein kann. <a class="q net" href="https://www.aerzteblatt.de/archiv/ischaemischer-schlaganfall-kernpunkte-der-leitlinie-ed50f250-c836-422f-967e-f454c4c39ce5">Ärzteblatt</a></p>
+
+    <h4>Beim Verschluss: das Gefäß wieder öffnen</h4>
+    <p>Das Ziel heißt <strong>Rekanalisation</strong> — das Gefäß so schnell wie möglich wieder öffnen. Dafür gibt es zwei Wege, die wenn möglich kombiniert werden: <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a></p>
+    <div class="scroll"><table>
+      <tr><th></th><th>Thrombolyse („Lyse")</th><th>Thrombektomie</th></tr>
+      <tr><td>Was</td><td>Ein Medikament als <strong>Infusion</strong> löst das Gerinnsel auf.</td><td>Ein <strong>Katheter</strong> wird über die Leiste durch die Gefäße bis ins Gehirn geschoben und zieht das Gerinnsel heraus.</td></tr>
+      <tr><td>Wirkstoff / Gerät</td><td>Standard: <strong>Alteplase</strong> (rt-PA). <a class="q net" href="https://www.aerzteblatt.de/nachrichten/124243/Neue-Leitlinie-zur-Therapie-des-ischaemischen-Schlaganfalls">Ärzteblatt</a></td><td>Kathetersystem, Neuroradiologie</td></tr>
+      <tr><td>Zeitfenster</td><td>bis <strong>4,5 Stunden</strong>; danach nur nach erweiterter Bildgebung im Einzelfall. <a class="q net" href="https://www.aerzteblatt.de/archiv/ischaemischer-schlaganfall-kernpunkte-der-leitlinie-ed50f250-c836-422f-967e-f454c4c39ce5">Ärzteblatt</a></td><td>bis <strong>6 Stunden</strong>; bei ausgewählten Menschen mit noch rettbarem Gewebe in der Bildgebung bis <strong>24 Stunden</strong>. <a class="q net" href="https://www.aerzteblatt.de/nachrichten/80505/Zeitfenster-fuer-Thrombektomie-nach-Schlaganfall-laenger-als-gedacht">Ärzteblatt</a> <a class="q net" href="https://doaj.org/article/eb12ea26750948df83aed4f779686b86">Stroke: VIN 2023</a></td></tr>
+      <tr><td>Für wen</td><td>Verschluss ohne Blutung, ohne Gegenanzeigen</td><td>Verschluss eines <strong>großen</strong> Hirngefäßes</td></tr>
+      <tr><td>Größtes Risiko</td><td>Blutung — auch im Gehirn <span class="q ich">Folgerung aus dem Wirkprinzip</span></td><td>Eingriff an den Gefäßen, Einstichstelle in der Leiste <span class="q ich">Folgerung</span></td></tr>
+    </table></div>
+
+    <figure>
+      <svg viewBox="0 0 600 170" role="img" aria-labelledby="f7t">
+        <title id="f7t">Zeitachse: Lyse bis 4,5 Stunden, Thrombektomie bis 6 und im Einzelfall bis 24 Stunden</title>
+        <line x1="40" y1="60" x2="570" y2="60" class="linie" stroke-width="2"/>
+        <!-- Skala: 0–24 h; 0..6h gedehnt für Lesbarkeit -->
+        <rect x="40" y="38" width="210" height="18" rx="4" class="akz" opacity=".85"/>
+        <text x="46" y="32" font-size="12" font-weight="600">Lyse</text>
+        <rect x="40" y="64" width="280" height="18" rx="4" class="net" opacity=".85"/>
+        <rect x="320" y="64" width="250" height="18" rx="4" class="net" opacity=".35"/>
+        <text x="46" y="100" font-size="12" font-weight="600">Thrombektomie</text>
+        <text x="330" y="100" class="klein">nur mit Bildgebung „noch rettbar"</text>
+        <g class="klein">
+          <text x="34" y="130">0 h</text><text x="236" y="130">4,5 h</text><text x="312" y="130">6 h</text><text x="550" y="130">24 h</text>
+        </g>
+        <path d="M250 112 L250 120 M320 112 L320 120 M565 112 L565 120" class="linie"/>
+        <text x="40" y="158" class="klein">Achse nicht maßstabsgetreu: die ersten 6 Stunden sind gedehnt dargestellt.</text>
+      </svg>
+      <figcaption>Abbildung 7 · Die Zeitfenster der beiden Verfahren. Zahlen aus Internetquellen (Leitlinie laut Ärzteblatt; Thrombektomie-Studien). Ob ein Mensch behandelt wird, entscheiden Ärztinnen und Ärzte im Einzelfall.</figcaption>
+    </figure>
+
+    <h4>Bei der Blutung: die Blutung stoppen</h4>
+    <p>Bei einer Hirnblutung muss die Blutung schnell gestoppt werden, gegebenenfalls durch eine <strong>Operation</strong>. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a> Ein Medikament zum Auflösen von Gerinnseln wäre hier falsch — darum die Regel aus deinen Unterlagen: keine blinde Antikoagulation. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></p>
+
+    <h4>Die Stroke Unit</h4>
+    <p>Eine <strong>Stroke Unit</strong> ist eine Station, die nur für Schlaganfälle eingerichtet ist. Die deutsche Leitlinie: <em>„Alle Patienten mit einem ischämischen Insult sollen in einer Stroke-Unit behandelt werden."</em> <a class="q net" href="https://www.aerzteblatt.de/archiv/ischaemischer-schlaganfall-kernpunkte-der-leitlinie-ed50f250-c836-422f-967e-f454c4c39ce5">Ärzteblatt</a> Die Reha beginnt oft schon dort, in der Klinik. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a></p>
+
+    <div class="kasten ich">
+      <p class="kt">Meine Folgerung — was die Pflege auf der Stroke Unit beobachtet</p>
+      <p>Das steht so nicht in deinen Unterlagen, folgt aber aus allem, was du gelernt hast: <strong>Bewusstsein</strong> (wird er schläfriger?), <strong>Pupillen</strong>, <strong>Vitalzeichen</strong> mit Blutdruck, <strong>neue oder stärkere Ausfälle</strong> (FAST wiederholen), <strong>Schlucken</strong> vor jedem Essen, <strong>Blutungszeichen</strong> nach einer Lyse (Einstichstellen, Zahnfleisch, Urin), die <strong>Leiste</strong> nach einer Thrombektomie. Die genauen Zeitabstände und Grenzwerte gibt die ärztliche Anordnung vor — sie stehen nicht in deinen Unterlagen, und ich nenne sie hier deshalb nicht.</p>
+    </div>
+
+    <div class="enbref"><p class="kt">🇫🇷 En bref</p>
+      <p>D'abord l'<strong>imagerie</strong> (scanner/IRM) : sang ou pas sang ? Si vaisseau bouché : <strong>thrombolyse</strong> (perfusion d'altéplase, jusqu'à 4 h 30) et/ou <strong>thrombectomie</strong> (cathéter qui retire le caillot, jusqu'à 6 h, et jusqu'à 24 h chez certains patients sélectionnés par l'imagerie). Si saignement : arrêter le saignement, parfois opérer. Tous les patients devraient être traités en <strong>Stroke Unit</strong>. La rééducation commence déjà là-bas.</p>
+    </div>
+  </section>
+
+  <!-- 10 ----------------------------------------------------------------- -->
+  <section class="kap" id="k10" data-kap="10">
+    <h3><span class="k">Kapitel 10</span>Die medikamentöse Therapie</h3>
+    <p class="vorspann">Akut das Gerinnsel auflösen — danach jahrelang verhindern, dass ein neues kommt.</p>
+
+    <div class="kasten ich">
+      <p class="kt">Wichtig vorab</p>
+      <p>Hier stehen <strong>Wirkstoffgruppen und ihr Zweck</strong>, keine Dosierungen. Was ein bestimmter Mensch bekommt, entscheidet die Ärztin oder der Arzt. In deinen Unterlagen gibt es zur Schlaganfall-Medikation nur den Satz „keine blinde Antikoagulation" — alles Weitere kommt aus Internetquellen.</p>
+    </div>
+
+    <h4>Akut</h4>
+    <p><strong>Alteplase</strong> (rt-PA) ist das Standardmedikament der Lyse. Eine andere Substanz, Tenecteplase, soll laut Leitlinie außerhalb von Studien nur in Einzelfällen eingesetzt werden. <a class="q net" href="https://www.aerzteblatt.de/nachrichten/124243/Neue-Leitlinie-zur-Therapie-des-ischaemischen-Schlaganfalls">Ärzteblatt</a></p>
+
+    <h4>Danach: die Sekundärprophylaxe</h4>
+    <p>„Sekundär" heißt: Der erste Schlaganfall ist schon passiert — jetzt soll der <strong>zweite</strong> verhindert werden. Das ist nötig: Etwa <strong>5 von 100</strong> Menschen erleiden innerhalb des ersten Jahres einen weiteren Schlaganfall. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a></p>
+    <div class="scroll"><table>
+      <tr><th>Gruppe</th><th>Wofür</th><th>Quelle</th><th>Worauf du achtest <span class="q ich">Folgerung</span></th></tr>
+      <tr><td><strong>Thrombozytenhemmer</strong> (z. B. ASS)</td><td>Blutplättchen verkleben weniger — gegen neue Gerinnsel in den Arterien. Nach TIA oder leichtem Schlaganfall bei ausgewählten Menschen für 21–30 Tage zwei Hemmer zusammen (ASS plus Clopidogrel oder Ticagrelor).</td><td><a class="q net" href="https://www.aerzteblatt.de/archiv/ischaemischer-schlaganfall-kernpunkte-der-leitlinie-ed50f250-c836-422f-967e-f454c4c39ce5">Ärzteblatt</a></td><td>Blutungszeichen: blaue Flecken, Zahnfleischbluten, schwarzer Stuhl; Magenbeschwerden</td></tr>
+      <tr><td><strong>Gerinnungshemmer</strong> (Antikoagulanzien)</td><td>bei erhöhter Gerinnselbildung, etwa bei <strong>Vorhofflimmern</strong></td><td><a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></td><td>Blutungszeichen; Sturzrisiko bedenken; nie eigenmächtig absetzen</td></tr>
+      <tr><td><strong>Blutdrucksenker</strong> (Antihypertensiva)</td><td>bei Bluthochdruck — dem wichtigsten Risikofaktor</td><td><a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></td><td>Blutdruck messen; Schwindel beim Aufstehen (orthostatische Hypotonie, Sturzgefahr) <a class="q du" href="https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW">Sturz</a></td></tr>
+      <tr><td><strong>Statine</strong></td><td>bei zu hohen Cholesterinwerten</td><td><a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></td><td>regelmäßige Einnahme; Muskelschmerzen melden</td></tr>
+      <tr><td>Behandlung der Grunderkrankung</td><td>z. B. Diabetes gut einstellen</td><td><a class="q du" href="https://claude.ai/artifact/HTKB99uzuvaNbZ4HHCT8cx">Diabetes</a></td><td>Unterzuckerung vermeiden — sie kann selbst Schlaganfall-ähnliche Zeichen machen <span class="q ich">bitte im Kurs prüfen</span></td></tr>
+    </table></div>
+    <p>Manchmal ist auch ein <strong>Eingriff</strong> nötig, etwa an der <strong>Halsschlagader</strong>, um eine Verengung zu beseitigen. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a></p>
+
+    <div class="kasten du">
+      <p class="kt">Aus deinen Unterlagen — Medikamente und Sturz</p>
+      <p>Im Expertenstandard Sturzprophylaxe stehen <strong>Antihypertensiva</strong>, Antidepressiva, Sedativa und <strong>Polypharmazie</strong> (mehr als 4 Medikamente) als medikamentenbezogene Sturzrisiken. <a class="q du" href="https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW">Körperpflege &amp; Bewegung</a> Ein Mensch nach Schlaganfall hat oft mehrere davon gleichzeitig — dazu die Lähmung. Genau so ist der Fall Herr Kranz in deiner Klausur gebaut. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Lernmaterial/05-bewegung-sturz-mobilitaet/klausur.md">Klausur Bewegung</a></p>
+    </div>
+
+    <div class="kasten ich">
+      <p class="kt">Meine Folgerung — der häufigste Fehler im Alltag</p>
+      <p>Erinnere dich an den Herz-Kreislauf-Kurs: Der häufigste Grund einer Blutdruckentgleisung ist, dass blutdrucksenkende Medikamente <strong>nicht regelmäßig genommen</strong> werden. <a class="q du" href="https://claude.ai/code/artifact/316b844e-b1e6-4bb8-8163-3af3058de4fa">Herz-Kreislauf</a> Sekundärprophylaxe wirkt nur, wenn sie <strong>jeden Tag</strong> genommen wird — über Jahre. Hier hat Beratung durch die Pflege eine große Wirkung.</p>
+    </div>
+
+    <div class="enbref"><p class="kt">🇫🇷 En bref</p>
+      <p>En urgence : altéplase pour dissoudre le caillot. Ensuite, <strong>prévention secondaire</strong> (éviter le 2e AVC — environ 5 personnes sur 100 en font un autre dans l'année) : antiagrégants (aspirine…), anticoagulants en cas de fibrillation auriculaire, antihypertenseurs, statines, parfois une intervention sur la carotide. Toi, tu surveilles les saignements, la tension, les vertiges (risque de chute) et tu aides à prendre les médicaments <strong>tous les jours</strong>.</p>
+    </div>
+  </section>
+
+  <!-- 11 ----------------------------------------------------------------- -->
+  <section class="kap" id="k11" data-kap="11">
+    <h3><span class="k">Kapitel 11</span>Die Therapie ohne Medikamente</h3>
+    <p class="vorspann">Das Gehirn kann lernen. Reha nutzt das — mit Übung, Wiederholung und Zeit.</p>
+
+    <h4>Die Therapeutinnen und Therapeuten</h4>
+    <p>Ziel der Reha ist, wieder <strong>selbstständig</strong> zu werden: Muskelkraft, Beweglichkeit und Sprache stärken und emotional stabiler werden. Wichtige Bausteine sind: <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a></p>
+    <div class="steck">
+      <div><b>Physiotherapie</b>Kraft, Gleichgewicht, Gehen, Transfer</div>
+      <div><b>Ergotherapie</b>Alltag: Waschen, Anziehen, Essen, Hand und Arm</div>
+      <div><b>Logopädie</b>Sprachtherapie (Aphasie, Dysarthrie) und Training der Schluckfunktion</div>
+      <div><b>Fitnesstraining</b>Ausdauer und Belastbarkeit</div>
+    </div>
+    <p>Deine Neurologie-Unterlagen nennen außerdem das <strong>Bobath-Konzept</strong> — erklären es aber nicht, und in deinem Ordner liegt keine Datei dazu. Deshalb steht hier keine Bobath-Anleitung. <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p>
+
+    <h4>Das Phasenmodell der neurologischen Reha</h4>
+    <p>In Deutschland wird die neurologische Rehabilitation in <strong>Phasen A bis F</strong> eingeteilt (Bundesarbeitsgemeinschaft für Rehabilitation, BAR). <a class="q net" href="https://www.bar-frankfurt.de/fileadmin/dateiliste/_publikationen/reha_vereinbarungen/pdfs/Empfehlung_neurologische_Reha_Phasen_B_und_C.pdf">BAR</a></p>
+    <div class="scroll"><table>
+      <tr><th>Phase</th><th>Was</th></tr>
+      <tr><td><strong>A</strong></td><td>Akutbehandlung (Notarzt, Stroke Unit) — Vitalfunktionen stabilisieren</td></tr>
+      <tr><td><strong>B</strong></td><td>Frührehabilitation — verbindet Akutmedizin und Reha, gehört noch zur Krankenhausbehandlung</td></tr>
+      <tr><td><strong>C</strong></td><td>weiterführende Rehabilitation — Ziel: Selbstständigkeit in Alltagsleistungen</td></tr>
+      <tr><td><strong>D</strong></td><td>Anschlussheilbehandlung, stationär oder ambulant</td></tr>
+      <tr><td><strong>E</strong></td><td>nachgehende Leistungen, auch berufliche Teilhabe — „Brücke zur Inklusion"</td></tr>
+      <tr><td><strong>F</strong></td><td>Langzeit: Unterstützung, Betreuung, Zustand erhalten</td></tr>
+    </table></div>
+    <p>Das Modell ist <strong>kein starrer Ablauf</strong>: Man kann Phasen überspringen, und bei Verschlechterung kann ein Wechsel zurück nötig sein. <a class="q net" href="https://www.bar-frankfurt.de/fileadmin/dateiliste/_publikationen/reha_vereinbarungen/pdfs/Empfehlung_neurologische_Reha_Phasen_B_und_C.pdf">BAR</a></p>
+    <div class="kasten du">
+      <p class="kt">Verbindung zu deinem Kurs</p>
+      <p>Du hast im Kurs „Vom ‚unkooperativen Patienten' zur Phase" schon ein Phasenmodell der Rehabilitation gelernt — schau nach, ob es dasselbe ist wie das BAR-Modell hier oder ein anderes. Ich habe es nicht gleichgesetzt, weil ich es nicht prüfen konnte. <span class="q ich">offene Frage</span></p>
+    </div>
+
+    <h4>Lebensstil — die zweite Säule der Vorbeugung</h4>
+    <p>Bewegung, Ernährung, Nichtrauchen, wenig Alkohol: Damit verringert man das Risiko enorm. <a class="q net" href="https://www.dsg-info.de/wp-content/uploads/2025/09/250825_Factsheet_Schlaganfall.pdf">DSG 2025</a> Aus deinem Diabetes-Kurs kennst du dasselbe Prinzip: Bewegung wirkt günstig auf Blutfette, Blutdruck, Körpergewicht und Blutzucker. <a class="q du" href="https://claude.ai/artifact/HTKB99uzuvaNbZ4HHCT8cx">Diabetes</a></p>
+
+    <div class="enbref"><p class="kt">🇫🇷 En bref</p>
+      <p>Le cerveau peut réapprendre. Rééducation : kinésithérapie (force, marche, équilibre), ergothérapie (gestes du quotidien), orthophonie (langage <strong>et</strong> déglutition). En Allemagne, la rééducation neurologique suit des phases A à F (aigu → précoce → poursuite → suite de soins → retour au travail/vie sociale → long terme), pas forcément dans l'ordre. Le mode de vie (bouger, bien manger, ne pas fumer, peu d'alcool) est la deuxième grande prévention.</p>
+    </div>
+  </section>
+
+  <!-- 12 ----------------------------------------------------------------- -->
+  <section class="kap" id="k12" data-kap="12">
+    <h3><span class="k">Kapitel 12</span>Die Pflege — dein Teil</h3>
+    <p class="vorspann">Hier kommen die meisten Quellen aus deinen eigenen Kursen. Fast jedes Thema deiner Ausbildung trifft beim Schlaganfall zusammen.</p>
+
+    <h4>12.1 Neglect — ansprechen über die gesunde Seite, bewegen über die betroffene</h4>
+    <p>Deine Neurologie-Folien geben die Regeln: <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p>
+    <ul>
+      <li>Die <strong>Ansprache</strong> beginnt über die <strong>gesunde</strong> Seite — sonst kommt sie gar nicht an.</li>
+      <li>Die <strong>Bewegung</strong> beginnt über die <strong>betroffene</strong> Seite — genau die soll wieder ins Bewusstsein kommen.</li>
+      <li><strong>Neurophysiologische Ganzkörperwäsche</strong>: Reize von der gesunden auf die betroffene Seite lenken; sie ist Teil der basalen Stimulation.</li>
+      <li>Es ist ein schrittweiser, langer Prozess <strong>des ganzen Teams</strong>; Unsicherheiten sollen vermieden werden.</li>
+    </ul>
+    <div class="kasten du">
+      <p class="kt">Die AFB-III-Kette aus deinen Unterlagen</p>
+      <div class="kette"><span>Neglect blendet eine Körperhälfte aus</span><i>→</i><span>Betroffene ist überzeugt, alles normal zu können</span><i>→</i><span>Stürze, Verletzungen, Dekubitus, Kontrakturen</span><i>→</i><span class="ende">Reize lenken, Prophylaxen von Anfang an</span></div>
+      <p><a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p>
+    </div>
+    <p>Auch bei der <strong>Rasur</strong> taucht der Neglect auf: Menschen mit Neglect „müssen beim Nachrasieren unterstützt werden, da die wahrnehmungsbeeinträchtigte Seite nicht oder nur unzureichend rasiert wird". <a class="q du" href="https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW">Körperpflege</a> Gegen das <strong>Pusher-Syndrom</strong> hilft frühes Eingreifen: Unterlagern mit Kissen, Keile, schiefe Ebene. <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p>
+
+    <h4>12.2 Die gelähmte Seite — sechs Regeln</h4>
+    <div class="kasten du">
+      <p class="kt">Plegien und Paresen — Neurologie-Folien</p>
+      <ol>
+        <li>Den <strong>Grad der Parese regelmäßig testen</strong> — er ist nicht festgeschrieben.</li>
+        <li>Mitdenken: Wer den eigenen Arm festhält, hat <strong>keine Hand mehr frei</strong>.</li>
+        <li><strong>Flächige statt punktuelle Berührungen</strong> — das vermeidet die Entstehung von Spastiken.</li>
+        <li><strong>Keine Punktionen, Blutabnahmen oder Infusionen</strong> an der betroffenen Extremität.</li>
+        <li>Kleidung darf <strong>nicht einschnüren</strong>.</li>
+      </ol>
+      <p><a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p>
+    </div>
+
+    <h4>12.3 Die Schulter — niemals an der Hand ziehen</h4>
+    <p>Bei Gesunden hält der Muskeltonus den Oberarmkopf in der Gelenkpfanne. Erschlafft die Muskulatur, rutscht der Oberarm heraus — es entsteht eine <strong>tastbare Lücke</strong>: die <strong>Subluxation</strong>. Die <strong>schmerzhafte Schulter</strong> entsteht durch unphysiologische Bewegung und falsches Handling: zuerst Schmerzen nur bei Bewegung, später auch in Ruhe. <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p>
+    <figure>
+      <svg viewBox="0 0 600 220" role="img" aria-labelledby="f8t">
+        <title id="f8t">Schulter normal und subluxiert</title>
+        <g>
+          <text x="70" y="24" font-size="14" font-weight="600">normal</text>
+          <path d="M40 60 C 60 40, 120 40, 150 60 L 150 90 C 120 80, 70 80, 40 90 Z" class="hirn"/>
+          <path d="M110 70 a 36 36 0 0 1 0 72" class="leer" stroke-width="5"/>
+          <circle cx="104" cy="106" r="30" class="karte" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="92" y="130" width="24" height="80" rx="10" class="karte" stroke="var(--ink)" stroke-width="2"/>
+          <text x="150" y="112" class="klein">Kopf sitzt</text><text x="150" y="126" class="klein">in der Pfanne</text>
+        </g>
+        <g>
+          <text x="370" y="24" font-size="14" font-weight="600">Subluxation</text>
+          <path d="M340 60 C 360 40, 420 40, 450 60 L 450 90 C 420 80, 370 80, 340 90 Z" class="hirn"/>
+          <path d="M410 70 a 36 36 0 0 1 0 72" class="leer" stroke-width="5"/>
+          <circle cx="398" cy="140" r="30" class="blut2" stroke="var(--ink)" stroke-width="2"/>
+          <rect x="386" y="164" width="24" height="50" rx="10" class="blut2" stroke="var(--ink)" stroke-width="2"/>
+          <path d="M440 92 L 440 118" class="akzs" stroke-width="3"/>
+          <text x="450" y="104" font-size="12" font-weight="600" class="akz">tastbare Lücke</text>
+          <text x="450" y="140" class="klein">Oberarm rutscht</text><text x="450" y="154" class="klein">nach unten</text>
+        </g>
+      </svg>
+      <figcaption>Abbildung 8 · Subluxation der Schulter, stark vereinfacht. Mechanismus aus deinen Neurologie-Folien; Zeichnung von mir.</figcaption>
+    </figure>
+    <div class="kasten du">
+      <p class="kt">Subluxationsprophylaxe — vier Handgriffe</p>
+      <ul>
+        <li>Das <strong>Gewicht des Arms übernehmen</strong> — Griff <strong>oberhalb des Ellbogengelenks</strong>.</li>
+        <li>Leichte <strong>Außenrotation</strong>, den Arm am Körper führen.</li>
+        <li>Beim Liegen <strong>wenig Gewicht</strong> auf die Schulter.</li>
+        <li>Im Sitzen und Stehen den Arm <strong>lagern</strong> — viel Unterstützungsfläche.</li>
+      </ul>
+      <p>„Wer den gelähmten Arm an der Hand zieht, hängt das ganze Gewicht an ein Gelenk, das kein Muskeltonus mehr hält." <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p>
+    </div>
+
+    <h4>12.4 Schlucken — Aspirationsprophylaxe</h4>
+    <p>Nach einem Schlaganfall kommt es häufig zu einer Dysphagie: Fachartikel nennen rund <strong>26–57 %</strong> der Patienten — die Angaben schwanken je nach Studie stark. <a class="q net" href="https://www.thieme-connect.de/products/ejournals/html/10.1055/a-2673-8966">Thieme</a> Deine Unterlagen zählen Menschen mit neurologischen Erkrankungen wie dem Schlaganfall ausdrücklich zu den aspirationsgefährdeten — mit dem Warnhinweis, dass Aspirationspneumonie und Ersticken lebensbedrohliche Folgen einer <strong>verfrühten Nahrungsaufnahme</strong> sein können. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080</a></p>
+    <div class="kasten du">
+      <p class="kt">Aspirationsprophylaxe — Spickzettel aus deinen Unterlagen</p>
+      <ul>
+        <li>Essen und Trinken immer in <strong>sitzender Position</strong>, Oberkörper auch danach 20–30 Minuten erhöht.</li>
+        <li>Beim Essen und Trinken <strong>nicht allein lassen</strong>, ggf. anleiten.</li>
+        <li><strong>Ausreichend Zeit</strong> lassen, nicht drängen.</li>
+        <li>Geeignete Speisen auswählen, <strong>trockene Speisen vermeiden</strong>.</li>
+        <li><strong>Mundhygiene</strong> vor und nach der Mahlzeit.</li>
+        <li><strong>Absauggerät</strong> bereithalten.</li>
+      </ul>
+      <p><a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080</a></p>
+    </div>
+    <p>Genau diese Situation üben deine Fälle <strong>Herr Novak</strong> (Apoplex vor vier Monaten, Dysphagie, schwache rechte Hand) und <strong>Frau Gerlach</strong> (vor drei Tagen Apoplex, hustet beim Trinken, isst und trinkt wenig, trockene Schleimhaut, dunkler Urin). <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Lernmaterial/10-ernaehrung-fluessigkeit/klausur.md">Klausur Ernährung</a> Bei Frau Gerlach siehst du die Kette: Schluckstörung → trinkt aus Angst wenig → Zeichen von Flüssigkeitsmangel → Verwirrtheit. <span class="q ich">Folgerung</span></p>
+
+    <h4>12.5 Ernährung</h4>
+    <p>Im <strong>NRS 2002</strong> zählt der Schlaganfall bei der Krankheitsschwere als <strong>„mäßig — 2 Punkte"</strong>; ab 70 Jahren kommt 1 Punkt dazu. Ab 3 Punkten besteht ein Ernährungsrisiko. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/033-nutritional-risk-screening-nrs-2002.md">NRS 2002 (Wissen 033)</a></p>
+    <div class="kasten ich"><p class="kt">Meine Folgerung</p><p>Ein 72-jähriger Mensch mit frischem Schlaganfall hat damit schon <strong>3 Punkte</strong> — bevor du überhaupt nach Gewicht oder Essmenge gefragt hast. Er gilt also immer als Ernährungsrisiko. Rechne es im Kurs mit der Tabelle nach.</p></div>
+
+    <h4>12.6 Sturz</h4>
+    <p>Im Expertenstandard Sturzprophylaxe steht der <strong>Apoplex</strong> bei den Gesundheitsstörungen, die mit Schwindel, kurzem Bewusstseinsverlust oder ausgeprägter Schwäche einhergehen. Dazu kommen sensomotorische Beeinträchtigungen (Gleichgewicht, Kraft, <strong>Lähmungen</strong>) und oft Antihypertensiva. <a class="q du" href="https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW">Körperpflege &amp; Bewegung</a></p>
+
+    <h4>12.7 Kontinenz</h4>
+    <p>Der Expertenstandard Kontinenzförderung nennt <strong>neurogene Erkrankungen — Apoplex</strong>, MS, Parkinson — als Risikofaktor für <strong>Harn- und Stuhlinkontinenz</strong>. <a class="q du" href="https://claude.ai/artifact/9sE6cUYk1Q3VugvVEUhUHi">Kontinenz</a> Dahinter steht die <strong>neurogene Blasenentleerungsstörung</strong>: eine Blasenstörung durch Nervenschädigung. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/099-harninkontinenzformen.md">Wissen 099</a></p>
+
+    <h4>12.8 Haut</h4>
+    <p>Bei der <strong>Intertrigo</strong> steht der Apoplex bei den Erkrankungen mit übermäßigem Schwitzen; dazu kommen Bewegungsmangel bei Lähmungen, Kontrakturen und Spastiken („feuchte Kammern") und Inkontinenz. <a class="q du" href="https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW">Körperpflege</a> Durch den Neglect besteht zusätzlich ein <strong>hohes Dekubitus- und Kontrakturrisiko</strong>. <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p>
+
+    <h4>12.9 Selbstständigkeit — nicht abnehmen, was er kann</h4>
+    <p>Deine Rollenkarte zur Körperpflege zeigt einen 84-jährigen Bewohner, der seit einem Schlaganfall rechts gelähmt ist, aber Gesicht, Arme, Oberkörper und den vorderen Intimbereich <strong>selbst</strong> waschen kann. Wer ihm das abnimmt, verstößt gegen den Grundsatz, Selbstständigkeit zu erhalten. <a class="q du" href="https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW">Körperpflege</a></p>
+
+    <h4>12.10 Kommunikation bei Aphasie</h4>
+    <div class="kasten ich">
+      <p class="kt">Meine Folgerung — nicht aus deinen Unterlagen</p>
+      <p>Zur Kommunikation bei Aphasie hast du keine eigenen Unterlagen. Was aus den Kapiteln 4 und 7 folgt: <strong>Kurze Sätze</strong>, <strong>eine Frage auf einmal</strong>, Ja/Nein-Fragen, Zeit zum Antworten lassen, Gesten und Bilder nutzen — und <strong>nie wie mit einem Kind sprechen</strong>. Ein Mensch mit Aphasie hat seine Wörter verloren, nicht seinen Verstand. Den Satz aus deinem Psychiatrie-Kurs zum Stupor kannst du übertragen: „Nie über ihn hinweg sprechen." <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></p>
+    </div>
+
+    <h4>12.11 Ein Pflegeproblem im PE(S)R-Format</h4>
+    <div class="kasten ich">
+      <p class="kt">Von mir formuliert — zum Üben, bitte selbst prüfen</p>
+      <p><strong>P</strong> Herr W. ist in der Nahrungs- und Flüssigkeitsaufnahme beeinträchtigt und aspirationsgefährdet (potentielles Problem: Aspirationspneumonie)<br>
+      <strong>E</strong> durch Dysphagie nach Apoplex links<br>
+      <strong>S</strong> hustet beim Trinken, Speisereste in der rechten Wange, gurgelnde Stimme nach dem Schlucken<br>
+      <strong>R</strong> ist wach und orientiert, kann aufrecht sitzen, möchte selbst essen, kann den linken Arm gezielt einsetzen</p>
+      <p>Das Format PE(S)R kommt aus deinem Blatt zur Pflegeplanung; der Inhalt ist mein Übungsbeispiel. Ziel und Maßnahmen zu formulieren, ist <strong>deine</strong> Aufgabe — schick sie mir.</p>
+    </div>
+
+    <div class="enbref"><p class="kt">🇫🇷 En bref</p>
+      <p>Neglect : on <strong>parle</strong> du côté sain, on <strong>bouge</strong> en commençant par le côté atteint. Côté paralysé : toucher à plat, pas de piqûre ni perfusion de ce côté, vêtements non serrés. Épaule : <strong>jamais tirer par la main</strong>, toujours tenir au-dessus du coude. Déglutition : assis, ne pas laisser seul, prendre le temps, soins de bouche, aspiration prête. Le Schlaganfall touche tous tes standards : nutrition (NRS 2002 : 2 points), chute, continence, peau (intertrigo, escarre), autonomie. Aphasie : phrases courtes, une question à la fois, jamais parler « par-dessus » la personne.</p>
+    </div>
+  </section>
+
+  <!-- 13 ----------------------------------------------------------------- -->
+  <section class="kap" id="k13" data-kap="13">
+    <h3><span class="k">Kapitel 13</span>Das Leben danach</h3>
+    <p class="vorspann">Was bleibt, was zurückkommt — und was Betroffene selbst tun können.</p>
+
+    <h4>Die harten Zahlen</h4>
+    <div class="steck">
+      <div><b>erstes Jahr</b><span class="zahl">bis 40 %</span>der Betroffenen versterben innerhalb des ersten Jahres. <a class="q net" href="https://www.dsg-info.de/wp-content/uploads/2025/09/250825_Factsheet_Schlaganfall.pdf">DSG 2025</a></div>
+      <div><b>nach einem Jahr</b><span class="zahl">≈ 60 %</span>sind weiter auf Therapie, Hilfsmittel oder Pflege angewiesen. <a class="q net" href="https://www.dsg-info.de/wp-content/uploads/2025/09/250825_Factsheet_Schlaganfall.pdf">DSG 2025</a></div>
+      <div><b>Rückfall</b><span class="zahl">≈ 5 von 100</span>bekommen im ersten Jahr einen weiteren Schlaganfall. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></div>
+      <div><b>Depression</b><span class="zahl">≥ ⅓</span>der Betroffenen — nach Schätzung der Stiftung Deutsche Schlaganfall-Hilfe. <a class="q net" href="https://www.presseportal.de/pm/23980/3767938">Schlaganfall-Hilfe</a></div>
+    </div>
+    <p>Gleichzeitig gilt: Die meisten Menschen <strong>überleben</strong> einen Schlaganfall. Beschwerden können sich bessern; manchmal bleiben sie. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a></p>
+
+    <h4>Was bleiben kann</h4>
+    <ul>
+      <li><strong>Lähmungen</strong> und Einschränkungen beim Sprechen oder Sehen, Beeinträchtigungen geistiger Fähigkeiten. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a></li>
+      <li><strong>Spastik und Kontrakturen</strong> — beide stehen als Fachwörter in deinen Neurologie-Unterlagen. <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></li>
+      <li><strong>Schmerzhafte Schulter</strong> — vermeidbar durch richtiges Handling (Kapitel 12). <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></li>
+      <li><strong>Inkontinenz</strong> (Kapitel 12). <a class="q du" href="https://claude.ai/artifact/9sE6cUYk1Q3VugvVEUhUHi">Kontinenz</a></li>
+      <li><strong>Seelische Folgen</strong>: Traurigkeit und Niedergeschlagenheit sind nach einem Schlaganfall verbreitet und normal; es kann sich aber eine <strong>behandlungsbedürftige Depression</strong> entwickeln, die auch die Genesung beeinträchtigt. <a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund.de</a> Die Symptome der Depression (Antriebshemmung, Interesseverlust, Hoffnungslosigkeit …) kennst du aus deinen Notfall-Unterlagen. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></li>
+    </ul>
+    <div class="kasten du">
+      <p class="kt">Aus deinen Unterlagen — Herr Novak</p>
+      <p>„Er ist zeitlich manchmal desorientiert und wird <strong>zunehmend zurückgezogen und antriebslos</strong>." <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Lernmaterial/10-ernaehrung-fluessigkeit/fallbeispiel.md">Fallbeispiel Ernährung</a></p>
+      <p>Vier Monate nach dem Apoplex. Ob das eine Depression ist, steht im Fall nicht — aber es ist genau das Bild, bei dem du hinschauen und es melden solltest. <span class="q ich">Folgerung</span></p>
+    </div>
+
+    <h4>Was Betroffene tun können</h4>
+    <div class="scroll"><table>
+      <tr><th>Was hilft</th><th>Woher</th></tr>
+      <tr><td><strong>Reha ernst nehmen</strong> — Physio, Ergo, Logopädie; auch ambulant nach der Klinik</td><td><a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></td></tr>
+      <tr><td><strong>Medikamente jeden Tag</strong> nehmen, nicht eigenmächtig absetzen</td><td><a class="q du" href="https://claude.ai/code/artifact/316b844e-b1e6-4bb8-8163-3af3058de4fa">Herz-Kreislauf</a> <span class="q ich">Folgerung</span></td></tr>
+      <tr><td><strong>Blutdruck</strong> kontrollieren, Risikofaktoren angehen: Rauchen aufhören, bewegen, Ernährung, wenig Alkohol</td><td><a class="q net" href="https://www.dsg-info.de/wp-content/uploads/2025/09/250825_Factsheet_Schlaganfall.pdf">DSG 2025</a></td></tr>
+      <tr><td><strong>Warnzeichen kennen</strong> und bei neuen Zeichen sofort 112 — auch die Angehörigen</td><td><a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></td></tr>
+      <tr><td><strong>Über Gefühle sprechen</strong>; eine Depression ist behandelbar</td><td><a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></td></tr>
+      <tr><td><strong>Hilfe annehmen</strong>: Beratungsstellen, Selbsthilfegruppen (Datenbank der NAKOS), Pflegeberatung — oft kostenlos; Pflegekurse für Angehörige</td><td><a class="q net" href="https://gesund.bund.de/schlaganfall">gesund.bund</a></td></tr>
+    </table></div>
+
+    <h4>Was nicht oder nur eingeschränkt geht</h4>
+    <div class="kasten ich">
+      <p class="kt">Meine Folgerung — und was ich bewusst nicht behaupte</p>
+      <ul>
+        <li>Mit einer Schluckstörung darf nicht einfach „normal" gegessen und getrunken werden — die Kostform legt das Team fest (Kapitel 12).</li>
+        <li>Mit Lähmung, Neglect oder Schwindel ist das Sturzrisiko hoch: nicht allein aufstehen, solange das Team es nicht freigegeben hat; Hilfsmittel nutzen.</li>
+        <li>Unter Blutverdünnern: auf Verletzungen und Blutungen achten.</li>
+        <li><strong>Autofahren, Arbeit, Sport</strong>: Ob und wann das wieder geht, entscheidet die ärztliche Beurteilung im Einzelfall. Die rechtlichen Regeln dazu stehen nicht in deinen Unterlagen, und ich habe sie nicht geprüft — deshalb nenne ich hier keine.</li>
+      </ul>
+    </div>
+
+    <div class="kasten merk">
+      <p class="kt">Das Gehirn kann lernen</p>
+      <p>Die Phase E des Reha-Modells heißt „Brücke zur Inklusion" — sie zielt auch auf die Rückkehr in Arbeit und Gesellschaft. <a class="q net" href="https://www.bar-frankfurt.de/fileadmin/dateiliste/_publikationen/reha_vereinbarungen/pdfs/Empfehlung_neurologische_Reha_Phasen_B_und_C.pdf">BAR</a> Ein Schlaganfall ist oft ein Einschnitt, aber nicht das Ende eines selbstbestimmten Lebens.</p>
+    </div>
+
+    <div class="enbref"><p class="kt">🇫🇷 En bref</p>
+      <p>Chiffres : jusqu'à 40 % décèdent dans la première année ; un an après, environ 60 % ont encore besoin de thérapie, d'aides ou de soins ; environ 5 sur 100 font un nouvel AVC dans l'année ; au moins un tiers développe une dépression. Ce qui peut rester : paralysie, spasticité, troubles du langage, incontinence, tristesse. Ce qui aide : la rééducation, les médicaments chaque jour, la tension, arrêter de fumer, bouger, parler de ses émotions, accepter de l'aide. Conduite, travail, sport : décision médicale au cas par cas.</p>
+    </div>
+  </section>
+
+  <!-- 14 ----------------------------------------------------------------- -->
+  <section class="kap" id="k14" data-kap="14">
+    <h3><span class="k">Kapitel 14</span>Prüfungsfragen zum Selbsttest</h3>
+    <p class="vorspann">Erst selbst antworten — laut oder schriftlich — dann aufklappen. Die ersten drei Fragen stehen so in deinen Unterlagen; die anderen sind von mir.</p>
+
+    <details class="frage"><summary><span><span class="op">Nennen · AFB I</span> Nennen Sie Symptome und Maßnahmen bei Apoplex. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></span></summary>
+      <div class="antw"><p><strong>Symptome:</strong> Sehstörungen, Sprach- und Sprachverständnisstörungen, Lähmungen und Taubheitsgefühle, Seitenneigung, Schwindel mit Gangunsicherheit, sehr starke Kopfschmerzen, Pupillendifferenz, Wesensveränderung.</p><p><strong>Maßnahmen:</strong> zügig reagieren, keine blinde Antikoagulation, beruhigen (O₂-Verbrauch senken), Vitalparameter, Arzt melden, Zeitpunkt des Beginns notieren (FAST).</p></div></details>
+
+    <details class="frage"><summary><span><span class="op">Erklären</span> Was haben Apoplex, Herzinfarkt und Lungenembolie gemeinsam? <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></span></summary>
+      <div class="antw"><p>Alle drei sind dasselbe Ereignis in verschiedenen Organen: ein <strong>Gefäßverschluss</strong> — Hirnarterie, Koronararterie, Lungenarterie. Eigenes Beispiel: Ein Gerinnsel aus dem Herzen bei Vorhofflimmern kann ins Gehirn wandern (Apoplex); ein Gerinnsel aus einer Beinvene kann in die Lunge wandern (Lungenembolie).</p></div></details>
+
+    <details class="frage"><summary><span><span class="op">Begründen · AFB III</span> Warum ist nach einem Schlaganfall in der linken Hirnhälfte die rechte Körperseite gelähmt? <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a></span></summary>
+      <div class="antw"><p>Weil die Pyramidenbahnen <strong>über Kreuz</strong> laufen: Die linke Hirnhälfte steuert die rechte Körperhälfte. Wird links das Gewebe durch fehlende Durchblutung zerstört, kommen die Bewegungsbefehle für rechts nicht mehr an — deshalb ist die rechte Seite gelähmt.</p></div></details>
+
+    <details class="frage"><summary><span><span class="op">Begründen · AFB III</span> Warum darf man bei Verdacht auf Schlaganfall nicht „vorsorglich" einen Blutverdünner geben?</span></summary>
+      <div class="antw"><p><strong>Ursache:</strong> Von außen sieht man nicht, ob ein Gefäß verschlossen ist oder blutet. <strong>Wirkung:</strong> Ein Blutverdünner hemmt die Gerinnung. <strong>Gefahr:</strong> Ist es eine Hirnblutung, wird die Blutung größer, der Druck im Schädel steigt, mehr Gewebe stirbt — lebensbedrohlich. <strong>Deshalb</strong> gebe ich keinen Blutverdünner, sondern melde sofort und sorge dafür, dass zuerst ein CT/MRT gemacht wird.</p></div></details>
+
+    <details class="frage"><summary><span><span class="op">Erläutern · AFB II</span> Erläutern Sie, warum die Uhrzeit des Symptombeginns so wichtig ist.</span></summary>
+      <div class="antw"><p>Die Behandlungen haben <strong>Zeitfenster</strong>: Lyse bis 4,5 Stunden, Thrombektomie bis 6 Stunden, im Einzelfall länger. Ohne bekannte Zeit weiß das Team nicht, ob es noch lysieren darf. Außerdem: Pro Minute gehen bei einem großen Verschluss rund 1,9 Millionen Nervenzellen zugrunde — die Penumbra wird zum Kern. Das sieht man an der Geschichte von Herrn Weber: Weil seine Frau „7:40 Uhr" sagen konnte, war die Lyse noch möglich.</p></div></details>
+
+    <details class="frage"><summary><span><span class="op">Ableiten · AFB II</span> Leiten Sie drei Maßnahmen bei einem Patienten mit Neglect links ab.</span></summary>
+      <div class="antw"><ul><li>Von der <strong>rechten (gesunden)</strong> Seite ansprechen, <strong>weil</strong> die Ansprache von links nicht ankommt.</li><li>Bewegungen über die <strong>linke (betroffene)</strong> Seite beginnen und bei der Waschung Reize von rechts nach links lenken, <strong>weil</strong> die linke Seite wieder ins Bewusstsein kommen soll.</li><li>Sturz-, Dekubitus- und Kontrakturprophylaxe von Anfang an planen, <strong>weil</strong> er überzeugt ist, alles normal zu können, und die linke Seite weder schützt noch entlastet.</li></ul></div></details>
+
+    <details class="frage"><summary><span><span class="op">Beurteilen · AFB III</span> Frau G., 76, vor drei Tagen Apoplex. Beim Frühstück hustet sie bei jedem Schluck Tee, die Stimme klingt danach gurgelnd. Beurteilen Sie die Situation.</span></summary>
+      <div class="antw"><p><strong>Einschätzung:</strong> Verdacht auf Dysphagie mit Aspiration — akute Gefahr einer Aspirationspneumonie, bei alten Menschen oft schwer, teils tödlich.</p><p><strong>Kette:</strong> Schlaganfall → Schluckstörung → Tee gelangt in die Atemwege (Husten, gurgelnde Stimme) → Entzündung der Lunge möglich → deshalb:</p><p><strong>Maßnahmen:</strong> Mahlzeit sofort unterbrechen, aufrecht sitzen lassen, zum Abhusten anleiten, ggf. absaugen, Vitalzeichen (Atmung, SpO₂ wenn vorhanden, Temperatur), Arzt informieren, Schluckabklärung (Logopädie) anregen, bis dahin keine Kost nach eigenem Ermessen — und dokumentieren.</p></div></details>
+
+    <details class="frage"><summary><span><span class="op">Beschreiben · AFB I</span> Beschreiben Sie Aufbau und Ursache einer Subluxation der Schulter bei Hemiplegie.</span></summary>
+      <div class="antw"><p><strong>Was:</strong> Der Oberarmkopf rutscht nach unten aus der Gelenkpfanne, es entsteht eine tastbare Lücke. <strong>Ursache:</strong> Der Muskeltonus, der die Schulter normalerweise hält, ist erschlafft (muskuläre Dysbalance). Falsches Handling — Ziehen an der Hand — verstärkt es. Prophylaxe: Griff oberhalb des Ellbogens, Arm lagern.</p></div></details>
+
+    <details class="frage"><summary><span><span class="op">Erklären</span> Was ist eine TIA, und warum ist sie wichtig?</span></summary>
+      <div class="antw"><p>Eine transitorische ischämische Attacke: typische Schlaganfall-Zeichen, die von selbst wieder verschwinden, weil sich das Gerinnsel auflöst. Sie ist wichtig, weil sie auf ein <strong>erhöhtes Schlaganfall-Risiko</strong> hinweist — ein Warnsignal, das sofort ärztlich abgeklärt werden muss. Beispiel: Eine Bewohnerin hatte morgens zehn Minuten einen tauben Arm, jetzt ist alles normal → trotzdem melden.</p></div></details>
+
+    <details class="frage"><summary><span><span class="op">Nennen · AFB I</span> Nennen Sie vier Risikofaktoren, die man beeinflussen kann.</span></summary>
+      <div class="antw"><p>Bluthochdruck (wichtigster), Rauchen, Diabetes mellitus, Bewegungsmangel — außerdem Ernährung, Bauchfett, Blutfette, Alkohol, Stress, Vorhofflimmern (behandelbar).</p></div></details>
+
+    <div class="kasten ich"><p class="kt">Schick mir deine Antworten</p><p>Schreib deine Antworten auf, bevor du aufklappst, und schick sie mir — ich korrigiere Inhalt <strong>und</strong> Sprache (mit deinen sieben Baustellen).</p></div>
+  </section>
+
+  <!-- 15 ----------------------------------------------------------------- -->
+  <section class="kap" id="k15" data-kap="15">
+    <h3><span class="k">Kapitel 15</span>Wörterbuch und Quellen</h3>
+
+    <h4>Die wichtigsten Wörter — Deutsch · Français</h4>
+    <div class="glossar">
+      <div>der Schlaganfall, -e / der Apoplex / der Hirninsult</div><div>l'accident vasculaire cérébral (AVC)</div>
+      <div>ischämisch · die Ischämie, -n</div><div>ischémique · manque de sang dans un tissu</div>
+      <div>hämorrhagisch · die Hirnblutung, -en</div><div>hémorragique · hémorragie cérébrale</div>
+      <div>das Gerinnsel, - / der Thrombus</div><div>le caillot</div>
+      <div>der Gefäßverschluss, -e</div><div>l'occlusion d'un vaisseau</div>
+      <div>die Penumbra</div><div>la pénombre (tissu menacé mais sauvable)</div>
+      <div>der Infarktkern</div><div>le noyau de l'infarctus (tissu mort)</div>
+      <div>die TIA (transitorische ischämische Attacke)</div><div>l'AIT (accident ischémique transitoire)</div>
+      <div>das Aneurysma, die Aneurysmen</div><div>l'anévrisme</div>
+      <div>das Vorhofflimmern</div><div>la fibrillation auriculaire</div>
+      <div>die Hemiparese / die Hemiplegie</div><div>l'hémiparésie / l'hémiplégie</div>
+      <div>die Aphasie</div><div>l'aphasie (trouble du langage)</div>
+      <div>die Dysarthrie</div><div>la dysarthrie (trouble de l'articulation)</div>
+      <div>die Dysphagie / die Schluckstörung</div><div>la dysphagie / trouble de la déglutition</div>
+      <div>die Aspiration · die Aspirationspneumonie</div><div>la fausse route · pneumopathie d'inhalation</div>
+      <div>der Neglect</div><div>la négligence spatiale unilatérale</div>
+      <div>der Gesichtsfeldausfall</div><div>la perte d'une partie du champ visuel</div>
+      <div>die Pupillendifferenz</div><div>l'anisocorie (pupilles inégales)</div>
+      <div>die Spastik · die Kontraktur</div><div>la spasticité · la rétraction</div>
+      <div>die Subluxation</div><div>la subluxation (épaule qui glisse)</div>
+      <div>die Thrombolyse / Lyse</div><div>la thrombolyse</div>
+      <div>die Thrombektomie</div><div>la thrombectomie</div>
+      <div>die Stroke Unit</div><div>l'unité neurovasculaire (UNV)</div>
+      <div>der Thrombozytenhemmer</div><div>l'antiagrégant plaquettaire</div>
+      <div>der Gerinnungshemmer / das Antikoagulans</div><div>l'anticoagulant</div>
+      <div>die Sekundärprophylaxe</div><div>la prévention secondaire</div>
+      <div>der Symptombeginn · „zuletzt gesund gesehen"</div><div>le début des symptômes · « vu en bonne santé pour la dernière fois »</div>
+      <div>die Logopädie · die Ergotherapie</div><div>l'orthophonie · l'ergothérapie</div>
+    </div>
+
+    <h4>Deine Unterlagen <span class="q du">grün</span></h4>
+    <ul class="quellen">
+      <li><a href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle &amp; Erste Hilfe — Zusammenfassung</a> (Skripte Toni Weidenbecher: Apoplex, FAST, Merksatz Gefäßverschluss, Hypoxie 3 Minuten, Depression)</li>
+      <li><a href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Die Organe und das Nervensystem — Anatomie</a> (Lappen, Sprachzentren, Kreuzung der Pyramidenbahnen, Hirnstamm, Bewusstseinslagen)</li>
+      <li><a href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Wenn die Leitung unterbrochen ist — Neurologie</a> (Neglect, Pusher, Catherine-Bergego-Skala, Plegien und Paresen, Schulter, Subluxation, Bobath genannt)</li>
+      <li><a href="https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW">„Heraussetzen" ist keine aktivierende Pflege — Körperpflege &amp; Bewegung</a> (Rasur bei Neglect, Intertrigo, Sturzrisikofaktoren, Rollenkarte)</li>
+      <li><a href="https://claude.ai/code/artifact/316b844e-b1e6-4bb8-8163-3af3058de4fa">Herz-Kreislauf — Hypotonie &amp; Hypertonie</a> (AWMF-Blatt hypertensiver Notfall, Ursachen der Entgleisung)</li>
+      <li><a href="https://claude.ai/artifact/HTKB99uzuvaNbZ4HHCT8cx">Diabetes mellitus</a> (Therapieziele im Alter, Bewegung)</li>
+      <li><a href="https://claude.ai/artifact/9sE6cUYk1Q3VugvVEUhUHi">Kontinenz fördern</a> (Risikofaktor neurogene Erkrankungen)</li>
+      <li><a href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080 — Aspirationsprophylaxe</a> · <a href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/033-nutritional-risk-screening-nrs-2002.md">Wissen 033 — NRS 2002</a> · <a href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/099-harninkontinenzformen.md">Wissen 099 — Harninkontinenzformen</a> · <a href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/109-thrombose.md">Wissen 109 — Thrombose</a></li>
+      <li><a href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Lernmaterial/10-ernaehrung-fluessigkeit/klausur.md">Klausur Ernährung (Frau Gerlach)</a> · <a href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Lernmaterial/10-ernaehrung-fluessigkeit/fallbeispiel.md">Fallbeispiel Herr Novak</a> · <a href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Lernmaterial/05-bewegung-sturz-mobilitaet/klausur.md">Klausur Bewegung (Herr Kranz)</a></li>
+    </ul>
+
+    <h4>Internetquellen <span class="q net">blau</span> — abgerufen am 18.10.2026</h4>
+    <ul class="quellen">
+      <li>gesund.bund.de (Bundesministerium für Gesundheit, mit IQWiG): <a href="https://gesund.bund.de/schlaganfall">Schlaganfall</a> — Formen, Ursachen, Risikofaktoren, Symptome, TIA, Häufigkeit, Behandlung, Reha, Vorbeugung, Leben danach</li>
+      <li>Deutsche Schlaganfall-Gesellschaft: <a href="https://www.dsg-info.de/wp-content/uploads/2025/09/250825_Factsheet_Schlaganfall.pdf">Factsheet Schlaganfall in Deutschland (2025)</a></li>
+      <li>Stiftung Deutsche Schlaganfall-Hilfe: <a href="https://www.schlaganfall-hilfe.de/fileadmin/files/SDSH/Presse/2023/schlaganfall_hilfe_zahlen_daten_fakten.pdf">Zahlen, Daten, Fakten</a> · <a href="https://www.presseportal.de/pm/23980/3767938">Pressemitteilung Depression nach Schlaganfall</a></li>
+      <li>Deutsches Ärzteblatt: <a href="https://www.aerzteblatt.de/archiv/ischaemischer-schlaganfall-kernpunkte-der-leitlinie-ed50f250-c836-422f-967e-f454c4c39ce5">Ischämischer Schlaganfall — Kernpunkte der Leitlinie</a> · <a href="https://www.aerzteblatt.de/nachrichten/124243/Neue-Leitlinie-zur-Therapie-des-ischaemischen-Schlaganfalls">Neue Leitlinie zur Therapie</a> · <a href="https://www.aerzteblatt.de/nachrichten/80505/Zeitfenster-fuer-Thrombektomie-nach-Schlaganfall-laenger-als-gedacht">Zeitfenster für Thrombektomie länger als gedacht</a></li>
+      <li>Stroke: Vascular and Interventional Neurology 2023: <a href="https://doaj.org/article/eb12ea26750948df83aed4f779686b86">Thrombektomie 6–24 Stunden</a></li>
+      <li>Saver JL: Time is brain — quantified. Stroke 2006. <a href="https://pubmed.ncbi.nlm.nih.gov/16339467/">PubMed 16339467</a></li>
+      <li>AMBOSS: <a href="https://www.amboss.com/de/wissen/Isch%C3%A4mischer_Schlaganfall">Ischämischer Schlaganfall</a> (Anteile der Formen)</li>
+      <li>INTERSTROKE: <a href="https://www.pharmazeutische-zeitung.de/ausgabe-262010/die-zehn-wichtigsten-risikofaktoren/">Pharmazeutische Zeitung</a> · <a href="https://www.doccheck.com/de/detail/articles/814-ich-weiss-was-du-vor-dem-schlaganfall-getan-hast">DocCheck</a></li>
+      <li>DocCheck Flexikon: <a href="https://flexikon.doccheck.com/de/FAST-Test">FAST-Test / BE-FAST</a></li>
+      <li>Thieme: <a href="https://www.thieme-connect.de/products/ejournals/html/10.1055/a-2673-8966">Dysphagie nach Schlaganfall</a></li>
+      <li>BAR: <a href="https://www.bar-frankfurt.de/fileadmin/dateiliste/_publikationen/reha_vereinbarungen/pdfs/Empfehlung_neurologische_Reha_Phasen_B_und_C.pdf">Empfehlungen neurologische Reha, Phasen</a></li>
+      <li>Geschichte: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5770005">PMC 5770005</a> · <a href="https://scielo.br/j/dn/a/f4JdPHFRmJnscPfdnQJyCZf/abstract/?lang=en">Dementia &amp; Neuropsychologia — Apoplexy, cerebrovascular disease, and stroke</a></li>
+    </ul>
+    <div class="kasten ich"><p class="kt">Ehrlich gesagt</p><p>Internetquellen sind keine Norm und ersetzen weder deinen Unterricht noch die ärztliche Anordnung. Wenn etwas hier deinen Kursunterlagen widerspricht, gilt für die Prüfung deine Dozentin — und sag es mir, dann korrigiere ich den Artikel.</p></div>
+  </section>
+
+  </div>
+</article>
+
+<footer>
+  <div class="wrap">
+    <p><strong>Krankheiten verstehen</strong> · Artikel 1 von 19 · Der nächste Artikel kommt, wenn du sagst, welche Krankheit du als Nächstes willst.</p>
+    <p>Grün = deine Unterlagen · Blau = Internetquelle · Gelb = meine Folgerung. Die Abbildungen sind vereinfachte Zeichnungen, keine anatomisch genauen Darstellungen.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const KEY='krankheiten-gelesen-v1';
+  let gelesen={};
+  try{gelesen=JSON.parse(localStorage.getItem(KEY)||'{}')||{};}catch(e){gelesen={};}
+  const speichern=()=>{try{localStorage.setItem(KEY,JSON.stringify(gelesen));}catch(e){}};
+  const kaps=[...document.querySelectorAll('section.kap')];
+  const links=[...document.querySelectorAll('#inhalt a')];
+  const stand=document.getElementById('lesestand');
+
+  function zeigeStand(){
+    let n=0;
+    kaps.forEach((k,i)=>{const id='schlaganfall-'+k.dataset.kap;const an=!!gelesen[id];if(an)n++;
+      if(links[i])links[i].classList.toggle('gelesen',an);});
+    if(stand)stand.textContent=n+' von '+kaps.length+' Kapiteln gelesen';
+  }
+  kaps.forEach(k=>{
+    const id='schlaganfall-'+k.dataset.kap;
+    const lab=document.createElement('label');lab.className='gelesen';
+    const cb=document.createElement('input');cb.type='checkbox';cb.checked=!!gelesen[id];
+    cb.addEventListener('change',()=>{if(cb.checked)gelesen[id]=1;else delete gelesen[id];speichern();zeigeStand();});
+    lab.append(cb,document.createTextNode(' Kapitel gelesen'));
+    k.appendChild(lab);
+  });
+  zeigeStand();
+
+  // Fortschrittsbalken und aktives Kapitel
+  const bar=document.getElementById('fortschritt');
+  const art=document.getElementById('schlaganfall');
+  function scroll(){
+    const r=art.getBoundingClientRect();const h=art.offsetHeight-window.innerHeight;
+    const p=Math.min(1,Math.max(0,-r.top/(h>0?h:1)));
+    bar.style.width=(r.top<0?p*100:0)+'%';
+    let akt=0;kaps.forEach((k,i)=>{if(k.getBoundingClientRect().top<140)akt=i;});
+    links.forEach((a,i)=>a.classList.toggle('an',i===akt&&r.top<0));
+    const a=links[akt];
+    if(a&&r.top<0){const nav=a.parentElement;const l=a.offsetLeft-nav.clientWidth/2+a.clientWidth/2;
+      if(Math.abs(nav.scrollLeft-l)>40)nav.scrollLeft=l;}
+  }
+  window.addEventListener('scroll',scroll,{passive:true});scroll();
+})();
+</script>
