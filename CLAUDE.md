@@ -1841,11 +1841,13 @@ Das Skript arbeitet pro `<article>` (eigene Leiste, eigener `.lesestand`), berei
 **Bilder — ihr Wunsch vom 23.10.2026:** *„utilisez aussi Canva … pas seulement les trucs dessinés comme robotique …
 les vraies images“*. Seitdem: **echte Bilder** mit freier Lizenz von **Wikimedia Commons** (nicht Google-Bilder —
 urheberrechtlich nicht nutzbar), als `data:`-JPEG eingebettet (CSP erlaubt keine fremden Bilder), je mit Urheber,
-Lizenz und Link unter dem Bild und in der Quellenliste; dazu **Canva** (`generate-image`/`create-design` →
-`export-design` jpg), immer als „Schaubild, kein Foto“ markiert. Im Schlaganfall-Artikel: Wepfer-Porträt (CC0),
-Gray's Anatomy Tafel 726 (gemeinfrei), CT Mediainfarkt (CC BY-SA 4.0, Lucien Monfils), CT Hirnblutung (gemeinfrei),
-Canva-Illustration Gefäßverschluss. Hinweis: `generate-image` liefert über die Schnittstelle nur ein 200-px-Vorschaubild;
-`create-design` hat das Bild nicht übernommen, sondern ein eigenes erzeugt, das dann exportiert wurde.
+Lizenz und Link unter dem Bild und in der Quellenliste. Im Schlaganfall-Artikel: Wepfer-Porträt (CC0, Kupferstich
+1748 — kein Foto möglich), CT Mediainfarkt (CC BY-SA 4.0, Lucien Monfils), CT Hirnblutung (gemeinfrei),
+Gehirn-Präparat (CC BY 2.5, J. A. Beal), Herz aus Autopsie (CC0), Karotis-Plaque (CC BY 2.0, E. Uthman), EKG
+Vorhofflimmern (CC BY-SA 4.0). **Noch am selben Abend korrigiert sie:** *„je ne veux pas ce genre d'image, je veux des
+vraies images … des photos réelles“* — Canva-Illustration und Gray-Zeichnung wurden entfernt. **Also: nur echte Fotos
+und echte Befunde (CT, EKG, Präparate), keine KI-/Canva-Bilder, keine Zeichnungen als Ersatz.** Die eigenen SVG-Schemata
+bleiben als Ergänzung.
 
 ## Schulungen und Klausuren
 
