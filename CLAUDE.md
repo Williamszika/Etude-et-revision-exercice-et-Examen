@@ -1833,12 +1833,19 @@ Bobath-Technik. **Nächster Artikel erst, wenn sie die Krankheit wählt**; dann 
 **23.10.2026:** Sie schickte *„Für das krankenbilders links“* vier Fotos: ihre Liste **„Wichtige Krankheitsbilder“**
 (10 Teile, 42 Krankheiten) und ein Blatt **„Hypertonie (Bluthochdruck)“** (9 Abschnitte, Prüfungsmerksatz; Verfasser
 unbekannt, Marke „Dein Blatt“). Daraus: **Bibliothek nach ihren 10 Teilen** (+ „Außerdem aus deinen Kursen“, 52
-Einträge; „in deinen Zusammenfassungen nicht gefunden“, wo nichts vorliegt) und **Artikel 2 = Hypertonie**
-(`<article id="hypertonie">`, Kapitel-IDs `hk1`–`hk15`, ≈ 7 200 Wörter, 7 SVG). Gerüst = ihr Blatt; dazu Fall Frau
-Krause, Regulationsfolien, Langzeitmessung, AWMF-Blatt (Küppers) und Wissen 024/070/079; Internet v. a. NVL-Hypertonie-
-Patientenblätter. **Offen benannt, nicht entschieden:** Wissen 024 sagt > 140/90, Wissen 079 > 130/90 — sie soll die
-Dozentin fragen; Zielwerte NVL (< 140/90, individuell) vs. ESC 2024 (120–129). Das Skript arbeitet jetzt pro `<article>`
-(eigene Leiste, eigener `.lesestand`). Nächster Artikel weiter nur auf ihre Wahl.
+Einträge; „in deinen Zusammenfassungen nicht gefunden“, wo nichts vorliegt). Ein Artikel Hypertonie wurde am selben
+Abend geschrieben und **auf ihren Wunsch wieder gelöscht** (Commit `16bf08e` in der Historie): *„on reste que sur
+[Schlaganfall] pour le moment … pour les autres maladies, on ne fait rien. Chaque semaine, je vais autoriser.“* Die
+Liste ist **nur Übersicht**. **Kein neuer Artikel ohne ihre ausdrückliche Freigabe** — sie gibt wöchentlich frei.
+Das Skript arbeitet pro `<article>` (eigene Leiste, eigener `.lesestand`), bereit für spätere Artikel.
+**Bilder — ihr Wunsch vom 23.10.2026:** *„utilisez aussi Canva … pas seulement les trucs dessinés comme robotique …
+les vraies images“*. Seitdem: **echte Bilder** mit freier Lizenz von **Wikimedia Commons** (nicht Google-Bilder —
+urheberrechtlich nicht nutzbar), als `data:`-JPEG eingebettet (CSP erlaubt keine fremden Bilder), je mit Urheber,
+Lizenz und Link unter dem Bild und in der Quellenliste; dazu **Canva** (`generate-image`/`create-design` →
+`export-design` jpg), immer als „Schaubild, kein Foto“ markiert. Im Schlaganfall-Artikel: Wepfer-Porträt (CC0),
+Gray's Anatomy Tafel 726 (gemeinfrei), CT Mediainfarkt (CC BY-SA 4.0, Lucien Monfils), CT Hirnblutung (gemeinfrei),
+Canva-Illustration Gefäßverschluss. Hinweis: `generate-image` liefert über die Schnittstelle nur ein 200-px-Vorschaubild;
+`create-design` hat das Bild nicht übernommen, sondern ein eigenes erzeugt, das dann exportiert wurde.
 
 ## Schulungen und Klausuren
 
