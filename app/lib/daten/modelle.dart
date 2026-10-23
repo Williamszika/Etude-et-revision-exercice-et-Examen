@@ -17,8 +17,11 @@ class Daten {
     required this.etappeEnde,
     required this.lektionen,
     this.ruhetag = 7,
+    this.wechsel = '2026-10-23',
+    this.taktTage = 2,
+    this.kursB11 = 45,
     this.proThema = 3,
-    this.durchgaenge = 2,
+    this.durchgaenge = 1,
     this.pausen = const [],
   });
 
@@ -31,14 +34,22 @@ class Daten {
   final int themenGesamt;
   final String etappeEnde;
 
-  /// Seit dem Neustart am 16.10.2026: Lektion Montag bis Samstag, der
-  /// Ruhetag ist ein Dart-Wochentag (7 = Sonntag).
+  /// Bis zum 23.10.2026: Lektion Montag bis Samstag, der Ruhetag ist ein
+  /// Dart-Wochentag (7 = Sonntag).
   final int ruhetag;
+
+  /// Seit diesem Tag (ihre Wahl vom 23.10.2026): jeder [taktTage]-te Tag ist
+  /// Lektionstag, auch sonntags.
+  final String wechsel;
+  final int taktTage;
+
+  /// Bis zu dieser Lektion Kurs B1.1, danach B1.2.
+  final int kursB11;
 
   /// Lektionen pro Grammatikthema (1 entdecken · 2 üben · 3 anwenden).
   final int proThema;
 
-  /// Wie oft das ganze Programm durchläuft — seit dem 15.10.2026 zweimal.
+  /// Wie oft das ganze Programm durchläuft — seit dem 23.10.2026 einmal.
   final int durchgaenge;
 
   /// Pausen aus `pausen.json`: `{von, bis, zaehlt?}`.
@@ -50,12 +61,15 @@ class Daten {
   static Daten ausJson(Map<String, dynamic> j) => Daten(
         stand: (j['stand'] ?? '') as String,
         start: (j['start'] ?? '2026-10-16') as String,
-        lektionenGesamt: (j['lektionenGesamt'] ?? 186) as int,
+        lektionenGesamt: (j['lektionenGesamt'] ?? 99) as int,
         themenGesamt: (j['themenGesamt'] ?? 29) as int,
-        etappeEnde: (j['etappeEnde'] ?? '2027-05-20') as String,
+        etappeEnde: (j['etappeEnde'] ?? '2027-04-25') as String,
         ruhetag: (j['ruhetag'] ?? 7) as int,
+        wechsel: (j['wechsel'] ?? '2026-10-23') as String,
+        taktTage: (j['takt'] ?? 2) as int,
+        kursB11: (j['kursB11'] ?? 45) as int,
         proThema: (j['proThema'] ?? 3) as int,
-        durchgaenge: (j['durchgaenge'] ?? 2) as int,
+        durchgaenge: (j['durchgaenge'] ?? 1) as int,
         pausen: ((j['pausen'] is List) ? j['pausen'] as List : const [])
             .whereType<Map<String, dynamic>>()
             .toList(),
@@ -68,9 +82,9 @@ class Daten {
   static final Daten leer = Daten(
     stand: '',
     start: '2026-10-16',
-    lektionenGesamt: 186,
+    lektionenGesamt: 99,
     themenGesamt: 29,
-    etappeEnde: '2027-05-20',
+    etappeEnde: '2027-04-25',
     lektionen: const [],
   );
 
@@ -78,6 +92,9 @@ class Daten {
   Takt get takt => Takt(
         start: start,
         ruhetag: ruhetag,
+        wechsel: wechsel,
+        taktTage: taktTage,
+        kursB11: kursB11,
         proThema: proThema,
         themenGesamt: themenGesamt,
         durchgaenge: durchgaenge,
@@ -145,21 +162,28 @@ int? zahlVon(Object? v) {
 
 /// Die Regeln des Takts, so wie `deutsch-taeglich/heute.py` sie rechnet.
 ///
-/// Seit dem Neustart am 16.10.2026: eine Lektion an jedem Tag außer dem
-/// Ruhetag (Sonntag) und außer Pausentagen; drei Lektionen pro Thema; das
-/// ganze Programm zweimal (ihre Wahl vom 15.10.2026), danach Wiederholung.
+/// Neustart am 16.10.2026: bis zum 23.10.2026 eine Lektion an jedem Tag außer
+/// dem Ruhetag (Sonntag); seit dem 23.10.2026 ([wechsel]) jeden zweiten Tag,
+/// auch sonntags. Drei Lektionen pro Thema, das Programm einmal (ihre Wahl vom
+/// 23.10.2026), danach Wiederholung. Pausentage verschieben den Takt.
 class Takt {
   const Takt({
     required this.start,
     this.ruhetag = 7,
+    this.wechsel = '2026-10-23',
+    this.taktTage = 2,
+    this.kursB11 = 45,
     this.proThema = 3,
     this.themenGesamt = 29,
-    this.durchgaenge = 2,
+    this.durchgaenge = 1,
     this.pausen = const [],
   });
 
   final String start;
   final int ruhetag;
+  final String wechsel;
+  final int taktTage;
+  final int kursB11;
   final int proThema;
   final int themenGesamt;
   final int durchgaenge;
@@ -168,6 +192,6 @@ class Takt {
   /// Lektionen in einem Durchgang (29 × 3 = 87).
   int get proDurchgang => themenGesamt * proThema;
 
-  /// Ab dieser Lektion ist alles Wiederholung (2 × 87 = 174 → ab 175).
+  /// Ab dieser Lektion ist alles Wiederholung (1 × 87 → ab 88).
   int get grammatikLektionen => proDurchgang * durchgaenge;
 }

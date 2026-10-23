@@ -9,34 +9,30 @@ import 'package:flutter_test/flutter_test.dart';
 /// Alles andere ist Oberfläche und fällt beim Hinsehen auf.
 ///
 /// **Die Sollwerte stammen aus `python3 deutsch-taeglich/heute.py --plan`**
-/// (Stand 15.10.2026: Neustart 16.10., Mo–Sa, drei Lektionen pro Thema, das
-/// ganze Programm zweimal, 186 Lektionen bis 20.05.2027). Die Webseite und die
-/// App müssen dieselben Zahlen liefern.
+/// (Stand 23.10.2026: Neustart 16.10., bis 23.10. Mo–Sa, seit 23.10. jeden
+/// zweiten Tag auch sonntags, drei Lektionen pro Thema, das Programm einmal,
+/// 99 Lektionen bis 25.04.2027). Die Webseite und die App müssen dieselben
+/// Zahlen liefern.
 void main() {
   const k = Takt(start: '2026-10-16');
-  const gesamt = 186;
+  const gesamt = 99;
 
-  group('Lektion jeden Tag außer Sonntag', () {
+  group('Bis zum 23.10.2026: jeden Tag außer Sonntag', () {
     test('Freitag 16.10.2026 ist Lektion 1', () {
       expect(Zyklus.istLektionstag(k, '2026-10-16'), isTrue);
       expect(Zyklus.lektionsNr(k, '2026-10-16', gesamt), 1);
-    });
-
-    test('Samstag 17.10. ist Lektion 2', () {
-      expect(Zyklus.istLektionstag(k, '2026-10-17'), isTrue);
-      expect(Zyklus.lektionsNr(k, '2026-10-17', gesamt), 2);
     });
 
     test('Sonntag 18.10. ist Ruhetag, keine Lektion', () {
       expect(Zyklus.istRuhetag(k, '2026-10-18'), isTrue);
       expect(Zyklus.istLektionstag(k, '2026-10-18'), isFalse);
       expect(Zyklus.istUebungstag(k, '2026-10-18'), isTrue);
-      // Die Zählung bleibt bei 2 stehen.
       expect(Zyklus.lektionsNr(k, '2026-10-18', gesamt), 2);
     });
 
-    test('Montag 19.10. ist Lektion 3', () {
-      expect(Zyklus.lektionsNr(k, '2026-10-19', gesamt), 3);
+    test('Freitag 23.10. ist Lektion 7', () {
+      expect(Zyklus.istLektionstag(k, '2026-10-23'), isTrue);
+      expect(Zyklus.lektionsNr(k, '2026-10-23', gesamt), 7);
     });
 
     test('vor dem Start gibt es nichts', () {
@@ -46,7 +42,26 @@ void main() {
     });
   });
 
-  group('Drei Lektionen pro Thema, zwei Durchgänge', () {
+  group('Seit dem 23.10.2026: jeden zweiten Tag, auch sonntags', () {
+    test('Samstag 24.10. ist Übungstag, kein Ruhetag', () {
+      expect(Zyklus.istLektionstag(k, '2026-10-24'), isFalse);
+      expect(Zyklus.istUebungstag(k, '2026-10-24'), isTrue);
+      expect(Zyklus.istRuhetag(k, '2026-10-24'), isFalse);
+      expect(Zyklus.lektionsNr(k, '2026-10-24', gesamt), 7);
+    });
+
+    test('Sonntag 25.10. ist Lektion 8 — kein Ruhetag mehr', () {
+      expect(Zyklus.istRuhetag(k, '2026-10-25'), isFalse);
+      expect(Zyklus.istLektionstag(k, '2026-10-25'), isTrue);
+      expect(Zyklus.lektionsNr(k, '2026-10-25', gesamt), 8);
+    });
+
+    test('Dienstag 27.10. ist Lektion 9', () {
+      expect(Zyklus.lektionsNr(k, '2026-10-27', gesamt), 9);
+    });
+  });
+
+  group('Drei Lektionen pro Thema, das Programm einmal', () {
     test('Block 1 = Lektion 1–3, Block 2 fängt mit Lektion 4 an', () {
       expect(Zyklus.blockVon(k, 1), 1);
       expect(Zyklus.blockVon(k, 3), 1);
@@ -54,89 +69,102 @@ void main() {
       expect(Zyklus.themenBlock(k, '2026-10-20'), 2); // L4
     });
 
-    test('Lektion 87 am 25.01.2027 schließt Durchgang 1 mit Block 29', () {
-      expect(Zyklus.lektionsNr(k, '2027-01-25', gesamt), 87);
+    test('Lektion 45 am 07.01.2027 schließt Kurs B1.1 (Thema 15)', () {
+      expect(Zyklus.lektionsNr(k, '2027-01-07', gesamt), 45);
+      expect(Zyklus.blockVon(k, 45), 15);
+      expect(k.kursB11, 45);
+    });
+
+    test('Lektion 87 am 01.04.2027 schließt Thema 29', () {
+      expect(Zyklus.lektionsNr(k, '2027-04-01', gesamt), 87);
       expect(Zyklus.blockVon(k, 87), 29);
-      expect(Zyklus.durchgangVon(k, 87), 1);
+      expect(Zyklus.istWiederholung(k, '2027-04-01'), isFalse);
     });
 
-    test('Lektion 88 am 26.01.2027 beginnt Durchgang 2 wieder bei Block 1', () {
-      expect(Zyklus.lektionsNr(k, '2027-01-26', gesamt), 88);
-      expect(Zyklus.blockVon(k, 88), 1);
-      expect(Zyklus.durchgangVon(k, 88), 2);
+    test('ab Lektion 88 am 03.04.2027 ist Wiederholung', () {
+      expect(Zyklus.lektionsNr(k, '2027-04-03', gesamt), 88);
+      expect(Zyklus.istWiederholung(k, '2027-04-03'), isTrue);
     });
 
-    test('Lektion 174 am 06.05.2027 ist das Ende von Durchgang 2', () {
-      expect(Zyklus.lektionsNr(k, '2027-05-06', gesamt), 174);
-      expect(Zyklus.blockVon(k, 174), 29);
-      expect(Zyklus.istWiederholung(k, '2027-05-06'), isFalse);
-    });
-
-    test('ab Lektion 175 am 07.05.2027 ist Wiederholung', () {
-      expect(Zyklus.lektionsNr(k, '2027-05-07', gesamt), 175);
-      expect(Zyklus.istWiederholung(k, '2027-05-07'), isTrue);
-      expect(Zyklus.durchgangVon(k, 175), 0);
-    });
-
-    test('die letzte Lektion ist Nummer 186 am 20.05.2027', () {
-      expect(Zyklus.lektionsNr(k, '2027-05-20', gesamt), 186);
-      expect(Zyklus.lektionsNr(k, '2027-06-30', gesamt), 186); // gedeckelt
+    test('die letzte Lektion ist Nummer 99 am 25.04.2027', () {
+      expect(Zyklus.lektionsNr(k, '2027-04-25', gesamt), 99);
+      expect(Zyklus.lektionsNr(k, '2027-06-30', gesamt), 99); // gedeckelt
     });
   });
 
   group('Pausen aus pausen.json', () {
-    const mitPause = Takt(start: '2026-10-16', pausen: [
+    const alt = Takt(start: '2026-10-16', pausen: [
       {'von': '2026-10-20', 'bis': '2026-10-21'},
     ]);
+    const schiebt = Takt(start: '2026-10-16', pausen: [
+      {'von': '2026-10-25', 'bis': '2026-10-25'},
+    ]);
     const zaehlend = Takt(start: '2026-10-16', pausen: [
-      {'von': '2026-10-20', 'bis': '2026-10-20', 'zaehlt': true},
+      {'von': '2026-10-25', 'bis': '2026-10-25', 'zaehlt': true},
     ]);
 
-    test('ein Pausentag ist kein Lektionstag und schiebt den Plan', () {
-      expect(Zyklus.istLektionstag(mitPause, '2026-10-20'), isFalse);
-      expect(Zyklus.lektionsNr(mitPause, '2026-10-22', gesamt), 4);
+    test('vor dem Wechsel: ein Pausentag ist kein Lektionstag', () {
+      expect(Zyklus.istLektionstag(alt, '2026-10-20'), isFalse);
+      expect(Zyklus.lektionsNr(alt, '2026-10-22', gesamt), 4);
     });
 
-    test('eine mitzählende Pause schiebt den Plan nicht', () {
-      expect(Zyklus.istLektionstag(zaehlend, '2026-10-20'), isFalse);
-      expect(Zyklus.lektionsNr(zaehlend, '2026-10-21', gesamt), 5);
+    test('nach dem Wechsel schiebt eine Pause den Takt: die Lektion kommt am Tag danach', () {
+      expect(Zyklus.istLektionstag(schiebt, '2026-10-25'), isFalse);
+      expect(Zyklus.istLektionstag(schiebt, '2026-10-26'), isTrue);
+      expect(Zyklus.lektionsNr(schiebt, '2026-10-26', gesamt), 8);
+    });
+
+    test('eine mitzählende Pause schiebt den Takt nicht', () {
+      expect(Zyklus.istLektionstag(zaehlend, '2026-10-26'), isFalse);
+      expect(Zyklus.istLektionstag(zaehlend, '2026-10-27'), isTrue);
+      expect(Zyklus.lektionsNr(zaehlend, '2026-10-27', gesamt), 8);
     });
   });
 
-  group('Die Tagesleiste: Ruhetag und fehlende Lektion', () {
+  group('Die Tagesleiste: Ruhetag, Übungstag und fehlende Lektion', () {
     final daten = Daten.ausJson({
       'start': '2026-10-16',
-      'lektionenGesamt': 186,
+      'lektionenGesamt': 99,
       'themenGesamt': 29,
-      'etappeEnde': '2027-05-20',
+      'etappeEnde': '2027-04-25',
       'ruhetag': 7,
+      'wechsel': '2026-10-23',
+      'takt': 2,
       'proThema': 3,
-      'durchgaenge': 2,
+      'durchgaenge': 1,
       'pausen': [],
       'lektionen': [
-        // 17.10. (Samstag) fehlt absichtlich, 18.10. ist Sonntag.
-        {'datum': '2026-10-19', 'zyklus': {'lektion': 3}},
+        // 25.10. (Sonntag, Lektionstag) fehlt absichtlich.
+        {'datum': '2026-10-27', 'zyklus': {'lektion': 9}},
+        {'datum': '2026-10-23', 'zyklus': {'lektion': 7}},
+        {'datum': '2026-10-17', 'zyklus': {'lektion': 2}},
         {'datum': '2026-10-16', 'zyklus': {'lektion': 1}},
       ],
     });
     final tage = Tag.bauen(daten);
     Tag am(String d) => tage.firstWhere((t) => t.datum == d);
 
-    test('der Sonntag ist ein Ruhetag, nicht fehlend', () {
+    test('Sonntag 18.10. ist ein Ruhetag, nicht fehlend', () {
       expect(am('2026-10-18').uebung, isTrue);
       expect(am('2026-10-18').ruhetag, isTrue);
       expect(am('2026-10-18').fehlt, isFalse);
     });
 
-    test('ein Samstag ohne Datei ist als fehlend gekennzeichnet', () {
-      expect(am('2026-10-17').uebung, isTrue);
-      expect(am('2026-10-17').fehlt, isTrue);
-      expect(am('2026-10-17').lektion.datum, '2026-10-16');
+    test('Samstag 24.10. ist ein geplanter Übungstag', () {
+      expect(am('2026-10-24').uebung, isTrue);
+      expect(am('2026-10-24').ruhetag, isFalse);
+      expect(am('2026-10-24').fehlt, isFalse);
+    });
+
+    test('Sonntag 25.10. ohne Datei ist als fehlend gekennzeichnet', () {
+      expect(am('2026-10-25').uebung, isTrue);
+      expect(am('2026-10-25').fehlt, isTrue);
+      expect(am('2026-10-25').lektion.datum, '2026-10-23');
     });
 
     test('Lektionstage sind keine Übungstage', () {
-      expect(am('2026-10-16').uebung, isFalse);
-      expect(am('2026-10-19').uebung, isFalse);
+      expect(am('2026-10-23').uebung, isFalse);
+      expect(am('2026-10-27').uebung, isFalse);
     });
 
     test('die Leiste ist neueste zuerst sortiert', () {
@@ -146,7 +174,9 @@ void main() {
     test('alte app-daten.json ohne neue Felder bekommt die neuen Regeln', () {
       final alt = Daten.ausJson({'start': '2026-10-16'});
       expect(alt.ruhetag, 7);
-      expect(alt.takt.grammatikLektionen, 174);
+      expect(alt.takt.grammatikLektionen, 87);
+      expect(alt.takt.taktTage, 2);
+      expect(alt.lektionenGesamt, 99);
     });
   });
 

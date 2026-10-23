@@ -13,16 +13,18 @@ Antwort ist eine von vier Arten:
     LEKTIONSTAG  — Lektion schreiben; die Zeile nennt alle zyklus-Felder
     VORHER       — vor dem Start der Etappe
 
-**Neustart am 16.10.2026** (ihr Wunsch vom 15.10.2026: von null anfangen, 75 Minuten am Tag,
-sechs Tage die Woche). **Seit dem 15.10.2026 abends: das ganze B1-Programm zweimal** (ihre
-Wahl „on fait le B“: zwei volle Durchgänge, je drei Lektionen pro Thema). Die Regel:
+**Neustart am 16.10.2026** (ihr Wunsch vom 15.10.2026: von null anfangen, 75 Minuten pro
+Lektion). Bis zum 23.10.2026 (Lektion 7) war jeder Tag außer Sonntag ein Lektionstag.
+**Seit dem 23.10.2026: eine Lektion jeden zweiten Tag, das B1-Programm einmal** (ihre Wahl:
+„une fois chaque deux jours“ · „B1 une fois“ · „strictement 1 jour sur 2“, auch sonntags).
 
-    Lektionstag  = jeder Tag ab 16.10.2026 außer Sonntag und außer Pausentagen
+    Lektionstag  = bis 23.10.2026: jeder Tag außer Sonntag
+                   ab 23.10.2026:  jeder zweite Tag (23.10., 25.10., 27.10. …), auch Sonntag
     lektion      = Zahl der Lektionstage vom 16.10. bis heute (1, 2, 3 …)
-    durchgang    = 1 für Lektion 1–87 (Kurs B1.1), 2 für Lektion 88–174 (Kurs B1.2)
-    themaBlock   = ((lektion − 1) // 3) % 29 + 1 — drei Lektionen pro Grammatikthema (1 … 29)
-    themenTag    = (lektion − 1) %  3 + 1        — 1 entdecken · 2 üben · 3 anwenden
-    ab Lektion 175: Wiederholung bis zum Ende (20.05.2027 = Lektion 186, ohne Pausen)
+    themaBlock   = (lektion − 1) // 3 + 1  — drei Lektionen pro Grammatikthema (1 … 29)
+    themenTag    = (lektion − 1) %  3 + 1  — 1 entdecken · 2 üben · 3 anwenden
+    ab Lektion 88: Wiederholung bis Lektion 99 (25.04.2027 ohne Pausen)
+    Probeprüfung = jeder Samstag, der Lektionstag ist (also jeder zweite Samstag)
 
 Pausentage zählen nicht mit: Der Plan rückt nach hinten, keine Lektion fällt aus. Die
 Routinen, build.py und pruefen.py fragen hier nach, statt selbst zu rechnen.
@@ -34,12 +36,16 @@ from datetime import date, datetime, timedelta
 
 BASE = os.path.dirname(os.path.abspath(__file__))
 START = date(2026, 10, 16)
-PLAN_ENDE = date(2027, 5, 20)        # Ende der Etappe ohne Pausen (Lektion 186)
-RUHETAG = 6                          # Sonntag (Python weekday); in JS getDay() = 0
+WECHSEL = date(2026, 10, 23)         # Lektion 7 — ab hier jeden zweiten Tag
+TAKT = 2                             # ab WECHSEL: jeder TAKT-te Tag ist Lektionstag
+RUHETAG = 6                          # Sonntag (Python weekday) — nur bis WECHSEL; in JS getDay() = 0
 PRO_THEMA = 3                        # Lektionen pro Grammatikthema
 THEMEN_GESAMT = 29
-DURCHGAENGE = 2                      # das ganze B1-Programm zweimal
-GRAMMATIK_LEKTIONEN = THEMEN_GESAMT * PRO_THEMA * DURCHGAENGE   # 174
+DURCHGAENGE = 1                      # seit 23.10.2026: das B1-Programm einmal
+GRAMMATIK_LEKTIONEN = THEMEN_GESAMT * PRO_THEMA * DURCHGAENGE   # 87
+WIEDERHOLUNG = 12                    # Lektion 88–99
+LEKTIONEN_GESAMT = GRAMMATIK_LEKTIONEN + WIEDERHOLUNG           # 99
+KURS_B11 = 45                        # Kurs B1.1 = Thema 1–15 (L1–45), B1.2 = Thema 16–29 + Wiederholung
 GRAMMATIK = [
     'Verbstellung und Satzklammer',
     'Nebensätze: weil, dass, wenn/als, obwohl, damit',
@@ -123,8 +129,23 @@ def in_pause(d):
     return None
 
 
+def _verschiebende_tage(von, bis):
+    """Verschiebende Pausentage im Bereich (von, bis]."""
+    n = 0
+    for a, b, _ in verschiebende_pausen():
+        x, y = max(a, von + timedelta(days=1)), min(b, bis)
+        if x <= y:
+            n += (y - x).days + 1
+    return n
+
+
 def ist_lektionstag(d):
-    return d >= START and d.weekday() != RUHETAG and not in_pause(d)
+    if d < START or in_pause(d):
+        return False
+    if d <= WECHSEL:
+        return d.weekday() != RUHETAG
+    # Pausentage schieben den Takt: nach einer Pause geht es mit einer Lektion weiter.
+    return ((d - WECHSEL).days - _verschiebende_tage(WECHSEL, d)) % TAKT == 0
 
 
 def lektion_von(d):
@@ -137,18 +158,6 @@ def lektion_von(d):
             n += 1
         x += timedelta(days=1)
     return n
-
-
-def _lektionstage_ohne_pausen(bis):
-    n, x = 0, START
-    while x <= bis:
-        if x.weekday() != RUHETAG:
-            n += 1
-        x += timedelta(days=1)
-    return n
-
-
-LEKTIONEN_GESAMT = _lektionstage_ohne_pausen(PLAN_ENDE)
 
 
 def datum_von_lektion(n):
@@ -176,37 +185,39 @@ def effektiver_start(d):
 
 
 def probe_am(d):
-    """Probeprüfung jeden zweiten Samstag, erstmals am 24.10.2026."""
-    erste = date(2026, 10, 24)
-    return d.weekday() == 5 and d >= erste and ((d - erste).days // 7) % 2 == 0
+    """Probeprüfung an jedem Samstag, der Lektionstag ist — seit dem 23.10.2026 jeder
+    zweite Samstag, erstmals am 31.10.2026."""
+    return d.weekday() == 5 and d > WECHSEL and ist_lektionstag(d)
 
 
 def status(d):
     p = in_pause(d)
     if p:
         nach = p[1] + timedelta(days=1)
-        while in_pause(nach) or nach.weekday() == RUHETAG:
+        while not ist_lektionstag(nach):
             nach += timedelta(days=1)
         return {'art': 'PAUSE', 'datum': d.isoformat(), 'von': p[0].isoformat(),
                 'bis': p[1].isoformat(), 'weiter': nach.isoformat()}
     if d < START:
         return {'art': 'VORHER', 'datum': d.isoformat(), 'start': START.isoformat()}
-    if d.weekday() == RUHETAG:
-        return {'art': 'UEBUNGSTAG', 'datum': d.isoformat(), 'ruhetag': True,
+    if not ist_lektionstag(d):
+        # Bis zum 23.10.2026: Sonntag = Ruhetag. Danach ist jeder Tag ohne Lektion ein
+        # Übungstag, auch der Sonntag.
+        return {'art': 'UEBUNGSTAG', 'datum': d.isoformat(),
+                'ruhetag': d <= WECHSEL and d.weekday() == RUHETAG,
                 'lektionVorher': lektion_von(d)}
     lektion = lektion_von(d)
     z = {'woche': (d - START).days // 7 + 1, 'gesamt': THEMEN_GESAMT, 'etappe': 'B1',
-         'takt': 1, 'ruhetag': 0, 'themenTage': PRO_THEMA}
+         'takt': TAKT if d > WECHSEL else 1, 'wechsel': WECHSEL.isoformat(),
+         'themenTage': PRO_THEMA}
     if lektion > GRAMMATIK_LEKTIONEN:
         z['phase'] = 'Wiederholung'
         themen_start = d
     else:
-        block = ((lektion - 1) // PRO_THEMA) % THEMEN_GESAMT + 1
+        block = (lektion - 1) // PRO_THEMA + 1
         themen_tag = (lektion - 1) % PRO_THEMA + 1
-        z['durchgang'] = (lektion - 1) // (THEMEN_GESAMT * PRO_THEMA) + 1
-        # Wortfeld läuft über beide Durchgänge weiter: dieselbe Grammatik kommt im
-        # zweiten Durchgang in einem anderen Lebensbereich wieder (Block 1 → Thema 14 …).
-        feld = (block - 1 + THEMEN_GESAMT * (z['durchgang'] - 1)) % 16
+        z['kurs'] = 'B1.1' if lektion <= KURS_B11 else 'B1.2'
+        feld = (block - 1) % 16
         z.update({'thema': THEMEN[feld], 'themaNr': feld + 1,
                   'grammatik': GRAMMATIK[block - 1], 'grammatikNr': block,
                   'themaBlock': block, 'themenTag': themen_tag})
@@ -239,7 +250,7 @@ def main():
     if '--plan' in sys.argv:
         for n, d, z in plan():
             print('%3d  %s %s  %s' % (n, d.isoformat(), WOCHENTAGE[d.weekday()][:2],
-                  z.get('phase') or 'D%d G%d/%d %s' % (z['durchgang'], z['grammatikNr'], z['themenTag'], z['grammatik'])))
+                  z.get('phase') or '%s G%d/%d %s' % (z['kurs'], z['grammatikNr'], z['themenTag'], z['grammatik'])))
         return
     d = _d(args[0]) if args else heute_berlin()
     s = status(d)
@@ -251,7 +262,7 @@ def main():
               % (s['datum'], s['von'], s['bis'], s['weiter']))
     elif s['art'] == 'UEBUNGSTAG':
         print('%s · UEBUNGSTAG%s — nichts schreiben.'
-              % (s['datum'], ' (Sonntag: Ruhetag mit Wochenrückblick)' if s.get('ruhetag') else ''))
+              % (s['datum'], ' (Sonntag: Ruhetag mit Wochenrückblick)' if s.get('ruhetag') else ' (Tag ohne Lektion)'))
     elif s['art'] == 'VORHER':
         print('%s · VORHER — die Etappe beginnt am %s.' % (s['datum'], s['start']))
     else:

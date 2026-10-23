@@ -141,9 +141,8 @@ class _Kopf extends StatelessWidget {
         Zyklus.lektionsNr(k, heute, daten.lektionenGesamt);
     final wdh = lektion > k.grammatikLektionen;
     final block = zahlVon(z['themaBlock']) ?? Zyklus.blockVon(k, lektion);
-    final durchgang = Zyklus.durchgangVon(k, lektion);
-    // Kurs B1.1 = Durchgang 1, Kurs B1.2 = Durchgang 2 und Wiederholung.
-    final kurs = lektion <= k.proDurchgang ? 'B1.1' : 'B1.2';
+    // Kurs B1.1 = Thema 1–15, Kurs B1.2 = Thema 16–29 und Wiederholung.
+    final kurs = lektion <= k.kursB11 ? 'B1.1' : 'B1.2';
 
     var woerter = 0;
     for (final l in daten.lektionen) {
@@ -233,8 +232,7 @@ class _Kopf extends StatelessWidget {
                   wdh
                       ? 'Wiederholung'
                       : (block > 0
-                          ? '${durchgang > 0 ? 'Durchgang $durchgang von ${k.durchgaenge} · ' : ''}'
-                              'Thema $block von ${daten.themenGesamt}'
+                          ? 'Thema $block von ${daten.themenGesamt}'
                           : ''),
                   textAlign: TextAlign.right,
                   overflow: TextOverflow.ellipsis,

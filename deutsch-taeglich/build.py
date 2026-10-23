@@ -33,7 +33,7 @@ for d in lekt:
         tonspuren.append(rel.replace(os.sep, '/'))
 
 # Erster Lektionstag der laufenden Etappe — seit dem Neustart vom 16.10.2026 kommt er
-# nur noch aus heute.py (dort auch Sonntage als Ruhetage und die Pausen).
+# nur noch aus heute.py (dort auch der Takt, die Ruhetage und die Pausen).
 import sys as _sys
 _sys.path.insert(0, BASE)
 import heute as kalender  # noqa: E402
@@ -59,6 +59,10 @@ out = (tpl.replace('__DATA__', data).replace('__START__', START)
           .replace('__ENDE_LANG__', '.'.join(reversed(ETAPPE_ENDE.split('-'))))
           .replace('__PAUSEN__', json.dumps(PAUSEN))
           .replace('__LEKTIONEN_GESAMT__', str(kalender.LEKTIONEN_GESAMT))
+          .replace('__WECHSEL__', kalender.WECHSEL.isoformat())
+          .replace('__TAKT__', str(kalender.TAKT))
+          .replace('__KURS_B11__', str(kalender.KURS_B11))
+          .replace('__GRAMMATIK_LEKTIONEN__', str(kalender.GRAMMATIK_LEKTIONEN))
           .replace('__FEHLER__', json.dumps(FEHLER, ensure_ascii=False).replace('</', '<\\/'))
           .replace('__MESSUNG_OFFEN__', 'true' if MESSUNG_OFFEN else 'false'))
 open(os.path.join(BASE, 'index.html'), 'w', encoding='utf-8').write(out)
@@ -129,11 +133,15 @@ app_daten = {
     'start': START,
     'lektionenGesamt': kalender.LEKTIONEN_GESAMT,
     'themenGesamt': kalender.THEMEN_GESAMT,
-    # Seit dem Neustart 16.10.2026: Lektion Mo–Sa, Sonntag Ruhetag (Dart-Wochentag 7),
-    # drei Lektionen pro Thema, das ganze Programm zweimal. Die App rechnet damit.
+    # Bis 23.10.2026: Lektion Mo–Sa, Sonntag Ruhetag (Dart-Wochentag 7). Seit dem
+    # 23.10.2026 (`wechsel`): jeder `takt`-te Tag, auch sonntags; das Programm einmal.
     'ruhetag': 7,
+    'wechsel': kalender.WECHSEL.isoformat(),
+    'takt': kalender.TAKT,
     'proThema': kalender.PRO_THEMA,
     'durchgaenge': kalender.DURCHGAENGE,
+    'grammatikLektionen': kalender.GRAMMATIK_LEKTIONEN,
+    'kursB11': kalender.KURS_B11,
     'etappeEnde': ETAPPE_ENDE,
     'pausen': PAUSEN,
     'lektionen': lekt,          # neueste zuerst, wie im Template

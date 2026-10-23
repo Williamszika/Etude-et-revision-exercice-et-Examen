@@ -3,22 +3,19 @@ import '../daten/modelle.dart';
 /// Die Rechnung hinter Deutsch täglich — dieselbe wie `deutsch-taeglich/heute.py`,
 /// nur in Dart.
 ///
-/// **Seit dem Neustart am 16.10.2026** (und der Wahl vom 15.10.2026 abends,
-/// das ganze B1-Programm zweimal zu machen):
+/// **Neustart am 16.10.2026, seit dem 23.10.2026 jeden zweiten Tag** (ihre Wahl:
+/// „une fois chaque deux jours“, das B1-Programm einmal, auch sonntags):
 ///
-///     Lektionstag  = jeder Tag ab Start außer Sonntag und außer Pausentagen
-///     lektion      = Zahl der Lektionstage vom Start bis heute (1 … 186)
-///     durchgang    = 1 für Lektion 1–87, 2 für Lektion 88–174
-///     themaBlock   = ((lektion − 1) ~/ 3) % 29 + 1
+///     Lektionstag  = bis 23.10.2026: jeder Tag ab Start außer Sonntag
+///                    ab 23.10.2026:  jeder zweite Tag, auch Sonntag
+///                    — Pausentage nie, und verschiebende Pausen schieben den Takt
+///     lektion      = Zahl der Lektionstage vom Start bis heute (1 … 99)
+///     themaBlock   = (lektion − 1) ~/ 3 + 1
 ///     themenTag    = (lektion − 1) % 3 + 1   — entdecken · üben · anwenden
-///     ab Lektion 175: Wiederholung bis zum 20.05.2027
+///     ab Lektion 88: Wiederholung bis zum 25.04.2027
 ///
-/// Eine Pause mit `zaehlt: true` ist ein Tag ohne Lektion, läuft im Plan aber
-/// mit — wie in `heute.py`.
-///
-/// Vorher (bis 15.10.2026) stand hier „jeden zweiten Tag ist Lektionstag“.
-/// Mit dieser Regel zeigte die App nach dem Neustart jeden zweiten Tag einen
-/// falschen Übungstag und zählte die Lektionen nur halb so schnell.
+/// Eine Pause mit `zaehlt: true` ist ein Tag ohne Lektion, verschiebt den Takt
+/// aber nicht — wie in `heute.py`.
 class Zyklus {
   const Zyklus._();
 
@@ -57,16 +54,38 @@ class Zyklus {
 
   static bool istPause(Takt k, String datum) => _pause(k, datum) != null;
 
+  /// Sonntag als Ruhetag gab es nur bis zum Wechsel am 23.10.2026.
   static bool istRuhetag(Takt k, String datum) =>
+      tageZwischen(k.start, datum) >= 0 &&
+      tageZwischen(datum, k.wechsel) >= 0 &&
       tagVon(datum).weekday == k.ruhetag;
 
-  /// Heute gehört eine Lektion hin.
-  static bool istLektionstag(Takt k, String datum) =>
-      tageZwischen(k.start, datum) >= 0 &&
-      !istRuhetag(k, datum) &&
-      !istPause(k, datum);
+  /// Verschiebende Pausentage im Bereich (von, bis].
+  static int _verschiebendeTage(Takt k, String von, String bis) {
+    var n = 0;
+    for (final p in k.pausen) {
+      if (p['zaehlt'] == true) continue;
+      final a = (p['von'] ?? '') as String, b = (p['bis'] ?? '') as String;
+      if (a.isEmpty || b.isEmpty) continue;
+      final ab = von.compareTo(a) >= 0 ? isoVon(tagVon(von).add(const Duration(days: 1))) : a;
+      final bisX = b.compareTo(bis) < 0 ? b : bis;
+      final t = tageZwischen(ab, bisX);
+      if (t >= 0) n += t + 1;
+    }
+    return n;
+  }
 
-  /// Kein Lektionstag, aber nach dem Start (Sonntag oder Pause).
+  /// Heute gehört eine Lektion hin.
+  static bool istLektionstag(Takt k, String datum) {
+    if (tageZwischen(k.start, datum) < 0 || istPause(k, datum)) return false;
+    if (tageZwischen(datum, k.wechsel) >= 0) {
+      return tagVon(datum).weekday != k.ruhetag;
+    }
+    final t = tageZwischen(k.wechsel, datum) - _verschiebendeTage(k, k.wechsel, datum);
+    return t % k.taktTage == 0;
+  }
+
+  /// Kein Lektionstag, aber nach dem Start (Tag dazwischen, Ruhetag oder Pause).
   static bool istUebungstag(Takt k, String datum) =>
       tageZwischen(k.start, datum) >= 0 && !istLektionstag(k, datum);
 
@@ -77,20 +96,10 @@ class Zyklus {
     final ende = tagVon(datum);
     var n = 0;
     for (var x = tagVon(k.start); !x.isAfter(ende); x = x.add(const Duration(days: 1))) {
-      final iso = isoVon(x);
-      if (x.weekday == k.ruhetag) continue;
-      final p = _pause(k, iso);
-      if (p != null && p['zaehlt'] != true) continue;
-      n++;
+      if (istLektionstag(k, isoVon(x))) n++;
     }
     return n > gesamt ? gesamt : n;
   }
-
-  /// Durchgang zu einer Lektionsnummer: 1, 2 … — 0 in der Wiederholung.
-  static int durchgangVon(Takt k, int lektion) =>
-      lektion < 1 || lektion > k.grammatikLektionen
-          ? 0
-          : (lektion - 1) ~/ k.proDurchgang + 1;
 
   static int blockVon(Takt k, int lektion) => lektion < 1
       ? 0
@@ -164,7 +173,7 @@ class Tag {
   /// stattdessen, dass etwas fehlt, und schickt sie auf die Webseite.
   final bool fehlt;
 
-  /// Seit dem 16.10.2026: Sonntag ist Ruhetag — keine Lektion geplant.
+  /// 16.–23.10.2026: Sonntag war Ruhetag — keine Lektion geplant.
   final bool ruhetag;
 
   static List<Tag> bauen(Daten d) {

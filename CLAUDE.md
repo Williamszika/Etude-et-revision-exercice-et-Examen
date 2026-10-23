@@ -12,6 +12,30 @@ Zahlen oder Quellen nennen, die nicht in ihren eigenen Unterlagen (PDFs im Repo)
 
 Diese Anweisung gilt **immer** und hat Vorrang vor älteren Routine-Texten.
 
+### ★★★ SEIT 23.10.2026: jeden zweiten Tag, das B1-Programm einmal — gewinnt gegen alles darunter
+
+Ihr Wunsch am 23.10.2026: *„J'aimerais que on puisse faire Täglisch Deutsch, une fois chaque deux jours …
+Ce qui me permettra de bien étudier."* Auf Nachfrage gewählt: **„B1 une fois“** und **„strictement 1 jour sur 2“**.
+
+| | |
+|---|---|
+| Bis 23.10.2026 | Mo–Sa, Lektion 1–7 (unverändert; 18.10. war Ruhetag) |
+| **Ab 23.10.2026** | **jeder zweite Tag ist Lektionstag, auch sonntags** (23.10., 25.10., 27.10. …). Der Tag dazwischen ist Übungstag — keine Datei, die Seite baut ihn selbst. **Kein Sonntags-Ruhetag mehr.** |
+| Programm | **einmal**: 29 Blöcke × 3 = Lektion 1–87 (L87 = **01.04.2027 = Zwischenprüfung**, Pause dort nur auf ihren Wunsch), Wiederholung L88–99 |
+| Ende | **Sonntag 25.04.2027 = Lektion 99** → Abschlussprüfung B1 |
+| Kurse | **B1.1 = Thema 1–15 = L1–45** (bis 07.01.2027, Modultest B1.1) · **B1.2 = Thema 16–29 + Wiederholung = L46–99** |
+| Probeprüfung | jeder Samstag, der Lektionstag ist (= jeder zweite Samstag), erstmals **31.10.2026** |
+| Stunden | 99 × 75 Min ≈ **124 h** — in der Goethe-Spanne 112–225 h (Internetquelle), am unteren Rand. Nicht schönrechnen. |
+| Wortfeld | `themaNr = ((block − 1) mod 16) + 1`; `zyklus` hat jetzt `takt`, `wechsel`, `kurs` statt `durchgang`/`ruhetag` |
+
+Gerechnet wird weiter **nur** in `heute.py` (`WECHSEL`, `TAKT = 2`, `DURCHGAENGE = 1`, `LEKTIONEN_GESAMT = 99`,
+`KURS_B11 = 45`); Template (`istLektionsTag()`), App (`Zyklus.istLektionstag`, Felder `wechsel`/`takt`/`kursB11` in
+`app-daten.json`) und `b1.html` rechnen dasselbe — 37 App-Tests grün, Sollwerte aus `heute.py`. Eine verschiebende
+Pause schiebt den Zwei-Tage-Takt (nach der Pause kommt sofort eine Lektion). **Alles weiter unten über zwei
+Durchgänge, 186 Lektionen, 20.05.2027, Mo–Sa und Sonntags-Ruhetag ist damit überholt.** Die Inhaltsregeln der
+Lektionen gelten unverändert. Die App auf dem iPhone kennt den neuen Takt erst nach dem nächsten `flutter run`
+(`app/IPHONE.md`); am 23.10.2026 war ihr Mac-Speicher voll („No space left on device“) — erst Platz schaffen.
+
 ### ★ NEUSTART AM 16.10.2026 — dieser Abschnitt gewinnt gegen alles weiter unten
 
 **★★ ZULETZT GEÄNDERT AM 15.10.2026 ABENDS — gilt vor der Tabelle darunter:** Sie fragte, in wie vielen Monaten

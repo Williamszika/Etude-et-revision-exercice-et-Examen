@@ -106,7 +106,7 @@ class _TagSeiteState extends State<TagSeite> {
             uebung: uebung,
             ruhetag: widget.tag.ruhetag,
             themenGesamt: widget.daten.themenGesamt,
-            proDurchgang: widget.daten.takt.proDurchgang,
+            kursB11: widget.daten.takt.kursB11,
           ),
           if (uebung) ...[
             const SizedBox(height: 12),
@@ -151,14 +151,14 @@ class _Kopfzeilen extends StatelessWidget {
     required this.uebung,
     required this.themenGesamt,
     this.ruhetag = false,
-    this.proDurchgang = 87,
+    this.kursB11 = 45,
   });
   final Map<String, dynamic> z;
   final bool uebung;
   final bool ruhetag;
 
-  /// Lektionen pro Durchgang — bis hierher Kurs B1.1, danach B1.2.
-  final int proDurchgang;
+  /// Bis zu dieser Lektion Kurs B1.1, danach B1.2.
+  final int kursB11;
 
   /// Aus `app-daten.json`, nicht aus dem Zyklus der Lektion: Lektionen, die
   /// vor dem 19.09.2026 geschrieben wurden, tragen dort noch `gesamt: 21`.
@@ -189,9 +189,7 @@ class _Kopfzeilen extends StatelessWidget {
     }
     final nr = zahlVon(z['lektion']);
     if (z['etappe'] == 'B1' && nr != null) {
-      final dg = zahlVon(z['durchgang']);
-      plus('Kurs ${nr <= proDurchgang ? 'B1.1' : 'B1.2'}'
-          '${dg != null ? ' · Durchgang $dg' : ''}',
+      plus('Kurs ${nr <= kursB11 ? 'B1.1' : 'B1.2'}',
           Stil.blockFarbe(context, 'aussprache'));
     } else if (z['etappe'] != null) {
       plus('Etappe ${z['etappe']}', Stil.blockFarbe(context, 'aussprache'));
