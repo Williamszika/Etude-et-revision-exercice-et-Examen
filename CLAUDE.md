@@ -1830,6 +1830,15 @@ abgerufen 18.10.2026), gelb = meine Folgerung. Die Fallgeschichte „Herr Weber�
 **Bewusst nicht genannt, weil nicht belegt:** Blutdruckgrenzen um die Lyse, Überwachungsintervalle, Fahreignung,
 Bobath-Technik. **Nächster Artikel erst, wenn sie die Krankheit wählt**; dann in der Bibliothek von „geplant“ auf
 „fertig“ setzen und Kapitelnamen der Leseliste (`localStorage` `krankheiten-gelesen-v1`, Schlüssel `<id>-<kap>`) mitdenken.
+**23.10.2026:** Sie schickte *„Für das krankenbilders links“* vier Fotos: ihre Liste **„Wichtige Krankheitsbilder“**
+(10 Teile, 42 Krankheiten) und ein Blatt **„Hypertonie (Bluthochdruck)“** (9 Abschnitte, Prüfungsmerksatz; Verfasser
+unbekannt, Marke „Dein Blatt“). Daraus: **Bibliothek nach ihren 10 Teilen** (+ „Außerdem aus deinen Kursen“, 52
+Einträge; „in deinen Zusammenfassungen nicht gefunden“, wo nichts vorliegt) und **Artikel 2 = Hypertonie**
+(`<article id="hypertonie">`, Kapitel-IDs `hk1`–`hk15`, ≈ 7 200 Wörter, 7 SVG). Gerüst = ihr Blatt; dazu Fall Frau
+Krause, Regulationsfolien, Langzeitmessung, AWMF-Blatt (Küppers) und Wissen 024/070/079; Internet v. a. NVL-Hypertonie-
+Patientenblätter. **Offen benannt, nicht entschieden:** Wissen 024 sagt > 140/90, Wissen 079 > 130/90 — sie soll die
+Dozentin fragen; Zielwerte NVL (< 140/90, individuell) vs. ESC 2024 (120–129). Das Skript arbeitet jetzt pro `<article>`
+(eigene Leiste, eigener `.lesestand`). Nächster Artikel weiter nur auf ihre Wahl.
 
 ## Schulungen und Klausuren
 
