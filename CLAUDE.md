@@ -31,7 +31,11 @@ Ce qui me permettra de bien étudier."* Auf Nachfrage gewählt: **„B1 une fois
 Gerechnet wird weiter **nur** in `heute.py` (`WECHSEL`, `TAKT = 2`, `DURCHGAENGE = 1`, `LEKTIONEN_GESAMT = 99`,
 `KURS_B11 = 45`); Template (`istLektionsTag()`), App (`Zyklus.istLektionstag`, Felder `wechsel`/`takt`/`kursB11` in
 `app-daten.json`) und `b1.html` rechnen dasselbe — 37 App-Tests grün, Sollwerte aus `heute.py`. Eine verschiebende
-Pause schiebt den Zwei-Tage-Takt (nach der Pause kommt sofort eine Lektion). **Alles weiter unten über zwei
+Pause schiebt den Zwei-Tage-Takt (nach der Pause kommt sofort eine Lektion).
+**Pause 24.–27.10.2026** (ihr Wunsch vom 24.10.: *„mettre une pause et on reprends le Mercredi prochain
+automatiquement“*): 24.10. mitzählend (`zaehlt`, war ohnehin Übungstag), 25.–27.10. verschiebend → **Mi 28.10. = L8**,
+erste Probe **07.11.**, L45 = **10.01.2027**, L87 = **04.04.2027** (nicht mehr am Tag der Zwischenprüfung), L99 =
+**Mi 28.04.2027**. `b1.html` (PLAN neu aus `heute.py`) und `einstufungen.json` sind mitgezogen. **Alles weiter unten über zwei
 Durchgänge, 186 Lektionen, 20.05.2027, Mo–Sa und Sonntags-Ruhetag ist damit überholt.** Die Inhaltsregeln der
 Lektionen gelten unverändert. Die App auf dem iPhone kennt den neuen Takt erst nach dem nächsten `flutter run`
 (`app/IPHONE.md`); am 23.10.2026 war ihr Mac-Speicher voll („No space left on device“) — erst Platz schaffen.
