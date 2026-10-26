@@ -1775,10 +1775,13 @@ bekommen und will damit **die fünf Dokumente schreiben** und **das Prüfungsges
 Medikamente), danach **weitere Fälle** — und lernen, *„comment parler, comment discuter“*.
 Plan auf der Seite: Unterlagen anonymisiert schicken (§ 203 StGB) → ich bereite auf, **ohne die Planung
 vorwegzunehmen** → sie schreibt in 3 Stunden → Korrektur Inhalt + Sprache → Fallvorstellung 10 Min →
-Erläuterung 20 Min → Prüfungsgespräch. Abschnitt „Dein Fall“ wartet auf ihre Unterlagen. **Offen:**
-der Name, den sie der Seite geben wollte (Diktat unverständlich), ihr Setting (Krankenhaus/Heim/ambulant
-— Vorlage Langzeitpflege seit 26.10.2026 da) und ob die Diagnoseliste vom 06.10. derselbe
-Patient ist. Alles Prüfungsformale nur aus `schulung-zwischenpruefung/quellen/`.
+Erläuterung 20 Min → Prüfungsgespräch. **Ihr Setting steht fest — am 26.10.2026:** *„j'aurai mon
+Zwischenprüfung le 01/04/2027 a l'hopital“* → **Krankenhaus**: Fallvorstellung nach der **Krankenhaus-Vorlage**
+(Krankheitsdaten/Verlauf · Diagnosen/Medikation · Pflegerische Daten · Biografie), normaler Ablauf (1. Tag FD
+8–11, 2. Tag i. d. R. ab 7:00 bzw. 9:30); die Ambulant-Regeln (3 Tage Tour, eigenes Endgerät) gelten für sie
+**nicht**. Ablauf-, Übungs- und Herr-J.-Seite sowie Musterlösung sagen das. Herr J. (ambulant, LZ-Vorlage) bleibt
+Methodenübungsfall; neue Übungsfälle bevorzugt **akutstationär**. **Offen:** der Name, den sie der Seite geben
+wollte (Diktat unverständlich). Alles Prüfungsformale nur aus `schulung-zwischenpruefung/quellen/`.
 
 ## Prüfungsfall Herr J. — ihr Praxisfall, eigene Seite
 
