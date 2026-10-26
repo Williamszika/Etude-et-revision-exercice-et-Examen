@@ -13,11 +13,10 @@ Quelle aller Angaben auf der Seite
 | `vorlage-aktuelle-pflegeprobleme.pdf` | Planungsvorlage aktuelle Probleme (mit Symptomen) |
 | `vorlage-potentielle-pflegeprobleme.pdf` | Planungsvorlage potentielle Probleme (mit Risikofaktoren und Assessment statt Symptomen) |
 | `struktur-fallvorstellung-krankenhaus.pdf` | Übergabestruktur CBG für die akutstationäre Pflege |
+| `struktur-fallvorstellung-langzeitpflege.pdf` | Übergabestruktur CBG für die stationäre/ambulante Langzeitpflege — am 26.10.2026 aus ihrem Drive („Struktur Vorstellung Pflegebeduerftiger Altenpflege.pdf“) |
 
 ## Was noch fehlt
 
-- **Vorlage Fallvorstellung für die stationäre und ambulante Langzeitpflege** — die Folien
-  nennen zwei Vorlagen, vorhanden ist nur die für das Krankenhaus.
 - **Beurteilungsprotokoll Teil 1 Planungsbeurteilung** — wird auf den Folien erwähnt, liegt
   nicht vor. Darin stünden die Bewertungskriterien.
 - **Punkteverteilung / Notenschlüssel** — steht in keiner der Unterlagen. Nicht erfinden.

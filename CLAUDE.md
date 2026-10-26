@@ -1714,9 +1714,9 @@ auch so gekennzeichnet. **Offen bleibt genau eine Frage:** Ist
 Rückfrage an die Dozentin bleibt, sie ist nur präziser geworden. **Spalte 4 selbst ist
 weiterhin inhaltlich leer**; daran hat der Fund nichts geändert.
 
-Für die Prüfungsaufgaben ab Tag 11 fehlen noch die **Vorlage der Fallvorstellung für die
-stationäre und ambulante Langzeitpflege** und das **Beurteilungsprotokoll Teil 1 —
-Planungsbeurteilung**. Ohne sie keine Bewertungspunkte erfinden.
+Für die Prüfungsaufgaben ab Tag 11 fehlt noch das **Beurteilungsprotokoll Teil 1 —
+Planungsbeurteilung**. (Die Vorlage der Fallvorstellung für die Langzeitpflege liegt seit dem
+26.10.2026 in `schulung-zwischenpruefung/quellen/struktur-fallvorstellung-langzeitpflege.pdf`.) Ohne sie keine Bewertungspunkte erfinden.
 
 ---
 
@@ -1777,7 +1777,7 @@ Plan auf der Seite: Unterlagen anonymisiert schicken (§ 203 StGB) → ich berei
 vorwegzunehmen** → sie schreibt in 3 Stunden → Korrektur Inhalt + Sprache → Fallvorstellung 10 Min →
 Erläuterung 20 Min → Prüfungsgespräch. Abschnitt „Dein Fall“ wartet auf ihre Unterlagen. **Offen:**
 der Name, den sie der Seite geben wollte (Diktat unverständlich), ihr Setting (Krankenhaus/Heim/ambulant
-— für Heim/ambulant fehlt die Vorlage der Fallvorstellung) und ob die Diagnoseliste vom 06.10. derselbe
+— Vorlage Langzeitpflege seit 26.10.2026 da) und ob die Diagnoseliste vom 06.10. derselbe
 Patient ist. Alles Prüfungsformale nur aus `schulung-zwischenpruefung/quellen/`.
 
 ## Prüfungsfall Herr J. — ihr Praxisfall, eigene Seite
@@ -1788,7 +1788,7 @@ aus ihren Drive-Fotos gebaut (SIS ambulant 27.05.2026, Diagnoseblatt 07.10.2026,
 die Diagnoseliste** — dort sind seitdem die echten Kodes C71.9 (Hirntumor) und N36.8 (Harnröhre) eingetragen;
 die erste Zeile (Blasenlähmung, Spinalkanalstenose, Rückenmarkschädigung, Krallenhände) hat keinen Kode.
 **Datenschutz:** nur „Herr J., 54 Jahre“ — nie Name, Geburtsdatum, Arztnamen; die Fotos liegen **nie** im
-Repo. Setting **ambulant**; Vorlage der ambulanten Fallvorstellung fehlt weiter. **Offen, von ihr zu klären:**
+Repo. Setting **ambulant**; Fallvorstellung seit 26.10.2026 nach der **Langzeitpflege-Vorlage** (Biografie → Pflege → Krankheit → Zusatzinformationen), auf Seite und im PDF. **Offen, von ihr zu klären:**
 Kreuze der Risikomatrix (auf dem Foto nicht sicher lesbar), Pflegegrad, Diabetes fehlt auf dem Diagnoseblatt
 trotz Metformin/Insulin, Indikation für Escitalopram und ASS, Katheterart, Bettseitenteil bei gesetzlicher
 Vertretung (ihre Unterlagen decken den Fall nicht ab). Arzneifakten zu Perazin, Escitalopram, HCT, ASS,
