@@ -14,12 +14,12 @@ leçon (Lektionstag), la nouvelle leçon passe d'abord ; la répétition reprend
 | Fr 30.10.2026 | L2 Verbstellung üben | `2026-10-17.json` | offen |
 | Sa 31.10.2026 | L3 Verbstellung anwenden | `2026-10-19.json` | offen |
 | So 01.11.2026 | L4 Nebensätze entdecken | `2026-10-20.json` | offen |
-| Mo 02.11.2026 | **L8 neu** (Lektionstag) | — | — |
-| Di 03.11.2026 | L5 Nebensätze üben | `2026-10-21.json` | offen |
-| Mi 04.11.2026 | **L9 neu** (Lektionstag) | — | — |
-| Do 05.11.2026 | L6 Nebensätze anwenden | `2026-10-22.json` | offen |
-| Fr 06.11.2026 | **L10 neu** (Lektionstag) | — | — |
-| Sa 07.11.2026 | L7 Perfekt und Präteritum entdecken | `2026-10-23.json` | offen |
+| Mo 02.11.2026 | L5 Nebensätze üben | `2026-10-21.json` | offen |
+| Di 03.11.2026 | L6 Nebensätze anwenden | `2026-10-22.json` | offen |
+| Mi 04.11.2026 | L7 Perfekt und Präteritum entdecken | `2026-10-23.json` | offen |
+| Mo 16.11.2026 | **L8 neu** (Lektionstag) — Ende der Pause | — | — |
+
+**31.10.2026 :** Pause verlängert (« On repousse le Deutsch Täglich pour 2 semaines ») → keine neue Lektion bis 15.11.; L8 am Mo 16.11.2026. Die Wiederholung L1–L7 läuft ohne Unterbrechung durch neue Lektionen weiter (letzte: L7 am 04.11.).
 
 Rattrapage : un jour manqué ne fait rien sauter — la prochaine séance reprend la première leçon
 encore « offen ». Après L7, retour au rythme normal de `heute.py` (Übungstag = répétition).
