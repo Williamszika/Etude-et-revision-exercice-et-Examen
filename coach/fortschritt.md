@@ -10,8 +10,8 @@ leçon (Lektionstag), la nouvelle leçon passe d'abord ; la répétition reprend
 
 | Datum | Lektion | Datei | Status |
 |---|---|---|---|
-| Do 29.10.2026 | L1 Verbstellung entdecken | `deutsch-taeglich/lektionen/2026-10-16.json` | offen |
-| Fr 30.10.2026 | L2 Verbstellung üben | `2026-10-17.json` | offen |
+| Do 29.10.2026 | L1 Verbstellung entdecken | `deutsch-taeglich/lektionen/2026-10-16.json` | Teil 1–2 fait (29.10) · Teil 3–4 offen |
+| Fr 30.10.2026 | L2 Verbstellung üben | `2026-10-17.json` | offen — prévue le 02.11 après la fin de L1 |
 | Sa 31.10.2026 | L3 Verbstellung anwenden | `2026-10-19.json` | offen |
 | So 01.11.2026 | L4 Nebensätze entdecken | `2026-10-20.json` | offen |
 | Mo 02.11.2026 | L5 Nebensätze üben | `2026-10-21.json` | offen |
@@ -27,3 +27,19 @@ encore « offen ». Après L7, retour au rythme normal de `heute.py` (Übungstag
 Pause entre les parties : 30 minutes par défaut ; Williams dit chaque jour s'il veut plus.
 
 ## Séances
+
+**02.11.2026 :** décision de Williams — d'abord finir Teil 3–4 de L1, ensuite L2. Les dates du tableau
+glissent d'autant (une leçon par séance, dans l'ordre).
+
+## 2026-11-02 · Lektion 1 (Rest) → Lektion 2 · Deutsch täglich (vocal, pendant son service)
+- Teile: pas de partie de leçon ; ~15 min de conversation libre (nouvelle Auszubildende, accès au dépôt). L1 Teil 3–4 encore offen.
+- Stärken: Nebensätze mit *dass* und *damit* — Verb richtig am Ende; corrige vite *mein Repository öffentlich mache*.
+- Schwierigkeiten: Dativ *unserer Chefin* (5 essais, le *-er* final ne sort pas) · ordre des pronoms *es dir* · ordre *auch sprechen*.
+- Nächstes Mal: 5 min Dativ (*meiner/unserer Chefin*), puis L1 Teil 3 « Die neue Patientin ».
+
+## 2026-10-29 · Lektion 1 · Deutsch täglich (vocal, 12:25 – env. 14:00)
+- Teile: 1 Wortschatz ✓ (16 mots + *sich anmelden bei* + quiz) · Pause selon lui · 2 Grammatik ✓ · Pause 1 h · 3 Lesen — offen · 4 Im Leben — offen
+- Stärken: Verbstellung Position 2 + Satzklammer sicher (*Am Morgen messe ich …*, *Nächste Woche möchte ich … vereinbaren*); Ja/Nein-Fragen; Perfekt mit *haben*; répète bien après correction.
+- Schwierigkeiten: Artikel/Genus (*das Bogen*, *den Versichertenkarte*, *die Anamnesebogen*, *eine hohe Puls*, *einer Ödem*) · *im* statt *in* (2×) · Aussprache langer Komposita (*Hausarztpraxis* → « Haushalt-», *Versichertenkarte*, *Anamnese* → « Analyse », *Blutdruck* → « Blutdauer ») · Verb am Ende nach *bis*/*was* · *sich umziehen* sans *mich*.
+- Mini-Prüfung (Quiz FR→DE): 4/5 (Artikel fehlte bei *Wartezimmer*, *der Anamnesebogen* erst im 2. Versuch).
+- Nächstes Mal: 5 min Artikel der L1-Nomen laut wiederholen; puis Teil 3 « Die neue Patientin » et Teil 4 « Am Empfang ».
