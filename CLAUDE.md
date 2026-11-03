@@ -1868,7 +1868,7 @@ lange Seite. Bilder brauchen `width`/`height`, sonst bricht der Umbruch falsch.
 
 ## Meine Bibliothek — EIN Link mit beiden Büchern (seit 03.11.2026)
 
-`bibliothek/index.html` → URL siehe unten (beim ersten Veröffentlichen eingetragen). Ihr Wunsch: *„Un seul lien qui va contenir le livre
+`bibliothek/index.html` → `https://claude.ai/artifact/V1vQL7BQP2fFnYa1FUc2bx` (Icon „library“). Ihr Wunsch: *„Un seul lien qui va contenir le livre
 [Meine Kurse zusammengefasst] et [Krankheiten verstehen] … les livres sont fermés … j'ouvre le livre, il peut refermer le livre … quand je
 reviens, ça me met où j'ai été … quand on finit tout d'étudier, il y a les questions … für alle Krankheiten.“*
 Zwei geschlossene Bücher auf dem Tisch; Klick → der Einband fliegt langsam ins Bild und schlägt sich auf; „Schließen ✕“ oder Esc klappt
