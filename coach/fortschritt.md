@@ -10,8 +10,8 @@ leçon (Lektionstag), la nouvelle leçon passe d'abord ; la répétition reprend
 
 | Datum | Lektion | Datei | Status |
 |---|---|---|---|
-| Do 29.10.2026 | L1 Verbstellung entdecken | `deutsch-taeglich/lektionen/2026-10-16.json` | Teil 1–2 fait (29.10) · Teil 3–4 offen |
-| Fr 30.10.2026 | L2 Verbstellung üben | `2026-10-17.json` | offen — prévue le 02.11 après la fin de L1 |
+| Do 29.10.2026 | L1 Verbstellung entdecken | `deutsch-taeglich/lektionen/2026-10-16.json` | fait (Teil 1–2 le 29.10, Teil 3–4 le 02.11) |
+| Fr 30.10.2026 | L2 Verbstellung üben | `2026-10-17.json` | Teil 1 fait (02.11) · Teil 2 fait (03.11) · Teil 3–4 offen |
 | Sa 31.10.2026 | L3 Verbstellung anwenden | `2026-10-19.json` | offen |
 | So 01.11.2026 | L4 Nebensätze entdecken | `2026-10-20.json` | offen |
 | Mo 02.11.2026 | L5 Nebensätze üben | `2026-10-21.json` | offen |
@@ -30,6 +30,17 @@ Pause entre les parties : 30 minutes par défaut ; Williams dit chaque jour s'il
 
 **02.11.2026 :** décision de Williams — d'abord finir Teil 3–4 de L1, ensuite L2. Les dates du tableau
 glissent d'autant (une leçon par séance, dans l'ordre).
+
+## 2026-11-03 · Lektion 2 · Teil 2 Grammatik ✓ (vocal, ~16:00)
+- Stärken: höflicher Imperativ (*Geben Sie bitte … an*, *Unterschreiben Sie hier bitte*) ; Ja/Nein-Frage im Perfekt ; Position 2 nach *Am Schalter* / *Heute Morgen*.
+- Schwierigkeiten: zweiter Verbteil am Ende vergessen (*mit*) · *schön* statt *schon* · Subjekt verwechselt (*verlangen Sie* statt *verlangt die Mitarbeiterin*) · *Ihre Ausweis*.
+- Nächstes Mal: Teil 3 « Die Anmeldung beim Bürgeramt », Teil 4 Bürgeramt-Rollenspiel.
+
+## 2026-11-02 (nachmittags) · Lektion 1 Teil 3–4 ✓ · Lektion 2 Teil 1 ✓ (vocal)
+- L1 Teil 3: Text laut gelesen, Fragen zu *warum* und *Beurteilen* (Tachykardie + Atemnot → sofort zur Ärztin). L1 Teil 4: Rollenspiel am Empfang ✓, Aussprache ✓. L2 Teil 1: 17 Wörter + Quiz 4/5 (*der* statt *die* Postleitzahl).
+- Stärken: liest flüssig ; *Versichertenkarte* und *Anamnesebogen* jetzt sicher ; Nebensatz mit *weil* nach 2 Versuchen richtig ; gute Pflegesätze (*Ich messe die Herzfrequenz am Handgelenk*).
+- Schwierigkeiten: *in einer Praxis* (Dativ, 4 Versuche) · Jahreszahl *neunzehnhundertvierundneunzig* · *Postleitzahl* (Genus, Wort) · *Angaben zum Patienten* · *sage ich dir Bescheid* (Subjekt fehlt nach Nebensatz) · Bradykardie = langsam.
+- Fachlicher Hinweis gegeben: bei Synkope kein Wasser geben, Beine hochlagern, Vitalzeichen kontrollieren.
 
 ## 2026-11-02 · Lektion 1 (Rest) → Lektion 2 · Deutsch täglich (vocal, pendant son service)
 - Teile: pas de partie de leçon ; ~15 min de conversation libre (nouvelle Auszubildende, accès au dépôt). L1 Teil 3–4 encore offen.
