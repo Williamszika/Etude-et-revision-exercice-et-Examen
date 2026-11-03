@@ -1866,6 +1866,21 @@ mit Seitenzahlen, Bibliothek, Artikelöffnung mit dem Gehirn-Foto, je Kapitel ne
 lange Seite. Bilder brauchen `width`/`height`, sonst bricht der Umbruch falsch.
 **Umblättern mit Bewegung (03.11.2026)**, ihr Wunsch *„à chaque fois que on change de page cela doit être comme une feuille qu'on feuillette. avec un motion design“*: ein Blatt dreht sich in 3D um den Rücken (Web Animations, Schatten wandern mit), beim Laden öffnet sich der Einband, Eselsohren an den Ecken blättern auch; `prefers-reduced-motion` schaltet es ab. Dazu *„rendre foncer les écritures“*: Schrift dunkler (`--ink` #170f07, `--ink-soft` #3f3020) und Gewicht 500. **Dieselbe Mechanik steckt in `zusammenfassungen/_template.html`** — Änderungen am Blättern in beiden Dateien nachziehen.
 
+## Meine Bibliothek — EIN Link mit beiden Büchern (seit 03.11.2026)
+
+`bibliothek/index.html` → URL siehe unten (beim ersten Veröffentlichen eingetragen). Ihr Wunsch: *„Un seul lien qui va contenir le livre
+[Meine Kurse zusammengefasst] et [Krankheiten verstehen] … les livres sont fermés … j'ouvre le livre, il peut refermer le livre … quand je
+reviens, ça me met où j'ai été … quand on finit tout d'étudier, il y a les questions … für alle Krankheiten.“*
+Zwei geschlossene Bücher auf dem Tisch; Klick → der Einband fliegt langsam ins Bild und schlägt sich auf; „Schließen ✕“ oder Esc klappt
+zu und legt das Buch zurück. Die Stelle merken die Bücher selbst (`krankheiten-stelle-v1`, `zf-stelle-v1`).
+**Gebaut, nicht gepflegt:** `python3 bibliothek/build.py` setzt die Seite aus `krankheiten/index.html` und `zusammenfassungen/index.html`
+zusammen (Rahmen `#kh`/`#zf`, Styles darauf eingegrenzt, Regal aus `bibliothek/_regal.html`). `zusammenfassungen/build.py` ruft es mit auf;
+**nach jeder Änderung an `krankheiten/index.html` von Hand bauen** und die Bibliothek mitveröffentlichen. Die beiden Einzel-Links bleiben.
+Die Bücher erkennen `window.BIBLIOTHEK` und starten dann nicht selbst (`BIB.melde(...)`).
+**Fragen:** Im Krankheiten-Buch hat jede Prüfungsfrage „✓ gewusst / ✗ noch nicht“ (`krankheiten-fragen-v1`), jedes Fragenkapitel einen Stand,
+und am Ende steht **Teil III „Fragen zu allen Krankheiten“** — alle Fragen aller Artikel gemischt, wächst mit jedem neuen Artikel von selbst.
+Im Moment nur Schlaganfall. Für „Meine Kurse“ gibt es keine Fragen (die Inhalte liegen in den einzelnen Kurs-Seiten, nicht im Buch).
+
 ## Schulungen und Klausuren
 
 - **`zusammenfassungen/`** — **der einzige Schulungs-Link. Nur die zusammengefassten Kurse und

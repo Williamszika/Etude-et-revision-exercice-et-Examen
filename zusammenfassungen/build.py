@@ -159,3 +159,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+    # Die Bibliothek (ein Link mit beiden Büchern) wird aus dieser Seite mitgebaut.
+    import runpy
+    runpy.run_path(os.path.join(REPO, "bibliothek", "build.py"), run_name="__main__")

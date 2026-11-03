@@ -41,6 +41,9 @@
   .knopf{font-family:var(--serif);font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);
     border:1px solid var(--ink);border-radius:999px;padding:11px 18px;text-decoration:none;white-space:nowrap;}
   .knopf:hover{background:rgba(42,32,23,.06);}
+  .knoepfe{display:flex;gap:8px;align-items:center;}
+  button.knopf{cursor:pointer;font-family:var(--serif);background:transparent;}
+  .knopf[hidden]{display:none;}
 
   .buehne{flex:1;min-height:0;display:grid;place-items:center;}
   .einband{background:var(--einband);padding:5px;border-radius:4px;position:relative;
@@ -144,6 +147,8 @@
     .reiter,.hinweis,.marke i{display:none;}
     .leiste{padding:10px 14px 6px;}
     .marke b{font-size:1.25rem;}
+    .leiste{gap:8px;} .marke{flex:1 1 auto;overflow:hidden;} .marke b{overflow:hidden;text-overflow:ellipsis;font-size:1.1rem;}
+    .knoepfe{flex:0 0 auto;gap:6px;} .knoepfe .knopf{padding:8px 11px;letter-spacing:.08em;}
     .knopf{padding:9px 14px;font-size:11px;}
     .steuer{grid-template-columns:1fr auto;padding:8px 14px 12px;}
     .seitenzahl{justify-self:start;}
@@ -188,7 +193,7 @@
 
 </style>
 
-<div class="buchansicht" id="buchansicht" lang="de">
+<div class="buchansicht" id="zfansicht" lang="de">
   <header class="leiste">
     <a class="marke" href="#titel"><b>Meine Kurse</b><i>zusammengefasst</i></a>
     <nav class="reiter" aria-label="Teile des Buches">
@@ -197,7 +202,7 @@
       <a href="#weiteres" data-ziel="weiteres">Weiteres</a>
       <a href="#ende" data-ziel="ende">Über das Buch</a>
     </nav>
-    <a class="knopf" href="#inhalt" id="lesestand">Inhalt</a>
+    <span class="knoepfe"><a class="knopf" href="#inhalt" id="lesestand">Inhalt</a><button type="button" class="knopf zu" id="zuklappen" hidden>Schließen ✕</button></span>
   </header>
   <div class="buehne"><div class="einband"><div id="seiten" aria-live="off"></div><button type="button" class="ecke zur" id="eckeZur" aria-label="Seite zurückblättern"></button><button type="button" class="ecke vor" id="eckeVor" aria-label="Seite umblättern"></button></div></div>
   <footer class="steuer">
@@ -232,15 +237,19 @@ var D = {"kurse": [{"titel": "Diabetes mellitus beim Erwachsenen", "untertitel":
     a.textContent=k.icon+' '+k.titel;li.append(a);nl.append(li);});
 
   const html=document.documentElement;
-  const A=document.getElementById('buchansicht');
-  const S=document.getElementById('seiten');
-  const zahl=document.getElementById('seitenzahl');
-  const zur=document.getElementById('zurueck'), wei=document.getElementById('weiter');
-  const eckeZur=document.getElementById('eckeZur'),eckeVor=document.getElementById('eckeVor');
-  const linie=document.getElementById('leselinie');
-  const knopf=document.getElementById('lesestand');
+  const A=document.getElementById('zfansicht');
+  const $=id=>A.querySelector('#'+id);
+  const BIB=window.BIBLIOTHEK||null;
+  const aktiv=()=>A.getClientRects().length>0;
+  const S=$('seiten');
+  const zahl=$('seitenzahl');
+  const zur=$('zurueck'), wei=$('weiter');
+  const eckeZur=$('eckeZur'),eckeVor=$('eckeVor');
+  const linie=$('leselinie');
+  const knopf=$('lesestand');
+  const zuKnopf=$('zuklappen');
   const reiter=[...A.querySelectorAll('.reiter a')];
-  const rNaechster=document.getElementById('reiterNaechster');
+  const rNaechster=$('reiterNaechster');
   const DECKEL={kicker:'Pflegeausbildung · 2. Lehrjahr',titel:'Meine Kurse',schrift:'zusammengefasst'};
   let seiten=[], cur=0, doppel=false, mass='';
 
@@ -453,9 +462,9 @@ var D = {"kurse": [{"titel": "Diabetes mellitus beim Erwachsenen", "untertitel":
     c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));c.querySelectorAll('[data-u]').forEach(e=>e.removeAttribute('data-u'));
     const a=s.querySelector('.satz');c._st=a?a.scrollTop:0;return c;}
   function fertig(){if(laeuft){const l=laeuft;laeuft=null;l.ende();}}
-  function blatt(art,vorn,hinten,unten,ende,verzug){
+  function blatt(art,vorn,hinten,unten,ende,verzug,dauer,danach){
     fertig();
-    const D=doppel?780:640, E='cubic-bezier(.45,.02,.2,1)';
+    const D=dauer||(doppel?780:640), E='cubic-bezier(.45,.02,.2,1)';
     const b=document.createElement('div');b.className='blatt '+art;b.setAttribute('aria-hidden','true');
     b.style.left=art==='vor'?'var(--pw)':'0';
     const glanz=(f,seite)=>{const g=document.createElement('i');g.className='glanz '+seite;f.append(g);return g;};
@@ -486,19 +495,33 @@ var D = {"kurse": [{"titel": "Diabetes mellitus beim Erwachsenen", "untertitel":
       const d=wurf('e');
       an.push(d.animate(art==='evor'?[{opacity:.8},{opacity:0}]:[{opacity:0},{opacity:.8,offset:.4},{opacity:0}],o));
     }
-    const l={ende:()=>{an.forEach(a=>{try{a.cancel();}catch(e){}});b.remove();w.forEach(d=>d.remove());zeigeNur(ende);}};
+    const l={ende:()=>{an.forEach(a=>{try{a.cancel();}catch(e){}});b.remove();w.forEach(d=>d.remove());zeigeNur(ende);if(danach)danach();}};
     laeuft=l;
     an[0].onfinish=()=>{if(laeuft===l)fertig();};
   }
-  function deckel(){
-    if(ruhig()||!S.animate||!seiten.length)return;
+  function machDeckel(){
     const d=document.createElement('section');d.className='seite deckel';
     d.innerHTML='<span class="rahmen"></span><p class="kicker"></p><h1></h1><p class="schrift"></p><div class="trenner"><span></span><i>✦</i><span></span></div>';
     d.querySelector('.kicker').textContent=DECKEL.kicker;d.querySelector('h1').textContent=DECKEL.titel;d.querySelector('.schrift').textContent=DECKEL.schrift;
-    const neu=doppel?[cur,cur+1]:[cur];
-    if(doppel)blatt('vor',d,klon(cur),[cur+1],neu,420);
-    else blatt('evor',d,null,[cur],neu,420);
+    return d;
   }
+  /* Einband aufschlagen (beim Laden schnell, aus der Bibliothek langsam) und wieder zuklappen */
+  function deckel(dauer,danach){
+    const neu=doppel?[cur,cur+1]:[cur];
+    if(ruhig()||!S.animate||!seiten.length){zeigeNur(neu);if(danach)danach();return;}
+    const d=machDeckel(),verzug=dauer?0:420;
+    if(doppel)blatt('vor',d,klon(cur),[cur+1],neu,verzug,dauer,danach);
+    else blatt('evor',d,null,[cur],neu,verzug,dauer,danach);
+  }
+  function zuklappen(danach){
+    fertig();
+    if(ruhig()||!S.animate||!seiten.length){zeigeNur([]);if(danach)danach();return;}
+    const d=machDeckel();
+    if(doppel)blatt('zurueck',klon(cur),d,[cur+1],[],0,1300,danach);
+    else blatt('ezurueck',d,null,[cur],[],0,1100,danach);
+  }
+  /* Wo der geschlossene Einband liegt: rechte Buchhälfte (Doppelseite) bzw. die ganze Seite */
+  function deckelRechteck(){const r=S.getBoundingClientRect();return doppel?{left:r.left+r.width/2,top:r.top,width:r.width/2,height:r.height}:{left:r.left,top:r.top,width:r.width,height:r.height};}
 
 
   function zeige(i,still){
@@ -546,7 +569,7 @@ var D = {"kurse": [{"titel": "Diabetes mellitus beim Erwachsenen", "untertitel":
     S.querySelectorAll('li.teil[data-monat]').forEach(li=>li.hidden=!!q&&!sichtbar[li.dataset.monat]);});
 
   document.addEventListener('click',e=>{
-    const a=e.target.closest('a[href^="#"]');if(!a||!html.classList.contains('buch-an'))return;
+    const a=e.target.closest('a[href^="#"]');if(!a||!A.contains(a)||!aktiv())return;
     const id=decodeURIComponent(a.getAttribute('href').slice(1));const i=seiteVon(id);if(i<0){if(!id)e.preventDefault();return;}
     e.preventDefault();zeige(i);
   });
@@ -555,6 +578,8 @@ var D = {"kurse": [{"titel": "Diabetes mellitus beim Erwachsenen", "untertitel":
   eckeZur.addEventListener('click',()=>blaettern(-1));
   eckeVor.addEventListener('click',()=>blaettern(1));
   document.addEventListener('keydown',e=>{
+    if(!aktiv())return;
+    if(BIB&&e.key==='Escape'){BIB.schliesse();return;}
     if(e.target.closest&&e.target.closest('input,textarea,select,[contenteditable]'))return;
     if(e.key==='ArrowRight'||e.key==='PageDown'){blaettern(1);e.preventDefault();}
     else if(e.key==='ArrowLeft'||e.key==='PageUp'){blaettern(-1);e.preventDefault();}
@@ -566,22 +591,38 @@ var D = {"kurse": [{"titel": "Diabetes mellitus beim Erwachsenen", "untertitel":
     const dx=t.clientX-tx,dy=t.clientY-ty;tx=null;
     if(Math.abs(dx)>55&&Math.abs(dx)>1.5*Math.abs(dy))blaettern(dx<0?1:-1);},{passive:true});
   let warte=0;
-  window.addEventListener('resize',()=>{clearTimeout(warte);warte=setTimeout(()=>{const alt=mass;const n=masse();if(n!==alt)baue();},220);});
+  window.addEventListener('resize',()=>{clearTimeout(warte);warte=setTimeout(()=>{if(!aktiv()||!seiten.length){mass='';return;}const alt=mass;const n=masse();if(n!==alt)baue();},220);});
 
+  async function vorbereiten(){
+    if(document.fonts&&document.fonts.load){
+      const f=['400 17px "EB Garamond"','500 17px "EB Garamond"','italic 400 17px "EB Garamond"','italic 500 17px "EB Garamond"','700 17px "EB Garamond"',
+        '500 40px "Cormorant Garamond"','600 20px "Cormorant Garamond"','400 30px "Pinyon Script"'];
+      await Promise.race([Promise.all(f.map(x=>document.fonts.load(x))).catch(()=>{}),new Promise(r=>setTimeout(r,3000))]);
+    }
+    baue();
+    if(document.fonts){const nachladen=()=>{if(!aktiv()){mass='';return;}if(laeuft){setTimeout(nachladen,300);return;}mass='';const n=masse();mass=n;baue();};document.fonts.addEventListener('loadingdone',nachladen);}
+  }
   async function start(){
     html.classList.add('buch-an');
     try{
-      if(document.fonts&&document.fonts.load){
-        const f=['400 17px "EB Garamond"','500 17px "EB Garamond"','italic 400 17px "EB Garamond"','italic 500 17px "EB Garamond"','700 17px "EB Garamond"',
-          '500 40px "Cormorant Garamond"','600 20px "Cormorant Garamond"','400 30px "Pinyon Script"'];
-        await Promise.race([Promise.all(f.map(x=>document.fonts.load(x))).catch(()=>{}),new Promise(r=>setTimeout(r,3000))]);
-      }
-      baue();
+      await vorbereiten();
       const h=decodeURIComponent(location.hash.slice(1));const i=seiteVon(h);if(i>=0)zeige(i,true);
       deckel();
-      if(document.fonts){const nachladen=()=>{if(laeuft){setTimeout(nachladen,300);return;}mass='';const n=masse();mass=n;baue();};document.fonts.addEventListener('loadingdone',nachladen);}
     }catch(err){console.error(err);html.classList.remove('buch-an');A.remove();}
   }
-  start();
+  if(BIB){
+    /* In der Bibliothek: das Buch liegt zu, bis sie es öffnet; es merkt sich die Stelle ('zf-stelle-v1') */
+    let bereit=null;
+    if(zuKnopf){zuKnopf.hidden=false;zuKnopf.addEventListener('click',()=>BIB.schliesse());}
+    BIB.melde('kurse',{
+      deckel:DECKEL,
+      info:()=>{const n=K.filter(istGelesen).length;return {zeile:n+' von '+K.length+' Kursen gelesen',zweite:'',lesezeichen:!!lies(STELLE)};},
+      vorbereiten:()=>bereit||(bereit=vorbereiten()),
+      ziel:()=>{const n=masse();if(n!==mass)baue();else zeige(cur,true);zeigeNur([]);return deckelRechteck();},
+      oeffne:danach=>deckel(1500,danach),
+      schliesse:danach=>zuklappen(danach),
+      rechteck:()=>deckelRechteck()
+    });
+  }else start();
 })();
 </script>

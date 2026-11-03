@@ -295,6 +295,8 @@
     .reiter,.hinweis,.marke i{display:none;}
     .leiste{padding:10px 14px 6px;}
     .marke b{font-size:1.25rem;}
+    .leiste{gap:8px;} .marke{flex:1 1 auto;overflow:hidden;} .marke b{overflow:hidden;text-overflow:ellipsis;font-size:1.1rem;}
+    .knoepfe{flex:0 0 auto;gap:6px;} .knoepfe .knopf{padding:8px 11px;letter-spacing:.08em;}
     .knopf{padding:9px 14px;font-size:11px;}
     .steuer{grid-template-columns:1fr auto;padding:8px 14px 12px;}
     .seitenzahl{justify-self:start;}
@@ -309,6 +311,21 @@
   .satz b,.satz strong,.satz h3,.satz h4{font-weight:700;}
   .fuss,.kicker,.hinweis{color:var(--ink-soft);font-weight:500;}
   .seite.zier::before{opacity:.13;}
+  .knoepfe{display:flex;gap:8px;align-items:center;}
+  button.knopf{cursor:pointer;font-family:var(--serif);}
+  .knopf[hidden]{display:none;}
+  /* Selbsttest */
+  .bewerten{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px;font-size:13.5px;}
+  .bewerten button{font:inherit;font-weight:600;border:1px solid var(--ink-soft);background:transparent;border-radius:999px;padding:4px 12px;cursor:pointer;color:var(--ink);}
+  .bewerten button[data-w="1"][aria-pressed="true"]{background:var(--du);border-color:var(--du);color:#fff;}
+  .bewerten button[data-w="0"][aria-pressed="true"]{background:var(--accent-deep);border-color:var(--accent-deep);color:#fff;}
+  .ergebnis{border:1px solid var(--line);border-left:4px solid var(--du);border-radius:6px;padding:10px 14px;margin:14px 0;background:rgba(255,251,238,.55);}
+  .ergebnis .kicker{margin:0 0 2px;}
+  .ergebnis .ez{display:block;font-family:var(--display);font-size:1.35rem;font-weight:700;}
+  .ergebnis .ezs{font-size:14px;}
+  .krank{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);margin-right:8px;}
+  .allekopf h2{font-family:var(--display);font-weight:500;font-size:clamp(2rem,4.4vw,2.6rem);color:var(--accent);margin:0 0 12px;line-height:1.05;}
+  .notiz{font-style:italic;color:var(--ink-soft);}
   /* ---- Umblättern: ein Blatt dreht sich um den Buchrücken (seit 03.11.2026, ihr Wunsch „comme une feuille qu'on feuillette“) ---- */
   #seiten{perspective:2600px;}
   .seite{transition:none!important;transform:none!important;}
@@ -354,7 +371,7 @@
       <a href="#k14" data-ziel="k14">Prüfung</a>
       <a href="#k15" data-ziel="k15">Wörter</a>
     </nav>
-    <a class="knopf" href="#inhalt" id="lesestand">Inhalt</a>
+    <span class="knoepfe"><a class="knopf" href="#inhalt" id="lesestand">Inhalt</a><button type="button" class="knopf zu" id="zuklappen" hidden>Schließen ✕</button></span>
   </header>
   <div class="buehne"><div class="einband"><div id="seiten" aria-live="off"></div><button type="button" class="ecke zur" id="eckeZur" aria-label="Seite zurückblättern"></button><button type="button" class="ecke vor" id="eckeVor" aria-label="Seite umblättern"></button></div></div>
   <footer class="steuer">
@@ -1497,17 +1514,28 @@
   const html=document.documentElement;
   const Q=document.getElementById('quelle');
   const A=document.getElementById('buchansicht');
-  const S=document.getElementById('seiten');
-  const zahl=document.getElementById('seitenzahl');
-  const zur=document.getElementById('zurueck'), wei=document.getElementById('weiter');
-  const linie=document.getElementById('leselinie');
-  const knopf=document.getElementById('lesestand');
+  const $=id=>A.querySelector('#'+id);
+  const BIB=window.BIBLIOTHEK||null;
+  const aktiv=()=>A.getClientRects().length>0;
+  const S=$('seiten');
+  const zahl=$('seitenzahl');
+  const zur=$('zurueck'), wei=$('weiter');
+  const linie=$('leselinie');
+  const knopf=$('lesestand');
+  const zuKnopf=$('zuklappen');
   const reiter=[...A.querySelectorAll('.reiter a')];
   const ART=Q.querySelector('article');
-  const eckeZur=document.getElementById('eckeZur'),eckeVor=document.getElementById('eckeVor');
+  const eckeZur=$('eckeZur'),eckeVor=$('eckeVor');
   const DECKEL={kicker:'Fachartikel · aus deinen Kursen',titel:'Krankheiten verstehen',schrift:'tiefer erklärt'};
 
   let seiten=[], cur=0, doppel=false, mass='';
+  /* Selbsttest: jede Prüfungsfrage bekommt eine feste Kennung <artikel>-<n>; Bewertung in 'krankheiten-fragen-v1' */
+  const FKEY='krankheiten-fragen-v1';
+  let FR={};try{FR=JSON.parse(lies(FKEY)||'{}')||{};}catch(e){FR={};}
+  Q.querySelectorAll('article').forEach(a=>{const name=((a.querySelector('.artkopf h2')||{}).textContent||a.id).trim();
+    a.querySelectorAll('details.frage').forEach((d,i)=>{d.dataset.fid=a.id+'-'+i;d.dataset.krankheit=name;});});
+  function ergebnis(fids,titel){const e=document.createElement('div');e.className='ergebnis';e.dataset.fids=fids.join(',');
+    e.innerHTML='<p class="kicker"></p><b class="ez"></b><small class="ezs"></small>';e.querySelector('.kicker').textContent=titel;return e;}
 
   const tpl=id=>document.getElementById(id).content.firstElementChild.cloneNode(true);
   const kapitel=[...ART.querySelectorAll('section.kap')].map(s=>{
@@ -1538,6 +1566,7 @@
     ol.append(zeile('I','bibliothek','Die Bibliothek','52 Krankheiten aus deiner Liste und deinen Kursen','teil'));
     ol.append(zeile('II',ART.id,'Der Schlaganfall','Artikel 1 · '+kapitel.length+' Kapitel','teil'));
     kapitel.forEach(k=>{const li=zeile(k.nr,k.id,k.titel,'','kap');li.dataset.kap=k.nr;ol.append(li);});
+    if(Q.querySelector('article details.frage'))ol.append(zeile('III','alle-fragen','Fragen zu allen Krankheiten','Zum Schluss: alle Prüfungsfragen gemischt','teil'));
     add(ol,{ctx:'toc',lauf:'Inhalt'});
     const leg=Q.querySelector('header.kopf .legende');
     if(leg){const w=document.createElement('div');w.className='zeichen';
@@ -1567,11 +1596,36 @@
       [...k.sec.children].forEach((c,i)=>{const el=c.cloneNode(true);
         if(i===0){el.id=k.id;el.dataset.kap=k.nr;}
         add(el,{ctx:'kap',neu:i===0,zier:i===0,lauf});});
+      const fr=[...k.sec.querySelectorAll('details.frage')];
+      if(fr.length)add(ergebnis(fr.map(d=>d.dataset.fid),'Dein Stand bei diesen Fragen'),{ctx:'kap',lauf});
       const lab=document.createElement('label');lab.className='gelesen';
       const cb=document.createElement('input');cb.type='checkbox';cb.dataset.kap=k.nr;
       lab.append(cb,document.createTextNode(' Kapitel gelesen'));
       add(lab,{ctx:'kap',lauf});
     });
+
+    /* Teil III: alle Fragen aus allen Artikeln, gemischt — in fester Reihenfolge, damit die Seiten stabil bleiben */
+    const alle=[...Q.querySelectorAll('article details.frage')];
+    if(alle.length){
+      const kopf=document.createElement('div');kopf.id='alle-fragen';kopf.className='allekopf';
+      kopf.innerHTML='<p class="kicker">Teil III · zum Schluss</p><h2>Fragen zu allen Krankheiten</h2>'
+        +'<p>Wenn du alles gelesen hast: alle Prüfungsfragen aus allen Artikeln, gemischt. Erst selbst antworten — laut oder schriftlich —, dann aufklappen, dann ehrlich bewerten: <b>✓ gewusst</b> oder <b>✗ noch nicht</b>.</p>'
+        +'<p class="notiz">Im Moment steht nur der Schlaganfall im Buch — deshalb sind es seine Fragen. Kommt eine Krankheit dazu, kommen ihre Fragen hier von selbst hinzu.</p>';
+      add(kopf,{ctx:'kap',neu:true,zier:true,lauf:'Fragen zu allen Krankheiten'});
+      let saat=7;const zufall=()=>{saat=(saat*16807)%2147483647;return saat/2147483647;};
+      alle.map(d=>[zufall(),d]).sort((a,b)=>a[0]-b[0]).forEach(([,d],i)=>{
+        const c=d.cloneNode(true);c.removeAttribute('open');
+        const ziel=c.querySelector('summary > span')||c.querySelector('summary');
+        const t=document.createElement('span');t.className='krank';t.textContent=(i+1)+' · '+d.dataset.krankheit;ziel.prepend(t);
+        add(c,{ctx:'kap',lauf:'Fragen zu allen Krankheiten'});});
+      add(ergebnis(alle.map(d=>d.dataset.fid),'Dein Stand über alle Krankheiten'),{ctx:'kap',lauf:'Fragen zu allen Krankheiten'});
+    }
+
+    /* Jede Frage bekommt ihre zwei Bewertungsknöpfe */
+    U.forEach(u=>{const ds=u.el.matches('details.frage')?[u.el]:[...u.el.querySelectorAll('details.frage')];
+      ds.forEach(d=>{const an=d.querySelector('.antw');if(!an||!d.dataset.fid||an.querySelector('.bewerten'))return;
+        const b=document.createElement('div');b.className='bewerten';b.dataset.fid=d.dataset.fid;
+        b.innerHTML='<span>Selbst bewertet:</span><button type="button" data-w="1">✓ gewusst</button><button type="button" data-w="0">✗ noch nicht</button>';an.append(b);});});
 
     const fw=Q.querySelector('footer .wrap');
     if(fw){const e=document.createElement('div');e.className='schluss';e.id='ende';
@@ -1689,9 +1743,9 @@
     c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));c.querySelectorAll('[data-u]').forEach(e=>e.removeAttribute('data-u'));
     const a=s.querySelector('.satz');c._st=a?a.scrollTop:0;return c;}
   function fertig(){if(laeuft){const l=laeuft;laeuft=null;l.ende();}}
-  function blatt(art,vorn,hinten,unten,ende,verzug){
+  function blatt(art,vorn,hinten,unten,ende,verzug,dauer,danach){
     fertig();
-    const D=doppel?780:640, E='cubic-bezier(.45,.02,.2,1)';
+    const D=dauer||(doppel?780:640), E='cubic-bezier(.45,.02,.2,1)';
     const b=document.createElement('div');b.className='blatt '+art;b.setAttribute('aria-hidden','true');
     b.style.left=art==='vor'?'var(--pw)':'0';
     const glanz=(f,seite)=>{const g=document.createElement('i');g.className='glanz '+seite;f.append(g);return g;};
@@ -1722,19 +1776,33 @@
       const d=wurf('e');
       an.push(d.animate(art==='evor'?[{opacity:.8},{opacity:0}]:[{opacity:0},{opacity:.8,offset:.4},{opacity:0}],o));
     }
-    const l={ende:()=>{an.forEach(a=>{try{a.cancel();}catch(e){}});b.remove();w.forEach(d=>d.remove());zeigeNur(ende);}};
+    const l={ende:()=>{an.forEach(a=>{try{a.cancel();}catch(e){}});b.remove();w.forEach(d=>d.remove());zeigeNur(ende);if(danach)danach();}};
     laeuft=l;
     an[0].onfinish=()=>{if(laeuft===l)fertig();};
   }
-  function deckel(){
-    if(ruhig()||!S.animate||!seiten.length)return;
+  function machDeckel(){
     const d=document.createElement('section');d.className='seite deckel';
     d.innerHTML='<span class="rahmen"></span><p class="kicker"></p><h1></h1><p class="schrift"></p><div class="trenner"><span></span><i>✦</i><span></span></div>';
     d.querySelector('.kicker').textContent=DECKEL.kicker;d.querySelector('h1').textContent=DECKEL.titel;d.querySelector('.schrift').textContent=DECKEL.schrift;
-    const neu=doppel?[cur,cur+1]:[cur];
-    if(doppel)blatt('vor',d,klon(cur),[cur+1],neu,420);
-    else blatt('evor',d,null,[cur],neu,420);
+    return d;
   }
+  /* Einband aufschlagen (beim Laden schnell, aus der Bibliothek langsam) und wieder zuklappen */
+  function deckel(dauer,danach){
+    const neu=doppel?[cur,cur+1]:[cur];
+    if(ruhig()||!S.animate||!seiten.length){zeigeNur(neu);if(danach)danach();return;}
+    const d=machDeckel(),verzug=dauer?0:420;
+    if(doppel)blatt('vor',d,klon(cur),[cur+1],neu,verzug,dauer,danach);
+    else blatt('evor',d,null,[cur],neu,verzug,dauer,danach);
+  }
+  function zuklappen(danach){
+    fertig();
+    if(ruhig()||!S.animate||!seiten.length){zeigeNur([]);if(danach)danach();return;}
+    const d=machDeckel();
+    if(doppel)blatt('zurueck',klon(cur),d,[cur+1],[],0,1300,danach);
+    else blatt('ezurueck',d,null,[cur],[],0,1100,danach);
+  }
+  /* Wo der geschlossene Einband liegt: rechte Buchhälfte (Doppelseite) bzw. die ganze Seite */
+  function deckelRechteck(){const r=S.getBoundingClientRect();return doppel?{left:r.left+r.width/2,top:r.top,width:r.width/2,height:r.height}:{left:r.left,top:r.top,width:r.width,height:r.height};}
 
   function zeige(i,still){
     if(!seiten.length)return;
@@ -1764,13 +1832,25 @@
       S.querySelectorAll('input[data-kap="'+k.nr+'"]').forEach(cb=>cb.checked=an);
       S.querySelectorAll('li.kap[data-kap="'+k.nr+'"]').forEach(li=>li.classList.toggle('gelesen',an));});
     knopf.textContent='Inhalt · '+n+'/'+kapitel.length+' ✓';
+    zeigeFragen();
   }
+  function zeigeFragen(){
+    S.querySelectorAll('.bewerten').forEach(b=>{const v=FR[b.dataset.fid];
+      b.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(v!==undefined&&String(v)===x.dataset.w)));});
+    S.querySelectorAll('.ergebnis').forEach(e=>{const f=e.dataset.fids.split(',');
+      const g=f.filter(x=>FR[x]===1).length,nn=f.filter(x=>FR[x]===0).length,offen=f.length-g-nn;
+      e.querySelector('.ez').textContent=g+' von '+f.length+' gewusst';
+      e.querySelector('.ezs').textContent=offen?offen+' noch nicht bewertet'+(nn?' · '+nn+' zum Wiederholen':''):(nn?nn+' zum Wiederholen — klapp sie noch einmal auf.':'Alles gewusst. 🎉');});
+  }
+  S.addEventListener('click',e=>{const x=e.target.closest('.bewerten button');if(!x)return;
+    const id=x.closest('.bewerten').dataset.fid,w=+x.dataset.w;
+    if(FR[id]===w)delete FR[id];else FR[id]=w;schreib(FKEY,JSON.stringify(FR));zeigeFragen();});
   S.addEventListener('change',e=>{const cb=e.target.closest('input[data-kap]');if(!cb)return;
     const id=ART.id+'-'+cb.dataset.kap;if(cb.checked)gelesen[id]=1;else delete gelesen[id];
     schreib(KEY,JSON.stringify(gelesen));zeigeGelesen();});
 
   document.addEventListener('click',e=>{
-    const a=e.target.closest('a[href^="#"]');if(!a||!html.classList.contains('buch-an'))return;
+    const a=e.target.closest('a[href^="#"]');if(!a||!A.contains(a)||!aktiv())return;
     const id=decodeURIComponent(a.getAttribute('href').slice(1));const i=seiteVon(id);if(i<0)return;
     e.preventDefault();zeige(i);
     const el=seiten[i].querySelector('#'+CSS.escape(id)),box=el&&el.closest('.satz');
@@ -1781,6 +1861,8 @@
   eckeZur.addEventListener('click',()=>blaettern(-1));
   eckeVor.addEventListener('click',()=>blaettern(1));
   document.addEventListener('keydown',e=>{
+    if(!aktiv())return;
+    if(BIB&&e.key==='Escape'){BIB.schliesse();return;}
     if(e.target.closest&&e.target.closest('input,textarea,select,[contenteditable]'))return;
     if(e.key==='ArrowRight'||e.key==='PageDown'){blaettern(1);e.preventDefault();}
     else if(e.key==='ArrowLeft'||e.key==='PageUp'){blaettern(-1);e.preventDefault();}
@@ -1794,33 +1876,54 @@
     if(frei&&Math.abs(dx)>55&&Math.abs(dx)>1.5*Math.abs(dy))blaettern(dx<0?1:-1);},{passive:true});
   let warte=0;
   window.addEventListener('resize',()=>{clearTimeout(warte);warte=setTimeout(()=>{
+    if(!aktiv()||!seiten.length){mass='';return;}
     const alt=mass;const neu=masse();if(neu!==alt)baue();},220);});
 
   /* Start: Bilder ausmessen und Schriften laden, damit die Seiten richtig umbrechen */
+  /* Vorbereiten: Bilder ausmessen und Schriften laden, damit die Seiten richtig umbrechen; dann setzen */
+  async function vorbereiten(){
+    /* Bilder mit width/height brauchen kein Warten — das Seitenverhältnis steht schon fest */
+    const offen=[...Q.querySelectorAll('img')].filter(im=>!(im.getAttribute('width')&&im.getAttribute('height')));
+    offen.forEach(im=>{im.loading='eager';});
+    await Promise.race([Promise.all(offen.map(im=>(im.decode?im.decode():Promise.resolve()).catch(()=>{}).then(()=>{
+      if(im.naturalWidth){im.setAttribute('width',im.naturalWidth);im.setAttribute('height',im.naturalHeight);}}))),
+      new Promise(r=>setTimeout(r,4000))]);
+    if(document.fonts&&document.fonts.load){
+      const f=['400 17px "EB Garamond"','500 17px "EB Garamond"','italic 400 17px "EB Garamond"','600 17px "EB Garamond"','700 17px "EB Garamond"',
+        '500 40px "Cormorant Garamond"','600 20px "Cormorant Garamond"','400 30px "Pinyon Script"'];
+      await Promise.race([Promise.all(f.map(x=>document.fonts.load(x))).catch(()=>{}),new Promise(r=>setTimeout(r,3000))]);
+    }
+    baue();
+    if(Q.parentNode)Q.remove();
+    if(document.fonts){const nachladen=()=>{if(!aktiv()){mass='';return;}if(laeuft){setTimeout(nachladen,300);return;}mass='';const n=masse();mass=n;baue();};
+      document.fonts.addEventListener('loadingdone',nachladen);}
+  }
   async function start(){
     html.classList.add('buch-an');
     try{
-      /* Bilder mit width/height brauchen kein Warten — das Seitenverhältnis steht schon fest */
-      const offen=[...Q.querySelectorAll('img')].filter(im=>!(im.getAttribute('width')&&im.getAttribute('height')));
-      offen.forEach(im=>{im.loading='eager';});
-      await Promise.race([Promise.all(offen.map(im=>(im.decode?im.decode():Promise.resolve()).catch(()=>{}).then(()=>{
-        if(im.naturalWidth){im.setAttribute('width',im.naturalWidth);im.setAttribute('height',im.naturalHeight);}}))),
-        new Promise(r=>setTimeout(r,4000))]);
-      if(document.fonts&&document.fonts.load){
-        const f=['400 17px "EB Garamond"','italic 400 17px "EB Garamond"','600 17px "EB Garamond"','700 17px "EB Garamond"',
-          '500 40px "Cormorant Garamond"','600 20px "Cormorant Garamond"','400 30px "Pinyon Script"'];
-        await Promise.race([Promise.all(f.map(x=>document.fonts.load(x))).catch(()=>{}),new Promise(r=>setTimeout(r,3000))]);
-      }
-      baue();
+      await vorbereiten();
       const h=decodeURIComponent(location.hash.slice(1));const i=seiteVon(h);if(i>=0)zeige(i,true);
-      Q.remove();
       deckel();
-      if(document.fonts){const nachladen=()=>{if(laeuft){setTimeout(nachladen,300);return;}mass='';const n=masse();mass=n;baue();};document.fonts.addEventListener('loadingdone',nachladen);}
     }catch(err){
       console.error(err);html.classList.remove('buch-an');A.remove();
     }
   }
-  start();
+  if(BIB){
+    /* In der Bibliothek: das Buch liegt zu, bis sie es öffnet; es merkt sich die Stelle */
+    let bereit=null;
+    if(zuKnopf){zuKnopf.hidden=false;zuKnopf.addEventListener('click',()=>BIB.schliesse());}
+    BIB.melde('krankheiten',{
+      deckel:DECKEL,
+      info:()=>{const n=kapitel.filter(k=>gelesen[ART.id+'-'+k.nr]).length;
+        const g=Object.keys(FR).filter(k=>FR[k]===1).length;
+        return {zeile:n+' von '+kapitel.length+' Kapiteln gelesen',zweite:g?g+' Fragen gewusst':'',lesezeichen:!!lies(STELLE)};},
+      vorbereiten:()=>bereit||(bereit=vorbereiten()),
+      ziel:()=>{const n=masse();if(n!==mass)baue();else zeige(cur,true);zeigeNur([]);return deckelRechteck();},
+      oeffne:danach=>deckel(1500,danach),
+      schliesse:danach=>zuklappen(danach),
+      rechteck:()=>deckelRechteck()
+    });
+  }else start();
 })();
 </script>
 
