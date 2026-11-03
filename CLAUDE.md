@@ -1857,6 +1857,13 @@ Vorhofflimmern (CC BY-SA 4.0). **Noch am selben Abend korrigiert sie:** *„je n
 vraies images … des photos réelles“* — Canva-Illustration und Gray-Zeichnung wurden entfernt. **Also: nur echte Fotos
 und echte Befunde (CT, EKG, Präparate), keine KI-/Canva-Bilder, keine Zeichnungen als Ersatz.** Die eigenen SVG-Schemata
 bleiben als Ergänzung.
+**Seit 03.11.2026 ein Buch** (ihr Wunsch: *„faire les krankheiten verstehen comme cela“* + Link auf eine 21st.dev-Vorlage
+„Biryani Legends“ = aufgeschlagenes Buch): Pergamentseiten, Einband Ochsenblut, Safran-Akzent, Cormorant Garamond / EB Garamond /
+Pinyon Script, Doppelseite ab 960 px, sonst eine Seite; Pfeile, ← →, Wischen; Reiter Inhalt · Bibliothek · Schlaganfall · Prüfung ·
+Wörter. **Der Inhalt bleibt unverändert in `#quelle`**; das Skript setzt ihn beim Laden in Seiten (Titelblatt, Inhaltsverzeichnis
+mit Seitenzahlen, Bibliothek, Artikelöffnung mit dem Gehirn-Foto, je Kapitel neue Seite; Listen, Tabellen, Glossar, Regal werden
+über Seiten geteilt). Neue Artikel: als weiteres `<article>` in `#quelle` — dann in `sammle()` aufnehmen. Ohne Skript bleibt die
+lange Seite. Bilder brauchen `width`/`height`, sonst bricht der Umbruch falsch.
 
 ## Schulungen und Klausuren
 
