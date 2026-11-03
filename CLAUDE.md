@@ -1864,6 +1864,7 @@ Wörter. **Der Inhalt bleibt unverändert in `#quelle`**; das Skript setzt ihn b
 mit Seitenzahlen, Bibliothek, Artikelöffnung mit dem Gehirn-Foto, je Kapitel neue Seite; Listen, Tabellen, Glossar, Regal werden
 über Seiten geteilt). Neue Artikel: als weiteres `<article>` in `#quelle` — dann in `sammle()` aufnehmen. Ohne Skript bleibt die
 lange Seite. Bilder brauchen `width`/`height`, sonst bricht der Umbruch falsch.
+**Umblättern mit Bewegung (03.11.2026)**, ihr Wunsch *„à chaque fois que on change de page cela doit être comme une feuille qu'on feuillette. avec un motion design“*: ein Blatt dreht sich in 3D um den Rücken (Web Animations, Schatten wandern mit), beim Laden öffnet sich der Einband, Eselsohren an den Ecken blättern auch; `prefers-reduced-motion` schaltet es ab. Dazu *„rendre foncer les écritures“*: Schrift dunkler (`--ink` #170f07, `--ink-soft` #3f3020) und Gewicht 500. **Dieselbe Mechanik steckt in `zusammenfassungen/_template.html`** — Änderungen am Blättern in beiden Dateien nachziehen.
 
 ## Schulungen und Klausuren
 
@@ -1875,7 +1876,7 @@ lange Seite. Bilder brauchen `width`/`height`, sonst bricht der Umbruch falsch.
   (`links.zusammenfassung` oder `links.schulung`); Quellen-PDFs, Kurs-PDFs und Dateilisten
   bleiben draußen. Die Seite hat einen **Fortschrittsring**, je Kurs einen Haken **„gelesen"**
   (im `localStorage`), eine Karte **„Als Nächstes"** mit dem ältesten ungelesenen Kurs und einen
-  Filter **„nur die offenen"**. **Nach jeder neuen Schulung mitbauen und mitveröffentlichen.**
+  Filter **„nur die offenen"**. **Nach jeder neuen Schulung mitbauen und mitveröffentlichen.** **Seit 03.11.2026 ein Buch** wie „Krankheiten verstehen“ (Einband tannengrün): Titelblatt mit Ring, Inhalt mit Suche und „Als Nächstes“, je Kurs eigene Seiten (Kopf, Knopf zur Zusammenfassung, Haken, „Was drinsteht“ aus `hinweis`, an ` · ` und Satzgrenzen geteilt). Haken-Schlüssel `zf-gelesen-…` unverändert.
 - **`schulungen/` — die alte Übersichtsseite ist am 16.09.2026 auf ihren Wunsch gelöscht.**
   Ihr Wortlaut: *„Du musst 📚 Schulungen mit allen Quellen löschen."* Das Artifact
   `70ca4043-…` existiert **nicht mehr** und darf **nicht neu angelegt werden**.

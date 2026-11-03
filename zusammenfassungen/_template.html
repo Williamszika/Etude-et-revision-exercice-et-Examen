@@ -1,457 +1,587 @@
 <title>Meine Kurse, zusammengefasst</title>
+<meta name="description" content="Ihre Kurs-Zusammenfassungen als Buch zum Umblättern — ein Kurs, ein Link.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Pinyon+Script&display=swap">
 <style>
+  /* Seit 03.11.2026 ein Buch wie „Krankheiten verstehen“ — ihr Wunsch: „Fais aussi les zusammenfassung comme cela“.
+     Ein Look für Tag und Nacht: Pergament, Einband in Tannengrün, Safran als Akzent, dunkle Schrift zum Lesen. */
   :root{
-    --paper:#f4f2ed;--paper-2:#eae7e0;--card:#fffefb;
-    --ink:#1b1f1c;--ink-soft:#57615b;--line:#d9d4c9;
-    --gruen:#2c5c47;--gruen-tief:#1d4232;--gruen-soft:#e2ede7;
-    --gold:#8a6a1f;--gold-soft:#f6edd8;
-    --fl:34%;              /* Helligkeit der Fachfarben */
-    --fs:42%;              /* Sättigung */
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
-    --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
+    color-scheme:light;
+    --paper:#efe2c1;--paper-2:#e4d2a6;--card:#f7eed6;--ink:#170f07;--ink-soft:#3f3020;--line:#cfb98a;
+    --accent:#b5561a;--accent-deep:#8a3f0c;--accent-soft:#f1d6b2;--gruen:#245a3f;--gruen-soft:#d9e3c6;
+    --einband:#1e3b2c;--deckel-hell:#2f5c45;--deckel-tief:#0e2017;
+    --tisch:#d3c39d;--tisch-hell:#e3d6b4;--tisch-dunkel:#bfae86;
+    --serif:"EB Garamond","Iowan Old Style",Georgia,serif;
+    --display:"Cormorant Garamond","EB Garamond",Georgia,serif;
+    --script:"Pinyon Script","Snell Roundhand","Apple Chancery",cursive;
+    --papierkorn:radial-gradient(ellipse at 28% 18%,rgba(255,250,232,.6),transparent 58%),radial-gradient(ellipse at 82% 92%,rgba(150,110,50,.13),transparent 55%),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .42 0 0 0 0 .31 0 0 0 0 .16 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    --zierbild:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='none' stroke='%237a5a30' stroke-width='1.3' stroke-linecap='round'%3E%3Cpath d='M14 186C50 140 92 96 186 14'/%3E%3Cpath d='M46 146c-14-4-24-14-26-28 14 2 24 12 26 28zM46 146c4-14 14-24 28-26-2 14-12 24-28 26zM80 108c-14-4-24-14-26-28 14 2 24 12 26 28zM80 108c4-14 14-24 28-26-2 14-12 24-28 26zM116 72c-14-4-24-14-26-28 14 2 24 12 26 28zM116 72c4-14 14-24 28-26-2 14-12 24-28 26zM152 38c-12-4-20-12-22-24 12 2 20 10 22 24zM152 38c4-12 12-20 24-22-2 12-10 20-24 22z'/%3E%3C/svg%3E");
   }
-  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --paper:#13160f;--paper-2:#0e110a;--card:#1c201a;
-    --ink:#eef1ea;--ink-soft:#a9b3a9;--line:#2f342b;
-    --gruen:#7ec2a1;--gruen-tief:#9ed8bb;--gruen-soft:#16281f;
-    --gold:#d3ae5e;--gold-soft:#2a2314;
-    --fl:68%;--fs:46%;}}
-  :root[data-theme="dark"]{
-    --paper:#13160f;--paper-2:#0e110a;--card:#1c201a;
-    --ink:#eef1ea;--ink-soft:#a9b3a9;--line:#2f342b;
-    --gruen:#7ec2a1;--gruen-tief:#9ed8bb;--gruen-soft:#16281f;
-    --gold:#d3ae5e;--gold-soft:#2a2314;
-    --fl:68%;--fs:46%;}
-  :root[data-theme="light"]{
-    --paper:#f4f2ed;--paper-2:#eae7e0;--card:#fffefb;
-    --ink:#1b1f1c;--ink-soft:#57615b;--line:#d9d4c9;
-    --gruen:#2c5c47;--gruen-tief:#1d4232;--gruen-soft:#e2ede7;
-    --gold:#8a6a1f;--gold-soft:#f6edd8;
-    --fl:34%;--fs:42%;}
-
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
-  .mitte{max-width:56rem;margin:0 auto;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent-deep);}
 
-  /* ---------- Kopf mit Fortschritt ---------- */
-  header.hero{padding:40px 20px 30px;border-bottom:1px solid var(--line);
-    background:linear-gradient(175deg,var(--gruen-soft) 0%,transparent 80%);}
-  .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--gruen-tief);margin:0 0 10px;}
-  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(1.9rem,6vw,2.9rem);
-    margin:0 0 11px;line-height:1.05;text-wrap:balance;}
-  header.hero p.sub{max-width:58ch;margin:0;color:var(--ink-soft);font-size:15.5px;}
+  html.buch-an,html.buch-an body{height:100%;overflow:hidden;}
+  html.buch-an body{background:radial-gradient(120% 90% at 50% 38%,var(--tisch-hell) 0%,var(--tisch) 68%,var(--tisch-dunkel) 100%);}
+  .buchansicht{display:none;}
+  html.buch-an .buchansicht{display:flex;flex-direction:column;height:100%;}
+  html.buch-an #notfall{display:none;}
+  #notfall{max-width:44rem;margin:0 auto;padding:30px 18px 60px;}
+  #notfall li{margin:8px 0;}
 
-  .fortschritt{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin-top:24px;
-    background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 22px;}
-  .ring{flex:0 0 auto;position:relative;width:88px;height:88px;}
-  .ring svg{width:88px;height:88px;transform:rotate(-90deg);display:block;}
-  .ring .bahn{fill:none;stroke:var(--paper-2);stroke-width:9;}
-  .ring .weg{fill:none;stroke:var(--gruen);stroke-width:9;stroke-linecap:round;
-    transition:stroke-dashoffset .5s ease;}
-  .ring .zahl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-    font-family:var(--mono);font-size:1.35rem;font-weight:700;color:var(--gruen-tief);}
-  .f-text{flex:1 1 230px;min-width:0;}
-  .f-text b{display:block;font-family:var(--serif);font-size:1.22rem;margin-bottom:3px;}
-  .f-text span{font-size:14.6px;color:var(--ink-soft);}
+  .leiste{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 30px 8px;}
+  .marke{display:flex;align-items:baseline;gap:12px;white-space:nowrap;min-width:0;text-decoration:none;}
+  .marke b{font-family:var(--display);font-weight:600;font-size:1.5rem;color:var(--ink);}
+  .marke i{font-family:var(--script);font-style:normal;font-size:1.45rem;color:var(--accent);}
+  .reiter{display:flex;gap:26px;}
+  .reiter a{font-size:12.5px;font-weight:600;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-soft);text-decoration:none;padding:7px 0;border-bottom:2px solid transparent;white-space:nowrap;}
+  .reiter a:hover{color:var(--ink);}
+  .reiter a.an{color:var(--ink);border-bottom-color:var(--accent);}
+  .knopf{font-family:var(--serif);font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);
+    border:1px solid var(--ink);border-radius:999px;padding:11px 18px;text-decoration:none;white-space:nowrap;}
+  .knopf:hover{background:rgba(42,32,23,.06);}
 
-  /* ---------- Weiterlesen ---------- */
-  .weiterlesen{max-width:56rem;margin:22px auto 0;padding:0 18px;}
-  .wl{display:flex;gap:16px;align-items:center;flex-wrap:wrap;
-    background:var(--card);border:2px solid var(--gruen);border-radius:16px;padding:18px 22px;}
-  .wl[hidden]{display:none;}
-  .wl .ico{font-size:2rem;line-height:1;}
-  .wl .txt{flex:1 1 220px;min-width:0;}
-  .wl .l{font-family:var(--mono);font-size:10.5px;letter-spacing:.11em;text-transform:uppercase;
-    color:var(--gruen-tief);display:block;margin-bottom:3px;}
-  .wl .txt b{font-family:var(--serif);font-size:1.25rem;font-weight:600;display:block;
-    line-height:1.2;}
-  .wl .txt span{font-size:14.4px;color:var(--ink-soft);}
-  .wl .fertig{font-family:var(--serif);font-size:1.15rem;}
+  .buehne{flex:1;min-height:0;display:grid;place-items:center;}
+  .einband{background:var(--einband);padding:5px;border-radius:4px;position:relative;
+    box-shadow:0 34px 60px -24px rgba(30,40,20,.6),0 10px 22px rgba(30,40,20,.22);}
+  .doppel .einband::after{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;margin-left:-1px;
+    background:linear-gradient(var(--einband),#06120c 50%,var(--einband));pointer-events:none;}
+  #seiten{position:relative;touch-action:pan-y;}
+  .seite{position:absolute;top:0;left:0;width:var(--pw);height:var(--ph);display:flex;flex-direction:column;overflow:hidden;
+    background-color:var(--paper);background-image:var(--papierkorn);opacity:0;visibility:hidden;}
+  .seite.an{opacity:1;visibility:visible;}
+  .doppel .seite.rechts{left:var(--pw);}
+  .doppel .seite.links{box-shadow:inset -34px 0 34px -26px rgba(95,62,20,.42);}
+  .doppel .seite.rechts{box-shadow:inset 34px 0 34px -26px rgba(95,62,20,.42);}
+  .seite:not(.rechts):not(.links){box-shadow:inset 18px 0 22px -18px rgba(95,62,20,.3);}
+  .seite.zier::before{content:"";position:absolute;top:0;left:0;width:170px;height:170px;background:var(--zierbild) no-repeat 0 0/contain;opacity:.14;pointer-events:none;}
+  .satz{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:44px 52px 6px;font-size:16.5px;font-weight:500;line-height:1.6;color:var(--ink);position:relative;
+    scrollbar-width:thin;scrollbar-color:var(--line) transparent;}
+  .satz > :first-child{margin-top:0;}
+  .satz p{margin:0 0 13px;}
+  .satz b,.satz strong{font-weight:700;}
+  .fuss{flex:0 0 auto;height:42px;display:flex;align-items:center;gap:44px;padding:0 52px 4px;font-size:10.5px;font-weight:600;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ink-soft);white-space:nowrap;overflow:hidden;}
+  .fuss .lauf{overflow:hidden;text-overflow:ellipsis;}
+  .seite.rechts .fuss{flex-direction:row-reverse;}
 
-  /* ---------- Werkzeugleiste ---------- */
-  .werkzeug{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;margin-top:26px;
-    background:color-mix(in srgb,var(--paper) 93%,transparent);backdrop-filter:blur(8px);
-    border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:11px 18px;}
-  .werkzeug .reihe{max-width:56rem;margin:0 auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
-  .werkzeug input{flex:1 1 210px;font:inherit;font-size:15px;color:var(--ink);background:var(--card);
-    border:1px solid var(--line);border-radius:10px;padding:9px 13px;min-width:0;}
-  .werkzeug input:focus{outline:2px solid var(--gruen);outline-offset:1px;}
-  .treffer{font-family:var(--mono);font-size:12px;color:var(--gruen-tief);white-space:nowrap;}
-  .chips{max-width:56rem;margin:9px auto 0;display:flex;gap:6px;flex-wrap:wrap;}
-  .chips button{font:inherit;font-size:13px;color:var(--ink-soft);background:var(--card);
-    border:1px solid var(--line);border-radius:999px;padding:5px 13px;cursor:pointer;}
-  .chips button:hover{border-color:var(--gruen);color:var(--ink);}
-  .chips button:focus-visible{outline:2px solid var(--gruen);outline-offset:2px;}
-  .chips button[aria-pressed="true"]{background:var(--gruen);border-color:var(--gruen);color:var(--card);}
-  .chips button.offen[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);}
+  .steuer{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:12px;padding:10px 30px 14px;}
+  .hinweis{font-style:italic;font-size:13.5px;font-weight:500;color:var(--ink-soft);margin:0;}
+  .seitenzahl{font-family:var(--display);font-size:1.1rem;font-weight:600;letter-spacing:.24em;color:var(--ink);}
+  .pfeile{justify-self:end;display:flex;gap:10px;}
+  .pfeile button{width:42px;height:42px;border-radius:50%;border:1px solid var(--ink-soft);background:transparent;color:var(--ink);font-size:18px;line-height:1;cursor:pointer;display:grid;place-items:center;}
+  .pfeile button:hover:not(:disabled){background:rgba(42,32,23,.07);}
+  .pfeile button:disabled{opacity:.3;cursor:default;}
+  .pfeile button:focus-visible,.knopf:focus-visible,.reiter a:focus-visible,.satz a:focus-visible,.satz input:focus-visible{outline:2px solid var(--accent-deep);outline-offset:3px;}
+  #leselinie{position:fixed;left:0;bottom:0;height:3px;width:0;background:var(--accent);transition:width .45s ease;z-index:5;}
 
-  main{max-width:56rem;margin:0 auto;padding:6px 18px 90px;}
-
-  .monat{display:flex;align-items:center;gap:13px;margin:32px 0 2px;}
-  .monat[hidden]{display:none;}
-  .monat h2{font-family:var(--serif);font-weight:600;font-size:1.1rem;margin:0;
-    white-space:nowrap;color:var(--ink-soft);}
-  .monat .li{flex:1;height:1px;background:var(--line);}
-
-  /* ---------- Kurskarte ---------- */
-  .kurse{display:grid;gap:13px;margin-top:13px;}
-  article.k{--f:hsl(var(--fh) var(--fs) var(--fl));
-    background:var(--card);border:1px solid var(--line);border-left:5px solid var(--f);
-    border-radius:14px;padding:19px 22px;position:relative;}
-  article.k[hidden]{display:none;}
-  article.k.gelesen{border-left-color:var(--gruen);background:
-    linear-gradient(90deg,var(--gruen-soft) 0%,var(--card) 34%);}
-  .k-kopf{display:flex;gap:14px;align-items:flex-start;}
-  .k-ico{font-size:1.8rem;line-height:1.05;flex:0 0 auto;}
-  .k-tit{flex:1;min-width:0;}
-  .k-tit h3{font-family:var(--serif);font-weight:600;font-size:1.3rem;margin:0 0 3px;
-    line-height:1.18;text-wrap:balance;}
-  .k-tit .unter{color:var(--ink-soft);font-size:14.6px;margin:0;}
-  .haken{flex:0 0 auto;font:inherit;font-family:var(--mono);font-size:11px;cursor:pointer;
-    color:var(--ink-soft);background:transparent;border:1px solid var(--line);
-    border-radius:999px;padding:5px 11px;white-space:nowrap;}
-  .haken:hover{border-color:var(--gruen);color:var(--gruen-tief);}
-  .haken:focus-visible{outline:2px solid var(--gruen);outline-offset:2px;}
-  article.k.gelesen .haken{background:var(--gruen);border-color:var(--gruen);color:var(--card);}
-
-  .k-meta{display:flex;flex-wrap:wrap;gap:6px;margin:13px 0 0;}
-  .k-meta span{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-soft);
-    background:var(--paper-2);border:1px solid var(--line);border-radius:999px;padding:3px 10px;}
-  .k-meta span.fach{background:color-mix(in srgb,var(--f) 14%,transparent);
-    color:var(--f);border-color:color-mix(in srgb,var(--f) 34%,transparent);font-weight:700;}
-
-  /* Der eine Kernsatz — als Zitat, nicht als Aufzählung */
-  .k-kern{font-family:var(--serif);font-size:1.08rem;line-height:1.55;margin:14px 0 0;
-    padding-left:15px;border-left:3px solid color-mix(in srgb,var(--f) 42%,transparent);}
-  .k-worum{font-size:14.6px;color:var(--ink-soft);margin:12px 0 0;}
-  .k-punkte{list-style:none;padding:0;margin:11px 0 0;}
-  .k-punkte li{font-size:14.5px;color:var(--ink-soft);padding:3px 0 3px 21px;position:relative;}
-  .k-punkte li::before{content:"▸";position:absolute;left:2px;color:var(--f);}
-
-  .k-links{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:17px;}
-  a.lesen{font:inherit;font-size:15px;font-weight:600;text-decoration:none;
-    display:inline-flex;align-items:center;gap:8px;background:var(--f);color:var(--card);
-    border:1px solid var(--f);border-radius:10px;padding:9px 18px;}
-  a.lesen:hover{filter:brightness(1.12);}
-  a.lesen:focus-visible{outline:2px solid var(--f);outline-offset:2px;}
-  a.klein{font:inherit;font-size:13.5px;text-decoration:none;color:var(--ink-soft);
-    border:1px solid var(--line);border-radius:9px;padding:7px 13px;background:var(--paper);}
-  a.klein:hover{border-color:var(--f);color:var(--ink);}
-
-  .weiter{margin-top:46px;}
-  .wgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:12px;}
-  a.w{display:block;text-decoration:none;color:var(--ink);background:var(--card);
-    border:1px solid var(--line);border-radius:13px;padding:17px 19px;}
-  a.w:hover{border-color:var(--gruen);}
-  a.w .i{font-size:1.5rem;}
-  a.w h4{font-family:var(--serif);font-weight:600;font-size:1.1rem;margin:8px 0 3px;}
-  a.w .s{font-size:14px;color:var(--ink-soft);margin:0;}
-
-  .leer{text-align:center;color:var(--ink-soft);padding:40px 20px;font-size:15px;}
-  .leer[hidden]{display:none;}
-  .hinweis{border-left:4px solid var(--gold);background:var(--gold-soft);border-radius:0 11px 11px 0;
-    padding:15px 18px;margin:34px 0 0;font-size:14.7px;}
+  .kicker{font-size:11.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 8px;}
+  .satz h2{font-family:var(--display);font-weight:500;font-size:clamp(2rem,4.4vw,2.6rem);color:var(--accent);margin:0 0 16px;line-height:1.05;}
+  .satz h4{font-family:var(--display);font-size:1.32rem;font-weight:700;line-height:1.2;margin:22px 0 8px;color:var(--ink);}
   .fr{font-style:italic;color:var(--ink-soft);}
-  footer{border-top:1px solid var(--line);margin-top:50px;padding:26px 20px 46px;
-    text-align:center;color:var(--ink-soft);font-size:13.6px;}
-  footer a{color:var(--gruen-tief);}
-  @media (max-width:560px){
-    article.k{padding:17px 17px;}
-    .k-kopf{flex-wrap:wrap;} .haken{order:3;}
+
+  /* Titelblatt */
+  .titelblatt{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+  .titelblatt h1{font-family:var(--display);font-weight:500;color:var(--accent);line-height:.98;margin:6px 0 0;font-size:clamp(2.8rem,7vw,4.4rem);}
+  .schrift{font-family:var(--script);font-size:clamp(1.6rem,3.6vw,2.2rem);color:var(--ink);margin:4px 0 0;line-height:1.2;}
+  .trenner{display:flex;align-items:center;gap:10px;width:min(80%,330px);margin:18px auto 16px;color:var(--accent);}
+  .trenner span{flex:1;height:1px;background:var(--accent);opacity:.7;}
+  .trenner i{font-style:normal;font-size:13px;}
+  .titelblatt .sub{max-width:36ch;font-size:15.5px;margin:4px 0 0;}
+  .stand{display:flex;align-items:center;gap:16px;margin:18px 0 6px;text-align:left;}
+  .ring{position:relative;width:76px;height:76px;flex:0 0 auto;}
+  .ring svg{width:76px;height:76px;transform:rotate(-90deg);display:block;}
+  .ring .bahn{fill:none;stroke:rgba(150,110,50,.22);stroke-width:7;}
+  .ring .weg{fill:none;stroke:var(--gruen);stroke-width:7;stroke-linecap:round;transition:stroke-dashoffset .8s ease;}
+  .ring span{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--display);font-weight:700;font-size:1.2rem;color:var(--gruen);}
+  .stand b{display:block;font-family:var(--display);font-size:1.25rem;}
+  .stand small{font-size:13.5px;color:var(--ink-soft);}
+
+  /* Inhaltsverzeichnis */
+  .naechster{border:1px solid var(--gruen);border-left:4px solid var(--gruen);background:rgba(217,227,198,.45);border-radius:6px;padding:12px 15px;margin:0 0 16px;}
+  .naechster .kicker{color:var(--gruen);margin:0 0 3px;}
+  .naechster b{font-family:var(--display);font-size:1.22rem;display:block;line-height:1.2;}
+  .naechster .wege{display:flex;flex-wrap:wrap;gap:6px 16px;margin-top:6px;font-size:14px;}
+  .suche{width:100%;font:inherit;font-size:15px;color:var(--ink);background:rgba(255,251,238,.6);border:1px solid var(--line);border-radius:6px;padding:8px 12px;margin:0 0 10px;}
+  ol.toc-liste{list-style:none;padding:0;margin:0 0 14px;}
+  ol.toc-liste li{display:flex;align-items:baseline;gap:8px;margin:0;padding:4px 0;}
+  ol.toc-liste li[hidden]{display:none;}
+  ol.toc-liste .rn{flex:0 0 1.9rem;font-family:var(--display);font-weight:700;color:var(--accent);font-size:1rem;}
+  ol.toc-liste a{flex:0 1 auto;text-decoration:none;color:var(--ink);min-width:0;}
+  ol.toc-liste a b{font-family:var(--display);font-weight:700;font-size:1.12rem;line-height:1.2;}
+  ol.toc-liste a i{display:block;font-size:13px;color:var(--ink-soft);}
+  ol.toc-liste li.teil{margin-top:10px;font-size:11.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-deep);}
+  ol.toc-liste .punkte{flex:1 1 1rem;min-width:1rem;border-bottom:1px dotted var(--ink-soft);opacity:.6;transform:translateY(-4px);}
+  ol.toc-liste .sz{flex:0 0 auto;font-variant-numeric:tabular-nums;font-size:14px;font-weight:600;}
+  ol.toc-liste li.gelesen .sz::before{content:"✓ ";color:var(--gruen);}
+
+  /* Ein Kurs */
+  .kurskopf .ico{font-size:2.2rem;line-height:1;margin:2px 0 6px;}
+  .kurskopf h3{font-family:var(--display);font-weight:600;font-size:clamp(1.8rem,3.8vw,2.35rem);line-height:1.04;color:var(--accent);margin:0 0 8px;text-wrap:balance;}
+  .kurskopf .unter{font-style:italic;font-size:15.5px;margin:0 0 10px;}
+  .meta{display:flex;flex-wrap:wrap;gap:4px 14px;font-size:11.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin:0 0 12px;}
+  .meta .fach{color:var(--gruen);}
+  .aktion{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin:4px 0 14px;}
+  a.lesen{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+    color:#f7eed6;background:var(--gruen);border-radius:999px;padding:10px 18px;transition:transform .2s ease,box-shadow .2s ease;}
+  a.lesen:hover{transform:translateY(-1px);box-shadow:0 6px 14px -6px rgba(20,50,30,.6);}
+  label.gelesen{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;cursor:pointer;padding:6px 12px;border:1px solid var(--line);border-radius:999px;}
+  label.gelesen input{accent-color:var(--gruen);width:17px;height:17px;}
+  blockquote.kern{font-family:var(--display);font-size:1.28rem;font-weight:600;line-height:1.35;margin:4px 0 14px;padding:4px 0 4px 18px;border-left:3px solid var(--accent);position:relative;}
+  ul.drin{list-style:none;padding:0;margin:0 0 12px;}
+  ul.drin li{position:relative;padding:3px 0 3px 18px;margin:0 0 3px;font-size:15.5px;line-height:1.5;}
+  ul.drin li::before{content:"❧";position:absolute;left:0;top:3px;color:var(--accent);font-size:13px;}
+  ul.drin li.fort{margin-top:-3px;} ul.drin li.fort::before{content:none;}
+  ul.drin .lead{font-variant:small-caps;font-weight:700;letter-spacing:.04em;color:var(--accent-deep);}
+
+  .wkarte{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);border-radius:6px;background:rgba(255,251,238,.55);padding:14px 16px;margin:0 0 10px;}
+  .wkarte b{font-family:var(--display);font-size:1.3rem;display:block;}
+  .wkarte span{font-size:14.5px;}
+  .schluss p{font-size:15.5px;}
+
+  @media (max-width:959px){
+    .reiter,.hinweis,.marke i{display:none;}
+    .leiste{padding:10px 14px 6px;}
+    .marke b{font-size:1.25rem;}
+    .knopf{padding:9px 14px;font-size:11px;}
+    .steuer{grid-template-columns:1fr auto;padding:8px 14px 12px;}
+    .seitenzahl{justify-self:start;}
+    .satz{padding:28px 22px 4px;font-size:16px;}
+    .fuss{padding:0 22px 4px;gap:24px;height:36px;}
+    .seite.zier::before{width:120px;height:120px;}
   }
-  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto;}}
+  @media (prefers-reduced-motion:reduce){#leselinie,.ring .weg,a.lesen{transition:none;}}
+  /* ---- Umblättern: ein Blatt dreht sich um den Buchrücken (seit 03.11.2026, ihr Wunsch „comme une feuille qu'on feuillette“) ---- */
+  #seiten{perspective:2600px;}
+  .seite{transition:none!important;transform:none!important;}
+  .blatt{position:absolute;top:0;width:var(--pw);height:var(--ph);transform-style:preserve-3d;z-index:6;pointer-events:none;will-change:transform;}
+  .blatt.vor,.blatt.evor,.blatt.ezurueck{transform-origin:0 50%;}
+  .blatt.zurueck{transform-origin:100% 50%;}
+  .blatt>.seite{left:0!important;opacity:1!important;visibility:visible!important;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+  .blatt>.seite.hinten{transform:rotateY(180deg)!important;}
+  .blatt .glanz{position:absolute;inset:0;pointer-events:none;opacity:0;z-index:3;}
+  .blatt .glanz.gl{background:linear-gradient(90deg,rgba(40,22,6,.5) 0%,rgba(60,36,12,.18) 45%,rgba(255,248,228,.12) 100%);}
+  .blatt .glanz.gr{background:linear-gradient(270deg,rgba(40,22,6,.5) 0%,rgba(60,36,12,.18) 45%,rgba(255,248,228,.12) 100%);}
+  .wurf{position:absolute;top:0;width:var(--pw);height:var(--ph);pointer-events:none;z-index:5;opacity:0;}
+  .wurf.r{left:var(--pw);background:linear-gradient(90deg,rgba(45,25,6,.55),rgba(45,25,6,.14) 40%,transparent 78%);}
+  .wurf.l{left:0;background:linear-gradient(270deg,rgba(45,25,6,.55),rgba(45,25,6,.14) 40%,transparent 78%);}
+  .wurf.e{left:0;background:linear-gradient(90deg,rgba(45,25,6,.45),transparent 70%);}
+  /* Der Einband vorn — öffnet sich beim Laden */
+  .seite.deckel{align-items:center;justify-content:center;text-align:center;color:#e8c77c;
+    background:radial-gradient(120% 90% at 30% 18%,var(--deckel-hell) 0%,var(--einband) 55%,var(--deckel-tief) 100%);}
+  .deckel .rahmen{position:absolute;inset:18px;border:1px solid rgba(232,199,124,.55);outline:1px solid rgba(232,199,124,.3);outline-offset:-8px;pointer-events:none;}
+  .deckel .kicker{color:rgba(232,199,124,.78);position:relative;}
+  .deckel h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6vw,3.7rem);line-height:1;margin:8px 26px 0;color:#efd08a;text-wrap:balance;text-shadow:0 1px 0 rgba(0,0,0,.4);}
+  .deckel .schrift{color:#e8c77c;}
+  .deckel .trenner{color:#e8c77c;} .deckel .trenner span{background:#e8c77c;}
+  /* Eselsohren: die Ecken laden zum Umblättern ein */
+  .ecke{position:absolute;bottom:5px;width:30px;height:30px;border:0;padding:0;cursor:pointer;z-index:7;background:none;transition:width .25s ease,height .25s ease;}
+  .ecke.vor{right:5px;} .ecke.zur{left:5px;}
+  .ecke::before{content:"";position:absolute;inset:0;transition:inherit;filter:drop-shadow(-2px -2px 3px rgba(60,30,8,.28));}
+  .ecke.vor::before{background:linear-gradient(315deg,transparent 50%,var(--paper-2) 50%,#d6c08f 100%);}
+  .ecke.zur::before{background:linear-gradient(45deg,transparent 50%,var(--paper-2) 50%,#d6c08f 100%);filter:drop-shadow(2px -2px 3px rgba(60,30,8,.28));}
+  .ecke:hover,.ecke:focus-visible{width:54px;height:54px;outline:none;}
+  .ecke[hidden]{display:none;}
+  @media (hover:none){.ecke{width:26px;height:26px;}}
+  @media (prefers-reduced-motion:reduce){.ecke{transition:none;}}
+
 </style>
 
-<header class="hero">
-  <div class="mitte">
-    <p class="eyebrow">Pflegeausbildung · 2. Lehrjahr · generalistisch</p>
-    <h1>Meine Kurse, zusammengefasst</h1>
-    <p class="sub"><b>Nur Zusammenfassungen.</b> Ein Kurs, ein Link, sonst nichts —
-      keine Übungen, keine Klausuren, keine PDF-Listen. Neu aufgebaut seit dem
-      <b>16. September 2026</b>: hier erscheint, was aus den PDFs entsteht, die du schickst.
-      <span class="fr">Uniquement les résumés. Un cours, un lien. La page repart du
-      16 septembre 2026.</span></p>
-
-    <div class="fortschritt">
-      <div class="ring">
-        <svg viewBox="0 0 88 88" aria-hidden="true">
-          <circle class="bahn" cx="44" cy="44" r="38"></circle>
-          <circle class="weg" id="weg" cx="44" cy="44" r="38"
-                  stroke-dasharray="238.76" stroke-dashoffset="238.76"></circle>
-        </svg>
-        <div class="zahl" id="ringZahl">0%</div>
-      </div>
-      <div class="f-text">
-        <b id="fTitel">Noch nichts abgehakt</b>
-        <span id="fUnter">Hak einen Kurs ab, wenn du ihn gelesen und verstanden hast.
-          Der Haken bleibt gespeichert, auch wenn du die Seite schließt.</span>
-      </div>
+<div class="buchansicht" id="buchansicht" lang="de">
+  <header class="leiste">
+    <a class="marke" href="#titel"><b>Meine Kurse</b><i>zusammengefasst</i></a>
+    <nav class="reiter" aria-label="Teile des Buches">
+      <a href="#inhalt" data-ziel="inhalt">Inhalt</a>
+      <a href="#" data-ziel="" id="reiterNaechster">Als Nächstes</a>
+      <a href="#weiteres" data-ziel="weiteres">Weiteres</a>
+      <a href="#ende" data-ziel="ende">Über das Buch</a>
+    </nav>
+    <a class="knopf" href="#inhalt" id="lesestand">Inhalt</a>
+  </header>
+  <div class="buehne"><div class="einband"><div id="seiten" aria-live="off"></div><button type="button" class="ecke zur" id="eckeZur" aria-label="Seite zurückblättern"></button><button type="button" class="ecke vor" id="eckeVor" aria-label="Seite umblättern"></button></div></div>
+  <footer class="steuer">
+    <p class="hinweis">Wischen oder ← → zum Umblättern</p>
+    <span class="seitenzahl" id="seitenzahl" aria-live="polite"></span>
+    <div class="pfeile">
+      <button type="button" id="zurueck" aria-label="Vorherige Seite">←</button>
+      <button type="button" id="weiter" aria-label="Nächste Seite">→</button>
     </div>
-  </div>
-</header>
-
-<div class="weiterlesen">
-  <div class="wl" id="wl" hidden>
-    <span class="ico" id="wlIco">📖</span>
-    <div class="txt">
-      <span class="l">Als Nächstes</span>
-      <b id="wlTitel"></b>
-      <span id="wlUnter"></span>
-    </div>
-    <a class="lesen" id="wlLink" href="#" target="_blank" rel="noopener"
-       style="--f:var(--gruen)">Jetzt lesen →</a>
-  </div>
-  <div class="wl" id="wlFertig" hidden>
-    <span class="ico">🎉</span>
-    <div class="txt"><span class="fertig"><b>Alle Kurse gelesen.</b> Wenn ein neuer dazukommt,
-      erscheint er hier von selbst.</span></div>
-  </div>
+  </footer>
+  <div id="leselinie"></div>
 </div>
 
-<div class="werkzeug">
-  <div class="reihe">
-    <input type="search" id="suche" autocomplete="off"
-           placeholder="Suchen — Thema, Dozent, Stichwort …" aria-label="Kurse durchsuchen">
-    <span class="treffer" id="treffer"></span>
-  </div>
-  <div class="chips" id="chips"></div>
-</div>
-
-<main>
-  <div id="liste"></div>
-  <p class="leer" id="leer" hidden>Kein Kurs gefunden. Versuch ein anderes Wort.</p>
-
-  <section class="weiter" id="weiter">
-    <div class="monat"><h2>Weiteres zum Lesen</h2><div class="li"></div></div>
-    <div class="wgrid" id="wgrid"></div>
-  </section>
-
-  <div class="hinweis"><b>Was hier hereinkommt — und was nicht.</b> Drin ist <b>pro Kurs genau
-    ein Link</b>: die Zusammenfassung. Draußen bleiben Übungen, Klausuren, Fallbeispiele,
-    Gesprächsleitfäden und alle Original-PDFs.
-    <p style="margin:9px 0 0;"><b>Die Seite fängt am 16. September 2026 neu an.</b> Die
-    siebzehn Zusammenfassungen von davor — Recht, Notfälle, Demenz, Blutgruppen und die
-    anderen — sind <b>nicht gelöscht</b>. Ihre Seiten sind weiterhin online, sie stehen nur
-    nicht mehr in dieser Liste. Sag Bescheid, wenn du sie zurückwillst: das ist eine Zeile.</p>
-    <p style="margin:9px 0 0;" class="fr">La page repart à zéro le 16 septembre 2026. Les
-    dix-sept résumés précédents ne sont pas supprimés — ils ne sont simplement plus
-    listés ici.</p></div>
-</main>
-
-<footer>
-  Alle Zusammenfassungen beruhen auf den Original-Unterlagen der Dozentinnen und Dozenten.
-  Die Original-PDFs liegen weiterhin im Repository —
-  <a href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/tree/claude/nursing-exam-prep-workflow-gvn5u0"
-     target="_blank" rel="noopener">📂 dort kannst du sie öffnen</a>,
-  Ordner für Ordner unter <code>schulung-…/quellen/</code> und <code>PDFs/</code>.
-</footer>
-
+<main id="notfall" lang="de"><h1>Meine Kurse, zusammengefasst</h1><ul id="notfallListe"></ul></main>
 <script>
-"use strict";
 var D = __DATA__;
+(function(){
+  'use strict';
+  /* Das Buch der Zusammenfassungen. Die Haken „gelesen“ bleiben unter den alten Schlüsseln 'zf-gelesen-…' —
+     was sie vorher abgehakt hat, ist weiter abgehakt. Die Stelle im Buch: 'zf-stelle-v1'. */
+  const STELLE='zf-stelle-v1';
+  const lies=k=>{try{return localStorage.getItem(k);}catch(e){return null;}};
+  const schreib=(k,v)=>{try{localStorage.setItem(k,v);}catch(e){}};
+  const loesch=k=>{try{localStorage.removeItem(k);}catch(e){}};
+  const schluessel=k=>'zf-gelesen-'+String(k.titel).replace(/[^a-zA-Z0-9]/g,'').slice(0,28);
+  const istGelesen=k=>lies(schluessel(k))==='1';
+  const K=D.kurse||[];
 
-function esc(s){return String(s==null?"":s)
-  .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+  /* Notfall: falls das Buch nicht aufgebaut werden kann, wenigstens die Liste */
+  const nl=document.getElementById('notfallListe');
+  K.forEach(k=>{const li=document.createElement('li');const a=document.createElement('a');a.href=k.haupt.url;a.target='_blank';a.rel='noopener';
+    a.textContent=k.icon+' '+k.titel;li.append(a);nl.append(li);});
 
-/* Jedes Fach bekommt einen festen Farbton — gleiche Eingabe, gleiche Farbe, immer. */
-function farbton(fach){
-  var h = 0, s = String(fach || "");
-  for(var i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 360;
-  return h;
-}
-function schluessel(k){
-  return "zf-gelesen-" + String(k.titel).replace(/[^a-zA-Z0-9]/g, "").slice(0, 28);
-}
-function istGelesen(k){
-  try{ return localStorage.getItem(schluessel(k)) === "1"; }catch(e){ return false; }
-}
-function setzeGelesen(k, an){
-  try{ an ? localStorage.setItem(schluessel(k), "1") : localStorage.removeItem(schluessel(k)); }
-  catch(e){}
-}
+  const html=document.documentElement;
+  const A=document.getElementById('buchansicht');
+  const S=document.getElementById('seiten');
+  const zahl=document.getElementById('seitenzahl');
+  const zur=document.getElementById('zurueck'), wei=document.getElementById('weiter');
+  const eckeZur=document.getElementById('eckeZur'),eckeVor=document.getElementById('eckeVor');
+  const linie=document.getElementById('leselinie');
+  const knopf=document.getElementById('lesestand');
+  const reiter=[...A.querySelectorAll('.reiter a')];
+  const rNaechster=document.getElementById('reiterNaechster');
+  const DECKEL={kicker:'Pflegeausbildung · 2. Lehrjahr',titel:'Meine Kurse',schrift:'zusammengefasst'};
+  let seiten=[], cur=0, doppel=false, mass='';
 
-var liste = document.getElementById("liste");
-var karten = [];
+  const el=(tag,cls,text)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(text!=null)e.textContent=text;return e;};
+  const kursId=i=>'kurs-'+(i+1);
 
-(function zeichne(){
-  var letzterMonat = null, teile = [], offen = false;
-  D.kurse.forEach(function(k, i){
-    if(k.monat !== letzterMonat){
-      if(offen) teile.push('</div>');
-      letzterMonat = k.monat;
-      teile.push('<div class="monat"><h2>' + esc(k.monat) + '</h2><div class="li"></div></div>'
-        + '<div class="kurse">');
-      offen = true;
+  function naechster(){for(let i=K.length-1;i>=0;i--)if(!istGelesen(K[i]))return i;return -1;}
+
+  function fuelleNaechster(box){
+    box.textContent='';const i=naechster();
+    if(i<0){box.append(el('p','kicker','Als Nächstes'),el('b',null,'Alle Kurse gelesen.'),el('span',null,'Fang beim ältesten wieder an — was man zweimal liest, kann man erklären.'));return;}
+    const k=K[i];
+    box.append(el('p','kicker','Als Nächstes · der älteste offene Kurs'),el('b',null,k.icon+' '+k.titel));
+    const w=el('div','wege');
+    const a1=el('a',null,'Im Buch aufschlagen');a1.href='#'+kursId(i);
+    const a2=el('a',null,k.haupt.label+' lesen ↗');a2.href=k.haupt.url;a2.target='_blank';a2.rel='noopener';
+    w.append(a1,a2);box.append(w);
+  }
+
+  /* Der Text „worum“ besteht aus Abschnitten, getrennt durch „ · “. Großgeschriebene Anfänge werden zu Kapitälchen. */
+  function abschnitte(t){
+    /* Sehr lange Abschnitte werden an Satzgrenzen geteilt, damit sie über Seiten umbrechen können */
+    const stuecke=[];
+    String(t||'').split(/\s·\s/).map(x=>x.trim()).filter(Boolean).forEach(seg=>{
+      if(seg.length<=320){stuecke.push([seg,false]);return;}
+      const saetze=seg.split(/(?<=[.!?;:])\s+(?=[A-ZÄÖÜ„"(0-9])/);let akt='';let erst=true;
+      saetze.forEach(x=>{if(akt&&(akt+' '+x).length>320){stuecke.push([akt,!erst]);erst=false;akt=x;}else akt=akt?akt+' '+x:x;});
+      if(akt)stuecke.push([akt,!erst]);
+    });
+    /* Was dann noch zu lang ist (ein Satz ohne Punkt), wird an Wortgrenzen geteilt */
+    for(let j=0;j<stuecke.length;j++){const [x,f]=stuecke[j];if(x.length<=420)continue;
+      const cut=x.lastIndexOf(' ',320);if(cut<120)continue;
+      stuecke.splice(j,1,[x.slice(0,cut)+' …',f],['… '+x.slice(cut+1),true]);}
+    return stuecke.map(([seg,fort])=>{
+      const li=el('li',fort?'fort':null);
+      if(fort){li.textContent=seg;return li;}
+      const m=seg.match(/^((?:[A-ZÄÖÜ0-9][A-ZÄÖÜß0-9\-–\/]*(?=[\s:]|$))(?:\s+[A-ZÄÖÜ0-9][A-ZÄÖÜß0-9\-–\/]*(?=[\s:]|$))*)(:?)\s*(.*)$/);
+      if(m&&(m[1].match(/[A-ZÄÖÜ]/g)||[]).length>=2){
+        li.append(el('span','lead',m[1].toLowerCase()+(m[2]?':':'')),document.createTextNode(' '+m[3]));
+      }else li.textContent=seg;
+      return li;});
+  }
+
+  function sammle(){
+    const U=[];let n=0;
+    const add=(e,o)=>{e.dataset.u=n++;U.push(Object.assign({el:e,ctx:'',lauf:'',neu:false,allein:false,zier:false},o));};
+
+    /* Titelblatt */
+    const t=el('div','titelblatt');t.id='titel';
+    t.append(el('p','kicker','Pflegeausbildung · 2. Lehrjahr · generalistisch'),el('h1',null,'Meine Kurse'),el('p','schrift','zusammengefasst'));
+    const tr=el('div','trenner');tr.innerHTML='<span></span><i>✦</i><span></span>';t.append(tr);
+    const st=el('div','stand');
+    st.innerHTML='<div class="ring"><svg viewBox="0 0 76 76" aria-hidden="true"><circle class="bahn" cx="38" cy="38" r="32"></circle><circle class="weg" cx="38" cy="38" r="32" stroke-dasharray="201.06" stroke-dashoffset="201.06"></circle></svg><span class="rz">0%</span></div><div><b class="sb"></b><small class="sk"></small></div>';
+    t.append(st);
+    const sub=el('p','sub');sub.innerHTML='<b>Nur Zusammenfassungen.</b> Ein Kurs, ein Link, sonst nichts — seit dem 16. September 2026. <span class="fr">Uniquement les résumés. Un cours, un lien.</span>';
+    t.append(sub);
+    add(t,{ctx:'titel',neu:true,allein:true,lauf:'Meine Kurse'});
+
+    /* Inhalt */
+    const kopf=el('div','tockopf');kopf.id='inhalt';kopf.append(el('p','kicker','Inhalt'),el('h2',null,'Was in diesem Buch steht'));
+    add(kopf,{ctx:'toc',neu:true,zier:true,lauf:'Inhalt'});
+    const nb=el('div','naechster');nb.dataset.naechster='1';fuelleNaechster(nb);add(nb,{ctx:'toc',lauf:'Inhalt'});
+    const su=el('input','suche');su.type='search';su.placeholder='Im Inhalt suchen — Thema, Dozent, Stichwort …';su.setAttribute('aria-label','Inhalt durchsuchen');su.id='suche';
+    add(su,{ctx:'toc',lauf:'Inhalt'});
+    const ol=el('ol','toc-liste');
+    const zeile=(rn,ziel,titel,unter,such)=>{const li=el('li');li.append(el('span','rn',rn));const a=el('a');a.href='#'+ziel;a.append(el('b',null,titel));
+      if(unter)a.append(el('i',null,unter));li.append(a,el('span','punkte'),el('span','sz'));li.querySelector('.sz').dataset.fuer=ziel;li.querySelector('.sz').textContent='✓ 000';
+      if(such)li.dataset.suche=such.toLowerCase();return li;};
+    let monat=null;
+    K.forEach((k,i)=>{
+      if(k.monat!==monat){monat=k.monat;const m=el('li','teil',monat);m.dataset.monat=monat;ol.append(m);}
+      const doz=k.dozent&&k.dozent!=='—'?k.dozent:'';const unter=[doz.indexOf(k.fach)===0?'':k.fach,doz].filter(Boolean).join(' · ');
+      const li=zeile(String(i+1),kursId(i),k.titel,unter,[k.titel,k.untertitel,k.worum,k.dozent,k.fach].join(' '));
+      li.dataset.kurs=i;li.dataset.monat=monat;ol.append(li);
+    });
+    const wm=el('li','teil','Außerdem');ol.append(wm);
+    if((D.weitere||[]).length)ol.append(zeile('✦','weiteres','Weiteres zum Lesen',D.weitere.map(w=>w.titel).join(' · ')));
+    ol.append(zeile('✦','ende','Über dieses Buch','Was hier hereinkommt — und was nicht'));
+    add(ol,{ctx:'toc',lauf:'Inhalt'});
+
+    /* Die Kurse */
+    K.forEach((k,i)=>{
+      const lauf='Kurs '+(i+1)+' · '+k.titel;
+      const h=el('div','kurskopf');h.id=kursId(i);
+      h.append(el('p','kicker','Kurs '+(i+1)+' von '+K.length+(k.monat?' · '+k.monat:'')),el('div','ico',k.icon||'📄'),el('h3',null,k.titel));
+      if(k.untertitel)h.append(el('p','unter',k.untertitel));
+      const me=el('div','meta');
+      if(k.fach)me.append(el('span','fach',k.fach));
+      if(k.ue&&k.ue!=='—')me.append(el('span',null,k.ue));
+      if(k.dozent&&k.dozent!=='—')me.append(el('span',null,k.dozent));
+      if(k.datumDe)me.append(el('span',null,k.datumDe));
+      h.append(me);
+      add(h,{ctx:'kurs',neu:true,zier:true,lauf});
+      const ak=el('div','aktion');
+      const a=el('a','lesen',k.haupt.label+' lesen ↗');a.href=k.haupt.url;a.target='_blank';a.rel='noopener';
+      const lab=el('label','gelesen');const cb=el('input');cb.type='checkbox';cb.dataset.kurs=i;lab.append(cb,document.createTextNode(' gelesen'));
+      ak.append(a,lab);add(ak,{ctx:'kurs',lauf});
+      const rest=(k.kernpunkte||[]).slice();
+      if(rest.length){add(el('blockquote','kern',rest.shift().replace(/^⭐\s*/,'')),{ctx:'kurs',lauf});}
+      const teile=abschnitte(k.worum);
+      if(teile.length){add(el('h4',null,'Was drinsteht'),{ctx:'kurs',lauf});const ul=el('ul','drin');teile.forEach(x=>ul.append(x));add(ul,{ctx:'kurs',lauf});}
+      if(rest.length){add(el('h4',null,'Merkpunkte'),{ctx:'kurs',lauf});const ul=el('ul','drin');rest.forEach(p=>ul.append(el('li',null,p.replace(/^⭐\s*/,''))));add(ul,{ctx:'kurs',lauf});}
+    });
+
+    /* Weiteres */
+    if((D.weitere||[]).length){
+      const w=el('div');w.id='weiteres';w.append(el('p','kicker','Außerdem'),el('h2',null,'Weiteres zum Lesen'));
+      add(w,{ctx:'weiter',neu:true,zier:true,lauf:'Weiteres zum Lesen'});
+      D.weitere.forEach(x=>{const a=el('a','wkarte');a.href=x.url;a.target='_blank';a.rel='noopener';
+        a.append(el('b',null,(x.icon||'')+' '+x.titel),el('span',null,(x.untertitel||'')+(x.worum?' — '+x.worum:'')));add(a,{ctx:'weiter',lauf:'Weiteres zum Lesen'});});
     }
-    var meta = [];
-    if(k.fach) meta.push('<span class="fach">' + esc(k.fach) + '</span>');
-    if(k.ue && k.ue !== "—") meta.push('<span>' + esc(k.ue) + '</span>');
-    if(k.dozent && k.dozent !== "—") meta.push('<span>' + esc(k.dozent) + '</span>');
-    if(k.datumDe) meta.push('<span>' + esc(k.datumDe) + '</span>');
 
-    /* Der erste Kernpunkt (der mit dem Stern) steht als Zitat oben, der Rest als Liste. */
-    var kern = "", rest = k.kernpunkte.slice();
-    if(rest.length && /^⭐/.test(rest[0])) kern = rest.shift().replace(/^⭐\s*/, "");
-    else if(rest.length) kern = rest.shift();
-
-    var punkte = rest.length
-      ? '<ul class="k-punkte">' + rest.map(function(p){
-          return '<li>' + esc(p.replace(/^⭐\s*/, "")) + '</li>'; }).join("") + '</ul>'
-      : '';
-
-    var weiter = k.weiter.map(function(w){
-      return '<a class="klein" href="' + esc(w.url) + '" target="_blank" rel="noopener">'
-        + esc(w.label) + '</a>'; }).join("");
-
-    teile.push(
-      '<article class="k' + (istGelesen(k) ? ' gelesen' : '') + '" data-i="' + i + '"'
-      + ' style="--fh:' + farbton(k.fach) + '"'
-      + ' data-suche="' + esc((k.titel + " " + k.untertitel + " " + k.worum + " "
-          + k.dozent + " " + k.fach).toLowerCase()) + '"'
-      + ' data-fach="' + esc(k.fach) + '">'
-      + '<div class="k-kopf"><div class="k-ico">' + esc(k.icon) + '</div>'
-      + '<div class="k-tit"><h3>' + esc(k.titel) + '</h3>'
-      + (k.untertitel ? '<p class="unter">' + esc(k.untertitel) + '</p>' : '')
-      + '</div>'
-      + '<button type="button" class="haken" data-i="' + i + '" aria-pressed="'
-      + (istGelesen(k) ? 'true' : 'false') + '">✓ gelesen</button>'
-      + '</div>'
-      + (meta.length ? '<div class="k-meta">' + meta.join("") + '</div>' : '')
-      + (kern ? '<p class="k-kern">' + esc(kern) + '</p>' : '')
-      + (k.worum ? '<p class="k-worum">' + esc(k.worum) + '</p>' : '')
-      + punkte
-      + '<div class="k-links"><a class="lesen" href="' + esc(k.haupt.url)
-        + '" target="_blank" rel="noopener">' + esc(k.haupt.label) + ' lesen →</a>'
-      + weiter + '</div></article>');
-  });
-  if(offen) teile.push('</div>');
-  liste.innerHTML = teile.join("");
-  karten = Array.prototype.slice.call(liste.querySelectorAll("article.k"));
-})();
-
-/* ---------- Haken setzen ---------- */
-liste.addEventListener("click", function(e){
-  var b = e.target.closest("button.haken");
-  if(!b) return;
-  var art = b.closest("article.k");
-  var k = D.kurse[Number(b.dataset.i)];
-  var an = !art.classList.contains("gelesen");
-  art.classList.toggle("gelesen", an);
-  b.setAttribute("aria-pressed", an ? "true" : "false");
-  setzeGelesen(k, an);
-  fortschritt();
-  if(nurOffen) filtern();
-});
-
-/* ---------- Fortschritt und Weiterlesen ---------- */
-var UMFANG = 2 * Math.PI * 38;
-function fortschritt(){
-  var gelesen = D.kurse.filter(istGelesen).length;
-  var gesamt = D.kurse.length;
-  var anteil = gesamt ? gelesen / gesamt : 0;
-
-  document.getElementById("weg").setAttribute("stroke-dashoffset",
-    String(UMFANG * (1 - anteil)));
-  document.getElementById("ringZahl").textContent = Math.round(anteil * 100) + "%";
-
-  var titel = document.getElementById("fTitel");
-  var unter = document.getElementById("fUnter");
-  if(gelesen === 0){
-    titel.textContent = "Noch nichts abgehakt";
-    unter.textContent = "Hak einen Kurs ab, wenn du ihn gelesen und verstanden hast. "
-      + "Der Haken bleibt gespeichert, auch wenn du die Seite schließt.";
-  }else if(gelesen === gesamt){
-    titel.textContent = "Alle " + gesamt + " Kurse gelesen.";
-    unter.textContent = "Fang beim ältesten wieder an — was man zweimal gelesen hat, "
-      + "kann man erklären.";
-  }else{
-    titel.textContent = gelesen + " von " + gesamt + " gelesen";
-    unter.textContent = "Noch " + (gesamt - gelesen)
-      + (gesamt - gelesen === 1 ? " Kurs" : " Kurse") + " offen. Einer pro Tag reicht.";
+    /* Über dieses Buch */
+    const e=el('div','schluss');e.id='ende';
+    e.innerHTML='<p class="kicker">Über dieses Buch</p><h2>Was hier hereinkommt — und was nicht</h2>'
+      +'<p>Drin ist <b>pro Kurs genau ein Link</b>: die Zusammenfassung. Draußen bleiben Übungen, Klausuren, Fallbeispiele, Gesprächsleitfäden und alle Original-PDFs.</p>'
+      +'<p><b>Das Buch fängt am 16. September 2026 an.</b> Die siebzehn Zusammenfassungen von davor — Recht, Notfälle, Demenz, Blutgruppen und die anderen — sind <b>nicht gelöscht</b>. Ihre Seiten sind weiterhin online, sie stehen nur nicht mehr in diesem Buch. Sag Bescheid, wenn du sie zurückwillst: das ist eine Zeile.</p>'
+      +'<p class="fr">Le livre commence le 16 septembre 2026. Les dix-sept résumés précédents ne sont pas supprimés — ils ne sont simplement plus dans ce livre.</p>'
+      +'<p>Alle Zusammenfassungen beruhen auf den Original-Unterlagen der Dozentinnen und Dozenten. Die Original-PDFs liegen weiterhin im Repository — <a href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/tree/claude/nursing-exam-prep-workflow-gvn5u0" target="_blank" rel="noopener">dort kannst du sie öffnen</a>, Ordner für Ordner unter <code>schulung-…/quellen/</code> und <code>PDFs/</code>.</p>';
+    const kinder=[...e.children];kinder.forEach(c=>c.remove());
+    e.append(kinder.shift(),kinder.shift());
+    add(e,{ctx:'ende',neu:true,zier:true,lauf:'Über dieses Buch'});
+    kinder.forEach(c=>{const w=el('div','schluss');w.append(c);add(w,{ctx:'ende',lauf:'Über dieses Buch'});});
+    return U;
   }
 
-  /* Der nächste ungelesene Kurs — von unten, also der älteste zuerst. */
-  var naechster = null;
-  for(var i = D.kurse.length - 1; i >= 0; i--){
-    if(!istGelesen(D.kurse[i])){ naechster = D.kurse[i]; break; }
+  function teilung(e){
+    const tag=e.tagName;
+    if((tag==='UL'||tag==='OL')&&e.children.length>1)
+      return {items:[...e.children].map(x=>[x]),ziel:h=>h,huelle:()=>e.cloneNode(false)};
+    return null;
   }
-  var wl = document.getElementById("wl"), fertig = document.getElementById("wlFertig");
-  if(naechster){
-    document.getElementById("wlIco").textContent = naechster.icon;
-    document.getElementById("wlTitel").textContent = naechster.titel;
-    document.getElementById("wlUnter").textContent = naechster.untertitel || "";
-    document.getElementById("wlLink").href = naechster.haupt.url;
-    wl.hidden = false; fertig.hidden = true;
-  }else{
-    wl.hidden = true; fertig.hidden = D.kurse.length === 0;
+
+  function masse(){
+    const vw=html.clientWidth,vh=html.clientHeight;
+    const oben=A.querySelector('.leiste').offsetHeight,unten=A.querySelector('.steuer').offsetHeight;
+    doppel=vw>=960&&vh>=560;
+    const frei=vh-oben-unten-22;
+    let pw,ph;
+    if(doppel){pw=Math.floor(Math.min(590,(vw-80)/2));ph=Math.floor(Math.min(frei,pw*1.42));
+      if(ph<pw*1.12)pw=Math.floor(Math.max(400,ph/1.12));}
+    else{pw=Math.floor(Math.min(vw-26,640));ph=Math.floor(Math.max(360,frei));}
+    A.style.setProperty('--pw',pw+'px');A.style.setProperty('--ph',ph+'px');
+    A.classList.toggle('doppel',doppel);
+    S.style.width=(doppel?2*pw:pw)+'px';S.style.height=ph+'px';
+    return pw+'x'+ph+(doppel?'d':'e');
   }
-}
 
-/* ---------- Filter ---------- */
-var aktivesFach = "", nurOffen = false;
-(function chips(){
-  var alle = [];
-  D.kurse.forEach(function(k){ if(k.fach && alle.indexOf(k.fach) < 0) alle.push(k.fach); });
-  alle.sort();
-  var ziel = document.getElementById("chips");
-  ziel.innerHTML = '<button type="button" data-fach="" aria-pressed="true">alle</button>'
-    + alle.map(function(f){
-        return '<button type="button" data-fach="' + esc(f) + '" aria-pressed="false" '
-          + 'style="--fh:' + farbton(f) + '">' + esc(f) + '</button>'; }).join("")
-    + '<button type="button" class="offen" id="nurOffen" aria-pressed="false">'
-    + 'nur die offenen</button>';
+  function baue(){
+    const anker=seiten.length?ankerVon(cur):lies(STELLE);
+    mass=masse();
+    S.textContent='';seiten=[];
+    let box=null,ctx='',lauf='',allein=false;
+    const neu=(c,l,zier)=>{
+      const s=document.createElement('section');s.className='seite'+(zier?' zier':'');
+      box=document.createElement('div');box.className='satz '+c;
+      const f=document.createElement('div');f.className='fuss';
+      f.innerHTML='<span class="snr"></span><span class="lauf"></span>';f.querySelector('.lauf').textContent=l;
+      s.append(box,f);S.append(s);seiten.push(s);ctx=c;lauf=l;};
+    const voll=()=>box.scrollHeight>box.clientHeight+1;
+    const umbruch=()=>{const mit=[];
+      while(box.childElementCount>1&&/^H[2-4]$/.test(box.lastElementChild.tagName)){const h=box.lastElementChild;h.remove();mit.unshift(h);}
+      neu(ctx,lauf,false);mit.forEach(m=>box.append(m));};
+    const teile=(sp)=>{
+      let h;const start=()=>{h=sp.huelle();box.append(h);};
+      start();
+      if(voll()&&box.childElementCount>1){h.remove();umbruch();start();}
+      for(const it of sp.items){
+        sp.ziel(h).append(...it);
+        if(voll()){
+          it.forEach(x=>x.remove());
+          if(!sp.ziel(h).children.length){if(box.childElementCount>1){h.remove();umbruch();start();}}
+          else{umbruch();start();}
+          sp.ziel(h).append(...it);
+        }
+      }
+    };
+    for(const u of sammle()){
+      if(!box||((u.neu||allein)&&box.childElementCount))neu(u.ctx,u.lauf,u.zier);
+      ctx=u.ctx;lauf=u.lauf;allein=u.allein;
+      box.append(u.el);
+      if(!voll())continue;
+      u.el.remove();
+      const sp=teilung(u.el);
+      if(sp){teile(sp);continue;}
+      if(box.childElementCount)umbruch();
+      box.append(u.el);
+    }
+    seiten.forEach((s,i)=>{s.querySelector('.fuss .snr').textContent=i+1;if(doppel)s.classList.add(i%2?'rechts':'links');});
+    S.querySelectorAll('.sz[data-fuer]').forEach(z=>{const i=seiteVon(z.dataset.fuer);z.textContent=i>=0?i+1:'';});
+    zeigeGelesen();
+    let ziel=0;
+    if(anker!=null){const i=seiten.findIndex(s=>s.querySelector('[data-u="'+anker+'"]'));if(i>=0)ziel=i;}
+    zeige(ziel,true);
+  }
 
-  ziel.addEventListener("click", function(e){
-    var b = e.target.closest("button");
-    if(!b) return;
-    if(b.id === "nurOffen"){
-      nurOffen = !nurOffen;
-      b.setAttribute("aria-pressed", nurOffen ? "true" : "false");
+  function seiteVon(id){
+    if(!id)return -1;
+    let sel;try{sel='#'+CSS.escape(id);}catch(e){return -1;}
+    return seiten.findIndex(s=>s.querySelector(sel));
+  }
+  function ankerVon(i){const s=seiten[i];const e=s&&s.querySelector('[data-u]');return e?e.dataset.u:null;}
+
+  /* ---- Umblättern als Bewegung: ein Blatt dreht sich um den Rücken, Schatten wandern mit ---- */
+  const ruhig=()=>!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+  let laeuft=null;
+  function zeigeNur(liste){seiten.forEach((s,k)=>{const an=liste.indexOf(k)>=0;s.classList.toggle('an',an);s.setAttribute('aria-hidden',an?'false':'true');});}
+  function papier(){const s=document.createElement('section');s.className='seite';const b=document.createElement('div');b.className='satz';s.append(b);return s;}
+  function klon(i){const s=seiten[i];if(!s)return papier();const c=s.cloneNode(true);
+    c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));c.querySelectorAll('[data-u]').forEach(e=>e.removeAttribute('data-u'));
+    const a=s.querySelector('.satz');c._st=a?a.scrollTop:0;return c;}
+  function fertig(){if(laeuft){const l=laeuft;laeuft=null;l.ende();}}
+  function blatt(art,vorn,hinten,unten,ende,verzug){
+    fertig();
+    const D=doppel?780:640, E='cubic-bezier(.45,.02,.2,1)';
+    const b=document.createElement('div');b.className='blatt '+art;b.setAttribute('aria-hidden','true');
+    b.style.left=art==='vor'?'var(--pw)':'0';
+    const glanz=(f,seite)=>{const g=document.createElement('i');g.className='glanz '+seite;f.append(g);return g;};
+    vorn.classList.add('vorn');b.append(vorn);
+    const gv=glanz(vorn,art==='zurueck'?'gr':'gl');let gh=null;
+    if(hinten){hinten.classList.add('hinten');b.append(hinten);gh=glanz(hinten,art==='zurueck'?'gl':'gr');}
+    const w=[];
+    const wurf=c=>{const d=document.createElement('div');d.className='wurf '+c;S.append(d);w.push(d);return d;};
+    S.append(b);
+    [vorn,hinten].forEach(f=>{if(f&&f._st){const x=f.querySelector('.satz');if(x)x.scrollTop=f._st;}});
+    zeigeNur(unten);
+    const o={duration:D,easing:E,fill:'both',delay:verzug||0};
+    const an=[];
+    if(art==='vor'||art==='zurueck'){
+      const z=art==='vor'?-180:180;
+      an.push(b.animate([{transform:'rotateY(0deg)'},{transform:'rotateY('+z/2+'deg) translateZ(14px)',offset:.5},{transform:'rotateY('+z+'deg)'}],o));
+      an.push(gv.animate([{opacity:0},{opacity:1,offset:.5},{opacity:1}],o));
+      if(gh)an.push(gh.animate([{opacity:1},{opacity:1,offset:.5},{opacity:0}],o));
+      const unter=wurf(art==='vor'?'r':'l'), drueber=wurf(art==='vor'?'l':'r');
+      an.push(unter.animate([{opacity:.9},{opacity:0,offset:.5},{opacity:0}],o));
+      an.push(drueber.animate([{opacity:0},{opacity:0,offset:.5},{opacity:.7,offset:.72},{opacity:0}],o));
     }else{
-      aktivesFach = b.dataset.fach;
-      ziel.querySelectorAll("button[data-fach]").forEach(function(x){
-        x.setAttribute("aria-pressed", String(x === b)); });
+      const k=art==='evor'
+        ?[{transform:'rotateY(0deg)',opacity:1},{transform:'rotateY(-78deg)',opacity:1,offset:.62},{transform:'rotateY(-112deg)',opacity:0}]
+        :[{transform:'rotateY(-112deg)',opacity:0},{transform:'rotateY(-78deg)',opacity:1,offset:.38},{transform:'rotateY(0deg)',opacity:1}];
+      an.push(b.animate(k,o));
+      an.push(gv.animate(art==='evor'?[{opacity:0},{opacity:1}]:[{opacity:1},{opacity:0}],o));
+      const d=wurf('e');
+      an.push(d.animate(art==='evor'?[{opacity:.8},{opacity:0}]:[{opacity:0},{opacity:.8,offset:.4},{opacity:0}],o));
     }
-    filtern();
+    const l={ende:()=>{an.forEach(a=>{try{a.cancel();}catch(e){}});b.remove();w.forEach(d=>d.remove());zeigeNur(ende);}};
+    laeuft=l;
+    an[0].onfinish=()=>{if(laeuft===l)fertig();};
+  }
+  function deckel(){
+    if(ruhig()||!S.animate||!seiten.length)return;
+    const d=document.createElement('section');d.className='seite deckel';
+    d.innerHTML='<span class="rahmen"></span><p class="kicker"></p><h1></h1><p class="schrift"></p><div class="trenner"><span></span><i>✦</i><span></span></div>';
+    d.querySelector('.kicker').textContent=DECKEL.kicker;d.querySelector('h1').textContent=DECKEL.titel;d.querySelector('.schrift').textContent=DECKEL.schrift;
+    const neu=doppel?[cur,cur+1]:[cur];
+    if(doppel)blatt('vor',d,klon(cur),[cur+1],neu,420);
+    else blatt('evor',d,null,[cur],neu,420);
+  }
+
+
+  function zeige(i,still){
+    if(!seiten.length)return;
+    const max=seiten.length-1,schritt=doppel?2:1;
+    i=Math.max(0,Math.min(max,i));if(doppel)i-=i%2;
+    const alt=cur;cur=i;
+    const neu=doppel?[i,i+1]:[i];
+    if(!still&&seiten[i])seiten[i].querySelector('.satz').scrollTop=0;
+    if(still||alt===i||ruhig()||!S.animate||!seiten[alt]){fertig();zeigeNur(neu);}
+    else if(doppel){if(i>alt)blatt('vor',klon(alt+1),klon(i),[alt,i+1],neu);else blatt('zurueck',klon(alt),klon(i+1),[i,alt+1],neu);}
+    else{if(i>alt)blatt('evor',klon(alt),null,[i],neu);else blatt('ezurueck',klon(i),null,[alt],neu);}
+    eckeZur.hidden=i<=0;eckeVor.hidden=i+schritt>max;
+    const bis=Math.min(max,i+schritt-1);
+    zahl.textContent=bis>i?'S. '+(i+1)+'–'+(bis+1):'S. '+(i+1);
+    zur.disabled=i<=0;wei.disabled=i+schritt>max;
+    linie.style.width=((bis+1)/seiten.length*100)+'%';
+    let aktiv=null;
+    reiter.forEach(a=>{const p=seiteVon(a.dataset.ziel);if(p>=0&&p<=bis&&a!==rNaechster)aktiv=a;});
+    const nx=seiteVon(rNaechster.dataset.ziel);if(nx>=i&&nx<=bis)aktiv=rNaechster;
+    reiter.forEach(a=>a.classList.toggle('an',a===aktiv));
+    const u=ankerVon(i);if(u!=null)schreib(STELLE,u);
+  }
+  const blaettern=r=>zeige(cur+r*(doppel?2:1));
+
+  function zeigeGelesen(){
+    let n=0;
+    K.forEach((k,i)=>{const an=istGelesen(k);if(an)n++;
+      S.querySelectorAll('input[data-kurs="'+i+'"]').forEach(cb=>cb.checked=an);
+      S.querySelectorAll('li[data-kurs="'+i+'"]').forEach(li=>li.classList.toggle('gelesen',an));});
+    const g=K.length,ant=g?n/g:0;
+    knopf.textContent='Inhalt · '+n+'/'+g+' ✓';
+    S.querySelectorAll('.ring .weg').forEach(c=>c.setAttribute('stroke-dashoffset',String(201.06*(1-ant))));
+    S.querySelectorAll('.ring .rz').forEach(c=>c.textContent=Math.round(ant*100)+'%');
+    S.querySelectorAll('.stand .sb').forEach(b=>b.textContent=n===0?'Noch nichts abgehakt':n===g?'Alle '+g+' Kurse gelesen':n+' von '+g+' gelesen');
+    S.querySelectorAll('.stand .sk').forEach(b=>b.textContent=n===g?'Was man zweimal liest, kann man erklären.':'Hak einen Kurs ab, wenn du ihn gelesen und verstanden hast.');
+    S.querySelectorAll('[data-naechster]').forEach(fuelleNaechster);
+    const nx=naechster();rNaechster.dataset.ziel=nx>=0?kursId(nx):'';rNaechster.href='#'+(nx>=0?kursId(nx):'inhalt');
+  }
+  S.addEventListener('change',e=>{const cb=e.target.closest('input[data-kurs]');if(!cb)return;
+    const k=K[+cb.dataset.kurs];if(cb.checked)schreib(schluessel(k),'1');else loesch(schluessel(k));zeigeGelesen();});
+  S.addEventListener('input',e=>{if(e.target.id!=='suche')return;const q=e.target.value.trim().toLowerCase();
+    const sichtbar={};
+    S.querySelectorAll('li[data-kurs]').forEach(li=>{const an=!q||li.dataset.suche.indexOf(q)>=0;li.hidden=!an;if(an)sichtbar[li.dataset.monat]=1;});
+    S.querySelectorAll('li.teil[data-monat]').forEach(li=>li.hidden=!!q&&!sichtbar[li.dataset.monat]);});
+
+  document.addEventListener('click',e=>{
+    const a=e.target.closest('a[href^="#"]');if(!a||!html.classList.contains('buch-an'))return;
+    const id=decodeURIComponent(a.getAttribute('href').slice(1));const i=seiteVon(id);if(i<0){if(!id)e.preventDefault();return;}
+    e.preventDefault();zeige(i);
   });
+  zur.addEventListener('click',()=>blaettern(-1));
+  wei.addEventListener('click',()=>blaettern(1));
+  eckeZur.addEventListener('click',()=>blaettern(-1));
+  eckeVor.addEventListener('click',()=>blaettern(1));
+  document.addEventListener('keydown',e=>{
+    if(e.target.closest&&e.target.closest('input,textarea,select,[contenteditable]'))return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'){blaettern(1);e.preventDefault();}
+    else if(e.key==='ArrowLeft'||e.key==='PageUp'){blaettern(-1);e.preventDefault();}
+    else if(e.key==='Home'){zeige(0);}else if(e.key==='End'){zeige(seiten.length-1);}
+  });
+  let tx=null,ty=0;
+  S.addEventListener('touchstart',e=>{const t=e.touches[0];tx=t.clientX;ty=t.clientY;},{passive:true});
+  S.addEventListener('touchend',e=>{if(tx==null)return;const t=e.changedTouches[0];
+    const dx=t.clientX-tx,dy=t.clientY-ty;tx=null;
+    if(Math.abs(dx)>55&&Math.abs(dx)>1.5*Math.abs(dy))blaettern(dx<0?1:-1);},{passive:true});
+  let warte=0;
+  window.addEventListener('resize',()=>{clearTimeout(warte);warte=setTimeout(()=>{const alt=mass;const n=masse();if(n!==alt)baue();},220);});
+
+  async function start(){
+    html.classList.add('buch-an');
+    try{
+      if(document.fonts&&document.fonts.load){
+        const f=['400 17px "EB Garamond"','500 17px "EB Garamond"','italic 400 17px "EB Garamond"','italic 500 17px "EB Garamond"','700 17px "EB Garamond"',
+          '500 40px "Cormorant Garamond"','600 20px "Cormorant Garamond"','400 30px "Pinyon Script"'];
+        await Promise.race([Promise.all(f.map(x=>document.fonts.load(x))).catch(()=>{}),new Promise(r=>setTimeout(r,3000))]);
+      }
+      baue();
+      const h=decodeURIComponent(location.hash.slice(1));const i=seiteVon(h);if(i>=0)zeige(i,true);
+      deckel();
+      if(document.fonts){const nachladen=()=>{if(laeuft){setTimeout(nachladen,300);return;}mass='';const n=masse();mass=n;baue();};document.fonts.addEventListener('loadingdone',nachladen);}
+    }catch(err){console.error(err);html.classList.remove('buch-an');A.remove();}
+  }
+  start();
 })();
-
-function filtern(){
-  var q = document.getElementById("suche").value.trim().toLowerCase();
-  var sichtbar = 0;
-  karten.forEach(function(art){
-    var k = D.kurse[Number(art.dataset.i)];
-    var zeig = true;
-    if(q && art.dataset.suche.indexOf(q) < 0) zeig = false;
-    if(aktivesFach && art.dataset.fach !== aktivesFach) zeig = false;
-    if(nurOffen && istGelesen(k)) zeig = false;
-    art.hidden = !zeig;
-    if(zeig) sichtbar++;
-  });
-  liste.querySelectorAll(".monat").forEach(function(m){
-    var block = m.nextElementSibling;
-    var hat = block && Array.prototype.some.call(
-      block.querySelectorAll("article.k"), function(a){ return !a.hidden; });
-    m.hidden = !hat;
-  });
-  document.getElementById("treffer").textContent =
-    sichtbar === karten.length ? "" : sichtbar + " von " + karten.length;
-  document.getElementById("leer").hidden = sichtbar > 0;
-}
-document.getElementById("suche").addEventListener("input", filtern);
-
-(function weitere(){
-  var g = document.getElementById("wgrid");
-  if(!D.weitere.length){ document.getElementById("weiter").hidden = true; return; }
-  g.innerHTML = D.weitere.map(function(w){
-    return '<a class="w" href="' + esc(w.url) + '" target="_blank" rel="noopener">'
-      + '<span class="i">' + esc(w.icon) + '</span>'
-      + '<h4>' + esc(w.titel) + '</h4>'
-      + '<p class="s">' + esc(w.untertitel || w.worum) + '</p></a>'; }).join("");
-})();
-
-fortschritt();
 </script>

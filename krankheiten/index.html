@@ -9,12 +9,12 @@
   :root{
     /* Ein Look für Tag und Nacht: Pergament auf hellem Holz, Einband in Ochsenblut, Safran als Akzent (wie das Vorbild). */
     color-scheme:light;
-    --paper:#efe2c1;--paper-2:#e4d2a6;--card:#f7eed6;--ink:#2a2017;--ink-soft:#66553f;--line:#cfb98a;
+    --paper:#efe2c1;--paper-2:#e4d2a6;--card:#f7eed6;--ink:#170f07;--ink-soft:#3f3020;--line:#cfb98a;
     --accent:#c4621b;--accent-deep:#97470f;--accent-soft:#f1d6b2;
     --du:#2f6b48;--dubg:#dde6c9;--net:#285a7c;--netbg:#d6e0dc;--ich:#765507;--ichbg:#f1e0ab;
     --fr:#3d4f8a;--frbg:#e0ddde;
     --blut:#b4332c;--blut-2:#e7a39b;--hirn:#ead8be;--hirn-2:#d3b996;--ader:#a7463f;--tot:#4d3a35;--pen:#e3b77c;
-    --tisch:#d3c39d;--tisch-hell:#e3d6b4;--tisch-dunkel:#bfae86;--einband:#5b1712;
+    --deckel-hell:#7a2219;--deckel-tief:#3a0d09;--tisch:#d3c39d;--tisch-hell:#e3d6b4;--tisch-dunkel:#bfae86;--einband:#5b1712;
     --serif:"EB Garamond","Iowan Old Style",Georgia,serif;
     --display:"Cormorant Garamond","EB Garamond",Georgia,serif;
     --script:"Pinyon Script","Snell Roundhand","Apple Chancery",cursive;
@@ -304,6 +304,44 @@
     .seite.zier::before{width:130px;height:130px;}
   }
   @media (prefers-reduced-motion:reduce){.seite,.seite.an,#leselinie{transition:none;transform:none;}}
+  /* Dunklere, kräftigere Schrift — ihr Wunsch vom 03.11.2026: „rendre foncer les écritures afin que on puisse les lire“ */
+  .satz{font-weight:500;color:var(--ink);}
+  .satz b,.satz strong,.satz h3,.satz h4{font-weight:700;}
+  .fuss,.kicker,.hinweis{color:var(--ink-soft);font-weight:500;}
+  .seite.zier::before{opacity:.13;}
+  /* ---- Umblättern: ein Blatt dreht sich um den Buchrücken (seit 03.11.2026, ihr Wunsch „comme une feuille qu'on feuillette“) ---- */
+  #seiten{perspective:2600px;}
+  .seite{transition:none!important;transform:none!important;}
+  .blatt{position:absolute;top:0;width:var(--pw);height:var(--ph);transform-style:preserve-3d;z-index:6;pointer-events:none;will-change:transform;}
+  .blatt.vor,.blatt.evor,.blatt.ezurueck{transform-origin:0 50%;}
+  .blatt.zurueck{transform-origin:100% 50%;}
+  .blatt>.seite{left:0!important;opacity:1!important;visibility:visible!important;backface-visibility:hidden;-webkit-backface-visibility:hidden;}
+  .blatt>.seite.hinten{transform:rotateY(180deg)!important;}
+  .blatt .glanz{position:absolute;inset:0;pointer-events:none;opacity:0;z-index:3;}
+  .blatt .glanz.gl{background:linear-gradient(90deg,rgba(40,22,6,.5) 0%,rgba(60,36,12,.18) 45%,rgba(255,248,228,.12) 100%);}
+  .blatt .glanz.gr{background:linear-gradient(270deg,rgba(40,22,6,.5) 0%,rgba(60,36,12,.18) 45%,rgba(255,248,228,.12) 100%);}
+  .wurf{position:absolute;top:0;width:var(--pw);height:var(--ph);pointer-events:none;z-index:5;opacity:0;}
+  .wurf.r{left:var(--pw);background:linear-gradient(90deg,rgba(45,25,6,.55),rgba(45,25,6,.14) 40%,transparent 78%);}
+  .wurf.l{left:0;background:linear-gradient(270deg,rgba(45,25,6,.55),rgba(45,25,6,.14) 40%,transparent 78%);}
+  .wurf.e{left:0;background:linear-gradient(90deg,rgba(45,25,6,.45),transparent 70%);}
+  /* Der Einband vorn — öffnet sich beim Laden */
+  .seite.deckel{align-items:center;justify-content:center;text-align:center;color:#e8c77c;
+    background:radial-gradient(120% 90% at 30% 18%,var(--deckel-hell) 0%,var(--einband) 55%,var(--deckel-tief) 100%);}
+  .deckel .rahmen{position:absolute;inset:18px;border:1px solid rgba(232,199,124,.55);outline:1px solid rgba(232,199,124,.3);outline-offset:-8px;pointer-events:none;}
+  .deckel .kicker{color:rgba(232,199,124,.78);position:relative;}
+  .deckel h1{font-family:var(--display);font-weight:500;font-size:clamp(2.3rem,6vw,3.7rem);line-height:1;margin:8px 26px 0;color:#efd08a;text-wrap:balance;text-shadow:0 1px 0 rgba(0,0,0,.4);}
+  .deckel .schrift{color:#e8c77c;}
+  .deckel .trenner{color:#e8c77c;} .deckel .trenner span{background:#e8c77c;}
+  /* Eselsohren: die Ecken laden zum Umblättern ein */
+  .ecke{position:absolute;bottom:5px;width:30px;height:30px;border:0;padding:0;cursor:pointer;z-index:7;background:none;transition:width .25s ease,height .25s ease;}
+  .ecke.vor{right:5px;} .ecke.zur{left:5px;}
+  .ecke::before{content:"";position:absolute;inset:0;transition:inherit;filter:drop-shadow(-2px -2px 3px rgba(60,30,8,.28));}
+  .ecke.vor::before{background:linear-gradient(315deg,transparent 50%,var(--paper-2) 50%,#d6c08f 100%);}
+  .ecke.zur::before{background:linear-gradient(45deg,transparent 50%,var(--paper-2) 50%,#d6c08f 100%);filter:drop-shadow(2px -2px 3px rgba(60,30,8,.28));}
+  .ecke:hover,.ecke:focus-visible{width:54px;height:54px;outline:none;}
+  .ecke[hidden]{display:none;}
+  @media (hover:none){.ecke{width:26px;height:26px;}}
+  @media (prefers-reduced-motion:reduce){.ecke{transition:none;}}
 </style>
 
 <div class="buchansicht" id="buchansicht" lang="de">
@@ -318,7 +356,7 @@
     </nav>
     <a class="knopf" href="#inhalt" id="lesestand">Inhalt</a>
   </header>
-  <div class="buehne"><div class="einband"><div id="seiten" aria-live="off"></div></div></div>
+  <div class="buehne"><div class="einband"><div id="seiten" aria-live="off"></div><button type="button" class="ecke zur" id="eckeZur" aria-label="Seite zurückblättern"></button><button type="button" class="ecke vor" id="eckeVor" aria-label="Seite umblättern"></button></div></div>
   <footer class="steuer">
     <p class="hinweis">Wischen oder ← → zum Umblättern</p>
     <span class="seitenzahl" id="seitenzahl" aria-live="polite"></span>
@@ -1466,6 +1504,8 @@
   const knopf=document.getElementById('lesestand');
   const reiter=[...A.querySelectorAll('.reiter a')];
   const ART=Q.querySelector('article');
+  const eckeZur=document.getElementById('eckeZur'),eckeVor=document.getElementById('eckeVor');
+  const DECKEL={kicker:'Fachartikel · aus deinen Kursen',titel:'Krankheiten verstehen',schrift:'tiefer erklärt'};
 
   let seiten=[], cur=0, doppel=false, mass='';
 
@@ -1494,7 +1534,7 @@
       const a=li.querySelector('a');a.href='#'+ziel;
       const b=document.createElement('b');b.textContent=titel;a.append(b);
       if(unter){const i=document.createElement('i');i.textContent=unter;a.append(i);}
-      li.querySelector('.sz').dataset.fuer=ziel;return li;};
+      li.querySelector('.sz').dataset.fuer=ziel;li.querySelector('.sz').textContent='✓ 000';return li;};
     ol.append(zeile('I','bibliothek','Die Bibliothek','52 Krankheiten aus deiner Liste und deinen Kursen','teil'));
     ol.append(zeile('II',ART.id,'Der Schlaganfall','Artikel 1 · '+kapitel.length+' Kapitel','teil'));
     kapitel.forEach(k=>{const li=zeile(k.nr,k.id,k.titel,'','kap');li.dataset.kap=k.nr;ol.append(li);});
@@ -1640,13 +1680,73 @@
   }
   function ankerVon(i){const s=seiten[i];const e=s&&s.querySelector('[data-u]');return e?e.dataset.u:null;}
 
+  /* ---- Umblättern als Bewegung: ein Blatt dreht sich um den Rücken, Schatten wandern mit ---- */
+  const ruhig=()=>!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+  let laeuft=null;
+  function zeigeNur(liste){seiten.forEach((s,k)=>{const an=liste.indexOf(k)>=0;s.classList.toggle('an',an);s.setAttribute('aria-hidden',an?'false':'true');});}
+  function papier(){const s=document.createElement('section');s.className='seite';const b=document.createElement('div');b.className='satz';s.append(b);return s;}
+  function klon(i){const s=seiten[i];if(!s)return papier();const c=s.cloneNode(true);
+    c.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id'));c.querySelectorAll('[data-u]').forEach(e=>e.removeAttribute('data-u'));
+    const a=s.querySelector('.satz');c._st=a?a.scrollTop:0;return c;}
+  function fertig(){if(laeuft){const l=laeuft;laeuft=null;l.ende();}}
+  function blatt(art,vorn,hinten,unten,ende,verzug){
+    fertig();
+    const D=doppel?780:640, E='cubic-bezier(.45,.02,.2,1)';
+    const b=document.createElement('div');b.className='blatt '+art;b.setAttribute('aria-hidden','true');
+    b.style.left=art==='vor'?'var(--pw)':'0';
+    const glanz=(f,seite)=>{const g=document.createElement('i');g.className='glanz '+seite;f.append(g);return g;};
+    vorn.classList.add('vorn');b.append(vorn);
+    const gv=glanz(vorn,art==='zurueck'?'gr':'gl');let gh=null;
+    if(hinten){hinten.classList.add('hinten');b.append(hinten);gh=glanz(hinten,art==='zurueck'?'gl':'gr');}
+    const w=[];
+    const wurf=c=>{const d=document.createElement('div');d.className='wurf '+c;S.append(d);w.push(d);return d;};
+    S.append(b);
+    [vorn,hinten].forEach(f=>{if(f&&f._st){const x=f.querySelector('.satz');if(x)x.scrollTop=f._st;}});
+    zeigeNur(unten);
+    const o={duration:D,easing:E,fill:'both',delay:verzug||0};
+    const an=[];
+    if(art==='vor'||art==='zurueck'){
+      const z=art==='vor'?-180:180;
+      an.push(b.animate([{transform:'rotateY(0deg)'},{transform:'rotateY('+z/2+'deg) translateZ(14px)',offset:.5},{transform:'rotateY('+z+'deg)'}],o));
+      an.push(gv.animate([{opacity:0},{opacity:1,offset:.5},{opacity:1}],o));
+      if(gh)an.push(gh.animate([{opacity:1},{opacity:1,offset:.5},{opacity:0}],o));
+      const unter=wurf(art==='vor'?'r':'l'), drueber=wurf(art==='vor'?'l':'r');
+      an.push(unter.animate([{opacity:.9},{opacity:0,offset:.5},{opacity:0}],o));
+      an.push(drueber.animate([{opacity:0},{opacity:0,offset:.5},{opacity:.7,offset:.72},{opacity:0}],o));
+    }else{
+      const k=art==='evor'
+        ?[{transform:'rotateY(0deg)',opacity:1},{transform:'rotateY(-78deg)',opacity:1,offset:.62},{transform:'rotateY(-112deg)',opacity:0}]
+        :[{transform:'rotateY(-112deg)',opacity:0},{transform:'rotateY(-78deg)',opacity:1,offset:.38},{transform:'rotateY(0deg)',opacity:1}];
+      an.push(b.animate(k,o));
+      an.push(gv.animate(art==='evor'?[{opacity:0},{opacity:1}]:[{opacity:1},{opacity:0}],o));
+      const d=wurf('e');
+      an.push(d.animate(art==='evor'?[{opacity:.8},{opacity:0}]:[{opacity:0},{opacity:.8,offset:.4},{opacity:0}],o));
+    }
+    const l={ende:()=>{an.forEach(a=>{try{a.cancel();}catch(e){}});b.remove();w.forEach(d=>d.remove());zeigeNur(ende);}};
+    laeuft=l;
+    an[0].onfinish=()=>{if(laeuft===l)fertig();};
+  }
+  function deckel(){
+    if(ruhig()||!S.animate||!seiten.length)return;
+    const d=document.createElement('section');d.className='seite deckel';
+    d.innerHTML='<span class="rahmen"></span><p class="kicker"></p><h1></h1><p class="schrift"></p><div class="trenner"><span></span><i>✦</i><span></span></div>';
+    d.querySelector('.kicker').textContent=DECKEL.kicker;d.querySelector('h1').textContent=DECKEL.titel;d.querySelector('.schrift').textContent=DECKEL.schrift;
+    const neu=doppel?[cur,cur+1]:[cur];
+    if(doppel)blatt('vor',d,klon(cur),[cur+1],neu,420);
+    else blatt('evor',d,null,[cur],neu,420);
+  }
+
   function zeige(i,still){
     if(!seiten.length)return;
     const max=seiten.length-1,schritt=doppel?2:1;
     i=Math.max(0,Math.min(max,i));if(doppel)i-=i%2;
-    cur=i;
-    seiten.forEach((s,k)=>{const an=k===i||(doppel&&k===i+1);s.classList.toggle('an',an);
-      s.setAttribute('aria-hidden',an?'false':'true');});
+    const alt=cur;cur=i;
+    const neu=doppel?[i,i+1]:[i];
+    if(!still&&seiten[i])seiten[i].querySelector('.satz').scrollTop=0;
+    if(still||alt===i||ruhig()||!S.animate||!seiten[alt]){fertig();zeigeNur(neu);}
+    else if(doppel){if(i>alt)blatt('vor',klon(alt+1),klon(i),[alt,i+1],neu);else blatt('zurueck',klon(alt),klon(i+1),[i,alt+1],neu);}
+    else{if(i>alt)blatt('evor',klon(alt),null,[i],neu);else blatt('ezurueck',klon(i),null,[alt],neu);}
+    eckeZur.hidden=i<=0;eckeVor.hidden=i+schritt>max;
     const bis=Math.min(max,i+schritt-1);
     zahl.textContent=bis>i?'S. '+(i+1)+'–'+(bis+1):'S. '+(i+1);
     zur.disabled=i<=0;wei.disabled=i+schritt>max;
@@ -1655,7 +1755,6 @@
     reiter.forEach(a=>{const p=seiteVon(a.dataset.ziel);if(p>=0&&p<=bis)aktiv=a;});
     reiter.forEach(a=>a.classList.toggle('an',a===aktiv));
     const u=ankerVon(i);if(u!=null)schreib(STELLE,u);
-    if(!still)seiten[i].querySelector('.satz').scrollTop=0;
   }
   const blaettern=r=>zeige(cur+r*(doppel?2:1));
 
@@ -1679,6 +1778,8 @@
   });
   zur.addEventListener('click',()=>blaettern(-1));
   wei.addEventListener('click',()=>blaettern(1));
+  eckeZur.addEventListener('click',()=>blaettern(-1));
+  eckeVor.addEventListener('click',()=>blaettern(1));
   document.addEventListener('keydown',e=>{
     if(e.target.closest&&e.target.closest('input,textarea,select,[contenteditable]'))return;
     if(e.key==='ArrowRight'||e.key==='PageDown'){blaettern(1);e.preventDefault();}
@@ -1713,7 +1814,8 @@
       baue();
       const h=decodeURIComponent(location.hash.slice(1));const i=seiteVon(h);if(i>=0)zeige(i,true);
       Q.remove();
-      if(document.fonts)document.fonts.addEventListener('loadingdone',()=>{mass='';const n=masse();mass=n;baue();});
+      deckel();
+      if(document.fonts){const nachladen=()=>{if(laeuft){setTimeout(nachladen,300);return;}mass='';const n=masse();mass=n;baue();};document.fonts.addEventListener('loadingdone',nachladen);}
     }catch(err){
       console.error(err);html.classList.remove('buch-an');A.remove();
     }
