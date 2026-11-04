@@ -1,1001 +1,586 @@
-<title>Ich will aber keine Fremden im Haus</title>
+<title>Hilfsmittel ambulantes Setting</title>
+<meta name="description" content="Hilfsmittel, Beratung und Sozialdienst im ambulanten Setting — einfach erklärt, nur aus deinen sieben Kursdateien (CE 08).">
 <style>
   :root{
-    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
-    --accent:#8a6a1f;--accent-deep:#6d5215;--accent-soft:#f6edd8;
-    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
-    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
-    --pharm:#1f5f86;--pharmbg:#dbe8f1;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --paper:#f3f5f4;--card:#ffffff;--ink:#17201f;--ink-soft:#4a5755;--line:#cfd8d6;
+    --accent:#1d6b74;--accent-soft:#dcedef;
+    --rot:#a43b30;--rotbg:#f7e2de;--gelb:#8a5a0c;--gelbbg:#f8ecd4;--gruen:#2a6b47;--gruenbg:#e0efe5;
     --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
   }
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
-    --accent:#d8b972;--accent-deep:#e9cf96;--accent-soft:#2e2718;
-    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
-    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
-    --pharm:#6cadd9;--pharmbg:#122736;}}
+    --paper:#111716;--card:#1a2221;--ink:#e8eeed;--ink-soft:#a1aeac;--line:#2d3836;
+    --accent:#6fc3cd;--accent-soft:#163238;
+    --rot:#e48d80;--rotbg:#33201c;--gelb:#e0b05f;--gelbbg:#30240f;--gruen:#7ccb9c;--gruenbg:#15291d;color-scheme:dark;}}
   :root[data-theme="dark"]{
-    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
-    --accent:#d8b972;--accent-deep:#e9cf96;--accent-soft:#2e2718;
-    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
-    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
-    --pharm:#6cadd9;--pharmbg:#122736;}
-  :root[data-theme="light"]{
-    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
-    --accent:#8a6a1f;--accent-deep:#6d5215;--accent-soft:#f6edd8;
-    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
-    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
-    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
-
+    --paper:#111716;--card:#1a2221;--ink:#e8eeed;--ink-soft:#a1aeac;--line:#2d3836;
+    --accent:#6fc3cd;--accent-soft:#163238;
+    --rot:#e48d80;--rotbg:#33201c;--gelb:#e0b05f;--gelbbg:#30240f;--gruen:#7ccb9c;--gruenbg:#15291d;color-scheme:dark;}
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
-
-  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
-    border-bottom:1px solid var(--line);
-    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
-  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--accent-deep);margin:0 0 10px;}
-  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
-    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
-  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
-  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
-    border-radius:999px;background:var(--card);color:var(--ink-soft);}
-
-  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
-    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
-  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
-    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
-    white-space:nowrap;}
-  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
-    background:var(--card);}
-
-  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
-  section{padding-top:52px;}
-  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
-    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
-  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
-  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
-  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
-  p{margin:0 0 14px;max-width:70ch;}
-  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
-  li{margin:5px 0;}
-  b,strong{font-weight:700;}
-  .fr{font-style:italic;color:var(--ink-soft);}
-  .fr::before{content:"🇫🇷 ";font-style:normal;}
-
-  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
-  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
-  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
-  .karte p:last-child{margin-bottom:0;}
-
-  .scroll{overflow-x:auto;margin:18px 0;}
-  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
-  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
-    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
-    text-align:left;vertical-align:bottom;}
-  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
-  td.k{font-weight:700;white-space:nowrap;}
-  tbody tr:nth-child(even) td{background:var(--paper);}
-
-  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .merk p:last-child{margin-bottom:0;}
-  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--accent-deep);display:block;margin-bottom:6px;}
-
-  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .warnung p:last-child{margin-bottom:0;}
-  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--warn);display:block;margin-bottom:6px;}
-
-  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .gefahr p:last-child{margin-bottom:0;}
-  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--notfall);display:block;margin-bottom:6px;}
-
-  .stufen{display:grid;gap:10px;margin:18px 0;}
-  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
-    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
-  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
-    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
-  .stufe .nr.n2{background:var(--accent);}
-  .stufe h4{margin:0 0 4px;}
-  .stufe p{margin:0;font-size:15.5px;}
-  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
-
-  .paare{display:grid;gap:9px;margin:18px 0;}
-  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
-    border-radius:0 10px 10px 0;padding:11px 15px;}
-  .paar .de{font-weight:600;}
-  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
-
-  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
-    overflow:hidden;}
-  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
-    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
-  details.quelle>summary::-webkit-details-marker{display:none;}
-  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
-  details.quelle[open]>summary::before{content:"－";}
-  details.quelle .inh{padding:0 17px 15px;}
-  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
-
-  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
-    padding:16px 18px;margin:20px 0;}
-  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
-  .pruef ol{margin:0;}
-
-  a{color:var(--accent-deep);}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
-  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
-    text-align:center;color:var(--ink-soft);font-size:14px;}
-  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
-  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;}
+  main{max-width:46rem;margin:0 auto;padding-inline:16px;padding-block:28px 60px;}
+  h1{font-size:2rem;line-height:1.15;margin:0 0 6px;text-wrap:balance;}
+  h2{font-size:1.35rem;line-height:1.25;margin:34px 0 8px;color:var(--accent);text-wrap:balance;}
+  h3{font-size:1.05rem;margin:18px 0 6px;}
+  p{margin:0 0 10px;}
+  ul,ol{margin:0 0 12px;padding-left:1.3rem;} li{margin:3px 0;}
+  .unter{color:var(--ink-soft);margin:0 0 16px;}
+  .stern{color:var(--gelb);font-size:.9em;letter-spacing:1px;white-space:nowrap;}
+  .kern{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;margin:14px 0;}
+  .fr{font-style:italic;color:var(--ink-soft);font-size:.95em;}
+  .merke{background:var(--gelbbg);border-radius:8px;padding:9px 13px;margin:10px 0;}
+  .merke b:first-child{color:var(--gelb);}
+  .hinweis{background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:9px 13px;margin:10px 0;font-size:.95em;}
+  .quelle{font-size:.8em;color:var(--ink-soft);margin:4px 0 0;}
+  /* Schemata: Kästen mit Pfeilen, von oben nach unten */
+  .schema{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:12px 0;}
+  .schema .titel{font-weight:700;margin:0 0 10px;}
+  .k{border:1.5px solid var(--line);border-radius:8px;padding:7px 10px;background:var(--paper);}
+  .k b{display:block;}
+  .k small{display:block;color:var(--ink-soft);font-size:.86em;line-height:1.4;}
+  .k.wichtig{border-color:var(--accent);background:var(--accent-soft);}
+  .k.rot{border-color:var(--rot);background:var(--rotbg);}
+  .k.gruen{border-color:var(--gruen);background:var(--gruenbg);}
+  .pfeil{text-align:center;color:var(--ink-soft);font-size:1.1rem;line-height:1.4;}
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .zwei > div{min-width:0;}
+  .lesen{font-size:.88em;color:var(--ink-soft);margin:8px 0 0;}
+  .scroll{overflow-x:auto;margin:10px 0;}
+  table{border-collapse:collapse;width:100%;font-size:.92em;line-height:1.4;}
+  th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-soft);}
+  td.z{white-space:nowrap;font-variant-numeric:tabular-nums;}
+  tr.rot td:first-child{background:var(--rotbg);} tr.gelb td:first-child{background:var(--gelbbg);} tr.gruen td:first-child{background:var(--gruenbg);}
+  details{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:8px 0;}
+  summary{cursor:pointer;font-weight:600;}
+  .op{display:inline-block;font-size:.75em;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:0 8px;margin-right:6px;}
+  .spick{columns:2 16rem;column-gap:24px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px 12px 32px;}
+  .spick li{break-inside:avoid;}
+  @media (max-width:520px){.zwei{grid-template-columns:1fr;} h1{font-size:1.7rem;} td.z{white-space:normal;} th,td{padding:5px 6px;}}
 </style>
 
-<header class="hero">
-  <p class="eyebrow">Pflegebedürftigkeit und lebensweltorientierte Pflege · ambulantes Setting</p>
-  <h1>„Ich will aber keine Fremden im Haus“</h1>
-  <p class="sub">Der Sozialdienst, der Beratungsbesuch nach § 37 SGB XI, die Leistungen der
-    Pflegeversicherung — und die Hilfsmittel, mit denen jemand zu Hause bleiben kann.</p>
-  <div class="meta">
-    <span>Sozialdienst · G. Opitz</span>
-    <span>Luisenhospital</span>
-    <span>§ 37 Abs. 3 SGB XI</span>
-    <span>7 Quellen</span>
-    <span>Niveau B1</span>
-    <span>Stand 20.09.2026</span>
+<style>
+  .her{font-style:normal;font-size:.78em;font-weight:700;letter-spacing:.04em;color:var(--gelb);background:var(--gelbbg);border-radius:999px;padding:0 7px;white-space:nowrap;}
+  .def{border:2px solid var(--accent);border-radius:10px;padding:12px 14px;margin:12px 0;background:var(--card);}
+  .def .t{display:block;font-size:.78em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+  .def p:last-child{margin-bottom:0;}
+  dl.woerter{margin:10px 0;display:grid;grid-template-columns:minmax(8rem,auto) 1fr;gap:6px 14px;}
+  dl.woerter dt{font-weight:700;} dl.woerter dd{margin:0;}
+  @media (max-width:520px){dl.woerter{grid-template-columns:1fr;gap:0;} dl.woerter dd{margin-bottom:8px;}}
+</style>
+
+<main lang="de">
+<h1>„Ich will aber keine Fremden im Haus“ — Hilfsmittel und Beratung im ambulanten Setting</h1>
+<p class="unter">CE 08 · ambulantes Setting · neu geschrieben am 04.11.2026 · <b>nur aus deinen 7 Kursdateien</b> — nichts aus dem Internet. Wo ich zwei Folien selbst verbinde, steht <span class="her">Herleitung</span>.</p>
+
+<div class="kern">
+  <p><b>Das Wichtigste in zwei Sätzen:</b> Ein kranker oder alter Mensch soll so lange wie möglich <b>zu Hause</b> leben können („ambulant vor stationär“). Dafür berät die Pflege — im Krankenhaus zusammen mit dem <b>Sozialdienst</b>, zu Hause beim <b>Beratungsbesuch</b> — über <b>Hilfsmittel, Hilfsangebote und Leistungen</b>, und sie hilft beim Antrag und beim sicheren Gebrauch, zum Beispiel beim <b>Rollator</b>.</p>
+  <p class="fr">🇫🇷 Le but : que la personne reste le plus longtemps possible chez elle (« l'ambulatoire avant l'hospitalisation »). Le soignant conseille sur les aides techniques, les services d'aide et les prestations, aide à faire la demande et montre comment utiliser l'aide en sécurité (par ex. le déambulateur).</p>
+</div>
+
+<!-- ============ AUF EINEN BLICK ============ -->
+<h2>Auf einen Blick: der Weg vom Krankenhaus nach Hause</h2>
+<div class="schema">
+  <p class="titel">Ein Fall — das Ehepaar S. — und sechs Stationen</p>
+  <div class="k wichtig"><b>Der Fall: Ehepaar S.</b><small>Herr S., 79, Pflegegrad 3, Herzschwäche und Arthrose · Frau S., 76, Pflegegrad 1, Demenz · Tochter berufstätig</small></div>
+  <div class="pfeil">↓</div>
+  <div class="zwei">
+    <div class="k"><b>Im Krankenhaus: der Sozialdienst</b><small>Entlassmanagement, Reha, Beratung zu Pflegegrad und Hilfsmitteln — die Pflege liefert die Informationen</small></div>
+    <div class="k"><b>Wer entscheidet, wenn jemand es nicht mehr kann?</b><small>Patientenverfügung · Vorsorgevollmacht · Ehegattennotvertretung · rechtliche Betreuung</small></div>
   </div>
-</header>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Zu Hause: der Beratungsbesuch nach § 37 Abs. 3 SGB XI</b><small>in fünf Schritten · auch wenn der Mensch keine Hilfe will</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Hilfsmittel und Hilfsangebote</b><small>nach Lebensbereichen: Mobilität · Orientierung · Sicherheit · Körperpflege · Kommunikation · Unterstützung</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Der Antrag</b><small>Bedarf feststellen → beraten → Antrag → Genehmigung → Lieferung und Einweisung</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k gruen"><b>Sicher anwenden: der Rollator als Medizinprodukt</b><small>Griffhöhe · Bremsen · nie als Rollstuhl · Hygiene · Dokumentation · Meldung an das BfArM</small></div>
+  <p class="lesen">So liest du das: Von oben nach unten ist das ganze Thema. Jeder Kasten ist ein Kapitel unten.</p>
+</div>
 
-<nav class="toc" aria-label="Inhalt">
-  <a href="#fall">Das Ehepaar S.</a>
-  <a href="#sozialdienst">Der Sozialdienst</a>
-  <a href="#recht">Wer darf entscheiden</a>
-  <a href="#pueg">Das PUEG</a>
-  <a href="#beratung">Der Beratungsbesuch</a>
-  <a href="#leistungen">Die Leistungen</a>
-  <a href="#hilfsmittel">Die Hilfsmittel</a>
-  <a href="#zweite">Die zweite Gruppenarbeit</a>
-  <a href="#rollator">Der Rollator</a>
-  <a href="#offen">Was fehlt</a>
-</nav>
+<!-- ============ 1 DEFINITION ============ -->
+<h2>1 · Die Grundbegriffe: Sozialdienst und Entlassmanagement <span class="stern">★★★</span></h2>
+<p>Deine Unterlagen haben <b>keine</b> eigene Definition für „Hilfsmittel“. Sie definieren aber zwei Begriffe aus dem Gesetz, mit denen alles anfängt: den <b>sozialen Dienst</b> und das <b>Entlassmanagement</b>.</p>
+<div class="def">
+  <span class="t">Definition — so steht sie auf deiner Folie</span>
+  <p><b>Sozialer Dienst</b> (KHGG NRW, § 5 Abs. 5): „Das Krankenhaus hat einen sozialen Dienst sicherzustellen und die Patientinnen und Patienten darüber zu informieren. Der soziale Dienst hat die Aufgabe, die Patientinnen und Patienten <b>in sozialen Fragen zu beraten</b> und <b>Hilfen nach den Sozialgesetzbüchern zu vermitteln</b>.“</p>
+  <p><b>Entlassmanagement</b> (SGB V, § 39 Abs. 1a): „Die Krankenhausbehandlung umfasst ein Entlassmanagement zur Unterstützung einer <b>sektorenübergreifenden Versorgung</b> der Versicherten beim <b>Übergang in die Versorgung nach Krankenhausbehandlung</b>.“</p>
+</div>
+<div class="def">
+  <span class="t">Dieselben Definitionen — Wort für Wort einfach</span>
+  <p><b>Sozialdienst:</b> Jedes Krankenhaus in NRW <b>muss</b> einen Sozialdienst haben. Und es <b>muss</b> den Patienten sagen, dass es ihn gibt. Der Sozialdienst hilft bei Fragen zu Geld, Pflege, Wohnen und Recht. Er sagt dem Patienten, welche Hilfen es nach dem Gesetz gibt (Sozialgesetzbücher = die Gesetze über Kranken-, Pflege- und Rentenversicherung und mehr), und er organisiert sie.</p>
+  <p><b>Entlassmanagement:</b> Zur Behandlung im Krankenhaus gehört auch die <b>Planung der Entlassung</b>. Nach dem Krankenhaus geht die Versorgung woanders weiter: zu Hause, in der Reha, im Pflegeheim. „Sektorenübergreifend“ heißt: über die Grenze zwischen Krankenhaus und ambulanter Versorgung hinweg. Der Übergang soll ohne Lücke klappen.</p>
+  <p>Ein Rahmenvertrag sagt dazu: Das Krankenhaus sorgt für ein <b>standardisiertes</b> Entlassmanagement. Viele Berufe arbeiten zusammen (multidisziplinär). Die Regeln stehen <b>schriftlich</b> fest und sind für alle Beteiligten klar (transparent).</p>
+</div>
+<p class="fr">🇫🇷 Chaque hôpital de NRW doit avoir un service social et en informer les patients. Ce service conseille sur les questions sociales et organise les aides prévues par la loi. La gestion de sortie fait partie du traitement hospitalier : la suite des soins (domicile, rééducation, maison de retraite) doit être prête, sans trou.</p>
 
-<main>
+<h3>Die Wörter, die du für alles Weitere brauchst</h3>
+<dl class="woerter">
+  <dt>ambulant / stationär</dt><dd>ambulant = der Mensch lebt zu Hause, die Hilfe kommt zu ihm · stationär = der Mensch wohnt oder liegt in einer Einrichtung (Krankenhaus, Pflegeheim) <span class="her">Herleitung</span></dd>
+  <dt>ambulant vor stationär</dt><dd>ein Grundsatz des Sozialdienstes: erst Hilfe zu Hause, erst danach ein Heim <span class="her">Herleitung</span> — deine Folie nennt nur die drei Wörter</dd>
+  <dt>Konsil</dt><dd>eine Anfrage an den Sozialdienst: „Bitte schauen Sie sich diesen Patienten an.“ (Konsilstellung = die Anfrage stellen)</dd>
+  <dt>Pflegegrad</dt><dd>Stufe, die zeigt, wie viel Hilfe ein Mensch braucht. Im Fall: Herr S. Pflegegrad 3, Frau S. Pflegegrad 1.</dd>
+  <dt>Höherstufung</dt><dd>Antrag auf einen <b>höheren</b> Pflegegrad, wenn der Mensch mehr Hilfe braucht als früher</dd>
+  <dt>MD</dt><dd>Medizinischer Dienst — für ihn ist die Pflegeüberleitung besonders wichtig</dd>
+  <dt>Pflegeüberleitung</dt><dd>der Bericht der Pflege für die Versorgung nach dem Krankenhaus. Die Folie nennt sie beim „wichtigsten Assessment“ (Assessment = Einschätzung).</dd>
+  <dt>Beratungsbesuch</dt><dd>die Pflegefachkraft besucht den Menschen zu Hause und berät ihn (im Fall: nach § 37 Abs. 3 SGB XI)</dd>
+  <dt>Hilfsmittel / Pflegehilfsmittel</dt><dd>Dinge, die den Alltag sicherer und leichter machen (Haltegriff, Duschhocker, Rollator). Bettschutzeinlagen und Pflegeboxen heißen auf einem Blatt ausdrücklich „Pflegehilfsmittel“. Eine genaue Definition steht in deinen Unterlagen nicht.</dd>
+  <dt>Kurzzeit- / Verhinderungspflege</dt><dd>Ersatzpflege, wenn die pflegende Person krank ist oder Urlaub braucht</dd>
+  <dt>Tagespflege</dt><dd>der Mensch verbringt den Tag in einer Einrichtung und schläft zu Hause: soziale Kontakte für ihn, Entlastung für die Familie</dd>
+  <dt>Medizinprodukt</dt><dd>ein Produkt für die Gesundheit, für das besondere Regeln gelten. Ein Rollator ist eins.</dd>
+  <dt>BfArM</dt><dd>die Bundesbehörde, an die alle Vorkommnisse mit Medizinprodukten gemeldet werden</dd>
+</dl>
+<p class="quelle">NEUSozialdienst im Krankenhaus, S. 4–7, 11, 13 · Beratungsgespräch zu Pflegehilfsmitteln, S. 1 · Pflegehilfsmittel und Angebote Ambulantes Setting, S. 1 · Hilfsmittel &amp; Hilfsangebote (eigene Gruppenarbeit), S. 7 · MPG-Schulungseinheit Rollatoren, S. 4, 8</p>
 
-<section id="fall">
-  <h2>Das Ehepaar S. — der Fall, um den sich alles dreht</h2>
-  <p class="lead">Fünf der sieben Dateien beziehen sich auf denselben Fall. <b>Die
-    Original-Fallbeschreibung liegt nicht im Ordner</b> — was hier steht, habe ich aus den
-    Gruppenarbeiten und dem Beratungsgespräch zusammengetragen.</p>
+<!-- ============ 2 FALL ============ -->
+<h2>2 · Der Fall: das Ehepaar S. <span class="stern">★★★</span></h2>
+<p>Fast alle Dateien dieses Kurses drehen sich um <b>dieselbe Familie</b>. Wenn du den Fall kennst, verstehst du jede Empfehlung.</p>
+<div class="scroll"><table>
+  <tr><th>Person</th><th>Was in deinen Unterlagen steht</th></tr>
+  <tr><td><b>Herr Paul S.</b>, 79 Jahre</td><td><b>Pflegegrad 3</b> · <b>Herzinsuffizienz</b> (Herzschwäche) mit <b>Belastungsdyspnoe</b> (Atemnot bei Anstrengung) und <b>Nykturie</b> (er muss nachts oft Wasser lassen) · <b>Cox- und Gonarthrose</b> (Verschleiß im Hüftgelenk und im Kniegelenk) → eingeschränkte Mobilität · hat lange als Arzt gearbeitet, war immer sehr selbstständig · morgens kommt er schwer in Gang, die Gelenke schmerzen · nachts „ständig auf den Beinen“</td></tr>
+  <tr><td><b>Frau Elisabeth S.</b>, 76 Jahre</td><td><b>Pflegegrad 1</b> · <b>fortgeschrittene Demenz</b> mit Orientierungsstörungen (weiß Ort und Zeit nicht sicher) und Gedächtnisstörungen · im Gespräch lächelt und nickt sie, wirkt aber unbeteiligt · ihr Pflegegrad wurde vor fast einem Jahr festgestellt</td></tr>
+  <tr><td><b>Die Tochter</b> (in deiner Gruppenarbeit: Christine)</td><td>berufstätig, arbeitet viel, hilft so gut sie kann · macht sich Sorgen: „Ich kann nicht jeden Tag hier sein.“</td></tr>
+  <tr><td><b>Die Familie</b></td><td>gemeinsamer Haushalt · hohe psychische und körperliche Belastung für Tochter und Ehepaar · Herr S. und Frau S. helfen sich gegenseitig</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> Hier pflegt ein <b>kranker</b> Mann eine Frau mit <b>Demenz</b>. Er ist Patient <b>und</b> pflegender Angehöriger zugleich. Deshalb geht es immer um zwei Menschen — und um die Tochter. <span class="her">Herleitung</span></div>
+<div class="hinweis"><b>Was fehlt:</b> Die <b>Original-Fallbeschreibung</b> der Schule liegt nicht in deinem Ordner. Was oben steht, ist aus dem Beratungsgespräch und den Gruppenarbeiten zusammengetragen. Wie die Wohnung aussieht (Treppen? Bad?), steht nirgends.</div>
+<p class="fr">🇫🇷 M. S. (79 ans, degré 3) a une insuffisance cardiaque (essoufflé à l'effort, urine souvent la nuit) et de l'arthrose de la hanche et du genou. Mme S. (76 ans, degré 1) a une démence avancée. Il s'occupe d'elle alors qu'il est malade lui-même. La fille travaille et s'inquiète.</p>
+<p class="quelle">Beratungsgespräch zu Pflegehilfsmitteln, S. 1–2 · AA Pflegeversicherung &amp; Beratung Familie S., S. 3–6 · Hilfsmittel &amp; Hilfsangebote (eigene Gruppenarbeit), S. 7</p>
 
-  <div class="karten">
-    <div class="karte"><h4>Herr Paul S., 79 Jahre</h4>
-      <p><b>Pflegegrad 3</b> · <b>Herzinsuffizienz</b> mit <b>Belastungsdyspnoe</b> und
-        <b>Nykturie</b> · <b>Cox- und Gonarthrose</b> → <b>eingeschränkte Mobilität</b>.</p>
-      <p>Er hat <b>lange als Arzt gearbeitet</b> und war immer sehr selbstständig.</p></div>
-    <div class="karte"><h4>Frau Elisabeth S., 76 Jahre</h4>
-      <p><b>Pflegegrad 1</b> · <b>fortgeschrittene Demenz</b> mit <b>Orientierungs- und
-        Gedächtnisstörungen</b>.</p>
-      <p>Der Pflegegrad wurde <b>vor fast einem Jahr</b> festgestellt.</p></div>
-    <div class="karte"><h4>Die Tochter Christine</h4>
-      <p><b>Berufstätig</b>, kann nicht jeden Tag da sein. <b>Hohe psychische und physische
-        Belastung</b> für sie und das Ehepaar.</p></div>
-  </div>
+<!-- ============ 3 SOZIALDIENST ============ -->
+<h2>3 · Der Sozialdienst im Krankenhaus <span class="stern">★★</span></h2>
+<p>Die Dozentin, Greta Opitz, ist selbst Gesundheits- und Krankenpflegerin und danach Sozialarbeiterin im Luisenhospital. Ihr Foliensatz heißt „Pflegebedürftigkeit und lebensweltorientierte Pflege“.</p>
 
-  <div class="gefahr">
-    <span class="t">Die Kette, die in diesen drei Karten steckt</span>
-    <p><b>Ursache:</b> Herzinsuffizienz mit <b>Nykturie</b> — er muss nachts mehrfach zur
-      Toilette — plus <b>Belastungsdyspnoe</b> und <b>Arthrose in Hüfte und Knie</b>. →
-      <b>Wirkung:</b> Er steht <b>nachts, im Dunkeln, mit Atemnot und Schmerzen</b> auf und
-      geht eine längere Strecke. → <b>Gefahr:</b> <b>Sturz</b> — und zwar zu der Tageszeit und
-      in dem Zustand, in dem ein Sturz am wahrscheinlichsten ist. → <b>Deshalb:</b> empfiehlt
-      die Pflegefachkraft im Beratungsgespräch genau vier Dinge: <b>durchgehende
-      Nachtbeleuchtung</b>, eine <b>Aufstehhilfe (Bettgalgen)</b>, <b>Bettschutzeinlagen</b> und
-      <b>einen Nachtstuhl, um die Wege zu verkürzen</b>.</p>
-    <p><b>Das ist eine fertige AFB-III-Antwort</b>, und sie steht so in deinen Unterlagen. Merk
-      dir die Reihenfolge: <b>erst die Diagnosen verbinden, dann die Tageszeit, dann die
-      Maßnahme.</b></p>
-    <p class="fr">Nycturie + dyspnée + arthrose + obscurité = chute. Les quatre mesures en
-      découlent directement.</p>
-  </div>
+<h3>Die vier Grundsätze — und warum sie wichtig sind</h3>
+<div class="scroll"><table>
+  <tr><th>Grundsatz</th><th>Was heißt das?</th><th>Warum wichtig für die Pflege?</th></tr>
+  <tr><td><b>zu ungewohnten Lebenssituationen beraten und unterstützen</b></td><td>Nach einer Krankheit ist das Leben oft anders: Der Mensch kann nicht mehr allein einkaufen, Treppen steigen …</td><td>Die Pflege sieht diese Veränderung zuerst. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Selbsthilfefähigkeit fördern</b> — das steht im Vordergrund</td><td>Der Mensch soll seine Probleme <b>so weit wie möglich selbst</b> lösen. Der Sozialdienst macht es nicht für ihn.</td><td>Passt zur Ressourcenorientierung: Man schaut, was der Mensch noch kann. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>neue Perspektiven entwickeln</b></td><td>gemeinsam überlegen: Wie kann es weitergehen?</td><td>Den Grund nennen deine Folien nicht.</td></tr>
+  <tr><td><b>ambulant vor stationär</b></td><td>erst Hilfen für zu Hause, erst danach ein Heim</td><td>Genau darum geht es beim Ehepaar S.: Sie wollen zu Hause bleiben. <span class="her">Herleitung</span></td></tr>
+</table></div>
 
-  <div class="merk">
-    <span class="t">Und der Satz, an dem die ganze Beratung hängt</span>
-    <p><b>Herr S.: „Ich will aber keine Fremden im Haus.“</b></p>
-    <p>Und davor: <b>„Also ich sag direkt: Wir kommen hier eigentlich ganz gut klar. Ich weiß
-      nicht, ob wir diesen ganzen Kram wirklich brauchen.“</b></p>
-    <p>Das ist derselbe Wertekonflikt wie auf deiner Seite <b>Verantwortliches
-      Pflegehandeln</b>: <b>Fürsorge gegen Selbstbestimmung</b> — Phase 2 nach Heffels. Und die
-      Antwort der Pflegekraft macht genau das, was Rogers <b>Akzeptanz</b> nennt:</p>
-    <p><b>„Es geht heute nicht darum, Ihnen etwas aufzuzwingen, sondern Ihnen einen Überblick zu
-      geben, damit Sie selbst eine gute Entscheidung für sich treffen können.“</b></p>
-    <p class="fr">« Je ne veux pas d'étrangers chez moi. » Sollicitude contre autodétermination
-      — le même conflit que dans ta fiche d'éthique.</p>
-  </div>
-</section>
+<h3>Der Weg eines Falls — vom Problem zur Nachversorgung</h3>
+<div class="schema">
+  <p class="titel">Der Konsilweg (auf der Folie ein Kreis)</p>
+  <div class="k"><b>1 · Ein Problem taucht auf</b><small>eine Versorgungsproblematik oder ein Beratungswunsch. Erfassen können ihn: Ärzte, <b>Pflegepersonal</b>, der Sozialdienst selbst (in Absprache mit dem Behandlungsteam), An- und Zugehörige.</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>2 · Konsilstellung</b><small>Beispiel: „Pat. bei akuter Verschlechterung kurzfristig nicht entlassfähig in häusliches Umfeld. Bitte Mitbeurteilung.“</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>3 · Konsilbearbeitung</b><small>Kontakt mit der Person, die das Konsil gestellt hat, mit dem Patienten, dem Behandlungsteam, den An-/Zugehörigen · mit Einrichtungen, Kostenträgern (z. B. Kassen <span class="her">Herleitung</span>), gesetzlichen Betreuern · Bedarfe erkennen, klären und vermitteln, Anträge stellen</small></div><div class="pfeil">↓</div>
+  <div class="k gruen"><b>4 · Entlassung in eine passende Nachversorgung</b><small>Beispiel: „Pat. XY kann am 30.06. in die Kurzzeitpflege verlegt werden. Für die anschließende Versorgung ist bereits ein PD (Pflegedienst) installiert.“</small></div>
+</div>
+<div class="merke"><b>Merke:</b> Auch <b>du als Pflegekraft</b> darfst ein Problem melden. Du musst nicht warten, bis der Arzt es tut.</div>
 
-<section id="sozialdienst">
-  <h2>Der Sozialdienst im Krankenhaus</h2>
-  <p class="lead">Der Foliensatz stammt von <b>Greta Opitz</b> aus dem <b>Luisenhospital</b> —
-    also aus deinem eigenen Haus. Sie ist selbst <b>Gesundheits- und Krankenpflegerin</b>
-    (2016–2019), hat <b>Soziale Arbeit</b> studiert und ist seit 2023 im Sozialdienst.</p>
+<h3>Die fünf Leistungsbereiche des Sozialdienstes</h3>
+<div class="scroll"><table>
+  <tr><th>Bereich</th><th>Was gehört dazu?</th></tr>
+  <tr><td><b>1 · Medizinische Rehabilitation</b> (Reha = Training, damit der Mensch wieder selbstständig wird)</td><td>geriatrische Reha (für alte Menschen) · <b>Anschlussheilbehandlung (AHB)</b>, z. B. in der Unfallchirurgie; bei einer geplanten OP schon vorher organisiert · onkologische Reha (nach Krebs), zusammen mit dem onkologischen Fachpersonal · Reha bei Lungen- und internistischen Krankheiten</td></tr>
+  <tr><td><b>2 · Sozialrechtliche Beratung</b></td><td>Leistungen der Kranken- und Pflegeversicherung, ggf. <b>Antrag auf Pflegegrad oder Höherstufung</b> · Expertenstandard <b>PEOPSA</b> (psychosoziale Erstberatung von Krebspatienten durch Soziale Arbeit im Krankenhaus) · psychoonkologischer Dienst · Anregung und Beratung zu einer <b>gesetzlichen Betreuung</b> · weitere Fragen der Patienten</td></tr>
+  <tr><td><b>3 · Entlassmanagement</b></td><td>Bedarf ermitteln: ambulanter Pflegedienst, Essen auf Rädern, <b>Hausnotruf</b>, Tagespflege, Behandlungspflege (z. B. Medikamente geben) · <b>Beratung zu Hilfsmitteln</b> · Überleitung in Langzeit- oder Kurzzeitpflege · Überleitung in eine Palliativversorgung</td></tr>
+  <tr><td><b>4 · Rechtliche Verfügungen</b></td><td>über Vorsorgevollmacht und Patientenverfügung informieren · Kontakte zu Beratungsstellen und Selbsthilfegruppen vermitteln (→ Kapitel 4)</td></tr>
+  <tr><td><b>5 · Weitere Leistungen</b></td><td>das eigene Krankenhauspersonal beraten · Teamvisite Geriatrie · Fortbildungen im Haus · Patienten mit CF (Mukoviszidose) betreuen · Vernetzung mit Beratungsstellen, Betreuungsbehörden, Rehakliniken, Pflegeeinrichtungen · vorstationäre Planung in der Unfallchirurgie · Zusammenarbeit mit dem Jugendamt</td></tr>
+</table></div>
 
-  <h3>Die vier Grundsätze</h3>
-  <div class="karten">
-    <div class="karte"><h4>Beraten und unterstützen</h4>
-      <p>zu <b>ungewohnten Lebenssituationen</b></p></div>
-    <div class="karte"><h4>Selbsthilfefähigkeit fördern</h4>
-      <p>„Im Vordergrund steht, die <b>Selbsthilfefähigkeit bei der Problembewältigung</b> zu
-        fördern“</p></div>
-    <div class="karte"><h4>Neue Perspektiven entwickeln</h4></div>
-    <div class="karte"><h4>„Ambulant vor stationär“</h4>
-      <p>Der Leitsatz des ganzen Blocks.</p></div>
-  </div>
-
-  <h3>Die gesetzliche Verankerung</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Norm</th><th>Was sie sagt</th></tr></thead>
-      <tbody>
-        <tr><td class="k">§ 39 Abs. 1a SGB V</td>
-          <td>„Die Krankenhausbehandlung umfasst ein <b>Entlassmanagement</b> zur Unterstützung
-            einer <b>sektorenübergreifenden Versorgung</b> der Versicherten beim Übergang in die
-            Versorgung nach Krankenhausbehandlung.“</td></tr>
-        <tr><td class="k">Rahmenvertrag zu § 39 Abs. 1a</td>
-          <td>Das Krankenhaus stellt ein <b>standardisiertes Entlassmanagement in
-            multidisziplinärer Zusammenarbeit</b> sicher und etabliert <b>schriftliche, für alle
-            Beteiligten transparente Standards</b>.</td></tr>
-        <tr><td class="k">§ 5 Abs. 5 KHGG NRW</td>
-          <td>(vom 11.12.2007, zuletzt geändert am <b>15.02.2025</b>) Das Krankenhaus
-            <b>hat einen sozialen Dienst sicherzustellen</b> und die Patientinnen und Patienten
-            <b>darüber zu informieren</b>. Aufgabe: <b>in sozialen Fragen beraten</b> und
-            <b>Hilfen nach den Sozialgesetzbüchern vermitteln</b>.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Was daraus für dich folgt</span>
-    <p>Der Sozialdienst ist <b>kein freiwilliges Angebot des Hauses</b> — er ist in NRW
-      <b>gesetzlich vorgeschrieben</b>, und das Krankenhaus muss die Patienten <b>über ihn
-      informieren</b>. Wenn dich also jemand fragt, ob er „so etwas beantragen darf“: ja, und
-      das Haus ist verpflichtet, ihm den Weg zu zeigen.</p>
-    <p class="fr">Le service social n'est pas une faveur : il est <b>obligatoire par la loi</b>
-      en NRW, et l'hôpital doit en informer les patients.</p>
-  </div>
-
-  <h3>Der Weg eines Falls — drei Schritte</h3>
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div>
-      <h4>Versorgungsproblematik oder Beratungswunsch taucht auf</h4>
-      <p>Erfasst werden kann das durch <b>ärztliches und pflegerisches Personal</b>, den
-        <b>Sozialdienst selbst</b>, in Absprache mit dem Behandlungsteam oder durch
-        <b>An- und Zugehörige</b>.</p></div></div>
-    <div class="stufe"><span class="nr">2</span><div>
-      <h4>Konsilstellung</h4>
-      <p>Beispiel aus der Folie: <b>„Pat. bei akuter Verschlechterung kurzfristig nicht
-        entlassfähig in häusliches Umfeld. Bitte Mitbeurteilung.“</b></p></div></div>
-    <div class="stufe"><span class="nr n2">3</span><div>
-      <h4>Konsilbearbeitung und Entlassung in die Nachversorgung</h4>
-      <p>Kontaktaufnahme mit Konsilsteller, Patient, Behandlungsteam, Zugehörigen ·
-        <b>Einrichtungen, Kostenträgern, gesetzlichen Betreuern</b> · <b>Bedarfe erkennen,
-        klären, vermitteln — Anträge stellen</b>.</p>
-      <p>Beispiel: <b>„Pat. XY kann am 30.06. in die Kurzzeitpflege verlegt werden. Für die
-        anschließende Versorgung ist bereits ein PD installiert.“</b></p></div></div>
-  </div>
-
-  <h3>Was die Pflege dem Sozialdienst liefern muss</h3>
-  <div class="karten">
-    <div class="karte"><h4>Für die medizinische Reha</h4>
-      <p><b>Bedarfsermittlung</b> · Beratungswunsch weiterleiten · <b>relevante Unterlagen
-        ausfüllen</b> · Rückmeldung bei Besonderheiten · <b>Planung der
-        Transportmöglichkeit</b></p></div>
-    <div class="karte"><h4>Fürs Entlassmanagement</h4>
-      <p><b>Pflegerische Anamnese / Stammblatt</b> · Gibt es <b>weitere Informationen über
-        Zugehörige oder bereits bestehende Hilfen</b>? · <b>Einschätzung benötigter
-        Hilfsmittel</b> · Einschätzung von Patient und Kontaktpersonen · Mitteilung von
-        <b>Änderungen der Medikation oder Behandlungspflege</b> · Mitteilung bei
-        <b>Veränderung des Allgemeinzustandes</b></p></div>
-    <div class="karte"><h4>Das wichtigste Assessment</h4>
-      <p>Die <b>Pflegeüberleitung</b> — <b>„vor allem für den MD (Medizinischer Dienst)“</b> ·
-        der <b>Entlassbrief</b> · die <b>Hospiznotwendigkeit</b></p></div>
-  </div>
-
-  <h3>Die fünf Leistungsbereiche</h3>
-  <p><b>Medizinische Rehabilitation</b> (geriatrische Reha · <b>Anschlussheilbehandlung
-    AHB</b> — bei geplanter OP <b>im Vorfeld organisiert</b> · onkologische Reha ·
-    pneumologische und internistische Indikationen) · <b>Sozialrechtliche Beratung</b>
-    (Leistungen der Kranken- und Pflegeversicherung · <b>Antragstellung von Pflegegrad oder
-    Höherstufung</b> · Expertenstandard <b>PEOPSA</b> · psychoonkologischer Dienst ·
-    <b>Anregung und Beratung zu einer gesetzlichen Betreuung</b>) · <b>Entlassmanagement</b>
-    (ambulanter Pflegedienst · <b>Essen auf Rädern</b> · <b>Hausnotruf</b> · Tagespflege ·
-    Behandlungspflege · <b>Beratung zu Hilfsmitteln</b> · Überleitung in Lang- oder
-    Kurzzeitpflege oder <b>Palliativversorgung</b>) · <b>Rechtliche Verfügungen</b> ·
-    <b>weitere Leistungen</b>.</p>
-
-  <div class="warnung">
-    <span class="t">Der Exkurs, der nicht schöngeredet wird</span>
-    <p>Zu <b>wohnungslosen und obdachlosen Menschen</b> sagt der Foliensatz offen:
-      <b>„Nicht jede Person möchte Hilfe durch den Sozialdienst erhalten oder erkennt den
-      Hilfebedarf an.“</b> Und: <b>„Cave: keine leeren Versprechungen machen!“</b></p>
-    <p><b>„In den meisten Fällen kehren diese Menschen nach der Krankenhausentlassung in die
-      Wohnungslosigkeit zurück.“</b> Was geht: Wäschekammern oder Waschmöglichkeiten im Haus ·
-      gemeinsam eine <b>gesetzliche Betreuung</b> einleiten · <b>in der Regel</b> jedoch nur
-      <b>Kontaktdaten zu Beratungs- und niederschwelligen Hilfeangeboten</b> aushändigen.</p>
-    <p>Diese Ehrlichkeit ist selbst Lehrstoff: <b>Nichts versprechen, was das System nicht
-      halten kann</b> — das ist dieselbe Haltung wie „protektiv, aber nicht de-autonomisierend“
-      auf deiner Reha-Seite.</p>
-    <p class="fr">« Pas de promesses vides. » C'est une règle, pas du pessimisme.</p>
-  </div>
-
-  <p>Und zum Schluss die <b>poststationäre Versorgungsproblematik</b>: hauptsächlich verursacht
-    durch den <b>demografischen Wandel</b>, mit Folgen für die Kapazitäten in der
-    <b>ambulanten und stationären Versorgung</b> und bei <b>Reha-Maßnahmen</b>. Ergebnis:
-    <b>Patienten sind poststationär nicht versorgt ⇒ längere Liegezeiten.</b> Das ist die
-    Gegenrichtung zur DRG-Kette auf deiner Reha-Seite — beides zusammen erklärt den Druck im
-    Entlassmanagement.</p>
-</section>
-
-<section id="recht">
-  <h2>Wer darf entscheiden, wenn jemand es nicht mehr kann?</h2>
-  <p class="lead">Vier Instrumente, in der Reihenfolge, in der sie greifen. <b>Das ergänzt
-    direkt den Abschnitt zum Betreuungsrecht auf deiner Ethik-Seite.</b></p>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Instrument</th><th>Was es regelt</th><th>Worauf es ankommt</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Patientenverfügung</td>
-          <td>Für den Fall einer <b>Einwilligungsunfähigkeit in medizinischen
-            Angelegenheiten</b>: <b>vorsorglich</b> festhalten, welche medizinischen Maßnahmen
-            <b>durchgeführt oder unterlassen</b> werden sollen.</td>
-          <td>Von <b>jeder einwilligungsfähigen volljährigen Person</b> zu verfassen und
-            <b>jederzeit formlos widerrufbar</b> · sinnvoll ist eine <b>ärztliche oder
-            fachkundige Beratung</b> · <b>Betreuer und Bevollmächtigte haben dem festgehaltenen
-            Willen Folge zu leisten</b> · liegt keine vor oder passt sie nicht auf die Situation,
-            entscheiden <b>vertretende Person und ärztliches Personal nach dem mutmaßlichen
-            Willen</b>.</td></tr>
-        <tr><td class="k">Vorsorgevollmacht</td>
-          <td>Eine oder mehrere <b>Vertrauenspersonen</b> werden bevollmächtigt, im Bedarfsfall
-            <b>rechtliche Angelegenheiten</b> wahrzunehmen.</td>
-          <td>Ermöglicht ein <b>hohes Maß an Selbstbestimmung</b>, setzt aber <b>volles
-            Vertrauen</b> voraus. <b>Liegt eine wirksame Vollmacht für die erforderlichen
-            Aufgabenkreise vor und ist die Person bereit, ist eine rechtliche Betreuung nicht
-            erforderlich.</b></td></tr>
-        <tr><td class="k">Rechtliche Betreuung</td>
-          <td>Rechtsinstrument für Erwachsene, die <b>aufgrund einer Krankheit oder
-            Behinderung</b> ihre rechtlichen Angelegenheiten nicht mehr selbst wahrnehmen
-            können. Die <b>vom Betreuungsgericht bestellte</b> Person unterstützt <b>in den
-            festgelegten Aufgabenkreisen</b>.</td>
-          <td><b>Neues Betreuungsrecht seit 2023</b> mit <b>noch höherem Anspruch an den Willen
-            der betreuten Person</b>: Sie soll ihr Leben <b>nach ihren Wünschen</b> gestalten
-            können (<b>§ 1821 Abs. 2 BGB</b>). Und: <b>Eine Betreuung soll nur eingerichtet
-            werden, wenn andere Hilfen — vor allem nach dem Sozialrecht — ausgeschöpft
-            sind.</b></td></tr>
-        <tr><td class="k">Ehegattennotvertretungsrecht</td>
-          <td>Wenn eine <b>verheiratete</b> Person z. B. wegen <b>Bewusstlosigkeit oder Koma</b>
-            nicht selbst in <b>Gesundheitsangelegenheiten</b> entscheiden kann.</td>
-          <td><b>Auf den medizinischen Bereich beschränkt</b> · notwendige Behandlungsverträge
-            dürfen geschlossen werden · <b>auf 6 Monate begrenzt</b> · Fristbeginn ist der
-            Moment, in dem das <b>ärztliche Personal schriftlich bescheinigt</b>, dass die
-            Voraussetzungen vorliegen · <b>gilt NICHT</b>, wenn bereits eine Betreuung für
-            Gesundheitsangelegenheiten besteht, eine Vorsorgevollmacht sie umfasst oder eine
-            <b>passende Patientenverfügung</b> vorliegt.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Die Reihenfolge ist die Prüfungsantwort</span>
-    <p><b>Patientenverfügung</b> → <b>Vorsorgevollmacht</b> → <b>Ehegattennotvertretung</b> →
-      <b>rechtliche Betreuung</b>. Jedes Instrument weiter oben <b>verdrängt</b> die weiter
-      unten. Die Betreuung ist ausdrücklich <b>das letzte Mittel</b>.</p>
-    <p><b>Der häufigste Irrtum, den du richtigstellen kannst:</b> Viele glauben, der Ehepartner
-      dürfe automatisch und dauerhaft entscheiden. Er darf es — <b>nur im medizinischen
-      Bereich</b>, <b>nur bei Entscheidungsunfähigkeit</b>, <b>nur nach ärztlicher schriftlicher
-      Bescheinigung</b> und <b>nur sechs Monate lang</b>.</p>
-    <p class="fr">L'ordre est la réponse d'examen : directives → procuration → conjoint (6 mois
-      max) → tutelle, en dernier recours.</p>
-  </div>
-</section>
-
-<section id="pueg">
-  <h2>Das PUEG — Pflegeunterstützungs- und -entlastungsgesetz</h2>
-  <div class="karten">
-    <div class="karte"><h4>Was es will</h4>
-      <p><b>Geänderte Leistungsansprüche</b> für pflegebedürftige Personen und ihre
-        Angehörigen · <b>Stabilisierung der Pflegeversicherung</b> · <b>Entlastung der
-        berufstätigen Pflegepersonen</b>.</p></div>
-    <div class="karte"><h4>Ab dem 1.1.2025</h4>
-      <p>Die Leistungen der Pflegeversicherung <b>steigen um 4,5 %</b> · <b>gemeinsames Budget
-        für Verhinderungs- und Kurzzeitpflege</b>.</p></div>
-    <div class="karte"><h4>Aus dem Vorjahr</h4>
-      <p><b>Pflegeunterstützungsgeld</b> (§ 44a Abs. 3 SGB XI) für Angehörige auf
-        <b>10 Arbeitstage pro Jahr</b> angehoben · Versorgung des Pflegebedürftigen während
-        einer <b>Vorsorge- oder Reha-Maßnahme der Pflegeperson</b> (§ 42a SGB XI).</p></div>
-  </div>
-</section>
-
-<section id="beratung">
-  <h2>Der Beratungsbesuch nach § 37 Abs. 3 SGB XI</h2>
-  <p class="lead">Eine der Dateien ist ein <b>vollständig ausformuliertes Beratungsgespräch</b>
-    im häuslichen Setting — mit <b>Methodenhinweisen in Klammern</b>. Die Datei nennt
-    <b>keinen Verfasser</b>.</p>
-
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div>
-      <h4>Gesprächseröffnung — Beziehungsaufbau und Zielklärung</h4>
-      <p>Vorstellen, danken, offen fragen: <b>„Wie geht es Ihnen beiden im Moment?“</b> Dann das
-        Ziel benennen: <b>„Der heutige Besuch dient dazu, Ihre aktuelle Pflegesituation
-        gemeinsam anzuschauen und zu überlegen, wo wir Sie entlasten und unterstützen
-        können.“</b></p></div></div>
-    <div class="stufe"><span class="nr">2</span><div>
-      <h4>Einschätzung — Ressourcenorientierung</h4>
-      <p><b>„Können Sie mir beschreiben, wie ein typischer Tag für Sie aussieht?“</b> Und zur
-        demenziell erkrankten Ehefrau, wertschätzend: <b>„Frau S., Sie unterstützen Ihren Mann
-        schon sehr lange. Das ist nicht selbstverständlich.“</b></p>
-      <p>Beachte: Die Pflegekraft spricht <b>Frau S. direkt an</b>, obwohl sie „unbeteiligt
-        wirkt“. Das ist <b>„Nichts über uns ohne uns“</b> in der Praxis.</p></div></div>
-    <div class="stufe"><span class="nr n2">3</span><div>
-      <h4>Beratung und Information</h4>
-      <p>Erst die <b>Begründung</b> („Aufgrund Ihrer Arthrose und der nächtlichen Atemnot
-        besteht ein <b>erhöhtes Sturzrisiko</b>“), <b>dann</b> die vier Empfehlungen. Dazu
-        gezielte <b>Bewegungsübungen</b>, <b>feste Abläufe</b> bei Gedächtnisproblemen — und der
-        Hinweis auf den <b>Höherstufungsantrag</b> für die Ehefrau.</p></div></div>
-    <div class="stufe"><span class="nr n2">4</span><div>
-      <h4>Entlastung der Angehörigen</h4>
-      <p><b>Betreuungsdienst</b> oder <b>Tagespflege</b> für die Ehefrau: <b>„Das könnte Ihnen
-        Freiräume geben und Ihre Gesundheit schützen.“</b></p></div></div>
-    <div class="stufe"><span class="nr n2">5</span><div>
-      <h4>Abschluss</h4>
-      <p><b>Zusammenfassen</b>, <b>Informationsmaterial dalassen</b>, den <b>nächsten
-        Beratungsbesuch</b> ankündigen und <b>erreichbar bleiben</b>.</p></div></div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Drei Sätze aus dem zweiten Gespräch, die du dir abschreiben solltest</span>
-    <p>Auf <b>„Ich will aber keine Fremden im Haus“</b>: <b>„Das höre ich oft. Viele Menschen
-      haben diese Sorge. Deshalb kann man die Unterstützung sehr gezielt einsetzen, vielleicht
-      nur ein- oder zweimal pro Woche.“</b></p>
-    <p>Auf <b>„Ich bin noch nie gestürzt“</b>: <b>„Das ist gut. Ziel ist, dass es auch so
-      bleibt — gerade bei Arthrose und Luftnot.“</b></p>
-    <p>Auf <b>„Ich habe doch versprochen, mich um sie zu kümmern“</b>: <b>„Und das tun Sie.
-      Unterstützung anzunehmen heißt nicht, Verantwortung abzugeben, sondern sie zu
-      teilen.“</b></p>
-    <p>Und die deeskalierende Formulierung, wenn Vater und Tochter aneinandergeraten:
-      <b>„Ich glaube, hier treffen gerade zwei Perspektiven aufeinander: Ihr Wunsch nach
-      Selbstständigkeit und die Sorge Ihrer Tochter um Ihre Sicherheit.“</b></p>
-    <p><b>Das sind fertige deutsche Sätze für schwierige Gespräche.</b> Lern sie auswendig —
-      sie funktionieren auch außerhalb dieses Falls.</p>
-    <p class="fr">Des phrases toutes faites pour les conversations difficiles. Apprends-les par
-      cœur : elles marchent ailleurs aussi.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Eine Grenze, die keine der Dateien zieht</span>
-    <p>Beide Gespräche empfehlen einen <b>Höherstufungsantrag</b> für Frau S. — das ist
-      plausibel und wird im Text begründet (<b>„Aufgrund der Veränderungen“</b>, <b>„vor fast
-      einem Jahr festgestellt“</b>).</p>
-    <p><b>Was in keiner Datei steht:</b> wie das Begutachtungsverfahren abläuft, wer es
-      durchführt und nach welchen <b>Modulen</b> der Pflegegrad ermittelt wird. <b>Ich ergänze
-      das nicht</b> — es steht nicht in deinen Unterlagen. Wenn ihr das im Unterricht hattet,
-      schick mir die Folien.</p>
-  </div>
-</section>
-
-<section id="leistungen">
-  <h2>Die Leistungen der Pflegeversicherung — mit einer wichtigen Warnung</h2>
-
-  <div class="gefahr">
-    <span class="t">Lies das, bevor du die Tabelle liest</span>
-    <p>Diese Zahlen stammen aus einer <b>Gruppenarbeit von Mitschülern</b> (Ghannam, Nowacki,
-      Hoppe, Hüls, PF25-28-1, <b>23.01.2026</b>) — <b>nicht</b> aus einem Foliensatz, nicht von
-      der Pflegekasse, nicht aus dem Gesetz.</p>
-    <p><b>Ich habe keine einzige dieser Zahlen geprüft</b>, und ich kann es aus deinen
-      Unterlagen auch nicht. Sie stehen hier, weil sie die Antwort auf den Arbeitsauftrag sind
-      und weil die <b>Struktur</b> stimmt — welche Leistungsarten es überhaupt gibt.</p>
-    <p><b>Benutze sie zum Lernen der Begriffe, nie als Auskunft an einen Patienten.</b>
-      Geldbeträge in der Pflegeversicherung ändern sich — allein das PUEG hat sie zum
-      <b>1.1.2025 um 4,5 % angehoben</b>. Für eine echte Auskunft: <b>Pflegekasse,
-      Pflegestützpunkt oder Sozialdienst</b>.</p>
-    <p class="fr">Ces montants viennent d'un devoir d'élèves, pas d'une source officielle.
-      Apprends les <b>catégories</b>, jamais les chiffres — et ne les cite jamais à un patient.</p>
-  </div>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Leistungsart</th><th>Frau S.<br>Pflegegrad 1</th><th>Herr S.<br>Pflegegrad 3</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Pflegegeld (monatlich)</td><td>—</td><td>599 €</td></tr>
-        <tr><td class="k">Pflegesachleistungen (monatlich)</td><td>—</td><td>1 497 €</td></tr>
-        <tr><td class="k">Entlastungsbetrag (monatlich)</td><td>131 €</td><td>131 €</td></tr>
-        <tr><td class="k">Pflegehilfsmittel zum Verbrauch (monatlich)</td>
-          <td>bis zu 42 €</td><td>bis zu 42 €</td></tr>
-        <tr><td class="k">Hausnotruf (monatlich)</td><td>25,50 €</td><td>25,50 €</td></tr>
-        <tr><td class="k">Verhinderungs- und Kurzzeitpflege (jährlich)</td>
-          <td>—</td><td>3 539 €</td></tr>
-        <tr><td class="k">Tages- und Nachtpflege (monatlich)</td><td>—</td><td>1 357 €</td></tr>
-        <tr><td class="k">Anpassung am Wohnraum (je Maßnahme)</td>
-          <td>4 180 €</td><td>4 180 €</td></tr>
-        <tr><td class="k">DiPA — digitale Pflegeanwendung (monatlich)</td>
-          <td>53 €</td><td>53 €</td></tr>
-        <tr><td class="k">Wohngruppenzuschuss (monatlich)</td><td>224 €</td><td>224 €</td></tr>
-        <tr><td class="k">Vollstationäre Pflege (monatlich)</td><td>—</td><td>1 319 €</td></tr>
-        <tr><td class="k">Technische und sonstige Pflegehilfsmittel</td>
-          <td colspan="2"><b>100 % der Kosten</b> unter bestimmten Voraussetzungen — jedoch
-            <b>Zuzahlung von 10 %, höchstens 25 € je Pflegehilfsmittel</b></td></tr>
-        <tr><td class="k">Rentenversicherungsbeiträge für Pflegepersonen (monatlich)</td>
-          <td>—</td><td>299,53 €</td></tr>
-        <tr><td class="k">Arbeitslosenversicherung für Pflegepersonen (monatlich)</td>
-          <td>—</td><td>48,69 €</td></tr>
-        <tr><td class="k">Zuschüsse zur KV/PV bei Pflegezeit (monatlich)</td>
-          <td colspan="2">KV 213,46 € · PV 44,94 €</td></tr>
-        <tr><td class="k">Pflegeunterstützungsgeld (bis zu 10 Arbeitstage je Jahr)</td>
-          <td colspan="2">bis zu <b>90 %</b> bzw. <b>100 %</b> des ausgefallenen
-            Nettoarbeitsentgelts</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Was an dieser Tabelle wirklich lernenswert ist</span>
-    <p><b>Der Unterschied zwischen Pflegegrad 1 und 3.</b> Bei <b>Pflegegrad 1</b> stehen in
-      fast jeder Zeile Striche — kein Pflegegeld, keine Sachleistungen, keine
-      Verhinderungspflege. Was bleibt: <b>Entlastungsbetrag, Pflegehilfsmittel zum Verbrauch,
-      Hausnotruf, Wohnraumanpassung</b>.</p>
-    <p><b>Genau deshalb</b> ist der Höherstufungsantrag für Frau S. in beiden Gesprächen ein
-      Thema — und genau deshalb sagt die Pflegekraft, die Familie wäre dann
-      <b>„finanziell deutlich flexibler“</b>.</p>
-    <p>Und der zweite Unterschied, der oft verwechselt wird: <b>Pflegegeld</b> bekommt, wer sich
-      <b>privat pflegen lässt</b> (Angehörige). <b>Pflegesachleistungen</b> sind die Leistungen
-      eines <b>ambulanten Pflegedienstes</b>. <b>Das ist meine Erläuterung</b> — die Tabelle
-      stellt beide nur nebeneinander.</p>
-    <p class="fr">Retiens la <b>structure</b> : au grade 1, presque tout est barré. C'est pour
-      ça qu'on demande une révision du grade.</p>
-  </div>
-</section>
-
-<section id="hilfsmittel">
-  <h2>Die Hilfsmittel — deine eigene Gruppenarbeit</h2>
-  <p class="lead">Eine der Dateien trägt deinen Namen: <b>Farnaz, Zika, Sokna, El Inani</b>. Sie
-    ist nach <b>sechs Lebensbereichen</b> geordnet — und diese Gliederung ist gut gewählt.</p>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Bereich</th><th>Hilfsmittel</th><th>Nutzen</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Mobilität &amp; Sturzprävention</td>
-          <td><b>Rutschfeste Schuhe</b> mit rutschhemmender Sohle · <b>Haltegriffe im Bad</b>
-            als sichere Haltepunkte</td>
-          <td><b>Sturzrisiko reduzieren</b> · Selbstständigkeit</td></tr>
-        <tr><td class="k">Orientierung im Alltag</td>
-          <td><b>Uhr mit Datum</b> · <b>Kalender</b> für Tages- und Wochenplanung ·
-            <b>Erinnerungsbücher</b> für wichtige Erinnerungen und persönliche Daten</td>
-          <td>bessere <b>räumliche und zeitliche Orientierung</b> · <b>Reduzierung von Angst
-            und Unsicherheit</b> · Unterstützung der Gedächtnisfunktion</td></tr>
-        <tr><td class="k">Sicherheit zu Hause</td>
-          <td><b>Hausnotrufsystem</b> (24/7) · <b>Herdsicherungen</b> ·
-            <b>Anti-Rutsch-Matten</b></td>
-          <td>Unfälle und Stürze verhindern · <b>Nacht- und Alltagssicherheit</b> ·
-            sorgenfreier Alltag <b>für Patienten und Angehörige gleichermaßen</b></td></tr>
-        <tr><td class="k">Körperpflege &amp; Selbstständigkeit</td>
-          <td><b>Greifzange</b> · <b>Duschhocker</b></td>
-          <td>Selbstständigkeit beim Duschen und Greifen · <b>Entlastung für Herrn S.</b></td></tr>
-        <tr><td class="k">Kommunikation &amp; Erinnerung</td>
-          <td><b>Telefon mit großen Tasten</b> · <b>Erinnerungswecker</b> (visuell und
-            akustisch)</td>
-          <td>Kontakt zur Tochter erleichtern · Termine und <b>Medikamenteneinnahme</b> nicht
-            vergessen · <b>soziale Kontakte, um Isolation zu vermeiden</b></td></tr>
-        <tr><td class="k">Professionelle Angebote</td>
-          <td><b>Ambulante Pflege</b> · <b>Angehörigenschulungen</b> (Tochter Christine lernt
-            den Umgang mit Demenz) · <b>Tagespflege</b> · <b>Pflegestützpunkt</b> ·
-            <b>Kurzzeitpflege</b> · <b>Verhinderungspflege</b> · <b>Selbsthilfegruppen</b></td>
-          <td>Entlastung der Familie · <b>soziale Kontakte</b> · Unterstützung bei Pflegegrad
-            und Antragstellung · <b>Austausch und emotionale Unterstützung</b></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Was an eurer Arbeit richtig gut ist</span>
-    <p><b>Ihr habt zu jedem Hilfsmittel einen Nutzen geschrieben</b> — nicht nur eine Liste.
-      Genau das verlangt der Operator <b>Ableiten</b>: die Maßnahme <b>plus</b> das <i>weil</i>,
-      das sie an den Fall bindet.</p>
-    <p>Und zwei Sätze treffen den Fall wirklich: <b>„Erinnerungen können auch für soziale
-      Kontakte stehen, um Isolation zu vermeiden“</b> und <b>„sorgenfreier Alltag für Patienten
-      und Angehörige gleichermaßen“</b>. Beide denken an die <b>Tochter</b> mit — und die ist
-      im Fall die dritte betroffene Person.</p>
-    <p class="fr">Vous avez écrit un <b>bénéfice</b> pour chaque aide, pas juste une liste.
-      C'est exactement l'opérateur <i>Ableiten</i>.</p>
-  </div>
-
-  <h3>Der Weg zum Hilfsmittel — fünf Schritte</h3>
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div><h4>Bedarf feststellen</h4>
-      <p>Erfassen, welche Hilfsmittel gebraucht werden.</p></div></div>
-    <div class="stufe"><span class="nr">2</span><div><h4>Beratung</h4>
-      <p>beim <b>Pflegestützpunkt</b>.</p></div></div>
-    <div class="stufe"><span class="nr n2">3</span><div><h4>Antrag stellen</h4>
-      <p>Formulare ausfüllen und einreichen.</p></div></div>
-    <div class="stufe"><span class="nr n2">4</span><div><h4>Genehmigung</h4>
-      <p>Warten auf die Entscheidung.</p></div></div>
-    <div class="stufe"><span class="nr n2">5</span><div><h4>Lieferung &amp; Einweisung</h4>
-      <p>Gerät erhalten <b>und in die Bedienung eingewiesen werden</b>.</p></div></div>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Drei Stellen, die ich in eurer Arbeit nachfragen würde</span>
-    <p><b>1. „Die gesamte Prozedur dauert in der Regel 4–6 Wochen.“</b> Diese Zahl steht in
-      keiner anderen Datei und hat keine Quelle. <b>Ich kann sie nicht bestätigen</b> — nenn sie
-      nur mit dem Zusatz, woher sie kommt, oder lass sie weg.</p>
-    <p><b>2. „Warten auf Approvierung“.</b> <b>Approvierung ist kein deutsches Wort</b> — es ist
-      vom englischen <i>approval</i> gebildet. Richtig ist <b>die Genehmigung</b> (oder
-      <i>die Bewilligung</i>). Auf der Seite oben steht deshalb „Genehmigung“.</p>
-    <p><b>3. Kontaktdaten und Öffnungszeiten am Ende</b> (E-Mail, Telefonnummer) sind offenbar
-      <b>erfunden</b> bzw. Platzhalter. In einer echten Beratung dürfen dort nur <b>die
-      Adressen des zuständigen Pflegestützpunkts</b> stehen.</p>
-    <p>Auch die Überschriften <i>„Einführung in assistive Devices &amp; Support Services“</i>
-      sind <b>englisch</b> — in einer deutschen Prüfungsleistung wäre
-      <b>„Hilfsmittel und Unterstützungsangebote“</b> sicherer.</p>
-    <p class="fr">« Approvierung » n'existe pas en allemand — c'est <b>Genehmigung</b>. Et la
-      durée de 4–6 semaines n'a pas de source.</p>
-  </div>
-</section>
-
-<section id="zweite">
-  <h2>Die zweite Gruppenarbeit — seit dem 20.09.2026 lesbar</h2>
-
-  <div class="merk">
-    <span class="t">Korrektur: „Inhalt unbekannt“ stimmt nicht mehr</span>
-    <p>Unten im Abschnitt <a href="#offen">Was fehlt</a> stand: <i>„Die Datei
-      <b>Pflegehilfsmittel und Angebote Ambulantes Setting.pdf</b> lässt sich nicht lesen …
-      Was darin steht, weiß ich nicht.“</i></p>
-    <p><b>Das war eine Fehlannahme, keine Tatsache.</b> Die Datei hat wirklich keine Textebene —
-      sie ist <b>eine einzige Seite als Bild</b>, 2 MB groß. Über das Seitenbild ist sie
-      <b>vollständig und mühelos lesbar</b>. Es ist heute die dritte Datei in diesem
-      Repository, bei der „kein Text“ mit „nicht lesbar“ verwechselt wurde.</p>
-    <p class="fr">« Contenu inconnu » était une supposition, pas un fait. Le fichier est une
-      page unique, en image, et parfaitement lisible.</p>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Und das Erste, was dabei herauskommt: Es ist wieder eine Schülerarbeit</span>
-    <p>Die Datei trägt im PDF den Verfassernamen <b>Jayden Wiese</b> — einen Namen aus deinem
-      Kurs. <b>Es ist also die Arbeit einer anderen Gruppe zum selben Fall</b>, kein Material
-      deiner Dozentin.</p>
-    <p><b>Damit gilt für sie dieselbe Regel wie für die Leistungstabelle weiter oben:</b> Die
-      <b>Kategorien</b> kannst du lernen, die <b>Einzelangaben nicht ungeprüft übernehmen</b> —
-      und in einer Beratung nennst du nichts davon als gesichert.</p>
-    <p>Sie steht hier trotzdem, aus einem Grund: <b>Der Fall Ehepaar S. hat jetzt eine dritte
-      Quelle</b>, und die Original-Fallbeschreibung fehlt weiterhin. Je mehr Blätter über dieselben
-      zwei Menschen sprechen, desto sichtbarer wird, was im Original gestanden haben muss —
-      und wo sich die Gruppen widersprechen.</p>
-  </div>
-
-  <h3>Was auf dem Blatt steht</h3>
-  <p>Überschrift: <b>„Hilfsmittel im ambulanten Setting bei Pflegegrad 3 &amp; 1“</b>, darunter
-    <b>„Folgende Hilfsmittel würden auf Frau S. und Herrn S. passen“</b>. Drei Listen:</p>
-
-  <div class="karten">
-    <div class="karte">
-      <h4>Hilfsmittel</h4>
-      <ul>
-        <li><b>Hausnotrufsystem</b></li>
-        <li><b>Hebepflegerahmen</b> oder <b>Bett-in-Bett-System</b></li>
-        <li><b>Pflegebettzubehör</b> (Galgen, Tisch, <b>Bettleiter</b>)</li>
-        <li><b>Treppenlift</b></li>
-        <li><b>Anpassung des Wohnraums</b>, insbesondere <b>Badezimmer und Schlafzimmer</b></li>
-        <li><b>Haltegriffe</b></li>
-        <li><b>Bettschutzeinlagen</b> (Pflegehilfsmittel)</li>
-        <li><b>Duschhilfen</b></li>
-        <li><b>Pflegeboxen</b> (Pflegehilfsmittel)</li>
-        <li><b>Toilettenstuhl</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Hilfsmittelangebote</h4>
-      <ul>
-        <li><b>Gedächtnisangebote</b></li>
-        <li><b>Alltagsbegleitung</b></li>
-        <li><b>Haushaltshilfe</b></li>
-        <li><b>Ambulanter Pflegedienst</b> für <b>Grund- und Behandlungspflege</b></li>
-        <li><b>Einkaufsbegleitung</b></li>
-        <li><b>Verhinderungs- und Kurzzeitpflege</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Wie beantragt man die Hilfsmittel?</h4>
-      <ol>
-        <li><b>Voraussetzungen prüfen:</b> „sie brauchen einen <b>anerkannten
-          Pflegegrad</b>“</li>
-        <li><b>Bedarf ermitteln:</b> „Lassen Sie sich von Ihrem <b>Arzt oder Pflegedienst</b>
-          die benötigten Hilfsmittel <b>empfehlen</b>“</li>
-        <li>über den <b>Entlastungsbetrag</b></li>
-        <li>„Es ist möglich <b>direkt über den Händler</b>“</li>
-        <li>„oder einen <b>formlosen Antrag</b>“</li>
-        <li><b>„Entscheidung liegt bei der Pflegekasse“</b></li>
-        <li>„Leistungen werden <b>nach Prüfung</b> erhalten“</li>
-      </ol>
-    </div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Zwei Wege zum selben Hilfsmittel — und keiner davon ist von der Dozentin</span>
-    <p>Vergleich mit <a href="#hilfsmittel">eurem eigenen Weg in fünf Schritten</a>:</p>
-    <div class="scroll">
-      <table>
-        <thead><tr><th>Eure Gruppe (Farnaz, Zika, Sokna, El Inani)</th>
-          <th>Die Gruppe Wiese</th></tr></thead>
-        <tbody>
-          <tr><td>— <i>kommt nicht vor</i> —</td>
-            <td><b>Voraussetzungen prüfen: anerkannter Pflegegrad</b></td></tr>
-          <tr><td>1 · Bedarf feststellen</td>
-            <td>Bedarf ermitteln — <b>durch Arzt oder Pflegedienst</b></td></tr>
-          <tr><td>2 · Beratung beim <b>Pflegestützpunkt</b></td>
-            <td>— <i>kommt nicht vor</i> —</td></tr>
-          <tr><td>3 · Antrag stellen (Formulare)</td>
-            <td><b>drei</b> Wege: Entlastungsbetrag · direkt über den Händler ·
-              <b>formloser Antrag</b></td></tr>
-          <tr><td>4 · Genehmigung</td>
-            <td>Entscheidung liegt bei der <b>Pflegekasse</b></td></tr>
-          <tr><td>5 · Lieferung <b>und Einweisung</b></td>
-            <td>Leistungen nach Prüfung — <b>keine Einweisung genannt</b></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p><b>Worin beide übereinstimmen:</b> Zuerst der <b>Bedarf</b>, zuletzt entscheidet die
-      <b>Kasse</b>. Das ist die Struktur, die du dir merkst.</p>
-    <p><b>Was jede der beiden zusätzlich hat</b> — und die andere nicht: bei euch die
-      <b>Beratung</b> und die <b>Einweisung in das Gerät</b>, bei der anderen Gruppe der
-      <b>Pflegegrad als Voraussetzung</b> und der <b>formlose Antrag</b>.
-      <b>Zusammengenommen ergibt das einen vollständigeren Weg als jede einzeln</b> — und das
-      ist meine Zusammenführung, nicht die einer der beiden Arbeiten.</p>
-    <p class="fr">Deux chemins pour la même chose, aucun des deux venant de la formatrice. Ce
-      qu'ils ont en commun : le <b>besoin</b> d'abord, la <b>caisse</b> à la fin.</p>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Der Punkt, der für diesen Fall am meisten zählt</span>
-    <p><b>„Voraussetzungen prüfen: sie brauchen einen anerkannten Pflegegrad.“</b> Dieser eine
-      Satz fehlt in eurer Fassung — und er ist bei diesem Ehepaar der entscheidende.</p>
-    <p>Weiter oben auf dieser Seite steht der <a href="#leistungen">Unterschied zwischen
-      Pflegegrad 1 und 3</a>: Bei <b>Pflegegrad 1</b> gibt es <b>kein Pflegegeld, keine
-      Pflegesachleistungen, keine Verhinderungspflege</b> — es bleiben Entlastungsbetrag,
-      Pflegehilfsmittel zum Verbrauch, Hausnotruf und die Wohnraumanpassung.</p>
-    <p><b>Die Folge, und sie steht auf keinem der beiden Blätter:</b> Dieselbe Liste von
-      Hilfsmitteln trifft auf beide Eheleute <b>nicht gleich</b> zu. Wer sie als eine Liste für
-      „Frau S. und Herrn S.“ aufschreibt, überspringt genau die Prüfung, die er selbst als
-      Schritt 1 nennt.</p>
-    <p class="fr">La même liste ne vaut pas pour les deux : le degré de dépendance décide. Le
-      document se contredit lui-même sur ce point.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Zwei Dinge, die ich an diesem Blatt nachfragen würde</span>
-    <p><b>1. Treppenlift und Wohnraumanpassung sind keine Hilfsmittel im engeren Sinn.</b> Sie
-      stehen hier mitten in der Hilfsmittelliste, laufen in der
-      <a href="#leistungen">Leistungstabelle</a> aber als eigene Zeile
-      <i>„Anpassung am Wohnraum (je Maßnahme)“</i> — also als <b>wohnumfeldverbessernde
-      Maßnahme</b> mit eigenem Antrag und eigenem Höchstbetrag. Das ist keine Kleinigkeit: Es
-      sind zwei verschiedene Anträge.</p>
-    <p><b>2. Welcher Pflegegrad gehört zu wem?</b> Die Überschrift nennt
-      <b>„Pflegegrad 3 &amp; 1“</b> und darunter <b>„Frau S. und Herrn S.“</b> — in dieser
-      Reihenfolge gelesen wäre <b>Frau S. Pflegegrad 3</b>. <b>Auf dieser Seite steht es
-      umgekehrt</b>: Herr Paul S. hat Pflegegrad 3, Frau Elisabeth S. Pflegegrad 1.</p>
-    <p><b>Ich ändere nichts.</b> Die Zuordnung dieser Seite stammt aus <b>zwei</b> anderen
-      Dateien (der Leistungstabelle und dem Beratungsgespräch), die sie <b>ausdrücklich</b>
-      nennen; das Blatt hier sagt <b>nirgends</b>, wer welchen Grad hat — die Reihenfolge der
-      Wörter ist kein Beleg. <b>Aber merk dir die Frage</b>, und stell sie, wenn die
-      Original-Fallbeschreibung auftaucht.</p>
-    <p class="fr">L'ordre des mots dans un titre n'est pas une preuve. Je ne corrige rien — je
-      note la question.</p>
-  </div>
-</section>
-
-<section id="rollator">
-  <h2>Der Rollator — ein Hilfsmittel ist ein Medizinprodukt</h2>
-  <p class="lead">Eine eigene <b>MPG-Schulungseinheit</b>, Dauer <b>ca. 10 Minuten</b>. Sie
-    macht aus dem Alltagsgegenstand eine Sache mit Regeln.</p>
-
-  <div class="merk">
-    <span class="t">Rollator oder Delta-Gehrad — der Unterschied zählt</span>
-    <p><b>Rollatoren sind vierrädrige Gehhilfen.</b> <b>Dreirädrige</b> heißen
-      <b>Delta-Gehräder</b>.</p>
-    <p>Und der Satz dazu: Delta-Gehräder haben <b>aufgrund ihrer geringeren Standfläche
-      wesentlich weniger Unterstützungsmöglichkeiten</b> und <b>stellen keinen Ersatz für
-      Rollatoren dar</b>.</p>
-    <p class="fr">Quatre roues = Rollator. Trois roues = Delta-Gehrad — <b>et ce n'est pas un
-      remplacement</b>.</p>
-  </div>
-
-  <h3>Die fünf Sicherheitsregeln</h3>
-  <div class="gefahr">
-    <span class="t">Zwei davon sind die eigentlichen Gefahren</span>
-    <p><b>„Der Rollator darf nur bei angezogenen Bremsen als Sitzhilfe genutzt werden.“</b></p>
-    <p><b>„Nutzen Sie den Rollator niemals als Rollstuhlersatz!“</b> — und ebenso nie als
-      <b>Transportwagen</b>.</p>
-    <p>Und die Begründung für die dritte Regel, die man sonst für eine Kleinigkeit hält:
-      <b>Eine falsche Einstellung der Griffhöhe führt dazu, dass der Patient entweder den
-      sicheren Standbereich zwischen den Rädern verlässt oder sich in Gefahrensituationen nicht
-      effektiv aufstützen kann.</b></p>
-    <p><b>Ursache:</b> Griffe zu hoch oder zu tief. → <b>Wirkung:</b> Der Patient geht
-      <b>hinter</b> statt <b>zwischen</b> den Rädern. → <b>Gefahr:</b> Er kann sich beim
-      Stolpern nicht abstützen — der Rollator rollt weg. → <b>Deshalb:</b> <b>„Prüfen Sie stets
-      die korrekte Einstellung der Griffhöhe.“</b></p>
-    <p class="fr">La hauteur des poignées n'est pas un détail de confort : elle décide si la
-      personne marche <b>entre</b> les roues ou derrière.</p>
-  </div>
-
-  <p>Dazu die <b>Hygiene</b>: Rollatoren, die von <b>mehreren Patienten</b> benutzt werden,
-    bei <b>jedem Patientenwechsel reinigen und desinfizieren</b> — <b>insbesondere die
-    Handgriffe</b>, mit einer <b>Wischdesinfektion</b>. Und vor jeder Benutzung:
-    <b>auf Schäden überprüfen</b>, regelmäßig <b>Räder und Bremsen</b> kontrollieren, und immer
-    die <b>Gebrauchsanweisung und Kennzeichnung</b> beachten.</p>
-
-  <h3>Die Dokumentationsregeln — das, was man nicht vermutet</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Regel</th><th>Was gilt</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Bestandsverzeichnis und Medizinproduktebuch</td>
-          <td>Rollatoren sind dort <b>nicht</b> zu führen. <b>Aber:</b> <b>elektrisch
-            unterstützte</b> Rollatoren <b>wären im Bestandsverzeichnis zu führen</b>.</td></tr>
-        <tr><td class="k">Einweisung der Anwender</td>
-          <td>wird <b>in deren Personalakte</b> dokumentiert.</td></tr>
-        <tr><td class="k">Einweisung des Patienten</td>
-          <td><b>ist ebenfalls zu dokumentieren</b> — und <b>in der Patientenakte ist das neue
-            Hilfsmittel zu vermerken</b>.</td></tr>
-        <tr><td class="k">Vorkommnisse</td>
-          <td><b>Alle Vorkommnisse UND Beinahe-Vorkommnisse</b> werden <b>immer an das
-            BfArM</b> gemeldet.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Die drei Wiederholungsfragen der Schulung — unbeantwortet</span>
-    <p><b>1.</b> Können Rollatoren als Sitzhilfe genutzt werden? ·
-      <b>2.</b> Was müssen Sie nach dem Zusammenfalten bzw. -klappen immer kontrollieren? ·
-      <b>3.</b> Müssen Sie in Rollatoren eingewiesen werden?</p>
-    <p><b>Frage 1 und 3 beantwortet der Text selbst</b> — such die Stellen. <b>Frage 2 nicht:</b>
-      Was nach dem Zusammenklappen zu kontrollieren ist, steht in der Schulung nirgends
-      ausdrücklich. <b>Ich rate nicht.</b></p>
-    <p class="fr">Les questions 1 et 3 ont leur réponse dans le texte. La 2 non — je ne devine
-      pas.</p>
-  </div>
-
-  <div class="paare">
-    <div class="paar"><span class="de">das Hilfsmittel, -</span>
-      <span class="frx">l'aide technique, le dispositif d'assistance</span></div>
-    <div class="paar"><span class="de">der Pflegegrad, -e</span>
-      <span class="frx">le degré de dépendance reconnu</span></div>
-    <div class="paar"><span class="de">die Höherstufung, -en</span>
-      <span class="frx">le reclassement à un degré supérieur</span></div>
-    <div class="paar"><span class="de">das Pflegegeld (nur Singular)</span>
-      <span class="frx">l'allocation versée quand la famille assure les soins</span></div>
-    <div class="paar"><span class="de">die Pflegesachleistung, -en</span>
-      <span class="frx">la prestation en nature (service de soins à domicile)</span></div>
-    <div class="paar"><span class="de">die Verhinderungspflege (nur Singular)</span>
-      <span class="frx">le relais quand l'aidant est empêché</span></div>
-    <div class="paar"><span class="de">die Kurzzeitpflege (nur Singular)</span>
-      <span class="frx">l'hébergement temporaire</span></div>
-    <div class="paar"><span class="de">die Tagespflege (nur Singular)</span>
-      <span class="frx">l'accueil de jour</span></div>
-    <div class="paar"><span class="de">der Entlastungsbetrag, ¨-e</span>
-      <span class="frx">le forfait de soulagement</span></div>
-    <div class="paar"><span class="de">der Hausnotruf (nur Singular)</span>
-      <span class="frx">la téléalarme</span></div>
-    <div class="paar"><span class="de">das Entlassmanagement (nur Singular)</span>
-      <span class="frx">la gestion de la sortie d'hôpital</span></div>
-    <div class="paar"><span class="de">die Pflegeüberleitung, -en</span>
-      <span class="frx">la transmission entre structures de soins</span></div>
-    <div class="paar"><span class="de">die Patientenverfügung, -en</span>
-      <span class="frx">les directives anticipées</span></div>
-    <div class="paar"><span class="de">die Vorsorgevollmacht, ¨-e</span>
-      <span class="frx">la procuration de protection future</span></div>
-    <div class="paar"><span class="de">der Bettgalgen, -</span>
-      <span class="frx">la potence de lit</span></div>
-    <div class="paar"><span class="de">der Nachtstuhl, ¨-e</span>
-      <span class="frx">la chaise percée</span></div>
-    <div class="paar"><span class="de">die Nykturie (nur Singular)</span>
-      <span class="frx">la nycturie (besoin d'uriner la nuit)</span></div>
-  </div>
-</section>
-
-<section id="offen">
-  <h2>Was fehlt</h2>
-
-  <div class="warnung">
-    <span class="t">Fünf offene Punkte</span>
-    <p><b>1. Die Original-Fallbeschreibung des Ehepaars S. liegt nicht im Ordner.</b> Alles, was
-      oben über die beiden steht, habe ich aus den Gruppenarbeiten und dem Beratungsgespräch
-      zusammengetragen — es kann also unvollständig sein.</p>
-    <p><b>2. Keine Lücke mehr — die Datei „Pflegehilfsmittel und Angebote Ambulantes
-      Setting.pdf“.</b> Hier stand, sie lasse sich <b>nicht lesen</b> und ihr Inhalt sei
-      <b>unbekannt</b>. <b>Beides stimmte nicht.</b> Sie hat keine Textebene, ist aber als
-      Seitenbild vollständig lesbar — eine einzelne Seite, <b>Gruppenarbeit von Jayden
-      Wiese</b>. Sie steht jetzt im Abschnitt
-      <a href="#zweite">Die zweite Gruppenarbeit</a>, als <b>Schülerarbeit
-      gekennzeichnet</b>. <b>Du musst mir nichts mehr schicken.</b></p>
-    <p><b>3. Das Begutachtungsverfahren zum Pflegegrad</b> — Module, Ablauf, wer begutachtet —
-      steht in <b>keiner</b> der sieben Dateien, obwohl zweimal eine Höherstufung empfohlen
-      wird.</p>
-    <p><b>4. Die drei Wiederholungsfragen</b> der Rollator-Schulung sind unbeantwortet, und
-      Frage 2 lässt sich aus dem Text nicht beantworten.</p>
-    <p><b>5. Die Geldbeträge</b> sind ungeprüfte Angaben aus einer Schülerarbeit — siehe die
-      Warnung oben.</p>
-    <p class="fr">Cinq trous nommés. Aucun rempli de mémoire.</p>
-  </div>
-
-  <div class="merk">
-    <span class="t">Die Brücken zu deinen anderen Seiten</span>
-    <p><b>Verantwortliches Pflegehandeln:</b> Die vier <b>Rechte</b> des Betreuers stehen dort —
-      seine <b>Befugnisse</b> und die Rangfolge der Instrumente stehen <b>hier</b>. Zusammen
-      ergibt es ein vollständiges Bild.</p>
-    <p><b>Rehabilitation:</b> Dort die DRG-Kette (kürzere Liegezeiten), hier die Gegenrichtung
-      (<b>fehlende Nachsorgeplätze ⇒ längere Liegezeiten</b>). Beides drückt auf dasselbe
-      Entlassmanagement.</p>
-    <p><b>Kommunikation:</b> Die Sätze aus dem Beratungsgespräch sind <b>angewandter Rogers</b> —
-      Akzeptanz, Kongruenz, Empathie, dazu Paraphrasieren und Spiegeln.</p>
-    <p><b>Menschen mit Behinderung:</b> Derselbe Gedanke — <b>Teilhabe</b>, und die Barriere
-      liegt in der Wohnung, nicht im Menschen.</p>
-    <p><b>Sturzprophylaxe (Lern-Hub):</b> Die vier Nachtmaßnahmen sind eine fertige
-      Sturzprophylaxe für einen konkreten Fall.</p>
-  </div>
-</section>
-
-<details class="quelle">
-  <summary>Die sieben Quellen — jede einzeln genannt, mit ihrem Status</summary>
-  <div class="inh">
-    <ul>
-      <li><b>NEUSozialdienst im Krankenhaus.pdf</b> — Foliensatz <b>Greta Opitz</b>,
-        Luisenhospital, <i>Pflegebedürftigkeit und lebensweltorientierte Pflege</i>.
-        <b>Dozentenmaterial</b> und die verlässlichste Quelle dieses Blocks: Rechtsgrundlagen,
-        Konsilweg, Leistungen, rechtliche Verfügungen, PUEG.</li>
-      <li><b>Beratungsgespraech zu Pflegehilfsmitteln.pdf</b> — ein vollständig ausformuliertes
-        Beratungsgespräch nach <b>§ 37 Abs. 3 SGB XI</b> mit Methodenhinweisen.
-        <b>Die Datei nennt keinen Verfasser</b>, ist aber didaktisch aufgebaut.</li>
-      <li><b>MPG-Schulungseinheit-Anwendung-von-Rollatoren.pdf</b> — eine
-        <b>Medizinprodukte-Schulung</b>, ca. 10 Minuten, mit drei unbeantworteten
-        Wiederholungsfragen.</li>
-      <li><b>Arbeitauftraghilfsmittel (Farnaz, Zika, Sokna, El Inani).pdf</b> —
-        <b>deine eigene Gruppenarbeit</b> zu den Hilfsmitteln, nach sechs Lebensbereichen
-        geordnet.</li>
-      <li><b>AA Pflegeversicherung &amp; Beratung Familie S. (Ghannam, Nowacki, Hüls,
-        Hoppe).pdf</b> — <b>Gruppenarbeit von Mitschülern</b>, PF25-28-1, 23.01.2026: die
-        Leistungstabelle und ein zweites, ausformuliertes Beratungsgespräch.
-        <b>Kein offizielles Material — alle Geldbeträge sind ungeprüft.</b></li>
-      <li><b>Pflegehilsmittel und Angebote Ambulantes Setting.pdf</b> — eine Seite,
-        <b>Gruppenarbeit von Jayden Wiese</b> zum selben Fall. Keine Textebene, <b>am
-        20.09.2026 über das Seitenbild gelesen</b> — Grundlage des Abschnitts
-        <a href="#zweite">Die zweite Gruppenarbeit</a>.
-        <b>Schülerarbeit, kein offizielles Material.</b></li>
-      <li><b>Fallbeispiel Frau Mai ambulante Pflege Pflegeplanung.pdf</b> — gehört zum
-        Pflegeplanungs-Block und wird dort bearbeitet, nicht hier.</li>
-    </ul>
-    <p>Alle aus deinem Google-Drive-Ordner, geteilt am 18.09.2026.</p>
-    <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> die Kette Nykturie → Dyspnoe →
-      Arthrose → nächtlicher Sturz · die Einordnung der vier Rechtsinstrumente <b>als
-      Rangfolge</b> · der Hinweis auf den häufigsten Irrtum beim Ehegattennotvertretungsrecht ·
-      die Erläuterung des Unterschieds zwischen Pflegegeld und Pflegesachleistungen · die
-      Rückmeldung zu deiner Gruppenarbeit einschließlich der drei Nachfragen
-      („4–6 Wochen“, „Approvierung“, die erfundenen Kontaktdaten) · die Griffhöhen-Kette beim
-      Rollator · und alle Brücken zu deinen anderen Zusammenfassungen.</p>
-    <p>Die französischen Zeilen und die Vokabelübersetzungen sind von mir ergänzt.</p>
-  </div>
+<h3>Was die Pflege dem Sozialdienst liefern muss — und warum</h3>
+<p>Der Sozialdienst sieht den Patienten nur kurz. Die Pflege ist rund um die Uhr da. Deshalb braucht der Sozialdienst <b>deine Informationen</b>. <span class="her">Herleitung</span></p>
+<div class="scroll"><table>
+  <tr><th>Was die Pflege liefert</th><th>Warum?</th></tr>
+  <tr><td><b>Pflegerische Anamnese / Stammblatt</b>: Gibt es Zugehörige? Gibt es schon Hilfen? Welche Hilfsmittel braucht der Mensch?</td><td>Nur so weiß der Sozialdienst, was zu Hause schon da ist und was fehlt. <span class="her">Herleitung</span></td></tr>
+  <tr><td>Einschätzung des Patienten und der Kontaktpersonen</td><td>Wer kann helfen, wer ist selbst überlastet? (Beim Ehepaar S.: Herr S. pflegt, ist aber selbst krank.) <span class="her">Herleitung</span></td></tr>
+  <tr><td>Änderungen bei <b>Medikation</b> oder <b>Behandlungspflege</b></td><td>Danach richtet sich, welcher Dienst nach der Entlassung kommen muss. <span class="her">Herleitung</span></td></tr>
+  <tr><td>Veränderung des <b>Allgemeinzustands</b></td><td>Ein schlechterer Zustand kann heißen: noch nicht entlassfähig (siehe Konsil-Beispiel).</td></tr>
+  <tr><td><b>„wichtigstes Assessment“</b>: Pflegeüberleitung (<b>vor allem für den MD</b>) · Entlassbrief · Hospiznotwendigkeit</td><td>Den Grund nennen deine Folien nicht. Vermutlich braucht der MD sie, weil er über Leistungen mitentscheidet. <span class="her">Herleitung</span></td></tr>
+</table></div>
+<p><b>Bei der Reha</b> tauscht sich die Pflege so mit dem Sozialdienst aus: Bedarf ermitteln · Beratungswunsch oder -bedarf weiterleiten · relevante Unterlagen ausfüllen · bei Besonderheiten Rückmeldung geben · Transport planen.</p>
+<details><summary>Das Formular auf der Reha-Folie — was die Pflege dort einschätzt</summary>
+<p>Auf der Folie ist ein Formular abgebildet. Die Frage oben: <b>Drohen ohne die Reha länger als 6 Monate Einschränkungen im Alltag?</b> (Beurteilung zum Zeitpunkt der Entlassung.)</p>
+<p>Für jede Tätigkeit wird angekreuzt, wie viel Hilfe der Mensch braucht — von <b>0 = professionelle Hilfe, total</b> über 1 = professionelle Kontakthilfe, 2 = Kontakthilfe durch Laien, 3 = Assistenz durch Laien, 4 = <b>selbstständig mit Hilfsmittel</b> bis <b>5 = selbstständig ohne Hilfsmittel</b>. Unten steht ein Gesamtscore.</p>
+<p><b>Die Bereiche:</b> Selbstversorgung (Essen und Trinken, An- und Ausziehen, Hygiene, Waschen/Duschen, Stuhl- und Harnkontrolle, Toilettengang) · Mobilität (Transfer, Rollstuhl, Gehen, Treppensteigen) · Kommunikation (Hörverstehen, Sprechen) · Lernen (Lesen, Schreiben) · allgemeine Aufgaben (Orientierung/Gedächtnis, Konzentration, Planen) · soziales Verhalten · Haushaltsführung.</p>
+<p>Siehst du? Ein <b>Hilfsmittel</b> bringt einen Menschen von „braucht Hilfe“ zu „selbstständig mit Hilfsmittel“ (4 Punkte statt 0–3). <span class="her">Herleitung</span></p>
 </details>
 
-</main>
+<h3>Das große Problem: Wohin nach dem Krankenhaus?</h3>
+<p><b>Poststationäre Versorgungsproblematik</b> (Probleme mit der Versorgung nach dem Krankenhaus): vor allem wegen des <b>demografischen Wandels</b> (es gibt immer mehr alte Menschen). Folge: Es fehlen Plätze in der ambulanten und stationären Versorgung und in der Reha. Patienten sind nach dem Krankenhaus nicht versorgt → sie bleiben <b>länger im Krankenhaus</b> liegen.</p>
 
-<footer>
-  <p>Pflegehilfsmittel, Sozialdienst und ambulantes Setting — gebaut aus deinen eigenen
-    Unterlagen.<br>
-    Wo etwas aus einer Schülerarbeit stammt, ungeprüft ist oder von mir kommt, steht es oben
-    ausdrücklich dabei.</p>
-</footer>
+<h3>Exkurs: wohnungslose Menschen</h3>
+<ul>
+  <li>Nicht jeder Mensch möchte Hilfe vom Sozialdienst oder sieht, dass er Hilfe braucht.</li>
+  <li><b>„Cave: keine leeren Versprechungen machen!“</b> (Cave = Vorsicht). In den meisten Fällen gehen diese Menschen nach der Entlassung zurück in die Wohnungslosigkeit.</li>
+  <li>Manche Krankenhäuser haben eine Wäschekammer oder können Wäsche waschen.</li>
+  <li>Der Sozialdienst kann „gemeinsam“ eine gesetzliche Betreuung einleiten (so steht es auf der Folie). Meistens kann man aber nur <b>Kontaktdaten</b> von Beratungsstellen und niedrigschwelligen Hilfen mitgeben (z. B. Café Plattform).</li>
+</ul>
+<p><b>Warum keine leeren Versprechungen?</b> Den Grund nennen deine Folien nicht. Ein Versprechen, das nicht gehalten wird, zerstört Vertrauen. <span class="her">Herleitung</span></p>
+<p class="fr">🇫🇷 Le service social conseille, rend la personne la plus autonome possible et préfère toujours l'aide à domicile. Toi, en tant que soignante, tu peux déclencher une demande (Konsil). Tu donnes au service social les infos importantes : proches, aides déjà en place, aides techniques nécessaires, changements de traitement, état général. La « Pflegeüberleitung » est très importante, surtout pour le MD. Avec les personnes sans abri : pas de promesses vides.</p>
+<p class="quelle">NEUSozialdienst im Krankenhaus, S. 1–2, 4–13, 15, 21–22</p>
+
+<!-- ============ 4 RECHT ============ -->
+<h2>4 · Wer entscheidet, wenn der Mensch es nicht mehr kann? <span class="stern">★★★</span></h2>
+<p>Das ist bei Frau S. (Demenz) eine echte Frage. Deine Folien nennen <b>vier Rechtsinstrumente</b>. Sie haben eine <b>Reihenfolge</b>: Was der Mensch selbst vorher festgelegt hat, gilt zuerst.</p>
+<div class="schema">
+  <p class="titel">Vom eigenen Willen zur Hilfe von außen <span class="her">Herleitung</span> — die Reihenfolge ergibt sich aus den „gilt nicht, wenn …“-Sätzen der Folien</p>
+  <div class="k gruen"><b>1 · Patientenverfügung</b><small>Der Mensch hat <b>selbst</b> aufgeschrieben, welche Behandlung er will oder nicht will.</small></div><div class="pfeil">↓</div>
+  <div class="k gruen"><b>2 · Vorsorgevollmacht</b><small>Der Mensch hat <b>selbst</b> eine Vertrauensperson bestimmt.</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>3 · Ehegattennotvertretungsrecht</b><small>gilt <b>nur</b>, wenn es keine passende Betreuung, Vollmacht oder Verfügung gibt · nur Medizin · nur 6 Monate</small></div><div class="pfeil">↓</div>
+  <div class="k rot"><b>4 · Rechtliche Betreuung</b><small>das Gericht bestellt eine Person · nur, wenn andere Hilfen ausgeschöpft sind</small></div>
+</div>
+
+<h3>Die Patientenverfügung</h3>
+<div class="def"><span class="t">So steht es auf deiner Folie — einfach gesagt</span>
+<p>Für den Fall, dass der Mensch <b>nicht mehr einwilligen kann</b> (einwilligungsunfähig), legt er <b>vorher</b> fest, welche medizinischen Maßnahmen gemacht oder <b>nicht</b> gemacht werden sollen.</p></div>
+<ul>
+  <li>Jede <b>volljährige</b> Person, die einwilligen kann, darf sie schreiben. Sie kann sie <b>jederzeit formlos widerrufen</b> (zurücknehmen, auch ohne Papier).</li>
+  <li>Sinnvoll: sich von einem Arzt oder einer fachkundigen Person beraten lassen.</li>
+  <li>Ein rechtlicher Betreuer oder eine bevollmächtigte Person <b>muss</b> diesem Willen folgen.</li>
+  <li>Gibt es keine Verfügung, oder passt sie nicht zur jetzigen Situation, entscheiden Vertreter und Arzt nach dem <b>mutmaßlichen Willen</b> (was der Mensch wahrscheinlich wollen würde).</li>
+</ul>
+
+<h3>Die Vorsorgevollmacht</h3>
+<div class="def"><span class="t">So steht es auf deiner Folie — einfach gesagt</span>
+<p>Der Mensch <b>bevollmächtigt</b> eine oder mehrere <b>Vertrauenspersonen</b>. Sie regeln im Bedarfsfall seine rechtlichen Angelegenheiten.</p></div>
+<ul>
+  <li><b>Vorteil:</b> viel Selbstbestimmung. <b>Voraussetzung:</b> volles Vertrauen zu dieser Person.</li>
+  <li>Sie tritt ein, wenn der Mensch wegen Krankheit, Unfall oder (altersbedingtem) Nachlassen der geistigen Kräfte seine Angelegenheiten nicht mehr oder nur noch teilweise regeln kann.</li>
+  <li><b>Gibt es eine wirksame Vollmacht</b> für die nötigen Aufgabenkreise, und will die Person die Aufgabe übernehmen, dann ist <b>keine rechtliche Betreuung nötig</b>.</li>
+</ul>
+
+<h3>Das Ehegattennotvertretungsrecht</h3>
+<div class="def"><span class="t">So steht es auf deiner Folie — einfach gesagt</span>
+<p>Ist ein <b>verheirateter</b> Mensch z. B. bewusstlos oder im Koma und kann nicht selbst über seine Gesundheit entscheiden, darf der <b>Ehepartner</b> für ihn entscheiden.</p></div>
+<div class="scroll"><table>
+  <tr><th>Regel</th><th>Einfach gesagt</th></tr>
+  <tr><td>nur Entscheidungen im <b>medizinischen</b> Bereich</td><td>keine Bank, keine Wohnung — nur Gesundheit. Verträge, die für die Behandlung nötig sind, darf er abschließen.</td></tr>
+  <tr><td><b>höchstens 6 Monate</b></td><td>Die Frist beginnt, wenn ein Arzt <b>schriftlich bescheinigt</b>, dass die Voraussetzungen da sind.</td></tr>
+  <tr><td>gilt <b>nicht</b>, wenn …</td><td>… das Gericht schon einen Betreuer für Gesundheit bestellt hat · … eine Vorsorgevollmacht die Gesundheit umfasst · … eine Patientenverfügung genau diese Situation regelt</td></tr>
+</table></div>
+
+<h3>Die rechtliche Betreuung</h3>
+<div class="def"><span class="t">So steht es auf deiner Folie — einfach gesagt</span>
+<p>Ein <b>Rechtsinstrument</b> (Werkzeug des Rechts) für Erwachsene, die wegen Krankheit oder Behinderung ihre rechtlichen Angelegenheiten nicht (mehr) selbst regeln können. Das <b>Betreuungsgericht</b> bestellt einen Betreuer für bestimmte <b>Aufgabenkreise</b>.</p></div>
+<ul>
+  <li><b>Neues Betreuungsrecht seit 2023</b>: Der <b>Wille</b> des betreuten Menschen zählt noch mehr.</li>
+  <li>Der Betreuer <b>unterstützt</b> den Menschen, seine Angelegenheiten <b>so weit wie möglich selbst</b> zu regeln.</li>
+  <li>Der Betreuer handelt so, dass der Mensch sein Leben <b>nach seinen eigenen Wünschen</b> gestalten kann (§ 1821 Absatz 2 BGB).</li>
+  <li>Eine Betreuung soll es <b>nur</b> geben, wenn <b>andere Hilfen</b>, vor allem nach dem Sozialrecht, <b>ausgeschöpft</b> sind.</li>
+</ul>
+<div class="merke"><b>Merke:</b> Patientenverfügung = <b>was</b> gemacht wird (Medizin). Vorsorgevollmacht = <b>wer</b> entscheidet (selbst gewählt). Ehegatte = Notlösung, nur Medizin, nur 6 Monate. Betreuung = letztes Mittel, vom Gericht. <span class="her">Herleitung</span></div>
+<div class="hinweis"><b>Was deine Folien nicht sagen:</b> ob Herr oder Frau S. eine Patientenverfügung oder Vorsorgevollmacht haben. Und ob ein Ehepartner mit einer fortgeschrittenen Demenz das Notvertretungsrecht ausüben kann, steht dort auch nicht.</div>
+<p class="fr">🇫🇷 Directives anticipées (Patientenverfügung) : la personne écrit à l'avance quels soins elle veut ou refuse. Mandat de protection future (Vorsorgevollmacht) : elle choisit elle-même une personne de confiance. Représentation d'urgence par le conjoint : seulement pour la santé, 6 mois maximum, à partir de l'attestation écrite du médecin. Tutelle/curatelle (rechtliche Betreuung) : décidée par le tribunal, en dernier recours seulement ; depuis 2023, la volonté de la personne compte encore plus.</p>
+<p class="quelle">NEUSozialdienst im Krankenhaus, S. 11, 16–20</p>
+
+<!-- ============ 5 PUEG ============ -->
+<h2>5 · Das PUEG — was sich bei der Pflegeversicherung geändert hat <span class="stern">★</span></h2>
+<p><b>PUEG</b> = Pflegeunterstützungs- und -entlastungsgesetz. Es ändert die Leistungen für pflegebedürftige Menschen und ihre Angehörigen.</p>
+<div class="scroll"><table>
+  <tr><th>Was?</th><th>Einfach gesagt</th></tr>
+  <tr><td>Ziele</td><td>die Pflegeversicherung <b>stabilisieren</b> · <b>berufstätige</b> pflegende Angehörige entlasten (wie die Tochter von Familie S.)</td></tr>
+  <tr><td>ab 1.1.2025</td><td>Die Leistungen der Pflegeversicherung steigen um <b>4,5 %</b>.</td></tr>
+  <tr><td>gemeinsames Budget</td><td>Für <b>Verhinderungs- und Kurzzeitpflege</b> gibt es einen gemeinsamen Geldtopf.</td></tr>
+  <tr><td>Pflegeunterstützungsgeld (§ 44a Abs. 3 SGB XI)</td><td>Angehörige bekommen es jetzt für <b>10 Arbeitstage pro Jahr</b> (Änderung aus dem Vorjahr).</td></tr>
+  <tr><td>§ 42a SGB XI</td><td>Der pflegebedürftige Mensch wird versorgt, während seine Pflegeperson selbst zur Vorsorge oder Reha ist.</td></tr>
+</table></div>
+<p><b>Warum wichtig für Familie S.?</b> Die Tochter ist berufstätig — genau für sie sind die Entlastungen gedacht. Und Herr S. ist pflegende Person: Wenn er selbst zur Reha muss, braucht Frau S. Versorgung. <span class="her">Herleitung</span></p>
+<p class="fr">🇫🇷 La loi PUEG : depuis le 1.1.2025, les prestations de l'assurance dépendance augmentent de 4,5 %. Un budget commun pour l'accueil de répit et l'hébergement temporaire. Les proches qui travaillent ont droit à l'allocation de soutien pendant 10 jours ouvrables par an.</p>
+<p class="quelle">NEUSozialdienst im Krankenhaus, S. 14</p>
+
+<!-- ============ 6 BERATUNGSBESUCH ============ -->
+<h2>6 · Der Beratungsbesuch zu Hause nach § 37 Abs. 3 SGB XI <span class="stern">★★★</span></h2>
+<p>Eine Pflegefachkraft (PFK) vom ambulanten Pflegedienst besucht Herrn und Frau S. zu Hause. Das Gespräch in deinen Unterlagen hat <b>fünf Schritte</b>. Hinter jedem Schritt steht in Klammern, <b>was</b> die PFK gerade tut.</p>
+<div class="scroll"><table>
+  <tr><th>Schritt</th><th>Was die PFK sagt oder tut</th><th>Ziel (steht auf dem Blatt)</th></tr>
+  <tr><td><b>1 · Gesprächseröffnung</b></td><td>stellt sich vor, dankt für den Einlass, fragt „Wie geht es Ihnen beiden?“, sagt, wozu der Besuch da ist: die Situation anschauen und überlegen, wo man entlasten kann</td><td>Beziehungsaufbau, Zielklärung</td></tr>
+  <tr><td><b>2 · Einschätzung der Pflegesituation</b></td><td>„Wie sieht ein typischer Tag aus?“ · lobt Frau S.: „Sie unterstützen Ihren Mann schon sehr lange.“ · fragt nach den nächtlichen Toilettengängen</td><td>Ressourcenorientierung</td></tr>
+  <tr><td><b>3 · Beratung und Information</b></td><td>erklärt das <b>Sturzrisiko</b> und empfiehlt Hilfsmittel · Bewegungsübungen · feste Abläufe für Frau S. · <b>Höherstufungsantrag</b> für Frau S.</td><td>Beratung zu Leistungen</td></tr>
+  <tr><td><b>4 · Entlastung der Angehörigen</b></td><td>„Sie leisten sehr viel.“ · fragt nach der Tochter · nennt Betreuungsdienst oder Tagespflege für Frau S.</td><td>Angehörigenberatung</td></tr>
+  <tr><td><b>5 · Abschluss</b></td><td>fasst zusammen · lässt Informationsmaterial da · kündigt den nächsten Beratungsbesuch an · „Melden Sie sich jederzeit.“</td><td>—</td></tr>
+</table></div>
+
+<h3>Die Sturzkette bei Herrn S. — warum nachts Gefahr besteht</h3>
+<div class="schema">
+  <p class="titel">Vier Dinge kommen zusammen</p>
+  <div class="zwei">
+    <div class="k"><b>Nykturie</b><small>er muss nachts oft auf die Toilette</small></div>
+    <div class="k"><b>Atemnot</b><small>nachts und bei Belastung (Herzinsuffizienz)</small></div>
+  </div>
+  <div class="pfeil">↓</div>
+  <div class="zwei">
+    <div class="k"><b>Arthrose</b><small>Hüfte und Knie schmerzen, er kommt schwer in Gang</small></div>
+    <div class="k"><b>Dunkelheit</b><small>die Wege sind nachts <span class="her">Herleitung</span> aus der Empfehlung „Nachtbeleuchtung“</small></div>
+  </div>
+  <div class="pfeil">↓</div>
+  <div class="k rot"><b>Erhöhtes Sturzrisiko</b><small>so sagt es die PFK: „Aufgrund Ihrer Arthrose und der nächtlichen Atemnot besteht ein erhöhtes Sturzrisiko.“</small></div>
+</div>
+<p>Warum eine Herzinsuffizienz nachts zu Wasserlassen und Atemnot führt, erklären deine Unterlagen <b>nicht</b>. Den Grund nennen deine Folien nicht.</p>
+
+<h3>Die Empfehlungen — und warum</h3>
+<div class="scroll"><table>
+  <tr><th>Maßnahme</th><th>Warum?</th></tr>
+  <tr><td><b>durchgehende Nachtbeleuchtung</b></td><td>Er sieht den Weg zur Toilette — im Dunkeln stolpert man leichter. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Aufstehhilfe wie ein Galgen</b> (Griff über dem Bett)</td><td>Mit schmerzenden Gelenken und Atemnot ist das Aufstehen aus dem Bett schwer; der Griff gibt Halt. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Bettschutzeinlagen</b></td><td>Wenn er es nicht rechtzeitig zur Toilette schafft, bleibt das Bett trocken — er muss nicht hetzen. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>eventuell ein Nachtstuhl</b></td><td>so steht es auf dem Blatt: „um <b>Wege zu verkürzen</b>“</td></tr>
+  <tr><td><b>gezielte Bewegungsübungen</b>, an seine Belastbarkeit angepasst</td><td>so steht es auf dem Blatt: um die <b>Mobilität tagsüber zu verbessern</b></td></tr>
+  <tr><td><b>feste Abläufe</b> für Frau S. (feste Zeiten für Mahlzeiten und Ruhe)</td><td>„Manchmal kann es bei <b>Gedächtnisproblemen</b> helfen, feste Abläufe zu haben.“ Herr S. sagt: Das fällt ihnen zunehmend schwer → die PFK bietet Unterstützung an.</td></tr>
+  <tr><td><b>Höherstufungsantrag</b> für Frau S.</td><td>Ihr Pflegegrad wurde vor fast einem Jahr festgestellt. Seitdem hat sich viel verändert.</td></tr>
+  <tr><td><b>Betreuungsdienst oder Tagespflege</b> für Frau S.</td><td>„Das könnte Ihnen <b>Freiräume</b> geben und <b>Ihre Gesundheit schützen</b>.“ — Herr S. ist selbst krank.</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> Erst die Situation <b>verstehen</b> (Schritt 2), dann <b>beraten</b> (Schritt 3). Erst die Stärken nennen, dann die Probleme. Und den <b>Angehörigen</b> nicht vergessen.</div>
+<div class="hinweis"><b>Was fehlt:</b> Was § 37 Abs. 3 SGB XI genau regelt (wer den Besuch bekommt, wie oft, wer ihn bezahlt), steht <b>nicht</b> in deinen Unterlagen. Auch die Begutachtung zum Pflegegrad (wie ein Pflegegrad festgestellt wird) fehlt ganz.</div>
+<p class="fr">🇫🇷 Visite de conseil à domicile en 5 étapes : ouvrir l'entretien (créer la relation, dire le but) → évaluer la situation (journée type, ressources) → conseiller (risque de chute : arthrose + essoufflement + toilettes la nuit → veilleuse, poignée de lit, alèses, chaise percée, exercices ; routines fixes pour la démence ; demande de degré plus élevé) → soulager les proches (accueil de jour) → conclure (résumer, laisser des documents).</p>
+<p class="quelle">Beratungsgespräch zu Pflegehilfsmitteln, S. 1–2</p>
+
+<!-- ============ 7 WIDERSTAND ============ -->
+<h2>7 · Wenn der Mensch keine Hilfe will: das schwierige Gespräch <span class="stern">★★★</span></h2>
+<p>Eine Gruppe von Mitschülern (Kurs PF25-28-1) hat dasselbe Gespräch noch einmal geschrieben — diesmal mit Widerstand. Herr S. sagt: <b>„Ich will aber keine Fremden im Haus.“</b> Dieses Gespräch zeigt, <b>wie</b> man redet.</p>
+<div class="scroll"><table>
+  <tr><th>Herr S. sagt …</th><th>Die Pflegekraft antwortet …</th><th>Was sie tut — und warum</th></tr>
+  <tr><td>—</td><td>„Sie entscheiden am Ende selbst, was für Sie in Frage kommt.“</td><td>Sie sagt <b>gleich am Anfang</b>: Die Entscheidung bleibt bei der Familie. So fühlt sich niemand überrumpelt. <span class="her">Herleitung</span></td></tr>
+  <tr><td>„Wir kommen ganz gut klar. Ich weiß nicht, ob wir diesen ganzen Kram brauchen.“</td><td>(ruhig) „Das ist völlig in Ordnung. Es geht nicht darum, Ihnen etwas aufzuzwingen, sondern Ihnen einen Überblick zu geben.“</td><td>Sie <b>streitet nicht</b>. Ziel ist Information, nicht Druck. <span class="her">Herleitung</span></td></tr>
+  <tr><td>„Das bisschen Luftnot gehört halt dazu.“</td><td>(validierend) „Sie haben lange als Arzt gearbeitet und waren immer sehr selbstständig. Es ist verständlich, dass Ihnen Unabhängigkeit wichtig ist.“</td><td><b>Validieren</b> = das Gefühl anerkennen, ohne es zu bewerten. Er fühlt sich verstanden. <span class="her">Herleitung</span></td></tr>
+  <tr><td>—</td><td>„Pflegegrad 3 bedeutet nicht, dass Sie hilflos sind, sondern dass Ihnen Unterstützung zusteht, um möglichst lange selbstbestimmt zu leben.“</td><td>Sie <b>deutet um</b>: Der Pflegegrad ist ein Recht, keine Schwäche. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>„Ich will aber keine Fremden im Haus.“</b></td><td>„Das höre ich oft. Viele Menschen haben diese Sorge. Man kann die Unterstützung sehr gezielt einsetzen, vielleicht nur ein- oder zweimal pro Woche.“</td><td>Sie zeigt: Er ist <b>nicht allein</b> mit der Sorge. Und sie bietet eine <b>kleine</b> Lösung an.</td></tr>
+  <tr><td>„Sie übertreibt.“ (über die Tochter)</td><td>(deeskalierend) „Hier treffen zwei Perspektiven aufeinander: Ihr Wunsch nach Selbstständigkeit und die Sorge Ihrer Tochter um Ihre Sicherheit.“</td><td><b>Deeskalieren</b> = den Streit beruhigen. Sie gibt <b>beiden</b> recht, keiner verliert. <span class="her">Herleitung</span></td></tr>
+  <tr><td>„Ich bin noch nie gestürzt.“</td><td>„Das ist gut. Ziel ist, dass es auch so bleibt, gerade bei Arthrose und Luftnot.“ · „Ein Duschstuhl oder Haltegriffe würden nicht Ihre Selbstständigkeit einschränken, sondern Stürze vermeiden.“</td><td>Das Hilfsmittel <b>schützt</b> seine Selbstständigkeit — es nimmt sie nicht weg.</td></tr>
+  <tr><td>„Ich habe doch versprochen, mich um sie zu kümmern.“</td><td>(wertschätzend) „Und das tun Sie. <b>Unterstützung anzunehmen heißt nicht, Verantwortung abzugeben, sondern sie zu teilen.</b>“</td><td>Sie <b>würdigt</b> sein Versprechen. Hilfe wird kein Versagen. <span class="her">Herleitung</span></td></tr>
+  <tr><td>„Ich will nicht, dass alles plötzlich fremdbestimmt wird.“</td><td>„Wir starten mit kleinen, freiwilligen Schritten. Sie behalten jederzeit die Kontrolle.“</td><td><b>Kleine Schritte</b> und Kontrolle bei ihm — so kann er Ja sagen. <span class="her">Herleitung</span></td></tr>
+</table></div>
+<p><b>Zu Frau S.</b> spricht die Pflegekraft direkt: „Frau S., wie geht es Ihnen im Alltag?“ — Sie antwortet unsicher: „Mein Mann hilft mir.“ Die Pflegekraft nennt Betreuungsangebote, die <b>ihr Struktur</b> geben und <b>ihm kleine Pausen</b>. Auch hier: eine <b>Neubewertung</b> ihres Pflegegrads, weil die Familie dadurch finanziell flexibler wäre.</p>
+<p><b>Zur Tochter:</b> „Das ist eine große Belastung, vor allem neben Ihrer Berufstätigkeit.“ · Verhinderungs- oder Kurzzeitpflege: „Sie dürfen auch mal Pause machen, ohne ein schlechtes Gewissen zu haben.“</p>
+<p><b>Abschluss:</b> Unterstützung kann Selbstständigkeit erhalten · Hilfsmittel dienen der Sicherheit · die Tochter darf entlastet werden · Neubewertung des Pflegegrads ist sinnvoll — <b>„Nichts davon muss sofort passieren.“</b> Am Ende sagt Herr S.: „Vielleicht … könnten wir uns das mit den Hilfsmitteln anschauen.“ Die Pflegekraft bietet an, den Antrag <b>gemeinsam</b> auszufüllen.</p>
+<div class="merke"><b>Merke — fünf Sätze für schwierige Gespräche:</b> „Sie entscheiden selbst.“ · „Das höre ich oft.“ · „Hier treffen zwei Perspektiven aufeinander.“ · „Unterstützung annehmen heißt Verantwortung teilen.“ · „Wir starten mit kleinen Schritten.“</div>
+<p class="fr">🇫🇷 Quand la personne refuse l'aide : ne pas se disputer, reconnaître ses sentiments (valider : « l'indépendance est importante pour vous »), dire que la décision lui appartient, proposer de petites étapes, calmer le conflit avec la fille (« deux points de vue se rencontrent »). Phrase clé : accepter de l'aide ne veut pas dire abandonner sa responsabilité, mais la partager.</p>
+<p class="quelle">AA Pflegeversicherung &amp; Beratung Familie S. (Gruppenarbeit Mitschüler, 23.01.2026), S. 3–8</p>
+
+<!-- ============ 8 HILFSMITTEL EIGENE ============ -->
+<h2>8 · Hilfsmittel nach Lebensbereichen — deine eigene Gruppenarbeit <span class="stern">★★★</span></h2>
+<p>Deine Gruppe (Farnaz, Zika, Sokna, El Inani) hat die Hilfsmittel für Frau und Herrn S. nach <b>sechs Lebensbereichen</b> geordnet. Zu jedem steht der <b>Nutzen</b> — das ist das „Warum?“.</p>
+<div class="scroll"><table>
+  <tr><th>Bereich</th><th>Hilfsmittel</th><th>Nutzen — warum?</th></tr>
+  <tr><td><b>Mobilität und Sturzprävention</b></td><td><b>Haltegriffe im Bad</b> (sichere Haltepunkte beim Duschen und Gehen) · <b>rutschfeste Schuhe</b> (rutschhemmende Sohle)</td><td>Sturzrisiko senken → mehr Selbstständigkeit. Der Alltag wird sicherer und unabhängiger.</td></tr>
+  <tr><td><b>Orientierung im Alltag</b></td><td><b>Uhr mit Datum</b> (zeitliche Orientierung) · <b>Kalender</b> (Tages- und Wochenplan, Termine) · <b>Erinnerungsbücher</b> (wichtige Erinnerungen und persönliche Daten)</td><td>bessere räumliche und zeitliche Orientierung · weniger Angst und Unsicherheit · unterstützt das Gedächtnis — passt zu Frau S.s Demenz</td></tr>
+  <tr><td><b>Sicherheit zu Hause</b></td><td><b>Hausnotrufsystem</b> (24/7 erreichbar im Notfall) · <b>Herdsicherung</b> (gegen Unfälle mit heißen Kochplatten) · <b>Anti-Rutsch-Matten</b></td><td>Unfälle und Stürze verhindern · Sicherheit Tag und Nacht · ein sorgenfreier Alltag für Patienten und Angehörige</td></tr>
+  <tr><td><b>Körperpflege und Selbstständigkeit</b></td><td><b>Duschhocker</b> (sicher im Sitzen duschen) · <b>Greifzange</b> (schwer erreichbare Dinge greifen)</td><td>selbstständig duschen und greifen · <b>Entlastung für Herrn S.</b></td></tr>
+  <tr><td><b>Kommunikation und Erinnerung</b></td><td><b>Telefon mit großen Tasten</b> · <b>Erinnerungswecker</b> (zeigt und tönt)</td><td>Frau S. kann sicherer die Tochter anrufen und vergisst Termine wie Medikamente oder Arztbesuche nicht · Erinnerungen auch für soziale Kontakte → <b>gegen Isolation</b></td></tr>
+</table></div>
+
+<h3>Professionelle Hilfsangebote</h3>
+<div class="scroll"><table>
+  <tr><th>Angebot</th><th>Was es bringt</th></tr>
+  <tr><td><b>Ambulante Pflege</b></td><td>Pflegedienst im häuslichen Alltag: Körperpflege, Medikamentengabe</td></tr>
+  <tr><td><b>Tagespflege</b></td><td>soziale Kontakte und Entlastung</td></tr>
+  <tr><td><b>Kurzzeitpflege</b></td><td>Ersatzpflege bei Krankheit oder Urlaub · Verhinderungspflege · Zeit für Angehörige</td></tr>
+  <tr><td><b>Angehörigenschulung</b></td><td>Tochter Christine lernt den Umgang mit Demenz (Fachwissen)</td></tr>
+  <tr><td><b>Pflegestützpunkt</b></td><td>Hilfe bei Pflegegrad und Hilfsmitteln: Sozialberatung, Antragstellung</td></tr>
+  <tr><td><b>Selbsthilfegruppen</b></td><td>Austausch und emotionale Unterstützung</td></tr>
+</table></div>
+<p>Euer Fazit: „Professionelle Hilfsangebote <b>entlasten die Familie</b> und verbessern die Lebensqualität.“</p>
+<details><summary>Rückmeldung zu deiner Gruppenarbeit <span class="her">Herleitung</span> — meine Einschätzung, nicht die der Lehrerin</summary>
+<ul>
+  <li><b>Stark:</b> Die Ordnung nach Lebensbereichen ist klar. Zu jedem Hilfsmittel steht der Nutzen. Die Orientierungshilfen passen genau zur Demenz von Frau S.</li>
+  <li><b>Was fehlt im Vergleich zum Beratungsgespräch:</b> das <b>nächtliche Problem von Herrn S.</b> (Nykturie, Atemnot). Dort werden Nachtbeleuchtung, Galgen, Bettschutzeinlagen und ein Nachtstuhl empfohlen — in eurer Liste stehen sie nicht.</li>
+  <li><b>Die Nummer und die E-Mail</b> auf eurer letzten Seite (Seite 9) sind Platzhalter, keine echten Kontaktdaten.</li>
+  <li><b>Achtung:</b> Auf Seite 9 steht „Antrag bei der <b>Krankenkasse</b>“, beim anderen Blatt entscheidet die <b>Pflegekasse</b> (siehe Kapitel 10).</li>
+</ul>
+</details>
+<p class="fr">🇫🇷 Ton travail de groupe classe les aides en domaines : mobilité (poignées, chaussures antidérapantes), orientation (horloge avec date, calendrier, livre de souvenirs — contre l'angoisse, pour la mémoire), sécurité (téléalarme, sécurité de cuisinière, tapis antidérapants), toilette (tabouret de douche, pince de préhension), communication (téléphone à grosses touches, réveil-mémo). Plus les services : soins à domicile, accueil de jour, hébergement temporaire, formation des proches, Pflegestützpunkt, groupes d'entraide.</p>
+<p class="quelle">Arbeitauftraghilfsmittel (Farnaz, Zika, Sokna, El Inani), S. 1–9 · Vergleich: Beratungsgespräch zu Pflegehilfsmitteln, S. 2</p>
+
+<!-- ============ 9 ZWEITE GRUPPENARBEIT ============ -->
+<h2>9 · Die zweite Gruppenarbeit: „Hilfsmittel bei Pflegegrad 3 &amp; 1“ <span class="stern">★★</span></h2>
+<p>Ein Blatt einer <b>anderen Gruppe</b> (laut Datei von Jayden Wiese) zum selben Fall. Es ist eine <b>Schülerarbeit</b> — kein Material der Lehrerin. Das Blatt hat keinen Text, nur ein Bild; ich habe es vom Bild abgelesen.</p>
+<div class="zwei">
+  <div class="k"><b>Zehn Hilfsmittel</b><small>Hausnotrufsystem · Hebepflegerahmen oder Bett-in-Bett-System · Pflegebettzubehör (Galgen, Tisch, Bettleiter) · Treppenlift · Anpassung des Wohnraums, vor allem Bad und Schlafzimmer · Haltegriffe · Bettschutzeinlagen (Pflegehilfsmittel) · Duschhilfen · Pflegeboxen (Pflegehilfsmittel) · Toilettenstuhl</small></div>
+  <div class="k"><b>Sechs Angebote</b> („Hilfsmittelangebote“)<small>Gedächtnisangebote · Alltagsbegleitung · Haushaltshilfe · ambulanter Pflegedienst für Grund- und Behandlungspflege · Einkaufsbegleitung · Verhinderungs- und Kurzzeitpflege</small></div>
+</div>
+<div class="hinweis"><b>Drei Dinge, die auf diesem Blatt unklar sind:</b>
+<ol>
+  <li>Die Überschrift sagt „Pflegegrad 3 &amp; 1“, darunter „Frau S. und Herrn S.“. Wer welchen Grad hat, sagt das Blatt <b>nicht</b>. In zwei anderen Dateien hat <b>Herr S. Pflegegrad 3</b> und <b>Frau S. Pflegegrad 1</b>.</li>
+  <li>Das Blatt macht <b>eine</b> Liste für beide. Selbst sagt es aber: zuerst den Pflegegrad prüfen. Bei Pflegegrad 1 stehen Frau S. in der Tabelle der Mitschüler deutlich weniger Leistungen zu (Kapitel 11). <span class="her">Herleitung</span></li>
+  <li><b>Treppenlift</b> und <b>Anpassung des Wohnraums</b> stehen bei den Hilfsmitteln. In der Tabelle der Mitschüler ist „Anpassung am Wohnraum“ aber eine <b>eigene Leistung</b>, getrennt von den Pflegehilfsmitteln. <span class="her">Herleitung</span> — frag im Unterricht nach.</li>
+</ol></div>
+<p class="fr">🇫🇷 Une autre équipe propose dix aides (téléalarme, accessoires du lit médicalisé, monte-escalier, aménagement du logement, poignées, alèses, aides de douche, chaise percée…) et six services. Attention : la feuille ne dit pas qui a quel degré, et l'aménagement du logement est une prestation à part.</p>
+<p class="quelle">Pflegehilsmittel und Angebote Ambulantes Setting (Gruppenarbeit, 1 S., Bild ohne Text) · Vergleich: Beratungsgespräch S. 1 · AA Pflegeversicherung S. 1, 3</p>
+
+<!-- ============ 10 ANTRAG ============ -->
+<h2>10 · Der Weg zum Hilfsmittel: der Antrag <span class="stern">★★★</span></h2>
+<p>Zwei Gruppenarbeiten beschreiben den Weg — <b>unterschiedlich</b>. Lerne beide und sieh, was gleich ist.</p>
+<div class="zwei">
+  <div class="schema">
+    <p class="titel">Deine Gruppe: fünf Schritte</p>
+    <div class="k"><b>1 · Bedarf feststellen</b><small>welche Hilfsmittel werden gebraucht?</small></div><div class="pfeil">↓</div>
+    <div class="k"><b>2 · Beratung</b><small>beim Pflegestützpunkt</small></div><div class="pfeil">↓</div>
+    <div class="k"><b>3 · Antrag stellen</b><small>Formulare ausfüllen und einreichen</small></div><div class="pfeil">↓</div>
+    <div class="k"><b>4 · Genehmigung</b><small>warten auf die Zusage</small></div><div class="pfeil">↓</div>
+    <div class="k gruen"><b>5 · Lieferung und Einweisung</b><small>Geräte kommen, der Mensch lernt sie zu bedienen</small></div>
+    <p class="lesen">Dauer: in der Regel 4–6 Wochen.</p>
+  </div>
+  <div class="schema">
+    <p class="titel">Die andere Gruppe: sieben Punkte</p>
+    <div class="k"><b>1 · Voraussetzung prüfen</b><small>ein anerkannter Pflegegrad</small></div><div class="pfeil">↓</div>
+    <div class="k"><b>2 · Bedarf ermitteln</b><small>Arzt oder Pflegedienst empfiehlt die Hilfsmittel</small></div><div class="pfeil">↓</div>
+    <div class="k"><b>3–5 · Wege</b><small>über den Entlastungsbetrag · direkt über den Händler · oder ein formloser Antrag</small></div><div class="pfeil">↓</div>
+    <div class="k"><b>6 · Entscheidung</b><small>bei der Pflegekasse</small></div><div class="pfeil">↓</div>
+    <div class="k gruen"><b>7 · Leistungen</b><small>nach der Prüfung</small></div>
+  </div>
+</div>
+<div class="scroll"><table>
+  <tr><th>Vergleich</th><th>Deine Gruppe</th><th>Andere Gruppe</th></tr>
+  <tr><td>gleich</td><td colspan="2">Zuerst kommt der <b>Bedarf</b>. Zuletzt entscheidet die <b>Kasse</b> (genehmigen / prüfen).</td></tr>
+  <tr><td>nur hier</td><td><b>Beratung</b> beim Pflegestützpunkt · <b>Einweisung</b> in das Gerät · Dauer 4–6 Wochen</td><td><b>Pflegegrad</b> als Voraussetzung · <b>formloser</b> Antrag · Weg über Händler oder Entlastungsbetrag</td></tr>
+</table></div>
+<p><b>Warum ist die Einweisung so wichtig?</b> Ein Hilfsmittel hilft nur, wenn es richtig benutzt wird. Beim Rollator steht es ausdrücklich: Die <b>Einweisung des Patienten</b> wird dokumentiert (Kapitel 12). <span class="her">Herleitung</span></p>
+<div class="hinweis"><b>Widerspruch:</b> Deine Gruppe schreibt auf Seite 9 „Antrag bei der <b>Krankenkasse</b>“, die andere Gruppe „Entscheidung bei der <b>Pflegekasse</b>“. Die Folie des Sozialdienstes nennt „Leistungen der <b>Kranken- und Pflegeversicherung</b>“. Welche Kasse welches Hilfsmittel bezahlt, erklären deine Unterlagen nicht. Frag im Unterricht.</div>
+<div class="merke"><b>Merke:</b> Bedarf → Beratung → Antrag → Genehmigung → Lieferung + Einweisung. Und vorher: Gibt es einen Pflegegrad?</div>
+<p class="fr">🇫🇷 Pour obtenir une aide : constater le besoin → se faire conseiller (Pflegestützpunkt) → faire la demande → attendre l'accord de la caisse → livraison et explication de l'appareil (souvent 4 à 6 semaines). L'autre groupe ajoute : il faut un degré de dépendance reconnu, et une demande sans formulaire est possible.</p>
+<p class="quelle">Arbeitauftraghilfsmittel (eigene Gruppe), S. 8–9 · Pflegehilsmittel und Angebote Ambulantes Setting, S. 1 · NEUSozialdienst im Krankenhaus, S. 11 · MPG-Schulungseinheit Rollatoren, S. 8</p>
+
+<!-- ============ 11 LEISTUNGEN ============ -->
+<h2>11 · Die Leistungen der Pflegeversicherung — mit Warnung <span class="stern">★</span></h2>
+<div class="hinweis"><b>Wichtige Warnung:</b> Die einzige Tabelle mit Geldbeträgen in deinen Unterlagen stammt aus einer <b>Gruppenarbeit von Mitschülern</b> (Ghannam, Nowacki, Hüls, Hoppe, 23.01.2026). Sie stammt <b>nicht</b> von der Pflegekasse und nicht von der Lehrerin. <b>Keine Zahl ist geprüft.</b> Benutze sie <b>nie</b> als Auskunft für einen Patienten.</div>
+<p>Was du daraus trotzdem lernen kannst: <b>Mit Pflegegrad 1 gibt es viel weniger</b> als mit Pflegegrad 3. In der Tabelle hat Frau S. (Pflegegrad 1) <b>kein</b> Pflegegeld, <b>keine</b> Pflegesachleistung, <b>keine</b> Verhinderungs- und Kurzzeitpflege und <b>keine</b> Tages- und Nachtpflege. Deshalb raten beide Gespräche zur <b>Höherstufung</b> bei Frau S. <span class="her">Herleitung</span></p>
+<details><summary>Die Tabelle der Mitschüler ansehen (ungeprüft!)</summary>
+<div class="scroll"><table>
+  <tr><th>Leistung</th><th>Frau S. (PG 1)</th><th>Herr S. (PG 3)</th></tr>
+  <tr><td>Pflegegeld (monatlich)</td><td>–</td><td class="z">599 €</td></tr>
+  <tr><td>Pflegesachleistungen (monatlich)</td><td>–</td><td class="z">1497 €</td></tr>
+  <tr><td>Entlastungsbetrag</td><td class="z">131 €</td><td class="z">131 €</td></tr>
+  <tr><td>Pflegehilfsmittel zum Verbrauch (monatlich)</td><td>bis zu 42 €</td><td>bis zu 42 €</td></tr>
+  <tr><td>Hausnotruf (monatlich)</td><td class="z">25,50 €</td><td class="z">25,50 €</td></tr>
+  <tr><td>Verhinderungs- und Kurzzeitpflege (jährlich)</td><td>–</td><td class="z">3539 €</td></tr>
+  <tr><td>Tages- und Nachtpflege (monatlich)</td><td>–</td><td class="z">1357 €</td></tr>
+  <tr><td>Anpassung am Wohnraum (je Maßnahme)</td><td class="z">4180 €</td><td class="z">4180 €</td></tr>
+  <tr><td>DiPA — digitale Pflegeanwendung (monatlich)</td><td class="z">53 €</td><td class="z">53 €</td></tr>
+  <tr><td>Wohngruppenzuschuss (monatlich)</td><td class="z">224 €</td><td class="z">224 €</td></tr>
+  <tr><td>Vollstationäre Pflege (monatlich)</td><td>–</td><td class="z">1319 €</td></tr>
+  <tr><td>Technische und sonstige Pflegehilfsmittel</td><td colspan="2">100 % der Kosten; unter bestimmten Voraussetzungen Zuzahlung 10 %, höchstens 25 € je Hilfsmittel</td></tr>
+  <tr><td>Pflegeunterstützungsgeld für Beschäftigte</td><td colspan="2">bis zu 10 Arbeitstage je Kalenderjahr (passt zur PUEG-Folie)</td></tr>
+</table></div>
+<p>Außerdem stehen in der Tabelle: Beiträge zur Renten- und Arbeitslosenversicherung für Pflegepersonen, Zuschüsse zur Kranken- und Pflegeversicherung bei Pflegezeit und Pflege von Menschen mit Behinderung. Auch diese Zahlen sind ungeprüft.</p>
+</details>
+<p class="fr">🇫🇷 Le seul tableau de montants vient d'un travail d'élèves, rien n'est vérifié : ne jamais le donner à un patient. À retenir : avec le degré 1, on reçoit beaucoup moins qu'avec le degré 3 — d'où la demande de degré plus élevé pour Mme S.</p>
+<p class="quelle">AA Pflegeversicherung &amp; Beratung Familie S., S. 1–2 · NEUSozialdienst im Krankenhaus, S. 14</p>
+
+<!-- ============ 12 ROLLATOR ============ -->
+<h2>12 · Der Rollator — ein Medizinprodukt sicher anwenden <span class="stern">★★★</span></h2>
+<p>Eine kurze Schulung (ca. 10 Minuten) mit dem Titel „Medizinprodukte in der Pflege – Rollatoren anwenden“. Ziel: <b>Was musst du beim Rollator beachten?</b></p>
+<div class="def">
+  <span class="t">Definition — so steht sie auf deiner Folie</span>
+  <p>„Rollatoren sind <b>vierrädrige Gehhilfen</b>. Dreirädrige Gehhilfen werden dagegen als <b>Delta-Gehräder</b> bezeichnet.“ Rollatoren sind ein gängiges <b>Medizinprodukt</b>, um Menschen mit Gehbehinderungen wieder Bewegung zu ermöglichen.</p>
+</div>
+<div class="scroll"><table>
+  <tr><th></th><th>Rollator</th><th>Delta-Gehrad</th></tr>
+  <tr><td>Räder</td><td><b>4</b></td><td><b>3</b></td></tr>
+  <tr><td>Standfläche</td><td>größer</td><td><b>kleiner</b></td></tr>
+  <tr><td>Unterstützung</td><td>mehr</td><td>wesentlich weniger — <b>kein Ersatz</b> für einen Rollator</td></tr>
+</table></div>
+<p><b>Warum gibt ein Delta-Gehrad weniger Halt?</b> Weil seine Standfläche kleiner ist — so steht es auf der Folie.</p>
+<p><b>Vorteile des Rollators:</b> sich aufstützen · kleine Einkäufe transportieren · kurz darauf sitzen (<b>nur wenn der Hersteller das vorsieht</b>) · oft faltbar → leicht zu verstauen und zu transportieren.</p>
+
+<h3>Die Sicherheitsregeln — und warum</h3>
+<div class="scroll"><table>
+  <tr><th>Regel</th><th>Warum?</th></tr>
+  <tr class="rot"><td><b>Als Sitz nur mit angezogenen Bremsen</b></td><td>Sonst rollt der Rollator weg, während der Mensch sich setzt. <span class="her">Herleitung</span></td></tr>
+  <tr class="rot"><td><b>Niemals als Rollstuhl</b> oder „Transportwagen“ benutzen</td><td>Den Grund nennen deine Folien nicht. Er ist zum Gehen gebaut, nicht zum Schieben eines Menschen. <span class="her">Herleitung</span></td></tr>
+  <tr class="rot"><td><b>Griffhöhe richtig einstellen</b> und immer prüfen</td><td>Bei falscher Griffhöhe <b>verlässt</b> der Mensch den <b>sicheren Standbereich zwischen den Rädern</b> — oder er kann sich in einer Gefahr <b>nicht richtig aufstützen</b>.</td></tr>
+  <tr><td>Vor der Benutzung <b>auf Schäden prüfen</b>, regelmäßig vor allem <b>Räder und Bremsen</b></td><td>Kaputte Bremsen oder Räder → der Rollator hält nicht. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Gebrauchsanweisung</b> und Kennzeichnung beachten</td><td>Nur dort steht z. B., ob man darauf sitzen darf.</td></tr>
+  <tr><td>Bei mehreren Patienten: bei <b>jedem Patientenwechsel reinigen und desinfizieren</b> — die <b>Handgriffe</b> mit einer <b>Wischdesinfektion</b></td><td>Hygienische Sicherheit. Die Handgriffe fasst jeder an. <span class="her">Herleitung</span></td></tr>
+</table></div>
+
+<h3>Dokumentation und Meldung — das, was man nicht vermutet</h3>
+<ul>
+  <li>Normale Rollatoren stehen <b>nicht</b> im Bestandsverzeichnis und <b>nicht</b> im Medizinproduktebuch.</li>
+  <li><b>Aber:</b> Ein <b>elektrisch</b> unterstützter Rollator muss ins Bestandsverzeichnis.</li>
+  <li>Jede <b>Einweisung von Anwendern</b> (z. B. Pflegekräften) wird in deren <b>Personalakte</b> dokumentiert.</li>
+  <li>Die <b>Einweisung des Patienten</b> wird ebenfalls dokumentiert, und in der <b>Patientenakte</b> wird das neue Hilfsmittel vermerkt.</li>
+  <li>Alle <b>Vorkommnisse und Beinahe-Vorkommnisse</b> werden <b>immer an das BfArM</b> gemeldet. (Beinahe-Vorkommnis = es ist fast etwas passiert.)</li>
+</ul>
+
+<h3>Die drei Wiederholungsfragen der Schulung</h3>
+<div class="scroll"><table>
+  <tr><th>Frage</th><th>Antwort aus den Folien</th></tr>
+  <tr><td>1 · Können Rollatoren als Sitzhilfe genutzt werden?</td><td><b>Ja</b> — aber nur, wenn der <b>Hersteller</b> es vorsieht, und nur mit <b>angezogenen Bremsen</b> (S. 4 und 6).</td></tr>
+  <tr><td>2 · Was müssen Sie nach dem Zusammenfalten bzw. -klappen immer kontrollieren?</td><td>Die Folien geben <b>keine</b> direkte Antwort. Am nächsten kommt: auf Schäden prüfen, vor allem Räder und Bremsen; Griffhöhe prüfen (S. 6, 7, 9). <span class="her">Herleitung</span></td></tr>
+  <tr><td>3 · Müssen Sie in Rollatoren eingewiesen werden?</td><td>Die Folien sagen nicht wörtlich „ja“. Aber: „Alle Einweisungen von Anwendern am Produkt werden in deren Personalakte dokumentiert.“ Also gibt es Einweisungen für Anwender (S. 8). <span class="her">Herleitung</span></td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> Vier Räder · Griffhöhe stimmt · Sitzen nur gebremst · nie als Rollstuhl · Griffe desinfizieren · Einweisung dokumentieren · Vorkommnisse ans BfArM.</div>
+<p class="fr">🇫🇷 Le déambulateur (4 roues) est un dispositif médical ; le modèle à 3 roues est moins stable et ne le remplace pas. S'asseoir dessus seulement freins serrés et si le fabricant le prévoit. Jamais comme fauteuil roulant. Bien régler la hauteur des poignées, sinon la personne sort de la zone sûre entre les roues. Désinfecter les poignées à chaque changement de patient, documenter l'explication, signaler tout incident au BfArM.</p>
+<p class="quelle">MPG-Schulungseinheit-Anwendung-von-Rollatoren, S. 2–12</p>
+
+<!-- ============ 13 FRAU MAI ============ -->
+<h2>13 · Ein zweiter Fall: Frau Mai mit Rollator <span class="stern">★</span></h2>
+<p>Diese Datei gehört eigentlich zum Block <b>Pflegeplanung</b> (CE02 UE2 „Bei der Mobilität unterstützen“) und wird dort bearbeitet. Sie zeigt aber gut: <b>Ein Hilfsmittel allein reicht nicht.</b></p>
+<ul>
+  <li>Frau Mai, 78 Jahre, hat seit einem Monat eine <b>Hüft-TEP</b> (künstliches Hüftgelenk). Nach der Reha lebt sie wieder in ihrer Wohnung im <b>2. Stock</b>.</li>
+  <li>Sie hat Bewegungseinschränkungen und Schmerzen. An den Unterschenkeln hat sie <b>Varizen</b> (Krampfadern) — Hinweis auf eine venöse Insuffizienz (die Venen bringen das Blut schlecht zurück).</li>
+  <li>Sie sitzt viel auf dem Sofa: „Es ist anstrengend, ein paar Schritte am Tag zu machen.“</li>
+  <li>Sie hat einen <b>Rollator</b> — trotzdem wirkt sie beim Gehen <b>unsicher</b>.</li>
+  <li>Sie bekommt eine Heparin-Spritze s. c. zur Thromboseprophylaxe und Kompressionsstrümpfe.</li>
+  <li><b>Ressource:</b> Sie kann ihre Wünsche und Schmerzen klar sagen. In der Reha hat sie viel gelernt — aber ihr fehlt der <b>Mut</b>, die Übungen allein zu machen.</li>
+</ul>
+<p><b>Die Aufgabe:</b> eine Pflegeplanung für das Problem der Bewegungseinschränkung nach dem PE(S)R-Schema schreiben, mit Zielen, Maßnahmen und Begründungen. Eine Lösung steht nicht in der Datei.</p>
+<p><b>Was das mit diesem Kurs zu tun hat:</b> Wie bei Herrn S. braucht es zum Hilfsmittel auch <b>Einweisung, Ermutigung und Bewegungsübungen</b>. <span class="her">Herleitung</span></p>
+<p class="fr">🇫🇷 Mme Mai (78 ans, prothèse de hanche, 2e étage) a un déambulateur mais marche de façon peu sûre et n'ose pas faire ses exercices seule. Une aide technique ne suffit pas : il faut aussi expliquer, encourager et faire bouger.</p>
+<p class="quelle">Fallbeispiel Frau Mai ambulante Pflege Pflegeplanung, S. 1</p>
+
+<!-- ============ TOP 10 ============ -->
+<h2>Top 10 fürs Examen</h2>
+<ol>
+  <li>Sozialdienst: jedes Krankenhaus in NRW muss ihn haben und darüber informieren (§ 5 Abs. 5 KHGG NRW) — er berät in sozialen Fragen und vermittelt Hilfen.</li>
+  <li>Entlassmanagement gehört zur Krankenhausbehandlung (§ 39 Abs. 1a SGB V): ein Übergang ohne Lücke.</li>
+  <li>Vier Grundsätze: beraten bei neuen Lebenssituationen · Selbsthilfefähigkeit fördern · neue Perspektiven · <b>ambulant vor stationär</b>.</li>
+  <li>Konsilweg: Problem taucht auf → Konsil → Bearbeitung → Entlassung in Nachversorgung. Auch die Pflege darf ein Konsil anstoßen.</li>
+  <li>Die Pflege liefert: Anamnese, Zugehörige, bestehende Hilfen, nötige Hilfsmittel, Medikation, Allgemeinzustand · Pflegeüberleitung vor allem für den MD.</li>
+  <li>Patientenverfügung (was) → Vorsorgevollmacht (wer) → Ehegattennotvertretung (nur Medizin, 6 Monate, ab ärztlicher Bescheinigung) → Betreuung (Gericht, letztes Mittel, Wille zählt, seit 2023).</li>
+  <li>Beratungsbesuch in 5 Schritten: Eröffnung → Einschätzung → Beratung → Entlastung der Angehörigen → Abschluss.</li>
+  <li>Sturzrisiko Herr S.: Nykturie + Atemnot + Arthrose → Nachtlicht, Galgen, Bettschutzeinlagen, Nachtstuhl, Bewegungsübungen.</li>
+  <li>Widerstand: nicht streiten, validieren, Entscheidung beim Menschen lassen, kleine Schritte — „Unterstützung annehmen heißt Verantwortung teilen.“</li>
+  <li>Rollator: 4 Räder, Griffhöhe, Sitz nur gebremst, nie als Rollstuhl, Griffe desinfizieren, Einweisung dokumentieren, Vorkommnisse ans BfArM.</li>
+</ol>
+
+<!-- ============ FRAGEN ============ -->
+<h2>5 Prüfungsfragen — mit Musterantwort</h2>
+<details><summary><span class="op">Nennen</span>Nennen Sie die vier Grundsätze des Sozialdienstes im Krankenhaus.</summary>
+<p>1. Zu ungewohnten Lebenssituationen beraten und unterstützen. 2. Die Selbsthilfefähigkeit bei der Problembewältigung fördern (steht im Vordergrund). 3. Neue Perspektiven entwickeln. 4. Ambulant vor stationär.</p></details>
+<details><summary><span class="op">Beschreiben</span>Beschreiben Sie den Weg eines Patienten über ein Konsil an den Sozialdienst bis zur Entlassung.</summary>
+<p>Zuerst taucht eine Versorgungsproblematik oder ein Beratungswunsch auf. Erfassen können das Ärzte, Pflegekräfte, der Sozialdienst selbst oder die Angehörigen. Dann wird ein Konsil gestellt, z. B.: „Patient kurzfristig nicht entlassfähig. Bitte Mitbeurteilung.“ Der Sozialdienst bearbeitet das Konsil: Er spricht mit Patient, Team und Angehörigen, nimmt Kontakt zu Einrichtungen, Kostenträgern und Betreuern auf, klärt den Bedarf und stellt Anträge. Am Ende wird der Patient in eine passende Nachversorgung entlassen, z. B. in die Kurzzeitpflege mit einem schon organisierten Pflegedienst danach.</p></details>
+<details><summary><span class="op">Erläutern</span>Erläutern Sie, warum die Griffhöhe des Rollators richtig eingestellt sein muss.</summary>
+<p>Ist die Griffhöhe falsch, verlässt der Patient den sicheren Standbereich zwischen den Rädern. Oder er kann sich in einer Gefahrensituation nicht wirksam aufstützen. Beides kann zu einem Sturz führen <span class="her">Herleitung</span>. Deshalb sagt die Schulung: „Prüfen Sie daher stets die korrekte Einstellung der Griffhöhe.“ (MPG-Schulung Rollatoren, S. 6)</p></details>
+<details><summary><span class="op">Begründen</span>Begründen Sie, warum Herr S. nachts ein erhöhtes Sturzrisiko hat und welche Maßnahmen daraus folgen.</summary>
+<p><b>Ursache:</b> Herr S. hat eine Herzinsuffizienz mit Nykturie und Belastungsdyspnoe sowie eine Cox- und Gonarthrose. <b>Wirkung:</b> Er muss nachts mehrmals zur Toilette. Dabei hat er Atemnot, und seine Hüft- und Kniegelenke schmerzen; morgens kommt er schwer in Gang. Nachts ist es außerdem dunkel <span class="her">Herleitung</span>. <b>Gefahr:</b> Er kann auf dem Weg zur Toilette stürzen — die Pflegefachkraft nennt ausdrücklich ein „erhöhtes Sturzrisiko“. <b>Deshalb:</b> durchgehende Nachtbeleuchtung, eine Aufstehhilfe wie einen Galgen, Bettschutzeinlagen, eventuell einen Nachtstuhl, um die Wege zu verkürzen, und tagsüber gezielte Bewegungsübungen für die Mobilität. (Beratungsgespräch, S. 1–2)</p></details>
+<details><summary><span class="op">Beurteilen</span>Die Tochter von Frau S. fragt im Krankenhaus: „Braucht meine Mutter jetzt sofort eine rechtliche Betreuung?“ Beurteilen Sie die Situation.</summary>
+<p><b>Einschätzung:</b> Nicht unbedingt — eine rechtliche Betreuung ist das <b>letzte Mittel</b>. <b>Ursache:</b> Frau S. hat eine fortgeschrittene Demenz und kann ihre Angelegenheiten vielleicht nicht mehr selbst regeln. <b>Wirkung:</b> Jemand muss für sie handeln können. <b>Gefahr:</b> Wird vorschnell eine Betreuung eingerichtet, obwohl es andere Wege gibt, verliert sie unnötig Selbstbestimmung; das neue Betreuungsrecht seit 2023 stellt ihren Willen noch stärker in den Mittelpunkt. <b>Deshalb:</b> Zuerst prüfen, ob es eine <b>Vorsorgevollmacht</b> gibt — ist sie wirksam und will die bevollmächtigte Person handeln, ist keine Betreuung nötig. Für medizinische Fragen auch nach einer <b>Patientenverfügung</b> fragen. Eine Betreuung soll es nur geben, wenn andere Hilfen, vor allem nach dem Sozialrecht, ausgeschöpft sind. Der Sozialdienst berät dazu und kann eine Betreuung anregen. (Sozialdienst, S. 11, 17–19) <span class="her">Herleitung</span> — ob eine Vollmacht existiert, sagt der Fall nicht.</p></details>
+
+<!-- ============ SPICKZETTEL ============ -->
+<h2>Spickzettel</h2>
+<ul class="spick">
+  <li>Sozialdienst: Pflicht in jedem KH (KHGG NRW § 5 Abs. 5)</li>
+  <li>Entlassmanagement: § 39 Abs. 1a SGB V</li>
+  <li>ambulant vor stationär · Selbsthilfe fördern</li>
+  <li>Konsil: Problem → Konsil → Bearbeitung → Nachversorgung</li>
+  <li>Pflegeüberleitung: wichtig vor allem für den MD</li>
+  <li>Verfügung = was · Vollmacht = wer · Betreuung = Gericht, zuletzt</li>
+  <li>Ehegatte: nur Medizin, 6 Monate, ab Arzt-Bescheinigung</li>
+  <li>PUEG: + 4,5 % ab 1.1.2025 · 10 Tage Unterstützungsgeld</li>
+  <li>Beratungsbesuch: Eröffnung → Einschätzung → Beratung → Entlastung → Abschluss</li>
+  <li>Herr S. nachts: Licht, Galgen, Einlagen, Nachtstuhl</li>
+  <li>Frau S.: feste Abläufe, Orientierungshilfen, Höherstufung</li>
+  <li>„Verantwortung teilen, nicht abgeben“</li>
+  <li>Antrag: Bedarf → Beratung → Antrag → Genehmigung → Einweisung</li>
+  <li>Rollator 4 Räder · Delta-Gehrad 3 = kein Ersatz</li>
+  <li>Sitzen nur gebremst · nie als Rollstuhl · Griffhöhe!</li>
+  <li>Vorkommnisse und Beinahe-Vorkommnisse → BfArM</li>
+</ul>
+
+<h2>Woraus diese Seite gebaut ist</h2>
+<p>Sieben Dateien aus deinem Drive-Ordner, <b>alle Seiten gelesen</b>, Bildseiten angesehen:</p>
+<ul>
+  <li><b>NEUSozialdienst im Krankenhaus</b> (Greta Opitz, Luisenhospital) — 24 Seiten. Das Formular-Bild auf Seite 10 wurde vom Bild abgelesen. Der Lebenslauf der Dozentin (S. 2) steht nur in einem Satz da. Weggelassen: Namen und Foto des Teams (S. 3), Folie „Fragen?“ und die Quellenliste (S. 23–24).</li>
+  <li><b>Beratungsgespräch zu Pflegehilfsmitteln</b> (ohne Verfasser) — 2 Seiten.</li>
+  <li><b>MPG-Schulungseinheit Anwendung von Rollatoren</b> — 13 Seiten (S. 1 und 13 nur Titel und Dank).</li>
+  <li><b>Arbeitauftraghilfsmittel (Farnaz, Zika, Sokna, El Inani)</b> — deine eigene Gruppenarbeit, 9 Seiten. Weggelassen: die Platzhalter-Kontaktdaten auf S. 9.</li>
+  <li><b>AA Pflegeversicherung &amp; Beratung Familie S.</b> — Gruppenarbeit von Mitschülern, 8 Seiten. Geldbeträge <b>ungeprüft</b>, nur eingeklappt gezeigt.</li>
+  <li><b>Pflegehilsmittel und Angebote Ambulantes Setting</b> — Gruppenarbeit einer anderen Gruppe, 1 Seite, nur Bild ohne Text, vom Bild abgelesen.</li>
+  <li><b>Fallbeispiel Frau Mai ambulante Pflege Pflegeplanung</b> — 1 Seite. Gehört zum Pflegeplanungs-Block; hier nur kurz.</li>
+</ul>
+<div class="hinweis"><b>Was in deinen Unterlagen fehlt:</b> die Original-Fallbeschreibung des Ehepaars S. · was § 37 Abs. 3 SGB XI genau regelt · wie ein Pflegegrad begutachtet wird · eine Definition von „Hilfsmittel“ und „Pflegehilfsmittel“ · welche Kasse (Kranken- oder Pflegekasse) welches Hilfsmittel bezahlt · geprüfte Geldbeträge · die Lösungen der drei Rollator-Wiederholungsfragen · warum eine Herzinsuffizienz nachts zu Wasserlassen und Atemnot führt.</div>
+<p class="fr">🇫🇷 Tout vient de tes sept fichiers de cours. Rien d'Internet. Le badge « Herleitung » marque ce que j'ai déduit en reliant deux documents. Les travaux d'élèves (le tien et ceux des autres) sont signalés comme tels.</p>
+</main>
