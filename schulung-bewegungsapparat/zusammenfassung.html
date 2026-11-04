@@ -1,1058 +1,657 @@
-<title>Ich verstehe das alles nicht</title>
+<title>Bewegungsapparat — Osteoporose, Arthrose, Bechterew</title>
+<meta name="description" content="Osteoporose, Arthrose und Morbus Bechterew an den Fällen Frau Schneider und Frau Weber — einfach erklärt, nur aus deinen drei Kursdateien (CE 05).">
 <style>
   :root{
-    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
-    --accent:#8a5a1f;--accent-deep:#6d4614;--accent-soft:#f6ecd9;
-    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
-    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
-    --pharm:#1f5f86;--pharmbg:#dbe8f1;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --paper:#f3f5f4;--card:#ffffff;--ink:#17201f;--ink-soft:#4a5755;--line:#cfd8d6;
+    --accent:#1d6b74;--accent-soft:#dcedef;
+    --rot:#a43b30;--rotbg:#f7e2de;--gelb:#8a5a0c;--gelbbg:#f8ecd4;--gruen:#2a6b47;--gruenbg:#e0efe5;
     --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
   }
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
-    --accent:#dcb473;--accent-deep:#ecc98f;--accent-soft:#2c2313;
-    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
-    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
-    --pharm:#6cadd9;--pharmbg:#122736;}}
+    --paper:#111716;--card:#1a2221;--ink:#e8eeed;--ink-soft:#a1aeac;--line:#2d3836;
+    --accent:#6fc3cd;--accent-soft:#163238;
+    --rot:#e48d80;--rotbg:#33201c;--gelb:#e0b05f;--gelbbg:#30240f;--gruen:#7ccb9c;--gruenbg:#15291d;color-scheme:dark;}}
   :root[data-theme="dark"]{
-    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
-    --accent:#dcb473;--accent-deep:#ecc98f;--accent-soft:#2c2313;
-    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
-    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
-    --pharm:#6cadd9;--pharmbg:#122736;}
-  :root[data-theme="light"]{
-    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
-    --accent:#8a5a1f;--accent-deep:#6d4614;--accent-soft:#f6ecd9;
-    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
-    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
-    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
-
+    --paper:#111716;--card:#1a2221;--ink:#e8eeed;--ink-soft:#a1aeac;--line:#2d3836;
+    --accent:#6fc3cd;--accent-soft:#163238;
+    --rot:#e48d80;--rotbg:#33201c;--gelb:#e0b05f;--gelbbg:#30240f;--gruen:#7ccb9c;--gruenbg:#15291d;color-scheme:dark;}
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
-
-  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
-    border-bottom:1px solid var(--line);
-    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
-  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--accent-deep);margin:0 0 10px;}
-  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
-    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
-  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
-  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
-    border-radius:999px;background:var(--card);color:var(--ink-soft);}
-
-  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
-    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
-  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
-    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
-    white-space:nowrap;}
-  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
-    background:var(--card);}
-
-  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
-  section{padding-top:52px;}
-  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
-    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
-  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
-  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
-  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
-  p{margin:0 0 14px;max-width:70ch;}
-  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
-  li{margin:5px 0;}
-  b,strong{font-weight:700;}
-  .fr{font-style:italic;color:var(--ink-soft);}
-  .fr::before{content:"🇫🇷 ";font-style:normal;}
-
-  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
-  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
-  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
-  .karte p:last-child{margin-bottom:0;}
-
-  .scroll{overflow-x:auto;margin:18px 0;}
-  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
-  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
-    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
-    text-align:left;vertical-align:bottom;}
-  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
-  td.k{font-weight:700;white-space:nowrap;}
-  tbody tr:nth-child(even) td{background:var(--paper);}
-
-  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .merk p:last-child{margin-bottom:0;}
-  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--accent-deep);display:block;margin-bottom:6px;}
-
-  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .warnung p:last-child{margin-bottom:0;}
-  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--warn);display:block;margin-bottom:6px;}
-
-  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .gefahr p:last-child{margin-bottom:0;}
-  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--notfall);display:block;margin-bottom:6px;}
-
-  .stufen{display:grid;gap:10px;margin:18px 0;}
-  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
-    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
-  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
-    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
-  .stufe .nr.n2{background:var(--accent);}
-  .stufe h4{margin:0 0 4px;}
-  .stufe p{margin:0;font-size:15.5px;}
-  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
-
-  .paare{display:grid;gap:9px;margin:18px 0;}
-  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
-    border-radius:0 10px 10px 0;padding:11px 15px;}
-  .paar .de{font-weight:600;}
-  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
-
-  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
-    overflow:hidden;}
-  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
-    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
-  details.quelle>summary::-webkit-details-marker{display:none;}
-  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
-  details.quelle[open]>summary::before{content:"－";}
-  details.quelle .inh{padding:0 17px 15px;}
-  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
-
-  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
-    padding:16px 18px;margin:20px 0;}
-  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
-  .pruef ol{margin:0;}
-
-  a{color:var(--accent-deep);}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
-  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
-    text-align:center;color:var(--ink-soft);font-size:14px;}
-  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
-  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;}
+  main{max-width:46rem;margin:0 auto;padding-inline:16px;padding-block:28px 60px;}
+  h1{font-size:2rem;line-height:1.15;margin:0 0 6px;text-wrap:balance;}
+  h2{font-size:1.35rem;line-height:1.25;margin:34px 0 8px;color:var(--accent);text-wrap:balance;}
+  h3{font-size:1.05rem;margin:18px 0 6px;}
+  p{margin:0 0 10px;}
+  ul,ol{margin:0 0 12px;padding-left:1.3rem;} li{margin:3px 0;}
+  .unter{color:var(--ink-soft);margin:0 0 16px;}
+  .stern{color:var(--gelb);font-size:.9em;letter-spacing:1px;white-space:nowrap;}
+  .kern{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;margin:14px 0;}
+  .fr{font-style:italic;color:var(--ink-soft);font-size:.95em;}
+  .merke{background:var(--gelbbg);border-radius:8px;padding:9px 13px;margin:10px 0;}
+  .merke b:first-child{color:var(--gelb);}
+  .hinweis{background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:9px 13px;margin:10px 0;font-size:.95em;}
+  .quelle{font-size:.8em;color:var(--ink-soft);margin:4px 0 0;}
+  /* Schemata: Kästen mit Pfeilen, von oben nach unten */
+  .schema{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:12px 0;}
+  .schema .titel{font-weight:700;margin:0 0 10px;}
+  .k{border:1.5px solid var(--line);border-radius:8px;padding:7px 10px;background:var(--paper);}
+  .k b{display:block;}
+  .k small{display:block;color:var(--ink-soft);font-size:.86em;line-height:1.4;}
+  .k.wichtig{border-color:var(--accent);background:var(--accent-soft);}
+  .k.rot{border-color:var(--rot);background:var(--rotbg);}
+  .k.gruen{border-color:var(--gruen);background:var(--gruenbg);}
+  .pfeil{text-align:center;color:var(--ink-soft);font-size:1.1rem;line-height:1.4;}
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .zwei > div{min-width:0;}
+  .lesen{font-size:.88em;color:var(--ink-soft);margin:8px 0 0;}
+  .scroll{overflow-x:auto;margin:10px 0;}
+  table{border-collapse:collapse;width:100%;font-size:.92em;line-height:1.4;}
+  th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-soft);}
+  td.z{white-space:nowrap;font-variant-numeric:tabular-nums;}
+  tr.rot td:first-child{background:var(--rotbg);} tr.gelb td:first-child{background:var(--gelbbg);} tr.gruen td:first-child{background:var(--gruenbg);}
+  details{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:8px 0;}
+  summary{cursor:pointer;font-weight:600;}
+  .op{display:inline-block;font-size:.75em;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:0 8px;margin-right:6px;}
+  .spick{columns:2 16rem;column-gap:24px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px 12px 32px;}
+  .spick li{break-inside:avoid;}
+  @media (max-width:520px){.zwei{grid-template-columns:1fr;} h1{font-size:1.7rem;} td.z{white-space:normal;} th,td{padding:5px 6px;}}
 </style>
 
-<header class="hero">
-  <p class="eyebrow">Erkrankungen des Bewegungsapparates · zwei Fallbeispiele</p>
-  <h1>„Ich verstehe das alles nicht“</h1>
-  <p class="sub">Zwei Fälle deiner Dozentin, ein Lehrbuchauszug — und beide Fälle enden damit,
-    dass jemand aus der Pflege <b>nicht erklären kann, warum</b>.</p>
-  <div class="meta">
-    <span>Osteoporose</span>
-    <span>Arthrose</span>
-    <span>Morbus Bechterew</span>
-    <span>3 Quellen</span>
-    <span>Niveau B1</span>
-    <span>Stand 20.09.2026</span>
-  </div>
-</header>
+<style>
+  .her{font-style:normal;font-size:.78em;font-weight:700;letter-spacing:.04em;color:var(--gelb);background:var(--gelbbg);border-radius:999px;padding:0 7px;white-space:nowrap;}
+  .def{border:2px solid var(--accent);border-radius:10px;padding:12px 14px;margin:12px 0;background:var(--card);}
+  .def .t{display:block;font-size:.78em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+  .def p:last-child{margin-bottom:0;}
+  dl.woerter{margin:10px 0;display:grid;grid-template-columns:minmax(8rem,auto) 1fr;gap:6px 14px;}
+  dl.woerter dt{font-weight:700;} dl.woerter dd{margin:0;}
+  @media (max-width:520px){dl.woerter{grid-template-columns:1fr;gap:0;} dl.woerter dd{margin-bottom:8px;}}
+</style>
 
-<nav class="toc" aria-label="Inhalt">
-  <a href="#warum">Warum diese Seite</a>
-  <a href="#schneider">Fall Frau Schneider</a>
-  <a href="#osteoporose">Osteoporose</a>
-  <a href="#arthrose">Arthrose</a>
-  <a href="#bechterew">Morbus Bechterew</a>
-  <a href="#weber">Fall Frau Weber</a>
-  <a href="#sortieren">Die Symptome sortieren</a>
-  <a href="#offen">Was fehlt</a>
-</nav>
 
-<main>
+<main lang="de">
+<h1>Erkrankungen des Bewegungsapparates — Osteoporose, Arthrose und Morbus Bechterew</h1>
+<p class="unter">CE 05 · Fallbeispiele „Frau Schneider ist gestürzt“ und „Frau Weber legt Wert auf Selbständigkeit“ · neu geschrieben am 04.11.2026 · <b>nur aus deinen 3 Kursdateien</b> — nichts aus dem Internet. Wo ich zwei Stellen selbst verbinde, steht <span class="her">Herleitung</span>.</p>
 
-<section id="warum">
-  <h2>Warum diese Seite — und warum sie am Ende offen bleibt</h2>
-  <p class="lead">Drei Dateien aus deinem Drive-Ordner gehören zusammen und hatten bisher keine
-    Seite: zwei <b>Fallbeispiele</b> und der <b>Lehrbuchauszug</b>, der sie beantwortet.</p>
+<div class="kern">
+  <p><b>Das Wichtigste in zwei Sätzen:</b> Frau Schneider hat drei Krankheiten zugleich: <b>Morbus Bechterew</b> (eine entzündliche Krankheit der Wirbelsäule), <b>Arthrose</b> (die Gelenke nutzen sich ab) und neu <b>Osteoporose</b> (eine Krankheit der Knochen). Dein Auszug sagt: Die Osteoporose kann eine <b>Folge des Morbus Bechterew</b> sein — durch Entzündung und Bewegungs&shy;mangel.</p>
+  <p>Beide Fälle enden gleich: Eine Patientin fragt „Warum?“, und die Pflege kann es nicht erklären. Die Fälle üben also das <b>Begründen</b>.</p>
+  <p class="fr">🇫🇷 Trois maladies chez la même femme : spondylarthrite ankylosante (inflammation de la colonne), arthrose (usure des articulations) et ostéoporose (maladie des os). L'ostéoporose peut être une complication de la spondylarthrite, à cause de l'inflammation et du manque de mouvement. Les deux cas t'entraînent à expliquer « pourquoi ».</p>
+</div>
 
-  <p>Am 20.09.2026 dazugekommen: <i>Frau Schneider ist gestuerzt AA.pdf</i>,
-    <i>KH-Bilder Fr. Schneider.pdf</i> und <i>Frau Weber.pdf</i>. Die erste und die dritte Datei
-    sind <b>Fälle mit Aufgaben</b>, die zweite ist der <b>Fachtext</b> dazu — Osteoporose,
-    Arthrose und Morbus Bechterew.</p>
+<!-- ============ AUF EINEN BLICK ============ -->
+<h2>Auf einen Blick: drei Krankheiten, zwei Frauen</h2>
+<div class="schema">
+  <p class="titel">Frau Schneider (67): vom Morbus Bechterew bis zum Bruch</p>
+  <div class="k wichtig"><b>Morbus Bechterew — seit dem 32. Lebensjahr</b><small>entzündlich-rheumatisch · Kreuzbein-Darmbein-Gelenke und Wirbelsäule · Leitsymptom: chronischer Rückenschmerz</small></div>
+  <div class="pfeil">↓ Entzündung + Bewegungs&shy;mangel</div>
+  <div class="k rot"><b>Osteoporose — neu festgestellt</b><small>steht im Auszug als <b>Komplikation</b> des Morbus Bechterew · Knochendichte gemessen · Fosamax + Vigantoletten</small></div>
+  <div class="pfeil">↓ <span class="her">Herleitung</span></div>
+  <div class="k rot"><b>Sturz bei Glatteis → mediale Oberschenkel&shy;hals&shy;fraktur</b><small>Operation (Osteosynthese) am nächsten Morgen · danach Mobilisation mit der Physio</small></div>
+  <div class="pfeil">+</div>
+  <div class="k"><b>Arthrose — seit 2 Jahren, vor allem die Finger</b><small>nicht entzündlich · Gelenk nutzt sich ab · „Ich brauche immer was, bis ich in die Gänge komme“</small></div>
+  <div class="pfeil">↓ dasselbe Bild, später</div>
+  <div class="k"><b>Frau Weber (72): rheumatoide Arthritis + sekundäre Osteoporose</b><small>Oberkörper <b>stark</b> nach vorne gebeugt · Hände <b>stark</b> verformt · Angst zu fallen · drei Fragen „Warum?“</small></div>
+  <p class="lesen">So liest du das: Oben Frau Schneider, unten Frau Weber. Jeder Kasten ist ein Kapitel unten. Den Pfeil von der Osteoporose zum Bruch ziehe ich selbst — der Fall verbindet die beiden Dinge nicht ausdrücklich.</p>
+</div>
 
-  <div class="merk">
-    <span class="t">Beide Fälle laufen auf dieselbe Szene zu</span>
-    <p>Bei <b>Frau Schneider</b> fragt die Patientin: <b>„Was passiert denn, wenn ich nochmal
-      falle?“</b> — und der Fall sagt nur: <i>„PFK Anne kann Frau Schneider beruhigen.“</i>
-      <b>Womit</b> sie beruhigt, steht nicht da. Das sollst du schreiben.</p>
-    <p>Bei <b>Frau Weber</b> fragt die Bewohnerin drei Mal <b>warum</b> — und der Pflegeschüler
-      Tim muss zugeben, <b>dass er es nicht erklären kann</b>. Der Fall endet mit diesem
-      Eingeständnis.</p>
-    <p><b>Das ist kein Zufall.</b> Beide Fälle prüfen nicht, ob du etwas tust, sondern ob du es
-      <b>begründen</b> kannst — der Operator, an dem deine schriftlichen Noten hängen.</p>
-    <p class="fr">Les deux cas se terminent au même endroit : quelqu'un doit expliquer
-      <b>pourquoi</b>, et n'y arrive pas. C'est exactement l'opérateur qui te coûte des points.</p>
-  </div>
+<!-- ============ 1 DEFINITIONEN ============ -->
+<h2>1 · Die drei Krankheiten — die Definitionen <span class="stern">★★★</span></h2>
+<p>Dein Lehrbuchauszug definiert <b>zwei</b> der drei Krankheiten. Die Osteoporose definiert er <b>nicht</b> — obwohl Aufgabe 3 genau das verlangt.</p>
 
-  <div class="gefahr">
-    <span class="t">Und darum bleibt diese Seite an mehreren Stellen leer</span>
-    <p>Der Lehrbuchauszug deckt <b>Osteoporose, Arthrose und Morbus Bechterew</b> ab.
-      <b>Frau Weber hat aber eine rheumatoide Arthritis</b> — und die steht in <b>keiner</b>
-      deiner drei Dateien. Genauso fehlt der <b>Aufbau des Knochens</b>, nach dem Aufgabe 1
-      fragt.</p>
-    <p><b>Ich schreibe es nicht aus dem Gedächtnis dazu.</b> Wo die Antwort fehlt, steht hier,
-      dass sie fehlt — und wo deine Unterlagen den <b>halben</b> Weg liefern, steht, wie weit
-      sie reichen.</p>
-  </div>
-</section>
-
-<section id="schneider">
-  <h2>Der Fall — Frau Schneider ist gestürzt</h2>
-  <p class="lead">67 Jahre, Glatteis, mediale Oberschenkelhalsfraktur. Und drei Krankheiten
-    gleichzeitig.</p>
-
-  <div class="karten">
-    <div class="karte">
-      <h4>Was passiert ist</h4>
-      <ul>
-        <li><b>67 Jahre</b>, Sturz bei <b>Glatteis</b>, vom Ehemann in die Notaufnahme
-          gebracht</li>
-        <li>Starke Schmerzen in der <b>rechten Hüfte</b>, kann mit dem Bein <b>nicht
-          auftreten</b></li>
-        <li>Schmerzen auch im <b>Iliosakralbereich</b> und im <b>rechten Arm</b></li>
-        <li>Erste <b>Hämatome</b> im Hüftbereich</li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Was das Röntgen zeigt</h4>
-      <ul>
-        <li><b>Mediale Oberschenkelhalsfraktur</b> — bestätigt</li>
-        <li><b>Verknöcherung des Iliosakralbereiches</b></li>
-        <li>Weitere Verletzungen: <b>keine</b></li>
-        <li>Stationäre Aufnahme, <b>Osteosynthese am nächsten Morgen</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Die Werte aus der Dokumentation</h4>
-      <ul>
-        <li>Größe <b>1,68 m</b>, Gewicht <b>93 kg</b>, <b>BMI 34</b></li>
-        <li>RR <b>160/90 mmHg</b></li>
-        <li>HF <b>94</b>, rhythmisch</li>
-        <li>AF <b>19</b>, <b>oberflächlich</b></li>
-      </ul>
-    </div>
-  </div>
-
-  <h3>Was sie selbst erzählt — ihre Krankengeschichte in ihren Worten</h3>
-  <div class="merk">
-    <span class="t">Das Aufnahmegespräch, gekürzt aber im Wortlaut</span>
-    <p>„Als ich ausgerutscht bin, habe ich versucht mich im Fallen zu drehen, damit ich nicht auf
-      meinen Steiß falle, denn <b>da habe ich eh schon Probleme mit</b>. Im Alter von
-      <b>32 Jahren</b> wurde bei mir <b>Morbus Bechterew</b> festgestellt. Ich hatte immer so
-      starke Rückenschmerzen. Das kam bestimmt davon, <b>dass ich so viel sitze</b>. Ich bin
-      Verwaltungsangestellte und habe lange Arbeitstage, <b>da bleibt nicht viel Zeit für
-      Bewegung</b>. Ich habe dann immer eine <b>Ibu 600</b> genommen, was wiederum <b>meinem
-      Magen nicht gut bekommen</b> ist. <b>Seit 2 Jahren</b> machen mir auch meine Gelenke
-      Probleme. <b>Vor allem meine Finger.</b> Ich brauche immer was, bis ich in die Gänge
-      komme. Der Arzt hat mir gesagt das sei <b>Arthrose</b> …“</p>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Drei Sätze, in denen die halbe Aufgabe schon steckt</span>
-    <ul>
-      <li><b>„Das kam bestimmt davon, dass ich so viel sitze.“</b> — Sie stellt selbst eine
-        Ursachenvermutung auf. Ob sie stimmt, ist genau eine Prüfungsfrage: Der Fachtext nennt
-        für Morbus Bechterew eine <b>autoimmun (mit-)bedingte Erkrankung mit letztlich unklarer
-        Ursache</b>. <b>Nicht Sitzen.</b></li>
-      <li><b>„Da bleibt nicht viel Zeit für Bewegung.“</b> — <b>Bewegungsmangel</b> steht im
-        Fachtext bei der Osteoporose unter den <b>vermeidbaren</b> Risikofaktoren, und die
-        Therapie beider anderen Krankheiten heißt <b>Bewegungstherapie</b>. Ein Satz, drei
-        Anschlüsse.</li>
-      <li><b>„Ich brauche immer was, bis ich in die Gänge komme.“</b> — Der Fachtext nennt genau
-        das beim Arthrose-Schmerz: <b>„Anlaufschmerzen nach längerer Ruhe“</b> und
-        <b>„Der Krankheitsbeginn wird von den Patienten häufig als Steifigkeit
-        beschrieben“</b>.</li>
-    </ul>
-    <p class="fr">Ses propres phrases contiennent déjà la moitié des réponses — et une erreur
-      qu'il faut repérer : ce n'est pas la position assise qui cause la spondylarthrite.</p>
-  </div>
-
-  <h3>Was die Ärzte und die Pflege danach feststellen</h3>
+<h3>Arthrose</h3>
+<div class="def">
+  <span class="t">Definition — so steht sie in deinem Auszug</span>
+  <p>„<b>nichtentzündliche, degenerative und irreversible Gelenk&shy;zerstörung</b>, verursacht durch ein <b>Missverhältnis zwischen Belastung und Belastbarkeit</b>. Leitsymptome langsam über Jahre zunehmender <b>Schmerz</b> und <b>Beweglichkeits&shy;einschränkung</b>.“</p>
+</div>
+<div class="def">
+  <span class="t">Dieselbe Definition — Wort für Wort einfach</span>
+  <p>Bei der Arthrose wird ein <b>Gelenk kaputt</b>. Das passiert so:</p>
   <ul>
-    <li>Der Stationsarzt lässt die <b>Knochendichte</b> messen — <b>„Die Untersuchung bestätigt
-      den Verdacht“</b></li>
-    <li>Angeordnet werden <b>Fosamax® (Biphosphonat) 70 mg, einmal wöchentlich</b> und
-      <b>Vigantoletten 1000 I.E., 1× täglich</b></li>
-    <li>Beim Gang zum Waschbecken beobachtet PFK Anne: <b>schnell erschöpft</b> · <b>Oberkörper
-      nach vorne gebeugt</b> · <b>Knie und Hüfte leicht gebeugt</b> · <b>kleine Schritte</b> ·
-      <b>hält sich krampfhaft an allem fest</b> · <b>Finger etwas steif</b>, im Laufe der
-      Versorgung <b>beweglicher</b></li>
+    <li><b>nichtentzündlich</b> = es ist <b>keine Entzündung</b>. Das unterscheidet die Arthrose vom Morbus Bechterew.</li>
+    <li><b>degenerativ</b> = das Gelenk <b>nutzt sich ab</b> <span class="her">Herleitung</span></li>
+    <li><b>irreversibel</b> = es geht <b>nicht wieder weg</b> <span class="her">Herleitung</span></li>
+    <li>Der Grund: Das Gelenk muss <b>mehr tragen, als es aushält</b> (Belastung größer als Belastbarkeit).</li>
   </ul>
+  <p>Man merkt es an zwei Dingen: Der <b>Schmerz</b> wird über Jahre langsam stärker, und das Gelenk wird <b>weniger beweglich</b>.</p>
+</div>
 
-  <div class="pruef">
-    <h4>Die elf Aufgaben deiner Dozentin — wörtlich, unbearbeitet</h4>
-    <p><i>„Bei Frau Schneider zeigen sich verschiedene Erkrankungen des Bewegungsapparates. Da
-      die Osteoporose neu diagnostiziert wurde und entsprechend neue Medikamente angeordnet
-      wurde, beschäftigen wir uns zunächst mit der Osteoporose.“</i></p>
-    <ol>
-      <li><b>Beschreiben</b> Sie, wie ist ein Knochen aufgebaut.
-        <span style="opacity:.7">→ <b>steht in keiner deiner Dateien</b></span></li>
-      <li><b>Erklären</b> Sie, wie ein Knochen entsteht.
-        <span style="opacity:.7">→ <b>steht in keiner deiner Dateien</b></span></li>
-      <li><b>Definieren</b> Sie „Osteoporose“.
-        <span style="opacity:.7">→ <b>der Fachtext definiert Arthrose und M. Bechterew, die
-        Osteoporose aber nicht</b></span></li>
-      <li><b>Erklären</b> Sie die Relevanz des Krankheitsbildes für unsere Gesellschaft.
-        <span style="opacity:.7">→ keine Zahlen in deinen Dateien</span></li>
-      <li><b>Beschreiben</b> Sie die Ursachen für eine Osteoporose.
-        <span style="opacity:.7">→ <a href="#osteoporose">Formen und Risikofaktoren</a></span></li>
-      <li><b>Erklären</b> Sie, warum vornehmlich bei Frauen.
-        <span style="opacity:.7">→ der Schlüssel steht im Fachtext, siehe unten</span></li>
-      <li><b>Beschreiben</b> Sie das diagnostische Verfahren.
-        <span style="opacity:.7">→ <a href="#osteoporose">Diagnostik</a>, vier Punkte</span></li>
-      <li><b>Benennen</b> Sie die Symptome der Osteoporose <b>bei Frau Schneider</b>.
-        <span style="opacity:.7">→ <a href="#sortieren">die Sortieraufgabe</a></span></li>
-      <li><b>Beschreiben</b> Sie die Therapie bei Osteoporose.
-        <span style="opacity:.7">→ <a href="#osteoporose">Therapie</a>, mit Mengenangaben</span></li>
-      <li><b>Erklären</b> Sie, worauf Anne bei ihrer pflegerischen Versorgung besonders achten
-        muss. <span style="opacity:.7">→ steht so nicht da; die Bausteine schon</span></li>
-      <li><b>Bereiten</b> Sie ein <b>Beratungsgespräch bezüglich der Ernährung</b> bei
-        Osteoporose für Anne vor.
-        <span style="opacity:.7">→ die <b>Mengen</b> stehen im Fachtext, die
-        <b>Lebensmittel</b> nicht</span></li>
-    </ol>
-    <p><b>Achte auf die Operatoren.</b> <i>Beschreiben</i> und <i>Benennen</i> sind <b>AFB I</b>
-      — sachlich darstellen, die geforderte Anzahl liefern. Aber <b>fünfmal</b> steht
-      <i>Erklären</i> da, und <i>Erklären</i> verlangt bei dir immer eine <b>verständliche
-      Erklärung plus ein eigenes Beispiel</b>. Aufgabe 11 ist noch eine Stufe höher: Ein
-      <b>Beratungsgespräch vorbereiten</b> heißt, den Fachinhalt in <b>Sätze für einen
-      Menschen</b> zu übersetzen.</p>
-  </div>
-</section>
-
-<section id="osteoporose">
-  <h2>Osteoporose — aus dem Lehrbuchauszug</h2>
-  <p class="lead">Das ist die Krankheit, um die der Fall gebaut ist.</p>
-
-  <div class="warnung">
-    <span class="t">Eine Lücke gleich am Anfang</span>
-    <p>Der Auszug beginnt mit <b>„Osteoporose — Formen“</b>. Für <b>Arthrose</b> und
-      <b>Morbus Bechterew</b> steht jeweils ein vollständiger Definitionssatz da — <b>für die
-      Osteoporose nicht</b>. <b>Aufgabe 3 verlangt aber genau diese Definition.</b></p>
-    <p><b>Ich schreibe sie nicht aus dem Gedächtnis hin.</b> Was du aus dem Auszug ableiten
-      kannst: Es geht um <b>Knochendichte</b> (sie wird gemessen), um <b>Knochenumsatz</b>
-      (hoch bei Typ I, niedrig bei Typ II) und um <b>Frakturen</b> (die Diagnostik sucht nach
-      unbemerkten Wirbelkörperfrakturen). <b>Diese drei Wörter sind das Gerüst — den Satz musst
-      du aus dem Unterricht oder aus Pflege Heute holen.</b></p>
-  </div>
-
-  <h3>Die Formen</h3>
-  <div class="stufen">
-    <div class="stufe"><span class="nr">primär<br>Typ I</span><div>
-      <h4>Postmenopausale Osteoporose</h4>
-      <p>Vor allem bei <b>postmenopausalen Frauen</b>. Hauptrisikofaktor <b>Östrogenmangel</b>,
-        mit <b>hohem Knochenumsatz</b>.</p></div></div>
-    <div class="stufe"><span class="nr">primär<br>Typ II</span><div>
-      <h4>Senile Osteoporose</h4>
-      <p>Bei <b>Männern und Frauen über 70 Jahren</b>, mit <b>niedrigem
-        Knochenumsatz</b>.</p></div></div>
-    <div class="stufe"><span class="nr n2">sekundär</span><div>
-      <h4>Infolge einer bekannten Grunderkrankung</h4>
-      <p>Zum Beispiel <b>Hyperthyreose</b>, <b>Cushing-Syndrom</b>, <b>Magen-Darm-Erkrankungen
-        mit verminderter Nährstoffresorption</b>, <b>Medikamentennebenwirkung</b> (z. B.
-        <b>Glukokortikoidlangzeittherapie</b>), <b>Alkoholmissbrauch</b>,
-        <b>Rauchen</b>.</p></div></div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Aufgabe 6 — warum vornehmlich Frauen? Der Schlüssel steht in Typ I</span>
-    <p><b>Typ I heißt „postmenopausal“, und der Hauptrisikofaktor heißt „Östrogenmangel“.</b>
-      Unter den unvermeidbaren Risikofaktoren steht es ein zweites Mal: <b>„Weibliches
-      Geschlecht, Östrogenmangel nach der Menopause“</b>.</p>
-    <p><b>Der Fachtext sagt also, dass es am Östrogenmangel liegt — er sagt nicht, was Östrogen
-      am Knochen tut.</b> Für eine <i>Erklären</i>-Antwort brauchst du diesen Zwischenschritt,
-      und er steht in deinen Dateien nicht. <b>Frag danach, statt ihn zu erfinden.</b></p>
-    <p class="fr">Tes documents disent <b>que</b> c'est la carence en œstrogènes. Ils ne disent
-      pas <b>ce que</b> l'œstrogène fait à l'os — et c'est ce chaînon qu'exige un « expliquer ».</p>
-  </div>
-
-  <h3>Risikofaktoren — die Zweiteilung ist die Botschaft</h3>
-  <div class="karten">
-    <div class="karte">
-      <h4>Unvermeidbar</h4>
-      <ul>
-        <li><b>Genetische Veranlagung</b></li>
-        <li><b>Höheres Lebensalter</b></li>
-        <li><b>Weibliches Geschlecht</b>, Östrogenmangel nach der Menopause</li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Vermeidbar</h4>
-      <ul>
-        <li><b>Kalzium-, Vitamin-D-Mangel</b></li>
-        <li><b>Bewegungsmangel</b></li>
-        <li><b>Unterernährung, niedriger BMI</b></li>
-        <li><b>Alkoholmissbrauch, Rauchen</b></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Warum diese Zweiteilung mehr ist als eine Gliederung</span>
-    <p><b>Die rechte Spalte ist die Beratung.</b> Über unvermeidbare Faktoren kann man mit einem
-      Menschen nicht sprechen — über die vier rechts schon. <b>Aufgabe 11 (Beratungsgespräch)
-      hat ihre Gliederung damit schon fertig.</b></p>
-    <p><b>Und eine Beobachtung zu Frau Schneider, die dir auffallen soll:</b> Sie hat
-      <b>BMI 34</b>, also <b>nicht</b> den niedrigen BMI der Risikoliste. <b>Ein Risikofaktor,
-      der bei ihr nicht zutrifft.</b> Aufgabe 5 fragt nach den Ursachen <i>der</i> Osteoporose —
-      wer dabei blind die Liste abschreibt, ohne zu prüfen, was auf <i>sie</i> zutrifft, hat die
-      Aufgabe halb gelöst.</p>
-  </div>
-
-  <h3>Symptome</h3>
+<h3>Morbus Bechterew</h3>
+<div class="def">
+  <span class="t">Definition — so steht sie in deinem Auszug</span>
+  <p>„Morbus Bechterew (<b>ankylosierende Spondylitis</b>, AS): <b>entzündlich-rheumatische</b> Gelenkerkrankung mit hauptsächlicher <b>Sakroiliitis</b> (Entzündung der Sakroiliakal- = Kreuzbein-Darmbein-Gelenke) und <b>Spondylarthritis</b> (Entzündung der Wirbelsäule), die bis zur <b>völligen Wirbelsäulenversteifung</b> führen kann.“</p>
+</div>
+<div class="def">
+  <span class="t">Dieselbe Definition — Wort für Wort einfach</span>
+  <p>Beim Morbus Bechterew sind Gelenke <b>entzündet</b>. Es ist eine <b>rheumatische</b> Krankheit.</p>
   <ul>
-    <li><b>Deformierung von Wirbelkörpern</b></li>
-    <li><b>Tannenbaumphänomen</b></li>
-    <li><b>Rückenschmerzen</b></li>
+    <li>Entzündet sind vor allem die Gelenke zwischen <b>Kreuzbein und Darmbein</b> (unten am Rücken, im Becken). Das heißt <b>Sakroiliitis</b>.</li>
+    <li>Entzündet ist auch die <b>Wirbelsäule</b>. Das heißt <b>Spondylarthritis</b>.</li>
+    <li>Am Ende kann die Wirbelsäule <b>ganz steif</b> werden.</li>
   </ul>
-  <div class="warnung">
-    <span class="t">„Tannenbaumphänomen“ steht ohne Erklärung da</span>
-    <p>Der Auszug nennt den Begriff und <b>erklärt ihn nicht</b>. In keiner anderen deiner
-      Dateien steht er. <b>Hier steht deshalb keine Erklärung</b> — frag im Unterricht nach.
-      Es ist ein typischer Begriff, nach dem in einer Klausur gefragt wird, gerade weil er so
-      bildhaft ist.</p>
-  </div>
+  <p>Er ist mit ca. <b>0,5 % der Erwachsenen</b> die <b>zweithäufigste</b> entzündlich-rheumatische Gelenkerkrankung.</p>
+</div>
 
-  <h3>Diagnostik — die vier Punkte</h3>
-  <ol>
-    <li><b>Anamnese und Untersuchung</b>, einschließlich <b>Einschätzung des individuellen
-      Sturzrisikos</b>, ggf. ergänzt durch <b>Mobilitätstests</b></li>
-    <li><b>Knochendichtemessung</b></li>
-    <li>Ggf. <b>bildgebende Verfahren</b> zur Diagnostik von <b>bis dahin unbemerkten
-      Wirbelkörperfrakturen</b></li>
-    <li><b>Blutuntersuchungen</b> zur Differenzialdiagnose und zur <b>Suche nach
-      Kontraindikationen der Medikamente</b></li>
-  </ol>
+<h3>Osteoporose</h3>
+<div class="hinweis"><b>Was fehlt:</b> Keine deiner drei Dateien definiert die Osteoporose. Der Auszug beginnt sofort mit den „Formen“. Aufgabe 3 („Definieren Sie Osteoporose“) kannst du aus deinen Dateien also <b>nicht</b> beantworten. Hol dir die Definition aus dem Unterricht oder dem Lehrbuch. Ich schreibe hier keine aus dem Gedächtnis hin.</div>
+<p>Was deine Dateien über die Osteoporose <b>sagen</b>: Sie betrifft den <b>Knochen</b>. Man stellt sie mit der <b>Knochen&shy;dichte&shy;messung</b> fest. Bei zwei Formen spricht der Auszug vom <b>Knochen&shy;umsatz</b> (hoch oder niedrig). Und sie kann die <b>Wirbel&shy;körper verformen</b>.</p>
 
-  <div class="merk">
-    <span class="t">Punkt 1 ist der, den man überliest — und er gehört dir</span>
-    <p><b>Die Einschätzung des Sturzrisikos steht in der Diagnostik der Osteoporose.</b> Nicht
-      in der Therapie, nicht in der Pflege — in der <b>Diagnostik</b>. Das heißt: Sie ist Teil
-      der Krankheitsfeststellung, und sie ist <b>genau das, was Pflege macht</b>.</p>
-    <p>Auf deiner Seite <b>„Heraussetzen“ ist keine aktivierende Pflege</b> steht der
-      vollständige <b>GODO-Erhebungsbogen</b> mit allen Risikogruppen — <b>das ist das
-      Instrument für diesen Punkt</b>. Und Frau Schneider ist bereits <b>gestürzt</b>: Bei ihr
-      ist es keine Vorsorge mehr, sondern die Frage nach dem <b>zweiten</b> Sturz.</p>
-    <p class="fr">L'évaluation du risque de chute figure dans le <b>diagnostic</b>, pas dans les
-      soins — et c'est précisément le travail infirmier. L'outil est sur ton autre page.</p>
-  </div>
+<h3>Die Wörter, die du für alles Weitere brauchst</h3>
+<dl class="woerter">
+  <dt>Bewegungsapparat</dt><dd>alles, womit der Körper sich bewegt: Knochen, Gelenke, Wirbelsäule, Muskeln, Sehnen <span class="her">Herleitung</span></dd>
+  <dt>Fraktur</dt><dd>ein Knochenbruch <span class="her">Herleitung</span></dd>
+  <dt>mediale Oberschenkel&shy;hals&shy;fraktur</dt><dd>Bruch am <b>Hals des Oberschenkelknochens</b> (kurz unter dem Hüftgelenk), auf der inneren Seite (medial = zur Mitte hin) <span class="her">Herleitung</span></dd>
+  <dt>Osteosynthese</dt><dd>die Operation bei Frau Schneider. Das Wort heißt „Knochen zusammenfügen“ (osteo = Knochen) <span class="her">Herleitung</span>. Wie genau operiert wird, sagen deine Dateien nicht.</dd>
+  <dt>Iliosakral&shy;bereich</dt><dd>der Bereich der Kreuzbein-Darmbein-Gelenke (Sakroiliakalgelenke) — genau dort beginnt der Morbus Bechterew</dd>
+  <dt>Menopause / postmenopausal</dt><dd>die letzte Regelblutung einer Frau / die Zeit danach. Danach bildet der Körper weniger <b>Östrogen</b> (ein weibliches Hormon). <span class="her">Herleitung</span></dd>
+  <dt>Knochen&shy;umsatz</dt><dd>wie schnell Knochen ab- und wieder aufgebaut wird <span class="her">Herleitung</span></dd>
+  <dt>Glukokortikoide</dt><dd>Kortison und ähnliche Mittel (z. B. Prednison, Prednisolon) <span class="her">Herleitung</span></dd>
+  <dt>NSAR</dt><dd>nichtsteroidale Antirheumatika: Schmerz- und Entzündungsmittel ohne Kortison <span class="her">Herleitung</span></dd>
+  <dt>Bisphosphonat</dt><dd>eine Medikamentengruppe gegen Osteoporose. Fosamax ist eins (so steht es im Fall).</dd>
+  <dt>HLA-B27</dt><dd>ein Merkmal im Blut (HLA = human leukocyte antigen). Es ist bei knapp 90 % der Menschen mit Morbus Bechterew vorhanden.</dd>
+  <dt>NRS</dt><dd>eine Schmerzskala mit Zahlen (0 = kein Schmerz) <span class="her">Herleitung</span></dd>
+</dl>
+<div class="merke"><b>Merke:</b> Arthrose = <b>nicht</b> entzündlich, Gelenk nutzt sich ab. Morbus Bechterew = <b>entzündlich</b>, Becken und Wirbelsäule, bis zur Versteifung. Osteoporose = Krankheit des <b>Knochens</b> — die Definition fehlt in deinen Dateien.</div>
+<p class="fr">🇫🇷 Arthrose : destruction de l'articulation, sans inflammation, par usure, irréversible — l'articulation porte plus qu'elle ne supporte. Spondylarthrite ankylosante (Bechterew) : maladie inflammatoire du bassin (articulations sacro-iliaques) et de la colonne, qui peut se raidir complètement. Ostéoporose : maladie de l'os — tes fichiers ne donnent pas de définition.</p>
+<p class="quelle">KH-Bilder Fr. Schneider (Lehrbuchauszug), S. 1, 3, 5 · Frau Schneider ist gestürzt, S. 1–3 · Frau Weber, Z. 23–25</p>
 
-  <h3>Therapie</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Säule</th><th>Was der Auszug sagt</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Kalzium und Vitamin D</td>
-          <td>Versorgung von <b>1.000 mg</b> bzw. <b>20 μg täglich</b></td></tr>
-        <tr><td class="k">Bewegung</td><td><b>Bewegungstherapie</b></td></tr>
-        <tr><td class="k">Medikamente</td>
-          <td><b>Bisphosphonate</b> · <b>selektive Östrogen-Rezeptor-Modulatoren</b> wie
-            Raloxifen (z. B. Evista®) · <b>Parathormon/-analoga</b> etwa Teriparatid
-            (z. B. Forsteo®) · <b>Antikörper Denosumab</b> (z. B. Prolia®)</td></tr>
-      </tbody>
-    </table>
-  </div>
+<!-- ============ 2 FALL SCHNEIDER ============ -->
+<h2>2 · Der Fall Frau Schneider — was passiert ist <span class="stern">★★★</span></h2>
+<div class="schema">
+  <p class="titel">Ihr Weg — vom Glatteis bis zum Waschbecken</p>
+  <div class="k rot"><b>Sturz bei Glatteis</b><small>Der Ehemann bringt sie in die Notaufnahme. Starke Schmerzen in der <b>rechten Hüfte</b>, sie kann <b>nicht auftreten</b>. Schmerzen im Iliosakral&shy;bereich und im rechten Arm. Erste Hämatome (Blutergüsse) an der Hüfte.</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Röntgen</b><small><b>mediale Oberschenkel&shy;hals&shy;fraktur</b> · dazu eine <b>Verknöcherung des Iliosakral&shy;bereiches</b> · sonst keine Verletzungen</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Osteosynthese am nächsten Morgen</b> · danach auf die Station</div><div class="pfeil">↓</div>
+  <div class="k"><b>Aufnahmegespräch mit PFK Anne</b><small>Morbus Bechterew seit 32 · Arthrose seit 2 Jahren · Größe 1,68 m, 93 kg, <b>BMI 34</b> · RR 160/90 mmHg · HF 94, rhythmisch · AF 19, oberflächlich</small></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>Knochendichte gemessen → Verdacht bestätigt</b><small><b>Fosamax® (Biphosphonat) 70 mg einmal wöchentlich</b> + <b>Vigantoletten 1000 I.E. 1× täglich</b></small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Nächster Tag, am Waschbecken</b><small>schnell erschöpft · Oberkörper nach vorne gebeugt · Knie und Hüfte leicht gebeugt · kleine Schritte · hält sich krampfhaft fest · Finger etwas steif, werden im Laufe der Pflege beweglicher</small></div>
+</div>
+<p><b>Hinweis zu den Abkürzungen:</b> RR = Blutdruck, HF = Herzfrequenz (Puls), AF = Atemfrequenz <span class="her">Herleitung</span>. Ob diese Werte zu hoch sind, bewerten deine Dateien nicht — es stehen keine Grenzwerte darin.</p>
 
-  <div class="gefahr">
-    <span class="t">Die Brücke zwischen Text und Fall — und sie trägt beide Fälle</span>
-    <p>Frau Schneider bekommt <b>Fosamax® (Biphosphonat)</b>. In der Therapieliste steht
-      <b>Bisphosphonate</b> an erster Stelle. <b>Das ist dieselbe Gruppe</b> — der Fall benutzt
-      nur den Handelsnamen.</p>
-    <p><b>Und hier ist die Stelle, an der ich aufhören muss.</b> Frau Weber nimmt
-      <b>Alendron</b>. <b>Ob Alendron zu den Bisphosphonaten gehört, steht in keiner deiner
-      drei Dateien</b> — bei Frau Schneider steht die Wirkstoffgruppe in der Klammer, bei Frau
-      Weber nicht. <b>Die Vermutung liegt nahe, und ich behaupte sie trotzdem nicht.</b>
-      <b>Schlag den Namen nach</b> — und wenn es stimmt, hast du die beiden Fälle mit einem
-      einzigen Wort verbunden.</p>
-    <p><b>Was ebenfalls nicht dasteht:</b> <b>warum</b> diese Tablette nicht mit Mineralwasser
-      genommen werden darf. Frau Weber fragt genau das — siehe <a href="#weber">unten</a>.
-      <b>In keiner deiner drei Dateien steht die Antwort.</b></p>
-  </div>
+<h3>Was sie selbst erzählt — wichtig für die Aufgaben</h3>
+<div class="scroll"><table>
+  <tr><th>Ihr Satz</th><th>Was er dir sagt</th></tr>
+  <tr><td>„… versucht mich im Fallen zu drehen, damit ich nicht auf meinen Steiß falle, denn da habe ich eh schon Probleme mit.“</td><td>Sie hat schon Beschwerden unten am Rücken. Das passt zum Bechterew, der im Becken beginnt. <span class="her">Herleitung</span></td></tr>
+  <tr><td>„Im Alter von 32 Jahren wurde bei mir Morbus Bechterew festgestellt. Ich hatte immer so starke Rückenschmerzen.“</td><td>Rückenschmerz ist das <b>Leitsymptom</b> des Bechterew.</td></tr>
+  <tr><td>„Das kam bestimmt davon, dass ich so viel sitze.“</td><td><b>Ihre eigene Erklärung — und sie stimmt nicht so.</b> Der Auszug nennt als Ursache: <b>autoimmun (mit-)bedingt, letztlich unklar</b>. Das Sitzen ist aber trotzdem wichtig: Bewegungs&shy;mangel fördert die Osteoporose.</td></tr>
+  <tr><td>„Verwaltungsangestellte … lange Arbeitstage, da bleibt nicht viel Zeit für Bewegung.“</td><td><b>Bewegungs&shy;mangel</b> — ein <b>vermeidbarer</b> Risiko&shy;faktor der Osteoporose.</td></tr>
+  <tr><td>„Ich habe dann immer eine Ibu 600 genommen, was wiederum meinem Magen nicht gut bekommen ist.“</td><td>Schmerzmittel und Magenprobleme. Auch Frau Weber sagt: Seit Pantoprazol verträgt sie die Tabletten besser. Mehr erklären deine Dateien dazu nicht.</td></tr>
+  <tr><td>„Seit 2 Jahren … meine Gelenke … vor allem meine Finger. Ich brauche immer was, bis ich in die Gänge komme.“</td><td>Das ist die <b>Arthrose</b>: Am Anfang beschreiben Patienten sie oft als <b>Steifigkeit</b>.</td></tr>
+  <tr><td>„… bis zu 3× täglich eine Diclo 50 … von den Schmerzen abhängig … wenn es besonders schlimm ist … Kortison.“</td><td>Diclo bei Bedarf und manchmal <b>Kortison</b>. Kortison ist ein <b>Glukokortikoid</b> <span class="her">Herleitung</span> — und eine Glukokortikoid-<b>Langzeittherapie</b> ist eine Ursache der sekundären Osteoporose. Wie oft sie Kortison bekam, steht nicht da.</td></tr>
+  <tr><td>„Was passiert denn, wenn ich nochmal falle?“</td><td>Ihre Angst vor dem Aufstehen nach der OP. Der Fall sagt nur: „PFK Anne kann Frau Schneider beruhigen.“ <b>Womit</b>, steht nicht da.</td></tr>
+</table></div>
+<p class="fr">🇫🇷 Mme Schneider (67 ans) glisse sur le verglas : fracture du col du fémur, opérée le lendemain. Elle a une spondylarthrite depuis l'âge de 32 ans, de l'arthrose aux doigts depuis 2 ans, et maintenant une ostéoporose. Elle croit que son mal de dos vient de la position assise — selon ton cours, la cause est auto-immune et peu claire.</p>
+<p class="quelle">Frau Schneider ist gestürzt, S. 1–2 · Ursache Bechterew: KH-Bilder, S. 5 · Arthrose-Steifigkeit: KH-Bilder, S. 3 · Risiko&shy;faktoren: KH-Bilder, S. 1</p>
 
-  <div class="merk">
-    <span class="t">Und die zweite Tablette, die Frau Schneider bekommt</span>
-    <p><b>Vigantoletten 1000 I.E., 1× täglich.</b> Der Fachtext nennt als Therapiesäule
-      <b>Kalzium- und Vitamin-D-Versorgung</b> — <b>1.000 mg</b> Kalzium bzw. <b>20 μg</b>
-      Vitamin D täglich.</p>
-    <p><b>Was ich dabei nicht behaupte:</b> dass Vigantoletten das Vitamin-D-Präparat dieser
-      Zeile sind. <b>Der Fall nennt den Wirkstoff nicht</b> — anders als bei Fosamax®, wo
-      „Biphosphonat“ in der Klammer steht. <b>Nachschlagen, nicht raten.</b></p>
-    <p><b>Und noch etwas, das dir auffallen soll:</b> Der Fachtext rechnet in
-      <b>Mikrogramm (μg)</b>, die Verordnung in <b>Internationalen Einheiten (I.E.)</b> —
-      <b>zwei verschiedene Einheiten</b>. Ob sie einander entsprechen, steht in deinen
-      Unterlagen nicht, und ich rechne es nicht vor. <b>Dass hier zwei Einheiten
-      nebeneinanderstehen, ist genau die Art Detail, die eine gute Antwort erwähnt.</b></p>
-  </div>
-</section>
+<!-- ============ 3 OSTEOPOROSE FORMEN ============ -->
+<h2>3 · Osteoporose: die drei Formen <span class="stern">★★★</span></h2>
+<p>Der Auszug teilt die Osteoporose in <b>primär</b> und <b>sekundär</b>. <b>Primär</b> heißt: Sie kommt ohne andere Krankheit. <b>Sekundär</b> heißt: Sie kommt <b>infolge</b> einer anderen Krankheit. <span class="her">Herleitung</span></p>
+<div class="scroll"><table>
+  <tr><th>Form</th><th>Wer?</th><th>Knochen&shy;umsatz</th><th>Hauptgrund</th></tr>
+  <tr><td><b>Primär Typ I</b> (postmenopausale Osteoporose)</td><td>vor allem Frauen <b>nach der Menopause</b></td><td><b>hoch</b></td><td><b>Östrogen&shy;mangel</b> (Hauptrisikofaktor)</td></tr>
+  <tr><td><b>Primär Typ II</b> (senile Osteoporose)</td><td>Männer <b>und</b> Frauen <b>über 70 Jahre</b></td><td><b>niedrig</b></td><td>das Alter (senil = im hohen Alter <span class="her">Herleitung</span>)</td></tr>
+  <tr><td><b>Sekundär</b></td><td>Menschen mit einer <b>bekannten Grund&shy;erkrankung</b></td><td>—</td><td>z. B. Hyperthyreose (Schilddrüsenüberfunktion <span class="her">Herleitung</span>) · Cushing-Syndrom · Magen-Darm-Krankheiten, bei denen der Körper zu wenig Nährstoffe aufnimmt · <b>Nebenwirkung von Medikamenten</b> (z. B. Glukokortikoid&shy;-Langzeit&shy;therapie) · Alkoholmissbrauch · Rauchen</td></tr>
+</table></div>
 
-<section id="arthrose">
-  <h2>Arthrose</h2>
-  <p class="lead">Die zweite Diagnose von Frau Schneider — und die einzige der drei, die der
-    Auszug als <b>nicht entzündlich</b> beschreibt.</p>
+<h3>Welche Form hat Frau Schneider? — eine Übung zum Beurteilen</h3>
+<p>Der Fall sagt es <b>nicht</b>. Du kannst aber abwägen: <span class="her">Herleitung</span></p>
+<ul>
+  <li><b>Typ II passt nicht gut:</b> Sie ist 67, Typ II beginnt über 70.</li>
+  <li><b>Typ I ist möglich:</b> Sie ist eine Frau von 67. Ob sie in der Menopause ist, steht nicht im Fall — bei 67 Jahren ist es aber naheliegend.</li>
+  <li><b>Sekundär ist auch möglich:</b> Sie hat den Morbus Bechterew. Der Auszug nennt Osteoporose als <b>Komplikation</b> des Bechterew. Sie bekommt manchmal <b>Kortison</b>.</li>
+</ul>
+<p><b>Frau Weber</b> hat laut Diagnoseliste eine <b>sekundäre Osteoporose</b>. Welche Grund&shy;erkrankung sie auslöst, steht nicht da. Sie bekommt bei Schüben Prednison/Prednisolon (Glukokortikoide). <span class="her">Herleitung</span> Ihre rheumatoide Arthritis steht in keiner deiner Dateien.</p>
+<div class="merke"><b>Merke:</b> Typ I = Frau nach der Menopause, Östrogen fehlt, Umsatz <b>hoch</b>. Typ II = über 70, Umsatz <b>niedrig</b>. Sekundär = wegen einer anderen Krankheit oder wegen Medikamenten.</div>
+<p class="fr">🇫🇷 Type I : femme après la ménopause, manque d'œstrogènes, renouvellement osseux élevé. Type II : plus de 70 ans, hommes et femmes, renouvellement bas. Secondaire : à cause d'une autre maladie, de médicaments (cortisone au long cours), d'alcool ou de tabac.</p>
+<p class="quelle">KH-Bilder Fr. Schneider, S. 1 · Frau Schneider ist gestürzt, S. 1 · Frau Weber, Z. 23–38</p>
 
-  <div class="merk">
-    <span class="t">Die Definition, wörtlich</span>
-    <p>„Arthrose: <b>nichtentzündliche, degenerative und irreversible Gelenkzerstörung</b>,
-      verursacht durch ein <b>Missverhältnis zwischen Belastung und Belastbarkeit</b>.
-      Leitsymptome <b>langsam über Jahre zunehmender Schmerz und Beweglichkeitseinschränkung</b>.
-      Erkrankungshäufigkeit mit steigendem Lebensalter zunehmend, <b>Frauen häufiger und oft
-      schwerer betroffen als Männer</b>.“</p>
-    <p><b>Drei Wörter zum Behalten: nichtentzündlich · degenerativ · irreversibel.</b>
-      <i>Irreversibel</i> heißt: Sie geht nicht zurück. Die ganze Therapie zielt deshalb nicht
-      auf Heilung, sondern auf <b>Schmerz und Beweglichkeit</b>.</p>
-    <p class="fr">Non inflammatoire · dégénérative · <b>irréversible</b>. Le traitement ne vise
-      donc pas la guérison mais la douleur et la mobilité.</p>
-  </div>
+<!-- ============ 4 OSTEOPOROSE URSACHEN ============ -->
+<h2>4 · Osteoporose: die Ursachen und Risiko&shy;faktoren <span class="stern">★★★</span></h2>
+<p>Der Auszug teilt die Risiko&shy;faktoren in <b>zwei Gruppen</b>. Diese Zweiteilung ist die eigentliche Botschaft: Gegen die erste Gruppe kann man nichts tun. Gegen die zweite schon — genau dort setzen Therapie und Beratung an. <span class="her">Herleitung</span></p>
+<div class="zwei">
+  <div class="k"><b>Unvermeidbar</b><small>· genetische Veranlagung (es liegt in der Familie <span class="her">Herleitung</span>)<br>· höheres Lebensalter<br>· weibliches Geschlecht, Östrogen&shy;mangel nach der Menopause</small></div>
+  <div class="k gruen"><b>Vermeidbar</b><small>· Kalzium- und Vitamin-D-&shy;Mangel<br>· Bewegungs&shy;mangel<br>· Unterernährung, niedriger BMI<br>· Alkoholmissbrauch, Rauchen</small></div>
+</div>
 
-  <h3>Ursache</h3>
-  <p>Als Ursache wird das <b>Missverhältnis zwischen Belastbarkeit und Belastung eines
-    Gelenks</b> angesehen.</p>
-  <div class="karten">
-    <div class="karte"><h4>Primär</h4><p><b>Ohne feststellbare Ursache.</b></p></div>
-    <div class="karte"><h4>Sekundär</h4>
-      <p><b>Mit feststellbarer Ursache.</b> Zahlreiche innere und äußere Risikofaktoren spielen
-        in <b>individuell unterschiedlicher Gewichtung</b> eine Rolle: <b>genetische
-        Faktoren</b> · <b>Geschlecht</b> · <b>Hormone</b> · <b>Medikamente</b> · <b>einseitige
-        Belastungen</b> · <b>unbemerkte Mikrotraumata</b> · bei den Gelenken der unteren
-        Extremität auch das <b>Gewicht</b>.</p></div>
-  </div>
+<h3>Jeder Faktor — und was deine Dateien dazu sagen</h3>
+<div class="scroll"><table>
+  <tr><th>Risiko&shy;faktor</th><th>Warum? / Verbindung in deinen Dateien</th></tr>
+  <tr><td><b>Östrogen&shy;mangel nach der Menopause</b></td><td>Der Auszug nennt ihn den <b>Hauptrisikofaktor</b> der Typ-I-Osteoporose. Wie Östrogen den Knochen schützt, erklärt er nicht.</td></tr>
+  <tr><td><b>höheres Lebensalter</b></td><td>Typ II beginnt über 70. Den Grund nennen deine Dateien nicht.</td></tr>
+  <tr><td><b>genetische Veranlagung</b></td><td>Den Grund nennen deine Dateien nicht.</td></tr>
+  <tr><td><b>Kalzium- und Vitamin-D-&shy;Mangel</b></td><td>Die Therapie gibt genau diese beiden Stoffe: 1.000 mg Kalzium und 20 µg Vitamin D am Tag. Also fehlen sie dem Knochen. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Bewegungs&shy;mangel</b></td><td>Beim Bechterew steht: Osteoporose <b>„durch Entzündung und Bewegungs&shy;mangel“</b>. Und Bewegungs&shy;therapie ist Teil der Osteoporose-Therapie.</td></tr>
+  <tr><td><b>Unterernährung, niedriger BMI</b></td><td>Den Grund nennen deine Dateien nicht.</td></tr>
+  <tr><td><b>Alkohol, Rauchen</b></td><td>Beide stehen sowohl bei den Risiko&shy;faktoren als auch bei der sekundären Osteoporose. Den Grund nennen deine Dateien nicht.</td></tr>
+  <tr><td><b>Glukokortikoid&shy;-Langzeit&shy;therapie</b></td><td>steht bei der sekundären Form als Medikamenten-Nebenwirkung. Den Grund nennen deine Dateien nicht.</td></tr>
+</table></div>
 
-  <h3>Symptome — der Schmerz hat einen Tagesverlauf</h3>
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div>
-      <h4>Belastungs- und bewegungsabhängiger Schmerz</h4>
-      <p><b>Zu Tagesbeginn gering, im Verlauf zunehmend.</b> <b>Nachts bestehen in der Regel
-        keine Schmerzen.</b></p></div></div>
-    <div class="stufe"><span class="nr">2</span><div>
-      <h4>Der Beginn fühlt sich wie Steifigkeit an</h4>
-      <p>„Der Krankheitsbeginn wird von den Patienten <b>häufig als Steifigkeit</b>
-        beschrieben“, begleitet von <b>diffusen Gelenk- und Muskelschmerzen</b>.</p></div></div>
-    <div class="stufe"><span class="nr n2">3</span><div>
-      <h4>Belastungsschmerz, später Anlaufschmerz</h4>
-      <p><b>Belastungsschmerzen</b> nach längerer oder besonders starker Belastung. <b>Später
-        zusätzlich Anlaufschmerzen nach längerer Ruhe.</b></p></div></div>
-    <div class="stufe"><span class="nr n2">4</span><div>
-      <h4>Deformierung und Bewegungseinschränkung</h4>
-      <p>Im Verlauf entwickeln sich <b>(sichtbare) Gelenkdeformierung</b> und
-        <b>Bewegungseinschränkung</b>.</p></div></div>
-  </div>
+<h3>Aufgabe 6: Warum trifft es vor allem Frauen?</h3>
+<p>Die Antwort steht im Auszug — an zwei Stellen: Die Typ-I-Osteoporose betrifft <b>vor allem Frauen nach der Menopause</b>, Hauptrisikofaktor ist der <b>Östrogen&shy;mangel</b>. Und bei den unvermeidbaren Risiko&shy;faktoren steht „<b>weibliches Geschlecht, Östrogen&shy;mangel nach der Menopause</b>“. Mehr Erklärung (z. B. was Östrogen im Knochen tut) enthalten deine Dateien nicht.</p>
 
-  <div class="gefahr">
-    <span class="t">Der Satz „nachts keine Schmerzen“ ist ein Unterscheidungsmerkmal</span>
-    <p>Er steht nicht zufällig da. <b>Ein Schmerz, der tagsüber zunimmt und nachts weg ist,
-      verhält sich anders als ein entzündlicher Schmerz.</b> Der Auszug beschreibt Morbus
-      Bechterew dagegen mit <b>chronischem Rückenschmerz</b> als Leitsymptom, ohne diesen
-      Tagesverlauf.</p>
-    <p><b>Was deine Unterlagen nicht sagen:</b> wie sich ein entzündlicher Schmerz im Tagesverlauf
-      verhält. <b>Das ist die Hälfte, die fehlt</b> — und genau sie brauchst du bei
-      <a href="#weber">Frau Webers erster Frage</a>.</p>
-  </div>
+<h3>Frau Schneiders Risiko&shy;faktoren — sortiert</h3>
+<div class="scroll"><table>
+  <tr><th>Risiko&shy;faktor aus dem Auszug</th><th>Bei Frau Schneider?</th></tr>
+  <tr class="rot"><td>weibliches Geschlecht</td><td>ja</td></tr>
+  <tr class="rot"><td>höheres Lebensalter</td><td>ja, 67 Jahre</td></tr>
+  <tr class="rot"><td>Östrogen&shy;mangel nach der Menopause</td><td>nicht im Fall erwähnt; bei 67 Jahren naheliegend <span class="her">Herleitung</span></td></tr>
+  <tr class="rot"><td>Bewegungs&shy;mangel</td><td><b>ja</b> — viel Sitzen, lange Arbeitstage, „nicht viel Zeit für Bewegung“</td></tr>
+  <tr class="rot"><td>Grund&shy;erkrankung (sekundär)</td><td><b>ja</b> — Morbus Bechterew; Osteoporose ist seine Komplikation</td></tr>
+  <tr class="gelb"><td>Glukokortikoide</td><td>„wenn es besonders schlimm ist“ Kortison — ob das eine <b>Langzeit</b>therapie ist, steht nicht da</td></tr>
+  <tr class="gruen"><td>Unterernährung, niedriger BMI</td><td><b>nein — das Gegenteil:</b> BMI 34</td></tr>
+  <tr class="gelb"><td>Kalzium-/Vitamin-D-&shy;Mangel, Alkohol, Rauchen, Familie</td><td>im Fall nicht erwähnt</td></tr>
+</table></div>
+<div class="hinweis"><b>Achtung, Widerspruch:</b> Frau Schneider hat einen <b>BMI von 34</b>. Ein <b>niedriger</b> BMI ist laut Auszug ein Risiko&shy;faktor. Bei ihr passt dieser Faktor also <b>nicht</b>. Das zeigt: Man muss nicht alle Risiko&shy;faktoren haben. Ihre Osteoporose erklären andere Faktoren. <span class="her">Herleitung</span></div>
+<div class="merke"><b>Merke:</b> Unvermeidbar = Gene, Alter, Frau/Menopause. Vermeidbar = Kalzium/Vitamin D, Bewegung, Ernährung, Alkohol, Rauchen.</div>
+<p class="fr">🇫🇷 Facteurs qu'on ne peut pas changer : gènes, âge, être une femme (manque d'œstrogènes après la ménopause). Facteurs qu'on peut changer : manque de calcium et de vitamine D, manque de mouvement, dénutrition, alcool, tabac. Mme Schneider bouge peu et a la maladie de Bechterew — mais son IMC est élevé (34), donc ce facteur-là ne s'applique pas.</p>
+<p class="quelle">KH-Bilder Fr. Schneider, S. 1–2, 6 · Frau Schneider ist gestürzt, S. 1</p>
 
-  <h3>Diagnostik</h3>
-  <p>Anamnese der <b>Symptome und Bewegungseinschränkungen</b>, zum Beispiel:</p>
+<!-- ============ 5 OSTEOPOROSE SYMPTOME ============ -->
+<h2>5 · Osteoporose: die Symptome <span class="stern">★★★</span></h2>
+<p>Der Auszug nennt <b>drei</b> Symptome — ohne Erklärung, wie sie entstehen:</p>
+<div class="scroll"><table>
+  <tr><th>Symptom</th><th>Warum?</th></tr>
+  <tr><td><b>Deformierung von Wirbel&shy;körpern</b> (die Wirbel verformen sich <span class="her">Herleitung</span>)</td><td>Den Grund nennen deine Dateien nicht. Der Auszug erwähnt bei der Diagnostik „bis dahin <b>unbemerkte Wirbel&shy;körper&shy;frakturen</b>“ — die Wirbel können also brechen, ohne dass man es merkt.</td></tr>
+  <tr><td><b>Tannenbaum&shy;phänomen</b></td><td>Deine Dateien erklären das Wort nicht. Frag im Unterricht nach, was man da sieht.</td></tr>
+  <tr><td><b>Rückenschmerzen</b></td><td>Den Grund nennen deine Dateien nicht. <span class="her">Herleitung</span>: Es liegt nahe, sie mit den verformten oder gebrochenen Wirbeln zu verbinden — der Auszug tut das aber nicht ausdrücklich.</td></tr>
+</table></div>
+
+<h3>Aufgabe 8: Die Symptome bei Frau Schneider — und das Problem dabei</h3>
+<p>Frau Schneider hat <b>drei</b> Krankheiten. Viele Beschwerden passen zu <b>mehr als einer</b>. Sortiere sie deshalb — die Tabelle ist meine Arbeit. <span class="her">Herleitung</span></p>
+<div class="scroll"><table>
+  <tr><th>Was man bei ihr sieht</th><th>Osteoporose</th><th>Morbus Bechterew</th><th>Arthrose</th></tr>
+  <tr><td>Rückenschmerzen, „immer so stark“</td><td>ja, steht als Symptom</td><td>ja, <b>Leitsymptom</b>: chronischer Rückenschmerz</td><td>—</td></tr>
+  <tr><td>Schmerzen im Iliosakral&shy;bereich, Probleme am Steiß</td><td>—</td><td>passt: Sakroiliitis (Kreuzbein-Darmbein-Gelenke)</td><td>—</td></tr>
+  <tr><td>Verknöcherung des Iliosakral&shy;bereiches (Röntgen)</td><td>—</td><td>passt: „bis zur völligen Wirbelsäulenversteifung“; Röntgen zeigt Veränderungen der Knochenstruktur</td><td>—</td></tr>
+  <tr><td>Oberkörper nach vorne gebeugt</td><td>offen — der Auszug verbindet es nicht</td><td>passt zur Komplikation „verstärkte BWS-Kyphose“</td><td>—</td></tr>
+  <tr><td>steife Finger, im Laufe der Pflege beweglicher · „brauche immer was, bis ich in die Gänge komme“</td><td>—</td><td>—</td><td>passt: Beginn oft als <b>Steifigkeit</b>; später <b>Anlauf&shy;schmerz</b> nach Ruhe</td></tr>
+  <tr><td>Bruch beim Sturz</td><td>steht <b>nicht</b> als Symptom im Auszug</td><td>—</td><td>—</td></tr>
+  <tr><td>kleine Schritte, hält sich krampfhaft fest, schnell erschöpft</td><td colspan="3">ordnet keine deiner Dateien einer Krankheit zu — nach OP und Sturz auch Angst? (der Fall sagt es nicht)</td></tr>
+</table></div>
+<div class="hinweis"><b>Ehrlich gesagt:</b> Die Aufgabe fragt nach den Osteoporose-Symptomen <b>bei Frau Schneider</b>. Sicher zuordnen kannst du nur die <b>Rückenschmerzen</b> — und die erklärt genauso der Bechterew. Eine Verformung der Wirbel&shy;körper oder das Tannenbaum&shy;phänomen wird im Fall nicht beschrieben. Genau diese Unsicherheit kannst du in der Klausur benennen.</div>
+<p class="fr">🇫🇷 Le cours nomme trois symptômes de l'ostéoporose : vertèbres déformées, « phénomène du sapin » (non expliqué dans tes fichiers) et mal de dos. Chez Mme Schneider, le mal de dos peut venir de l'ostéoporose ou de la spondylarthrite. Les doigts raides qui se dérouillent viennent plutôt de l'arthrose.</p>
+<p class="quelle">KH-Bilder Fr. Schneider, S. 1–3, 5–6 · Frau Schneider ist gestürzt, S. 1–2</p>
+
+<!-- ============ 6 OSTEOPOROSE DIAGNOSTIK ============ -->
+<h2>6 · Osteoporose: die Diagnostik <span class="stern">★★</span></h2>
+<p>Der Auszug nennt <b>vier</b> Schritte. Bei zwei Schritten nennt er auch den Grund.</p>
+<div class="scroll"><table>
+  <tr><th>Schritt</th><th>Warum?</th></tr>
+  <tr><td><b>1 · Anamnese und Untersuchung</b> (Anamnese = Befragung zur Krankengeschichte <span class="her">Herleitung</span>), einschließlich <b>Einschätzung des individuellen Sturzrisikos</b>, ggf. mit <b>Mobilitätstests</b></td><td>Den Grund nennt der Auszug nicht. <span class="her">Herleitung</span>: Ein Sturz kann bei Osteoporose zum Bruch führen — so wie bei Frau Schneider.</td></tr>
+  <tr><td><b>2 · Knochen&shy;dichte&shy;messung</b></td><td>Den Grund nennt der Auszug nicht. Im Fall: Der Stationsarzt lässt sie messen, und sie <b>bestätigt seinen Verdacht</b>.</td></tr>
+  <tr><td><b>3 · ggf. bildgebende Verfahren</b> (Röntgen und Ähnliches <span class="her">Herleitung</span>)</td><td>„zur Diagnostik von <b>bis dahin unbemerkten Wirbel&shy;körper&shy;frakturen</b>“</td></tr>
+  <tr><td><b>4 · Blutuntersuchungen</b></td><td>„zu <b>Differenzial&shy;diagnose</b> (andere Krankheiten ausschließen <span class="her">Herleitung</span>) und Suche nach <b>Kontra&shy;indikationen der Medikamente</b>“ (Gründe, ein Medikament nicht zu geben <span class="her">Herleitung</span>)</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> Befragen + Sturzrisiko · Knochendichte · Bild (versteckte Wirbelbrüche) · Blut (andere Krankheiten, Gegenanzeigen der Medikamente).</div>
+<p class="fr">🇫🇷 Diagnostic : interrogatoire et examen avec évaluation du risque de chute, mesure de la densité osseuse, imagerie pour trouver des fractures de vertèbres passées inaperçues, prise de sang pour exclure d'autres maladies et vérifier si les médicaments sont contre-indiqués.</p>
+<p class="quelle">KH-Bilder Fr. Schneider, S. 1–2 · Frau Schneider ist gestürzt, S. 1–2</p>
+
+<!-- ============ 7 OSTEOPOROSE THERAPIE ============ -->
+<h2>7 · Osteoporose: die Therapie <span class="stern">★★★</span></h2>
+<div class="scroll"><table>
+  <tr><th>Maßnahme</th><th>Warum?</th></tr>
+  <tr><td><b>Kalzium</b> 1.000 mg und <b>Vitamin D</b> 20 µg täglich</td><td>Ein <b>Mangel</b> an beiden ist ein vermeidbarer Risiko&shy;faktor. Die Therapie gleicht ihn aus. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Bewegungs&shy;therapie</b></td><td><b>Bewegungs&shy;mangel</b> ist ein vermeidbarer Risiko&shy;faktor. <span class="her">Herleitung</span> Frau Weber hört dazu von der Pflege: Bewegung sei „gut für die Stabilität der Knochen“.</td></tr>
+  <tr><td><b>Medikamente</b> (vier Gruppen, siehe unten)</td><td>Wie sie wirken, erklären deine Dateien nicht.</td></tr>
+</table></div>
+<h3>Die vier Medikamentengruppen im Auszug</h3>
+<ul>
+  <li><b>Bisphosphonate</b> — bei Frau Schneider: <b>Fosamax® 70 mg einmal wöchentlich</b> (im Fall „Biphosphonat“ geschrieben)</li>
+  <li><b>„elektive“ Östrogen-Rezeptor-&shy;Modulatoren</b> (so steht es im Auszug; gemeint ist wohl „selektive“ <span class="her">Herleitung</span>) wie Raloxifen (z. B. Evista®)</li>
+  <li><b>Parathormon/-analoga</b>, etwa Teriparatid (z. B. Forsteo®)</li>
+  <li><b>Antikörper Denosumab</b> (z. B. Prolia®)</li>
+</ul>
+<h3>Was die beiden Frauen bekommen</h3>
+<div class="scroll"><table>
+  <tr><th></th><th>Frau Schneider</th><th>Frau Weber</th></tr>
+  <tr><td>gegen Osteoporose</td><td>Fosamax® (Bisphosphonat) 70 mg 1× pro Woche</td><td>„Alendron Tablette“ — <b>nicht mit Mineral&shy;wasser</b> einnehmen (Berichte&shy;blatt)</td></tr>
+  <tr><td>Vitamin D</td><td>Vigantoletten 1000 I.E. 1× täglich</td><td>—</td></tr>
+  <tr><td>Ernährung / Bewegung</td><td>Aufgabe 11: Beratung zur Ernährung vorbereiten</td><td>„ständig Joghurt“, „Fisch statt Fleisch“, „mehr bewegen“</td></tr>
+</table></div>
+<div class="hinweis"><b>Was deine Dateien offen lassen:</b>
   <ul>
-    <li><b>Bei der Hüfte</b> ist zunächst die <b>Innenrotation</b> eingeschränkt</li>
-    <li><b>Im Kniegelenk</b> ist die <b>Kniestreckung</b> eingeschränkt</li>
+    <li><b>Zwei Einheiten:</b> Der Auszug nennt Vitamin D in <b>µg</b> (20 µg), der Fall in <b>I.E.</b> (1000 I.E.). Wie man umrechnet, steht nirgends. Ob die Dosis passt, kannst du daraus nicht prüfen.</li>
+    <li><b>Alendron:</b> Ob Alendron zur selben Gruppe gehört wie Fosamax (Bisphosphonate), sagen deine Dateien nicht.</li>
+    <li><b>Mineral&shy;wasser:</b> <b>Warum</b> Frau Weber die Tablette nicht mit Mineral&shy;wasser nehmen darf, steht nirgends.</li>
+    <li><b>Joghurt und Fisch:</b> Deine Dateien sagen nur „Kalzium und Vitamin D“. In welchen Lebensmitteln sie stecken, steht nicht da. Für Aufgabe 11 (Ernährungsberatung) fehlt dir also der Inhalt.</li>
+    <li>Alendron steht im Berichte&shy;blatt, aber <b>nicht</b> auf Frau Webers Medikamenten&shy;liste.</li>
   </ul>
+</div>
+<div class="merke"><b>Merke:</b> Osteoporose-Therapie = Kalzium 1.000 mg + Vitamin D 20 µg · Bewegung · Medikamente (Bisphosphonate, Raloxifen, Teriparatid, Denosumab).</div>
+<p class="fr">🇫🇷 Traitement : calcium 1 000 mg et vitamine D 20 µg par jour, activité physique, médicaments (bisphosphonates comme Fosamax, raloxifène, tériparatide, dénosumab). Tes fichiers n'expliquent pas pourquoi pas d'eau minérale avec la tablette, ni quels aliments contiennent du calcium.</p>
+<p class="quelle">KH-Bilder Fr. Schneider, S. 1–2 · Frau Schneider ist gestürzt, S. 2–3 · Frau Weber, Z. 23–39, 48–53</p>
 
-  <h3>Therapie — vier Ebenen</h3>
-  <div class="karten">
-    <div class="karte">
-      <h4>Allgemeinmaßnahmen</h4>
-      <ul>
-        <li><b>„Bewegung ohne (zu starke) Belastung“</b></li>
-        <li><b>Keine</b> Sportarten mit <b>stoßartigen</b> Belastungen (z. B. Sprünge), sondern
-          <b>gleichmäßige</b>: <b>Fahrradfahren, Schwimmen, Walken</b></li>
-        <li>Schuhe mit dicken, <b>puffernden Sohlen</b></li>
-        <li><b>Abbau von Übergewicht</b></li>
-        <li><b>Meiden von Überlastung</b> — Beispiel des Textes: <b>stundenlange Gartenarbeit
-          mit ständigem Auf-die-Knie-Gehen und Wiederaufrichten</b></li>
-        <li><b>Körperliche Schonung nur bei starken Schmerzen</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Physikalische Therapie</h4>
-      <p>Sie soll <b>Muskelverspannungen mindern</b>, die <b>Gelenkbeweglichkeit bessern</b>,
-        <b>Kraft und Koordination</b> und damit die <b>Gelenkstabilität</b> fördern.</p>
-      <ul>
-        <li><b>Wärme-/Kältebehandlung — „je nach Verträglichkeit“</b></li>
-        <li><b>Massagen, Elektro-, Ultraschalltherapie</b></li>
-        <li><b>Extensionen</b> (Streckbehandlung zur Gelenkentlastung)</li>
-        <li><b>Aktive und passive</b> physiotherapeutische Übungen</li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Medikamentöse Therapie</h4>
-      <ul>
-        <li><b>Analgetika</b></li>
-        <li><b>Nichtsteroidale Antirheumatika</b> in aktiven Phasen</li>
-        <li><b>Intraartikuläre Glukokortikoidinjektionen</b></li>
-        <li><b>Intraartikuläre Hyaluronsäureinjektionen</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Operative Therapie</h4>
-      <ul>
-        <li>Zugrundeliegende <b>Gelenkfehlstellung beseitigen</b></li>
-        <li><b>Endoprothetischer Gelenkersatz</b></li>
-      </ul>
-    </div>
+<!-- ============ 8 PFLEGE SCHNEIDER ============ -->
+<h2>8 · Aufgabe 10: Worauf Anne in der Pflege achten muss <span class="stern">★★</span></h2>
+<div class="hinweis"><b>Wichtig vorab:</b> Dein Auszug hat <b>keinen Pflegeteil</b>. Die Tabelle verbindet die Beobachtungen aus dem Fall mit Stellen aus dem Auszug. Alles in der Spalte „Warum?“ ist deshalb meine Verbindung. <span class="her">Herleitung</span></div>
+<div class="scroll"><table>
+  <tr><th>Beobachtung / Maßnahme</th><th>Warum?</th></tr>
+  <tr><td><b>Sturzrisiko</b> im Blick behalten · sie hält sich „krampfhaft an allem fest“, macht kleine Schritte</td><td>Der Auszug nennt die Einschätzung des Sturzrisikos als Teil der Diagnostik. Ein neuer Sturz mit Osteoporose ist gefährlich — sie ist schon einmal gestürzt und hat sich die Hüfte gebrochen.</td></tr>
+  <tr><td>sie ist <b>schnell erschöpft</b> → Pausen einplanen</td><td>Der Fall beschreibt die Erschöpfung. Den Grund nennt er nicht.</td></tr>
+  <tr><td>ihre <b>Angst</b> ernst nehmen: „Was passiert denn, wenn ich nochmal falle?“</td><td>Der Fall zeigt: Anne „kann sie beruhigen“. Womit, steht nicht da. Bewegung ist Teil der Therapie bei Osteoporose, Arthrose und Bechterew — das kannst du als Begründung für die Mobilisation nutzen.</td></tr>
+  <tr><td>die <b>steifen Finger</b> am Morgen: Zeit lassen, sie werden im Verlauf beweglicher</td><td>Passt zur Arthrose: Steifigkeit, Anlauf&shy;schmerz nach Ruhe.</td></tr>
+  <tr><td><b>Mobilisation</b> mit der Physio nach der OP unterstützen</td><td>Bewegungs&shy;mangel ist ein vermeidbarer Risiko&shy;faktor der Osteoporose; beim Bechterew dient Bewegung „zum Erhalt der Beweglichkeit“.</td></tr>
+  <tr><td>Fosamax einmal pro Woche, Vigantoletten täglich</td><td>Wie man Fosamax richtig einnimmt, steht nicht in deinen Dateien.</td></tr>
+</table></div>
+<p class="fr">🇫🇷 Ton cours n'a pas de partie « soins ». Ce qu'on peut tirer du cas : risque de chute (elle est déjà tombée, ses os sont fragiles), fatigue rapide, peur de remarcher, doigts raides le matin (arthrose). Mobiliser, car le mouvement fait partie du traitement des trois maladies.</p>
+<p class="quelle">Frau Schneider ist gestürzt, S. 1–3 · KH-Bilder Fr. Schneider, S. 1–4, 6</p>
+
+<!-- ============ 9 ARTHROSE ============ -->
+<h2>9 · Arthrose: Ursachen, Symptome, Diagnostik <span class="stern">★★★</span></h2>
+<p><b>Wie häufig?</b> Mit steigendem Alter immer häufiger. <b>Frauen</b> sind häufiger und oft schwerer betroffen als Männer.</p>
+
+<h3>Die Ursache: das Gelenk muss mehr tragen, als es kann</h3>
+<div class="schema">
+  <p class="titel">Missverhältnis zwischen Belastung und Belastbarkeit</p>
+  <div class="zwei">
+    <div class="k"><b>Primäre Arthrose</b><small>ohne feststellbare Ursache</small></div>
+    <div class="k"><b>Sekundäre Arthrose</b><small>mit feststellbarer Ursache</small></div>
   </div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Faktoren, die mitspielen</b> (bei jedem Menschen anders gewichtet)<small>genetische Faktoren · Geschlecht · Hormone · Medikamente · einseitige Belastungen · unbemerkte Mikrotraumata (kleine Verletzungen, die man nicht merkt <span class="her">Herleitung</span>) · bei Hüfte, Knie, Fuß (untere Extremität) auch das <b>Gewicht</b></small></div>
+  <div class="pfeil">↓</div>
+  <div class="k rot"><b>Das Gelenk wird zerstört</b><small>Schmerz und Steifigkeit nehmen über Jahre zu</small></div>
+</div>
+<p><b>Warum das Gewicht nur bei den Beinen zählt:</b> Die Gelenke der Beine tragen den Körper. Mehr Gewicht = mehr Belastung. <span class="her">Herleitung</span> aus der Definition.</p>
 
-  <div class="merk">
-    <span class="t">„Bewegung ohne zu starke Belastung“ — der Satz, der wie ein Widerspruch klingt</span>
-    <p>Arthrose entsteht durch ein <b>Missverhältnis zwischen Belastung und Belastbarkeit</b> —
-      und die Therapie heißt trotzdem <b>Bewegung</b>. <b>Das ist kein Widerspruch, sondern die
-      ganze Logik:</b> Nicht die Bewegung schadet, sondern die <b>zu starke, stoßartige,
-      einseitige</b>. Deshalb steht in der Liste <b>Schwimmen und Radfahren</b> und nicht
-      <b>Springen</b>.</p>
-    <p><b>Wer das in einem Satz sagen kann, hat eine <i>Erklären</i>-Aufgabe beantwortet</b> —
-      und kann es auch einem Menschen erklären, der glaubt, er müsse sich schonen.</p>
-    <p class="fr">Ce n'est pas le mouvement qui abîme, c'est la charge <b>brusque</b> et
-      <b>unilatérale</b>. D'où la natation et le vélo, et pas le saut.</p>
+<h3>Die Symptome — der Schmerz hat einen Tagesverlauf</h3>
+<div class="scroll"><table>
+  <tr><th>Symptom</th><th>Was genau?</th></tr>
+  <tr><td><b>Leitsymptom Schmerz</b></td><td>abhängig von <b>Belastung und Bewegung</b> · <b>zu Tagesbeginn gering</b>, nimmt im Verlauf zu · <b>nachts</b> in der Regel <b>keine</b> Schmerzen</td></tr>
+  <tr><td><b>Steifigkeit</b></td><td>So beschreiben Patienten oft den <b>Beginn</b> der Krankheit.</td></tr>
+  <tr><td>diffuse Gelenk- und Muskelschmerzen</td><td>begleiten den Beginn (diffus = nicht genau an einer Stelle <span class="her">Herleitung</span>)</td></tr>
+  <tr><td><b>Belastungs&shy;schmerz</b></td><td>nach längerer oder besonders starker Belastung</td></tr>
+  <tr><td><b>Anlauf&shy;schmerz</b></td><td><b>später</b> dazu: nach längerer Ruhe</td></tr>
+  <tr><td>Gelenk&shy;deformierung, Bewegungs&shy;einschränkung</td><td>im Verlauf; die Verformung kann man sehen</td></tr>
+</table></div>
+<p><b>Warum der Schmerz am Abend stärker ist als am Morgen:</b> Er hängt an der Belastung. Über den Tag wird das Gelenk belastet, nachts nicht. <span class="her">Herleitung</span></p>
+<div class="hinweis"><b>Zwei Sätze, die du auseinanderhalten musst:</b> „Zu Tagesbeginn gering“ meint den <b>Belastungs&shy;schmerz</b>. „Anlauf&shy;schmerz nach längerer Ruhe“ kommt erst <b>später</b> dazu. Frau Schneiders Satz „Ich brauche immer was, bis ich in die Gänge komme“ und ihre Finger, die steif sind und im Verlauf <b>beweglicher</b> werden, passen zur <b>Steifigkeit</b> und zum <b>Anlauf&shy;schmerz</b>. <span class="her">Herleitung</span></div>
+
+<h3>Die Diagnostik</h3>
+<p><b>Anamnese</b> der Symptome und der Bewegungs&shy;einschränkungen. Typisch:</p>
+<ul>
+  <li>an der <b>Hüfte</b> ist zuerst die <b>Innenrotation</b> eingeschränkt (das Bein nach innen drehen <span class="her">Herleitung</span>)</li>
+  <li>am <b>Knie</b> ist die <b>Kniestreckung</b> eingeschränkt</li>
+</ul>
+<div class="merke"><b>Merke:</b> Arthrose-Schmerz = morgens wenig, abends mehr, nachts keiner. Beginn = Steifigkeit. Später = Anlauf&shy;schmerz nach Ruhe.</div>
+<p class="fr">🇫🇷 Arthrose : l'articulation porte plus qu'elle ne supporte (gènes, sexe, hormones, médicaments, efforts répétés, microtraumatismes, poids pour les jambes). La douleur dépend de l'effort : faible le matin, plus forte au fil de la journée, rien la nuit. Au début, on se sent raide ; plus tard, douleur de « démarrage » après le repos.</p>
+<p class="quelle">KH-Bilder Fr. Schneider, S. 3–4 · Frau Schneider ist gestürzt, S. 1–2</p>
+
+<!-- ============ 10 ARTHROSE THERAPIE ============ -->
+<h2>10 · Arthrose: die Therapie in vier Ebenen <span class="stern">★★★</span></h2>
+<p>Fast jede Maßnahme folgt aus der Definition: <b>Belastung senken, Belastbarkeit stärken</b>. <span class="her">Herleitung</span></p>
+<h3>1 · Allgemein&shy;maßnahmen — „Bewegung ohne (zu starke) Belastung“</h3>
+<div class="scroll"><table>
+  <tr><th>Maßnahme</th><th>Warum?</th></tr>
+  <tr><td><b>keine</b> Sportarten mit stoßartigen Belastungen (z. B. Sprünge) — <b>sondern</b> gleichmäßige Bewegungen: Radfahren, Schwimmen, Walken</td><td>Stöße belasten das Gelenk stark, gleichmäßige Bewegung weniger. <span class="her">Herleitung</span></td></tr>
+  <tr><td>Schuhe mit dicken, <b>„puffernden“ Sohlen</b></td><td>Die Sohle fängt Stöße ab. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Übergewicht abbauen</b></td><td>Das Gewicht belastet die Gelenke der Beine (steht bei den Ursachen).</td></tr>
+  <tr><td><b>Überlastung meiden</b>, z. B. stundenlange Gartenarbeit mit ständigem Auf-die-Knie-Gehen und Wiederaufrichten</td><td>Überlastung = Belastung größer als Belastbarkeit. <span class="her">Herleitung</span></td></tr>
+  <tr><td>körperliche <b>Schonung nur bei starken Schmerzen</b></td><td>Den Grund nennt der Auszug nicht. <span class="her">Herleitung</span>: Bewegung ist ja das Ziel („Bewegung ohne zu starke Belastung“).</td></tr>
+</table></div>
+<h3>2 · Physikalische Therapie</h3>
+<p><b>Das Ziel steht im Auszug:</b> Muskelverspannungen mindern · Gelenkbeweglichkeit bessern · Kraft und Koordination fördern und <b>damit die Gelenkstabilität</b> → so die Beschwerden bessern.</p>
+<div class="scroll"><table>
+  <tr><th>Maßnahme</th><th>Wofür?</th></tr>
+  <tr><td><b>Wärme- oder Kältebehandlung</b></td><td>„<b>je nach Verträglichkeit</b>“ — also was dem Menschen hilft</td></tr>
+  <tr><td>Massagen, Elektro-, Ultraschall&shy;therapie</td><td>Muskelverspannungen lösen, Stoffwechsel anregen, Schmerz lindern</td></tr>
+  <tr><td><b>Extensionen</b></td><td>Streckbehandlung — um das Gelenk zu entlasten</td></tr>
+  <tr><td>aktive und passive Übungen in der Physiotherapie</td><td>Beweglichkeitsübungen; Krafttraining zum Muskelaufbau</td></tr>
+</table></div>
+<h3>3 · Medikamente</h3>
+<ul>
+  <li><b>Analgetika</b> (Schmerzmittel <span class="her">Herleitung</span>), darunter <b>nichtsteroidale Antirheumatika in aktiven Phasen</b></li>
+  <li><b>intraartikuläre</b> (ins Gelenk gespritzte <span class="her">Herleitung</span>) Glukokortikoid&shy;-Injektionen</li>
+  <li>intraartikuläre Hyaluronsäure-&shy;Injektionen (wie sie wirken, steht nicht da)</li>
+</ul>
+<p><b>Bei Frau Schneider:</b> bis zu 3× täglich Diclo 50, je nach Schmerz; bei besonders starken Schmerzen Kortison. Zu welcher Gruppe Diclo gehört, schreibt der Fall nicht.</p>
+<h3>4 · Operation</h3>
+<ul>
+  <li>die <b>Fehlstellung</b> beseitigen, die hinter der Arthrose steckt</li>
+  <li><b>endoprothetischer Gelenkersatz</b> (ein künstliches Gelenk <span class="her">Herleitung</span>)</li>
+</ul>
+<div class="merke"><b>Merke:</b> Vier Ebenen: allgemein (gleichmäßig bewegen, Gewicht runter, nicht überlasten) · physikalisch (Wärme/Kälte, Massage, Streckung, Übungen) · Medikamente (Schmerzmittel, Spritzen ins Gelenk) · Operation (Fehlstellung, künstliches Gelenk).</div>
+<p class="fr">🇫🇷 Arthrose : bouger sans trop charger (vélo, natation, marche — pas de sauts), bonnes chaussures, perdre du poids, éviter la surcharge, repos seulement si très mal. Kiné, chaud ou froid selon ce qui soulage, massages. Antidouleurs, injections dans l'articulation. Opération : corriger la déformation ou prothèse.</p>
+<p class="quelle">KH-Bilder Fr. Schneider, S. 4 · Frau Schneider ist gestürzt, S. 1</p>
+
+<!-- ============ 11 BECHTEREW ============ -->
+<h2>11 · Morbus Bechterew: Ursache, Symptome, Diagnose <span class="stern">★★★</span></h2>
+<p><b>Ursache:</b> eine <b>autoimmun (mit-)bedingte</b> Erkrankung (das Immunsystem greift den eigenen Körper an <span class="her">Herleitung</span>), mit <b>letztlich unklarer</b> Ursache.</p>
+<p>Frau Schneider glaubt, ihre Rückenschmerzen kämen vom vielen Sitzen. <b>Das stimmt nach deinem Auszug nicht</b> — die Ursache ist autoimmun und unklar. Der Bewegungs&shy;mangel ist trotzdem schlecht: für die Osteoporose.</p>
+
+<h3>Die Symptome</h3>
+<div class="scroll"><table>
+  <tr><th>Symptom</th><th>Was genau?</th></tr>
+  <tr><td><b>Leitsymptom: chronischer Rückenschmerz</b></td><td>Schmerz, der lange bleibt <span class="her">Herleitung</span> — bei Frau Schneider „immer so starke Rückenschmerzen“</td></tr>
+  <tr><td>evtl. Entzündung <b>peripherer Gelenke</b> (Gelenke außerhalb der Wirbelsäule <span class="her">Herleitung</span>)</td><td>am häufigsten als <b>asymmetrische Oligoarthritis</b> der Beine (Entzündung weniger Gelenke, nicht auf beiden Seiten gleich <span class="her">Herleitung</span>)</td></tr>
+  <tr><td>evtl. <b>Sehnen&shy;ansatz&shy;entzündungen</b></td><td>auch vor allem an den Beinen, z. B. an der <b>Achillessehne</b></td></tr>
+  <tr><td>evtl. andere Organe</td><td>bei ca. <b>⅓</b> sind die <b>Augen</b> beteiligt</td></tr>
+</table></div>
+
+<h3>Die Diagnose — warum sie oft Jahre dauert</h3>
+<p><b>Warum?</b> Rückenschmerzen sind <b>häufig</b> und <b>vieldeutig</b> (sie können viele Gründe haben). Am Anfang gibt es <b>nur</b> den chronischen Rückenschmerz, keine weiteren Zeichen. Deshalb vergehen oft Jahre bis zur Diagnose.</p>
+<ul>
+  <li><b>Labor:</b> Entzündungs&shy;werte und das Merkmal <b>HLA-B27</b> — bei knapp <b>90 %</b> vorhanden</li>
+  <li><b>MRT:</b> zeigt <b>entzündliche</b> Veränderungen, auch früh (Frühdiagnostik)</li>
+  <li><b>CT und Röntgen:</b> zeigen Veränderungen der <b>Knochenstruktur</b> — bei Frau Schneider die Verknöcherung im Iliosakral&shy;bereich</li>
+</ul>
+
+<h3>Die ASAS-Kriterien: Wann „steht“ die Diagnose?</h3>
+<div class="schema">
+  <p class="titel">Grundbedingung: unter 45 Jahre beim Beginn der Beschwerden + Rückenschmerz seit über 3 Monaten</p>
+  <div class="pfeil">↓ dann einer von zwei Wegen</div>
+  <div class="zwei">
+    <div class="k wichtig"><b>Weg 1: Bild</b><small>Sakroiliitis im Bild gesichert<br>+ <b>mindestens 1</b> Kriterium</small></div>
+    <div class="k wichtig"><b>Weg 2: Labor</b><small>HLA-B27 positiv<br>+ <b>mindestens 2</b> Kriterien</small></div>
   </div>
+  <p class="lesen">Frau Schneider war bei der Diagnose 32 — also unter 45. <span class="her">Herleitung</span></p>
+</div>
+<p><b>Die Kriterien:</b></p>
+<ul>
+  <li>entzündlicher Rückenschmerz</li>
+  <li>periphere Arthritis</li>
+  <li><b>Enthesitis</b> (entzündlicher Sehnenansatz&shy;schmerz) der Ferse</li>
+  <li><b>Uveitis</b> (Entzündung der mittleren Augenhaut, z. B. Iridozyklitis)</li>
+  <li><b>Daktylitis</b> (Entzündung von Finger oder Zehe)</li>
+  <li><b>Psoriasis</b> (Schuppenflechte)</li>
+  <li>Morbus Crohn / Colitis ulcerosa (entzündliche Darmkrankheiten <span class="her">Herleitung</span>)</li>
+  <li><b>gutes Ansprechen auf nichtsteroidale Antirheumatika</b></li>
+  <li>positive Familien&shy;anamnese für eine Spondylarthritis (jemand in der Familie hat es <span class="her">Herleitung</span>)</li>
+  <li>HLA-B27 positiv</li>
+  <li>erhöhtes CRP (ein Entzündungswert im Blut <span class="her">Herleitung</span>)</li>
+</ul>
+<div class="merke"><b>Merke:</b> Bechterew = autoimmun, unklar · chronischer Rückenschmerz · HLA-B27 bei knapp 90 % · Diagnose oft erst nach Jahren · ASAS: unter 45, Rückenschmerz &gt; 3 Monate + Bild <b>oder</b> HLA-B27.</div>
+<p class="fr">🇫🇷 Cause auto-immune, finalement inconnue — pas la position assise. Symptôme principal : mal de dos chronique ; parfois articulations des jambes, tendon d'Achille, yeux (1 sur 3). Le diagnostic prend souvent des années car le mal de dos est fréquent et banal. HLA-B27 chez presque 90 %. Critères ASAS : moins de 45 ans, mal de dos plus de 3 mois + imagerie ou HLA-B27.</p>
+<p class="quelle">KH-Bilder Fr. Schneider, S. 5–6 · Frau Schneider ist gestürzt, S. 1</p>
 
-  <div class="warnung">
-    <span class="t">Und ausgerechnet hier steht Wärme und Kälte nebeneinander</span>
-    <p>Die physikalische Therapie der Arthrose nennt <b>„Wärme-/Kältebehandlung (je nach
-      Verträglichkeit)“</b> — also <b>beides</b>, entschieden nach dem, was der Mensch
-      verträgt. <b>Keine Regel, kein Warum.</b></p>
-    <p>Frau Weber bekommt dagegen bei einem <b>Schub</b> ein <b>Kühlpack</b>, obwohl ihr sonst
-      Wärme hilft. <b>Der Unterschied zwischen „je nach Verträglichkeit“ und „im Schub kühlen“
-      steht in deinen Dateien nicht.</b> Das ist die Lücke, die Tim nicht füllen konnte — und
-      ich fülle sie auch nicht.</p>
-  </div>
-</section>
+<!-- ============ 12 BECHTEREW KOMPLIKATIONEN THERAPIE ============ -->
+<h2>12 · Morbus Bechterew: Komplikationen und Therapie — hier schließt sich der Kreis <span class="stern">★★★</span></h2>
+<h3>Die Komplikationen</h3>
+<div class="scroll"><table>
+  <tr><th>Komplikation</th><th>Was heißt das?</th></tr>
+  <tr><td>Die Wirbelsäule wird <b>immer weniger beweglich</b> — mit verstärkter <b>BWS-Kyphose</b></td><td>BWS = Brustwirbelsäule; Kyphose = Krümmung nach hinten, ein runder Rücken <span class="her">Herleitung</span></td></tr>
+  <tr><td>… mit <b>HWS-Lordose</b></td><td>HWS = Halswirbelsäule; Lordose = Krümmung nach vorn <span class="her">Herleitung</span></td></tr>
+  <tr><td>… mit <b>restriktiver Lungen&shy;funktions&shy;störung</b></td><td>die Lunge kann sich nicht mehr gut ausdehnen <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>erhöhtes kardiovaskuläres Risiko</b></td><td>mehr Gefahr für Herz und Gefäße <span class="her">Herleitung</span></td></tr>
+  <tr class="rot"><td><b>Osteoporose (durch Entzündung und Bewegungs&shy;mangel)</b></td><td><b>Die Zeile, die den ganzen Fall erklärt.</b></td></tr>
+</table></div>
 
-<section id="bechterew">
-  <h2>Morbus Bechterew — ankylosierende Spondylitis</h2>
-  <p class="lead">Frau Schneiders älteste Diagnose: mit <b>32 Jahren</b> festgestellt.</p>
+<div class="schema">
+  <p class="titel">Die Kette bei Frau Schneider <span class="her">Herleitung</span></p>
+  <div class="k wichtig"><b>Morbus Bechterew seit 35 Jahren</b><small>(seit dem 32. Lebensjahr, jetzt 67)</small></div><div class="pfeil">↓</div>
+  <div class="zwei">
+    <div class="k"><b>Entzündung</b><small>— die Krankheit ist entzündlich</small></div>
+    <div class="k"><b>Bewegungs&shy;mangel</b><small>— Bürojob, viel Sitzen, keine Zeit für Bewegung</small></div>
+  </div><div class="pfeil">↓</div>
+  <div class="k rot"><b>Osteoporose</b><small>— Komplikation laut Auszug; die Knochendichte bestätigt sie</small></div><div class="pfeil">↓</div>
+  <div class="k rot"><b>Sturz bei Glatteis → Oberschenkel&shy;hals&shy;fraktur</b><small>— der Fall sagt nicht, dass die Osteoporose den Bruch verursacht hat</small></div>
+</div>
+<div class="hinweis"><b>Zwei Beobachtungen, die passen könnten — der Fall verbindet sie aber nicht:</b> Frau Schneiders Oberkörper ist <b>nach vorne gebeugt</b> (passt zur verstärkten BWS-Kyphose), und sie atmet <b>oberflächlich</b> mit AF 19 (könnte zur restriktiven Lungen&shy;funktions&shy;störung passen — oder zu Schmerz nach der OP). Das bleibt eine Vermutung. <span class="her">Herleitung</span></div>
 
-  <div class="merk">
-    <span class="t">Die Definition, wörtlich</span>
-    <p>„Morbus Bechterew (<b>ankylosierende Spondylitis, AS</b>): <b>entzündlich-rheumatische
-      Gelenkerkrankung</b> mit hauptsächlicher <b>Sakroiliitis</b> (Entzündung der Sakroiliakal-
-      = Kreuzbein-Darmbein-Gelenke) und <b>Spondylarthritis</b> (Entzündung der Wirbelsäule),
-      die <b>bis zur völligen Wirbelsäulenversteifung</b> führen kann. Mit einer Häufigkeit von
-      ca. <b>0,5 % der Erwachsenen</b> <b>zweithäufigste</b> entzündlich-rheumatische
-      Gelenkerkrankung.“</p>
-    <p><b>Und damit ist Frau Schneiders Röntgenbefund erklärt:</b> „Verknöcherung des
-      Iliosakralbereiches“ — das ist genau die Stelle, die die Definition nennt. <b>Der Fall
-      und der Fachtext greifen hier direkt ineinander.</b></p>
-    <p class="fr"><i>Ankylosierend</i> = qui soude, qui raidit. <i>Sakroiliitis</i> =
-      inflammation des articulations sacro-iliaques — exactement la zone du compte rendu
-      radiologique.</p>
-  </div>
+<h3>Die Therapie</h3>
+<div class="scroll"><table>
+  <tr><th>Maßnahme</th><th>Warum?</th></tr>
+  <tr><td><b>Schmerz&shy;linderung</b></td><td>Leitsymptom ist der chronische Rückenschmerz. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Bewegungs&shy;therapie</b></td><td>„zur <b>Minimierung von Knochen- und Gelenkschäden</b>“ und „zum <b>Erhalt der Beweglichkeit</b>“</td></tr>
+  <tr><td>Medikamente: <b>nichtsteroidale Antirheumatika</b> · <b>TNFα-Blocker</b> · <b>Interleukin-17-&shy;Hemmer</b> · <b>Glukokortikoid&shy;-Injektion</b> in einzelne Gelenke</td><td>Wie TNFα-Blocker und Interleukin-17-&shy;Hemmer wirken, erklären deine Dateien nicht.</td></tr>
+  <tr><td>Operationen: <b>Aufrichtungs&shy;operation</b> der Wirbelsäule · <b>Hüft-TEP</b> (künstliches Hüftgelenk <span class="her">Herleitung</span>)</td><td>Hüft-TEP bei ausgeprägten, schmerzhaften Schäden am Hüftgelenk</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> Bechterew-Komplikationen: steife, krumme Wirbelsäule (BWS-Kyphose, HWS-Lordose), Lunge eingeengt, Herz/Gefäße, <b>Osteoporose</b>. Therapie: Schmerz lindern, <b>bewegen</b>, NSAR, TNFα-/IL-17-Hemmer, Kortison ins Gelenk, OP.</div>
+<p class="fr">🇫🇷 Complications : colonne de plus en plus raide et courbée, poumons qui se dilatent mal, risque cardiovasculaire, et <b>ostéoporose</b> (inflammation + manque de mouvement). C'est la clé du cas de Mme Schneider. Traitement : calmer la douleur, bouger (garder la mobilité, limiter les dégâts), anti-inflammatoires, biothérapies, chirurgie.</p>
+<p class="quelle">KH-Bilder Fr. Schneider, S. 6–7 · Frau Schneider ist gestürzt, S. 1–2</p>
 
-  <p><b>Ursache:</b> eine <b>autoimmun (mit-)bedingte Erkrankung mit letztlich unklarer
-    Ursache</b>.</p>
+<!-- ============ 13 DREI NEBENEINANDER ============ -->
+<h2>13 · Die drei Krankheiten nebeneinander <span class="stern">★★★</span></h2>
+<div class="scroll"><table>
+  <tr><th></th><th>Osteoporose</th><th>Arthrose</th><th>Morbus Bechterew</th></tr>
+  <tr><td>betrifft</td><td>Knochen, Wirbel&shy;körper</td><td>Gelenke</td><td>Kreuzbein-Darmbein-Gelenke, Wirbelsäule</td></tr>
+  <tr><td>entzündlich?</td><td>steht nicht da</td><td><b>nein</b></td><td><b>ja</b></td></tr>
+  <tr><td>Ursache</td><td>Östrogen&shy;mangel, Alter, Grund&shy;erkrankung, Medikamente …</td><td>Belastung &gt; Belastbarkeit</td><td>autoimmun, unklar</td></tr>
+  <tr><td>Leitsymptom</td><td>Rückenschmerzen, verformte Wirbel</td><td>Schmerz + Beweglichkeit ↓</td><td>chronischer Rückenschmerz</td></tr>
+  <tr><td>Diagnose</td><td>Knochen&shy;dichte&shy;messung</td><td>Anamnese der Bewegungs&shy;einschränkung</td><td>HLA-B27, MRT, ASAS-Kriterien</td></tr>
+  <tr><td>Bewegung?</td><td>Bewegungs&shy;therapie</td><td>Bewegung ohne zu starke Belastung</td><td>Bewegungs&shy;therapie</td></tr>
+  <tr><td>Häufigkeit</td><td>keine Zahl in deinen Dateien</td><td>mit dem Alter zunehmend, Frauen häufiger</td><td>ca. 0,5 % der Erwachsenen</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> In <b>allen drei</b> Therapien steht <b>Bewegung</b>. Das ist dein stärkstes Argument für die Mobilisation von Frau Schneider. <span class="her">Herleitung</span></div>
+<p class="fr">🇫🇷 Les trois maladies ont un point commun : le mouvement fait partie du traitement. C'est ton meilleur argument pour expliquer à Mme Schneider pourquoi elle doit se lever après l'opération.</p>
+<p class="quelle">KH-Bilder Fr. Schneider, S. 1–7</p>
 
-  <h3>Symptome</h3>
+<!-- ============ 14 FALL WEBER ============ -->
+<h2>14 · Der Fall Frau Weber — „Ich verstehe das alles nicht“ <span class="stern">★★</span></h2>
+<p>Frau Weber ist <b>72</b> und lebt seit 2 Jahren in der Seniorenresidenz „Sonnenblume“. Der Pflegeschüler Tom springt heute auf ihrem Wohnbereich ein und kennt sie kaum.</p>
+<div class="scroll"><table>
+  <tr><th>Was im Fall steht</th><th>Zeile</th></tr>
+  <tr><td>ständige Schmerzen in Rücken und Gelenken · <b>Angst zu fallen</b>: „… würde sie sich bestimmt alle Knochen brechen und das sei denn ‚das Ende‘“</td><td class="z">Z. 6–8</td></tr>
+  <tr><td>Hände <b>stark verformt</b>, steif · kann die Rollatorgriffe nicht richtig greifen · Gang sehr unsicher, tippelnd, kleinschrittig · Oberkörper <b>stark</b> nach vorne gebeugt</td><td class="z">Z. 9–12</td></tr>
+  <tr><td><b>Übergabe:</b> legt viel Wert auf Selbständigkeit · sagt genau, was sie braucht · braucht jemanden „zur Seite“, damit sie sich sicher fühlt · wäscht sich den Intimbereich selbst, nur Beine und Rücken übernimmt die Pflege · Tabletten mitnehmen, BZ messen</td><td class="z">Z. 15–20</td></tr>
+  <tr><td><b>Berichte&shy;blatt gestern:</b> Rheumaschub · Bedarfsmedikation Prednisolon · Kühlpack für beide Hände · Schmerz <b>7 auf der NRS</b> · Alendron nicht mit Mineral&shy;wasser · auf Ernährung achten · BZ-Kontrolle</td><td class="z">Z. 23–27</td></tr>
+  <tr><td><b>Diagnosen:</b> rheumatoide Arthritis · sekundäre Osteoporose · arterielle Hypertonie</td><td class="z">Z. 30–33</td></tr>
+  <tr><td><b>Medikamente:</b> Diclo 75 mg retard 1-0-0-0 · Pantoprazol 40 mg 1-0-0-0 · Ramipril 2,5 mg 1-0-0-0 · Bedarf: Prednison 10 mg morgens bei akuten Schüben für 3 Tage</td><td class="z">Z. 34–39</td></tr>
+  <tr><td>heute Schmerz <b>4</b> · „seitdem ich die Pantoprazol [nehme], vertrage ich die Tabletten auch besser“</td><td class="z">Z. 42–44</td></tr>
+  <tr><td>Sr. Brigitte brachte ein Kühlpack statt Wärmekissen und hatte „keine Zeit … dies zu erklären, das habe sie ja schon mehrfach getan“</td><td class="z">Z. 44–47</td></tr>
+</table></div>
+
+<h3>Ihre drei Fragen — und was deine Dateien beantworten</h3>
+<div class="scroll"><table>
+  <tr><th>Ihre Frage</th><th>Antwort aus deinen Dateien?</th></tr>
+  <tr class="rot"><td>„… warum ich meine Hände gestern <b>kühlen</b> sollte. Es hat ja geholfen. Doch sonst hilft mir eher <b>Wärme</b>.“</td><td><b>Nein.</b> Ihre Krankheit ist die <b>rheumatoide Arthritis</b> — sie steht in <b>keiner</b> deiner Dateien. Bei der <b>Arthrose</b> steht nur „Wärme-/Kältebehandlung <b>je nach Verträglichkeit</b>“. Das gilt aber für eine andere Krankheit.</td></tr>
+  <tr class="gelb"><td>„Warum soll ich ständig <b>Joghurt und Fisch</b> essen. Ich mag keinen Fisch.“</td><td><b>Nur teilweise.</b> Deine Dateien sagen: Kalzium und Vitamin D gehören zur Osteoporose-Therapie, ein Mangel ist ein Risiko&shy;faktor. <b>Welche Lebensmittel</b> sie enthalten, steht nicht da.</td></tr>
+  <tr class="rot"><td>„Warum darf ich die eine Tablette nicht mit <b>Mineral&shy;wasser</b> nehmen?“</td><td><b>Nein.</b> Der Grund steht nirgends.</td></tr>
+  <tr class="gruen"><td>(dazu) „… soll mich mehr bewegen, das sei gut für die Stabilität der Knochen.“</td><td><b>Ja.</b> Bewegungs&shy;therapie gehört zur Osteoporose-Therapie, Bewegungs&shy;mangel ist ein vermeidbarer Risiko&shy;faktor.</td></tr>
+</table></div>
+
+<h3>Was der Fall über Pflege zeigt</h3>
+<ul>
+  <li><b>Die Übergabe ist gut:</b> Die Kollegin sagt, was Frau Weber selbst kann und was sie braucht (Sicherheit, Begleitung).</li>
+  <li><b>Frau Weber wird nicht ernst genommen:</b> Sr. Brigitte hat „keine Zeit“ für das Warum. Frau Weber hat die Erklärung offenbar nicht behalten — sie fragt wieder. <span class="her">Herleitung</span></li>
+  <li><b>Tom sagt ehrlich</b>, dass er es nicht erklären kann, und schickt sie zur Pflegefachkraft. Der Fall zeigt: Ohne Wissen kann man nicht beraten. <span class="her">Herleitung</span></li>
+</ul>
+<div class="hinweis"><b>Was im Fall nicht zusammenpasst:</b>
   <ul>
-    <li><b>Leitsymptom: chronischer Rückenschmerz</b></li>
-    <li>Evtl. Entzündung <b>peripherer Gelenke</b> — häufigstes Befallsmuster eine
-      <b>asymmetrische Oligoarthritis der unteren Extremität</b></li>
-    <li>Evtl. <b>Sehnenansatzentzündungen</b>, ebenfalls bevorzugt der unteren Extremität
-      (z. B. der <b>Achillessehne</b>)</li>
-    <li>Evtl. Beteiligung weiterer Organe — bei ca. <b>⅓ eine Augenbeteiligung</b></li>
+    <li>Der Schüler heißt einmal <b>Tom</b> (Z. 3) und dann <b>Tim</b> (Z. 13, 21, 28, 40, 54).</li>
+    <li>Im Bericht steht <b>Prednisolon</b>, auf der Medikamenten&shy;liste <b>Prednison</b>.</li>
+    <li><b>Alendron</b> steht im Bericht, aber nicht auf der Medikamenten&shy;liste.</li>
+    <li>Es soll der <b>BZ</b> gemessen werden — aber es gibt keine Diagnose Diabetes und kein Diabetes-Medikament.</li>
   </ul>
+</div>
+<p class="fr">🇫🇷 Mme Weber (72 ans, résidence seniors) a une polyarthrite rhumatoïde, une ostéoporose secondaire et de l'hypertension. Elle pose trois questions : pourquoi du froid et pas du chaud ? pourquoi yaourt et poisson ? pourquoi pas d'eau minérale avec la tablette ? Tes fichiers ne répondent à aucune des trois complètement. Seule chose sûre : bouger est bon pour les os.</p>
+<p class="quelle">Frau Weber, S. 1–2 (Z. 1–55) · KH-Bilder Fr. Schneider, S. 1–2, 4</p>
 
-  <h3>Diagnostik</h3>
-  <div class="gefahr">
-    <span class="t">Der Satz, der erklärt, warum es bei ihr so lange gedauert hat</span>
-    <p>„Aufgrund der <b>Häufigkeit und Vieldeutigkeit von Rückenschmerzen</b> … anfänglich fehlen
-      neben dem chronischen Rückenschmerz weitere Zeichen, <b>daher vergehen oft Jahre bis zur
-      Diagnosestellung</b>.“</p>
-    <p><b>Frau Schneider sagt selbst: „Ich hatte immer so starke Rückenschmerzen. Das kam
-      bestimmt davon, dass ich so viel sitze.“</b> Genau diese Erklärung hat sie — und
-      vermutlich auch andere — jahrelang zufriedengestellt. <b>Das ist keine Nebenbemerkung des
-      Falles, sondern sein Kern.</b></p>
-    <p class="fr">Le dos fait mal à tout le monde : c'est pour ça que le diagnostic met des
-      années. Sa propre explication — « je suis trop assise » — fait partie du retard.</p>
-  </div>
+<!-- ============ 15 VERGLEICH ============ -->
+<h2>15 · Zwei Frauen, dasselbe Bild <span class="stern">★★</span></h2>
+<p>Die Gangbeschreibung ist bei beiden fast <b>gleich</b>. Nur das Maß ist anders: bei Frau Schneider „etwas“ und „leicht“, bei Frau Weber „stark“. Die Tabelle ist meine Arbeit. <span class="her">Herleitung</span></p>
+<div class="scroll"><table>
+  <tr><th></th><th>Frau Schneider (67)</th><th>Frau Weber (72)</th></tr>
+  <tr><td>Oberkörper</td><td>nach vorne gebeugt</td><td><b>stark</b> nach vorne gebeugt</td></tr>
+  <tr><td>Gang</td><td>kleine Schritte, hält sich krampfhaft fest</td><td>sehr unsicher, tippelnd, kleinschrittig, Rollator</td></tr>
+  <tr><td>Finger / Hände</td><td><b>etwas</b> steif, werden beweglicher</td><td><b>stark</b> verformt, steif, kann nicht greifen</td></tr>
+  <tr><td>Angst</td><td>„Was passiert denn, wenn ich nochmal falle?“</td><td>„… alle Knochen brechen … ‚das Ende‘“</td></tr>
+  <tr><td>Osteoporose</td><td>neu, Form nicht genannt</td><td>sekundär</td></tr>
+  <tr><td>Gelenk&shy;krankheit</td><td>Arthrose + Morbus Bechterew</td><td>rheumatoide Arthritis</td></tr>
+  <tr><td>Medikamente gegen Schmerz, Entzündung, Magen</td><td>Ibu 600 (Magen!), Diclo 50, Kortison</td><td>Diclo 75 retard, Pantoprazol, Prednison bei Schub</td></tr>
+  <tr><td>Wohnen</td><td>Krankenhaus, Station</td><td>Seniorenresidenz</td></tr>
+</table></div>
+<p>Frau Weber zeigt also, wie es weitergehen <b>könnte</b>. Eine Gleichsetzung ist es nicht — die beiden haben verschiedene Gelenk&shy;krankheiten.</p>
+<p class="fr">🇫🇷 Les deux femmes sont décrites presque pareil (dos penché en avant, petits pas, doigts raides), mais « un peu » chez Mme Schneider et « fort » chez Mme Weber : comme deux stades de la même image. Attention : elles n'ont pas la même maladie articulaire.</p>
+<p class="quelle">Frau Schneider ist gestürzt, S. 1–2 · Frau Weber, Z. 6–39</p>
 
-  <ul>
-    <li><b>Wichtigste Laboruntersuchung</b> neben den Entzündungswerten: das Merkmal
-      <b>HLA-B27</b> (HLA = <i>human leukocyte antigen</i>), das in <b>knapp 90 %</b> vorhanden
-      ist</li>
-    <li><b>Bildgebung:</b> <b>MRT</b> zur Darstellung entzündlicher Veränderungen und zur
-      <b>Frühdiagnostik</b> · <b>CT</b> und <b>Röntgen</b> für Veränderungen der
-      Knochenstruktur</li>
-  </ul>
+<!-- ============ 16 AUFGABEN ============ -->
+<h2>16 · Die elf Aufgaben zu Frau Schneider — was du aus deinen Dateien beantworten kannst <span class="stern">★★★</span></h2>
+<div class="scroll"><table>
+  <tr><th>Nr.</th><th>Aufgabe</th><th>In deinen Dateien?</th><th>Kapitel</th></tr>
+  <tr class="rot"><td>1</td><td>Beschreiben: Aufbau des Knochens</td><td><b>nein</b> — steht nirgends</td><td>—</td></tr>
+  <tr class="rot"><td>2</td><td>Erklären: Wie entsteht ein Knochen?</td><td><b>nein</b> — steht nirgends</td><td>—</td></tr>
+  <tr class="rot"><td>3</td><td>Definieren: Osteoporose</td><td><b>nein</b> — keine Definition</td><td>1</td></tr>
+  <tr class="gelb"><td>4</td><td>Erklären: Relevanz für die Gesellschaft</td><td><b>kaum</b> — keine Häufigkeitszahl für Osteoporose</td><td>—</td></tr>
+  <tr class="gruen"><td>5</td><td>Beschreiben: Ursachen</td><td><b>ja</b> — Formen und Risiko&shy;faktoren</td><td>3, 4</td></tr>
+  <tr class="gruen"><td>6</td><td>Erklären: warum vor allem Frauen</td><td><b>ja, knapp</b> — Östrogen&shy;mangel nach der Menopause</td><td>4</td></tr>
+  <tr class="gruen"><td>7</td><td>Beschreiben: Diagnostik</td><td><b>ja</b> — vier Punkte</td><td>6</td></tr>
+  <tr class="gelb"><td>8</td><td>Benennen: Symptome bei Frau Schneider</td><td><b>teilweise</b> — nur Rückenschmerzen sicher</td><td>5</td></tr>
+  <tr class="gruen"><td>9</td><td>Beschreiben: Therapie</td><td><b>ja</b></td><td>7</td></tr>
+  <tr class="gelb"><td>10</td><td>Erklären: worauf Anne achten muss</td><td><b>nur hergeleitet</b> — kein Pflegeteil</td><td>8</td></tr>
+  <tr class="gelb"><td>11</td><td>Beratungsgespräch Ernährung vorbereiten</td><td><b>kaum</b> — nur „Kalzium und Vitamin D“</td><td>7</td></tr>
+</table></div>
+<p>Die Aufgaben 1–4 und 11 brauchen Stoff, der nicht in deinen drei Dateien steht. Frag im Unterricht nach dem Material dazu.</p>
+<p class="fr">🇫🇷 Sur les onze questions, tes fichiers répondent bien aux questions 5, 6, 7 et 9. Pour 1 à 4 (structure de l'os, formation de l'os, définition, importance pour la société) et 11 (conseil alimentaire), il te manque le matériel.</p>
+<p class="quelle">Frau Schneider ist gestürzt, S. 3 · KH-Bilder Fr. Schneider, S. 1–2</p>
 
-  <h4>Die ASAS-Klassifikationskriterien</h4>
-  <p>Die Diagnose „steht“, wenn ein <b>unter 45-Jähriger</b> (Alter zu Beginn der Beschwerden)
-    <b>Rückenschmerzen über drei Monate</b> hat <b>und</b>:</p>
-  <ul>
-    <li>eine <b>durch bildgebende Verfahren gesicherte Sakroiliitis</b> hat und <b>mindestens
-      eins</b> der folgenden Kriterien erfüllt, <b>oder</b></li>
-    <li><b>HLA-B27 positiv</b> ist und <b>mindestens zwei</b> der folgenden Kriterien positiv
-      sind</li>
-  </ul>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Die elf Kriterien</th></tr></thead>
-      <tbody>
-        <tr><td>Entzündlicher Rückenschmerz</td></tr>
-        <tr><td>Periphere Arthritis</td></tr>
-        <tr><td>Enthesitis (entzündlicher Sehnenansatzschmerz) der Ferse</td></tr>
-        <tr><td>Uveitis (Entzündung der mittleren Augenhaut, z. B. Iridozyklitis)</td></tr>
-        <tr><td>Daktylitis (Entzündung von Finger oder Zehe)</td></tr>
-        <tr><td>Psoriasis (Schuppenflechte)</td></tr>
-        <tr><td>Morbus Crohn / Colitis ulcerosa</td></tr>
-        <tr><td>Gutes Ansprechen auf nichtsteroidale Antirheumatika</td></tr>
-        <tr><td>Positive Familienanamnese für eine Spondylarthritis</td></tr>
-        <tr><td>HLA-B27 positiv</td></tr>
-        <tr><td>Erhöhtes CRP</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p><b>Beachte die Zählung:</b> <b>HLA-B27</b> steht <b>zweimal</b> — einmal als
-    Eingangsbedingung des zweiten Weges und einmal in der Kriterienliste. So steht es im Text;
-    <b>nicht korrigiert</b>.</p>
+<!-- ============ TOP 10 ============ -->
+<h2>Top 10 fürs Examen</h2>
+<ol>
+  <li>Arthrose = nichtentzündliche, degenerative, irreversible Gelenk&shy;zerstörung durch Missverhältnis Belastung / Belastbarkeit</li>
+  <li>Morbus Bechterew = entzündlich-rheumatisch, Sakroiliitis + Spondylarthritis, bis zur Versteifung; ca. 0,5 % der Erwachsenen</li>
+  <li>Osteoporose Typ I = nach der Menopause, Östrogen&shy;mangel, Umsatz hoch · Typ II = über 70, Umsatz niedrig · sekundär = Grund&shy;erkrankung, Kortison, Alkohol, Rauchen</li>
+  <li>Risiko&shy;faktoren: unvermeidbar (Gene, Alter, Frau) · vermeidbar (Kalzium/Vitamin D, Bewegung, Unterernährung, Alkohol, Rauchen)</li>
+  <li>Osteoporose-Diagnostik: Anamnese + Sturzrisiko · Knochendichte · Bild (unbemerkte Wirbelbrüche) · Blut</li>
+  <li>Osteoporose-Therapie: Kalzium 1.000 mg + Vitamin D 20 µg täglich · Bewegung · Bisphosphonate u. a.</li>
+  <li>Arthrose-Schmerz: morgens gering, steigt über den Tag, nachts keiner · Beginn = Steifigkeit · später Anlauf&shy;schmerz</li>
+  <li>Arthrose-Therapie: Bewegung ohne zu starke Belastung (Rad, Schwimmen, Walken), Gewicht runter, Physio, Schmerzmittel, OP</li>
+  <li>Bechterew: autoimmun, unklar · HLA-B27 knapp 90 % · ASAS: unter 45, &gt; 3 Monate Rückenschmerz</li>
+  <li>Osteoporose ist eine <b>Komplikation des Bechterew</b> — durch Entzündung und Bewegungs&shy;mangel</li>
+</ol>
 
-  <h3>Komplikationen — und hier schließt sich der Kreis</h3>
-  <ul>
-    <li>Fortschreitende <b>Beweglichkeitseinschränkung der Wirbelsäule</b>, u. a. mit
-      <b>verstärkter BWS-Kyphose</b>, <b>HWS-Lordose</b> und <b>restriktiver
-      Lungenfunktionsstörung</b></li>
-    <li><b>Erhöhtes kardiovaskuläres Risiko</b></li>
-    <li><b>Osteoporose</b> — <b>„durch Entzündung und Bewegungsmangel“</b></li>
-  </ul>
+<!-- ============ FRAGEN ============ -->
+<h2>5 Prüfungsfragen — mit Musterantwort</h2>
+<details><summary><span class="op">Nennen</span>Nennen Sie die vermeidbaren Risiko&shy;faktoren einer Osteoporose.</summary>
+<p>Kalzium- und Vitamin-D-&shy;Mangel · Bewegungs&shy;mangel · Unterernährung, niedriger BMI · Alkoholmissbrauch, Rauchen. (Auszug S. 1)</p></details>
 
-  <div class="gefahr">
-    <span class="t">Die eine Zeile, aus der die ganze Fallkonstruktion hervorgeht</span>
-    <p><b>„Osteoporose (durch Entzündung und Bewegungsmangel)“</b> steht unter den
-      <b>Komplikationen des Morbus Bechterew</b>.</p>
-    <p><b>Damit ist Frau Schneiders Osteoporose keine zufällige zweite Krankheit, sondern eine
-      Folge der ersten.</b> Und sie hat <b>beide</b> Ursachen: die <b>Entzündung</b> des
-      Bechterew und den <b>Bewegungsmangel</b>, den sie selbst beschreibt („lange Arbeitstage,
-      da bleibt nicht viel Zeit für Bewegung“).</p>
-    <p><b>Das ist die Kette, die eine <i>Begründen</i>-Antwort braucht:</b>
-      Morbus Bechterew seit dem 32. Lebensjahr → <b>Entzündung und Bewegungsmangel</b> →
-      <b>Osteoporose</b> → <b>Knochen bricht beim Sturz auf Glatteis</b> → <b>deshalb</b> wird
-      die Knochendichte gemessen und ein Bisphosphonat angesetzt. <b>Ursache → Wirkung → Gefahr
-      → deshalb tue ich X.</b></p>
-    <p class="fr">L'ostéoporose de Mme Schneider n'est pas une seconde maladie par hasard : le
-      texte la nomme comme <b>complication</b> de la spondylarthrite. Voilà la chaîne complète
-      qu'attend un « begründen ».</p>
-  </div>
+<details><summary><span class="op">Beschreiben</span>Beschreiben Sie die Formen der Osteoporose.</summary>
+<p>Man unterscheidet primär und sekundär. <b>Typ I</b> (postmenopausal) betrifft vor allem Frauen nach der Menopause; Hauptrisikofaktor ist der Östrogen&shy;mangel; der Knochen&shy;umsatz ist hoch. <b>Typ II</b> (senil) betrifft Männer und Frauen über 70; der Knochen&shy;umsatz ist niedrig. Die <b>sekundäre</b> Osteoporose entsteht infolge einer bekannten Grund&shy;erkrankung, z. B. Hyperthyreose, Cushing-Syndrom, Magen-Darm-Krankheiten mit schlechter Nährstoffaufnahme, als Nebenwirkung von Medikamenten (Glukokortikoid&shy;-Langzeit&shy;therapie), durch Alkoholmissbrauch oder Rauchen.</p></details>
 
-  <h3>Therapie</h3>
-  <ul>
-    <li><b>Schmerzlinderung</b></li>
-    <li><b>Bewegungstherapie</b> — zur <b>Minimierung von Knochen- und Gelenkschäden</b> und
-      zum <b>Erhalt der Beweglichkeit</b></li>
-    <li><b>Medikamentös:</b> nichtsteroidale Antirheumatika · <b>TNFα-Blocker</b> ·
-      <b>Interleukin-17-Hemmer</b> · Glukokortikoidinjektion in einzelne Gelenke</li>
-    <li><b>Operationen:</b> <b>Aufrichtungsoperationen der Wirbelsäule</b> · <b>Implantation
-      einer Hüft-TEP</b> bei ausgeprägten, schmerzhaften Hüftgelenkschäden</li>
-  </ul>
+<details><summary><span class="op">Erläutern</span>Erläutern Sie am Fall Frau Schneider, welche ihrer Beschwerden zur Arthrose passen.</summary>
+<p>Arthrose beginnt oft mit <b>Steifigkeit</b>; später kommt der <b>Anlauf&shy;schmerz</b> nach längerer Ruhe dazu (Auszug S. 3). Das sieht man daran, dass Frau Schneider sagt: „Ich brauche immer was, bis ich in die Gänge komme.“ Und am Waschbecken wirken ihre Finger „etwas steif“ und werden „im Laufe der pflegerischen Versorgung … beweglicher“. Betroffen sind vor allem ihre Finger — seit zwei Jahren.</p></details>
 
-  <div class="merk">
-    <span class="t">Dreimal Bewegungstherapie auf einer Seite</span>
-    <p>Sie steht in der Therapie der <b>Osteoporose</b>, in den Allgemeinmaßnahmen der
-      <b>Arthrose</b> und in der Therapie des <b>Morbus Bechterew</b>. <b>Drei verschiedene
-      Krankheiten, eine gemeinsame Maßnahme</b> — und bei Frau Schneider alle drei gleichzeitig.</p>
-    <p><b>Damit ist die Antwort auf Aufgabe 10 („Worauf muss Anne besonders achten?“) zur
-      Hälfte da:</b> Bewegung ist nicht optional, sondern <b>Therapie</b> — und genau deshalb
-      kommt der Physiotherapeut schon am Tag nach der Operation. <b>Was Anne sagen kann, wenn
-      Frau Schneider fragt „Was passiert denn, wenn ich nochmal falle?“, ist damit noch nicht
-      beantwortet</b> — aber der Grund, warum sie trotzdem aufstehen soll, schon.</p>
-  </div>
-</section>
+<details><summary><span class="op">Begründen</span>Begründen Sie, warum Frau Schneider mit ihrem Morbus Bechterew eine Osteoporose entwickeln konnte.</summary>
+<p><b>Ursache:</b> Frau Schneider hat seit dem 32. Lebensjahr einen Morbus Bechterew. Das ist eine <b>entzündliche</b> Krankheit. Dazu bewegt sie sich wenig, weil sie im Büro arbeitet und viel sitzt. <b>Wirkung:</b> Dein Auszug nennt die Osteoporose als <b>Komplikation</b> des Bechterew, „durch Entzündung und Bewegungs&shy;mangel“. Bewegungs&shy;mangel ist außerdem ein vermeidbarer Risiko&shy;faktor. Die Knochen&shy;dichte&shy;messung bestätigt die Osteoporose. <b>Gefahr:</b> Sie stürzt — und hat jetzt eine Oberschenkel&shy;hals&shy;fraktur. Ein weiterer Sturz wäre gefährlich. <b>Deshalb:</b> Sie bekommt Fosamax und Vitamin D, sie muss sich bewegen (Bewegungs&shy;therapie), und die Pflege schätzt ihr Sturzrisiko ein und mobilisiert sie sicher. <span class="her">Herleitung</span> — die Verbindung zum Bruch zieht der Fall nicht selbst.</p></details>
 
-<section id="weber">
-  <h2>Der zweite Fall — Frau Weber legt Wert auf Selbständigkeit</h2>
-  <p class="lead">72 Jahre, Seniorenresidenz, seit Jahren krank. <b>Dieselbe Krankheitsfamilie,
-    zwanzig Jahre später.</b></p>
+<details><summary><span class="op">Beurteilen</span>Frau Schneider sagt: „Das [die Rückenschmerzen] kam bestimmt davon, dass ich so viel sitze.“ Beurteilen Sie diese Aussage.</summary>
+<p><b>Einschätzung:</b> Die Aussage stimmt so <b>nicht</b>. Die Rückenschmerzen sind das Leitsymptom ihres Morbus Bechterew. Dessen Ursache ist laut Auszug <b>autoimmun (mit-)bedingt und letztlich unklar</b> — nicht das Sitzen. <b>Aber:</b> Das viele Sitzen ist trotzdem schädlich. <b>Ursache</b> Bewegungs&shy;mangel → <b>Wirkung</b>: Er ist ein vermeidbarer Risiko&shy;faktor der Osteoporose und beim Bechterew ein Grund für die Komplikation Osteoporose → <b>Gefahr</b>: Knochenbruch beim Sturz, wie jetzt am Oberschenkelhals → <b>deshalb</b>: Bewegung ist in allen drei Therapien vorgesehen; die Pflege erklärt ihr das und unterstützt die Mobilisation nach der OP. <span class="her">Herleitung</span></p></details>
 
-  <div class="karten">
-    <div class="karte">
-      <h4>Ihre Diagnosen</h4>
-      <ul>
-        <li><b>Rheumatoide Arthritis</b></li>
-        <li><b>Sekundäre Osteoporose</b></li>
-        <li><b>Arterielle Hypertonie</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Ihre Medikamente</h4>
-      <ul>
-        <li><b>Diclo 75 mg Retard</b> 1-0-0-0</li>
-        <li><b>Pantoprazol 40 mg</b> 1-0-0-0</li>
-        <li><b>Ramipril 2,5 mg</b> 1-0-0-0</li>
-        <li><b>Bedarf: Prednison 10 mg</b> morgens bei akuten Schüben, für 3 Tage</li>
-        <li>dazu laut Berichteblatt: <b>Alendron</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Was gestern war</h4>
-      <ul>
-        <li><b>Rheumaschub</b></li>
-        <li>Bedarfsmedikation <b>Prednisolon</b> und <b>Kühlpack für beide Hände</b></li>
-        <li>Schmerzintensität <b>7 auf der NRS</b></li>
-        <li>Hinweis: <b>Alendron nicht mit Mineralwasser</b> einnehmen</li>
-        <li><b>BZ-Kontrolle</b> durchgeführt</li>
-      </ul>
-    </div>
-  </div>
+<!-- ============ SPICKZETTEL ============ -->
+<h2>Spickzettel</h2>
+<ul class="spick">
+  <li>Arthrose: nicht entzündlich, Abnutzung, Belastung &gt; Belastbarkeit</li>
+  <li>Arthrose-Schmerz: morgens wenig, abends mehr, nachts nicht</li>
+  <li>Arthrose-Beginn: Steifigkeit · später Anlauf&shy;schmerz</li>
+  <li>Arthrose-Sport: Rad, Schwimmen, Walken — keine Sprünge</li>
+  <li>Bechterew: entzündlich, Becken + Wirbelsäule, Versteifung</li>
+  <li>Bechterew: autoimmun, unklar · HLA-B27 ~90 %</li>
+  <li>ASAS: &lt; 45 J., Rückenschmerz &gt; 3 Monate</li>
+  <li>Bechterew-Komplikation: <b>Osteoporose</b></li>
+  <li>Osteoporose I: Menopause, Östrogen ↓, Umsatz hoch</li>
+  <li>Osteoporose II: &gt; 70, Umsatz niedrig</li>
+  <li>Sekundär: Krankheit, Kortison, Alkohol, Rauchen</li>
+  <li>Therapie: Ca 1.000 mg + Vit. D 20 µg · Bewegung · Bisphosphonat</li>
+  <li>Diagnostik: Sturzrisiko · Knochendichte · Bild · Blut</li>
+</ul>
 
-  <div class="gefahr">
-    <span class="t">Die Beschreibung ihres Gangs — vergleich sie Wort für Wort mit Frau Schneider</span>
-    <div class="scroll" style="margin:10px 0 0;">
-      <table>
-        <thead><tr><th>Frau Schneider (67, Krankenhaus)</th><th>Frau Weber (72, Seniorenresidenz)</th></tr></thead>
-        <tbody>
-          <tr><td>„Der Oberkörper ist <b>nach vorne gebeugt</b>“</td>
-            <td>„Den Oberkörper hat sie <b>stark nach vorne gebeugt</b>“</td></tr>
-          <tr><td>„Sie macht <b>kleine Schritte</b>“</td>
-            <td>„ihr Gang war sehr unsicher, <b>tippelnd und kleinschrittig</b>“</td></tr>
-          <tr><td>„<b>hält sich krampfhaft an allem fest</b>“</td>
-            <td>„Sie konnte damit <b>die Griffe vom Rollator gar nicht richtig greifen</b>“</td></tr>
-          <tr><td>„Die <b>Finger</b> wirken <b>etwas steif</b>“</td>
-            <td>„Ihre Hände … waren <b>stark verformt</b> und wirkten <b>recht steif</b>“</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="margin-top:10px;"><b>Das ist nicht zufällig ähnlich.</b> Deine Dozentin hat zwei
-      Fälle gebaut, die <b>dasselbe Bild in zwei Stadien</b> zeigen: bei Frau Schneider
-      <i>etwas</i> steif und <i>leicht</i> gebeugt, bei Frau Weber <b>stark verformt</b> und
-      <b>stark</b> gebeugt. <b>Dazwischen liegen Jahre.</b></p>
-    <p class="fr">Deux cas, la même description à deux stades. Chez l'une « un peu raide », chez
-      l'autre « fortement déformée ». Ce n'est pas un hasard d'écriture.</p>
-  </div>
-
-  <h3>Was der Fall über Pflege sagt — und das ist sein eigentliches Thema</h3>
-  <div class="merk">
-    <span class="t">Die Übergabe der Kollegin, wörtlich</span>
-    <p>„Frau Weber legt <b>sehr viel Wert auf Selbständigkeit</b>. Sie sagt dir auch ganz genau,
-      was du machen musst. <b>Frag sie einfach, wenn du unsicher bist.</b> Eigentlich braucht
-      sie <b>nur jemanden, der ihr zur Seite steht, damit sie sich sicher fühlt</b>, denn sie
-      hat <b>große Angst zu fallen</b>. Sie wäscht sich sogar den Intimbereich selber. Nur die
-      Beine und den Rücken waschen wir.“</p>
-    <p><b>Das ist eine der wenigen Stellen in deinem ganzen Ordner, an der eine Übergabe zeigt,
-      wie sie sein soll:</b> Sie nennt <b>die Haltung</b> (Selbständigkeit), <b>das Gefühl</b>
-      (Angst zu fallen), <b>den Auftrag</b> (zur Seite stehen) und <b>die Grenze</b> (nur Beine
-      und Rücken). <b>Kein Handgriff ohne seinen Grund.</b></p>
-  </div>
-
-  <div class="pruef">
-    <h4>Frau Webers drei Fragen — und was deine Unterlagen dazu hergeben</h4>
-    <p>Der Fall endet damit, dass Tim keine davon beantworten kann. <b>Hier steht ehrlich, wie
-      weit deine eigenen Dateien reichen.</b></p>
-    <ol>
-      <li><b>„Warum sollte ich meine Hände gestern kühlen? Sonst hilft mir eher Wärme.“</b><br>
-        <b>Nicht beantwortbar aus deinen Dateien.</b> Deine <b>rheumatoide Arthritis</b> steht in
-        <b>keiner</b> der drei Dateien — der Fachtext behandelt Osteoporose, Arthrose und Morbus
-        Bechterew. <b>Was er liefert, ist die Unterscheidung</b>, an der die Antwort hängt:
-        Arthrose ist <b>„nichtentzündlich, degenerativ“</b>, Morbus Bechterew ist
-        <b>„entzündlich-rheumatisch“</b>. Und bei der Arthrose steht <b>„Wärme-/Kältebehandlung
-        je nach Verträglichkeit“</b>. <b>Die Folgerung daraus steht nirgends, und ich ziehe sie
-        nicht.</b></li>
-      <li><b>„Warum soll ich ständig Joghurt und Fisch essen?“</b><br>
-        <b>Halb beantwortbar.</b> Der Fachtext nennt als Therapiesäule <b>Kalzium- und
-        Vitamin-D-Versorgung von 1.000 mg bzw. 20 μg täglich</b> — und <b>Kalzium-,
-        Vitamin-D-Mangel</b> steht bei den <b>vermeidbaren</b> Risikofaktoren. <b>Welches
-        Lebensmittel welchen Stoff liefert, steht in keiner deiner Dateien.</b> Genau diese
-        Übersetzung ist <b>Aufgabe 11 des ersten Falles</b> — sie ist deine Arbeit, nicht
-        meine.</li>
-      <li><b>„Warum darf ich die eine Tablette nicht mit Mineralwasser nehmen?“</b><br>
-        <b>Nicht beantwortbar aus deinen Dateien.</b> Der Fachtext nennt
-        <b>Bisphosphonate</b> als erste Medikamentengruppe, und Frau Schneider bekommt
-        <b>Fosamax® (Biphosphonat)</b>. Bei Frau Webers <b>Alendron</b> steht <b>keine
-        Wirkstoffgruppe dabei</b>. Ob es dieselbe Gruppe ist, <b>sagen deine Dateien nicht</b> —
-        und <b>warum</b> Mineralwasser stört, erst recht nicht.</li>
-    </ol>
-    <p><b>Drei Fragen, eine halbe Antwort.</b> Das ist kein Versagen deiner Unterlagen — der
-      Fall ist <b>so gebaut</b>. Er will, dass du merkst, wo dein Wissen aufhört. <b>Schreib die
-      drei Antworten selbst auf, nachdem du im Unterricht oder in Pflege Heute nachgesehen hast,
-      und schick sie mir — ich korrigiere Sprache und Aufbau.</b></p>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Und eine Stelle, die nicht nur fachlich ist</span>
-    <p>Frau Weber erzählt: Als sie gefragt habe, warum sie kühlen solle, habe Sr. Brigitte
-      gesagt, <b>„momentan habe sie keine Zeit, mir dies zu erklären, das habe sie ja schon
-      mehrfach getan“</b>.</p>
-    <p><b>Dieser Satz steht nicht zufällig im Fall.</b> Eine Erklärung, die beim ersten Mal nicht
-      angekommen ist, ist <b>keine Erklärung gewesen</b> — und „das habe ich schon mehrfach
-      gesagt“ ist eine Antwort auf das eigene Genervtsein, nicht auf die Frage der Bewohnerin.</p>
-    <p>Auf deiner Seite <b>Werde ich so verstanden, wie ich es meine?</b> stehen dafür die
-      <b>gesprächshemmenden Faktoren</b> und die <b>patientenzentrierte Gesprächsführung nach
-      Rogers</b>. <b>Dieser Fall ist ein Beispiel dafür — in einer Aufgabe über Knochen.</b></p>
-    <p class="fr">« Je n'ai pas le temps de vous l'expliquer, je l'ai déjà fait plusieurs fois »
-      — une explication qui n'est pas passée la première fois n'en était pas une. Ce cas parle
-      de communication autant que d'os.</p>
-  </div>
-</section>
-
-<section id="sortieren">
-  <h2>Aufgabe 8 — die Symptome sortieren</h2>
-  <p class="lead">Frau Schneider hat <b>drei</b> Krankheiten. Die Aufgabe fragt nach den
-    Symptomen <b>der Osteoporose</b>. <b>Das ist die eigentliche Schwierigkeit.</b></p>
-
-  <p>Hier steht <b>keine Lösung</b> — die Zuordnung ist die Aufgabe. Was hier steht, ist
-    <b>beides nebeneinander</b>: was im Fall beobachtet wurde, und was der Fachtext welcher
-    Krankheit zuordnet.</p>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Beobachtung aus dem Fall</th><th>Wo steht etwas Ähnliches im Fachtext?</th>
-        <th>Deine Zuordnung</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Starke Rückenschmerzen seit Jahren</td>
-          <td><b>Osteoporose</b> nennt „Rückenschmerzen“ · <b>M. Bechterew</b> nennt
-            „chronischer Rückenschmerz“ als <b>Leitsymptom</b></td><td>…</td></tr>
-        <tr><td class="k">Oberkörper nach vorne gebeugt</td>
-          <td><b>Osteoporose</b>: „Deformierung von Wirbelkörpern“ · <b>M. Bechterew</b>:
-            „verstärkte BWS-Kyphose“</td><td>…</td></tr>
-        <tr><td class="k">Verknöcherung des Iliosakralbereiches (Röntgen)</td>
-          <td><b>M. Bechterew</b>: „Sakroiliitis“, <b>Ankylose</b> = Versteifung</td>
-          <td>…</td></tr>
-        <tr><td class="k">Steife Finger, im Laufe der Versorgung beweglicher</td>
-          <td><b>Arthrose</b>: „Anlaufschmerzen nach längerer Ruhe“, „Beginn häufig als
-            Steifigkeit beschrieben“</td><td>…</td></tr>
-        <tr><td class="k">Oberschenkelhalsfraktur nach einem Sturz</td>
-          <td><b>Osteoporose</b>: die Diagnostik sucht nach <b>Frakturen</b>; die
-            Knochendichtemessung wurde <b>deswegen</b> veranlasst</td><td>…</td></tr>
-        <tr><td class="k">Schnell erschöpft</td>
-          <td><b>steht bei keiner der drei Krankheiten</b></td><td>…</td></tr>
-        <tr><td class="k">Kleine Schritte, hält sich krampfhaft fest</td>
-          <td><b>steht bei keiner der drei Krankheiten</b> — der Fachtext nennt dafür nur das
-            <b>Sturzrisiko</b> in der Diagnostik</td><td>…</td></tr>
-        <tr><td class="k">AF 19, oberflächlich</td>
-          <td><b>M. Bechterew</b>, Komplikationen: „<b>restriktive
-            Lungenfunktionsstörung</b>“</td><td>…</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Zwei Hinweise, die dir die Arbeit nicht abnehmen, aber die Richtung zeigen</span>
-    <p><b>1 · Manche Zeilen haben zwei Kandidaten — und das ist Absicht.</b> „Rückenschmerzen“
-      steht bei <b>beiden</b>. Eine gute Antwort sagt <b>nicht</b> „gehört zur Osteoporose“,
-      sondern <b>„lässt sich nicht eindeutig zuordnen, weil …“</b>. Das ist keine Ausrede,
-      sondern die richtige Antwort auf eine <i>Beurteilen</i>-Frage.</p>
-    <p><b>2 · Die letzte Zeile ist die schönste.</b> <b>AF 19, oberflächlich</b> steht in der
-      Dokumentation, ohne Kommentar. Im Fachtext steht die <b>restriktive
-      Lungenfunktionsstörung</b> als Komplikation des Morbus Bechterew. <b>Wer diese beiden
-      Zeilen verbindet, hat den Fall wirklich gelesen.</b></p>
-    <p class="fr">Certaines lignes ont deux candidats, et c'est voulu. Répondre « on ne peut pas
-      trancher, parce que… » est la bonne réponse, pas une esquive.</p>
-  </div>
-
-  <div class="pruef">
-    <h4>Schick mir das</h4>
-    <p>Füll die dritte Spalte aus — auf Deutsch, in ganzen Sätzen, nicht in Stichworten.
-      <b>Bei jeder Zeile ein „weil“.</b> Das ist gleichzeitig deine Klausurübung und dein
-      Schreibtraining. <b>Ich korrigiere Inhalt, Satzbau und Wortwahl.</b></p>
-  </div>
-</section>
-
-<section id="offen">
-  <h2>Was auf dieser Seite fehlt — und warum</h2>
-
-  <div class="gefahr">
-    <span class="t">Die rheumatoide Arthritis fehlt ganz</span>
-    <p>Frau Weber hat sie als <b>erste Diagnose</b>, und der Fachtext behandelt sie <b>nicht</b>
-      — er deckt Osteoporose, Arthrose und Morbus Bechterew ab. Damit sind <b>Frau Webers
-      erste Frage</b> (kühlen oder wärmen) und der Zusammenhang ihres <b>Rheumaschubs</b> mit
-      dem <b>Prednisolon</b> aus deinen Unterlagen nicht zu beantworten. <b>Nichts davon ist
-      ergänzt.</b></p>
-    <p><b>Achtung, die Namen ähneln sich und meinen Verschiedenes:</b> <i>Arthrose</i> beschreibt
-      der Auszug als <b>nichtentzündlich</b>, <i>rheumatoide Arthritis</i> ist eine andere
-      Erkrankung. <b>Verwechsle sie nicht, nur weil beide „Gelenke“ heißen.</b></p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Drei Aufgaben ohne Grundlage im Ordner</span>
-    <ul>
-      <li><b>Aufgabe 1 — Aufbau des Knochens.</b> Steht in keiner deiner Dateien. Auch die
-        Anatomie-Seite hat dazu nichts: Dort ist <b>Skelett</b> ausdrücklich als Lücke
-        vermerkt.</li>
-      <li><b>Aufgabe 2 — wie ein Knochen entsteht.</b> Ebenfalls nirgends.</li>
-      <li><b>Aufgabe 4 — Relevanz für die Gesellschaft.</b> Der Auszug nennt für Morbus
-        Bechterew eine Häufigkeit (<b>0,5 %</b>), für die <b>Osteoporose keine einzige Zahl</b>.
-        <b>Ich erfinde keine Häufigkeiten.</b></li>
-    </ul>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Zwei Begriffe, die der Auszug benutzt und nicht erklärt</span>
-    <p><b>Tannenbaumphänomen</b> (bei den Osteoporose-Symptomen) und <b>Osteosynthese</b> (im
-      Fall, als die Operation beschrieben wird). <b>Beide stehen ohne Erklärung da</b>, beide
-      sind typische Klausurbegriffe. <b>Nicht ergänzt.</b></p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Und was von mir stammt</span>
-    <p>Die <b>Vergleichstabelle Schneider ↔ Weber</b>, die Beobachtung, dass ihr <b>BMI 34</b>
-      einem Risikofaktor <b>widerspricht</b>, die <b>Sortiertabelle</b> zu Aufgabe 8, der
-      Hinweis auf die <b>zwei Einheiten</b> bei Vitamin D (μg gegen I.E.) und die
-      Kette <i>Bechterew → Entzündung und Bewegungsmangel → Osteoporose → Fraktur</i>.
-      <b>Alle Bausteine stehen in deinen Dateien</b> — das Zusammensetzen ist meins, und es
-      steht hier, damit du es unterscheiden kannst.</p>
-    <p>Die französischen Zeilen sind ebenfalls von mir.</p>
-  </div>
-
-  <div class="merk">
-    <span class="t">Die Brücken zu deinen anderen Seiten</span>
-    <p><b>„Heraussetzen“ ist keine aktivierende Pflege:</b> dort der <b>GODO-Erhebungsbogen</b>
-      zum Sturzrisiko, die <b>Sturzdokumentation</b> und die <b>fünf Phasen der
-      Bettlägerigkeit</b> — genau das, was nach Frau Schneiders Operation droht, wenn sie
-      liegen bleibt.</p>
-    <p><b>Werde ich so verstanden, wie ich es meine?:</b> dort die
-      <b>gesprächshemmenden Faktoren</b> — für die Szene mit Sr. Brigitte.</p>
-    <p><b>Die Organe und das Nervensystem:</b> dort seit dem 20.09.2026 das Vokabelblatt
-      <b>Anatomische Grundbegriffe</b>. Damit lassen sich die Wörter dieser Seite zerlegen:
-      <b>Osteo-</b> (Knochen) · <b>-itis</b> (Entzündung, wie in <i>Sakroiliitis</i>,
-      <i>Enthesitis</i>, <i>Uveitis</i>, <i>Daktylitis</i>) · <b>-ose</b> (chronisch
-      degenerativer Prozess, wie in <i>Arthrose</i> und <i>Osteoporose</i>) · <b>Spondyl-</b>
-      für die Wirbelsäule. <b>Vier Silben, und die halbe Seite liest sich von selbst.</b></p>
-  </div>
-</section>
-
-<section id="quellen">
-  <h2>Woraus diese Seite gebaut ist</h2>
-  <details class="quelle">
-    <summary>Die drei Dateien — jede einzeln genannt</summary>
-    <div class="inh">
-      <ul>
-        <li><b>Frau Schneider ist gestuerzt AA.pdf</b> — Fallbeispiel mit <b>elf Aufgaben</b>,
-          <b>unbearbeitet</b>. Quelle für den ganzen Abschnitt
-          <a href="#schneider">Fall Frau Schneider</a>.</li>
-        <li><b>KH-Bilder Fr. Schneider.pdf</b> — der <b>Lehrbuchauszug</b> zu
-          <b>Osteoporose</b>, <b>Arthrose</b> und <b>Morbus Bechterew</b>. <b>Trägt jede
-          Fachangabe dieser Seite.</b> Der Dateiname nennt „Bilder“, die Datei enthält aber
-          durchgehend Text. <b>Ohne Angabe von Verlag, Auflage oder Seitenzahl</b> — ich kann
-          also nicht sagen, aus welchem Buch er stammt.</li>
-        <li><b>Frau Weber.pdf</b> — zweites Fallbeispiel, mit Zeilennummern, <b>ohne eigene
-          Aufgabenliste</b>: Die Aufgaben stecken als <b>drei Fragen der Bewohnerin</b> im Text.
-          Quelle für <a href="#weber">Fall Frau Weber</a>.</li>
-      </ul>
-      <p>Alle drei aus deinem Google-Drive-Ordner, geteilt am 18.09.2026, eingearbeitet am
-        <b>20.09.2026</b>. <b>Nichts auf dieser Seite stammt von außerhalb dieser Dateien</b> —
-        keine Zahl, kein Fachbegriff, keine Norm. Wo etwas fehlt, steht im Abschnitt
-        <a href="#offen">Was fehlt</a>, dass es fehlt.</p>
-      <p><b>Die Fälle sind Unterrichtsmaterial deiner Dozentin, kein Lehrbuch.</b> Der Auszug
-        liest sich wie ein Lehrbuchtext, trägt aber keine Quellenangabe. <b>Für eine Klausur
-        gilt, was im Unterricht gesagt wurde</b> — diese Seite ist die Aufbereitung, nicht die
-        Autorität.</p>
-    </div>
-  </details>
-</section>
-
+<h2>Woraus diese Seite gebaut ist</h2>
+<p>Drei Dateien aus deinem Drive-Ordner, alle Seiten gelesen (reiner Text, keine Bildfolien):</p>
+<ul>
+  <li><b>Frau Schneider ist gestuerzt AA.pdf</b> — 3 Seiten (Fall S. 1–2, elf Aufgaben S. 3)</li>
+  <li><b>KH-Bilder Fr. Schneider.pdf</b> — 7 Seiten, Lehrbuchauszug ohne Verlag, Auflage oder Seitenzahl (Osteoporose S. 1–2, Arthrose S. 3–4, Morbus Bechterew S. 5–7)</li>
+  <li><b>Frau Weber.pdf</b> — 2 Seiten, mit Zeilennummern 1–55</li>
+</ul>
+<p><b>Was fehlt und nicht ergänzt wurde:</b> die Definition der Osteoporose · Aufbau und Entstehung des Knochens (Aufgabe 1 und 2) · eine Häufigkeitszahl zur Osteoporose (Aufgabe 4) · Ernährungsinhalte für die Beratung (Aufgabe 11) · die rheumatoide Arthritis (Frau Webers Krankheit) · die Erklärung von Tannenbaum&shy;phänomen, Osteosynthese und Hyaluronsäure · wie die Medikamente wirken · warum Alendron nicht mit Mineral&shy;wasser · die Umrechnung von I.E. in µg · ein Pflegeteil. Die Wortpaare in Klammern, die eine <span class="her">Herleitung</span> tragen, sind meine Übersetzungen der Fachwörter. Nichts davon kommt aus dem Internet.</p>
+<p class="fr">🇫🇷 Tout vient de tes trois fichiers (3 + 7 + 2 pages). Rien d'Internet. Le badge « Herleitung » marque ce que j'ai déduit ou les mots que j'ai expliqués moi-même. Ce qui manque est listé ci-dessus : demande-le en cours.</p>
 </main>
-
-<footer>
-  <p>Erkrankungen des Bewegungsapparates · zwei Fallbeispiele und ein Lehrbuchauszug — gebaut
-    aus deinen eigenen Unterlagen, ohne Zusätze.<br>Wo etwas fehlt oder von mir stammt, steht es
-    oben ausdrücklich dabei.</p>
-</footer>
