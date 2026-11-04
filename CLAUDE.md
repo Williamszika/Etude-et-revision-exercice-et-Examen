@@ -1901,6 +1901,12 @@ gelb, Krankenhaus, keine Dosierungen), 7 Fallfragen mit Operatoren, „So schrei
 für 3 Probleme (`krankheiten-antworten-v1`, Knopf „Antworten kopieren“), Musterlösung, Knopf „abgeschlossen“ (`krankheiten-fertig-v1`).
 Neue Internetquellen: DocCheck Flexikon (Mediainfarkt, Fazialisparese, Schluckakt), abgerufen 04.11.2026. **Für jeden künftigen Artikel
 dieselbe Gliederung** (Symptomkarten, Medikamentenkarten, Abschlusskapitel mit Fall und Pflegeplanung).
+**Ebenfalls 04.11.2026** (ihr Wunsch: welche Medikamente es in Deutschland gibt, Wirkung, Nebenwirkungen, was man erwartet, und was man
+**sofort** tut, wenn man den Patienten so vorfindet): Kap. 10 hat „Die Medikamente einzeln" — Kasten „Bei jedem Notfall zuerst" (Notfälle:
+Ruhe/Situation/Hilfe + ABCD; Sturzprotokoll) und sieben Karten **ASS · Clopidogrel · Apixaban · Phenprocoumon · Ramipril · Atorvastatin ·
+Insulin**, je So wirkt es · Nebenwirkungen · Das erwartest du · Gefährlich — du findest ihn so · Sofort tun. Wirkstofffakten blau (Apotheken
+Umschau, Shop Apotheke, abgerufen 04.11.2026), Notfallschritte grün aus Notfälle/Diabetes/Bewegung, Szenarien gelb. **Keine Dosierungen, keine
+Handelsnamen.** Für künftige Artikel dieselben fünf Zeilen.
 
 ## Meine Bibliothek — EIN Link mit beiden Büchern (seit 03.11.2026)
 
