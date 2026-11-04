@@ -1,1597 +1,718 @@
 <title>Gesunde stehen für Kranke ein</title>
+<meta name="description" content="Das deutsche Gesundheitssystem, die Sozialversicherung und das Infektionsschutzgesetz — einfach erklärt, nur aus deinen elf Kursdateien (CE 04 / UE 01).">
 <style>
   :root{
-    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
-    --accent:#2f5f4a;--accent-deep:#1f4735;--accent-soft:#dcece4;
-    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
-    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
-    --pharm:#1f5f86;--pharmbg:#dbe8f1;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --paper:#f3f5f4;--card:#ffffff;--ink:#17201f;--ink-soft:#4a5755;--line:#cfd8d6;
+    --accent:#1d6b74;--accent-soft:#dcedef;
+    --rot:#a43b30;--rotbg:#f7e2de;--gelb:#8a5a0c;--gelbbg:#f8ecd4;--gruen:#2a6b47;--gruenbg:#e0efe5;
     --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
   }
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
-    --accent:#7fc0a4;--accent-deep:#9ad5bc;--accent-soft:#14261e;
-    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
-    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
-    --pharm:#6cadd9;--pharmbg:#122736;}}
+    --paper:#111716;--card:#1a2221;--ink:#e8eeed;--ink-soft:#a1aeac;--line:#2d3836;
+    --accent:#6fc3cd;--accent-soft:#163238;
+    --rot:#e48d80;--rotbg:#33201c;--gelb:#e0b05f;--gelbbg:#30240f;--gruen:#7ccb9c;--gruenbg:#15291d;color-scheme:dark;}}
   :root[data-theme="dark"]{
-    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
-    --accent:#7fc0a4;--accent-deep:#9ad5bc;--accent-soft:#14261e;
-    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
-    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
-    --pharm:#6cadd9;--pharmbg:#122736;}
-  :root[data-theme="light"]{
-    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
-    --accent:#2f5f4a;--accent-deep:#1f4735;--accent-soft:#dcece4;
-    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
-    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
-    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
-
+    --paper:#111716;--card:#1a2221;--ink:#e8eeed;--ink-soft:#a1aeac;--line:#2d3836;
+    --accent:#6fc3cd;--accent-soft:#163238;
+    --rot:#e48d80;--rotbg:#33201c;--gelb:#e0b05f;--gelbbg:#30240f;--gruen:#7ccb9c;--gruenbg:#15291d;color-scheme:dark;}
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
-
-  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
-    border-bottom:1px solid var(--line);
-    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
-  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--accent-deep);margin:0 0 10px;}
-  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
-    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
-  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
-  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
-    border-radius:999px;background:var(--card);color:var(--ink-soft);}
-
-  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
-    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
-  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
-    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
-    white-space:nowrap;}
-  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
-    background:var(--card);}
-
-  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
-  section{padding-top:52px;}
-  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
-    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
-  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
-  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
-  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
-  p{margin:0 0 14px;max-width:70ch;}
-  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
-  li{margin:5px 0;}
-  b,strong{font-weight:700;}
-  .fr{font-style:italic;color:var(--ink-soft);}
-  .fr::before{content:"🇫🇷 ";font-style:normal;}
-
-  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
-  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
-  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
-  .karte p:last-child{margin-bottom:0;}
-
-  .scroll{overflow-x:auto;margin:18px 0;}
-  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
-  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
-    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
-    text-align:left;vertical-align:bottom;}
-  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
-  td.k{font-weight:700;white-space:nowrap;}
-  tbody tr:nth-child(even) td{background:var(--paper);}
-
-  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .merk p:last-child{margin-bottom:0;}
-  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--accent-deep);display:block;margin-bottom:6px;}
-
-  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .warnung p:last-child{margin-bottom:0;}
-  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--warn);display:block;margin-bottom:6px;}
-
-  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .gefahr p:last-child{margin-bottom:0;}
-  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--notfall);display:block;margin-bottom:6px;}
-
-  .stufen{display:grid;gap:10px;margin:18px 0;}
-  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
-    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
-  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
-    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
-  .stufe .nr.n2{background:var(--accent);}
-  .stufe h4{margin:0 0 4px;}
-  .stufe p{margin:0;font-size:15.5px;}
-  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
-
-  .paare{display:grid;gap:9px;margin:18px 0;}
-  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
-    border-radius:0 10px 10px 0;padding:11px 15px;}
-  .paar .de{font-weight:600;}
-  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
-
-  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
-    overflow:hidden;}
-  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
-    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
-  details.quelle>summary::-webkit-details-marker{display:none;}
-  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
-  details.quelle[open]>summary::before{content:"－";}
-  details.quelle .inh{padding:0 17px 15px;}
-  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
-
-  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
-    padding:16px 18px;margin:20px 0;}
-  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
-  .pruef ol{margin:0;}
-
-  a{color:var(--accent-deep);}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
-  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
-    text-align:center;color:var(--ink-soft);font-size:14px;}
-  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
-  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;}
+  main{max-width:46rem;margin:0 auto;padding-inline:16px;padding-block:28px 60px;}
+  h1{font-size:2rem;line-height:1.15;margin:0 0 6px;text-wrap:balance;}
+  h2{font-size:1.35rem;line-height:1.25;margin:34px 0 8px;color:var(--accent);text-wrap:balance;}
+  h3{font-size:1.05rem;margin:18px 0 6px;}
+  p{margin:0 0 10px;}
+  ul,ol{margin:0 0 12px;padding-left:1.3rem;} li{margin:3px 0;}
+  .unter{color:var(--ink-soft);margin:0 0 16px;}
+  .stern{color:var(--gelb);font-size:.9em;letter-spacing:1px;white-space:nowrap;}
+  .kern{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;margin:14px 0;}
+  .fr{font-style:italic;color:var(--ink-soft);font-size:.95em;}
+  .merke{background:var(--gelbbg);border-radius:8px;padding:9px 13px;margin:10px 0;}
+  .merke b:first-child{color:var(--gelb);}
+  .hinweis{background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:9px 13px;margin:10px 0;font-size:.95em;}
+  .quelle{font-size:.8em;color:var(--ink-soft);margin:4px 0 0;}
+  /* Schemata: Kästen mit Pfeilen, von oben nach unten */
+  .schema{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:12px 0;}
+  .schema .titel{font-weight:700;margin:0 0 10px;}
+  .k{border:1.5px solid var(--line);border-radius:8px;padding:7px 10px;background:var(--paper);}
+  .k b{display:block;}
+  .k small{display:block;color:var(--ink-soft);font-size:.86em;line-height:1.4;}
+  .k.wichtig{border-color:var(--accent);background:var(--accent-soft);}
+  .k.rot{border-color:var(--rot);background:var(--rotbg);}
+  .k.gruen{border-color:var(--gruen);background:var(--gruenbg);}
+  .pfeil{text-align:center;color:var(--ink-soft);font-size:1.1rem;line-height:1.4;}
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .zwei > div{min-width:0;}
+  .lesen{font-size:.88em;color:var(--ink-soft);margin:8px 0 0;}
+  .scroll{overflow-x:auto;margin:10px 0;}
+  table{border-collapse:collapse;width:100%;font-size:.92em;line-height:1.4;}
+  th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-soft);}
+  td.z{white-space:nowrap;font-variant-numeric:tabular-nums;}
+  tr.rot td:first-child{background:var(--rotbg);} tr.gelb td:first-child{background:var(--gelbbg);} tr.gruen td:first-child{background:var(--gruenbg);}
+  details{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:8px 0;}
+  summary{cursor:pointer;font-weight:600;}
+  .op{display:inline-block;font-size:.75em;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:0 8px;margin-right:6px;}
+  .spick{columns:2 16rem;column-gap:24px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px 12px 32px;}
+  .spick li{break-inside:avoid;}
+  @media (max-width:520px){.zwei{grid-template-columns:1fr;} h1{font-size:1.7rem;} td.z{white-space:normal;} th,td{padding:5px 6px;}}
 </style>
 
-<header class="hero">
-  <p class="eyebrow">Das deutsche Gesundheitssystem · Geschichte, Prinzipien, Ebenen, Aufgaben, Infektionsschutz</p>
-  <h1>Gesunde stehen für Kranke ein</h1>
-  <p class="sub">Warum du eine Karte abgibst statt einer Rechnung, wer entscheidet, was die Kasse
-    zahlt — und warum die Pflegeversicherung ausdrücklich nur eine Teilkostenversicherung ist.</p>
-  <div class="meta">
-    <span>A. Issel</span>
-    <span>BMG-Broschüre</span>
-    <span>11 Quellen</span>
-    <span>Niveau B1</span>
-    <span>Stand 20.09.2026</span>
+<style>
+  .her{font-style:normal;font-size:.78em;font-weight:700;letter-spacing:.04em;color:var(--gelb);background:var(--gelbbg);border-radius:999px;padding:0 7px;white-space:nowrap;}
+  .def{border:2px solid var(--accent);border-radius:10px;padding:12px 14px;margin:12px 0;background:var(--card);}
+  .def .t{display:block;font-size:.78em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+  .def p:last-child{margin-bottom:0;}
+  dl.woerter{margin:10px 0;display:grid;grid-template-columns:minmax(8rem,auto) 1fr;gap:6px 14px;}
+  dl.woerter dt{font-weight:700;} dl.woerter dd{margin:0;}
+  @media (max-width:520px){dl.woerter{grid-template-columns:1fr;gap:0;} dl.woerter dd{margin-bottom:8px;}}
+</style>
+
+<main lang="de">
+<h1>Gesunde stehen für Kranke ein — das deutsche Gesundheitssystem</h1>
+<p class="unter">CE 04 / UE 01 und Unterricht A. Issel · neu geschrieben am 04.11.2026 · <b>nur aus deinen 11 Kursdateien</b> — nichts aus dem Internet. Wo ich zwei Folien selbst verbinde, steht <span class="her">Herleitung</span>.</p>
+
+<div class="kern">
+  <p><b>Das Wichtigste in zwei Sätzen:</b> In Deutschland muss fast jeder Mensch krankenversichert sein, und alle Versicherten tragen die Kosten gemeinsam: „Gesunde stehen für Kranke ein, Reiche für Arme und Singles für Familien.“ Der Staat macht die Gesetze, die Selbstverwaltung entscheidet die Einzelheiten, und Ärzte, Kliniken und Pflege versorgen die Menschen.</p>
+  <p class="fr">🇫🇷 En Allemagne, presque tout le monde doit être assuré maladie. Tous les assurés paient ensemble : les bien-portants pour les malades, les riches pour les pauvres, les célibataires pour les familles. L'État fait les lois, l'« autogestion » décide des détails, et les soignants soignent. La loi sur la protection contre les infections (IfSG) te concerne directement : certaines maladies doivent être déclarées.</p>
+</div>
+
+<!-- ============ AUF EINEN BLICK ============ -->
+<h2>Auf einen Blick: vom Gesetz 1883 bis zu deiner Meldepflicht</h2>
+<div class="schema">
+  <p class="titel">Das ganze Thema als Kette</p>
+  <div class="k wichtig"><b>1883: Bismarck — die erste Krankenversicherung</b><small>Deutschland ist das erste Land mit einer Sozialversicherung auf nationaler Ebene.</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Fünf Grundprinzipien</b><small>Versicherungspflicht · Beitragsfinanzierung · Solidarität · Sachleistung · Selbstverwaltung</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Ein Sozialversicherungssystem</b><small>zwischen „staatlich“ (Großbritannien, Schweden) und „marktwirtschaftlich“ (USA)</small></div>
+  <div class="pfeil">↓</div>
+  <div class="zwei">
+    <div class="k"><b>Drei Ebenen — wer entscheidet?</b><small>1. Staat (Bund, Länder, Kommunen) · 2. Selbstverwaltung (G-BA, Kassen, KBV, DKG) · 3. die Menschen, die behandeln</small></div>
+    <div class="k"><b>Fünf Aufgaben — was wird getan?</b><small>Prävention · ambulante und stationäre Versorgung · Reha · Pflege · Arzneimittel</small></div>
   </div>
-</header>
+  <div class="pfeil">↓</div>
+  <div class="k wichtig"><b>Fünf Säulen der Sozialversicherung</b><small>Kranken- · Unfall- · Renten- · Arbeitslosen- · Pflegeversicherung — darunter als letztes Netz die Sozialhilfe (SGB XII)</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k rot"><b>Infektionsschutzgesetz (IfSG)</b><small>schützt alle vor übertragbaren Krankheiten · Meldung an das Gesundheitsamt binnen 24 Stunden · Hygiene in Einrichtungen</small></div>
+  <p class="lesen">So liest du das: Oben steht die Geschichte, dann die Regeln, dann wer sie umsetzt, dann die Versicherungen, unten das Gesetz, das dir im Dienst eine eigene Pflicht gibt. Jeder Kasten ist ein Kapitel unten.</p>
+</div>
 
-<nav class="toc" aria-label="Inhalt">
-  <a href="#warum">Warum das dein Thema ist</a>
-  <a href="#geschichte">1883 — Bismarck</a>
-  <a href="#prinzipien">Die fünf Grundprinzipien</a>
-  <a href="#welt">Die drei Systemtypen</a>
-  <a href="#ebenen">Die drei Ebenen</a>
-  <a href="#gba">Der G-BA</a>
-  <a href="#aufgaben">Die Aufgaben</a>
-  <a href="#saeulen">Die fünf Säulen</a>
-  <a href="#pflege">Die Pflegeversicherung</a>
-  <a href="#grade">Pflegegrade und Beträge</a>
-  <a href="#lina">Der Fall Lina K.</a>
-  <a href="#ifsg">Infektionsschutzgesetz</a>
-  <a href="#zahlen">Die Zahlen und ihr Datum</a>
-  <a href="#offen">Was fehlt</a>
-</nav>
-
-<main>
-
-<section id="warum">
-  <h2>Warum das kein Politikunterricht ist</h2>
-  <p class="lead">Du arbeitest <b>in</b> diesem System. Und deine Patienten fragen <b>dich</b>,
-    nicht das Ministerium.</p>
-
-  <div class="merk">
-    <span class="t">Drei Fragen, die du auf Station wirklich hörst</span>
-    <p><b>„Muss ich das selbst bezahlen?“</b> → Sachleistungsprinzip und Zuzahlungen ·
-      <b>„Warum kriege ich plötzlich eine andere Tablette?“</b> → Generika und Rabattverträge ·
-      <b>„Warum zahlt die Kasse die Reha nicht?“</b> → Wirtschaftlichkeitsgebot und G-BA.</p>
-    <p>Alle drei Antworten stehen auf dieser Seite. <b>Du musst keine Auskunft geben</b> — aber
-      du solltest wissen, <b>wohin</b> du jemanden schickst.</p>
-    <p class="fr">Tu travailles <b>dans</b> ce système, et c'est à <b>toi</b> qu'on pose les
-      questions. Tu n'as pas à répondre — mais à savoir vers qui renvoyer.</p>
-  </div>
-</section>
-
-<section id="geschichte">
-  <h2>Der 15. Juni 1883 — und warum das bis heute trägt</h2>
-
-  <div class="merk">
-    <span class="t">Die Geburtsstunde, wörtlich</span>
-    <p>Unter Reichskanzler <b>Otto von Bismarck</b> wurde am <b>15. Juni 1883</b> das
-      <b>„Gesetz betreffend die Krankenversicherung der Arbeiter“</b> erlassen. Von da an sind
-      <b>Industriearbeiter und Beschäftigte in Handwerks- und Gewerbebetrieben</b>
-      krankenversicherungspflichtig.</p>
-    <p><b>Sie trugen zwei Drittel, ihr Arbeitgeber ein Drittel</b> des Beitrags.</p>
-    <p>Und der Satz, der die Bedeutung erklärt: <b>Deutschland ist damit das erste Land, das
-      eine Sozialversicherung auf nationaler Ebene einführte.</b> Die GKV ist
-      <b>der älteste Zweig der Sozialversicherung</b> und hat ihre tragenden Grundsätze
-      <b>seit dem Wilhelminischen Kaiserreich im Kern bis heute erhalten</b>.</p>
-    <p class="fr">1883 : l'Allemagne est le <b>premier pays</b> à créer une assurance sociale
-      nationale. Les principes de base tiennent depuis.</p>
-  </div>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th></th><th>Zu Beginn (1883)</th><th>Heute</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Anteil der Bevölkerung</td><td>etwa <b>10 %</b> pflichtversichert</td>
-          <td>rund <b>88 %</b> in einer gesetzlichen Krankenkasse</td></tr>
-        <tr><td class="k">Versicherte GKV</td><td>—</td><td>über <b>74 Millionen</b></td></tr>
-        <tr><td class="k">Privat versichert</td><td>—</td>
-          <td>rund <b>9 Millionen</b></td></tr>
-        <tr><td class="k">Sonstige</td><td>—</td>
-          <td>besondere Versorgungsformen, z. B. die <b>unentgeltliche truppenärztliche
-            Versorgung der Bundeswehr</b></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p>Und ein Satz, den man leicht überliest: <b>„Auch wenn von der ‚gesetzlichen
-    Krankenversicherung‘ meist in der Einzahl gesprochen wird, ist sie kein einheitlicher
-    Block.“</b> Sie besteht aus <b>unabhängigen Krankenkassen mit eigenem Profil</b>, zwischen
-    denen man <b>weitgehend frei wählen und wechseln</b> kann.</p>
-
-  <div class="warnung">
-    <span class="t">Eine kleine Abweichung zwischen zwei deiner Dateien</span>
-    <p>Der <b>Foliensatz</b> von A. Issel schreibt zu 1883: <b>„Nur für Handwerks- und
-      Gewerbebetriebe“</b>. Der <b>Textauszug des Ministeriums</b> nennt dagegen
-      <b>„Industriearbeiter <i>und</i> Beschäftigte in Handwerks- und Gewerbebetrieben“</b>.</p>
-    <p>Die Folie ist also <b>etwas enger</b> formuliert als der Quelltext. <b>Nimm im Zweifel
-      die Formulierung des Textes</b> — er ist die zitierte Originalquelle.</p>
-  </div>
-</section>
-
-<section id="prinzipien">
-  <h2>Die fünf Grundprinzipien</h2>
-  <p class="lead">Der Arbeitsauftrag lautet: <b>„Fassen Sie das Ihnen zugewiesene Prinzip
-    zusammen“</b> und <b>„Ordnen Sie die Prinzipien in die ‚Leiter‘ ein und begründen Sie Ihre
-    Einordnung.“</b> — <b>Die Leiter ist nicht ausgefüllt.</b></p>
-
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div>
-      <h4>Versicherungspflicht</h4>
-      <p><b>Alle</b> Bürgerinnen und Bürger mit Wohnort oder gewöhnlichem Aufenthalt in
-        Deutschland müssen einen Krankenversicherungsschutz haben — in der <b>GKV seit dem
-        1. April 2007</b>, in der <b>PKV seit dem 1. Januar 2009</b>.</p>
-      <p>Arbeitnehmer sind in der GKV <b>pflichtversichert</b>, solange ihr Einkommen die
-        <b>Versicherungspflichtgrenze</b> nicht überschreitet. Darüber dürfen sie
-        <b>freiwillig in der GKV bleiben</b> oder <b>privat</b> wählen. <b>Generell nicht</b>
-        versicherungspflichtig in der GKV sind z. B. <b>Beamte und Selbstständige</b> — auch
-        bei niedrigem Einkommen.</p></div></div>
-
-    <div class="stufe"><span class="nr">2</span><div>
-      <h4>Beitragsfinanzierung</h4>
-      <p><b>Der entscheidende Unterschied GKV ↔ PKV:</b></p>
-      <p><b>PKV:</b> Die Prämie richtet sich nach <b>Gesundheitszustand, Eintrittsalter und
-        individuellem Krankheitsrisiko</b>; Leistungen und Selbstbeteiligungen werden
-        <b>individuell vertraglich</b> vereinbart.</p>
-      <p><b>GKV:</b> Der Beitrag richtet sich nach dem <b>Einkommen</b> —
-        <b>„Alle Versicherten erhalten die gleichen Leistungen. Wer mehr verdient, zahlt auch
-        mehr ein.“</b></p>
-      <p>Und der große Unterschied für Familien: In der GKV sind <b>Kinder und Ehepartner ohne
-        oder mit geringem eigenem Einkommen beitragsfrei mitversichert</b>. Für Arbeitslosengeld-
-        und Sozialhilfeempfänger übernimmt <b>der zuständige Sozialleistungsträger</b> den
-        Beitrag.</p></div></div>
-
-    <div class="stufe"><span class="nr n2">3</span><div>
-      <h4>Solidaritätsprinzip</h4>
-      <p><b>„Alle gesetzlich Versicherten tragen gemeinsam die Kosten, die durch Krankheiten der
-        einzelnen Mitglieder entstehen.“</b> Jeder hat <b>den gleichen Anspruch auf medizinische
-        Versorgung — egal, wie hoch sein Einkommen und damit sein Beitrag ist</b>.</p>
-      <p>Der Merksatz des Textes: <b>„Gesunde stehen also für Kranke ein, Reiche für Arme und
-        Singles für Familien.“</b></p>
-      <p>Dazu gehört auch die <b>Lohnfortzahlung</b>: die <b>ersten sechs Wochen in voller
-        Höhe vom Arbeitgeber</b>; wer länger krank ist, bekommt von der Kasse
-        <b>Krankengeld</b>.</p></div></div>
-
-    <div class="stufe"><span class="nr n2">4</span><div>
-      <h4>Sachleistungsprinzip</h4>
-      <p><b>„Gesetzlich Versicherte werden ärztlich behandelt, ohne dass sie dafür in
-        finanzielle Vorleistung gehen müssen.“</b> Ärzte, Kliniken und Apotheken rechnen
-        <b>direkt mit den Krankenkassen</b> ab.</p>
-      <p>Die Versicherten haben — <b>abgesehen von einzelnen gesetzlichen Eigenleistungen und
-        Zuzahlungen</b> — Anspruch auf eine <b>kostenfreie Behandlung</b>.</p></div></div>
-
-    <div class="stufe"><span class="nr n2">5</span><div>
-      <h4>Selbstverwaltungsprinzip</h4>
-      <p>Die Frage, die der Text stellt: <b>„Wer soll das regeln? Macht's der Staat?
-        Entscheidet der Markt? Oder die Beteiligten selbst?“</b> — <b>Deutschland hat sich für
-        die letzte Variante entschieden.</b></p>
-      <p><b>Der Staat gibt die Rahmenbedingungen vor</b> und erlässt Gesetze und Verordnungen.
-        <b>Wie</b> die Versorgung organisiert wird und <b>welche Behandlungen, Operationen,
-        Therapien und Arzneimittel die Kassen finanzieren</b>, wird <b>innerhalb des
-        Gesundheitswesens</b> entschieden — von Ärzte-, Zahnärzte- und Psychotherapeutenschaft,
-        Krankenhäusern, Krankenkassen und Versicherten <b>gemeinsam</b>.</p></div></div>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Warum das Solidaritätsprinzip die wichtigste Kette dieses Blocks ist</span>
-    <p><b>Ursache:</b> Der Beitrag richtet sich nach dem <b>Einkommen</b>, der Anspruch dagegen
-      ist <b>für alle gleich</b>. → <b>Wirkung:</b> Wer viel verdient, zahlt mehr ein, als er
-      im Schnitt herausbekommt; wer wenig verdient, bekommt mehr, als er einzahlt. →
-      <b>Gefahr:</b> Ohne dieses Prinzip könnten sich chronisch Kranke, Alte und Familien ihre
-      Versorgung <b>nicht leisten</b> — sie sind genau die Gruppen mit hohen Kosten und oft
-      niedrigem Einkommen. → <b>Deshalb:</b> ist die Beitragsbemessung nach Einkommen
-      <b>kein Sozialrabatt, sondern die Bedingung dafür, dass das System überhaupt
-      funktioniert</b>.</p>
-    <p><b>Das ist meine Ausformulierung</b> — die drei Sätze des Textes („Gesunde für Kranke,
-      Reiche für Arme, Singles für Familien“) sagen genau das, nur kürzer. Wenn du nach dem
-      Solidaritätsprinzip gefragt wirst, <b>zitiere den Satz und erkläre dann die Kette</b>.</p>
-    <p class="fr">La cotisation suit le <b>revenu</b>, le droit aux soins est <b>le même pour
-      tous</b>. C'est la condition de fonctionnement, pas une remise sociale.</p>
-  </div>
-</section>
-
-<section id="welt">
-  <h2>Die drei Systemtypen — und wo Deutschland steht</h2>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Typ</th><th>Wie finanziert und organisiert</th><th>Beispiele</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Staatliche Gesundheitssysteme</td>
-          <td>Vom <b>Staat organisiert</b> und über <b>Steuergelder</b> finanziert. Alle
-            Operationen, Therapien und Arzneimittel werden <b>aus dem Staatshaushalt</b>
-            bezahlt; es gibt <b>lediglich Zuzahlungen</b>. Der Staat organisiert auch die
-            Versorgung mit Krankenhäusern und Gesundheitszentren.</td>
-          <td><b>Großbritannien</b>, <b>Schweden</b></td></tr>
-        <tr><td class="k">Sozialversicherungssysteme</td>
-          <td><b>Sozialversicherungen — also Krankenkassen — finanzieren</b> die Versorgung.
-            <b>Unternehmen und Beschäftigte zahlen ein.</b> <b>Private und öffentliche Anbieter
-            sind nebeneinander tätig</b> und organisieren die Versorgung <b>in einem gesetzlich
-            abgesteckten Rahmen selbst</b> — das <b>Selbstverwaltungsprinzip</b>.</td>
-          <td><b>Deutschland</b></td></tr>
-        <tr><td class="k">Marktwirtschaftlich orientierte Systeme</td>
-          <td>Der Staat spielt eine <b>nachgeordnete Rolle</b>. Organisation und Steuerung sind
-            <b>Aufgabe privater Akteure</b>, und auch <b>finanziert wird fast alles privat</b>.
-            <b>Keine Lohnfortzahlung</b> bei langer Krankheit — man muss selbst für den
-            Lebensunterhalt sorgen.</td>
-          <td><b>USA</b></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h3>Die Vor- und Nachteile — aus dem Foliensatz</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>System</th><th>Vorteil</th><th>Nachteil</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Staatlich</td>
-          <td><b>Gleichheit beim Zugang</b> · <b>weniger Bürokratie und Kosten</b></td>
-          <td><b>Lange Wartezeiten</b> · geringe Auswahl</td></tr>
-        <tr><td class="k">Hybrid</td>
-          <td><b>Gleichheit beim Zugang</b> · <b>Krankenkassenwahl</b> · Auswahl bei
-            Behandlungen und Medikamenten</td>
-          <td>Lange Wartezeiten · <b>hohe Bürokratie</b></td></tr>
-        <tr><td class="k">Privat</td>
-          <td><b>Sehr kurze Wartezeiten</b> · mehr Auswahl bei Behandlungen ·
-            <b>kostengünstiger, solange man gesund ist</b></td>
-          <td><b>Sehr hohe Kosten bei Unfall</b> · <b>nicht finanzierbar</b> ·
-            <b>Ungleichheit</b></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Die Zeile, die eine Beurteilen-Antwort trägt</span>
-    <p>Beim privaten System steht als Vorteil <b>„kostengünstiger bei Gesundheit“</b> und als
-      Nachteil <b>„sehr hohe Kosten bei Unfall“</b>.</p>
-    <p><b>Das ist derselbe Punkt, einmal von vorn und einmal von hinten gelesen:</b> Ein System,
-      das nach individuellem Risiko bezahlt wird, ist <b>billig für den, der es nicht
-      braucht</b>, und <b>teuer für den, der es braucht</b>. Genau das ist der Gegensatz zum
-      Solidaritätsprinzip.</p>
-    <p>Der Foliensatz nennt Deutschland in dieser Tabelle <b>„Hybrid“</b>, im Text heißt es
-      <b>„Sozialversicherungssystem“</b>. Gemeint ist dasselbe: <b>Kassen statt Steuern, aber
-      private und öffentliche Anbieter nebeneinander.</b></p>
-    <p class="fr">Payer selon le <b>risque</b> : bon marché pour qui n'en a pas besoin, ruineux
-      pour qui en a besoin. C'est exactement l'inverse de la solidarité.</p>
-  </div>
-</section>
-
-<section id="ebenen">
-  <h2>Die drei Ebenen</h2>
-  <p class="lead">Für diese Aufgabe gibt es im Ordner eine <b>Lösung</b> — die einzige in
-    diesem Block.</p>
-
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div>
-      <h4>Der gesetzliche Rahmen</h4>
-      <p><b>Das BMG</b> ist innerhalb der Bundesregierung <b>federführend</b>: zuständig für
-        <b>Gesetzesvorhaben, Verordnungen und Verwaltungsvorschriften</b>, und es führt die
-        <b>Rechtsaufsicht</b> über die Selbstverwaltungsorganisationen auf Bundesebene. Die
-        Aufsicht über die <b>bundesweit</b> tätigen Kassen führt das <b>Bundesamt für Soziale
-        Sicherung (BAS)</b>.</p>
-      <p><b>Dem BMG unterstehen:</b> das <b>BfArM</b> (Arzneimittel und Medizinprodukte — dorthin
-        gehen die Rollator-Meldungen!), das <b>Paul-Ehrlich-Institut (PEI)</b> für Impfstoffe
-        und biomedizinische Arzneimittel, das <b>Robert Koch-Institut (RKI)</b> und die
-        <b>BZgA</b>.</p>
-      <p>Dazu die <b>Bevollmächtigte der Bundesregierung für Pflege</b>, der <b>Beauftragte für
-        Sucht- und Drogenfragen</b> und der <b>Patientenbeauftragte</b>. Dritter Akteur neben
-        Bundestag und Bundesregierung: der <b>Bundesrat</b> als „2. Kammer“ der Länder.</p>
-      <p><b>Die Bundesländer:</b> eigene Gesetzgebungskompetenzen · <b>Durchführung der
-        Bundesgesetze</b> · <b>Planung und Teilfinanzierung der stationären Versorgung</b> ·
-        Fach- und Dienstaufsicht über den kommunalen Öffentlichen Gesundheitsdienst ·
-        <b>Aufsicht über die regionalen Kassen</b> sowie über die <b>Heilberufe-Kammern</b> und
-        die Kassen(zahn)ärztlichen Vereinigungen.</p>
-      <p><b>Die Kommunen:</b> <b>„Sie agieren nah am Menschen“</b> und sind verantwortlich für
-        die <b>Gesundheitsversorgung vor Ort</b>; in der <b>Prävention</b> bieten sie
-        <b>niedrigschwellig zugängliche Angebote</b> an und leisten damit <b>einen Beitrag zur
-        Chancengleichheit</b>. Die <b>Gesundheitsämter</b> gehören dazu, und die Kommunen sind
-        <b>vielfach selbst Träger von Krankenhäusern</b>.</p></div></div>
-
-    <div class="stufe"><span class="nr">2</span><div>
-      <h4>Die Selbstverwaltung</h4>
-      <p>Hier entscheiden <b>die Akteure selbst</b>, welche Leistungen <b>auf Kosten der
-        Solidargemeinschaft</b> erbracht werden — orientiert am
-        <b>Wirtschaftlichkeitsgebot</b>.</p>
-      <p>Dazu gehören: der <b>GKV-Spitzenverband</b> (die Kassen schließen über ihn oder ihre
-        Regionalverbände <b>Verträge mit Ärzteverbänden, Kliniken und Apotheken</b>), die
-        <b>KBV und KZBV</b> (<b>Sicherstellungsauftrag</b> für die ambulante Versorgung und
-        Interessenvertretung), die <b>Deutsche Krankenhausgesellschaft (DKG)</b> — und als
-        oberstes Gremium der <b>G-BA</b>.</p></div></div>
-
-    <div class="stufe"><span class="nr n2">3</span><div>
-      <h4>Die einzelnen Akteure und ihre Interessenvertretungen</h4>
-      <p>Die Frage des Textes: <b>„Und wo werden jetzt tatsächlich Menschen behandelt?“</b> —
-        <b>„auf der dritten Ebene“</b>: durch <b>Ärztinnen und Ärzte, Therapeutinnen und
-        Therapeuten, in Krankenhäusern und Rehakliniken</b>.</p>
-      <p>Damit sie politisch Gehör finden, sind sie in <b>Standesorganisationen sowie Berufs-
-        und Unternehmensverbänden</b> organisiert: Bundes- und Landeskammern der Heilberufe,
-        die <b>ABDA</b> (Apothekerverbände), <b>Patientenorganisationen</b>, die Verbände der
-        nicht ärztlichen Heilberufe, der <b>Verband der Privaten Krankenversicherung</b> und
-        die Verbände der <b>Arzneimittelhersteller</b>.</p></div></div>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Das Wirtschaftlichkeitsgebot — vier Wörter, die alles entscheiden</span>
-    <p>Leistungen müssen <b>ausreichend</b>, <b>zweckmäßig</b> und <b>wirtschaftlich</b> sein —
-      und <b>„sie dürfen das Maß des Notwendigen nicht überschreiten“</b>. Für alles darüber
-      hinaus müssen Versicherte <b>in der Regel selbst aufkommen</b>.</p>
-    <p><b>Die Beispiele aus dem Text zeigen, wo die Grenze liegt:</b> Ein Herzinfarkt wird
-      sofort notärztlich versorgt — das zahlt die Kasse, klar. Wer beim Sport umknickt, wird
-      geröntgt und bandagiert — auch klar. <b>Aber:</b> Was, wenn jemand nach einer
-      orthopädischen Verletzung statt Physiotherapie eine <b>osteopathische</b> Behandlung
-      möchte? Oder <b>homöopathische</b> Arzneimittel statt Schmerztabletten?
-      <b>„Dann muss jemand entscheiden“</b> — und dafür gibt es den G-BA.</p>
-    <p class="fr">Suffisant, approprié, économique — et <b>pas au-delà du nécessaire</b>. Les
-      cas limites, c'est le G-BA qui tranche.</p>
-  </div>
-
-  <h3>Die Lösung aus dem Ordner — so kurz darf es sein</h3>
-  <p><b>1. Ebene:</b> BMG — Politik, Verordnungen im Bund, Überwachung der Verbände ·
-    Bundesländer — Teilfinanzierung, Planung der Versorgung, Umsetzung von Gesetzen ·
-    Kommunen — Gesundheitsversorgung, Überwachung der Gesundheit.<br>
-    <b>2. Ebene:</b> Selbstverwaltung — entscheidet über die Übernahme von Behandlungskosten ·
-    GKV-Spitzenverband — Verträge · KBV und KZBV — vertreten die Interessen der Ärzte und
-    stellen die Versorgung sicher · G-BA — Zulassungen und Kostenübernahme von Medikamenten.<br>
-    <b>3. Ebene:</b> Ärztinnen und Ärzte, Krankenhäuser, Rehakliniken, Apotheken, Hersteller
-    von Arzneimitteln.</p>
-  <p><b>Das ist der Umfang, den eine Antwort haben darf.</b> Die langen Texte oben sind die
-    Grundlage — <b>die Lösung ist die Verdichtung</b>. Übe das: Für jede Ebene ein Akteur,
-    ein Verb, ein Gegenstand.</p>
-</section>
-
-<section id="gba">
-  <h2>Der Gemeinsame Bundesausschuss (G-BA)</h2>
-  <p class="lead"><b>„Das wichtigste Gremium der gemeinsamen Selbstverwaltung im
-    Gesundheitswesen“</b>, mit Sitz in Berlin.</p>
-
-  <div class="karten">
-    <div class="karte"><h4>Wer drin sitzt</h4>
-      <p>Der <b>GKV-Spitzenverband</b> · die <b>Kassenärztliche Bundesvereinigung (KBV)</b> ·
-        die <b>Kassenzahnärztliche Bundesvereinigung (KZBV)</b> · die <b>Deutsche
-        Krankenhausgesellschaft (DKG)</b>.</p></div>
-    <div class="karte"><h4>Wer mitberät</h4>
-      <p><b>Patienten- und Behindertenorganisationen</b> haben ein <b>Mitberatungs- und
-        Antragsrecht</b> — sie dürfen <b>zu allen Themen mitberaten</b>.</p></div>
-    <div class="karte"><h4>Worüber entschieden wird</h4>
-      <p>Ob die Kassen <b>neue Behandlungsmethoden, moderne Medizintechnik, neue Heilmittel
-        oder alternative Heilmethoden</b> bezahlen. Für <b>neue Arzneimittel</b> wird eine
-        <b>Nutzenbewertung</b> durchgeführt — <b>sie werden regelhaft erstattet</b>.</p></div>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Die Grenze der Beteiligung — und sie ist wichtig</span>
-    <p>Patientenvertreter haben ein <b>Mitberatungs- und Antragsrecht</b>. <b>Von einem
-      Stimmrecht ist in deinen Unterlagen nirgends die Rede.</b></p>
-    <p>Das ist genau der Unterschied, nach dem in einer <b>Beurteilen</b>-Frage gesucht wird:
-      <b>mitreden dürfen</b> ist nicht dasselbe wie <b>mitentscheiden</b>. Ich behaupte hier
-      nicht, wie die Stimmverhältnisse aussehen — <b>das steht nicht in deinen Texten</b>.
-      Aber die Formulierung „Mitberatungs- und Antragsrecht“ ist auffällig präzise.</p>
-    <p class="fr">Droit de <b>participer aux débats</b> et de <b>déposer des demandes</b> — pas
-      la même chose que voter. Tes documents ne parlent pas de droit de vote.</p>
-  </div>
-
-  <p>Die konkreten Beispiele aus dem Text, was der G-BA entscheidet: ob die Kassen die
-    <b>Ernährungsberatung für Diabetespatienten</b> bezahlen · welche <b>neuen
-    Behandlungsmethoden</b> in die Versorgung aufgenommen werden · welchen <b>Zahnersatz</b>
-    die Kassen finanzieren.</p>
-</section>
-
-<section id="aufgaben">
-  <h2>Die Aufgaben des Gesundheitssystems — fünf Gruppen</h2>
-
-  <h3>1 · Prävention und Gesundheitsförderung</h3>
-  <p><b>2015</b> haben sich die Spitzenorganisationen der gesetzlichen <b>Kranken-, Unfall-,
-    Renten- und Pflegeversicherung</b> sowie der <b>Verband der privaten
-    Krankenversicherungsunternehmen</b> in der <b>„Nationalen Präventionskonferenz“</b>
-    zusammengefunden und eine <b>nationale Präventionsstrategie</b> vereinbart.</p>
-  <div class="merk">
-    <span class="t">Das gemeinsame Ziel, wörtlich</span>
-    <p><b>„Die Menschen sollen gesund aufwachsen, leben und arbeiten und auch im Alter gesund
-      bleiben.“</b> — und sie sollen <b>in allen Lebenswelten Rahmenbedingungen vorfinden, die
-      ihre Gesundheit, Sicherheit und Teilhabe fördern</b>.</p>
-    <p>Die Lebenswelten, die genannt werden: <b>Kindergärten, Schulen, Betriebe und
-      Pflegeheime</b>. Dazu die <b>Gesundheitskompetenz</b> der Bürgerinnen und Bürger
-      verbessern.</p>
-    <p>Das Wort <b>Teilhabe</b> steht auch hier — dasselbe wie auf deinen Seiten
-      <b>Menschen mit Behinderung</b> und <b>Rehabilitation</b>.</p>
-  </div>
-  <p>Konkret: <b>Präventionskurse</b> der Kassen · <b>betriebliche Gesundheitsförderung</b> für
-    kleine und mittlere Unternehmen und <b>insbesondere Krankenhäuser und
-    Pflegeeinrichtungen</b> · mit dem <b>Präventionsgesetz</b> weiterentwickelte
-    <b>Früherkennungsuntersuchungen</b> · <b>Präventionsempfehlungen</b> durch Ärzte · und ein
-    regelmäßiger Anspruch Erwachsener auf <b>Krebsfrüherkennung</b> bei <b>Darm-, Haut-,
-    Brust-, Gebärmutterhals- und Prostatakrebs</b>.</p>
-
-  <h3>2 · Ambulante und stationäre Versorgung</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th></th><th>Was gilt</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Ambulant</td>
-          <td>Niedergelassene <b>Haus-, Fach- und Zahnärzte</b>, <b>Psychotherapeuten</b> und
-            <b>nichtärztliche Heilberufe</b> (Physiotherapie, Logopädie). Die meisten haben
-            eine <b>Kassenzulassung</b> — damit sind sie <b>Mitglied in einer KV bzw. KZV</b>,
-            dürfen gesetzlich Versicherte behandeln und mit der GKV abrechnen. <b>Die Zulassung
-            ist an den Praxisstandort und die Bedarfsplanung der KV-Region gebunden.</b>
-            Außerhalb der Sprechstunden: <b>Bereitschaftsdienst</b>.</td></tr>
-        <tr><td class="k">Stationär</td>
-          <td>Die Patienten <b>können sich das Krankenhaus ihrer Wahl aussuchen</b> und brauchen
-            eine <b>ärztliche Einweisung</b> — <b>außer im Notfall</b>. Die GKV zahlt, wenn das
-            Haus <b>zugelassen</b> ist: als <b>Plankrankenhaus</b> (im Krankenhausplan des
-            Landes), über einen <b>Versorgungsvertrag</b> mit den Kassen oder als anerkannte
-            <b>Hochschulklinik</b>. Trägerschaft: <b>privat, freigemeinnützig oder
-            öffentlich</b>. Gesetzlich Versicherte leisten eine <b>Zuzahlung für Unterbringung
-            und Verpflegung</b>.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h3>3 · Rehabilitation und die Misch- und Sonderformen</h3>
-  <div class="merk">
-    <span class="t">Der Satz, der zu deiner Reha-Seite gehört</span>
-    <p><b>„Die Versorgung von Patientinnen und Patienten ist eine Mannschaftsleistung.“</b></p>
-    <p>Das Beispiel dazu: Wer <b>altersbedingte Hüftgelenkschmerzen</b> hat, wird
-      <b>ambulant orthopädisch untersucht</b>, muss womöglich <b>stationär operiert</b> werden,
-      kommt anschließend <b>in eine Rehaklinik</b> und nach der Entlassung <b>zur
-      Physiotherapie vor Ort</b>.</p>
-    <p><b>„Medizinische Behandlungen gehen oft über die einzelnen Sektoren hinaus.“</b> Genau
-      dafür gibt es das <b>Entlassmanagement</b> und die <b>Pflegeüberleitung</b> von deiner
-      Seite zum ambulanten Setting.</p>
-    <p class="fr">Un seul patient traverse quatre secteurs. C'est pour ça que la transmission
-      existe.</p>
-  </div>
-
-  <h3>5 · Arzneimittelversorgung</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Regel</th><th>Was gilt</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Zuzahlung</td>
-          <td><b>10 % des Verkaufspreises</b>, <b>mindestens 5 €</b>, <b>höchstens 10 €</b>.
-            Beispiel aus dem Text: Bei einem Arzneimittel für <b>17,80 €</b> zahlt man den
-            <b>Mindestbetrag von 5 €</b>; bei <b>70 €</b> zahlt man <b>10 %</b> — also
-            <b>7 €</b>.</td></tr>
-        <tr><td class="k">Befreiung</td>
-          <td><b>Kinder und Jugendliche bis zum 18. Lebensjahr</b> sind von der Zuzahlung
-            <b>ausgenommen</b>.</td></tr>
-        <tr><td class="k">Belastungsgrenze</td>
-          <td>Zuzahlungen höchstens <b>2 %</b> der jährlichen Bruttoeinnahmen zum
-            Lebensunterhalt — bei <b>chronisch Kranken 1 %</b>. <b>Die Krankenkasse prüft das
-            nur auf Antrag des Versicherten.</b></td></tr>
-        <tr><td class="k">Einheitspreis</td>
-          <td>Man kann <b>mit dem Rezept in jede Apotheke</b> gehen — die
-            <b>Arzneimittelpreisverordnung</b> sorgt für einen <b>einheitlichen Abgabepreis</b>
-            bei verschreibungspflichtigen Arzneimitteln.</td></tr>
-        <tr><td class="k">Generika</td>
-          <td><b>Generika</b> sind den Originalpräparaten <b>nachentwickelt</b> und deshalb
-            oft viel günstiger. Kassen legen oft fest, welche Arzneimittel verschrieben werden
-            dürfen — <b>sofern der Arzt das nicht ausgeschlossen hat</b>. Deshalb kann die
-            Apotheke plötzlich ein anderes Herstellerprodukt abgeben. <b>„Diese Generika wirken
-            aber genau gleich“</b> — und die Zuzahlung kann sogar geringer sein.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Die Belastungsgrenze — der Satz, an dem Menschen Geld verlieren</span>
-    <p><b>„Ob die Belastungsgrenze erreicht ist, ist durch die zuständige Krankenkasse zu
-      prüfen. Hierfür ist ein Antrag bei der Krankenkasse durch die Versicherten zu
-      stellen.“</b></p>
-    <p><b>Die Befreiung kommt also nicht von allein.</b> Wer chronisch krank ist, viele
-      Zuzahlungen leistet und den Antrag nicht kennt, zahlt weiter. Das ist eine Information,
-      die du weitergeben kannst — und genau die Art von Wissen, die im
-      <b>Entlassmanagement</b> und in der <b>Beratung</b> zählt.</p>
-    <p class="fr">L'exonération ne vient <b>pas</b> toute seule : il faut la demander. Une
-      information à transmettre.</p>
-  </div>
-</section>
-
-<section id="saeulen">
-  <h2>Die fünf Säulen der Sozialversicherung — CE 04 / UE 01</h2>
-  <p class="lead"><b>Am 20.09.2026 dazugekommen.</b> Der Foliensatz <i>Grundlage des
-    Sozialgesetzes</i> lag ohne Themenzuordnung in deinem Drive-Ordner. Er stellt das System
-    hinter dem Gesundheitssystem dar — und er ist die Grundlage für das Arbeitsblatt
-    <a href="#lina">Lina K.</a> weiter unten.</p>
-
-  <div class="warnung">
-    <span class="t">Lies diesen Abschnitt mit einer Einschränkung im Kopf</span>
-    <p><b>Alle Quellenlinks dieses Foliensatzes tragen den Zusatz
-      <code>?utm_source=chatgpt.com</code>.</b> Das heißt: Sie wurden aus einer
-      <b>ChatGPT-Antwort kopiert</b>. Der Foliensatz ist also mit Hilfe einer KI
-      zusammengestellt worden.</p>
-    <p style="margin-top:8px"><b>Was das bedeutet — und was nicht.</b> Es bedeutet
-      <b>nicht</b>, dass die Angaben falsch sind: Die Links führen zu
-      <b>gesetze-im-internet.de</b>, zur <b>Bundesagentur für Arbeit</b>, zur
-      <b>Deutschen Rentenversicherung</b>, zur <b>DGUV</b> und zu einem <b>PDF des
-      Bundesgesundheitsministeriums</b> — durchweg amtliche Quellen, und sie sind
-      nachprüfbar. Es bedeutet aber, dass <b>zwischen Gesetz und Folie eine KI stand</b>,
-      und eine KI verwechselt Paragrafen.</p>
-    <p style="margin-top:8px"><b>Die Konsequenz für dich ist einfach:</b> Die Struktur dieses
-      Abschnitts kannst du lernen. <b>Jede Zahl und jeden Paragrafen, den du in einer Klausur
-      oder gar gegenüber einem Menschen benutzt, schlägst du vorher an der verlinkten Quelle
-      nach.</b> Das ist keine Überempfindlichkeit — weiter unten steht ein Beispiel, bei dem
-      die Folie und ihr eigener Link sich widersprechen.</p>
-    <p class="fr">Toutes les sources de ces diapos portent la marque <code>chatgpt.com</code> :
-      elles ont été copiées d’une réponse d’IA. Les liens eux-mêmes sont officiels et
-      vérifiables — mais vérifie chaque chiffre et chaque paragraphe avant de t’en servir.</p>
-  </div>
-
-  <h3>Woher das Ganze kommt</h3>
-  <div class="merk">
-    <span class="t">Der Satz, aus dem alles folgt</span>
-    <p>„Die Sozialversicherungen leiten sich aus dem <b>Sozialstaatsprinzip</b> der
-      Bundesrepublik ab. Sie sollen <b>Menschen in Notlagen helfen und diesen Notlagen aktiv
-      vorbeugen</b>.“</p>
-    <p style="margin-top:8px"><b>Zwei Aufgaben, nicht eine:</b> helfen <i>und</i> vorbeugen.
-      Genau deshalb hat jede der fünf Säulen auch einen <b>Präventionsauftrag</b> — die
-      Unfallversicherung sogar als eigenen Paragrafen.</p>
-  </div>
-
-  <h3>Die fünf Sparten</h3>
-  <div class="karten">
-    <div class="karte"><h4>Krankenversicherung</h4><p>SGB V</p></div>
-    <div class="karte"><h4>Rentenversicherung</h4><p>SGB VI</p></div>
-    <div class="karte"><h4>Arbeitslosenversicherung</h4><p>SGB III</p></div>
-    <div class="karte"><h4>Unfallversicherung</h4><p>SGB VII</p></div>
-    <div class="karte"><h4>Pflegeversicherung</h4><p>SGB XI</p></div>
-  </div>
-
-  <h3>Die Grundprinzipien</h3>
-  <ul>
-    <li><b>Versicherungspflicht als Grundsatz</b>; freiwillige Versicherung möglich
-      (Ausnahmen)</li>
-    <li><b>Solidarität:</b> einkommensabhängige Beiträge, <b>Leistungen nach Bedarf</b></li>
-    <li>Finanzierung überwiegend durch <b>Arbeitgeber und Arbeitnehmer</b></li>
-    <li><b>Umlageverfahren / Generationenausgleich</b> — vor allem in der Rentenversicherung;
-      in der Krankenversicherung über den <b>Gesundheitsfonds</b></li>
-  </ul>
-
-  <h4>Solidaritätsprinzip und Finanzierung, genauer</h4>
-  <ul>
-    <li>Einkommensabhängige Beiträge <b>bis zur Beitragsbemessungsgrenze</b>, Leistungen nach
-      Bedarf</li>
-    <li><b>Umlageverfahren:</b> laufende Beiträge finanzieren laufende Leistungen</li>
-    <li><b>Paritätische Finanzierung:</b> in der Regel Arbeitgeber und Arbeitnehmer —
-      <b>mit zwei Ausnahmen: die Unfallversicherung zahlt allein der Arbeitgeber</b>, und die
-      <b>Pflegeversicherung hat einen Zuschlag für Kinderlose</b></li>
-    <li><b>Solidarausgleich:</b> gesund ↔ krank · jung ↔ alt · gering verdienend ↔ gut
-      verdienend</li>
-    <li><b>GKV-Spezifikum:</b> Gesundheitsfonds und gegebenenfalls ein <b>einkommensbezogener
-      Zusatzbeitrag</b> der Kassen</li>
-  </ul>
-  <div class="warnung">
-    <span class="t">Eine Zeile ist beim Auslesen zerfallen</span>
-    <p>Die drei Paare des Solidarausgleichs stehen auf der Folie in zwei Spalten und kommen
-      beim Auslesen als Bruchstücke heraus („gesund krank, jung“ / „alt, gut“ / „gering
-      verdienend“). <b>Die Zusammenstellung oben ist meine Rekonstruktion</b> aus diesen
-      Bruchstücken. Sie ist naheliegend, aber <b>sieh auf der Folie nach</b>.</p>
-  </div>
-
-  <h3>Der Auftrag der gesetzlichen Krankenversicherung</h3>
-  <ul>
-    <li><b>Gesundheit erhalten, wiederherstellen, verbessern</b></li>
-    <li><b>Eigenkompetenz und Eigenverantwortung</b> der Versicherten fördern</li>
-    <li><b>Versicherte:</b> präventiv handeln, Vorsorge nutzen, an Behandlung und Reha
-      <b>mitwirken</b></li>
-    <li><b>Krankenkassen:</b> aufklären, beraten, leisten — und <b>auf gesunde
-      Lebensverhältnisse hinwirken</b></li>
-    <li><b>Besonderheiten</b> nach Geschlecht, Alter und Behinderung berücksichtigen</li>
-  </ul>
-  <div class="gefahr">
-    <span class="t">Hier widersprechen sich Folie und Link</span>
-    <p>Die Folie schreibt an dieser Stelle <b>„SGB V § 11 – Auftrag der GKV“</b>. <b>Alle
-      Links dieser Folie führen aber zu <code>§ 1 SGB V</code></b> — und der Inhalt
-      (Gesundheit erhalten, Eigenverantwortung, Aufgaben der Kassen) ist der Inhalt des
-      <b>§ 1</b>. § 11 SGB V heißt „Leistungsarten“ und ist etwas anderes.</p>
-    <p style="margin-top:8px"><b>Die Zeile ist beim Auslesen zweispaltig zerfallen</b>, deshalb
-      kann ich nicht mit Sicherheit sagen, ob auf der Folie „§ 1“ oder „§ 11“ steht. <b>Ich
-      korrigiere es nicht — ich nenne es.</b> Schau auf der Folie nach; wenn dort wirklich
-      § 11 steht, ist das genau die Art Fehler, die entsteht, wenn eine KI zwischen Gesetz und
-      Folie steht.</p>
-    <p class="fr">La diapo écrit « § 11 », mais tous ses propres liens renvoient au § 1 SGB V —
-      et le contenu est celui du § 1. Vérifie sur la diapo.</p>
-  </div>
-
-  <h3>Arbeitslosenversicherung — SGB III</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th></th><th>Was die Folie sagt</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Ziel</td>
-          <td><b>Sicherung des Lebensunterhalts</b>; schnelle (Wieder-)Eingliederung
-            (Grundsatz <b>§ 136 SGB III</b>)</td></tr>
-        <tr><td class="k">Finanzierung</td>
-          <td>Beiträge von <b>Arbeitnehmer und Arbeitgeber</b>; der <b>Bund</b> bei
-            <b>versicherungsfremden Aufgaben</b></td></tr>
-        <tr><td class="k">Leistungen</td>
-          <td><b>Arbeitslosengeld (ALG I)</b>; Vermittlung und Beratung; Förderung und
-            <b>Weiterbildung</b></td></tr>
-        <tr><td class="k">Voraussetzungen<br>für ALG I</td>
-          <td><b>§ 137</b> (arbeitslos, <b>Meldung</b>, Anwartschaftszeit) · <b>§ 138</b>
-            (Arbeitslosigkeit, <b>Verfügbarkeit</b>) · <b>§ 142</b> — Anwartschaftszeit
-            <b>in der Regel 12 Monate innerhalb von 30 Monaten</b></td></tr>
-        <tr><td class="k">Dauer und Höhe</td>
-          <td>Dauer <b>§ 147</b> · Höhe <b>§§ 149–154</b> (Bemessungszeitraum § 150,
-            Bemessungsentgelt § 151, Leistungsentgelt § 153, Berechnung § 154)</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h3>Rentenversicherung — SGB VI</h3>
-  <ul>
-    <li><b>Versicherungspflicht:</b> Beschäftigte und Gleichgestellte, <b>§ 1</b></li>
-    <li><b>Aufgaben:</b> <b>Prävention, Reha, Teilhabe am Arbeitsleben</b>, <b>§ 9</b> —
-      die Rentenversicherung ist also nicht nur ein Auszahlungssystem</li>
-    <li><b>Rentenarten:</b> Regelaltersrente <b>§ 35</b> (Regelaltersgrenze, Wartezeit;
-      Übergang § 235) · <b>Erwerbsminderungsrente § 43</b> (teilweise/volle EM) ·
-      Hinterbliebenenrenten: Witwen/Witwer <b>§ 46</b>, Waisen <b>§ 48</b></li>
-    <li><b>Berechnung:</b> Rentenformel <b>§ 64</b> — <b>Entgeltpunkte (§ 66) × Rentenartfaktor
-      (§ 67) × aktueller Rentenwert (§ 68)</b></li>
-    <li><b>Träger:</b> Deutsche Rentenversicherung, Regional- und Bundesträger, <b>§ 125</b></li>
-    <li><b>Zahl aus der Folie:</b> Laut Statistischem Bundesamt waren <b>2023 87,1 % der
-      Erwerbstätigen gesetzlich rentenversichert</b>.</li>
-  </ul>
-
-  <h3>SGB IX — Rehabilitation und Teilhabe</h3>
-  <p><b>Ziel:</b> Selbstbestimmung und <b>gleichberechtigte Teilhabe</b> für Menschen mit
-    Behinderungen <b>und für von Behinderung bedrohte Menschen</b>.</p>
-  <ul>
-    <li><b>BTHG</b> (Bundesteilhabegesetz): Neufassung am <b>23.12.2016</b>, überwiegend
-      <b>in Kraft seit 01.01.2018</b></li>
-    <li><b>Teil 1 (§§ 1–89):</b> Reha- und Teilhaberecht, <b>Koordination der Träger</b></li>
-    <li><b>Teil 2 (§§ 90–150):</b> <b>Eingliederungshilferecht</b> — besondere Leistungen zur
-      selbstbestimmten Lebensführung</li>
-    <li><b>Teil 3 (§§ 151–241):</b> <b>Schwerbehindertenrecht</b></li>
-  </ul>
-  <p>Das Wort <b>„bedroht“</b> kennst du schon: Es steht genauso in der Reha-Definition auf
-    deiner Seite <i>Vom „unkooperativen Patienten“ zur Phase</i>. <b>Reha beginnt vor der
-    Pflegebedürftigkeit</b> — und SGB IX sagt dasselbe für die Teilhabe.</p>
-
-  <h3>Unfallversicherung — SGB VII</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th></th><th>Was die Folie sagt</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Schutzbereich</td>
-          <td>Arbeitsunfälle <b>einschließlich Wegeunfälle (§ 8)</b> und
-            <b>Berufskrankheiten (§ 9)</b></td></tr>
-        <tr><td class="k">Träger</td>
-          <td><b>Berufsgenossenschaften und Unfallkassen (§ 114)</b></td></tr>
-        <tr><td class="k">Finanzierung</td>
-          <td><b>Allein der Arbeitgeber</b> — Beitragspflicht der Unternehmer
-            (§§ 150 ff.)</td></tr>
-        <tr><td class="k">Prävention</td>
-          <td>eigener Auftrag <b>§ 14</b>, Grundauftrag <b>§ 1</b></td></tr>
-        <tr><td class="k">Leistungen</td>
-          <td><b>Verletztengeld (§ 45)</b>, <b>Verletztenrente (§ 56)</b>, weitere Geld- und
-            Sachleistungen</td></tr>
-        <tr><td class="k">Unfallanzeige</td>
-          <td><b>Meldepflicht ab mehr als 3 Kalendertagen Arbeitsunfähigkeit (§ 193)</b></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Die Säule, die dich als Auszubildende am direktesten betrifft</span>
-    <p><b>Du zahlst keinen Cent dafür</b> — die Unfallversicherung finanziert allein der
-      Arbeitgeber. Und sie deckt den <b>Weg</b> mit ab, nicht nur die Arbeit selbst.</p>
-    <p style="margin-top:8px"><b>Die drei Zahlen und Paragrafen, die du dir merken solltest:</b>
-      <b>§ 8</b> Wegeunfall · <b>§ 193</b> Meldepflicht ab <b>mehr als drei Kalendertagen</b>
-      Arbeitsunfähigkeit · <b>Träger sind die Berufsgenossenschaften</b>, nicht die
-      Krankenkasse. Genau danach fragt das Arbeitsblatt <a href="#lina">Lina K.</a></p>
-    <p class="fr">Cette branche-là, c’est l’employeur seul qui la paie — et elle couvre aussi
-      le <b>trajet</b>. C’est exactement le sujet de la fiche Lina K.</p>
-  </div>
-
-  <h3>SGB XII — Sozialhilfe, in zwei Paragrafen</h3>
-  <div class="karten">
-    <div class="karte"><h4>§ 1 — die Aufgabe</h4>
-      <p>„Aufgabe der Sozialhilfe ist es, den Leistungsberechtigten die Führung eines Lebens zu
-        ermöglichen, <b>das der Würde des Menschen entspricht</b>. Die Leistung soll sie so weit
-        wie möglich befähigen, <b>unabhängig von ihr zu leben</b>; darauf haben auch die
-        Leistungsberechtigten <b>nach ihren Kräften hinzuarbeiten</b>. […] haben die
-        Leistungsberechtigten und die Träger der Sozialhilfe […] <b>zusammenzuwirken</b>.“</p></div>
-    <div class="karte"><h4>§ 2 — der Nachrang</h4>
-      <p>„Sozialhilfe erhält <b>nicht</b>, wer sich vor allem durch Einsatz <b>seiner
-        Arbeitskraft, seines Einkommens und seines Vermögens</b> selbst helfen kann oder wer
-        die erforderliche Leistung <b>von anderen</b>, insbesondere von <b>Angehörigen</b> oder
-        von Trägern anderer Sozialleistungen, erhält.“</p></div>
-  </div>
-  <div class="merk">
-    <span class="t">Warum dieser Paragraf auf einer Pflegeseite steht</span>
-    <p>Der <b>Nachrang</b> ist die Rückseite der <b>Teilkostenversicherung</b>. Weil die
-      Pflegeversicherung nur einen Teil zahlt, landet der Rest bei der Person, bei den
-      Angehörigen — und <b>erst dann</b> bei der Sozialhilfe. <b>„Erst dann“ ist der ganze
-      Inhalt des § 2.</b></p>
-    <p style="margin-top:8px">Und § 1 sagt in einem Satz, was Pflege überhaupt will: <b>befähigen,
-      unabhängig zu werden</b>, und <b>zusammenwirken</b> statt versorgen. Das ist dieselbe
-      Haltung, die im Expertenstandard Mobilität als <i>vereinbart</i> steht.</p>
-  </div>
-</section>
-
-<section id="pflege">
-  <h2>Die Pflegeversicherung — und das Wort „Teilkostenversicherung“</h2>
-
-  <div class="merk">
-    <span class="t">Seit wann und für wen</span>
-    <p>Am <b>1. Januar 1995</b> wurde eine <b>umfassende Versicherungspflicht für alle
-      gesetzlich und privat Versicherten für das Pflegerisiko</b> eingeführt. Die soziale
-      Pflegeversicherung wird <b>paritätisch</b> von Arbeitgebern und Arbeitnehmern
-      finanziert.</p>
-    <p>Und die Definition von Pflegebedürftigkeit im Text: Wenn jemand <b>körperliche, kognitive
-      oder psychische Beeinträchtigungen</b> oder gesundheitlich bedingte Belastungen
-      <b>ohne Hilfe durch andere nicht ausgleichen oder bewältigen</b> kann.</p>
-    <p>Das Ziel: <b>trotz Einschränkungen ein möglichst selbstständiges und selbstbestimmtes
-      Leben zu führen, das der Würde des Menschen entspricht</b>.</p>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Teilkostenversicherung — was das für Familien heißt</span>
-    <p><b>„Die Pflegeversicherung deckt allerdings nicht alle Kosten der Pflege ab. Den Rest
-      tragen die Pflegebedürftigen oder ihre Angehörigen selbst beziehungsweise im Bedarfsfall
-      die Sozialhilfe. Die Pflegeversicherung wird deshalb auch als ‚Teilkostenversicherung‘
-      bezeichnet.“</b></p>
-    <p><b>Das ist der Unterschied zur Krankenversicherung</b>, und er ist die Antwort auf eine
-      Frage, die dir gestellt werden wird: Warum zahlt die Familie bei der Pflege zu, bei der
-      Behandlung aber nicht? → Weil die GKV nach dem <b>Sachleistungsprinzip</b> arbeitet und
-      die Pflegeversicherung nur <b>einen Teil</b> übernimmt.</p>
-    <p>Und genau das erklärt, warum auf deiner Seite zum <b>ambulanten Setting</b> jede Zeile
-      der Leistungstabelle eine <b>Obergrenze</b> hat.</p>
-    <p class="fr">Assurance <b>partielle</b> : le reste est payé par la personne, la famille, ou
-      l'aide sociale. C'est la différence avec l'assurance maladie.</p>
-  </div>
-
-  <h3>Der neue Pflegebedürftigkeitsbegriff — die wichtigste Reform</h3>
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div>
-      <h4>Vorher: Zeitbedarf an körperlicher Unterstützung</h4>
-      <p><b>„Zuvor waren die Bedarfslagen von Menschen mit Demenz beim Zugang zu Pflegeleistungen
-        nicht ausreichend berücksichtigt worden.“</b> Denn <b>auch wenn sie körperlich oft keine
-        schwerwiegenden Einschränkungen haben</b>, brauchen sie Unterstützung bei der
-        Gestaltung und Bewältigung ihres Alltags.</p></div></div>
-    <div class="stufe"><span class="nr">2</span><div>
-      <h4>Seit 2017: Selbstständigkeit statt Zeit</h4>
-      <p>Grundlage der Begutachtung ist jetzt eine <b>differenzierte Betrachtung der
-        Selbstständigkeit</b> — <b>neben körperlichen auch geistige und psychische
-        Einschränkungen</b>, wie sie bei <b>Alzheimer und anderen demenziellen Erkrankungen</b>
-        vorkommen. Ergebnis: <b>fünf Pflegegrade</b>.</p></div></div>
-    <div class="stufe"><span class="nr n2">3</span><div>
-      <h4>Ab 2020: Nationale Demenzstrategie</h4>
-      <p>Mit ihrer Umsetzung <b>„wird die Situation für Menschen mit Demenz weiter
-        verbessert“</b>.</p></div></div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Warum dich genau dieser Punkt betrifft</span>
-    <p>Auf deiner Seite zum <b>ambulanten Setting</b> hat <b>Frau Elisabeth S. eine
-      fortgeschrittene Demenz — und nur Pflegegrad 1</b>. Beide Beratungsgespräche empfehlen
-      eine <b>Höherstufung</b>.</p>
-    <p><b>Dieser Abschnitt erklärt, warum das überhaupt möglich ist:</b> Seit 2017 zählen
-      geistige und psychische Einschränkungen mit. Vorher hätte jemand wie Frau S. — körperlich
-      weitgehend selbstständig, kognitiv stark eingeschränkt — kaum Leistungen bekommen.</p>
-    <p><b>Das ist meine Verbindung der beiden Seiten</b>, aber beide Sätze stehen in deinen
-      Unterlagen.</p>
-    <p class="fr">C'est cette réforme de 2017 qui rend la révision du grade de Frau S. possible.</p>
-  </div>
-</section>
-
-<section id="grade">
-  <h2>Pflegegrade und Leistungsbeträge — die Zahlen aus dem Foliensatz</h2>
-  <p class="lead">Derselbe Foliensatz CE 04 / UE 01 bringt das, was auf dieser Seite bisher
-    fehlte: die <b>Punkteschwellen</b> der Pflegegrade und eine <b>vollständige
-    Leistungstabelle</b>.</p>
-
-  <div class="gefahr">
-    <span class="t">Bevor du eine dieser Zahlen benutzt</span>
-    <p>Auf dieser Seite steht schon eine Geldtabelle — die aus einer <b>Gruppenarbeit von
-      Mitschülern</b>, ungeprüft, und mit dem Hinweis, dass sie <b>nie als Auskunft an einen
-      Patienten</b> weitergegeben werden darf.</p>
-    <p style="margin-top:8px"><b>Die Tabelle hier ist besser belegt</b>: Sie stammt aus dem
-      Foliensatz deiner Dozentin und verweist auf ein <b>PDF des Bundesgesundheitsministeriums
-      („Übersicht Leistungsbeträge 2025“)</b>. <b>Aber</b> die Links dieses Foliensatzes tragen
-      alle den ChatGPT-Zusatz (siehe <a href="#saeulen">oben</a>), und Geldbeträge in der Pflege
-      ändern sich jedes Jahr.</p>
-    <p style="margin-top:8px"><b>Also:</b> zum Lernen ja, zum Rechnen in einer Aufgabe ja —
-      <b>als Auskunft an einen Menschen erst, nachdem du im BMG-PDF nachgesehen hast</b>.
-      Eine falsche Zahl in einem Beratungsgespräch ist kein Rechenfehler, sondern eine falsche
-      Entscheidungsgrundlage für eine Familie.</p>
-    <p class="fr">Mieux sourcé que l’autre tableau de cette page, mais toujours à vérifier au
-      PDF du ministère avant d’en parler à quelqu’un. Ces montants changent chaque année.</p>
-  </div>
-
-  <h3>Wie ein Pflegegrad zustande kommt</h3>
-  <p>Die Pflegegrade <b>1–5</b> geben an, <b>wie stark die Selbstständigkeit beeinträchtigt
-    ist</b>. Grundlage ist ein <b>Punktesystem nach § 15 SGB XI</b>. Pflegebedürftigkeit liegt
-    in der Regel vor, wenn die Beeinträchtigung <b>mindestens 6 Monate</b> andauert.</p>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Pflegegrad</th><th>Gesamtpunkte</th></tr></thead>
-      <tbody>
-        <tr><td class="k">PG 1</td><td><b>12,5 – unter 27</b></td></tr>
-        <tr><td class="k">PG 2</td><td><b>27 – unter 47,5</b></td></tr>
-        <tr><td class="k">PG 3</td><td><b>47,5 – unter 70</b></td></tr>
-        <tr><td class="k">PG 4</td><td><b>70 – unter 90</b></td></tr>
-        <tr><td class="k">PG 5</td><td><b>90 – 100</b> oder <b>besondere Bedarfskonstellation</b>
-          (Ausnahmefall nach § 15 Abs. 4)</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p><b>Festgestellt wird die Pflegebedürftigkeit auf Antrag des Versicherten durch den
-    Medizinischen Dienst (MD).</b></p>
-
-  <h3>Die acht Sätze zur sozialen Pflegeversicherung</h3>
+<!-- ============ 1 DEFINITION ============ -->
+<h2>1 · Was ist das deutsche Gesundheitssystem? Die Begriffe <span class="stern">★★★</span></h2>
+<p>Deine Folien haben <b>keine eigene Definition</b> für das Wort „Gesundheitssystem“. Sie beschreiben aber genau, was die <b>Sozialversicherung</b> ist und welche Rolle die Krankenversicherung darin hat.</p>
+<div class="def">
+  <span class="t">So steht es in deinen Unterlagen</span>
+  <p>„Die gesetzliche Krankenversicherung (GKV) ist […] die <b>zentrale Säule des deutschen Gesundheitssystems</b> und der <b>älteste Zweig der Sozialversicherung</b>.“ (Geschichte, S. 1)</p>
+  <p>„Die Sozialversicherungen leiten sich aus dem <b>Sozialstaatsprinzip</b> der Bundesrepublik ab. Sie sollen Menschen <b>in Notlagen helfen</b> und diesen Notlagen <b>aktiv vorbeugen</b>.“ (1-4 DS, S. 3)</p>
+  <p>Sozialversicherung = „<b>gesetzliche Pflichtversicherung</b> für breite Bevölkerungsschichten“. (1-4 DS, S. 3, Bild)</p>
+</div>
+<div class="def">
+  <span class="t">Dasselbe — Wort für Wort einfach</span>
+  <p><b>Sozialstaat</b> heißt: Der Staat sorgt dafür, dass niemand in einer Notlage allein bleibt (Krankheit, Unfall, Alter, Arbeitslosigkeit, Pflege). <span class="her">Herleitung</span> aus S. 3 und S. 5</p>
+  <p>Die <b>Sozialversicherung</b> ist eine Versicherung, die das <b>Gesetz vorschreibt</b> (Pflicht). Sie hat <b>zwei Aufgaben</b>:</p>
   <ol>
-    <li>Sie dient der Absicherung des Risikos der Pflegebedürftigkeit — <b>deckt dieses Risiko
-      aber nicht vollumfänglich ab</b></li>
-    <li>Sie umfasst <b>häusliche und stationäre</b> Pflegeleistungen</li>
-    <li>Leistungen können als <b>Geld- oder Sachleistung</b> in Anspruch genommen werden</li>
-    <li><b>Pflegesachleistung:</b> Ein ambulanter Pflegedienst erbringt die Leistung und
-      <b>rechnet direkt mit der Pflegekasse ab</b></li>
-    <li><b>Pflegegeld</b> wird <b>direkt an den Versicherten</b> ausgezahlt, damit er seine
-      Pflege <b>aus eigenen Ressourcen</b> — zum Beispiel durch Angehörige — sicherstellen
-      kann</li>
-    <li><b>Kombinationsleistung:</b> Wird die Pflegesachleistung nicht voll ausgeschöpft, kann
-      der Rest <b>nach Umrechnung mittels Faktor</b> als Pflegegeld ausgezahlt werden</li>
-    <li>Voraussetzung ist die <b>Anerkennung der Pflegebedürftigkeit</b></li>
-    <li>Die Feststellung erfolgt <b>auf Antrag</b> durch den <b>MD</b> (Pflegegrad 1 bis 5)</li>
+    <li><b>helfen</b>, wenn die Not da ist (z. B. die Kasse zahlt die Behandlung);</li>
+    <li><b>vorbeugen</b>, damit die Not gar nicht erst kommt (z. B. Präventionskurse, Früherkennung).</li>
   </ol>
+  <p>Die <b>Krankenversicherung</b> ist der wichtigste und älteste Teil davon. Sie bezahlt die medizinische Versorgung.</p>
+</div>
+<p class="fr">🇫🇷 La sécurité sociale allemande est une assurance obligatoire prévue par la loi. Elle a deux missions : aider dans la détresse (maladie, accident, vieillesse, chômage, dépendance) et prévenir cette détresse. L'assurance maladie légale (GKV) en est le pilier central et la plus ancienne branche.</p>
 
-  <div class="merk">
-    <span class="t">Der Unterschied, nach dem in einer Prüfung gefragt wird</span>
-    <p><b>Pflegesachleistung</b> = der Dienst kommt, die Kasse zahlt ihn <b>direkt</b>.
-      <b>Pflegegeld</b> = <b>der Mensch bekommt Geld</b> und organisiert die Pflege selbst,
-      meist über Angehörige. Und die <b>Kombinationsleistung</b> ist beides gemischt.</p>
-    <p style="margin-top:8px"><b>Sieh dir die Höhe an:</b> Bei PG 3 sind es <b>599 € Pflegegeld</b>
-      gegen <b>1.497 € Sachleistung</b> — mehr als das Doppelte. <b>Das ist keine Willkür:</b>
-      Die Sachleistung bezahlt eine <i>Fachkraft</i>, das Pflegegeld ist eine
-      <i>Anerkennung</i> für die Pflege durch Angehörige. Wer diesen Unterschied erklären kann,
-      hat eine <i>Erklären</i>-Aufgabe zur Pflegeversicherung beantwortet.</p>
-    <p class="fr">Prestation en nature = le service vient, la caisse le paie directement.
-      Allocation = la personne reçoit l’argent et organise elle-même, souvent via la famille.
-      Le montant du second est bien plus bas — c’est une reconnaissance, pas un salaire.</p>
-  </div>
+<h3>Die Wörter, die du für alles Weitere brauchst</h3>
+<dl class="woerter">
+  <dt>GKV</dt><dd>gesetzliche Krankenversicherung — rund 88 % der Menschen sind hier versichert</dd>
+  <dt>PKV</dt><dd>private Krankenversicherung — rund neun Millionen Menschen</dd>
+  <dt>Beitrag (GKV)</dt><dd>das Geld, das man jeden Monat an die gesetzliche Kasse zahlt; er hängt vom <b>Einkommen</b> ab</dd>
+  <dt>Prämie (PKV)</dt><dd>das Geld für die private Versicherung; es hängt von <b>Gesundheit, Eintrittsalter und Krankheitsrisiko</b> ab</dd>
+  <dt>Solidargemeinschaft</dt><dd>alle gesetzlich Versicherten zusammen; sie tragen die Kosten gemeinsam</dd>
+  <dt>paritätisch</dt><dd>zu gleichen Teilen: Arbeitgeber und Arbeitnehmer zahlen je die Hälfte</dd>
+  <dt>Sachleistung</dt><dd>du bekommst die Behandlung selbst, nicht Geld; die Kasse bezahlt direkt</dd>
+  <dt>Selbstverwaltung</dt><dd>Ärzte, Kliniken und Krankenkassen regeln die Einzelheiten <b>selbst</b>, nicht der Staat</dd>
+  <dt>Leistungserbringer</dt><dd>alle, die behandeln oder versorgen: Ärzte, Kliniken, Apotheken, Pflege <span class="her">Herleitung</span> aus AB Ebenen S. 3 und S. 6</dd>
+  <dt>SGB</dt><dd>Sozialgesetzbuch — die Gesetze der Sozialversicherung, in Bücher geteilt (SGB III, V, VI, VII, IX, XI, XII)</dd>
+  <dt>Umlageverfahren</dt><dd>„laufende Beiträge finanzieren laufende Leistungen“ — das Geld von heute bezahlt die Leistungen von heute</dd>
+  <dt>Teilkostenversicherung</dt><dd>eine Versicherung, die <b>nicht alle</b> Kosten zahlt — so heißt die Pflegeversicherung</dd>
+</dl>
+<p class="quelle">Geschichte des Gesundheitssystems, S. 1 · 1-4 DS, S. 3, 5, 7 · AB Grundprinzipien, S. 2–3 · AB Aufgaben Gesundheitssystem, S. 4</p>
 
-  <h3>Leistungsbeträge ab 01.01.2025</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Leistung</th><th>PG 1</th><th>PG 2</th><th>PG 3</th><th>PG 4</th>
-        <th>PG 5</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Pflegegeld<br>(häusliche Pflege)</td><td>—</td><td><b>347 €</b></td>
-          <td><b>599 €</b></td><td><b>800 €</b></td><td><b>990 €</b></td></tr>
-        <tr><td class="k">Pflegesachleistungen</td><td>—</td><td><b>796 €</b></td>
-          <td><b>1.497 €</b></td><td><b>1.859 €</b></td><td><b>2.299 €</b></td></tr>
-        <tr><td class="k">Entlastungsbetrag<br>(pro Monat)</td>
-          <td colspan="5"><b>131 € für PG 1 bis 5</b></td></tr>
-        <tr><td class="k">Tages- und Nachtpflege<br>(monatlich)</td><td>—</td><td><b>721 €</b></td>
-          <td><b>1.357 €</b></td><td><b>1.685 €</b></td><td><b>2.085 €</b></td></tr>
-        <tr><td class="k">Vollstationäre Pflege<br>(pauschal pro Monat)</td>
-          <td><b>131 €</b></td><td><b>805 €</b></td><td><b>1.319 €</b></td>
-          <td><b>1.855 €</b></td><td><b>2.096 €</b></td></tr>
-      </tbody>
-    </table>
-  </div>
+<!-- ============ 2 GESCHICHTE ============ -->
+<h2>2 · Die Geschichte: der 15. Juni 1883 <span class="stern">★★</span></h2>
+<div class="schema">
+  <p class="titel">Von 10 % zu rund 88 % der Bevölkerung</p>
+  <div class="k wichtig"><b>15. Juni 1883 — Reichskanzler Otto von Bismarck</b><small>„Gesetz betreffend der Krankenversicherung der Arbeiter“</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Wer musste sich versichern?</b><small>Industriearbeiter und Beschäftigte in Handwerks- und Gewerbebetrieben</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Wer zahlte?</b><small><b>Arbeitnehmer zwei Drittel</b>, Arbeitgeber ein Drittel</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Damals</b><small>etwa 10 % der Bevölkerung pflichtversichert</small></div><div class="pfeil">↓</div>
+  <div class="k gruen"><b>Heute</b><small>rund 88 % in der GKV, über 74 Millionen Versicherte · rund 9 Millionen in der PKV · der Rest über besondere Formen, z. B. die truppenärztliche Versorgung der Bundeswehr</small></div>
+</div>
+<ul>
+  <li>Deutschland ist damit das <b>erste Land</b>, das eine Sozialversicherung <b>auf nationaler Ebene</b> einführte.</li>
+  <li>Die GKV hat ihre tragenden Grundsätze <b>seit dem Kaiserreich im Kern bis heute</b> behalten. Auf der Folie: „Das System ist bis heute so erhalten.“</li>
+  <li>Die GKV ist <b>kein einheitlicher Block</b>: Es gibt viele unabhängige Krankenkassen. Man kann <b>weitgehend frei wählen und wechseln</b>.</li>
+</ul>
+<p><b>Die anderen Säulen kamen später</b> (1-4 DS, S. 3–4): Unfallversicherung 1884 · Rentenversicherung 1889 · Arbeitslosenversicherung 1927 · Pflegeversicherung 1995 — die jüngste.</p>
+<div class="hinweis"><b>Hinweis — zwei kleine Unterschiede:</b> Der Text (BMG) sagt: Pflicht für „Industriearbeiter <b>und</b> Beschäftigte in Handwerks- und Gewerbebetrieben“. Die Folie von Herrn Issel sagt: „<b>Nur</b> für Handwerks- und Gewerbebetriebe“. Für die Klausur ist der längere Text sicherer. Und: Heute zahlen Arbeitgeber und Arbeitnehmer in der GKV je die Hälfte (Kapitel 3) — 1883 war es zwei Drittel zu einem Drittel.</div>
+<div class="merke"><b>Merke:</b> 1883 · Bismarck · Arbeiter · 2/3 Arbeitnehmer, 1/3 Arbeitgeber · damals 10 %, heute rund 88 %.</div>
+<p class="fr">🇫🇷 Le 15 juin 1883, Bismarck crée l'assurance maladie des ouvriers : l'Allemagne est le premier pays avec une sécurité sociale nationale. Les ouvriers payaient deux tiers, l'employeur un tiers. 10 % de la population au début, environ 88 % aujourd'hui (plus de 74 millions).</p>
+<p class="quelle">Geschichte des Gesundheitssystems, S. 1 · Grundprinzipien (Issel), S. 3 · 1-4 DS, S. 3–4</p>
 
-  <h4>Verhinderungs- und Kurzzeitpflege</h4>
-  <ul>
-    <li><b>Gemeinsamer Jahresbetrag für beide Leistungen zusammen: 3.539 € pro Jahr</b>
-      (seit <b>01.07.2025</b>)</li>
-    <li><b>Verhinderungspflege durch nahe Angehörige oder Haushaltsmitglieder:</b> bis zu
-      <b>2× Pflegegeld</b> — Beispiel der Folie: <b>PG 3 → 1.198 € pro Jahr</b></li>
-    <li><b>Verhinderungspflege durch sonstige Personen:</b> 3.539 € pro Jahr</li>
-    <li><b>Kurzzeitpflege:</b> 3.539 € pro Jahr</li>
-  </ul>
+<!-- ============ 3 GRUNDPRINZIPIEN ============ -->
+<h2>3 · Die fünf Grundprinzipien <span class="stern">★★★</span></h2>
+<p>Diese fünf Regeln tragen das ganze System. Die Aufgabe im Unterricht war: „Erarbeiten Sie die Grundprinzipien des Gesundheitssystems.“</p>
+<div class="scroll"><table>
+  <tr><th>Prinzip</th><th>Was es heißt</th><th>Warum es wichtig ist</th></tr>
+  <tr><td><b>1 · Versicherungspflicht</b></td><td>Jeder mit Wohnort oder gewöhnlichem Aufenthalt in Deutschland <b>muss</b> krankenversichert sein: in der GKV seit <b>1.4.2007</b>, in der PKV seit <b>1.1.2009</b>.</td><td>Niemand steht bei Krankheit ohne Schutz da. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>2 · Beitragsfinanzierung</b></td><td>GKV und PKV leben von den Beiträgen bzw. Prämien ihrer Mitglieder.</td><td>Das Geld kommt von den Versicherten und Arbeitgebern, nicht aus Steuern wie in staatlichen Systemen. <span class="her">Herleitung</span> aus AB Grundprinzipien S. 5</td></tr>
+  <tr><td><b>3 · Solidaritätsprinzip</b></td><td>Alle gesetzlich Versicherten tragen <b>gemeinsam</b> die Kosten. Jeder hat den <b>gleichen Anspruch</b>, egal wie hoch sein Beitrag ist.</td><td>Wer krank, arm oder Familie ist, bekommt trotzdem die volle Versorgung.</td></tr>
+  <tr><td><b>4 · Sachleistungsprinzip</b></td><td>Man wird behandelt, <b>ohne vorher zu bezahlen</b>. Ärzte, Kliniken und Apotheken rechnen <b>direkt</b> mit der Kasse ab.</td><td>Der Patient muss kein Geld vorstrecken — er zeigt nur seine Karte. Nur einzelne Eigenleistungen und Zuzahlungen zahlt er selbst.</td></tr>
+  <tr><td><b>5 · Selbstverwaltungsprinzip</b></td><td>Der Staat gibt den <b>Rahmen</b> (Gesetze, Verordnungen). <b>Was genau bezahlt wird</b>, entscheiden Ärzte, Zahnärzte, Psychotherapeuten, Krankenhäuser, Kassen und Versicherte <b>gemeinsam</b>. Oberstes Gremium: der <b>G-BA</b>.</td><td>Patienten wollen die beste Behandlung, Ärzte moderne Technik, Kassen müssen das bezahlen können. Diese Interessen müssen in Einklang kommen.</td></tr>
+</table></div>
 
-  <h4>Weitere Leistungen</h4>
-  <ul>
-    <li><b>Pflegehilfsmittel zum Verbrauch: 42 € pro Monat</b></li>
-    <li><b>Digitale Pflegeanwendungen (DiPA)</b> inklusive Unterstützungsleistungen:
-      <b>bis 53 € pro Monat</b></li>
-    <li><b>Wohnumfeldverbessernde Maßnahmen: bis 4.180 € je Maßnahme</b>; wohnen mehrere
-      Pflegebedürftige zusammen, <b>bis 16.720 € gesamt</b></li>
-    <li><b>Leistungszuschläge auf den Eigenanteil</b> bei vollstationärer Pflege:
-      <b>15 % ab Monat 1 · 30 % ab 12 Monaten · 50 % ab 24 Monaten · 75 % ab 36 Monaten</b></li>
-  </ul>
+<h3>1 · Versicherungspflicht — die Einzelheiten</h3>
+<ul>
+  <li><b>Arbeitnehmer</b> sind in der GKV pflichtversichert, wenn ihr Einkommen <b>unter einer Grenze</b> liegt (Versicherungspflichtgrenze; <b>2022</b>: 5.362,50 Euro im Monat).</li>
+  <li>Wer <b>mehr</b> verdient, kann <b>freiwillig</b> in der GKV bleiben oder in die PKV gehen.</li>
+  <li>Manche Gruppen sind <b>nie</b> pflichtversichert in der GKV, auch mit kleinem Einkommen: z. B. <b>Beamte</b> und <b>Selbstständige</b>.</li>
+</ul>
 
-  <div class="merk">
-    <span class="t">Zwei Beobachtungen, die die Zahlen selbst verraten</span>
-    <p><b>1 · Die Zuschläge auf den Eigenanteil steigen mit der Wohndauer.</b> Wer drei Jahre im
-      Heim lebt, zahlt einen deutlich kleineren Anteil selbst als im ersten Monat.
-      <b>Das ist die politische Antwort auf die Teilkostenversicherung</b> — der Gesetzgeber
-      hat gesehen, dass Langzeitbewohner sonst ihr ganzes Vermögen aufbrauchen. Es ändert aber
-      <b>nichts daran, dass es eine Teilkostenversicherung bleibt</b>.</p>
-    <p style="margin-top:8px"><b>2 · Die Rechnung geht auf.</b> 2 × 599 € = 1.198 € — genau der
-      Beispielwert für die Verhinderungspflege durch Angehörige bei PG 3. <b>Die Tabelle ist in
-      sich stimmig</b>, was für ihre Richtigkeit spricht. Nachschlagen musst du sie trotzdem.</p>
-  </div>
+<h3>2 · Beitragsfinanzierung — der große Unterschied GKV und PKV</h3>
+<div class="scroll"><table>
+  <tr><th></th><th>GKV (gesetzlich)</th><th>PKV (privat)</th></tr>
+  <tr><td>Wonach richtet sich das Geld?</td><td>nach dem <b>Einkommen</b>: Wer mehr verdient, zahlt mehr</td><td>nach <b>Gesundheitszustand, Eintrittsalter und Krankheitsrisiko</b></td></tr>
+  <tr><td>Leistungen</td><td><b>alle gleich</b></td><td>einzeln im Vertrag vereinbart, auch Selbstbeteiligung</td></tr>
+  <tr><td>Familie</td><td>Kinder und Ehepartner ohne oder mit geringem Einkommen sind <b>beitragsfrei mitversichert</b> (Familienversicherung)</td><td>keine Familienversicherung — „anders als in der PKV“</td></tr>
+  <tr><td>Arbeitgeber</td><td>zahlt die Hälfte</td><td>Privatversicherte <b>können</b> einen Zuschuss bekommen</td></tr>
+</table></div>
+<ul>
+  <li>Allgemeiner Beitragssatz der GKV: <b>14,6 %</b>. Die <b>Hälfte</b> zahlt der Arbeitgeber (bei Rentnern der Rentenversicherungsträger).</li>
+  <li>Dazu kommt ein <b>Zusatzbeitrag</b> jeder Kasse, „zur Zeit im Durchschnitt circa 1,3 %“.</li>
+  <li>Bei Menschen mit <b>Arbeitslosengeld oder Sozialhilfe</b> zahlt in der Regel der zuständige Sozialleistungsträger den Beitrag.</li>
+</ul>
+<div class="hinweis"><b>Hinweis — widersprüchlich in deinen Dateien:</b> Das Arbeitsblatt (BMG) sagt: Den Zusatzbeitrag trägt <b>ebenfalls zur Hälfte der Arbeitgeber</b>. Die Säulen-Folien im Sozialgesetz-Foliensatz (1-4 DS, S. 3 und 4) sagen: „Zusatzbeitrag: <b>Arbeitnehmer</b>“. Die Zahlen 14,6 % und 1,3 % sind <b>ohne Jahr</b>. Frag im Unterricht, was heute gilt.</div>
 
-  <div class="warnung">
-    <span class="t">Eine Folie fehlt</span>
-    <p>Zwischen den Pflegegraden und den Beträgen steht eine Folie mit der Überschrift
-      <b>„Module (Bereiche der Pflegebedürftigkeit)“</b> — <b>und darunter nichts</b>. Die sechs
-      Module, aus denen sich die Punkte nach § 15 SGB XI zusammensetzen, sind eine reine
-      Bildfolie. <b>Sie stehen deshalb nicht auf dieser Seite.</b> Wenn du sie brauchst, sind
-      sie im § 15 SGB XI selbst nachzulesen — die Folie verlinkt ihn.</p>
-  </div>
-</section>
+<h3>3 · Solidaritätsprinzip — der Merksatz des Kurses</h3>
+<div class="def">
+  <span class="t">So steht es auf deinem Blatt</span>
+  <p>„Alle gesetzlich Versicherten tragen gemeinsam die Kosten, die durch Krankheiten der einzelnen Mitglieder entstehen. […] <b>Gesunde stehen also für Kranke ein, Reiche für Arme und Singles für Familien.</b>“</p>
+</div>
+<div class="scroll"><table>
+  <tr><th>Wer für wen?</th><th>Warum?</th></tr>
+  <tr><td><b>Gesunde für Kranke</b></td><td>Alle zahlen ein, aber nur wer krank ist, braucht viel Geld für Behandlung. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Reiche für Arme</b></td><td>Der Beitrag hängt vom Einkommen ab — die Leistung nicht. Wer mehr verdient, zahlt mehr und bekommt dasselbe.</td></tr>
+  <tr><td><b>Singles für Familien</b></td><td>Kinder und Ehepartner ohne Einkommen sind beitragsfrei mitversichert. Ein Single zahlt gleich viel, aber für niemanden mit.</td></tr>
+</table></div>
+<p><b>Zur Solidarität gehört auch der Lohn bei Krankheit:</b> Die <b>ersten sechs Wochen</b> zahlt der Arbeitgeber den Lohn <b>voll</b> weiter (Lohnfortzahlung). Wer länger krank ist, bekommt von der Kasse <b>Krankengeld = 70 % des Bruttolohns</b>.</p>
 
-<section id="lina">
-  <h2>Das Arbeitsblatt „Lina K.“ — dein eigener Fall</h2>
-  <p class="lead">Arbeitsblatt vom <b>06.10.2025</b>, Abgabe war der 07.10.2025, 8:00 Uhr.
-    Thema: <b>Wegeunfall · Minijob · Teilzeitplanung · Reise-Auszeit</b>. Es liegt
-    <b>unbearbeitet</b> im Ordner — und es ist das einzige Blatt deines Ordners, in dem
-    <b>du selbst</b> die Hauptperson bist.</p>
+<h3>4 · Sachleistungsprinzip — Karte statt Rechnung</h3>
+<p>Ein Beispiel aus deinem Blatt: Wer beim Sport umknickt, gibt beim Orthopäden seine <b>Krankenversicherungskarte</b> ab, wird geröntgt und bekommt den Fuß bandagiert. Bezahlen muss er dort nichts — die Kasse zahlt (AB Ebenen, S. 3).</p>
 
-  <div class="merk">
-    <span class="t">Der Fall</span>
-    <p><b>Lina K.</b>, Auszubildende im <b>2. Lehrjahr</b>, arbeitet im <b>Schichtdienst</b>.
-      Auf dem <b>direkten Weg von der Berufsschule zur Praxis</b> stürzt sie mit dem
-      <b>E-Scooter</b> und verletzt sich am Handgelenk (<b>Verdacht: Distorsion</b>). Nebenbei
-      hat sie einen <b>Minijob (520 €)</b> im Café. Aus familiären Gründen möchte sie ab dem
-      nächsten Monat <b>auf Teilzeit in der Ausbildung</b> reduzieren. Nach dem Schulblock plant
-      sie eine <b>dreimonatige Reise-Auszeit</b>.</p>
-    <p style="margin-top:8px"><b>Die Rahmeninfos:</b> Unfallzeitpunkt <b>unmittelbar nach
-      Unterrichtsschluss, direkter Weg zur Praxis</b> · Minijob <b>vertraglich angemeldet</b>,
-      Tätigkeit <b>am Wochenende</b> · Teilzeitwunsch = <b>dauerhafte Stundenreduzierung</b>
-      (Ausbildungsrelevanz beachten) · Reise-Auszeit <b>ohne Erwerbstätigkeit</b>.</p>
-  </div>
+<h3>5 · Selbstverwaltungsprinzip — wer soll das regeln?</h3>
+<p>Das Blatt stellt drei Fragen: „Macht's der Staat? Entscheidet der Markt? Oder die Beteiligten selbst?“ Deutschland hat sich für die <b>dritte</b> Möglichkeit entschieden. Der <b>G-BA</b> (Gemeinsamer Bundesausschuss) legt in <b>verbindlichen Richtlinien</b> fest, welche Behandlungen die GKV bezahlt. Patientenorganisationen haben dort ein <b>Antrags- und Mitberatungsrecht</b>. Mehr dazu in Kapitel 5.</p>
 
-  <div class="pruef">
-    <h4>Die fünf Aufgaben, wörtlich</h4>
-    <p><b>A. Begriffe klären (kurz):</b></p>
-    <ol>
-      <li><b>Wegeunfall</b> — was bedeutet das rechtlich? Zuständigkeit?</li>
-      <li><b>Minijob (520 €)</b> — sozialversicherungsrechtliche Einordnung in Kürze.</li>
-      <li><b>Teilzeitausbildung</b> — rechtliche Grundlage und Voraussetzungen (Stichworte).</li>
-    </ol>
-    <p><b>B. Fallanalyse:</b> Spricht der geschilderte Sturz eher für einen Wegeunfall?
-      <b>Warum / warum nicht?</b> · Welche Schritte sind nach dem Unfall notwendig
-      (<b>Meldung / Unterlagen</b>)?</p>
-    <p><b>C. Teilzeit:</b> mögliche Auswirkungen auf <b>Ausbildungsdauer, Vergütung,
-      Dienstplan und Schule</b> — kurz stichpunktieren.</p>
-    <p><b>D. Reise-Auszeit:</b> Welche Absicherungen prüfen? (z. B. Kranken-, Unfall-,
-      Auslandskrankenversicherung; ggf. <b>Krankengeld</b> / <b>Beitragspflicht bei Auszeit ohne
-      Beschäftigung</b>.)</p>
-    <p><b>E. Abgrenzung:</b> Wegeunfall gegen Freizeitunfall — <b>2–3 Kriterien</b> zur
-      Unterscheidung nennen.</p>
-  </div>
+<div class="hinweis"><b>Was fehlt — die „Leiter“:</b> Die zweite Aufgabe lautet: „Ordnen Sie die Prinzipien in die ‚Leiter' ein und begründen Sie Ihre Einordnung.“ Die Folie „Einordnung der Prinzipien“ (Grundprinzipien, S. 6) trägt <b>nur die Überschrift und ist darunter leer</b>. Die Leiter steht in keiner deiner Dateien. Auf S. 5 steht ein QR-Code; die Ergebnisse sollten in einer Online-Pinnwand (TaskCard) gesammelt werden. Diese Pinnwand liegt nicht in deinem Ordner. Deshalb kann ich die Leiter hier <b>nicht</b> lösen.</div>
+<div class="merke"><b>Merke — die fünf Prinzipien:</b> <b>V</b>ersicherungspflicht · <b>B</b>eitragsfinanzierung · <b>S</b>olidarität · <b>S</b>achleistung · <b>S</b>elbstverwaltung.</div>
+<p class="fr">🇫🇷 Cinq principes : obligation d'assurance (GKV 2007, PKV 2009) · financement par les cotisations (GKV selon le revenu, PKV selon le risque) · solidarité (les bien-portants pour les malades, les riches pour les pauvres, les célibataires pour les familles ; salaire maintenu 6 semaines, puis 70 % du brut) · prestations en nature (pas d'avance d'argent, la carte suffit) · autogestion (l'État fixe le cadre, le G-BA décide ce qui est remboursé).</p>
+<p class="quelle">AB Grundprinzipien, S. 1–4 · Grundprinzipien (Issel), S. 2, 5–6 · AB Ebenen, S. 3 · 1-4 DS, S. 3–4</p>
 
-  <div class="merk">
-    <span class="t">Was du für Teil A.1 und B schon auf dieser Seite hast</span>
-    <p>Die Unfallversicherung steht <a href="#saeulen">oben</a>, mit genau den Punkten, nach
-      denen gefragt wird: <b>Wegeunfälle sind in § 8 SGB VII ausdrücklich eingeschlossen</b> ·
-      <b>zuständig sind Berufsgenossenschaften und Unfallkassen (§ 114)</b> — nicht die
-      Krankenkasse · und für Teil B die <b>Meldepflicht ab mehr als drei Kalendertagen
-      Arbeitsunfähigkeit (§ 193)</b>.</p>
-    <p style="margin-top:8px"><b>Für Teil E gibt dir der Fall selbst die Kriterien in die
-      Hand:</b> Das Blatt betont dreimal etwas — <i>„direkter Weg“</i>, <i>„unmittelbar nach
-      Unterrichtsschluss“</i>, <i>von der Berufsschule <b>zur Praxis</b></i>. <b>Drei Betonungen,
-      drei Kriterien.</b> Warum betont ein Aufgabenblatt so etwas? Weil daran die Abgrenzung
-      hängt.</p>
-    <p class="fr">La fiche insiste trois fois : trajet <b>direct</b>, <b>immédiatement</b> après
-      les cours, de l’école <b>vers</b> le lieu de stage. Trois insistances, trois critères.</p>
-  </div>
+<!-- ============ 4 SYSTEMTYPEN ============ -->
+<h2>4 · Drei Arten von Gesundheitssystemen — wo steht Deutschland? <span class="stern">★★</span></h2>
+<div class="scroll"><table>
+  <tr><th>Typ</th><th>Wer organisiert? Wer zahlt?</th><th>Beispiel</th></tr>
+  <tr><td><b>Staatlich</b></td><td>Der <b>Staat</b> organisiert alles, auch Krankenhäuser und Gesundheitszentren. Bezahlt wird aus <b>Steuern</b> (Staatshaushalt). Nur bei manchen Behandlungen gibt es Zuzahlungen.</td><td>Großbritannien, Schweden</td></tr>
+  <tr><td><b>Sozialversicherung</b></td><td>Vor allem <b>Krankenkassen</b> zahlen. Unternehmen und Beschäftigte zahlen in die Kassen ein. Private und öffentliche Anbieter arbeiten <b>nebeneinander</b> und organisieren die Versorgung <b>selbst</b> im gesetzlichen Rahmen (Selbstverwaltung).</td><td><b>Deutschland</b></td></tr>
+  <tr><td><b>Marktwirtschaftlich</b></td><td>Der Staat spielt nur eine <b>kleine Rolle</b>. Fast alles ist <b>privat</b>: private Versicherungen oder man zahlt den Arzt selbst. Bei langer Krankheit <b>keine Lohnfortzahlung</b>.</td><td>USA</td></tr>
+</table></div>
+<h3>Vorteile und Nachteile — die Tabelle von Herrn Issel</h3>
+<div class="scroll"><table>
+  <tr><th>System</th><th>Vorteil</th><th>Nachteil</th></tr>
+  <tr class="gelb"><td>Staatlich</td><td>Gleichheit beim Zugang · weniger Bürokratie und Kosten</td><td>lange Wartezeiten · geringe Auswahl</td></tr>
+  <tr class="gruen"><td>Hybrid</td><td>Gleichheit beim Zugang · Krankenkassenwahl · Auswahl bei Behandlungen und Medikamenten</td><td>lange Wartezeiten · hohe Bürokratie</td></tr>
+  <tr class="rot"><td>Privat</td><td>sehr kurze Wartezeiten · mehr Auswahl bei Behandlungen · kostengünstiger bei Gesundheit</td><td>sehr hohe Kosten bei Unfall · nicht finanzierbar · Ungleichheit</td></tr>
+</table></div>
+<p>„<b>Hybrid</b>“ (= gemischt) meint hier das Sozialversicherungssystem wie in Deutschland: Es mischt staatlichen Rahmen und private Anbieter. <span class="her">Herleitung</span> — die Tabelle sagt nicht ausdrücklich „Deutschland“, aber nur dort gibt es „Krankenkassenwahl“.</p>
+<div class="merke"><b>Merke:</b> Staat + Steuern = Großbritannien/Schweden · Kassen + Beiträge + Selbstverwaltung = Deutschland · Markt + privat = USA.</div>
+<p class="fr">🇫🇷 Trois types : système d'État financé par l'impôt (Royaume-Uni, Suède) · système d'assurance sociale avec caisses et cotisations (Allemagne, « hybride ») · système de marché, presque tout privé, pas de salaire maintenu en cas de maladie (États-Unis).</p>
+<p class="quelle">AB Grundprinzipien, S. 5 · Aufgaben Gesundheitssystem (Issel), S. 4</p>
 
-  <div class="warnung">
-    <span class="t">Was ich hier bewusst nicht schreibe</span>
-    <p><b>Zum Minijob (A.2), zur Teilzeitausbildung (A.3), zu den Folgen der Teilzeit (C) und
-      zur Absicherung während der Reise-Auszeit (D) steht in deinem ganzen Drive-Ordner
-      nichts.</b> Der Foliensatz nennt die fünf Säulen, aber weder das
-      <b>Berufsbildungsgesetz</b> noch die <b>Geringfügigkeitsgrenze</b> noch die
-      <b>Anwartschaftsversicherung</b>.</p>
-    <p style="margin-top:8px"><b>Ich könnte das aus dem Gedächtnis hinschreiben — und tue es
-      nicht.</b> Es sind Rechtsfragen, bei denen eine falsche Zahl oder ein falscher Paragraf
-      echten Schaden anrichtet, und es ist genau der Fall, in dem eine KI-Antwort gefährlich
-      ist: Sie klingt richtig. Dieser Foliensatz zeigt oben selbst, wie so ein Fehler
-      entsteht.</p>
-    <p style="margin-top:8px"><b>Was stattdessen hilft:</b> Die Folie verlinkt für jede Säule
-      die amtliche Quelle. Für den Minijob ist es die <b>Minijob-Zentrale</b>, für die
-      Teilzeitausbildung dein <b>Ausbildungsvertrag</b> und die <b>Schule</b>, für die
-      Reise-Auszeit deine <b>Krankenkasse</b> — und für den Unfall deine
-      <b>Berufsgenossenschaft</b>. <b>Diese vier Stellen sind die richtigen Adressaten, und
-      nach ihnen fragt die Aufgabe auch.</b></p>
-    <p class="fr">Sur le minijob, l’apprentissage à temps partiel et la couverture pendant le
-      voyage, ton dossier ne dit <b>rien</b>. Je ne l’invente pas : ce sont des questions de
-      droit où un faux chiffre fait de vrais dégâts.</p>
-  </div>
+<!-- ============ 5 EBENEN ============ -->
+<h2>5 · Die drei Ebenen — wer entscheidet was? <span class="stern">★★★</span></h2>
+<div class="schema">
+  <p class="titel">Von oben (Gesetz) nach unten (Patient)</p>
+  <div class="k wichtig"><b>1. Ebene: der gesetzliche Rahmen</b><small>Bund (BMG, Bundestag, Bundesregierung, Bundesrat) · Bundesländer · Kommunen</small></div>
+  <div class="pfeil">↓ setzt den Rahmen</div>
+  <div class="k"><b>2. Ebene: die Selbstverwaltung</b><small>G-BA · GKV-Spitzenverband und Krankenkassen · KBV und KZBV · DKG — entscheiden, was bezahlt wird</small></div>
+  <div class="pfeil">↓ regelt die Versorgung</div>
+  <div class="k gruen"><b>3. Ebene: die einzelnen Akteure</b><small>Ärzte, Therapeuten, Krankenhäuser, Rehakliniken, Apotheken — hier werden Menschen wirklich behandelt</small></div>
+</div>
 
-  <div class="merk">
-    <span class="t">Und warum dieses Blatt trotzdem oben auf deiner Liste stehen sollte</span>
-    <p>Es ist das einzige in deinem Ordner, in dem die geprüfte Person <b>deine Situation</b>
-      hat: Auszubildende, 2. Lehrjahr, Schichtdienst, Nebenjob, Weg zwischen Schule und Praxis.
-      <b>Was du hier lernst, brauchst du nicht nur in der Klausur.</b></p>
-    <p style="margin-top:8px"><b>Und es ist ein gutes Deutschtraining:</b> Die Aufgaben A und E
-      verlangen <b>Definitionen in eigenen Worten</b> — kurze, präzise Sätze, genau die Form,
-      an der deine schriftlichen Noten hängen. <b>Schreib die Punkte A, B und E auf Deutsch und
-      schick sie mir</b>; C und D klären wir, wenn du die Auskünfte hast.</p>
-  </div>
-</section>
+<h3>Die 1. Ebene: der gesetzliche Rahmen</h3>
+<div class="scroll"><table>
+  <tr><th>Akteur</th><th>Aufgabe</th></tr>
+  <tr><td><b>BMG</b> (Bundesministerium für Gesundheit)</td><td>federführend in der Gesundheitspolitik: schreibt Gesetzesvorhaben, Verordnungen und Verwaltungsvorschriften · <b>Rechtsaufsicht</b> (Kontrolle, ob Gesetze eingehalten werden) über die Selbstverwaltung auf Bundesebene</td></tr>
+  <tr><td>Dem BMG unterstellt</td><td><b>BfArM</b> (Bundesinstitut für Arzneimittel und Medizinprodukte) · <b>PEI</b> (Paul-Ehrlich-Institut: Impfstoffe und biomedizinische Arzneimittel) · <b>RKI</b> (Robert Koch-Institut) · <b>BZgA</b> (Bundeszentrale für gesundheitliche Aufklärung)</td></tr>
+  <tr><td>An der Seite des Ministers</td><td>Bevollmächtigte für Pflege · Beauftragter für Sucht- und Drogenfragen · Beauftragter für die Belange der Patientinnen und Patienten</td></tr>
+  <tr><td><b>BAS</b> (Bundesamt für Soziale Sicherung)</td><td>Aufsicht über die <b>bundesweit</b> tätigen Kassen</td></tr>
+  <tr><td>Bundestag, Bundesregierung, <b>Bundesrat</b></td><td>Der Bundesrat ist die „2. Kammer“ der Länder; dort äußern sich die Landesregierungen auch zur Gesundheitspolitik.</td></tr>
+  <tr><td><b>Bundesländer</b></td><td>eigene Gesetze · führen die Bundesgesetze durch · <b>planen und finanzieren teilweise die Krankenhäuser</b> (stationäre Versorgung) · Aufsicht über den kommunalen Öffentlichen Gesundheitsdienst · Aufsicht über die <b>regionalen</b> Kassen, die Heilberufe-Kammern und die Kassen(zahn)ärztlichen Vereinigungen</td></tr>
+  <tr><td><b>Kommunen</b> (Städte, Gemeinden)</td><td>„nah am Menschen“: verantwortlich für die <b>Versorgung vor Ort</b> · niedrigschwellige Prävention (für Chancengleichheit) · <b>Gesundheitsämter</b> (z. B. in der Coronakrise: Neuinfektionen dokumentieren, Infektionsketten verfolgen) · oft Träger von Krankenhäusern</td></tr>
+</table></div>
+<p><b>Warum die Kommunen so wichtig sind:</b> Menschen suchen Arzt oder Physiotherapeut zuerst <b>in ihrem eigenen Dorf oder ihrer Stadt</b>. Dort wollen sie versorgt werden.</p>
 
-<section id="ifsg">
-  <h2>Das Infektionsschutzgesetz — das eine Gesetz, das dich <i>meldepflichtig</i> macht</h2>
-  <p class="lead">Bis hierher ging es darum, <b>wer bezahlt</b>. Jetzt geht es um das Gesetz, das
-    dir eine <b>eigene Pflicht</b> auferlegt — unabhängig davon, was jemand anordnet.</p>
+<h3>Die 2. Ebene: die Selbstverwaltung</h3>
+<p>Die Akteure entscheiden <b>selbst</b>, welche Leistungen auf Kosten der Solidargemeinschaft bezahlt werden. Dabei gilt das <b>Wirtschaftlichkeitsgebot</b>:</p>
+<div class="def">
+  <span class="t">Wirtschaftlichkeitsgebot — so steht es auf deinem Blatt</span>
+  <p>„Leistungen müssen <b>ausreichend, zweckmäßig und wirtschaftlich</b> sein; sie dürfen das <b>Maß des Notwendigen nicht überschreiten</b>. Für darüber hinausgehende Leistungen müssen Versicherte in der Regel selbst aufkommen.“</p>
+</div>
+<div class="def">
+  <span class="t">Wort für Wort einfach</span>
+  <p><b>ausreichend</b> = genug, damit es hilft · <b>zweckmäßig</b> = passend für das Ziel · <b>wirtschaftlich</b> = ohne Geld zu verschwenden · <b>nicht mehr als nötig</b>. Was mehr ist, zahlt der Patient meist selbst. <span class="her">Herleitung</span></p>
+</div>
+<div class="scroll"><table>
+  <tr><th>Beispiel aus deinem Blatt</th><th>Zahlt die Kasse?</th></tr>
+  <tr class="gruen"><td>Herzinfarkt → sofort Notarzt</td><td>ja, klar</td></tr>
+  <tr class="gruen"><td>beim Sport umgeknickt → Orthopäde, Röntgen, Bandage</td><td>ja, klar</td></tr>
+  <tr class="gelb"><td>Osteopathie statt Physiotherapie · homöopathische Mittel statt Schmerztabletten</td><td><b>Grenzfall</b> — darüber entscheidet der G-BA</td></tr>
+</table></div>
 
-  <p>Am 20.09.2026 dazugekommen: zwei Dateien aus <b>derselben Unterrichtseinheit wie diese
-    Seite, CE 04 / UE 01</b> — ein zweiseitiges Textblatt <i>Grundlagen des
-    Infektionsschutzgesetzes (IfSG)</i> und ein Foliensatz mit 14 Folien, Lernzielen, einem
-    Fallbeispiel und einem Arbeitsauftrag.</p>
+<h3>Der G-BA (Gemeinsamer Bundesausschuss)</h3>
+<ul>
+  <li>Sitz in <b>Berlin</b> · das <b>wichtigste Gremium</b> der Selbstverwaltung</li>
+  <li><b>Mitglieder:</b> GKV-Spitzenverband · KBV (Kassenärztliche Bundesvereinigung) · KZBV (Kassenzahnärztliche Bundesvereinigung) · DKG (Deutsche Krankenhausgesellschaft)</li>
+  <li><b>Patienten- und Behindertenorganisationen</b>: Mitberatungs- und Antragsrecht (sie beraten mit und dürfen Anträge stellen)</li>
+  <li><b>Entscheidet</b>, ob die Kassen neue Behandlungsmethoden, moderne Medizintechnik, neue Heilmittel oder alternative Heilmethoden bezahlen. Beispiele: Ernährungsberatung bei Diabetes · Zahnersatz</li>
+  <li>Für <b>neue Arzneimittel</b> gibt es eine Nutzenbewertung; sie werden „regelhaft erstattet“.</li>
+</ul>
 
-  <h3>Zweck und Geltungsbereich</h3>
-  <div class="karten">
-    <div class="karte">
-      <h4>Die drei Ziele</h4>
-      <ul>
-        <li><b>Schutz der Bevölkerung</b> vor übertragbaren Krankheiten</li>
-        <li><b>Früherkennung und Überwachung</b> von Infektionserregern</li>
-        <li><b>Verhinderung und Eingrenzung</b> von Infektionskrankheiten</li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Für wen es gilt</h4>
-      <ul>
-        <li>Für <b>alle Einrichtungen und Personen im Gesundheitswesen</b></li>
-        <li>Besonders relevant in <b>Krankenhäusern, Pflegeeinrichtungen und Laboren</b></li>
-        <li><b>Rechtsgrundlage seit dem 1. Januar 2001</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Was es regelt</h4>
-      <ul>
-        <li><b>Meldepflichten</b></li>
-        <li><b>Zuständigkeiten</b></li>
-        <li><b>Schutzmaßnahmen</b> in Deutschland</li>
-      </ul>
-      <p style="margin-top:8px;font-size:14.5px;">Ein <b>Bundesgesetz</b> zur Vorbeugung,
-        Früherkennung und Bekämpfung übertragbarer Krankheiten.</p>
-    </div>
-  </div>
+<h3>Krankenkassen, GKV-Spitzenverband, DKG, KBV und KZBV</h3>
+<div class="scroll"><table>
+  <tr><th>Wer?</th><th>Was tun sie?</th></tr>
+  <tr><td><b>Krankenkassen</b></td><td>Kassenarten: Orts-, Betriebs-, Innungskrankenkasse, Ersatzkasse, landwirtschaftliche Krankenkasse, Knappschaft. Das Blatt nennt „aktuell 979 Krankenkassen“.</td></tr>
+  <tr><td><b>GKV-Spitzenverband</b></td><td>Zusammenschluss der Kassen. Über ihn oder die Regionalverbände schließen sie <b>Verträge</b> mit Ärzteverbänden, Kliniken und Apotheken und regeln, <b>wie viel Geld</b> sie für eine Behandlung zahlen.</td></tr>
+  <tr><td><b>DKG</b></td><td>Krankenhäuser vertreten sich nicht einzeln, sondern über Verbände: Landeskrankenhausgesellschaften → DKG. Übernimmt gesetzliche Aufgaben in der Selbstverwaltung.</td></tr>
+  <tr><td><b>KVen/KZVen, KBV und KZBV</b></td><td><b>Sicherstellungsauftrag</b>: Sie sorgen dafür, dass die ambulante ärztliche, psychotherapeutische und zahnärztliche Versorgung der gesetzlich Versicherten da ist. Außerdem vertreten sie die Interessen der Ärzte, Psychotherapeuten und Zahnärzte.</td></tr>
+</table></div>
+<div class="hinweis"><b>Hinweis zur Zahl „979 Krankenkassen“:</b> So steht es auf dem Arbeitsblatt, ohne Datum. Prüf die Zahl, bevor du sie in einer Klausur nennst.</div>
 
-  <h3>Die vier Paragrafen, die das Textblatt ausführt</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Paragraf</th><th>Überschrift</th><th>Was drinsteht</th></tr></thead>
-      <tbody>
-        <tr><td class="k">§ 1</td><td>Zweck des Gesetzes</td>
-          <td>Verhütung übertragbarer Krankheiten · Erkennung und Überwachung von Infektionen ·
-            Abwehr von Gefahren für die öffentliche Gesundheit. <b>„Grundlage und Leitlinie
-            aller weiteren Regelungen.“</b></td></tr>
-        <tr><td class="k">§ 6</td><td>Meldepflichtige <b>Krankheiten</b></td>
-          <td>Cholera · Diphtherie · <b>Hepatitis A–E</b> · <b>Masern</b> ·
-            Meningokokken-Erkrankungen · <b>Tuberkulose</b> u. a.</td></tr>
-        <tr><td class="k">§ 7</td><td>Meldepflichtige <b>Erreger</b></td>
-          <td><i>Salmonella</i> spp. · <i>Listeria monocytogenes</i> · <b>multiresistente
-            Erreger wie MRSA</b></td></tr>
-        <tr><td class="k">§ 23</td><td>Schutzmaßnahmen / Einrichtungshygiene</td>
-          <td>Anordnung von <b>Isolierung und Quarantäne</b> · Betretungs- und
-            Versammlungsverbote · hygienische Überprüfungen. Per <b>schriftlichem Bescheid</b>
-            des Gesundheitsamts.</td></tr>
-      </tbody>
-    </table>
-  </div>
+<h3>Die 3. Ebene: die einzelnen Akteure</h3>
+<p>Hier werden die Menschen <b>tatsächlich behandelt</b>: Ärzte, Therapeuten, Krankenhäuser, Rehakliniken. Damit sie <b>politisch gehört</b> werden, sind sie organisiert: Bundes- und Landeskammern der Heilberufe · ABDA (Bundesvereinigung Deutscher Apothekerverbände) · Patientenorganisationen · Berufsverbände der Ärzte · Verbände der nicht-ärztlichen Heilberufe · Verband der Privaten Krankenversicherung · Verbände der Arzneimittelhersteller.</p>
+<p><b>Und du?</b> Als Pflegefachperson arbeitest du auf der <b>3. Ebene</b> — direkt am Menschen. <span class="her">Herleitung</span> — die Pflege steht auf diesem Blatt nicht wörtlich, aber unter den „nicht-ärztlichen Heilberufen“ und in Krankenhäusern.</p>
 
-  <div class="merk">
-    <span class="t">Der Unterschied zwischen § 6 und § 7 ist die halbe Prüfungsfrage</span>
-    <p><b>§ 6 meldet die <i>Krankheit</i> — § 7 meldet den <i>Erreger</i>.</b> Das ist keine
-      Wortklauberei, sondern eine Frage des <b>Wer</b>: Eine Krankheit sieht man am Menschen,
-      einen Erreger weist das <b>Labor</b> nach. Deshalb steht MRSA bei § 7 und Masern bei § 6.</p>
-    <p><b>Und beide gelten dreifach:</b> Der Foliensatz sagt es ausdrücklich —
-      <b>bei Verdacht, bei Erkrankung oder bei Tod.</b> <b>Der Verdacht reicht.</b> Man wartet
-      nicht auf ein Ergebnis.</p>
-    <p class="fr">§ 6 = la maladie, § 7 = l'agent pathogène. Et dans les deux cas : <b>le
-      soupçon suffit</b>, on n'attend pas la confirmation.</p>
-  </div>
-
-  <h3>Die Meldung — Frist, Weg und Adresse</h3>
-  <div class="stufen">
-    <div class="stufe"><span class="nr">Wann</span><div>
-      <h4>Unverzüglich, spätestens <b>innerhalb von 24 Stunden</b></h4>
-      <p>Das Textblatt und der Foliensatz nennen beide dieselbe Frist.</p></div></div>
-    <div class="stufe"><span class="nr">Wie</span><div>
-      <h4>Elektronisch über <b>DEMIS</b> — oder per Fax</h4>
-      <p><b>DEMIS</b> = <b>D</b>igitales <b>M</b>elde- und <b>I</b>nformations<b>s</b>ystem.
-        Das Textblatt nennt „elektronisch oder per Fax“, der Foliensatz nennt DEMIS beim
-        Namen.</p></div></div>
-    <div class="stufe"><span class="nr n2">Wohin</span><div>
-      <h4>An das <b>örtliche Gesundheitsamt</b></h4>
-      <p>Von dort geht es weiter: <b>Praxis → Gesundheitsamt → RKI / DEMIS.</b> Das ist die
-        „Meldekette“, die der Arbeitsauftrag zeichnen lässt.</p></div></div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Dein Gesundheitsamt steht wörtlich in deiner Unterlage</span>
-    <p><b>Gesundheitsamt StädteRegion Aachen</b><br>
-      Trierer Straße 1, 52078 Aachen<br>
-      Telefon <b>+49 241 5198-5300</b> · Fax <b>+49 241 5198-5390</b><br>
-      <b>gesundheitsamt@staedteregion-aachen.de</b><br>
-      Öffnungszeiten: <b>Mo–Do 08:00–16:00, Fr 08:00–12:00</b></p>
-    <p><b>Diese Angaben stammen aus dem Textblatt deiner Dozentin</b>, nicht aus dem Internet.
-      Sie tragen <b>kein Datum</b> — Telefonnummern und Öffnungszeiten ändern sich. <b>Vor
-      einem echten Anruf nachsehen.</b></p>
-    <p class="fr">Ces coordonnées viennent de ta feuille de cours, sans date. Vérifie-les avant
-      un vrai appel.</p>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Die Öffnungszeiten enthalten das eigentliche Problem</span>
-    <p>Das Amt hat <b>freitags ab 12 Uhr zu</b> und am Wochenende gar nicht — die Frist von
-      <b>24 Stunden</b> läuft aber weiter. Wer <b>Freitagnachmittag</b> einen Verdacht hat,
-      steht vor genau der Lücke, nach der der Arbeitsauftrag in seiner letzten Frage fragt
-      („Welche Herausforderungen ergeben sich im Pflegealltag?“).</p>
-    <p><b>Wie das in deiner Einrichtung geregelt ist, steht in keiner deiner Unterlagen</b> —
-      hier steht kein Verfahren, das ich nicht belegen kann. <b>Das ist eine gute Frage für
-      deine Praxisanleiterin.</b></p>
-    <p class="fr">Le service est fermé du vendredi midi au lundi, mais le délai de 24 heures
-      continue de courir. Rien dans tes documents ne dit comment on fait — demande-le.</p>
-  </div>
-
-  <h3>Wer noch beteiligt ist</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Akteur</th><th>Aufgabe laut Foliensatz</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Gesundheitsämter</td>
-          <td><b>Lokale Maßnahmen</b> — Beobachtung, Absonderung, Ermittlungen</td></tr>
-        <tr><td class="k">RKI</td>
-          <td><b>Bewertung der Lage</b>, Empfehlungen, <b>Surveillance</b>, KRINKO und ARS</td></tr>
-        <tr><td class="k">BMG / Länder</td>
-          <td><b>Gesetzlicher Rahmen</b>, Koordination mit Ländern und Behörden</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Das schließt direkt an die drei Ebenen weiter oben an</span>
-    <p><b>Makro – Meso – Mikro</b>, dieselbe Seite, nur mit Infektionen statt mit Geld:
-      <b>BMG</b> macht das Gesetz (Makro) · das <b>Gesundheitsamt</b> ordnet vor Ort an (Meso) ·
-      <b>du</b> meldest und desinfizierst (Mikro). Und das <b>RKI</b> steht bereits in der
-      Institutionenliste dieser Seite — hier siehst du, <b>was es tut</b>.</p>
-  </div>
-
-  <h3>§ 23 in der Praxis — Hygiene in der Einrichtung</h3>
-  <p>Der Foliensatz macht aus dem Paragrafen eine Verantwortung mit Namen: <b>Die Leitung stellt
-    die Prävention nosokomialer Infektionen und die Resistenzprävention sicher</b>, und zwar
-    <b>nach dem Stand der Wissenschaft</b> — wofür die <b>KRINKO-Empfehlungen</b> maßgeblich
-    sind. Genannte Beispiele: <b>Händehygiene · Schutzmaßnahmen · Isolationskonzepte ·
-    Antibiotic Stewardship</b>.</p>
-
-  <div class="karten">
-    <div class="karte">
-      <h4>Die fünf Momente der Händedesinfektion</h4>
-      <ol>
-        <li><b>Vor</b> Patientenkontakt</li>
-        <li><b>Vor</b> aseptischen Tätigkeiten</li>
-        <li><b>Nach</b> Kontakt mit potenziell infektiösem Material</li>
-        <li><b>Nach</b> Patientenkontakt</li>
-        <li><b>Nach</b> Kontakt mit der Patientenumgebung</li>
-      </ol>
-    </div>
-    <div class="karte">
-      <h4>Die übrigen Basismaßnahmen</h4>
-      <ul>
-        <li><b>PSA</b> — Handschuhe, Kittel, Mund-Nasen-Schutz, je nach Infektionsrisiko</li>
-        <li><b>Reinigung und Desinfektion</b> regelmäßig <b>gemäß Hygieneplan</b></li>
-        <li><b>Wäsche und Abfall</b>: getrennte Behälter, sichere Entsorgung</li>
-        <li><b>Isolationsmaßnahmen</b> bei meldepflichtigen Erkrankungen (§ 23 IfSG)</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Dieselben fünf Momente stehen schon auf einer anderen deiner Seiten</span>
-    <p>Auf <b>„Heraussetzen“ ist keine aktivierende Pflege</b> stehen die <b>5 Momente der
-      Handhygiene</b> im Körperpflege-Teil. <b>Dieselbe Liste, zwei Unterrichtseinheiten, zwei
-      Begründungen:</b> dort als Teil der Pflegehandlung, hier als <b>gesetzliche</b> Pflicht
-      nach § 23 IfSG. <b>Wenn du in einer Klausur beide Begründungen nennst, ist das AFB II.</b></p>
-    <p class="fr">La même liste apparaît sur deux de tes pages, avec deux justifications
-      différentes. Les citer toutes les deux, c'est ce qui fait la différence.</p>
-  </div>
-
-  <h3>Das Fallbeispiel aus dem Foliensatz — unbearbeitet</h3>
-  <div class="pruef">
-    <h4>Gastroenteritis auf Station</h4>
-    <p><b>Auf einer Station treten bei 4 Bewohner:innen akute gastrointestinale Symptome
-      auf.</b></p>
-    <ol>
-      <li>Welche <b>Sofortmaßnahmen</b> leiten Sie ein? (Hygiene/Isolierung, Diagnostik,
-        Dokumentation)</li>
-      <li>Was ist <b>meldepflichtig</b>? <b>Wer</b> meldet? In welcher <b>Frist</b>?</li>
-      <li>Welche <b>Informationen</b> benötigt das Gesundheitsamt?</li>
-    </ol>
-    <p><b>Hier steht keine Lösung</b>, weil in deinen beiden Dateien keine steht. Die
-      <b>Werkzeuge</b> dafür stehen aber alle auf dieser Seite: § 6 und § 7 für Frage 2, die
-      24-Stunden-Frist und DEMIS ebenfalls, § 23 und die fünf Momente für Frage 1.</p>
-    <p><b>Frage 3 ist die einzige, die deine Unterlagen nicht beantworten</b> — <b>welche</b>
-      Angaben das Gesundheitsamt genau braucht, steht in keiner der beiden Dateien.
-      <b>Nicht erfunden.</b></p>
-  </div>
-
-  <div class="pruef">
-    <h4>Der Arbeitsauftrag deiner Dozentin — 30 bis 40 Minuten, Abgabe: Foto + eine Seite</h4>
-    <ol>
-      <li><b>Lesen:</b> § 6/7 (Meldepflichten) und § 23 IfSG (Einrichtungshygiene), in
-        Auszügen.</li>
-      <li><b>Visualisieren:</b> Ablaufdiagramm der Meldekette (Praxis → Gesundheitsamt →
-        RKI/DEMIS).</li>
-      <li><b>Maßnahmenplan:</b> Leiten Sie für das Fallbeispiel (Gastroenteritis) einen
-        <b>5-Punkte-Plan</b> ab.</li>
-      <li><b>Reflexion:</b> Welche Herausforderungen ergeben sich im Pflegealltag?
-        (2–3 Stichpunkte)</li>
-    </ol>
-    <p><b>Achte auf das Wort in Aufgabe 3: <i>ableiten</i>.</b> Das ist ein Operator auf
-      <b>AFB II</b>, und er verlangt bei dir immer dasselbe: <b>Maßnahme plus das „weil“, das
-      sie an den Fall bindet.</b> „Isolierung“ ist keine Antwort — <b>„Isolierung, weil bei vier
-      gleichzeitigen Fällen auf einer Station eine Übertragung von Mensch zu Mensch anzunehmen
-      ist“</b> ist eine.</p>
-    <p class="fr">Le mot <b>ableiten</b> exige toujours la mesure <b>et</b> le « parce que » qui
-      la relie au cas. Une mesure toute seule ne vaut pas de points.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Zwei Dinge, die zu diesen Dateien gesagt werden müssen</span>
-    <p><b>1. Der Foliensatz verlinkt ein YouTube-Video</b> als „Erklärvideo: Infektionsschutz­gesetz
-      – Überblick“, mit dem eigenen Hinweis <b>„Externer Inhalt (YouTube)“</b>. Es ist
-      <b>nicht</b> Teil deiner Unterlage; auf dieser Seite steht nichts daraus.</p>
-    <p><b>2. Die Quellenliste des Foliensatzes ist erfreulich sauber</b> — gesetze-im-internet.de,
-      RKI, KRINKO, BZgA, BMG. <b>Das sind amtliche Stellen.</b> Trotzdem gilt für die
-      Paragrafen dasselbe wie für den Rest dieser Seite: Der Gesetzestext selbst liegt nicht im
-      Ordner, sondern <b>Zusammenfassungen davon</b>. Was hier steht, ist also, <b>was deine
-      Dozentin über die Paragrafen sagt</b> — nicht der Wortlaut des Gesetzes.</p>
-    <p class="fr">Ce que tu lis ici, c'est le <b>résumé</b> des paragraphes par ta formatrice,
-      pas le texte de loi. La différence compte si tu cites en examen.</p>
-  </div>
-
-  <div class="paare">
-    <div class="paar"><span class="de">die Meldepflicht, -en (meldepflichtig)</span>
-      <span class="frx">l'obligation de déclaration (à déclaration obligatoire)</span></div>
-    <div class="paar"><span class="de">unverzüglich</span>
-      <span class="frx">sans délai — plus fort que <i>bald</i>, cela veut dire « sans retard
-        évitable »</span></div>
-    <div class="paar"><span class="de">der Erreger, -</span>
-      <span class="frx">l'agent pathogène</span></div>
-    <div class="paar"><span class="de">übertragbar (die Übertragung, -en)</span>
-      <span class="frx">transmissible (la transmission)</span></div>
-    <div class="paar"><span class="de">die Absonderung, -en</span>
-      <span class="frx">l'isolement (terme administratif, celui du texte de loi)</span></div>
-    <div class="paar"><span class="de">nosokomial</span>
-      <span class="frx">nosocomial — contracté à l'hôpital</span></div>
-    <div class="paar"><span class="de">der Bescheid, -e</span>
-      <span class="frx">la décision administrative écrite</span></div>
-    <div class="paar"><span class="de">die Eindämmung (nur Singular)</span>
-      <span class="frx">l'endiguement, la limitation</span></div>
-    <div class="paar"><span class="de">der Hygieneplan, ¨-e</span>
-      <span class="frx">le plan d'hygiène de l'établissement</span></div>
-  </div>
-</section>
-
-<section id="zahlen">
-  <h2>Die Zahlen — und warum du bei jeder das Datum mitsagen musst</h2>
-
-  <div class="gefahr">
-    <span class="t">Deine eigenen Dateien widersprechen sich, weil sie aus verschiedenen Jahren sind</span>
-    <p>Die Texte dieses Blocks stammen aus einer <b>undatierten BMG-Broschüre</b>. Einige Zahlen
-      darin lassen sich datieren: Die <b>Versicherungspflichtgrenze</b> wird ausdrücklich mit
-      <b>„2022“</b> angegeben, die Pflegestatistik mit <b>„2021“</b>, und die Corona-Pandemie
-      wird als <b>„aktuelle Krise“</b> beschrieben.</p>
-    <p><b>Gleichzeitig</b> sagt der Foliensatz des Sozialdienstes auf deiner Seite zum
-      ambulanten Setting, dass die Leistungen der Pflegeversicherung <b>zum 1.1.2025 um 4,5 %
-      gestiegen</b> sind.</p>
-    <p><b>Beides steht in deinen Unterlagen, und beides kann nicht gleichzeitig aktuell
-      sein.</b> Das ist kein Fehler deiner Dozenten — Broschüren veralten. Aber es heißt:
-      <b>Jede Zahl aus diesem Block gehört mit ihrem Jahr genannt.</b></p>
-    <p class="fr">Tes propres documents se contredisent parce qu'ils datent d'années
-      différentes. Cite <b>toujours</b> l'année avec le chiffre.</p>
-  </div>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Zahl aus dem Text</th><th>Wert</th><th>Status</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Allgemeiner Beitragssatz GKV</td><td><b>14,6 %</b>, davon zahlt der
-          Arbeitgeber die Hälfte</td><td>undatiert</td></tr>
-        <tr><td class="k">Zusatzbeitrag</td><td>im Durchschnitt <b>ca. 1,3 %</b>, ebenfalls
-          hälftig</td><td>undatiert, <b>„zur Zeit“</b></td></tr>
-        <tr><td class="k">Versicherungspflichtgrenze</td><td><b>5 362,50 €</b> monatlich</td>
-          <td><b>ausdrücklich 2022</b></td></tr>
-        <tr><td class="k">Beitragssatz Pflegeversicherung</td>
-          <td><b>3,05 %</b>, kinderlose Mitglieder <b>+ 0,35 %</b></td>
-          <td>undatiert — <b>und dein Sozialdienst-Foliensatz nennt spätere
-            Änderungen</b></td></tr>
-        <tr><td class="k">Krankengeld</td><td><b>70 % des Bruttolohnes</b></td>
-          <td>undatiert</td></tr>
-        <tr><td class="k">Anzahl Krankenkassen</td><td><b>979</b></td>
-          <td><b>prüfen!</b> — siehe Kasten unten</td></tr>
-        <tr><td class="k">Anzahl Krankenhäuser</td><td>rund <b>1 900</b></td>
-          <td>undatiert</td></tr>
-        <tr><td class="k">Pflegeleistungsempfänger</td>
-          <td>rund <b>4,9 Mio.</b> — davon knapp <b>4 Mio. ambulant</b> und rund
-            <b>900 000 stationär</b></td><td><b>ausdrücklich 2021</b></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Die Zahl, bei der ich besonders vorsichtig bin</span>
-    <p>Der Text spricht von <b>„aktuell 979 Krankenkassen“</b>. <b>Diese Zahl kann ich aus
-      deinen Unterlagen nicht bestätigen</b>, und sie passt nicht zu dem, was derselbe Text
-      sonst beschreibt.</p>
-    <p><b>Ich schreibe dir keine andere Zahl hin</b> — ich habe keine Quelle dafür in deinen
-      Dateien. <b>Aber nenne diese Zahl nicht in einer Klausur, ohne sie vorher zu prüfen.</b>
-      Was du sicher sagen kannst, steht ohnehin im selben Absatz: Es gibt <b>Orts-, Betriebs-
-      und Innungskrankenkassen, Ersatzkassen, die landwirtschaftliche Krankenkasse und die
-      Knappschaft</b> — <b>diese Kassenarten</b> sind das Prüfungswissen, nicht die Anzahl.</p>
-    <p class="fr">Apprends les <b>types</b> de caisses, pas leur nombre. Le nombre est à
-      vérifier.</p>
-  </div>
-</section>
-
-<section id="offen">
-  <h2>Was fehlt</h2>
-
-  <div class="warnung">
-    <span class="t">Drei offene Arbeitsaufträge</span>
-    <p><b>1. Die „Leiter“ — am 20.09.2026 endgültig geklärt.</b> Beide Foliensätze von
-      A. Issel verlangen: <b>„Ordnen Sie die Prinzipien in die ‚Leiter‘ ein und begründen Sie
-      Ihre Einordnung.“</b></p>
-    <p>Hier stand, die Folie <i>„Einordnung der Prinzipien“</i> enthalte <b>„offenbar nur ein
-      Bild“</b>. <b>Das war eine Vermutung, und sie war falsch.</b> Die Folie wurde als
-      Seitenbild angesehen: Sie trägt <b>nur die Überschrift</b> und ist darunter
-      <b>vollständig leer</b> — <b>kein Bild, keine Leiter, nichts</b>.</p>
-    <p><b>Was das ändert:</b> Es hat keinen Sinn, in der PDF weiterzusuchen oder sie noch
-      einmal zu schicken. <b>Die Leiter war nie in dieser Datei</b> — sie wurde im Unterricht
-      an die Tafel gezeichnet, auf einem Blatt verteilt oder steht in der TaskCards-Pinnwand
-      (siehe Punkt 2). <b>Frag eine Mitschülerin nach einem Foto</b>, das ist der kürzeste
-      Weg.</p>
-    <p><b>2. Die Zuteilung der Akteure auf die Aufgaben</b> — im Foliensatz <i>Aufgaben des
-      Gesundheitssystems</i> angekündigt, aber nicht ausgeführt. Die Ergebnisse sollten in
-      <b>TaskCards</b> eingetragen werden.</p>
-    <p><b>Und hier ist die TaskCards-Pinnwand jetzt — am 20.09.2026 gefunden.</b> Auf Folie 5
-      des Foliensatzes <i>Grundprinzipien</i> steht unter der Überschrift
-      <i>„Erarbeiten Sie die Grundprinzipien des Gesundheitssystems“</i> ein <b>QR-Code</b>.
-      Bisher stand auf dieser Seite nur, die TaskCards „liegen nicht im Ordner“ — <b>der Code
-      wurde nie aufgelöst</b>. Er ist es jetzt, und er führt zu:</p>
-    <p style="word-break:break-all"><code>https://www.taskcards.de/#/board/33566149-0473-4436-b5d1-d9340bb71460?token=d5f38181-e0ea-43a3-bc99-7d243e156f28</code></p>
-    <p><b>Drei Hinweise dazu, und sie sind wichtig:</b></p>
-    <p><b>a)</b> <b>Ich habe die Pinnwand nicht geöffnet.</b> Was dort steht, weiß ich nicht —
-      es ist eine fremde Website, und auf ihr stehen die Beiträge deines ganzen Kurses.
-      <b>Öffne sie selbst.</b> Wenn du willst, dass ich den Inhalt auswerte, sag es, und
-      kopier mir den Text heraus.</p>
-    <p><b>b)</b> <b>Der Link enthält am Ende ein Zugangstoken</b> (<i>?token=…</i>). Wer den
-      ganzen Link hat, kommt auf die Pinnwand. <b>Gib ihn nicht weiter</b> — er steht hier, weil
-      diese Seite nur für dich sichtbar ist und weil der QR-Code in deiner eigenen Kursdatei
-      genau denselben Link trägt.</p>
-    <p><b>c)</b> <b>Dort liegt sehr wahrscheinlich auch die „Leiter“</b> aus Punkt 1 — die
-      Aufgabe, die Prinzipien einzuordnen, und der QR-Code stehen im selben Foliensatz.
-      <b>Das ist meine Vermutung, keine Feststellung</b>; ich habe nicht nachgesehen.</p>
-    <p class="fr">Le code QR de la diapo 5 mène au tableau TaskCards du cours. Je ne l'ai
-      <b>pas</b> ouvert — c'est à toi. Attention : le lien contient un jeton d'accès, ne le
-      partage pas.</p>
-    <p><b>3. Die Zusammenfassungen zu den fünf Gruppen</b> (Prävention · ambulant/stationär ·
-      Reha · Pflege · Arzneimittel) sollten <b>in eigenen Worten</b> ins <b>EduPad</b>
-      übertragen werden. <b>Nur für die Ebenen gibt es eine Lösung im Ordner.</b></p>
-    <p class="fr">L'« échelle » n'est nulle part — je ne l'invente pas. Envoie-moi une photo de
-      la diapo.</p>
-  </div>
-
-  <div class="merk">
-    <span class="t">Die Brücken zu deinen anderen Seiten</span>
-    <p><b>Pflegehilfsmittel &amp; ambulantes Setting:</b> Dort die Leistungen im Einzelfall,
-      hier das System dahinter — und die Erklärung, warum jede Zeile eine Obergrenze hat
-      (<b>Teilkostenversicherung</b>).</p>
-    <p><b>Rehabilitation:</b> Dort die fünf Kostenträger, hier warum es sie getrennt gibt.
-      Und das <b>DRG-System</b> von dort ist die Finanzierungsseite der <b>stationären
-      Versorgung</b> von hier.</p>
-    <p><b>Menschen mit Behinderung:</b> Der <b>G-BA</b> definiert die Barrierefreiheit in den
-      Qualitätsberichten — die Studie über die 2 242 Krankenhäuser wertet genau diese Berichte
-      aus.</p>
-    <p><b>Der Rollator</b> von deiner Hilfsmittel-Seite: Vorkommnisse gehen an das
-      <b>BfArM</b> — und das ist eine der Institutionen, die <b>dem BMG unterstehen</b>.</p>
-    <p><b>Notfälle und Impfungen:</b> Das <b>RKI</b> und das <b>PEI</b> stehen auf derselben
-      Liste.</p>
-  </div>
-</section>
-
-<details class="quelle">
-  <summary>Die elf Quellen — jede einzeln genannt</summary>
-  <div class="inh">
-    <ul>
-      <li><b>1-4 DS.pdf</b> — Foliensatz <i>Grundlage des Sozialgesetzes</i>,
-        <b>CE 04 / UE 01</b>. <b>Am 20.09.2026 dazugekommen</b>: Die Datei lag ohne
-        Themenzuordnung im Ordner, weil ihr Name kein Stichwort enthält. Trägt die Abschnitte
-        <a href="#saeulen">Die fünf Säulen</a> und <a href="#grade">Pflegegrade und
-        Beträge</a>. <b>ACHTUNG: Alle Quellenlinks tragen <code>?utm_source=chatgpt.com</code></b>
-        — der Foliensatz ist mit Hilfe einer KI zusammengestellt. Die verlinkten Quellen selbst
-        sind amtlich (gesetze-im-internet.de, Bundesagentur für Arbeit, Deutsche
-        Rentenversicherung, DGUV, BMG); jede Zahl und jeder Paragraf ist dort nachprüfbar
-        — und gehört vor der Verwendung nachgeprüft.</li>
-      <li><b>Grundlage Infektionsschutzgesetzt .pdf</b> — <b>am 20.09.2026 dazugekommen</b>,
-        zweiseitiges Textblatt <i>Grundlagen des Infektionsschutzgesetzes (IfSG)</i>,
-        Kopfzeile <b>CE 04 UE 01</b> — dieselbe Unterrichtseinheit wie diese Seite. Quelle für
-        die §§ 1, 6, 7 und 23, für die Meldewege und für die <b>Adresse des Gesundheitsamts
-        StädteRegion Aachen</b> (dort ohne Datum).</li>
-      <li><b>Infektionsschutzgesetz_IfSG_.pdf</b> — <b>am 20.09.2026 dazugekommen</b>,
-        Foliensatz mit 14 Folien, Lernzielen, <b>DEMIS</b> und <b>KRINKO</b>, einem
-        <b>Fallbeispiel</b> (Gastroenteritis bei vier Bewohner:innen) und einem
-        <b>Arbeitsauftrag</b> über 30–40 Minuten. Verweist auf ein <b>YouTube-Video</b>
-        (im Foliensatz selbst als „externer Inhalt“ gekennzeichnet) — <b>daraus ist nichts
-        übernommen</b>. Seine Quellenliste nennt gesetze-im-internet.de, RKI, KRINKO, BZgA
-        und BMG.</li>
-      <li><b>5-6 DS.pdf</b> — Arbeitsblatt vom <b>06.10.2025</b>: der Fall <b>Lina K.</b>
-        (Wegeunfall, Minijob, Teilzeitausbildung, Reise-Auszeit) mit fünf Aufgabenteilen.
-        <b>Unbearbeitet.</b> Steht im Abschnitt <a href="#lina">Der Fall Lina K.</a></li>
-      <li><b>Geschichte des Gesundheitssystems.pdf</b> — Textauszug, zitiert nach dem
-        <b>Bundesministerium für Gesundheit</b>: die Entstehung der GKV 1883 und die Zahlen
-        von damals und heute.</li>
-      <li><b>Grundprinzipien.pdf</b> — Foliensatz <b>Alexander Issel</b>: historische
-        Entwicklung, die Grundprinzipien und die Folie <b>„Einordnung der Prinzipien“</b> —
-        die <b>am 20.09.2026 als vollständig leer</b> erkannt wurde (nur die Überschrift).
-        Enthält außerdem auf Folie 5 den <b>QR-Code zur TaskCards-Pinnwand</b> des Kurses,
-        <b>am selben Tag aufgelöst</b>.</li>
-      <li><b>AB Grundprinzipien.pdf</b> — das Arbeitsblatt mit den <b>fünf Prinzipientexten</b>
-        und der <b>Einordnung des deutschen Systems</b> im internationalen Vergleich.
-        Zitiert nach <i>Das deutsche Gesundheitssystem. Leistungsstark. Sicher. Bewährt</i>,
-        BMG.</li>
-      <li><b>AB Ebenen im Gesundheitswesen.pdf</b> — die Texte zu den <b>drei Ebenen</b>: BMG,
-        Länder, Kommunen, Selbstverwaltung, G-BA, Kassen und Verbände. Ebenfalls aus der
-        BMG-Broschüre.</li>
-      <li><b>Loesung Ebenen.pdf</b> — die <b>einzige Lösung</b> in diesem Block, sehr knapp
-        gehalten.</li>
-      <li><b>Aufgaben Gesundheitssystem.pdf</b> — Foliensatz <b>Alexander Issel</b> mit der
-        Vor-/Nachteil-Tabelle der drei Systemtypen.</li>
-      <li><b>AB Aufgaben Gesundheitssystem.pdf</b> — die Gruppentexte 1 bis 5: Prävention,
-        ambulante und stationäre Versorgung, Rehabilitation, Pflege und
-        Arzneimittelversorgung.</li>
-    </ul>
-    <p>Alle aus deinem Google-Drive-Ordner, geteilt am 18.09.2026. Die Sachtexte sind
-      durchgängig nach dem <b>Bundesministerium für Gesundheit</b> zitiert — das ist für diesen
-      Block die <b>amtliche Quelle</b>, im Unterschied zu den Gruppenarbeiten in anderen
-      Blöcken.</p>
-    <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> die ausformulierte Kette zum
-      Solidaritätsprinzip · die Beobachtung, dass „kostengünstiger bei Gesundheit“ und „sehr
-      hohe Kosten bei Unfall“ derselbe Punkt von zwei Seiten sind · der Hinweis, dass
-      Mitberatungsrecht nicht Stimmrecht ist · die Datumsprüfung aller Zahlen und der Vergleich
-      mit dem Sozialdienst-Foliensatz · die Verbindung des Pflegebedürftigkeitsbegriffs von 2017
-      mit dem Fall Frau S. · und alle Brücken zu deinen anderen Zusammenfassungen.</p>
-    <p><b>Nicht ergänzt:</b> die „Leiter“ (sie steht in keiner deiner Dateien — die Folie dazu
-      ist leer), die Akteurszuteilung und eine Ersatzzahl für die 979 Krankenkassen.
-      <b>Ebenfalls nicht geöffnet:</b> die TaskCards-Pinnwand, obwohl ihr Link jetzt bekannt
-      ist — sie ist eine fremde Website mit den Beiträgen deines Kurses.</p>
-    <p>Die französischen Zeilen sind von mir ergänzt.</p>
-  </div>
+<details><summary>Die Lösung aus deinem Ordner — so kurz darf es sein</summary>
+<p><b>1. Ebene:</b> BMG: Politik, Verordnungen im Bund und Überwachung der Verbände. Bundesländer: Teilfinanzierung, Planung der Versorgung und Umsetzung von Gesetzen. Krankenkassen. Kassenärzte. Kommunen: Gesundheitsversorgung, Überwachung der Gesundheit.</p>
+<p><b>2. Ebene:</b> Selbstverwaltung: entscheiden über Übernahme von Behandlungskosten. GKV-Spitzenverband: Verträge auf Landesebene. KBV und KZBV: vertreten die Interessen der Ärzte, Versorgung sicherstellen. G-BA: Zulassungen und Kostenübernahme von Medikamenten.</p>
+<p><b>3. Ebene:</b> Ärzte und Ärztinnen, Krankenhäuser, Rehakliniken, Apotheken, Hersteller von Arzneimitteln.</p>
+<p class="lesen">Vorsicht: „Krankenkassen. Kassenärzte.“ unter den Bundesländern meint die <b>Aufsicht</b> der Länder über die regionalen Kassen und die Kassenärztlichen Vereinigungen (AB Ebenen, S. 2). <span class="her">Herleitung</span> Und „Verträge auf Landesebene“: Das Arbeitsblatt sagt, die Kassen schließen Verträge über den Spitzenverband <b>oder</b> über ihre Regionalverbände.</p>
 </details>
+<div class="merke"><b>Merke:</b> 1. Ebene = Gesetze (BMG, Länder, Kommunen). 2. Ebene = Selbstverwaltung entscheidet, was bezahlt wird (G-BA). 3. Ebene = die Menschen, die behandeln und pflegen.</div>
+<p class="fr">🇫🇷 Trois niveaux : 1. l'État fixe les lois (ministère fédéral BMG avec RKI, BfArM, PEI, BZgA ; Länder qui planifient les hôpitaux ; communes avec les services de santé publique). 2. L'autogestion décide ce qui est remboursé (G-BA, caisses, associations de médecins, DKG) selon la règle « suffisant, adapté, économique, pas plus que nécessaire ». 3. Ceux qui soignent : médecins, hôpitaux, pharmacies — et toi.</p>
+<p class="quelle">AB Ebenen im Gesundheitswesen, S. 1–6 · Loesung Ebenen, S. 1 · AB Grundprinzipien, S. 4</p>
 
+<!-- ============ 6 AUFGABEN ============ -->
+<h2>6 · Die fünf Aufgaben des Gesundheitssystems <span class="stern">★★</span></h2>
+<p>Im Unterricht hat jede Gruppe einen Text zusammengefasst. Hier sind alle fünf.</p>
+
+<h3>Gruppe 1 · Prävention und Gesundheitsförderung</h3>
+<p><b>Prävention</b> = vorbeugen, damit man nicht krank wird. <span class="her">Herleitung</span></p>
+<ul>
+  <li><b>2015: Nationale Präventionskonferenz.</b> Dort haben sich die Spitzen der gesetzlichen Kranken-, Unfall-, Renten- und Pflegeversicherung und der Verband der privaten Krankenversicherung auf eine <b>nationale Präventionsstrategie</b> geeinigt.</li>
+  <li><b>Ziel:</b> Die Menschen sollen gesund aufwachsen, leben und arbeiten und auch im Alter gesund bleiben — in allen <b>Lebenswelten</b> (Kindergärten, Schulen, Betriebe, Pflegeheime).</li>
+  <li>Die <b>Gesundheitskompetenz</b> der Bürger soll besser werden.</li>
+  <li>Krankenkassen bieten <b>Präventionskurse</b> an und unterstützen Betriebe bei der <b>betrieblichen Gesundheitsförderung</b> — ausdrücklich auch <b>Krankenhäuser und Pflegeeinrichtungen</b>.</li>
+  <li>Ärzte dürfen <b>Präventionsempfehlungen</b> geben. Gesundheits- und Früherkennungsuntersuchungen wurden mit dem Präventionsgesetz weiterentwickelt.</li>
+  <li>Erwachsene haben Anspruch auf <b>Krebsfrüherkennung</b>: Darm-, Haut-, Brust-, Gebärmutterhals- und Prostatakrebs.</li>
+</ul>
+
+<h3>Gruppe 2 · Ambulante und stationäre Versorgung</h3>
+<div class="zwei">
+  <div class="k"><b>Ambulant</b> (ohne Übernachtung)<small>niedergelassene Haus-, Fach-, Zahnärzte, Psychotherapeuten, Physiotherapeuten, Logopäden · die meisten haben eine <b>Kassenzulassung</b>: Mitglied der KV/KZV, dürfen gesetzlich Versicherte behandeln und mit der GKV abrechnen · die Zulassung ist an den <b>Praxisort</b> und die Bedarfsplanung gebunden · außerhalb der Sprechstunde: <b>Bereitschaftsdienst</b></small></div>
+  <div class="k"><b>Stationär</b> (im Krankenhaus)<small>rund <b>1.900 Krankenhäuser</b> · die meisten behandeln gesetzlich und privat Versicherte · man braucht eine <b>Einweisung</b> vom Arzt — <b>außer im Notfall</b> · freie Wahl des Krankenhauses · <b>Zuzahlung</b> für Unterkunft und Verpflegung</small></div>
+</div>
+<p><b>Wann zahlt die GKV das Krankenhaus?</b> Wenn es <b>zugelassen</b> ist. Zugelassen sind:</p>
+<ol>
+  <li><b>Plankrankenhäuser</b> — sie stehen im Krankenhausplan des Landes;</li>
+  <li>Häuser mit einem <b>Versorgungsvertrag</b> mit den Kassen;</li>
+  <li><b>Hochschulkliniken</b> (nach Landesrecht anerkannt).</li>
+</ol>
+<p><b>Träger</b> (wem das Krankenhaus gehört): privat · freigemeinnützig · öffentlich.</p>
+
+<h3>Gruppe 3 · Rehabilitation, Misch- und Sonderformen</h3>
+<p><b>Rehabilitation</b> = nach schwerer Krankheit, langer Therapie oder Operation <b>möglichst schnell wieder am Alltag teilnehmen</b>. Angebote ambulant und stationär: Physiotherapie, psychologische Betreuung, Hilfe mit Hilfsmitteln, spezielle Reha z. B. bei Essstörungen oder Sucht.</p>
+<div class="schema">
+  <p class="titel">„Versorgung ist eine Mannschaftsleistung“ — das Beispiel Hüfte</p>
+  <div class="k"><b>ambulant</b><small>Untersuchung beim Orthopäden</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>stationär</b><small>Operation im Krankenhaus</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Rehaklinik</b></div><div class="pfeil">↓</div>
+  <div class="k gruen"><b>vor Ort</b><small>Physiotherapie nach der Entlassung</small></div>
+  <p class="lesen">Eine Behandlung geht oft über mehrere <b>Sektoren</b> (Bereiche). Davon profitieren besonders chronisch Kranke. Dafür sind neue Versorgungsmodelle entstanden.</p>
+</div>
+
+<h3>Gruppe 4 · Pflege</h3>
+<p>Siehe Kapitel 8 (Pflegeversicherung) — dort steht der ganze Text.</p>
+
+<h3>Gruppe 5 · Arzneimittelversorgung</h3>
+<div class="scroll"><table>
+  <tr><th>Regel</th><th>Warum? / Beispiel</th></tr>
+  <tr><td><b>Zuzahlung 10 %</b> des Preises, <b>mindestens 5 €, höchstens 10 €</b></td><td>Medikament 17,80 € → 10 % wären 1,78 € → sie zahlt den <b>Mindestbetrag 5 €</b>. Medikament 70 € → <b>7 €</b>. (Eigenes Beispiel: 150 € → 10 % wären 15 € → höchstens <b>10 €</b>. <span class="her">Herleitung</span>)</td></tr>
+  <tr><td><b>Kinder und Jugendliche bis 18</b> zahlen nichts zu</td><td>—</td></tr>
+  <tr><td><b>Belastungsgrenze:</b> höchstens <b>2 %</b> der jährlichen Bruttoeinnahmen, bei <b>chronisch Kranken 1 %</b></td><td>Niemand soll durch Zuzahlungen zu stark belastet werden. <span class="her">Herleitung</span> — <b>Achtung:</b> Die Kasse prüft das nur <b>auf Antrag</b> des Versicherten.</td></tr>
+  <tr><td>Mit dem Rezept in <b>jede Apotheke</b>; überall <b>derselbe Preis</b></td><td>Die <b>Arzneimittelpreisverordnung</b> legt für verschreibungspflichtige Medikamente einen einheitlichen Abgabepreis fest.</td></tr>
+  <tr><td>Die Apotheke gibt plötzlich ein Mittel eines <b>anderen Herstellers</b></td><td>Kassen legen oft fest, welche Mittel ihre Mitglieder bekommen (wenn der Arzt es nicht ausschließt), um <b>Kosten zu begrenzen</b>. Das sind oft <b>Generika</b> (nachentwickelte Mittel, oft viel billiger). Sie <b>wirken genau gleich</b>, und die Zuzahlung ist oft geringer.</td></tr>
+</table></div>
+<p><b>Für die Pflege wichtig:</b> Ein Patient ist unsicher, weil seine Tablette anders aussieht. Du kannst ihm erklären: Das ist sehr wahrscheinlich ein anderer Hersteller mit demselben Wirkstoff. Bei Zweifel fragt ihr Arzt oder Apotheke. <span class="her">Herleitung</span></p>
+
+<div class="hinweis"><b>Was fehlt:</b> Der Foliensatz „Aufgaben Gesundheitssystem“ nennt als dritten Punkt „<b>Zuteilung der Akteure auf die Aufgaben</b>“. Diese Zuteilung steht in keiner Datei. Die Ergebnisse der Gruppen sollten in einer Online-Pinnwand (TaskCard, QR-Code auf S. 3) stehen — die liegt nicht in deinem Ordner.</div>
+<div class="merke"><b>Merke:</b> Prävention (2015) · ambulant (Kassenzulassung) / stationär (Einweisung, außer Notfall) · Reha („Mannschaftsleistung“) · Pflege · Arzneimittel (10 %, mind. 5, höchstens 10 €; 2 % / 1 % nur auf Antrag).</div>
+<p class="fr">🇫🇷 Cinq missions : prévention (conférence nationale 2015, cours, dépistage du cancer) · soins ambulatoires (médecins conventionnés) et hospitaliers (bon d'admission sauf urgence) · rééducation (« un travail d'équipe ») · soins de longue durée · médicaments (participation de 10 %, au moins 5 €, au plus 10 € ; gratuit jusqu'à 18 ans ; plafond 2 % ou 1 % pour les malades chroniques, seulement sur demande ; les génériques agissent pareil).</p>
+<p class="quelle">AB Aufgaben Gesundheitssystem, S. 1–3, 5 · Aufgaben Gesundheitssystem (Issel), S. 2–3</p>
+
+<!-- ============ 7 SOZIALVERSICHERUNG ============ -->
+<h2>7 · Die fünf Säulen der Sozialversicherung <span class="stern">★★★</span></h2>
+<p>Bisher ging es vor allem um die Krankenversicherung. Sie ist aber nur <b>eine</b> von fünf Säulen. Alle fünf gehören zum Sozialstaat.</p>
+<div class="scroll"><table>
+  <tr><th>Säule</th><th>seit</th><th>Gesetz</th><th>Wer zahlt?</th><th>Was sie leistet</th></tr>
+  <tr><td><b>Kranken­versicherung</b></td><td class="z">1883</td><td>SGB V (und RVO von 1911)</td><td>Arbeitnehmer + Arbeitgeber zu gleichen Teilen; Zusatzbeitrag</td><td>Lohnersatz bei Krankheit · Gesundheit wiederherstellen · Prävention · Behandlungskosten</td></tr>
+  <tr><td><b>Unfall­versicherung</b></td><td class="z">1884</td><td>SGB VII</td><td><b>allein der Arbeitgeber</b> (Umlageverfahren)</td><td>bei Arbeitsunfall und Berufskrankheit · Reha, damit man wieder arbeiten kann · Entschädigung</td></tr>
+  <tr><td><b>Renten­versicherung</b></td><td class="z">1889</td><td>SGB VI</td><td>Arbeitnehmer + Arbeitgeber zu gleichen Teilen (Umlageverfahren) + Bundeszuschuss</td><td>Rente im Alter · bei verminderter Erwerbsfähigkeit · Hinterbliebenenrente</td></tr>
+  <tr><td><b>Arbeitslosen­versicherung</b></td><td class="z">1927</td><td>SGB III</td><td>Arbeitnehmer + Arbeitgeber zu gleichen Teilen; ggf. Zuschüsse</td><td>Arbeitslosengeld · Hilfe bei der Arbeitssuche · nur vorübergehend</td></tr>
+  <tr><td><b>Pflege­versicherung</b></td><td class="z">1995</td><td>SGB XI</td><td>Arbeitnehmer + Arbeitgeber zu gleichen Teilen (Sachsen weicht ab); Zuschlag für Kinderlose</td><td>die <b>jüngste</b> Säule · Leistungen für dauerhaft Pflegebedürftige, je nach Pflegebedürftigkeit</td></tr>
+</table></div>
+<p class="lesen">Warum weicht Sachsen ab? Die Folie sagt: Die Regel gilt anders, wenn der Arbeitsort in einem Bundesland liegt, „das zur Kostenentlastung der Arbeitgeber <b>einen Feiertag abgeschafft</b> hat“. Den Namen Sachsen nennt nur die zweite Folie.</p>
+
+<h3>Die Grundprinzipien der Sozialversicherung</h3>
+<div class="scroll"><table>
+  <tr><th>Prinzip</th><th>Was es heißt</th></tr>
+  <tr><td><b>Versicherungspflicht</b></td><td>als Grundsatz; eine freiwillige Versicherung ist in Ausnahmen möglich</td></tr>
+  <tr><td><b>Solidarität</b></td><td>Beiträge nach <b>Einkommen</b> (bis zur Beitragsbemessungsgrenze — eine Obergrenze; die Höhe nennen deine Folien nicht), Leistungen nach <b>Bedarf</b>. Ausgleich zwischen gesund ↔ krank, jung ↔ alt, gut ↔ gering verdienend. „Alle Versicherten zahlen den gleichen Prozentsatz ihres Bruttoeinkommens“ (außer Privatversicherte).</td></tr>
+  <tr><td><b>Paritätische Finanzierung</b></td><td>in der Regel Arbeitgeber + Arbeitnehmer je zur Hälfte. <b>Zwei Ausnahmen:</b> Die <b>Unfallversicherung</b> zahlt <b>nur der Arbeitgeber</b>. In der <b>Pflegeversicherung</b> zahlen Kinderlose einen <b>Zuschlag</b>.</td></tr>
+  <tr><td><b>Umlageverfahren</b></td><td>„laufende Beiträge finanzieren laufende Leistungen“ — vor allem in der Rentenversicherung (Generationenausgleich: die Jungen zahlen die Renten der Alten <span class="her">Herleitung</span>). In der KV über den Gesundheitsfonds — den erklären deine Folien nicht.</td></tr>
+</table></div>
+
+<h3>Der Auftrag der gesetzlichen Krankenversicherung</h3>
+<ul>
+  <li>Gesundheit <b>erhalten, wiederherstellen, verbessern</b>.</li>
+  <li><b>Eigenkompetenz und Eigenverantwortung</b> der Versicherten fördern.</li>
+  <li><b>Die Versicherten</b> sollen: präventiv handeln, Vorsorge nutzen, an Behandlung und Reha <b>mitwirken</b>.</li>
+  <li><b>Die Krankenkassen</b> sollen: aufklären, beraten, leisten; auf gesunde Lebensverhältnisse hinwirken.</li>
+  <li><b>Besonderheiten</b> wie Geschlecht, Alter und Behinderung berücksichtigen.</li>
+</ul>
+<div class="hinweis"><b>Hinweis — Paragraf unklar:</b> Die Folie schreibt „SGB V § 11 – Auftrag der GKV“. Der Link auf derselben Folie führt aber zu <b>§ 1</b> SGB V. Welcher Paragraf gemeint ist, klären deine Dateien nicht. Nenne in der Klausur lieber den Inhalt als die Zahl.</div>
+
+<h3>Arbeitslosenversicherung — SGB III</h3>
+<ul>
+  <li><b>Ziel:</b> den Lebensunterhalt sichern und schnell wieder in Arbeit bringen.</li>
+  <li><b>Wer zahlt:</b> Arbeitnehmer + Arbeitgeber; der Bund bei „versicherungsfremden Aufgaben“.</li>
+  <li><b>Leistungen:</b> Arbeitslosengeld (ALG I) · Vermittlung und Beratung · Förderung und Weiterbildung.</li>
+  <li><b>Voraussetzungen ALG I:</b> arbeitslos sein · sich arbeitslos melden · die <b>Anwartschaftszeit</b> erfüllen: in der Regel <b>12 Monate</b> Versicherung <b>in den letzten 30 Monaten</b>.</li>
+</ul>
+
+<h3>Rentenversicherung — SGB VI</h3>
+<ul>
+  <li><b>Pflicht</b> für Beschäftigte und Gleichgestellte. <b>Träger:</b> Deutsche Rentenversicherung.</li>
+  <li><b>Aufgaben</b> neben der Rente: <b>Prävention, Reha, Teilhabe am Arbeitsleben</b>.</li>
+  <li><b>Rentenarten:</b> Regelaltersrente · Erwerbsminderungsrente (teilweise / voll) · Hinterbliebenenrente (Witwen, Witwer, Waisen).</li>
+  <li><b>Rentenformel:</b> Entgeltpunkte × Rentenartfaktor × aktueller Rentenwert. Was die drei Wörter genau bedeuten, erklären deine Folien nicht.</li>
+  <li>Es gibt auch private Rentenversicherungen. Aber <b>2023</b> waren laut Statistischem Bundesamt <b>87,1 %</b> der Erwerbstätigen gesetzlich rentenversichert.</li>
+  <li>Das Bild auf S. 12: Arbeitnehmer und Arbeitgeber, freiwillig Versicherte und Steuergelder (Bundeszuschuss) zahlen in den „Topf“ (Umlageverfahren) → daraus: Erwerbsminderungsrente, Hinterbliebenenrente, Altersrente, Rehabilitation.</li>
+</ul>
+
+<h3>Unfallversicherung — SGB VII</h3>
+<div class="schema">
+  <p class="titel">Leistungen bei Unfallfolgen — der Weg</p>
+  <div class="k"><b>Arbeitsunfall · Wegeunfall · Berufskrankheit</b><small>Wegeunfälle sind ausdrücklich eingeschlossen</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k wichtig"><b>Der Arbeitgeber meldet der Berufsgenossenschaft</b><small>Unfallanzeige: Pflicht ab <b>mehr als 3 Kalendertagen</b> Arbeitsunfähigkeit</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Die Berufsgenossenschaft prüft und bewilligt</b></div>
+  <div class="pfeil">↓</div>
+  <div class="k gruen"><b>Leistungen</b><small>Heilbehandlung, Verletztengeld · Berufshilfe, Übergangsgeld · Rente (Verletztenrente)</small></div>
+</div>
+<ul>
+  <li><b>Träger:</b> Berufsgenossenschaften und Unfallkassen.</li>
+  <li><b>Wer zahlt:</b> <b>allein der Arbeitgeber</b> (Beitragspflicht der Unternehmer).</li>
+  <li>Die Unfallversicherung hat auch eine Aufgabe in der <b>Prävention</b>.</li>
+</ul>
+<p><b>Warum ist das für dich wichtig?</b> Ein Unfall bei der Arbeit oder auf dem Weg dorthin ist Sache der <b>Berufsgenossenschaft</b>, nicht nur der Krankenkasse. Deshalb muss der Arbeitgeber davon wissen. <span class="her">Herleitung</span> aus S. 13–14 — siehe den Fall Lina K. in Kapitel 10.</p>
+
+<h3>SGB IX — Rehabilitation und Teilhabe von Menschen mit Behinderung</h3>
+<ul>
+  <li><b>Ziel:</b> <b>Selbstbestimmung</b> und <b>gleichberechtigte Teilhabe</b> (Teilhabe = dabei sein, mitmachen können) für Menschen mit Behinderung oder von Behinderung bedrohte Menschen.</li>
+  <li>Neu gefasst durch das <b>BTHG</b> (Bundesteilhabegesetz) am 23.12.2016, meist in Kraft seit 01.01.2018.</li>
+  <li><b>Drei Teile:</b> Teil 1 Reha- und Teilhaberecht (die Träger arbeiten zusammen) · Teil 2 Eingliederungshilfe (Leistungen für ein selbstbestimmtes Leben) · Teil 3 Schwerbehindertenrecht.</li>
+</ul>
+
+<h3>SGB XII — Sozialhilfe: das letzte Netz</h3>
+<div class="def">
+  <span class="t">§ 1 und § 2 — so stehen sie auf deiner Folie (gekürzt)</span>
+  <p><b>§ 1 Aufgabe:</b> Die Sozialhilfe soll ein Leben ermöglichen, „das der <b>Würde des Menschen</b> entspricht“. Sie soll den Menschen so weit wie möglich <b>befähigen, unabhängig von ihr zu leben</b>. Dafür sollen Leistungsberechtigte und Träger <b>zusammenwirken</b>.</p>
+  <p><b>§ 2 Nachrang:</b> Sozialhilfe bekommt <b>nicht</b>, wer sich selbst helfen kann — durch seine Arbeitskraft, sein Einkommen, sein Vermögen — oder wer die Hilfe von anderen bekommt, vor allem von <b>Angehörigen</b> oder <b>anderen Sozialleistungen</b>.</p>
+</div>
+<p><b>Nachrang</b> heißt: Die Sozialhilfe kommt <b>zuletzt</b>. Erst zahlen die Versicherungen, dann der Mensch selbst, dann die Familie — erst danach die Sozialhilfe. <span class="her">Herleitung</span> aus § 2</p>
+
+<div class="hinweis"><b>Wichtig zu diesem Foliensatz:</b> Alle Quellenlinks der Folien tragen den Zusatz „utm_source=chatgpt.com“. Der Foliensatz wurde also mit Hilfe einer KI zusammengestellt. Die verlinkten Seiten selbst sind amtlich (z. B. gesetze-im-internet.de), aber: <b>Prüf jede Zahl und jeden Paragrafen nach</b>, bevor du ihn in einer Prüfung nennst.</div>
+<div class="merke"><b>Merke — fünf Säulen, eine Ausnahme beim Geld:</b> Kranken · Unfall · Rente · Arbeitslosen · Pflege. Alle zahlen halb-halb — <b>nur die Unfallversicherung zahlt der Arbeitgeber allein</b>; Kinderlose zahlen in der Pflege mehr.</div>
+<p class="fr">🇫🇷 Cinq piliers : maladie (1883), accident (1884, payée uniquement par l'employeur, gérée par la Berufsgenossenschaft ; accidents de trajet compris ; déclaration si plus de 3 jours d'arrêt), retraite (1889), chômage (1927 ; 12 mois cotisés sur 30), dépendance (1995). En dernier recours : l'aide sociale (SGB XII), qui n'intervient que si personne d'autre ne peut aider.</p>
+<p class="quelle">1-4 DS, S. 2–14 und S. 22</p>
+
+<!-- ============ 8 PFLEGEVERSICHERUNG ============ -->
+<h2>8 · Die Pflegeversicherung und die Pflegegrade <span class="stern">★★★</span></h2>
+<div class="def">
+  <span class="t">Wann braucht ein Mensch Pflege? — so steht es auf deinem Blatt</span>
+  <p>„Ist ein Mensch nicht in der Lage, körperliche, kognitive oder psychische Beeinträchtigungen oder gesundheitlich bedingte Belastungen oder Anforderungen <b>ohne Hilfe durch andere</b> auszugleichen oder zu bewältigen, etwa sich im Alltag selbstständig zu versorgen, kann er Pflege in Anspruch nehmen.“</p>
+</div>
+<div class="def">
+  <span class="t">Wort für Wort einfach</span>
+  <p>Ein Mensch schafft seinen Alltag <b>nicht mehr allein</b> — wegen seines Körpers, seines Denkens (kognitiv) oder seiner Psyche. Dann bekommt er Pflege. <b>Ziel</b> der Pflege: trotz Einschränkungen ein möglichst <b>selbstständiges und selbstbestimmtes Leben in Würde</b>.</p>
+</div>
+
+<h3>Die Grunddaten</h3>
+<ul>
+  <li>Seit <b>1. Januar 1995</b>: Versicherungspflicht für alle gesetzlich <b>und</b> privat Versicherten (soziale Pflegeversicherung bei der GKV, private Pflegepflichtversicherung bei der PKV).</li>
+  <li><b>Paritätisch</b> finanziert. Beitragssatz laut Blatt <b>3,05 %</b>; Kinderlose zahlen <b>0,35 %</b> mehr.</li>
+  <li><b>Teilkostenversicherung</b> (auf der Folie: „Teilkasko-Prinzip“): Sie zahlt <b>nicht alle</b> Kosten. Den Rest zahlen der Pflegebedürftige, seine Angehörigen oder im Bedarfsfall die <b>Sozialhilfe</b>.</li>
+  <li><b>2021</b>: rund 4,9 Mio. Menschen bekamen Leistungen; knapp 4 Mio. ambulant, rund 900.000 stationär.</li>
+</ul>
+
+<h3>Der neue Pflegebedürftigkeitsbegriff — die wichtigste Reform</h3>
+<div class="zwei">
+  <div class="k rot"><b>Früher</b><small>Man zählte die <b>Zeit</b> für körperliche Hilfe. Menschen mit <b>Demenz</b> wurden nicht ausreichend berücksichtigt — denn körperlich können sie oft noch viel.</small></div>
+  <div class="k gruen"><b>Seit 2017</b><small>Man schaut auf die <b>Selbstständigkeit</b>. Auch <b>geistige und psychische</b> Einschränkungen zählen (z. B. bei Alzheimer). Daraus folgen <b>fünf Pflegegrade</b>.</small></div>
+</div>
+<p>Ab 2020 soll die <b>Nationale Demenzstrategie</b> die Lage von Menschen mit Demenz weiter verbessern.</p>
+
+<h3>Wie ein Pflegegrad zustande kommt</h3>
+<ol>
+  <li>Der Versicherte stellt einen <b>Antrag</b>.</li>
+  <li>Der <b>Medizinische Dienst (MD)</b> stellt die Pflegebedürftigkeit fest.</li>
+  <li>Er schaut auf <b>sechs Lebensbereiche (Module)</b> und gewichtet sie.</li>
+  <li>Daraus ergeben sich <b>Punkte</b> → Pflegegrad 1 bis 5.</li>
+  <li>Die Beeinträchtigung muss in der Regel <b>mindestens 6 Monate</b> dauern.</li>
+</ol>
+<div class="scroll"><table>
+  <tr><th>Modul (Lebensbereich)</th><th>Gewicht</th></tr>
+  <tr><td>Mobilität</td><td class="z">10 %</td></tr>
+  <tr><td>Kognitive und kommunikative Fähigkeiten / Verhaltensweisen und psychische Problemlagen</td><td class="z">15 %</td></tr>
+  <tr><td><b>Selbstversorgung</b> (Körperpflege, Ernährung usw.)</td><td class="z"><b>40 %</b></td></tr>
+  <tr><td>Bewältigung von und selbstständiger Umgang mit krankheits- oder therapiebedingten Anforderungen und Belastungen</td><td class="z">20 %</td></tr>
+  <tr><td>Gestaltung des Alltagslebens und sozialer Kontakte</td><td class="z">15 %</td></tr>
+</table></div>
+<p class="lesen">Im Bild teilen sich zwei Bereiche die 15 % (kognitive Fähigkeiten und Verhalten/Psyche). Deshalb sind es sechs Module, aber nur fünf Zahlen. Wie genau gerechnet wird, steht nicht auf der Folie.</p>
+<div class="scroll"><table>
+  <tr><th>Pflegegrad</th><th>Punkte</th></tr>
+  <tr><td>PG 1</td><td class="z">12,5 bis unter 27</td></tr>
+  <tr><td>PG 2</td><td class="z">27 bis unter 47,5</td></tr>
+  <tr><td>PG 3</td><td class="z">47,5 bis unter 70</td></tr>
+  <tr><td>PG 4</td><td class="z">70 bis unter 90</td></tr>
+  <tr><td>PG 5</td><td>90 bis 100 — oder eine besondere Bedarfskonstellation (Ausnahmefall)</td></tr>
+</table></div>
+
+<h3>Sachleistung, Pflegegeld, Kombination — der Unterschied</h3>
+<div class="scroll"><table>
+  <tr><th>Leistung</th><th>Wie funktioniert sie?</th><th>Wofür? <span class="her">Herleitung</span></th></tr>
+  <tr><td><b>Pflegesachleistung</b></td><td>Ein <b>ambulanter Pflegedienst</b> pflegt und rechnet <b>direkt mit der Pflegekasse</b> ab.</td><td>Profis pflegen zu Hause.</td></tr>
+  <tr><td><b>Pflegegeld</b></td><td>Das Geld geht <b>direkt an den Versicherten</b>. Er organisiert die Pflege selbst, z. B. durch <b>Angehörige</b>.</td><td>Die Familie pflegt.</td></tr>
+  <tr><td><b>Kombinationsleistung</b></td><td>Sach- und Geldleistung zusammen. Wird die Sachleistung nicht voll gebraucht, wird der Rest (nach Umrechnung) als Pflegegeld gezahlt.</td><td>Pflegedienst und Familie teilen sich die Pflege.</td></tr>
+</table></div>
+<p>Die Pflegeversicherung zahlt für <b>häusliche</b> und für <b>stationäre</b> Pflege, als <b>Geld</b> oder als <b>Sachleistung</b>. Voraussetzung ist immer die <b>anerkannte Pflegebedürftigkeit</b>.</p>
+
+<h3>Die Leistungsbeträge ab 01.01.2025 — laut Foliensatz</h3>
+<div class="scroll"><table>
+  <tr><th>Leistung</th><th>PG 1</th><th>PG 2</th><th>PG 3</th><th>PG 4</th><th>PG 5</th></tr>
+  <tr><td>Pflegegeld / Monat</td><td>—</td><td class="z">347 €</td><td class="z">599 €</td><td class="z">800 €</td><td class="z">990 €</td></tr>
+  <tr><td>Pflegesachleistung / Monat</td><td>—</td><td class="z">796 €</td><td class="z">1.497 €</td><td class="z">1.859 €</td><td class="z">2.299 €</td></tr>
+  <tr><td>Tages-/Nachtpflege / Monat</td><td>—</td><td class="z">721 €</td><td class="z">1.357 €</td><td class="z">1.685 €</td><td class="z">2.085 €</td></tr>
+  <tr><td>Vollstationär / Monat</td><td class="z">131 €</td><td class="z">805 €</td><td class="z">1.319 €</td><td class="z">1.855 €</td><td class="z">2.096 €</td></tr>
+  <tr><td>Entlastungsbetrag / Monat</td><td colspan="5">131 € (PG 1–5)</td></tr>
+</table></div>
+<ul>
+  <li><b>Verhinderungs- und Kurzzeitpflege:</b> gemeinsamer Jahresbetrag <b>3.539 €</b> (seit 01.07.2025). Verhinderungspflege durch nahe Angehörige: bis zu 2 × Pflegegeld (z. B. PG 3: 1.198 €/Jahr).</li>
+  <li><b>Zuschläge auf den Eigenanteil</b> im Heim: 15 % ab Monat 1 · 30 % ab 12 Monaten · 50 % ab 24 Monaten · 75 % ab 36 Monaten.</li>
+  <li>Pflegehilfsmittel zum Verbrauch: 42 €/Monat · Digitale Pflegeanwendungen (DiPA): bis 53 €/Monat.</li>
+  <li>Wohnumfeld-Verbesserung: bis 4.180 € je Maßnahme; wohnen mehrere Pflegebedürftige zusammen: bis 16.720 €.</li>
+</ul>
+<p><b>Warum der Eigenanteil?</b> Weil die Pflegeversicherung eine Teilkostenversicherung ist, bleibt im Heim ein Teil der Kosten beim Bewohner. Die Zuschläge senken diesen Teil, je länger er im Heim lebt. Kann er nicht zahlen, kommt die Sozialhilfe — aber erst zuletzt (Nachrang). <span class="her">Herleitung</span> aus AB Aufgaben S. 4, 1-4 DS S. 22–23</p>
+<div class="hinweis"><b>Achtung, Datum:</b> Das BMG-Arbeitsblatt hat Zahlen von 2021 und 2022 (Beitragssatz 3,05 %, Versicherungspflichtgrenze, Zahl der Pflegebedürftigen). Der Sozialgesetz-Foliensatz hat Beträge ab 2025. Die Broschüre selbst ist undatiert. Sag in der Prüfung immer dazu, <b>von wann</b> eine Zahl ist.</div>
+<div class="merke"><b>Merke:</b> 1995 · Teilkostenversicherung · seit 2017 zählt die Selbstständigkeit (auch Demenz) · Antrag → MD → 6 Module → Punkte → PG 1–5 · Sachleistung = Pflegedienst rechnet ab · Pflegegeld = Geld an den Versicherten.</div>
+<p class="fr">🇫🇷 L'assurance dépendance existe depuis 1995. Elle ne paie qu'une partie des frais (« assurance partielle ») ; le reste est payé par la personne, sa famille ou l'aide sociale. Depuis 2017, on évalue l'autonomie (aussi les troubles cognitifs et psychiques, comme la démence). Demande → Medizinischer Dienst → 6 domaines (soins personnels 40 %) → points → degré 1 à 5. Prestation en nature = le service de soins facture à la caisse ; allocation = l'argent va à la personne, la famille soigne.</p>
+<p class="quelle">AB Aufgaben Gesundheitssystem, S. 4 · 1-4 DS, S. 15–24</p>
+
+<!-- ============ 9 IFSG ============ -->
+<h2>9 · Das Infektionsschutzgesetz (IfSG) — deine eigene Pflicht <span class="stern">★★★</span></h2>
+<p>Bis hierher ging es darum, <b>wer bezahlt</b>. Das IfSG ist anders: Es sagt dir, was du im Dienst <b>tun musst</b>.</p>
+<div class="def">
+  <span class="t">So steht es auf deiner Folie</span>
+  <p>Das IfSG ist ein „<b>Bundesgesetz zur Vorbeugung, Früherkennung, Bekämpfung übertragbarer Krankheiten</b>“. Es „regelt <b>Meldepflichten, Zuständigkeiten, Schutzmaßnahmen</b> in Deutschland“ und gilt u. a. für Gesundheits- und Pflegeeinrichtungen.</p>
+</div>
+<div class="def">
+  <span class="t">Wort für Wort einfach</span>
+  <p><b>Übertragbare Krankheiten</b> sind Krankheiten, die von Mensch zu Mensch weitergehen (Infektionen). Das Gesetz will: <b>vorbeugen</b> (dass niemand sich ansteckt) · <b>früh erkennen</b> (wo ein Erreger ist) · <b>bekämpfen</b> (die Ausbreitung stoppen). Dafür sagt es: wer was <b>melden</b> muss, wer <b>zuständig</b> ist und welche <b>Schutzmaßnahmen</b> gelten.</p>
+</div>
+<ul>
+  <li>Rechtsgrundlage <b>seit dem 1. Januar 2001</b>.</li>
+  <li>Gilt für <b>alle Einrichtungen und Personen im Gesundheitswesen</b> — besonders in Krankenhäusern, Pflegeeinrichtungen und Labors.</li>
+</ul>
+
+<h3>Warum brauchen wir das in der Pflege?</h3>
+<div class="scroll"><table>
+  <tr><th>Grund (Folie 4)</th><th>Was es heißt</th></tr>
+  <tr><td><b>Rechtssicherheit</b></td><td>bei Ausbrüchen und im Alltag (Basishygiene, Isolation, Information) — du weißt, was du tun darfst und musst</td></tr>
+  <tr><td><b>Schutz</b></td><td>von Patienten, Bewohnern <b>und Beschäftigten</b> — also auch von dir</td></tr>
+  <tr><td><b>Rahmen für Prävention</b></td><td>Impfprävention, Aufklärung und Surveillance (dauernde Überwachung, wo welche Infektionen auftreten <span class="her">Herleitung</span>)</td></tr>
+</table></div>
+
+<h3>Die Meldepflicht: § 6 und § 7</h3>
+<div class="zwei">
+  <div class="k wichtig"><b>§ 6 — meldepflichtige KRANKHEITEN</b><small>z. B. Cholera, Diphtherie, Hepatitis A–E, Masern, Meningokokken-Erkrankungen, Tuberkulose · gemeldet wird bei <b>Verdacht, Erkrankung oder Tod</b> · Folie: „Ärztliche Meldepflicht“</small></div>
+  <div class="k wichtig"><b>§ 7 — meldepflichtige ERREGER</b><small>z. B. Salmonellen (Salmonella spp.), Listerien (Listeria monocytogenes), multiresistente Erreger wie <b>MRSA</b> · gemeldet wird der <b>Nachweis</b> · Folie: „Labormeldepflicht“</small></div>
+</div>
+<p><b>Der Unterschied:</b> § 6 meldet die <b>Krankheit</b> (was der Mensch hat). § 7 meldet den <b>Erreger</b> (was das Labor findet). Ziel: schnelle Überwachung und bei Ausbrüchen sofortige Gegenmaßnahmen.</p>
+<div class="schema">
+  <p class="titel">Die Meldekette</p>
+  <div class="k"><b>Praxis / Einrichtung</b><small>Verdacht, Erkrankung, Tod oder Erregernachweis</small></div>
+  <div class="pfeil">↓ <b>unverzüglich, spätestens binnen 24 Stunden</b> · elektronisch über <b>DEMIS</b> (Digitales Melde- und Informationssystem) oder per Fax</div>
+  <div class="k wichtig"><b>Gesundheitsamt</b> (vor Ort, Kommune)<small>lokale Maßnahmen: Beobachtung, Absonderung, Ermittlungen</small></div>
+  <div class="pfeil">↓ übermittelt (§ 11)</div>
+  <div class="k"><b>Land und RKI</b><small>RKI: Bewertung der Lage, Empfehlungen, Surveillance, KRINKO</small></div>
+  <p class="lesen">Ziel: Früherkennung, Ausbruchserkennung, bundesweite Surveillance.</p>
+</div>
+<p><b>Das passt genau zu den drei Ebenen</b> aus Kapitel 5: Das Gesundheitsamt gehört zur <b>Kommune</b>, das RKI ist dem <b>BMG</b> unterstellt, das BMG und die Landesministerien geben den gesetzlichen Rahmen. <span class="her">Herleitung</span> aus IfSG-Folie 7 und AB Ebenen S. 1–2</p>
+
+<div class="hinweis"><b>Hinweis — wer genau meldet?</b> Das Textblatt sagt: „<b>Pflegekräfte</b> müssen bestimmte Krankheiten und Erreger dem Gesundheitsamt melden.“ Der Foliensatz nennt bei § 6 „<b>Ärztliche</b> Meldepflicht“, bei § 7 „<b>Labor</b>meldepflicht“ und bei § 8 „Wer meldet? (Ärzt:innen, Labore, <b>Leitungen</b> bestimmter Einrichtungen)“. Deine Dateien sagen also nicht eindeutig, ob <b>du selbst</b> meldest oder ob du den Arzt bzw. die Leitung informierst. Sicher ist: Du musst Melderelevantes <b>erkennen</b> und die <b>Meldekette kennen</b> (Folie 8). Frag deine Praxisanleitung, wie es in eurer Einrichtung geregelt ist.</div>
+
+<h3>Meldung in Aachen — aus deinem Textblatt</h3>
+<p><b>Gesundheitsamt StädteRegion Aachen</b> · Trierer Straße 1, 52078 Aachen · Telefon +49 241 5198-5300 · Fax +49 241 5198-5390 · gesundheitsamt@staedteregion-aachen.de · Öffnungszeiten: Mo–Do 08:00–16:00, Fr 08:00–12:00.</p>
+<div class="hinweis"><b>Eine Frage, die du stellen solltest:</b> Das Amt hat freitags ab 12 Uhr und am Wochenende zu — die 24-Stunden-Frist läuft aber weiter. Wie eure Einrichtung dann meldet, steht in keiner deiner Unterlagen. Frag deine Praxisanleitung. (Das Blatt nennt auch die elektronische Meldung.) Die Adresse ist ohne Datum — prüfe sie, bevor du sie benutzt.</div>
+
+<h3>Die wichtigen Paragrafen — die Tabelle aus dem Foliensatz</h3>
+<div class="scroll"><table>
+  <tr><th>§</th><th>Kernaussage für die Pflegepraxis</th></tr>
+  <tr><td class="z">§ 1</td><td>Zweck: Vorbeugung, Früherkennung, Verhinderung der Weiterverbreitung</td></tr>
+  <tr><td class="z">§ 2</td><td>Begriffe, z. B. Krankheitserreger, Ausscheider, nosokomial (im Krankenhaus erworben <span class="her">Herleitung</span>)</td></tr>
+  <tr class="rot"><td class="z">§ 6</td><td>ärztliche Meldepflicht: meldepflichtige Krankheiten (Verdacht/Erkrankung/Tod)</td></tr>
+  <tr class="rot"><td class="z">§ 7</td><td>Labormeldepflicht: meldepflichtige Erregernachweise</td></tr>
+  <tr><td class="z">§ 8</td><td>Wer meldet? Ärzt:innen, Labore, Leitungen bestimmter Einrichtungen</td></tr>
+  <tr><td class="z">§ 9 / § 10</td><td>Meldedaten: namentlich / nichtnamentlich, Datenschutz, Inhalte</td></tr>
+  <tr><td class="z">§ 11</td><td>Übermittlung durch die Gesundheitsämter an Länder und RKI</td></tr>
+  <tr><td class="z">§ 14</td><td>DEMIS: elektronisches Melde- und Informationssystem</td></tr>
+  <tr><td class="z">§ 20</td><td>Schutzimpfungen: Rahmen für Impfprävention</td></tr>
+  <tr class="gelb"><td class="z">§ 23</td><td>Hygiene in Einrichtungen: Prävention nosokomialer Infektionen; KRINKO</td></tr>
+  <tr><td class="z">§ 28</td><td>behördliche Schutzmaßnahmen im Ausbruch (Verhältnismäßigkeit)</td></tr>
+  <tr><td class="z">§ 30</td><td>Absonderung (Isolation/Quarantäne) in bestimmten Fällen</td></tr>
+  <tr><td class="z">§ 33</td><td>Gemeinschaftseinrichtungen (Kitas, Schulen, Heime)</td></tr>
+  <tr><td class="z">§ 34</td><td>gesundheitliche Anforderungen, Mitwirkungspflichten, Tätigkeitsverbote</td></tr>
+  <tr><td class="z">§ 36</td><td>Hygienepläne und Überwachung in bestimmten Einrichtungen</td></tr>
+</table></div>
+<div class="hinweis"><b>Hinweis — § 23 steht in deinen zwei Dateien verschieden:</b> Das <b>Textblatt</b> schreibt unter § 23: Isolierung und Quarantäne anordnen, Betretungs- und Versammlungsverbote, hygienische Überprüfungen — durch das Gesundheitsamt per Bescheid. Der <b>Foliensatz</b> schreibt unter § 23: Hygiene in Einrichtungen, Prävention nosokomialer Infektionen, KRINKO — und nennt die behördlichen Schutzmaßnahmen bei <b>§ 28</b> und die Isolation/Quarantäne bei <b>§ 30</b>. Beide sind Zusammenfassungen, nicht der Gesetzestext (der liegt nicht im Ordner). Frag im Unterricht, welche Fassung gilt.</div>
+
+<h3>§ 23 in der Praxis: Hygiene in der Einrichtung</h3>
+<ul>
+  <li>Die <b>Leitung</b> stellt sicher, dass nosokomiale Infektionen und Resistenzen verhindert werden.</li>
+  <li>Maßnahmen nach dem Stand der Wissenschaft — die <b>KRINKO-Empfehlungen</b> sind maßgeblich. (KRINKO gehört zum RKI und steht für Krankenhaushygiene — so steht es in der Quellenliste der Folien.)</li>
+  <li>Beispiele: Händehygiene, Schutzmaßnahmen, Isolationskonzepte, Antibiotic Stewardship (bewusster Umgang mit Antibiotika <span class="her">Herleitung</span>).</li>
+</ul>
+<div class="scroll"><table>
+  <tr><th>Maßnahme (Textblatt)</th><th>Warum?</th></tr>
+  <tr><td><b>Händedesinfektion</b> — fünf Momente: 1. vor Patientenkontakt · 2. vor aseptischen Tätigkeiten · 3. nach Kontakt mit potenziell infektiösem Material · 4. nach Patientenkontakt · 5. nach Kontakt mit der Patientenumgebung</td><td>„Hygiene ist entscheidend, um Infektionen zu verhindern.“ Die Hände tragen Erreger von Mensch zu Mensch. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Persönliche Schutzausrüstung (PSA)</b>: Handschuhe, Kittel, Mund-Nasen-Schutz — je nach Infektionsrisiko</td><td>schützt dich und die anderen</td></tr>
+  <tr><td><b>Reinigung und Desinfektion</b> regelmäßig nach Hygieneplan</td><td>—</td></tr>
+  <tr><td><b>Wäsche und Abfall</b>: getrennte Behälter, sichere Entsorgung</td><td>—</td></tr>
+  <tr><td><b>Isolation</b> bei meldepflichtigen Erkrankungen</td><td>damit sich der Erreger nicht ausbreitet <span class="her">Herleitung</span></td></tr>
+</table></div>
+<p><b>Im Pflegealltag heißt das konkret</b> (Folie 8): Basishygiene verankern (Händedesinfektion, PSA, Flächendesinfektion) · Impfstatus prüfen und beraten, Ausbruchsmanagement vorbereiten · Melderelevantes erkennen (Symptome, Erregernachweise) und die Meldekette kennen.</p>
+
+<h3>Das Fallbeispiel aus dem Foliensatz</h3>
+<div class="def">
+  <span class="t">Kurz-Fallbeispiel (Folie 9)</span>
+  <p>Auf einer Station treten bei <b>4 Bewohner:innen akute gastrointestinale Symptome</b> auf (Magen-Darm-Beschwerden). Fragen: Welche Sofortmaßnahmen leiten Sie ein? (Hygiene/Isolierung, Diagnostik, Dokumentation) · Was ist meldepflichtig? Wer meldet? In welcher Frist? · Welche Informationen benötigt das Gesundheitsamt?</p>
+</div>
+<p><b>Der Arbeitsauftrag (30–40 Min.):</b> 1. § 6/7 und § 23 lesen · 2. die Meldekette als Diagramm zeichnen (Praxis → Gesundheitsamt → RKI/DEMIS) · 3. einen <b>5-Punkte-Plan ableiten</b> · 4. Herausforderungen im Pflegealltag (2–3 Stichpunkte) · Abgabe: Foto vom Diagramm und Maßnahmenplan (1 Seite).</p>
+<details><summary>Ein möglicher Weg zum 5-Punkte-Plan <span class="her">Herleitung</span></summary>
+<p>Die Folien geben keine Lösung. Das hier ist aus Folie 5, 6, 8, 9 und dem Textblatt S. 2 zusammengesetzt:</p>
+<ol>
+  <li><b>Hygiene verstärken:</b> Händedesinfektion nach den fünf Momenten, PSA, Flächendesinfektion — <b>weil</b> mehrere Bewohner gleichzeitig krank sind und ein Erreger sich weiter ausbreiten kann.</li>
+  <li><b>Isolieren:</b> die Betroffenen absondern — <b>weil</b> so die anderen Bewohner und das Personal geschützt werden.</li>
+  <li><b>Diagnostik veranlassen</b> (über den Arzt) — <b>weil</b> erst der Nachweis zeigt, ob ein meldepflichtiger Erreger da ist (§ 7, z. B. Salmonellen).</li>
+  <li><b>Melden:</b> Arzt und Leitung sofort informieren; Meldung an das Gesundheitsamt <b>binnen 24 Stunden</b> — <b>weil</b> das Gesetz das schon bei Verdacht verlangt und das Amt einen Ausbruch früh erkennen muss.</li>
+  <li><b>Dokumentieren:</b> wer, seit wann, welche Zeichen, welche Maßnahmen — <b>weil</b> das Gesundheitsamt ermittelt (Folie 7).</li>
+</ol>
+<p>Ob eine Magen-Darm-Häufung ohne Nachweis schon meldepflichtig ist, und <b>welche Informationen</b> das Gesundheitsamt genau braucht (Frage 3), steht in deinen Dateien nicht. Die Tabelle nennt nur „§ 9/§ 10 Meldedaten: namentlich/nichtnamentlich, Inhalte“. Diese Frage bleibt offen.</p>
+</details>
+<p class="lesen">Der Foliensatz verweist auch auf ein YouTube-Video und nennt es selbst „externer Inhalt“. Daraus ist hier nichts übernommen.</p>
+<div class="merke"><b>Merke:</b> § 6 = Krankheit (schon bei <b>Verdacht</b>) · § 7 = Erreger (Nachweis) · binnen <b>24 Stunden</b> ans Gesundheitsamt · DEMIS · Kette: Praxis → Gesundheitsamt → RKI · § 23 = Hygiene in Einrichtungen, KRINKO.</div>
+<p class="fr">🇫🇷 L'IfSG (depuis 2001) protège contre les maladies transmissibles : prévenir, détecter tôt, combattre. § 6 = déclarer la maladie (déjà en cas de suspicion), § 7 = déclarer l'agent pathogène trouvé (par ex. MRSA, salmonelles). Délai : au plus tard 24 heures, au service de santé (Gesundheitsamt), par voie électronique (DEMIS). Puis transmission au RKI. Hygiène : les cinq moments de la désinfection des mains, équipement de protection, isolement. Demande à ta tutrice qui déclare dans ton établissement.</p>
+<p class="quelle">Grundlage Infektionsschutzgesetz, S. 1–2 · Infektionsschutzgesetz (IfSG), Folien 2–14</p>
+
+<!-- ============ 10 LINA K. ============ -->
+<h2>10 · Der Fall Lina K. — ein Fall wie deiner <span class="stern">★★</span></h2>
+<div class="def">
+  <span class="t">Arbeitsblatt vom 06.10.2025</span>
+  <p>Lina K. ist <b>Auszubildende im 2. Lehrjahr</b> und arbeitet im Schichtdienst. Auf dem <b>direkten Weg von der Berufsschule zur Praxis</b>, unmittelbar nach Unterrichtsschluss, stürzt sie mit dem <b>E-Scooter</b> und verletzt sich am Handgelenk (Verdacht: Distorsion = Verstauchung). Sie hat einen angemeldeten <b>Minijob (520 €)</b> im Café am Wochenende. Sie möchte ab nächstem Monat in <b>Teilzeit</b> ausbilden (familiäre Gründe) und nach dem Schulblock eine <b>3-monatige Reise-Auszeit</b> ohne Arbeit machen.</p>
+</div>
+<p><b>Die Aufgaben:</b> A. Begriffe klären (Wegeunfall, Minijob, Teilzeitausbildung) · B. Ist es ein Wegeunfall? Welche Schritte nach dem Unfall? · C. Folgen der Teilzeit (Dauer, Vergütung, Dienstplan/Schule) · D. Absicherung während der Auszeit · E. Wegeunfall gegen Freizeitunfall: 2–3 Kriterien.</p>
+<div class="scroll"><table>
+  <tr><th>Teil</th><th>Was deine Dateien dazu sagen</th></tr>
+  <tr class="gruen"><td>A1 / B / E · Wegeunfall</td><td>Die Unfallversicherung schützt bei Arbeitsunfällen „<b>inkl. Wegeunfälle</b>“ (§ 8 SGB VII). Träger: <b>Berufsgenossenschaften</b> und Unfallkassen. Weg: der <b>Arbeitgeber meldet</b> der Berufsgenossenschaft; Unfallanzeige ab <b>mehr als 3 Kalendertagen</b> Arbeitsunfähigkeit; die BG prüft und bewilligt; Leistungen: Heilbehandlung, Verletztengeld. Eine Definition des Wortes „Wegeunfall“ steht in deinen Dateien <b>nicht</b>.</td></tr>
+  <tr class="gelb"><td>B · spricht es für einen Wegeunfall?</td><td>Der Fall betont selbst: „<b>direkter Weg</b>“ und „<b>unmittelbar nach Unterrichtsschluss</b>“. Das spricht eher für einen Wegeunfall. <span class="her">Herleitung</span> — die genauen Kriterien (Teil E) nennen deine Folien nicht.</td></tr>
+  <tr class="rot"><td>A2 · Minijob</td><td>steht in deinem Ordner <b>nirgends</b></td></tr>
+  <tr class="rot"><td>A3 / C · Teilzeitausbildung</td><td>steht in deinem Ordner <b>nirgends</b></td></tr>
+  <tr class="gelb"><td>D · Auszeit</td><td>Das Blatt selbst nennt: Kranken-, Unfall-, Auslandskrankenversicherung, ggf. Krankengeld und Beitragspflicht. Aus Kapitel 3 weißt du: Für alle mit Wohnort in Deutschland gilt die <b>Versicherungspflicht</b>. Was das während einer Reise ohne Arbeit genau heißt, steht nicht in deinen Dateien.</td></tr>
+</table></div>
+<div class="hinweis"><b>Wo du die fehlenden Antworten findest</b> <span class="her">Herleitung</span>: Minijob → die Stelle, bei der der Minijob angemeldet ist · Teilzeit → dein Ausbildungsvertrag und die Schule · Absicherung → deine Krankenkasse · Wegeunfall → die Berufsgenossenschaft über den Arbeitgeber. Nichts davon ist hier ausgedacht beantwortet. Abgabe war bis 07.10.2025, 8:00 Uhr.</div>
+<p class="fr">🇫🇷 Lina, apprentie en 2ᵉ année, tombe en trottinette sur le trajet direct entre l'école et le stage. Tes fichiers disent : l'assurance accident (Berufsgenossenschaft) couvre aussi les accidents de trajet ; l'employeur déclare ; déclaration si plus de 3 jours d'arrêt. Sur le mini-job, le temps partiel et l'assurance pendant le voyage, tes fichiers ne disent rien.</p>
+<p class="quelle">5-6 DS, S. 1–2 · 1-4 DS, S. 13–14 · AB Grundprinzipien, S. 1</p>
+
+<!-- ============ TOP 10 ============ -->
+<h2>Top 10 fürs Examen</h2>
+<ol>
+  <li>15.06.1883, Bismarck: erste Krankenversicherung (Arbeiter 2/3, Arbeitgeber 1/3) — damals 10 %, heute rund 88 % gesetzlich versichert</li>
+  <li>Fünf Grundprinzipien: Versicherungspflicht · Beitragsfinanzierung · Solidarität · Sachleistung · Selbstverwaltung</li>
+  <li>„Gesunde stehen für Kranke ein, Reiche für Arme und Singles für Familien“</li>
+  <li>GKV: Beitrag nach Einkommen, gleiche Leistungen, Familienversicherung · PKV: Prämie nach Risiko</li>
+  <li>Lohnfortzahlung 6 Wochen, danach Krankengeld 70 % des Bruttolohns</li>
+  <li>Drei Ebenen: Staat (BMG, Länder, Kommunen) · Selbstverwaltung (G-BA) · Akteure am Menschen</li>
+  <li>Wirtschaftlichkeitsgebot: ausreichend, zweckmäßig, wirtschaftlich, nicht über das Notwendige hinaus</li>
+  <li>Fünf Säulen: Kranken 1883, Unfall 1884 (nur Arbeitgeber), Rente 1889, Arbeitslosen 1927, Pflege 1995</li>
+  <li>Pflegeversicherung = Teilkostenversicherung · seit 2017 zählt die Selbstständigkeit · Antrag → MD → PG 1–5</li>
+  <li>IfSG: § 6 Krankheit (schon bei Verdacht), § 7 Erreger · binnen 24 Stunden ans Gesundheitsamt · § 23 Hygiene</li>
+</ol>
+
+<!-- ============ FRAGEN ============ -->
+<h2>5 Prüfungsfragen — mit Musterantwort</h2>
+<details><summary><span class="op">Nennen</span>Nennen Sie die fünf Grundprinzipien des deutschen Gesundheitssystems.</summary>
+<p>Versicherungspflicht · Beitragsfinanzierung · Solidaritätsprinzip · Sachleistungsprinzip · Selbstverwaltungsprinzip.</p></details>
+<details><summary><span class="op">Erklären</span>Erklären Sie das Solidaritätsprinzip an einem eigenen Beispiel.</summary>
+<p>Alle gesetzlich Versicherten tragen gemeinsam die Kosten der Krankheiten. Der Beitrag richtet sich nach dem Einkommen, aber alle bekommen die gleichen Leistungen. Gesunde stehen für Kranke ein, Reiche für Arme, Singles für Familien. <b>Beispiel:</b> Eine Pflegefachfrau ohne Kinder zahlt jeden Monat ihren Beitrag und ist kaum krank. Ihr Kollege verdient gleich viel, hat zwei Kinder und eine Frau ohne Einkommen. Er zahlt denselben Beitrag — aber seine Kinder und seine Frau sind beitragsfrei mitversichert. Wird eines der Kinder schwer krank, zahlt die Solidargemeinschaft die ganze Behandlung. <i>(Das Beispiel ist erfunden; die Regel steht in AB Grundprinzipien S. 2–3.)</i></p></details>
+<details><summary><span class="op">Beschreiben</span>Beschreiben Sie die drei Ebenen des Gesundheitssystems mit je zwei Akteuren.</summary>
+<p><b>1. Ebene — gesetzlicher Rahmen:</b> Das BMG macht Gesetze und Verordnungen und hat die Rechtsaufsicht; die Bundesländer planen und finanzieren teilweise die Krankenhäuser (dazu die Kommunen mit den Gesundheitsämtern). <b>2. Ebene — Selbstverwaltung:</b> Der G-BA entscheidet, welche Leistungen die Kassen bezahlen; der GKV-Spitzenverband schließt Verträge mit Ärzten, Kliniken und Apotheken. <b>3. Ebene — die Akteure:</b> Ärzte und Krankenhäuser (auch Rehakliniken, Apotheken) behandeln die Menschen direkt.</p></details>
+<details><summary><span class="op">Begründen</span>Begründen Sie, warum eine Pflegefachperson schon beim Verdacht auf eine meldepflichtige Krankheit handeln muss.</summary>
+<p><b>Ursache:</b> Bei einem Bewohner besteht der Verdacht auf eine meldepflichtige Krankheit nach § 6 IfSG, z. B. Tuberkulose. <b>Wirkung:</b> Die Krankheit ist übertragbar. Ohne Maßnahmen geht der Erreger über Hände, Kontakt und Umgebung auf andere Bewohner und auf das Personal über. <b>Gefahr:</b> Es entsteht ein Ausbruch in der Einrichtung; Bewohner und Beschäftigte werden krank. Das Gesundheitsamt kann ohne Meldung nicht früh reagieren. <b>Deshalb:</b> Ich informiere sofort Arzt und Leitung, damit die Meldung unverzüglich, spätestens binnen 24 Stunden, an das Gesundheitsamt geht (über DEMIS). Ich halte die Hygiene ein (Händedesinfektion nach den fünf Momenten, PSA) und isoliere nach Anordnung. Das IfSG verlangt die Meldung ausdrücklich schon bei <b>Verdacht</b>, weil es um Früherkennung geht. <span class="her">Herleitung</span> aus Textblatt S. 1–2 und Folien 4–5, 8</p></details>
+<details><summary><span class="op">Ableiten</span>Herr M., gesetzlich versichert, bekommt ein Medikament für 70 € und eines für 150 €. Leiten Sie ab, wie viel er zuzahlt.</summary>
+<p>Regel: 10 % des Preises, mindestens 5 €, höchstens 10 €. 70 € → 10 % = <b>7 €</b> (liegt zwischen 5 und 10). 150 € → 10 % wären 15 €, das ist mehr als der Höchstbetrag → er zahlt <b>10 €</b>. Zusammen: <b>17 €</b>. Ist Herr M. unter 18, zahlt er nichts zu. <b>Außerdem:</b> Ist Herr M. chronisch krank, gilt die Belastungsgrenze von 1 % seiner jährlichen Bruttoeinnahmen — <b>aber nur, wenn er einen Antrag</b> bei seiner Kasse stellt. Deshalb sollte man ihn darauf hinweisen. <i>(Herr M. ist erfunden.)</i></p></details>
+
+<!-- ============ SPICKZETTEL ============ -->
+<h2>Spickzettel</h2>
+<ul class="spick">
+  <li>1883 · Bismarck · 2/3 AN, 1/3 AG · heute 88 %, &gt; 74 Mio.</li>
+  <li>Pflicht: GKV 1.4.2007, PKV 1.1.2009</li>
+  <li>GKV: nach Einkommen · PKV: nach Risiko</li>
+  <li>Gesunde → Kranke · Reiche → Arme · Singles → Familien</li>
+  <li>Lohn 6 Wochen, dann 70 % Krankengeld</li>
+  <li>Sachleistung: Karte statt Rechnung</li>
+  <li>Staatlich (GB, S) · Sozialvers. (D) · Markt (USA)</li>
+  <li>Ebenen: Staat · G-BA/Kassen · Ärzte, Kliniken, Pflege</li>
+  <li>ausreichend · zweckmäßig · wirtschaftlich · nicht mehr als nötig</li>
+  <li>Arznei: 10 %, mind. 5, max. 10 € · bis 18 frei · 2 %/1 % auf Antrag</li>
+  <li>Säulen: KV 1883 · UV 1884 · RV 1889 · ALV 1927 · PV 1995</li>
+  <li>UV: nur Arbeitgeber · BG · Meldung ab &gt; 3 Tagen AU</li>
+  <li>PV: Teilkosten · 2017 Selbstständigkeit · MD · 6 Monate</li>
+  <li>Sozialhilfe: Würde · Nachrang</li>
+  <li>IfSG 2001: § 6 Krankheit (Verdacht!), § 7 Erreger</li>
+  <li>24 h · DEMIS · Gesundheitsamt → RKI</li>
+</ul>
+
+<h2>Woraus diese Seite gebaut ist</h2>
+<p>Elf Dateien aus deinem Drive-Ordner, <b>alle Seiten gelesen</b>, Bildfolien angesehen: Geschichte des Gesundheitssystems (1 S.) · Grundprinzipien, Foliensatz Issel (6 S.) · AB Grundprinzipien (5 S.) · AB Ebenen im Gesundheitswesen (6 S.) · Loesung Ebenen (1 S.) · Aufgaben Gesundheitssystem, Foliensatz Issel (4 S.) · AB Aufgaben Gesundheitssystem (5 S.) · 1-4 DS, Grundlage des Sozialgesetzes CE04 UE 01 (24 S.) · 5-6 DS, Arbeitsblatt Lina K. (2 S.) · Grundlage Infektionsschutzgesetz (2 S.) · Infektionsschutzgesetz (IfSG), Foliensatz (14 S.).</p>
+<p><b>Bewusst weggelassen:</b> die einzelnen Paragrafennummern zu Rentenarten, ALG-Dauer und Pflegeleistungen (§ 35, § 147, § 36 usw.) — sie stehen im Foliensatz, bringen dir aber ohne Erklärung nichts · die Quellenlisten der Folien · die QR-Codes (TaskCards-Pinnwand, YouTube-Videos) — nicht geöffnet. <b>Was fehlt:</b> die „Leiter“ (Folie leer) · die Zuteilung der Akteure auf die Aufgaben · die Ergebnisse der Gruppen (TaskCards) · eine Lösung für Lina K. und das Fallbeispiel Gastroenteritis · Minijob und Teilzeitausbildung · der Wortlaut der Gesetze. Wo ich etwas selbst verbinde, steht <span class="her">Herleitung</span>.</p>
+<p class="fr">🇫🇷 Tout vient de tes onze fichiers de cours. Rien d'Internet. Le badge « Herleitung » marque ce que j'ai déduit en reliant deux diapositives. Les exemples « Herr M. » et les deux collègues sont inventés pour t'entraîner.</p>
 </main>
-
-<footer>
-  <p>Das deutsche Gesundheitssystem — gebaut aus deinen eigenen Unterlagen.<br>
-    Wo eine Zahl undatiert ist, eine Aufgabe offen bleibt oder etwas von mir stammt, steht es
-    oben ausdrücklich dabei.</p>
-</footer>
