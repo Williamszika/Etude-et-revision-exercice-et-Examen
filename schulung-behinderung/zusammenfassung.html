@@ -1,986 +1,598 @@
-<title>Nicht die Menschen sind das Problem</title>
+<title>Menschen mit Behinderung</title>
+<meta name="description" content="Menschen mit Behinderung — Rechte, Grad der Behinderung, Merkzeichen und Krankenhaus, einfach erklärt, nur aus deinen neun Kursdateien (CE 07 / UE 06).">
 <style>
   :root{
-    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
-    --accent:#1f6a52;--accent-deep:#14503d;--accent-soft:#dbeee5;
-    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
-    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
-    --pharm:#1f5f86;--pharmbg:#dbe8f1;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --paper:#f3f5f4;--card:#ffffff;--ink:#17201f;--ink-soft:#4a5755;--line:#cfd8d6;
+    --accent:#1d6b74;--accent-soft:#dcedef;
+    --rot:#a43b30;--rotbg:#f7e2de;--gelb:#8a5a0c;--gelbbg:#f8ecd4;--gruen:#2a6b47;--gruenbg:#e0efe5;
     --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
   }
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
-    --accent:#74c2a3;--accent-deep:#93d5ba;--accent-soft:#12291f;
-    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
-    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
-    --pharm:#6cadd9;--pharmbg:#122736;}}
+    --paper:#111716;--card:#1a2221;--ink:#e8eeed;--ink-soft:#a1aeac;--line:#2d3836;
+    --accent:#6fc3cd;--accent-soft:#163238;
+    --rot:#e48d80;--rotbg:#33201c;--gelb:#e0b05f;--gelbbg:#30240f;--gruen:#7ccb9c;--gruenbg:#15291d;color-scheme:dark;}}
   :root[data-theme="dark"]{
-    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
-    --accent:#74c2a3;--accent-deep:#93d5ba;--accent-soft:#12291f;
-    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
-    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
-    --pharm:#6cadd9;--pharmbg:#122736;}
-  :root[data-theme="light"]{
-    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
-    --accent:#1f6a52;--accent-deep:#14503d;--accent-soft:#dbeee5;
-    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
-    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
-    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
-
+    --paper:#111716;--card:#1a2221;--ink:#e8eeed;--ink-soft:#a1aeac;--line:#2d3836;
+    --accent:#6fc3cd;--accent-soft:#163238;
+    --rot:#e48d80;--rotbg:#33201c;--gelb:#e0b05f;--gelbbg:#30240f;--gruen:#7ccb9c;--gruenbg:#15291d;color-scheme:dark;}
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
-
-  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
-    border-bottom:1px solid var(--line);
-    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
-  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--accent-deep);margin:0 0 10px;}
-  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
-    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
-  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
-  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
-    border-radius:999px;background:var(--card);color:var(--ink-soft);}
-
-  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
-    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
-  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
-    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
-    white-space:nowrap;}
-  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
-    background:var(--card);}
-
-  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
-  section{padding-top:52px;}
-  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
-    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
-  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
-  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
-  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
-  p{margin:0 0 14px;max-width:70ch;}
-  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
-  li{margin:5px 0;}
-  b,strong{font-weight:700;}
-  .fr{font-style:italic;color:var(--ink-soft);}
-  .fr::before{content:"🇫🇷 ";font-style:normal;}
-
-  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
-  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
-  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
-  .karte p:last-child{margin-bottom:0;}
-
-  .scroll{overflow-x:auto;margin:18px 0;}
-  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
-  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
-    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
-    text-align:left;vertical-align:bottom;}
-  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
-  td.k{font-weight:700;white-space:nowrap;}
-  tbody tr:nth-child(even) td{background:var(--paper);}
-
-  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .merk p:last-child{margin-bottom:0;}
-  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--accent-deep);display:block;margin-bottom:6px;}
-
-  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .warnung p:last-child{margin-bottom:0;}
-  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--warn);display:block;margin-bottom:6px;}
-
-  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .gefahr p:last-child{margin-bottom:0;}
-  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--notfall);display:block;margin-bottom:6px;}
-
-  .stufen{display:grid;gap:10px;margin:18px 0;}
-  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
-    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
-  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
-    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
-  .stufe .nr.n2{background:var(--accent);}
-  .stufe h4{margin:0 0 4px;}
-  .stufe p{margin:0;font-size:15.5px;}
-  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
-
-  .paare{display:grid;gap:9px;margin:18px 0;}
-  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
-    border-radius:0 10px 10px 0;padding:11px 15px;}
-  .paar .de{font-weight:600;}
-  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
-
-  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
-    overflow:hidden;}
-  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
-    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
-  details.quelle>summary::-webkit-details-marker{display:none;}
-  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
-  details.quelle[open]>summary::before{content:"－";}
-  details.quelle .inh{padding:0 17px 15px;}
-  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
-
-  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
-    padding:16px 18px;margin:20px 0;}
-  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
-  .pruef ol{margin:0;}
-
-  a{color:var(--accent-deep);}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
-  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
-    text-align:center;color:var(--ink-soft);font-size:14px;}
-  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
-  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;}
+  main{max-width:46rem;margin:0 auto;padding-inline:16px;padding-block:28px 60px;}
+  h1{font-size:2rem;line-height:1.15;margin:0 0 6px;text-wrap:balance;}
+  h2{font-size:1.35rem;line-height:1.25;margin:34px 0 8px;color:var(--accent);text-wrap:balance;}
+  h3{font-size:1.05rem;margin:18px 0 6px;}
+  p{margin:0 0 10px;}
+  ul,ol{margin:0 0 12px;padding-left:1.3rem;} li{margin:3px 0;}
+  .unter{color:var(--ink-soft);margin:0 0 16px;}
+  .stern{color:var(--gelb);font-size:.9em;letter-spacing:1px;white-space:nowrap;}
+  .kern{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;margin:14px 0;}
+  .fr{font-style:italic;color:var(--ink-soft);font-size:.95em;}
+  .merke{background:var(--gelbbg);border-radius:8px;padding:9px 13px;margin:10px 0;}
+  .merke b:first-child{color:var(--gelb);}
+  .hinweis{background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:9px 13px;margin:10px 0;font-size:.95em;}
+  .quelle{font-size:.8em;color:var(--ink-soft);margin:4px 0 0;}
+  /* Schemata: Kästen mit Pfeilen, von oben nach unten */
+  .schema{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:12px 0;}
+  .schema .titel{font-weight:700;margin:0 0 10px;}
+  .k{border:1.5px solid var(--line);border-radius:8px;padding:7px 10px;background:var(--paper);}
+  .k b{display:block;}
+  .k small{display:block;color:var(--ink-soft);font-size:.86em;line-height:1.4;}
+  .k.wichtig{border-color:var(--accent);background:var(--accent-soft);}
+  .k.rot{border-color:var(--rot);background:var(--rotbg);}
+  .k.gruen{border-color:var(--gruen);background:var(--gruenbg);}
+  .pfeil{text-align:center;color:var(--ink-soft);font-size:1.1rem;line-height:1.4;}
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .zwei > div{min-width:0;}
+  .lesen{font-size:.88em;color:var(--ink-soft);margin:8px 0 0;}
+  .scroll{overflow-x:auto;margin:10px 0;}
+  table{border-collapse:collapse;width:100%;font-size:.92em;line-height:1.4;}
+  th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-soft);}
+  td.z{white-space:nowrap;font-variant-numeric:tabular-nums;}
+  tr.rot td:first-child{background:var(--rotbg);} tr.gelb td:first-child{background:var(--gelbbg);} tr.gruen td:first-child{background:var(--gruenbg);}
+  details{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:8px 0;}
+  summary{cursor:pointer;font-weight:600;}
+  .op{display:inline-block;font-size:.75em;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:0 8px;margin-right:6px;}
+  .spick{columns:2 16rem;column-gap:24px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px 12px 32px;}
+  .spick li{break-inside:avoid;}
+  @media (max-width:520px){.zwei{grid-template-columns:1fr;} h1{font-size:1.7rem;} td.z{white-space:normal;} th,td{padding:5px 6px;}}
 </style>
 
-<header class="hero">
-  <p class="eyebrow">CE 07 / UE 06 · Barrieren erkennen — Pflege gestalten</p>
-  <h1>Nicht die Menschen sind das Problem</h1>
-  <p class="sub">Menschen mit Behinderung: die Rechte, der Ausweis mit seinen Merkzeichen —
-    und eine Studie über 2 242 deutsche Krankenhäuser, die zeigt, woran es wirklich scheitert.</p>
-  <div class="meta">
-    <span>CE 07 / UE 06</span>
-    <span>K. Schnapp-Benend</span>
-    <span>Hocher &amp; Hollederer</span>
-    <span>MAGS NRW</span>
-    <span>8 Quellen</span>
-    <span>Niveau B1</span>
-    <span>Stand 19.09.2026</span>
+<style>
+  .her{font-style:normal;font-size:.78em;font-weight:700;letter-spacing:.04em;color:var(--gelb);background:var(--gelbbg);border-radius:999px;padding:0 7px;white-space:nowrap;}
+  .def{border:2px solid var(--accent);border-radius:10px;padding:12px 14px;margin:12px 0;background:var(--card);}
+  .def .t{display:block;font-size:.78em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+  .def p:last-child{margin-bottom:0;}
+  dl.woerter{margin:10px 0;display:grid;grid-template-columns:minmax(8rem,auto) 1fr;gap:6px 14px;}
+  dl.woerter dt{font-weight:700;} dl.woerter dd{margin:0;}
+  @media (max-width:520px){dl.woerter{grid-template-columns:1fr;gap:0;} dl.woerter dd{margin-bottom:8px;}}
+</style>
+
+<main lang="de">
+<h1>Menschen mit Behinderung — Rechte, Ausweis und Krankenhaus</h1>
+<p class="unter">CE 07 / UE 06 · neu geschrieben am 04.11.2026 · <b>nur aus deinen neun Kursdateien</b> — nichts aus dem Internet. Wo ich zwei Folien selbst verbinde, steht <span class="her">Herleitung</span>.</p>
+
+<div class="kern">
+  <p><b>Das Wichtigste in zwei Sätzen:</b> Eine Behinderung entsteht, wenn eine <b>dauerhafte Beeinträchtigung</b> auf <b>Barrieren</b> trifft — dann kann der Mensch nicht gleichberechtigt am Leben teilhaben. Deshalb muss sich <b>das System</b> ändern (Gesetze, Gebäude, Kommunikation, Haltung), nicht der Mensch: „Nicht die Menschen sind das Problem — das System ist nicht ausreichend barrierefrei.“</p>
+  <p class="fr">🇫🇷 Le handicap naît quand une limitation durable rencontre des obstacles (barrières). Ce n'est pas la personne qui doit s'adapter, c'est le système (lois, bâtiments, communication, attitude). À l'hôpital aussi : le problème, ce n'est pas le patient, c'est le manque d'accessibilité.</p>
+</div>
+
+<!-- ============ AUF EINEN BLICK ============ -->
+<h2>Auf einen Blick: vom Menschenrecht bis ans Krankenbett</h2>
+<div class="schema">
+  <p class="titel">Der ganze Kurs als Kette</p>
+  <div class="k"><b>1948 · Allgemeine Erklärung der Menschenrechte</b><small>alle Menschen sind frei und gleich an Würde und Rechten geboren</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k wichtig"><b>UN-Behindertenrechtskonvention (UN-BRK)</b><small>2006 verabschiedet · 2008 in Kraft · 2009 von Deutschland ratifiziert · verbietet jede Diskriminierung · „Nichts über uns ohne uns“</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Behinderung = Beeinträchtigung + Barrieren</b><small>Ziel: Inklusion — die Gesellschaft baut Barrieren ab, der Mensch muss sich nicht anpassen</small></div>
+  <div class="pfeil">↓</div>
+  <div class="zwei">
+    <div class="k"><b>In Deutschland: das Recht</b><small>Grad der Behinderung (GdB) 20–100 · ab 50 schwerbehindert · Ausweis · Merkzeichen G, aG, B, H, Bl, Gl, RF · Nachteilsausgleiche</small></div>
+    <div class="k"><b>Im Krankenhaus: die Praxis</b><small>Artikel 25 UN-BRK: Recht auf Gesundheit · Studie: nur 17,2 von 40 Kriterien erfüllt · Strukturhilfe: Kommunikation, Organisation, Haltung, Ausstattung</small></div>
   </div>
-</header>
+  <div class="pfeil">↓</div>
+  <div class="k gruen"><b>Rolle der Pflege</b><small>Kommunikation anpassen · Bedürfnisse ernst nehmen · Begleitpersonen einbeziehen</small></div>
+  <p class="lesen">So liest du das: Oben stehen die Rechte, unten deine Arbeit auf Station. Jeder Kasten ist ein Kapitel unten.</p>
+</div>
 
-<nav class="toc" aria-label="Inhalt">
-  <a href="#warum">Warum das dein Thema ist</a>
-  <a href="#unbrk">Die UN-BRK</a>
-  <a href="#inklusion">Integration oder Inklusion</a>
-  <a href="#sgb">Behindert nach dem SGB</a>
-  <a href="#gdb">Der Grad der Behinderung</a>
-  <a href="#ausweis">Der Ausweis</a>
-  <a href="#merkzeichen">Die sieben Merkzeichen</a>
-  <a href="#vorteile">Die Nachteilsausgleiche</a>
-  <a href="#kh">Im Krankenhaus</a>
-  <a href="#studie">Die Studie — 17,2 von 40</a>
-  <a href="#geistig">Geistige Behinderung</a>
-  <a href="#arbeitsblatt">Das Arbeitsblatt</a>
-  <a href="#offen">Was fehlt</a>
-</nav>
+<!-- ============ 1 DEFINITION ============ -->
+<h2>1 · Was ist eine Behinderung? Die Definitionen <span class="stern">★★★</span></h2>
+<p>Deine Unterlagen geben <b>drei</b> Definitionen. Sie sagen dasselbe mit anderen Worten. Die erste ist die wichtigste.</p>
+<div class="def">
+  <span class="t">Definition 1 — UN-BRK, Artikel 1 (so steht sie im Textteil)</span>
+  <p>Zu Menschen mit Behinderungen zählen „Menschen, die <b>langfristige</b> körperliche, seelische, geistige oder Sinnesbeeinträchtigungen haben, welche sie <b>in Wechselwirkung mit verschiedenen Barrieren</b> an der vollen, wirksamen und gleichberechtigten <b>Teilhabe</b> an der Gesellschaft hindern können.“</p>
+  <p>Die Definition ist <b>absichtlich breit</b> gefasst: So soll <b>kein</b> Mensch mit Behinderung vom Schutz der Konvention ausgeschlossen werden.</p>
+</div>
+<div class="def">
+  <span class="t">Definition 2 — nach dem Sozialgesetzbuch (Textteil und Folie)</span>
+  <p>Als „behindert“ im Sinne des Sozialgesetzbuches gilt, wer <b>körperlich, geistig oder seelisch</b> so eingeschränkt ist, dass er <b>längerfristig</b> am gesellschaftlichen Leben <b>nicht voll und ganz teilnehmen</b> kann.</p>
+</div>
+<div class="def">
+  <span class="t">Definition 3 — in Einfacher Sprache (Blatt des Versorgungsamts Aachen)</span>
+  <p>Wenn ein Mensch auf Dauer ein Gesundheitsproblem hat und es deshalb für ihn schwerer ist, am Leben teilzunehmen, dann sagt man: Dieser Mensch hat eine Behinderung.</p>
+</div>
+<div class="def">
+  <span class="t">Dieselbe Definition — Wort für Wort einfach</span>
+  <p>Eine Behinderung hat <b>zwei Teile</b>:</p>
+  <ol>
+    <li>Eine <b>Beeinträchtigung</b>, die <b>lange</b> bleibt: am Körper, an der Seele (Psyche), im Denken (geistig) oder an den Sinnen (Sehen, Hören).</li>
+    <li><b>Barrieren</b> (Hindernisse) in der Umwelt: eine Treppe ohne Aufzug, ein Text ohne Brailleschrift, ein Gespräch ohne Dolmetscher, Vorurteile.</li>
+  </ol>
+  <p>Erst wenn <b>beides zusammenkommt</b> („in Wechselwirkung“), kann der Mensch nicht so <b>teilhaben</b> (mitmachen, dabei sein) wie andere. Das heißt: Baut man die Barriere ab, wird die Behinderung kleiner. <span class="her">Herleitung</span> aus Artikel 1 und dem Lösungsblatt („Barrieren abbauen“)</p>
+</div>
+<div class="merke"><b>Merke:</b> Das wichtigste Stück der Definition ist „<b>in Wechselwirkung mit verschiedenen Barrieren</b>“. Die Behinderung liegt nicht nur im Menschen, sondern auch in seiner Umwelt.</div>
+<p class="fr">🇫🇷 Selon la Convention de l'ONU (article 1), une personne handicapée a une limitation durable (physique, psychique, mentale ou sensorielle) qui, en interaction avec des barrières, peut l'empêcher de participer pleinement à la société. Supprimer la barrière diminue le handicap.</p>
 
-<main>
+<h3>Die Wörter, die du für alles Weitere brauchst</h3>
+<dl class="woerter">
+  <dt>Beeinträchtigung</dt><dd>eine Einschränkung des Körpers, der Seele, des Denkens oder der Sinne</dd>
+  <dt>Barriere</dt><dd>ein Hindernis. Es gibt <b>natürliche</b> und <b>von Menschen gemachte</b> Barrieren, z. B. ein zu enger Eingang oder eine Toilette nur im Keller.</dd>
+  <dt>Teilhabe</dt><dd>am Leben der Gesellschaft teilnehmen: Schule, Arbeit, Kultur, Sport, Wahlen</dd>
+  <dt>Diskriminierung</dt><dd>ein Mensch wird schlechter behandelt oder ausgegrenzt, hier wegen seiner Behinderung</dd>
+  <dt>Marginalisierung</dt><dd>an den Rand der Gesellschaft gedrängt werden</dd>
+  <dt>Inklusion</dt><dd>„Teilhabe ohne Anpassungszwang“: Die Gesellschaft baut Barrieren ab, damit alle mitmachen können — ohne dass sich der Einzelne anpassen muss.</dd>
+  <dt>Integration</dt><dd>Der Mensch mit Behinderung soll sich in die <b>bestehenden</b> Systeme einfügen. Das will die UN-BRK <b>nicht</b> mehr.</dd>
+  <dt>ratifizieren</dt><dd>Ein Staat sagt offiziell „Ja“ zu einem Vertrag. Danach muss er ihn umsetzen.</dd>
+  <dt>Grad der Behinderung (GdB)</dt><dd>eine Zahl von 20 bis 100. Sie zeigt, wie stark sich die Behinderung auf die Teilhabe auswirkt.</dd>
+  <dt>schwerbehindert</dt><dd>GdB von mindestens 50</dd>
+  <dt>Merkzeichen</dt><dd>Buchstaben im Schwerbehindertenausweis (z. B. G, B, H). Sie öffnen den Weg zu bestimmten Hilfen.</dd>
+  <dt>Nachteilsausgleich</dt><dd>eine Hilfe (Schutzrecht oder Leistung), die einen Nachteil durch die Behinderung ausgleicht</dd>
+  <dt>Barrierefreiheit</dt><dd>Gebäude, Technik und Kommunikation sind so gestaltet, dass Menschen mit Behinderungen sie <b>ohne besondere Erschwernis</b> und grundsätzlich <b>ohne fremde Hilfe</b> nutzen können (Definition des G-BA in der Studie).</dd>
+</dl>
+<p class="quelle">Menschen mit Behinderung (Textteil), S. 1–3 · Foliensatz PP, Folie 16 · Schwerbehindertenausweis in Einfacher Sprache, S. 2 · YouTube-Lösungsblatt, S. 2–3 · Studie Hocher/Hollederer, S. 2</p>
 
-<section id="warum">
-  <h2>Warum das kein Sozialkunde-Thema ist, sondern deins</h2>
-  <p class="lead">Der Kurs heißt <b>„Barrieren erkennen — Pflege gestalten“</b>. Die zweite
-    Hälfte des Titels ist die Arbeit.</p>
+<!-- ============ 2 BARRIEREN IM ALLTAG ============ -->
+<h2>2 · Barrieren im Alltag — wo Diskriminierung passiert <span class="stern">★★</span></h2>
+<p>Dinge, die für Menschen ohne Behinderung selbstverständlich sind, sind für Menschen mit Behinderung oft eine <b>große Herausforderung</b>. Dazu kommt Diskriminierung durch <b>Vorurteile</b> (stereotype Vorstellungen). Deshalb können sie nicht gleichberechtigt am Alltag und am öffentlichen Leben teilhaben.</p>
+<p>Dein Foliensatz zeigt das mit Bildern und fragt: <b>„Gleichberechtigung ???“</b> (Silhouetten auf einer Waage, eine mit Prothese, eine im Rollstuhl) und <b>„Öffentliches Leben ???“</b> (Stadion, Café, Kirche, Kino).</p>
+<div class="scroll"><table>
+  <tr><th>Bereich</th><th>Beispiel aus deinem Textteil</th><th>Warum ist das Diskriminierung?</th></tr>
+  <tr><td><b>Schule</b></td><td>Kinder mit Behinderung dürfen nicht am gleichen Unterricht teilnehmen wie andere Kinder.</td><td>Sie bekommen nicht dieselbe Bildung — gegen das Recht auf Zugang zur Bildung. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Arbeit</b></td><td>Sie finden schwer eine Stelle, für die sie qualifiziert sind.</td><td>Nicht das Können entscheidet, sondern das Vorurteil.</td></tr>
+  <tr><td><b>Gebäude</b></td><td>Bars, Restaurants, Theater, Kinos, Stadien, Kirchen mit Toilette nur im Keller oder zu engem Eingang</td><td>Rollstuhlnutzer kommen nicht oder nur mit Hilfe hinein.</td></tr>
+  <tr><td><b>Verkehr</b></td><td>Busse und Bahnen sind nicht durchgehend barrierefrei.</td><td>Das schränkt Mobilität und Selbstbestimmung ein.</td></tr>
+  <tr><td><b>Politik, Freizeit</b></td><td>In einigen Staaten: kein Wahlrecht, keine Teilnahme an Sport und Veranstaltungen</td><td>Ausschluss vom öffentlichen Leben</td></tr>
+  <tr><td><b>Gesundheit</b></td><td>Manche dürfen ihre <b>Behandlungsmethode nicht frei bestimmen</b>.</td><td>Ihnen wird ein selbstbestimmtes Leben verweigert.</td></tr>
+  <tr><td><b>Armut</b></td><td>Überdurchschnittlich viele leben in Entwicklungsländern, oft ausgegrenzt und in extremer Armut.</td><td>—</td></tr>
+</table></div>
+<p>Nicht alles gilt überall gleich. Gemeinsam ist allen Beispielen: Es sind <b>Diskriminierungen</b>.</p>
+<p class="fr">🇫🇷 Les barrières sont partout : école, travail, bâtiments (toilettes au sous-sol, porte trop étroite), transports, élections, choix du traitement. Ce sont des discriminations.</p>
+<p class="quelle">Menschen mit Behinderung (Textteil), S. 1–2 · Foliensatz PP, Folien 2–6</p>
 
-  <div class="merk">
-    <span class="t">Artikel 25 der UN-Behindertenrechtskonvention — wörtlich</span>
-    <p>„Die Vertragsstaaten anerkennen das Recht von Menschen mit Behinderungen auf das
-      <b>erreichbare Höchstmaß an Gesundheit ohne Diskriminierung</b> aufgrund von Behinderung.
-      Die Vertragsstaaten treffen alle geeigneten Maßnahmen, um zu gewährleisten, dass Menschen
-      mit Behinderungen Zugang zu geschlechtsspezifischen Gesundheitsdiensten, einschließlich
-      gesundheitlicher Rehabilitation, haben.“</p>
-    <p>„Insbesondere […] bieten die Vertragsstaaten die Gesundheitsleistungen an, die von
-      Menschen mit Behinderungen <b>speziell wegen ihrer Behinderungen</b> benötigt werden
-      […].“</p>
-    <p class="fr">L'article 25 ne parle pas de bonne volonté : il parle d'un <b>droit</b>.</p>
+<!-- ============ 3 UN-BRK ============ -->
+<h2>3 · Die UN-Behindertenrechtskonvention (UN-BRK) <span class="stern">★★★</span></h2>
+<p>Die Menschenrechte gelten für alle. Trotzdem wurden die Rechte und Bedürfnisse von Menschen mit Behinderung <b>jahrzehntelang nicht genug beachtet</b>. Deshalb nennt man die Konvention von 2006 oft einen <b>Paradigmenwechsel</b> (eine völlig neue Sichtweise).</p>
+
+<h3>Die Daten — in der richtigen Reihenfolge</h3>
+<div class="scroll"><table>
+  <tr><th>Wann</th><th>Was</th></tr>
+  <tr><td class="z">1948</td><td><b>Allgemeine Erklärung der Menschenrechte</b>: Alle Menschen sind frei und gleich an Würde und Rechten geboren.</td></tr>
+  <tr><td class="z">13.12.2006</td><td>Die Generalversammlung der Vereinten Nationen <b>verabschiedet</b> die Konvention (Resolution 61/106). Englisch: CRPD. Am selben Tag: das <b>Fakultativprotokoll</b> (Zusatzvertrag).</td></tr>
+  <tr><td class="z">03.05.2008</td><td>Die Konvention und das Fakultativprotokoll treten <b>in Kraft</b>.</td></tr>
+  <tr><td class="z">2009</td><td><b>Deutschland ratifiziert</b> die Konvention. Damit muss es ihre Regeln umsetzen.</td></tr>
+  <tr><td class="z">Mai 2022</td><td><b>185 Staaten</b> haben die Konvention ratifiziert. Dem Fakultativprotokoll sind nur <b>100 Staaten</b> beigetreten, darunter Deutschland.</td></tr>
+</table></div>
+<div class="hinweis"><b>Hinweis — Achtung bei „100 Staaten“:</b> Die Folie 7 nennt „2006 verabschiedet · 2008 in Kraft getreten · 100 Staaten“. Nach dem Textteil sind 100 Staaten aber nur dem <b>Fakultativprotokoll</b> beigetreten. Die <b>Konvention selbst</b> haben 185 Staaten ratifiziert (Stand Mai 2022).</div>
+
+<h3>Was die Konvention garantiert</h3>
+<p>Sie <b>verbietet jede Form der Diskriminierung</b>. Menschen mit Behinderung haben <b>dieselben Menschenrechte</b> wie alle — angepasst an ihre besonderen Bedürfnisse. Ziel: ein <b>möglichst selbstbestimmtes Leben in Würde als Teil der Gesellschaft</b>.</p>
+<div class="zwei">
+  <div class="k gruen"><b>Rechte</b><small>unabhängiges und selbstbestimmtes Leben · gleiches Recht auf eine eigene Familie · Recht auf Arbeit bzw. Beschäftigung · Teilhabe am öffentlichen und kulturellen Leben · Zugang zur Bildung</small></div>
+  <div class="k rot"><b>Schutz</b><small>vor Gewalt · vor Ausbeutung · vor Missbrauch</small></div>
+</div>
+
+<h3>Was die Staaten tun müssen</h3>
+<div class="scroll"><table>
+  <tr><th>Pflicht</th><th>Warum?</th></tr>
+  <tr><td>Jede Diskriminierung <b>verhindern</b> und alle möglichen Maßnahmen gegen Diskriminierung einleiten</td><td>Die Rechte stehen sonst nur auf dem Papier. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Gesetze, Verordnungen, Gepflogenheiten und Praktiken</b>, die behinderte Menschen benachteiligen, <b>abschaffen</b> oder an die Konvention anpassen</td><td>Viele Barrieren sind von Menschen gemacht — auch durch Regeln. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Klischees, Vorurteile</b> und schädliche Praktiken bekämpfen; die <b>Bevölkerung sensibilisieren</b> (aufmerksam machen) für die Bedürfnisse von Menschen mit Behinderung</td><td>Diskriminierung entsteht oft durch „stereotype Vorstellungen“ (Textteil S. 1).</td></tr>
+</table></div>
+
+<h3>Das Fakultativprotokoll — der Beschwerdeweg</h3>
+<p>Es ergänzt die Konvention um einen <b>Beschwerdemechanismus auf internationaler Ebene</b>:</p>
+<ul>
+  <li><b>Individualbeschwerde:</b> Wer in seinem Land alle Gerichte durchlaufen hat (nationaler Rechtsweg ausgeschöpft), kann sich beim <b>Ausschuss für die Rechte von Menschen mit Behinderungen</b> beschweren. Der Ausschuss entscheidet.</li>
+  <li><b>Untersuchungsverfahren:</b> Der Ausschuss darf bei <b>systematischen Verletzungen</b> ermitteln und Staaten um Stellungnahmen bitten.</li>
+</ul>
+<div class="merke"><b>Merke:</b> 1948 Menschenrechte · 2006 verabschiedet · 2008 in Kraft · 2009 Deutschland · 185 Staaten (Konvention) · 100 Staaten (Fakultativprotokoll).</div>
+<p class="fr">🇫🇷 La Convention de l'ONU (CRPD) : adoptée le 13/12/2006, en vigueur le 03/05/2008, ratifiée par l'Allemagne en 2009. Elle interdit toute discrimination, garantit une vie autonome, une famille, un travail, l'éducation, la protection contre la violence. Les États doivent changer les lois injustes et lutter contre les préjugés. Le protocole facultatif permet de porter plainte au niveau international.</p>
+<p class="quelle">Menschen mit Behinderung (Textteil), S. 2–3 · Foliensatz PP, Folien 7–15 · YouTube-Arbeitsblatt/Lösungsblatt, S. 1</p>
+
+<!-- ============ 4 INKLUSION ============ -->
+<h2>4 · Integration oder Inklusion? Und „Nichts über uns ohne uns“ <span class="stern">★★★</span></h2>
+<p>Zu einem Video der BAG SELBSTHILFE und des Deutschen Behindertenrats (DBR) hast du ein Arbeitsblatt mit Lösungsblatt. Das Lösungsblatt erklärt den wichtigsten Gedanken des Kurses.</p>
+<div class="schema">
+  <p class="titel">Wer muss sich ändern?</p>
+  <div class="zwei">
+    <div class="k rot"><b>Integration (alt)</b><small>Der Mensch mit Behinderung soll sich in die <b>bestehenden Systeme</b> einfügen. Er muss sich anpassen.</small></div>
+    <div class="k gruen"><b>Inklusion (UN-BRK)</b><small>Das <b>System</b> wird von Anfang an so gestaltet, dass alle gleichberechtigt teilhaben. Die Gesellschaft baut Barrieren ab. Niemand muss sich anpassen.</small></div>
   </div>
+</div>
+<div class="def">
+  <span class="t">Wie die UN-BRK das Verständnis von Behinderung verändert hat (Lösungsblatt)</span>
+  <p>Behinderung ist <b>kein individuelles Defizit</b> (kein persönlicher Mangel), sondern <b>Teil der menschlichen Vielfalt</b>. Die <b>Gesellschaft</b> muss die Bedingungen schaffen, damit alle gleichberechtigt teilhaben können: Barrieren abbauen, Inklusion fördern. Nicht die Betroffenen passen sich an, sondern <b>das Umfeld wird inklusiver</b>.</p>
+</div>
+<h3>Die Begriffe vom Arbeitsblatt</h3>
+<div class="scroll"><table>
+  <tr><th>Begriff</th><th>Bedeutung (Lösungsblatt)</th></tr>
+  <tr><td>UN-BRK</td><td>UN-Vertrag über die Rechte von Menschen mit Behinderungen</td></tr>
+  <tr><td>Inklusion</td><td>Teilhabe ohne Anpassungszwang</td></tr>
+  <tr><td>Deutscher Behindertenrat (DBR)</td><td>Vertretung von über 25 Millionen Menschen</td></tr>
+  <tr><td><b>„Nichts über uns ohne uns“</b></td><td>Einbezug der Betroffenen in Entscheidungen — das Prinzip, das die UN-BRK betont</td></tr>
+</table></div>
+<h3>Die Antworten im Multiple-Choice-Teil</h3>
+<ul>
+  <li>Deutschland hat die UN-BRK <b>2009</b> ratifiziert.</li>
+  <li>Laut Vereinten Nationen braucht Deutschland dringend Verbesserungen bei der <b>Inklusion in Schulen</b>.</li>
+  <li>Betontes Prinzip: <b>Nichts über uns ohne uns</b>.</li>
+  <li>Der DBR fordert eine <b>schnellere Umsetzung und stärkere Beteiligung</b> von behinderten Menschen.</li>
+</ul>
+<p><b>Warum ist „Nichts über uns ohne uns“ für die Pflege wichtig?</b> Pflegende entscheiden jeden Tag mit über Abläufe. Das Prinzip sagt: Frag den Menschen selbst, bevor du über ihn entscheidest. Das passt zur Folie „Rolle der Pflege: <b>Bedürfnisse ernst nehmen</b>“. <span class="her">Herleitung</span></p>
+<div class="merke"><b>Merke:</b> Integration = <b>der Mensch</b> passt sich an. Inklusion = <b>das System</b> passt sich an.</div>
+<p class="fr">🇫🇷 Intégration : la personne doit s'adapter au système existant. Inclusion : le système est conçu dès le départ pour tous, sans obliger quiconque à s'adapter. « Rien sur nous sans nous » : les personnes concernées participent aux décisions.</p>
+<p class="quelle">Menschen mit Behinderung You Tube Azubi (Arbeitsblatt), S. 1–2 · Menschen mit Behinderung You Tube Loesungen, S. 1–3 (die markierten Antworten stehen auf S. 2)</p>
 
-  <div class="warnung">
-    <span class="t">Die zwei Thesen, mit denen der Unterricht anfängt</span>
-    <p>„Geistig behinderte Menschen sind im Krankenhaus <b>‚alles andere als Wunschpatienten‘</b>“
-      — Dr. K. Harenski, 2007</p>
-    <p>„<b>Behinderte Menschen überfordern das Krankenhaus.</b>“ — Prof. Dr. med. M. Seidel,
-      2009</p>
-    <p>Die Folie fragt dazu: <i>Was denken Sie? Stimmen Sie zu oder nicht? Warum? Eigene
-      Erfahrungen?</i> — <b>Das ist deine Aufgabe, und sie steht bewusst am Anfang</b>, bevor
-      man die Antwort kennt. Die Auflösung steht weiter unten; lies sie erst, wenn du deine
-      eigene Meinung notiert hast.</p>
-  </div>
-</section>
+<!-- ============ 5 GdB ============ -->
+<h2>5 · Der Grad der Behinderung (GdB) <span class="stern">★★★</span></h2>
+<div class="def">
+  <span class="t">Definition — so steht sie im Textteil</span>
+  <p>Der GdB soll bewerten, <b>wie stark sich bestimmte Behinderungen auf die Teilhabe am gesellschaftlichen Leben auswirken</b>. Er berücksichtigt körperliche, geistige und seelische Auswirkungen — <b>unabhängig von den Ursachen</b> der Beeinträchtigung.</p>
+</div>
+<p><b>Einfach gesagt:</b> Der GdB fragt nicht „Welche Krankheit?“, sondern „Wie sehr hindert es dich im Leben?“. Es ist egal, ob der Schaden angeboren ist, von einem Unfall oder von einer Krankheit kommt.</p>
+<div class="scroll"><table>
+  <tr><th>Regel</th><th>Was sie bedeutet</th></tr>
+  <tr><td>Stufen</td><td>in <b>Zehnerschritten von 20 bis 100</b></td></tr>
+  <tr><td>Grundlage</td><td>die <b>Versorgungsmedizin-Verordnung (VersMedV)</b>, in Kraft seit <b>1. Januar 2009</b>. Ihre Anlage ordnet jeder Beeinträchtigung einen GdB zu. So wird <b>bundesweit einheitlich</b> bewertet. Sie wird regelmäßig an neue medizinische Erkenntnisse angepasst.</td></tr>
+  <tr><td>Einzelfall</td><td>Ob eine Behinderung vorliegt, wird immer <b>individuell</b> mit allen Umständen beurteilt.</td></tr>
+  <tr><td><b>schwerbehindert</b></td><td>GdB <b>mindestens 50</b> — und der Mensch wohnt in Deutschland, hat hier seinen gewöhnlichen Aufenthalt oder arbeitet hier.</td></tr>
+  <tr><td>GdB 30 oder 40</td><td>Man kann <b>schwerbehinderten Menschen gleichgestellt</b> werden, wenn man sonst wegen der Behinderung keinen passenden Arbeitsplatz bekommt oder behält. Das entscheidet die <b>Agentur für Arbeit</b>.</td></tr>
+</table></div>
 
-<section id="unbrk">
-  <h2>Die UN-Behindertenrechtskonvention — die Daten, die man wissen muss</h2>
+<h3>Mehrere Beeinträchtigungen: die Regel, die oft falsch gemacht wird</h3>
+<p>Hat ein Mensch mehrere Gesundheitsprobleme, wird zuerst <b>jedes einzeln</b> bewertet (Einzel-GdB). Dann bildet man <b>einen Gesamt-GdB</b>. Entscheidend ist, wie die Beeinträchtigungen <b>zusammenwirken</b> und sich gegenseitig beeinflussen.</p>
+<div class="scroll"><table>
+  <tr class="rot"><td><b>Einzel-GdB werden NICHT addiert.</b></td><td>Der Gesamt-GdB „wird nicht errechnet“. Er soll die gesamte Beeinträchtigung abbilden.</td></tr>
+  <tr class="gelb"><td>Einzel-GdB von <b>10</b></td><td>wirken sich <b>nicht</b> auf den Gesamt-GdB aus</td></tr>
+  <tr class="gelb"><td>Einzel-GdB von <b>20</b></td><td>erhöhen den Gesamt-GdB <b>selten</b></td></tr>
+</table></div>
+<p><b>Beispiel zum Verstehen:</b> Jemand hat einen Einzel-GdB von 30 und einen von 20. Der Gesamt-GdB ist dann <b>nicht</b> automatisch 50 — denn es wird nicht addiert, und eine 20 erhöht selten. <span class="her">Herleitung</span> aus den drei Regeln, kein Fall aus deinen Unterlagen</p>
 
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Wann</th><th>Was</th></tr></thead>
-      <tbody>
-        <tr><td class="k">1948</td><td><b>Allgemeine Erklärung der Menschenrechte</b> — alle
-          Menschen sind <b>frei und gleich an Würde und Rechten</b> geboren</td></tr>
-        <tr><td class="k">13.12.2006</td><td>Die Generalversammlung der Vereinten Nationen
-          <b>verabschiedet</b> das Übereinkommen über die Rechte von Menschen mit Behinderungen
-          (<b>CRPD / UN-BRK</b>, Resolution 61/106) — zugleich das
-          <b>Fakultativprotokoll</b></td></tr>
-        <tr><td class="k">03.05.2008</td><td>Das Übereinkommen <b>tritt in Kraft</b></td></tr>
-        <tr><td class="k">2009</td><td><b>Deutschland ratifiziert</b> und ist damit
-          verpflichtet, die Regelungen umzusetzen</td></tr>
-        <tr><td class="k">Stand Mai 2022</td><td><b>185 Staaten</b> haben das Übereinkommen
-          ratifiziert · dem <b>Fakultativprotokoll</b> sind bisher nur
-          <b>100 Staaten</b> beigetreten, darunter Deutschland</td></tr>
-      </tbody>
-    </table>
-  </div>
+<h3>Was nicht berücksichtigt wird — und warum</h3>
+<p>Bewertet werden nur Einschränkungen, die <b>trotz Therapie dauerhaft und objektiv feststellbar</b> sind. Deshalb fallen manche Gesundheitsstörungen weg.</p>
+<div class="scroll"><table>
+  <tr><th>Nicht berücksichtigt</th><th>Warum?</th></tr>
+  <tr><td>Einzel-GdB unter 10</td><td>zu gering für eine Teilhabe-Einschränkung <span class="her">Herleitung</span></td></tr>
+  <tr><td>subjektive Empfindungen</td><td>nicht <b>objektiv</b> feststellbar</td></tr>
+  <tr><td>Risiken, Prognosen, persönliche Lebensumstände</td><td>Bewertet wird, was <b>jetzt dauerhaft</b> besteht, nicht was kommen könnte. <span class="her">Herleitung</span></td></tr>
+  <tr><td>Beeinträchtigungen, die mit einem <b>bestimmten Beruf</b> zusammenhängen</td><td>Der GdB misst die Teilhabe am <b>gesellschaftlichen</b> Leben allgemein. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>akute, vorübergehende</b> Störungen</td><td>nicht <b>dauerhaft</b></td></tr>
+  <tr><td>Einschränkungen, die für das <b>Lebensalter typisch</b> sind</td><td>Sie sind keine Behinderung (z. B. altersbedingt langsamer gehen, Ratgeber S. 13). Den genauen Grund nennen deine Folien nicht.</td></tr>
+</table></div>
+<div class="hinweis"><b>Hinweis:</b> Das Blatt in Einfacher Sprache schreibt: „Die Behinderung wird in <b>Prozent</b> bewertet.“ Textteil, Folien und Ratgeber sprechen nur vom <b>Grad</b> in Zehnerschritten — ohne Prozentzeichen. Sag in der Prüfung lieber „GdB 50“ und nicht „50 %“. <span class="her">Herleitung</span></div>
+<div class="merke"><b>Merke:</b> GdB 20–100 in Zehnerschritten · ab 50 schwerbehindert · VersMedV seit 01.01.2009 · <b>nicht addieren</b> · 10 zählt nicht, 20 selten · Altersbeschwerden zählen nicht.</div>
+<p class="fr">🇫🇷 Le GdB (taux de handicap) va de 20 à 100 par paliers de 10 et mesure l'impact sur la participation à la vie sociale, quelle que soit la cause. À partir de 50 : « schwerbehindert » (handicap lourd). Plusieurs handicaps : on ne les additionne pas ; un 10 ne compte pas, un 20 rarement. Les troubles liés à l'âge ou passagers ne comptent pas.</p>
+<p class="quelle">Menschen mit Behinderung (Textteil), S. 3–4 · Foliensatz PP, Folien 17–18 · Ratgeber MAGS NRW, S. 10–11, 13, 27, 30 · Einfache Sprache, S. 2</p>
 
-  <div class="merk">
-    <span class="t">Die Definition aus Artikel 1 — wörtlich, und absichtlich weit</span>
-    <p>Zu Menschen mit Behinderungen zählen „Menschen, die <b>langfristige</b> körperliche,
-      seelische, geistige oder <b>Sinnesbeeinträchtigungen</b> haben, welche sie <b>in
-      Wechselwirkung mit verschiedenen Barrieren</b> an der vollen, wirksamen und
-      gleichberechtigten Teilhabe an der Gesellschaft <b>hindern können</b>.“</p>
-    <p>Der Text sagt dazu selbst: Die Definition wurde <b>von den Verfassern absichtlich breit
-      gefasst</b>, um grundsätzlich keinen Menschen mit Behinderungen vom Schutz der Konvention
-      ausschließen zu können.</p>
-    <p><b>Das entscheidende Wort ist „in Wechselwirkung mit verschiedenen Barrieren“.</b>
-      Die Behinderung entsteht erst im Zusammentreffen von Beeinträchtigung und Barriere. Nimm
-      die Barriere weg, und die Teilhabe ist wieder da.</p>
-    <p class="fr">Le handicap naît de la <b>rencontre</b> entre une déficience et un obstacle.
-      Enlève l'obstacle : la participation revient.</p>
-  </div>
+<!-- ============ 6 ANTRAG AUSWEIS ============ -->
+<h2>6 · Vom Antrag zum Schwerbehindertenausweis <span class="stern">★★</span></h2>
+<div class="schema">
+  <p class="titel">Der Weg in fünf Schritten</p>
+  <div class="k"><b>1 · Antrag stellen</b><small>bei der zuständigen <b>Kommune</b> (in Aachen: Versorgungsamt der StädteRegion) oder bei der Stadtverwaltung. Formulare gibt es dort, bei Behindertenverbänden und bei der Schwerbehindertenvertretung im Betrieb.</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>2 · Das Amt fragt die Ärzte</b><small>Berichte von Ärzten, Krankenhäusern, z. B. Rentenversicherung oder Pflegekasse. Ein Fachmann beurteilt sie. Eine Untersuchung ist meistens nicht nötig — nur wenn die Unterlagen nicht reichen.</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k wichtig"><b>3 · Feststellungsbescheid</b><small>stellt den <b>GdB (ab 20)</b> und eventuelle <b>Merkzeichen</b> fest</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k gruen"><b>4 · Schwerbehindertenausweis</b><small>ab <b>GdB 50</b>, auf Wunsch · Scheckkartenformat · GdB und Merkzeichen stehen drin · <b>keine Diagnosen</b></small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>5 · Nicht einverstanden?</b><small>Widerspruch, später Klage — beides kostenfrei, ohne Pflicht zum Rechtsanwalt. Wird es schlimmer: jederzeit <b>Änderungsantrag</b>.</small></div>
+</div>
+<h3>Tipps für den Antrag (Blatt in Einfacher Sprache)</h3>
+<ul>
+  <li>Alle Gesundheitsprobleme aufschreiben.</li>
+  <li>Die Namen der Ärzte der <b>letzten 2 Jahre</b> aufschreiben.</li>
+  <li>Arztberichte mitschicken — <b>dann geht es schneller</b> (das Amt muss sie nicht erst anfordern <span class="her">Herleitung</span>). Der Ratgeber nennt besonders aktuelle Krankenhausentlassungsberichte und Kurabschlussgutachten.</li>
+  <li>Antrag unterschreiben, Passfoto schicken.</li>
+  <li>Wer <b>berufstätig</b> ist, wird <b>vorrangig</b> bearbeitet (verkürzte Fristen).</li>
+</ul>
+<h3>Der Ausweis</h3>
+<div class="scroll"><table>
+  <tr><th>Frage</th><th>Antwort</th></tr>
+  <tr><td>Ab wann gültig?</td><td>in der Regel ab dem <b>Antragsmonat</b>; bei besonderem Interesse (z. B. Steuern) auch früher</td></tr>
+  <tr><td>Wie lange?</td><td><b>unbefristet</b>, wenn sich die Behinderung nicht ändern wird — sonst <b>höchstens fünf Jahre</b></td></tr>
+  <tr><td>Was steht drin?</td><td>GdB und Merkzeichen, aber <b>keine konkreten Gesundheitsstörungen</b>. Den Grund nennen deine Folien nicht.</td></tr>
+  <tr><td>Alte Ausweise?</td><td>Papierausweise bis zum 31.08.2014 bleiben bis zum Ende ihrer Gültigkeit gültig; Umtausch jederzeit möglich.</td></tr>
+  <tr><td>Farbe</td><td>Mit Recht auf Freifahrt: Ausweis mit <b>orangefarbenem Flächenaufdruck</b> (grün-orange).</td></tr>
+</table></div>
+<p><b>Für dich auf Station:</b> Der Ausweis sagt dir den GdB und die Merkzeichen, aber <b>nicht die Diagnose</b>. Die Krankheiten stehen in der Akte, nicht im Ausweis. <span class="her">Herleitung</span></p>
+<div class="hinweis"><b>Hinweis — wer ist zuständig?</b> Textteil und Folie sagen „Versorgungsamt“, der Ratgeber sagt „die zuständige Kommune“. Das passt zusammen: In Aachen ist das Versorgungsamt ein Teil der StädteRegion (Dezernat für Soziales und Integration). <span class="her">Herleitung</span></div>
+<p class="fr">🇫🇷 Demande auprès de la commune (Versorgungsamt). L'office demande les rapports des médecins ; souvent pas d'examen. Décision (Feststellungsbescheid) dès GdB 20 ; carte (Schwerbehindertenausweis) dès GdB 50, format carte bancaire, sans diagnostic, illimitée ou 5 ans maximum. Recours gratuit possible.</p>
+<p class="quelle">Menschen mit Behinderung (Textteil), S. 5 · Foliensatz PP, Folie 19 · Ratgeber MAGS NRW, S. 8–12, 21, 23 · Einfache Sprache, S. 1–2</p>
 
-  <h3>Was das Übereinkommen garantiert</h3>
-  <ul>
-    <li>ein <b>unabhängiges und selbstbestimmtes Leben</b></li>
-    <li>das <b>gleiche Recht auf eine eigene Familie</b></li>
-    <li>das <b>Recht auf Arbeit</b> bzw. eine Beschäftigung</li>
-    <li>das <b>gleiche Recht auf Teilhabe am öffentlichen und kulturellen Leben</b></li>
-    <li><b>Zugang zur Bildung</b></li>
-    <li><b>Schutz vor Gewalt, Ausbeutung und Missbrauch</b></li>
-  </ul>
+<!-- ============ 7 MERKZEICHEN ============ -->
+<h2>7 · Die Merkzeichen <span class="stern">★★★</span></h2>
+<p>Merkzeichen sind <b>Buchstaben im Ausweis</b>. Sie zeigen besondere gesundheitliche Merkmale. Mit ihnen bekommt man bestimmte <b>Nachteilsausgleiche</b> (Schutzrechte und Leistungen).</p>
+<div class="scroll"><table>
+  <tr><th>Zeichen</th><th>Bedeutung</th><th>Voraussetzung (vereinfacht)</th><th>Was es bringt (Beispiele)</th></tr>
+  <tr><td><b>G</b></td><td>erhebliche Gehbehinderung</td><td>Kann Wege im Ortsverkehr <b>nicht ohne erhebliche Schwierigkeiten</b> oder nicht ohne Gefahr für sich und andere gehen. Auch durch innere Leiden (Herz, Atmung), Anfälle oder Orientierungsstörungen. Es zählt, was Nichtbehinderte allgemein zu Fuß gehen — nicht die Wege vor Ort.</td><td>Wahl: Freifahrt mit Wertmarke <b>oder</b> 50 % weniger Kfz-Steuer</td></tr>
+  <tr><td><b>aG</b></td><td>außergewöhnliche Gehbehinderung</td><td>kann nur <b>wenige Meter</b> gehen; bewegt sich außerhalb des Autos <b>dauernd nur mit fremder Hilfe oder großer Anstrengung</b>. Vergleich: ein Mensch, dem beide Oberschenkel amputiert sind. Ein verordneter Rollstuhl reicht nicht — er muss <b>ständig</b> darauf angewiesen sein. Orientierungsstörung allein reicht nicht.</td><td>Freifahrt · <b>keine</b> Kfz-Steuer · blauer <b>Parkausweis</b></td></tr>
+  <tr><td><b>B</b></td><td>Notwendigkeit ständiger Begleitung</td><td>braucht bei Bus und Bahn <b>regelmäßig fremde Hilfe</b> (Ein-/Aussteigen, während der Fahrt, bei Orientierungsstörungen z. B. Seh- oder geistige Behinderung). Zusätzlich muss G, aG oder H vorliegen (siehe Hinweis).</td><td>Die <b>Begleitperson fährt kostenlos</b> im Nah- und Fernverkehr, ohne km-Grenze</td></tr>
+  <tr><td><b>H</b></td><td>Hilflosigkeit</td><td>braucht <b>dauernd</b> (länger als <b>6 Monate</b>) fremde Hilfe bei <b>vielen</b> täglichen Verrichtungen: An- und Auskleiden, Essen, Körperpflege, Toilette</td><td>Freifahrt ohne Kosten · keine Kfz-Steuer · erhöhter Steuer-Pauschbetrag 3 700 €</td></tr>
+  <tr><td><b>Bl</b></td><td>Blindheit</td><td>Augenlicht fehlt ganz, oder Sehschärfe auf dem besseren Auge <b>höchstens 2 %</b> (Ratgeber: 1/50), oder eine gleich schwere Störung</td><td>Freifahrt ohne Kosten · keine Kfz-Steuer · Parkausweis · Blindengeld · 3 700 €</td></tr>
+  <tr><td><b>Gl</b></td><td>Gehörlosigkeit</td><td>Taubheit beidseits, <b>oder</b> an Taubheit grenzende Schwerhörigkeit mit <b>schweren Sprachstörungen</b> (meist angeboren oder in der Kindheit erworben)</td><td>Wahl: Freifahrt mit Wertmarke <b>oder</b> 50 % weniger Kfz-Steuer · Hilfe 77 €/Monat in NRW</td></tr>
+  <tr><td><b>RF</b></td><td>Ermäßigung des Rundfunkbeitrags</td><td>(1) blind oder wesentlich sehbehindert mit GdB ≥ 60 allein wegen der Augen · (2) gehörlos oder keine Verständigung über das Gehör, auch mit Hörgerät · (3) GdB ≥ 80 und <b>ständig</b> von allen öffentlichen Veranstaltungen ausgeschlossen</td><td>Rundfunkbeitrag nur <b>ein Drittel</b> (5,83 € im Monat, Stand 01.08.2017)</td></tr>
+</table></div>
+<p>Der Ratgeber nennt noch drei weitere: <b>TBl</b> (taubblind: GdB ≥ 70 wegen des Hörens <b>und</b> 100 wegen des Sehens; in NRW Befreiung vom Rundfunkbeitrag) · <b>VB</b> (versorgungsberechtigt nach dem Sozialen Entschädigungsrecht) · <b>EB</b> (Entschädigung nach dem Bundesentschädigungsgesetz).</p>
 
-  <h3>Was für die Staaten daraus folgt</h3>
-  <div class="karten">
-    <div class="karte"><h4>Abschaffen oder ändern</h4>
-      <p>„<b>Gesetze, Verordnungen, Gepflogenheiten und Praktiken, die behinderte Menschen
-        benachteiligen, müssen abgeschafft oder in Konformität mit dem Übereinkommen abgeändert
-        werden.</b>“</p></div>
-    <div class="karte"><h4>Sensibilisieren</h4>
-      <p>„Dazu soll <b>die Bevölkerung</b> auch für die Bedürfnisse von Menschen mit
-        Behinderungen <b>sensibilisiert</b> werden.“ Klischees, Vorurteile und schädliche
-        Praktiken müssen bekämpft werden.</p></div>
-    <div class="karte"><h4>Das Fakultativprotokoll</h4>
-      <p>Es ergänzt das Übereinkommen um einen <b>Beschwerdemechanismus auf internationaler
-        Ebene</b>: Nach <b>Ausschöpfung des nationalen Rechtswegs</b> können Betroffene eine
-        <b>Individualbeschwerde</b> vor das Fachgremium bringen. Dazu kommt ein
-        <b>Untersuchungsverfahren</b> bei systematischen Verletzungen.</p></div>
-  </div>
-</section>
+<h3>Die wichtigsten Feinheiten</h3>
+<div class="merke"><b>Merke zu B:</b> Die Begleitperson darf kostenlos mitfahren — auch wenn der Mensch selbst eine Fahrkarte braucht. Aber: „<b>Eine Verpflichtung zur Mitnahme einer Begleitperson besteht jedoch nicht!</b>“ Der Mensch mit B darf also auch allein fahren.</div>
+<ul>
+  <li><b>B liegt immer vor</b> bei Querschnittsgelähmten, Menschen ohne Hände, Blinden und bei erheblich Seh-, hochgradig Hörbehinderten, geistig Behinderten und Anfallskranken, denen G zusteht.</li>
+  <li><b>H</b> ist auch erfüllt, wenn <b>ständige Überwachung oder Anleitung</b> nötig ist, oder wenn ständige <b>Bereitschaft</b> zur Hilfe nötig ist. Bei <b>Pflegegrad 4 und 5</b> wird H grundsätzlich eingetragen. Ein Pflegegrad führt aber <b>nicht automatisch</b> zu H.</li>
+  <li>Für H zählen auch <b>Bewegung, geistige Anregung und Kommunikation</b>. Es zählen <b>nicht</b>: einzelne Verrichtungen (z. B. Hilfe bei einem Kleidungsstück, Begleitung beim Spaziergang, einfache Wundbehandlung) und Hauswirtschaft.</li>
+  <li>Bei <b>Kindern</b> zählen auch Anleitung und Förderung der Entwicklung (z. B. Sprache lernen). Was für das Alter typisch ist, zählt nicht.</li>
+  <li><b>RF</b> gibt es nicht, solange man mit Rollstuhl oder Begleitperson ins Theater, Kino, die Kirche oder ein Restaurant kann. Nach dem Merkzeichen muss man noch einen <b>eigenen Antrag beim Beitragsservice</b> von ARD, ZDF und Deutschlandradio stellen.</li>
+  <li>Wer wenig Geld hat (z. B. Arbeitslosengeld II, Sozialhilfe, Grundsicherung, Blindenhilfe, BAföG), kann sich auf Antrag ganz von der Rundfunkpflicht <b>befreien</b> lassen.</li>
+</ul>
+<div class="hinweis"><b>Hinweis — vier Stellen, die nicht zusammenpassen:</b>
+  <ol>
+    <li><b>B:</b> Der Textteil verlangt zusätzlich G, <b>aG</b> oder H. Der Ratgeber verlangt G, <b>Gl</b> oder H und sagt: Bei aG oder H ist Begleitung „häufig auch“ nötig.</li>
+    <li>Folie 24 heißt „Merkzeichen <b>B</b> – Blinde“. Gemeint ist <b>Bl</b>. B ist die Begleitung.</li>
+    <li>Folie 21 schreibt „ag“ klein. Richtig ist <b>aG</b>.</li>
+    <li><b>Blindheit:</b> Textteil „nicht mehr als 2 %“, Ratgeber „nicht mehr als 1/50“. Das ist derselbe Wert (1 : 50 = 2 %). <span class="her">Herleitung</span></li>
+  </ol>
+</div>
+<p class="fr">🇫🇷 Les « Merkzeichen » sont des lettres sur la carte : G (marche difficile), aG (marche extrêmement difficile, quelques mètres), B (accompagnateur gratuit — mais pas obligatoire !), H (aide permanente pour s'habiller, manger, se laver, toilettes ; d'office avec Pflegegrad 4 et 5), Bl (aveugle, ≤ 2 %), Gl (sourd), RF (redevance audiovisuelle réduite à un tiers).</p>
+<p class="quelle">Menschen mit Behinderung (Textteil), S. 5–12 · Foliensatz PP, Folien 19–26 · Ratgeber MAGS NRW, S. 13–20, 40, 43 · Einfache Sprache, S. 2</p>
 
-<section id="inklusion">
-  <h2>Integration oder Inklusion — der Unterschied, um den es geht</h2>
-  <p class="lead">Das ist die Frage, die auf deinem Arbeitsblatt steht. Die Antwort steht auf dem
-    Lösungsblatt — hier wörtlich.</p>
+<!-- ============ 8 NACHTEILSAUSGLEICHE ============ -->
+<h2>8 · Die Nachteilsausgleiche <span class="stern">★★</span></h2>
+<p><b>Zweck:</b> Nachteilsausgleiche sollen <b>berufliche, wirtschaftliche und soziale Nachteile</b> ausgleichen, die jemand durch seine Behinderung hat. Das Versorgungsamt stellt nur GdB, Merkzeichen und die Freifahrt fest. Für die anderen Hilfen sind <b>andere Ämter</b> zuständig.</p>
+<p>Das Blatt in Einfacher Sprache nennt vier Vorteile ab GdB 50: <b>mehr Schutz vor Kündigung · mehr Urlaub · weniger Steuern · früher Altersrente</b>. Der Ratgeber erklärt sie genauer:</p>
+<div class="scroll"><table>
+  <tr><th>Bereich</th><th>Was</th><th>Für wen</th></tr>
+  <tr><td><b>Bus und Bahn</b></td><td>kostenlos im <b>Nahverkehr</b> in ganz Deutschland (auch DB-Nahverkehrszüge, 2. Klasse). G und Gl brauchen eine <b>Wertmarke: 80 € im Jahr</b> oder 40 € im halben Jahr (Stand Januar 2018). Kostenlos ist die Wertmarke bei Bl, H oder bei bestimmten Sozialleistungen. Für aG sagt das Blatt in Einfacher Sprache nur „billiger fahren“.</td><td>G, aG, Bl, H, Gl</td></tr>
+  <tr><td><b>Begleitperson</b></td><td>fährt in allen Zügen (Nah- und Fernverkehr) kostenlos; gilt auch für einen Hund; kostenlose Sitzplatzreservierung. Im <b>Flugzeug</b> gibt es <b>keinen</b> gesetzlichen Anspruch.</td><td>B</td></tr>
+  <tr><td><b>Kündigungsschutz</b></td><td>Kündigung <b>ohne Beteiligung der Schwerbehindertenvertretung</b> ist unwirksam (§ 178 Abs. 2 SGB IX, eingeführt mit dem Bundesteilhabegesetz). Das <b>Integrationsamt muss zustimmen</b>, wenn das Arbeitsverhältnis länger als 6 Monate besteht.</td><td>schwerbehindert oder gleichgestellt</td></tr>
+  <tr><td><b>Zusatzurlaub</b></td><td><b>eine Arbeitswoche</b> mehr (bei 5 Arbeitstagen: 5 Tage). Beginnt oder endet die Schwerbehinderung im Laufe des Jahres: 1/12 pro vollem Monat.</td><td>mit Schwerbehindertenausweis</td></tr>
+  <tr><td><b>Arbeitsplatz</b></td><td>Geld für technische Hilfen, Arbeitsassistenz, Führerschein, Wohnung; Zuschüsse für Arbeitgeber</td><td>auch Gleichgestellte (GdB 30/40)</td></tr>
+  <tr><td><b>Steuer-Pauschbetrag</b></td><td>jährlicher Betrag nach dem GdB (Tabelle unten). Bl oder H: <b>3 700 €</b>. Statt Pauschbetrag kann man echte Kosten belegen.</td><td>GdB 25–100</td></tr>
+  <tr><td><b>Fahrtkosten</b></td><td>bis 3 000 km × 0,30 € (GdB ≥ 80 oder ≥ 70 mit G); bis 15 000 km × 0,30 € bei aG, Bl, H. Arbeitsweg: 0,60 € pro km statt 0,30 € (GdB ≥ 70 oder ≥ 50 mit G).</td><td>wie genannt</td></tr>
+  <tr><td><b>Kfz-Steuer</b></td><td><b>Befreiung</b> bei H, Bl, aG · <b>50 % weniger</b> bei G und Gl (nicht gleichzeitig mit der Freifahrt)</td><td>ein Fahrzeug, schriftlicher Antrag</td></tr>
+  <tr><td><b>Parken</b></td><td><b>blauer Parkausweis</b> (Behindertenparkplätze, gilt in fast ganz Europa) · <b>oranger Parkausweis</b> (keine Behindertenparkplätze). In NRW gibt es den orangen auch ohne B.</td><td>u. a. aG, Blinde</td></tr>
+  <tr><td><b>Altersrente</b></td><td>ab <b>65</b> bei <b>35 Jahren Wartezeit</b>, vorzeitig ab 62 mit Abschlägen (Übergangsregeln für ältere Jahrgänge)</td><td>schwerbehindert bei Rentenbeginn</td></tr>
+  <tr><td><b>NRW-Hilfen</b></td><td>Blindengeld (Stand 1.7.2018: Kinder 359,15 €, Erwachsene unter 60: 717,07 €, über 60: 473 €) · hochgradig Sehbehinderte ab 16 Jahren und Gehörlose je <b>77 €</b> im Monat — unabhängig vom Einkommen</td><td>Bl · hochgradig sehbehindert · Gl</td></tr>
+  <tr><td><b>Sonstiges</b></td><td>Wohngeld-Freibetrag 1 500 € (GdB 100) · Darlehen für behindertengerechten Umbau bis 40 000 € · Beitritt zur gesetzlichen Krankenversicherung binnen 3 Monaten · Kindergeld ohne Altersgrenze, wenn die Behinderung vor dem 25. Lebensjahr begann · ein Schlüssel für Behindertentoiletten an Autobahnen</td><td>je nach Regel</td></tr>
+</table></div>
+<h3>Die Pauschbetrag-Tabelle (Stand Februar 2018)</h3>
+<div class="scroll"><table>
+  <tr><th>GdB</th><th>Pauschbetrag im Jahr</th></tr>
+  <tr><td class="z">25 und 30</td><td class="z">310 €</td></tr>
+  <tr><td class="z">35 und 40</td><td class="z">430 €</td></tr>
+  <tr><td class="z">45 und 50</td><td class="z">570 €</td></tr>
+  <tr><td class="z">55 und 60</td><td class="z">720 €</td></tr>
+  <tr><td class="z">65 und 70</td><td class="z">890 €</td></tr>
+  <tr><td class="z">75 und 80</td><td class="z">1 060 €</td></tr>
+  <tr><td class="z">85 und 90</td><td class="z">1 230 €</td></tr>
+  <tr><td class="z">95 und 100</td><td class="z">1 420 €</td></tr>
+  <tr><td>Bl oder H</td><td class="z">3 700 €</td></tr>
+</table></div>
+<p>Bei GdB 25 bis 45 gibt es den Pauschbetrag nur unter Bedingungen (z. B. Rente wegen der Behinderung, dauernde Einbuße der Beweglichkeit, Berufskrankheit).</p>
+<h3>Der Blindenführhund</h3>
+<p>Verbietet ein Geschäft oder Restaurant Blindenführhunden <b>grundsätzlich</b> den Zutritt, ist das <b>Diskriminierung</b> (§ 19 Allgemeines Gleichbehandlungsgesetz). Ein allgemeines Hundeverbot oder das Hausrecht reicht als Grund <b>nicht</b>. <b>Warum?</b> Die Lebensmittelhygieneverordnung geht davon aus, dass diese Hunde besonders ausgebildet sind und Lebensmittel nicht gefährden. Nur im <b>Einzelfall</b> kann ein Verbot richtig sein, z. B. wegen Tierallergie oder Angst anderer Menschen.</p>
+<div class="hinweis"><b>Hinweis — die Geldbeträge sind alt.</b> Sie stammen aus dem Ratgeber (Stand Januar 2018, Februar 2018, August 2017, Juli 2018; Auflage Oktober 2020). Deine Unterlagen nennen keine neueren Zahlen. Nenne Beträge in der Prüfung immer <b>mit Datum</b> — oder frag im Unterricht, ob sie überhaupt gefragt werden.</div>
+<div class="merke"><b>Merke:</b> Ab GdB 50: Kündigungsschutz · 1 Woche Zusatzurlaub · Steuer-Pauschbetrag · Rente ab 65 (35 Jahre). Freifahrt: G, aG, Bl, H, Gl (Wertmarke 80 €, kostenlos bei Bl und H).</div>
+<p class="fr">🇫🇷 Compensations : transports gratuits (vignette de 80 €/an, gratuite pour Bl et H), accompagnateur gratuit (B), protection contre le licenciement, une semaine de congé en plus, abattement fiscal, carte de stationnement, retraite à 65 ans après 35 ans de cotisation. Les montants datent de 2018 : toujours les citer avec la date.</p>
+<p class="quelle">Menschen mit Behinderung (Textteil), S. 5–6, 8 · Einfache Sprache, S. 2 · Ratgeber MAGS NRW, S. 21–60, 102</p>
 
-  <div class="merk">
-    <span class="t">Der Übergang von Integration zu Inklusion</span>
-    <p>„Der Übergang von Integration zu Inklusion bedeutet, dass <b>nicht mehr erwartet wird,
-      dass Menschen mit Behinderung sich in bestehende Systeme integrieren</b>. Stattdessen muss
-      <b>das System von Anfang an so gestaltet werden</b>, dass alle Menschen gleichberechtigt
-      teilhaben können. Inklusion bedeutet also, dass die Gesellschaft <b>aktiv Barrieren
-      abbaut</b> und Strukturen schafft, die von allen genutzt werden können, <b>ohne dass sich
-      Einzelne anpassen müssen</b>.“</p>
-    <p class="fr">Intégration : la personne s'adapte au système. Inclusion : le système est conçu
-      dès le départ pour tout le monde.</p>
-  </div>
+<!-- ============ 9 GEISTIGE BEHINDERUNG ============ -->
+<h2>9 · Geistige Behinderung <span class="stern">★★</span></h2>
+<div class="def">
+  <span class="t">Definition — so steht sie auf dem Unterrichtsplakat</span>
+  <p>Geistige Behinderung ist ein <b>weiter Begriff</b> für Menschen mit <b>starken Einschränkungen im Denken und Verstehen</b> (kognitive Fähigkeiten). Sie ist <b>keine Krankheit</b>, kann aber durch eine Krankheit entstehen. Oft beginnt sie <b>früh im Kindesalter</b> durch Störungen im Gehirn und bleibt meist <b>ein Leben lang</b>. Oft ist es eine <b>komplexe Behinderung</b>: Nicht nur das Denken, auch das <b>Verhalten</b> ist verändert.</p>
+</div>
+<h3>Die Ursachen — das Gehirn wird geschädigt durch</h3>
+<div class="scroll"><table>
+  <tr><th>Ursache</th><th>Erklärung</th></tr>
+  <tr><td>genetische Veränderungen</td><td>eine Veränderung in den Erbanlagen</td></tr>
+  <tr><td>Probleme vor, während oder nach der Geburt</td><td>Das Gehirn wird in einer sehr empfindlichen Zeit geschädigt. Die genauen Probleme nennt das Plakat nicht.</td></tr>
+  <tr><td>Stoffwechselstörungen</td><td>Der Stoffwechsel (die Verarbeitung von Stoffen im Körper) arbeitet falsch.</td></tr>
+  <tr><td>Unfälle · Gewalt · Vergiftungen</td><td>Das Gehirn wird von außen verletzt oder geschädigt.</td></tr>
+</table></div>
+<h3>Warum der pflegerische Umgang schwer ist — und was daraus folgt</h3>
+<div class="scroll"><table>
+  <tr><th>Weil der Mensch …</th><th>… braucht er</th></tr>
+  <tr><td>oft <b>langsamer denkt</b></td><td><b>mehr Zeit</b></td></tr>
+  <tr><td><b>neue Situationen</b> nicht gut versteht (das Krankenhaus ist eine neue Situation <span class="her">Herleitung</span>)</td><td><b>bekannte Personen</b></td></tr>
+  <tr><td>schwierige Sprache nicht versteht</td><td><b>einfache Erklärungen</b></td></tr>
+  <tr><td>bei Hektik <b>Angst</b> bekommt und <b>aggressiv</b> reagieren kann („Wenn es zu schnell geht …“)</td><td>Ruhe statt Zeitdruck — Zeitdruck ist ein „typisches Problem“ im Krankenhaus. <span class="her">Herleitung</span></td></tr>
+</table></div>
+<p><b>Die Verbindung zur Studie:</b> Für Demenz und geistige Behinderung haben nur <b>41,5 %</b> der Krankenhäuser Piktogramme (Bildzeichen), <b>42,1 %</b> besondere personelle Unterstützung und <b>26,0 %</b> bauliche Maßnahmen.</p>
+<div class="merke"><b>Merke:</b> Mehr Zeit · bekannte Personen · einfache Erklärungen. Sonst: Angst → Aggression.</div>
+<div class="hinweis"><b>Was fehlt:</b> Das Plakat heißt „Geistige Behinderung <b>I</b>“. Ein Teil II liegt nicht vor. Wer das Plakat geschrieben hat, steht nicht darauf.</div>
+<p class="fr">🇫🇷 Le handicap mental : fortes limitations pour penser et comprendre, ce n'est pas une maladie, souvent dès l'enfance, à vie. Causes : génétique, problèmes autour de la naissance, troubles du métabolisme, accidents, violence, intoxications. Ces patients ont besoin de temps, de personnes connues et d'explications simples ; sinon peur et parfois agressivité.</p>
+<p class="quelle">Geistige Behinderung I (Foto, 1 Seite) · Studie Hocher/Hollederer, S. 4–5 · Menschen mit Behinderung im KH, Folie 9</p>
 
-  <div class="merk">
-    <span class="t">Und wie die UN-BRK das Verständnis von Behinderung verändert hat</span>
-    <p>„Die UN-Behindertenrechtskonvention betont, dass Behinderung <b>nicht ein individuelles
-      Defizit</b> ist, sondern <b>Teil der menschlichen Vielfalt</b>. Sie fordert, dass
-      <b>die Gesellschaft die Bedingungen schaffen muss</b>, damit alle Menschen
-      gleichberechtigt teilhaben können.“</p>
-    <p>Deshalb wird die Verabschiedung 2006 auch <b>Paradigmenwechsel</b> genannt.</p>
-  </div>
+<!-- ============ 10 KRANKENHAUS ============ -->
+<h2>10 · Menschen mit Behinderung im Krankenhaus <span class="stern">★★★</span></h2>
+<p>Die Unterrichtseinheit von K. Schnapp-Benend heißt: <b>„Barrieren erkennen – Pflege gestalten“</b>.</p>
+<div class="def">
+  <span class="t">Artikel 25 UN-BRK — so steht er auf Folie 2</span>
+  <p>„Die Vertragsstaaten anerkennen das Recht von Menschen mit Behinderungen auf das <b>erreichbare Höchstmaß an Gesundheit ohne Diskriminierung</b> aufgrund von Behinderung. Die Vertragsstaaten treffen alle geeigneten Maßnahmen, um zu gewährleisten, dass Menschen mit Behinderungen <b>Zugang zu geschlechtsspezifischen Gesundheitsdiensten, einschließlich gesundheitlicher Rehabilitation</b>, haben.“</p>
+  <p>„Insbesondere […] bieten die Vertragsstaaten die Gesundheitsleistungen an, die von Menschen mit Behinderungen <b>speziell wegen ihrer Behinderungen</b> benötigt werden […].“</p>
+</div>
+<div class="def">
+  <span class="t">Artikel 25 — Wort für Wort einfach</span>
+  <p>Menschen mit Behinderung haben das Recht auf die <b>beste mögliche Gesundheit</b> — genauso wie alle anderen. Sie müssen zu den Ärzten, Krankenhäusern und zur Reha kommen können. Und sie bekommen zusätzlich die Hilfe, die sie <b>wegen ihrer Behinderung</b> brauchen.</p>
+</div>
 
-  <h3>Die vier Begriffe aus der Zuordnungsaufgabe</h3>
-  <div class="paare">
-    <div class="paar"><span class="de">UN-BRK</span>
-      <span class="frx">UN-Vertrag über Rechte von Behinderten</span></div>
-    <div class="paar"><span class="de">Inklusion</span>
-      <span class="frx">Teilhabe ohne Anpassungszwang</span></div>
-    <div class="paar"><span class="de">Deutscher Behindertenrat</span>
-      <span class="frx">Vertretung von über 25 Millionen Menschen</span></div>
-    <div class="paar"><span class="de">„Nichts über uns ohne uns“</span>
-      <span class="frx">Einbezug Betroffener in Entscheidungen</span></div>
-  </div>
+<h3>Der Ablauf der Stunde</h3>
+<div class="schema">
+  <p class="titel">Von der These zur Auflösung</p>
+  <div class="k rot"><b>Zwei Thesen zum Einstieg</b><small>„Geistig behinderte Menschen sind im Krankenhaus ‚alles andere als Wunschpatienten‘“ (Dr. K. Harenski, 2007) · „Behinderte Menschen überfordern das Krankenhaus“ (Prof. Dr. med. M. Seidel, 2009). Frage: Stimmen Sie zu? Warum? Eigene Erfahrungen?</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Zwei Videos</b><small>„Mit einer Körperbehinderung ins Krankenhaus – Horror“ · „Menschen mit Behinderung im Krankenhaus – Ohne Angst?“ (VdK)</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Arbeitsauftrag</b><small>Welche Probleme entstehen? Welche Situationen sind belastend? Wodurch entstehen sie? Was kann verbessert werden?</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Studienergebnisse</b><small>Ø 17,2 von 40 Kriterien · große Defizite bei Kommunikation · Mobilität besser umgesetzt</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k gruen"><b>Auflösung der These</b><small>Nicht die Menschen sind das Problem — das System ist nicht ausreichend barrierefrei.</small></div>
+</div>
 
-  <div class="warnung">
-    <span class="t">Der Satz, der auch auf Station gilt</span>
-    <p><b>„Nichts über uns ohne uns.“</b> Auf der Station heißt das ganz konkret: nicht über den
-      Kopf des Patienten hinweg mit der Begleitperson reden. Auch wenn die Begleitperson
-      schneller antwortet.</p>
-    <p class="fr">« Rien sur nous sans nous » — donc on ne parle pas à l'accompagnant
-      par-dessus la tête du patient.</p>
-  </div>
-</section>
+<h3>Die Strukturhilfe: vier Bereiche, in denen Barrieren entstehen</h3>
+<p>Die Folie nennt nur die vier Wörter. Die Beispiele in der rechten Spalte habe ich aus den anderen Folien und der Studie zugeordnet. <span class="her">Herleitung</span></p>
+<div class="scroll"><table>
+  <tr><th>Bereich</th><th>Was gehört dazu?</th><th>Beispiele aus deinen Unterlagen</th></tr>
+  <tr><td><b>Kommunikation</b></td><td>Wie wir mit dem Menschen sprechen und informieren</td><td>„fehlende Kommunikation“ (typisches Problem) · Kommunikationshilfen für Hörbeeinträchtigte nur in 8,5 % · Informationen in leicht verständlicher Sprache nur 16,4 %</td></tr>
+  <tr><td><b>Organisation</b></td><td>Abläufe, Zeit, Zuständigkeiten</td><td>„Zeitdruck“ · Ansprechpartner in 95,7 %, aber nur 4,8 % nennen Infos zur Barrierefreiheit auf der Homepage · Begleitperson unterbringen in 77,9 %</td></tr>
+  <tr><td><b>Haltung</b></td><td>wie das Personal über Menschen mit Behinderung denkt</td><td>die beiden Eingangsthesen · „Bedürfnisse ernst nehmen“ · die Studie nennt die „Qualifikation und Haltung des Personals“ als Barriere</td></tr>
+  <tr><td><b>Ausstattung</b></td><td>Gebäude, Geräte, Hilfsmittel</td><td>tastbarer Gebäudeplan 0,5 % · Brailleschrift 3,3 % · rollstuhlgerechter Zugang zu Serviceeinrichtungen 87,8 %</td></tr>
+</table></div>
 
-<section id="sgb">
-  <h2>Wann gilt ein Mensch nach dem Sozialgesetzbuch als „behindert“?</h2>
+<h3>Typische Probleme — und was sie bedeuten</h3>
+<div class="zwei">
+  <div class="k rot"><b>Typische Probleme</b><small>fehlende Kommunikation · Abhängigkeit · Zeitdruck · fehlende Unterstützung</small></div>
+  <div class="k rot"><b>Bedeutung (Folgen)</b><small>schlechtere Versorgung · Unsicherheit und Angst · Fehlbehandlungen</small></div>
+</div>
+<p>Die Studie nennt in ihrer Einleitung noch mehr Folgen schlechter Barrierefreiheit: <b>lange Wartezeiten, Aufnahmeverweigerungen, verfehlte Diagnosen, verspätete oder unangemessene Behandlungen</b>. Das führt zu schlechten Erfahrungen. Die Menschen gehen dann <b>seltener ins Krankenhaus</b> — und ihre Gesundheitsprobleme können <b>schlimmer</b> werden.</p>
 
-  <div class="merk">
-    <span class="t">Die Definition — wörtlich</span>
-    <p>Als „behindert“ im Sinne des Sozialgesetzbuches gilt, wer <b>körperlich</b>,
-      <b>geistig</b> oder <b>seelisch</b> so eingeschränkt ist, dass er <b>längerfristig</b> am
-      gesellschaftlichen Leben <b>nicht voll und ganz teilnehmen</b> kann.</p>
-    <p>Und in Einfacher Sprache, aus dem Merkblatt des Versorgungsamtes: „Wenn ein Mensch
-      <b>auf Dauer</b> ein Gesundheitsproblem hat und wenn es <b>deshalb für ihn schwerer ist,
-      am Leben teilzunehmen</b> — dann sagt man: Dieser Mensch hat eine Behinderung.“</p>
-    <p class="fr">Deux formulations pour la même définition. Celle en langage simple est souvent
-      la plus claire — sers-t'en aussi pour toi.</p>
-  </div>
-</section>
+<h3>Die Rolle der Pflege — mit dem Warum</h3>
+<div class="scroll"><table>
+  <tr><th>Maßnahme (Folie 13)</th><th>Warum?</th></tr>
+  <tr><td><b>Kommunikation anpassen</b> — z. B. einfache Sprache, mehr Zeit, Bildzeichen</td><td>„Fehlende Kommunikation“ ist das erste typische Problem, und die Studie findet „große Defizite bei Kommunikation“. Ohne Verständigung drohen Angst und Fehlbehandlungen. <span class="her">Herleitung</span> aus Folien 9, 11, 12</td></tr>
+  <tr><td><b>Bedürfnisse ernst nehmen</b></td><td>Der Mensch ist im Krankenhaus <b>abhängig</b> (typisches Problem). Die UN-BRK will ein <b>selbstbestimmtes</b> Leben und „Nichts über uns ohne uns“. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Begleitpersonen einbeziehen</b></td><td>Die Folie fragt „Warum Begleitung wichtig?“. Begleitpersonen sind <b>bekannte Personen</b> und kennen die Bedürfnisse — genau das brauchen z. B. Menschen mit geistiger Behinderung. Die Studie nennt „die Einbindung von Bezugspersonen“ als Teil der Barrierefreiheit. <span class="her">Herleitung</span></td></tr>
+</table></div>
+<div class="hinweis"><b>Was in deinen Unterlagen offen bleibt:</b> Die beiden Videos liegen nicht als Text vor — was die Betroffenen dort erzählen, steht nicht in deinen Dateien. Die Fragen „Welche Ängste haben Betroffene?“, „Warum Begleitung wichtig?“ und die beiden <b>Transferfragen</b> („Was können Sie konkret verändern?“ · „Was müsste strukturell, von Seiten der Einrichtungen, verändert werden?“) haben <b>keine Musterlösung</b>. Bereite dafür eigene Beispiele aus deinem Praxiseinsatz vor.</div>
+<div class="merke"><b>Merke:</b> Strukturhilfe = <b>K-O-H-A</b>: Kommunikation, Organisation, Haltung, Ausstattung. Auflösung: Nicht die Menschen sind das Problem, sondern das System.</div>
+<p class="fr">🇫🇷 Article 25 : droit au meilleur état de santé possible, sans discrimination. À l'hôpital, les problèmes typiques sont : manque de communication, dépendance, manque de temps, manque de soutien → soins moins bons, peur, erreurs de traitement. Rôle du soignant : adapter la communication, prendre les besoins au sérieux, inclure les accompagnants. Le problème, ce n'est pas la personne, c'est le système.</p>
+<p class="quelle">Menschen mit Behinderung im KH (K. Schnapp-Benend), Folien 1–15 · Studie Hocher/Hollederer, S. 2, 4–5</p>
 
-<section id="gdb">
-  <h2>Der Grad der Behinderung (GdB)</h2>
-  <p class="lead">Kein Prozentsatz der Schädigung, sondern ein Maß für die <b>Auswirkung auf die
-    Teilhabe</b>.</p>
+<!-- ============ 11 STUDIE ============ -->
+<h2>11 · Die Studie: Wie barrierefrei sind deutsche Krankenhäuser? <span class="stern">★★★</span></h2>
+<p><b>Wer und was:</b> Rebekka Hocher und Alfons Hollederer (Kassel), erschienen 2026 in der Zeitschrift „Gesundheitswesen“ (Thieme).</p>
+<h3>So wurde geforscht</h3>
+<ul>
+  <li><b>Sekundärdatenanalyse</b> = man wertet Daten aus, die es schon gibt. Hier: die <b>Qualitätsberichte 2019</b>.</li>
+  <li>Seit <b>2005</b> müssen alle zugelassenen Krankenhäuser solche Berichte veröffentlichen (G-BA, § 108 SGB V) — auch über Barrierefreiheit.</li>
+  <li><b>2 242 Krankenhäuser</b> · <b>40 Kriterien</b> mit Ja/Nein · in <b>8 Bereichen</b>: Sehen, Mobilität, Hören, Demenz und geistige Behinderung, besondere Körpermaße, Allergien, Kultur, Organisation.</li>
+  <li>Die Krankenhäuser haben die Angaben <b>selbst</b> gemacht (Selbstangaben).</li>
+</ul>
+<p><b>Warum diese Studie?</b> In Deutschland lebten 2023 rund <b>7,9 Millionen</b> Menschen mit amtlich anerkannter Schwerbehinderung. Sie brauchen viel medizinische Versorgung. Trotz Gesetzen gab es bisher <b>keine strukturierten Daten</b> zur Barrierefreiheit in Krankenhäusern.</p>
 
-  <div class="karten">
-    <div class="karte"><h4>Was bewertet wird</h4>
-      <p>Wie stark sich die Behinderung <b>auf die Teilhabe am gesellschaftlichen Leben</b>
-        auswirkt — körperliche, geistige und seelische Auswirkungen,
-        <b>unabhängig von den Ursachen</b>. Ob angeboren, Unfallfolge oder Krankheitsfolge,
-        spielt keine Rolle.</p></div>
-    <div class="karte"><h4>Die Skala</h4>
-      <p><b>In Zehnerschritten von 20 bis 100.</b> Ab <b>GdB 50</b> gilt ein Mensch als
-        <b>schwerbehindert</b> — sofern er in Deutschland wohnt, sich hier gewöhnlich aufhält
-        oder hier beschäftigt ist.</p></div>
-    <div class="karte"><h4>Die Grundlage</h4>
-      <p>Die <b>Versorgungsmedizin-Verordnung (VersMedV)</b>, in Kraft seit dem
-        <b>1. Januar 2009</b>. Sie sorgt dafür, dass Beeinträchtigungen
-        <b>bundesweit einheitlich</b> bewertet werden.</p></div>
-  </div>
+<h3>Das Hauptergebnis</h3>
+<div class="kern"><p>Im Durchschnitt erfüllen die Krankenhäuser nur <b>17,2 von 40</b> Kriterien (Spanne 0 bis 38). 76,4 % erfüllen 11 bis 30. Nur 2,9 % liegen im oberen Viertel, 20,7 % im unteren Viertel.</p></div>
 
-  <h3>Die Rechenregeln — und sie sind kontraintuitiv</h3>
-  <div class="gefahr">
-    <span class="t">Einzel-GdB werden NICHT addiert</span>
-    <p>Liegen mehrere Beeinträchtigungen vor, wird jede <b>zuerst einzeln</b> bewertet, dann
-      wird ein <b>Gesamt-GdB</b> gebildet. Wörtlich: Dieser wird
-      <b>„nicht errechnet“</b> — es kommt darauf an, <b>wie sich die einzelnen
-      Beeinträchtigungen auswirken und sich gegenseitig beeinflussen</b>.</p>
-    <p>Konkret: <b>Einzel-GdB von 10 wirken sich nicht auf den Gesamt-GdB aus</b>, und
-      <b>Einzel-GdB von 20 erhöhen ihn selten</b>. Drei Leiden mit je 30 ergeben also
-      <b>nicht</b> 90.</p>
-    <p class="fr">On <b>n'additionne pas</b> les taux. Trois fois 30 ne font pas 90.</p>
-  </div>
+<h3>Die acht Bereiche — vom schwächsten zum stärksten</h3>
+<div class="scroll"><table>
+  <tr><th>Bereich</th><th>im Schnitt umgesetzt</th></tr>
+  <tr class="rot"><td>Hören</td><td class="z">13,2 %</td></tr>
+  <tr class="rot"><td>Sehen</td><td class="z">25,2 %</td></tr>
+  <tr class="gelb"><td>Demenz und geistige Behinderung</td><td class="z">36,5 %</td></tr>
+  <tr class="gelb"><td>Organisation</td><td class="z">40,4 %</td></tr>
+  <tr class="gelb"><td>Kultur</td><td class="z">43,5 %</td></tr>
+  <tr class="gelb"><td>Allergien</td><td class="z">51,7 %</td></tr>
+  <tr class="gruen"><td>besondere Körpermaße</td><td class="z">58,3 %</td></tr>
+  <tr class="gruen"><td>Mobilität</td><td class="z">65,7 %</td></tr>
+</table></div>
+<p><b>Die Botschaft:</b> Für <b>Sinnes- und geistige Behinderungen</b> wird viel weniger getan als für <b>körperliche</b>. Das passt zur Folie „große Defizite bei Kommunikation · Mobilität besser umgesetzt“.</p>
 
-  <h3>Was gar nicht berücksichtigt wird</h3>
-  <ul>
-    <li>Einzel-GdB von <b>weniger als 10</b></li>
-    <li><b>Subjektive Empfindungen</b></li>
-    <li><b>Risiken, Prognosen oder persönliche Lebensumstände</b></li>
-    <li>Beeinträchtigungen, die <b>mit einem bestimmten Beruf</b> zusammenhängen</li>
-    <li><b>Akute vorübergehende</b> gesundheitliche Störungen</li>
-    <li>Einschränkungen, die <b>für das Lebensalter typisch</b> sind</li>
-  </ul>
-  <p>Bewertet wird nur, was <b>trotz Therapie dauerhaft und objektiv feststellbar</b> ist.
-    Deshalb kommt es vor, dass manche Gesundheitsstörungen <b>keine Berücksichtigung finden</b>.</p>
-</section>
+<h3>Die Zahlen, die du kennen solltest</h3>
+<div class="scroll"><table>
+  <tr><th>Kriterium</th><th>Anteil der Krankenhäuser</th></tr>
+  <tr class="rot"><td>tastbarer Gebäudeplan</td><td class="z">0,5 %</td></tr>
+  <tr class="rot"><td>kontrastreiche Beschriftung mit erhabener Schrift / Brailleschrift</td><td class="z">3,3 %</td></tr>
+  <tr class="rot"><td>barrierefreie Präsentation auf der Homepage</td><td class="z">3,7 %</td></tr>
+  <tr class="rot"><td>Informationen zur Barrierefreiheit auf der Homepage</td><td class="z">4,8 %</td></tr>
+  <tr class="rot"><td>Wartebereiche mit visuellen Anzeigen (für Hörbeeinträchtigte)</td><td class="z">5,8 %</td></tr>
+  <tr class="rot"><td>Kommunikationshilfen für Hörbeeinträchtigte</td><td class="z">8,5 %</td></tr>
+  <tr class="gelb"><td>Informationen in leicht verständlicher, klarer Sprache</td><td class="z">16,4 %</td></tr>
+  <tr class="gelb"><td>barrierefreier Zugriff auf Notrufsysteme</td><td class="z">19,8 %</td></tr>
+  <tr class="gelb"><td>Leitsysteme / personelle Unterstützung für Sehbeeinträchtigte</td><td class="z">24,4 %</td></tr>
+  <tr class="gelb"><td>barrierefreie Erreichbarkeit · barrierefreier Eingangsbereich</td><td class="z">35,2 % · 35,5 %</td></tr>
+  <tr class="gruen"><td>Dolmetscherdienste (Fremdsprachen)</td><td class="z">63,3 %</td></tr>
+  <tr class="gruen"><td>Unterbringung einer Begleitperson möglich</td><td class="z">77,9 %</td></tr>
+  <tr class="gruen"><td>rollstuhlgerechter Zugang zu Serviceeinrichtungen</td><td class="z">87,8 %</td></tr>
+  <tr class="gruen"><td><b>Ansprechpartner für Menschen mit Behinderung</b></td><td class="z"><b>95,7 %</b></td></tr>
+</table></div>
+<div class="merke"><b>Merke — der Widerspruch:</b> Fast alle (95,7 %) haben einen <b>Ansprechpartner</b>, aber nur 4,8 % sagen auf ihrer Website etwas zur Barrierefreiheit. Und: Innen sind Toiletten und Aufzüge oft rollstuhlgerecht (über 84 %), aber nur rund ein Drittel ist <b>barrierefrei erreichbar</b> (35,2 %).</div>
 
-<section id="ausweis">
-  <h2>Feststellungsbescheid und Schwerbehindertenausweis</h2>
+<h3>Wie sicher sind die Ergebnisse?</h3>
+<ul>
+  <li><b>Selbstangaben:</b> Die Krankenhäuser könnten sich <b>besser darstellen</b>, als sie sind („soziale Erwünschtheit“). Die echte Barrierefreiheit ist also eher <b>noch schlechter</b>.</li>
+  <li><b>Nur Ja oder Nein:</b> Die Qualität einer Maßnahme wird nicht gemessen.</li>
+  <li><b>Daten von 2019</b>, vor der Covid-19-Pandemie.</li>
+  <li>International gibt es keine vergleichbaren Studien.</li>
+</ul>
+<h3>Ausblick der Autoren</h3>
+<p>Hoffnung machen der „Aktionsplan für ein diverses, inklusives und barrierefreies Gesundheitswesen“ des Bundesgesundheitsministeriums, die Modernisierung vieler Krankenhäuser nach DIN 18040-1 und die <b>Kostenübernahme von Begleitpersonen durch die Krankenkassen</b>. Es braucht einen <b>ganzheitlichen Ansatz</b> für eine inklusive Versorgung. Die Rolle der Ansprechpartner ist noch unklar.</p>
+<p class="fr">🇫🇷 Étude sur 2 242 hôpitaux (rapports de qualité 2019) : en moyenne seulement 17,2 critères d'accessibilité sur 40. Le moins bon : l'audition (13,2 %) et la vue (25,2 %) ; le meilleur : la mobilité (65,7 %). Plans tactiles 0,5 %, braille 3,3 %, aides à la communication 8,5 %. Presque tous ont un interlocuteur (95,7 %), mais seuls 4,8 % l'indiquent sur leur site. Les chiffres sont déclarés par les hôpitaux eux-mêmes : la réalité est sans doute pire.</p>
+<p class="quelle">Studie Menschen mit Behinderung im KH (Hocher/Hollederer, Gesundheitswesen 2026), S. 1–6 · Menschen mit Behinderung im KH, Folie 11</p>
 
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div>
-      <h4>Antrag bei der Kommune / beim Versorgungsamt</h4>
-      <p>Antragsformulare gibt es bei der zuständigen Kommune, bei den Behindertenverbänden und
-        bei den Schwerbehindertenvertretungen in den Betrieben. <b>Wer erwerbstätig ist,
-        dessen Antrag muss vorrangig bearbeitet werden</b> — dafür gibt es verkürzte
-        Bearbeitungsfristen.</p></div></div>
-    <div class="stufe"><span class="nr">2</span><div>
-      <h4>Berichte werden angefordert, meist ohne Untersuchung</h4>
-      <p>Berichte der behandelnden Ärzte, der Krankenhäuser und der benannten Stellen werden
-        ausgewertet. <b>Nur wenn das ausnahmsweise nicht reicht</b>, wird fachärztlich
-        untersucht. Das Merkblatt in Einfacher Sprache sagt es so: „<b>Sie müssen dafür meistens
-        nicht untersucht werden.</b>“ Wer eigene Berichte mitschickt, beschleunigt das
-        Verfahren.</p></div></div>
-    <div class="stufe"><span class="nr n2">3</span><div>
-      <h4>Feststellungsbescheid — ab GdB 20</h4>
-      <p>Er stellt den <b>Grad der Behinderung ab einem GdB von 20</b> fest und die eventuell
-        vorliegenden <b>Merkzeichen</b>.</p></div></div>
-    <div class="stufe"><span class="nr n2">4</span><div>
-      <h4>Ausweis — ab GdB 50, auf Wunsch</h4>
-      <p>Im <b>Scheckkartenformat</b>. Darin stehen <b>GdB und Merkzeichen</b> —
-        <b>aber keine Angaben zu konkreten Gesundheitsstörungen</b>. Gültig in der Regel
-        <b>ab dem Antragsmonat</b>; <b>unbefristet</b>, wenn keine Veränderung zu erwarten ist,
-        sonst <b>längstens fünf Jahre</b>.</p></div></div>
-  </div>
+<!-- ============ TOP 10 ============ -->
+<h2>Top 10 fürs Examen</h2>
+<ol>
+  <li>Definition UN-BRK Art. 1: langfristige Beeinträchtigung <b>in Wechselwirkung mit Barrieren</b> → behindert die Teilhabe</li>
+  <li>UN-BRK: 13.12.2006 verabschiedet · 03.05.2008 in Kraft · 2009 Deutschland · 185 Staaten · Fakultativprotokoll 100</li>
+  <li>Inklusion = das System passt sich an · Integration = der Mensch passt sich an · „Nichts über uns ohne uns“</li>
+  <li>Behinderung nach SGB: körperlich, geistig oder seelisch, <b>längerfristig</b>, nicht voll am gesellschaftlichen Leben teilnehmen</li>
+  <li>GdB 20–100 in Zehnerschritten · ab 50 schwerbehindert · VersMedV seit 01.01.2009</li>
+  <li>Einzel-GdB werden <b>nicht addiert</b> · 10 wirkt nicht · 20 selten · Altersbeschwerden zählen nicht</li>
+  <li>Bescheid ab GdB 20 · Ausweis ab 50, Scheckkarte, <b>ohne Diagnose</b>, unbefristet oder max. 5 Jahre</li>
+  <li>Merkzeichen G, aG, B, H, Bl, Gl, RF — B: Begleitperson kostenlos, aber <b>keine Pflicht</b></li>
+  <li>Artikel 25: Recht auf das erreichbare Höchstmaß an Gesundheit · Strukturhilfe Kommunikation, Organisation, Haltung, Ausstattung</li>
+  <li>Studie: Ø 17,2 von 40 · Hören 13,2 % schwächster Bereich · Mobilität 65,7 % stärkster · „Nicht die Menschen sind das Problem“</li>
+</ol>
 
-  <div class="merk">
-    <span class="t">Zwei Sätze, die du weitergeben kannst</span>
-    <p><b>Im Ausweis steht keine Diagnose.</b> Wer ihn vorlegt, offenbart seinen GdB und seine
-      Merkzeichen — nicht seine Krankheit.</p>
-    <p><b>Verschlechtert sich der Gesundheitszustand, kann jederzeit ein Änderungsantrag
-      gestellt werden.</b> Widerspruch und Klage sind <b>kostenfrei</b>, und vor Gericht braucht
-      es <b>keinen Anwalt</b>.</p>
-    <p class="fr">Aucun diagnostic n'apparaît sur la carte. Et la contestation est gratuite,
-      sans avocat.</p>
-  </div>
-</section>
+<!-- ============ FRAGEN ============ -->
+<h2>5 Prüfungsfragen — mit Musterantwort</h2>
+<details><summary><span class="op">Nennen</span>Nennen Sie die sieben Merkzeichen aus dem Textteil mit ihrer Bedeutung.</summary>
+<p>G = erhebliche Gehbehinderung · aG = außergewöhnliche Gehbehinderung · B = Notwendigkeit ständiger Begleitung · H = Hilflosigkeit · Bl = Blindheit · Gl = Gehörlosigkeit · RF = Ermäßigung des Rundfunkbeitrags.</p></details>
+<details><summary><span class="op">Erklären</span>Erklären Sie den Unterschied zwischen Integration und Inklusion an einem eigenen Beispiel.</summary>
+<p>Bei <b>Integration</b> soll sich der Mensch mit Behinderung in ein bestehendes System einfügen. Bei <b>Inklusion</b> wird das System von Anfang an so gestaltet, dass alle gleichberechtigt teilhaben, ohne dass sich Einzelne anpassen müssen (Lösungsblatt S. 3). <b>Beispiel:</b> Integration — ein Rollstuhlfahrer wird im Krankenhaus von zwei Personen die Treppe hochgetragen. Inklusion — das Krankenhaus hat einen barrierefreien Eingang und einen rollstuhlgerechten Aufzug, er kommt allein hinein. <span class="her">Herleitung</span> (eigenes Beispiel)</p></details>
+<details><summary><span class="op">Erläutern</span>Erläutern Sie am Beispiel der Studie, warum die Folie sagt: „Das System ist nicht ausreichend barrierefrei.“</summary>
+<p>Die Studie zeigt, dass deutsche Krankenhäuser im Durchschnitt nur <b>17,2 von 40</b> Kriterien erfüllen. Das sieht man besonders daran, dass nur 0,5 % einen tastbaren Gebäudeplan, 3,3 % Brailleschrift und 8,5 % Kommunikationshilfen für Hörbeeinträchtigte haben. Der Bereich Hören liegt bei nur 13,2 %. Die Barrieren liegen also in der <b>Ausstattung und Kommunikation des Krankenhauses</b>, nicht im Menschen. Weil es Selbstangaben sind, ist die Wirklichkeit vermutlich sogar noch schlechter.</p></details>
+<details><summary><span class="op">Begründen</span>Begründen Sie, warum Pflegende bei Menschen mit geistiger Behinderung im Krankenhaus Begleitpersonen einbeziehen sollen.</summary>
+<p><b>Ursache:</b> Menschen mit geistiger Behinderung denken oft langsamer und verstehen <b>neue Situationen</b> nicht gut — das Krankenhaus ist eine neue Situation. <b>Wirkung:</b> Sie verstehen Abläufe und Erklärungen nicht, vor allem bei <b>Zeitdruck</b> und <b>fehlender Kommunikation</b> (typische Probleme). <b>Gefahr:</b> Sie bekommen <b>Angst</b> und können aggressiv reagieren; es drohen Unsicherheit, schlechtere Versorgung und <b>Fehlbehandlungen</b>. <b>Deshalb</b> beziehe ich die Begleitperson ein: Sie ist eine <b>bekannte Person</b>, gibt Sicherheit und kennt die Bedürfnisse. Dazu nehme ich mir mehr Zeit und erkläre einfach. <i>(Geistige Behinderung I · KH-Folien 9, 12, 13 · <span class="her">Herleitung</span> durch Verbinden der Folien)</i></p></details>
+<details><summary><span class="op">Beurteilen</span>Eine Patientin hat zwei Beeinträchtigungen mit Einzel-GdB 30 und 20. Sie sagt: „Dann bin ich ja schwerbehindert, 30 plus 20 ist 50.“ Beurteilen Sie die Aussage.</summary>
+<p><b>Einschätzung:</b> Die Aussage ist <b>so nicht richtig</b>. <b>Ursache:</b> Einzel-GdB werden <b>nicht addiert</b>; der Gesamt-GdB wird „nicht errechnet“, sondern danach gebildet, wie die Beeinträchtigungen <b>zusammenwirken</b>. Ein Einzel-GdB von 20 erhöht den Gesamt-GdB nur <b>selten</b>. <b>Wirkung:</b> Der Gesamt-GdB kann deshalb unter 50 bleiben. <b>Gefahr:</b> Sie rechnet fest mit Ausweis, Kündigungsschutz und Zusatzurlaub und ist enttäuscht. <b>Deshalb:</b> Ich erkläre ihr die Regel und verweise sie an das Versorgungsamt bzw. die Kommune — nur dort wird der GdB festgestellt. Liegt er bei 30 oder 40, kann sie bei der Agentur für Arbeit die <b>Gleichstellung</b> beantragen, wenn sie sonst ihren Arbeitsplatz nicht behält. <i>(Textteil S. 4 · Ratgeber S. 11, 30 · <span class="her">Herleitung</span>: der Fall ist ausgedacht)</i></p></details>
 
-<section id="merkzeichen">
-  <h2>Die sieben Merkzeichen</h2>
-  <p class="lead">Buchstaben im Ausweis. Jeder steht für einen konkreten
-    <b>Nachteilsausgleich</b> — also für etwas, das die Person dadurch tatsächlich bekommt.</p>
+<!-- ============ SPICKZETTEL ============ -->
+<h2>Spickzettel</h2>
+<ul class="spick">
+  <li>Behinderung = Beeinträchtigung + Barrieren</li>
+  <li>1948 · 2006 · 2008 · 2009 · 185 / 100 Staaten</li>
+  <li>Inklusion: System passt sich an</li>
+  <li>„Nichts über uns ohne uns“</li>
+  <li>GdB 20–100, Zehnerschritte, ab 50 schwer</li>
+  <li>nicht addieren · 10 nie · 20 selten</li>
+  <li>Bescheid ab 20 · Ausweis ab 50, ohne Diagnose</li>
+  <li>G · aG · B · H · Bl · Gl · RF</li>
+  <li>B: Begleitung gratis, keine Pflicht</li>
+  <li>H: &gt; 6 Monate, viele Verrichtungen; PG 4/5</li>
+  <li>Wertmarke 80 €/Jahr (2018), gratis bei Bl, H</li>
+  <li>Art. 25: Höchstmaß an Gesundheit</li>
+  <li>K-O-H-A: Kommunikation, Organisation, Haltung, Ausstattung</li>
+  <li>Studie: 17,2 / 40 · Hören 13,2 % · Mobilität 65,7 %</li>
+  <li>Pflege: Kommunikation anpassen, Bedürfnisse ernst nehmen, Begleitpersonen einbeziehen</li>
+</ul>
 
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Merkzeichen</th><th>Wer es bekommt</th><th>Was es bringt</th></tr></thead>
-      <tbody>
-        <tr><td class="k">G<br>erhebliche Gehbehinderung</td>
-          <td>Wer <b>ortsübliche Wegstrecken im Ortsverkehr nicht ohne erhebliche
-            Schwierigkeiten und nicht ohne Gefahr</b> für sich oder andere zu Fuß zurücklegen
-            kann — auch infolge <b>innerer Leiden</b>, <b>Anfälle</b> oder <b>Störungen der
-            Orientierungsfähigkeit</b>. Es zählt <b>nicht</b> die örtliche Lage des Einzelfalls,
-            sondern welche Strecken allgemein noch zu Fuß bewältigt werden.</td>
-          <td>Wahlweise <b>billiger Bus und Bahn</b> oder <b>weniger Kfz-Steuer</b></td></tr>
-        <tr><td class="k">aG<br>außergewöhnliche Gehbehinderung</td>
-          <td>Nur, wenn die Fortbewegung beim Gehen <b>auf das schwerste eingeschränkt</b> ist:
-            Die Person kann sich <b>dauernd nur mit fremder Hilfe oder nur mit großer
-            Anstrengung</b> außerhalb ihres Kraftfahrzeugs bewegen. Vergleichsmaßstab ist das
-            Gehvermögen einer <b>doppelt oberschenkelamputierten</b> Person.
-            <b>Eine Beeinträchtigung des Orientierungsvermögens allein reicht nicht.</b>
-            Dass ein Rollstuhl verordnet wurde, genügt nicht — die Person muss
-            <b>ständig darauf angewiesen</b> sein.</td>
-          <td><b>Billiger Bus und Bahn</b> · <b>keine Kfz-Steuer</b> ·
-            <b>Parkausweis</b></td></tr>
-        <tr><td class="k">B<br>Notwendigkeit ständiger Begleitung</td>
-          <td>Bei schwerbehinderten Menschen, <b>bei denen G, aG oder H vorliegt</b> und die bei
-            der Benutzung öffentlicher Verkehrsmittel <b>regelmäßig auf fremde Hilfe angewiesen</b>
-            sind — beim Ein- und Aussteigen, während der Fahrt oder zum <b>Ausgleich von
-            Orientierungsstörungen</b> (z. B. bei Sehbehinderung, geistiger Behinderung).</td>
-          <td>Die <b>Begleitperson fährt kostenlos</b> mit, <b>ohne km-Begrenzung</b>, im Nah-
-            <b>und</b> Fernverkehr — auch dann, wenn die behinderte Person selbst einen
-            Fahrschein braucht</td></tr>
-        <tr><td class="k">H<br>Hilflose</td>
-          <td>Wer <b>nicht nur vorübergehend</b> — also <b>länger als sechs Monate</b> — für
-            <b>häufig und regelmäßig wiederkehrende Verrichtungen</b> zur Sicherung der
-            persönlichen Existenz <b>dauernd fremder Hilfe</b> bedarf: An- und Auskleiden,
-            Nahrungsaufnahme, Körperpflege, Verrichtungen der Notdurft; dazu notwendige
-            körperliche Bewegung, geistige Anregung und Kommunikationsmöglichkeiten. Der Umfang
-            muss <b>erheblich</b> sein.</td>
-          <td><b>Kostenlos</b> Bus und Bahn · <b>keine Kfz-Steuer</b> · erhöhter
-            Steuerpauschbetrag</td></tr>
-        <tr><td class="k">Bl<br>Blinde</td>
-          <td>Das Augenlicht <b>fehlt vollständig</b> oder die <b>Sehschärfe auf dem besseren
-            Auge beträgt nicht mehr als 2 %</b> — oder es liegt eine als gleichwertig zu
-            achtende, nicht nur vorübergehende Störung des Sehvermögens vor.</td>
-          <td><b>Kostenlos</b> Bus und Bahn · <b>keine Kfz-Steuer</b> · <b>Parkausweis</b> ·
-            <b>Blindengeld</b> · erhöhter Steuerpauschbetrag</td></tr>
-        <tr><td class="k">Gl<br>Gehörlose</td>
-          <td>Bei <b>beiderseitiger Taubheit</b> oder bei <b>Schwerhörigkeit mit einhergehenden
-            schweren Sprachstörungen</b>.</td>
-          <td>Wahlweise <b>billiger Bus und Bahn</b> oder <b>weniger Kfz-Steuer</b></td></tr>
-        <tr><td class="k">RF<br>Ermäßigung des Rundfunkbeitrags</td>
-          <td>Drei Gruppen: <b>Blinde oder wesentlich Sehbehinderte mit einem GdB von
-            wenigstens 60 allein wegen der Sehbehinderung</b> · <b>Hörgeschädigte</b>, die
-            gehörlos sind oder denen eine ausreichende Verständigung über das Gehör auch mit
-            Hörhilfen nicht möglich ist · <b>Schwerbehinderte mit einem GdB von wenigstens 80</b>,
-            die wegen ihres Leidens <b>ständig nicht</b> an öffentlichen Veranstaltungen
-            teilnehmen können — sie müssen <b>allgemein</b> von öffentlichen Zusammenkünften
-            ausgeschlossen sein, einzelne Veranstaltungen genügen nicht.</td>
-          <td><b>Ermäßigung des Rundfunkbeitrags</b></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Merkzeichen B: die Einschränkung, die man sofort dazusagen muss</span>
-    <p>„<b>Eine Verpflichtung zur Mitnahme einer Begleitperson besteht jedoch nicht!</b>“</p>
-    <p>Das Merkzeichen B gibt der Begleitperson ein <b>Recht</b>, kostenlos mitzufahren — es
-      zwingt die behinderte Person <b>nicht</b>, jemanden mitzunehmen. Wer das verwechselt,
-      nimmt einem Menschen seine Selbstbestimmung ab, und zwar in bester Absicht.</p>
-    <p class="fr">Le sigle B est un <b>droit</b> pour l'accompagnant, pas une <b>obligation</b>
-      pour la personne.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Ein Fehler in einer deiner Folien — und deine eigenen Unterlagen lösen ihn auf</span>
-    <p>Auf der Folienübersicht steht <b>zweimal ein „B“</b>: einmal „B – Notwendigkeit ständiger
-      Begleitung“ und einmal „<b>B – Blinde</b>“.</p>
-    <p>Das zweite ist ein <b>Tippfehler</b>, und das lässt sich <b>aus deinen eigenen Dateien
-      belegen</b>, nicht aus meinem Gedächtnis: Der ausführliche Textteil derselben Quelle
-      schreibt „<b>Merkzeichen Bl – Blinde</b>“, und das Merkblatt des Versorgungsamtes in
-      Einfacher Sprache listet ebenfalls „<b>Bl = Blindheit</b>“ neben „<b>B =
-      Begleitperson</b>“.</p>
-    <p><b>B = Begleitung · Bl = Blindheit.</b> Schreib es dir an den Rand der Folie.</p>
-  </div>
-</section>
-
-<section id="vorteile">
-  <h2>Die Nachteilsausgleiche im Überblick</h2>
-  <p class="lead">Aus dem <b>Ratgeber für schwerbehinderte Menschen</b> des Ministeriums für
-    Arbeit, Gesundheit und Soziales NRW. Der Zweck steht im Text: berufliche, wirtschaftliche
-    und soziale Nachteile <b>ausgleichen</b>, die jemand durch seine Behinderung erleidet.</p>
-
-  <h3>Kostenlos im Nahverkehr — und was die Wertmarke kostet</h3>
-  <p>Die <b>unentgeltliche Beförderung im öffentlichen Personennahverkehr</b> steht den
-    Merkzeichen <b>G, aG, Bl, H und Gl</b> zu. Der Ausweis hat dann einen
-    <b>orangefarbenen Flächenaufdruck</b>.</p>
-  <div class="karten">
-    <div class="karte"><h4>Mit Wertmarke</h4>
-      <p>Für <b>Gehbehinderte und Gehörlose</b> ist die kostenlose Fahrt nur mit einem
-        <b>Beiblatt mit Wertmarke</b> möglich: <b>80 € im Jahr</b> oder <b>40 € im
-        Halbjahr</b>.</p></div>
-    <div class="karte"><h4>Ohne Zuzahlung</h4>
-      <p>Die Wertmarke ist <b>kostenlos</b> bei <b>Blindheit (Bl)</b> oder
-        <b>Hilflosigkeit (H)</b> — oder wenn bestimmte Sozialleistungen bezogen werden.</p></div>
-    <div class="karte"><h4>Wo es gilt</h4>
-      <p>Ausweis mit orangefarbenem Aufdruck <b>plus gültige Wertmarke</b> berechtigt, das
-        <b>Nahverkehrsangebot im gesamten Bundesgebiet</b> kostenlos zu nutzen.</p></div>
-  </div>
-  <div class="warnung">
-    <span class="t">Diese Zahlen tragen ein Datum</span>
-    <p>Der Ratgeber schreibt zu den 80 € bzw. 40 € ausdrücklich <b>„Stand: Januar 2018“</b>.
-      Das ist über acht Jahre her. <b>Nenne die Zahl also nie ohne das Datum</b> und verweise
-      für den aktuellen Betrag auf das Versorgungsamt. Ich schreibe hier keinen neueren Wert
-      hin, den deine Unterlagen nicht hergeben.</p>
-    <p class="fr">Ces montants datent de janvier 2018 — cite-les toujours avec leur date.</p>
-  </div>
-
-  <h3>Arbeit</h3>
-  <div class="karten">
-    <div class="karte"><h4>Kündigungsschutz</h4>
-      <p>Zwei Besonderheiten: Eine Kündigung <b>ohne Beteiligung der
-        Schwerbehindertenvertretung</b> — umfassende Unterrichtung und Anhörung <b>vor</b> der
-        Entscheidung — ist <b>unwirksam</b> (<b>§ 178 Abs. 2 SGB IX</b>, eingeführt mit dem
-        Bundesteilhabegesetz). Und das <b>Integrationsamt muss zustimmen</b>, sofern das
-        Arbeitsverhältnis <b>länger als sechs Monate</b> besteht und die Schwerbehinderung
-        nachgewiesen ist.</p></div>
-    <div class="karte"><h4>Zusatzurlaub</h4>
-      <p><b>Eine Arbeitswoche zusätzlich</b> — also fünf Tage bei einer Fünftagewoche, vier bei
-        einer Viertagewoche. Voraussetzung: den Ausweis beim Arbeitgeber <b>vorlegen</b>.
-        Tritt die Schwerbehinderung im Jahr ein oder weg, gibt es <b>für jeden vollen
-        Kalendermonat ein Zwölftel</b>; Bruchteile ab einem halben Tag werden
-        <b>aufgerundet</b>.</p></div>
-    <div class="karte"><h4>Gleichstellung</h4>
-      <p>Auch bei einem <b>GdB von 30 oder 40</b> greift der Kündigungsschutz, wenn die
-        <b>Gleichstellung durch Bescheid der Agentur für Arbeit</b> erfolgt ist.</p></div>
-  </div>
-
-  <h3>Steuern — der Pauschbetrag</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Grad der Behinderung</th><th>Pauschbetrag in Euro</th></tr></thead>
-      <tbody>
-        <tr><td class="k">25 und 30</td><td>310</td></tr>
-        <tr><td class="k">35 und 40</td><td>430</td></tr>
-        <tr><td class="k">45 und 50</td><td>570</td></tr>
-        <tr><td class="k">55 und 60</td><td>720</td></tr>
-        <tr><td class="k">65 und 70</td><td>890</td></tr>
-        <tr><td class="k">75 und 80</td><td>1.060</td></tr>
-        <tr><td class="k">85 und 90</td><td>1.230</td></tr>
-        <tr><td class="k">95 und 100</td><td>1.420</td></tr>
-        <tr><td class="k">Merkzeichen Bl oder H</td><td><b>3.700</b></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p>Der Ratgeber setzt unter diese Tabelle <b>„Stand: Februar 2018“</b> — <b>auch diese Werte
-    also nur mit Datum nennen</b>. Bei einem GdB zwischen <b>25 und 45</b> gibt es die
-    Steuerermäßigung nur, wenn <b>ein gesetzlicher Anspruch auf Rente oder andere laufende
-    Bezüge</b> besteht, die Behinderung zu einer <b>dauernden Einbuße der körperlichen
-    Beweglichkeit</b> geführt hat oder auf einer <b>typischen Berufskrankheit</b> beruht.</p>
-
-  <h3>Rente und weitere Hilfen</h3>
-  <ul>
-    <li><b>Altersrente für schwerbehinderte Menschen:</b> ab Vollendung des
-      <b>65. Lebensjahres</b>, Voraussetzung sind die bei Rentenbeginn anerkannte
-      Schwerbehinderung und eine <b>Wartezeit von 35 Jahren</b>. <b>Vorzeitig ab 62</b> — mit
-      Abschlägen. Für die Jahrgänge <b>1952 bis 1963</b> gelten stufenweise
-      Übergangsregelungen.</li>
-    <li><b>Blindengeld</b> nach dem <b>Gesetz über die Hilfen für Blinde und Gehörlose
-      (GHBG)</b> — bei Merkzeichen <b>Bl</b> und <b>unabhängig vom Einkommen</b>.</li>
-    <li>Der Ratgeber nennt außerdem: Parkerleichterungen, Wohngeld, Wohnberechtigungsschein,
-      Blindenführhund, Hilfe für hochgradig Sehbehinderte, Hilfe für Gehörlose,
-      Bausparförderung und Kindergeld.</li>
-  </ul>
-
-  <div class="merk">
-    <span class="t">Wofür du das brauchst — und wofür nicht</span>
-    <p>Du wirst keinen Antrag ausfüllen. Aber du wirst <b>gefragt werden</b> — von Patienten, von
-      Angehörigen, oft mitten in der Pflege. Was du wissen musst, ist nicht jede Zahl, sondern:
-      <b>dass es das gibt</b>, <b>dass der Antrag beim Versorgungsamt oder der Kommune
-      gestellt wird</b>, und <b>dass ein Änderungsantrag jederzeit möglich ist</b>.</p>
-    <p class="fr">Tu n'as pas à connaître chaque montant. Tu dois savoir que ça existe et où on
-      dépose la demande.</p>
-  </div>
-</section>
-
-<section id="kh">
-  <h2>Menschen mit Behinderung im Krankenhaus</h2>
-  <p class="lead">Der Foliensatz von <b>Kerstin Schnapp-Benend</b> (CE 07 / UE 06) arbeitet mit
-    zwei Videos und einem Arbeitsauftrag.</p>
-
-  <h3>Der Arbeitsauftrag zu den Videos</h3>
-  <div class="karten">
-    <div class="karte"><h4>Die vier Fragen</h4>
-      <p>Welche <b>Probleme</b> entstehen? · Welche <b>Situationen</b> sind belastend? ·
-        <b>Wodurch</b> entstehen sie? · Was kann <b>verbessert</b> werden?</p></div>
-    <div class="karte"><h4>Die Strukturhilfe</h4>
-      <p><b>Kommunikation</b> · <b>Organisation</b> · <b>Haltung</b> · <b>Ausstattung</b></p>
-      <p>Diese vier Wörter sind die Gliederung deiner Antwort. <b>Benutze sie als
-        Überschriften</b> — genau so wird eine strukturierte Antwort bewertet.</p></div>
-    <div class="karte"><h4>Die Reflexion</h4>
-      <p>Welche <b>Ängste</b> haben Betroffene? · <b>Warum ist Begleitung wichtig?</b></p></div>
-  </div>
-  <p>Die beiden Videos sind im Foliensatz verlinkt: <i>„Mit einer Körperbehinderung ins
-    Krankenhaus – Horror“</i> und <i>„Menschen mit Behinderung im Krankenhaus – Ohne Angst?“</i>
-    (VdK). <b>Ich habe sie nicht gesehen</b> — was darin gesagt wird, steht nicht in deinen
-    Unterlagen.</p>
-
-  <h3>Die typischen Probleme — vier Wörter aus dem Foliensatz</h3>
-  <div class="karten">
-    <div class="karte"><h4>Fehlende Kommunikation</h4></div>
-    <div class="karte"><h4>Abhängigkeit</h4></div>
-    <div class="karte"><h4>Zeitdruck</h4></div>
-    <div class="karte"><h4>Fehlende Unterstützung</h4></div>
-  </div>
-
-  <h3>Die Rolle der Pflege</h3>
-  <ul>
-    <li><b>Kommunikation anpassen</b></li>
-    <li><b>Bedürfnisse ernst nehmen</b></li>
-    <li><b>Begleitpersonen einbeziehen</b></li>
-  </ul>
-
-  <div class="gefahr">
-    <span class="t">Die Auflösung der Eingangsthese — der wichtigste Satz des ganzen Blocks</span>
-    <p>„<b>Nicht die Menschen sind das Problem.</b> <b>Das System ist nicht ausreichend
-      barrierefrei.</b>“</p>
-    <p>Damit ist die These „Behinderte Menschen überfordern das Krankenhaus“ umgedreht: Das
-      Krankenhaus ist nicht überfordert, weil die Patienten schwierig sind, sondern weil es
-      <b>nicht so gebaut und organisiert ist</b>, dass alle es nutzen können. Das ist genau die
-      Denkfigur aus Artikel 1 der UN-BRK: <b>Behinderung entsteht in der Wechselwirkung mit
-      Barrieren.</b></p>
-    <p class="fr">Ce ne sont pas les personnes qui posent problème. C'est le système qui n'est
-      pas accessible.</p>
-  </div>
-
-  <p>Die Folie schließt mit zwei Transferfragen: <b>Was können Sie konkret verändern?</b> und
-    <b>Was müsste strukturell — also von Seiten der Einrichtungen — verändert werden?</b>
-    Beide sind <b>unbeantwortet</b>; sie sind deine Aufgabe. Die Trennung ist der Kern:
-    <b>was in meiner Hand liegt</b> gegen <b>was nicht</b>.</p>
-</section>
-
-<section id="studie">
-  <h2>Die Studie — deutsche Krankenhäuser erfüllen 17,2 von 40 Kriterien</h2>
-  <p class="lead">Hocher &amp; Hollederer, <i>Gesundheitswesen</i> (Thieme): eine
-    <b>Sekundärdatenanalyse der Strukturierten Qualitätsberichte 2019</b> von
-    <b>2 242 Krankenhäusern</b> in Deutschland, ausgewertet nach <b>40 Selbstangaben</b> zur
-    Barrierefreiheit aus <b>acht Bereichen</b>.</p>
-
-  <div class="merk">
-    <span class="t">Das Gesamtergebnis</span>
-    <p>Im Durchschnitt erfüllen die Krankenhäuser <b>17,2 von 40</b> Kriterien
-      (Spannweite <b>0 bis 38</b>). <b>76,4 %</b> setzen zwischen 11 und 30 Maßnahmen um;
-      <b>2,9 %</b> liegen im oberen Viertel, <b>20,7 %</b> im unteren.</p>
-    <p>Und der Befund, der sich durch alles zieht: <b>Maßnahmen für Sinnes- und geistige
-      Behinderungen werden seltener vorgehalten als für körperliche Beeinträchtigungen.</b></p>
-    <p class="fr">17,2 sur 40. Et ce sont les handicaps sensoriels et mentaux qui sont les
-      moins pris en compte.</p>
-  </div>
-
-  <h3>Die acht Bereiche, vom schlechtesten zum besten</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Bereich</th><th>erfüllt</th><th>Die Einzelzahl, die es sichtbar macht</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Hören</td><td><b>13,2 %</b></td>
-          <td><b>Kommunikationshilfen nur 8,5 %</b> · visuelle Anzeigen in Wartebereichen
-            <b>5,8 %</b>, in Zimmern <b>12,9 %</b> · Informationen in leichter Sprache
-            <b>16,4 %</b></td></tr>
-        <tr><td class="k">Sehen</td><td><b>25,2 %</b></td>
-          <td><b>Tastbarer Gebäudeplan: 0,5 %</b> · Brailleschrift <b>3,3 %</b> · Aufzug mit
-            Sprachansage/Braille <b>35,0 %</b> · große kontrastreiche Hinweise
-            <b>62,5 %</b></td></tr>
-        <tr><td class="k">Demenz &amp; geistige Behinderung</td><td><b>36,5 %</b></td>
-          <td>Piktogramme <b>41,5 %</b> · besondere personelle Unterstützung <b>42,1 %</b> ·
-            bauliche Maßnahmen <b>26,0 %</b></td></tr>
-        <tr><td class="k">Organisation</td><td><b>40,4 %</b></td>
-          <td><b>Ansprechpartner für Menschen mit Behinderung: 95,7 %</b> — aber Informationen
-            zur Barrierefreiheit auf der Website nur <b>4,8 %</b> und eine barrierefreie
-            Website nur <b>3,7 %</b></td></tr>
-        <tr><td class="k">Kultur</td><td><b>43,5 %</b></td>
-          <td>fremdsprachiges Personal <b>78,6 %</b> · Dolmetscherdienste <b>63,3 %</b> ·
-            religiöse Räume <b>47,0 %</b> · <b>mehrsprachiges Orientierungssystem nur
-            2,9 %</b></td></tr>
-        <tr><td class="k">Allergien</td><td><b>51,7 %</b></td>
-          <td>diätische Angebote <b>86,6 %</b> · allergenarme Zimmer nur <b>16,9 %</b></td></tr>
-        <tr><td class="k">Besondere Körpermaße</td><td><b>58,3 %</b></td>
-          <td>geeignete Betten <b>70,9 %</b> · Untersuchungsgeräte <b>66,0 %</b> ·
-            OP-Einrichtungen <b>46,6 %</b> · Röntgeneinrichtungen <b>38,0 %</b></td></tr>
-        <tr><td class="k">Mobilität</td><td><b>65,7 %</b></td>
-          <td>rollstuhlgerechter Zugang zu Serviceeinrichtungen <b>87,8 %</b> · Besuchertoiletten
-            <b>87,0 %</b> · Aufzüge <b>84,8 %</b> — <b>aber barrierefreie Erreichbarkeit nur
-            35,2 %</b> und barrierefreier Eingangsbereich nur <b>35,5 %</b></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Der Widerspruch, den ich in den Zahlen sehe</span>
-    <p><b>95,7 % der Krankenhäuser haben einen Ansprechpartner für Menschen mit Behinderung —
-      aber nur 4,8 % schreiben auf ihrer Website etwas zur Barrierefreiheit.</b></p>
-    <p>Und: Drinnen sind <b>84,8 %</b> der Aufzüge rollstuhlgerecht, aber nur <b>35,5 %</b> der
-      Häuser haben einen barrierefreien <b>Eingangsbereich</b>. <b>Man kommt gut durchs Haus,
-      wenn man erst einmal drin ist.</b></p>
-    <p><b>Das ist meine Lesart der Tabelle, nicht ein Satz der Autorinnen</b> — aber die Zahlen
-      dafür stehen genau so in der Studie. Genau so baut man eine
-      <b>Beurteilen</b>-Antwort: erst die Einschätzung, dann der Beleg.</p>
-    <p class="fr">Il y a un référent dans presque tous les hôpitaux — mais presque aucun ne dit
-      où le trouver.</p>
-  </div>
-
-  <h3>Warum das Folgen hat</h3>
-  <div class="merk">
-    <span class="t">Die Kette, die die Studie selbst nennt</span>
-    <p><b>Ursache:</b> Es fehlen Kommunikationshilfen, Leitsysteme und barrierefreie Zugänge. →
-      <b>Wirkung:</b> Menschen mit Behinderung können sich nicht verständigen und nicht
-      orientieren. → <b>Gefahr:</b> Die Studie nennt sie beim Namen — <b>lange Wartezeiten,
-      Aufnahmeverweigerungen, verfehlte Diagnosen sowie verspätete oder unangemessene
-      Behandlungen</b>, und in der Folge <b>eine geringere Inanspruchnahme</b> stationärer
-      Leistungen, was <b>bestehende gesundheitliche Probleme verschlimmern kann</b>. →
-      <b>Deshalb:</b> ist das Einbeziehen der Begleitperson und das Anpassen der Kommunikation
-      keine Freundlichkeit, sondern <b>Teil der Behandlungsqualität</b>.</p>
-  </div>
-
-  <h3>Drei Zahlen zum Einordnen</h3>
-  <div class="karten">
-    <div class="karte"><h4>7,9 Millionen</h4>
-      <p>Menschen mit <b>amtlich anerkannter Schwerbehinderung</b> lebten <b>2023</b> in
-        Deutschland (Statistisches Bundesamt, zitiert in der Studie).</p></div>
-    <div class="karte"><h4>Seit 2005</h4>
-      <p>sind alle zugelassenen Krankenhäuser verpflichtet, strukturierte Qualitätsberichte zu
-        veröffentlichen. Der <b>G-BA</b> definiert Barrierefreiheit darin als Gestaltung
-        baulicher, technischer und kommunikativer Elemente so, dass sie <b>ohne besondere
-        Erschwernis und grundsätzlich ohne fremde Hilfe</b> zugänglich und nutzbar sind.</p></div>
-    <div class="karte"><h4>77,9 %</h4>
-      <p>der Häuser geben an, eine <b>vertraute Begleit- und Bezugsperson unterbringen</b> zu
-        können. Seit <b>2022</b> gibt es zudem eine <b>Kostenübernahme für Begleitpersonen
-        durch die Krankenkassen</b>.</p></div>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Was die Studie über sich selbst sagt</span>
-    <p>Die Autorinnen nennen ihre Grenzen ausdrücklich: Es sind <b>Selbstangaben</b>, also
-      besteht ein <b>Berichts-Bias</b> — die Daten könnten die Barrierefreiheit
-      <b>im Sinne der sozialen Erwünschtheit überschätzen</b>. Außerdem geben
-      <b>Ja-Nein-Antworten die Qualitätsstufen nicht angemessen wieder</b>: „Rollstuhlgerechte
-      Toilette: ja“ sagt nichts darüber, ob sie auch erreichbar und nutzbar ist.</p>
-    <p>Und die Daten stammen aus <b>2019</b>. Seitdem gibt es den
-      <b>Aktionsplan für ein diverses, inklusives und barrierefreies Gesundheitswesen</b> des
-      Bundesgesundheitsministeriums und Modernisierungen nach <b>DIN 18040-1</b>. Wie sich das
-      auswirkt, <b>bleibt laut Studie abzuwarten</b>.</p>
-    <p><b>Das gehört in jede Antwort dazu, in der du diese Zahl benutzt.</b> Eine Zahl mit ihrer
-      Grenze zu nennen ist stärker, als sie allein hinzuschreiben.</p>
-    <p class="fr">Ce sont des auto-déclarations de 2019. Cite toujours le chiffre avec cette
-      limite.</p>
-  </div>
-
-  <h3>Die Wörter dazu</h3>
-  <div class="paare">
-    <div class="paar"><span class="de">die Barrierefreiheit (nur Singular)</span>
-      <span class="frx">l'accessibilité</span></div>
-    <div class="paar"><span class="de">die Teilhabe (nur Singular)</span>
-      <span class="frx">la participation (à la vie sociale)</span></div>
-    <div class="paar"><span class="de">die Beeinträchtigung, -en</span>
-      <span class="frx">la déficience, l'atteinte</span></div>
-    <div class="paar"><span class="de">der Nachteilsausgleich, -e</span>
-      <span class="frx">la compensation d'un désavantage</span></div>
-    <div class="paar"><span class="de">das Merkzeichen, -</span>
-      <span class="frx">le sigle inscrit sur la carte d'invalidité</span></div>
-    <div class="paar"><span class="de">der Feststellungsbescheid, -e</span>
-      <span class="frx">la notification officielle du taux</span></div>
-    <div class="paar"><span class="de">das Versorgungsamt, ¨-er</span>
-      <span class="frx">le service administratif compétent</span></div>
-    <div class="paar"><span class="de">die Gleichstellung (nur Singular)</span>
-      <span class="frx">l'assimilation au statut de personne lourdement handicapée</span></div>
-    <div class="paar"><span class="de">der Zusatzurlaub (nur Singular)</span>
-      <span class="frx">les congés supplémentaires</span></div>
-    <div class="paar"><span class="de">die Begleitperson, -en</span>
-      <span class="frx">la personne accompagnante</span></div>
-    <div class="paar"><span class="de">die Wertmarke, -n</span>
-      <span class="frx">la vignette (pour les transports gratuits)</span></div>
-    <div class="paar"><span class="de">das Leitsystem, -e</span>
-      <span class="frx">le système de guidage (au sol, tactile)</span></div>
-    <div class="paar"><span class="de">die Brailleschrift (nur Singular)</span>
-      <span class="frx">l'écriture braille</span></div>
-    <div class="paar"><span class="de">das Piktogramm, -e</span>
-      <span class="frx">le pictogramme</span></div>
-    <div class="paar"><span class="de">die Stigmatisierung (nur Singular)</span>
-      <span class="frx">la stigmatisation</span></div>
-    <div class="paar"><span class="de">die Marginalisierung (nur Singular)</span>
-      <span class="frx">la marginalisation</span></div>
-  </div>
-</section>
-
-<section id="geistig">
-  <h2>Geistige Behinderung — das handgeschriebene Plakat</h2>
-  <p class="lead">Eine der Dateien ist ein <b>Foto eines handgeschriebenen Blattes</b> aus dem
-    Unterricht. Die Schrift ist stellenweise schwer zu lesen; ich gebe hier nur wieder, was
-    eindeutig entzifferbar ist, und schreibe nichts dazu.</p>
-
-  <div class="merk">
-    <span class="t">Was auf dem Blatt steht</span>
-    <p><b>Geistige Behinderung</b> ist ein <b>Sammelbegriff für Menschen mit starken
-      Einschränkungen im Denken und Verstehen</b> (kognitive Fähigkeiten).</p>
-    <p><b>Es ist keine Krankheit</b> — <b>kann aber durch eine Krankheit entstehen</b>. Oft
-      beginnt sie <b>früh im Kindesalter</b>, und die Einschränkungen <b>bleiben meist ein Leben
-      lang bestehen</b>.</p>
-    <p>Oft liegt eine <b>komplexe Behinderung</b> vor: <b>Nicht nur das Denken ist betroffen,
-      sondern auch das Verhalten</b> der Person ist verändert.</p>
-    <p class="fr">Ce n'est pas une maladie — mais une maladie peut en être la cause.</p>
-  </div>
-
-  <h3>Ursachen, die das Blatt nennt</h3>
-  <p>Genetische Veränderungen · Probleme <b>vor, während oder nach der Geburt</b> ·
-    Stoffwechselstörungen · Unfälle · Gewalt · Vergiftungen.</p>
-
-  <div class="gefahr">
-    <span class="t">Warum der pflegerische Umgang schwer ist — und was daraus folgt</span>
-    <p>Vom Blatt, sinngemäß im Wortlaut: Der Umgang ist eine besondere Herausforderung,
-      <b>weil die Menschen oft langsamer denken und neue Situationen nicht gut verstehen</b>.
-      Sie brauchen <b>mehr Zeit</b>, <b>bekannte Personen</b> und <b>einfache Erklärungen</b>.
-      <b>Wenn es zu schnell geht, können sie Angst bekommen und aggressiv reagieren.</b></p>
-    <p>Lies den letzten Satz noch einmal: <b>Aggression ist hier eine Folge von Tempo</b>, nicht
-      ein Wesenszug. Das ist eine vollständige <i>Ursache → Wirkung → Gefahr → deshalb</i>-Kette
-      in vier Zeilen — und sie deckt sich genau mit dem, was im Foliensatz unter
-      <b>Zeitdruck</b> steht.</p>
-    <p class="fr">L'agressivité vient du rythme imposé, pas du caractère. Donc : plus de temps,
-      des visages connus, des explications simples.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Woher dieses Blatt stammt</span>
-    <p>Es ist ein <b>handgeschriebenes Plakat aus dem Unterricht</b>, kein Foliensatz einer
-      Dozentin und kein Fachtext. Der Dateiname lautet <b>„Geistige Behinderung I“</b> — das
-      <b>I</b> deutet darauf hin, dass es <b>ein zweites Blatt gibt</b>, das nicht im Ordner
-      liegt. Behandle den Inhalt als <b>Mitschrift</b>: gut zum Wiederholen, nicht zum Zitieren
-      in einer Klausur.</p>
-  </div>
-</section>
-
-<section id="arbeitsblatt">
-  <h2>Das Arbeitsblatt zum Video — was gelöst ist und was nicht</h2>
-  <p class="lead">Zwei Dateien gehören zusammen: das <b>leere Arbeitsblatt</b> und das
-    <b>Lösungsblatt</b> zum YouTube-Video über die Umsetzung der UN-BRK durch die
-    <b>BAG SELBSTHILFE</b> und den <b>DBR</b>.</p>
-
-  <div class="karten">
-    <div class="karte"><h4>Aufgabe 1 · Zeitleiste</h4>
-      <p><b>Gelöst.</b> 1 — 1948 Allgemeine Erklärung der Menschenrechte · 2 — 2006
-        Verabschiedung der UN-BRK · 3 — 2009 Ratifizierung durch Deutschland.</p></div>
-    <div class="karte"><h4>Aufgabe 2 · Zuordnung</h4>
-      <p><b>Gelöst.</b> Die vier Paare stehen oben im Abschnitt <i>Integration oder
-        Inklusion</i>.</p></div>
-    <div class="karte"><h4>Aufgabe 4 und 5 · offene Fragen</h4>
-      <p><b>Gelöst</b> — die beiden Musterantworten stehen oben wörtlich.</p></div>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Aufgabe 3, das Multiple-Choice: die Häkchen fehlen in der Datei</span>
-    <p>Im Lösungsblatt sind die richtigen Optionen <b>grafisch angekreuzt</b> — im Text der Datei
-      sind diese Markierungen <b>nicht enthalten</b>. Drei der vier Antworten lassen sich
-      trotzdem <b>aus dem Lösungsblatt selbst</b> ableiten, weil sie dort an anderer Stelle
-      ausgeschrieben stehen:</p>
-    <p><b>Ratifizierungsjahr → 2009</b> (steht in der Zeitleiste) ·
-      <b>betontes Prinzip → „Nichts über uns ohne uns“</b> (steht in der Zuordnung) ·
-      <b>Forderung des DBR → schnellere Umsetzung und stärkere Beteiligung behinderter
-      Menschen</b> (steht in der Musterantwort).</p>
-    <p><b>Die vierte lässt sich nicht ableiten:</b> <i>Welcher Bereich benötigt laut Vereinten
-      Nationen dringend Verbesserungen?</i> — Gesundheitsversorgung, Inklusion in Schulen oder
-      Arbeitsplatzsituation. Diese Antwort steht <b>nur im Video</b>. <b>Ich rate nicht.</b>
-      Schau dir die Stelle an und trag sie selbst ein.</p>
-    <p class="fr">Trois réponses se déduisent de la feuille elle-même. La quatrième est dans la
-      vidéo — je ne devine pas.</p>
-  </div>
-</section>
-
-<section id="offen">
-  <h2>Was fehlt — und was du selbst machen musst</h2>
-
-  <div class="warnung">
-    <span class="t">Fünf offene Punkte</span>
-    <p><b>1. Die drei Videos</b> (zwei aus dem Krankenhaus-Foliensatz, eines zum Arbeitsblatt)
-      liegen nicht als Text vor. Was darin gesagt wird, steht nicht auf dieser Seite.</p>
-    <p><b>2. Die Eingangsthesen und die beiden Transferfragen</b> aus dem Krankenhaus-Foliensatz
-      sind <b>deine</b> Antworten — nimm die Strukturhilfe
-      <i>Kommunikation · Organisation · Haltung · Ausstattung</i> als Gliederung.</p>
-    <p><b>3. „Geistige Behinderung I“</b> — das zweite Blatt fehlt.</p>
-    <p><b>4. Die eine Multiple-Choice-Antwort</b> aus dem Video, siehe oben.</p>
-    <p><b>5. Die Geldbeträge sind von 2018.</b> Wertmarke und Steuerpauschbeträge tragen im
-      Ratgeber selbst den Vermerk <b>Stand Januar bzw. Februar 2018</b>. Ich habe sie
-      <b>nicht aktualisiert</b> — neuere Zahlen stehen nicht in deinen Unterlagen. Nenne sie
-      immer mit Datum.</p>
-    <p class="fr">Cinq trous nommés. Aucun rempli de mémoire.</p>
-  </div>
-
-  <div class="merk">
-    <span class="t">Die Brücke zu deinen anderen Seiten</span>
-    <p><b>Recht in der Pflege:</b> Das Betreuungsrecht — wer entscheidet, wenn jemand es nicht
-      selbst kann — liegt direkt neben diesem Thema, ist aber <b>etwas anderes</b>. Eine
-      Behinderung bedeutet <b>nicht</b> automatisch eine Betreuung.</p>
-    <p><b>Verantwortliches Pflegehandeln:</b> „Nichts über uns ohne uns“ ist die kurze Form von
-      <b>Phase 1</b> im Modell nach Heffels — <i>Wer hat welche Ansicht, Erwartung, Erfahrung,
-      Einstellung?</i> Alle Beteiligten, nicht nur du.</p>
-    <p><b>Psychiatrische Pflege:</b> Dort stehen <b>Diskriminierung und Stigmatisierung</b> schon
-      als eigener Abschnitt. Es ist derselbe Mechanismus, nur eine andere Gruppe.</p>
-  </div>
-</section>
-
-<details class="quelle">
-  <summary>Die acht Quellen — jede einzeln genannt</summary>
-  <div class="inh">
-    <ul>
-      <li><b>Menschen mit Behinderung.pdf</b> — der ausführliche Textteil (12 Seiten): UN-BRK,
-        Fakultativprotokoll, SGB-Definition, GdB mit allen Feststellungsregeln und jedes
-        Merkzeichen mit seinen Voraussetzungen. Quellen darin:
-        <i>menschenrechte-durchsetzen.dgvn.de</i> und <i>staedteregion-aachen.de</i>.</li>
-      <li><b>Menschen mit Behinderung PP.pdf</b> — der Foliensatz zum selben Text. Enthält den
-        Tippfehler „B – Blinde“ (richtig: <b>Bl</b>), der sich aus den beiden anderen Dateien
-        auflösen lässt.</li>
-      <li><b>Menschen mit Behinderung im KH.pdf</b> — Foliensatz <b>CE 07 / UE 06</b>,
-        <b>Kerstin Schnapp-Benend</b>, „Barrieren erkennen – Pflege gestalten“: Artikel 25
-        UN-BRK, die zwei Eingangsthesen, zwei Videolinks, der Arbeitsauftrag mit Strukturhilfe,
-        die typischen Probleme, die Rolle der Pflege und die Auflösung.</li>
-      <li><b>Studie Menschen mit Behinderung im KH.pdf</b> — Hocher R., Hollederer A.:
-        <i>Wie barrierefrei sind deutsche Krankenhäuser? Eine Sekundärdatenanalyse der
-        Strukturierten Qualitätsberichte 2019</i>, Gesundheitswesen, Georg Thieme Verlag.
-        Alle Prozentzahlen dieser Seite stammen aus ihren Tabellen 1 und 2.</li>
-      <li><b>Ratgeber_fuer_schwerbehinderte_Menschen.pdf</b> — Broschüre des
-        <b>Ministeriums für Arbeit, Gesundheit und Soziales NRW</b> (Vorwort: Minister
-        Karl-Josef Laumann), rund 100 Seiten mit Adressverzeichnis. Daraus: Antragsverfahren,
-        GdB, Ausweis, Merkzeichen, ÖPNV, Kündigungsschutz, Zusatzurlaub, Steuerpauschbetrag,
-        Altersrente, Blindengeld. <b>Die Geldbeträge tragen dort den Vermerk Stand Januar bzw.
-        Februar 2018.</b></li>
-      <li><b>schwerbehindertenausweis-einfache_Sprache.pdf</b> — Merkblatt des Versorgungsamtes
-        der StädteRegion Aachen. Erklärt das Antragsverfahren und die Vorteile jedes
-        Merkzeichens in <b>Einfacher Sprache</b>.</li>
-      <li><b>Menschen mit Behinderung You Tube Azubi.pdf</b> und
-        <b>… You Tube Loesungen.pdf</b> — Arbeitsblatt und Lösungsblatt zum Video über die
-        Umsetzung der UN-BRK durch die BAG SELBSTHILFE und den DBR.</li>
-      <li><b>Geistige Behinderung I.jpg</b> — Foto eines <b>handgeschriebenen</b> Blattes aus
-        dem Unterricht. Teilweise schwer lesbar; nur eindeutig Entzifferbares übernommen.</li>
-    </ul>
-    <p>Alle acht aus deinem Google-Drive-Ordner, geteilt am 18.09.2026. Jede Jahreszahl, jeder
-      Prozentwert und jeder Geldbetrag auf dieser Seite steht so in einer dieser Dateien.</p>
-    <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> die zusammengeführte
-      Merkzeichen-Tabelle (sie verbindet die Voraussetzungen aus dem Textteil mit den Vorteilen
-      aus dem Merkblatt in Einfacher Sprache — in keiner Datei stehen beide zusammen), der
-      Widerspruch zwischen 95,7 % Ansprechpartnern und 4,8 % Website-Informationen, die
-      Auflösung des „B/Bl“-Tippfehlers und die Brücken zu deinen anderen
-      Zusammenfassungen.</p>
-    <p>Die französischen Zeilen und die Vokabelübersetzungen sind von mir ergänzt.</p>
-  </div>
-</details>
-
+<h2>Woraus diese Seite gebaut ist</h2>
+<p>Neun Dateien aus deinem Drive-Ordner (18.09.2026), alle Seiten gelesen:</p>
+<ul>
+  <li><b>Menschen mit Behinderung</b> (Textteil, dgvn.de und staedteregion-aachen.de) — 12 S.</li>
+  <li><b>Menschen mit Behinderung PP</b> (Foliensatz zum Textteil) — 27 Folien, viele nur Bilder (angesehen)</li>
+  <li><b>Menschen mit Behinderung im KH</b> (K. Schnapp-Benend, CE 07 UE 06) — 15 Folien</li>
+  <li><b>Studie Menschen mit Behinderung im KH</b> (Hocher/Hollederer, Gesundheitswesen 2026) — 7 S.; einige Zeilen nur vom Seitenbild abgelesen; das Literaturverzeichnis ist hier nicht übernommen</li>
+  <li><b>Ratgeber für schwerbehinderte Menschen</b> (MAGS NRW, 2. Auflage Oktober 2020, Beträge Stand 2017/2018) — 104 S.; S. 61–101 sind Anschriften, Internetadressen und Stichwortverzeichnis und stehen hier bewusst nicht</li>
+  <li><b>Schwerbehindertenausweis in Einfacher Sprache</b> (Versorgungsamt StädteRegion Aachen) — 2 S.</li>
+  <li><b>Menschen mit Behinderung You Tube Azubi</b> (Arbeitsblatt) — 3 S. (S. 3 leer)</li>
+  <li><b>Menschen mit Behinderung You Tube Loesungen</b> (Lösungsblatt) — 3 S.; alle vier Multiple-Choice-Antworten sind dort markiert</li>
+  <li><b>Geistige Behinderung I</b> (Foto eines handgeschriebenen Plakats) — 1 S.</li>
+</ul>
+<p><b>Was fehlt:</b> Die drei Videos (YouTube) liegen nicht als Text vor. Die Eingangsthesen, die Reflexionsfragen und die Transferfragen der KH-Folien haben keine Lösung. Teil II des Plakats „Geistige Behinderung“ fehlt. Alle Geldbeträge sind von 2017/2018 und nicht aktualisiert. Wo ich etwas selbst verbinde, steht <span class="her">Herleitung</span>.</p>
+<p class="fr">🇫🇷 Tout vient de tes neuf fichiers de cours. Rien d'Internet. Le badge « Herleitung » marque ce que j'ai déduit en reliant deux documents. Les vidéos ne sont pas disponibles en texte.</p>
 </main>
-
-<footer>
-  <p>Menschen mit Behinderung · CE 07 / UE 06 — gebaut aus deinen eigenen Unterlagen.<br>
-    Wo etwas fehlt, veraltet ist oder von mir stammt, steht es oben ausdrücklich dabei.</p>
-</footer>

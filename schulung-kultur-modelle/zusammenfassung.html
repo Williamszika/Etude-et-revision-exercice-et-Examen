@@ -1,858 +1,846 @@
-<title>Im Zentrum steht nicht die Kultur</title>
+<title>Leininger, Hofstede, vier Fälle</title>
+<meta name="description" content="Leininger, Hofstede, das Memorandum und Ambiguitätstoleranz — einfach erklärt, nur aus deinen drei Kursdateien (CE 09).">
 <style>
   :root{
-    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
-    --accent:#a2531b;--accent-deep:#813e12;--accent-soft:#f7e6d6;
-    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
-    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
-    --pharm:#1f5f86;--pharmbg:#dbe8f1;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --paper:#f3f5f4;--card:#ffffff;--ink:#17201f;--ink-soft:#4a5755;--line:#cfd8d6;
+    --accent:#1d6b74;--accent-soft:#dcedef;
+    --rot:#a43b30;--rotbg:#f7e2de;--gelb:#8a5a0c;--gelbbg:#f8ecd4;--gruen:#2a6b47;--gruenbg:#e0efe5;
     --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
   }
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
-    --accent:#e0a473;--accent-deep:#f0bd93;--accent-soft:#38271a;
-    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
-    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
-    --pharm:#6cadd9;--pharmbg:#122736;}}
+    --paper:#111716;--card:#1a2221;--ink:#e8eeed;--ink-soft:#a1aeac;--line:#2d3836;
+    --accent:#6fc3cd;--accent-soft:#163238;
+    --rot:#e48d80;--rotbg:#33201c;--gelb:#e0b05f;--gelbbg:#30240f;--gruen:#7ccb9c;--gruenbg:#15291d;color-scheme:dark;}}
   :root[data-theme="dark"]{
-    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
-    --accent:#e0a473;--accent-deep:#f0bd93;--accent-soft:#38271a;
-    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
-    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
-    --pharm:#6cadd9;--pharmbg:#122736;}
-  :root[data-theme="light"]{
-    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
-    --accent:#a2531b;--accent-deep:#813e12;--accent-soft:#f7e6d6;
-    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
-    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
-    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
-
+    --paper:#111716;--card:#1a2221;--ink:#e8eeed;--ink-soft:#a1aeac;--line:#2d3836;
+    --accent:#6fc3cd;--accent-soft:#163238;
+    --rot:#e48d80;--rotbg:#33201c;--gelb:#e0b05f;--gelbbg:#30240f;--gruen:#7ccb9c;--gruenbg:#15291d;color-scheme:dark;}
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
-
-  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
-    border-bottom:1px solid var(--line);
-    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
-  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--accent-deep);margin:0 0 10px;}
-  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
-    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
-  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
-  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
-    border-radius:999px;background:var(--card);color:var(--ink-soft);}
-
-  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
-    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
-  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
-    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
-    white-space:nowrap;}
-  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
-    background:var(--card);}
-
-  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
-  section{padding-top:52px;}
-  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
-    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
-  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
-  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
-  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
-  p{margin:0 0 14px;max-width:70ch;}
-  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
-  li{margin:5px 0;}
-  b,strong{font-weight:700;}
-  .fr{font-style:italic;color:var(--ink-soft);}
-  .fr::before{content:"🇫🇷 ";font-style:normal;}
-
-  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
-  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
-  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
-  .karte p:last-child{margin-bottom:0;}
-
-  .scroll{overflow-x:auto;margin:18px 0;}
-  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
-  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
-    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
-    text-align:left;vertical-align:bottom;}
-  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
-  td.k{font-weight:700;white-space:nowrap;}
-  tbody tr:nth-child(even) td{background:var(--paper);}
-
-  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .merk p:last-child{margin-bottom:0;}
-  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--accent-deep);display:block;margin-bottom:6px;}
-
-  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .warnung p:last-child{margin-bottom:0;}
-  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--warn);display:block;margin-bottom:6px;}
-
-  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .gefahr p:last-child{margin-bottom:0;}
-  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--notfall);display:block;margin-bottom:6px;}
-
-  .stufen{display:grid;gap:10px;margin:18px 0;}
-  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
-    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
-  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
-    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
-  .stufe .nr.n2{background:var(--accent);}
-  .stufe h4{margin:0 0 4px;}
-  .stufe p{margin:0;font-size:15.5px;}
-  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
-
-  .paare{display:grid;gap:9px;margin:18px 0;}
-  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
-    border-radius:0 10px 10px 0;padding:11px 15px;}
-  .paar .de{font-weight:600;}
-  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
-
-  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
-    overflow:hidden;}
-  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
-    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
-  details.quelle>summary::-webkit-details-marker{display:none;}
-  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
-  details.quelle[open]>summary::before{content:"－";}
-  details.quelle .inh{padding:0 17px 15px;}
-  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
-
-  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
-    padding:16px 18px;margin:20px 0;}
-  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
-  .pruef ol{margin:0;}
-
-  a{color:var(--accent-deep);}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
-  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
-    text-align:center;color:var(--ink-soft);font-size:14px;}
-  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
-  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;}
+  main{max-width:46rem;margin:0 auto;padding-inline:16px;padding-block:28px 60px;}
+  h1{font-size:2rem;line-height:1.15;margin:0 0 6px;text-wrap:balance;}
+  h2{font-size:1.35rem;line-height:1.25;margin:34px 0 8px;color:var(--accent);text-wrap:balance;}
+  h3{font-size:1.05rem;margin:18px 0 6px;}
+  p{margin:0 0 10px;}
+  ul,ol{margin:0 0 12px;padding-left:1.3rem;} li{margin:3px 0;}
+  .unter{color:var(--ink-soft);margin:0 0 16px;}
+  .stern{color:var(--gelb);font-size:.9em;letter-spacing:1px;white-space:nowrap;}
+  .kern{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;margin:14px 0;}
+  .fr{font-style:italic;color:var(--ink-soft);font-size:.95em;}
+  .merke{background:var(--gelbbg);border-radius:8px;padding:9px 13px;margin:10px 0;}
+  .merke b:first-child{color:var(--gelb);}
+  .hinweis{background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:9px 13px;margin:10px 0;font-size:.95em;}
+  .quelle{font-size:.8em;color:var(--ink-soft);margin:4px 0 0;}
+  /* Schemata: Kästen mit Pfeilen, von oben nach unten */
+  .schema{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:12px 0;}
+  .schema .titel{font-weight:700;margin:0 0 10px;}
+  .k{border:1.5px solid var(--line);border-radius:8px;padding:7px 10px;background:var(--paper);}
+  .k b{display:block;}
+  .k small{display:block;color:var(--ink-soft);font-size:.86em;line-height:1.4;}
+  .k.wichtig{border-color:var(--accent);background:var(--accent-soft);}
+  .k.rot{border-color:var(--rot);background:var(--rotbg);}
+  .k.gruen{border-color:var(--gruen);background:var(--gruenbg);}
+  .pfeil{text-align:center;color:var(--ink-soft);font-size:1.1rem;line-height:1.4;}
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .zwei > div{min-width:0;}
+  .lesen{font-size:.88em;color:var(--ink-soft);margin:8px 0 0;}
+  .scroll{overflow-x:auto;margin:10px 0;}
+  table{border-collapse:collapse;width:100%;font-size:.92em;line-height:1.4;}
+  th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-soft);}
+  td.z{white-space:nowrap;font-variant-numeric:tabular-nums;}
+  tr.rot td:first-child{background:var(--rotbg);} tr.gelb td:first-child{background:var(--gelbbg);} tr.gruen td:first-child{background:var(--gruenbg);}
+  details{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:8px 0;}
+  summary{cursor:pointer;font-weight:600;}
+  .op{display:inline-block;font-size:.75em;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:0 8px;margin-right:6px;}
+  .spick{columns:2 16rem;column-gap:24px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px 12px 32px;}
+  .spick li{break-inside:avoid;}
+  @media (max-width:520px){.zwei{grid-template-columns:1fr;} h1{font-size:1.7rem;} td.z{white-space:normal;} th,td{padding:5px 6px;}}
 </style>
 
-<header class="hero">
-  <p class="eyebrow">CE 09 · Ergänzung zu deinen drei vorhandenen Kultur-Seiten</p>
-  <h1>Im Zentrum steht nicht die Kultur</h1>
-  <p class="sub">Leiningers Sunrise-Modell, die sechs Kulturdimensionen nach Hofstede,
-    die Ambiguitätstoleranz — und vier Fälle aus dem Pflegealltag, die noch niemand
-    bearbeitet hat.</p>
-  <div class="meta">
-    <span>CE 09</span>
-    <span>Dr. O. Knauf</span>
-    <span>A. Perleberg</span>
-    <span>4 Quellen</span>
-    <span>Niveau B1</span>
-    <span>Stand 19.09.2026</span>
+<style>
+  .her{font-style:normal;font-size:.78em;font-weight:700;letter-spacing:.04em;color:var(--gelb);background:var(--gelbbg);border-radius:999px;padding:0 7px;white-space:nowrap;}
+  .def{border:2px solid var(--accent);border-radius:10px;padding:12px 14px;margin:12px 0;background:var(--card);}
+  .def .t{display:block;font-size:.78em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+  .def p:last-child{margin-bottom:0;}
+  dl.woerter{margin:10px 0;display:grid;grid-template-columns:minmax(8rem,auto) 1fr;gap:6px 14px;}
+  dl.woerter dt{font-weight:700;} dl.woerter dd{margin:0;}
+  @media (max-width:520px){dl.woerter{grid-template-columns:1fr;gap:0;} dl.woerter dd{margin-bottom:8px;}}
+</style>
+
+
+
+<main lang="de">
+<h1>Im Zentrum steht nicht die Kultur — Leininger, Hofstede und vier Fälle</h1>
+<p class="unter">CE 09 · Dr. Ortrud Knauf und A. Perleberg · neu geschrieben am 04.11.2026 · <b>nur aus deinen 3 Kursdateien</b> — nichts aus dem Internet. Wo ich zwei Folien selbst verbinde, steht <span class="her">Herleitung</span>.</p>
+
+<div class="kern">
+  <p><b>Das Wichtigste in einem Satz:</b> Kultur beeinflusst, wie ein Mensch Krankheit erlebt und welche Pflege er braucht. Leininger, Hofstede und das Memorandum geben dir Werkzeuge, um das zu sehen. Aber: <b>„Im Zentrum der transkulturellen Pflege steht nicht die Kultur, sondern immer das Individuum.“</b></p>
+  <p class="fr">🇫🇷 La culture influence la façon de vivre la maladie et les soins. Les modèles t'aident à la voir. Mais au centre, il n'y a jamais « une culture » : il y a toujours une personne unique.</p>
+</div>
+
+<div class="hinweis"><b>Diese Seite ergänzt deine anderen Kultur-Seiten.</b> Das Zwiebelmodell, die Religionen, Vorurteile und das LSBTI-Glossar stehen auf deinen älteren Kultur-Zusammenfassungen. Hier stehen nur die drei Foliensätze dieses Kurses.</div>
+
+<!-- ============ AUF EINEN BLICK ============ -->
+<h2>Auf einen Blick: Vom Kulturbegriff zum einzelnen Menschen</h2>
+<div class="schema">
+  <p class="titel">Drei Werkzeuge — ein Ziel</p>
+  <div class="k wichtig"><b>Was ist Kultur?</b><small>Leininger: ein „komplexes Ganzes“ (Wissen, Glaube, Kunst, Moral, Gesetze, Bräuche) · Hofstede: „kollektive Programmierung des Verstandes“</small></div>
+  <div class="pfeil">↓</div>
+  <div class="zwei">
+    <div class="k"><b>Leininger: Sunrise-Modell</b><small>7 Faktoren beeinflussen Krankheit und Pflege → 3 Funktionen: erhalten · anpassen · umstrukturieren</small></div>
+    <div class="k"><b>Hofstede: 6 Kulturdimensionen</b><small>Machtdistanz · Individualismus · Männlichkeit · Unsicherheit · Langfristigkeit · Nachgiebigkeit</small></div>
   </div>
-</header>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Memorandum für eine kultursensible Altenhilfe (2002)</b><small>Präambel + 7 Marksteine: Was Einrichtungen, Ausbildung und Politik tun müssen</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Im Team und am Bett: Ambiguitätstoleranz</b><small>Mehrdeutigkeit aushalten · 4 Fälle aus der Praxis · Geschichte der Gastarbeiter</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k gruen"><b>Im Zentrum: das Individuum</b><small>Nicht „die Kultur“ pflegen — sondern diesen einen Menschen</small></div>
+  <p class="lesen">So liest du das: Von oben nach unten ist der ganze Kurs. Jeder Kasten ist ein Teil unten.</p>
+</div>
 
-<nav class="toc" aria-label="Inhalt">
-  <a href="#dazu">Was hier neu ist</a>
-  <a href="#leininger">Leininger</a>
-  <a href="#sunrise">Das Sunrise-Modell</a>
-  <a href="#funktionen">Die drei Funktionen</a>
-  <a href="#memorandum">Das Memorandum</a>
-  <a href="#hofstede">Hofstede — sechs Dimensionen</a>
-  <a href="#stereotyp">Die Stereotyp-Falle</a>
-  <a href="#ambiguitaet">Ambiguitätstoleranz</a>
-  <a href="#faelle">Die vier Fälle</a>
-  <a href="#gastarbeiter">Die Gastarbeiter</a>
-  <a href="#offen">Was fehlt</a>
-</nav>
+<!-- ============ 1 DEFINITION ============ -->
+<h2>1 · Was ist transkulturelle Pflege? Die Definitionen <span class="stern">★★★</span></h2>
+<div class="def">
+  <span class="t">Definition — so steht sie auf deiner Folie (Leininger)</span>
+  <p>„Ein ausgewiesener Bereich des Studiums und der Praxis, der sich auf eine <b>vergleichende, ganzheitliche Sicht</b> der Kultur-, Pflege-, Gesundheits- und Krankheitsmuster von Menschen konzentriert; der <b>Unterschied und Ähnlichkeiten</b> in ihren kulturellen Wertvorstellungen, Glaubenssätzen und Praktiken berücksichtigt; der das Ziel hat, Menschen verschiedensten kulturellen Hintergrunds <b>kulturell kongruente, sensible und kompetente</b> Krankenpflege angedeihen zu lassen.“</p>
+</div>
+<div class="def">
+  <span class="t">Dieselbe Definition — Wort für Wort einfach</span>
+  <p><b>Transkulturelle Pflege</b> ist ein Fach zum Lernen und eine Art zu arbeiten.</p>
+  <ol>
+    <li>Man <b>vergleicht</b> Kulturen. Man schaut auf das Ganze: Wie denken Menschen über Pflege, Gesundheit und Krankheit?</li>
+    <li>Man sucht <b>Unterschiede und Gemeinsamkeiten</b>: in Werten (was wichtig ist), im Glauben und in den Gewohnheiten.</li>
+    <li><b>Das Ziel:</b> Jeder Mensch bekommt eine Pflege, die <b>zu seiner Kultur passt</b> (kongruent = passend, übereinstimmend), die <b>einfühlsam</b> ist (sensibel) und die <b>fachlich gut</b> ist (kompetent).</li>
+  </ol>
+  <p>„Angedeihen lassen“ ist ein altes Wort für: jemandem etwas geben.</p>
+</div>
 
-<main>
+<h3>Kultur — zwei Definitionen aus deinen Folien</h3>
+<div class="scroll"><table>
+  <tr><th>Wer?</th><th>Definition auf der Folie</th><th>Einfach gesagt</th></tr>
+  <tr><td><b>Leininger</b> (nach dem Sozialanthropologen „Edward B. Tyler“)</td><td>Kultur als „komplexes Ganzes“, mit Wissen, Glaubensvorstellungen, Kunst, Moral, Gesetzen, Bräuchen und anderen Fähigkeiten und Eigenschaften von Mitgliedern einer Gemeinschaft. Kultur ist „ein organisches Ganzes, das sich ständig lebendig fort- und weiterentwickelt“.</td><td>Kultur ist <b>alles</b>, was eine Gemeinschaft weiß, glaubt und tut. Und sie <b>verändert sich</b> die ganze Zeit — sie ist nicht fest.</td></tr>
+  <tr><td><b>Hofstede</b></td><td>„Kollektive Programmierung des Verstandes“. Sie „unterscheidet Mitglieder einer Gruppe oder Kategorie von Menschen von Mitgliedern einer anderen Gruppe“.</td><td>Eine Gruppe lernt gemeinsam, <b>wie man denkt</b> (wie ein Programm im Kopf). Daran erkennt man den Unterschied zu einer anderen Gruppe.</td></tr>
+</table></div>
+<p class="fr">🇫🇷 Les soins transculturels comparent les cultures (ressemblances et différences) pour donner à chacun des soins adaptés à sa culture, sensibles et compétents. Pour Leininger, la culture est un « tout complexe » qui change sans cesse ; pour Hofstede, une « programmation collective de l'esprit ».</p>
 
-<section id="dazu">
-  <h2>Was auf dieser Seite neu ist — und was schon bei dir liegt</h2>
-  <p class="lead">Zu diesem Thema hast du bereits <b>drei Zusammenfassungen</b>. Diese Seite
-    ersetzt keine davon.</p>
+<h3>Die Wörter, die du für alles Weitere brauchst</h3>
+<dl class="woerter">
+  <dt>Kultur</dt><dd>alles, was eine Gemeinschaft weiß, glaubt und tut: Wissen, Glaube, Kunst, Moral, Gesetze, Bräuche</dd>
+  <dt>transkulturell</dt><dd>über Kulturen hinweg; mehrere Kulturen vergleichen und verbinden</dd>
+  <dt>interkulturell</dt><dd>zwischen Kulturen — z. B. ein Team aus Menschen verschiedener Herkunft</dd>
+  <dt>kultursensibel</dt><dd>aufmerksam für die Kultur eines Menschen, ohne ihn darauf zu reduzieren</dd>
+  <dt>kongruent</dt><dd>passend, übereinstimmend</dd>
+  <dt>Fürsorge</dt><dd>sich um einen Menschen kümmern — für Leininger der <b>Kern</b> der Pflege</dd>
+  <dt>B/P · PFK</dt><dd>so kürzen deine Folien ab: Bewohner/Patient · Pflegefachkraft <span class="her">Herleitung</span> aus den ausgeschriebenen Wörtern auf S. 23</dd>
+  <dt>Stereotyp</dt><dd>ein festes, vereinfachtes Bild von „den Fremden“ — oft unbewusst</dd>
+  <dt>Ambiguität</dt><dd>Mehrdeutigkeit: eine Situation kann man auf mehrere Arten verstehen</dd>
+  <dt>Ambiguitätstoleranz</dt><dd>die Fähigkeit, Mehrdeutigkeit auszuhalten (auch: Frustrations- oder Unsicherheitstoleranz)</dd>
+  <dt>Interkulturelle Öffnung</dt><dd>eine Einrichtung macht sich offen für Menschen aller Herkunft (Begriff aus dem Memorandum)</dd>
+  <dt>Dimension · Index</dt><dd>Dimension = ein Merkmal, auf dem man Kulturen vergleicht · Index = der Zahlenwert dafür (hoch oder niedrig) <span class="her">Herleitung</span></dd>
+</dl>
+<p class="quelle">KultursensiblePflegeLeininger.pdf, S. 6, 8, 11, 23 · KulturdimensionenHofstede.pdf, S. 5 · Interkulturelle Pflege – Wahrnehmen und Erleben.pdf, S. 7</p>
 
-  <div class="merk">
-    <span class="t">Erst geprüft, dann geschrieben</span>
-    <p>Von den acht Kultur-Dateien im Drive-Ordner sind <b>vier bereits verarbeitet</b>: Der
-      Foliensatz <i>Kultursensible Pflege und Diversity Pflege</i> ist derselbe Perleberg-Satz
-      (CE 09 / UE 01), der schon deiner Seite <b>Kultursensible Pflege &amp; LSBTI</b>
-      zugrunde liegt; ebenso der <i>Kompetenzkatalog</i>, die <i>Queeren Personen im
-      Pflegeheim</i> und <i>KulturelleVielfaltEinfuehrung</i>.</p>
-    <p><b>Vier Inhalte fehlten bisher ganz</b> — und nur die stehen hier:
-      <b>Madeleine Leininger</b> mit dem <b>Sunrise-Modell</b>, das <b>Memorandum für eine
-      kultursensible Altenhilfe</b>, die <b>sechs Kulturdimensionen nach Hofstede</b> und die
-      <b>Ambiguitätstoleranz</b> mit <b>vier unbearbeiteten Fällen</b>.</p>
-    <p class="fr">Quatre fichiers sur huit étaient déjà traités. Cette page ne contient que ce
-      qui manquait.</p>
+<!-- ============ 2 LEININGER ============ -->
+<h2>2 · Madeleine Leininger — wer sie war und was Pflege für sie ist <span class="stern">★★</span></h2>
+<div class="scroll"><table>
+  <tr><th>Frage</th><th>Was deine Folie sagt</th></tr>
+  <tr><td>Wer?</td><td><b>1925–2012</b>, USA. Professorin für Krankenpflege mit Schwerpunkt transkulturelle Pflege. Auf der Folie: „Krankenschwester und Anthroprosophin“.</td></tr>
+  <tr><td>Seit wann?</td><td><b>Pionierin</b> (die Erste auf einem Gebiet) der transkulturellen Pflege seit <b>Mitte der 50er Jahre</b>. Das Sunrise-Modell entstand in den <b>70er Jahren</b>.</td></tr>
+  <tr><td>Was war neu?</td><td>Das Modell hat <b>zum ersten Mal</b> den kulturellen Hintergrund eines Patienten in der Pflege berücksichtigt.</td></tr>
+  <tr><td>Für wen forschte sie?</td><td>Für <b>professionell Pflegende</b>. Pflege ist für sie ein „wissenschaftlicher und humanistischer Beruf mit Kern der Fürsorge“.</td></tr>
+  <tr><td>Aufgabe der Pflege</td><td>Gesunde Lebensbedingungen <b>passend zu den Bedürfnissen des einzelnen Menschen</b> erhalten und fördern.</td></tr>
+  <tr><td>Was Pflege berücksichtigt</td><td>kulturell-moralische Werte · geistig-religiöse Vorstellungen · psychophysische Bedürfnisse (Bedürfnisse von Seele und Körper)</td></tr>
+</table></div>
+<div class="hinweis"><b>Zwei Schreibweisen — frag im Kurs nach:</b> Die Folie schreibt „Anthroprosophin“ (S. 6) und „Edward B. Tyler“ (S. 11). Ich lasse beides so, damit du die Folie wiedererkennst. Ob das Tippfehler sind, sagen deine Unterlagen nicht.</div>
+<p class="fr">🇫🇷 Madeleine Leininger (1925–2012, USA), infirmière et professeure, pionnière des soins transculturels depuis les années 1950. Son modèle « Sunrise » (années 1970) est le premier à tenir compte de la culture du patient. Pour elle, le cœur du métier est la sollicitude (Fürsorge).</p>
+<p class="quelle">KultursensiblePflegeLeininger.pdf, S. 6–7, 10</p>
+
+<!-- ============ 3 SUNRISE GRUNDGEDANKEN ============ -->
+<h2>3 · Das Sunrise-Modell — der Aufbau <span class="stern">★★★</span></h2>
+<p>„Sunrise“ heißt Sonnenaufgang. Das Bild auf deiner Folie sieht aus wie eine aufgehende Sonne: Oben sind die Strahlen (die Einflüsse), unten die Pflege. <span class="her">Herleitung</span> aus dem Bild S. 9</p>
+<div class="schema">
+  <p class="titel">Das Bild auf Folie 9 — von oben nach unten</p>
+  <div class="k wichtig"><b>Soziale Struktur und Weltanschauung</b><small>(Weltanschauung = wie ein Mensch die Welt sieht) — darunter 7 Strahlen:</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Die 7 Einflüsse</b><small>technische · religiöse und spirituelle · soziale und familiäre · kulturelle Wertvorstellungen und Lebensvorstellungen · politische und gesetzliche · wirtschaftliche · Bildungs- und Erziehungseinflüsse</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Einflüsse aus dem gesamten kulturellen Kontext</b><small>kulturelle Pflegemuster und Pflegepraktiken · ganzheitliche Vorstellungen über Gesundheit und Krankheit</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Individuen, Familien, Institutionen und Gruppen im Gesundheitswesen</b></div>
+  <div class="pfeil">↓</div>
+  <div class="zwei">
+    <div class="k"><b>Kulturelle und traditionell überlieferte Pflegepraktiken</b><small>(überliefert = von früheren Generationen weitergegeben)</small></div>
+    <div class="k"><b>Professionelle Pflege</b></div>
   </div>
+  <div class="pfeil">↓ in der Mitte verbunden ↓</div>
+  <div class="k"><b>Pflegepraktiken, die auch kulturelle Faktoren berücksichtigen</b></div>
+  <div class="pfeil">↓</div>
+  <div class="k gruen"><b>Pflegerische Haltung und Intervention</b><small>Berücksichtigung und Wahrung kultureller Eigenheiten · kulturelle Anpassung der Pflege · kulturelle Rekonstruktion der Pflege</small></div>
+  <p class="lesen">Im Original stehen die drei Kreise nebeneinander; der mittlere verbindet die beiden anderen. Unten stehen die drei Funktionen (Kapitel 6).</p>
+</div>
 
-  <p>Was weiterhin auf deinen älteren Seiten steht und hier <b>nicht</b> wiederholt wird:
-    das Zwiebelmodell und die drei Kulturtypen nach Lewis · Vorurteile und Feedback-Kultur ·
-    die fünf Religionen mit Essen, Pflege, Sterben und Tod · die LSBTI-Zeittafel, das Glossar,
-    die AIDS-Krise und die Biografiearbeit.</p>
-</section>
+<h3>Die Grundgedanken des Modells</h3>
+<div class="scroll"><table>
+  <tr><th>Grundgedanke</th><th>Warum ist das wichtig?</th></tr>
+  <tr><td>Kultur ist ein <b>organisches Ganzes</b>, das sich ständig weiterentwickelt.</td><td>Du darfst nicht denken: „In dieser Kultur ist es immer so.“ Kultur verändert sich. <span class="her">Herleitung</span></td></tr>
+  <tr><td>Das <b>Individuum steht im Zentrum</b> — zwischen erlernter Kultur und Selbstverantwortung.</td><td>Jeder Mensch hat eine Kultur gelernt. Aber er entscheidet auch selbst. Also immer den Menschen selbst fragen. <span class="her">Herleitung</span></td></tr>
+  <tr><td>Der Mensch will <b>Verlässlichkeit</b> (feste Regeln) und zugleich <b>Veränderung und Fortschritt</b>.</td><td>Beides ist in jedem Menschen. Den Grund für die Pflege nennen deine Folien nicht.</td></tr>
+  <tr><td>Menschen aus dem <b>gleichen Kulturkreis</b> haben ähnliche Werte.</td><td>Das hilft beim Verstehen — aber „ähnlich“ heißt nicht „gleich“.</td></tr>
+  <tr><td>Auch die Pflege hat eine <b>eigene Berufskultur</b>. Vieles im Berufsethos ist international gleich. <b>Aber: Pflege ist in jedem Land unterschiedlich.</b></td><td>Auch Pflegende aus anderen Ländern bringen ein anderes Bild vom Beruf mit — wichtig im Team. <span class="her">Herleitung</span> aus S. 12–13, 23</td></tr>
+</table></div>
 
-<section id="leininger">
-  <h2>Madeleine Leininger — wer sie war</h2>
+<h3>Wo Kulturen sich unterscheiden</h3>
+<ul>
+  <li>im <b>Berufsbild</b> der Pflege: geprägt von Normen, Werten, Kultur und Religion</li>
+  <li>in den <b>Vorstellungen von Gesundheit und Krankheit</b></li>
+  <li>in der <b>Rolle von Familie und Angehörigen</b></li>
+  <li>darin, <b>woher eine Krankheit kommt</b>: gottgewollt, Schicksal, Neid oder eigenes Fehlverhalten</li>
+</ul>
 
-  <div class="karten">
-    <div class="karte"><h4>Die Person</h4>
-      <p><b>1925–2012</b>, USA. <b>Professorin für Krankenpflege</b> mit dem Schwerpunkt
-        <b>transkulturelle Pflege</b>. Pionierin auf diesem Gebiet <b>seit Mitte der
-        1950er Jahre</b>; das Modell entstand in den <b>1970ern</b>.</p></div>
-    <div class="karte"><h4>Die Grundlage</h4>
-      <p>Ein <b>Kulturbegriff des komplexen Ganzen</b>: Wissen, Glaubensvorstellungen, Kunst,
-        Moral, Gesetze, Bräuche und andere Fähigkeiten und Eigenschaften von Mitgliedern einer
-        Gemeinschaft.</p></div>
-    <div class="karte"><h4>Die Zielgruppe</h4>
-      <p><b>Professionell Pflegende</b> — ein „wissenschaftlicher und humanistischer Beruf mit
-        dem <b>Kern der Fürsorge</b>“.</p></div>
+<h3>Die Folgen (Konsequenzen)</h3>
+<div class="schema">
+  <p class="titel">Warum es das Modell braucht</p>
+  <div class="k rot"><b>Problem</b><small>Im Umgang mit Menschen anderer Herkunft entstehen Probleme durch <b>unbewusste, nicht überlegte Vorstellungen und Stereotypen</b> zum „Fremden“.</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Antwort</b><small>ein kulturübergreifendes Pflegeverständnis: Gemeinsamkeiten und Unterschiede von Pflege und Fürsorge herausarbeiten — mit einem Leitfaden</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k gruen"><b>Drei Grundlagen</b><small>Fürsorge ist der Kern des Pflegeberufs · der B/P ist <b>Fachmann für sein eigenes Pflegeverhalten</b> · die PFK sieht den B/P <b>aus dessen kultureller Sicht</b></small></div>
+</div>
+<div class="merke"><b>Merke:</b> Der Patient ist der Experte für sich selbst. Du schaust mit <b>seinen</b> Augen, nicht mit deinen.</div>
+<p class="fr">🇫🇷 Le modèle Sunrise : en haut, les « rayons » (sept influences de la société et de la vision du monde) ; en bas, les soins. Le problème : nos stéréotypes inconscients sur « l'étranger ». La réponse : le patient est l'expert de ses propres soins, et le soignant le regarde avec les yeux du patient.</p>
+<p class="quelle">KultursensiblePflegeLeininger.pdf, S. 9–15</p>
+
+<!-- ============ 4 GRUNDANNAHMEN ============ -->
+<h2>4 · Die Grundannahmen — was Leininger voraussetzt <span class="stern">★★</span></h2>
+<p>Eine <b>Grundannahme</b> ist etwas, das ein Modell als wahr annimmt. Deine Folien nennen viele. Hier sind sie geordnet:</p>
+<div class="scroll"><table>
+  <tr><th>Grundannahme (deine Folie)</th><th>Was heißt das für dich?</th></tr>
+  <tr><td><b>Fürsorge</b> ist der Kern der Pflege. Menschliche Fürsorge ist <b>genauso entscheidend für die Genesung</b> wie die medizinische Behandlung.</td><td>Zuwendung ist kein „Extra“. Sie gehört zur Heilung dazu.</td></tr>
+  <tr><td>Fürsorge ist Voraussetzung für Wohlbefinden, Gesundheit, Heilung, Wachstum, Überleben und für den Umgang mit Behinderung und Tod.</td><td>Fürsorge zählt in jeder Lebensphase — auch am Lebensende.</td></tr>
+  <tr><td>Fürsorge gibt es <b>in allen Kulturen</b>, aber in unterschiedlichen Formen.</td><td>Jede Familie kümmert sich — nur oft anders, als du es kennst. <span class="her">Herleitung</span></td></tr>
+  <tr><td>Jede Kultur hat <b>eigenes Wissen und eigene Methoden</b> zur Fürsorge.</td><td>Du kannst vom Patienten lernen, wie er gepflegt werden will.</td></tr>
+  <tr><td>Kulturelle Überzeugungen werden geprägt durch Weltanschauung, Politik, Bildung, Wirtschaft, Geschichte (ethnohistorisch = die Geschichte eines Volkes) und Umwelt.</td><td>Das sind fast schon die sieben Faktoren (Kapitel 5).</td></tr>
+  <tr><td>Professionelle Pflege soll <b>positiv, gesundheitsfördernd, zufriedenstellend und kulturell fundiert</b> sein — für Einzelne, Familien, Gruppen und Gemeinschaften.</td><td>Gute Pflege passt auch zur Kultur — sonst ist sie nicht „gut“.</td></tr>
+  <tr><td>Pflegende müssen die kulturspezifischen Werte von Einzelnen, Gruppen, Familien und Gemeinschaften <b>kennen und angemessen anwenden</b>.</td><td>Wissen allein reicht nicht; du musst es richtig benutzen.</td></tr>
+  <tr class="rot"><td><b>Pflege ohne kulturspezifische Werte, Überzeugungen und Gewohnheiten führt beim B/P zu kulturellen Konflikten, Stress sowie ethischer und moralischer Überforderung.</b></td><td>Das ist der wichtigste „Warum?“-Satz des Modells. Du brauchst ihn für jede Begründen-Frage.</td></tr>
+  <tr><td><b>Pflege ist transkulturell</b> wegen der Interaktionen des Pflegepersonals <b>untereinander</b> und mit Bewohnern, Patienten und Angehörigen.</td><td>Es geht nicht nur um Patienten — auch um dein <b>Team</b>.</td></tr>
+  <tr><td>Kulturen unterscheiden sich im Pflegeverhalten <b>und</b> bei den <b>Selbsthilfehandlungen</b> (was ein Mensch selbst für seine Gesundheit tut).</td><td>Frag auch: Was macht er selbst, wenn er krank ist? <span class="her">Herleitung</span></td></tr>
+  <tr><td>Das Modell ist eine <b>Orientierungshilfe</b> im Pflegealltag. Es ändert sich durch Forschung ständig. Es ist individuell und überall einsetzbar. Es gibt einen Überblick über die wichtigsten Faktoren einer Kultur.</td><td>Es ist ein Werkzeug zum Nachdenken, keine feste Regel.</td></tr>
+  <tr><td>Qualitative Forschung (Forschung mit Gesprächen und Beobachtung statt mit Zahlen) bietet neue Möglichkeiten.</td><td>— <span class="her">Herleitung</span> für die Klammer</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> Fehlt die Kultur in der Pflege → <b>Konflikte, Stress, ethische und moralische Überforderung</b> beim Patienten.</div>
+<p class="fr">🇫🇷 Hypothèses de base : la sollicitude est aussi importante pour guérir que le traitement médical ; elle existe dans toutes les cultures, sous des formes différentes. Des soins sans valeurs culturelles créent conflits, stress et surcharge morale. Les soins sont aussi transculturels à cause de l'équipe.</p>
+<p class="quelle">KultursensiblePflegeLeininger.pdf, S. 16–23</p>
+
+<!-- ============ 5 SIEBEN FAKTOREN ============ -->
+<h2>5 · Die sieben Faktoren mit Einfluss auf Krankheit und Pflege <span class="stern">★★★</span></h2>
+<p>Laut deiner Folie ist der <b>wichtigste Aspekt</b>: die kulturelle Welt mit ihren Einflüssen auf das Leben des Menschen. Daraus kommen <b>sieben Faktoren</b>. Das ist die wahrscheinlichste Prüfungsfrage zu Leininger.</p>
+<div class="scroll"><table>
+  <tr><th>Faktor (Folie 25–26)</th><th>Einfach gesagt</th><th>Frage an den Menschen <span class="her">Herleitung</span></th></tr>
+  <tr><td><b>1 · Technologische Umstände</b></td><td>Welche Technik kennt und nutzt der Mensch?</td><td>Kennen Sie Geräte wie Pumpe, Blutzuckermessgerät, Rufknopf?</td></tr>
+  <tr><td><b>2 · Religiöse und philosophische Einflüsse</b></td><td>Glaube und Weltanschauung</td><td>Was ist Ihnen im Glauben wichtig — beim Essen, Beten, Waschen?</td></tr>
+  <tr><td><b>3 · Verwandtschaftliche und soziale Faktoren</b></td><td>Familie, Freunde, Gemeinschaft</td><td>Wer gehört zu Ihnen? Wer soll mitentscheiden?</td></tr>
+  <tr><td><b>4 · Politische und gesetzliche Gegebenheiten</b></td><td>Rechte, Gesetze, Aufenthalt</td><td>Gibt es rechtliche Sorgen? (Das Memorandum nennt die „Angst vor ausländerrechtlichen Konsequenzen“.)</td></tr>
+  <tr><td><b>5 · Wirtschaftliche Verhältnisse</b></td><td>Geld, Arbeit, Wohnen</td><td>Was können Sie sich leisten?</td></tr>
+  <tr><td><b>6 · Bildungsbedingte Faktoren</b></td><td>Schule, Ausbildung, Sprache</td><td>Was wissen Sie über Ihre Krankheit? Wie erklären wir es am besten?</td></tr>
+  <tr><td><b>7 · Kulturelle Werte und Lebensweisen</b></td><td>wie jemand lebt und was ihm wichtig ist</td><td>Wie sieht Ihr Tag aus? Was ist Ihnen wichtig?</td></tr>
+</table></div>
+<div class="hinweis"><b>Kleiner Unterschied in deinen Folien:</b> Im Bild auf S. 9 heißen die Faktoren etwas anders: „Technische Einflüsse und Faktoren“, „Religiöse und spirituelle Faktoren“, „Soziale und familiäre Faktoren“, „Kulturelle Wertvorstellungen und Lebensvorstellungen“, „Politische und gesetzliche Einflüsse“, „Wirtschaftliche Faktoren“, „Bildungs- und Erziehungseinflüsse“. Gemeint sind dieselben sieben. Für die Klausur kannst du die Liste von S. 25–26 lernen.</div>
+<div class="merke"><b>Merke — eine Eselsbrücke</b> <span class="her">Herleitung</span>: <b>T</b>echnik · <b>R</b>eligion · <b>V</b>erwandte · <b>P</b>olitik · <b>W</b>irtschaft · <b>B</b>ildung · <b>K</b>ulturelle Werte → „<b>TRV-PWBK</b>“, oder als Satz: „<b>T</b>ante <b>R</b>osa <b>V</b>erkauft <b>P</b>flaumen <b>W</b>ährend <b>B</b>runo <b>K</b>ocht.“</div>
+<p class="fr">🇫🇷 Les sept facteurs : technologie · religion et philosophie · parenté et vie sociale · politique et lois · économie · éducation · valeurs culturelles et mode de vie. Retiens-les comme sept questions à poser à la personne.</p>
+<p class="quelle">KultursensiblePflegeLeininger.pdf, S. 9, 19, 24–26 · Markstein 1: S. 47</p>
+
+<!-- ============ 6 DREI FUNKTIONEN ============ -->
+<h2>6 · Die drei Funktionen — was du in der Pflege konkret tust <span class="stern">★★★</span></h2>
+<p>Deine Folie nennt sie „<b>drei Durchführungsarten kulturspezifischer Fürsorge</b>“. Das sind die drei Wege, wie du die Kultur in der Pflege berücksichtigen kannst.</p>
+<div class="scroll"><table>
+  <tr><th>Funktion</th><th>Bedeutung</th><th>Im Bild S. 9</th></tr>
+  <tr class="gruen"><td><b>1 · Erhaltungs- bzw. Bewahrungsfunktion</b></td><td>Was dem Menschen wichtig ist, wird <b>bewahrt</b> (behalten). Die Pflege macht es möglich. <span class="her">Herleitung</span></td><td>Berücksichtigung und Wahrung kultureller Eigenheiten</td></tr>
+  <tr class="gelb"><td><b>2 · Anpassungs- und Verständigungsfunktion</b></td><td>Pflege und Gewohnheit des Menschen werden <b>aneinander angepasst</b>. Man verständigt sich auf einen Weg. <span class="her">Herleitung</span></td><td>Kulturelle Anpassung der Pflege</td></tr>
+  <tr class="rot"><td><b>3 · Umstrukturierungs- bzw. Musteränderungsfunktion</b></td><td>Ein Muster (eine Gewohnheit) wird <b>verändert</b> — gemeinsam mit dem Menschen. <span class="her">Herleitung</span></td><td>Kulturelle Rekonstruktion der Pflege</td></tr>
+</table></div>
+
+<h3>Die Beispiele deiner Folie</h3>
+<ul>
+  <li><b>Kulturspezifische Ernährung</b></li>
+  <li><b>Erfüllung religiöser Bedürfnisse — ggf. auch entgegen den Abläufen der Einrichtung</b>. Das heißt: Die Einrichtung muss sich manchmal nach dem Menschen richten, nicht umgekehrt.</li>
+  <li><b>Wichtig:</b> Angehörige und andere Bezugspersonen einbeziehen.</li>
+</ul>
+
+<h3>Die drei Funktionen an den Fällen deines Kurses <span class="her">Herleitung</span></h3>
+<p>Deine Folien ordnen die Fälle nicht den Funktionen zu. Das ist meine Verbindung, als Lernhilfe:</p>
+<div class="scroll"><table>
+  <tr><th>Funktion</th><th>Beispiel aus deinem Kurs</th></tr>
+  <tr><td>Erhaltung</td><td>Herr Majed isst aus Glaubensgründen kein Schweinefleisch. Erhalten heißt: Er bekommt Essen und Sondenkost <b>ohne</b> Schweinefleisch — auch wenn das für die Station mehr Arbeit ist (Folie S. 28: „ggf. auch entgegen Abläufen“).</td></tr>
+  <tr><td>Anpassung</td><td>Frau Jeha spricht laut Übergabe „kein Deutsch“. Anpassen heißt: einen Weg der Verständigung suchen (z. B. die mehrsprachigen Faltblätter aus Markstein 1, Angehörige einbeziehen), damit sie ihr Kind trotzdem versorgen lernt.</td></tr>
+  <tr><td>Umstrukturierung</td><td>Deine Folien geben dafür <b>kein Beispiel</b>. Gemeint ist wohl: Eine Gewohnheit schadet der Gesundheit, und man ändert sie <b>gemeinsam</b> mit dem Menschen. Frag im Kurs nach einem Beispiel.</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> <b>Erhalten → Anpassen → Umstrukturieren.</b> Von „so lassen, wie es ist“ bis „gemeinsam ändern“. Immer mit den Angehörigen.</div>
+<p class="fr">🇫🇷 Trois façons d'agir : préserver (garder ce qui compte pour la personne), adapter (trouver un compromis), restructurer (changer une habitude avec elle). Exemple des diapos : alimentation culturelle et besoins religieux, même si cela va contre l'organisation du service. Toujours impliquer les proches.</p>
+<p class="quelle">KultursensiblePflegeLeininger.pdf, S. 9, 27–28 · Fälle: Interkulturelle Pflege – Wahrnehmen und Erleben.pdf, S. 11, 13 · Faltblätter: Leininger S. 47</p>
+
+<!-- ============ 7 KOMPETENZEN ============ -->
+<h2>7 · Die vier transkulturellen Kompetenzen <span class="stern">★★★</span></h2>
+<p>Eine <b>Kompetenz</b> ist eine Fähigkeit. Deine Folie nennt vier Bereiche, die eine Pflegende braucht:</p>
+<div class="scroll"><table>
+  <tr><th>Kompetenz</th><th>Was gehört dazu (Folie)</th><th>Warum? <span class="her">Herleitung</span></th></tr>
+  <tr><td><b>1 · Einstellungen und Persönlichkeitsmerkmale</b></td><td>Interesse am interkulturellen Kontakt · Unvoreingenommenheit (ohne Vorurteil sein) · Toleranz · Höflichkeit · Freundlichkeit · Geduld</td><td>Ohne Offenheit glaubst du deinen Stereotypen statt dem Menschen.</td></tr>
+  <tr><td><b>2 · Wissen und Kenntnisse</b></td><td>Bewusstsein für kulturelle Unterschiede · Kenntnisse über Eigenheiten fremder Kulturen, auch über <b>Interaktionsregeln</b> (wie man miteinander umgeht)</td><td>Wer Unterschiede kennt, versteht ein Verhalten nicht so schnell falsch.</td></tr>
+  <tr><td><b>3 · Kommunikationsregeln</b></td><td>bedeutungsvolle Dialoge führen · Strategien, um Konflikte zu vermeiden und zu klären</td><td>Die Kultur eines Menschen erfährst du nur im Gespräch.</td></tr>
+  <tr><td><b>4 · Selbstdarstellung und Interaktionsmanagement</b></td><td>Rollenwechsel · Empathiefähigkeit (sich einfühlen) · Kompromisse aushandeln · Selbstreflexion (über sich selbst nachdenken)</td><td>Du musst dich in den anderen hineinversetzen und auch dein eigenes Verhalten prüfen.</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> Haltung · Wissen · Kommunikation · Selbstreflexion.</div>
+<p class="fr">🇫🇷 Quatre compétences : l'attitude (ouverture, tolérance, patience), le savoir (connaître les différences), la communication (vrais dialogues, gérer les conflits), et l'auto-réflexion (empathie, compromis, changer de rôle).</p>
+<p class="quelle">KultursensiblePflegeLeininger.pdf, S. 29–30</p>
+
+<!-- ============ 8 FAZIT LEININGER ============ -->
+<h2>8 · Das Fazit: Welche Kultur hat dieser Mensch? <span class="stern">★★★</span></h2>
+<div class="def">
+  <span class="t">Die Frage auf deiner Folie</span>
+  <p>„Welche Kultur hat eine in Deutschland lebende Tochter einer indonesischen Mutter und eines senegalesischen Vaters?“</p>
+  <p><b>Die Antwort der Folie:</b> „Im Zentrum der transkulturellen Pflege steht nicht die Kultur, sondern <b>immer das Individuum</b>.“</p>
+</div>
+<p><b>Warum diese Frage?</b> Man kann diese Frau keiner einzigen Kultur zuordnen. Sie hat mehrere. Also hilft nur eins: <b>sie selbst fragen</b>. <span class="her">Herleitung</span></p>
+
+<h3>Die Arbeitsaufträge zum Sunrise-Modell</h3>
+<p>Diese Aufträge stehen auf deinen Folien. Lösungen gibt es dazu <b>nicht</b>.</p>
+<ul>
+  <li>Beschreiben Sie die Aspekte und Zusammenhänge des Sunrise-Modells im Detail.</li>
+  <li>Wählen Sie das Beispiel eines B/P mit Migrationshintergrund und wenden Sie das Sunrise-Modell auf ihn an. <i>Tipp: Geh die sieben Faktoren aus Kapitel 5 als Fragen durch und wähle dann eine der drei Funktionen.</i> <span class="her">Herleitung</span></li>
+  <li>Sehen Sie Grenzen dieses Modells? In welchem Kontext ist es schwer umzusetzen?</li>
+  <li>Erläutern Sie den Unterschied zwischen Assimilation und Integration. — <b>Die beiden Wörter werden in deinen Folien nicht erklärt.</b></li>
+</ul>
+<details><summary>Rechercheauftrag: diese Einrichtungen nennt deine Folie</summary>
+<p><b>Regeldienste (mit Beratung):</b> Caritas, DRK, Diakonie, Lebenshilfe, Malteser, Johanniter, AWO, Amt für Altenarbeit, Deutscher Paritätischer Wohlfahrtsverband, Verbraucherzentrale.</p>
+<p><b>Migranten-Selbsthilfeorganisationen:</b> Portugiesischer Verein, Spanischer Rentendienst, Angelus, Corazon, türkischer Halbmond, Impuls u. a.</p>
+<p><b>Weitere:</b> Konsulate, länderspezifische Firmen · DRK Sozialstation Göttingen · DRK multikulturelles Seniorenzentrum „Haus am Sandberg“ in Duisburg · Forum für eine kultursensible Altenhilfe (AWO) in Köln.</p>
+</details>
+<div class="merke"><b>Merke:</b> Nicht „die Kultur“ pflegen — <b>diesen einen Menschen</b> pflegen.</div>
+<p class="fr">🇫🇷 « Quelle est la culture d'une fille vivant en Allemagne, de mère indonésienne et de père sénégalais ? » Impossible à dire : il faut lui demander. Au centre, toujours la personne, jamais « la culture ».</p>
+<p class="quelle">KultursensiblePflegeLeininger.pdf, S. 31–35</p>
+
+<!-- ============ 9 MEMORANDUM ============ -->
+<h2>9 · Das Memorandum für eine kultursensible Altenhilfe <span class="stern">★★</span></h2>
+<p>Ein <b>Memorandum</b> ist eine schriftliche Erklärung mit Forderungen. Leininger spricht über die Pflege am Bett. Das Memorandum spricht über <b>Einrichtungen und Politik</b>. <span class="her">Herleitung</span></p>
+<div class="scroll"><table>
+  <tr><th>Frage</th><th>Antwort auf deinen Folien</th></tr>
+  <tr><td>Wer hat es gemacht?</td><td>Arbeitskreis „Charta für eine kultursensible Altenpflege“ und Kuratorium „Deutsche Altershilfe“ — ein Zusammenschluss von Institutionen, Verbänden und Vereinen, Schwerpunkt Migrations- und Integrationsfragen</td></tr>
+  <tr><td>Wann?</td><td>Memorandum und Handreichung <b>2002</b> veröffentlicht</td></tr>
+  <tr><td>Gemeinsame Grundlage</td><td>Interkulturelle Öffnung der Altenhilfe als <b>Zukunftsaufgabe</b></td></tr>
+  <tr><td>Ziele</td><td>die interkulturelle Öffnung langfristig in der ganzen Gesellschaft sichern · breite Diskussion · möglichst viele Institutionen, Verbände und Einzelpersonen sollen unterschreiben · alle Beteiligten im interkulturellen Alltag unterstützen · Professionalität der Pflege, Grundlage für Planung und Entscheidungen, Instrument der Qualitätsentwicklung</td></tr>
+  <tr><td>Aufbau</td><td><b>Präambel</b> (Einleitung) + <b>7 Marksteine</b> (wichtige Schritte) auf dem Weg zu einer kultursensiblen Altenhilfe</td></tr>
+</table></div>
+
+<h3>Die Präambel — warum es das Memorandum braucht</h3>
+<ul>
+  <li>Politik und Gesellschaft sollen <b>allen älteren Menschen</b> Zugang zur Altenhilfe ermöglichen — egal welche soziale, ethnische oder kulturelle Herkunft.</li>
+  <li>Kultursensibles fachliches Handeln sicherstellen.</li>
+  <li>Die Gesellschaft ist vielfältig (Pluralität) → sie braucht interkulturelle Öffnung.</li>
+  <li>Die Zahl der älteren Migrantinnen und Migranten <b>steigt deutlich</b> (je nach Region unterschiedlich).</li>
+  <li><b>Größte Gruppe: Gastarbeiter/Arbeitsmigranten</b>, dazu Aussiedler, jüdische Einwanderer und Flüchtlinge.</li>
+  <li>Gleichberechtigte Teilhabe durch Angebote, die individuelle Bedürfnisse berücksichtigen.</li>
+  <li>Integrationspolitik ist Aufgabe <b>aller</b> gesellschaftlichen Gruppen: Rechts- und Chancengleichheit, Abbau von Diskriminierung.</li>
+</ul>
+
+<h3>Die gesetzlichen Grundlagen auf deiner Folie</h3>
+<ul>
+  <li><b>Art. 13 Amsterdamer Vertrag</b> bzw. EG-Richtlinie zum Gleichbehandlungsgrundsatz ohne Unterschied der „Rasse“ oder ethnischen Herkunft</li>
+  <li><b>Allgemeines Gleichbehandlungsgesetz (AGG)</b>, über die Antidiskriminierungsstelle des Bundes, vom 14. August 2006 (Änderung am 3. April 2013)</li>
+  <li>AGG-Ratgeber in verschiedenen Sprachen (z. B. vom Anti-Rassismus-Informations-Centrum ARIC-NRW und dem Gleichbehandlungsbüro Aachen)</li>
+  <li><b>Einklagbares Recht auf diskriminierungsfreien Zugang zu allen Dienstleistungen</b> (einklagbar = man kann vor Gericht darauf bestehen)</li>
+</ul>
+<div class="hinweis">Deine Folien nennen das AGG nur. Welche Paragrafen darin stehen, erklären sie nicht. Das Memorandum selbst liegt nicht vor — nur die Folien darüber.</div>
+<p class="fr">🇫🇷 Le mémorandum (2002) demande que tous les seniors, quelle que soit leur origine, aient accès aux services pour personnes âgées. Le plus grand groupe : les anciens « travailleurs invités ». Bases légales citées : article 13 du traité d'Amsterdam et la loi allemande contre les discriminations (AGG, 2006).</p>
+<p class="quelle">KultursensiblePflegeLeininger.pdf, S. 37–45</p>
+
+<!-- ============ 10 MARKSTEINE ============ -->
+<h2>10 · Die sieben Marksteine <span class="stern">★★★</span></h2>
+<div class="scroll"><table>
+  <tr><th>Nr.</th><th>Kernsatz (kurz)</th><th>Was konkret dazugehört</th></tr>
+  <tr><td class="z"><b>1</b></td><td><b>Barrieren überwinden</b> — mit zugehenden und partizipativen Ansätzen (zugehend = man geht zu den Menschen hin · partizipativ = sie machen mit)</td><td>Barrieren: fehlende Informationen, schlechte Erfahrungen, geringe Deutschkenntnisse, Angst vor ausländerrechtlichen Folgen · verständliche <b>mehrsprachige Faltblätter</b></td></tr>
+  <tr><td class="z"><b>2</b></td><td><b>Kultursensible Pflege</b> hilft dem Menschen, nach seinen eigenen Werten, Prägungen und Bedürfnissen zu leben</td><td>„<b>Gleichbehandlung blendet Unterschiede aus</b>“ · bedürfnis- und biografieorientierte Pflegebeziehung · die Herkunftskultur ist <b>nicht homogen</b> (nicht bei allen gleich) → Dialog über Lebenserfahrung, Selbstdefinition, Erleben der Pflege · <b>PDL</b> (Pflegedienstleitung) steuert den Pflegeprozess · Pflegende kommunizieren mit interkultureller Kompetenz</td></tr>
+  <tr><td class="z"><b>3</b></td><td>Interkulturelle Öffnung ist <b>kein Zusatzangebot</b>, sondern betrifft die <b>ganze Organisation</b> — langfristig und auf allen Ebenen</td><td>nicht nur ein Leitbild, sondern Qualitätssicherung und Organisationsentwicklung · das Management führt, die Praxis braucht Zeit, Reflexion, Fortbildung, Supervision · transparent gestalten</td></tr>
+  <tr><td class="z"><b>4</b></td><td>Öffnung ist Aufgabe der <b>Personal- und Teamentwicklung</b></td><td>Migrationserfahrung als Qualifikation bei der Einstellung · Gefahr: ungleiche Aufgaben, Rivalität, Konflikte, Diskriminierung · deshalb Teamentwicklung: Reflexionszeit, gleichberechtigte Kommunikation <b>auch bei unterschiedlichen Deutschkenntnissen</b>, Regeln für Verständigung und Konflikte</td></tr>
+  <tr><td class="z"><b>5</b></td><td>Aus-, Fort- und Weiterbildung verankern kultursensible Pflege als <b>Querschnittsthema</b> (Thema in allen Fächern)</td><td>Reines Wissen über Migration und Religionen <b>reicht nicht</b> · man braucht Lernformen, in denen man Beziehungen reflektiert und Handlungskompetenz entwickelt · die eigene Sicht prüfen, die Menschen auf ihre Herkunftskultur <b>reduziert</b></td></tr>
+  <tr><td class="z"><b>6</b></td><td>Einrichtungen brauchen <b>politische, fachliche und finanzielle Unterstützung</b></td><td>Zeit, Aufgaben und Strukturen finanziell absichern · Geld als anerkannter Aufwand der Regelfinanzierung, mit beschreibbaren und überprüfbaren Merkmalen · <b>keine</b> „Zusatzleistung für eine Minderheits-Problemgruppe“</td></tr>
+  <tr><td class="z"><b>7</b></td><td><b>Selbstorganisationen der Migranten</b> sind Potenzial und Ressource</td><td>bei politischen Entscheidungen und bei der Verteilung von Geld berücksichtigen · Strukturen in Kommune und Region, an denen sie mitarbeiten · bestehende Gremien öffnen</td></tr>
+</table></div>
+
+<h3>Warum „Gleichbehandlung blendet Unterschiede aus“?</h3>
+<p>Wenn alle <b>genau dieselbe</b> Pflege bekommen, sieht man nicht, dass Menschen <b>Verschiedenes</b> brauchen. Ein Beispiel aus deinem Kurs: Alle bekommen die gleiche Sondenkost — aber Herr Majed darf aus Glaubensgründen kein Schweinefleisch essen. <span class="her">Herleitung</span> aus Markstein 2 und dem Fall S. 13</p>
+<div class="merke"><b>Merke:</b> Gleich behandeln ist nicht immer gerecht. <b>Gerecht ist: nach dem Bedürfnis des Einzelnen pflegen.</b> <span class="her">Herleitung</span></div>
+<p class="fr">🇫🇷 Sept jalons : 1 abattre les barrières (aller vers les gens, dépliants en plusieurs langues) · 2 soins selon les valeurs de la personne — « traiter tout le monde pareil efface les différences » · 3 toute l'organisation est concernée · 4 développer l'équipe · 5 la formation · 6 le financement · 7 reconnaître les associations de migrants.</p>
+<p class="quelle">KultursensiblePflegeLeininger.pdf, S. 46–59</p>
+
+<!-- ============ 11 MEMORANDUM FAZIT ============ -->
+<h2>11 · Das Fazit des Memorandums — und der Vergleich mit Leininger <span class="stern">★★</span></h2>
+<h3>Was die Unterzeichnenden sagen</h3>
+<ul>
+  <li>Das Memorandum <b>nützt allen</b> Patientinnen, Bewohnerinnen und Nutzern — nicht nur Migranten.</li>
+  <li>Kundenfreundliche Einrichtungen kennen den unterschiedlichen Bedarf und machen interkulturell offene Angebote.</li>
+  <li>Gute Beziehungspflege kennt die Vielfalt der Lebensläufe und arbeitet kultursensibel.</li>
+  <li>Ein professionelles Team kennt die Kompetenzen, Grenzen und Möglichkeiten <b>jedes Einzelnen</b> und nutzt sie.</li>
+  <li>Einrichtungen brauchen Rahmenbedingungen, und die brauchen die Unterstützung der Politik.</li>
+  <li>Der Weg ist schwierig: Politik, Einrichtungen und einzelne Menschen sind nicht gleich schnell („Ungleichzeitigkeiten“). Es braucht das Engagement von allen Ebenen.</li>
+</ul>
+
+<h3>Sunrise-Modell und Memorandum im Vergleich <span class="her">Herleitung</span></h3>
+<p>Das ist ein Arbeitsauftrag deiner Folie (S. 64). Eine Lösung gibt es nicht. Diese Tabelle verbindet nur die Folien:</p>
+<div class="scroll"><table>
+  <tr><th></th><th>Sunrise-Modell (Leininger)</th><th>Memorandum (2002)</th></tr>
+  <tr><td>Wer?</td><td>eine Pflegewissenschaftlerin, USA</td><td>ein Arbeitskreis und das Kuratorium Deutsche Altershilfe</td></tr>
+  <tr><td>Ebene</td><td>der einzelne Mensch und die Pflegende</td><td>Einrichtung, Team, Ausbildung, Politik, Geld</td></tr>
+  <tr><td>Zielgruppe</td><td>alle B/P</td><td>ältere Menschen in der Altenhilfe</td></tr>
+  <tr><td>Kern</td><td>7 Faktoren → 3 Funktionen</td><td>Präambel + 7 Marksteine</td></tr>
+  <tr><td>Gemeinsam</td><td colspan="2">Der einzelne Mensch mit seinen Werten steht in der Mitte. Pflege soll zu seiner Kultur passen. Auch das Team ist interkulturell. Angehörige und Gemeinschaften werden einbezogen.</td></tr>
+</table></div>
+
+<h3>Weitere Arbeitsaufträge (ohne Lösung)</h3>
+<ul>
+  <li>Erarbeiten Sie die zugeteilten Marksteine und präsentieren Sie sie. Ihre Meinung: sinnvoll? ausreichend? realisierbar?</li>
+  <li>Recherchieren Sie: Charta der Ethik von pflegebedürftigen Menschen, UN-Menschenrechtskonvention von 1948, Pflege- und Hilfsbedürftigen-Charta. — <b>Diese Texte liegen nicht vor.</b></li>
+  <li>Lässt sich das Memorandum auf andere Gruppen übertragen (Kinder, Jugendliche, Menschen mit Behinderung, Erwachsene im Krankenhaus) — im Sinne der Generalistik? Entwickeln Sie konkrete Forderungen.</li>
+</ul>
+<p class="fr">🇫🇷 Le mémorandum sert à tous les patients, pas seulement aux migrants. Leininger parle du soin au lit du patient ; le mémorandum parle des institutions et de la politique. Point commun : la personne et ses valeurs au centre.</p>
+<p class="quelle">KultursensiblePflegeLeininger.pdf, S. 46, 61–65</p>
+
+<!-- ============ 12 HOFSTEDE ÜBERBLICK ============ -->
+<h2>12 · Hofstede: Woher die sechs Dimensionen kommen <span class="stern">★★★</span></h2>
+<p>Hofstede vergleicht <b>Länder</b>. Er misst, wie eine Gesellschaft im Durchschnitt denkt. Jede <b>Dimension</b> ist ein Merkmal mit zwei Polen (hoch und niedrig). <span class="her">Herleitung</span> aus den Tabellen „Hoher … / Niedriger …“</p>
+<div class="scroll"><table>
+  <tr><th>Die Studie</th><th>Was deine Folie sagt</th></tr>
+  <tr><td>Dimension 1–4</td><td>Daten der Firma <b>IBM</b> aus <b>53 Ländern</b> · <b>116 000</b> Mitarbeiterinnen und Mitarbeiter verschiedenen Alters · Studienzyklen <b>1967–69 und 1971–73</b></td></tr>
+  <tr><td>Dimension 5</td><td>eine <b>chinesische Umfrage zu Werten von 1985</b> mit ausgewählten Studierenden aus 23 Ländern · bewusst als Ausgleich, weil die IBM-Forschung sehr <b>westlich</b> dachte</td></tr>
+  <tr><td>Dimension 6</td><td>kam mit der Aktualisierung der Studie <b>2010</b> dazu</td></tr>
+</table></div>
+<div class="scroll"><table>
+  <tr><th>Nr.</th><th>Dimension</th><th>Kürzel</th><th>Die Frage dahinter <span class="her">Herleitung</span></th></tr>
+  <tr><td class="z">1</td><td><b>Machtdistanz</b></td><td>PDI</td><td>Wie sehr akzeptiert man, dass Macht ungleich verteilt ist?</td></tr>
+  <tr><td class="z">2</td><td><b>Individualismus versus Kollektivismus</b></td><td>IDV</td><td>„Ich“ oder „Wir“?</td></tr>
+  <tr><td class="z">3</td><td><b>Männlichkeit versus Weiblichkeit</b></td><td>MAS</td><td>Leistung und Erfolg — oder Fürsorge und Lebensqualität?</td></tr>
+  <tr><td class="z">4</td><td><b>Vermeidung von Unsicherheit</b></td><td>UAI</td><td>Wie bedrohlich ist Unklarheit?</td></tr>
+  <tr><td class="z">5</td><td><b>Kurzfristige versus langfristige Orientierung</b></td><td>LTO</td><td>Schnelle Ergebnisse — oder Geduld für später?</td></tr>
+  <tr><td class="z">6</td><td><b>Nachgiebigkeit versus Beherrschung</b></td><td>IVR</td><td>Wünsche ausleben — oder sich zurückhalten?</td></tr>
+</table></div>
+<div class="merke"><b>Merke — Reihenfolge der Entstehung:</b> 1–4 aus IBM (1967–73) · 5 aus China (1985) · 6 aus 2010.</div>
+<p class="fr">🇫🇷 Hofstede compare des pays. Dimensions 1 à 4 : enquête IBM (53 pays, 116 000 employés, 1967–1973) ; dimension 5 : enquête chinoise de 1985 (pour équilibrer la vision occidentale) ; dimension 6 : mise à jour de 2010.</p>
+<p class="quelle">KulturdimensionenHofstede.pdf, S. 4–8</p>
+
+<!-- ============ 13 MACHTDISTANZ ============ -->
+<h2>13 · Dimension 1: Machtdistanz (PDI) <span class="stern">★★★</span></h2>
+<div class="def">
+  <span class="t">Definition — so steht sie auf deiner Folie</span>
+  <p>Machtdistanz ist die Differenz in einer hierarchischen Situation zwischen Vorgesetztem (V) und Mitarbeiter (M): das Ausmaß, in dem V das Verhalten von M bestimmen kann, und in dem M das Verhalten von V bestimmen kann.</p>
+  <p><b>Generell:</b> das Ausmaß, in dem weniger mächtige Mitglieder einer Organisation eines Landes eine <b>ungleiche Machtverteilung erwarten und akzeptieren</b>.</p>
+</div>
+<p><b>Einfach:</b> Wie groß ist der Abstand zwischen „oben“ und „unten“ — und finden die Menschen das normal? Ungleichheit kann sich beziehen auf Körper und Geist, Status und Ansehen, Wohlstand, Macht, Gesetze und Regeln.</p>
+<div class="scroll"><table>
+  <tr><th>Bereich</th><th>Hoher PDI (große Machtdistanz)</th><th>Niedriger PDI (geringe Machtdistanz)</th></tr>
+  <tr><td>Ungleichheit</td><td>erwartet / erwünscht</td><td>nicht erwartet / nicht erwünscht</td></tr>
+  <tr><td>Eltern – Kinder</td><td>gehorsame Kinder</td><td>gleichgestellte Kinder</td></tr>
+  <tr><td>Lehrkraft – Lernende</td><td>Initiative wird von der Lehrkraft erwartet</td><td>Initiative wird von den Lernenden erwartet</td></tr>
+  <tr><td>Chef – Mitarbeiter</td><td>Mitarbeiter befolgen Befehle</td><td>Mitarbeiter entscheiden mit</td></tr>
+  <tr><td>idealer Chef</td><td>„autokratischer freundlicher Vater“ (autokratisch = bestimmt allein)</td><td>„kreativer Demokrat“</td></tr>
+  <tr><td>Alter der Top-Chefs</td><td>eher über 40</td><td>eher unter 40</td></tr>
+  <tr><td>Organisation</td><td>zentral, strenge Hierarchie, große Gehaltsunterschiede</td><td>dezentral, Hierarchie nur aus praktischen Gründen, kleine Gehaltsunterschiede</td></tr>
+  <tr><td>Werte</td><td>Konformität (sich anpassen)</td><td>Unabhängigkeit</td></tr>
+  <tr><td>Länder (Folie)</td><td>Malaysia, Slowakei, Indien, viele asiatische, osteuropäische, südeuropäische und arabische Länder, französischsprachige Schweiz</td><td>Österreich, Israel, deutschsprachige Schweiz, skandinavische Länder, Deutschland, USA, Kanada</td></tr>
+</table></div>
+<p><b>Was heißt das in der Pflege?</b> <span class="her">Herleitung</span> Eine Patientin, die eine große Machtdistanz gewohnt ist, fragt die Ärztin vielleicht nicht nach. Sie sagt nicht, wenn sie etwas nicht verstanden hat. Deshalb: aktiv nachfragen und zum Fragen einladen. In einem deutschen Team (eher niedriger PDI) wird erwartet, dass du selbst Initiative zeigst.</p>
+<div class="merke"><b>Merke:</b> Hoher PDI = „oben bestimmt, unten folgt“. Niedriger PDI = „alle reden mit“.</div>
+<p class="fr">🇫🇷 Distance hiérarchique : est-ce normal que le pouvoir soit inégal ? Élevée : enfants obéissants, on suit les ordres, le chef est un « père autoritaire bienveillant ». Faible : on décide ensemble. L'Allemagne est plutôt faible ; la Suisse romande plutôt élevée, selon tes diapos.</p>
+<p class="quelle">KulturdimensionenHofstede.pdf, S. 9–22</p>
+
+<!-- ============ 14 IDV ============ -->
+<h2>14 · Dimension 2: Individualismus versus Kollektivismus (IDV) <span class="stern">★★★</span></h2>
+<div class="def">
+  <span class="t">Definition — so steht sie auf deiner Folie</span>
+  <p>Die Beziehung zwischen dem Individuum und dem Kollektiv in einer Gesellschaft. Sie zeigt sich im Zusammenleben: Kleinfamilien, erweiterte Familien, Stämme. <b>Generell:</b> der Grad, mit dem die eigene Identität durch die <b>Gruppenzugehörigkeit</b> (Kleinfamilie, erweiterte Familie, Clan) bestimmt ist — Anpassung an die Gruppe oder Entwicklung der eigenen Persönlichkeit.</p>
+</div>
+<p><b>Einfach:</b> Bin ich zuerst „<b>Ich</b>“ — oder zuerst ein Teil von „<b>Wir</b>“? (Kollektiv = die Gruppe)</p>
+<div class="scroll"><table>
+  <tr><th>Bereich</th><th>Niedriger IDV = Kollektivismus („Wir“)</th><th>Hoher IDV = Individualismus („Ich“)</th></tr>
+  <tr><td>Aufwachsen</td><td>die erweiterte Familie schützt und erwartet dafür Loyalität (Treue)</td><td>erwachsen werden = Verantwortung für sich und die Kleinfamilie</td></tr>
+  <tr><td>Kern der Identität</td><td>Zugehörigkeit zum sozialen Netzwerk</td><td>das Individuum</td></tr>
+  <tr><td>Konflikte</td><td>direkte Konflikte vermeiden, harmonisch leben, damit die Gruppe keinen Schaden nimmt</td><td>Ehrlichkeit: sagen, was man wirklich denkt</td></tr>
+  <tr><td>Ausbildung / Karriere</td><td>die Gruppe entscheidet über die Karriere — Beziehung wichtiger als Aufgabe</td><td>Fähigkeiten entscheiden — Aufgabe wichtiger als Beziehung</td></tr>
+  <tr><td>Arbeitgeber</td><td>moralische Bindung an die Firma, Kontakte und Gruppenentscheidungen zentral</td><td>Verträge zum gegenseitigen Nutzen, Expertise zentral</td></tr>
+  <tr><td>Freundschaft</td><td>Beziehungen wichtig fürs Glück, Freundschaft aus dem sozialen Netz</td><td>Hedonismus (Freude genießen), Freundschaften nach eigener Wahl</td></tr>
+  <tr><td>Kommunikation</td><td><b>viel Kontext</b> (vieles wird nicht direkt gesagt)</td><td><b>wenig Kontext</b> (man sagt es direkt) <span class="her">Herleitung</span> für die Klammern</td></tr>
+  <tr><td>Gesellschaft</td><td>traditionell</td><td>modern</td></tr>
+  <tr><td>Privatsphäre</td><td>die Gruppen dominieren</td><td>Recht auf Privatleben</td></tr>
+  <tr><td>Länder (Folie)</td><td>Mittelamerika, Asien, arabische Länder, Afrika, Portugal, Serbien, Japan → meist ärmere Länder, <b>96 % der Weltbevölkerung</b></td><td>USA, Großbritannien, viele EU-Länder (Ungarn, Niederlande, Italien, Frankreich, Deutschland, Belgien, Österreich, Irland), Skandinavien, Schweiz, Australien, Kanada → reichere Länder, <b>4 % der Weltbevölkerung</b></td></tr>
+</table></div>
+<p><b>Was heißt das in der Pflege?</b> <span class="her">Herleitung</span> Für einen Menschen mit „Wir“-Denken entscheidet oft die Familie mit. Leininger sagt: Angehörige einbeziehen (Faktor 3, S. 28). Und: Wer Konflikte vermeidet, sagt vielleicht „ja“, obwohl er „nein“ meint. Achte auf Zeichen und frag nach.</p>
+<div class="merke"><b>Merke:</b> Kollektivismus = Wir, Harmonie, Familie. Individualismus = Ich, Ehrlichkeit, Privatleben. Laut Folie leben <b>96 %</b> der Menschen eher im „Wir“.</div>
+<p class="fr">🇫🇷 Individualisme : « je », franchise, vie privée. Collectivisme : « nous », harmonie, la famille élargie protège et attend la loyauté ; on évite le conflit direct. Selon tes diapos, 96 % de la population mondiale vit plutôt dans le « nous ».</p>
+<p class="quelle">KulturdimensionenHofstede.pdf, S. 23–35</p>
+
+<!-- ============ 15 MAS ============ -->
+<h2>15 · Dimension 3: Männlichkeit versus Weiblichkeit (MAS) <span class="stern">★★</span></h2>
+<div class="def">
+  <span class="t">Definition — so steht sie auf deiner Folie</span>
+  <p>Die Auswirkungen biologischer Unterschiede zwischen den Geschlechtern auf die emotionalen und sozialen Rollen in der Gesellschaft. <b>Generell:</b> die Verteilung der sozialen und kulturellen Rollen zwischen Männern und Frauen — ein <b>Gleichberechtigungsthema</b>.</p>
+</div>
+<div class="scroll"><table>
+  <tr><th>Bereich</th><th>Niedriger MAS = Femininität</th><th>Hoher MAS = Maskulinität</th></tr>
+  <tr><td>Werte</td><td>sich umeinander kümmern, Werte schützen, Bescheidenheit, Mittelmäßigkeit · „Schönheit liegt im Kleinen, Schwachen und Langsamen“ → Wohlfahrtsstaat</td><td>materieller Erfolg und Karriere, Leistungsgesellschaft · „Schönheit liegt im Großen, Starken und Schnellen“</td></tr>
+  <tr><td>Beziehungen</td><td>Menschen und gute Beziehungen wichtig · zentral ist, <b>wer</b> man ist</td><td>Geld und Dinge wichtig · zentral ist, <b>was</b> man tut</td></tr>
+  <tr><td>Gefühle</td><td>Sensibilität, Fürsorge, Schwäche, Gefühl — für Männer <b>und</b> Frauen</td><td>Fakten, Durchsetzung, Ehrgeiz, Strenge — nur für Männer</td></tr>
+  <tr><td>Chef</td><td>Intuition (Bauchgefühl) und Konsens (Einigung)</td><td>entschieden und durchsetzungsfähig</td></tr>
+  <tr><td>Arbeit</td><td>arbeiten, um zu leben</td><td>leben, um zu arbeiten</td></tr>
+  <tr><td>Arbeitswelt</td><td>Solidarität, Kooperation, Gruppenentscheidungen, Kleinfirmen, Lebensqualität</td><td>Herausforderung, Anerkennung, Fairness, Einzelentscheidungen, Großunternehmen, stressiges Arbeitsleben</td></tr>
+  <tr><td>Konflikte</td><td>Kompromisse</td><td>Konflikte werden ausgetragen</td></tr>
+  <tr><td>Länder (Folie)</td><td>Niederlande, Skandinavien, Thailand, Lateinamerika, Osteuropa, Ostafrika</td><td>Slowakei, Japan, Österreich, Deutschland, deutschsprachige Schweiz, Italien, China, alle angelsächsischen Länder, Venezuela</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> Feminin = Lebensqualität und Kompromiss. Maskulin = Leistung und Durchsetzen. Deutschland steht laut Folie bei „hoch“.</div>
+<p class="fr">🇫🇷 « Masculinité » : réussite, carrière, on vit pour travailler, on règle les conflits en se battant. « Féminité » : prendre soin les uns des autres, qualité de vie, on travaille pour vivre, compromis. C'est une question d'égalité des rôles entre hommes et femmes.</p>
+<p class="quelle">KulturdimensionenHofstede.pdf, S. 36–48</p>
+
+<!-- ============ 16 UAI ============ -->
+<h2>16 · Dimension 4: Vermeidung von Unsicherheit (UAI) <span class="stern">★★</span></h2>
+<div class="def">
+  <span class="t">Definition — so steht sie auf deiner Folie</span>
+  <p>UAI = Unsicherheitsvermeidungsindex: die <b>Toleranz für Unsicherheit bzw. Ambiguität</b>. Sie ist im Individuum angelegt: In derselben unsicheren Situation fühlen sich manche Menschen eher zum Handeln veranlasst als andere. <b>Generell:</b> der Grad, zu dem sich eine Gesellschaft durch unsichere, unklare Situationen <b>bedroht fühlt</b> → Regeln und Sicherheitsmaßnahmen.</p>
+  <p><b>Unsicherheit ist nicht Risiko:</b> Unsicherheit ist diffus (unklar), ein Risiko kann man berechnen.</p>
+</div>
+<div class="scroll"><table>
+  <tr><th>Bereich</th><th>Niedriger UAI (wenig Vermeidung)</th><th>Hoher UAI (viel Vermeidung)</th></tr>
+  <tr><td>Umgang mit Unsicherheit</td><td>Neugier, Improvisation, Wohlsein · unbekannte Risiken sind okay</td><td>Unsicherheit als Gefahr · Kampf gegen eine ständige Bedrohung · Angst · nur bekannte Risiken</td></tr>
+  <tr><td>Tabu / Schmutz</td><td>kaum Regeln</td><td>strenge Regeln</td></tr>
+  <tr><td>Zeit</td><td>Zeit als Orientierungsrahmen</td><td>Zeit = Geld</td></tr>
+  <tr><td>Zufriedenheit</td><td>Müßiggang (nichts tun), harte Arbeit und Stress vermeiden</td><td>Geschäftigkeit und harte Arbeit bzw. Stress</td></tr>
+  <tr><td>Pünktlichkeit</td><td>kann man lernen</td><td>notwendige Charaktereigenschaft</td></tr>
+  <tr><td>Neues Denken</td><td>Toleranz für abweichende Gedanken</td><td>Widerstand gegen abweichende Gedanken</td></tr>
+  <tr><td>Werte</td><td>Vielfalt, Neues, Chaos, Beeinflussbarkeit, Wandel</td><td>Ausländerfeindlichkeit, Reinheit, Klarheit, Struktur, Machtlosigkeit gegenüber äußeren Kräften, Gesetz und Ordnung</td></tr>
+  <tr><td>Arbeitswelt</td><td>keine Firmentreue, Wettbewerb, Ehrgeiz, Einzelentscheidungen, Vertrauen, kaum schriftliche Regeln</td><td>Firmentreue, gegen Wettbewerb, Spezialisten, Gruppenentscheidungen, kein Vertrauen, viele schriftliche Regeln</td></tr>
+  <tr><td>Länder (Folie)</td><td>asiatische Länder (außer Japan und Korea), Jamaika, Dänemark, Schweden, Irland, Großbritannien, USA, Niederlande, afrikanische Länder</td><td>Griechenland, Portugal, Belgien, Russland, Japan, Frankreich, Spanien</td></tr>
+</table></div>
+<p><b>Verbindung zu Perleberg:</b> Die Toleranz für Ambiguität ist genau das Thema der Ambiguitätstoleranz (Kapitel 21). <span class="her">Herleitung</span></p>
+<div class="merke"><b>Merke:</b> Hoher UAI = Regeln, Struktur, „Zeit ist Geld“. Niedriger UAI = Neugier, Improvisation, wenig Regeln.</div>
+<p class="fr">🇫🇷 Contrôle de l'incertitude : une société se sent-elle menacée par ce qui n'est pas clair ? Élevé : beaucoup de règles écrites, ponctualité, peur du nouveau. Faible : curiosité, improvisation, peu de règles. L'incertitude est floue ; un risque, on peut le calculer.</p>
+<p class="quelle">KulturdimensionenHofstede.pdf, S. 49–64</p>
+
+<!-- ============ 17 LTO ============ -->
+<h2>17 · Dimension 5: Kurzfristige versus langfristige Orientierung (LTO) <span class="stern">★★</span></h2>
+<div class="def">
+  <span class="t">Definition — so steht sie auf deiner Folie</span>
+  <p><b>Kurzfristig:</b> sofortige Ergebnisse bei Bemühungen. <b>Langfristig:</b> Ergebnisse bei dauerhaften Bemühungen. <b>Generell:</b> der Grad, zu dem eine Gesellschaft Entscheidungen auf <b>aktuellen, kurzfristigen Vorteilen</b> aufbaut — oder auf <b>Traditionen, Erfahrung und sozialer Pflicht</b>.</p>
+</div>
+<div class="scroll"><table>
+  <tr><th>Bereich</th><th>Niedriger LTO (kurzfristig)</th><th>Hoher LTO (langfristig)</th></tr>
+  <tr><td>Respekt</td><td>schneller Gewinn steht ggf. über der Tradition</td><td>hoher Respekt vor Tradition, die an moderne Bedürfnisse angepasst wird</td></tr>
+  <tr><td>Pflicht gegenüber Gesellschaft und Status</td><td>Erfüllung in bestimmten Grenzen</td><td>Erfüllung um jeden Preis</td></tr>
+  <tr><td>Sparen</td><td>Ausgaben durch sozialen Druck, wenig Geld für Investitionen</td><td>große Ersparnisse, vorsichtiger Umgang mit Ressourcen</td></tr>
+  <tr><td>Denken</td><td>analytisch (in Teile zerlegen)</td><td>synthetisch (zusammenfügen) <span class="her">Herleitung</span> für die Klammern</td></tr>
+  <tr><td>Resultate</td><td>schnelle Resultate erwartet</td><td>Geduld und Hartnäckigkeit für langfristige Ziele</td></tr>
+  <tr><td>Rolle des Einzelnen</td><td>reine Nutzen-Beziehungen, Status unwichtig, Gesichtswahrung statt Unterordnung</td><td>klare soziale Stellung, Beziehungen wichtig, bereit, sich für ein langes Ziel unterzuordnen</td></tr>
+  <tr><td>Bedürfnisse</td><td>Belohnung sofort</td><td>Belohnung später</td></tr>
+  <tr><td>Arbeitsplatz</td><td>kurzfristige Ergebnisse</td><td>Beziehungsaufbau und Marktposition</td></tr>
+  <tr><td>Länder (Folie)</td><td>Spanien, angelsächsische Länder, Pakistan, Tschechien, Philippinen, afrikanische Länder</td><td>China, Hongkong, Taiwan, Japan, Vietnam, Korea → vor allem Ostasien</td></tr>
+</table></div>
+<div class="hinweis">Die Folien 66 und 67 sind gleich (doppelt). Einige Ländernamen haben Tippfehler auf den Folien („Portual“, „Tscheschien“); hier richtig geschrieben.</div>
+<div class="merke"><b>Merke:</b> Kurzfristig = jetzt, schnell, sofort belohnt. Langfristig = Geduld, sparen, Tradition.</div>
+<p class="fr">🇫🇷 Orientation court terme : résultats rapides, récompense tout de suite. Long terme : patience, épargne, respect de la tradition, récompense plus tard — surtout en Asie de l'Est selon tes diapos.</p>
+<p class="quelle">KulturdimensionenHofstede.pdf, S. 65–73</p>
+
+<!-- ============ 18 IVR ============ -->
+<h2>18 · Dimension 6: Nachgiebigkeit versus Beherrschung (IVR) <span class="stern">★★</span></h2>
+<div class="def">
+  <span class="t">Definition — so steht sie auf deiner Folie</span>
+  <p>Die Wichtigkeit von <b>Glück und Kontrolle</b> für das eigene Leben: grundlegende Bedürfnisse und Wünsche erfüllen — oder Bedürfnisse unterdrücken mit strenger sozialer Kontrolle und Moral. (IVR = Indulgence versus Restraint, auf Deutsch: Nachgiebigkeit gegen Beherrschung.)</p>
+</div>
+<div class="scroll"><table>
+  <tr><th>Bereich</th><th>Niedriger IVR = Beherrschung</th><th>Hoher IVR = Nachgiebigkeit</th></tr>
+  <tr><td>Verhalten</td><td>unterdrückt und reguliert</td><td>befreit</td></tr>
+  <tr><td>Lebenseinstellung</td><td>Pessimismus, Zynismus, Verzicht, Gefühl von Ungerechtigkeit, Zurückhaltung</td><td>Optimismus, Glück, Leben im Hier und Jetzt, Extrovertiertheit (offen nach außen)</td></tr>
+  <tr><td>Belohnung</td><td>gute Arbeit → materielle Belohnung (Auto, Haus, Firma), Status vor Funktion</td><td>materielle Belohnung unwichtig, Funktion vor Status</td></tr>
+  <tr><td>Werte</td><td>Freunde und Freizeit unwichtig</td><td>Freunde und Freizeit wichtig</td></tr>
+  <tr><td>Länder (Folie)</td><td>Südafrika, China, Hongkong, Korea, Thailand → viele asiatische Länder</td><td>Türkei, Kanada, Irland, Argentinien → viele westliche Länder liegen im <b>mittleren Bereich</b></td></tr>
+</table></div>
+<p>Für die vollständigen Ländertabellen verweist deine Folie auf eine Internetseite („Country comparison tool“). Diese Tabellen liegen hier <b>nicht</b> vor.</p>
+<div class="merke"><b>Merke:</b> Nachgiebig = Glück, Freizeit, Optimismus. Beherrscht = Kontrolle, Verzicht, Zurückhaltung.</div>
+<p class="fr">🇫🇷 Indulgence : on vit ses envies, optimisme, amis et loisirs importants. Retenue : on contrôle ses désirs, morale stricte, pessimisme, peu de loisirs. Beaucoup de pays occidentaux sont au milieu.</p>
+<p class="quelle">KulturdimensionenHofstede.pdf, S. 74–80</p>
+
+<!-- ============ HOFSTEDE RICHTIG ============ -->
+<h2>19 · Hofstede richtig benutzen — die Stereotyp-Falle <span class="stern">★★★</span></h2>
+<p>Hofstede misst den <b>Durchschnitt eines Landes</b> (IBM-Mitarbeiter, Studierende). Er beschreibt nicht den einzelnen Menschen vor dir. <span class="her">Herleitung</span> aus S. 6–7</p>
+<p>Deine anderen Folien warnen genau davor:</p>
+<ul>
+  <li>Leininger: Probleme entstehen durch „unbewusste und unreflektierte Vorstellungen bzw. <b>Stereotypen</b> zum ‚Fremden‘“ (S. 14).</li>
+  <li>Markstein 2: Die Herkunftskultur ist <b>nicht homogen</b> → Dialog (S. 48).</li>
+  <li>Markstein 5: die eigene Sicht prüfen, die <b>Menschen auf ihre Herkunftskultur reduziert</b> (S. 55).</li>
+  <li>Fazit: „Im Zentrum … steht nicht die Kultur, sondern immer das Individuum“ (S. 31).</li>
+</ul>
+<div class="scroll"><table>
+  <tr><th>So nicht</th><th>So richtig <span class="her">Herleitung</span></th></tr>
+  <tr class="rot"><td>„Er kommt aus einem Land mit hohem PDI. Also fragt er sowieso nichts.“</td><td>„Vielleicht traut er sich nicht zu fragen. Ich lade ihn ein: Haben Sie noch Fragen?“</td></tr>
+  <tr class="rot"><td>„Sie ist aus einem ‚Wir‘-Land. Also entscheidet die Familie.“</td><td>„Ich frage sie: Wer soll bei den Gesprächen dabei sein?“</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> Hofstede gibt dir eine <b>Frage</b>, keine <b>Antwort</b>. Die Antwort gibt der Mensch selbst.</div>
+<p class="fr">🇫🇷 Hofstede décrit la moyenne d'un pays, pas la personne devant toi. Utilise les dimensions comme des questions à poser, jamais comme une étiquette (stéréotype).</p>
+<p class="quelle">KulturdimensionenHofstede.pdf, S. 6–7 · KultursensiblePflegeLeininger.pdf, S. 14, 31, 48, 55</p>
+
+<!-- ============ 19 SOZIALE GRUPPE + AMBIGUITÄT ============ -->
+<h2>20 · Die soziale Gruppe und das Fremdheitserleben im Team <span class="stern">★★</span></h2>
+<h3>Die soziale Gruppe</h3>
+<ul>
+  <li>Die soziale Gruppe ist das häufigste soziale Gebilde in der Geschichte der Menschen.</li>
+  <li>Jeder Mensch gehört <b>verschiedenen Gruppen</b> an: Spiel-, Freundes-, Familien-, Arbeitsgruppen.</li>
+  <li>Eine Gruppe verbindet die <b>Individualität</b> eines Menschen mit seiner <b>sozialen Natur</b>.</li>
+  <li>„Rein von seinem Wesen ist der Mensch ein <b>Gruppenwesen</b>.“</li>
+</ul>
+<div class="schema">
+  <p class="titel">Arten sozialer Gruppen (Bild auf Folie 4) — immer als Paar</p>
+  <div class="zwei">
+    <div class="k"><b>Mitgliedsgruppen</b></div><div class="k"><b>Fremdgruppen</b></div>
+    <div class="k"><b>Primärgruppen</b></div><div class="k"><b>Sekundärgruppen</b></div>
+    <div class="k"><b>formelle Gruppen</b></div><div class="k"><b>informelle Gruppen</b></div>
   </div>
+  <p class="lesen">Deine Folie nennt nur die Namen. Sie erklärt sie nicht. Vom Wort her: Mitgliedsgruppe = eine Gruppe, zu der ich gehöre · Fremdgruppe = eine Gruppe, zu der ich nicht gehöre. <span class="her">Herleitung</span></p>
+</div>
+<p>Die Folie „Dynamik einer sozialen Gruppe — Die einsame Insel“ hat keinen weiteren Text. Was dort im Unterricht gemacht wurde, steht nicht in deinen Unterlagen.</p>
+<p class="fr">🇫🇷 L'être humain est un « être de groupe » : chacun appartient à plusieurs groupes (famille, amis, travail). La diapo nomme des paires de groupes (membre/étranger, primaire/secondaire, formel/informel) sans les expliquer.</p>
+<p class="quelle">Interkulturelle Pflege – Wahrnehmen und Erleben.pdf, S. 2–6</p>
 
-  <div class="merk">
-    <span class="t">Transkulturelle Pflege — die Definition, wörtlich</span>
-    <p>„Ein ausgewiesener Bereich des Studiums und der Praxis, der sich auf eine
-      <b>vergleichende, ganzheitliche Sicht</b> der Kultur-, Pflege-, Gesundheits- und
-      Krankheitsmuster von Menschen konzentriert; der <b>Unterschiede und Ähnlichkeiten</b> in
-      ihren kulturellen Wertvorstellungen, Glaubenssätzen und Praktiken berücksichtigt; der das
-      Ziel hat, Menschen verschiedensten kulturellen Hintergrunds <b>kulturell kongruente,
-      sensible und kompetente</b> Krankenpflege angedeihen zu lassen.“</p>
-    <p>Drei Wörter am Ende sind die Prüfungsantwort: <b>kongruent · sensibel · kompetent</b>.</p>
-  </div>
+<!-- ============ 20 AMBIGUITÄTSTOLERANZ ============ -->
+<h2>21 · Ambiguitätstoleranz — Mehrdeutigkeit aushalten <span class="stern">★★★</span></h2>
+<div class="def">
+  <span class="t">Der Fall auf deiner Folie: Kaffeeküche</span>
+  <p>Schwester Birgit kommt nach der Grundversorgung eines Patienten in die Kaffeeküche. Zwei Kolleginnen aus Osteuropa unterhalten sich dort auf <b>Russisch</b>. Birgit <b>nimmt an</b>, dass die beiden <b>schlecht über sie</b> geredet haben.</p>
+  <p><b>Was es jetzt braucht:</b> Ambiguitätstoleranz — auch Frustrations- oder Unsicherheitstoleranz genannt.</p>
+</div>
+<div class="def">
+  <span class="t">Definition — Wort für Wort einfach</span>
+  <p><b>Ambiguität</b> = Mehrdeutigkeit. Eine Situation kann <b>mehrere Bedeutungen</b> haben. <b>Toleranz</b> = aushalten, gelten lassen.</p>
+  <p><b>Ambiguitätstoleranz</b> ist die Fähigkeit, mit Mehrdeutigkeit und widersprüchlichen Informationen umzugehen. Man versteht die Mehrdeutigkeit, hält sie aus, toleriert oder akzeptiert sie. Man geht <b>flexibel</b> mit unklaren Informationen um.</p>
+  <p>Sie ist ein wesentliches Merkmal in einem interkulturellen Team — <b>„von beiden Seiten!“</b></p>
+</div>
+<p><b>Was heißt das für Birgit?</b> <span class="her">Herleitung</span> Birgit versteht kein Russisch. Sie <b>weiß nicht</b>, worüber die beiden reden. Sie füllt die Lücke mit einer negativen Annahme. Mit Ambiguitätstoleranz würde sie denken: „Ich weiß es nicht. Vielleicht reden sie über ihre Familie.“ Und „von beiden Seiten“ heißt: Auch die Kolleginnen können darauf achten, dass sich andere nicht ausgeschlossen fühlen — Markstein 4 fordert Regeln für Verständigung im Team.</p>
 
-  <div class="warnung">
-    <span class="t">Zwei Schreibweisen in der Folie, die ich nicht geändert habe</span>
-    <p>Die Folie nennt Leininger „Krankenschwester und <b>Anthroprosophin</b>“. Gemeint ist mit
-      hoher Wahrscheinlichkeit <b>Anthropologin</b> — die Folie sagt selbst, ihr Fach sei die
-      vergleichende Kulturforschung. <b>Anthroposophie</b> wäre etwas ganz anderes (die Lehre
-      Rudolf Steiners).</p>
-    <p>Und als Urheber der Kulturdefinition nennt die Folie den Sozialanthropologen
-      <b>„Edward B. Tyler“</b>; in der Fachliteratur wird der Name <b>Tylor</b> geschrieben.</p>
-    <p><b>Beides steht hier unverändert, damit du die Folie wiedererkennst.</b> Frag im Kurs
-      nach, statt es selbst umzuschreiben.</p>
-  </div>
-</section>
+<h3>Die Vorteile — und warum</h3>
+<div class="scroll"><table>
+  <tr><th>Vorteil (Folie)</th><th>Warum? <span class="her">Herleitung</span></th></tr>
+  <tr><td>mehr Gelassenheit und Ruhe</td><td>Man muss nicht sofort alles erklären können.</td></tr>
+  <tr><td>Perspektivenvielfalt statt Schwarz-Weiß-Denken</td><td>Man sieht mehrere mögliche Erklärungen.</td></tr>
+  <tr><td>Entscheidungen trotz Unsicherheit treffen</td><td>Man wartet nicht, bis alles klar ist.</td></tr>
+  <tr><td>Stärkung des Selbstvertrauens</td><td>Unklare Situationen machen weniger Angst.</td></tr>
+  <tr><td>bessere Konfliktlösung und Kompromisse</td><td>Wer nicht sofort verurteilt, kann besser verhandeln.</td></tr>
+  <tr><td>hohe Flexibilität</td><td>Man passt sich an neue Situationen an.</td></tr>
+</table></div>
 
-<section id="sunrise">
-  <h2>Das Sunrise-Modell</h2>
-  <p class="lead">Es war das <b>erste Modell überhaupt</b>, das den kulturellen Hintergrund
-    eines Patienten im Pflegekontext berücksichtigt hat.</p>
+<h3>Wie lernt man Ambiguitätstoleranz? — sechs Wege</h3>
+<div class="scroll"><table>
+  <tr><th>Weg (Folie)</th><th>Was tun</th></tr>
+  <tr><td><b>1 · Bewusstsein schaffen</b></td><td>Merken, dass es mehrdeutig ist. Zulassen, dass nicht alles eindeutig ist.</td></tr>
+  <tr><td><b>2 · Perspektivenvielfalt suchen</b></td><td>bereit sein, andere Sichtweisen und Erklärungen zu prüfen</td></tr>
+  <tr><td><b>3 · Situative Flexibilität</b></td><td>starre Denkweisen lösen</td></tr>
+  <tr><td><b>4 · Resilienz aufbauen</b></td><td>konstruktiv mit Unsicherheit umgehen (Resilienz = innere Widerstandskraft)</td></tr>
+  <tr><td><b>5 · Reflexion und Selbstbewusstsein</b></td><td>sich selbst besser kennenlernen, z. B. mit Tagebuch, Meditation oder Coaching</td></tr>
+  <tr><td><b>6 · Übung und Exposition</b></td><td>sich bewusst solchen Situationen aussetzen</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> Nicht wissen ≠ etwas Schlechtes. <b>Erst aushalten, dann fragen — nicht sofort urteilen.</b> <span class="her">Herleitung</span></div>
+<p class="fr">🇫🇷 Tolérance à l'ambiguïté : supporter qu'une situation ait plusieurs sens, sans juger tout de suite. Birgit ne comprend pas le russe et imagine qu'on parle mal d'elle — c'est une supposition. Ça s'apprend : prendre conscience, chercher d'autres points de vue, réfléchir sur soi, s'exercer. Et ça vaut pour les deux côtés de l'équipe.</p>
+<p class="quelle">Interkulturelle Pflege – Wahrnehmen und Erleben.pdf, S. 6–9 · Markstein 4: KultursensiblePflegeLeininger.pdf, S. 53</p>
 
-  <h3>Die Grundgedanken</h3>
-  <ul>
-    <li><b>Kultur als organisches Ganzes</b>, das sich <b>ständig lebendig fort- und
-      weiterentwickelt</b> — also nichts Festes.</li>
-    <li>Das <b>Individuum steht im Zentrum</b>, zwischen <b>erlernter Kultur</b> und
-      <b>Selbstverantwortung</b>.</li>
-    <li>Zwischen dem Willen zur <b>regelhaften Verlässlichkeit</b> einerseits und zu
-      <b>Veränderung und Fortschritt</b> andererseits.</li>
-    <li>Auch der <b>Pflegeberuf hat eine eigene Berufskultur</b> — mit international
-      übereinstimmenden Aspekten des Berufsethos, <b>aber: Pflege ist in jedem Land
-      unterschiedlich.</b></li>
-  </ul>
+<!-- ============ 21 VIER FÄLLE ============ -->
+<h2>22 · Die vier Fälle aus der Praxis <span class="stern">★★★</span></h2>
+<div class="hinweis"><b>Wichtig:</b> Deine Folien stellen zu jedem Fall nur zwei Fragen. <b>Eine Lösung gibt es nicht.</b> Unter jedem Fall steht eine <b>Denkhilfe</b>: Sie verbindet den Fall mit den Folien zu Leininger und zum Memorandum. Sie ist <span class="her">Herleitung</span> — <b>keine Musterlösung</b>. Bring deine Antworten in den Unterricht.</div>
 
-  <div class="merk">
-    <span class="t">Die sieben Faktoren mit Einfluss auf Krankheit und Pflege</span>
-    <p><b>1</b> Technologische Umstände · <b>2</b> Religiöse und philosophische Einflüsse ·
-      <b>3</b> Verwandtschaftliche und soziale Faktoren · <b>4</b> Politische und gesetzliche
-      Gegebenheiten · <b>5</b> Wirtschaftliche Verhältnisse · <b>6</b> Bildungsbedingte
-      Faktoren · <b>7</b> Kulturelle Werte und Lebensweisen.</p>
-    <p><b>Das ist der Kern des Modells und die wahrscheinlichste Prüfungsfrage.</b> Merk sie
-      dir als Fragenliste an einen Menschen: <i>Was kann er technisch nutzen? Was glaubt er?
-      Wer gehört zu ihm? Was darf er rechtlich? Was kann er sich leisten? Was hat er gelernt?
-      Wie lebt er?</i></p>
-    <p class="fr">Sept facteurs — retiens-les comme sept questions à poser sur une personne.</p>
-  </div>
-
-  <h3>Die Grundannahmen, auf die es ankommt</h3>
-  <div class="karten">
-    <div class="karte"><h4>Fürsorge ist der Kern</h4>
-      <p><b>Menschliche Fürsorge ist genauso entscheidend für die Genesung wie die medizinische
-        Behandlung</b> — und sie ist <b>in allen Kulturen verankert</b>, nur in
-        unterschiedlichen Ausprägungen.</p></div>
-    <div class="karte"><h4>Der Patient ist der Fachmann</h4>
-      <p>„<b>B/P als Fachleute des eigenen Pflegeverhaltens</b>“ — und:
-        <b>die Pflegefachkraft sollte den Patienten aus dessen kultureller Sicht sehen</b>,
-        nicht aus der eigenen.</p></div>
-    <div class="karte"><h4>Was passiert, wenn man es nicht tut</h4>
-      <p>„Pflege ohne kulturspezifische Werte, Überzeugungen und Gewohnheiten führt bei
-        Bewohnern und Patienten zu <b>kulturellen Konflikten, Stress sowie ethischer und
-        moralischer Überforderung</b>.“</p></div>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Der Grund, warum es nicht nur um Patienten geht</span>
-    <p>„<b>Pflege ist transkulturell</b> wegen der Interaktionen <b>des Pflegepersonals
-      untereinander</b> sowie mit Bewohnern, Patienten und Angehörigen.“</p>
-    <p>Das betrifft dich doppelt: als französischsprachige Auszubildende in einem deutschen
-      Team bist du <b>nicht nur die, die kultursensibel pflegt</b> — du bist auch die, der
-      gegenüber Ambiguitätstoleranz gefragt ist. Der Fall weiter unten mit den russisch
-      sprechenden Kolleginnen ist genau dieser Fall.</p>
-    <p class="fr">Ce modèle ne parle pas que des patients. Il parle aussi de l'équipe — donc
-      aussi de toi.</p>
-  </div>
-</section>
-
-<section id="funktionen">
-  <h2>Die drei Funktionen — das eigentliche Werkzeug</h2>
-  <p class="lead">Leininger nennt <b>drei Durchführungsarten kulturspezifischer Fürsorge</b>.
-    Das ist der Teil, mit dem man einen Fall bearbeitet.</p>
-
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div>
-      <h4>Erhaltungs- bzw. Bewahrungsfunktion</h4>
-      <p>Was der Mensch mitbringt, <b>bleibt</b>. Beispiel aus der Folie:
-        <b>kulturspezifische Ernährung</b> und die <b>Erfüllung religiöser Bedürfnisse —
-        gegebenenfalls auch entgegen den Abläufen der Einrichtung</b>.</p></div></div>
-    <div class="stufe"><span class="nr">2</span><div>
-      <h4>Anpassungs- und Verständigungsfunktion</h4>
-      <p>Beide Seiten bewegen sich aufeinander zu und <b>handeln etwas aus</b>.</p></div></div>
-    <div class="stufe"><span class="nr n2">3</span><div>
-      <h4>Umstrukturierungs- bzw. Musteränderungsfunktion</h4>
-      <p>Ein Muster wird <b>gemeinsam verändert</b> — wenn es anders nicht geht.</p></div></div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Warum die Reihenfolge nicht zufällig ist</span>
-    <p>Sie geht von <b>„wir ändern nichts“</b> über <b>„wir handeln aus“</b> zu <b>„wir ändern
-      das Muster“</b>. <b>Das ist meine Lesart</b>, aber die Folie stützt sie: Als Beispiel für
-      Funktion 1 steht ausdrücklich, dass die religiösen Bedürfnisse <b>auch entgegen den
-      Abläufen der Einrichtung</b> erfüllt werden — also zuerst der Mensch, dann der
-      Stationsablauf.</p>
-    <p class="fr">Conserver d'abord, négocier ensuite, changer en dernier.</p>
-  </div>
-
-  <h3>Die vier transkulturellen Kompetenzen</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Kompetenz</th><th>Was dazugehört</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Einstellungen und Persönlichkeitsmerkmale</td>
-          <td>Interesse am interkulturellen Kontakt · Unvoreingenommenheit · Toleranz ·
-            Höflichkeit · Freundlichkeit · Geduld</td></tr>
-        <tr><td class="k">Wissen und Kenntnisse</td>
-          <td><b>Bewusstsein kultureller Unterschiede</b> · Kenntnisse zu Eigenheiten fremder
-            Kulturen einschließlich <b>Interaktionsregeln</b></td></tr>
-        <tr><td class="k">Kommunikationsregeln</td>
-          <td><b>Bedeutungsvolle Dialoge führen</b> · Strategien zur <b>Vermeidung und
-            Klärung von Konflikten</b></td></tr>
-        <tr><td class="k">Selbstdarstellung und Interaktionsmanagement</td>
-          <td><b>Rollenwechsel</b> · <b>Empathiefähigkeit</b> · <b>Aushandeln von
-            Kompromissen</b> · <b>Selbstreflexion</b></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Der Satz, mit dem der ganze Foliensatz endet</span>
-    <p>„<b>Welche Kultur hat eine in Deutschland lebende Tochter einer indonesischen Mutter und
-      eines senegalesischen Vaters?</b>“</p>
-    <p>Und die Antwort der Folie: „<b>Im Zentrum der transkulturellen Pflege steht nicht die
-      Kultur, sondern immer das Individuum.</b>“</p>
-    <p>Merk dir diesen Satz. Er ist der Prüfstein für alles, was auf dieser Seite folgt — vor
-      allem für Hofstedes Länderlisten.</p>
-    <p class="fr">Au centre des soins transculturels, il n'y a pas la culture. Il y a
-      l'individu.</p>
-  </div>
-</section>
-
-<section id="memorandum">
-  <h2>Das Memorandum für eine kultursensible Altenhilfe (2002)</h2>
-  <p class="lead">Herausgeber: der Arbeitskreis <b>„Charta für eine kultursensible Altenpflege“</b>
-    zusammen mit dem <b>Kuratorium Deutsche Altershilfe</b>. Aufbau: eine <b>Präambel</b> und
-    <b>sieben Marksteine</b>.</p>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Markstein</th><th>Der Satz — und was dahintersteht</th></tr></thead>
-      <tbody>
-        <tr><td class="k">1 · Barrieren</td>
-          <td>„Bestehende Barrieren […] können über <b>zugehende und partizipative Ansätze</b>
-            überwunden werden.“ Die Barrieren, die genannt werden: <b>fehlende Informationen,
-            schlechte Erfahrungen, geringe Deutschkenntnisse, Angst vor ausländerrechtlichen
-            Konsequenzen</b>. Mittel: <b>verständliche mehrsprachige Faltblätter</b>.</td></tr>
-        <tr><td class="k">2 · Individuelle Werte</td>
-          <td>Kultursensible Pflege trägt dazu bei, dass die pflegebedürftige Person
-            <b>entsprechend ihrer individuellen Werte, kulturellen und religiösen Prägungen</b>
-            leben kann. Der Schlüsselsatz: <b>„Gleichbehandlung blendet Unterschiede aus.“</b>
-            Und: <b>Die Herkunftskultur ist nicht homogen</b> — es braucht den Dialog.</td></tr>
-        <tr><td class="k">3 · Ganze Organisation</td>
-          <td>Interkulturelle Öffnung ist <b>kein Zusatzangebot</b>, sondern betrifft die
-            <b>ganze Organisation</b> und braucht einen <b>transparenten, langfristigen
-            Entwicklungsprozess auf allen Ebenen</b>.</td></tr>
-        <tr><td class="k">4 · Team</td>
-          <td>Ein Team aus Menschen verschiedener Herkunft braucht <b>Anstöße und Begleitung</b>.
-            <b>Migrationserfahrung ist ein Qualifikationsmerkmal</b> bei der Personalauswahl —
-            gleichzeitig besteht die <b>Gefahr ungleicher Aufgabenverteilung</b> mit Rivalitäten,
-            Konflikten und Diskriminierung.</td></tr>
-        <tr><td class="k">5 · Ausbildung</td>
-          <td>Kultursensible Pflege als <b>Querschnittsthema</b> verankern.
-            <b>Reine Wissensvermittlung reicht nicht</b> — es braucht Lernformen, in denen
-            <b>Beziehungserfahrungen reflektiert</b> werden, und die Überprüfung der eigenen
-            Sichtweisen, <b>die Menschen auf ihre Herkunftskultur reduzieren</b>.</td></tr>
-        <tr><td class="k">6 · Geld</td>
-          <td>Der Prozess braucht <b>politische, fachliche und finanzielle Unterstützung</b> —
-            als <b>anerkannter Aufwand der Regelfinanzierung</b>, ausdrücklich <b>nicht als
-            Zusatzleistung für eine „Minderheits-Problemgruppe“</b>.</td></tr>
-        <tr><td class="k">7 · Selbstorganisationen</td>
-          <td>Die <b>Selbstorganisationen der Migrantinnen und Migranten</b> sind
-            <b>als Potenzial und Ressource anzuerkennen</b> und bei politischen Entscheidungen
-            und der Verteilung von Geldern zu berücksichtigen.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Der eine Satz, der in jede Klausurantwort passt</span>
-    <p><b>„Gleichbehandlung blendet Unterschiede aus.“</b></p>
-    <p>Das ist die kürzeste Begründung dafür, warum <b>alle gleich behandeln</b> nicht dasselbe
-      ist wie <b>alle gerecht behandeln</b> — und sie ist dieselbe Denkfigur wie
-      <b>Integration gegen Inklusion</b> auf deiner Behinderten-Seite.</p>
-    <p class="fr">Traiter tout le monde pareil, ce n'est pas traiter tout le monde justement.</p>
-  </div>
-
-  <p>Die Präambel nennt als gesetzliche Grundlagen <b>Artikel 13 des Amsterdamer Vertrags</b>
-    bzw. die EG-Richtlinie zur Gleichbehandlung ohne Unterschied der ethnischen Herkunft und das
-    <b>Allgemeine Gleichbehandlungsgesetz (AGG)</b> vom <b>14. August 2006</b>, geändert am
-    <b>3. April 2013</b> — mit einem <b>einklagbaren Recht auf diskriminierungsfreien Zugang zu
-    allen Dienstleistungen</b>. Als größte Gruppe älterer Migrantinnen und Migranten nennt sie
-    die <b>Gastarbeiter und Arbeitsmigranten</b>, dazu <b>Aussiedlerinnen und Aussiedler,
-    jüdische Einwanderer und Flüchtlinge</b>.</p>
-</section>
-
-<section id="hofstede">
-  <h2>Die sechs Kulturdimensionen nach Hofstede</h2>
-
-  <div class="merk">
-    <span class="t">Hofstedes Kulturdefinition</span>
-    <p>Kultur als <b>„kollektive Programmierung des Verstandes“</b>, die Mitglieder einer Gruppe
-      von Mitgliedern einer anderen Gruppe unterscheidet.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Woher die Zahlen stammen — das gehört zur Antwort dazu</span>
-    <p><b>Dimensionen 1 bis 4:</b> aus <b>IBM-Daten von 53 Ländern</b>, <b>116 000
-      Mitarbeiterinnen und Mitarbeiter</b>, erhoben in zwei Zyklen: <b>1967–69</b> und
-      <b>1971–73</b>.</p>
-    <p><b>Dimension 5:</b> aus einer <b>chinesischen Umfrage zu Werten von 1985</b> mit
-      ausgewählten <b>Studierenden aus 23 Ländern</b> — als <b>bewusster Ausgleich</b> zur
-      IBM-Studie, deren Fragen sich stark an westlicher Denkweise orientierten.</p>
-    <p><b>Dimension 6:</b> kam mit der <b>Aktualisierung 2010</b> dazu.</p>
-    <p><b>Die Grunddaten sind also über fünfzig Jahre alt</b> und stammen aus den Belegschaften
-      eines einzigen Konzerns. Das macht sie nicht wertlos — aber wer damit 2026 auf einen
-      einzelnen Menschen schließt, macht genau den Fehler, den Leininger beschreibt.</p>
-    <p class="fr">Les données de base datent de 1967–73 et viennent d'une seule entreprise.
-      Dis-le quand tu cites Hofstede.</p>
-  </div>
-
-  <h3>Die sechs Dimensionen im Überblick</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Dimension</th><th>Niedriger Wert</th><th>Hoher Wert</th></tr></thead>
-      <tbody>
-        <tr><td class="k">PDI<br>Machtdistanz</td>
-          <td>Ungleichheit <b>nicht erwartet</b> · gleichgestellte Kinder · Initiative bei den
-            Kursteilnehmern · Mitarbeiter in Entscheidungen einbezogen · Ideal: der
-            <b>kreative Demokrat</b> · dezentral, geringe Gehaltsunterschiede ·
-            Wert: <b>Unabhängigkeit</b></td>
-          <td>Ungleichheit <b>erwartet und erwünscht</b> · gehorsame Kinder · Initiative bei
-            der Lehrkraft · Mitarbeiter befolgen Befehle · Ideal: der <b>autokratische
-            freundliche Vater</b> · zentralisiert, strenge Hierarchien, große
-            Gehaltsunterschiede · Wert: <b>Konformität</b></td></tr>
-        <tr><td class="k">IDV<br>Individualismus</td>
-          <td><b>Kollektivismus.</b> Identität = <b>„Wir“</b>, Zugehörigkeit zum sozialen
-            Netzwerk · die erweiterte Familie beschützt und erwartet Loyalität ·
-            <b>direkte Konflikte werden vermieden</b>, um der Gruppe nicht zu schaden ·
-            Beziehung wichtiger als Aufgabe · <b>viel Kontext</b> in der Kommunikation</td>
-          <td><b>Individualismus.</b> Identität = <b>„Ich“</b> · Erwachsenwerden heißt
-            Selbstverantwortung für sich und die Kleinfamilie · <b>Ehrlichkeit: sagen, was man
-            wirklich denkt</b> · Aufgabe wichtiger als Beziehung · <b>wenig Kontext</b> ·
-            <b>Recht auf Privatleben</b></td></tr>
-        <tr><td class="k">MAS<br>Männlichkeit</td>
-          <td><b>Femininität.</b> Sich umeinander kümmern · Bescheidenheit · <b>Menschen
-            arbeiten, um zu leben</b> · zentral ist, <b>wer man ist</b> · Solidarität,
-            Kooperation, Gruppenentscheidungen, Lebensqualität · Konflikte durch
-            <b>Kompromisse</b> · <b>Wohlfahrtsstaat</b></td>
-          <td><b>Maskulinität.</b> Materieller Erfolg und Karriere · leistungsorientiert ·
-            <b>Menschen leben, um zu arbeiten</b> · zentral ist, <b>was man tut</b> ·
-            Herausforderung, Anerkennung, Individualentscheidungen, stressiges Arbeitsleben ·
-            <b>Konflikte werden ausgetragen</b></td></tr>
-        <tr><td class="k">UAI<br>Unsicherheitsvermeidung</td>
-          <td><b>Neugier und Improvisation</b> · unbekannte Risiken sind in Ordnung · kaum
-            Regeln · Zeit als Orientierungsrahmen · <b>Toleranz gegenüber abweichenden Gedanken</b>
-            · Werte: Diversität, Neues, Wandel</td>
-          <td><b>Unsicherheit als Gefahr</b>, Angst, Bereitschaft nur zu bekannten Risiken ·
-            strenge Regeln · <b>Zeit = Geld</b> · <b>Widerstand gegen abweichende Gedanken</b> ·
-            Werte: Reinheit, Klarheit, Struktur, Gesetz und Ordnung — und, so die Folie,
-            <b>Ausländerfeindlichkeit</b></td></tr>
-        <tr><td class="k">LTO<br>Langzeitorientierung</td>
-          <td><b>Kurzfristig.</b> Erwartung <b>schneller Resultate</b> · unmittelbare Belohnung ·
-            Ausgaben durch sozialen Druck, kaum Investitionsgeld · <b>analytisches</b>
-            Denken</td>
-          <td><b>Langfristig.</b> <b>Geduld und Hartnäckigkeit</b> · spätere Belohnung ·
-            große Ersparnisse, vorsichtiger Umgang mit Ressourcen · <b>synthetisches</b>
-            Denken · hoher Respekt vor Tradition, die an moderne Erfordernisse angepasst
-            wird</td></tr>
-        <tr><td class="k">IVR<br>Nachgiebigkeit</td>
-          <td><b>Beherrschung.</b> Unterdrücktes und reguliertes Verhalten · Pessimismus,
-            Zynismus, Verzicht, Ungerechtigkeitsgefühl · materielle Belohnung zählt,
-            <b>Status vor Funktion</b> · Freunde und Freizeit unwichtig</td>
-          <td><b>Nachgiebigkeit.</b> Befreites Verhalten · Optimismus, Glück,
-            <b>Leben im Hier und Jetzt</b>, Extrovertiertheit · materielle Belohnung unwichtig,
-            <b>Funktion vor Status</b> · Freunde und Freizeit wichtig</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Drei Namen, die genau umgekehrt klingen, als sie gemeint sind</span>
-    <p><b>Niedriger IDV = Kollektivismus</b>, nicht Individualismus. Der Index misst
-      <i>Individualismus</i> — wenig davon heißt viel Gruppe.</p>
-    <p><b>Niedriger MAS = Femininität.</b> Der Index misst <i>Maskulinität</i>.</p>
-    <p><b>Niedriger IVR = Beherrschung</b> (<i>Restraint</i>), hoher IVR = Nachgiebigkeit
-      (<i>Indulgence</i>).</p>
-    <p>Genau daran gehen Zuordnungsaufgaben schief. <b>Merk dir: Der Index misst immer das
-      zweite Wort des Namens, nicht das erste.</b></p>
-    <p class="fr">L'indice mesure toujours le <b>second</b> terme du nom. Bas IDV = collectivisme.</p>
-  </div>
-
-  <p>Die Folien nennen zu jeder Dimension <b>Länderlisten</b> — für <b>Deutschland</b> zum
-    Beispiel: <b>niedrige Machtdistanz</b>, <b>hoher Individualismus</b>, <b>hohe
-    Maskulinität</b>. Vollständige Tabellen gibt es laut Foliensatz im Internet unter
-    <b>theculturefactor.com</b> mit einem <i>Country comparison tool</i>. <b>Ich habe diese
-    Website nicht aufgerufen</b> — die Länderangaben hier stammen ausschließlich aus deinen
-    Folien.</p>
-</section>
-
-<section id="stereotyp">
-  <h2>Die Stereotyp-Falle — und wie du ihr ausweichst</h2>
-
-  <div class="gefahr">
-    <span class="t">Deine beiden Foliensätze widersprechen sich scheinbar. Lies sie zusammen.</span>
-    <p><b>Hofstede</b> gibt dir Länderlisten: <i>arabische Länder — hohe Machtdistanz</i>,
-      <i>asiatische Länder — Kollektivismus</i>.</p>
-    <p><b>Leininger</b> fragt: <i>„Welche Kultur hat eine in Deutschland lebende Tochter einer
-      indonesischen Mutter und eines senegalesischen Vaters?“</i> — und antwortet:
-      <b>„Im Zentrum steht nicht die Kultur, sondern immer das Individuum.“</b></p>
-    <p><b>Beides steht in deinen eigenen Unterlagen, und beides stimmt</b> — weil Hofstede
-      <b>Gesellschaften</b> beschreibt und nicht Personen. Eine Dimension sagt dir, welche
-      Frage du stellen solltest. Sie sagt dir <b>nie</b>, wie die Antwort ausfällt.</p>
-    <p class="fr">Hofstede décrit des <b>sociétés</b>, jamais des personnes. Une dimension te
-      donne la <b>question</b> à poser, jamais la réponse.</p>
-  </div>
-
-  <div class="merk">
-    <span class="t">So sieht das in einer Antwort aus</span>
-    <p><b>Falsch:</b> „Herr M. kommt aus einem Land mit hoher Machtdistanz, deshalb erwartet er,
-      dass der Arzt allein entscheidet.“</p>
-    <p><b>Richtig:</b> „Die Dimension Machtdistanz macht mich darauf aufmerksam, dass die
-      Erwartung an die Rolle des Arztes sehr unterschiedlich sein kann. <b>Deshalb frage ich
-      Herrn M., wie er informiert und einbezogen werden möchte</b> — und wer für ihn mit
-      entscheiden soll.“</p>
-    <p>Der Unterschied zwischen beiden Sätzen ist genau der Unterschied zwischen
-      <b>Stereotyp</b> und <b>kultursensibler Pflege</b>. Und er ist ein möglicher Prüfungssatz.</p>
-  </div>
-</section>
-
-<section id="ambiguitaet">
-  <h2>Ambiguitätstoleranz — das Wort, das du dir merken sollst</h2>
-  <p class="lead">Aus dem Foliensatz <b>Interkulturelle Pflege — Wahrnehmen und Erleben</b>.
-    Es beginnt mit einem Fall, der nichts mit Patienten zu tun hat.</p>
-
-  <div class="merk">
-    <span class="t">Der Fall aus der Kaffeeküche</span>
-    <p>„Schwester Birgit kommt nach der Grundversorgung eines Patienten in die Kaffeeküche.
-      Zwei weitere Pflegekräfte aus dem osteuropäischen Raum unterhalten sich dort auf Russisch.
-      <b>Schwester Birgit hegt nun die Annahme, dass die zwei Kollegen negativ über sie geredet
-      haben.</b>“</p>
-    <p>Die Folie sagt, was jetzt gebraucht wird: <b>Ambiguitätstoleranz</b> — und zwar
-      ausdrücklich <b>„von beiden Seiten!“</b></p>
-    <p class="fr">Deux collègues parlent russe. Birgit suppose qu'on parle d'elle. Ce qu'il faut
-      ici : la tolérance à l'ambiguïté — <b>des deux côtés</b>.</p>
-  </div>
-
-  <h3>Was das Wort bedeutet</h3>
-  <p>Auch <b>Frustrations- oder Unsicherheitstoleranz</b> genannt: <b>Mehrdeutigkeit verstehen
-    und sie aushalten</b>, tolerieren oder akzeptieren — die Fähigkeit, mit
-    <b>widersprüchlichen Informationen</b> und mit Situationen umzugehen, die
-    <b>nicht eindeutig</b> sind.</p>
-
-  <div class="karten">
-    <div class="karte"><h4>Was sie bringt</h4>
-      <p>Mehr <b>Gelassenheit und Ruhe</b> · <b>Perspektivenvielfalt statt
-        Schwarz-Weiß-Denken</b> · Entscheidungen <b>trotz</b> Unsicherheit treffen ·
-        Stärkung des Selbstvertrauens · bessere Konfliktlösung und Kompromissfindung ·
-        hohe Flexibilität</p></div>
-    <div class="karte"><h4>Wie man sie übt</h4>
-      <p><b>Bewusstsein schaffen</b> — zulassen, dass es nicht nur eindeutige Informationen gibt ·
-        <b>Perspektivenvielfalt suchen</b> · <b>situative Flexibilität</b> entwickeln, starre
-        Denkweisen lösen · <b>Resilienz</b> aufbauen · <b>Reflexion</b> über Tagebuch,
-        Meditation oder Coaching · <b>Übung und Exposition</b>: sich solchen Situationen bewusst
-        aussetzen</p></div>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Warum ausgerechnet dieses Wort für dich zählt</span>
-    <p>Du arbeitest auf Deutsch in einem Team, in dem nicht alle dieselbe Muttersprache haben —
-      und du bist selbst die Kollegin, über die jemand eine Annahme treffen könnte.
-      <b>Ambiguitätstoleranz heißt hier ganz praktisch: eine Situation nicht sofort deuten,
-      sondern erst nachfragen.</b></p>
-    <p>Und im Deutschen gibt es dafür einen fertigen Satz, den du schon kennst:
-      <b>„Habe ich das richtig verstanden, dass …?“</b></p>
-    <p class="fr">Tolérance à l'ambiguïté = ne pas interpréter tout de suite, demander d'abord.</p>
-  </div>
-
-  <div class="paare">
-    <div class="paar"><span class="de">die Ambiguitätstoleranz (nur Singular)</span>
-      <span class="frx">la tolérance à l'ambiguïté</span></div>
-    <div class="paar"><span class="de">die Mehrdeutigkeit, -en</span>
-      <span class="frx">l'ambiguïté, le double sens</span></div>
-    <div class="paar"><span class="de">das Fremdheitserleben (nur Singular)</span>
-      <span class="frx">le sentiment d'étrangeté</span></div>
-    <div class="paar"><span class="de">die Fürsorge (nur Singular)</span>
-      <span class="frx">la sollicitude, le prendre-soin</span></div>
-    <div class="paar"><span class="de">die Machtdistanz (nur Singular)</span>
-      <span class="frx">la distance hiérarchique</span></div>
-    <div class="paar"><span class="de">die Unsicherheitsvermeidung (nur Singular)</span>
-      <span class="frx">l'évitement de l'incertitude</span></div>
-    <div class="paar"><span class="de">der Markstein, -e</span>
-      <span class="frx">le jalon, la borne</span></div>
-    <div class="paar"><span class="de">die interkulturelle Öffnung</span>
-      <span class="frx">l'ouverture interculturelle (de l'institution)</span></div>
-    <div class="paar"><span class="de">das Anwerbeabkommen, -</span>
-      <span class="frx">l'accord de recrutement de main-d'œuvre</span></div>
-    <div class="paar"><span class="de">die Selbstbestimmung (nur Singular)</span>
-      <span class="frx">l'autodétermination</span></div>
-    <div class="paar"><span class="de">heteronormativ</span>
-      <span class="frx">hétéronormatif</span></div>
-    <div class="paar"><span class="de">die Hauptbezugsperson, -en</span>
-      <span class="frx">la personne de référence principale</span></div>
-  </div>
-</section>
-
-<section id="faelle">
-  <h2>Die vier Fälle — alle unbearbeitet</h2>
-  <p class="lead">Der Foliensatz stellt zu jedem Fall <b>zwei</b> Fragen: <i>Welche Maßnahmen
-    helfen der Person?</i> und <i>Was muss das Team evaluieren?</i> — <b>Antworten gibt er
-    keine.</b> Sie sind deine Aufgabe.</p>
-
-  <div class="merk">
-    <span class="t">Warum die zweite Frage die schwierigere ist</span>
-    <p>Die erste Frage zielt auf die <b>Person</b>: Was tue ich jetzt für Frau Jeha?
-      Die zweite zielt auf das <b>System</b>: Was muss sich ändern, damit das nicht wieder
-      passiert? Das ist dieselbe Trennung wie auf deiner Behinderten-Seite
-      (<i>Was kann ich verändern — was muss strukturell verändert werden?</i>) und dieselbe
-      Höhe wie <b>AFB III</b>.</p>
-  </div>
-
-  <h3>Fall 1 · „Mein Kind“</h3>
-  <p>35-jährige <b>Frau Jeha</b>, <b>32. SSW</b>, trägt einen <b>Hijab</b>. Wegen eines
-    <b>pathologischen CTG</b> muss sectioniert werden. Das <b>Frühgeborene</b> braucht
-    Atemunterstützung und kommt auf die Kinderintensivstation. In den nächsten Tagen besucht die
-    Mutter ihr Kind — und <b>erhält keine Anleitung und keine Beratung</b>. In den pflegerischen
-    und ärztlichen Übergaben heißt es: <b>„die Mutter spricht kein Deutsch“</b>.</p>
-
-  <h3>Fall 2 · „Ich esse das nicht“</h3>
-  <p>76-jähriger <b>Herr Majed</b> mit <b>Pankreaskarzinom</b> und Metastasen im Mediastinum.
-    Er verweigert das Krankenhausessen und betont in gebrochenem Deutsch, <b>dass er das nicht
-    isst</b>. Bekannt ist, dass er <b>aufgrund seines Glaubens kein Schweinefleisch</b> zu sich
-    nimmt. Im Verlauf bekommt er <b>zwangsweise eine Ernährungssonde</b>, weil er in den
-    vergangenen Wochen <b>mehr als 15 kg</b> abgenommen hat. Die versorgende Schwester hat
-    <b>keine Sondenkost ohne Schweinefleisch</b> — und verabreicht sie trotzdem:
-    <b>„Herr Majed merkt ja nicht, dass da Schwein drin ist!“</b></p>
-
-  <h3>Fall 3 · „Wir sind beide Eltern“</h3>
-  <p>31-jährige <b>Frau Meister</b>, <b>28. SSW</b>, <b>Zwillinge</b>, In-vitro-Schwangerschaft,
-    <b>Coronazeit</b>. Wegen Blutungen und pathologischem CTG müssen die Zwillinge geholt werden;
-    beide brauchen Atemunterstützung und kommen auf die Kinderintensivstation. Nach den strengen
-    Pandemieregeln dürfen <b>ausschließlich Eltern</b> hinein. Eine Frau im Rollstuhl wird
-    eingelassen, geschoben von einer zweiten Frau. Die Ärztin bittet die schiebende Frau, im
-    Wartebereich Platz zu nehmen. Diese sagt: <b>„Ich bin die Mutter der Kinder.“</b> Die Frau im
-    Rollstuhl: <b>„Sie ist meine Frau.“</b> — <b>Die Ärztin ließ sie nicht herein.</b></p>
-
-  <h3>Fall 4 · „Nein!“</h3>
-  <p>82-jährige <b>Frau Yousefi</b>, <b>beginnende Demenz</b>, im Pflegeheim. Der Auszubildende
-    <b>Kamin</b> bemerkt, dass sie sich eingestuhlt hat, und bittet sie, ihm ins Bad zu folgen.
-    Sie sagt: <b>„Nein, nicht von dir, sauber machen will.“</b> Kamin holt seinen Kollegen
-    <b>Martin</b> — auch bei ihm verneint Frau Yousefi. Martin sagt zu ihr:
-    <b>„Sie kommen jetzt mit ins Badezimmer, sonst schmieren Sie noch alles voll.“</b> Und zum
-    Auszubildenden: <b>„Die Demenzkranken müssen manchmal etwas härter angepackt werden!“</b></p>
-
-  <div class="gefahr">
-    <span class="t">Fall 2, angefangen — als Beispiel für das Vorgehen, nicht als Lösung</span>
-    <p><b>Das ist meine Bearbeitung, keine Musterlösung deiner Dozenten.</b> Ich zeige nur, wie
-      man die Werkzeuge ansetzt; die drei anderen Fälle sind deine Arbeit.</p>
-    <p><b>Schritt 1 — die beiden Werte benennen</b> (das ist Phase 2 nach Heffels von deiner
-      Ethik-Seite): Hier stoßen <b>Fürsorge</b> („er hat 15 kg verloren, er muss ernährt
-      werden“) und <b>Selbstbestimmung samt religiöser Prägung</b> („ich esse das nicht“)
-      zusammen. <b>Beide sind gut</b> — das macht es zum moralischen Problem.</p>
-    <p><b>Schritt 2 — Leiningers Funktion wählen:</b> Die Folie nennt als Beispiel für die
-      <b>Erhaltungsfunktion</b> ausdrücklich die <b>Erfüllung religiöser Bedürfnisse,
-      gegebenenfalls auch entgegen den Abläufen der Einrichtung</b>. Die Sondenkost
-      <b>ohne</b> Schweinefleisch zu beschaffen ist also keine Sonderlocke, sondern
-      <b>die im Modell vorgesehene Maßnahme</b>.</p>
-    <p><b>Schritt 3 — den Satz der Schwester prüfen:</b> „Er merkt es ja nicht.“ Genau an diesem
-      Satz hängt die Frage, ob hier eine <b>Täuschung</b> vorliegt und was das rechtlich
-      bedeutet. <b>Diese Frage beantworte ich nicht</b> — sie gehört in dein
-      <b>Prüfungsschema aus Recht in der Pflege</b>: Tatbestand → Rechtswidrigkeit → Schuld.
-      Arbeite sie dort durch.</p>
-    <p><b>Schritt 4 — die Systemfrage:</b> Warum war keine geeignete Sondenkost da? Das ist die
-      zweite Frage der Folie, und sie richtet sich nicht an die Schwester, sondern an die
-      Einrichtung — <b>Markstein 3</b> des Memorandums: interkulturelle Öffnung ist
-      <b>kein Zusatzangebot</b>.</p>
-    <p class="fr">Nomme les deux valeurs, choisis la fonction de Leininger, puis passe la
-      phrase « il ne le remarque pas » dans ton schéma juridique. Les trois autres cas sont à
-      toi.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Ein Hinweis zu Fall 4, den du beim Bearbeiten brauchst</span>
-    <p>Die Folie nennt zwei Dinge in einem Fall: die <b>Ablehnung durch Frau Yousefi</b> —
-      und den Satz <b>„Die Demenzkranken müssen manchmal etwas härter angepackt werden“</b>.
-      <b>Das sind zwei getrennte Fragen</b>, und wer sie vermischt, verliert Punkte.</p>
-    <p>Die erste ist kultursensibel und biografisch. Die zweite ist <b>keine kulturelle Frage
-      mehr</b>. Prüf sie mit deinem Recht-Schema und mit dem Heffels-Modell.</p>
-  </div>
-</section>
-
-<section id="gastarbeiter">
-  <h2>Warum das Thema gerade jetzt kommt — die Gastarbeitergeneration</h2>
-
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div>
-      <h4>Nachkriegszeit und Wirtschaftswunder</h4>
-      <p>In den 1950ern fehlen <b>Arbeitskräfte im Binnenland</b>. Konsum und Wohlstand werden
-        gepredigt, „Made in Germany“ wird ein Qualitätsmerkmal.</p></div></div>
-    <div class="stufe"><span class="nr">2</span><div>
-      <h4>Die Anwerbeabkommen</h4>
-      <p><b>1955</b> mit <b>Italien</b>. <b>1960 bis 1968</b> mit <b>Griechenland, Spanien, der
-        Türkei, Marokko, Portugal, Tunesien und Jugoslawien</b> (Slowenien, Kroatien, Serbien,
-        Bosnien und Herzegowina, Montenegro, Nordmazedonien).</p></div></div>
-    <div class="stufe"><span class="nr n2">3</span><div>
-      <h4>Rezession und Ölkrise</h4>
-      <p><b>1966/67</b> Rezession, <b>1973</b> Wirtschafts- und Energiekrise. Viele wandern
-        wieder aus — „doch das damals bezeichnete <b>‚Gastarbeiterproblem‘</b> blieb“.</p></div></div>
-    <div class="stufe"><span class="nr n2">4</span><div>
-      <h4>Heute sind sie die Pflegeempfänger</h4>
-      <p>Die Angeworbenen sind geblieben, sind alt geworden, gehen in Rente —
-        <b>und werden zu Pflegeempfängern</b>. Dazu kommen Menschen, die <b>aktuelle Kriege und
-        Notstände</b> in westliche Länder treiben.</p></div></div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Das Wort „vorübergehend“</span>
-    <p>Der Foliensatz schreibt, die Bundesregierung habe Arbeiterinnen und Arbeiter
-      <b>„vorübergehend“</b> rekrutiert — in Anführungszeichen. Der Satz danach:
-      <b>„Die Migranten sind geblieben.“</b></p>
-    <p><b>Das ist die ganze Begründung dafür, warum kultursensible Altenpflege heute ein
-      Pflichtthema ist</b>, und nicht ein Zusatzangebot. Eine Generation, die als Gäste geplant
-      war, ist die Generation, die du jetzt pflegst.</p>
-    <p class="fr">On les a recrutés « provisoirement ». Ils sont restés. C'est pour ça que ce
-      cours existe.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Eine Zahl ohne Datum und ohne Quelle</span>
-    <p>Eine Folie nennt <b>„83,5 Millionen Menschen in Deutschland, ca. 16,8 % ausländische
-      Bevölkerung“</b>. Dabei steht <b>kein Jahr und keine Quelle</b>. Ich habe sie nicht
-      ergänzt und nicht gegengeprüft. <b>Wenn du diese Zahl benutzt, sag dazu, dass sie aus dem
-      Foliensatz stammt und undatiert ist.</b></p>
-  </div>
-
-  <p>Derselbe Foliensatz nennt außerdem einen <b>starken Anstieg der Hasskriminalität gegen
-    LGBTQ*-Menschen</b> mit hoher Dunkelziffer und einer steigenden Zahl von Patientinnen und
-    Patienten, die Diskriminierung erfahren haben — und stellt dazu die Frage:
-    <b>„Was ist dann noch sicherer Raum?“</b> <b>Zahlen nennt die Folie dazu nicht.</b></p>
-</section>
-
-<section id="offen">
-  <h2>Was fehlt — und was du selbst machen musst</h2>
-
-  <div class="warnung">
-    <span class="t">Die Arbeitsaufträge, die offen sind</span>
-    <p><b>Zum Sunrise-Modell:</b> es <b>im Detail beschreiben</b> · es auf das Beispiel eines
-      (auch fiktiven) Menschen mit Migrationshintergrund <b>anwenden</b> · seine <b>Grenzen</b>
-      benennen — <i>in welchem Kontext wäre es schwer realisierbar?</i> · und den
-      <b>Unterschied zwischen Assimilation und Integration</b> erläutern samt der aus deiner
-      Sicht besten Strategie.</p>
-    <p><b>Zum Memorandum:</b> die Marksteine in der Gruppe erarbeiten und vorstellen · das
-      Memorandum <b>mit dem Sunrise-Modell vergleichen</b> · recherchieren zu Charta der Ethik
-      pflegebedürftiger Menschen, UN-Menschenrechtskonvention von 1948 und Pflege-Charta ·
-      und die Frage, ob sich das Memorandum <b>im Sinne der Generalistik</b> auf andere Gruppen
-      ausdehnen lässt (Kinder, Jugendliche, Menschen mit Behinderung, Erwachsene im
-      Krankenhaus) — mit <b>konkreten Forderungen</b>.</p>
-    <p><b>Zu den vier Fällen:</b> je zwei Fragen, keine davon beantwortet.</p>
-    <p class="fr">Rien de tout cela n'est corrigé dans le dossier. Écris tes réponses et
-      envoie-les — je corrige.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Was nicht vorliegt</span>
-    <p><b>Der Film „Bittersüße Reise“</b> über die interkulturelle Pflege ehemaliger
-      Gastarbeiter — der Foliensatz verlinkt ihn nur. Ich habe ihn nicht gesehen.</p>
-    <p><b>Das Memorandum selbst</b> liegt nicht im Ordner, nur die Zusammenfassung der Folien.
-      Die Folie verweist auf <b>kda.de</b>; Memorandum und Handreichung wurden <b>2002</b>
-      veröffentlicht.</p>
-    <p><b>Die vollständigen Hofstede-Tabellen</b> stehen laut Foliensatz im Internet. Diese
-      Seite enthält <b>nur die Länderangaben aus deinen Folien</b>.</p>
-    <p><b>Die Übung „Die einsame Insel“</b> und die Grafiken zur sozialen Gruppe sind reine
-      Bildfolien ohne Text.</p>
-  </div>
-
-  <div class="merk">
-    <span class="t">Deine vier Kultur-Seiten — wie sie zusammenpassen</span>
-    <p><b>Kulturelle Vielfalt &amp; Vorurteile:</b> Was ist Kultur, Zwiebelmodell, Lewis,
-      Vorurteile.</p>
-    <p><b>Interkulturelle Pflege:</b> die fünf Religionen mit Essen, Pflege, Sterben und Tod.</p>
-    <p><b>Kultursensible Pflege &amp; LSBTI:</b> Menschenrechte, Stigma, LSBTI-Geschichte,
-      Biografiearbeit — 25 Abschnitte.</p>
-    <p><b>Diese Seite:</b> die <b>Modelle</b> (Leininger, Hofstede), die <b>Politik</b>
-      (Memorandum) und die <b>Fälle</b>.</p>
-  </div>
-</section>
-
-<details class="quelle">
-  <summary>Die vier Quellen — und die vier, die schon verarbeitet waren</summary>
-  <div class="inh">
-    <ul>
-      <li><b>KultursensiblePflegeLeininger.pdf</b> — Foliensatz <b>Dr. Ortrud Knauf</b>,
-        datiert <b>28.07.2026</b>: Leininger, Sunrise-Modell, die sieben Faktoren, die drei
-        Funktionen, die transkulturellen Kompetenzen und das <b>Memorandum</b> mit Präambel und
-        sieben Marksteinen.</li>
-      <li><b>KulturdimensionenHofstede.pdf</b> — Foliensatz <b>Dr. Ortrud Knauf</b>, datiert
-        <b>22.07.2026</b>: die sechs Dimensionen, jeweils mit Definition, Merkmalen und
-        Länderlisten, dazu die Herkunft der Daten.</li>
-      <li><b>Interkulturelle Pflege - Wahrnehmen und Erleben.pdf</b> — Foliensatz
-        <b>A. Perleberg</b>: soziale Gruppe, Fremdheitserleben, <b>Ambiguitätstoleranz</b>,
-        die <b>vier Fälle</b>, die Gastarbeitergeschichte, LSBTI im Alltag und
-        Hasskriminalität.</li>
-      <li><b>Geistige Zuordnung der Fälle:</b> Die Fälle stammen aus demselben
-        Perleberg-Foliensatz; die Fragen dazu sind dort wörtlich abgedruckt und
-        <b>unbeantwortet</b>.</li>
-    </ul>
-    <p><b>Nicht noch einmal verarbeitet, weil bereits auf deinen älteren Seiten:</b>
-      <i>Kultursenible Pflege und Diversity Pflege.pdf</i> (identisch mit dem Perleberg-Satz
-      CE 09 / UE 01 deiner LSBTI-Seite) · <i>Kultursensibel Pflege - Kompetenzkatalog.pdf</i> ·
-      <i>Kultursensibel Pflegen von Queeren Personen im Pflegeheim.pdf</i> ·
-      <i>KulturelleVielfaltEinfuehrung.pdf</i> · <i>InterkulturellePflege.pdf</i>.</p>
-    <p>Alle aus deinem Google-Drive-Ordner, geteilt am 18.09.2026.</p>
-    <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> der Abschnitt
-      <i>Die Stereotyp-Falle</i> mit dem Falsch/Richtig-Beispiel, die angefangene Bearbeitung
-      von Fall 2, der Hinweis, dass die drei Index-Namen umgekehrt klingen, die Einordnung der
-      drei Leininger-Funktionen als Reihenfolge und alle Brücken zu deinen anderen
-      Zusammenfassungen. Die Hinweise auf „Anthroprosophin“, „Tyler“ und die undatierte
-      Bevölkerungszahl sind ebenfalls von mir — die Folien selbst sagen dazu nichts.</p>
-    <p>Die französischen Zeilen und die Vokabelübersetzungen sind von mir ergänzt.</p>
-  </div>
+<h3>Fall 1 — „Mein Kind“ (Frau Jeha)</h3>
+<ul>
+  <li>Frau Jeha, 35 Jahre, 32. Schwangerschaftswoche (SSW), trägt einen Hijab (Kopftuch).</li>
+  <li>Wegen eines auffälligen CTG (Herzton-Wehen-Schreibung) wird ein <b>Kaiserschnitt</b> gemacht (sectioniert).</li>
+  <li>Das Frühgeborene braucht etwas Hilfe beim Atmen und kommt auf die <b>Kinderintensivstation</b>.</li>
+  <li>In den nächsten Tagen besucht die Mutter ihr Kind — sie bekommt <b>keine Anleitung und keine Beratung</b>.</li>
+  <li>In den Übergaben heißt es: „Die Mutter <b>spricht kein Deutsch</b>.“</li>
+</ul>
+<p><b>Fragen der Folie:</b> Welche Maßnahmen helfen Frau Jeha? Welche Maßnahmen sollte das Team evaluieren (überprüfen)?</p>
+<details><summary>Denkhilfe (Herleitung, keine Musterlösung)</summary>
+<ul>
+  <li><b>Stereotyp?</b> „Spricht kein Deutsch“ steht in der Übergabe. Wurde das geprüft — oder ist es eine Annahme? (Leininger S. 14: unbewusste Vorstellungen zum „Fremden“.)</li>
+  <li><b>Barriere:</b> geringe Deutschkenntnisse sind eine Barriere (Markstein 1). Die Antwort ist Verständigung, nicht Weglassen: mehrsprachiges Material, Angehörige einbeziehen (S. 28, 47).</li>
+  <li><b>Folge:</b> Ohne Anleitung kann die Mutter ihr Kind nicht versorgen lernen. Gleichbehandlung (alle bekommen dieselbe Anleitung auf Deutsch) blendet ihren Bedarf aus (Markstein 2).</li>
+  <li><b>Für das Team:</b> Wie entstehen Aussagen in Übergaben? Welche Kommunikationsregeln haben wir? (Kompetenz 3, S. 30.)</li>
+</ul>
 </details>
 
-</main>
+<h3>Fall 2 — „Ich esse das nicht“ (Herr Majed)</h3>
+<ul>
+  <li>Herr Majed, 76 Jahre, Pankreaskarzinom (Krebs der Bauchspeicheldrüse) mit Metastasen (Tochtergeschwülsten) im Mediastinum (Raum zwischen den Lungen).</li>
+  <li>Er lehnt das Krankenhausessen ab und sagt in gebrochenem Deutsch, dass er das nicht isst.</li>
+  <li>Bekannt ist: Er isst <b>aus Glaubensgründen kein Schweinefleisch</b>.</li>
+  <li>Er hat in den letzten Wochen <b>mehr als 15 kg</b> abgenommen. Er bekommt <b>zwangsweise</b> eine Ernährungssonde.</li>
+  <li>Die Schwester hat gerade keine Sondenkost ohne Schweinefleisch. Sie gibt sie trotzdem: „Herr Majed merkt ja nicht, dass da Schwein drin ist!“</li>
+</ul>
+<p><b>Fragen der Folie:</b> Welche Maßnahmen helfen Herrn Majed? Welche Maßnahmen sollte das Pflegeteam evaluieren?</p>
+<details><summary>Denkhilfe (Herleitung, keine Musterlösung)</summary>
+<ul>
+  <li><b>Faktor 2:</b> Religiöse Einflüsse. Sein Glaube ist bekannt.</li>
+  <li><b>Erhaltungsfunktion:</b> Religiöse Bedürfnisse erfüllen, „ggf. auch entgegen Abläufen der Einrichtung“ (S. 28) → Sondenkost ohne Schweinefleisch besorgen.</li>
+  <li><b>Warum so wichtig?</b> „Pflege ohne kulturspezifische Werte … führt zu kulturellen Konflikten, Stress sowie ethischer und moralischer Überforderung“ (S. 21).</li>
+  <li><b>„Er merkt es ja nicht“</b> widerspricht dem Grundsatz: Der B/P ist Fachmann für sein eigenes Pflegeverhalten, die PFK sieht ihn aus <b>seiner</b> Sicht (S. 15).</li>
+  <li><b>Hat er das Krankenhausessen wegen des Schweinefleischs abgelehnt?</b> Das sagt die Folie nicht. Fragen — auch mit Angehörigen (S. 28).</li>
+  <li><b>Für das Team:</b> Warum war keine passende Sondenkost da? Wie wird so etwas künftig geplant? (Markstein 3: Öffnung betrifft die ganze Organisation.)</li>
+</ul>
+</details>
 
-<footer>
-  <p>Kultursensible Pflege · CE 09 — die Ergänzung zu deinen drei vorhandenen Kultur-Seiten.<br>
-    Wo etwas fehlt, unklar formuliert ist oder von mir stammt, steht es oben ausdrücklich dabei.</p>
-</footer>
+<h3>Fall 3 — „Wir sind beide Eltern“ (Frau Meister und ihre Frau)</h3>
+<ul>
+  <li>Frau Meister, 31 Jahre, 28. SSW, Zwillinge, In-vitro-Schwangerschaft (künstliche Befruchtung), zur Coronazeit.</li>
+  <li>Wegen Blutungen und auffälligem CTG werden die Zwillinge geholt. Sie brauchen Atemunterstützung und kommen auf die Kinderintensivstation.</li>
+  <li>Wegen der strengen Corona-Regeln dürfen <b>nur die Eltern</b> hinein. Eine Frau im Rollstuhl kommt mit einer Frau, die den Rollstuhl schiebt.</li>
+  <li>Die Ärztin bittet die schiebende Frau, draußen zu warten. Diese sagt: „Ich bin die Mutter der Kinder.“ Die Frau im Rollstuhl sagt: „Sie ist meine Frau.“ <b>Die Ärztin lässt sie trotzdem nicht herein.</b></li>
+</ul>
+<p><b>Fragen der Folie:</b> Welche Maßnahmen helfen dem Ehepaar? Was muss das ärztliche Team evaluieren?</p>
+<details><summary>Denkhilfe (Herleitung, keine Musterlösung)</summary>
+<ul>
+  <li><b>Faktor 3:</b> Verwandtschaftliche und soziale Faktoren. Wer „Familie“ ist, bestimmt nicht das Klinikpersonal.</li>
+  <li><b>Die Regel lautete:</b> Eltern dürfen hinein. Beide Frauen sagen, dass sie Eltern sind. Die Folie sagt nicht, warum die Ärztin ablehnt.</li>
+  <li><b>Stereotyp:</b> Wurde angenommen, dass Kinder nur eine Mutter haben? (Leininger S. 14: unreflektierte Vorstellungen.)</li>
+  <li><b>Im selben Foliensatz:</b> „Der sichere Raum“ und die steigende Zahl queerfeindlicher Straftaten (Kapitel 24).</li>
+  <li><b>Für das ärztliche Team:</b> Wie fragt man nach, statt anzunehmen? (Kompetenz 3 und 4: Dialog, Selbstreflexion.)</li>
+</ul>
+</details>
+
+<h3>Fall 4 — „Nein!“ (Frau Yousefi)</h3>
+<ul>
+  <li>Frau Yousefi, 82 Jahre, <b>beginnende Demenz</b>, lebt im Pflegeheim.</li>
+  <li>Der Pflegeazubi Kamin will sie bei der Grundversorgung frisch machen; sie hat eingestuhlt.</li>
+  <li>Sie sagt: „Nein, nicht von dir, sauber machen will.“ Kamin holt den Kollegen Martin. Auch ihn lehnt sie ab.</li>
+  <li>Martin sagt zu ihr: „Sie kommen jetzt mit ins Badezimmer, sonst schmieren Sie noch alles voll.“ Zum Azubi: „Die Demenzkranken müssen manchmal etwas <b>härter angepackt</b> werden!“</li>
+</ul>
+<p><b>Fragen der Folie:</b> Welche Maßnahmen helfen Frau Yousefi? Welche Maßnahmen sollte das Team des Pflegeheims evaluieren?</p>
+<details><summary>Denkhilfe (Herleitung, keine Musterlösung)</summary>
+<ul>
+  <li><b>Was sie sagt:</b> „nicht von dir“ — sie lehnt die <b>Person</b> ab, nicht unbedingt die Pflege. Warum, steht nicht auf der Folie. Beide Pfleger sind Männer. Mögliche Gründe herausfinden: Biografie, Angehörige, Glaube (Faktoren 2, 3, 7).</li>
+  <li><b>Markstein 2:</b> bedürfnis- und biografieorientierte Pflege · die Person soll nach ihren Werten und Prägungen leben können.</li>
+  <li><b>„Härter anpacken“</b> widerspricht Leininger: Fürsorge ist der Kern der Pflege (S. 15–17).</li>
+  <li><b>Ambiguitätstoleranz:</b> Ein „Nein“ von einem Menschen mit Demenz ist mehrdeutig. Aushalten, nachdenken, eine andere Lösung suchen — z. B. fragen, ob eine Kollegin übernehmen kann.</li>
+  <li><b>Für das Team:</b> Martin ist ein Vorbild für den Azubi. Was lernt Kamin hier? (Im Inhaltsverzeichnis steht „Pflege als Vorbildfunktion“.)</li>
+</ul>
+</details>
+<p class="fr">🇫🇷 Quatre cas sans solution sur les diapos : une mère « qui ne parle pas allemand » et qu'on n'accompagne pas ; un homme à qui on donne en cachette une alimentation par sonde avec du porc ; un couple de deux femmes séparé à la porte des soins intensifs ; une dame avec démence qu'on veut « secouer un peu plus fort ». Les pistes données ici relient les cas au cours — ce ne sont pas des corrigés.</p>
+<p class="quelle">Interkulturelle Pflege – Wahrnehmen und Erleben.pdf, S. 2, 10–18 · Bezüge: KultursensiblePflegeLeininger.pdf, S. 14–17, 21, 25–30, 47–53</p>
+
+<!-- ============ 22 GASTARBEITER ============ -->
+<h2>23 · Die Gastarbeiter — warum sie heute die Pflegebedürftigen sind <span class="stern">★★</span></h2>
+<div class="schema">
+  <p class="titel">Die Geschichte auf deiner Folie</p>
+  <div class="k"><b>50er Jahre: Wirtschaftswunder</b><small>Nachkriegszeit, Konsum und Wohlstand, „Made in Germany“ wird ein Qualitätsmerkmal · es fehlen Arbeitskräfte für die Industrie</small></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>1955: Anwerbeabkommen mit Italien</b><small>(Anwerbeabkommen = Vertrag zwischen Staaten, um Arbeiter zu holen)</small></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>1960–1968: weitere Abkommen</b><small>Griechenland, Spanien, Türkei, Marokko, Portugal, Tunesien, Jugoslawien (Slowenien, Kroatien, Serbien, Bosnien und Herzegowina, Montenegro, Nordmazedonien)</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>1966/67 Rezession · 1973 Wirtschafts- und Energiekrise</b><small>viele Gastarbeiter wandern wieder aus — doch das damals so genannte „Gastarbeiterproblem“ blieb</small></div><div class="pfeil">↓</div>
+  <div class="k gruen"><b>Heute</b><small>Das Memorandum: Die größte Gruppe der älteren Migranten sind Gastarbeiter/Arbeitsmigranten.</small></div>
+</div>
+<p><b>Die Verbindung:</b> Die Menschen, die damals zum Arbeiten kamen, sind heute alt — und brauchen Pflege. Deshalb fordert das Memorandum die interkulturelle Öffnung der Altenhilfe. <span class="her">Herleitung</span> aus Perleberg S. 20 und Leininger S. 43</p>
+
+<h3>Die Zahlen auf deiner Folie (Ausländerzentralregister, Stand 31.12.2024)</h3>
+<div class="scroll"><table>
+  <tr><th>Was</th><th>Zahl</th></tr>
+  <tr><td>ausländische Bevölkerung insgesamt</td><td class="z">14 061 640</td></tr>
+  <tr><td>davon in Deutschland geboren</td><td class="z">1 678 420</td></tr>
+  <tr><td>Bevölkerung Deutschland (laut Folie)</td><td class="z">83,5 Millionen → ca. <b>16,8 %</b> ausländisch</td></tr>
+  <tr><td>größte Gruppen</td><td>Türkei 1 544 480 · Ukraine 1 334 005 · Syrien 975 060 · Rumänien 909 755 · Polen 864 980 · Italien 636 730</td></tr>
+</table></div>
+<p>„Ausländisch“ heißt hier: ohne deutsche Staatsangehörigkeit. Deutsche mit Migrationshintergrund sind in dieser Zahl nicht dabei. <span class="her">Herleitung</span> aus dem Tabellentitel „nach Staatsangehörigkeiten“</p>
+<div class="hinweis"><b>Was fehlt:</b> Den Film „Bittersüße Reise“ (über die interkulturelle Pflege ehemaliger Gastarbeiter) hast du im Unterricht gesehen. Er liegt nicht vor. Was darin gezeigt wird, steht deshalb hier nicht.</div>
+<p class="fr">🇫🇷 Dans les années 1950–60, l'Allemagne a fait venir des travailleurs (Italie 1955, puis Grèce, Espagne, Turquie, Maroc, Portugal, Tunisie, Yougoslavie). Ils devaient rester « temporairement » ; beaucoup sont restés et ont aujourd'hui besoin de soins. Fin 2024 : environ 14 millions d'étrangers, soit 16,8 % de la population.</p>
+<p class="quelle">Interkulturelle Pflege – Wahrnehmen und Erleben.pdf, S. 19–21 · KultursensiblePflegeLeininger.pdf, S. 43</p>
+
+<!-- ============ 23 LSBTI ============ -->
+<h2>24 · LSBTI*-Pflege und der „sichere Raum“ <span class="stern">★</span></h2>
+<p>Der Foliensatz von Perleberg stellt dazu vor allem <b>Fragen</b>:</p>
+<ul>
+  <li>Der <b>sichere Raum</b> für ältere Pflegeempfänger*innen: eine Herausforderung im Alltag? Ambiguität? Standard oder Extra-Wunsch? Absurd oder notwendig?</li>
+  <li><b>Hasskriminalität:</b> starker Anstieg bei LGBTQ*-Menschen · die Dunkelziffer (die nicht gemeldeten Fälle) ist höher · immer mehr Patienten haben Diskriminierung erlebt · Was ist dann noch ein sicherer Raum? Warum steigt die Hasskriminalität?</li>
+</ul>
+<p><b>Die Grafik auf der Folie</b> (Statista, Quelle: Bundeskriminalamt): Straftaten gegen LGBTQ*-Menschen in Deutschland im Bereich Hasskriminalität — <b>240 im Jahr 2013</b>, <b>1 785 im Jahr 2023</b>. Eine Weltkarte zeigt Gesetze zur sexuellen Orientierung (Stand Mai 2017): Bestrafung, Schutz, Anerkennung.</p>
+<p>Mehr zu LSBTI (Glossar, Geschichte, Biografiearbeit) steht auf deiner älteren Seite „Kultursensible Pflege &amp; LSBTI“.</p>
+<p class="fr">🇫🇷 Les diapos posent surtout des questions sur l'« espace sûr » pour les personnes âgées LGBTQ*. Les crimes de haine contre elles ont fortement augmenté en Allemagne : 240 en 2013, 1 785 en 2023.</p>
+<p class="quelle">Interkulturelle Pflege – Wahrnehmen und Erleben.pdf, S. 22–24</p>
+
+<!-- ============ 24 PERSÖNLICH ============ -->
+<h2>25 · Deine eigene Erfahrung <span class="stern">★</span></h2>
+<p>Der Foliensatz endet mit Fragen an dich. Es gibt keine richtige Antwort — sie sind zum Nachdenken (Selbstreflexion, Kompetenz 4).</p>
+<ul>
+  <li>Wie erleben wir die kulturelle Herausforderung im Pflegealltag? Herausforderung oder Routine? Sinnvoll oder absurd?</li>
+  <li>Gibt es Unterschiede zwischen den Generationen (Babyboomer, Gen X, Millennials, Gen Z)?</li>
+  <li>Unterschiede zwischen Pflegealltag und Privatleben?</li>
+  <li><b>Was wünschen Sie sich für Ihre Pflege im hohen Alter?</b> Wo möchten Sie gepflegt werden? Von wem? Wie? Welche Umstände und Hilfsmittel würden Ihnen einen schönen Lebensabend machen?</li>
+</ul>
+<p><b>Warum diese Fragen?</b> Wer über die eigenen Wünsche nachdenkt, versteht besser, was andere sich wünschen. <span class="her">Herleitung</span> Du bist selbst in einem deutschen Team mit anderer Herkunft — Ambiguitätstoleranz „von beiden Seiten“ betrifft auch dich.</p>
+<p class="fr">🇫🇷 Questions pour toi : comment vis-tu la diversité au travail ? Et toi, vieille, où, par qui et comment voudrais-tu être soignée ? Réfléchir à ses propres souhaits aide à comprendre ceux des autres.</p>
+<p class="quelle">Interkulturelle Pflege – Wahrnehmen und Erleben.pdf, S. 25–26</p>
+
+<!-- ============ TOP 10 ============ -->
+<h2>Top 10 fürs Examen</h2>
+<ol>
+  <li>Transkulturelle Pflege (Leininger): vergleichende, ganzheitliche Sicht → Pflege, die <b>kulturell kongruent, sensibel und kompetent</b> ist</li>
+  <li>Kultur: Leininger „komplexes Ganzes“, das sich ständig entwickelt · Hofstede „kollektive Programmierung des Verstandes“</li>
+  <li>Sunrise-Modell (70er Jahre): erstes Modell mit dem kulturellen Hintergrund des Patienten</li>
+  <li><b>Sieben Faktoren:</b> Technologie · Religion/Philosophie · Verwandtschaft/Soziales · Politik/Gesetz · Wirtschaft · Bildung · kulturelle Werte/Lebensweisen</li>
+  <li><b>Drei Funktionen:</b> Erhaltung/Bewahrung · Anpassung/Verständigung · Umstrukturierung/Musteränderung — religiöse Bedürfnisse ggf. auch gegen die Abläufe der Einrichtung</li>
+  <li>Ohne kulturspezifische Werte → kulturelle Konflikte, Stress, ethische und moralische Überforderung</li>
+  <li>Vier Kompetenzen: Einstellung · Wissen · Kommunikation · Selbstdarstellung/Interaktion (Empathie, Selbstreflexion)</li>
+  <li>Memorandum 2002: Präambel + 7 Marksteine · „Gleichbehandlung blendet Unterschiede aus“</li>
+  <li>Hofstede: PDI · IDV · MAS · UAI · LTO · IVR — IBM 53 Länder, 116 000 Beschäftigte (1–4), China 1985 (5), 2010 (6)</li>
+  <li>Ambiguitätstoleranz = Mehrdeutigkeit aushalten, „von beiden Seiten“ · <b>Im Zentrum steht immer das Individuum</b></li>
+</ol>
+
+<!-- ============ FRAGEN ============ -->
+<h2>5 Prüfungsfragen — mit Musterantwort</h2>
+<details><summary><span class="op">Nennen</span>Nennen Sie die sieben Faktoren des Sunrise-Modells, die Krankheit und Pflege beeinflussen.</summary>
+<p>Technologische Umstände · religiöse und philosophische Einflüsse · verwandtschaftliche und soziale Faktoren · politische und gesetzliche Gegebenheiten · wirtschaftliche Verhältnisse · bildungsbedingte Faktoren · kulturelle Werte und Lebensweisen. (Leininger S. 25–26)</p></details>
+
+<details><summary><span class="op">Beschreiben</span>Beschreiben Sie die drei Funktionen kulturspezifischer Fürsorge nach Leininger.</summary>
+<p><b>1. Erhaltungs- bzw. Bewahrungsfunktion:</b> Kulturelle Gewohnheiten, die dem Menschen wichtig sind, werden bewahrt, z. B. kulturspezifische Ernährung. <b>2. Anpassungs- und Verständigungsfunktion:</b> Pflege und Gewohnheiten werden aneinander angepasst; man verständigt sich auf einen Weg. <b>3. Umstrukturierungs- bzw. Musteränderungsfunktion:</b> Ein Muster wird gemeinsam verändert. Die Folie betont: Religiöse Bedürfnisse werden ggf. auch gegen die Abläufe der Einrichtung erfüllt, und Angehörige werden einbezogen. (S. 27–28; die Erklärungen der Funktionen sind <span class="her">Herleitung</span>)</p></details>
+
+<details><summary><span class="op">Erläutern</span>Erläutern Sie die Kulturdimension „Machtdistanz“ nach Hofstede an zwei Beispielen.</summary>
+<p>Machtdistanz ist das Ausmaß, in dem weniger mächtige Mitglieder einer Organisation eine ungleiche Machtverteilung <b>erwarten und akzeptieren</b>. <b>Beispiel 1:</b> Bei hohem PDI sollen Mitarbeiter Befehle befolgen; bei niedrigem PDI entscheiden sie mit. <b>Beispiel 2:</b> Bei hohem PDI wird Initiative von der Lehrkraft erwartet; bei niedrigem PDI von den Lernenden. Deutschland gehört laut Folie zu den Ländern mit niedrigem PDI. (Hofstede S. 11, 15–16, 21)</p></details>
+
+<details><summary><span class="op">Begründen</span>Herr Majed bekommt Sondenkost mit Schweinefleisch („er merkt es ja nicht“). Begründen Sie, warum dieses Handeln aus Sicht von Leininger falsch ist.</summary>
+<p><b>Ursache:</b> Herr Majed isst aus Glaubensgründen kein Schweinefleisch. Die Schwester gibt ihm trotzdem Sondenkost mit Schweinefleisch, ohne es ihm zu sagen. <b>Wirkung:</b> Seine religiöse Überzeugung (Faktor 2 des Sunrise-Modells) wird übergangen. Er wird nicht als „Fachmann seines eigenen Pflegeverhaltens“ gesehen. <b>Gefahr:</b> Laut Leininger führt Pflege ohne kulturspezifische Werte zu kulturellen Konflikten, Stress sowie ethischer und moralischer Überforderung — bei einem schwer kranken Menschen. Erfährt er es, kann auch das Vertrauen in die Pflege verloren gehen. <span class="her">Herleitung</span> <b>Deshalb:</b> Erhaltungsfunktion anwenden — Sondenkost ohne Schweinefleisch besorgen, auch wenn es gegen die üblichen Abläufe geht; mit ihm und den Angehörigen sprechen; im Team klären, warum keine passende Sondenkost da war. (Leininger S. 15, 21, 25, 27–28 · Perleberg S. 13)</p></details>
+
+<details><summary><span class="op">Beurteilen</span>Beurteilen Sie die Reaktion von Schwester Birgit im Fall „Kaffeeküche“.</summary>
+<p><b>Einschätzung:</b> Birgits Reaktion zeigt <b>fehlende Ambiguitätstoleranz</b>. Sie versteht kein Russisch, weiß also nicht, worüber die Kolleginnen reden — und nimmt trotzdem das Schlechteste an. <b>Ursache:</b> eine mehrdeutige Situation, die sie mit einer negativen Annahme füllt. <b>Wirkung:</b> Sie fühlt sich angegriffen, obwohl es keinen Beleg gibt. <b>Gefahr:</b> Misstrauen, Rivalität und Konflikte im Team — genau die Gefahr, die Markstein 4 nennt. <b>Deshalb:</b> Birgit sollte die Mehrdeutigkeit bemerken (Bewusstsein schaffen), andere Erklärungen zulassen (Perspektivenvielfalt) und im Zweifel freundlich nachfragen. Weil Ambiguitätstoleranz „von beiden Seiten“ gilt, braucht das Team Regeln für die Verständigung, z. B. über die Sprache in gemeinsamen Räumen. <span class="her">Herleitung</span> (Perleberg S. 7–9 · Leininger S. 53)</p></details>
+
+<!-- ============ SPICKZETTEL ============ -->
+<h2>Spickzettel</h2>
+<ul class="spick">
+  <li>Leininger 1925–2012, USA · Sunrise-Modell 70er Jahre</li>
+  <li>Ziel: kulturell kongruent · sensibel · kompetent</li>
+  <li>7 Faktoren: Technik, Religion, Verwandte, Politik, Wirtschaft, Bildung, Werte</li>
+  <li>3 Funktionen: erhalten · anpassen · umstrukturieren</li>
+  <li>4 Kompetenzen: Haltung · Wissen · Kommunikation · Selbstreflexion</li>
+  <li>Ohne Kultur → Konflikt, Stress, moralische Überforderung</li>
+  <li>B/P = Fachmann für sich selbst</li>
+  <li>Memorandum 2002: Präambel + 7 Marksteine</li>
+  <li>„Gleichbehandlung blendet Unterschiede aus“</li>
+  <li>Hofstede: PDI · IDV · MAS · UAI · LTO · IVR</li>
+  <li>IBM, 53 Länder, 116 000 · China 1985 · 2010</li>
+  <li>Ambiguitätstoleranz: aushalten statt urteilen — von beiden Seiten</li>
+  <li>Anwerbeabkommen: 1955 Italien · 1960–68 weitere</li>
+  <li>Im Zentrum: immer das Individuum</li>
+</ul>
+
+<h2>Woraus diese Seite gebaut ist</h2>
+<p>Drei Dateien aus deinem Drive-Ordner, alle Seiten gelesen, die Bildfolien angesehen:</p>
+<ul>
+  <li><b>KultursensiblePflegeLeininger.pdf</b> — Dr. Ortrud Knauf, 28.07.2026, <b>66 Seiten</b> (Sunrise-Modell mit Bild S. 9, Memorandum)</li>
+  <li><b>KulturdimensionenHofstede.pdf</b> — Dr. Ortrud Knauf, 22.07.2026, <b>81 Seiten</b> (sechs Dimensionen; S. 66 und 67 sind gleich)</li>
+  <li><b>Interkulturelle Pflege – Wahrnehmen und Erleben.pdf</b> — A. Perleberg, <b>27 Seiten</b> (soziale Gruppe, Ambiguitätstoleranz, vier Fälle, Gastarbeiter, LSBTI*, Reflexionsfragen)</li>
+</ul>
+<p><b>Bewusst nicht wiederholt:</b> die fünf anderen Kultur-Dateien (Diversity CE 09/UE 01, Kompetenzkatalog, Queere Personen im Pflegeheim, Kulturelle Vielfalt, Interkulturelle Pflege). Sie stehen auf deinen älteren Kultur-Seiten. <b>Weggelassen:</b> Titel-, Willkommens- und Dankesfolien sowie Fotos ohne Inhalt.</p>
+<div class="hinweis"><b>Was fehlt oder unklar ist:</b>
+<ul>
+  <li>Zu den <b>vier Fällen</b> und zu allen <b>Arbeitsaufträgen</b> gibt es keine Lösungen.</li>
+  <li>Das <b>Memorandum</b> selbst, der Film <b>„Bittersüße Reise“</b>, die Charta-Texte und die vollständigen Hofstede-Ländertabellen liegen nicht vor.</li>
+  <li><b>Assimilation</b> und <b>Integration</b> werden gefragt, aber nicht erklärt. Die Arten sozialer Gruppen werden nur genannt. Für die Umstrukturierungsfunktion gibt es kein Beispiel. Zu „Pflege als Vorbildfunktion“ und „Die einsame Insel“ gibt es keinen Text.</li>
+  <li>Schreibweisen auf den Folien: „Anthroprosophin“, „Edward B. Tyler“ — bitte im Kurs nachfragen.</li>
+</ul></div>
+<p class="fr">🇫🇷 Tout vient de tes trois fichiers de cours (66 + 81 + 27 pages). Rien d'Internet. Le badge « Herleitung » marque ce que j'ai déduit en reliant deux diapositives. Les cas n'ont pas de corrigé : apporte tes réponses en cours.</p>
+</main>
