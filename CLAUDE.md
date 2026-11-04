@@ -1892,6 +1892,16 @@ mit Seitenzahlen, Bibliothek, Artikelöffnung mit dem Gehirn-Foto, je Kapitel ne
 lange Seite. Bilder brauchen `width`/`height`, sonst bricht der Umbruch falsch.
 **Umblättern mit Bewegung (03.11.2026)**, ihr Wunsch *„à chaque fois que on change de page cela doit être comme une feuille qu'on feuillette. avec un motion design“*: ein Blatt dreht sich in 3D um den Rücken (Web Animations, Schatten wandern mit), beim Laden öffnet sich der Einband, Eselsohren an den Ecken blättern auch; `prefers-reduced-motion` schaltet es ab. Dazu *„rendre foncer les écritures“*: Schrift dunkler (`--ink` #170f07, `--ink-soft` #3f3020) und Gewicht 500. **Dieselbe Mechanik steckt in `zusammenfassungen/_template.html`** — Änderungen am Blättern in beiden Dateien nachziehen.
 
+**Seit 04.11.2026 ausführlicher** (ihr Wunsch: Symptome sehr gut erklärt mit Beispielen — was im Menschen passiert, welches
+System, welche Nerven; Medikamente und was man kontrolliert; nach einer Krankheit „fertig“ markieren, einen Fall mit Fragen lösen und
+die Pflegeplanung schreiben, und gezeigt bekommen, wie man sie gut schreibt): **Kap. 7** neun Symptomkarten (So sieht es aus · Was im
+Körper passiert · System/Bahn/Nerv · Was du tust) + Tabelle „Ein Schlaganfall — viele Systeme“; **Kap. 10** 5-R-Regel und
+Medikamentenkarten (vor der Gabe · beobachten · sofort melden · beraten); **neues Kap. 16 „Abschluss“**: Übungsfall Frau M. (erfunden,
+gelb, Krankenhaus, keine Dosierungen), 7 Fallfragen mit Operatoren, „So schreibst du eine Pflegeplanung“ nach ihrem Blatt, Schreibfelder
+für 3 Probleme (`krankheiten-antworten-v1`, Knopf „Antworten kopieren“), Musterlösung, Knopf „abgeschlossen“ (`krankheiten-fertig-v1`).
+Neue Internetquellen: DocCheck Flexikon (Mediainfarkt, Fazialisparese, Schluckakt), abgerufen 04.11.2026. **Für jeden künftigen Artikel
+dieselbe Gliederung** (Symptomkarten, Medikamentenkarten, Abschlusskapitel mit Fall und Pflegeplanung).
+
 ## Meine Bibliothek — EIN Link mit beiden Büchern (seit 03.11.2026)
 
 `bibliothek/index.html` → `https://claude.ai/artifact/V1vQL7BQP2fFnYa1FUc2bx` (Icon „library“). Ihr Wunsch: *„Un seul lien qui va contenir le livre

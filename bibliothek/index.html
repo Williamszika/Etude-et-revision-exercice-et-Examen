@@ -349,7 +349,33 @@
 #kh .ergebnis .ezs{font-size:14px;}
 #kh .krank{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-deep);margin-right:8px;}
 #kh .allekopf h2{font-family:var(--display);font-weight:500;font-size:clamp(2rem,4.4vw,2.6rem);color:var(--accent);margin:0 0 12px;line-height:1.05;}
-#kh .notiz{font-style:italic;color:var(--ink-soft);}
+#kh .symkarte,#kh .medkarte{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;background:var(--card);padding:12px 15px;margin:14px 0;font-size:15.5px;}
+#kh .medkarte{border-left-color:var(--net);}
+#kh .sk-titel,#kh .mk-titel{margin:0 0 8px;font-size:1.05rem;}
+#kh .symkarte.fort,#kh .medkarte.fort{border-top-style:dashed;}
+#kh .sk-fach{font-style:italic;color:var(--ink-soft);font-size:.92rem;}
+#kh .sk-zeile{margin:0 0 8px;}
+#kh .sk-zeile:last-child{margin-bottom:0;}
+#kh .sk-zeile p{margin:2px 0 0;}
+#kh .sk-k{display:block;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep);}
+#kh .notiz{font-style:italic;color:var(--ink-soft);font-size:.95em;}
+#kh .abschluss-stand{border:2px solid var(--du);border-radius:10px;padding:10px 14px;margin:10px 0 16px;background:var(--dubg);}
+#kh .abschluss-stand .as-zahl{display:block;font-family:var(--display,inherit);font-size:1.25rem;}
+#kh .abschluss-stand.offen{border-color:var(--ich);background:var(--ichbg);}
+#kh ol.pp-weg li{margin:6px 0;}
+#kh .pp-nr{margin:18px 0 4px;font-size:1.05rem;}
+#kh .ppfeld label{display:block;margin:0 0 10px;}
+#kh .ppfeld label span{display:block;font-size:13px;color:var(--ink-soft);font-style:italic;}
+#kh .ppfeld textarea,#kh .kopie-text{width:100%;font:inherit;font-size:15px;line-height:1.5;color:var(--ink);background:rgba(255,251,238,.75);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:8px 10px;resize:vertical;margin-top:4px;box-sizing:border-box;}
+#kh .kopie-knopf,#kh .fertig-knopf{font:inherit;font-weight:700;cursor:pointer;border-radius:999px;padding:9px 16px;border:1px solid var(--accent-deep);background:var(--accent-deep);color:#fff;}
+#kh .fertig-knopf{background:var(--du);border-color:var(--du);}
+#kh .fertig-knopf[aria-pressed="true"]{background:transparent;color:var(--du);}
+#kh .fertig-text{margin:6px 0 0;font-weight:600;color:var(--du);}
+#kh details.muster{border:1px solid var(--line);border-radius:10px;background:var(--card);margin:10px 0;padding:0 14px;}
+#kh details.muster summary{cursor:pointer;font-weight:700;padding:10px 0;color:var(--accent-deep);}
+#kh .pp-spalte{border-top:1px dashed var(--line);padding:8px 0;}
+#kh .pp-spalte p,#kh .pp-spalte ul{margin:4px 0;}
+#kh .buch.abgeschlossen .st::after{content:" · ✓ abgeschlossen";color:var(--du);}
 #kh #seiten{perspective:2600px;}
 #kh .seite{transition:none!important;transform:none!important;}
 #kh .blatt{position:absolute;top:0;width:var(--pw);height:var(--ph);transform-style:preserve-3d;z-index:6;pointer-events:none;will-change:transform;}
@@ -596,6 +622,7 @@
       <a href="#schlaganfall" data-ziel="schlaganfall">Schlaganfall</a>
       <a href="#k14" data-ziel="k14">Prüfung</a>
       <a href="#k15" data-ziel="k15">Wörter</a>
+      <a href="#k16" data-ziel="k16">Abschluss</a>
     </nav>
     <span class="knoepfe"><a class="knopf" href="#inhalt" id="lesestand">Inhalt</a><button type="button" class="knopf zu" id="zuklappen" hidden>Schließen ✕</button></span>
   </header>
@@ -746,14 +773,14 @@
     <span class="nr">Artikel 1 · Neurologie · Notfall</span>
     <h2>Der Schlaganfall</h2>
     <p class="unter">Wenn im Gehirn das Blut ausbleibt — von der ersten Minute bis zum Leben danach</p>
-    <div class="meta"><span>15 Kapitel</span><span>ca. 75 Minuten Lesezeit</span><span>Stand 18.10.2026</span><span class="lesestand">0 von 15 Kapiteln gelesen</span></div>
+    <div class="meta"><span>16 Kapitel</span><span>ca. 75 Minuten Lesezeit</span><span>Stand 18.10.2026</span><span class="lesestand">0 von 16 Kapiteln gelesen</span></div>
   </div>
 
   <nav class="inhalt" aria-label="Kapitel">
     <a href="#k1">1 Auf einen Blick</a><a href="#k2">2 Ein Morgen</a><a href="#k3">3 Geschichte</a><a href="#k4">4 Das Gehirn</a>
     <a href="#k5">5 Im Körper</a><a href="#k6">6 Wer · warum</a><a href="#k7">7 Symptome</a><a href="#k8">8 Erkennen</a>
     <a href="#k9">9 Klinik</a><a href="#k10">10 Medikamente</a><a href="#k11">11 Ohne Medikamente</a><a href="#k12">12 Pflege</a>
-    <a href="#k13">13 Leben danach</a><a href="#k14">14 Prüfung</a><a href="#k15">15 Wörter · Quellen</a>
+    <a href="#k13">13 Leben danach</a><a href="#k14">14 Prüfung</a><a href="#k15">15 Wörter · Quellen</a><a href="#k16">16 Abschluss</a>
   </nav>
 
   <div class="wrap">
@@ -1180,6 +1207,91 @@
       <tr><td><strong>Wesensveränderung</strong>, Verwirrtheit</td><td>„So kenne ich ihn gar nicht" — plötzlich unruhig, gleichgültig, verwirrt.</td><td>Stirnlappen, ausgedehnter Schaden</td></tr>
     </table></div>
 
+
+    <h4>Symptome ganz genau — was im Menschen passiert</h4>
+    <p>Jetzt jedes Symptom einzeln, wie eine Karteikarte: <b>was du siehst</b>, <b>was im Körper passiert</b>, <b>welches System, welche Bahn, welcher Nerv</b> beteiligt ist — und <b>was du tust</b>. Die Beispiele sind von mir erfunden; Anatomie und Mechanismus tragen ihre Quelle.</p>
+    <div class="kasten merk"><p class="kt">Das Grundprinzip — für jede Karte</p>
+      <p>Ein Schlaganfall ist eine Störung im <b>zentralen Nervensystem</b>. Die Muskeln, die Augen, die Zunge sind gesund — es fehlt der <b>Befehl</b> aus dem Gehirn oder die <b>Rückmeldung</b> zum Gehirn. Welche Fähigkeit ausfällt, hängt davon ab, <b>welche Region</b> kein Blut bekommt: Jede Region hat eine Aufgabe, und die Bewegungsbahnen laufen über Kreuz. <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a></p></div>
+
+    <div class="symkarte">
+      <p class="sk-titel"><b>Halbseitenlähmung</b> <span class="sk-fach">Hemiparese / Hemiplegie</span></p>
+      <div class="sk-zeile"><span class="sk-k">So sieht es aus</span><p>Frau A. will aufstehen, das rechte Bein knickt weg. Der Becher fällt ihr aus der rechten Hand. Links ist alles normal.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was im Körper passiert</span><p>Der Befehl „beweg dich“ entsteht im <b>primären motorischen Rindenfeld des Stirnlappens</b>. Er läuft über die <b>Pyramidenbahn</b> nach unten — und die läuft <b>über Kreuz</b>: Die linke Hirnhälfte steuert die rechte Körperhälfte. <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a> Bekommt dieses Gewebe links kein Blut, kommt der Befehl rechts nicht an. Der Muskel ist gesund, aber er bekommt keinen Auftrag.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Welches System · welche Bahn · welcher Nerv</span><p><b>Motorisches System</b> des zentralen Nervensystems: Stirnlappen → Pyramidenbahn → Rückenmark → Muskel. Beim Verschluss der mittleren Hirnarterie (<i>A. cerebri media</i>) typisch: „kontralaterale (armbetonte) Hemiparese und Hemihypästhesie“ — also Gegenseite, Arm stärker als Bein, dazu Gefühlsstörung. <a class="q net" href="https://flexikon.doccheck.com/de/Mediainfarkt">DocCheck: Mediainfarkt</a></p></div>
+      <div class="sk-zeile"><span class="sk-k">Was du tust</span><p>Die gelähmte Seite schützen (12.2), die Schulter nie an der Hand ziehen (12.3), Sturzgefahr einschätzen (12.6), den Grad der Lähmung regelmäßig testen. <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p></div>
+    </div>
+    <div class="symkarte">
+      <p class="sk-titel"><b>Hängender Mundwinkel</b> <span class="sk-fach">zentrale Fazialisparese</span></p>
+      <div class="sk-zeile"><span class="sk-k">So sieht es aus</span><p>Herr B. lächelt — nur die linke Gesichtshälfte geht mit. Rechts läuft Speichel aus dem Mundwinkel. Die Stirn kann er aber auf beiden Seiten runzeln, beide Augen schließt er fest.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was im Körper passiert</span><p>Das Gesicht bewegt der <b>N. facialis</b> — einer der zwölf Hirnnerven, die deine Anatomie als wichtig nennt. <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a> Beim Schlaganfall ist der Nerv selbst <b>gesund</b>; gestört ist der Befehl vom Gehirn zu ihm. Darum die Besonderheit: Bei der <b>zentralen</b> Lähmung bleiben „der Lidschluss und das Stirnrunzeln … meist nicht beeinträchtigt“; bei der <b>peripheren</b> Lähmung (der Nerv selbst ist krank) fällt „die gesamte mimische Muskulatur der ipsilateralen Seite aus“ — samt Stirn. <a class="q net" href="https://flexikon.doccheck.com/de/Fazialisparese">DocCheck: Fazialisparese</a></p></div>
+      <div class="sk-zeile"><span class="sk-k">Welches System · welche Bahn · welcher Nerv</span><p><b>Hirnnerv VII (N. facialis)</b> — hier aber gestört <b>oberhalb</b> des Nervs, im Gehirn. Deshalb liegt die Lähmung auf der Gegenseite der Hirnschädigung.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was du tust</span><p>Mundpflege nach jeder Mahlzeit, die gelähmte Wangentasche auf Speisereste kontrollieren — Speisereste dort sind ein Zeichen der Schluckstörung (Kapitel 7, Tabelle). <span class="q ich">Folgerung</span></p></div>
+    </div>
+    <div class="symkarte">
+      <p class="sk-titel"><b>Sprachstörung</b> <span class="sk-fach">Aphasie</span></p>
+      <div class="sk-zeile"><span class="sk-k">So sieht es aus</span><p>Herr Weber weiß genau, was er sagen will — es kommt „Tasse“ statt „Teller“. Ein anderer Mensch spricht flüssig, aber ohne Sinn, und versteht nicht, was du fragst.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was im Körper passiert</span><p>Sprache hat zwei Zentren: das <b>Broca-Sprachzentrum im Stirnlappen</b> und das <b>Wernicke-Sprachzentrum im Schläfenlappen</b>. <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a> Die Faustregel: Broca bildet die Sprache, Wernicke versteht sie. <span class="q ich">Folgerung</span> Eine Aphasie kommt beim Mediainfarkt vor, „wenn dominante Hemisphäre betroffen ist“. <a class="q net" href="https://flexikon.doccheck.com/de/Mediainfarkt">DocCheck: Mediainfarkt</a></p></div>
+      <div class="sk-zeile"><span class="sk-k">Welches System · welche Bahn · welcher Nerv</span><p><b>Sprachzentren der Großhirnrinde</b>, auf der dominanten Seite — bei den meisten Menschen links. <span class="q ich">Folgerung</span> Kein Hirnnerv ist schuld: Mund und Zunge funktionieren, die <b>Sprache selbst</b> ist gestört.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was du tust</span><p>Kurze Sätze, eine Frage auf einmal, Ja/Nein-Fragen, Zeit lassen, Gesten — und nie über ihn hinweg sprechen (12.10). <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></p></div>
+    </div>
+    <div class="symkarte">
+      <p class="sk-titel"><b>Verwaschene Aussprache</b> <span class="sk-fach">Dysarthrie</span></p>
+      <div class="sk-zeile"><span class="sk-k">So sieht es aus</span><p>Frau C. findet alle Wörter, aber sie klingen „wie betrunken“ — undeutlich, langsam.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was im Körper passiert</span><p>Hier ist die Sprache <b>da</b>, aber die <b>Sprechmuskeln</b> gehorchen nicht: Lippen, Zunge, Gaumen. Die Zungenmuskulatur steuert der <b>N. hypoglossus</b> (12. Hirnnerv). <a class="q net" href="https://flexikon.doccheck.com/de/Schluckakt">DocCheck: Schluckakt</a> Die Bewegungssteuerung von Mund und Zunge, Kleinhirn und Hirnstamm sind beteiligt (Tabelle oben). <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p></div>
+      <div class="sk-zeile"><span class="sk-k">Welches System · welche Bahn · welcher Nerv</span><p><b>Motorisches System</b> für das Sprechen — Hirnstamm, Kleinhirn, Hirnnerven der Mund- und Zungenmuskeln.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was du tust</span><p>Nachfragen statt raten, Zeit lassen; die Schluckfunktion mitdenken — dieselben Muskeln schlucken auch. <span class="q ich">Folgerung</span></p></div>
+    </div>
+    <div class="symkarte">
+      <p class="sk-titel"><b>Schluckstörung</b> <span class="sk-fach">Dysphagie</span></p>
+      <div class="sk-zeile"><span class="sk-k">So sieht es aus</span><p>Frau G. hustet bei jedem Schluck Tee, danach klingt ihre Stimme gurgelnd. In der rechten Wange bleiben Brotreste.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was im Körper passiert</span><p>Schlucken ist ein Reflex mit Steuerzentrale: Der Schluckakt wird vom <b>Schluckzentrum in der Medulla oblongata</b> (Hirnstamm) gesteuert. Beteiligt sind der <b>N. glossopharyngeus (IX)</b> und der <b>N. vagus (X)</b> — sie melden und steuern —, dazu der <b>N. trigeminus (V)</b>, der <b>N. accessorius (XI)</b> und der <b>N. hypoglossus (XII)</b> für die Zunge. <a class="q net" href="https://flexikon.doccheck.com/de/Schluckakt">DocCheck: Schluckakt</a> Ist diese Steuerung gestört, rutscht Flüssigkeit in die Luftröhre statt in die Speiseröhre.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Welches System · welche Bahn · welcher Nerv</span><p><b>Hirnstamm und Hirnnerven V, IX, X, XI, XII</b>. Die Folge trifft ein <b>anderes System</b>: die <b>Atmung</b>. Die Aspirationspneumonie kann gerade bei alten und kranken Menschen einen schweren Verlauf nehmen, oft mit tödlichem Ausgang. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080</a></p></div>
+      <div class="sk-zeile"><span class="sk-k">Was du tust</span><p>Aspirationsprophylaxe (12.4): sitzend essen, nicht allein lassen, Zeit lassen, Mundhygiene, Absauggerät bereit. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080</a></p></div>
+    </div>
+    <div class="symkarte">
+      <p class="sk-titel"><b>Halbes Blickfeld fehlt</b> <span class="sk-fach">Hemianopsie</span></p>
+      <div class="sk-zeile"><span class="sk-k">So sieht es aus</span><p>Herr D. stößt immer wieder rechts an den Türrahmen. Besuch, der rechts am Bett steht, bemerkt er nicht — dreht er den Kopf, sieht er ihn.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was im Körper passiert</span><p>Gesehen wird nicht mit dem Auge allein: Das <b>Sehzentrum</b> liegt im <b>Hinterhauptlappen</b>. <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a> Fällt ein Teil der Sehbahn aus, fehlt eine Hälfte des Blickfelds — beide Augen sind gesund. Die Hemianopsie gehört zu den Zeichen des Mediainfarkts. <a class="q net" href="https://flexikon.doccheck.com/de/Mediainfarkt">DocCheck: Mediainfarkt</a></p></div>
+      <div class="sk-zeile"><span class="sk-k">Welches System · welche Bahn · welcher Nerv</span><p><b>Sehsystem</b>: Sehbahn und Sehzentrum im Hinterhauptlappen — nicht die Augen.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was du tust</span><p>Wichtiges zuerst in die sehende Hälfte stellen und den Menschen ermutigen, den Kopf zu drehen. <span class="q ich">Folgerung</span> <b>Nicht verwechseln mit dem Neglect:</b> Bei der Hemianopsie weiß der Mensch, dass ihm etwas fehlt; beim Neglect nicht (siehe unten). Bitte im Kurs prüfen.</p></div>
+    </div>
+    <div class="symkarte">
+      <p class="sk-titel"><b>Eine Seite „existiert nicht“</b> <span class="sk-fach">Neglect</span></p>
+      <div class="sk-zeile"><span class="sk-k">So sieht es aus</span><p>„Ich habe alles aufgegessen“ — vor einem halb vollen Teller. Den linken Arm lässt sie aus dem Bett hängen.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was im Körper passiert</span><p>Fehlende Wahrnehmung einer Körperhälfte: Reize auf dieser Seite werden ausgeblendet — auch was man sieht und hört. <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a> Beim Mediainfarkt tritt er auf, „wenn nicht-dominante Hemisphäre betroffen ist“. <a class="q net" href="https://flexikon.doccheck.com/de/Mediainfarkt">DocCheck: Mediainfarkt</a></p></div>
+      <div class="sk-zeile"><span class="sk-k">Welches System · welche Bahn · welcher Nerv</span><p><b>Wahrnehmung und Aufmerksamkeit</b> der Großhirnrinde — meist rechts, also Neglect links.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was du tust</span><p>Ansprechen über die gesunde Seite, Bewegung über die betroffene, Prophylaxen von Anfang an (12.1). <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p></div>
+    </div>
+    <div class="symkarte">
+      <p class="sk-titel"><b>Schwindel und Taumeln</b> <span class="sk-fach">Ataxie</span></p>
+      <div class="sk-zeile"><span class="sk-k">So sieht es aus</span><p>Frau E. greift am Wasserglas vorbei, geht breitbeinig und schwankt, obwohl keine Seite gelähmt ist.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was im Körper passiert</span><p>Das <b>Kleinhirn</b> stimmt Bewegungen fein ab und hält das Gleichgewicht. Bekommt es kein Blut, sind die Bewegungen da, aber nicht mehr <b>abgestimmt</b>. (Tabelle oben) <span class="q ich">Folgerung</span></p></div>
+      <div class="sk-zeile"><span class="sk-k">Welches System · welche Bahn · welcher Nerv</span><p><b>Kleinhirn</b>, teils Hirnstamm — die hintere Durchblutung des Gehirns.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was du tust</span><p>Nicht allein gehen lassen, Sturzgefahr einschätzen (12.6). <a class="q du" href="https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW">Sturz</a></p></div>
+    </div>
+    <div class="symkarte">
+      <p class="sk-titel"><b>Immer schwerer weckbar, ungleiche Pupillen</b> <span class="sk-fach">Bewusstseinsstörung · Pupillendifferenz</span></p>
+      <div class="sk-zeile"><span class="sk-k">So sieht es aus</span><p>Nachts reagiert Herr F. erst auf lautes Ansprechen, morgens ist er kaum zu wecken. Eine Pupille ist größer als die andere.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Was im Körper passiert</span><p>Im festen Schädel steigt der Druck (Blutung, große Schwellung). Er drückt auf den <b>Hirnstamm</b> — dort sitzen <b>Herz-Kreislauf und Atmung</b>; Schädigungen dort sind „oft tödlich oder mit schweren Einschränkungen verbunden“. <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a></p></div>
+      <div class="sk-zeile"><span class="sk-k">Welches System · welche Bahn · welcher Nerv</span><p><b>Hirnstamm</b> — die Lebenszentrale. Die Abstufung des Bewusstseins (Somnolenz, Sopor, Koma) steht in deiner Anatomie. <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a></p></div>
+      <div class="sk-zeile"><span class="sk-k">Was du tust</span><p>Kein „er ist müde“: Notfall im Notfall — sofort Arzt, Vitalzeichen, Bewusstsein und Pupillen beobachten, nicht allein lassen (Kapitel 8). <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></p></div>
+    </div>
+    <h4>Ein Schlaganfall — aber viele Systeme</h4>
+    <p>Getroffen ist das <b>Nervensystem</b>. Die Folgen landen in fast allen anderen Systemen — genau deshalb hat die Pflege so viel zu tun:</p>
+    <div class="scroll"><table>
+      <tbody>
+      <tr><th>System</th><th>Was dort passiert</th><th>Kapitel</th></tr>
+      <tr><td><b>Nervensystem</b></td><td>der Schaden selbst: Lähmung, Sprache, Sehen, Schlucken, Wahrnehmung</td><td>4, 5, 7</td></tr>
+      <tr><td><b>Herz-Kreislauf</b></td><td>oft die <b>Ursache</b>: Bluthochdruck, Vorhofflimmern; danach Blutdruck einstellen</td><td>5, 6, 10</td></tr>
+      <tr><td><b>Atmung</b></td><td>Aspiration → Aspirationspneumonie</td><td>12.4</td></tr>
+      <tr><td><b>Bewegungsapparat</b></td><td>schmerzhafte Schulter, Subluxation, Kontrakturen, Spastik</td><td>12.2, 12.3</td></tr>
+      <tr><td><b>Haut</b></td><td>Dekubitus, Intertrigo</td><td>12.8</td></tr>
+      <tr><td><b>Ausscheidung</b></td><td>neurogene Blasenentleerungsstörung, Inkontinenz</td><td>12.7</td></tr>
+      <tr><td><b>Ernährung · Wasser</b></td><td>isst und trinkt zu wenig → Ernährungsrisiko, Flüssigkeitsmangel</td><td>12.4, 12.5</td></tr>
+      <tr><td><b>Psyche</b></td><td>Wesensveränderung, Verwirrtheit; das Leben danach</td><td>7, 13</td></tr>
+      </tbody></table></div>
+    <p class="notiz">Die Zuordnung zu den Systemen ist meine Übersicht <span class="q ich">Folgerung</span>; die Inhalte stehen mit Quelle in den genannten Kapiteln.</p>
+
     <h4>Das Unsichtbare: der Neglect</h4>
     <p>Der Neglect ist das Symptom, das Angehörige am wenigsten verstehen. Deine Neurologie-Folien definieren ihn so: <strong>fehlende Wahrnehmung einer Körperhälfte</strong>. Reize auf dieser Seite werden ausgeblendet — auch was man sieht und hört. Im Extremfall wird die eigene Körperhälfte als Fremdkörper erlebt. Typische Sätze vor einem halb vollen Teller: „Ich habe alles aufgegessen" oder „Wieso gab es heute nur so wenig?" <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p>
     <p>Oft gehört das <strong>Pusher-Syndrom</strong> dazu: Betroffene schieben ihren Körper aktiv zur betroffenen Seite, weil die empfundene Körpermitte nicht die echte Körpermitte ist. <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></p>
@@ -1368,6 +1480,50 @@
       <p class="kt">Meine Folgerung — der häufigste Fehler im Alltag</p>
       <p>Erinnere dich an den Herz-Kreislauf-Kurs: Der häufigste Grund einer Blutdruckentgleisung ist, dass blutdrucksenkende Medikamente <strong>nicht regelmäßig genommen</strong> werden. <a class="q du" href="https://claude.ai/code/artifact/316b844e-b1e6-4bb8-8163-3af3058de4fa">Herz-Kreislauf</a> Sekundärprophylaxe wirkt nur, wenn sie <strong>jeden Tag</strong> genommen wird — über Jahre. Hier hat Beratung durch die Pflege eine große Wirkung.</p>
     </div>
+
+    
+    <h4>Medikamente geben und den Menschen überwachen — Schritt für Schritt</h4>
+    <p>Die Ärztin verordnet, du gibst und <b>beobachtest</b>. Vor jeder Gabe gilt die <b>5-R-Regel</b>: richtiger Patient · richtiges Arzneimittel · richtige Dosierung · richtige Applikationsart · richtiger Zeitpunkt — als 6. R gilt oft die richtige Dokumentation. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Lernmaterial/00-probeklausur.md">5-R-Regel</a></p>
+    <div class="kasten ich"><p class="kt">Beim Schlaganfall zuerst: kann er schlucken?</p>
+      <p>Ein Mensch mit Schluckstörung bekommt seine Tabletten <b>nicht einfach mit einem Glas Wasser</b>. Erst klären, ob er sicher schlucken kann; sonst Ärztin oder Arzt nach einer anderen Darreichungsform fragen. Grund: dieselbe Aspirationsgefahr wie beim Essen (12.4). <span class="q ich">Folgerung</span></p></div>
+
+    <div class="medkarte">
+      <p class="mk-titel"><b>Thrombozytenhemmer (z. B. ASS)</b> — damit sich in den Arterien kein neues Gerinnsel bildet</p>
+      <div class="sk-zeile"><span class="sk-k">Vor der Gabe</span><p>5-R-Regel; schlucken können?</p></div>
+      <div class="sk-zeile"><span class="sk-k">Danach beobachten</span><p><b>Blutungszeichen</b>: blaue Flecken, Zahnfleischbluten, schwarzer Stuhl; Magenbeschwerden. <span class="q ich">Folgerung</span></p></div>
+      <div class="sk-zeile"><span class="sk-k">Sofort melden</span><p>jede Blutung, schwarzen Stuhl, Bluterbrechen</p></div>
+      <div class="sk-zeile"><span class="sk-k">Beraten</span><p>jeden Tag nehmen, nicht selbst absetzen — die Wirkung ist unsichtbar, der Schutz auch.</p></div>
+    </div>
+    <div class="medkarte">
+      <p class="mk-titel"><b>Gerinnungshemmer (Antikoagulanzien)</b> — z. B. bei Vorhofflimmern, damit kein Gerinnsel aus dem Herzen ins Gehirn wandert</p>
+      <div class="sk-zeile"><span class="sk-k">Vor der Gabe</span><p>5-R-Regel; <b>bei Verdacht auf Schlaganfall nie „vorsorglich“ — keine blinde Antikoagulation</b>. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a></p></div>
+      <div class="sk-zeile"><span class="sk-k">Danach beobachten</span><p>Blutungszeichen wie oben; nach einem Sturz besonders genau hinsehen. <span class="q ich">Folgerung</span></p></div>
+      <div class="sk-zeile"><span class="sk-k">Sofort melden</span><p>Sturz mit Kopfanprall, neue Kopfschmerzen, neue Lähmung, schwerer weckbar, ungleiche Pupillen — an eine Blutung denken (Karte oben). <span class="q ich">Folgerung</span></p></div>
+      <div class="sk-zeile"><span class="sk-k">Beraten</span><p>nie eigenmächtig absetzen; Sturzgefahr gemeinsam senken.</p></div>
+    </div>
+    <div class="medkarte">
+      <p class="mk-titel"><b>Blutdrucksenker (Antihypertensiva)</b> — gegen den wichtigsten Risikofaktor, den Bluthochdruck</p>
+      <div class="sk-zeile"><span class="sk-k">Vor der Gabe</span><p>Blutdruck messen; 5-R-Regel.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Danach beobachten</span><p>Blutdruck; <b>Schwindel beim Aufstehen</b> — orthostatische Hypotonie, Sturzgefahr. <a class="q du" href="https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW">Sturz</a> Antihypertensiva stehen im Expertenstandard als medikamentenbezogenes Sturzrisiko. <a class="q du" href="https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW">Sturz</a></p></div>
+      <div class="sk-zeile"><span class="sk-k">Sofort melden</span><p>sehr niedrige oder sehr hohe Werte, Schwindel, Sturz</p></div>
+      <div class="sk-zeile"><span class="sk-k">Beraten</span><p>regelmäßig nehmen: Der häufigste Grund einer Blutdruckentgleisung sind nicht regelmäßig genommene Blutdrucksenker. <a class="q du" href="https://claude.ai/code/artifact/316b844e-b1e6-4bb8-8163-3af3058de4fa">Herz-Kreislauf</a></p></div>
+    </div>
+    <div class="medkarte">
+      <p class="mk-titel"><b>Statine</b> — bei zu hohen Cholesterinwerten</p>
+      <div class="sk-zeile"><span class="sk-k">Vor der Gabe</span><p>5-R-Regel.</p></div>
+      <div class="sk-zeile"><span class="sk-k">Danach beobachten</span><p>Muskelschmerzen erfragen. <span class="q ich">Folgerung</span></p></div>
+      <div class="sk-zeile"><span class="sk-k">Sofort melden</span><p>neue Muskelschmerzen</p></div>
+      <div class="sk-zeile"><span class="sk-k">Beraten</span><p>regelmäßig nehmen, über Jahre.</p></div>
+    </div>
+    <div class="medkarte">
+      <p class="mk-titel"><b>Insulin bei Diabetes</b> — Grunderkrankung gut einstellen</p>
+      <div class="sk-zeile"><span class="sk-k">Vor der Gabe</span><p>Blutzucker messen; isst sie die Mahlzeit wirklich? Deine Dozentin fragt im Fallbeispiel: „Hat der Patient sein Abendessen gegessen?“ <a class="q du" href="https://claude.ai/artifact/HTKB99uzuvaNbZ4HHCT8cx">Diabetes</a></p></div>
+      <div class="sk-zeile"><span class="sk-k">Danach beobachten</span><p>Zeichen der <b>Unterzuckerung</b> — deine Unterlagen: Stufe 1 bis 70, Stufe 2 unter 54, schwer = Fremdhilfe; und: „Erst essen, dann messen!“ <a class="q du" href="https://claude.ai/artifact/HTKB99uzuvaNbZ4HHCT8cx">Diabetes</a> Eine Unterzuckerung kann selbst Schlaganfall-ähnliche Zeichen machen — bitte im Kurs prüfen. <span class="q ich">Folgerung</span></p></div>
+      <div class="sk-zeile"><span class="sk-k">Sofort melden</span><p>Unterzuckerung, sehr hohe Werte</p></div>
+      <div class="sk-zeile"><span class="sk-k">Beraten</span><p>Mahlzeiten und Insulin gehören zusammen — besonders, wenn wegen der Schluckstörung weniger gegessen wird. <span class="q ich">Folgerung</span></p></div>
+    </div>
+    <div class="kasten merk"><p class="kt">Merksatz für jede Tablette</p>
+      <p><b>Wirkung kennen → wissen, was schiefgehen kann → genau das beobachten → melden und dokumentieren.</b> So beantwortest du auch jede Prüfungsfrage zu Medikamenten.</p></div>
 
     <div class="enbref"><p class="kt">🇫🇷 En bref</p>
       <p>En urgence : altéplase pour dissoudre le caillot. Ensuite, <strong>prévention secondaire</strong> (éviter le 2e AVC — environ 5 personnes sur 100 en font un autre dans l'année) : antiagrégants (aspirine…), anticoagulants en cas de fibrillation auriculaire, antihypertenseurs, statines, parfois une intervention sur la carotide. Toi, tu surveilles les saignements, la tension, les vertiges (risque de chute) et tu aides à prendre les médicaments <strong>tous les jours</strong>.</p>
@@ -1713,6 +1869,119 @@
     <div class="kasten ich"><p class="kt">Ehrlich gesagt</p><p>Internetquellen sind keine Norm und ersetzen weder deinen Unterricht noch die ärztliche Anordnung. Wenn etwas hier deinen Kursunterlagen widerspricht, gilt für die Prüfung deine Dozentin — und sag es mir, dann korrigiere ich den Artikel.</p></div>
   </section>
 
+  <!-- 16 ----------------------------------------------------------------- -->
+  <section class="kap" id="k16" data-kap="16">
+    <h3><span class="k">Kapitel 16</span>Abschluss — dein Fall und deine Pflegeplanung</h3>
+    <p class="vorspann">Wenn du alle Kapitel gelesen hast: ein Fall, Fragen dazu, die Medikamente — und dann schreibst du die Pflegeplanung selbst. Zuerst lernst du, wie man sie gut schreibt.</p>
+    <div class="abschluss-stand offen" data-abschluss="schlaganfall"><b class="as-zahl">0 von 15 Kapiteln gelesen</b><span class="as-text">Lies zuerst die übrigen Kapitel (Haken „Kapitel gelesen“ am Ende jedes Kapitels). Du kannst trotzdem schon hineinschauen.</span></div>
+
+    <h4>Schritt 1 · Der Fall: Frau M., 74 Jahre, Stroke Unit</h4>
+    <div class="kasten ich"><p class="kt">Übungsfall — von mir erfunden</p>
+      <p>Frau M. ist <b>kein echter Mensch</b>. Ich habe den Fall aus diesem Artikel gebaut, damit du alles an einer Person übst. Dosierungen stehen bewusst nicht da — sie kommen nicht aus deinen Unterlagen. Das Setting ist das Krankenhaus, wie in deiner Zwischenprüfung.</p></div>
+    <p><b>Aufnahme:</b> Vorgestern um 7:15 fand ihr Mann sie am Frühstückstisch: Der rechte Mundwinkel hing, sie fand die Wörter nicht, der rechte Arm war schwach. Er rief sofort die 112. Im CT keine Blutung; sie bekam eine <b>Lyse</b> und kam auf die <b>Stroke Unit</b>. Heute ist Tag 3.</p>
+    <div class="scroll"><table><tbody>
+      <tr><th>Diagnosen</th><td>Ischämischer Schlaganfall im Gebiet der linken mittleren Hirnarterie (A. cerebri media) mit <b>Hemiparese rechts, armbetont</b>, <b>zentraler Fazialisparese rechts</b>, <b>Aphasie</b> (Wortfindung) und <b>Dysphagie</b> · Vorhofflimmern, neu entdeckt · Arterielle Hypertonie seit 15 Jahren · Diabetes mellitus Typ 2 mit Insulin</td></tr>
+      <tr><th>Medikamente</th><td>Gerinnungshemmer wegen Vorhofflimmern (Beginn nach ärztlicher Entscheidung) · Blutdrucksenker · Statin · Insulin nach ärztlichem Schema · alles laut Anordnung</td></tr>
+      <tr><th>Heute beobachtet</th><td>wach, versteht einfache Aufforderungen, sagt einzelne Wörter, wird ungeduldig, wenn sie nicht verstanden wird · hustet beim Wassertrinken, Brotreste in der rechten Wange · rechter Arm kaum Kraft, rechtes Bein hebt sie gegen die Schwerkraft · braucht Hilfe beim Aufsetzen und beim Transfer in den Stuhl · RR 168/94 mmHg, Puls unregelmäßig 88/min · BZ morgens 182 mg/dl · Trinkmenge gestern 800 ml · heute Nacht einmal eingenässt</td></tr>
+      <tr><th>Biografie</th><td>war Schneiderin, Rechtshänderin · lebt mit ihrem Mann im Erdgeschoss · er besucht sie täglich und bringt gern Kuchen mit</td></tr>
+    </tbody></table></div>
+
+    <h4>Schritt 2 · Fragen zum Fall</h4>
+    <p>Erst selbst antworten, dann aufklappen. Die Operatoren sind die deiner Klausuren.</p>
+    <details class="frage"><summary><span><span class="op">Nennen · AFB I</span> Nennen Sie vier Folgen des Schlaganfalls bei Frau M. und die Hirnregion oder das System, das dahintersteckt.</span></summary>
+      <div class="antw"><ul><li><b>Hemiparese rechts</b> — motorisches Rindenfeld links, Pyramidenbahn über Kreuz <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a></li><li><b>Aphasie</b> — Sprachzentren (Broca/Wernicke) der dominanten Seite <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a> <a class="q net" href="https://flexikon.doccheck.com/de/Mediainfarkt">DocCheck: Mediainfarkt</a></li><li><b>zentrale Fazialisparese rechts</b> — Befehl zum N. facialis gestört, der Nerv selbst gesund <a class="q net" href="https://flexikon.doccheck.com/de/Fazialisparese">DocCheck: Fazialisparese</a></li><li><b>Dysphagie</b> — Steuerung des Schluckens (Schluckzentrum im Hirnstamm, Hirnnerven) gestört <a class="q net" href="https://flexikon.doccheck.com/de/Schluckakt">DocCheck: Schluckakt</a></li></ul></div></details>
+    <details class="frage"><summary><span><span class="op">Erklären</span> Erklären Sie, warum Frau M. die Stirn runzeln kann, obwohl ihr rechter Mundwinkel hängt.</span></summary>
+      <div class="antw"><p>Weil es eine <b>zentrale</b> Lähmung ist: Bei ihr ist nicht der Gesichtsnerv krank, sondern der Befehl aus dem Gehirn gestört. Bei der zentralen Fazialisparese bleiben Lidschluss und Stirnrunzeln meist erhalten; nur bei der peripheren ist die ganze Gesichtshälfte samt Stirn gelähmt. <a class="q net" href="https://flexikon.doccheck.com/de/Fazialisparese">DocCheck: Fazialisparese</a> <b>Eigenes Beispiel:</b> Wer nach einer Erkältung plötzlich die ganze Gesichtshälfte samt Stirn nicht bewegen kann, hat eher eine periphere Lähmung. <span class="q ich">Folgerung</span></p></div></details>
+    <details class="frage"><summary><span><span class="op">Erläutern · AFB II</span> Erläutern Sie am Fall, woran man erkennt, dass Frau M. aspirationsgefährdet ist.</span></summary>
+      <div class="antw"><p>Das sieht man daran, dass sie <b>beim Wassertrinken hustet</b> und <b>Brotreste in der rechten Wange</b> bleiben — zwei Zeichen der Schluckstörung (Kapitel 7). Dazu kommt die Diagnose Dysphagie nach Schlaganfall; Menschen mit neurologischen Erkrankungen wie dem Schlaganfall zählen ausdrücklich zu den aspirationsgefährdeten. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080</a> Die geringe Trinkmenge (800 ml) kann zeigen, dass sie aus Angst wenig trinkt — wie bei Frau Gerlach. <span class="q ich">Folgerung</span></p></div></details>
+    <details class="frage"><summary><span><span class="op">Ableiten · AFB II</span> Leiten Sie aus dem Medikamentenplan drei Beobachtungen ab, die Sie täglich durchführen.</span></summary>
+      <div class="antw"><ul><li><b>Blutungszeichen</b> (blaue Flecken, Zahnfleischbluten, schwarzer Stuhl), <b>weil</b> sie einen Gerinnungshemmer bekommt.</li><li><b>Blutdruck und Schwindel beim Aufsetzen</b>, <b>weil</b> der Blutdrucksenker Schwindel und Stürze begünstigen kann. <a class="q du" href="https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW">Sturz</a></li><li><b>Blutzucker und Zeichen der Unterzuckerung</b>, <b>weil</b> sie Insulin bekommt und wegen der Schluckstörung vielleicht weniger isst. <a class="q du" href="https://claude.ai/artifact/HTKB99uzuvaNbZ4HHCT8cx">Diabetes</a></li></ul><p class="notiz">Die Verbindung Medikament → Beobachtung ist meine Ableitung aus Kapitel 10. <span class="q ich">Folgerung</span></p></div></details>
+    <details class="frage"><summary><span><span class="op">Begründen · AFB III</span> Begründen Sie, warum Frau M. ihre Tabletten heute nicht einfach mit einem Glas Wasser bekommt.</span></summary>
+      <div class="antw"><p><b>Ursache:</b> Sie hat eine Dysphagie — sie hustet schon beim Wasser. <b>Wirkung:</b> Wasser und Tabletten können in die Luftröhre geraten. <b>Gefahr:</b> Aspiration, Aspirationspneumonie — bei alten Menschen oft schwer, teils tödlich. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080</a> <b>Deshalb</b> kläre ich zuerst, ob sie sicher schlucken kann, und frage die Ärztin nach einer anderen Darreichungsform. <span class="q ich">Folgerung</span></p></div></details>
+    <details class="frage"><summary><span><span class="op">Beurteilen · AFB III</span> In der Nacht ist Frau M. schwerer weckbar, und ihre Pupillen sind ungleich groß. Beurteilen Sie die Situation.</span></summary>
+      <div class="antw"><p><b>Einschätzung:</b> Verdacht auf Verschlechterung, z. B. eine Blutung oder steigenden Hirndruck — gerade unter Gerinnungshemmer. Das ist ein <b>Notfall</b>. <span class="q ich">Folgerung</span> Die Pupillendifferenz steht auf der Symptomliste deines Dozenten. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a> <b>Kette:</b> Druck im Schädel → Hirnstamm bedrängt → Atmung und Kreislauf in Gefahr. <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a> <b>Deshalb:</b> sofort Ärztin/Arzt, Vitalzeichen, Bewusstsein und Pupillen weiter beobachten, nicht allein lassen, dokumentieren.</p></div></details>
+    <details class="frage"><summary><span><span class="op">Beurteilen · AFB III</span> Herr M. möchte seiner Frau ein Stück Kuchen geben. Beurteilen Sie die Situation und sagen Sie, was Sie tun.</span></summary>
+      <div class="antw"><p><b>Einschätzung:</b> Gefahr — trockene Speisen und Essen ohne Aufsicht sind bei ihrer Schluckstörung riskant. Deine Unterlagen: geeignete Speisen auswählen, trockene vermeiden, beim Essen nicht allein lassen. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080</a> <b>Deshalb:</b> Herrn M. freundlich erklären, warum; mit ihm besprechen, was und wie sie essen darf; ihn einbeziehen — er ist eine Ressource. <span class="q ich">Folgerung</span></p></div></details>
+
+    <h4>Schritt 3 · So schreibst du eine Pflegeplanung — Schritt für Schritt</h4>
+    <p>Alles hier kommt von deinem Blatt zur Pflegeplanung. <a class="q du" href="https://claude.ai/code/artifact/d1d757ad-782d-4350-bcce-1337702a922f">Pflegeplanung</a></p>
+    <ol class="pp-weg">
+      <li><b>Informationen sammeln</b> — Fall, Diagnosen, Medikamente, Biografie. Was kann sie, was nicht?</li>
+      <li><b>Problem finden</b> — nach den ABEDL; <b>aktuell</b> (ist schon da) oder <b>potentiell</b> (droht).</li>
+      <li><b>PE(S)R schreiben</b> — <b>P</b>roblem · <b>E</b>influssfaktor/Ursache · <b>S</b>ymptome (bei aktuellen Problemen) · <b>R</b>essourcen.</li>
+      <li><b>Ziel nach SMART</b> — der Mensch ist das Subjekt, aktives Verb, positiv, messbar, mit Termin. Steht „Die Pflegekraft …“ am Anfang, ist es eine Maßnahme, kein Ziel.</li>
+      <li><b>Maßnahmen mit den W-Fragen</b> — wer? was? wie und womit (mit Hilfeform)? wann? wie oft? Die fünf Hilfeformen: Beaufsichtigung · Anleitung · Unterstützung · teilweise Übernahme · vollständige Übernahme.</li>
+      <li><b>Begründen</b> — dein Blatt sagt: „Bitte zusätzlich berücksichtigen! – Prophylaxen-Expertenstandards – Diagnosen – Medikamentöse Therapie“.</li>
+    </ol>
+    <div class="kasten merk"><p class="kt">Die Kette, die alles zusammenhält</p>
+      <p>Ohne Problem kein Ziel, ohne Ziel keine Maßnahme, ohne Maßnahme keine Begründung — so steht es auf deiner Pflegeplanungs-Seite. <a class="q du" href="https://claude.ai/code/artifact/d1d757ad-782d-4350-bcce-1337702a922f">Pflegeplanung</a></p></div>
+
+    <h4>Schritt 4 · Deine Pflegeplanung für Frau M.</h4>
+    <p>Schreib drei Probleme: <b>1 · Schlucken</b> (Aspiration), <b>2 · Bewegung</b> (Sturz), <b>3 · Kommunizieren</b> (Aphasie). Deine Antworten bleiben auf diesem Gerät gespeichert.</p>
+<p class="pp-nr"><b>Problem 1 · Schlucken</b></p>
+    <div class="ppfeld"><label><b>Pflegeproblem · PE(S)R</b><span>P · E · S · R — je eine Zeile</span>
+      <textarea data-feld="p1-pesr" rows="5" placeholder="Hier schreiben …"></textarea></label></div>
+    <div class="ppfeld"><label><b>Pflegeziele</b><span>SMART: Frau M. … (aktives Verb, Termin)</span>
+      <textarea data-feld="p1-ziel" rows="4" placeholder="Hier schreiben …"></textarea></label></div>
+    <div class="ppfeld"><label><b>Pflegemaßnahmen</b><span>wer · was · wie/womit (Hilfeform) · wann · wie oft</span>
+      <textarea data-feld="p1-mass" rows="5" placeholder="Hier schreiben …"></textarea></label></div>
+    <div class="ppfeld"><label><b>Begründungen</b><span>Expertenstandard · Diagnose · Medikamente</span>
+      <textarea data-feld="p1-begr" rows="4" placeholder="Hier schreiben …"></textarea></label></div><p class="pp-nr"><b>Problem 2 · Bewegung</b></p>
+    <div class="ppfeld"><label><b>Pflegeproblem · PE(S)R</b><span>P · E · S · R — je eine Zeile</span>
+      <textarea data-feld="p2-pesr" rows="5" placeholder="Hier schreiben …"></textarea></label></div>
+    <div class="ppfeld"><label><b>Pflegeziele</b><span>SMART: Frau M. … (aktives Verb, Termin)</span>
+      <textarea data-feld="p2-ziel" rows="4" placeholder="Hier schreiben …"></textarea></label></div>
+    <div class="ppfeld"><label><b>Pflegemaßnahmen</b><span>wer · was · wie/womit (Hilfeform) · wann · wie oft</span>
+      <textarea data-feld="p2-mass" rows="5" placeholder="Hier schreiben …"></textarea></label></div>
+    <div class="ppfeld"><label><b>Begründungen</b><span>Expertenstandard · Diagnose · Medikamente</span>
+      <textarea data-feld="p2-begr" rows="4" placeholder="Hier schreiben …"></textarea></label></div><p class="pp-nr"><b>Problem 3 · Kommunizieren</b></p>
+    <div class="ppfeld"><label><b>Pflegeproblem · PE(S)R</b><span>P · E · S · R — je eine Zeile</span>
+      <textarea data-feld="p3-pesr" rows="5" placeholder="Hier schreiben …"></textarea></label></div>
+    <div class="ppfeld"><label><b>Pflegeziele</b><span>SMART: Frau M. … (aktives Verb, Termin)</span>
+      <textarea data-feld="p3-ziel" rows="4" placeholder="Hier schreiben …"></textarea></label></div>
+    <div class="ppfeld"><label><b>Pflegemaßnahmen</b><span>wer · was · wie/womit (Hilfeform) · wann · wie oft</span>
+      <textarea data-feld="p3-mass" rows="5" placeholder="Hier schreiben …"></textarea></label></div>
+    <div class="ppfeld"><label><b>Begründungen</b><span>Expertenstandard · Diagnose · Medikamente</span>
+      <textarea data-feld="p3-begr" rows="4" placeholder="Hier schreiben …"></textarea></label></div>
+    <div class="kopie-box"><button type="button" class="kopie-knopf">📋 Antworten kopieren — und mir schicken</button>
+      <p class="notiz">Ich korrigiere Inhalt <b>und</b> Sprache, mit deinen sieben Baustellen.</p>
+      <textarea class="kopie-text" rows="3" readonly hidden></textarea></div>
+
+    <h4>Schritt 5 · Musterlösung — so könnte sie aussehen</h4>
+    <div class="kasten ich"><p class="kt">Von mir formuliert</p><p>Erst schreiben, dann aufklappen. Die Form kommt von deinem Blatt <a class="q du" href="https://claude.ai/code/artifact/d1d757ad-782d-4350-bcce-1337702a922f">Pflegeplanung</a>, die Maßnahmen tragen ihre Quelle.</p></div>
+
+    <details class="muster"><summary>Musterlösung Problem 1 · Schlucken</summary>
+      <div class="pp-spalte"><span class="sk-k">Pflegeproblem · PE(S)R</span>
+        <p><b>P</b> Frau M. ist in der Nahrungs- und Flüssigkeitsaufnahme beeinträchtigt; Gefahr der Aspiration (potentiell: Aspirationspneumonie).</p><p><b>E</b> Dysphagie nach Schlaganfall links; zentrale Fazialisparese rechts.</p><p><b>S</b> hustet beim Wassertrinken, Brotreste in der rechten Wange, Trinkmenge gestern 800 ml.</p><p><b>R</b> wach, versteht einfache Aufforderungen, kann aufrecht sitzen, linke Hand gezielt einsetzbar, Ehemann besucht täglich.</p></div>
+      <div class="pp-spalte"><span class="sk-k">Pflegeziele</span><ul><li><b>Nahziel:</b> Frau M. isst und trinkt ab heute jede Mahlzeit aufrecht sitzend unter Aufsicht.</li><li><b>Nahziel:</b> Ihre Trinkmenge wird ab heute im Trinkprotokoll erfasst und erreicht bis Freitag die mit der Ärztin vereinbarte Menge.</li><li><b>Fernziel:</b> Ihre Lunge bleibt frei: Atmung ruhig, Körpertemperatur im Normbereich — bis zur Entlassung.</li></ul></div>
+      <div class="pp-spalte"><span class="sk-k">Pflegemaßnahmen — wer, was, wie/womit (Hilfeform), wann, wie oft</span><ul><li>1 PP setzt Frau M. zu jeder Mahlzeit aufrecht hin und lässt den Oberkörper danach 20–30 Minuten erhöht (<i>Unterstützung</i>). <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080</a></li><li>1 PP bleibt bei jeder Mahlzeit bei ihr, lässt ihr Zeit und drängt nicht (<i>Beaufsichtigung/Anleitung</i>). <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080</a></li><li>1 PP wählt geeignete Speisen, keine trockenen (Kuchen, Zwieback) (<i>Unterstützung</i>). <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080</a></li><li>1 PP führt vor und nach jeder Mahlzeit Mundhygiene durch und kontrolliert die rechte Wangentasche (<i>teilweise Übernahme</i>). <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080</a> <span class="q ich">Folgerung</span></li><li>1 PFK prüft bei Dienstbeginn das Absauggerät am Bett. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080</a></li><li>1 PFK informiert die Ärztin über das Husten beim Trinken und fragt nach Schluckdiagnostik und der Darreichungsform der Tabletten. <span class="q ich">Folgerung</span></li><li>1 PP führt das Trinkprotokoll und beobachtet Atmung und Temperatur; 1 PFK berät Herrn M., ihr nichts ohne Absprache zu essen zu geben. <span class="q ich">Folgerung</span></li></ul></div>
+      <div class="pp-spalte"><span class="sk-k">Begründungen</span><ul><li>Menschen mit Schlaganfall sind aspirationsgefährdet; Aspirationspneumonie und Ersticken sind lebensbedrohliche Folgen einer verfrühten Nahrungsaufnahme. <a class="q du" href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/blob/claude/nursing-exam-prep-workflow-gvn5u0/Wissen/080-aspirationsprophylaxe.md">Wissen 080</a></li><li>Diagnose: Dysphagie nach Schlaganfall (Kapitel 7, Schluckstörung).</li><li>Medikamente: Tabletten sind dieselbe Aspirationsgefahr wie Essen. <span class="q ich">Folgerung</span></li></ul></div>
+    </details>
+    <details class="muster"><summary>Musterlösung Problem 2 · Bewegung</summary>
+      <div class="pp-spalte"><span class="sk-k">Pflegeproblem · PE(S)R</span>
+        <p><b>P</b> Frau M. ist in der Bewegung beeinträchtigt; Sturzgefahr (potentiell: Sturz mit Verletzung, unter Gerinnungshemmer Blutung).</p><p><b>E</b> Hemiparese rechts, armbetont; Blutdrucksenker (Schwindel); Insulin (Unterzuckerung).</p><p><b>S</b> rechter Arm kaum Kraft; braucht Hilfe beim Aufsetzen und beim Transfer.</p><p><b>R</b> hebt das rechte Bein gegen die Schwerkraft, linke Seite kräftig, will wieder selbstständig werden.</p></div>
+      <div class="pp-spalte"><span class="sk-k">Pflegeziele</span><ul><li><b>Nahziel:</b> Frau M. setzt sich ab morgen dreimal täglich mit Unterstützung einer Pflegekraft an die Bettkante und in den Stuhl.</li><li><b>Fernziel:</b> Frau M. bleibt während des Aufenthalts sturzfrei.</li></ul></div>
+      <div class="pp-spalte"><span class="sk-k">Pflegemaßnahmen — wer, was, wie/womit (Hilfeform), wann, wie oft</span><ul><li>1 PFK misst vor dem ersten Aufsetzen den Blutdruck und lässt sie langsam aufsetzen; sie fragt nach Schwindel (<i>Unterstützung</i>). <a class="q du" href="https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW">Sturz</a> <span class="q ich">Folgerung</span></li><li>1 PP führt den rechten Arm mit Griff oberhalb des Ellbogens, nie an der Hand; Arm im Sitzen auf großer Fläche lagern (<i>teilweise Übernahme</i>). <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></li><li>1 PP hilft beim Transfer in den Stuhl, Frau M. arbeitet mit der linken Seite selbst mit (<i>Unterstützung</i>). <span class="q ich">Folgerung</span></li><li>keine Infusion und keine Blutabnahme am rechten Arm; Kleidung schnürt nicht ein. <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></li><li>Klingel und Trinkbecher stehen in Reichweite der linken Hand. <span class="q ich">Folgerung</span></li><li>Physiotherapie einbeziehen (Kapitel 11).</li></ul></div>
+      <div class="pp-spalte"><span class="sk-k">Begründungen</span><ul><li>Der Expertenstandard Sturzprophylaxe nennt den Apoplex, sensomotorische Beeinträchtigungen und Antihypertensiva als Sturzrisiken. <a class="q du" href="https://claude.ai/artifact/VapHvVm5bLivcJTRyfLbjW">Sturz</a></li><li>Schulter: erschlaffte Muskulatur → Subluxation, schmerzhafte Schulter durch falsches Handling. <a class="q du" href="https://claude.ai/artifact/3aoBWoCEmvWGzxFZFFiWDo">Neurologie</a></li><li>Medikamente: Blutdrucksenker (Schwindel), Insulin (Unterzuckerung), Gerinnungshemmer (Blutung nach Sturz).</li></ul></div>
+    </details>
+    <details class="muster"><summary>Musterlösung Problem 3 · Kommunizieren</summary>
+      <div class="pp-spalte"><span class="sk-k">Pflegeproblem · PE(S)R</span>
+        <p><b>P</b> Frau M. kann ihre Bedürfnisse nicht ausreichend mitteilen.</p><p><b>E</b> Aphasie (Wortfindungsstörung) nach Schlaganfall links.</p><p><b>S</b> sagt einzelne Wörter, sucht nach Wörtern, wird ungeduldig.</p><p><b>R</b> versteht einfache Aufforderungen, kann nicken und den Kopf schütteln, Ehemann kennt ihre Gewohnheiten.</p></div>
+      <div class="pp-spalte"><span class="sk-k">Pflegeziele</span><ul><li><b>Nahziel:</b> Frau M. zeigt ab heute Schmerz, Durst und Toilettenwunsch mit Ja/Nein-Antworten oder Gesten an.</li><li><b>Fernziel:</b> Frau M. erlebt Gespräche als ruhig und fühlt sich verstanden — sie arbeitet mit der Logopädie.</li></ul></div>
+      <div class="pp-spalte"><span class="sk-k">Pflegemaßnahmen — wer, was, wie/womit (Hilfeform), wann, wie oft</span><ul><li>Alle Pflegenden sprechen in kurzen Sätzen, eine Frage auf einmal, als Ja/Nein-Frage, und lassen Zeit zum Antworten. <span class="q ich">Folgerung</span></li><li>Gesten und Bilder nutzen; nie über sie hinweg sprechen. <a class="q du" href="https://claude.ai/code/artifact/c6adc9b4-6a4b-4d2d-8bee-0f51ceb9200d">Notfälle</a> <span class="q ich">Folgerung</span></li><li>Herrn M. fragen, wie sie sonst Dinge zeigt; ihn einbeziehen.</li><li>Logopädie einbeziehen (Kapitel 11).</li></ul></div>
+      <div class="pp-spalte"><span class="sk-k">Begründungen</span><ul><li>Diagnose Aphasie: die Sprachzentren sind gestört, nicht der Verstand (Kapitel 7). <a class="q du" href="https://claude.ai/artifact/7QvnjZCLwsrhDH8Zc7Fpjj">Anatomie</a></li><li>Zur Kommunikation bei Aphasie hast du keine eigenen Unterlagen — die Maßnahmen sind meine Folgerung aus Kapitel 4, 7 und 12.10. <span class="q ich">Folgerung</span></li></ul></div>
+    </details>
+
+    <h4>Schritt 6 · Fertig</h4>
+    <div class="fertig-box"><button type="button" class="fertig-knopf" data-fertig="schlaganfall">✓ Ich habe den Schlaganfall abgeschlossen</button>
+      <p class="fertig-text"></p></div>
+    <p>Danach: die gemischten <b>Fragen zu allen Krankheiten</b> in Teil III.</p>
+
+    <div class="enbref"><p class="kt">🇫🇷 En bref</p>
+      <p>Le chapitre final : un cas (Mme M., 74 ans, Stroke Unit) avec ses diagnostics et ses médicaments, des questions avec les opérateurs de tes examens, puis la méthode pour écrire une Pflegeplanung (PE(S)R, SMART, W-Fragen, formes d'aide, justification), trois problèmes à écrire toi-même et une solution modèle. Quand tu as fini, coche « abgeschlossen » et envoie-moi tes réponses : je corrige le contenu et la langue.</p></div>
+  </section>
+
+
   </div>
 </article>
 
@@ -1865,7 +2134,8 @@ window.BIBLIOTHEK=(function(){
   Q.querySelectorAll('article').forEach(a=>{const name=((a.querySelector('.artkopf h2')||{}).textContent||a.id).trim();
     a.querySelectorAll('details.frage').forEach((d,i)=>{d.dataset.fid=a.id+'-'+i;d.dataset.krankheit=name;});});
   function ergebnis(fids,titel){const e=document.createElement('div');e.className='ergebnis';e.dataset.fids=fids.join(',');
-    e.innerHTML='<p class="kicker"></p><b class="ez"></b><small class="ezs"></small>';e.querySelector('.kicker').textContent=titel;return e;}
+    e.innerHTML='<p class="kicker"></p><b class="ez"></b><small class="ezs"></small>';e.querySelector('.kicker').textContent=titel;
+    e.querySelector('.ez').textContent='0 von '+fids.length+' gewusst';e.querySelector('.ezs').textContent=fids.length+' noch nicht bewertet · '+fids.length+' zum Wiederholen';return e;}
 
   const tpl=id=>document.getElementById(id).content.firstElementChild.cloneNode(true);
   const kapitel=[...ART.querySelectorAll('section.kap')].map(s=>{
@@ -1986,6 +2256,8 @@ window.BIBLIOTHEK=(function(){
         const h=el.cloneNode(true);h.querySelector('.regal').innerHTML='';
         if(!erst){const t=h.querySelector('h3');if(t)t.textContent+=' (Fortsetzung)';}return h;}};
     }
+    if((el.classList.contains('symkarte')||el.classList.contains('medkarte'))&&el.children.length>1)
+      return {items:[...el.children].map(x=>[x]),ziel:h=>h,huelle:erst=>{const h=el.cloneNode(false);if(!erst)h.classList.add('fort');return h;}};
     if(el.classList.contains('steck')&&el.children.length>1)
       return {items:[...el.children].map(x=>[x]),ziel:h=>h,huelle:()=>el.cloneNode(false)};
     return null;
@@ -2163,7 +2435,40 @@ window.BIBLIOTHEK=(function(){
       S.querySelectorAll('li.kap[data-kap="'+k.nr+'"]').forEach(li=>li.classList.toggle('gelesen',an));});
     knopf.textContent='Inhalt · '+n+'/'+kapitel.length+' ✓';
     zeigeFragen();
+    zeigeAbschluss();
   }
+  /* Abschluss (seit 04.11.2026): Stand der Kapitel, „abgeschlossen“-Haken, gespeicherte Antworten der Pflegeplanung */
+  const AKEY='krankheiten-antworten-v1', FEKEY='krankheiten-fertig-v1';
+  let ANTW={},FERTIG={};
+  try{ANTW=JSON.parse(lies(AKEY)||'{}')||{};}catch(e){ANTW={};}
+  try{FERTIG=JSON.parse(lies(FEKEY)||'{}')||{};}catch(e){FERTIG={};}
+  function zeigeAbschluss(){
+    const vorher=kapitel.filter(k=>+k.nr<kapitel.length), gel=vorher.filter(k=>gelesen[ART.id+'-'+k.nr]).length;
+    S.querySelectorAll('.abschluss-stand').forEach(b=>{const alle=gel===vorher.length;b.classList.toggle('offen',!alle);
+      b.querySelector('.as-zahl').textContent=gel+' von '+vorher.length+' Kapiteln gelesen';
+      b.querySelector('.as-text').textContent=alle?'Alles gelesen — jetzt der Fall und deine Pflegeplanung.':'Lies zuerst die übrigen Kapitel (Haken „Kapitel gelesen“ am Ende jedes Kapitels). Du kannst trotzdem schon hineinschauen.';});
+    S.querySelectorAll('textarea[data-feld]').forEach(t=>{const v=ANTW[t.dataset.feld]||'';if(t.value!==v)t.value=v;});
+    const fe=FERTIG[ART.id];
+    S.querySelectorAll('.fertig-knopf').forEach(b=>{b.setAttribute('aria-pressed',fe?'true':'false');
+      b.textContent=fe?'✓ Abgeschlossen am '+fe+' — rückgängig machen':'✓ Ich habe den Schlaganfall abgeschlossen';});
+    S.querySelectorAll('.fertig-text').forEach(x=>x.textContent=fe?'Gut gemacht. Schick mir deine Pflegeplanung — dann korrigiere ich sie.':'');
+    S.querySelectorAll('a.buch.fertig[href="#'+ART.id+'"]').forEach(a=>a.classList.toggle('abgeschlossen',!!fe));
+  }
+  S.addEventListener('input',e=>{const t=e.target.closest('textarea[data-feld]');if(!t)return;
+    ANTW[t.dataset.feld]=t.value;schreib(AKEY,JSON.stringify(ANTW));
+    S.querySelectorAll('textarea[data-feld="'+t.dataset.feld+'"]').forEach(x=>{if(x!==t)x.value=t.value;});});
+  S.addEventListener('click',e=>{
+    const f=e.target.closest('.fertig-knopf');
+    if(f){if(FERTIG[ART.id])delete FERTIG[ART.id];else{const d=new Date();FERTIG[ART.id]=('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.'+d.getFullYear();}
+      schreib(FEKEY,JSON.stringify(FERTIG));zeigeAbschluss();return;}
+    const k=e.target.closest('.kopie-knopf');if(!k)return;
+    const namen={pesr:'Pflegeproblem PE(S)R',ziel:'Pflegeziele',mass:'Pflegemaßnahmen',begr:'Begründungen'};
+    let txt='Pflegeplanung Frau M. (Krankheiten verstehen · Schlaganfall)\n';
+    [1,2,3].forEach(n=>{txt+='\nProblem '+n+'\n';Object.keys(namen).forEach(x=>{txt+=namen[x]+': '+(ANTW['p'+n+'-'+x]||'—')+'\n';});});
+    const box=k.parentNode.querySelector('.kopie-text');box.value=txt;box.hidden=false;
+    const ok=()=>{k.textContent='✓ Kopiert — füge es in unseren Chat ein';};
+    try{navigator.clipboard.writeText(txt).then(ok,()=>{box.select();});}catch(err){box.select();}
+  });
   function zeigeFragen(){
     S.querySelectorAll('.bewerten').forEach(b=>{const v=FR[b.dataset.fid];
       b.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',String(v!==undefined&&String(v)===x.dataset.w)));});
@@ -2246,7 +2551,7 @@ window.BIBLIOTHEK=(function(){
       deckel:DECKEL,
       info:()=>{const n=kapitel.filter(k=>gelesen[ART.id+'-'+k.nr]).length;
         const g=Object.keys(FR).filter(k=>FR[k]===1).length;
-        return {zeile:n+' von '+kapitel.length+' Kapiteln gelesen',zweite:g?g+' Fragen gewusst':'',lesezeichen:!!lies(STELLE)};},
+        return {zeile:n+' von '+kapitel.length+' Kapiteln gelesen',zweite:[FERTIG[ART.id]?'Schlaganfall ✓ abgeschlossen':'',g?g+' Fragen gewusst':''].filter(Boolean).join(' · '),lesezeichen:!!lies(STELLE)};},
       vorbereiten:()=>bereit||(bereit=vorbereiten()),
       ziel:()=>{const n=masse();if(n!==mass)baue();else zeige(cur,true);zeigeNur([]);return deckelRechteck();},
       oeffne:danach=>deckel(1500,danach),
