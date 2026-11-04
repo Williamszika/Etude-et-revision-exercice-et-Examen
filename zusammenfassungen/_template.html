@@ -158,7 +158,7 @@
   }
   @media (prefers-reduced-motion:reduce){#leselinie,.ring .weg,a.lesen{transition:none;}}
   /* ---- Seit 04.11.2026: die Zusammenfassung selbst steht im Buch (Seiten mit .zlesen.zfl) ---- */
-  .satz.zlesen{overflow-x:auto;}
+  .satz.zlesen{overflow-x:auto;} .satz.zlesen tr.zfort td{border-top-style:dashed;}
   .satz.zlesen img,.satz.zlesen svg{max-width:100%;height:auto;}
   .satz.zlesen table{max-width:100%;}
   .zkopf{text-align:center;padding:30px 0 10px;border-bottom:1px solid var(--line);margin-bottom:18px;font-family:var(--serif);}
@@ -478,7 +478,7 @@ var D = __DATA__;
       &&[...e.children].every(c=>{const d=getComputedStyle(c).display;return d==='none'||!/^inline/.test(d)||c.textContent.length<60;})
       &&[...e.children].some(c=>!/^inline/.test(getComputedStyle(c).display));
     /* Ein langer Absatz wird an Satzgrenzen geteilt — nur, wenn er nicht mehr ganz auf die Seite passt */
-    const SATZ=/(?<=[.!?…]["“”'’)\]]?)\s+(?=[A-ZÄÖÜ„"“(0-9])/;
+    const SATZ=/(?<=[.!?…]["“”'’)\]]?)\s+(?=[A-ZÄÖÜ„"“(0-9])|(?<=\s·)\s+/;
     /* zerlegt einen Knoten an Satzgrenzen in Stücke — auch durch <i>, <b> … hindurch (jedes Stück bekommt seine Hülle) */
     const stuecke=n=>{
       if(n.nodeType===3){
@@ -491,9 +491,16 @@ var D = __DATA__;
       for(const c of [...n.childNodes]){const s=stuecke(c);s.forEach((x,j)=>{if(j>0){out.push(akt);akt=n.cloneNode(false);}akt.append(x);});}
       out.push(akt);return out;
     };
+    /* Eine Tabellenzeile, die auch auf einer leeren Seite nicht passt: jede Zelle an Satzgrenzen halbieren → zwei Zeilen */
+    const zeileTeilen=tr=>{const a=tr.cloneNode(false),b=tr.cloneNode(false);let ok=false;
+      [...tr.children].forEach(td=>{const st=stuecke(td).filter(t=>t.textContent.trim());const ca=td.cloneNode(false),cb=td.cloneNode(false);
+        const k=Math.ceil(st.length/2);if(st.length>1)ok=true;
+        st.forEach((p,j)=>{const z=j<k?ca:cb;while(p.firstChild)z.append(p.firstChild);});
+        cb.removeAttribute('id');a.append(ca);b.append(cb);});
+      if(!ok)return null;b.classList.add('zfort');b.removeAttribute('data-u');return [a,b];};
     const saetze=e=>{
       const teile=stuecke(e).filter(t=>t.textContent.trim());
-      teile.forEach((t,j)=>{if(j>0){t.removeAttribute('id');t.style.marginTop='0';t.style.textIndent='0';}if(j<teile.length-1)t.style.marginBottom='0';t.removeAttribute('data-u');});
+      teile.forEach((t,j)=>{if(j>0){t.removeAttribute('id');t.style.marginTop='0';t.style.textIndent='0';if(t.tagName==='LI')t.style.listStyle='none';}if(j<teile.length-1)t.style.marginBottom='0';t.removeAttribute('data-u');});
       if(teile.length&&e.dataset.u!=null)teile[0].dataset.u=e.dataset.u;
       return teile;
     };
@@ -511,7 +518,7 @@ var D = __DATA__;
       if(!voll()){gelegt(e);return;}
       const kann=teilbar(e),platz=e.offsetHeight-(box.scrollHeight-box.clientHeight);
       /* Kästen mit reinem Fließtext (Merke, Warnung …) dürfen wie ein Absatz geteilt werden */
-      const fliess=/^(P|BLOCKQUOTE)$/.test(e.tagName)||(/^(DIV|ASIDE)$/.test(e.tagName)&&[...e.children].every(c=>/^inline/.test(getComputedStyle(c).display)));
+      const fliess=/^(P|BLOCKQUOTE|LI|DD)$/.test(e.tagName)||(/^(DIV|ASIDE)$/.test(e.tagName)&&[...e.children].every(c=>/^inline/.test(getComputedStyle(c).display)));
       e.remove();
       /* Ist auf dieser Seite noch viel Platz, wird ein zerlegbarer Block gleich hier geteilt */
       if(kann&&platz>box.clientHeight*.3){zerlege(e,vf);return;}
@@ -529,6 +536,9 @@ var D = __DATA__;
         e.remove();
       }
       if(kann){zerlege(e,vf);return;}
+      /* passt auch auf einer leeren Seite nicht: Fließtext doch noch an Satzgrenzen (oder „·“) teilen */
+      if(fliess&&!e._satz){const t=saetze(e);if(t.length>1){t.forEach(x=>{x._satz=1;legen(x,vf);});return;}}
+      if(e.tagName==='TR'){const z=zeileTeilen(e);if(z){z.forEach(x=>legen(x,vf));return;}}
       eltern(vf).append(e);gelegt(e);
     };
     const umbruch=()=>{const mit=[];

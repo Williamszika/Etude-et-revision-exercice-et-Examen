@@ -1955,6 +1955,13 @@ Im Moment nur Schlaganfall. Für „Meine Kurse“ gibt es keine Fragen (die Inh
   (Typ-1-Kette, Typ-2-Teufelskreis, Risikofaktoren, metabolisches Syndrom, andere Formen, GDM) · **Symptome je mit „Warum?“** · Folgeschäden ·
   Notfälle und Hypoglykämie mit Ursache/Zeichen/Therapie **je mit „Warum?“**. Nicht belegte Gründe stehen als „nennen deine Folien nicht“
   oder mit Abzeichen **Herleitung**. Diese Gliederung gilt für alle weiteren Kurse.
+  **Am 04.11.2026 freigegeben** (*„C'est très bien. Fais les autres cours comme ça.“*) — **alle 20 übrigen Buch-Kurse am selben Tag neu
+  geschrieben**, je ein Schreib-Subagent (Auftrag: `scratchpad/auftrag-zusammenfassung.md`, Quellen aus Drive bzw. `quellen/`, jede Seite
+  gelesen, Bildfolien angesehen/OCR) und danach ein **unabhängiger Prüf-Subagent** gegen die Seitentexte (`auftrag-pruefung.md`; 10–41
+  Korrekturen je Kurs). Asthma hat jetzt eine eigene `schulung-asthma/zusammenfassung.html` (im Buch statt `asthma.html`; `asthma.html`
+  bleibt unverändert). Die Einzel-Artifacts der Zusammenfassungen sind **nicht** neu veröffentlicht — gelesen wird im Buch. Im Buch-Umbruch
+  (`_template.html`) neu: zu hohe Tabellenzeilen werden an Satzgrenzen in zwei Zeilen geteilt (`zeileTeilen`), Fließtext/`li` auch auf
+  leerer Seite an Satzgrenzen oder „·“.
 - **`schulungen/` — die alte Übersichtsseite ist am 16.09.2026 auf ihren Wunsch gelöscht.**
   Ihr Wortlaut: *„Du musst 📚 Schulungen mit allen Quellen löschen."* Das Artifact
   `70ca4043-…` existiert **nicht mehr** und darf **nicht neu angelegt werden**.
