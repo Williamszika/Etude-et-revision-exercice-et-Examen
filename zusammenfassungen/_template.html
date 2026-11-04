@@ -157,6 +157,16 @@
     .seite.zier::before{width:120px;height:120px;}
   }
   @media (prefers-reduced-motion:reduce){#leselinie,.ring .weg,a.lesen{transition:none;}}
+  /* ---- Seit 04.11.2026: die Zusammenfassung selbst steht im Buch (Seiten mit .zlesen.zfl) ---- */
+  .satz.zlesen{overflow-x:auto;}
+  .satz.zlesen img,.satz.zlesen svg{max-width:100%;height:auto;}
+  .satz.zlesen table{max-width:100%;}
+  .zkopf{text-align:center;padding:30px 0 10px;border-bottom:1px solid var(--line);margin-bottom:18px;font-family:var(--serif);}
+  .zkopf .ztitel{font-family:var(--display);font-weight:600;font-size:clamp(1.7rem,3.6vw,2.2rem);line-height:1.1;color:var(--accent);margin:4px 0 8px;}
+  .zkopf .zhinweis{font-style:italic;font-size:14.5px;color:var(--ink-soft);margin:0;}
+  .zende{border:1px solid var(--gruen);border-left:4px solid var(--gruen);border-radius:6px;background:rgba(217,227,198,.45);padding:14px 16px;margin:22px 0 6px;font-family:var(--serif);color:var(--ink);}
+  .zende b{display:block;font-family:var(--display);font-size:1.25rem;margin:0 0 8px;}
+  .zende .wege{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:10px;font-size:14.5px;}
   /* ---- Umblättern: ein Blatt dreht sich um den Buchrücken (seit 03.11.2026, ihr Wunsch „comme une feuille qu'on feuillette“) ---- */
   #seiten{perspective:2600px;}
   .seite{transition:none!important;transform:none!important;}
@@ -230,6 +240,17 @@ var D = __DATA__;
   const schluessel=k=>'zf-gelesen-'+String(k.titel).replace(/[^a-zA-Z0-9]/g,'').slice(0,28);
   const istGelesen=k=>lies(schluessel(k))==='1';
   const K=D.kurse||[];
+  /* Seit 04.11.2026 steht der ganze Text der Zusammenfassung im Buch. Aufgeschlagen ist immer EINE
+     (sonst würde das Buch zu langsam); welche, merkt sich 'zf-offen-v1'. */
+  const LS=D.lesen||{};
+  const OFFEN='zf-offen-v1';
+  const hatText=k=>!!(k&&LS[k.id]);
+  let offen=K.findIndex(k=>k.id&&k.id===lies(OFFEN)&&hatText(k));
+  function lesestil(){
+    let s=document.getElementById('zfl-stil');
+    if(!s){s=document.createElement('style');s.id='zfl-stil';(document.head||document.documentElement).append(s);}
+    s.textContent=offen>=0&&hatText(K[offen])?LS[K[offen].id].css:'';
+  }
 
   /* Notfall: falls das Buch nicht aufgebaut werden kann, wenigstens die Liste */
   const nl=document.getElementById('notfallListe');
@@ -265,8 +286,9 @@ var D = __DATA__;
     box.append(el('p','kicker','Als Nächstes · der älteste offene Kurs'),el('b',null,k.icon+' '+k.titel));
     const w=el('div','wege');
     const a1=el('a',null,'Im Buch aufschlagen');a1.href='#'+kursId(i);
-    const a2=el('a',null,k.haupt.label+' lesen ↗');a2.href=k.haupt.url;a2.target='_blank';a2.rel='noopener';
-    w.append(a1,a2);box.append(w);
+    w.append(a1);
+    if(hatText(k)){const a2=el('a',null,'📖 Zusammenfassung lesen');a2.href='#lies-'+i;a2.dataset.lies=i;w.append(a2);}
+    box.append(w);
   }
 
   /* Der Text „worum“ besteht aus Abschnitten, getrennt durch „ · “. Großgeschriebene Anfänge werden zu Kapitälchen. */
@@ -295,7 +317,7 @@ var D = __DATA__;
 
   function sammle(){
     const U=[];let n=0;
-    const add=(e,o)=>{e.dataset.u=n++;U.push(Object.assign({el:e,ctx:'',lauf:'',neu:false,allein:false,zier:false},o));};
+    const add=(e,o)=>{e.dataset.u=(o&&o.key)||n++;U.push(Object.assign({el:e,ctx:'',lauf:'',neu:false,allein:false,zier:false},o));};
 
     /* Titelblatt */
     const t=el('div','titelblatt');t.id='titel';
@@ -344,14 +366,41 @@ var D = __DATA__;
       h.append(me);
       add(h,{ctx:'kurs',neu:true,zier:true,lauf});
       const ak=el('div','aktion');
-      const a=el('a','lesen',k.haupt.label+' lesen ↗');a.href=k.haupt.url;a.target='_blank';a.rel='noopener';
       const lab=el('label','gelesen');const cb=el('input');cb.type='checkbox';cb.dataset.kurs=i;lab.append(cb,document.createTextNode(' gelesen'));
-      ak.append(a,lab);add(ak,{ctx:'kurs',lauf});
+      if(hatText(k)){
+        const a=el('a','lesen',i===offen?'📖 Zusammenfassung — weiterlesen':'📖 Zusammenfassung hier im Buch lesen');a.href='#lies-'+i;a.dataset.lies=i;
+        ak.append(a,lab);
+      }else{
+        const a=el('a','lesen',k.haupt.label+' lesen ↗');a.href=k.haupt.url;a.target='_blank';a.rel='noopener';
+        ak.append(a,lab);
+      }
+      add(ak,{ctx:'kurs',lauf});
       const rest=(k.kernpunkte||[]).slice();
       if(rest.length){add(el('blockquote','kern',rest.shift().replace(/^⭐\s*/,'')),{ctx:'kurs',lauf});}
       const teile=abschnitte(k.worum);
       if(teile.length){add(el('h4',null,'Was drinsteht'),{ctx:'kurs',lauf});const ul=el('ul','drin');teile.forEach(x=>ul.append(x));add(ul,{ctx:'kurs',lauf});}
       if(rest.length){add(el('h4',null,'Merkpunkte'),{ctx:'kurs',lauf});const ul=el('ul','drin');rest.forEach(p=>ul.append(el('li',null,p.replace(/^⭐\s*/,''))));add(ul,{ctx:'kurs',lauf});}
+
+      /* Die Zusammenfassung selbst — Seite für Seite, nur für den aufgeschlagenen Kurs */
+      if(i===offen&&hatText(k)){
+        const zl='Zusammenfassung · '+k.titel,zc='zlesen zfl';let m=0;
+        const kopf=el('div','zkopf');kopf.id='lies-'+i;
+        kopf.append(el('p','kicker','Die Zusammenfassung · Kurs '+(i+1)),el('p','ztitel',k.icon+' '+k.titel),
+          el('p','zhinweis','Blättere einfach weiter — der ganze Text steht auf den nächsten Seiten.'));
+        add(kopf,{ctx:zc,lauf:zl,neu:true,tief:true,key:'z'+i+'-'+(m++)});
+        const t=document.createElement('template');t.innerHTML=LS[k.id].html;
+        /* Jedes Element bekommt eine Marke — so findet das Lesezeichen die genaue Seite wieder */
+        t.content.querySelectorAll('*').forEach(x=>{x.dataset.u='z'+i+'-'+(m++);});
+        [...t.content.children].forEach(c=>add(c,{ctx:zc,lauf:zl,tief:true,key:'z'+i+'-'+(m++)}));
+        const ende=el('div','zende');
+        ende.append(el('p','kicker','Ende der Zusammenfassung'),el('b',null,k.icon+' '+k.titel));
+        const l2=el('label','gelesen');const c2=el('input');c2.type='checkbox';c2.dataset.kurs=i;l2.append(c2,document.createTextNode(' gelesen'));
+        const w=el('div','wege');const z1=el('a',null,'← zum Kurs');z1.href='#'+kursId(i);const z2=el('a',null,'Inhalt');z2.href='#inhalt';
+        w.append(z1,z2);
+        if(i>0&&hatText(K[i-1])){const z3=el('a',null,'Nächster Kurs →');z3.href='#lies-'+(i-1);z3.dataset.lies=i-1;w.append(z3);}
+        ende.append(l2,w);
+        add(ende,{ctx:zc,lauf:zl,tief:true,key:'z'+i+'-'+(m++)});
+      }
     });
 
     /* Weiteres */
@@ -365,7 +414,8 @@ var D = __DATA__;
     /* Über dieses Buch */
     const e=el('div','schluss');e.id='ende';
     e.innerHTML='<p class="kicker">Über dieses Buch</p><h2>Was hier hereinkommt — und was nicht</h2>'
-      +'<p>Drin ist <b>pro Kurs genau ein Link</b>: die Zusammenfassung. Draußen bleiben Übungen, Klausuren, Fallbeispiele, Gesprächsleitfäden und alle Original-PDFs.</p>'
+      +'<p>Drin ist <b>pro Kurs die ganze Zusammenfassung</b> — seit dem 4. November 2026 direkt hier im Buch: Knopf „📖 Zusammenfassung hier im Buch lesen“, dann einfach weiterblättern. Aufgeschlagen ist immer eine; das Buch merkt sich, welche und wo du warst. Draußen bleiben Übungen, Klausuren, Fallbeispiele, Gesprächsleitfäden und alle Original-PDFs.</p>'
+      +'<p class="fr">Le résumé complet de chaque cours est maintenant dans le livre : bouton « 📖 Zusammenfassung hier im Buch lesen », puis tourne les pages. Le livre retient où tu t’es arrêtée.</p>'
       +'<p><b>Das Buch fängt am 16. September 2026 an.</b> Die siebzehn Zusammenfassungen von davor — Recht, Notfälle, Demenz, Blutgruppen und die anderen — sind <b>nicht gelöscht</b>. Ihre Seiten sind weiterhin online, sie stehen nur nicht mehr in diesem Buch. Sag Bescheid, wenn du sie zurückwillst: das ist eine Zeile.</p>'
       +'<p class="fr">Le livre commence le 16 septembre 2026. Les dix-sept résumés précédents ne sont pas supprimés — ils ne sont simplement plus dans ce livre.</p>'
       +'<p>Alle Zusammenfassungen beruhen auf den Original-Unterlagen der Dozentinnen und Dozenten. Die Original-PDFs liegen weiterhin im Repository — <a href="https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen/tree/claude/nursing-exam-prep-workflow-gvn5u0" target="_blank" rel="noopener">dort kannst du sie öffnen</a>, Ordner für Ordner unter <code>schulung-…/quellen/</code> und <code>PDFs/</code>.</p>';
@@ -402,14 +452,85 @@ var D = __DATA__;
     const anker=seiten.length?ankerVon(cur):lies(STELLE);
     mass=masse();
     S.textContent='';seiten=[];
-    let box=null,ctx='',lauf='',allein=false;
+    let box=null,ctx='',lauf='',allein=false,kette=[],inhalt=0;const geklont=new WeakSet();
     const neu=(c,l,zier)=>{
       const s=document.createElement('section');s.className='seite'+(zier?' zier':'');
       box=document.createElement('div');box.className='satz '+c;
       const f=document.createElement('div');f.className='fuss';
       f.innerHTML='<span class="snr"></span><span class="lauf"></span>';f.querySelector('.lauf').textContent=l;
-      s.append(box,f);S.append(s);seiten.push(s);ctx=c;lauf=l;};
+      s.append(box,f);S.append(s);seiten.push(s);ctx=c;lauf=l;kette=[];inhalt=0;};
     const voll=()=>box.scrollHeight>box.clientHeight+1;
+    /* Zusammenfassungstext: ein Block, der nicht mehr auf die Seite passt, kommt auf die nächste; ist er
+       allein größer als eine Seite, wird er in seine Kinder zerlegt — die Hülle (Karte, Abschnitt, Tabelle)
+       wird auf jeder Seite neu angelegt, damit das Aussehen bleibt. */
+    const eltern=vf=>{
+      let k=0;while(k<kette.length&&k<vf.length&&kette[k].o===vf[k]&&kette[k].b===box)k++;
+      kette.length=k;let p=k?kette[k-1].c:box;
+      for(let j=k;j<vf.length;j++){const c=vf[j].cloneNode(false);
+        /* nur die erste Hülle behält id und Lesezeichen-Marke */
+        if(geklont.has(vf[j])){c.removeAttribute('id');c.removeAttribute('data-u');}else geklont.add(vf[j]);
+        if(vf[j]._kopf)c.append(vf[j]._kopf.cloneNode(true)); /* Tabellenkopf auf jeder Seite wiederholen */
+        p.append(c);kette.push({o:vf[j],c,b:box});p=c;}
+      return p;};
+    /* zerlegbar: Blockkinder ohne losen Text dazwischen — geprüft, solange das Element auf der Seite steht */
+    const teilbar=e=>e.children.length>0&&!/^(P|H[1-6]|TR|THEAD|PRE|SVG|FIGURE|DETAILS|SUMMARY|BUTTON|SELECT|IMG)$/i.test(e.tagName)
+      &&![...e.childNodes].some(n=>n.nodeType===3&&n.textContent.trim())
+      &&[...e.children].every(c=>{const d=getComputedStyle(c).display;return d==='none'||!/^inline/.test(d)||c.textContent.length<60;})
+      &&[...e.children].some(c=>!/^inline/.test(getComputedStyle(c).display));
+    /* Ein langer Absatz wird an Satzgrenzen geteilt — nur, wenn er nicht mehr ganz auf die Seite passt */
+    const SATZ=/(?<=[.!?…]["“”'’)\]]?)\s+(?=[A-ZÄÖÜ„"“(0-9])/;
+    /* zerlegt einen Knoten an Satzgrenzen in Stücke — auch durch <i>, <b> … hindurch (jedes Stück bekommt seine Hülle) */
+    const stuecke=n=>{
+      if(n.nodeType===3){
+        const a=n.textContent.split(SATZ);
+        /* Satzgrenze genau an der Knotengrenze: „… gesichert.“</i> Drei …“ */
+        const v=n.previousSibling;if(v&&/^\s/.test(n.textContent)&&/[.!?…]["“”'’)\]]?$/.test(v.textContent||''))a.unshift('');
+        return a.map((x,j)=>document.createTextNode(x+(j<a.length-1&&x?' ':'')));}
+      if(n.nodeType!==1||/^(SVG|IMG|BR|INPUT|SELECT|TEXTAREA|BUTTON)$/i.test(n.tagName))return [n.cloneNode(true)];
+      const out=[];let akt=n.cloneNode(false);
+      for(const c of [...n.childNodes]){const s=stuecke(c);s.forEach((x,j)=>{if(j>0){out.push(akt);akt=n.cloneNode(false);}akt.append(x);});}
+      out.push(akt);return out;
+    };
+    const saetze=e=>{
+      const teile=stuecke(e).filter(t=>t.textContent.trim());
+      teile.forEach((t,j)=>{if(j>0){t.removeAttribute('id');t.style.marginTop='0';t.style.textIndent='0';}if(j<teile.length-1)t.style.marginBottom='0';t.removeAttribute('data-u');});
+      if(teile.length&&e.dataset.u!=null)teile[0].dataset.u=e.dataset.u;
+      return teile;
+    };
+    /* inhalt zählt nur echte Blöcke, keine Überschriften — eine Überschrift bleibt nie allein unten stehen */
+    /* „Kopf“ = Überschrift oder das kurze Etikett oben in einem Kasten (z. B. „Merke“) — wandert mit auf die nächste Seite */
+    const kopf=x=>/^H[1-5]$/.test(x.tagName)||(!x.previousElementSibling&&/^(SPAN|B|STRONG|EM|SMALL)$/.test(x.tagName)&&x.textContent.length<60);
+    const gelegt=x=>{if(!kopf(x))inhalt++;};
+    const zerlege=(e,vf)=>{
+      let kinder=[...e.children];
+      if(e.tagName==='TABLE'){const th=kinder.find(c=>c.tagName==='THEAD');if(th){e._kopf=th;kinder=kinder.filter(c=>c!==th);}}
+      kinder.forEach(c=>c.remove());kinder.forEach(c=>legen(c,vf.concat([e])));
+    };
+    const legen=(e,vf)=>{
+      let p=eltern(vf);p.append(e);
+      if(!voll()){gelegt(e);return;}
+      const kann=teilbar(e),platz=e.offsetHeight-(box.scrollHeight-box.clientHeight);
+      /* Kästen mit reinem Fließtext (Merke, Warnung …) dürfen wie ein Absatz geteilt werden */
+      const fliess=/^(P|BLOCKQUOTE)$/.test(e.tagName)||(/^(DIV|ASIDE)$/.test(e.tagName)&&[...e.children].every(c=>/^inline/.test(getComputedStyle(c).display)));
+      e.remove();
+      /* Ist auf dieser Seite noch viel Platz, wird ein zerlegbarer Block gleich hier geteilt */
+      if(kann&&platz>box.clientHeight*.3){zerlege(e,vf);return;}
+      if(!kann&&fliess&&platz>90&&!e._satz){
+        const t=saetze(e);
+        if(t.length>1){t.forEach(x=>{x._satz=1;legen(x,vf);});return;}
+      }
+      if(inhalt>0){
+        let h=null;if(p.lastElementChild&&kopf(p.lastElementChild)){h=p.lastElementChild;h.remove();
+          let q=p;while(q&&q!==box&&!q.children.length&&!q.textContent.trim()){const up=q.parentElement;q.remove();q=up;}}
+        neu(ctx,lauf,false);
+        if(h)eltern(vf).append(h);
+        p=eltern(vf);p.append(e);
+        if(!voll()){gelegt(e);return;}
+        e.remove();
+      }
+      if(kann){zerlege(e,vf);return;}
+      eltern(vf).append(e);gelegt(e);
+    };
     const umbruch=()=>{const mit=[];
       while(box.childElementCount>1&&/^H[2-4]$/.test(box.lastElementChild.tagName)){const h=box.lastElementChild;h.remove();mit.unshift(h);}
       neu(ctx,lauf,false);mit.forEach(m=>box.append(m));};
@@ -428,6 +549,11 @@ var D = __DATA__;
       }
     };
     for(const u of sammle()){
+      if(u.tief){
+        if(!box||(u.neu&&box.childElementCount)||box.className!=='satz '+u.ctx)neu(u.ctx,u.lauf,u.zier);
+        ctx=u.ctx;lauf=u.lauf;allein=false;
+        legen(u.el,[]);continue;
+      }
       if(!box||((u.neu||allein)&&box.childElementCount))neu(u.ctx,u.lauf,u.zier);
       ctx=u.ctx;lauf=u.lauf;allein=u.allein;
       box.append(u.el);
@@ -568,7 +694,15 @@ var D = __DATA__;
     S.querySelectorAll('li[data-kurs]').forEach(li=>{const an=!q||li.dataset.suche.indexOf(q)>=0;li.hidden=!an;if(an)sichtbar[li.dataset.monat]=1;});
     S.querySelectorAll('li.teil[data-monat]').forEach(li=>li.hidden=!!q&&!sichtbar[li.dataset.monat]);});
 
+  /* „Zusammenfassung lesen“: diesen Kurs aufschlagen, das Buch neu setzen, zur ersten Textseite blättern */
+  function oeffneText(i){
+    if(!hatText(K[i]))return;
+    if(offen!==i){offen=i;schreib(OFFEN,K[i].id);lesestil();baue();}
+    const p=seiteVon('lies-'+i);if(p>=0)zeige(p);
+  }
   document.addEventListener('click',e=>{
+    const l=e.target.closest('[data-lies]');
+    if(l&&A.contains(l)&&aktiv()){e.preventDefault();oeffneText(+l.dataset.lies);return;}
     const a=e.target.closest('a[href^="#"]');if(!a||!A.contains(a)||!aktiv())return;
     const id=decodeURIComponent(a.getAttribute('href').slice(1));const i=seiteVon(id);if(i<0){if(!id)e.preventDefault();return;}
     e.preventDefault();zeige(i);
@@ -599,6 +733,7 @@ var D = __DATA__;
         '500 40px "Cormorant Garamond"','600 20px "Cormorant Garamond"','400 30px "Pinyon Script"'];
       await Promise.race([Promise.all(f.map(x=>document.fonts.load(x))).catch(()=>{}),new Promise(r=>setTimeout(r,3000))]);
     }
+    lesestil();
     baue();
     if(document.fonts){const nachladen=()=>{if(!aktiv()){mass='';return;}if(laeuft){setTimeout(nachladen,300);return;}mass='';const n=masse();mass=n;baue();};document.fonts.addEventListener('loadingdone',nachladen);}
   }

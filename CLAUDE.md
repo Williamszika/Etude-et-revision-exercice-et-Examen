@@ -1934,6 +1934,14 @@ Im Moment nur Schlaganfall. Für „Meine Kurse“ gibt es keine Fragen (die Inh
   bleiben draußen. Die Seite hat einen **Fortschrittsring**, je Kurs einen Haken **„gelesen"**
   (im `localStorage`), eine Karte **„Als Nächstes"** mit dem ältesten ungelesenen Kurs und einen
   Filter **„nur die offenen"**. **Nach jeder neuen Schulung mitbauen und mitveröffentlichen.** **Seit 03.11.2026 ein Buch** wie „Krankheiten verstehen“ (Einband tannengrün): Titelblatt mit Ring, Inhalt mit Suche und „Als Nächstes“, je Kurs eigene Seiten (Kopf, Knopf zur Zusammenfassung, Haken, „Was drinsteht“ aus `hinweis`, an ` · ` und Satzgrenzen geteilt). Haken-Schlüssel `zf-gelesen-…` unverändert.
+  **Seit 04.11.2026 steht der ganze Text jeder Zusammenfassung im Buch** (ihr Wunsch: *„Ich kann nicht diese Link öffnen in diesem
+  Buch … alles wieder in dem Buch, damit ich die Zusammenfassung in dem Buch lesen kann“*). `node zusammenfassungen/lesestoff.js` öffnet
+  jede Zusammenfassung in Chromium und schreibt Inhalt + CSS (eingegrenzt auf `#zfansicht .zfl`, ohne Dunkelmodus, fixed/sticky → static,
+  ids mit Präfix, relative Links → GitHub) nach `zusammenfassungen/lesestoff.json`; `build.py` nimmt es von dort (`D.lesen`). Im Buch: Knopf
+  „📖 Zusammenfassung hier im Buch lesen“ → der Text wird ab der nächsten Seite gesetzt (Blöcke, die nicht passen, wandern weiter oder
+  werden zerlegt; lange Absätze an Satzgrenzen; Tabellenkopf wiederholt). **Immer nur eine aufgeschlagen** (`zf-offen-v1`), sonst wird es
+  zu langsam; Lesezeichen genau (jedes Element hat eine Marke). **Nach jeder neuen oder geänderten Zusammenfassung erst `lesestoff.js`,
+  dann `build.py`.** Kurse ohne `zusammenfassung.html` stehen in `DATEI` in `lesestoff.js`.
 - **`schulungen/` — die alte Übersichtsseite ist am 16.09.2026 auf ihren Wunsch gelöscht.**
   Ihr Wortlaut: *„Du musst 📚 Schulungen mit allen Quellen löschen."* Das Artifact
   `70ca4043-…` existiert **nicht mehr** und darf **nicht neu angelegt werden**.

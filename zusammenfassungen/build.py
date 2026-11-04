@@ -106,6 +106,7 @@ def main():
                 draussen.append(f"{s.get('titel','')}: {z.get('label','Zusatz')}")
 
         kurse.append({
+            "id": s.get("id", ""),
             "titel": s.get("titel", ""),
             "untertitel": s.get("untertitel", ""),
             "worum": s.get("hinweis", ""),
@@ -137,13 +138,26 @@ def main():
 
     kurse.sort(key=lambda k: k["datum"], reverse=True)
 
+    # Seit 04.11.2026: der ganze Text jeder Zusammenfassung liegt IM Buch (ihr Wunsch: „Ich kann nicht
+    # diese Link öffnen in diesem Buch“). Abgeschrieben von `node zusammenfassungen/lesestoff.js`.
+    lesestoff = {}
+    lpfad = os.path.join(BASE, "lesestoff.json")
+    if os.path.exists(lpfad):
+        alle = json.load(open(lpfad, encoding="utf-8"))
+        for k in kurse:
+            if k["id"] in alle:
+                lesestoff[k["id"]] = {"css": alle[k["id"]]["css"], "html": alle[k["id"]]["html"]}
+    ohne = [k["titel"] for k in kurse if k["id"] not in lesestoff]
+
     tpl = open(os.path.join(BASE, "_template.html"), encoding="utf-8").read()
-    nutz = json.dumps({"kurse": kurse, "weitere": weitere},
+    nutz = json.dumps({"kurse": kurse, "weitere": weitere, "lesen": lesestoff},
                       ensure_ascii=False).replace("</", "<\\/")
     seite = tpl.replace("__DATA__", nutz)
     ziel = os.path.join(BASE, "index.html")
     open(ziel, "w", encoding="utf-8").write(seite)
 
+    print(f"    im Buch lesbar: {len(lesestoff)} von {len(kurse)}"
+          + (f" — ohne Text: {', '.join(ohne)}" if ohne else ""))
     faecher = sorted({k["fach"] for k in kurse if k["fach"]})
     if vor_neustart:
         print(f"    {vor_neustart} Eintrag/Eintraege vor dem Neustart {NEUSTART} — "
