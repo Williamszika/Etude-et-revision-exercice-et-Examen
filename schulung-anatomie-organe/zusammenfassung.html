@@ -1,2173 +1,764 @@
-<title>Die Organe und das Nervensystem</title>
+<title>Organe und Nervensystem</title>
+<meta name="description" content="Die Organe, das Nervensystem und die Muskeln — einfach erklärt, nur aus deinen Kursdateien (CE 05 / UE 0 · CE 07 / UE 04).">
 <style>
   :root{
-    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
-    --accent:#8a3a3f;--accent-deep:#6d2b30;--accent-soft:#f3e0e1;
-    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
-    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
-    --pharm:#1f5f86;--pharmbg:#dbe8f1;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --paper:#f3f5f4;--card:#ffffff;--ink:#17201f;--ink-soft:#4a5755;--line:#cfd8d6;
+    --accent:#1d6b74;--accent-soft:#dcedef;
+    --rot:#a43b30;--rotbg:#f7e2de;--gelb:#8a5a0c;--gelbbg:#f8ecd4;--gruen:#2a6b47;--gruenbg:#e0efe5;
     --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
   }
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
-    --accent:#e0949a;--accent-deep:#eeb0b5;--accent-soft:#33191b;
-    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
-    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
-    --pharm:#6cadd9;--pharmbg:#122736;}}
+    --paper:#111716;--card:#1a2221;--ink:#e8eeed;--ink-soft:#a1aeac;--line:#2d3836;
+    --accent:#6fc3cd;--accent-soft:#163238;
+    --rot:#e48d80;--rotbg:#33201c;--gelb:#e0b05f;--gelbbg:#30240f;--gruen:#7ccb9c;--gruenbg:#15291d;color-scheme:dark;}}
   :root[data-theme="dark"]{
-    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
-    --accent:#e0949a;--accent-deep:#eeb0b5;--accent-soft:#33191b;
-    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
-    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
-    --pharm:#6cadd9;--pharmbg:#122736;}
-  :root[data-theme="light"]{
-    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
-    --accent:#8a3a3f;--accent-deep:#6d2b30;--accent-soft:#f3e0e1;
-    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
-    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
-    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
-
+    --paper:#111716;--card:#1a2221;--ink:#e8eeed;--ink-soft:#a1aeac;--line:#2d3836;
+    --accent:#6fc3cd;--accent-soft:#163238;
+    --rot:#e48d80;--rotbg:#33201c;--gelb:#e0b05f;--gelbbg:#30240f;--gruen:#7ccb9c;--gruenbg:#15291d;color-scheme:dark;}
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
-
-  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
-    border-bottom:1px solid var(--line);
-    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
-  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--accent-deep);margin:0 0 10px;}
-  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
-    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
-  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
-  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
-    border-radius:999px;background:var(--card);color:var(--ink-soft);}
-
-  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
-    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
-  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
-    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
-    white-space:nowrap;}
-  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
-    background:var(--card);}
-
-  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
-  section{padding-top:52px;}
-  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
-    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
-  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
-  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
-  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
-  p{margin:0 0 14px;max-width:70ch;}
-  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
-  li{margin:5px 0;}
-  b,strong{font-weight:700;}
-  .fr{font-style:italic;color:var(--ink-soft);}
-  .fr::before{content:"🇫🇷 ";font-style:normal;}
-
-  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
-  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
-  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
-  .karte p:last-child{margin-bottom:0;}
-
-  .scroll{overflow-x:auto;margin:18px 0;}
-  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
-  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
-    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
-    text-align:left;vertical-align:bottom;}
-  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
-  td.k{font-weight:700;white-space:nowrap;}
-  tbody tr:nth-child(even) td{background:var(--paper);}
-
-  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .merk p:last-child{margin-bottom:0;}
-  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--accent-deep);display:block;margin-bottom:6px;}
-
-  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .warnung p:last-child{margin-bottom:0;}
-  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--warn);display:block;margin-bottom:6px;}
-
-  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .gefahr p:last-child{margin-bottom:0;}
-  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--notfall);display:block;margin-bottom:6px;}
-
-  .stufen{display:grid;gap:10px;margin:18px 0;}
-  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
-    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
-  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
-    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
-  .stufe .nr.n2{background:var(--accent);}
-  .stufe h4{margin:0 0 4px;}
-  .stufe p{margin:0;font-size:15.5px;}
-  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
-
-  .paare{display:grid;gap:9px;margin:18px 0;}
-  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
-    border-radius:0 10px 10px 0;padding:11px 15px;}
-  .paar .de{font-weight:600;}
-  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
-
-  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
-    overflow:hidden;}
-  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
-    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
-  details.quelle>summary::-webkit-details-marker{display:none;}
-  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
-  details.quelle[open]>summary::before{content:"－";}
-  details.quelle .inh{padding:0 17px 15px;}
-  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
-
-  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
-    padding:16px 18px;margin:20px 0;}
-  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
-  .pruef ol{margin:0;}
-
-  a{color:var(--accent-deep);}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
-  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
-    text-align:center;color:var(--ink-soft);font-size:14px;}
-  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
-  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;}
+  main{max-width:46rem;margin:0 auto;padding-inline:16px;padding-block:28px 60px;}
+  h1{font-size:2rem;line-height:1.15;margin:0 0 6px;text-wrap:balance;}
+  h2{font-size:1.35rem;line-height:1.25;margin:34px 0 8px;color:var(--accent);text-wrap:balance;}
+  h3{font-size:1.05rem;margin:18px 0 6px;}
+  p{margin:0 0 10px;}
+  ul,ol{margin:0 0 12px;padding-left:1.3rem;} li{margin:3px 0;}
+  .unter{color:var(--ink-soft);margin:0 0 16px;}
+  .stern{color:var(--gelb);font-size:.9em;letter-spacing:1px;white-space:nowrap;}
+  .kern{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;margin:14px 0;}
+  .fr{font-style:italic;color:var(--ink-soft);font-size:.95em;}
+  .merke{background:var(--gelbbg);border-radius:8px;padding:9px 13px;margin:10px 0;}
+  .merke b:first-child{color:var(--gelb);}
+  .hinweis{background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:9px 13px;margin:10px 0;font-size:.95em;}
+  .quelle{font-size:.8em;color:var(--ink-soft);margin:4px 0 0;}
+  /* Schemata: Kästen mit Pfeilen, von oben nach unten */
+  .schema{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:12px 0;}
+  .schema .titel{font-weight:700;margin:0 0 10px;}
+  .k{border:1.5px solid var(--line);border-radius:8px;padding:7px 10px;background:var(--paper);}
+  .k b{display:block;}
+  .k small{display:block;color:var(--ink-soft);font-size:.86em;line-height:1.4;}
+  .k.wichtig{border-color:var(--accent);background:var(--accent-soft);}
+  .k.rot{border-color:var(--rot);background:var(--rotbg);}
+  .k.gruen{border-color:var(--gruen);background:var(--gruenbg);}
+  .pfeil{text-align:center;color:var(--ink-soft);font-size:1.1rem;line-height:1.4;}
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .zwei > div{min-width:0;}
+  .lesen{font-size:.88em;color:var(--ink-soft);margin:8px 0 0;}
+  .scroll{overflow-x:auto;margin:10px 0;}
+  table{border-collapse:collapse;width:100%;font-size:.92em;line-height:1.4;}
+  th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-soft);}
+  td.z{white-space:nowrap;font-variant-numeric:tabular-nums;}
+  tr.rot td:first-child{background:var(--rotbg);} tr.gelb td:first-child{background:var(--gelbbg);} tr.gruen td:first-child{background:var(--gruenbg);}
+  details{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:8px 0;}
+  summary{cursor:pointer;font-weight:600;}
+  .op{display:inline-block;font-size:.75em;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:0 8px;margin-right:6px;}
+  .spick{columns:2 16rem;column-gap:24px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px 12px 32px;}
+  .spick li{break-inside:avoid;}
+  @media (max-width:520px){.zwei{grid-template-columns:1fr;} h1{font-size:1.7rem;} td.z{white-space:normal;} th,td{padding:5px 6px;}}
 </style>
 
-<header class="hero">
-  <p class="eyebrow">CE 05 · CE 07 · Anatomie und Physiologie</p>
-  <h1>Die Organe und das Nervensystem</h1>
-  <p class="sub">Genau das Gebiet, in dem deine Klausuren am schwächsten waren. Alles hier steht
-    so in deinen eigenen Unterlagen — und wo etwas fehlt, sage ich es, statt es zu erfinden.</p>
-  <div class="meta">
-    <span>CE 05 / UE 0</span>
-    <span>CE 07 / UE 04</span>
-    <span>Anatomische Grundbegriffe</span>
-    <span>14 Dateien</span>
-    <span>Niveau B1</span>
-    <span>Stand 20.09.2026</span>
-  </div>
-</header>
-
-<nav class="toc" aria-label="Inhalt">
-  <a href="#warum">Warum dieses Thema</a>
-  <a href="#auftrag">Der Auftrag</a>
-  <a href="#grundbegriffe">Anatomische Grundbegriffe</a>
-  <a href="#organe">Die Organe</a>
-  <a href="#leber">Leber</a>
-  <a href="#lunge">Lunge</a>
-  <a href="#magen">Magen</a>
-  <a href="#niere">Niere</a>
-  <a href="#pankreas">Bauchspeicheldrüse</a>
-  <a href="#muskel">Muskelgewebe</a>
-  <a href="#skelett">Skelettmuskulatur</a>
-  <a href="#nerven">Nervensystem</a>
-  <a href="#neuron">Das Neuron</a>
-  <a href="#gehirn">Gehirn</a>
-  <a href="#bewusst">Bewusstsein</a>
-  <a href="#offen">Was fehlt</a>
-</nav>
-
-<main>
-
-<section id="warum">
-  <h2>Warum ausgerechnet dieses Thema zuerst</h2>
-  <p class="lead">Weil dein Notenspiegel genau hier einbricht.</p>
-
-  <p>Am 18.09.2026 haben wir deine zehn Noten ausgewertet. Das Muster war eindeutig: Deine
-    <b>schwächsten</b> Klausuren waren die über <b>Anatomie, Physiologie und
-    Krankheitsmechanismus</b> — Blut und Herz <b>3,99</b>, Pneumonie mit septischem Schock
-    <b>5,37</b>. Die Klausur am selben Tag über <b>Pflegehandlungen</b> lag bei <b>2,95</b>.</p>
-
-  <p>Es ist also nicht „Pflege“, was schwerfällt. Es ist <b>der Vorgang im Körper</b> — das
-    Beschreiben und Begründen von etwas, das man nicht sieht.</p>
-
-  <div class="merk">
-    <span class="t">Deshalb dieser Block zuerst</span>
-    <p>Von den vierzehn Themenblöcken deines Google-Drive-Ordners ist das hier der, der deine
-      Noten am direktesten trifft. Alles andere — Notfälle, Geburtshilfe, Pädiatrie — baut
-      außerdem darauf auf.</p>
-    <p class="fr">C'est le bloc qui touche tes notes le plus directement. Tout le reste s'appuie
-      dessus.</p>
-  </div>
-</section>
-
-<section id="auftrag">
-  <h2>Der Auftrag deiner Dozentin — und warum er zählt</h2>
-  <p class="lead">Die Einstiegsfolie CE 05 UE 0 sagt genau, was geprüft wird.</p>
-
-  <p>Der Foliensatz <b>Organübersicht</b> ist keine Wissensfolie, sondern eine
-    <b>Arbeitsanweisung</b>. Die Klasse wurde in Gruppen geteilt, jede Gruppe hat ein Organ
-    bearbeitet und vorgestellt. Am Ende steht dort ein Wort: <b>Prüfungsform: Klausur</b>.</p>
-
-  <div class="merk">
-    <span class="t">Wörtlich aus der Folie</span>
-    <p>„Erarbeiten Sie zu jedem Organ folgende Inhalte:<br>
-      <b>Größe / Gewicht / Lage</b><br>
-      <b>Makroskopie (Grundaufbau)</b><br>
-      <b>Funktionen des Organs</b>“</p>
-  </div>
-
-  <p><b>Das sind drei Fragen, keine offene Aufgabe.</b> Wenn in der Klausur „Beschreiben Sie die
-    Leber“ steht, erwartet die Korrektur genau diese drei Punkte — und zwar <b>sichtbar
-    getrennt</b>. Der Operator <b>Beschreiben</b> liegt auf AFB I: Werden zwei oder drei Teile
-    verlangt, müssen alle dastehen, sonst fehlen Punkte, auch wenn der Inhalt stimmt.</p>
-
-  <div class="warnung">
-    <span class="t">Die Falle, die dich Punkte kostet</span>
-    <p>Man schreibt einen schönen Absatz über die Leber — und vergisst das <b>Gewicht</b>. Der
-      Inhalt ist richtig, die Antwort ist trotzdem unvollständig. <b>Schreib die drei
-      Überschriften hin, bevor du antwortest</b>, und fülle sie einzeln.</p>
-    <p class="fr">Écris les trois titres avant de répondre : taille/poids/position — structure —
-      fonctions. Puis remplis-les un par un.</p>
-  </div>
-
-  <p class="fr">Le cours date du 31.03.2025. C'est un travail de groupe : chaque groupe a traité
-    un organe.</p>
-</section>
-
-<section id="grundbegriffe">
-  <h2>Anatomische Grundbegriffe — die Sprache, in der die Klausur geschrieben ist</h2>
-  <p class="lead">Ein Blatt deiner Dozentin, vier Seiten, fünf Listen. <b>Es erklärt keinen
-    einzigen Vorgang — es erklärt die Wörter</b>, mit denen alle anderen Blätter arbeiten.</p>
-
-  <p>Dieses Blatt (<i>Anatomische Grundbegriffe.pdf</i>, CE 05) ist am 20.09.2026 dazugekommen.
-    Es steht hier <b>vor</b> den Organen, weil es der Schlüssel zu allem danach ist: Wer weiß,
-    dass <i>-itis</i> Entzündung heißt und <i>hypo-</i> „unter“, kann die Hälfte der Fachwörter
-    einer Klausur <b>auseinandernehmen, statt sie auswendig zu lernen</b>.</p>
-
-  <p class="fr">C'est une feuille de vocabulaire, pas de contenu. Elle vaut plus que beaucoup de
-    pages de cours : elle te permet de <b>décomposer</b> les mots techniques au lieu de les
-    apprendre par cœur.</p>
-
-  <h3>1 · Richtungsangaben — wo im Körper?</h3>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Begriff</th><th>Bedeutung</th><th>kommt von</th></tr></thead>
-      <tbody>
-        <tr><td class="k">kranial</td><td>nach oben, kopfwärts</td><td><i>cranium</i> = Schädel</td></tr>
-        <tr><td class="k">superior</td><td>obenliegend</td><td>—</td></tr>
-        <tr><td class="k">kaudal</td><td>nach unten, steiß- bzw. fußwärts</td><td><i>cauda</i> = Schwanz</td></tr>
-        <tr><td class="k">inferior</td><td>untenliegend</td><td>—</td></tr>
-        <tr><td class="k">anterior / ventral</td><td>vorne, zur Bauchseite hin</td><td><i>ventrum</i> = Bauch</td></tr>
-        <tr><td class="k">posterior / dorsal</td><td>hinten, zum Rücken hin</td><td><i>dorsum</i> = Rücken</td></tr>
-        <tr><td class="k">frontal</td><td>zur Stirn hin</td><td>—</td></tr>
-        <tr><td class="k">okzipital</td><td>zum Hinterhaupt hin</td><td>—</td></tr>
-        <tr><td class="k">volar / palmar</td><td>zur Handfläche hin</td><td>—</td></tr>
-        <tr><td class="k">plantar</td><td>zur Fußsohle</td><td>—</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
-      <tbody>
-        <tr><td class="k">sinister</td><td>links</td></tr>
-        <tr><td class="k">dexter</td><td>rechts</td></tr>
-        <tr><td class="k">lateral</td><td>außen</td></tr>
-        <tr><td class="k">medial</td><td>zur Mitte hin</td></tr>
-        <tr><td class="k">median</td><td>in der Körpermitte</td></tr>
-        <tr><td class="k">tibial</td><td>zum Schienbein hin (am Unterschenkel)</td></tr>
-        <tr><td class="k">fibular</td><td>zum Wadenbein hin (am Unterschenkel)</td></tr>
-        <tr><td class="k">radial</td><td>zur Speiche hin (an der Hand bzw. am Unterarm)</td></tr>
-        <tr><td class="k">ulnar</td><td>zur Elle hin (an der Hand bzw. am Unterarm)</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
-      <tbody>
-        <tr><td class="k">superfizial</td><td>oberflächlich</td></tr>
-        <tr><td class="k">profund</td><td>tief</td></tr>
-        <tr><td class="k">proximal</td><td>rumpfnah (zum Rumpf hin)</td></tr>
-        <tr><td class="k">distal</td><td>rumpffern (vom Rumpf weg)</td></tr>
-        <tr><td class="k">zentral</td><td>im Zentrum</td></tr>
-        <tr><td class="k">peripher</td><td>in der Umgebung</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Die vier Paare, die sich gegenseitig erklären</span>
-    <p><b>kranial ↔ kaudal</b> (oben ↔ unten) · <b>ventral ↔ dorsal</b> (vorn ↔ hinten) ·
-      <b>proximal ↔ distal</b> (zum Rumpf ↔ vom Rumpf weg) · <b>medial ↔ lateral</b>
-      (zur Mitte ↔ nach außen). <b>Wer diese vier Paare kann, versteht jede Lagebeschreibung.</b></p>
-    <p class="fr">Quatre paires d'opposés. Apprends-les par paires, jamais un mot tout seul —
-      c'est l'opposition qui fixe le sens.</p>
-  </div>
-
-  <h3>2 · Grundbegriffe und Abkürzungen — was <i>M.</i>, <i>A.</i>, <i>N.</i> bedeuten</h3>
-
-  <p>Diese Liste erklärt die Abkürzungen, die in <b>jedem</b> anatomischen Text stehen. Die
-    Klammer ist jeweils die <b>Mehrzahl</b>.</p>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Latein (Mehrzahl)</th><th>Abkürzung</th><th>deutsch</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Arcus (Arcus)</td><td>—</td><td>Bogen</td></tr>
-        <tr><td class="k">Arteria (Arteriae)</td><td>A. (Aa.)</td><td>Arterie</td></tr>
-        <tr><td class="k">Articulatio (Articulationes)</td><td>—</td><td>Gelenk</td></tr>
-        <tr><td class="k">Brachium (Brachia)</td><td>—</td><td>Arm</td></tr>
-        <tr><td class="k">Cartilago (Cartilagines)</td><td>—</td><td>Knorpel</td></tr>
-        <tr><td class="k">Cavum (Cava)</td><td>—</td><td>Höhle</td></tr>
-        <tr><td class="k">Cranium (Crania)</td><td>—</td><td>Schädel</td></tr>
-        <tr><td class="k">Digitus (Digiti)</td><td>—</td><td>Finger, Zeh</td></tr>
-        <tr><td class="k">Ductus (Ductus)</td><td>—</td><td>Gang</td></tr>
-        <tr><td class="k">Fascia (Fasciae)</td><td>—</td><td>(Muskel-)Faszie</td></tr>
-        <tr><td class="k">Foramen (Foramina)</td><td>—</td><td>Loch, Öffnung</td></tr>
-        <tr><td class="k">Fossa (Fossae)</td><td>—</td><td>Grube, Vertiefung</td></tr>
-        <tr><td class="k">Glandula (Glandulae)</td><td>—</td><td>Drüse</td></tr>
-        <tr><td class="k">Ligamentum (Ligamenta)</td><td>Lig. (Ligg.)</td><td>Band</td></tr>
-        <tr><td class="k">Musculus (Musculi)</td><td>M. (Mm.)</td><td>Muskel</td></tr>
-        <tr><td class="k">Manus (Manus)</td><td>—</td><td>Hand</td></tr>
-        <tr><td class="k">Nervus (Nervi)</td><td>N. (Nn.)</td><td>Nerv</td></tr>
-        <tr><td class="k">Nodus (Nodi)</td><td>—</td><td>Knoten</td></tr>
-        <tr><td class="k">Os (Ossa)</td><td>—</td><td>Knochen</td></tr>
-        <tr><td class="k">Pars (Partes)</td><td>—</td><td>Teil</td></tr>
-        <tr><td class="k">Plexus (Plexus)</td><td>—</td><td>(Nerven-)Geflecht</td></tr>
-        <tr><td class="k">Processus (Processus)</td><td>Proc.</td><td>Vorsprung</td></tr>
-        <tr><td class="k">Ramus (Rami)</td><td>R. (Rr.)</td><td>Zweig</td></tr>
-        <tr><td class="k">Sinus (Sinus)</td><td>—</td><td>Ausbuchtung</td></tr>
-        <tr><td class="k">Tendo (Tendines)</td><td>—</td><td>Sehne</td></tr>
-        <tr><td class="k">Vena (Venae)</td><td>V. (Vv.)</td><td>Vene</td></tr>
-        <tr><td class="k">Vertebra (Vertebrae)</td><td>—</td><td>Wirbel</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Der Trick mit dem doppelten Buchstaben</span>
-    <p><b>Ein</b> Buchstabe = Einzahl, <b>zwei</b> Buchstaben = Mehrzahl. <i>A.</i> ist eine
-      Arterie, <i>Aa.</i> sind mehrere. <i>M. biceps brachii</i> ist <b>ein</b> Muskel,
-      <i>Mm. intercostales</i> sind <b>die</b> Zwischenrippenmuskeln. Dasselbe bei
-      <i>N./Nn.</i>, <i>V./Vv.</i>, <i>R./Rr.</i>, <i>Lig./Ligg.</i></p>
-    <p class="fr">Une lettre = singulier, deux lettres = pluriel. Une seule règle pour toutes
-      les abréviations.</p>
-  </div>
-
-  <h3>3 · Organangaben — das Adjektiv zum Organ</h3>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
-      <tbody>
-        <tr><td class="k">abdominalis</td><td>zum Bauch (Abdomen) gehörend</td></tr>
-        <tr><td class="k">acromialis</td><td>zum Akromion gehörend</td></tr>
-        <tr><td class="k">brachialis</td><td>am Oberarm (Brachium)</td></tr>
-        <tr><td class="k">bronchialis</td><td>an den Bronchien</td></tr>
-        <tr><td class="k">coronaris</td><td>kranzartig, zu den Herzkranzgefäßen gehörend</td></tr>
-        <tr><td class="k">costalis</td><td>an den Rippen (Costa)</td></tr>
-        <tr><td class="k">cranialis</td><td>zum Schädel (Cranium) gehörend oder zeigend, oberhalb (schädelwärts) gelegen</td></tr>
-        <tr><td class="k">cysticus</td><td>zum Gallengangsystem gehörend</td></tr>
-        <tr><td class="k">dorsalis</td><td>am Rücken (Dorsum), rückenwärts gelegen, gilt auch für Hand- und Fußrücken</td></tr>
-        <tr><td class="k">femoris</td><td>am Oberschenkel (Femur)</td></tr>
-        <tr><td class="k">fibularis</td><td>zum Wadenbein (Fibula) gehörend</td></tr>
-        <tr><td class="k">gastricus</td><td>zum Magen (Gaster) gehörend</td></tr>
-        <tr><td class="k">hepatis</td><td>an oder in der Leber (Hepar)</td></tr>
-        <tr><td class="k">iliacus</td><td>am oder im Darmbein (Os ilium)</td></tr>
-        <tr><td class="k">lienalis</td><td>zur Milz (Lien) gehörend</td></tr>
-        <tr><td class="k">palmaris</td><td>zur Handfläche (Palma manus) gehörend</td></tr>
-        <tr><td class="k">pectoralis</td><td>an der Brust (Pectus)</td></tr>
-        <tr><td class="k">peroneus</td><td>am Wadenbein</td></tr>
-        <tr><td class="k">plantaris</td><td>zur Fußsohle (Planta pedis) gehörig</td></tr>
-        <tr><td class="k">pulmonalis</td><td>an oder in der Lunge (Pulmo)</td></tr>
-        <tr><td class="k">radialis</td><td>an der Speiche (Radius)</td></tr>
-        <tr><td class="k">renalis</td><td>an oder in der Niere (Ren)</td></tr>
-        <tr><td class="k">thoracicus</td><td>am oder im Brustkorb (Thorax)</td></tr>
-        <tr><td class="k">tibialis</td><td>am Schienbein (Tibia)</td></tr>
-        <tr><td class="k">ulnaris</td><td>an der Elle (Ulna)</td></tr>
-        <tr><td class="k">vertebralis</td><td>zum Wirbel (Vertebra)</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Warum diese Liste die Organnamen mitliefert</span>
-    <p>In der Klammer steht jedes Mal das <b>lateinische Organ</b>: <i>Hepar</i> Leber ·
-      <i>Pulmo</i> Lunge · <i>Ren</i> Niere · <i>Gaster</i> Magen · <i>Lien</i> Milz ·
-      <i>Cor</i> fehlt hier, das Herz steht nur über <i>coronaris</i> drin. <b>Genau diese
-      vier Organe hast du auf dieser Seite weiter unten als Plakate</b> — die Überschriften
-      dort tragen dieselben lateinischen Namen.</p>
-  </div>
-
-  <h3>4 · Ortsangaben</h3>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Begriff</th><th>Bedeutung</th></tr></thead>
-      <tbody>
-        <tr><td class="k">anterior</td><td>vorderer</td></tr>
-        <tr><td class="k">ascendens</td><td>aufsteigend</td></tr>
-        <tr><td class="k">cranialis</td><td>oben, kopfwärts</td></tr>
-        <tr><td class="k">descendens</td><td>absteigend</td></tr>
-        <tr><td class="k">dexter (-tra)</td><td>rechts</td></tr>
-        <tr><td class="k">dorsalis</td><td>hinten, am Rücken, rückenwärts</td></tr>
-        <tr><td class="k">externus (-a)</td><td>außen, an der Oberfläche</td></tr>
-        <tr><td class="k">inferior [inf.]</td><td>unterer</td></tr>
-        <tr><td class="k">internus (-a)</td><td>innen, im Körper</td></tr>
-        <tr><td class="k">lateralis</td><td>seitlich, außen</td></tr>
-        <tr><td class="k">longitudinalis</td><td>in Längsrichtung</td></tr>
-        <tr><td class="k">maximus (-a)</td><td>der (die) Größte</td></tr>
-        <tr><td class="k">medialis</td><td>innen, zur Mitte hin</td></tr>
-        <tr><td class="k">medius (-a)</td><td>mittlere(r), zwischen zwei anderen</td></tr>
-        <tr><td class="k">minimus (-a)</td><td>der (die) Kleinste</td></tr>
-        <tr><td class="k">posterior</td><td>hintere(r)</td></tr>
-        <tr><td class="k">profundus (-a)</td><td>tief</td></tr>
-        <tr><td class="k">sinister (-tra)</td><td>links</td></tr>
-        <tr><td class="k">superficialis</td><td>oberflächlich</td></tr>
-        <tr><td class="k">superior [sup.]</td><td>obere(r)</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Liste 1 und Liste 4 überschneiden sich — das ist kein Fehler</span>
-    <p><i>anterior</i>, <i>posterior</i>, <i>dexter</i>, <i>sinister</i>, <i>cranialis</i>,
-      <i>superior</i>, <i>inferior</i>, <i>profund</i>, <i>lateralis</i>, <i>medialis</i>
-      stehen <b>zweimal</b> auf dem Blatt. Der Unterschied ist die <b>Wortform</b>: Liste 1
-      gibt die <b>Richtung</b> (<i>lateral</i> = außen), Liste 4 die <b>Form, die im Namen
-      eines Körperteils steht</b> (<i>lateralis</i> — wie in <i>M. vastus lateralis</i>).
-      <b>Gleiche Bedeutung, andere Endung.</b></p>
-    <p class="fr">Les deux listes se recoupent volontairement : la première donne la direction,
-      la quatrième la forme qu'on trouve <b>dans un nom d'organe ou de muscle</b>.</p>
-  </div>
-
-  <h3>5 · Vor- und Nachsilben — der wichtigste Teil des Blattes</h3>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Silbe</th><th>Bedeutung</th></tr></thead>
-      <tbody>
-        <tr><td class="k">brady-</td><td>langsam</td></tr>
-        <tr><td class="k">tachy-</td><td>schnell</td></tr>
-        <tr><td class="k">derma-</td><td>Haut</td></tr>
-        <tr><td class="k">Epi-</td><td>oben, auf</td></tr>
-        <tr><td class="k">extra-</td><td>außerhalb</td></tr>
-        <tr><td class="k">intra-</td><td>innerhalb</td></tr>
-        <tr><td class="k">hemi-</td><td>halb</td></tr>
-        <tr><td class="k">hetero-</td><td>ungleich, anders</td></tr>
-        <tr><td class="k">homo-</td><td>gleich</td></tr>
-        <tr><td class="k">hyper-</td><td>über, oberhalb</td></tr>
-        <tr><td class="k">hypo-</td><td>unter, unterhalb</td></tr>
-        <tr><td class="k">myo-</td><td>Muskel</td></tr>
-        <tr><td class="k">peri-</td><td>um, herum</td></tr>
-        <tr><td class="k">poly-</td><td>viel</td></tr>
-        <tr><td class="k">oligo-</td><td>wenig</td></tr>
-        <tr><td class="k">-itis</td><td>Entzündung</td></tr>
-        <tr><td class="k">-pathie</td><td>krankhafte Veränderung</td></tr>
-        <tr><td class="k">-osis / -ose</td><td>chronisch degenerativer Prozess</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Diese Silben stecken in Wörtern, die auf deinen anderen Seiten schon stehen</span>
-    <ul>
-      <li><b>hyper- / hypo-</b> → <i>Hypertonie</i> und <i>Hypotonie</i> — deine Seite
-        <b>Hypotonie &amp; Hypertonie</b>. Zu hoher und zu niedriger Druck, <b>ein einziges
-        Silbenpaar</b> trennt sie.</li>
-      <li><b>poly-</b> → <i>Polyurie</i> (viel Urin) und <i>Polydipsie</i> (viel Durst) — die
-        beiden ersten Zeichen bei Clara auf der Seite <b>Das kranke Kind</b>.</li>
-      <li><b>-itis</b> → <i>Peritonitis</i>, die Gefahr beim suprapubischen Katheter
-        (Seite <b>Kontinenz fördern</b>). Und mit <b>peri-</b> zusammen:
-        <i>peri</i> (herum) + <i>Peritoneum</i> (Bauchfell) + <i>-itis</i> (Entzündung).</li>
-      <li><b>derma-</b> + <b>-itis</b> → <i>Dermatitis</i>, wie in der
-        <b>inkontinenzassoziierten Dermatitis</b> — dasselbe Blatt, dieselbe Seite.</li>
-      <li><b>tachy-</b> → <i>Tachykardie</i>, ein Wort, das in deinen Mechanismus-Vokabeln
-        steht. <b>brady-</b> ist das Gegenteil.</li>
-      <li><b>-ose</b> → <i>Parodontose</i> aus dem Mundpflege-Block (Seite
-        <b>„Heraussetzen" ist keine aktivierende Pflege</b>).</li>
-    </ul>
-    <p class="fr">Ces syllabes ne sont pas du vocabulaire en plus — ce sont les morceaux des mots
-      que tu as <b>déjà</b> sur tes autres pages. Une fois les morceaux connus, les mots
-      s'ouvrent tout seuls.</p>
-  </div>
-
-  <div class="pruef">
-    <h4>Selbsttest — zerleg diese Wörter, ohne nachzusehen</h4>
-    <ol>
-      <li><b>Myokarditis</b> — welche drei Teile? (<i>myo-</i>, <i>kard-</i>, <i>-itis</i>)</li>
-      <li><b>Hemiplegie</b> — was sagt dir <i>hemi-</i> über die Seite?</li>
-      <li><b>Oligurie</b> und <b>Polyurie</b> — welches ist zu wenig, welches zu viel?</li>
-      <li><b>intramuskulär</b> und <b>intravenös</b> — wohin genau spritzt du?</li>
-      <li><b>Epidermis</b> — welche Hautschicht liegt <i>auf</i> welcher?</li>
-      <li><b>proximal</b> und <b>distal</b> am Arm — welches ist die Schulter, welches die Hand?</li>
-    </ol>
-    <p><b>Diese sechs Aufgaben sind von mir</b>, nicht von deiner Dozentin. Die Silben darin
-      stehen alle auf ihrem Blatt — nur zusammengesetzt habe ich sie. <b>Schick mir deine
-      Antworten, ich korrigiere sie.</b></p>
-  </div>
-</section>
-
-<section id="organe">
-  <h2>Die Organe, die vorgestellt wurden</h2>
-  <p class="lead">Elf Organe stehen auf der Übersichtsfolie — mit ihren lateinischen Namen.</p>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Deutsch</th><th>Lateinisch / Fachbegriff</th><th>Unterlagen dazu?</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Leber</td><td>Hepar</td><td>✅ eigenes Plakat</td></tr>
-        <tr><td class="k">Lunge</td><td>Pulmones</td><td>✅ eigenes Plakat</td></tr>
-        <tr><td class="k">Magen</td><td>Gaster / Ventriculus</td><td>✅ eigenes Plakat</td></tr>
-        <tr><td class="k">Niere</td><td>Ren</td><td>✅ eigenes Plakat</td></tr>
-        <tr><td class="k">Gehirn</td><td>Enzephalon</td><td>✅ im Foliensatz Nervensystem</td></tr>
-        <tr><td class="k">Herz</td><td>Cor</td><td>❌ kein Plakat im Ordner</td></tr>
-        <tr><td class="k">Darm</td><td>Dünndarm: Intestinum tenue · Dickdarm: Intestinum crassum</td><td>❌ kein Plakat</td></tr>
-        <tr><td class="k">Bauchspeicheldrüse</td><td>Pankreas</td><td>✅ Textblatt <b>und</b> Plakat — <a href="#pankreas">eigener Abschnitt</a></td></tr>
-        <tr><td class="k">Ableitende Harnwege</td><td>Nierenbecken (Pelvis renalis) · Harnleiter (Ureter) · Harnblase (Vesica urinaria) · Harnröhre (Urethra)</td><td>❌ kein Plakat</td></tr>
-        <tr><td class="k">Milz</td><td>Splen</td><td>❌ kein Plakat</td></tr>
-        <tr><td class="k">Thymus</td><td>Thymus</td><td>❌ kein Plakat</td></tr>
-        <tr><td class="k">Luftröhre</td><td>Trachea</td><td>❌ kein Plakat</td></tr>
-        <tr><td class="k">Speiseröhre</td><td>Ösophagus</td><td>❌ kein Plakat</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Das musst du wissen, bevor du weiterliest</span>
-    <p>Zu <b>Herz, Darm, Milz, Thymus, Trachea, Ösophagus</b> und den <b>ableitenden
-      Harnwegen</b> liegt in deinem Drive-Ordner <b>nichts</b> — nur der Name auf der
-      Übersichtsfolie. Diese Organe waren die Plakate der <b>anderen Gruppen</b>, und die hast
-      du nicht abfotografiert.</p>
-    <p><b>Am 20.09.2026 von acht auf sieben korrigiert:</b> Die <b>Bauchspeicheldrüse</b> stand
-      hier zu Unrecht. Zu ihr liegen <b>zwei</b> Dateien im Ordner, und sie hat jetzt einen
-      <a href="#pankreas">eigenen Abschnitt</a>.</p>
-    <p><b>Ich erfinde sie nicht.</b> Wenn du sie brauchst — und für die Klausur brauchst du sie
-      —, dann besorg dir die Plakate der anderen Gruppen und schick sie mir. Dann wird diese
-      Seite vollständig.</p>
-    <p class="fr">Il manque sept organes. Demande les affiches des autres groupes et envoie-les
-      moi — je ne vais rien inventer à leur place.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Eine Ausnahme: Herz und Blut hast du schon</span>
-    <p>Zum <b>Herz-Kreislauf-System</b> gibt es im Repo bereits eine eigene Schulung, aus deinen
-      Kurs-PDFs gebaut. Genau darüber lief auch die Klausur mit der 3,99. <b>Das ist die
-      Zusammenfassung, die du dafür brauchst</b> — nicht diese hier.</p>
-  </div>
-</section>
-
-<section id="leber">
-  <h2>Die Leber — <i>Hepar</i></h2>
-  <p class="lead">Das größte innere Organ des Menschen.</p>
-
-  <div class="karten">
-    <div class="karte">
-      <h4>Größe · Gewicht · Lage</h4>
-      <ul>
-        <li>Rechter Leberlappen: <b>ca. 20 cm</b></li>
-        <li><b>Circa 1,5 kg</b> beim Erwachsenen</li>
-        <li>Im <b>rechten Oberbauch</b>, unterhalb des <b>Zwerchfells</b></li>
-        <li><b>Das größte innere Organ</b> des menschlichen Körpers</li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Makroskopie — der Grundaufbau</h4>
-      <ul>
-        <li><b>Zwei große Lappen</b>: rechter und linker Leberlappen</li>
-        <li>Farbe: <b>dunkelbraun bis rotbraun</b></li>
-        <li><b>Gallenblase</b> an der Unterseite</li>
-        <li><b>Ligamentum falciforme</b> — das Band zwischen den beiden Lappen</li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Funktionen</h4>
-      <ul>
-        <li><b>Steuert den Stoffwechsel</b></li>
-        <li><b>Entgiftet das Blut</b></li>
-        <li><b>Produziert Galle</b></li>
-        <li><b>Speichert Energie</b> in Form von <b>Glykogen</b></li>
-        <li><b>Bildet wichtige Proteine</b> für den Körper</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="paare">
-    <div class="paar"><span class="de">der Stoffwechsel</span>
-      <span class="frx">le métabolisme</span></div>
-    <div class="paar"><span class="de">entgiften</span>
-      <span class="frx">détoxifier, désintoxiquer</span></div>
-    <div class="paar"><span class="de">die Galle</span>
-      <span class="frx">la bile</span></div>
-    <div class="paar"><span class="de">das Glykogen</span>
-      <span class="frx">le glycogène — la forme de stockage du sucre</span></div>
-    <div class="paar"><span class="de">das Zwerchfell</span>
-      <span class="frx">le diaphragme</span></div>
-    <div class="paar"><span class="de">der Leberlappen, die Leberlappen</span>
-      <span class="frx">le lobe hépatique</span></div>
-  </div>
-</section>
-
-<section id="lunge">
-  <h2>Die Lunge — <i>Pulmones</i></h2>
-  <p class="lead">Unser Atmungsorgan.</p>
-
-  <div class="karten">
-    <div class="karte">
-      <h4>Größe · Gewicht · Lage</h4>
-      <ul>
-        <li><b>25–30 cm</b></li>
-        <li><b>1–1,3 kg</b></li>
-        <li>In der <b>Brusthöhle</b>, umgeben von den <b>Rippen</b></li>
-        <li>Nach unten begrenzt vom <b>Zwerchfell</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Makroskopie — der Grundaufbau</h4>
-      <ul>
-        <li><b>Luftröhre</b> → <b>Hauptbronchien</b> → immer feinere Äste</li>
-        <li><b>Rechts drei Lappen:</b> Ober-, Mittel-, Unterlappen</li>
-        <li><b>Links zwei Lappen:</b> Ober- und Unterlappen — links ist Platz für das
-          <b>Herz</b></li>
-        <li><b>Alveolen</b> (Lungenbläschen) am Ende der Äste</li>
-        <li><b>Lungenarterie</b> und <b>Lungenvene</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Funktionen</h4>
-      <ul>
-        <li><b>Hauptaufgabe: Gasaustausch</b> zwischen Atemluft und Blut — <b>Sauerstoff</b>
-          wird aufgenommen, <b>Kohlendioxid (CO₂)</b> abgegeben</li>
-        <li><b>Druckausgleich</b> und Unterstützung des Kreislaufs</li>
-        <li><b>Säure-Basen-Regulation</b> (pH-Wert)</li>
-        <li><b>Immunabwehr durch Zilien</b> (Flimmerhärchen); der Schleim schützt</li>
-        <li><b>Temperatur- und Feuchtigkeitsregulierung</b> — die Lunge gibt Wärme und
-          Feuchtigkeit ab</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Die Zahl, die sich lohnt</span>
-    <p><b>Rechts drei Lappen, links zwei.</b> Der Grund ist der einzige, den du dir merken
-      musst: <b>Links liegt das Herz.</b> Eine Frage, die man in einem Satz begründen kann —
-      genau das, wofür es auf AFB II und III Punkte gibt.</p>
-  </div>
-
-  <div class="paare">
-    <div class="paar"><span class="de">der Gasaustausch</span>
-      <span class="frx">les échanges gazeux</span></div>
-    <div class="paar"><span class="de">die Alveole, -n (das Lungenbläschen, -)</span>
-      <span class="frx">l'alvéole pulmonaire</span></div>
-    <div class="paar"><span class="de">der Sauerstoff (nur Singular)</span>
-      <span class="frx">l'oxygène</span></div>
-    <div class="paar"><span class="de">das Kohlendioxid (nur Singular)</span>
-      <span class="frx">le dioxyde de carbone</span></div>
-    <div class="paar"><span class="de">die Zilien (Plural), das Flimmerhärchen, -</span>
-      <span class="frx">les cils vibratiles</span></div>
-    <div class="paar"><span class="de">die Brusthöhle, -n</span>
-      <span class="frx">la cavité thoracique</span></div>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Unsicher auf dem Plakat</span>
-    <p>Die Abkürzungen <b>RLF</b> und <b>LLF</b> stehen handschriftlich auf dem Plakat, ohne
-      Erklärung. Gemeint sind mit hoher Wahrscheinlichkeit <b>rechter</b> und <b>linker
-      Lungenflügel</b> — <b>aber das steht nirgends</b>. Frag im Kurs nach, bevor du es in einer
-      Klausur benutzt.</p>
-  </div>
-</section>
-
-<section id="magen">
-  <h2>Der Magen — <i>Gaster / Ventriculus</i></h2>
-  <p class="lead">Fünf Abschnitte, fünf Namen. Die muss man können.</p>
-
-  <div class="karten">
-    <div class="karte">
-      <h4>Größe · Fassungsvermögen · Lage</h4>
-      <ul>
-        <li><b>25–30 cm</b> lang</li>
-        <li>Fasst <b>bis 1,5 L Nahrung</b></li>
-        <li>Zwischen <b>Milz</b> und <b>Leber</b>, im <b>linken Oberbauch</b>, unterhalb des
-          <b>Zwerchfells</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Makroskopie — die fünf Abschnitte</h4>
-      <ul>
-        <li><b>Kardia</b> — der Mageneingang</li>
-        <li><b>Fundus</b> — der Magengrund</li>
-        <li><b>Korpus</b> — der Magenkörper</li>
-        <li><b>Antrum</b> — die Magenhöhle</li>
-        <li><b>Pylorus</b> — der Magenpförtner</li>
-      </ul>
-      <p style="margin-top:8px;font-size:14.5px;">Davor die <b>Speiseröhre</b>, danach der
-        <b>Zwölffingerdarm (Duodenum)</b>.</p>
-    </div>
-    <div class="karte">
-      <h4>Funktionen</h4>
-      <ul>
-        <li>Teil des <b>Verdauungstraktes</b></li>
-        <li>Die Nahrung wird in ca. <b>0,5–3 Stunden</b> durch rhythmisch kontrahierende
-          <b>Muskelfasern</b> durchmischt und zerkleinert — das ist die <b>Peristaltik</b></li>
-        <li>Die Magenwände geben <b>enzymhaltige Magensäure</b> ab, die <b>Proteine spaltet</b>
-          und <b>Bakterien abtötet</b></li>
-        <li>Die Nahrung wird für die weitere Verdauung im <b>Dünndarm</b> vorbereitet</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Die Eselsbrücke für die fünf Abschnitte</span>
-    <p>Sie stehen in der Reihenfolge, in der die Nahrung durchläuft:
-      <b>K</b>ardia → <b>F</b>undus → <b>K</b>orpus → <b>A</b>ntrum → <b>P</b>ylorus.
-      Von oben nach unten, vom Eingang zum Pförtner.</p>
-    <p class="fr">Dans l'ordre du passage des aliments, de l'entrée au « portier ».</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Ein Zahlendreher auf dem Plakat</span>
-    <p>Auf dem Plakat steht <i>„Gewicht bis 4,5 L“</i>. Das kann nicht stimmen: <b>Liter ist
-      keine Gewichtseinheit</b>, und an anderer Stelle steht auf demselben Plakat
-      <b>„bis 1,5 L Nahrung“</b>. Gemeint ist also ein <b>Fassungsvermögen</b>, kein Gewicht.
-      Welcher der beiden Werte der richtige ist, <b>steht in deinen Unterlagen nicht</b> —
-      ich habe die 1,5 L übernommen, weil sie im Funktionsteil steht. <b>Prüf das nach.</b></p>
-  </div>
-
-  <div class="paare">
-    <div class="paar"><span class="de">die Verdauung (nur Singular)</span>
-      <span class="frx">la digestion</span></div>
-    <div class="paar"><span class="de">die Peristaltik (nur Singular)</span>
-      <span class="frx">le péristaltisme — les contractions qui font avancer les aliments</span></div>
-    <div class="paar"><span class="de">die Magensäure (nur Singular)</span>
-      <span class="frx">l'acide gastrique</span></div>
-    <div class="paar"><span class="de">spalten (spaltet, spaltete, hat gespalten)</span>
-      <span class="frx">scinder, décomposer</span></div>
-    <div class="paar"><span class="de">abtöten (tötet ab, tötete ab, hat abgetötet)</span>
-      <span class="frx">tuer, détruire (des germes)</span></div>
-    <div class="paar"><span class="de">der Zwölffingerdarm (nur Singular)</span>
-      <span class="frx">le duodénum</span></div>
-  </div>
-</section>
-
-<section id="niere">
-  <h2>Die Niere — <i>Ren</i></h2>
-  <p class="lead">Zwei Organe, fünf lebenswichtige Aufgaben.</p>
-
-  <div class="karten">
-    <div class="karte">
-      <h4>Größe · Gewicht · Lage</h4>
-      <ul>
-        <li><b>10–14 cm</b> lang, <b>5–7 cm</b> breit, <b>4–5 cm</b> dick</li>
-        <li><b>110–200 g</b></li>
-        <li><b>Beidseitig der Wirbelsäule</b></li>
-        <li>Die <b>rechte</b> Niere liegt normalerweise <b>etwas tiefer</b> als die linke —
-          <b>wegen der Leber</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Makroskopie — der Grundaufbau</h4>
-      <ul>
-        <li><b>Bohnenförmig</b></li>
-        <li>Zum Großteil aus <b>Blutgefäßen</b> aufgebaut, mit Blut gefüllt</li>
-        <li>Umhüllt von einer <b>kräftigen Bindegewebskapsel</b></li>
-        <li>Drei Teile: <b>Nierenrinde</b> · <b>Nierenmark</b> · <b>Nierenbecken</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Funktionen</h4>
-      <ul>
-        <li><b>Filtration des Blutes</b></li>
-        <li><b>Ausscheidung</b> von Wasser und Elektrolyten</li>
-        <li><b>Regulation des Elektrolythaushalts</b></li>
-        <li><b>Blutdruckregulation</b></li>
-        <li><b>Harnproduktion</b></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Die Begründung, die Punkte bringt</span>
-    <p><b>Warum liegt die rechte Niere tiefer?</b> Weil <b>darüber die Leber liegt</b> — und die
-      ist das größte innere Organ, sie braucht den Platz. <b>Ursache → Wirkung.</b> Genau so
-      sieht eine Antwort auf <i>Begründen</i> aus: nicht nur „sie liegt tiefer“, sondern das
-      <b>weil</b> dazu.</p>
-    <p class="fr">Pas seulement « elle est plus basse », mais le <b>parce que</b>.</p>
-  </div>
-
-  <div class="paare">
-    <div class="paar"><span class="de">die Filtration (nur Singular)</span>
-      <span class="frx">la filtration</span></div>
-    <div class="paar"><span class="de">die Ausscheidung, -en</span>
-      <span class="frx">l'excrétion, l'élimination</span></div>
-    <div class="paar"><span class="de">der Elektrolythaushalt (nur Singular)</span>
-      <span class="frx">l'équilibre électrolytique</span></div>
-    <div class="paar"><span class="de">das Bindegewebe (nur Singular)</span>
-      <span class="frx">le tissu conjonctif</span></div>
-    <div class="paar"><span class="de">die Wirbelsäule, -n</span>
-      <span class="frx">la colonne vertébrale</span></div>
-    <div class="paar"><span class="de">bohnenförmig</span>
-      <span class="frx">en forme de haricot</span></div>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Schwer lesbar auf dem Plakat</span>
-    <p>Auf dem Plakat stehen <b>dexter</b> und <b>sinister</b> für rechts und links. Das ist
-      Latein und korrekt, kommt aber in deinen anderen Unterlagen nicht vor. Schreib in der
-      Klausur ruhig <b>rechts</b> und <b>links</b> — das ist nicht falsch.</p>
-  </div>
-</section>
-
-<section id="pankreas">
-  <h2>Die Bauchspeicheldrüse — <i>Pankreas</i></h2>
-  <p class="lead">Das einzige Organ des Körpers, das <b>zwei völlig getrennte Berufe</b> hat —
-    und genau das ist die Prüfungsfrage.</p>
-
-  <div class="gefahr">
-    <span class="t">Korrektur vom 20.09.2026 — diese Seite hat sich geirrt</span>
-    <p>Bis heute stand unten im Abschnitt <i>Was fehlt</i>: „Acht Organe ohne Unterlagen …
-      <b>Bauchspeicheldrüse</b> …“. <b>Das war falsch.</b> In deinem Drive-Ordner liegen
-      <b>zwei</b> Dateien dazu — ein Textblatt der Dozentin (<i>Die Bauchspeicheldruese.pdf</i>,
-      CE 05 UE 0) und ein handgeschriebenes Gruppenplakat (<i>Bauchspeicheldruese.pdf</i>).
-      Beide sind jetzt eingearbeitet.</p>
-    <p>Der Grund ist derselbe wie bei vier anderen Fehlern desselben Tages: <b>Ich hatte nur
-      die Dateien geöffnet, die ich für diesen Block gesucht hatte</b>, und aus dem, was ich
-      nicht gesucht hatte, geschlossen, es sei nicht da. <b>Nicht gefunden heißt nicht
-      nicht vorhanden.</b></p>
-    <p class="fr">Cette page affirmait que le pancréas n'avait aucun document. C'était faux :
-      il y en a deux. Corrigé ici, pas effacé en silence.</p>
-  </div>
-
-  <div class="karten">
-    <div class="karte">
-      <h4>Größe · Gewicht · Lage</h4>
-      <ul>
-        <li><b>13–15 cm</b> lang</li>
-        <li><b>70–100 Gramm</b> <span style="opacity:.7">(nur auf dem Plakat)</span></li>
-        <li>An der <b>Hinterwand des Oberbauches</b>, hinter dem Magen</li>
-        <li>Vorderseite von <b>Peritoneum</b> bedeckt → <b>retroperitoneale Lage</b></li>
-        <li>Erstreckt sich <b>vom Duodenum bis zur Milz</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Makroskopie — drei Abschnitte</h4>
-      <ul>
-        <li><b>Kopf</b> — liegt am Zwölffingerdarm</li>
-        <li><b>Körper</b></li>
-        <li><b>Schwanz</b> — reicht bis zur Milz</li>
-        <li>Längs durchzogen vom <b>Ductus pancreaticus</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Der Ausgang</h4>
-      <ul>
-        <li>Der <b>Ductus pancreaticus</b> nimmt die kleinen Zuflüsse der exokrinen
-          Drüsenläppchen auf</li>
-        <li>Er mündet <b>meist gemeinsam mit dem Gallengang</b> (<i>Ductus choledochus</i>)</li>
-        <li>… an der <b>Papilla Vateri</b> in den Zwölffingerdarm</li>
-      </ul>
-    </div>
-  </div>
-
-  <h3>Zwei Berufe in einem Organ</h3>
-
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div>
-      <h4>Endokrin — gibt <b>ins Blut</b> ab</h4>
-      <p>Die <b>Langerhans-Inseln</b>, in ihrer Gesamtheit das <b>Inselorgan</b>. Drei Zelltypen,
-        drei Hormone:</p>
-      <ul>
-        <li><b>Insulin</b> in den <b>B-Zellen</b></li>
-        <li><b>Glukagon</b> in den <b>A-Zellen</b></li>
-        <li><b>Somatostatin</b> in den <b>D-Zellen</b></li>
-      </ul></div></div>
-    <div class="stufe"><span class="nr n2">2</span><div>
-      <h4>Exokrin — gibt <b>in den Darm</b> ab</h4>
-      <p>Die Drüsenläppchen bilden pro Tag <b>ca. 2 Liter</b> stark <b>alkalischen</b>
-        Pankreassaft mit <b>hoher Bikarbonatkonzentration</b>. Er läuft über den
-        Pankreasgang ins Duodenum.</p></div></div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Der Satz, mit dem man die ganze Drüse erklärt</span>
-    <p><b>Endokrin heißt: ohne Gang, direkt ins Blut. Exokrin heißt: durch einen Gang, nach
-      draußen.</b> Und „draußen“ ist beim Darm wörtlich gemeint — der Inhalt des Darms ist
-      genau genommen außerhalb des Körpers. Deshalb braucht der exokrine Teil einen
-      <b>Gang</b> und der endokrine keinen.</p>
-    <p class="fr"><i>Endo-</i> = vers l'intérieur (le sang), <i>exo-</i> = vers l'extérieur
-      (par un canal). Les deux syllabes sont dans ta feuille de vocabulaire plus haut.</p>
-  </div>
-
-  <h3>Was der Pankreassaft im Darm macht</h3>
-
-  <div class="karten">
-    <div class="karte">
-      <h4>Er neutralisiert</h4>
-      <p>Im Duodenum neutralisiert der alkalische Saft den <b>stark sauren Speisebrei</b> aus
-        dem Magen. Der pH-Wert liegt im Dünndarm dann bei <b>ca. 7–8</b>.</p>
-    </div>
-    <div class="karte">
-      <h4>Er verdaut — aber erst später</h4>
-      <p>Der Saft enthält <b>Verdauungsenzyme</b>. Die Drüse sezerniert sie als <b>inaktive
-        Vorstufen</b>, <b>damit sie das Drüsengewebe nicht selbst „andauen“</b>. Erst im
-        Dünndarm werden sie aktiviert.</p>
-    </div>
-    <div class="karte">
-      <h4>Er wird angefordert</h4>
-      <p>Die Ausschüttung wird stimuliert durch die Hormone <b>Sekretin</b> und
-        <b>Cholezystokinin</b> <b>der Duodenalschleimhaut</b> sowie durch den <b>N. vagus</b>.
-        Beide Hormone werden als Reaktion auf den <b>sauren bzw. fettreichen</b> Nahrungsbrei
-        ausgeschüttet.</p>
-    </div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Der Schutzmechanismus ist die Antwort auf eine typische AFB-III-Frage</span>
-    <p><i>Begründen Sie, warum die Bauchspeicheldrüse ihre Enzyme inaktiv abgibt.</i> Die Kette
-      steht im Textblatt, und zwar in <b>einem</b> Nebensatz: <b>Die Enzyme spalten
-      Nahrungsbestandteile auf</b> → <b>wären sie schon in der Drüse aktiv, würden sie das
-      Drüsengewebe selbst „andauen“</b> → <b>deshalb inaktive Vorstufen</b> → <b>und
-      Aktivierung erst im Dünndarm</b>. Ursache → Wirkung → Gefahr → deshalb.</p>
-    <p><b>Das Wort „andauen“ ist das ganze Argument.</b> Es steht wörtlich so in deiner
-      Unterlage — schreib es in der Klausur genauso hin.</p>
-    <p class="fr">Voilà la forme exacte qu'attend un « Begründen » : la chaîne complète, pas
-      seulement la conclusion.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Benannt statt korrigiert — zwei Stellen auf dem Plakat</span>
-    <p><b>1. Sekretin und Cholecystokinin stehen auf dem Plakat in der Spalte „Hormon
-      produziert“</b>, zusammen mit Insulin, Glukagon und Somatostatin. Das <b>Textblatt
-      derselben Unterrichtseinheit</b> sagt etwas anderes: die beiden stammen aus der
-      <b>Duodenalschleimhaut</b> und <i>stimulieren</i> die Bauchspeicheldrüse nur. Das Plakat
-      ist handgeschrieben und die Spalten sind schwer auseinanderzuhalten — <b>möglich, dass
-      ich es falsch lese</b>. <b>Sieh im Unterricht nach, welche der beiden Fassungen gilt.</b>
-      Hier ist nichts geändert worden.</p>
-    <p><b>2. Der pH-Wert auf dem Plakat ist nicht sicher lesbar</b> — es steht etwas wie
-      „ca. pH 1–8“. Das Textblatt sagt <b>ca. 7–8 im Dünndarm</b>. Auf dieser Seite steht der
-      Wert des Textblatts.</p>
-  </div>
-
-  <div class="merk">
-    <span class="t">Verweis — dieselbe Drüse steht auf einer zweiten Seite</span>
-    <p>Auf der Seite <b>Das kranke Kind</b> (Diabetes mellitus Typ 1) steht dasselbe Organ noch
-      einmal, aus anderen Unterlagen: dort heißen die Zellen <b>Beta</b> und <b>Alpha</b> statt
-      <b>B</b> und <b>A</b> — <b>das ist dasselbe</b> — und dort stehen zusätzlich die Anteile
-      (Beta ca. 70 %, Alpha ca. 20 %) und der Satz, dass ein Typ-1-Diabetes erst auffällt, wenn
-      rund <b>80 % der Beta-Zellen</b> zerstört sind. <b>Zwei Blätter, ein Organ — zusammen
-      ergeben sie die ganze Antwort.</b></p>
-  </div>
-
-  <div class="paare">
-    <div class="paar"><span class="de">die Bauchspeicheldrüse (nur Singular)</span>
-      <span class="frx">le pancréas</span></div>
-    <div class="paar"><span class="de">der Ausführungsgang, die Ausführungsgänge</span>
-      <span class="frx">le canal excréteur</span></div>
-    <div class="paar"><span class="de">der Speisebrei (nur Singular)</span>
-      <span class="frx">le chyme, la bouillie alimentaire</span></div>
-    <div class="paar"><span class="de">alkalisch</span>
-      <span class="frx">alcalin, basique — le contraire de <i>sauer</i></span></div>
-    <div class="paar"><span class="de">die Vorstufe, -n</span>
-      <span class="frx">le précurseur, la forme préalable</span></div>
-    <div class="paar"><span class="de">sezernieren</span>
-      <span class="frx">sécréter</span></div>
-    <div class="paar"><span class="de">andauen (daut an, daute an, hat angedaut)</span>
-      <span class="frx">commencer à digérer</span></div>
-    <div class="paar"><span class="de">der Zwölffingerdarm (nur Singular)</span>
-      <span class="frx">le duodénum</span></div>
-    <div class="paar"><span class="de">die Milz (nur Singular)</span>
-      <span class="frx">la rate</span></div>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Eine Quellenangabe, die nicht von der Schule ist</span>
-    <p>Das Textblatt endet mit einem Link auf <b>quizlet.com</b>. Das ist eine <b>Lernkarten-Seite
-      aus dem Internet</b>, keine Fachquelle. Der Text selbst trägt die Kopfzeile
-      <i>CE05 UE0 Anatomische Physiologische Grundlagen</i> und ist offensichtlich von der
-      Dozentin — aber <b>wo genau der Link hingehört, steht nicht dabei</b>. Auf dieser Seite
-      ist nichts aus Quizlet übernommen.</p>
-  </div>
-</section>
-
-<section id="muskel">
-  <h2>Das Muskelgewebe — und warum Muskeln Sauerstoff brauchen</h2>
-  <p class="lead">Zwei Dateien, die zusammengehören: ein <b>Fragebogen ohne Antworten</b> und ein
-    <b>Foliensatz, der genau diese Fragen beantwortet</b>. Hier stehen beide nebeneinander.</p>
-
-  <p>Am 20.09.2026 dazugekommen: <i>Fragen zum Thema Muskelgewebe des Koerpers.pdf</i>
-    (Kopfzeile „Fragen zur LE I“) und <i>Praesentation Anatomie Vertiefung Muskelgewebe.pdf</i>.
-    Der Fragebogen hat <b>leere Felder</b> — das ist Absicht, er ist zum Ausfüllen. Der
-    Foliensatz trägt dieselbe Nummerierung und liefert die Antworten. <b>Beides ist von deiner
-    Schule, nichts davon von mir.</b></p>
-
-  <div class="merk">
-    <span class="t">Damit ist eine zweite Behauptung dieser Seite überholt</span>
-    <p>Unter <i>Was fehlt</i> stand: „<b>Zellen, Gewebe</b>, Hormonsystem, Skelett, Muskeln —
-      dazu liegt in diesem Ordner <b>nichts</b>.“ Für <b>Gewebe</b> und <b>Muskeln</b> stimmt
-      das nicht mehr: Der Foliensatz zeigt die <b>vier Grundgewebe</b> und behandelt das
-      Muskelgewebe ausführlich. Für <b>Zellen, Hormonsystem und Skelett</b> gilt der Satz
-      weiter.</p>
-  </div>
-
-  <h3>Die vier Grundgewebe des menschlichen Körpers</h3>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Grundgewebe</th><th>Untergruppen laut Abb. 5.1</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Binde- und Stützgewebe</td>
-          <td>kollagenes und retikuläres Bindegewebe · Fettgewebe · Knorpel- und Knochengewebe</td></tr>
-        <tr><td class="k">Muskelgewebe</td>
-          <td>glatte Muskulatur · quergestreifte Skelettmuskulatur · quergestreifte Herzmuskulatur</td></tr>
-        <tr><td class="k">Epithelgewebe</td>
-          <td>Oberflächen-, Drüsen-, Sinnesepithel</td></tr>
-        <tr><td class="k">Nervengewebe</td>
-          <td>— (im Foliensatz nicht weiter aufgeschlüsselt)</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Antwort auf Frage 1 — die drei Typen von Muskelgewebe</span>
-    <p><b>glatte Muskulatur</b> · <b>quergestreifte Skelettmuskulatur</b> · <b>quergestreifte
-      Herzmuskulatur</b>. Zwei der drei heißen <i>quergestreift</i> — der Unterschied zwischen
-      ihnen ist also <b>nicht</b> das Aussehen, sondern <b>wo sie sitzen und wer sie steuert</b>
-      (siehe Frage 3 und 4).</p>
-  </div>
-
-  <h3>Frage 3 und 4 — wer steuert welchen Muskel?</h3>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Nervensystem</th><th>Steuerung</th><th>steuert</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Willkürliches Nervensystem</td><td>vorwiegend <b>bewusst</b></td>
-          <td><b>Skelettmuskulatur</b></td></tr>
-        <tr><td class="k">Vegetatives Nervensystem</td><td>vorwiegend <b>unbewusst</b></td>
-          <td><b>Herzmuskel</b> · <b>glatte Muskulatur</b> · <b>Drüsen</b></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <p>Der Fragebogen trennt das absichtlich in zwei Fragen: Frage 3 will <b>den einen</b>
-    willkürlich gesteuerten Typ, Frage 4 will <b>den Anteil des Nervensystems</b>, der die
-    beiden anderen steuert — also den Namen <b>vegetatives Nervensystem</b>.</p>
-
-  <div class="merk">
-    <span class="t">Das schließt an den Nervensystem-Abschnitt weiter unten an</span>
-    <p>Dort steht das vegetative Nervensystem mit <b>Sympathikus und Parasympathikus</b>
-      ausführlich. <b>Hier ist der Anschlusspunkt:</b> Dass du deinen Herzschlag nicht willentlich
-      anhalten kannst, deinen Arm aber willentlich hebst, ist <b>genau dieser Unterschied</b> —
-      und es ist derselbe Unterschied, der erklärt, warum die <b>glatte Muskulatur der
-      Bronchien</b> bei einem Asthmaanfall verkrampft, <b>ohne dass jemand es will</b>.</p>
-  </div>
-
-  <h3>Frage 5 — Filamentgleiten</h3>
-
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div>
-      <h4>Verbinden</h4>
-      <p><b>Aktin und Myosin verbinden sich.</b></p></div></div>
-    <div class="stufe"><span class="nr">2</span><div>
-      <h4>Kippen</h4>
-      <p>Die <b>Myosinköpfchen kippen um</b> und gleiten so an den <b>Aktinfilamenten</b>
-        vorbei.</p></div></div>
-    <div class="stufe"><span class="nr n2">3</span><div>
-      <h4>Lösen</h4>
-      <p>Die <b>Aktin-Myosin-Verbindung wird wieder gelöst.</b></p></div></div>
-    <div class="stufe"><span class="nr n2">4</span><div>
-      <h4>Aufrichten</h4>
-      <p>Die <b>Myosinköpfchen richten sich auf</b>, um sich erneut mit dem Aktin zu
-        verbinden.</p></div></div>
-  </div>
-
-  <p>Die Folie nennt das den <b>Querbrückenzyklus</b> (Abb. 7.11, „traditionelles Modell“).
-    Beteiligt sind <b>ATP</b> und <b>Ca</b> (Calcium); aus ATP wird <b>ADP + P</b>.</p>
-
-  <div class="merk">
-    <span class="t">Die vier Sätze, die die Folie ausdrücklich als „zu wissen“ markiert</span>
-    <ul>
-      <li>Filamentgleiten ist die <b>Grundlage von Muskelkontraktionen</b></li>
-      <li>Filamentgleiten <b>verbraucht Energie</b></li>
-      <li>Filamentgleiten <b>verbraucht Sauerstoff</b></li>
-      <li>Filamentgleiten <b>produziert Wärme</b></li>
-    </ul>
-    <p>Diese vier Zeilen sind der Bauplan für die Fragen 6 bis 8: <b>Energie</b> → Frage 6,
-      <b>Sauerstoff</b> → Frage 7 und 8, <b>Wärme</b> → Frage 8 d.</p>
-    <p class="fr">Quatre phrases, et elles annoncent exactement les quatre questions suivantes.
-      Quand une diapo fait ça, c'est une liste d'examen déguisée.</p>
-  </div>
-
-  <h3>Frage 6 — die Energiequellen des Muskels</h3>
-
-  <p>Die Folie erklärt zuerst den Kreislauf: <b>ATP wird zu ADP und einem Phosphatrest
-    aufgespalten</b>, und diese Spaltreaktion liefert die Energie für die Kontraktion. Das
-    verbrauchte ADP muss <b>schnell wieder zu ATP aufgebaut</b> werden — und <i>dafür</i>
-    braucht es eine Energiequelle:</p>
-
-  <ul>
-    <li><b>Kreatinphosphat</b></li>
-    <li><b>Kohlenhydrate</b> = Zucker, im Endeffekt <b>Glucose</b></li>
-    <li><b>Fette</b></li>
-  </ul>
-
-  <div class="merk">
-    <span class="t">Die Reihenfolge ist die eigentliche Antwort</span>
-    <p><b>Wenn Muskeln anfangen zu arbeiten</b>, kommt die Energie für das Recycling von ADP zu
-      ATP erst einmal aus <b>Kreatinphosphat und Zucker</b>. <b>Wenn Muskeln länger arbeiten</b>,
-      muss <b>Fett</b> als Energiequelle verbraucht werden.</p>
-    <p class="fr">Court effort → phosphocréatine et sucre. Effort long → graisse. C'est
-      l'ordre qui compte, pas la liste.</p>
-  </div>
-
-  <h3>Frage 7 und 8 — warum Sauerstoff, und was ohne ihn passiert</h3>
-
-  <div class="karten">
-    <div class="karte">
-      <h4>Mit Sauerstoff — aerobe Glykolyse</h4>
-      <ul>
-        <li>Der <b>Abbau von Fett</b> zur Energiegewinnung <b>benötigt Sauerstoff</b></li>
-        <li>Beim Zucker gibt es zwei Wege; der <b>günstige</b> ist die <b>aerobe Glykolyse</b></li>
-        <li>→ <b>liefert viel Energie</b></li>
-        <li>→ Endprodukte: <b>Wasser und CO₂</b></li>
-        <li>Das <b>CO₂ wird abgeatmet</b>, Wasser ist unproblematisch</li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Ohne Sauerstoff — anaerobe Glykolyse</h4>
-      <ul>
-        <li>Glukose <b>kann</b> ohne Sauerstoff abgebaut werden — <b>aber nur bis zum
-          Laktat</b></li>
-        <li>→ <b>liefert nur wenig Energie</b></li>
-        <li>→ <b>Laktat häuft sich an</b>, auch im Blut</li>
-        <li>Laktat <b>kann</b> von einigen Geweben als Energielieferant verwendet werden</li>
-        <li><b>Aber:</b> Laktat ist eine <b>saure</b> Substanz → <b>Übersäuerung des Blutes</b>
-          → <b>Laktatazidose</b></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Frage 8 d — warum einem warm wird</span>
-    <p>Die Folie zur Funktion des Mitochondriums gibt es direkt: Bei der aeroben Glykolyse
-      entsteht aus Abbauprodukten von Kohlenhydraten, Eiweißen und Fetten <b>unter Verbrauch
-      von Sauerstoff</b> Energie. <b>Außerdem werden CO₂, Wasser und Abwärme frei.</b> ATP wird
-      dort „die <b>Energiewährung</b> des Stoffwechsels“ genannt.</p>
-    <p><b>Die Wärme ist also kein Nebeneffekt der Bewegung, sondern ein Produkt des
-      Stoffwechsels selbst</b> — und die allererste Folie sagt genau das: das Muskelgewebe
-      <b>ermöglicht Bewegungsvorgänge</b> <b>und produziert Wärme</b>.</p>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Frage 9 — Muskelkater: hier hört der Foliensatz auf</span>
-    <p>Die <b>letzte Folie</b> trägt nur die Überschrift <b>„Muskelkater: Wie kommt es dazu?“</b>
-      — und <b>danach kommt nichts mehr</b>. Der Fragebogen fragt nach dem
-      <i>(vermutlichen)</i> Grund, in Klammern, also nach etwas Unsicherem.</p>
-    <p><b>Hier steht keine Antwort, weil in deinen Unterlagen keine steht.</b> Die naheliegende
-      Vermutung — es sei das Laktat aus Frage 8 — ist <b>genau die Falle</b>: Die Folie hat
-      Laktat schon erklärt und stellt die Muskelkater-Frage <b>trotzdem noch einmal
-      getrennt</b>. <b>Frag im Unterricht nach und schick mir die Antwort</b>, dann kommt sie
-      hierher.</p>
-    <p class="fr">La dernière diapo pose la question et s'arrête. Je ne la complète pas de
-      mémoire — demande en cours, et je l'ajoute ici.</p>
-  </div>
-
-  <h3>Frage 2 — wo diese Muskeltypen im Körper sitzen</h3>
-
-  <p>Für Frage 2 zeigt der Foliensatz <b>keine Liste, sondern Bildtafeln</b> aus einem
-    Anatomieatlas. Ihre Bildunterschriften sind lesbar, die Zuordnung zum Muskeltyp ist es
-    nicht — <b>und genau die ist die Aufgabe</b>. Deshalb steht hier nur, <b>was die Tafeln
-    zeigen</b>:</p>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Bildtafel</th><th>was darauf zu sehen ist</th><th>Welcher Muskeltyp?</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Gebärmutter und Eileiter</td>
-          <td><i>Cavum uteri</i>, <i>Tuba uterina</i>, <i>Ovarium</i></td><td>…</td></tr>
-        <tr><td class="k">Magen und Duodenum</td>
-          <td>Abb. 4.2.2 a — <i>Curvatura major/minor</i>, <i>Pylorus</i>, <i>Fundus
-            gastricus</i></td><td>…</td></tr>
-        <tr><td class="k">Schichtaufbau einer Arterie</td>
-          <td>Abb. 16.2 — <b>Tunica interna · Tunica media · Tunica externa</b></td><td>…</td></tr>
-        <tr><td class="k">Bronchien beim Asthmaanfall</td>
-          <td>„Bei einem Asthmaanfall <b>verkrampft sich die Muskulatur</b>, die Schleimhaut
-            schwillt an …“</td><td>…</td></tr>
-        <tr><td class="k">Herz von innen</td>
-          <td><i>Atrium sinistrum</i>, <i>Valva atrioventricularis dextra [tricuspidalis]</i></td>
-          <td>…</td></tr>
-        <tr><td class="k">Muskelübersicht des Körpers</td>
-          <td><i>M. trapezius</i>, <i>M. deltoideus</i>, <i>M. biceps brachii</i>,
-            <i>M. quadriceps femoris</i>, <i>M. gastrocnemius</i>, Achillessehne …</td><td>…</td></tr>
-        <tr><td class="k">Brustkorb von innen</td>
-          <td><i>Mm. intercostales interni und externi</i>, <i>Diaphragma</i>,
-            <i>Truncus sympathicus</i></td><td>…</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="pruef">
-    <h4>Füll die dritte Spalte selbst aus — mit deiner eigenen Antwort auf Frage 1</h4>
-    <ol>
-      <li>Welche der sieben Tafeln zeigen <b>Hohlorgane</b>, deren Wand sich <b>ohne deinen
-        Willen</b> bewegt?</li>
-      <li>Welche Tafel zeigt Muskeln mit <b>lateinischen Namen und Sehnen</b>, die du
-        <b>willentlich</b> bewegst?</li>
-      <li>Welche Tafel zeigt den <b>einen</b> Muskeltyp, den es nur an <b>einer einzigen
-        Stelle</b> des Körpers gibt?</li>
-      <li>Und die Kontrollfrage: Die <b>Zwischenrippenmuskeln</b> bewegen sich beim Atmen
-        von selbst — aber du kannst auch <b>absichtlich</b> tief einatmen. <b>Welcher Typ ist
-        das dann?</b></li>
-    </ol>
-    <p><b>Diese vier Fragen sind von mir</b>, die Bildtafeln sind von deiner Schule.
-      <b>Schick mir deine Zuordnung, ich korrigiere sie.</b> Frage 4 hat es in sich —
-      denk an die Tabelle bei Frage 3/4 und an das Wort <b>„vorwiegend“</b>.</p>
-  </div>
-
-  <div class="pruef">
-    <h4>Der Fragebogen deiner Dozentin — vollständig, zum Selbsttest</h4>
-    <ol>
-      <li>Zählen Sie die <b>drei Typen von Muskelgewebe</b> auf, die im menschlichen Körper
-        vorkommen. <span style="opacity:.7">→ Antwort oben, erster Merkkasten</span></li>
-      <li>Geben Sie jeweils <b>Beispiele</b>, wo diese Typen im Körper zu finden sind.
-        <span style="opacity:.7">→ die Bildtafeln oben, Zuordnung offen</span></li>
-      <li>Geben Sie an, welcher Typ vom <b>willkürlichen</b> Nervensystem kontrolliert wird.
-        <span style="opacity:.7">→ Tabelle Frage 3/4</span></li>
-      <li>Nennen Sie den <b>Anteil des Nervensystems</b>, der die beiden anderen kontrolliert.
-        <span style="opacity:.7">→ dieselbe Tabelle</span></li>
-      <li>Beschreiben Sie kurz, was <b>Filamentgleiten</b> bedeutet.
-        <span style="opacity:.7">→ die vier Schritte oben</span></li>
-      <li>Nennen Sie <b>drei bis vier Energiequellen</b> der Muskulatur.
-        <span style="opacity:.7">→ Kreatinphosphat, Zucker, Fett — und die Reihenfolge</span></li>
-      <li>Erklären Sie, <b>warum</b> Muskeln Sauerstoff brauchen, wenn sie länger arbeiten.
-        <span style="opacity:.7">→ Karte „Mit Sauerstoff“</span></li>
-      <li>a) Was passiert bei <b>unzureichender</b> Sauerstoffversorgung? b) Welcher
-        <b>Stoff</b> entsteht und häuft sich an? c) <b>Warum</b> wird das zum Problem?
-        d) <b>Warum wird einem warm</b>, wenn Muskeln arbeiten?
-        <span style="opacity:.7">→ Karte „Ohne Sauerstoff“ und der Mitochondrien-Kasten</span></li>
-      <li>Muskelkater: Nennen Sie den <b>(vermutlichen)</b> Grund.
-        <span style="opacity:.7">→ <b>steht in deinen Unterlagen nicht</b></span></li>
-    </ol>
-    <p><b>Die Aufgabenwörter sind bemerkenswert:</b> <i>Zählen Sie auf</i> und <i>Nennen Sie</i>
-      sind <b>AFB I</b>, <i>Beschreiben Sie</i> ebenfalls, aber <b>fünfmal</b> steht
-      <i>Erklären Sie</i> da — und <i>Erklären</i> verlangt in deinen Klausuren eine
-      <b>verständliche Erklärung plus eigenes Beispiel</b>. Ein Stichwort reicht nicht.</p>
-  </div>
-
-  <div class="paare">
-    <div class="paar"><span class="de">die quergestreifte Muskulatur</span>
-      <span class="frx">le muscle strié</span></div>
-    <div class="paar"><span class="de">die glatte Muskulatur</span>
-      <span class="frx">le muscle lisse</span></div>
-    <div class="paar"><span class="de">willkürlich ↔ unwillkürlich</span>
-      <span class="frx">volontaire ↔ involontaire</span></div>
-    <div class="paar"><span class="de">die Kontraktion, -en</span>
-      <span class="frx">la contraction</span></div>
-    <div class="paar"><span class="de">aufspalten (spaltet auf, spaltete auf, hat aufgespalten)</span>
-      <span class="frx">scinder, décomposer</span></div>
-    <div class="paar"><span class="de">der Sauerstoffmangel (nur Singular)</span>
-      <span class="frx">le manque d'oxygène</span></div>
-    <div class="paar"><span class="de">die Übersäuerung (nur Singular)</span>
-      <span class="frx">l'acidification</span></div>
-    <div class="paar"><span class="de">die Abwärme (nur Singular)</span>
-      <span class="frx">la chaleur résiduelle</span></div>
-    <div class="paar"><span class="de">abatmen (atmet ab, atmete ab, hat abgeatmet)</span>
-      <span class="frx">expirer, éliminer par la respiration</span></div>
-  </div>
-</section>
-
-<section id="skelett">
-  <h2>Die Skelettmuskulatur — der einzige Muskel, dem du befehlen kannst</h2>
-  <p class="lead">Noch zwei Dateien vom <b>20.09.2026</b>, und wieder ein Paar:
-    <i>Praesentation Anatomie Skelettmuskulatur.pdf</i> und <i>Fragen zum Thema
-    Skelettmuskulatur.pdf</i> mit <b>elf Fragen</b>. Diesmal aber mit einem Unterschied, der
-    gleich vorweg gehört: <b>Der Foliensatz beantwortet nur vier der elf Fragen im Text.</b>
-    Die übrigen sieben stehen über Bildtafeln — <b>und bleiben hier offen</b>.</p>
-
-  <div class="merk">
-    <span class="t">Der eine Satz, der diesen Muskeltyp von den anderen zwei trennt</span>
-    <p>Wörtlich aus der ersten Folie: <b>„Anders als die glatte Muskulatur in den inneren
-      Organen und die Herzmuskulatur ist die Skelettmuskulatur <u>über Muskelsehnen an den
-      Knochen befestigt</u>.“</b></p>
-    <p>Und dazu: <b>„Ein Skelettmuskel verläuft <u>immer über ein oder zwei Gelenke</u>, für
-      deren Bewegung er sorgt.“</b> — <b>„Die Skelettmuskulatur wird vom willkürlichen
-      Nervensystem gesteuert.“</b></p>
-    <p><b>Damit hast du die Fortsetzung der Tabelle aus dem Abschnitt
-      <a href="#muskel">Muskelgewebe</a>:</b> Dort steht, <i>wer</i> steuert. Hier steht,
-      <i>woran der Muskel hängt</i> und <i>was er dadurch bewegen kann</i>.</p>
-    <p class="fr">Le muscle squelettique est accroché à l'os par un tendon, il franchit toujours
-      une ou deux articulations, et c'est le seul que tu commandes volontairement.</p>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Warum ein Skelettmuskel ohne Gehirn gar nichts tut</span>
-    <p><b>„In der Skelettmuskulatur gibt es <u>keine Schrittmacherzellen</u> (wie zum Beispiel in
-      der Herzmuskulatur), die unabhängig vom Nervensystem Impulse für die Kontraktion bilden
-      könnten.“</b></p>
-    <p>Stattdessen: <b>„Die Impulse für die Kontraktion der Skelettmuskulatur entstehen im
-      Gehirn.“</b> Sie werden <b>über das Rückenmark</b> und anschließend <b>über periphere
-      Nerven</b> zu den Skelettmuskeln geleitet.</p>
-    <p><b>Das ist die Kette, die du bei einer <i>Begründen</i>-Aufgabe brauchst:</b>
-      Gehirn → Rückenmark → peripherer Nerv → Muskel. Reißt die Kette an <b>irgendeiner</b>
-      Stelle, bewegt sich der Muskel nicht mehr — obwohl der Muskel selbst gesund ist. Ein
-      Herzmuskel schlägt in derselben Lage weiter, weil er seine Schrittmacherzellen hat.</p>
-    <p><b>Der letzte Satz ist meine Folgerung</b>, aber jedes Glied darin steht wörtlich in
-      deinem Foliensatz. <b>Und er ist die Brücke zum Abschnitt
-      <a href="#nerven">Nervensystem</a></b> weiter unten — efferente Nerven.</p>
-    <p class="fr">Pas de cellules pace-maker dans le muscle squelettique : l'ordre vient du
-      cerveau, passe par la moelle, puis par le nerf périphérique. Coupe la chaîne n'importe
-      où, le muscle ne bouge plus.</p>
-  </div>
-
-  <h3>Die drei Funktionen — so, wie die Folie sie aufzählt</h3>
-  <div class="karten">
-    <div class="karte"><h4>Bewegung</h4>
-      <p><b>Bewegung der Knochen in den Gelenken.</b></p></div>
-    <div class="karte"><h4>Haltung</h4>
-      <p><b>Haltefunktion</b> — die <b>aufrechte Körperhaltung ermöglichen</b>.</p></div>
-    <div class="karte"><h4>Wärme</h4>
-      <p><b>Wärmeproduktion.</b></p></div>
-  </div>
-  <p><b>Die dritte ist die, die man vergisst</b> — und sie ist im Abschnitt
-    <a href="#muskel">Muskelgewebe</a> unter <i>Frage 8 d</i> schon erklärt: Die Wärme ist kein
-    Nebeneffekt der Bewegung, sondern ein <b>Produkt des Stoffwechsels selbst</b>. Zwei
-    verschiedene Foliensätze deiner Schule sagen dasselbe — <b>das ist ein Zeichen, dass es in
-    der Klausur vorkommt</b>.</p>
-
-  <h3>Zwei Bauformen — nach Form <i>und</i> Funktion</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Typ</th><th>Wie er gebaut ist</th><th>Die Sehne</th></tr></thead>
-      <tbody>
-        <tr><td class="k">1 · spindelförmig</td>
-          <td>Hat <b>in der Mitte den Muskelbauch = Muskelkopf</b> und <b>an beiden Enden
-            Sehnen</b>. Kann <b>mehrköpfig</b> sein: <i>M. biceps</i> = zweiköpfiger Muskel,
-            <i>M. triceps</i> = dreiköpfiger Muskel.</td>
-          <td>Sehnen, die <b>oft mehrere Zentimeter lang</b> sind. Sie sind
-            <b>immer an <u>verschiedenen</u> Knochen</b> befestigt — <b>damit das Gelenk
-            zwischen den Knochen bewegt werden kann</b>.</td></tr>
-        <tr><td class="k">2 · platt</td>
-          <td><b>Dünne, flächenhafte Muskeln.</b></td>
-          <td>Keine runde Sehne, sondern eine <b>flächenhafte Sehnenplatte</b> — Fachbegriff
-            <b>Aponeurose</b>. Gibt es <b>auch an der Handfläche, an der Fußsohle und am
-            Schädel</b>.</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="merk">
-    <span class="t">Der Halbsatz, der die ganze Logik trägt</span>
-    <p><b>„… und zwar <u>immer an verschiedenen Knochen</u>, damit das Gelenk / die Gelenke
-      zwischen den Knochen bewegt werden können.“</b></p>
-    <p>Säßen beide Sehnen am <b>selben</b> Knochen, würde sich beim Zusammenziehen
-      <b>nichts</b> bewegen. Deshalb verläuft der Muskel über das Gelenk hinweg. <b>Das ist die
-      Antwort auf jedes „Warum“ in diesem Abschnitt</b> — und der Grund, warum die Folie den
-      Satz mit <i>immer</i> schreibt.</p>
-    <p><b>Und die Namen verraten sich selbst:</b> <i>biceps</i> = zwei Köpfe, <i>triceps</i> =
-      drei Köpfe. Das steht so auf der Folie; die Vorsilben findest du im Abschnitt
-      <a href="#grundbegriffe">Anatomische Grundbegriffe</a> wieder.</p>
-  </div>
-
-  <div class="merk">
-    <span class="t">Agonist und Antagonist — Abb. 7.10 des Foliensatzes</span>
-    <p>Am <b>Ellbogengelenk</b> zeigt die Folie das Paar:
-      <b>Beuger = M. biceps brachii → Beugung</b> ·
-      <b>Strecker = M. triceps brachii → Streckung</b>.</p>
-    <p>Die Bildunterschrift heißt wörtlich: <i>„Die Beziehung zwischen Agonist und Antagonist
-      am Beispiel des Zusammenspiels von Beuger und Strecker am Ellbogengelenk.“</i></p>
-    <p class="fr">Agoniste et antagoniste : le fléchisseur et l'extenseur travaillent en
-      couple, jamais seuls.</p>
-  </div>
-
-  <h3>Die vier Fragen, die der Foliensatz wirklich beantwortet</h3>
-
-  <div class="merk">
-    <span class="t">Frage 2 — warum Frauen weniger Skelettmuskelmasse haben</span>
-    <p>Wörtlich: <b>„Männer haben deutlich mehr Muskelmasse als Frauen. Das liegt an dem
-      männlichen Sexualhormon <u>Testosteron</u>, das <u>muskelaufbauend</u> wirkt.“</b></p>
-    <p><b>Achtung beim Formulieren:</b> Die Frage lautet <i>Erklären Sie, warum das so ist</i> —
-      also <b>Erklären</b>. Ein Wort („Testosteron“) ist keine Erklärung. Die volle Antwort ist
-      <b>Hormon → Wirkung → Folge</b>: <i>Männer bilden mehr Testosteron, Testosteron wirkt
-      muskelaufbauend, deshalb ist die Skelettmuskelmasse bei Männern größer.</i></p>
-  </div>
-
-  <div class="merk">
-    <span class="t">Frage 3 — wann die Muskelmasse am größten ist</span>
-    <p>Wörtlich: <b>„Mit etwa <u>30 Jahren</u> hat ein Mensch seine maximale Muskelmasse
-      erreicht. Danach wird tendenzmäßig Muskelmasse abgebaut und <u>durch Fett ersetzt</u>.“</b></p>
-    <p><b>Der Halbsatz „durch Fett ersetzt“ ist der wichtige</b>, und er ist meine Betonung,
-      nicht die der Folie: Wenn Muskel durch Fett <b>ersetzt</b> wird, kann das <b>Gewicht
-      gleich bleiben</b>, während sich der Körper verändert. Deshalb ist ein unveränderter Wert
-      auf der Waage bei einem alten Menschen <b>kein Beweis dafür, dass alles in Ordnung
-      ist</b>. Auf deiner Seite <b>Mangelernährung</b> steht die passende Gegenfrage: <i>Ist die
-      Kleidung weiter geworden?</i></p>
-    <p class="fr">Le muscle est remplacé par de la graisse : le poids peut ne pas bouger alors
-      que le corps, lui, a changé.</p>
-  </div>
-
-  <div class="merk">
-    <span class="t">Frage 9 — die Muskeln der Einatmung</span>
-    <p>Die Folie <i>Einatmung (Inspiration)</i> nennt drei Schritte in dieser Reihenfolge:</p>
-    <ul style="margin-bottom:0;">
-      <li><b>Das Zwerchfell kontrahiert sich, die Zwerchfellkuppel wird abgesenkt.</b></li>
-      <li><b>Die äußeren Zwischenrippenmuskeln kontrahieren sich und heben den Brustkorb
-        an.</b></li>
-      <li><b>Das Thoraxvolumen nimmt zu</b> — auf der Folie steht daneben: <i>großes
-        Volumen</i>.</li>
-    </ul>
-    <p style="margin-top:12px;"><b>Merk dir die Richtung:</b> Der Muskel <b>zieht sich
-      zusammen</b> und die Kuppel geht <b>nach unten</b>. Das klingt falsch herum und wird
-      deshalb gern verwechselt. Die Folie zeigt zusätzlich den <b>Faserverlauf der äußeren
-      Zwischenrippenmuskeln</b>.</p>
-  </div>
-
-  <div class="merk">
-    <span class="t">Frage 10 — die Hilfseinatmer, vollständig</span>
-    <p>Wörtlich: <b>„Als Hilfseinatmer dienen dabei v. a.:“</b></p>
-    <ul>
-      <li><b>Großer und kleiner Brustmuskel</b> — <i>M. pectoralis major</i> und <i>minor</i></li>
-      <li><b>Vorderer und hinterer oberer Sägezahnmuskel</b> — <i>M. serratus anterior</i> und
-        <i>M. serratus posterior superior</i></li>
-      <li><b>Die Treppenmuskeln an der Brustwand</b> — <i>Mm. scaleni</i></li>
-      <li><b>Der Kopfwender</b> — <i>M. sternocleidomastoideus</i></li>
-    </ul>
-    <p><b>Die Frage verlangt nur <u>einen</u></b> („Nennen Sie <i>einen</i>
-      Einatemhilfsmuskel“) — nenne trotzdem den, dessen deutschen <b>und</b> lateinischen Namen
-      du sicher kannst. <i>Der Kopfwender, M. sternocleidomastoideus</i> ist dafür der
-      dankbarste, weil er auch im Abschnitt <a href="#nerven">Nervensystem</a> und auf der
-      Muskelübersicht vorkommt.</p>
-    <p><b>Und eine Beobachtung, die von mir ist und nicht von der Folie:</b> Hilfsmuskeln heißen
-      so, weil sie <b>normalerweise nicht gebraucht</b> werden. Arbeiten Hals-, Schulter- und
-      Brustmuskeln beim Einatmen sichtbar mit, ist das <b>kein normales Atmen mehr</b>. Wie
-      Atmung beobachtet wird, steht auf deiner Seite <b>Wahrnehmen ist nicht Beobachten</b>,
-      beim Kind auf <b>Das kranke Kind</b>. <b>Die Folie sagt das nicht</b> — sie zählt nur auf.</p>
-    <p class="fr">Ces muscles sont des muscles « de secours ». Si tu les vois travailler, la
-      respiration n'est déjà plus normale. Ça, c'est ma déduction — la diapo ne le dit pas.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Die sieben Fragen, auf die keine Antwort im Text steht</span>
-    <p>Unter den Fragen <b>1, 4, 5, 6, 7, 8 und 11</b> stehen im Foliensatz <b>keine
-      Antwortsätze, sondern Bildtafeln</b> aus einem Anatomieatlas. <b>Ich schreibe die
-      Antworten nicht aus dem Gedächtnis hin</b> — das ist genau das, was auf dieser Seite nie
-      passieren soll. Damit du trotzdem weißt, <b>wo du suchen musst</b>, steht hier, was die
-      Tafeln zeigen:</p>
-    <div class="scroll" style="margin-top:12px;">
-      <table>
-        <thead><tr><th>Frage</th><th>Was stattdessen dasteht</th></tr></thead>
-        <tbody>
-          <tr><td class="k">1 · Wie viel Prozent des Körpergewichts?</td>
-            <td><b>Nichts.</b> Es folgt direkt Frage 2. <b>Eine Zahl steht nirgends in deinen
-              Unterlagen</b> — deshalb steht hier auch keine.</td></tr>
-          <tr><td class="k">4 · Zwei Möglichkeiten gegen den Muskelabbau im Alter</td>
-            <td>Keine Antwortfolie. Die Frage steht zwischen 3 und 5 und wird übersprungen.</td></tr>
-          <tr><td class="k">5 · Was bedeutet <i>Sarkopenie</i>?</td>
-            <td>Keine Antwortfolie — <b>das Wort wird gefragt und nie erklärt</b>.</td></tr>
-          <tr><td class="k">6 · Unterschied <i>Parese</i> und <i>Plegie</i></td>
-            <td>Keine Antwortfolie. Das Fragenblatt sagt nur, dass <b>beide „Lähmung“
-              bedeuten</b> — der Unterschied ist die Aufgabe.</td></tr>
-          <tr><td class="k">7 · Vier Muskeln, die für i. m.-Injektionen geeignet sind</td>
-            <td>Zwei große Atlastafeln: eine <b>Ventralansicht der Brust- und Bauchmuskulatur</b>
-              (<i>M. deltoideus</i>, <i>M. pectoralis major</i>, <i>M. serratus anterior</i> …)
-              und eine <b>Rückenansicht</b> (<i>M. gluteus maximus</i>, <i>M. gluteus
-              medius</i>, <i>M. vastus lateralis</i> …). <b>Die Tafeln beschriften, sie wählen
-              nicht aus.</b></td></tr>
-          <tr><td class="k">8 · Warum auf die korrekte Injektionsstelle im Gesäß achten?</td>
-            <td>Eine Gesäßtafel, auf der neben <i>M. glutaeus maximus</i>, <i>M. glutaeus
-              medius</i> und <i>M. piriformis</i> auch der <b><i>N. ischiadicus</i></b>
-              eingezeichnet ist. <b>Die Tafel zeigt den Nerv — das „Warum“ formuliert sie
-              nicht.</b></td></tr>
-          <tr><td class="k">11 · Zwei Funktionen des Beckenbodens · Folgen einer
-            Beckenbodeninsuffizienz</td>
-            <td>Beckenboden- und Sagittaltafeln mit <i>M. levator ani</i>, <i>M. sphincter ani
-              externus</i>, <i>M. bulbospongiosus</i>, <i>M. ischiocavernosus</i> und
-              <i>M. transversus perinei superficialis</i> und <i>profundus</i>. <b>Funktionen
-              und Folgen stehen dort nicht.</b></td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p><b>Stand 20.09.2026 — sie hat geantwortet: <i>„je les ais pas"</i>.</b> Die sieben
-      Antworten liegen also auch bei ihr nicht. Damit sind sie <b>keine offene Aufgabe für
-      sie mehr</b>, sondern eine <b>Lücke im Foliensatz selbst</b>: Der Fragebogen stellt elf
-      Fragen und beantwortet vier davon im Text — die übrigen sieben hängen an Bildtafeln,
-      und eine Bildtafel beantwortet keine <i>Erklären-Sie</i>-Frage.</p>
-    <p><b>Der eine Weg, der bleibt:</b> Frag die Dozentin. Ein Satz genügt, und er steht hier
-      fertig auf Deutsch: <i>„Zu den elf Fragen über die Skelettmuskulatur — zu sieben davon
-      finde ich im Foliensatz keine Antwort im Text. Können Sie die kurz nennen oder sagen, in
-      welchem Kapitel im Lehrbuch sie stehen?"</i> Sobald die Antworten da sind, kommen sie
-      hierher.</p>
-    <p><b>Was hier nicht passiert:</b> Ich schreibe sie <b>nicht aus dem Gedächtnis</b> hin.
-      Dann stünde auf dieser Seite etwas, das aussieht wie der Unterricht deiner Dozentin und
-      keiner ist — und du gäbst es in der Klausur wieder, ohne dass es je jemand geprüft hat.
-      <b>Frage 1 zumal ist eine Prozentzahl</b>, und geratene Zahlen haben hier nichts zu
-      suchen.</p>
-    <p class="fr">Tu m'as dit ne pas avoir ces réponses — elles ne sont donc nulle part. Ce
-      n'est plus une tâche pour toi : c'est un trou dans le diaporama lui-même. Demande-les à
-      la formatrice avec la phrase allemande ci-dessus ; moi, je ne les invente pas.</p>
-  </div>
-
-  <div class="pruef">
-    <h4>Der Fragebogen deiner Dozentin — alle elf Fragen, zum Selbsttest</h4>
-    <ol>
-      <li><b>Geben Sie an</b>, wie viel Prozent des Körpergewichtes die Skelettmuskelmasse sein
-        sollte! <span style="opacity:.7">→ <b>steht in deinen Unterlagen nicht</b></span></li>
-      <li>Frauen haben weniger Skelettmuskelmasse als Männer. <b>Erklären Sie, warum</b> das so
-        ist! <span style="opacity:.7">→ Testosteron, Kasten oben</span></li>
-      <li>In welchem <b>Lebensalter</b> hat ein Mensch seine persönliche, maximale Muskelmasse
-        erreicht? <span style="opacity:.7">→ etwa 30 Jahre, Kasten oben</span></li>
-      <li><b>Nennen Sie zwei</b> Möglichkeiten, wie dem Muskelabbau im Alter entgegengewirkt
-        werden kann! <span style="opacity:.7">→ offen</span></li>
-      <li><b>Erklären Sie</b>, was der Begriff <b>Sarkopenie</b> bedeutet.
-        <span style="opacity:.7">→ offen</span></li>
-      <li>Die Begriffe <b>Parese</b> und <b>Plegie</b> bedeuten beide Lähmung. <b>Erklären
-        Sie den Unterschied</b>! <span style="opacity:.7">→ offen</span></li>
-      <li><b>Nennen Sie vier</b> Muskeln, die für i. m.-Injektionen geeignet sind!
-        <span style="opacity:.7">→ offen, nur Bildtafeln</span></li>
-      <li><b>Warum</b> sollte bei i. m.-Injektionen in das Gesäß unbedingt auf die korrekte
-        Injektionsstelle geachtet werden?
-        <span style="opacity:.7">→ offen; die Tafel zeigt den N. ischiadicus</span></li>
-      <li><b>Nennen Sie die Muskeln</b>, die für die Einatmung wichtig sind!
-        <span style="opacity:.7">→ Zwerchfell und äußere Zwischenrippenmuskeln</span></li>
-      <li><b>Nennen Sie einen</b> Einatemhilfsmuskel!
-        <span style="opacity:.7">→ die Liste oben</span></li>
-      <li>Der Beckenboden besteht aus mehreren Muskeln und aus Sehnengewebe. <b>Nennen Sie zwei
-        Funktionen</b> des Beckenbodens! <b>Welche Folgen</b> kann eine Beckenbodeninsuffizienz
-        haben? <span style="opacity:.7">→ offen</span></li>
-    </ol>
-    <p><b>Sieh dir die Operatoren an, bevor du schreibst.</b> Dreimal steht <i>Erklären Sie</i>
-      (2, 5, 6) und einmal <i>Warum</i> (8) — das sind <b>vier von elf Fragen, die eine
-      Begründung verlangen und keine Aufzählung</b>. <i>Erklären</i> heißt in deinen Klausuren:
-      <b>verständliche Erklärung plus eigenes Beispiel</b>.</p>
-    <p><b>Und die Zahlen nicht übersehen:</b> <i>zwei</i> Möglichkeiten (4), <i>vier</i> Muskeln
-      (7), <i>einen</i> Hilfsmuskel (10), <i>zwei</i> Funktionen (11). Beim Operator
-      <i>Nennen</i> ist die <b>geforderte Anzahl</b> Teil der Aufgabe — drei statt vier kostet
-      Punkte, auch wenn die drei richtig sind.</p>
-  </div>
-
-  <div class="paare">
-    <div class="paar"><span class="de">die Sehne, -n</span>
-      <span class="frx">le tendon</span></div>
-    <div class="paar"><span class="de">die Aponeurose, -n (die Sehnenplatte, -n)</span>
-      <span class="frx">l'aponévrose, la lame tendineuse</span></div>
-    <div class="paar"><span class="de">der Muskelbauch, die Muskelbäuche</span>
-      <span class="frx">le corps du muscle</span></div>
-    <div class="paar"><span class="de">spindelförmig ↔ platt</span>
-      <span class="frx">fusiforme ↔ plat</span></div>
-    <div class="paar"><span class="de">mehrköpfig (zweiköpfig, dreiköpfig)</span>
-      <span class="frx">à plusieurs chefs (biceps, triceps)</span></div>
-    <div class="paar"><span class="de">der Beuger, - ↔ der Strecker, -</span>
-      <span class="frx">le fléchisseur ↔ l'extenseur</span></div>
-    <div class="paar"><span class="de">die Beugung, -en ↔ die Streckung, -en</span>
-      <span class="frx">la flexion ↔ l'extension</span></div>
-    <div class="paar"><span class="de">das Zwerchfell (nur Singular)</span>
-      <span class="frx">le diaphragme</span></div>
-    <div class="paar"><span class="de">die Zwerchfellkuppel, -n</span>
-      <span class="frx">la coupole diaphragmatique</span></div>
-    <div class="paar"><span class="de">die Zwischenrippenmuskeln (Plural)</span>
-      <span class="frx">les muscles intercostaux</span></div>
-    <div class="paar"><span class="de">der Einatemhilfsmuskel, -n</span>
-      <span class="frx">le muscle inspiratoire accessoire</span></div>
-    <div class="paar"><span class="de">absenken (senkt ab, senkte ab, hat abgesenkt)</span>
-      <span class="frx">abaisser</span></div>
-    <div class="paar"><span class="de">die Lähmung, -en</span>
-      <span class="frx">la paralysie</span></div>
-    <div class="paar"><span class="de">der Muskelabbau (nur Singular)</span>
-      <span class="frx">la fonte musculaire</span></div>
-  </div>
-</section>
-
-<section id="nerven">
-  <h2>Das Nervensystem — Anatomie und Physiologie</h2>
-  <p class="lead">CE 07 / UE 04. Der einzige richtige Foliensatz in diesem Block — und mit
-    Abstand der ausführlichste.</p>
-
-  <div class="merk">
-    <span class="t">Definition aus der Folie</span>
-    <p>„Die <b>Gesamtheit aller Nervenzellen</b> bildet das Nervensystem. Es regelt gemeinsam
-      mit dem <b>Hormonsystem</b> sämtliche Organsysteme.“</p>
-  </div>
-
-  <h3>Die vier Aufgaben — in dieser Reihenfolge</h3>
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div>
-      <h4>Erfassen</h4>
-      <p>Informationen aus <b>Körper und Umwelt</b> aufnehmen — über
-        <b>Sensoren / Rezeptoren</b>.</p></div></div>
-    <div class="stufe"><span class="nr">2</span><div>
-      <h4>Übermitteln</h4>
-      <p>An die übergeordneten Zentren weiterleiten — über <b>afferente Nerven</b>
-        (<i>hin zum Gehirn</i>).</p></div></div>
-    <div class="stufe"><span class="nr n2">3</span><div>
-      <h4>Verarbeiten und speichern</h4>
-      <p>Daraus entstehen <b>Bewusstsein, Lernen, Sprache, Motivation, Denken</b>.</p></div></div>
-    <div class="stufe"><span class="nr n2">4</span><div>
-      <h4>Antworten</h4>
-      <p>Über <b>efferente Nerven</b> (<i>weg vom Gehirn</i>). Die Folge kann eine
-        <b>Reaktion</b> sein.</p></div></div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Afferent oder efferent? Die Eselsbrücke</span>
-    <p><b>A</b>fferent = <b>A</b>nkommen (zum Gehirn hin). <b>E</b>fferent = <b>E</b>xit
-      (vom Gehirn weg). Diese beiden Wörter werden ständig verwechselt und kommen in jeder
-      Klausur über das Nervensystem vor.</p>
-    <p class="fr">Afferent = qui arrive au cerveau. Efferent = qui en repart.</p>
-  </div>
-
-  <h3>Zwei Einteilungen — man muss beide kennen</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Einteilung</th><th>Teil 1</th><th>Teil 2</th></tr></thead>
-      <tbody>
-        <tr>
-          <td class="k">nach <b>Lage</b></td>
-          <td><b>Zentrales Nervensystem (ZNS)</b><br>Gehirn und Rückenmark</td>
-          <td><b>Peripheres Nervensystem (PNS)</b><br>alle Nervenzellen und -bahnen außerhalb
-            des ZNS</td>
-        </tr>
-        <tr>
-          <td class="k">nach <b>Funktion</b></td>
-          <td><b>Somatisches / willkürliches NS</b><br>Umweltreize empfangen und verarbeiten ·
-            Bewegungssteuerung</td>
-          <td><b>Vegetatives / autonomes NS</b><br>steuert die inneren Organfunktionen · nur
-            geringfügig durch den Willen beeinflussbar</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Ein Satz aus der Folie, den man leicht überliest</span>
-    <p>„<b>Alle Unterteilungen sind nicht eindeutig trennscharf.</b>“ Das heißt: Die Grenzen
-      sind nicht scharf. Wenn eine Klausurfrage nach einem Grenzfall fragt, ist <b>„das lässt
-      sich nicht eindeutig trennen, weil …“</b> eine richtige Antwort — keine Ausrede.</p>
-  </div>
-
-  <h3>Sympathikus und Parasympathikus</h3>
-  <div class="karten">
-    <div class="karte">
-      <h4>Sympathikus</h4>
-      <p><b>Allgemein aktivierendes System.</b> Nach <b>außen</b> gerichtet.</p>
-    </div>
-    <div class="karte">
-      <h4>Parasympathikus</h4>
-      <p><b>Bremsendes System.</b> Nach <b>innen</b> gerichtet. Aktiviert die
-        <b>Magen-Darm-Tätigkeit</b>. Vor allem über den <b>N. vagus</b>.</p>
-    </div>
-  </div>
-</section>
-
-<section id="neuron">
-  <h2>Das Neuron — die Grundeinheit</h2>
-  <p class="lead">Hier liegt der Mechanismus. Und Mechanismen sind genau das, was in deinen
-    Klausuren fehlt.</p>
-
-  <p>Ein Neuron nimmt Signale auf, verarbeitet sie und leitet sie weiter — durch
-    <b>elektrische und biochemische Prozesse</b>.</p>
-
-  <h3>Die drei Zustände der Membran</h3>
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div>
-      <h4>Ruhepotential</h4>
-      <p><b>Negative</b> elektrische Grundladung der Membran. Bedingt vor allem durch
-        <b>K⁺</b> und <b>Na⁺</b>, gesteuert über die <b>Natrium-Kalium-Pumpe</b>.</p></div></div>
-    <div class="stufe"><span class="nr">2</span><div>
-      <h4>Aktionspotential</h4>
-      <p><b>Schlagartige, massive</b> Veränderung der Membran in eine <b>positive</b> Ladung.
-        Vor allem durch <b>Na⁺-Einstrom</b>. Es gilt das
-        <b>Alles-oder-nichts-Prinzip</b>.</p></div></div>
-    <div class="stufe"><span class="nr n2">3</span><div>
-      <h4>Repolarisation</h4>
-      <p><b>Wiederherstellung</b> der Grundladung, vor allem durch <b>K⁺-Ausstrom</b> aus der
-        Zelle. Danach die <b>Refraktärzeit</b>: In dieser Zeit kann <b>kein weiteres</b>
-        Aktionspotential ausgelöst werden.</p></div></div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Die Kette, die du in der Klausur schreiben musst</span>
-    <p><b>Reiz → Na⁺ strömt ein → Ladung kippt ins Positive (Aktionspotential) → K⁺ strömt aus
-      → Grundladung wieder da (Repolarisation) → Refraktärzeit, kurze Pause.</b></p>
-    <p>Genau <b>so</b> sieht eine Antwort auf <i>Erklären</i> aus: die Schritte <b>in der
-      richtigen Reihenfolge</b>, nicht nur die Namen. Eine Aufzählung ohne Reihenfolge ist auf
-      AFB II keine vollständige Antwort.</p>
-  </div>
-
-  <h3>Wie das Signal weiterkommt</h3>
-  <div class="karten">
-    <div class="karte">
-      <h4>Im Axon — <b>saltatorische Leitung</b></h4>
-      <p>Das Signal springt von <b>Ranvierschem Schnürring</b> zu Ranvierschem Schnürring —
-        <b>sprunghaft</b>, nicht durchgehend. Das macht es schnell.</p>
-    </div>
-    <div class="karte">
-      <h4>Zur nächsten Zelle — der <b>synaptische Spalt</b></h4>
-      <p>Hier wird das <b>elektrische</b> Signal in eine <b>chemische</b> Übertragung
-        umgewandelt — über <b>Neurotransmitter</b>. Synapsen wirken <b>hemmend oder
-        erregend</b>.</p>
-    </div>
-  </div>
-
-  <h3>Die vier wichtigsten Neurotransmitter</h3>
-  <p><b>Acetylcholin · Noradrenalin · Serotonin · Dopamin</b></p>
-
-  <div class="merk">
-    <span class="t">Die Brücke zur Psychiatrie</span>
-    <p><b>Serotonin</b> und <b>Dopamin</b> stehen auch in deiner Psychiatrie-Zusammenfassung —
-      dort als Angriffspunkt der Medikamente. Das ist <b>dieselbe Sache</b>, einmal von der
-      Physiologie und einmal von der Behandlung aus gesehen. Wenn du diese Verbindung in einer
-      Klausur herstellst, ist das AFB II.</p>
-    <p class="fr">C'est le même mécanisme, vu de deux côtés : la physiologie et le traitement.</p>
-  </div>
-
-  <div class="paare">
-    <div class="paar"><span class="de">das Neuron, die Neuronen (die Nervenzelle, -n)</span>
-      <span class="frx">le neurone</span></div>
-    <div class="paar"><span class="de">die Membran, -en</span>
-      <span class="frx">la membrane</span></div>
-    <div class="paar"><span class="de">das Ruhepotential (nur Singular)</span>
-      <span class="frx">le potentiel de repos</span></div>
-    <div class="paar"><span class="de">das Aktionspotential, -e</span>
-      <span class="frx">le potentiel d'action</span></div>
-    <div class="paar"><span class="de">die Repolarisation (nur Singular)</span>
-      <span class="frx">la repolarisation</span></div>
-    <div class="paar"><span class="de">die Refraktärzeit, -en</span>
-      <span class="frx">la période réfractaire</span></div>
-    <div class="paar"><span class="de">der Einstrom / der Ausstrom</span>
-      <span class="frx">l'entrée / la sortie (d'ions)</span></div>
-    <div class="paar"><span class="de">der Neurotransmitter, -</span>
-      <span class="frx">le neurotransmetteur</span></div>
-    <div class="paar"><span class="de">hemmen (hemmt, hemmte, hat gehemmt)</span>
-      <span class="frx">inhiber, freiner</span></div>
-    <div class="paar"><span class="de">erregen (erregt, erregte, hat erregt)</span>
-      <span class="frx">exciter, stimuler</span></div>
-  </div>
-</section>
-
-<section id="gehirn">
-  <h2>Das Gehirn</h2>
-  <p class="lead">Drei Hauptteile, drei Hirnhäute, ein Flüssigkeitssystem.</p>
-
-  <h3>Die drei Schutzschichten — die Hirnhäute (<i>Meningen</i>)</h3>
-  <div class="stufen">
-    <div class="stufe"><span class="nr">außen</span><div>
-      <h4>Dura mater</h4><p>die <b>harte</b> Hirnhaut</p></div></div>
-    <div class="stufe"><span class="nr">mitte</span><div>
-      <h4>Arachnoidea</h4><p>die <b>Spinnengewebshaut</b></p></div></div>
-    <div class="stufe"><span class="nr n2">innen</span><div>
-      <h4>Pia mater</h4><p>die <b>weiche</b> Hirnhaut</p></div></div>
-  </div>
-
-  <h3>Der Liquor — die Hirnflüssigkeit</h3>
-  <div class="karten">
-    <div class="karte">
-      <h4>Was er ist</h4>
-      <p><b>Klare, farblose bis leicht gelbe</b> Flüssigkeit. Das Gehirn <b>schwimmt</b> darin.
-        Gebildet und teilweise wieder aufgenommen in den <b>Ventrikeln</b>, im
-        <b>Arachnoidalraum</b> resorbiert.</p>
-    </div>
-    <div class="karte">
-      <h4>Was er tut</h4>
-      <ul>
-        <li><b>Stoß- und Reibungsreduktion</b> für Gehirn und Hirnhäute</li>
-        <li><b>Ernährungsfunktion</b> für die Neuronen — vor allem O₂, CO₂ und H₂O</li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Woraus er besteht</h4>
-      <ul>
-        <li>Wasser</li>
-        <li>Mineralsalze</li>
-        <li><b>Eiweiß: 15–30 mg%</b></li>
-        <li><b>Glucose: 40–70 mg%</b></li>
-        <li><b>Wenige bis keine Zellen</b></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Warum diese Zahlen wichtig sind</span>
-    <p>Der Liquor kann zur <b>Diagnostik</b> gewonnen werden — durch die
-      <b>Lumbalpunktion</b>. Therapeutisch gibt es die <b>Ventrikeldrainage</b>.</p>
-    <p>Und deshalb zählen die Werte: <b>Wenige bis keine Zellen.</b> Findet man plötzlich viele
-      Zellen und wenig Glucose, ist das ein Hinweis auf eine <b>Entzündung</b>. Die Zahl allein
-      bringt keine Punkte — <b>die Zahl mit ihrer Bedeutung</b> schon.</p>
-  </div>
-
-  <h3>Großhirn (<i>Cerebrum</i>)</h3>
-  <ul>
-    <li>Steuerung vieler <b>aktiver</b> Prozesse</li>
-    <li><b>70 % der Neuronen</b> liegen in der Großhirnrinde</li>
-    <li><b>Zwei Hemisphären</b>, verbunden durch den <b>Balken</b></li>
-    <li>Die Aufgaben sind in <b>bestimmten Bereichen konzentriert</b></li>
-    <li><b>Das Hirn ist grundsätzlich lernfähig</b> — Aufgaben können von anderen Bereichen
-      übernommen werden</li>
-  </ul>
-
-  <h4>Die vier Lappen und ihre Zentren</h4>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Lappen</th><th>Lateinisch</th><th>Was dort liegt</th></tr></thead>
-      <tbody>
-        <tr><td class="k">Stirnlappen</td><td>Lobus frontalis</td>
-          <td>primäres <b>motorisches</b> Rindenfeld · <b>Broca-Sprachzentrum</b></td></tr>
-        <tr><td class="k">Scheitellappen</td><td>Lobus parietalis</td>
-          <td>primäres <b>sensorisches</b> Rindenfeld</td></tr>
-        <tr><td class="k">Schläfenlappen</td><td>Lobus temporalis</td>
-          <td><b>Hörzentrum</b> · <b>Wernicke-Sprachzentrum</b></td></tr>
-        <tr><td class="k">Hinterhauptlappen</td><td>Lobus occipitalis</td>
-          <td><b>Sehzentrum</b></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p style="font-size:15px;">Dazwischen die <b>Zentralfurche</b> und die <b>seitliche
-    Großhirnfurche</b>, hinten die <b>Scheitel-Hinterhaupt-Furche</b>.</p>
-
-  <div class="merk">
-    <span class="t">Die Regel, die man sich merken muss</span>
-    <p>Die <b>Pyramidenbahnen</b> laufen <b>„über Kreuz“</b>: <b>Die linke Hirnhälfte steuert
-      die rechte Körperhälfte</b> — und umgekehrt.</p>
-    <p>Das ist die Erklärung dafür, warum nach einem Schlaganfall links die <b>rechte</b> Seite
-      gelähmt ist. Eine klassische Begründungsfrage.</p>
-    <p class="fr">L'hémisphère gauche commande le côté droit du corps. C'est pourquoi un AVC à
-      gauche paralyse la droite.</p>
-  </div>
-
-  <h3>Die übrigen Teile</h3>
-  <div class="karten">
-    <div class="karte">
-      <h4>Kleinhirn — <i>Cerebellum</i></h4>
-      <ul>
-        <li>Regulation der <b>Muskelspannung</b></li>
-        <li><b>Gleichgewicht</b></li>
-        <li><b>Bewegungskoordination</b></li>
-      </ul>
-    </div>
-    <div class="karte">
-      <h4>Hirnstamm — <i>Truncus cerebri</i></h4>
-      <p>Das <b>unterste</b> Gehirnstück. Wichtigster Bestandteil: das <b>verlängerte Mark
-        (Medulla oblongata)</b>.</p>
-      <p>Steuert <b>Herz-Kreislauf</b>, <b>Atmung</b>, <b>Schlucken und Brechen</b>,
-        <b>Niesen und Husten</b>.</p>
-    </div>
-    <div class="karte">
-      <h4>Hypothalamus und Hypophyse</h4>
-      <p>Teile des <b>Zwischenhirns</b>.</p>
-      <p><b>Hypothalamus:</b> verbindet das <b>hormonelle</b> und das <b>nervale</b> System,
-        reguliert innere Prozesse.<br>
-        <b>Hypophyse:</b> die <b>übergeordnete hormonelle Drüse</b>.</p>
-    </div>
-    <div class="karte">
-      <h4>Rückenmark — <i>Medulla spinalis</i></h4>
-      <p>Das <b>Reflexzentrum</b>. Reflexe werden <b>nicht</b> ans Großhirn geleitet — die
-        Antwort auf den Reiz entsteht <b>im Rückenmark selbst</b>.</p>
-      <p>Außerdem: Weiterleitung der Reaktionen aus dem Großhirn. Umgeben von Hirnhäuten.</p>
-    </div>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Der Satz, der zeigt, warum das lebenswichtig ist</span>
-    <p>Aus der Folie zum <b>Hirnstamm</b>: „<b>Schädigungen oft tödlich</b> oder mit schweren
-      Einschränkungen verbunden.“</p>
-    <p>Der Grund steht eine Zeile darüber: Dort sitzen <b>Herz-Kreislauf und Atmung</b>. Fällt
-      der Hirnstamm aus, fällt beides aus. <b>Ursache → Wirkung → Gefahr.</b></p>
-  </div>
-
-  <h3>Hirnnerven und Blut-Hirn-Schranke</h3>
-  <p><b>12 Hirnnerven</b>, afferent und efferent — die Hauptstrombahnen des Gehirns oberhalb des
-    Rückenmarks, mit direkter Reizleitung besonders am Kopf. Als wichtig genannt:
-    <b>N. trigeminus · N. vestibulocochlearis · N. facialis · N. vagus</b>.</p>
-  <p>Die <b>Blut-Hirn-Schranke</b>: Ausläufer der <b>Gliazellen</b> ummanteln die Blutgefäße und
-    verbinden sich mit den Neuronen. Diese Ummantelung ist <b>für viele Stoffe
-    unpassierbar</b> — zum <b>Schutz der Neuronen</b>.</p>
-
-  <div class="warnung">
-    <span class="t">Tippfehler in den Folien</span>
-    <p>Im Foliensatz steht zweimal etwas anders, als es richtig heißt: <b>„Aoxns“</b> statt
-      <i>Axons</i>, <b>„12 Neven“</b> statt <i>Nerven</i>, und <b>„N. fascialis“</b> statt
-      <i>N. facialis</i>. Außerdem steht bei den Erstmaßnahmen <b>„GCG“</b> — gemeint ist
-      mit hoher Wahrscheinlichkeit die <b>GCS</b>, die <i>Glasgow Coma Scale</i>.
-      <b>Ich habe es nicht stillschweigend geändert</b>, damit du es wiedererkennst, wenn du die
-      Folie neben dieser Seite liest.</p>
-  </div>
-</section>
-
-<section id="bewusst">
-  <h2>Bewusstseinslagen und Erstmaßnahmen</h2>
-  <p class="lead">Vier Stufen — und acht Handgriffe. Das ist der Teil, der direkt auf Station
-    zählt.</p>
-
-  <div class="warnung">
-    <span class="t">Nachgetragen am 19.09.2026 — hier stand eine Stufe zu wenig</span>
-    <p>Diese Seite nannte bisher <b>drei</b> Stufen. Der Foliensatz <b>Bewusstsein, Wahrnehmung
-      und Verhalten</b> (CE 02 / UE 5) aus deinem Drive-Ordner nennt <b>vier</b> — und die
-      fehlende ist die, die dir im Alltag <b>am häufigsten</b> begegnet.</p>
-  </div>
-
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div>
-      <h4>Benommenheit</h4>
-      <p><b>Leichteste Form</b> der Bewusstseinsstörung · <b>verlangsamtes Denken und
-        Handeln</b> · <b>der Patient ist orientiert</b>.</p></div></div>
-    <div class="stufe"><span class="nr">2</span><div>
-      <h4>Somnolenz</h4>
-      <p><b>Schläfrig, aber noch erweckbar</b>, verlangsamt. Der Foliensatz ergänzt:
-        <b>abnorme Schläfrigkeit</b>, für kurze Zeit weckbar, <b>gerade noch orientiert</b>,
-        kann <b>einfache Fragen noch beantworten</b>.</p></div></div>
-    <div class="stufe"><span class="nr n2">3</span><div>
-      <h4>Sopor</h4>
-      <p><b>Hochgradig schläfrig</b>, nur <b>kurzzeitig</b> erweckbar — <b>schlafähnlicher
-        Zustand</b>; reagiert <b>nur noch auf starke Außenreize</b> gezielt, mit
-        <b>kurzzeitigen Orientierungsversuchen</b>.</p></div></div>
-    <div class="stufe"><span class="nr n2">4</span><div>
-      <h4>Koma</h4>
-      <p><b>Nicht erweckbar</b>, Augen geschlossen · <b>keine Reaktion auf Ansprache</b> ·
-        evtl. <b>Reflexe und Reaktionen auf Schmerzreize</b> vorhanden.</p></div></div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Woran du sie unterscheidest</span>
-    <p>An <b>einer</b> Frage: <b>Wird der Mensch wach — und wie lange bleibt er es?</b><br>
-      Benommenheit: er ist wach, nur langsam. Somnolenz: ja, bleibt wach. Sopor: ja, aber nur
-      kurz. Koma: nein.</p>
-    <p><b>Und an der Orientierung</b>, Wort für Wort: <b>orientiert</b> (Benommenheit) →
-      <b>gerade noch orientiert</b> (Somnolenz) → <b>Orientierungs<i>versuche</i></b> (Sopor) →
-      <b>nichts</b> (Koma).</p>
-    <p class="fr">Une seule question : est-ce qu'il se réveille, et combien de temps ? Et un mot
-      qui s'effrite d'étage en étage : <i>orienté</i>.</p>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Alle vier sind <i>quantitative</i> Bewusstseinsstörungen</span>
-    <p>Das ist der Satz, der in einer <i>Beurteilen</i>-Aufgabe die Punkte bringt: Diese Reihe
-      misst <b>die Wachheit (Vigilanz)</b> — also <b>wie wach</b> jemand ist.</p>
-    <p>Davon zu trennen sind die <b>qualitativen</b> Bewusstseinsstörungen: Dort ist der Mensch
-      <b>wach und kann komplexe Handlungen ausführen</b>, nur der <b>Inhalt</b> des Bewusstseins
-      ist verändert (Verwirrtheit, Halluzinationen). <b>Quantitativ = wie wach? Qualitativ = wie
-      richtig?</b></p>
-    <p class="fr">Ces quatre-là mesurent la <b>vigilance</b>. L'autre famille — qualitative —
-      concerne le <b>contenu</b>, chez quelqu'un qui est parfaitement éveillé.</p>
-  </div>
-
-  <h3>Erstmaßnahmen bei Bewusstlosen — die Reihenfolge aus der Folie</h3>
+<style>
+  .her{font-style:normal;font-size:.78em;font-weight:700;letter-spacing:.04em;color:var(--gelb);background:var(--gelbbg);border-radius:999px;padding:0 7px;white-space:nowrap;}
+  .def{border:2px solid var(--accent);border-radius:10px;padding:12px 14px;margin:12px 0;background:var(--card);}
+  .def .t{display:block;font-size:.78em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+  .def p:last-child{margin-bottom:0;}
+  dl.woerter{margin:10px 0;display:grid;grid-template-columns:minmax(8rem,auto) 1fr;gap:6px 14px;}
+  dl.woerter dt{font-weight:700;} dl.woerter dd{margin:0;}
+  @media (max-width:520px){dl.woerter{grid-template-columns:1fr;gap:0;} dl.woerter dd{margin-bottom:8px;}}
+</style>
+
+<main lang="de">
+<h1>Die Organe und das Nervensystem</h1>
+<p class="unter">CE 05 / UE 0 · CE 07 / UE 04 · neu geschrieben am 04.11.2026 · <b>nur aus deinen 19 Kursdateien</b> — nichts aus dem Internet. Wo ich zwei Folien selbst verbinde, steht <span class="her">Herleitung</span>.</p>
+
+<div class="kern">
+  <p><b>Das Wichtigste in einem Satz:</b> Für jedes Organ lernst du drei Dinge, sichtbar getrennt: <b>Größe/Gewicht/Lage · Makroskopie (Grundaufbau) · Funktionen</b>. Das Nervensystem steuert die Organe und die Muskeln — über elektrische Signale in den Nervenzellen und Botenstoffe an den Synapsen.</p>
+  <p class="fr">🇫🇷 Pour chaque organe : taille/poids/position, structure, fonctions — toujours en trois parties séparées. Le système nerveux commande les organes et les muscles par des signaux électriques et des messagers chimiques.</p>
+</div>
+
+<!-- ============ AUF EINEN BLICK ============ -->
+<h2>Auf einen Blick: Wörter → Organe → Steuerung → Bewegung</h2>
+<div class="schema">
+  <p class="titel">Der ganze Kurs als Kette</p>
+  <div class="k wichtig"><b>1 · Die Sprache der Anatomie</b><small>Richtungen (kranial, kaudal …), Abkürzungen (A., M., N.), Vor- und Nachsilben (hyper-, -itis …)</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>2 · Die Organe</b><small>Leber · Lunge · Magen · Niere · Bauchspeicheldrüse — je Größe/Gewicht/Lage, Makroskopie, Funktionen</small></div>
+  <div class="pfeil">↓</div>
+  <div class="zwei">
+    <div class="k"><b>3 · Das Nervensystem steuert</b><small>Neuron, Aktionspotential, Synapse · Gehirn, Rückenmark, Hirnnerven</small></div>
+    <div class="k"><b>4 · Die Muskeln führen aus</b><small>drei Muskeltypen · Filamentgleiten · Energie · Skelettmuskeln</small></div>
+  </div>
+  <div class="pfeil">↓</div>
+  <div class="k rot"><b>5 · Wenn das Gehirn gestört ist</b><small>Somnolenz · Sopor · Koma · Glasgow Coma Scale · acht Erstmaßnahmen</small></div>
+  <p class="lesen">So liest du das: Von oben nach unten ist der ganze Kurs. Jeder Kasten ist ein oder mehrere Kapitel unten.</p>
+</div>
+
+<!-- ============ 1 DEFINITION ============ -->
+<h2>1 · Worum es geht: Definition und Auftrag <span class="stern">★★★</span></h2>
+<div class="def">
+  <span class="t">Definition — so steht sie auf deiner Folie</span>
+  <p><b>Nervensystem:</b> „Gesamtheit aller <b>Nervenzellen</b> bildet das Nervensystem.“ — „Regelt gemeinsam mit dem <b>Hormonsystem</b> sämtliche Organsysteme.“</p>
+  <p><b>Der Auftrag der Dozentin für jedes Organ:</b> „Erarbeiten Sie zu jedem Organ folgende Inhalte: <b>Größe/Gewicht/Lage · Makroskopie (Grundaufbau) · Funktionen des Organs</b>.“ Prüfungsform: <b>Klausur</b>.</p>
+</div>
+<div class="def">
+  <span class="t">Dasselbe — Wort für Wort einfach</span>
+  <p>Alle Nervenzellen zusammen sind das <b>Nervensystem</b>. Es ist der Chef der Organe. Es arbeitet aber nicht allein: Das <b>Hormonsystem</b> (Botenstoffe im Blut) hilft beim Steuern.</p>
+  <p>Für die Klausur heißt der Auftrag: Zu jedem Organ schreibst du <b>drei Blöcke</b>:</p>
   <ol>
-    <li><b>Hilfe verständigen</b></li>
-    <li><b>Atmung sichern</b> — auf <b>freie Atemwege</b> achten</li>
-    <li><b>GCS erheben</b> <i>(in der Folie als „GCG“ geschrieben)</i></li>
-    <li><b>Pupillenreaktion</b> und <b>Kornealreflex</b> testen</li>
-    <li><b>Temperaturkontrolle</b> — wegen <b>Meningitis</b></li>
-    <li><b>Blutzuckerkontrolle</b> — zum <b>Ausschluss einer Hypoglykämie</b></li>
-    <li>Kontrolle auf <b>Wunden</b>, <b>Blut aus Nase, Mund oder Ohren</b></li>
-    <li>Kontrolle auf <b>Frakturen</b></li>
+    <li><b>Wie groß, wie schwer, wo liegt es?</b></li>
+    <li><b>Makroskopie</b> = wie es aussieht, wenn man es mit bloßem Auge ansieht: seine Teile (Lappen, Abschnitte).</li>
+    <li><b>Funktionen</b> = was es für den Körper tut.</li>
   </ol>
+  <p>Schreib die drei Blöcke <b>getrennt</b> hin, mit Überschrift. So sieht die Korrektorin sofort, dass alles da ist. <span class="her">Herleitung</span></p>
+</div>
+<p class="fr">🇫🇷 Le système nerveux = l'ensemble des cellules nerveuses ; il règle tous les organes avec le système hormonal. Pour chaque organe, la consigne de l'examen : taille/poids/position · aspect macroscopique (structure) · fonctions.</p>
 
-  <h3>Schritt 3 ausgeschrieben — die Glasgow Coma Scale</h3>
-  <div class="warnung">
-    <span class="t">Auch das war eine Lücke, geschlossen am 19.09.2026</span>
-    <p>Die Folie sagt <b>„GCS erheben“</b> (dort als „GCG“ geschrieben) und zeigt die Skala
-      nicht. Der Foliensatz <b>Bewusstsein, Wahrnehmung und Verhalten</b> hat sie vollständig —
-      nach <b>Tab. 37.2, Pflege Heute, 8. Auflage, S. 1098</b>.</p>
-    <p><b>Der Schweregrad ergibt sich aus der Summe aller Punkte:</b> je <b>weniger</b> Punkte,
-      desto <b>schwerer</b> die Bewusstseinsstörung. <b>„Normal“ (= keine Bewusstseinsstörung)
-      bei einem Wert von 15 Punkten.</b></p>
+<h3>Die Wörter, die du für alles Weitere brauchst</h3>
+<dl class="woerter">
+  <dt>Anatomie / Physiologie</dt><dd>Anatomie = der <b>Bau</b> des Körpers. Physiologie = wie der Körper <b>arbeitet</b>. <span class="her">Herleitung</span> — deine Folien nennen nur die Wörter im Titel.</dd>
+  <dt>Makroskopie</dt><dd>der Grundaufbau eines Organs, so wie man ihn mit bloßem Auge sieht</dd>
+  <dt>afferent / efferent</dt><dd>afferent = Nerven, die Informationen <b>zum</b> Gehirn bringen · efferent = Nerven, die die Antwort <b>vom</b> Gehirn wegbringen</dd>
+  <dt>Neuron</dt><dd>die Nervenzelle — die Grundeinheit des Nervensystems</dd>
+  <dt>ZNS / PNS</dt><dd>zentrales Nervensystem (Gehirn + Rückenmark) / peripheres Nervensystem (alle Nerven außerhalb)</dd>
+  <dt>vegetativ</dt><dd>= autonom: steuert die inneren Organe, kaum durch den Willen beeinflussbar</dd>
+  <dt>endokrin / exokrin</dt><dd>endokrin = eine Drüse gibt Hormone <b>ins Blut</b> · exokrin = eine Drüse gibt ihren Saft <b>durch einen Gang</b> nach außen (z. B. in den Darm)</dd>
+  <dt>Peritoneum</dt><dd>das Bauchfell. <b>intraperitoneal</b> = vom Bauchfell überzogen (Leber) · <b>retroperitoneal</b> = hinter dem Bauchfell, nur vorne bedeckt (Bauchspeicheldrüse)</dd>
+  <dt>Peristaltik</dt><dd>rhythmisches Zusammenziehen und Entspannen von Muskeln, das Inhalt weiterschiebt (Magen, Nierenbecken)</dd>
+  <dt>Liquor</dt><dd>die klare Flüssigkeit um Gehirn und Rückenmark</dd>
+  <dt>Filamentgleiten</dt><dd>die Grundlage jeder Muskelkontraktion: Eiweißfäden (Aktin, Myosin) gleiten aneinander vorbei</dd>
+</dl>
+<p class="quelle">Nervensystem Anatomie und Physiologie, S. 2–3, 5–6 · Organuebersicht, S. 3–4 · Aufgabenstellung Organuebersicht, S. 1 · Die Bauchspeicheldruese, S. 1 · Die Leber, S. 1 · Der Magen, S. 1 · Praesentation Muskelgewebe, S. 16</p>
+
+<!-- ============ 2 GRUNDBEGRIFFE ============ -->
+<h2>2 · Die Sprache der Anatomie: das Vokabelblatt <span class="stern">★★</span></h2>
+<p>Fachwörter sind wie Lego: Sie sind aus kleinen Teilen gebaut. Wer die Teile kennt, versteht viele Wörter, ohne sie auswendig zu lernen.</p>
+
+<h3>Richtungsangaben — immer in Paaren lernen</h3>
+<div class="scroll"><table>
+  <tr><th>Wort</th><th>Bedeutung</th><th>Gegenteil</th></tr>
+  <tr><td><b>kranial</b> (cranium = Schädel) · superior</td><td>nach oben, kopfwärts · obenliegend</td><td><b>kaudal</b> (cauda = Schwanz) · inferior: nach unten, steiß-/fußwärts</td></tr>
+  <tr><td><b>ventral</b> (ventrum = Bauch) = anterior</td><td>vorne, zur Bauchseite</td><td><b>dorsal</b> (dorsum = Rücken) = posterior: hinten</td></tr>
+  <tr><td><b>frontal</b></td><td>zur Stirn hin</td><td><b>okzipital</b>: zum Hinterhaupt hin</td></tr>
+  <tr><td><b>proximal</b></td><td>rumpfnah</td><td><b>distal</b>: rumpffern</td></tr>
+  <tr><td><b>medial</b> · median</td><td>zur Mitte hin · in der Körpermitte</td><td><b>lateral</b>: außen</td></tr>
+  <tr><td><b>dexter</b></td><td>rechts</td><td><b>sinister</b>: links</td></tr>
+  <tr><td><b>superfizial</b></td><td>oberflächlich</td><td><b>profund</b>: tief</td></tr>
+  <tr><td><b>zentral</b></td><td>im Zentrum</td><td><b>peripher</b>: in der Umgebung</td></tr>
+  <tr><td><b>volar/palmar</b></td><td>zur Handfläche hin</td><td>— (<b>plantar</b> = zur Fußsohle)</td></tr>
+  <tr><td><b>radial / ulnar</b></td><td>zur Speiche / zur Elle hin (Hand, Unterarm)</td><td>—</td></tr>
+  <tr><td><b>tibial / fibular</b></td><td>zum Schienbein / zum Wadenbein hin (Unterschenkel)</td><td>—</td></tr>
+</table></div>
+
+<h3>Abkürzungen: ein Buchstabe oder zwei?</h3>
+<div class="scroll"><table>
+  <tr><th>Einzahl</th><th>Mehrzahl</th><th>Deutsch</th></tr>
+  <tr><td>Arteria · <b>A.</b></td><td>Arteriae · <b>Aa.</b></td><td>Arterie</td></tr>
+  <tr><td>Vena · <b>V.</b></td><td>Venae · <b>Vv.</b></td><td>Vene</td></tr>
+  <tr><td>Musculus · <b>M.</b></td><td>Musculi · <b>Mm.</b></td><td>Muskel</td></tr>
+  <tr><td>Nervus · <b>N.</b></td><td>Nervi · <b>Nn.</b></td><td>Nerv</td></tr>
+  <tr><td>Ligamentum · <b>Lig.</b></td><td>Ligamenta · <b>Ligg.</b></td><td>Band</td></tr>
+  <tr><td>Ramus · <b>R.</b></td><td>Rami · <b>Rr.</b></td><td>Zweig</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> <b>Ein</b> Buchstabe = <b>ein</b> Ding (M. = ein Muskel). <b>Zwei</b> Buchstaben = <b>mehrere</b> (Mm. scaleni = die Treppenmuskeln). <span class="her">Herleitung</span> — das Blatt zeigt die Paare, die Regel daraus habe ich formuliert.</div>
+<p>Weitere Grundbegriffe vom Blatt: Arcus = Bogen · Articulatio = Gelenk · Brachium = Arm · Cartilago = Knorpel · Cavum = Höhle · Cranium = Schädel · Digitus = Finger, Zeh · Ductus = Gang · Fascia = (Muskel-)Faszie · Foramen = Loch · Fossa = Grube · Glandula = Drüse · Manus = Hand · Nodus = Knoten · Os (Ossa) = Knochen · Pars = Teil · Plexus = (Nerven-)Geflecht · Processus = Vorsprung · Sinus = Ausbuchtung · Tendo = Sehne · Vertebra = Wirbel.</p>
+
+<h3>Organangaben — der lateinische Organname steckt im Adjektiv</h3>
+<div class="scroll"><table>
+  <tr><th>Adjektiv</th><th>gehört zu …</th><th>Adjektiv</th><th>gehört zu …</th></tr>
+  <tr><td>hepatis</td><td>Leber (Hepar)</td><td>renalis</td><td>Niere (Ren)</td></tr>
+  <tr><td>pulmonalis</td><td>Lunge (Pulmo)</td><td>gastricus</td><td>Magen (Gaster)</td></tr>
+  <tr><td>lienalis</td><td>Milz (Lien)</td><td>cysticus</td><td>Gallengangsystem</td></tr>
+  <tr><td>costalis</td><td>Rippen (Costa)</td><td>thoracicus</td><td>Brustkorb (Thorax)</td></tr>
+  <tr><td>coronaris</td><td>kranzartig, Herzkranzgefäße</td><td>pectoralis</td><td>Brust (Pectus)</td></tr>
+  <tr><td>abdominalis</td><td>Bauch (Abdomen)</td><td>vertebralis</td><td>Wirbel (Vertebra)</td></tr>
+  <tr><td>femoris</td><td>Oberschenkel (Femur)</td><td>brachialis</td><td>Oberarm (Brachium)</td></tr>
+  <tr><td>radialis / ulnaris</td><td>Speiche / Elle</td><td>tibialis / fibularis, peroneus</td><td>Schienbein / Wadenbein</td></tr>
+  <tr><td>iliacus</td><td>Darmbein (Os ilium)</td><td>palmaris / plantaris</td><td>Handfläche / Fußsohle</td></tr>
+</table></div>
+<p><b>Ortsangaben</b> (wo genau im Körper): anterior/posterior = vorderer/hinterer · superior/inferior = oberer/unterer · externus/internus = außen/innen · ascendens/descendens = aufsteigend/absteigend · longitudinalis = in Längsrichtung · maximus/minimus = der Größte/Kleinste · medius = mittlerer · profundus/superficialis = tief/oberflächlich.</p>
+
+<h3>Vor- und Nachsilben</h3>
+<div class="scroll"><table>
+  <tr><th>Silbe</th><th>Bedeutung</th><th>Silbe</th><th>Bedeutung</th></tr>
+  <tr><td><b>hyper-</b></td><td>über, oberhalb</td><td><b>hypo-</b></td><td>unter, unterhalb</td></tr>
+  <tr><td><b>tachy-</b></td><td>schnell</td><td><b>brady-</b></td><td>langsam</td></tr>
+  <tr><td><b>poly-</b></td><td>viel</td><td><b>oligo-</b></td><td>wenig</td></tr>
+  <tr><td><b>intra-</b></td><td>innerhalb</td><td><b>extra-</b></td><td>außerhalb</td></tr>
+  <tr><td><b>homo-</b></td><td>gleich</td><td><b>hetero-</b></td><td>ungleich, anders</td></tr>
+  <tr><td><b>epi-</b></td><td>oben, auf</td><td><b>peri-</b></td><td>um, herum</td></tr>
+  <tr><td><b>hemi-</b></td><td>halb</td><td><b>myo-</b></td><td>Muskel</td></tr>
+  <tr><td><b>derma-</b></td><td>Haut</td><td><b>-itis</b></td><td>Entzündung</td></tr>
+  <tr><td><b>-pathie</b></td><td>krankhafte Veränderung</td><td><b>-osis / -ose</b></td><td>chronisch degenerativer Prozess (langsamer Verschleiß)</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> Zerleg ein neues Wort in seine Teile. <b>Hypo</b>glykämie = <b>unter</b> + … → zu wenig (Zucker). Derma<b>titis</b> = Haut + <b>Entzündung</b>. <span class="her">Herleitung</span> — die Beispielwörter stehen nicht auf dem Blatt, nur die Silben.</div>
+<p class="fr">🇫🇷 Comme en français médical : kranial/kaudal = vers la tête/vers le bas, ventral/dorsal = avant/arrière, proximal/distal = près/loin du tronc. M. = un muscle, Mm. = plusieurs. hyper-/hypo- = au-dessus/au-dessous, -itis = inflammation.</p>
+<p class="quelle">Anatomische Grundbegriffe, S. 1 (Richtungsangaben) · S. 2 (Grundbegriffe, Abkürzungen, Organangaben) · S. 3 (Organangaben, Ortsangaben) · S. 4 (Vor- und Nachsilben)</p>
+
+<!-- ============ 3 ORGANÜBERSICHT ============ -->
+<h2>3 · Die Organübersicht: was im Kurs stand <span class="stern">★★</span></h2>
+<p>Die Lerneinheit hatte zwei Doppelstunden. Ablauf: Organe vorstellen → Gruppen bilden → jede Gruppe bearbeitet <b>ein</b> Organ aus den Texten der Dozentin → Ergebnisse auf einem <b>Plakat</b> → Vorstellung im Plenum. Es gab <b>8 Gruppen</b>.</p>
+<p>Auf den Folien werden <b>13 Organe</b> kurz mit Bild vorgestellt: ableitende Harnwege (Nierenbecken, Harnleiter/Ureter, Harnblase/Vesica urinaria, Harnröhre/Urethra) · Herz/Cor · Darm (Dünndarm/Intestinum tenue, Dickdarm/Intestinum crassum) · Magen/Gaster · Bauchspeicheldrüse/Pankreas · Leber/Hepar · Lunge/Pulmones · Niere/Ren · Gehirn/Enzephalon · Thymus · Trachea/Luftröhre · Ösophagus/Speiseröhre · Milz/Splen.</p>
+<div class="hinweis"><b>Was in deinen Unterlagen fehlt:</b> Text oder Plakat gibt es nur zu <b>fünf</b> Organen: Leber, Lunge, Magen, Niere, Bauchspeicheldrüse (Kapitel 4–8). Zu Herz, Darm, Milz, Thymus, Trachea, Ösophagus und den ableitenden Harnwegen gibt es nur ein beschriftetes Bild auf der Folie. Das Arbeitsheft „Organübersicht“ (18 Seiten) hat für jedes Organ die Felder Größe · Gewicht · Lage · Makroskopie · Funktion — aber sie sind <b>leer</b>. Das Gehirn kommt ausführlich im Nervensystem (Kapitel 11–12).</div>
+<p>Was die Bilder der Folien beschriften (nur Namen, keine Erklärung):</p>
+<ul>
+  <li><b>Herz:</b> rechter und linker Vorhof, rechter und linker Ventrikel (Kammer), Septum (Scheidewand), Trikuspidal-, Mitral-, Pulmonal- und Aortenklappe, obere Hohlvene, Pulmonalarterie, Pulmonalvene.</li>
+  <li><b>Speiseröhre:</b> drei Engstellen — Ringknorpelenge, Aortenenge, Zwerchfellenge.</li>
+  <li><b>Luftröhre:</b> Ringknorpel, Luftröhrenknorpel, Ringbänder, Gabelung in rechten und linken Hauptbronchus, Segmentbronchien; daneben die Schilddrüse.</li>
+  <li><b>Milz:</b> Milzkapsel, Milztrabekel, rote und weiße Pulpa.</li>
+  <li><b>Niere im Anschnitt:</b> Nierenrinde, Nierenmark, Papille, Nierenkelch, Nierenbecken, Harnleiter, Nierenarterie und -vene.</li>
+</ul>
+<p class="fr">🇫🇷 En cours, chaque groupe a travaillé un organe sur une affiche. Tu as des textes ou des affiches pour cinq organes seulement : foie, poumon, estomac, rein, pancréas.</p>
+<p class="quelle">Organuebersicht, S. 1–19 (Ablauf S. 3, Auftrag S. 4, Organbilder S. 6–18) · Aufgabenstellung Organuebersicht, S. 1 · Organuebersicht – Arbeitsheft, S. 1–18</p>
+
+<!-- ============ ALLE FÜNF ORGANE ============ -->
+<h2>Die fünf Organe nebeneinander — Größe, Gewicht, Lage <span class="stern">★★★</span></h2>
+<div class="scroll"><table>
+  <tr><th>Organ</th><th>Größe</th><th>Gewicht</th><th>Lage</th></tr>
+  <tr><td><b>Leber</b> (Hepar)</td><td class="z">ca. 20 cm</td><td class="z">ca. 1,5 kg</td><td>rechter Oberbauch, unter dem Zwerchfell (rechte Zwerchfellkuppel)</td></tr>
+  <tr><td><b>Lunge</b> (Pulmones)</td><td class="z">25–30 cm (Text: ca. 26 cm)</td><td class="z">1–1,3 kg</td><td>Brusthöhle, umgeben von Rippen; Herz zwischen den Lungenflügeln</td></tr>
+  <tr><td><b>Magen</b> (Gaster)</td><td class="z">25–30 cm lang</td><td>nicht angegeben (fasst ca. 1,5 l)</td><td>linker Oberbauch, zwischen Milz und Leber, unter dem Zwerchfell</td></tr>
+  <tr><td><b>Niere</b> (Ren)</td><td class="z">10–14 × 5–7 × 4–5 cm</td><td class="z">110–200 g</td><td>Bauchhöhle, beidseits der Wirbelsäule; rechts etwas tiefer</td></tr>
+  <tr><td><b>Bauchspeicheldrüse</b> (Pankreas)</td><td class="z">13–15 cm</td><td class="z">70–100 g</td><td>Hinterwand des Oberbauchs, hinter dem Magen, vom Duodenum bis zur Milz</td></tr>
+</table></div>
+<p class="quelle">Plakate Leber, Lunge, Magen, Niere, Bauchspeicheldrüse (je S. 1) · Die Leber S. 1 · Die Lunge S. 1 · Der Magen S. 1 · Die Niere S. 1 · Die Bauchspeicheldruese S. 1</p>
+
+<!-- ============ 4 LEBER ============ -->
+<h2>4 · Die Leber (Hepar) <span class="stern">★★★</span></h2>
+<h3>Größe · Gewicht · Lage</h3>
+<ul>
+  <li>Rötlich braun (Plakat: dunkelbraun bis rotbraun), ca. <b>1,5 kg</b>, ca. <b>20 cm</b> lang (beim Erwachsenen). Das Plakat ergänzt: Das Gewicht hängt vom Alter ab.</li>
+  <li>Sie ist das <b>größte innere Organ</b> (Plakat) und die <b>größte Anhangsdrüse des Darms</b> (Text).</li>
+  <li>Die Hauptmasse liegt <b>unter der rechten Zwerchfellkuppel</b> und hat deren Form. Der linke Lappen reicht über die Mittellinie bis in den <b>linken Oberbauch</b>.</li>
+</ul>
+<h3>Makroskopie (Grundaufbau)</h3>
+<div class="schema">
+  <p class="titel">Die Leber von vorn und von unten</p>
+  <div class="zwei">
+    <div class="k"><b>Von vorn: 2 Lappen</b><small>großer <b>rechter</b> und kleiner <b>linker</b> Leberlappen · dazwischen das <b>Lig. falciforme</b> (Sichelband) als Grenze</small></div>
+    <div class="k"><b>Von unten: 2 kleine Lappen</b><small><b>Lobus quadratus</b> (quadratischer Lappen) und <b>Lobus caudatus</b> (geschwänzter Lappen)</small></div>
   </div>
+  <div class="pfeil">↓</div>
+  <div class="k wichtig"><b>Leberpforte (Porta hepatis)</b><small>eine Nische zwischen den kleinen Lappen<br><b>hinein:</b> Leberarterie (A. hepatica) und Pfortader (V. portae) · <b>hinaus:</b> rechter und linker Lebergallengang (Ductus hepaticus dexter und sinister)</small></div>
+</div>
+<ul>
+  <li>Oben die gewölbte <b>Zwerchfellseite</b>, unten die leicht hohle <b>Eingeweideseite</b>.</li>
+  <li>Außen eine feste <b>Bindegewebskapsel</b>, fast ganz vom <b>Bauchfell</b> überzogen → Leber und Gallenblase liegen <b>intraperitoneal</b>.</li>
+</ul>
+<h3>Funktionen</h3>
+<div class="scroll"><table>
+  <tr><th>Funktion</th><th>Was das heißt</th></tr>
+  <tr><td>steuert den <b>Stoffwechsel</b></td><td>Die Leber regelt den Umbau der Nährstoffe im Körper. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>entgiftet</b> das Blut</td><td>Schädliche Stoffe werden aus dem Blut geholt. <span class="her">Herleitung</span></td></tr>
+  <tr><td>produziert <b>Galle</b></td><td>Die Galle fließt über die Gallengänge an der Leberpforte hinaus.</td></tr>
+  <tr><td>speichert <b>Energie als Glykogen</b></td><td>Glykogen = Zuckerspeicher.</td></tr>
+  <tr><td>bildet wichtige <b>Proteine</b> (Eiweiße)</td><td>—</td></tr>
+</table></div>
+<p><b>Was an der Leber ist schmerzempfindlich?</b> Der Text sagt: <b>Bindegewebskapsel und Bauchfell</b> sind vom Nervensystem sensibel versorgt (innerviert), also <b>schmerzempfindlich</b>. Mehr dazu nennen deine Unterlagen nicht.</p>
+<div class="merke"><b>Merke:</b> 1,5 kg · 20 cm · rechts oben unter dem Zwerchfell · 4 Lappen (2 von vorn, 2 von unten) · Leberpforte: Arterie + Pfortader rein, Gallengänge raus.</div>
+<p class="fr">🇫🇷 Le foie : env. 1,5 kg, 20 cm, sous le diaphragme à droite. Lobes droit et gauche (séparés par le ligament falciforme), plus deux petits lobes en dessous. Il règle le métabolisme, détoxifie le sang, fabrique la bile, stocke le glycogène et fabrique des protéines.</p>
+<p class="quelle">Die Leber (Textblatt), S. 1–2 · Plakat Leber, S. 1 · Organuebersicht, S. 11</p>
 
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Beste Reaktion des Patienten</th><th>Punkte</th></tr></thead>
-      <tbody>
-        <tr><td class="k" colspan="2">Augen öffnen</td></tr>
-        <tr><td>Spontan</td><td><b>4</b></td></tr>
-        <tr><td>Auf Ansprache</td><td><b>3</b></td></tr>
-        <tr><td>Auf Schmerzreiz</td><td><b>2</b></td></tr>
-        <tr><td>Kein Öffnen</td><td><b>1</b></td></tr>
-        <tr><td class="k" colspan="2">Verbale Reaktion (auf Ansprache)</td></tr>
-        <tr><td>Orientiert</td><td><b>5</b></td></tr>
-        <tr><td>Verwirrt, desorientiert</td><td><b>4</b></td></tr>
-        <tr><td>Unzusammenhängende/unpassende Worte</td><td><b>3</b></td></tr>
-        <tr><td>Unverständliche Laute</td><td><b>2</b></td></tr>
-        <tr><td>Keine verbale Reaktion</td><td><b>1</b></td></tr>
-        <tr><td class="k" colspan="2">Motorische Reaktion (auf Aufforderungen, falls nicht
-          vorhanden, auf Schmerzreize)</td></tr>
-        <tr><td>Befolgen von Aufforderungen</td><td><b>6</b></td></tr>
-        <tr><td>Gezielte Schmerzabwehr</td><td><b>5</b></td></tr>
-        <tr><td>Ungezielte Schmerzabwehr</td><td><b>4</b></td></tr>
-        <tr><td>Beugesynergien (Beugehaltung)</td><td><b>3</b></td></tr>
-        <tr><td>Strecksynergien (Streckhaltung)</td><td><b>2</b></td></tr>
-        <tr><td>Keine motorische Reaktion</td><td><b>1</b></td></tr>
-      </tbody>
-    </table>
-  </div>
+<!-- ============ 5 LUNGE ============ -->
+<h2>5 · Die Lunge (Pulmones) <span class="stern">★★★</span></h2>
+<h3>Größe · Gewicht · Lage</h3>
+<ul>
+  <li>Größe <b>25–30 cm</b> (Plakat); der Text sagt <b>ca. 26 cm</b> beim Erwachsenen. Gewicht <b>1–1,3 kg</b> (Plakat).</li>
+  <li>Sie liegt in der <b>Brusthöhle</b>, umgeben von den Rippen, zusammen mit dem Herzen und den großen Blutgefäßen. Das Herz trennt den <b>rechten</b> und den <b>linken Lungenflügel</b>.</li>
+</ul>
+<h3>Makroskopie — der Weg der Luft</h3>
+<div class="schema">
+  <p class="titel">Von der Nase bis ins Blut</p>
+  <div class="k"><b>Nase / Mund → Rachen → Kehlkopf</b></div><div class="pfeil">↓</div>
+  <div class="k"><b>Luftröhre (Trachea)</b><small>elastisches Rohr, etwa 10–12 cm lang</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>zwei Hauptbronchien</b><small>verzweigen sich wie ein Baum in immer kleinere Äste</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Lungenflügel → Lungenlappen → Lungensegmente</b></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>Alveolen (Lungenbläschen)</b><small>etwa 300 Millionen · hier passiert der Gasaustausch</small></div>
+</div>
+<p><b>Rechts drei, links zwei Lappen:</b> Das Bild deiner Folie zeigt rechts einen oberen, mittleren und unteren Lungenlappen, links nur einen oberen und unteren. Den Grund nennen deine Folien nicht.</p>
+<h3>Funktionen — und warum</h3>
+<div class="scroll"><table>
+  <tr><th>Funktion</th><th>Wie / warum?</th></tr>
+  <tr><td><b>Gasaustausch</b> (Hauptfunktion)</td><td>Durch die Wände der Alveolen geht <b>Sauerstoff ins Blut</b>. <b>Kohlendioxid</b> (Abfall der Zellen) geht aus dem Blut in die Luft. Über die Arterien kommt der Sauerstoff zu den Zellen, dort wird daraus Energie gewonnen. Das sauerstoffarme Blut fließt über die Venen zurück zum Herzen.</td></tr>
+  <tr><td><b>Säure-Basen-Regulation</b> (pH-Wert)</td><td>Das Plakat nennt nur das Stichwort. Verbindung: Die Lunge gibt CO₂ ab — so beeinflusst sie den pH-Wert. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Immunabwehr</b> durch Flimmerhärchen (Zilien)</td><td>Luftröhre und Bronchien haben eine Schleimhaut mit beweglichen Flimmerhärchen. Staub und Fremdkörper bleiben im Schleim hängen und werden <b>aus den Luftwegen hinaustransportiert</b>.</td></tr>
+  <tr><td><b>Schleimproduktion</b></td><td>schützt vor Keimen</td></tr>
+  <tr><td><b>Temperatur- und Flüssigkeitsregulation</b></td><td>Beim Ausatmen gibt die Lunge <b>Wärme und Feuchtigkeit</b> ab.</td></tr>
+  <tr><td>Druckausgleich und Kreislaufunterstützung</td><td>Den Grund nennen deine Unterlagen nicht.</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> 25–30 cm · 1–1,3 kg · Brusthöhle · rechts 3, links 2 Lappen · Alveolen: O₂ rein ins Blut, CO₂ raus.</div>
+<p class="fr">🇫🇷 Les poumons : 25–30 cm, 1–1,3 kg, dans le thorax. Trachée → bronches → alvéoles (300 millions). Échange gazeux : O₂ entre dans le sang, CO₂ sort. Les cils vibratiles évacuent poussières et germes.</p>
+<p class="quelle">Die Lunge (Textblatt), S. 1–2 · Plakat Lunge, S. 1 · Organuebersicht, S. 12</p>
 
-  <div class="merk">
-    <span class="t">Wie du sie im Kopf behältst — und die Falle</span>
-    <p><b>4 – 5 – 6.</b> Augen bis 4, Sprache bis 5, Motorik bis 6. Zusammen <b>15</b>.</p>
-    <p><b>Der niedrigste mögliche Wert ist 3, nicht 0</b> — jede der drei Kategorien beginnt bei
-      <b>1</b>, auch wenn gar nichts passiert. Genau daran scheitert man in einer
-      Rechenaufgabe.</p>
-    <p><b>Für Kinder unter 2 Jahren</b> gibt es in derselben Tabelle eigene Formulierungen
-      (Plappern und Gurren statt „orientiert“, Weinen statt „verwirrt“, Stöhnen auf Schmerzreiz
-      statt „unverständliche Laute“). Sie stehen vollständig auf der Seite <b>Wahrnehmen ist
-      nicht Beobachten</b>.</p>
-    <p class="fr">4 – 5 – 6, donc 15 au maximum. Et le minimum est <b>3</b>, jamais 0.</p>
-  </div>
+<!-- ============ 6 MAGEN ============ -->
+<h2>6 · Der Magen (Gaster, Ventriculus) <span class="stern">★★★</span></h2>
+<h3>Größe · Gewicht · Lage</h3>
+<ul>
+  <li><b>25–30 cm</b> lang. Er liegt im <b>linken Oberbauch</b> zwischen <b>Milz und Leber</b>, unterhalb des Zwerchfells. Er ist Teil des Verdauungstrakts.</li>
+  <li>Form wie ein <b>Weinschlauch</b>. Seine Wand passt sich der Füllung an — er fasst fast <b>1,5 l</b> Nahrungsbrei.</li>
+</ul>
+<div class="hinweis"><b>Hinweis:</b> Auf dem Plakat steht „Gewicht: bis 1,5 L“. Das ist aber die <b>Menge</b>, die der Magen fasst (so steht es im Textblatt), kein Gewicht. Ein Gewicht des Magens nennen deine Unterlagen nicht.</div>
+<h3>Makroskopie — fünf Abschnitte, der Reihe nach</h3>
+<div class="schema">
+  <p class="titel">Der Weg des Speisebreis durch den Magen</p>
+  <div class="k"><b>Speiseröhre</b></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>1 · Kardia</b><small>Mageneingang</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>2 · Fundus</b><small>Magengrund (der obere Teil)</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>3 · Korpus</b><small>Magenkörper</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>4 · Antrum</b><small>Magenhöhle</small></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>5 · Pylorus</b><small>Magenpförtner — gibt den Brei portionsweise weiter</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Zwölffingerdarm (Duodenum) → Dünndarm</b></div>
+</div>
+<p>Die Folie zeigt außerdem die <b>kleine</b> und die <b>große Kurvatur</b> (die innere und die äußere Biegung).</p>
+<h3>Funktionen — und warum</h3>
+<div class="scroll"><table>
+  <tr><th>Funktion</th><th>Wie / warum?</th></tr>
+  <tr><td><b>Mechanische Verdauung</b> (Peristaltik)</td><td>Ringförmige und schräge <b>glatte Muskelfasern</b> ziehen sich rhythmisch zusammen. So wird der Inhalt <b>durchmischt, zerkleinert</b> und Richtung Duodenum geschoben. Ein eigenes <b>Nervengeflecht</b> zwischen den Muskelschichten regelt die Peristaltik.</td></tr>
+  <tr><td><b>Magensäure</b> mit Enzymen</td><td>Die Magenwand gibt sie ab. Sie <b>spaltet Proteine</b> und <b>tötet Bakterien</b> ab.</td></tr>
+  <tr><td><b>Speicher und Vorbereitung</b></td><td>Der Brei bleibt <b>0,5–3 Stunden</b> im Magen und wird für die weitere Verdauung im Dünndarm vorbereitet.</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> Kardia → Fundus → Korpus → Antrum → Pylorus. Muskeln mischen (mechanisch), Säure spaltet Eiweiß und tötet Bakterien (chemisch).</div>
+<p class="fr">🇫🇷 L'estomac : 25–30 cm, en haut à gauche entre rate et foie, contient jusqu'à 1,5 l. Cardia → fundus → corps → antre → pylore. Ses muscles lisses mélangent (péristaltisme) ; l'acide gastrique coupe les protéines et tue les bactéries.</p>
+<p class="quelle">Der Magen (Textblatt), S. 1 (S. 2 nur Kopfzeile) · Plakat Magen, S. 1 · Organuebersicht, S. 9</p>
 
-  <div class="merk">
-    <span class="t">Warum gerade Temperatur und Blutzucker?</span>
-    <p>Weil beides <b>eine Bewusstlosigkeit erklären kann und sofort behandelbar ist</b>.
-      <b>Fieber</b> → Verdacht auf <b>Meningitis</b>. <b>Zu niedriger Blutzucker</b> →
-      <b>Hypoglykämie</b>, und die lässt sich in Minuten beheben.</p>
-    <p>Genau <b>das</b> ist eine <i>Begründen</i>-Antwort: nicht die Maßnahme aufzählen, sondern
-      sagen, <b>wonach man sucht und warum</b>.</p>
-    <p class="fr">Ce ne sont pas des gestes au hasard : chacun cherche une cause qu'on peut
-      traiter tout de suite.</p>
-  </div>
+<!-- ============ 7 NIERE ============ -->
+<h2>7 · Die Niere (Ren) <span class="stern">★★★</span></h2>
+<h3>Größe · Gewicht · Lage</h3>
+<ul>
+  <li><b>10–14 cm</b> lang, <b>5–7 cm</b> breit, <b>4–5 cm</b> dick — das ist von Mensch zu Mensch verschieden. Gewicht ca. <b>110–200 g</b>.</li>
+  <li>Merkhilfe aus dem Text: die Zahl <b>4711</b>. So kann man sie lesen: 4 cm dick · 7 cm breit · 11 cm lang. <span class="her">Herleitung</span> — der Text nennt nur die Zahl.</li>
+  <li>Lage: in der <b>Bauchhöhle, beidseits der Wirbelsäule</b>. Die <b>rechte</b> Niere (dexter) liegt meist <b>etwas tiefer</b> als die linke (sinister) — <b>wegen der Leber</b>, die rechts darüber liegt.</li>
+</ul>
+<h3>Makroskopie (Grundaufbau)</h3>
+<ul>
+  <li>Bohnenförmig, zum <b>Großteil aus Blutgefäßen</b>, umhüllt von einer kräftigen <b>Bindegewebskapsel</b>.</li>
+  <li>Drei Teile: <b>Nierenrinde</b> (direkt unter der Kapsel) · <b>Nierenmark</b> · <b>Nierenbecken</b>.</li>
+</ul>
+<div class="schema">
+  <p class="titel">Der Weg vom Blut zum Harn</p>
+  <div class="k"><b>Aorta → Nierenarterie</b></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>Nierenrinde: Nephron</b><small>Nierenkörperchen mit <b>Glomerulus</b> (ca. 30 Kapillarschlingen = kleinste Blutgefäße), umgeben von der <b>Bowman-Kapsel</b> · dazu ein eigenes Röhrensystem (Tubulus)</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Tubulussystem</b><small>holt den Großteil der Flüssigkeit (200 l am Tag) zurück in die Blutgefäße</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Nierenkelche → Nierenbecken</b><small>fasst im Schnitt 3–8 ml</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Harnleiter</b><small>glatte Muskeln am Nierenbecken schieben den Harn wellenartig weiter (Peristaltik)</small></div>
+</div>
+<div class="hinweis"><b>Hinweis — ein unklarer Satz im Textblatt:</b> Dort steht, das Nephron gehe aus „Nierenkörperchen und geschlängelten Nierenkanälchen (Glomeruli)“ hervor. Im nächsten Satz ist der Glomerulus aber ein Knäuel aus Kapillarschlingen. Auch „200 Liter am Tag … durch ein Glomerulum“ ist missverständlich formuliert. Ich habe die Zahlen übernommen, die Formulierung nicht. Frag im Unterricht nach.</div>
+<p><b>Warum kann das Nierenbecken viel größer werden?</b> Wenn <b>unterhalb</b> der Abfluss behindert ist, staut sich der Urin zurück. Dann füllt sich das Nierenbecken mit viel mehr als 3–8 ml.</p>
+<h3>Funktionen</h3>
+<ul>
+  <li><b>Filtration des Blutes</b></li>
+  <li><b>Ausscheidung von Urin</b></li>
+  <li>Regulation des <b>Wasser- und Elektrolythaushalts</b> (Elektrolyte = Blutsalze)</li>
+  <li><b>Blutdruckregulation</b></li>
+  <li><b>Hormonproduktion</b></li>
+</ul>
+<p>Welche Hormone und wie die Niere den Blutdruck regelt, nennen deine Unterlagen nicht.</p>
+<div class="merke"><b>Merke:</b> 4711 → 4 × 7 × 11 cm · 110–200 g · beidseits der Wirbelsäule, rechts tiefer (Leber) · Rinde, Mark, Becken · fünf Funktionen: filtern, ausscheiden, Wasser/Salze, Blutdruck, Hormone.</div>
+<p class="fr">🇫🇷 Le rein : 10–14 × 5–7 × 4–5 cm, 110–200 g, de chaque côté de la colonne ; le droit est un peu plus bas à cause du foie. Cortex, médullaire, bassinet. Il filtre le sang, fait l'urine, règle l'eau, les sels et la tension, et produit des hormones.</p>
+<p class="quelle">Die Niere (Textblatt), S. 1–2 · Plakat Niere, S. 1 · Organuebersicht, S. 13</p>
 
-  <div class="paare">
-    <div class="paar"><span class="de">die Bewusstseinslage, -n</span>
-      <span class="frx">l'état de conscience</span></div>
-    <div class="paar"><span class="de">erweckbar</span>
-      <span class="frx">que l'on peut réveiller</span></div>
-    <div class="paar"><span class="de">die Hypoglykämie, -n</span>
-      <span class="frx">l'hypoglycémie</span></div>
-    <div class="paar"><span class="de">die Meningitis (nur Singular)</span>
-      <span class="frx">la méningite</span></div>
-    <div class="paar"><span class="de">die Fraktur, -en (der Knochenbruch, ¨-e)</span>
-      <span class="frx">la fracture</span></div>
-    <div class="paar"><span class="de">der Kornealreflex, -e</span>
-      <span class="frx">le réflexe cornéen</span></div>
-  </div>
-</section>
-
-<section id="offen">
-  <h2>Was auf dieser Seite fehlt — und warum</h2>
-  <p class="lead">Damit du weißt, worauf du dich <b>nicht</b> verlassen kannst.</p>
-
-  <div class="gefahr">
-    <span class="t">Sieben Organe ohne Unterlagen — am 20.09.2026 von acht auf sieben korrigiert</span>
-    <p><b>Herz · Darm · Milz · Thymus · Luftröhre · Speiseröhre · ableitende Harnwege.</b>
-      Sie stehen auf der Übersichtsfolie, aber im Ordner liegt kein Plakat dazu. Das waren die
-      Gruppen der anderen. <b>Schick mir die Fotos, dann ergänze ich sie.</b></p>
-    <p><b>Die Bauchspeicheldrüse stand hier zu Unrecht.</b> Zu ihr liegen <b>zwei</b> Dateien
-      im Ordner; sie hat seit dem 20.09.2026 einen <a href="#pankreas">eigenen Abschnitt</a>.
-      Warum der Fehler entstand, steht dort oben im roten Kasten.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Die vier Plakate sind Schülerarbeit, nicht Dozentenmaterial</span>
-    <p>Leber, Lunge, Magen und Niere sind <b>handgeschriebene Plakate deiner Klasse</b>. Sie sind
-      stellenweise schwer lesbar, und <b>eine Angabe ist sicher falsch</b> (der Magen „wiegt“
-      keine 4,5 Liter). Was ich übernommen habe, steht so auf den Plakaten — aber ein Plakat ist
-      <b>keine Lehrbuchquelle</b>. <b>Gleich die Zahlen im Unterricht gegenprüfen.</b></p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Zellen, Hormonsystem, Skelett — am 20.09.2026 eingeschränkt</span>
-    <p>Hier stand: „Zellen, <b>Gewebe</b>, Hormonsystem, Skelett, <b>Muskeln</b> — dazu liegt in
-      diesem Ordner <b>nichts</b>.“ Für <b>Gewebe</b> und <b>Muskeln</b> stimmt das nicht mehr:
-      der Foliensatz <i>Vertiefung Muskelgewebe</i> zeigt die <b>vier Grundgewebe</b> und
-      behandelt das Muskelgewebe ausführlich (<a href="#muskel">eigener Abschnitt</a>).</p>
-    <p>Für <b>Zellen</b>, <b>Hormonsystem</b> und <b>Skelett</b> gilt der Satz weiter —
-      und daran ändert auch der zweite neue Foliensatz <i>Skelettmuskulatur</i> nichts:
-      <b>Er behandelt die Muskeln, nicht die Knochen.</b> Das
-      Hormonsystem wird im Nervensystem-Foliensatz nur <b>erwähnt</b> („regelt gemeinsam mit dem
-      Hormonsystem“), nicht erklärt. Den allgemeinen Aufbau gibt es allerdings in deinem
-      Geburtshilfe-Material (<i>Präsentation 2</i>) — er steht auf der Seite
-      <b>Schwangerschaft, Geburt, Wochenbett</b>.</p>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Drei Stellen, an denen deine Unterlagen selbst aufhören</span>
-    <ul>
-      <li><b>Muskelkater.</b> Die letzte Folie des Muskel-Foliensatzes stellt die Frage und
-        beantwortet sie nicht. <b>Nichts ergänzt.</b></li>
-      <li><b>Wo welcher Muskeltyp sitzt</b> (Frage 2). Der Foliensatz antwortet mit
-        <b>Bildtafeln</b>, nicht mit einer Liste. Die Zuordnung ist die Aufgabe und bleibt
-        deshalb offen.</li>
-      <li><b>Sekretin und Cholecystokinin.</b> Plakat und Textblatt widersprechen sich
-        anscheinend. <b>Benannt, nicht entschieden</b> — siehe Abschnitt Bauchspeicheldrüse.</li>
-      <li><b>Sieben von elf Fragen zur Skelettmuskulatur</b> (1, 4, 5, 6, 7, 8, 11). Der
-        Foliensatz stellt sie und antwortet mit <b>Bildtafeln</b> statt mit Sätzen. Betroffen
-        sind unter anderem <b>Sarkopenie</b>, der Unterschied <b>Parese/Plegie</b>, die
-        <b>vier i. m.-Injektionsorte</b> und der <b>Beckenboden</b>. <b>Nichts ergänzt</b> —
-        die Liste steht vollständig im Abschnitt
-        <a href="#skelett">Skelettmuskulatur</a>.</li>
-    </ul>
-  </div>
-
-  <div class="merk">
-    <span class="t">Und was schon im Repo liegt</span>
-    <p><b>Herz-Kreislauf</b> und <b>Blut und Immunsystem</b> haben bereits eigene
-      Zusammenfassungen, aus deinen Kurs-PDFs gebaut. Genau darüber liefen die Klausuren mit der
-      <b>3,99</b>. Diese Seite hier <b>ersetzt sie nicht</b> — sie liegen daneben.</p>
-  </div>
-</section>
-
-<section id="quellen">
-  <h2>Woraus diese Seite gebaut ist</h2>
-  <details class="quelle">
-    <summary>Die vierzehn Dateien — jede einzeln genannt</summary>
-    <div class="inh">
-      <ul>
-        <li><b>Organuebersicht.pdf</b> — Foliensatz <b>CE 05 UE 0</b>, 31.03.2025. Enthält den
-          Arbeitsauftrag, die Organliste und den Hinweis „Prüfungsform: Klausur“. <b>Die
-          Organbilder selbst sind Grafiken ohne Text</b> — daraus lässt sich nichts zitieren.</li>
-        <li><b>Nervensystem Anatomie und Physiologie.pdf</b> — Foliensatz <b>CE 07 / UE 04</b>,
-          Christliche Bildungsakademie für Gesundheitsberufe. <b>Der mit Abstand ausführlichste
-          Teil dieser Seite.</b> Enthält zwei LearningApps-Übungslinks.</li>
-        <li><b>Leber.pdf</b> — handgeschriebenes Gruppenplakat (Soennecken-Flipchart)</li>
-        <li><b>Lunge.pdf</b> — handgeschriebenes Gruppenplakat</li>
-        <li><b>Magen.pdf</b> — handgeschriebenes Gruppenplakat</li>
-        <li><b>Niere.pdf</b> — handgeschriebenes Gruppenplakat</li>
-        <li><b>PP_Bewusstsein, Wahrnehmung und Verhalten - PF.pdf</b> — <b>am 19.09.2026
-          dazugekommen</b>, Foliensatz <b>CE 02 / UE 5</b>. Quelle für die <b>vierte</b>
-          Bewusstseinsstufe (Benommenheit), für die Unterscheidung quantitativ/qualitativ und
-          für die <b>vollständige Glasgow Coma Scale</b> (nach Tab. 37.2, Pflege Heute,
-          8. Auflage, S. 1098). Ausführlich steht er auf der Seite <b>Wahrnehmen ist nicht
-          Beobachten</b>.</li>
-        <li><b>Anatomische Grundbegriffe.pdf</b> — <b>am 20.09.2026 dazugekommen</b>, vier
-          Seiten, CE 05. Fünf Listen: Richtungsangaben, Grundbegriffe und Abkürzungen,
-          Organangaben, Ortsangaben, Vor- und Nachsilben. <b>Reines Vokabular, kein Inhalt</b> —
-          und dadurch der Schlüssel zu allen anderen Blättern.</li>
-        <li><b>Die Bauchspeicheldruese.pdf</b> — <b>am 20.09.2026 dazugekommen</b>, Textblatt
-          mit der Kopfzeile <i>CE05 UE0 Anatomische Physiologische Grundlagen</i>. Lage,
-          Aufbau, endokrine und exokrine Anteile, Pankreassaft. <b>Endet mit einem
-          quizlet.com-Link</b> — daraus ist nichts übernommen.</li>
-        <li><b>Bauchspeicheldruese.pdf</b> — <b>am 20.09.2026 dazugekommen</b>,
-          handgeschriebenes Gruppenplakat (Soennecken-Flipchart, wie Leber/Lunge/Magen/Niere).
-          Einzige Angabe, die nur dort steht: <b>Gewicht 70–100 Gramm</b>. Zwei Stellen sind
-          nicht sicher lesbar und stehen deshalb als Rückfrage auf der Seite.</li>
-        <li><b>Praesentation Anatomie  Vertiefung  Muskelgewebe.pdf</b> — <b>am 20.09.2026
-          dazugekommen</b>. Folgt der Nummerierung des Fragebogens und beantwortet die Fragen 1
-          bis 8; <b>Frage 9 (Muskelkater) bleibt offen</b>. Enthält außerdem die Übersicht der
-          <b>vier Grundgewebe</b> (Abb. 5.1) und den Querbrückenzyklus (Abb. 7.11).</li>
-        <li><b>Fragen zum Thema Muskelgewebe des Koerpers.pdf</b> — <b>am 20.09.2026
-          dazugekommen</b>, Kopfzeile <i>Fragen zur LE I</i>, Autorin „Christiane“, erstellt
-          25.04.2026. <b>Zwei Seiten mit leeren Antwortfeldern</b> — vollständig auf der Seite
-          abgedruckt, mit Verweis, wo die Antwort steht.</li>
-        <li><b>Praesentation Anatomie  Skelettmuskulatur.pdf</b> — <b>am 20.09.2026
-          dazugekommen</b>. Befestigung über Muskelsehnen, Gelenkverlauf, willkürliche
-          Steuerung, <b>keine Schrittmacherzellen</b>, die drei Funktionen, spindelförmige
-          gegen platte Muskeln mit den <b>Aponeurosen</b>, Agonist und Antagonist (Abb. 7.10),
-          die Einatmung und die <b>Hilfseinatmer</b>. <b>Beantwortet im Text nur die Fragen 2,
-          3, 9 und 10</b> — zu den übrigen sieben zeigt er Atlastafeln.
-          <b>Diese Datei wurde zunächst übersehen</b>, weil in diesem Ordner nach dem Wort
-          <i>Muskelgewebe</i> gesucht worden war und sie <i>Skelettmuskulatur</i> heißt.</li>
-        <li><b>Fragen zum Thema Skelettmuskulatur.pdf</b> — <b>am 20.09.2026 dazugekommen</b>,
-          zwei Seiten, <b>elf Fragen</b>, keine Antworten. Vollständig auf der Seite
-          abgedruckt, mit Verweis, wo die Antwort steht oder dass sie fehlt.</li>
-      </ul>
-      <p>Alle vierzehn aus deinem Google-Drive-Ordner, geteilt am 18.09.2026. <b>Nichts auf dieser
-        Seite stammt von außerhalb dieser Dateien</b> — keine Zahl, kein Fachbegriff, keine
-        Norm. Wo etwas fehlte, steht im Abschnitt <i>Was fehlt</i>, dass es fehlt.</p>
-      <p>Die französischen Übersetzungen der Vokabeln sind von mir ergänzt, damit du die Wörter
-        benutzen kannst — sie stehen nicht in den Unterlagen.</p>
+<!-- ============ 8 PANKREAS ============ -->
+<h2>8 · Die Bauchspeicheldrüse (Pankreas) — ein Organ, zwei Berufe <span class="stern">★★★</span></h2>
+<h3>Größe · Gewicht · Lage</h3>
+<ul>
+  <li><b>13–15 cm</b> lang, <b>70–100 g</b> (Gewicht nur auf dem Plakat).</li>
+  <li>An der <b>Hinterwand des Oberbauchs</b>, nur vorne vom Bauchfell bedeckt (<b>retroperitoneal</b>). Sie liegt <b>hinter dem Magen</b> und reicht vom <b>Duodenum bis zur Milz</b>.</li>
+</ul>
+<h3>Makroskopie</h3>
+<ul>
+  <li>Drei Teile: <b>Kopf</b> (am Duodenum) · <b>Körper</b> · <b>Schwanz</b> (in der Nähe der Milz).</li>
+  <li>Ein Gang zieht längs durch die Drüse: der <b>Ductus pancreaticus</b> (Pankreasgang). Er sammelt viele kleine Zuflüsse und mündet <b>meist zusammen mit dem Gallengang</b> (Ductus choledochus) an der <b>Papilla Vateri</b> ins Duodenum.</li>
+</ul>
+<h3>Funktionen: endokrin und exokrin</h3>
+<div class="schema">
+  <p class="titel">Zwei Wege aus derselben Drüse</p>
+  <div class="zwei">
+    <div>
+      <div class="k wichtig"><b>Endokrin → ins Blut</b><small>die <b>Langerhans-Inseln</b> (zusammen: das Inselorgan)</small></div><div class="pfeil">↓</div>
+      <div class="k"><b>B-Zellen → Insulin</b></div>
+      <div class="k"><b>A-Zellen → Glukagon</b></div>
+      <div class="k"><b>D-Zellen → Somatostatin</b></div>
     </div>
-  </details>
-</section>
+    <div>
+      <div class="k wichtig"><b>Exokrin → durch den Gang</b><small>die Drüsenläppchen</small></div><div class="pfeil">↓</div>
+      <div class="k"><b>ca. 2 l Pankreassaft pro Tag</b><small>stark alkalisch (basisch), viel Bikarbonat, dazu Verdauungsenzyme</small></div><div class="pfeil">↓</div>
+      <div class="k gruen"><b>ins Duodenum</b><small>neutralisiert den sauren Brei · pH im Dünndarm dann ca. 7–8</small></div>
+    </div>
+  </div>
+</div>
+<div class="scroll"><table>
+  <tr><th>Tatsache</th><th>Warum?</th></tr>
+  <tr><td>Der Saft ist <b>stark alkalisch</b> mit viel Bikarbonat.</td><td>Er muss den <b>stark sauren Speisebrei</b> aus dem Magen <b>neutralisieren</b>.</td></tr>
+  <tr><td>Die Enzyme verlassen die Drüse als <b>inaktive Vorstufen</b>.</td><td>Damit sie das Drüsengewebe <b>nicht selbst „andauen“</b> (verdauen).</td></tr>
+  <tr><td>Erst <b>im Dünndarm</b> werden die Enzyme aktiv.</td><td>Dort setzen sie die im Magen begonnene Verdauung fort und spalten die Nahrung auf.</td></tr>
+  <tr><td>Die Ausschüttung wird angeregt durch <b>Sekretin</b>, <b>Cholezystokinin</b> und den <b>N. vagus</b>.</td><td>Sekretin und Cholezystokinin kommen aus der <b>Schleimhaut des Duodenums</b> — als Antwort auf <b>sauren</b> bzw. <b>fettreichen</b> Brei.</td></tr>
+</table></div>
+<div class="hinweis"><b>Hinweis:</b> Auf dem handgeschriebenen Plakat stehen Sekretin und Cholezystokinin als „Hormon“ mit Pfeil zum Pankreassaft. Wer sie bildet, steht dort nicht klar. Das Textblatt sagt eindeutig: die <b>Duodenalschleimhaut</b>. Halte dich an das Textblatt. Das Textblatt endet mit einem quizlet.com-Link (Internet) — daraus ist nichts übernommen.</div>
+<div class="merke"><b>Merke:</b> Endokrin = Hormone ins <b>Blut</b> (Insulin B, Glukagon A, Somatostatin D). Exokrin = 2 l basischer Saft durch den <b>Gang</b> ins Duodenum. Enzyme inaktiv — sonst verdaut sich die Drüse selbst.</div>
+<p class="fr">🇫🇷 Le pancréas : 13–15 cm, derrière l'estomac. Endocrine : îlots de Langerhans → insuline (cellules B), glucagon (A), somatostatine (D) dans le sang. Exocrine : 2 l de suc basique par jour vers le duodénum ; les enzymes sortent inactives pour ne pas digérer la glande elle-même.</p>
+<p class="quelle">Die Bauchspeicheldruese (Textblatt CE05 UE0), S. 1–2 · Plakat Bauchspeicheldrüse, S. 1 · Organuebersicht, S. 10</p>
 
+<!-- ============ 9 NERVENSYSTEM EINTEILUNG ============ -->
+<h2>9 · Das Nervensystem: Aufgaben und Einteilung <span class="stern">★★★</span></h2>
+<h3>Was das Nervensystem tut — in vier Schritten</h3>
+<div class="schema">
+  <p class="titel">Vom Reiz zur Reaktion</p>
+  <div class="k"><b>1 · Erfassen</b><small>Sensoren (Rezeptoren) nehmen Informationen auf — aus dem Körper und aus der Umwelt</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>2 · Übermitteln</b><small>über <b>afferente</b> Nerven zu den übergeordneten Zentren</small></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>3 · Verarbeiten und speichern</b></div><div class="pfeil">↓</div>
+  <div class="k"><b>4 · Antworten</b><small>über <b>efferente</b> Nerven → Folge kann eine <b>Reaktion</b> sein</small></div>
+</div>
+<p>Das Nervensystem macht außerdem möglich: <b>Bewusstsein · Lernen und Sprache · Motivation/Antrieb · Denken</b>.</p>
+
+<h3>Zwei Einteilungen</h3>
+<div class="scroll"><table>
+  <tr><th>nach der Lage</th><th>nach der Funktion</th></tr>
+  <tr><td><b>Zentrales Nervensystem (ZNS)</b>: Gehirn + Rückenmark</td><td><b>Somatisches = willkürliches NS</b>: Umweltreize empfangen und verarbeiten · Bewegung steuern</td></tr>
+  <tr><td><b>Peripheres Nervensystem (PNS)</b>: Nervenzellen und Bahnen außerhalb des ZNS (z. B. Hirnnerven, Spinalnerven)</td><td><b>Vegetatives = autonomes NS</b>: steuert die inneren Organe · nur wenig durch den Willen beeinflussbar</td></tr>
+</table></div>
+<p>Die Folie sagt ehrlich dazu: <b>Alle Unterteilungen sind nicht eindeutig trennscharf.</b> (Die Grenzen sind nicht scharf.)</p>
+
+<h3>Sympathikus und Parasympathikus — die zwei Teile des vegetativen Systems</h3>
+<div class="zwei">
+  <div class="k rot"><b>Sympathikus</b><small>allgemein <b>aktivierend</b> · nach <b>außen</b> gerichtet</small></div>
+  <div class="k gruen"><b>Parasympathikus</b><small><b>bremsend</b> · nach <b>innen</b> gerichtet · aktiviert die <b>Magen-Darm-Tätigkeit</b> · vor allem über den <b>N. vagus</b></small></div>
+</div>
+<p>Einfach gesagt: Der Sympathikus macht den Körper bereit für das, was draußen passiert. Der Parasympathikus kümmert sich um Ruhe und Verdauung. <span class="her">Herleitung</span> aus „nach außen / nach innen“ und „aktiviert Magen-Darm“.</p>
+<p>Das passt zum Pankreas: Der <b>N. vagus</b> regt dort den Pankreassaft an (Kapitel 8). <span class="her">Herleitung</span></p>
+<div class="merke"><b>Merke:</b> Afferent = <b>an</b>kommend (zum Gehirn), efferent = <b>e</b>xit (vom Gehirn weg). Sympathikus = Gas, Parasympathikus = Bremse.</div>
+<p class="fr">🇫🇷 Système nerveux central = cerveau + moelle épinière ; périphérique = tous les nerfs autour. Volontaire (mouvements) / végétatif (organes, presque pas contrôlable). Sympathique = accélérateur, tourné vers l'extérieur ; parasympathique = frein, digestion, surtout le nerf vague.</p>
+<p class="quelle">Nervensystem Anatomie und Physiologie, S. 3–7</p>
+
+<!-- ============ 10 NEURON ============ -->
+<h2>10 · Das Neuron und die Erregung <span class="stern">★★★</span></h2>
+<p>Das <b>Neuron</b> (Nervenzelle) ist die Grundeinheit. Es <b>nimmt Signale auf, verarbeitet sie und leitet sie weiter</b> — durch elektrische und biochemische Vorgänge.</p>
+<p><b>Die Teile auf dem Bild deiner Folie:</b> Dendriten (Eingang) · Zellkörper mit Zellkern und Nissl-Schollen · Axon (langer Ausläufer) mit der <b>Markscheide</b> aus Schwann-Zellen · dazwischen die <b>Ranvier-Schnürringe</b> · am Ende die präsynaptischen Endknöpfe (Ausgang).</p>
+
+<h3>Die Kette der elektrischen Erregung</h3>
+<div class="schema">
+  <p class="titel">Ruhe → Reiz → Feuer → zurück zur Ruhe</p>
+  <div class="k"><b>1 · Ruhepotential</b><small>Die Zellhaut (Membran) ist innen <b>negativ</b> geladen. Das kommt vor allem von K⁺ und Na⁺. Gesteuert über die <b>Natrium-Kalium-Pumpe</b>.</small></div><div class="pfeil">↓ ein Reiz überschreitet die <b>Schwelle</b></div>
+  <div class="k rot"><b>2 · Aktionspotential (Depolarisation)</b><small>Die Membran wird schlagartig <b>positiv</b> — vor allem durch <b>Na⁺-Einstrom</b>. Es gilt das <b>Alles-oder-nichts-Prinzip</b>.</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>3 · Repolarisation</b><small>Die Grundladung kommt zurück — vor allem durch <b>K⁺-Ausstrom</b> aus der Zelle.</small></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>4 · Refraktärzeit</b><small>Kurz kann <b>kein neues</b> Aktionspotential ausgelöst werden. Danach kurze Hyperpolarisation, dann wieder Ruhepotential.</small></div>
+</div>
+<p>Die Übersichtskurve deiner Folie zeigt: Das Ganze dauert nur wenige <b>Tausendstelsekunden</b>; am höchsten Punkt etwa <b>+30 mV</b>.</p>
+<p><b>Alles-oder-nichts</b> heißt: Ist der Reiz zu schwach, passiert nichts. Ist er stark genug, kommt immer das <b>volle</b> Aktionspotential — nie ein halbes. <span class="her">Herleitung</span></p>
+
+<h3>Die Weiterleitung</h3>
+<div class="scroll"><table>
+  <tr><th>Wo?</th><th>Wie?</th></tr>
+  <tr><td><b>Im Axon</b></td><td><b>Saltatorische Leitung</b>: Das Signal <b>springt von Schnürring zu Schnürring</b>. Ohne Markscheide breitet es sich kontinuierlich (Stück für Stück) aus — das zeigt die Folie im Vergleich. Dass das Springen schneller ist, steht nicht auf der Folie. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Zur nächsten Zelle</b></td><td>Über den <b>synaptischen Spalt</b>. Das elektrische Signal wird in eine chemische („hormonelle“) Übertragung umgewandelt: Bläschen im Endknopf schütten <b>Neurotransmitter</b> aus, die an <b>Rezeptoren</b> der nächsten Zelle binden. Dafür wird <b>Kalzium</b> gebraucht.</td></tr>
+</table></div>
+<p><b>Die vier wichtigsten Neurotransmitter:</b> Acetylcholin · Noradrenalin · Serotonin · Dopamin. Synapsen können <b>hemmend</b> oder <b>erregend</b> wirken.</p>
+<div class="hinweis"><b>Tippfehler auf den Folien:</b> „Aoxns“ = Axons · „Schürringe“ = Schnürringe · „12 Neven“ = Nerven · „N. fascialis“ = N. facialis · „GCG erheben“ = gemeint ist sehr wahrscheinlich die <b>GCS</b> (Glasgow Coma Scale, Folie davor). · Die Folie schreibt „Pyramidalbahnen“, hier steht „Pyramidenbahnen“. Damit du die Folie wiedererkennst.</div>
+<div class="merke"><b>Merke:</b> Ruhe = innen negativ · Na⁺ <b>rein</b> = Aktionspotential · K⁺ <b>raus</b> = Repolarisation · Refraktärzeit = Pause · springt von Ring zu Ring · am Spalt: Neurotransmitter.</div>
+<p class="fr">🇫🇷 Au repos, la membrane est négative. Un stimulus assez fort : le sodium entre → potentiel d'action (tout ou rien). Le potassium sort → repolarisation, puis période réfractaire. Le signal saute de nœud de Ranvier en nœud ; à la synapse, des neurotransmetteurs passent le message.</p>
+<p class="quelle">Nervensystem Anatomie und Physiologie, S. 8–18 (Bild Neuron S. 9, Kurve S. 13, Synapse S. 16–17)</p>
+
+<!-- ============ 11 SCHUTZ LIQUOR ============ -->
+<h2>11 · Das Gehirn und sein Schutz: Hirnhäute und Liquor <span class="stern">★★</span></h2>
+<p>Das Gehirn hat drei wichtige Teile: <b>Großhirn · Kleinhirn · Hirnstamm</b> (darunter das verlängerte Mark, dann das Rückenmark).</p>
+<h3>Drei Hirnhäute (Meningen) — von außen nach innen</h3>
+<div class="schema">
+  <p class="titel">Vom Schädel zum Gehirn</p>
+  <div class="k"><b>Kopfschwarte → Schädelknochen</b></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>Dura mater</b><small>harte Hirnhaut</small></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>Arachnoidea</b><small>Spinnengewebshaut · darunter der <b>Subarachnoidalraum</b> mit Liquor</small></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>Pia mater</b><small>weiche Hirnhaut, liegt direkt auf dem Gehirn</small></div>
+</div>
+<h3>Der Liquor (Hirnwasser)</h3>
+<div class="scroll"><table>
+  <tr><th>Frage</th><th>Antwort deiner Folien</th></tr>
+  <tr><td>Wie sieht er aus?</td><td>klar, farblos bis leicht gelb</td></tr>
+  <tr><td>Wo wird er gebildet?</td><td>in den <b>Ventrikeln</b> (Hohlräume im Gehirn: zwei Seitenventrikel, III. und IV. Ventrikel; dazu der Aquädukt = Hirnkanal; unten der Zentralkanal im Rückenmark)</td></tr>
+  <tr><td>Wo wird er wieder aufgenommen?</td><td>im Arachnoidalraum (die Ventrikel resorbieren zum Teil auch)</td></tr>
+  <tr><td>Wozu?</td><td><b>Stoß- und Reibungsschutz</b> für Gehirn und Hirnhäute · <b>Ernährung</b> der Neuronen, vor allem O₂, CO₂ und H₂O</td></tr>
+  <tr><td>Woraus besteht er?</td><td>Wasser · Mineralsalze · Eiweiß <b>15–30 mg%</b> · Glukose <b>40–70 mg%</b> · wenige bis keine Zellen</td></tr>
+  <tr><td>Medizinisch</td><td>Diagnostik: <b>Lumbalpunktion</b> (Liquor wird entnommen) · Therapie: <b>Ventrikeldrainage</b></td></tr>
+</table></div>
+<p><b>Blut-Hirn-Schranke:</b> Ausläufer der <b>Gliazellen</b> (Stützzellen, auf dem Bild ein Astrozyt) umhüllen die Blutgefäße und verbinden sie mit den Neuronen. Diese Hülle ist für <b>viele Stoffe unpassierbar</b> — <b>zum Schutz der Neuronen</b>.</p>
+<div class="merke"><b>Merke:</b> Hirnhäute von außen: <b>D-A-P</b> — Dura, Arachnoidea, Pia. Liquor = Polster + Nahrung, gebildet in den Ventrikeln.</div>
+<p class="fr">🇫🇷 Trois méninges : dure-mère, arachnoïde, pie-mère. Le liquide céphalo-rachidien protège contre les chocs et nourrit les neurones ; il est fabriqué dans les ventricules ; on le prélève par ponction lombaire. La barrière hémato-encéphalique protège les neurones.</p>
+<p class="quelle">Nervensystem Anatomie und Physiologie, S. 20–25 (Liquorwerte S. 25) · S. 36 (Blut-Hirn-Schranke)</p>
+
+<!-- ============ 12 GEHIRNTEILE ============ -->
+<h2>12 · Großhirn, Kleinhirn, Hirnstamm, Rückenmark <span class="stern">★★★</span></h2>
+<div class="scroll"><table>
+  <tr><th>Teil</th><th>Was es tut</th><th>Warum wichtig für die Pflege?</th></tr>
+  <tr><td><b>Großhirn</b> (Cerebrum)</td><td>steuert viele aktive Prozesse · Aufgaben in bestimmten Bereichen konzentriert · <b>70 %</b> der Neuronen in der Großhirnrinde · 2 Hälften (Hemisphären) · <b>lernfähig</b>: andere Bereiche können Aufgaben übernehmen</td><td>Weil das Gehirn lernfähig ist, kann ein Mensch verlorene Fähigkeiten zum Teil wieder lernen. <span class="her">Herleitung</span></td></tr>
+  <tr><td><b>Zwischenhirn</b>: Hypothalamus + Hypophyse</td><td>Hypothalamus verbindet <b>Hormon- und Nervensystem</b>, regelt innere Prozesse · Hypophyse = übergeordnete Hormondrüse (Hirnanhangsgebilde)</td><td>—</td></tr>
+  <tr><td><b>Kleinhirn</b> (Cerebellum)</td><td>Muskelspannung · <b>Gleichgewicht</b> · Bewegungskoordination</td><td>Den Pflegebezug nennen deine Folien nicht.</td></tr>
+  <tr class="rot"><td><b>Hirnstamm</b> (Truncus cerebri)</td><td>unterstes Gehirnstück · wichtigster Teil: <b>verlängertes Mark</b> (Medulla oblongata) · Bahnen ins Rückenmark · steuert <b>Herz-Kreislauf, Atmung, Schlucken und Brechen, Niesen und Husten</b></td><td>„Schädigungen oft <b>tödlich</b> oder mit schweren Einschränkungen verbunden“ — denn hier sitzen Atmung und Kreislauf. <span class="her">Herleitung</span> für das „denn“</td></tr>
+  <tr><td><b>Rückenmark</b> (Medulla spinalis)</td><td><b>Reflexzentrum</b>: Reflexe gehen <b>nicht</b> ans Großhirn, die Antwort entsteht automatisch im Rückenmark · leitet die Befehle des Großhirns weiter · von Hirnhäuten umgeben</td><td>—</td></tr>
+</table></div>
+
+<h3>Die vier Großhirnlappen und ihre Zentren</h3>
+<div class="scroll"><table>
+  <tr><th>Lappen</th><th>Was das Bild deiner Folie dort zeigt</th></tr>
+  <tr><td><b>Stirnlappen</b> (Lobus frontalis)</td><td>primäres <b>motorisches</b> Rindenfeld (vor der Zentralfurche) · <b>Broca-Sprachzentrum</b></td></tr>
+  <tr><td><b>Scheitellappen</b> (Lobus parietalis)</td><td>primäres <b>sensorisches</b> Rindenfeld (hinter der Zentralfurche)</td></tr>
+  <tr><td><b>Schläfenlappen</b> (Lobus temporalis)</td><td><b>Hörzentrum</b> · <b>Wernicke-Sprachzentrum</b> (an der Grenze zum Scheitellappen)</td></tr>
+  <tr><td><b>Hinterhauptlappen</b> (Lobus occipitalis)</td><td><b>Sehzentrum</b></td></tr>
+</table></div>
+<p>Was Broca und Wernicke genau tun, steht nicht auf den Folien.</p>
+
+<h3>Die Bahnen</h3>
+<ul>
+  <li><b>Pyramidenbahnen</b> laufen <b>„über Kreuz“</b>: Die <b>linke</b> Hirnhälfte steuert die <b>rechte</b> Körperhälfte. Sie versorgen den Körper.</li>
+  <li><b>12 Hirnnerven</b> (afferent und efferent): die Hauptbahnen oberhalb des Rückenmarks, mit direkter Reizleitung vor allem am Kopf. Wichtig: <b>N. trigeminus · N. vestibulocochlearis · N. facialis · N. vagus</b>.</li>
+  <li>Aus dem Rückenmark kommen Nervengeflechte: Hals- (Plexus cervicalis), Arm- (brachialis), Lenden- (lumbalis), Kreuzgeflecht (sacralis); dazu Zwerchfellnerv (N. phrenicus), Zwischenrippennerven, Schenkelnerv (N. femoralis) und <b>Ischiasnerv (N. ischiadicus)</b>.</li>
+</ul>
+<div class="merke"><b>Merke:</b> Über Kreuz: Schaden in der <b>linken</b> Hirnhälfte → Ausfall auf der <b>rechten</b> Körperseite. <span class="her">Herleitung</span> aus der Folie „linke Hirnhälfte steuert rechte Körperhälfte“.</div>
+<p class="fr">🇫🇷 Grand cerveau : 4 lobes (frontal = motricité, Broca ; pariétal = sensibilité ; temporal = audition, Wernicke ; occipital = vision). Cervelet : équilibre, coordination. Tronc cérébral : cœur, respiration, déglutition — une lésion est souvent mortelle. Moelle : réflexes. Les voies se croisent : hémisphère gauche → côté droit du corps.</p>
+<p class="quelle">Nervensystem Anatomie und Physiologie, S. 20, 26–35 (Lappen S. 28, Hirnstamm S. 32, Rückenmark S. 33–34, Hirnnerven S. 35)</p>
+
+<!-- ============ 13 BEWUSSTSEIN ============ -->
+<h2>13 · Bewusstseinslagen und Erstmaßnahmen <span class="stern">★★★</span></h2>
+<p>Das ist der Teil, der direkt auf Station zählt. Die Frage ist immer: <b>Wird der Mensch wach — und wie lange bleibt er wach?</b></p>
+<div class="scroll"><table>
+  <tr><th>Stufe</th><th>So erkennst du sie</th></tr>
+  <tr class="gelb"><td><b>Somnolenz</b></td><td>schläfrig, aber <b>noch erweckbar</b>, verlangsamt</td></tr>
+  <tr class="rot"><td><b>Sopor</b></td><td>hochgradig schläfrig, nur <b>kurzzeitig</b> erweckbar</td></tr>
+  <tr class="rot"><td><b>Koma</b></td><td><b>nicht erweckbar</b>, Augen geschlossen</td></tr>
+</table></div>
+
+<h3>Die Glasgow Coma Scale (GCS)</h3>
+<div class="scroll"><table>
+  <tr><th>Prüfung</th><th>Reaktion → Punkte</th></tr>
+  <tr><td><b>Augen öffnen</b></td><td>spontan 4 · auf Ansprache 3 · auf Schmerzreiz 2 · nicht möglich 1</td></tr>
+  <tr><td><b>Kommunikation</b></td><td>spontan orientiert 5 · spontan nicht adäquat 4 · verzögert 3 · nicht verständlich 2 · nicht möglich 1</td></tr>
+  <tr><td><b>Motorik</b></td><td>befolgt Aufforderungen 6 · gezielte Reaktion auf Schmerzreiz 5 · ungezielte Reaktion 4 · Beugesynergismen 3 · Strecksynergismen 2 · keine Reaktion 1</td></tr>
+</table></div>
+<div class="scroll"><table>
+  <tr><th>Summe</th><th>Bedeutung</th></tr>
+  <tr class="gruen"><td class="z">13–15</td><td>wach, gute Prognose</td></tr>
+  <tr class="gelb"><td class="z">8–12</td><td>somnolent, soporös</td></tr>
+  <tr class="rot"><td class="z">unter 8</td><td>komatös, ggf. Intubation (Beatmungsschlauch), schlechte Prognose</td></tr>
+</table></div>
+<p>Kleinste Summe: 3 (1 + 1 + 1), größte: 15 (4 + 5 + 6). <span class="her">Herleitung</span> aus der Tabelle.</p>
+
+<h3>Die acht Erstmaßnahmen bei Bewusstlosen — und warum</h3>
+<div class="scroll"><table>
+  <tr><th>Maßnahme</th><th>Warum?</th></tr>
+  <tr><td>1 · <b>Hilfe verständigen</b></td><td>Den Grund nennen deine Folien nicht.</td></tr>
+  <tr><td>2 · <b>Atmung sichern</b> (freie Atemwege)</td><td>Der Hirnstamm steuert die Atmung; ohne Atmung ist der Mensch in Lebensgefahr. <span class="her">Herleitung</span> aus S. 32</td></tr>
+  <tr><td>3 · <b>GCS erheben</b></td><td>Damit die Tiefe der Bewusstseinsstörung in Zahlen feststeht (Tabelle oben). <span class="her">Herleitung</span></td></tr>
+  <tr><td>4 · <b>Pupillenreaktion und Kornealreflex</b> testen (Lidschlag bei Berührung der Hornhaut)</td><td>Den Grund nennen deine Folien nicht.</td></tr>
+  <tr><td>5 · <b>Temperatur</b> kontrollieren</td><td>wegen einer möglichen <b>Meningitis</b> (Hirnhautentzündung)</td></tr>
+  <tr><td>6 · <b>Blutzucker</b> kontrollieren</td><td>um eine <b>Hypoglykämie</b> (Unterzuckerung) auszuschließen</td></tr>
+  <tr><td>7 · auf <b>Wunden, Blut aus Nase, Mund oder Ohren</b> achten</td><td>Den Grund nennen deine Folien nicht.</td></tr>
+  <tr><td>8 · auf <b>Frakturen</b> (Knochenbrüche) achten</td><td>Den Grund nennen deine Folien nicht.</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> Somnolenz = weckbar · Sopor = kurz weckbar · Koma = nicht weckbar. GCS: Augen 4 · Sprache 5 · Motorik 6 = 15. Unter 8 = Koma.</div>
+<p class="fr">🇫🇷 Somnolence : on peut le réveiller. Sopor : seulement un court instant. Coma : impossible. Score de Glasgow : yeux 4, verbal 5, moteur 6 ; moins de 8 = coma. Face à une personne inconsciente : appeler à l'aide, libérer les voies aériennes, GCS, pupilles, température (méningite), glycémie (hypoglycémie), plaies/saignement, fractures.</p>
+<p class="quelle">Nervensystem Anatomie und Physiologie, S. 37 (Bewusstseinslagen) · S. 38 (GCS) · S. 39 (Erstmaßnahmen)</p>
+
+<!-- ============ 14 MUSKELGEWEBE ============ -->
+<h2>14 · Die Gewebe und die drei Muskeltypen <span class="stern">★★</span></h2>
+<p>Der Körper hat <b>vier Grundgewebe</b>: <b>Epithelgewebe</b> (Oberflächen-, Drüsen-, Sinnesepithel) · <b>Binde- und Stützgewebe</b> (kollagenes und retikuläres Bindegewebe, Fettgewebe, Knorpel und Knochen) · <b>Muskelgewebe</b> · <b>Nervengewebe</b>.</p>
+<div class="scroll"><table>
+  <tr><th>Muskeltyp</th><th>gesteuert von</th><th>Beispiele auf den Bildtafeln deiner Folien</th></tr>
+  <tr><td><b>glatte Muskulatur</b></td><td><b>vegetatives</b> NS — vorwiegend unbewusst</td><td>Gebärmutter, Magen, Wand der Arterien, Bronchien (die Folie zeigt den Asthmaanfall: Muskulatur verkrampft, Schleimhaut schwillt an)</td></tr>
+  <tr><td><b>quergestreifte Herzmuskulatur</b></td><td><b>vegetatives</b> NS — vorwiegend unbewusst</td><td>das Herz</td></tr>
+  <tr><td><b>quergestreifte Skelettmuskulatur</b></td><td><b>willkürliches</b> NS — vorwiegend bewusst</td><td>die Muskeln des ganzen Körpers, die Zwischenrippenmuskeln</td></tr>
+</table></div>
+<div class="hinweis"><b>Hinweis:</b> Für Frage 2 („Wo finden sich die Typen?“) zeigt der Foliensatz nur <b>Bildtafeln</b> ohne Sätze. Die Zuordnung in der Tabelle habe ich aus den Bildern gemacht. <span class="her">Herleitung</span></div>
+<div class="merke"><b>Merke:</b> Nur die <b>Skelett</b>muskeln gehorchen deinem Willen. Herz und glatte Muskeln steuert das vegetative System.</div>
+<p class="fr">🇫🇷 Quatre tissus : épithélial, conjonctif/de soutien, musculaire, nerveux. Trois muscles : lisse (organes, vaisseaux), cardiaque, squelettique. Seul le muscle squelettique est volontaire.</p>
+<p class="quelle">Praesentation Anatomie Vertiefung Muskelgewebe, S. 1–12 (vier Gewebe S. 2, Bildtafeln S. 4–10, Steuerung S. 12) · Fragen zum Thema Muskelgewebe, S. 1</p>
+
+<!-- ============ 15 KONTRAKTION ENERGIE ============ -->
+<h2>15 · Wie ein Muskel arbeitet: Filamentgleiten und Energie <span class="stern">★★★</span></h2>
+<h3>Filamentgleiten — der Querbrückenzyklus in vier Schritten</h3>
+<div class="schema">
+  <p class="titel">Zwei Eiweißfäden: Aktin und Myosin</p>
+  <div class="k"><b>1 · Verbinden</b><small>Aktin und Myosin verbinden sich (auf dem Bild: + Ca²⁺)</small></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>2 · Kippen</b><small>Die Myosinköpfchen kippen um und gleiten so am Aktin vorbei (auf dem Bild: ATP → ADP + P)</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>3 · Lösen</b><small>Die Verbindung löst sich wieder (auf dem Bild: + ATP)</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>4 · Aufrichten</b><small>Die Köpfchen richten sich auf, um sich neu mit dem Aktin zu verbinden</small></div>
+</div>
+<p>Zum Filamentgleiten sagt die Folie: Es ist die <b>Grundlage der Muskelkontraktion</b> · es <b>verbraucht Energie</b> · es <b>verbraucht Sauerstoff</b> · es <b>produziert Wärme</b>.</p>
+
+<h3>Die Energie: ATP</h3>
+<ol>
+  <li><b>ATP</b> wird gespalten in <b>ADP + Phosphatrest</b>. Das gibt eine Portion Energie für die Kontraktion.</li>
+  <li>Das ADP muss <b>schnell wieder zu ATP</b> werden. Dafür braucht es wieder Energie.</li>
+  <li>Diese Energie kommt aus: <b>Kreatinphosphat</b> · <b>Kohlenhydraten</b> (am Ende: Glukose) · <b>Fetten</b>.</li>
+</ol>
+<div class="schema">
+  <p class="titel">Die Reihenfolge der Energiequellen</p>
+  <div class="k"><b>Der Muskel fängt an zu arbeiten</b><small>→ zuerst Kreatinphosphat und Zucker</small></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>Der Muskel arbeitet länger</b><small>→ jetzt muss <b>Fett</b> verbrannt werden — und Fettabbau <b>braucht Sauerstoff</b></small></div>
+</div>
+
+<h3>Mit Sauerstoff oder ohne?</h3>
+<div class="scroll"><table>
+  <tr><th></th><th>aerobe Glykolyse (mit O₂)</th><th>anaerobe Glykolyse (ohne genug O₂)</th></tr>
+  <tr><td>Was passiert?</td><td>Glukose wird ganz abgebaut</td><td>Glukose wird nur bis <b>Laktat</b> abgebaut</td></tr>
+  <tr><td>Energie</td><td><b>viel</b></td><td><b>wenig</b></td></tr>
+  <tr><td>Endprodukte</td><td>Energie, <b>Wasser und CO₂</b> — CO₂ wird abgeatmet, Wasser ist unproblematisch</td><td><b>Laktat</b> — häuft sich im Körper und im Blut an</td></tr>
+  <tr><td>Folge</td><td>für den Körper <b>günstig</b></td><td>Laktat ist <b>sauer</b> → kann das Blut übersäuern: <b>Laktatazidose</b>. (Einige Gewebe können Laktat als Energie nutzen.)</td></tr>
+</table></div>
+<p>Anaerobe Glykolyse setzt ein bei Sauerstoffmangel <b>nur im Muskel</b> oder <b>im ganzen Körper</b>.</p>
+<p><b>Warum wird einem beim Arbeiten der Muskeln warm?</b> Im <b>Mitochondrium</b> (Kraftwerk der Zelle) entsteht bei der aeroben Glykolyse aus Kohlenhydraten, Eiweißen und Fetten mit Sauerstoff Energie (ATP = „Energiewährung“). Dabei werden CO₂, Wasser und <b>Abwärme</b> frei.</p>
+<div class="hinweis"><b>Muskelkater:</b> Die letzte Folie fragt „Wie kommt es dazu?“ — und gibt <b>keine Antwort</b>. Auch Frage 9 des Fragebogens bleibt deshalb offen. Hier steht absichtlich nichts dazu.</div>
+<div class="merke"><b>Merke:</b> Kurz arbeiten: Kreatinphosphat + Zucker. Lang arbeiten: Fett + Sauerstoff. Zu wenig Sauerstoff → Laktat → saures Blut. Arbeit → Abwärme → warm.</div>
+<p class="fr">🇫🇷 Le muscle se contracte quand l'actine et la myosine glissent l'une sur l'autre ; il faut de l'ATP. Énergie : créatine-phosphate et sucre d'abord, puis graisses (besoin d'oxygène). Sans assez d'oxygène : lactate → acidose lactique. Le travail musculaire produit de la chaleur.</p>
+<p class="quelle">Praesentation Anatomie Vertiefung Muskelgewebe, S. 13–28 (Querbrückenzyklus S. 15/18, ATP S. 19–20, aerob S. 22, anaerob S. 24–25, Mitochondrium S. 27, Muskelkater S. 28)</p>
+
+<!-- ============ 16 SKELETTMUSKULATUR ============ -->
+<h2>16 · Die Skelettmuskulatur <span class="stern">★★★</span></h2>
+<div class="def">
+  <span class="t">So steht es auf deiner Folie</span>
+  <p>„Anders als die glatte Muskulatur in den inneren Organen und die Herzmuskulatur ist die Skelettmuskulatur über <b>Muskelsehnen an den Knochen befestigt</b>. Ein Skelettmuskel verläuft immer über <b>ein oder zwei Gelenke</b>, für deren Bewegung er sorgt. Die Skelettmuskulatur wird vom <b>willkürlichen Nervensystem</b> gesteuert.“</p>
+</div>
+<h3>Woher kommt der Befehl?</h3>
+<div class="schema">
+  <p class="titel">Keine Schrittmacherzellen — der Befehl kommt von oben</p>
+  <div class="k wichtig"><b>Gehirn</b><small>hier entstehen die Impulse</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Rückenmark</b></div><div class="pfeil">↓</div>
+  <div class="k"><b>periphere Nerven</b></div><div class="pfeil">↓</div>
+  <div class="k gruen"><b>Skelettmuskel</b><small>zieht sich zusammen</small></div>
+</div>
+<p>Im <b>Herzen</b> gibt es Schrittmacherzellen, die Impulse <b>ohne</b> Nervensystem bilden. Im Skelettmuskel <b>nicht</b>. Deshalb gilt: Reißt die Kette Gehirn → Rückenmark → Nerv irgendwo, bekommt der Muskel keinen Befehl. <span class="her">Herleitung</span></p>
+
+<h3>Funktionen</h3>
+<ul>
+  <li><b>Bewegung</b> der Knochen in den Gelenken</li>
+  <li><b>Haltefunktion</b>: aufrechte Körperhaltung</li>
+  <li><b>Wärmeproduktion</b> — passt zur Abwärme aus Kapitel 15</li>
+</ul>
+
+<h3>Zwei Bauformen</h3>
+<div class="zwei">
+  <div class="k"><b>1 · spindelförmige Muskeln</b><small>in der Mitte der <b>Muskelbauch</b> (= Muskelkopf), an beiden Enden oft mehrere cm lange <b>Sehnen</b> · die Sehnen sitzen <b>immer an verschiedenen Knochen</b>, damit sich das Gelenk dazwischen bewegen kann · können <b>mehrköpfig</b> sein: M. biceps = zweiköpfig, M. triceps = dreiköpfig</small></div>
+  <div class="k"><b>2 · platte Muskeln</b><small>dünn und flächig · ihre Sehnen sind flächige Sehnenplatten = <b>Aponeurosen</b> (gibt es auch an Handfläche, Fußsohle und Schädel) · Beispiel: die Bauchwand</small></div>
+</div>
+<p><b>Agonist und Antagonist</b> (Spieler und Gegenspieler) am Ellbogen: Der <b>Beuger</b> (M. biceps brachii) beugt, der <b>Strecker</b> (M. triceps brachii) streckt.</p>
+
+<h3>Muskelmasse und Alter</h3>
+<ul>
+  <li><b>Männer</b> haben deutlich mehr Muskelmasse als Frauen. Grund: das männliche Sexualhormon <b>Testosteron</b> wirkt muskelaufbauend.</li>
+  <li>Mit etwa <b>30 Jahren</b> ist die maximale Muskelmasse erreicht. Danach wird Muskel tendenziell <b>abgebaut und durch Fett ersetzt</b>.</li>
+</ul>
+<div class="merke"><b>Merke:</b> Bleibt das Gewicht eines alten Menschen gleich, kann trotzdem Muskel verloren gegangen sein — er wurde durch Fett ersetzt. <span class="her">Herleitung</span></div>
+
+<h3>Atemmuskeln</h3>
+<div class="schema">
+  <p class="titel">Einatmung (Inspiration)</p>
+  <div class="k"><b>Das Zwerchfell kontrahiert sich</b><small>die Zwerchfellkuppel senkt sich ab</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Die äußeren Zwischenrippenmuskeln kontrahieren sich</b><small>sie heben den Brustkorb an</small></div><div class="pfeil">↓</div>
+  <div class="k gruen"><b>Das Thoraxvolumen nimmt zu</b><small>(der Brustraum wird größer)</small></div>
+</div>
+<p><b>Hilfseinatmer</b> (Einatemhilfsmuskeln) vor allem: großer und kleiner Brustmuskel (M. pectoralis major und minor) · vorderer und hinterer oberer Sägezahnmuskel (M. serratus anterior, M. serratus posterior superior) · Treppenmuskeln (Mm. scaleni) · Kopfwender (M. sternocleidomastoideus).</p>
+<p class="fr">🇫🇷 Les muscles squelettiques sont fixés aux os par des tendons et passent sur une ou deux articulations ; ils sont volontaires. Pas de cellules « pacemaker » : l'ordre vient du cerveau → moelle → nerf. Fonctions : mouvement, posture, chaleur. Vers 30 ans, masse musculaire maximale ; ensuite le muscle est remplacé par de la graisse. Inspiration : le diaphragme descend, les intercostaux externes lèvent les côtes.</p>
+<p class="quelle">Praesentation Anatomie Skelettmuskulatur, S. 1 (Definition) · S. 4 (Schrittmacher) · S. 5 (Funktionen) · S. 6–10 (Bauformen, Agonist) · S. 13 (Testosteron, 30 Jahre) · S. 28 (Einatmung) · S. 30 (Hilfseinatmer)</p>
+
+<!-- ============ 17 FRAGEBÖGEN ============ -->
+<h2>17 · Die zwei Fragebögen deiner Dozentin — was beantwortet ist <span class="stern">★★</span></h2>
+<p>Zu beiden Muskel-Themen gibt es einen Fragebogen mit leeren Feldern. Die Foliensätze beantworten <b>einen Teil</b>. Hier siehst du, wo die Antwort steht — und wo keine steht.</p>
+<details><summary>Fragebogen Muskelgewebe (9 Fragen)</summary>
+<div class="scroll"><table>
+  <tr><th>Frage</th><th>Antwort steht …</th></tr>
+  <tr><td>1 · drei Muskeltypen aufzählen</td><td>Kapitel 14</td></tr>
+  <tr><td>2 · Beispiele, wo sie sitzen</td><td>nur Bildtafeln → Kapitel 14 (Herleitung)</td></tr>
+  <tr><td>3 · welcher Typ vom willkürlichen NS</td><td>Skelettmuskulatur, Kapitel 14</td></tr>
+  <tr><td>4 · welcher Teil des NS die anderen steuert</td><td>vegetatives NS, Kapitel 14</td></tr>
+  <tr><td>5 · Filamentgleiten beschreiben</td><td>Kapitel 15</td></tr>
+  <tr><td>6 · drei bis vier Energiequellen</td><td>Kreatinphosphat, Zucker, Fett (+ ATP als direkte Quelle) — Kapitel 15</td></tr>
+  <tr><td>7 · warum Sauerstoff bei längerer Arbeit</td><td>Fettabbau und aerobe Glykolyse brauchen O₂ — Kapitel 15</td></tr>
+  <tr><td>8 a–d · zu wenig O₂ · welcher Stoff · warum Problem · warum warm</td><td>anaerob · Laktat · Laktatazidose · Abwärme — Kapitel 15</td></tr>
+  <tr><td>9 · Grund für Muskelkater</td><td><b>keine Antwort</b> in deinen Unterlagen</td></tr>
+</table></div>
+</details>
+<details><summary>Fragebogen Skelettmuskulatur (11 Fragen + 1 Zusatzfrage)</summary>
+<div class="scroll"><table>
+  <tr><th>Frage</th><th>Antwort steht …</th></tr>
+  <tr><td>1 · wie viel Prozent des Körpergewichts</td><td><b>keine Antwort</b></td></tr>
+  <tr><td>2 · warum Frauen weniger Muskelmasse haben</td><td>Testosteron — Kapitel 16</td></tr>
+  <tr><td>3 · in welchem Alter maximale Muskelmasse</td><td>ca. 30 Jahre — Kapitel 16</td></tr>
+  <tr><td>4 · zwei Möglichkeiten gegen Muskelabbau im Alter</td><td><b>keine Antwort</b></td></tr>
+  <tr><td>5 · was bedeutet Sarkopenie</td><td><b>keine Antwort</b></td></tr>
+  <tr><td>6 · Unterschied Parese / Plegie</td><td><b>keine Antwort</b></td></tr>
+  <tr><td>7 · vier Muskeln für i.m.-Injektionen</td><td><b>keine Antwort</b> — nur Atlastafeln von Brust, Rücken, Bein</td></tr>
+  <tr><td>8 · warum die korrekte Stelle im Gesäß</td><td>Die Tafel unter der Frage zeigt den <b>N. ischiadicus</b> (Ischiasnerv) im Gesäß. Ein Satz dazu fehlt. Verbindung: Eine falsche Stelle könnte diesen Nerv treffen. <span class="her">Herleitung</span></td></tr>
+  <tr><td>9 · Muskeln der Einatmung</td><td>Zwerchfell, äußere Zwischenrippenmuskeln — Kapitel 16</td></tr>
+  <tr><td>10 · ein Einatemhilfsmuskel</td><td>z. B. M. sternocleidomastoideus — Kapitel 16</td></tr>
+  <tr><td>11 · zwei Funktionen des Beckenbodens</td><td><b>keine Antwort</b> — die Tafeln zeigen M. levator ani und M. sphincter ani externus</td></tr>
+  <tr><td>Zusatz (nur im Fragebogen) · Folgen einer Beckenbodeninsuffizienz</td><td><b>keine Antwort</b></td></tr>
+</table></div>
+</details>
+<div class="hinweis"><b>Für den Unterricht — ein fertiger Satz:</b> „Im Foliensatz Skelettmuskulatur fehlen die Antworten zu den Fragen 1, 4, 5, 6, 7, 8 und 11 und im Fragebogen Muskelgewebe zu Frage 9. Können Sie uns die Lösungen geben?“</div>
+<p class="fr">🇫🇷 Plusieurs questions des deux questionnaires n'ont pas de réponse dans tes diapositives (sarcopénie, parésie/plégie, sites d'injection IM, plancher pelvien, courbatures). Je n'ai rien ajouté de mémoire : demande les réponses à ta formatrice.</p>
+<p class="quelle">Fragen zum Thema Muskelgewebe, S. 1–2 · Fragen zum Thema Skelettmuskulatur, S. 1–2 · Praesentation Skelettmuskulatur, S. 11–35 (Fragen 1–11, Atlastafeln S. 18–23, 25, 27, 32–35)</p>
+
+<!-- ============ TOP 10 ============ -->
+<h2>Top 10 fürs Examen</h2>
+<ol>
+  <li>Jedes Organ in drei Blöcken: <b>Größe/Gewicht/Lage · Makroskopie · Funktionen</b></li>
+  <li>Leber 1,5 kg, rechts oben · Lunge 1–1,3 kg, rechts 3 / links 2 Lappen · Niere 110–200 g, rechts tiefer (Leber) · Pankreas 13–15 cm, retroperitoneal</li>
+  <li>Magen: Kardia → Fundus → Korpus → Antrum → Pylorus · Peristaltik + Säure</li>
+  <li>Pankreas endokrin (Insulin B, Glukagon A, Somatostatin D) / exokrin (2 l basischer Saft, Enzyme inaktiv)</li>
+  <li>ZNS = Gehirn + Rückenmark · afferent = zum Gehirn, efferent = weg · Sympathikus aktiviert, Parasympathikus bremst (N. vagus)</li>
+  <li>Na⁺ rein = Aktionspotential (alles oder nichts) · K⁺ raus = Repolarisation · Refraktärzeit · saltatorisch von Ring zu Ring</li>
+  <li>Hirnhäute Dura – Arachnoidea – Pia · Liquor in den Ventrikeln gebildet, Lumbalpunktion</li>
+  <li>Hirnstamm: Atmung und Kreislauf → Schaden oft tödlich · Pyramidenbahnen über Kreuz</li>
+  <li>Somnolenz / Sopor / Koma · GCS 4 + 5 + 6 = 15, unter 8 = Koma · acht Erstmaßnahmen</li>
+  <li>Skelettmuskel: willkürlich, keine Schrittmacher, Befehl Gehirn → Rückenmark → Nerv · O₂-Mangel → Laktat → Azidose</li>
+</ol>
+
+<!-- ============ FRAGEN ============ -->
+<h2>5 Prüfungsfragen — mit Musterantwort</h2>
+<details><summary><span class="op">Nennen</span>Nennen Sie die drei Typen von Muskelgewebe und den Teil des Nervensystems, der sie jeweils steuert.</summary>
+<p>Glatte Muskulatur — vegetatives Nervensystem. Herzmuskulatur — vegetatives Nervensystem. Skelettmuskulatur — willkürliches (somatisches) Nervensystem.</p></details>
+
+<details><summary><span class="op">Beschreiben</span>Beschreiben Sie die Niere nach Größe/Gewicht/Lage, Makroskopie und Funktionen.</summary>
+<p><b>Größe/Gewicht/Lage:</b> 10–14 cm lang, 5–7 cm breit, 4–5 cm dick, 110–200 g. In der Bauchhöhle beidseits der Wirbelsäule; die rechte Niere liegt wegen der Leber etwas tiefer.<br>
+<b>Makroskopie:</b> bohnenförmig, großteils aus Blutgefäßen, kräftige Bindegewebskapsel; Nierenrinde, Nierenmark, Nierenbecken.<br>
+<b>Funktionen:</b> Filtration des Blutes, Ausscheidung von Urin, Regulation des Wasser- und Elektrolythaushalts, Blutdruckregulation, Hormonproduktion.</p>
+<p><i>Achte darauf: drei Blöcke mit drei Überschriften — so verlangt es der Auftrag.</i></p></details>
+
+<details><summary><span class="op">Erklären</span>Erklären Sie, warum die Bauchspeicheldrüse eine endokrine und eine exokrine Drüse ist.</summary>
+<p><b>Endokrin</b> heißt: Hormone gehen direkt ins Blut. Das tun die Langerhans-Inseln: Insulin aus den B-Zellen, Glukagon aus den A-Zellen, Somatostatin aus den D-Zellen. <b>Exokrin</b> heißt: Ein Saft geht durch einen Gang nach außen. Die Drüsenläppchen bilden ca. 2 l Pankreassaft am Tag; er fließt durch den Ductus pancreaticus an der Papilla Vateri ins Duodenum. <b>Beispiel:</b> Nach dem Essen kommt saurer Brei aus dem Magen; der basische Pankreassaft neutralisiert ihn (pH im Dünndarm ca. 7–8).</p></details>
+
+<details><summary><span class="op">Begründen</span>Begründen Sie, warum eine Schädigung des Hirnstamms oft tödlich ist, und leiten Sie daraus Ihre ersten Maßnahmen bei einem Bewusstlosen ab.</summary>
+<p><b>Ursache:</b> Der Hirnstamm mit dem verlängerten Mark steuert Herz-Kreislauf, Atmung, Schlucken, Husten. <b>Wirkung:</b> Ist er geschädigt, können Atmung und Kreislauf ausfallen, und der Mensch kann nicht mehr schlucken oder husten. <b>Gefahr:</b> Atemstillstand, Kreislaufversagen — deshalb sind Schädigungen „oft tödlich oder mit schweren Einschränkungen verbunden“. <b>Deshalb:</b> Bei einem Bewusstlosen verständige ich Hilfe, sichere die Atmung (freie Atemwege), erhebe die GCS und kontrolliere Pupillen, Temperatur und Blutzucker. <span class="her">Herleitung</span> — „kann nicht mehr schlucken oder husten“ verbindet S. 32 mit der Folge; die Folie sagt das nicht wörtlich.</p></details>
+
+<details><summary><span class="op">Beurteilen</span>Übungsfall: Herr K. öffnet die Augen nur auf Schmerzreiz, gibt nur unverständliche Laute von sich und greift gezielt nach der Hand, die den Schmerzreiz setzt. Beurteilen Sie seine Bewusstseinslage.</summary>
+<p><b>Einschätzung:</b> GCS = Augen 2 + Kommunikation 2 + Motorik 5 = <b>9 Punkte</b>. Das liegt im Bereich <b>8–12: somnolent, soporös</b>. Weil er nur auf Schmerzreiz die Augen öffnet, passt das eher zum <b>Sopor</b> (nur kurzzeitig erweckbar). <span class="her">Herleitung</span><br>
+<b>Weil:</b> Bei unter 8 Punkten wäre er komatös, mit schlechter Prognose. Er ist knapp darüber.<br>
+<b>Deshalb:</b> Hilfe verständigen, Atmung sichern, GCS regelmäßig wiederholen, Pupillen und Kornealreflex prüfen, Temperatur (Meningitis?) und Blutzucker (Hypoglykämie?) kontrollieren, nach Wunden, Blut aus Nase/Mund/Ohren und Frakturen sehen. <i>(Herr K. ist ein ausgedachter Übungsfall; wie oft die GCS wiederholt wird, steht nicht in deinen Folien.)</i></p></details>
+
+<!-- ============ SPICKZETTEL ============ -->
+<h2>Spickzettel</h2>
+<ul class="spick">
+  <li>Organ = Größe/Gewicht/Lage · Makroskopie · Funktion</li>
+  <li>kranial ↔ kaudal · ventral ↔ dorsal · proximal ↔ distal</li>
+  <li>M. = 1 Muskel · Mm. = mehrere</li>
+  <li>Leber 1,5 kg, 20 cm, rechts oben, intraperitoneal</li>
+  <li>Lunge 1–1,3 kg · rechts 3, links 2 Lappen · 300 Mio. Alveolen</li>
+  <li>Magen: Kardia–Fundus–Korpus–Antrum–Pylorus</li>
+  <li>Niere 4711 · 110–200 g · rechts tiefer</li>
+  <li>Pankreas: B-Insulin, A-Glukagon, D-Somatostatin · 2 l Saft</li>
+  <li>Na⁺ rein = AP · K⁺ raus = Repolarisation</li>
+  <li>Dura – Arachnoidea – Pia</li>
+  <li>Liquor: Eiweiß 15–30 mg% · Glukose 40–70 mg%</li>
+  <li>Hirnstamm = Atmung + Kreislauf</li>
+  <li>links im Hirn → rechts im Körper</li>
+  <li>GCS 4 + 5 + 6 · unter 8 = Koma</li>
+  <li>Kreatinphosphat + Zucker → später Fett + O₂</li>
+  <li>kein O₂ → Laktat → Azidose</li>
+</ul>
+
+<!-- ============ QUELLEN ============ -->
+<h2>Woraus diese Seite gebaut ist</h2>
+<p><b>19 Dateien aus deinem Drive-Ordner, jede Seite gelesen</b> (Bildfolien und handgeschriebene Plakate angesehen):</p>
+<ul>
+  <li><b>Kursliste (13):</b> Organuebersicht (19 S.) · Nervensystem Anatomie und Physiologie (40 S.) · Plakate Leber, Lunge, Magen, Niere, Bauchspeicheldrüse (je 1 S.) · Anatomische Grundbegriffe (4 S.) · Die Bauchspeicheldruese (2 S.) · Praesentation Anatomie Vertiefung Muskelgewebe (28 S.) · Fragen zum Thema Muskelgewebe (2 S.) · Praesentation Anatomie Skelettmuskulatur (35 S.) · Fragen zum Thema Skelettmuskulatur (2 S.)</li>
+  <li><b>Neu dazu (6), im selben Ordner und aus derselben Unterrichtseinheit CE05 UE0:</b> die Textblätter Die Leber (2 S.), Die Lunge (2 S.), Der Magen (2 S.), Die Niere (2 S.) — das waren die „beigelegten Texte“ für die Plakate · Aufgabenstellung Organuebersicht (1 S.) · Organuebersicht – Arbeitsheft (18 S., nur leere Felder)</li>
+</ul>
+<p><b>Bewusst nicht übernommen:</b> die quizlet.com-Links am Ende der Textblätter und die learningapps.org-Übungen der Nervensystem-Folien (Internet) · die vielen lateinischen Beschriftungen der Atlastafeln, die keine Frage beantworten. <b>Nicht benutzt:</b> der Foliensatz „Bewusstsein, Wahrnehmung und Verhalten“ — er gehört zu einem anderen Kurs (CE 02). Die Bewusstseinslagen hier stammen nur aus dem Nervensystem-Foliensatz. <b>Offen in deinen Unterlagen:</b> Herz, Darm, Milz, Thymus, Trachea, Ösophagus und ableitende Harnwege nur als Bild · Muskelkater · sieben Fragen zur Skelettmuskulatur (Kapitel 17). Wo ich etwas selbst verbinde, steht <span class="her">Herleitung</span>.</p>
+<p class="fr">🇫🇷 Tout vient de tes 19 fichiers de cours (diapositives, affiches, feuilles de texte). Rien d'Internet, rien de mémoire. Le badge « Herleitung » marque ce que j'ai déduit en reliant deux documents.</p>
 </main>
-
-<footer>
-  <p>Anatomie und Physiologie · CE 05 und CE 07 — gebaut aus deinen eigenen Unterlagen, ohne
-    Zusätze.<br>Wo etwas fehlt oder unklar ist, steht es oben ausdrücklich dabei.</p>
-</footer>
