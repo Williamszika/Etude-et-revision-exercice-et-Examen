@@ -1942,6 +1942,13 @@ Im Moment nur Schlaganfall. Für „Meine Kurse“ gibt es keine Fragen (die Inh
   werden zerlegt; lange Absätze an Satzgrenzen; Tabellenkopf wiederholt). **Immer nur eine aufgeschlagen** (`zf-offen-v1`), sonst wird es
   zu langsam; Lesezeichen genau (jedes Element hat eine Marke). **Nach jeder neuen oder geänderten Zusammenfassung erst `lesestoff.js`,
   dann `build.py`.** Kurse ohne `zusammenfassung.html` stehen in `DATEI` in `lesestoff.js`.
+  **Seit 04.11.2026 werden die Zusammenfassungen NEU GESCHRIEBEN** (ihr Wunsch: *„Die Zusammenfassung müssen sehr gut erklärt … einfach
+  … auf genau den PDF … mit der Skill“*). Auf Nachfrage gewählt: **erst ein Testkurs**, Skill **pflege-pdf-experte**, die neue Fassung
+  **ersetzt** die alte (alte in der Git-Historie). **Testkurs = Diabetes** (`schulung-diabetes/zusammenfassung.html`): PDFs aus dem
+  Drive-Ordner geladen (11 Dateien, alle Seiten gelesen, Bildfolien angesehen), Aufbau: Kernsatz · „Auf einen Blick“-Schema · 12 Themen
+  mit ★, Tabelle/Schema, **Merke** und 🇫🇷-Zeile, Quelle mit Seiten · Top 10 · 5 Prüfungsfragen (nur ihre Operatoren) · Spickzettel ·
+  „Woraus gebaut“. Kurze Sätze, B1, Fachwörter in Klammern erklärt, Herleitungen markiert. Vor der Abgabe prüft ein unabhängiger
+  Subagent gegen die Seitentexte (beim Diabetes 30 Korrekturen). **Die übrigen 20 Kurse erst, wenn sie den Testkurs freigibt.**
 - **`schulungen/` — die alte Übersichtsseite ist am 16.09.2026 auf ihren Wunsch gelöscht.**
   Ihr Wortlaut: *„Du musst 📚 Schulungen mit allen Quellen löschen."* Das Artifact
   `70ca4043-…` existiert **nicht mehr** und darf **nicht neu angelegt werden**.
