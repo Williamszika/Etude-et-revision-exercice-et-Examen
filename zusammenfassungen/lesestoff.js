@@ -18,7 +18,6 @@ const GH = 'https://github.com/Williamszika/Etude-et-revision-exercice-et-Examen
 
 // Kurse ohne zusammenfassung.html: welche Datei im Ordner das Lesestück ist (nach <title> geprüft)
 const DATEI = {
-  'asthma-bronchiale': 'schulung-asthma/asthma.html',
   'impfkalender-2026': 'schulung-impfungen/impfkalender.html',
   'staatliche-abschlusspruefung': 'examen-abschluss/examen.html',
   'ezia-projekt': 'schulung-ezia-projekt/projekt.html',
