@@ -1949,6 +1949,12 @@ Im Moment nur Schlaganfall. Für „Meine Kurse“ gibt es keine Fragen (die Inh
   mit ★, Tabelle/Schema, **Merke** und 🇫🇷-Zeile, Quelle mit Seiten · Top 10 · 5 Prüfungsfragen (nur ihre Operatoren) · Spickzettel ·
   „Woraus gebaut“. Kurze Sätze, B1, Fachwörter in Klammern erklärt, Herleitungen markiert. Vor der Abgabe prüft ein unabhängiger
   Subagent gegen die Seitentexte (beim Diabetes 30 Korrekturen). **Die übrigen 20 Kurse erst, wenn sie den Testkurs freigibt.**
+  **Ihre Rückmeldung am 04.11.2026 abends:** *„c'est bien, mais il faut encore plus d'explications … une définition claire et nette …
+  bien expliquer les symptômes, les thérapies, les Ursachen, les causes“*. Deshalb zweite Fassung, **16 Kapitel**: Definition im Wortlaut
+  der Folie **und** Wort für Wort einfach (Kasten `.def`) + Grundwörter-Liste · „Was im Körper passiert: mit/ohne Insulin“ · Ursachen
+  (Typ-1-Kette, Typ-2-Teufelskreis, Risikofaktoren, metabolisches Syndrom, andere Formen, GDM) · **Symptome je mit „Warum?“** · Folgeschäden ·
+  Notfälle und Hypoglykämie mit Ursache/Zeichen/Therapie **je mit „Warum?“**. Nicht belegte Gründe stehen als „nennen deine Folien nicht“
+  oder mit Abzeichen **Herleitung**. Diese Gliederung gilt für alle weiteren Kurse.
 - **`schulungen/` — die alte Übersichtsseite ist am 16.09.2026 auf ihren Wunsch gelöscht.**
   Ihr Wortlaut: *„Du musst 📚 Schulungen mit allen Quellen löschen."* Das Artifact
   `70ca4043-…` existiert **nicht mehr** und darf **nicht neu angelegt werden**.
