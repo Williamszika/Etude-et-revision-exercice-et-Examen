@@ -42,6 +42,32 @@ Durchgänge, 186 Lektionen, 20.05.2027, Mo–Sa und Sonntags-Ruhetag ist damit �
 Lektionen gelten unverändert. Die App auf dem iPhone kennt den neuen Takt erst nach dem nächsten `flutter run`
 (`app/IPHONE.md`); am 23.10.2026 war ihr Mac-Speicher voll („No space left on device“) — erst Platz schaffen.
 
+### ★★★ SEIT 04.11.2026: jede Grammatik gründlich erklären — und wirklich alles von B1
+
+Ihre Frage am 04.11.2026: *„Wenn ich die B1-Lektionen fertig mache, … habe ich alle Grammatiken von B1 durchgeführt oder gibt
+es noch was? Ich möchte, dass du für jede Grammatik so gut erklärst, damit ich verstehen kann … alle Grammatiken von B1 muss da sein.“*
+
+**1. Pflichtfeld `grammatik.verstehen` in jeder Lektion** (die Vorlage rendert es als Kasten „Verstehen — Schritt für Schritt“):
+
+```json
+"verstehen": {"warum": "FR: wozu die Regel dient, wann sie gebraucht wird",
+  "schritte": [{"titel": "1 · … (DE, **fett**)", "fr": "Erklärung auf Französisch", "de": "optional", "beispiele": ["deutsche Sätze mit **fett**"]}],
+  "franzoesisch": "FR: was wie im Französischen ist und was anders",
+  "fallen": [{"falsch": "…", "richtig": "…", "baustelle": 3, "warum": "FR"}],
+  "merksatz": "ein deutscher Merksatz",
+  "check": [{"frage": "…", "loesung": "…"}]}
+```
+
+**Thema-Tag 1 (entdecken): ausführlich** — 4–6 Schritte (bilden + gebrauchen), 3–4 Fallen, 4 Kontrollfragen. **Tag 2 und 3: kurz** —
+2–3 Schritte zur Erinnerung, 2 Fallen (bevorzugt ihre echten aus `fehlerheft.json`), 3 Kontrollfragen. Beispiele B1, aus Alltag und
+Pflege; keine neuen Grammatikthemen hineinziehen. Vorbild: Lektion 1, 4 und 7 (am 04.11.2026 nachgetragen).
+
+**2. Ergänzt, ohne den Kalender zu ändern** (meine Einschätzung nach üblichen B1-Lehrplänen, **nicht aus ihren Unterlagen**):
+lassen + Infinitiv → **Block 4** · Satzreihenfolge Dativ vor Akkusativ, Pronomen zuerst → **Block 5** · irgendwo/irgendwer → **Block 9** ·
+Adjektive mit Präposition (stolz auf, zufrieden mit) → **Block 12** · bis, solange → **Block 18** · **Modalpartikeln** (doch, mal, ja,
+eben) → **Lektion 88** · **Sätze mit es** (es gibt, es geht um, es ist wichtig, dass …) → **Lektion 89**. Damit ist der frühere Satz
+„Modalpartikel und es bleiben draußen“ weiter unten **überholt**. In `b1.html` eingetragen.
+
 ### ★ NEUSTART AM 16.10.2026 — dieser Abschnitt gewinnt gegen alles weiter unten
 
 **★★ ZULETZT GEÄNDERT AM 15.10.2026 ABENDS — gilt vor der Tabelle darunter:** Sie fragte, in wie vielen Monaten

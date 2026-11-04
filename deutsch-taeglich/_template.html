@@ -654,6 +654,24 @@
   .srs-knoepfe button.ja{background:var(--miss);border-color:var(--miss);color:var(--card);}
   .srs-knoepfe button.nein{border-color:var(--extra);color:var(--extra);}
   .srs-fertig{font-size:15px;color:var(--voc);font-weight:600;}
+  .verst{border:2px solid var(--gram);border-radius:12px;padding:14px 16px;margin:14px 0 6px;background:var(--card);}
+  .verst-k{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--gram);font-weight:700;margin-bottom:8px;}
+  .verst-k span{text-transform:none;letter-spacing:0;font-weight:400;font-style:italic;}
+  .verst-warum{margin:0 0 10px;}
+  .verst-schritte{margin:0 0 12px;padding-left:1.4rem;}
+  .verst-schritte > li{margin:0 0 12px;padding-left:4px;}
+  .verst-schritte .st-t{display:block;font-size:1.02rem;margin-bottom:3px;}
+  .verst-schritte p{margin:3px 0;}
+  .st-bsp{list-style:none;padding:0;margin:6px 0 0;}
+  .st-bsp li{background:var(--grambg);border-radius:8px;padding:5px 9px;margin:4px 0;}
+  .st-bsp .hoer{margin-right:7px;}
+  .verst-fr{border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 10px 10px 0;padding:10px 14px;margin:10px 0;font-size:15px;}
+  .verst-fallen{border-left:3px solid var(--extra);background:var(--extrabg);border-radius:0 10px 10px 0;padding:10px 14px;margin:10px 0;font-size:15px;}
+  .verst-fallen ul{margin:6px 0 0;padding-left:1.1rem;} .verst-fallen li{margin:6px 0;}
+  .verst-fallen s{color:var(--extra);} .verst-fallen .bst{font-family:var(--mono);font-size:11px;background:var(--card);border-radius:999px;padding:1px 8px;}
+  .verst-fallen .fr2,.verst-check .fr2{display:block;font-style:italic;color:var(--ink-soft);font-size:14px;}
+  .verst-check{margin:10px 0 0;font-size:15px;} .verst-check ol{margin:6px 0 0;padding-left:1.3rem;} .verst-check li{margin:7px 0;}
+  .verst-check details{margin-top:3px;} .verst-check summary{cursor:pointer;color:var(--gram);font-weight:600;}
   .kurzregel{border:2px solid var(--gram);border-radius:12px;padding:12px 16px;margin:8px 0 14px;background:var(--grambg);}
   .kr-k{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--gram);}
   .kr-fr{font-size:16.5px;font-weight:600;margin:6px 0;}
@@ -818,8 +836,35 @@ function renderBlock(b,kind,idx){
   if(b.tipp)h+='<div class="tipbox">'+bold(b.tipp)+'</div>';
   if(b.diskussion){h+='<div class="goldbox"><b>So benutzt du es im Gespräch:</b> '+bold(b.diskussion)+'</div>';}
   if(b.test)h+=testBlock(b.test,'sol-'+kind+'-'+idx);
+  if(kind==='gram'&&b.verstehen)h+=renderVerstehen(b.verstehen,idx);
   h+='</div>';
   return h;
+}
+/* ---------- Verstehen — Schritt für Schritt (seit 04.11.2026, ihr Wunsch: „für jede Grammatik so gut erklären, damit ich verstehen kann“) ---------- */
+function renderVerstehen(v,idx){
+  if(!v)return '';
+  const md=x=>bold(x).replace(/\*([^*]+)\*/g,'<i>$1</i>');
+  let h='<div class="verst"><div class="verst-k">Verstehen — Schritt für Schritt <span>· comprendre, pas à pas</span></div>';
+  if(v.warum)h+='<p class="verst-warum"><b>Wozu ?</b> '+md(v.warum)+'</p>';
+  if(v.schritte&&v.schritte.length){
+    h+='<ol class="verst-schritte">';
+    v.schritte.forEach(st=>{
+      h+='<li><b class="st-t">'+md(String(st.titel||'').replace(/^\d+\s*·\s*/,''))+'</b>'+(st.fr?'<p class="fr">'+md(st.fr)+'</p>':'')+(st.de?'<p>'+md(st.de)+'</p>':'')+
+        ((st.beispiele||[]).length?'<ul class="st-bsp">'+st.beispiele.map(x=>'<li><button type="button" class="hoer" data-say="'+attr(String(x).replace(/\*\*/g,''))+'" title="vorlesen">🔊</button>'+md(x)+'</li>').join('')+'</ul>':'')+'</li>';
+    });
+    h+='</ol>';
+  }
+  if(v.franzoesisch)h+='<div class="verst-fr"><b>Et en français ?</b> '+md(v.franzoesisch)+'</div>';
+  if(v.fallen&&v.fallen.length){
+    h+='<div class="verst-fallen"><b>Les pièges</b><ul>'+v.fallen.map(f=>'<li><s>'+md(f.falsch||'')+'</s> → <b>'+md(f.richtig||'')+'</b>'+
+      (f.baustelle?' <span class="bst">Baustelle '+esc(f.baustelle)+'</span>':'')+(f.warum?'<span class="fr2">'+md(f.warum)+'</span>':'')+'</li>').join('')+'</ul></div>';
+  }
+  if(v.merksatz)h+='<div class="goldbox"><b>Merksatz:</b> '+md(v.merksatz)+'</div>';
+  if(v.check&&v.check.length){
+    h+='<div class="verst-check"><b>Hast du es verstanden ?</b> <span class="fr2">Réponds d\'abord dans ta tête ou à voix haute, puis ouvre.</span><ol>'+
+      v.check.map(c=>'<li>'+md(c.frage||'')+'<details><summary>Lösung</summary>'+md(c.loesung||'')+'</details></li>').join('')+'</ol></div>';
+  }
+  return h+'</div>';
 }
 /* ---------- Im Leben: was du damit heute wirklich machst ---------- */
 function renderLeben(b,idx){
