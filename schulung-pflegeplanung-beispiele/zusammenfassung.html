@@ -1,926 +1,612 @@
-<title>Das S steht in Klammern</title>
+<title>Pflegeplanung: Vorlagen und Beispiele</title>
+<meta name="description" content="Pflegeplanung mit PE(S)R, SMART und W-Fragen — Vorlagen und Beispiele, nur aus deinen 14 Kursdateien (CE 02 / UE 2).">
 <style>
   :root{
-    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
-    --accent:#8a3f5e;--accent-deep:#6d2f49;--accent-soft:#f4e1ea;
-    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
-    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
-    --pharm:#1f5f86;--pharmbg:#dbe8f1;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+    --paper:#f3f5f4;--card:#ffffff;--ink:#17201f;--ink-soft:#4a5755;--line:#cfd8d6;
+    --accent:#1d6b74;--accent-soft:#dcedef;
+    --rot:#a43b30;--rotbg:#f7e2de;--gelb:#8a5a0c;--gelbbg:#f8ecd4;--gruen:#2a6b47;--gruenbg:#e0efe5;
     --sans:"Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
-    --mono:"SFMono-Regular","JetBrains Mono","Consolas","Menlo",monospace;
   }
   @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
-    --accent:#dd9cb8;--accent-deep:#edb8ce;--accent-soft:#301c26;
-    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
-    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
-    --pharm:#6cadd9;--pharmbg:#122736;}}
+    --paper:#111716;--card:#1a2221;--ink:#e8eeed;--ink-soft:#a1aeac;--line:#2d3836;
+    --accent:#6fc3cd;--accent-soft:#163238;
+    --rot:#e48d80;--rotbg:#33201c;--gelb:#e0b05f;--gelbbg:#30240f;--gruen:#7ccb9c;--gruenbg:#15291d;color-scheme:dark;}}
   :root[data-theme="dark"]{
-    --paper:#111617;--paper-2:#0c1011;--card:#192022;--ink:#e9eeee;--ink-soft:#9daaac;--line:#2a3436;
-    --accent:#dd9cb8;--accent-deep:#edb8ce;--accent-soft:#301c26;
-    --good:#6fc292;--goodbg:#14281c;--bad:#e08a7c;--badbg:#301b17;--warn:#d9a559;--warnbg:#2e2114;
-    --bez:#a89ce0;--bezbg:#1e1a30;--notfall:#e08a7c;--notfallbg:#301b17;
-    --pharm:#6cadd9;--pharmbg:#122736;}
-  :root[data-theme="light"]{
-    --paper:#eef1f1;--paper-2:#e2e7e7;--card:#fbfcfc;--ink:#182023;--ink-soft:#4b575b;--line:#ccd5d5;
-    --accent:#8a3f5e;--accent-deep:#6d2f49;--accent-soft:#f4e1ea;
-    --good:#256b4a;--goodbg:#dfeee6;--bad:#a33f34;--badbg:#f6e1de;--warn:#8f5410;--warnbg:#f7e9d6;
-    --bez:#53478a;--bezbg:#e4e1f2;--notfall:#a33f34;--notfallbg:#f6e1de;
-    --pharm:#1f5f86;--pharmbg:#dbe8f1;}
-
+    --paper:#111716;--card:#1a2221;--ink:#e8eeed;--ink-soft:#a1aeac;--line:#2d3836;
+    --accent:#6fc3cd;--accent-soft:#163238;
+    --rot:#e48d80;--rotbg:#33201c;--gelb:#e0b05f;--gelbbg:#30240f;--gruen:#7ccb9c;--gruenbg:#15291d;color-scheme:dark;}
   *{box-sizing:border-box;}
-  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);
-    line-height:1.62;font-size:16.5px;-webkit-font-smoothing:antialiased;}
-
-  header.hero{padding-block:46px 30px;padding-inline:20px;text-align:center;
-    border-bottom:1px solid var(--line);
-    background:radial-gradient(120% 90% at 50% -25%,var(--accent-soft) 0%,transparent 62%);}
-  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
-    color:var(--accent-deep);margin:0 0 10px;}
-  header.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(2rem,6.5vw,3rem);
-    margin:0 0 12px;line-height:1.06;text-wrap:balance;}
-  header.hero p.sub{max-width:64ch;margin:0 auto 18px;color:var(--ink-soft);font-size:15.5px;}
-  .meta{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
-  .meta span{font-family:var(--mono);font-size:11.5px;padding:5px 11px;border:1px solid var(--line);
-    border-radius:999px;background:var(--card);color:var(--ink-soft);}
-
-  nav.toc{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--paper-2);
-    border-bottom:1px solid var(--line);padding:9px 12px;display:flex;gap:6px;overflow-x:auto;}
-  nav.toc a{flex:0 0 auto;font-family:var(--mono);font-size:11.5px;text-decoration:none;
-    color:var(--ink-soft);padding:6px 12px;border-radius:999px;border:1px solid transparent;
-    white-space:nowrap;}
-  nav.toc a:hover,nav.toc a:focus-visible{color:var(--accent-deep);border-color:var(--line);
-    background:var(--card);}
-
-  main{max-width:60rem;margin:0 auto;padding-block:0 90px;padding-inline:18px;}
-  section{padding-top:52px;}
-  h2{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.05rem);font-weight:600;
-    margin:0 0 6px;line-height:1.16;text-wrap:balance;}
-  .lead{color:var(--ink-soft);margin:0 0 22px;max-width:66ch;}
-  h3{font-family:var(--serif);font-size:1.2rem;font-weight:600;margin:28px 0 8px;}
-  h4{font-family:var(--serif);font-size:1.04rem;font-weight:600;margin:18px 0 6px;}
-  p{margin:0 0 14px;max-width:70ch;}
-  ul,ol{margin:0 0 14px;padding-left:1.25rem;max-width:70ch;}
-  li{margin:5px 0;}
-  b,strong{font-weight:700;}
-  .fr{font-style:italic;color:var(--ink-soft);}
-  .fr::before{content:"🇫🇷 ";font-style:normal;}
-
-  .karten{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:18px 0;}
-  .karte{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;}
-  .karte h4{margin:0 0 6px;color:var(--accent-deep);}
-  .karte p:last-child{margin-bottom:0;}
-
-  .scroll{overflow-x:auto;margin:18px 0;}
-  table{border-collapse:collapse;width:100%;font-size:15px;min-width:34rem;}
-  th{background:var(--paper-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.07em;
-    text-transform:uppercase;color:var(--ink-soft);padding:9px 11px;border:1px solid var(--line);
-    text-align:left;vertical-align:bottom;}
-  td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;background:var(--card);}
-  td.k{font-weight:700;white-space:nowrap;}
-  tbody tr:nth-child(even) td{background:var(--paper);}
-
-  .merk{border-left:4px solid var(--accent);background:var(--accent-soft);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .merk p:last-child{margin-bottom:0;}
-  .merk .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--accent-deep);display:block;margin-bottom:6px;}
-
-  .warnung{border-left:4px solid var(--warn);background:var(--warnbg);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .warnung p:last-child{margin-bottom:0;}
-  .warnung .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--warn);display:block;margin-bottom:6px;}
-
-  .gefahr{border-left:4px solid var(--notfall);background:var(--notfallbg);border-radius:0 12px 12px 0;
-    padding:14px 18px;margin:18px 0;}
-  .gefahr p:last-child{margin-bottom:0;}
-  .gefahr .t{font-family:var(--mono);font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
-    color:var(--notfall);display:block;margin-bottom:6px;}
-
-  .stufen{display:grid;gap:10px;margin:18px 0;}
-  .stufe{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;
-    background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
-  .stufe .nr{font-family:var(--mono);font-size:12px;font-weight:700;color:var(--card);
-    background:var(--bez);border-radius:8px;padding:5px 10px;white-space:nowrap;}
-  .stufe .nr.n2{background:var(--accent);}
-  .stufe h4{margin:0 0 4px;}
-  .stufe p{margin:0;font-size:15.5px;}
-  @media (max-width:480px){.stufe{grid-template-columns:1fr;}}
-
-  .paare{display:grid;gap:9px;margin:18px 0;}
-  .paar{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--bez);
-    border-radius:0 10px 10px 0;padding:11px 15px;}
-  .paar .de{font-weight:600;}
-  .paar .frx{display:block;font-size:14px;color:var(--ink-soft);font-style:italic;margin-top:2px;}
-
-  details.quelle{margin:18px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);
-    overflow:hidden;}
-  details.quelle>summary{cursor:pointer;list-style:none;padding:13px 17px;font-weight:600;
-    font-size:15px;color:var(--accent-deep);display:flex;align-items:center;gap:9px;}
-  details.quelle>summary::-webkit-details-marker{display:none;}
-  details.quelle>summary::before{content:"＋";font-family:var(--mono);font-weight:700;}
-  details.quelle[open]>summary::before{content:"－";}
-  details.quelle .inh{padding:0 17px 15px;}
-  details.quelle .inh p:last-child,details.quelle .inh ul:last-child{margin-bottom:0;}
-
-  .pruef{background:var(--card);border:2px dashed var(--accent);border-radius:12px;
-    padding:16px 18px;margin:20px 0;}
-  .pruef h4{margin:0 0 8px;color:var(--accent-deep);}
-  .pruef ol{margin:0;}
-
-  a{color:var(--accent-deep);}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
-  footer{border-top:1px solid var(--line);margin-top:70px;padding-block:26px 50px;padding-inline:20px;
-    text-align:center;color:var(--ink-soft);font-size:14px;}
-  @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto;}}
-  html{scroll-behavior:smooth;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:17px;line-height:1.6;}
+  main{max-width:46rem;margin:0 auto;padding-inline:16px;padding-block:28px 60px;}
+  h1{font-size:2rem;line-height:1.15;margin:0 0 6px;text-wrap:balance;}
+  h2{font-size:1.35rem;line-height:1.25;margin:34px 0 8px;color:var(--accent);text-wrap:balance;}
+  h3{font-size:1.05rem;margin:18px 0 6px;}
+  p{margin:0 0 10px;}
+  ul,ol{margin:0 0 12px;padding-left:1.3rem;} li{margin:3px 0;}
+  .unter{color:var(--ink-soft);margin:0 0 16px;}
+  .stern{color:var(--gelb);font-size:.9em;letter-spacing:1px;white-space:nowrap;}
+  .kern{background:var(--accent-soft);border-left:4px solid var(--accent);border-radius:8px;padding:12px 14px;margin:14px 0;}
+  .fr{font-style:italic;color:var(--ink-soft);font-size:.95em;}
+  .merke{background:var(--gelbbg);border-radius:8px;padding:9px 13px;margin:10px 0;}
+  .merke b:first-child{color:var(--gelb);}
+  .hinweis{background:var(--card);border:1px dashed var(--line);border-radius:8px;padding:9px 13px;margin:10px 0;font-size:.95em;}
+  .quelle{font-size:.8em;color:var(--ink-soft);margin:4px 0 0;}
+  /* Schemata: Kästen mit Pfeilen, von oben nach unten */
+  .schema{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:12px 0;}
+  .schema .titel{font-weight:700;margin:0 0 10px;}
+  .k{border:1.5px solid var(--line);border-radius:8px;padding:7px 10px;background:var(--paper);}
+  .k b{display:block;}
+  .k small{display:block;color:var(--ink-soft);font-size:.86em;line-height:1.4;}
+  .k.wichtig{border-color:var(--accent);background:var(--accent-soft);}
+  .k.rot{border-color:var(--rot);background:var(--rotbg);}
+  .k.gruen{border-color:var(--gruen);background:var(--gruenbg);}
+  .pfeil{text-align:center;color:var(--ink-soft);font-size:1.1rem;line-height:1.4;}
+  .zwei{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .zwei > div{min-width:0;}
+  .lesen{font-size:.88em;color:var(--ink-soft);margin:8px 0 0;}
+  .scroll{overflow-x:auto;margin:10px 0;}
+  table{border-collapse:collapse;width:100%;font-size:.92em;line-height:1.4;}
+  th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;}
+  th{background:var(--accent-soft);}
+  td.z{white-space:nowrap;font-variant-numeric:tabular-nums;}
+  tr.rot td:first-child{background:var(--rotbg);} tr.gelb td:first-child{background:var(--gelbbg);} tr.gruen td:first-child{background:var(--gruenbg);}
+  details{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:8px 0;}
+  summary{cursor:pointer;font-weight:600;}
+  .op{display:inline-block;font-size:.75em;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:0 8px;margin-right:6px;}
+  .spick{columns:2 16rem;column-gap:24px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px 12px 32px;}
+  .spick li{break-inside:avoid;}
+  @media (max-width:520px){.zwei{grid-template-columns:1fr;} h1{font-size:1.7rem;} td.z{white-space:normal;} th,td{padding:5px 6px;}}
 </style>
 
-<header class="hero">
-  <p class="eyebrow">CE 02 / UE 2 · die Ergänzung zu deinen beiden Pflegeplanungs-Seiten</p>
-  <h1>Das S steht in Klammern — und jetzt weißt du warum</h1>
-  <p class="sub">Vier deiner Dateien sagen dasselbe: Beim <b>potentiellen</b> Problem gibt es
-    keine Symptome. Dazu vier ausgearbeitete Planungen und drei Fälle, die noch offen sind.</p>
-  <div class="meta">
-    <span>CE 02 / UE 2</span>
-    <span>Fiechter und Meier</span>
-    <span>Krohwinkel</span>
-    <span>I care Kap. 10</span>
-    <span>11 Quellen</span>
-    <span>Stand 20.09.2026</span>
+<style>
+  .her{font-style:normal;font-size:.78em;font-weight:700;letter-spacing:.04em;color:var(--gelb);background:var(--gelbbg);border-radius:999px;padding:0 7px;white-space:nowrap;}
+  .def{border:2px solid var(--accent);border-radius:10px;padding:12px 14px;margin:12px 0;background:var(--card);}
+  .def .t{display:block;font-size:.78em;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px;}
+  .def p:last-child{margin-bottom:0;}
+  dl.woerter{margin:10px 0;display:grid;grid-template-columns:minmax(8rem,auto) 1fr;gap:6px 14px;}
+  dl.woerter dt{font-weight:700;} dl.woerter dd{margin:0;}
+  @media (max-width:520px){dl.woerter{grid-template-columns:1fr;gap:0;} dl.woerter dd{margin-bottom:8px;}}
+</style>
+
+<main lang="de">
+<h1>Pflegeplanung — Vorlagen, Beispiele und Fälle</h1>
+<p class="unter">CE 02 / UE 2 · neu geschrieben am 04.11.2026 · <b>nur aus deinen 14 Kursdateien</b> — nichts aus dem Internet. Wo ich zwei Stellen selbst verbinde, steht <span class="her">Herleitung</span>.</p>
+
+<div class="kern">
+  <p><b>Das Wichtigste in einem Satz:</b> Eine Pflegeplanung schreibt man in vier Spalten: <b>Pflegeproblem → Pflegeziel → Pflegemaßnahme → Begründung</b>. Das Problem beschreibst du mit <b>P E (S) R</b>. Das <b>S steht in Klammern</b>, weil ein <b>potentielles</b> Problem (eine Gefahr) noch <b>keine Symptome</b> hat.</p>
+  <p class="fr">🇫🇷 Un plan de soins a quatre colonnes : problème → objectif → mesure → justification. Le problème s'écrit avec P E (S) R. Le S est entre parenthèses : un problème potentiel (un risque) n'a pas encore de symptômes.</p>
+</div>
+
+<!-- ============ AUF EINEN BLICK ============ -->
+<h2>Auf einen Blick: Vom Menschen zur fertigen Planung</h2>
+<div class="schema">
+  <p class="titel">So arbeitest du — der Weg durch diesen Kurs</p>
+  <div class="k"><b>1 · Informationen sammeln</b><small>Gespräch, Beobachtung, Fallbeschreibung, Erhebungsbogen nach den 13 ABEDL</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k wichtig"><b>2 · Pflegeproblem erkennen</b><small>Wirkt sich eine Veränderung auf die Selbstständigkeit aus? Oder droht eine Schädigung?</small></div>
+  <div class="pfeil">↓</div>
+  <div class="zwei">
+    <div class="k rot"><b>aktuelles Problem</b><small>ist schon da · P E <b>S</b> R · z. B. Bewegungseinschränkung</small></div>
+    <div class="k" style="border-color:var(--gelb);background:var(--gelbbg)"><b>potentielles Problem</b><small>droht nur · P E R, <b>kein S</b> · z. B. Thrombosegefahr</small></div>
   </div>
-</header>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>3 · Pflegeziel festlegen</b><small>Nah- und Fernziele · SMART</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>4 · Maßnahmen planen</b><small>W-Fragen: Wer? Was? Wie und womit (Hilfeform)? Wann? Wie oft?</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k"><b>Begründung</b><small>Warum diese Maßnahme? Dazu: Expertenstandards der Prophylaxen · Diagnosen · Medikamente</small></div>
+  <div class="pfeil">↓</div>
+  <div class="k gruen"><b>5 · Pflege durchführen → 6 · Wirkung beurteilen</b><small>… und wieder von vorn: Der Pflegeprozess ist ein Kreislauf.</small></div>
+  <p class="lesen">So liest du das: Die Zahlen 1–6 sind die sechs Schritte des Pflegeprozesses. Die Schritte 1–4 sind deine schriftliche Pflegeplanung. Jeder Kasten ist ein Kapitel unten.</p>
+</div>
 
-<nav class="toc" aria-label="Inhalt">
-  <a href="#neu">Was hier neu ist</a>
-  <a href="#prozess">Der Pflegeprozess</a>
-  <a href="#ehrlich">Drei ehrliche Sätze</a>
-  <a href="#sregel">Die S-Regel</a>
-  <a href="#vorlagen">Die zwei Vorlagen</a>
-  <a href="#abedl">ABEDL 1 und 2</a>
-  <a href="#kasten">Der gelbe Kasten</a>
-  <a href="#smart">SMART und die W-Fragen</a>
-  <a href="#mai">Frau Mai — zweimal gelöst</a>
-  <a href="#faelle">Drei weitere Fälle</a>
-  <a href="#offen">Was fehlt</a>
-</nav>
+<!-- ============ 1 DEFINITION ============ -->
+<h2>1 · Was ist eine Pflegeplanung? Die Definition <span class="stern">★★★</span></h2>
+<p>Deine Folien geben keine Definition in einem Satz. Aber sie sagen genau, <b>wo</b> die Pflegeplanung steht und <b>wann</b> ein Pflegeproblem vorliegt:</p>
+<div class="def">
+  <span class="t">So steht es auf deinen Folien</span>
+  <p>„Pflegeprozess wird als <b>Kreislauf</b> verstanden.“ — „Ein <b>Teil des Pflegeprozesses</b> ist die Pflegeplanung.“ — „Einer Pflegeplanung steht ein <b>Pflegeproblem</b> voran.“</p>
+  <p>„<b>Pflegeprobleme sind vorhanden:</b> Wenn <b>Veränderungen</b> (psych./phys.) sich auf die <b>Selbständigkeit</b> auswirken; Wenn die <b>Gefahr</b> besteht, dass aus einer Einschränkung, eine Schädigung entsteht oder sich weitere Einschränkungen entwickeln.“</p>
+</div>
+<div class="def">
+  <span class="t">Dasselbe — Wort für Wort einfach</span>
+  <p>Die <b>Pflegeplanung</b> ist der <b>schriftliche Plan</b> für die Pflege eines Menschen. Sie ist ein Stück aus dem größeren <b>Pflegeprozess</b> (dem Kreislauf aus Sammeln, Planen, Tun und Prüfen).</p>
+  <p>Am Anfang steht immer ein <b>Pflegeproblem</b>. Ein Pflegeproblem gibt es in <b>zwei Fällen</b>:</p>
+  <ol>
+    <li>Etwas hat sich verändert (im Körper oder in der Seele), und der Mensch kann deshalb <b>weniger selbst tun</b>. → Das ist ein <b>aktuelles</b> Problem. <span class="her">Herleitung</span></li>
+    <li>Es gibt eine <b>Gefahr</b>: Aus einer Einschränkung kann ein Schaden werden. → Das ist ein <b>potentielles</b> Problem. <span class="her">Herleitung</span></li>
+  </ol>
+  <p>Für jedes Problem schreibst du in <b>vier Spalten</b>: Pflegeproblem · Pflegeziel · Pflegemaßnahmen · Begründung der Pflegemaßnahmen.</p>
+</div>
+<p class="fr">🇫🇷 Le plan de soins est une partie du processus de soins (un cycle). Il commence toujours par un problème de soins : soit un changement physique ou psychique qui réduit l'autonomie (problème actuel), soit un risque qu'une limitation devienne un dommage (problème potentiel).</p>
 
-<main>
+<h3>Die Wörter, die du für alles Weitere brauchst</h3>
+<dl class="woerter">
+  <dt>Pflegeprozess</dt><dd>der ganze Ablauf der Pflege in sechs Schritten, als Kreislauf (nach Fiechter und Meier)</dd>
+  <dt>Pflegeplanung</dt><dd>der schriftliche Teil: Problem, Ziel, Maßnahme, Begründung</dd>
+  <dt>Pflegeproblem</dt><dd>ein Problem, bei dem Pflege helfen kann. Es kann <b>körperlich, seelisch, gefühlsmäßig, sozial oder organisatorisch</b> sein.</dd>
+  <dt>aktuelles Problem</dt><dd>ist jetzt schon da und zeigt sich (z. B. Bewegungseinschränkung)</dd>
+  <dt>potentielles Problem</dt><dd>ist noch nicht da, aber es droht (z. B. Thrombosegefahr)</dd>
+  <dt>PE(S)R</dt><dd>das Schema für die Spalte Pflegeproblem: <b>P</b>roblem · <b>E</b>ntstehung/Ursachen · <b>S</b>ymptome · <b>R</b>essourcen</dd>
+  <dt>Ressource</dt><dd>was der Mensch noch selbst kann, auch mit Hilfsmitteln (z. B. Rollator)</dd>
+  <dt>ABEDL</dt><dd>die 13 Lebensbereiche, nach denen du einen Menschen einschätzt (Kap. 4)</dd>
+  <dt>SMART</dt><dd>fünf Regeln für ein gutes Pflegeziel (Kap. 6)</dd>
+  <dt>W-Fragen</dt><dd>Wer, Was, Wie und womit, Wann, Wie oft — so schreibst du eine Maßnahme (Kap. 7)</dd>
+  <dt>Hilfeform</dt><dd>wie viel Hilfe die Pflegeperson gibt: Beaufsichtigung, Anleitung, Unterstützung, teilweise oder vollständige Übernahme</dd>
+  <dt>PFK · PFA · PP</dt><dd>Pflegefachkraft · Pflegefachassistent · Pflegeperson (Legende deiner Folie). In den Beispielen steht oft <b>PK</b> — das erklärt deine Folie nicht.</dd>
+</dl>
+<p class="quelle">03_ Pflegeplanung.pdf, S. 3, 4 und 5 (Folie 5 ist ein Bild: die Vorlage „Pflegeplanung“ mit allen Erklärungen)</p>
 
-<section id="neu">
-  <h2>Was auf dieser Seite steht — und was schon bei dir liegt</h2>
-  <p class="lead">Du hast bereits <b>zwei</b> Pflegeplanungs-Seiten: <b>Pflegeplanung
-    schreiben</b> und <b>Pflegeplanung in fünf Tagen</b>. Diese Seite ersetzt keine davon.</p>
+<!-- ============ 2 PFLEGEPROZESS ============ -->
+<h2>2 · Der Pflegeprozess: sechs Schritte nach Fiechter und Meier <span class="stern">★★★</span></h2>
+<p>Deine Folie sagt: Es gibt <b>verschiedene</b> Modelle für den Pflegeprozess. Oft benutzt man das <b>6-Schritt-Modell nach Fiechter und Meier</b>.</p>
+<div class="scroll"><table>
+  <tr><th>Schritt</th><th>So heißt er auf der Folie</th><th>Einfach gesagt</th></tr>
+  <tr><td class="z">1</td><td>Informationssammlung</td><td>Ich sammle alles über den Menschen: Gespräch, Beobachtung, Unterlagen.</td></tr>
+  <tr><td class="z">2</td><td>Erkennen von Problemen</td><td>Wo braucht er Pflege? Was ist schon ein Problem, was droht?</td></tr>
+  <tr><td class="z">3</td><td>Festlegen der Pflegeziele</td><td>Was soll bis wann erreicht sein?</td></tr>
+  <tr><td class="z">4</td><td>Planung der Pflegemaßnahmen</td><td>Wer tut was, wie, wann, wie oft?</td></tr>
+  <tr><td class="z">5</td><td>Durchführung der Pflege</td><td>Ich tue, was geplant ist.</td></tr>
+  <tr><td class="z">6</td><td>Beurteilung der Wirkung der Pflege auf den Patienten</td><td>Hat es geholfen? Ist das Ziel erreicht?</td></tr>
+</table></div>
+<div class="schema">
+  <p class="titel">Warum ein Kreislauf?</p>
+  <div class="k"><b>Schritt 6: Ich prüfe die Wirkung</b></div><div class="pfeil">↓</div>
+  <div class="k"><b>Im Verlauf entstehen neue Probleme</b><small>oder ein Problem wird an anderer Stelle gelöst</small></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>Zurück zu Schritt 1</b><small>Der Pflegeprozess „kann nie beendet werden“.</small></div>
+</div>
 
-  <div class="merk">
-    <span class="t">Der Unterschied in einem Satz</span>
-    <p>Deine beiden Seiten erklären <b>das Verfahren</b>. Diese Seite bringt das, was dort
-      fehlte: <b>vier vollständig ausgearbeitete Planungen</b> aus dem Unterricht, die beiden
-      <b>leeren Originalvorlagen</b> und <b>drei unbearbeitete Fälle</b>.</p>
-    <p>Und einen Punkt, der auf der Seite <b>Pflegeplanung in fünf Tagen</b> ausdrücklich als
-      <b>unsicher</b> markiert ist — <b>die Begründungsspalte</b>. Dazu unten mehr.</p>
-    <p class="fr">Tes deux pages expliquent la <b>méthode</b>. Celle-ci apporte les
-      <b>exemples rédigés</b> et les <b>modèles vierges</b>.</p>
-  </div>
-</section>
+<h3>Drei ehrliche Sätze auf deiner Folie</h3>
+<ul>
+  <li><b>Die Pflegeplanung ist nicht überall gleich wichtig.</b> Jede Einrichtung gewichtet sie anders. Im Krankenhaus bleiben Patienten <b>kürzer</b> als Bewohner im Altenheim.</li>
+  <li><b>Erfahrene Pflegekräfte schreiben die Planung nicht immer auf.</b> Sie wissen aber trotzdem, welche Probleme es gibt und welche Maßnahmen helfen.</li>
+  <li>Daraus folgt für dich: Die schriftliche Planung ist das <b>Training für das Denken</b>, das Profis im Kopf machen. <span class="her">Herleitung</span> — auf deiner PESR-Vorlage steht dazu passend: „Verschriftung eines gedanklichen Problemlösungsprozesses“.</li>
+</ul>
+<div class="merke"><b>Merke:</b> Sammeln → Problem → Ziel → Maßnahme → Tun → Prüfen → und wieder von vorn. Die Planung sind die Schritte 1 bis 4.</div>
+<p class="fr">🇫🇷 Six étapes (Fiechter et Meier) : recueil d'informations, identification des problèmes, objectifs, planification des mesures, réalisation, évaluation. C'est un cycle qui ne s'arrête jamais. Les soignants expérimentés ne l'écrivent pas toujours, mais ils le font dans leur tête.</p>
+<p class="quelle">03_ Pflegeplanung.pdf, S. 2–3 · PP Vorlage.pdf, S. 1</p>
 
-<section id="prozess">
-  <h2>Der Pflegeprozess — sechs Schritte nach Fiechter und Meier</h2>
+<!-- ============ 3 AKTUELL / POTENTIELL ============ -->
+<h2>3 · Aktuelles und potentielles Pflegeproblem <span class="stern">★★★</span></h2>
+<p>Deine Folie nimmt die <b>Thrombose</b> als Beispiel. Bei derselben Patientin gibt es zwei Probleme:</p>
+<div class="zwei">
+  <div class="k rot"><b>Aktuell: Bewegungseinschränkung</b><small>Sie ist <b>jetzt schon</b> da. Man sieht sie: Frau Mai geht unsicher und sitzt viel.</small></div>
+  <div class="k" style="border-color:var(--gelb);background:var(--gelbbg)"><b>Potentiell: Thrombosegefahr</b><small>Die Thrombose ist <b>noch nicht</b> da. Aber weil Frau Mai sich wenig bewegt, <b>droht</b> sie.</small></div>
+</div>
+<p>Siehst du den Zusammenhang? Das <b>aktuelle</b> Problem (wenig Bewegung) ist eine <b>Ursache</b> für das <b>potentielle</b> Problem (Thrombose). <span class="her">Herleitung</span> — in der Planung Thrombosegefahr steht „Bewegungseinschränkungen“ in der Zeile E.</p>
+<h3>Was die Folie noch über Pflegeprobleme sagt</h3>
+<ul>
+  <li>Ein Pflegeproblem kann <b>physisch</b> (körperlich), <b>psychisch</b> (seelisch), <b>emotional</b> (gefühlsmäßig), <b>sozial</b> oder <b>organisatorisch</b> sein.</li>
+  <li>Es gibt Maßnahmen, die ein Problem <b>verringern</b>, <b>beheben</b> und/oder ihm <b>vorbeugen</b>.</li>
+  <li>Dabei sollst du die <b>Ressourcen</b> des Patienten <b>beachten und nutzen</b>.</li>
+  <li>Zur Orientierung formulierst du ein <b>Ziel</b>, das du erreichen willst.</li>
+</ul>
+<div class="scroll"><table>
+  <tr><th></th><th>aktuelles Problem</th><th>potentielles Problem</th></tr>
+  <tr><td>Ist es schon da?</td><td>ja</td><td>nein, es droht</td></tr>
+  <tr><td>Symptome (S)?</td><td><b>ja</b> — du schreibst, wie es sich zeigt</td><td><b>nein</b> — „nicht bei potentiellen Problemen“</td></tr>
+  <tr><td>Was steht in E?</td><td>Ausmaß, Ursachen</td><td>Ursachen, <b>Risikofaktoren</b>, Einschätzung der Gefahr</td></tr>
+  <tr><td>Ziel der Maßnahmen</td><td>verringern, beheben <span class="her">Herleitung</span></td><td>vorbeugen, früh erkennen <span class="her">Herleitung</span></td></tr>
+  <tr><td>Beispiel Frau Mai</td><td>Bewegungseinschränkung</td><td>Thrombosegefahr</td></tr>
+</table></div>
+<div class="merke"><b>Merke:</b> Aktuell = schon da, man sieht es (mit S). Potentiell = droht nur (ohne S). Oft ist ein aktuelles Problem die Ursache für ein potentielles.</div>
+<p class="fr">🇫🇷 Problème actuel : il existe déjà, on le voit (avec symptômes). Problème potentiel : c'est un risque, il n'existe pas encore (sans symptômes). Souvent, le problème actuel (peu de mouvement) cause le problème potentiel (risque de thrombose).</p>
+<p class="quelle">03_ Pflegeplanung.pdf, S. 4–5 · Pflegeproblem Thrombosegefahr.pdf, S. 1</p>
 
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div><h4>Informationssammlung</h4></div></div>
-    <div class="stufe"><span class="nr">2</span><div><h4>Erkennen von Problemen</h4></div></div>
-    <div class="stufe"><span class="nr n2">3</span><div><h4>Festlegen der Pflegeziele</h4></div></div>
-    <div class="stufe"><span class="nr n2">4</span><div><h4>Planung der Pflegemaßnahmen</h4></div></div>
-    <div class="stufe"><span class="nr n2">5</span><div><h4>Durchführung der Pflege</h4></div></div>
-    <div class="stufe"><span class="nr n2">6</span><div>
-      <h4>Beurteilung der Wirkung der Pflege auf den Patienten</h4></div></div>
-  </div>
+<!-- ============ 4 ABEDL ============ -->
+<h2>4 · Die 13 ABEDL — und mit welchen du anfängst <span class="stern">★★★</span></h2>
+<p>Oben auf deiner Vorlage „Pflegeplanung“ stehen die 13 ABEDL. Nach ihnen sammelst du Informationen und suchst Probleme.</p>
+<div class="scroll"><table>
+  <tr><th>Nr.</th><th>ABEDL</th><th>Stern</th></tr>
+  <tr class="rot"><td class="z">1</td><td><b>Kommunizieren können</b></td><td>roter Stern</td></tr>
+  <tr class="rot"><td class="z">2</td><td><b>Sich bewegen können</b></td><td>roter Stern</td></tr>
+  <tr class="rot"><td class="z">3</td><td><b>Vitale Funktionen aufrecht erhalten</b></td><td>roter Stern</td></tr>
+  <tr><td class="z">4</td><td>Sich pflegen können</td><td></td></tr>
+  <tr><td class="z">5</td><td>Essen und Trinken können</td><td></td></tr>
+  <tr><td class="z">6</td><td>Ausscheiden können</td><td></td></tr>
+  <tr><td class="z">7</td><td>Sich kleiden können</td><td></td></tr>
+  <tr><td class="z">8</td><td>Ruhen und Schlafen können</td><td></td></tr>
+  <tr><td class="z">9</td><td>Sich beschäftigen können</td><td></td></tr>
+  <tr><td class="z">10</td><td>Sich als Mann/Frau fühlen</td><td></td></tr>
+  <tr><td class="z">11</td><td>Für Sicherheit sorgen</td><td></td></tr>
+  <tr><td class="z">12</td><td>Soziale Bereiche des Lebens sichern</td><td></td></tr>
+  <tr class="gruen"><td class="z">13</td><td><b>Mit existenziellen Erfahrungen des Lebens umgehen können</b></td><td>grüner Stern</td></tr>
+</table></div>
+<div class="def">
+  <span class="t">Die zwei Sterne — so steht es auf der Folie</span>
+  <p><b>Roter Stern (1, 2, 3):</b> „fokussieren, da sie häufig <b>prioritär verursachend</b> sind für Pflegeprobleme auch in den anderen ABEDLs!“</p>
+  <p><b>Grüner Stern (13):</b> „hat einen <b>Einfluss auf alle anderen</b> ABEDLs“</p>
+</div>
+<p><b>Einfach gesagt:</b> Schau <b>zuerst</b> auf Kommunizieren, Bewegen und Vitale Funktionen. Denn ein Problem dort <b>verursacht oft</b> Probleme in anderen Bereichen. Und denk immer an Nr. 13: Wie ein Mensch mit schweren Erfahrungen umgeht (z. B. Angst, Verlust), wirkt auf alles andere.</p>
+<p><b>Beispiel Frau Mai:</b> Sie bewegt sich wenig (ABEDL 2). Daraus folgt die Thrombosegefahr — und die betrifft den Kreislauf und die Gefäße. <span class="her">Herleitung</span> Bei Stephan steht die Thromboseprophylaxe ausdrücklich unter „AEDL 2.“.</p>
+<div class="hinweis"><b>Hinweis — eine Korrektur:</b> Auf der alten Fassung dieser Seite stand, nur ABEDL 1 und 2 hätten einen Stern. Auf dem Folienbild tragen aber <b>1, 2 und 3</b> den roten Stern und <b>13</b> den grünen. Die beiden Sterne bedeuten Verschiedenes (siehe oben).</div>
+<div class="hinweis"><b>ABEDL oder AEDL?</b> Deine Folie schreibt <b>ABEDL</b>. Das Stephan-Blatt und der Erhebungsbogen schreiben <b>AEDL</b> und erklären: A = Aktivität und, E = existenzielle Erfahrungen, D = des, L = Lebens (Modell von Monika Krohwinkel). Die 13 Punkte sind fast gleich; nur die Namen weichen etwas ab (z. B. „Für eine sichere Umgebung sorgen“ statt „Für Sicherheit sorgen“). <b>Was das B bedeutet, steht in deinen Dateien nicht.</b></div>
+<p class="fr">🇫🇷 Les 13 ABEDL sont les domaines de vie. Commence par 1 (communiquer), 2 (se mouvoir) et 3 (fonctions vitales) : ils causent souvent des problèmes dans les autres domaines. Le 13 (vivre les expériences existentielles) influence tous les autres.</p>
+<p class="quelle">03_ Pflegeplanung.pdf, S. 5 (Bild, Kopfzeile ABEDL) · Pflegeplanungsbeispiele Stephan, S. 1–2 · Erhebung ABEDL.pdf, S. 1–2</p>
 
-  <div class="merk">
-    <span class="t">Warum es ein Kreislauf ist — und der Satz dazu</span>
-    <p>„Der Pflegeprozess wird als <b>Kreislauf</b> verstanden. <b>Kann nie beendet werden</b>,
-      da im Verlauf neue Probleme entstehen und an anderer Stelle gelöst wird.“</p>
-    <p>Und die Einordnung: <b>„Ein Teil des Pflegeprozesses ist die Pflegeplanung.“</b> — Der
-      Prozess ist das Ganze, die Planung ist ein Stück davon. <b>Diese beiden Begriffe werden in
-      Klausuren gern verwechselt.</b></p>
-    <p class="fr">Le processus de soins ne se termine jamais. La planification n'en est
-      <b>qu'une partie</b>.</p>
-  </div>
-</section>
+<!-- ============ 5 PESR ============ -->
+<h2>5 · Das Pflegeproblem schreiben: P E (S) R <span class="stern">★★★</span></h2>
+<p>Für jeden Buchstaben gibt deine Folie <b>eine Frage</b>. Wenn du die Frage beantwortest, hast du die Zeile.</p>
+<div class="scroll"><table>
+  <tr><th>Buchstabe</th><th>Frage auf deiner Folie</th><th>Beispiel Frau Mai (aktuell: Bewegungseinschränkung)</th></tr>
+  <tr><td><b>P</b> — Problem</td><td>Was ist das Problem?</td><td>Bewegungseinschränkung</td></tr>
+  <tr><td><b>E</b> — Entstehung / Ursachen</td><td>Warum hat er das?</td><td>Alter · Angst/Unsicherheit beim Gehen · Hüft-OP/Hüft-TEP · Schmerzen · geringe Aktivität im Alter</td></tr>
+  <tr><td><b>(S)</b> — Symptome</td><td>Wie zeigt sich das Problem? <i>*nicht bei potentiellen Problemen</i></td><td>äußert große Anstrengung beim Gehen · unsicheres Gangbild · sitzt gerne auf dem Sofa · Schmerzen</td></tr>
+  <tr><td><b>R</b> — Ressource</td><td>Was kann der Klient noch / inkl. Hilfsmitteln?</td><td>kann mit Rollator gehen · Kompressionsstrümpfe · kognitiv in der Lage, Wünsche zu äußern und mitzuarbeiten · kennt Bewegungsübungen aus der Reha · ist lernfähig</td></tr>
+</table></div>
 
-<section id="ehrlich">
-  <h2>Drei Sätze, die der Foliensatz offen ausspricht</h2>
+<h3>Warum steht das S in Klammern? Vier Dateien sagen dasselbe</h3>
+<p>Das ist die wichtigste Regel dieses Kurses. Du findest sie <b>viermal</b>, unabhängig voneinander:</p>
+<ol>
+  <li><b>Die Folie:</b> „(S)* (Symptome) … *nicht bei potentiellen Problemen“.</li>
+  <li><b>Die Vorlage für aktuelle Probleme</b> hat eine Zeile <b>Symptome (S)</b>.</li>
+  <li><b>Die Vorlage für potentielle Probleme</b> hat <b>keine</b> Zeile für Symptome.</li>
+  <li><b>Das Stephan-Blatt</b> schreibt in die Zeile: „S: (Potenzielles Pflegeproblem, daher keine Symptome)“.</li>
+</ol>
+<p><b>Der Grund:</b> Eine Gefahr hat noch keine Zeichen. Wenn man Zeichen sieht (z. B. Rötung, Schwellung, Schmerz in der Wade), ist das Problem <b>schon eingetreten</b>. <span class="her">Herleitung</span> — genau das passiert im Fall Frau Mai im Krankenhaus (Kap. 10): Am Tag nach der OP sieht man Rötung und Überwärmung, und der Arzt findet eine Thrombose.</p>
 
-  <div class="warnung">
-    <span class="t">Über die Wirklichkeit auf Station</span>
-    <p><b>„Pflegeplanung wird je nach Einrichtung unterschiedlich gewichtet.“</b></p>
-    <p><b>„Im Krankenhaus ist die Aufenthaltsdauer der Patienten geringer als die der Bewohner
-      im Altenheim.“</b></p>
-    <p><b>„Erfahrene Pflegekräfte verschriftlichen die Pflegeplanung nicht immer — wissen
-      dennoch, welche Probleme bestehen und welche Maßnahmen angewandt werden können.“</b></p>
-    <p><b>Das ist eine ehrliche Auskunft, kein Freibrief.</b> Für dich gilt: In der
-      <b>Prüfung</b> und als <b>Auszubildende</b> wird genau das schriftlich verlangt, was
-      erfahrene Kolleginnen im Kopf haben. Das schriftliche Planen ist das Mittel, mit dem du
-      dir dieses Können <b>überhaupt erst aneignest</b>.</p>
-    <p class="fr">Les collègues expérimentées ne rédigent pas toujours. Toi, si — c'est
-      justement ainsi qu'on acquiert ce qu'elles ont en tête.</p>
-  </div>
+<h3>Die beiden Originalvorlagen nebeneinander</h3>
+<div class="zwei">
+  <div class="k rot"><b>Aktuelle Probleme</b><small>Pflegeproblem (P) / -ausmaß / -ursachen / Etiologie (E)<br><b>Symptome (S)</b><br>Ressourcen (R)<br>→ dann: Pflegeziele · Pflegemaßnahmen · Begründungen</small></div>
+  <div class="k" style="border-color:var(--gelb);background:var(--gelbbg)"><b>Potentielle Probleme</b><small>Pflegeproblem (P)<br>Problemursachen Etiologie (E):<br>• pflegerelevante Informationen<br>• <i>individuelle</i> Risikofaktoren<br>• Assessment / Gefährdungsgrad<br>Ressourcen (R)<br>→ dann: Pflegeziele · Pflegemaßnahmen · Begründungen</small></div>
+</div>
+<p><b>Was du daraus lernst:</b> Beim potentiellen Problem fällt das S weg — dafür wird das <b>E breiter</b>. Du schreibst dort drei Dinge:</p>
+<ul>
+  <li><b>pflegerelevante Informationen</b> — was du über den Menschen weißt und für die Pflege wichtig ist;</li>
+  <li><b>individuelle Risikofaktoren</b> — die Risiken <b>dieses</b> Menschen (das Wort „Individuelle“ ist auf der Vorlage unterstrichen);</li>
+  <li><b>Assessment / Gefährdungsgrad</b> — wie groß die Gefahr ist, eingeschätzt mit einem Instrument (Assessment = Einschätzung). Ein Beispiel aus deinen Dateien ist der <b>Frowein-TVT-Score</b> für die Thrombose (Kap. 10). <span class="her">Herleitung</span></li>
+</ul>
+<div class="merke"><b>Merke:</b> P = was? · E = warum? · S = wie zeigt es sich? (nur aktuell) · R = was kann er noch? Beim potentiellen Problem: kein S, dafür ein breites E mit Risikofaktoren und Gefährdungsgrad.</div>
+<p class="fr">🇫🇷 P = quoi ? E = pourquoi ? S = comment ça se voit ? (seulement si actuel) R = que peut-il encore faire ? Pour un problème potentiel : pas de S, mais un E plus riche (facteurs de risque individuels, évaluation du degré de risque).</p>
+<p class="quelle">03_ Pflegeplanung.pdf, S. 5 · aktuelle Pflegeprobleme-Leer-Vorlage, S. 1 · potentielle Pflegeprobleme-Leer-Vorlage, S. 1 · Pflegeplanungsbeispiele Stephan, S. 2 · Pflegeproblem Bewegungseinschränkung, S. 1–3</p>
 
-  <h3>Wann überhaupt ein Pflegeproblem vorliegt</h3>
-  <div class="merk">
-    <span class="t">Zwei Bedingungen, wörtlich</span>
-    <p>Pflegeprobleme sind vorhanden: <b>„Wenn Veränderungen (psychisch/physisch) sich auf die
-      Selbstständigkeit auswirken“</b> — oder <b>„wenn die Gefahr besteht, dass aus einer
-      Einschränkung eine Schädigung entsteht oder sich weitere Einschränkungen
-      entwickeln“</b>.</p>
-    <p><b>Der erste Teil beschreibt das aktuelle, der zweite das potentielle Problem.</b> Die
-      Definition enthält die Unterscheidung also schon.</p>
-    <p>Ein Pflegeproblem kann <b>physischer, psychischer, emotionaler, sozialer und
-      organisatorischer Natur</b> sein.</p>
-  </div>
-</section>
+<!-- ============ 6 ZIELE ============ -->
+<h2>6 · Das Pflegeziel: Nah- und Fernziele, SMART <span class="stern">★★★</span></h2>
+<div class="def">
+  <span class="t">So steht es auf deiner Folie</span>
+  <p>„<b>Pflegeziele</b> (verhalten / Zustand / Wissen / Können / Wollen), dass nach einer <b>bestimmten Zeit</b> erreicht werden soll.“ — Darunter: „Nah-/Fernziele“ und „SMART“.</p>
+</div>
+<p><b>Einfach gesagt:</b> Ein Ziel beschreibt, wie es dem Menschen <b>nach einer bestimmten Zeit</b> gehen soll. Es kann um sein <b>Verhalten</b>, seinen <b>Zustand</b>, sein <b>Wissen</b>, sein <b>Können</b> oder sein <b>Wollen</b> gehen. <b>Nahziele</b> sind kurzfristig, <b>Fernziele</b> langfristig — die Folie nennt nur die Wörter. <span class="her">Herleitung</span></p>
+<div class="scroll"><table>
+  <tr><th>Buchstabe</th><th>Auf deiner Folie</th><th>Einfach gesagt</th></tr>
+  <tr><td><b>S</b> — spezifisch</td><td>konkret, unmissverständlich, worum geht es → was?</td><td>Jeder versteht sofort, was gemeint ist.</td></tr>
+  <tr><td><b>M</b> — messbar</td><td>so formulieren, dass später erkannt werden kann, ob das Ziel erreicht wurde oder nicht</td><td>Man kann später „ja“ oder „nein“ sagen.</td></tr>
+  <tr><td><b>A</b> — akzeptabel</td><td>positiv u. aktiv beschreiben, aktive Verben verwenden</td><td>Schreib, was der Mensch <b>tut</b> oder <b>kann</b> — nicht, was er nicht hat.</td></tr>
+  <tr><td><b>R</b> — realistisch</td><td>machbar</td><td>Der Mensch kann es wirklich schaffen.</td></tr>
+  <tr><td><b>T</b> — terminiert</td><td>Zeitpunkt festlegen</td><td>bis wann? („innerhalb von zwei Wochen“, „ab sofort“)</td></tr>
+</table></div>
+<div class="hinweis"><b>Achtung — zwei verschiedene R!</b> Im <b>PE(S)R</b> heißt R <b>Ressource</b>. Im <b>SMART</b> heißt R <b>realistisch</b>. Verwechsle sie nicht in der Prüfung. Und: Dein Kurs übersetzt das A mit <b>akzeptabel</b> und erklärt es mit „positiv und aktiv“. Andere Bücher erklären das A vielleicht anders — in der Klausur gilt, was auf deinem Blatt steht.</div>
 
-<section id="sregel">
-  <h2>Die S-Regel — der wichtigste Fund dieses Blocks</h2>
-  <p class="lead">Warum heißt das Schema <b>PE(S)R</b> und nicht PESR? Vier deiner Dateien
-    beantworten das unabhängig voneinander.</p>
+<h3>Gute Ziele aus deinen Beispielen</h3>
+<ul>
+  <li>„Frau Mai kann sich selbstständig <b>in 1–2 Monaten</b> mit Rollator in der Wohnung bewegen.“ → aktives Verb, Zeit, messbar.</li>
+  <li>„Frau Mai ist <b>innerhalb von 3–4 Wochen</b> sicher im Gehen innerhalb der Wohnung.“</li>
+  <li>„Frau Mai trägt <b>täglich</b> ihre Kompressionsstrümpfe während der Wachzeit, beginnend <b>ab sofort</b>.“</li>
+  <li>„Frau Mai ist in der Lage, die Bewegungsübungen <b>2x täglich</b> selbstständig durchzuführen <b>innerhalb der nächsten 3 Wochen</b>.“</li>
+</ul>
+<h3>Ziele zum Üben — was fehlt hier? <span class="her">Herleitung</span></h3>
+<ul>
+  <li>„Die Thrombose wird vermieden und erkannt.“ → <b>kein Zeitpunkt</b> (T fehlt), und Frau Mai ist nicht die Handelnde (A: nicht aktiv). Messbar ist nur das „vermieden“.</li>
+  <li>„Frühzeitiges Erkennen des Thromboserisikos und Verhinderung einer Thrombose bei Stephan.“ → ebenfalls <b>kein Zeitpunkt</b>, und es ist ein Nomen-Satz ohne aktives Verb.</li>
+</ul>
+<div class="merke"><b>Merke:</b> Ein gutes Ziel hat ein <b>aktives Verb</b>, den <b>Menschen als Handelnden</b> und eine <b>Zeitangabe</b>.</div>
+<p class="fr">🇫🇷 L'objectif décrit l'état, le savoir ou le savoir-faire attendu après un temps précis. SMART : spécifique, mesurable, acceptable (formulé de façon positive avec un verbe actif), réaliste, daté. Attention : le R de PESR = ressource, le R de SMART = réaliste.</p>
+<p class="quelle">03_ Pflegeplanung.pdf, S. 5 · Pflegeproblem Bewegungseinschränkung, S. 1–2 · Pflegeproblem Thrombosegefahr, S. 1–2 · Pflegeplanungsbeispiele Stephan, S. 2</p>
 
-  <div class="gefahr">
-    <span class="t">Vier Belege aus deinen eigenen Unterlagen</span>
-    <p><b>1. Der Foliensatz</b> schreibt es als Regel hin:<br>
-      <b>„(S)* (Symptome) — wie zeigt sich das Problem?“</b> und die Fußnote:
-      <b>„*nicht bei potentiellen Problemen“</b>.</p>
-    <p><b>2. Die leere Vorlage für aktuelle Probleme</b> hat die Spalten:
-      <b>Pflegeproblem (P) / -ausmaß / -ursachen / Etiologie (E) — Symptome (S) —
-      Ressourcen (R)</b>.</p>
-    <p><b>3. Die leere Vorlage für potentielle Probleme</b> hat: <b>Pflegeproblem (P) —
-      Problemursachen / Etiologie (E) — Ressourcen (R)</b>. <b>Die Spalte „Symptome“ fehlt
-      dort.</b></p>
-    <p><b>4. Die ausgearbeitete Planung zu Stephan</b> schreibt es sogar in die Zeile hinein:
-      <b>„S: (Potenzielles Pflegeproblem, daher keine Symptome)“</b>.</p>
-    <p class="fr">Le S est entre parenthèses parce qu'un problème <b>potentiel</b> n'a pas
-      encore de symptômes. Quatre de tes documents le disent.</p>
-  </div>
+<!-- ============ 7 MASSNAHMEN ============ -->
+<h2>7 · Die Pflegemaßnahme: W-Fragen und die fünf Hilfeformen <span class="stern">★★★</span></h2>
+<p>Eine Maßnahme ist gut geschrieben, wenn sie <b>alle W-Fragen</b> beantwortet. Dann weiß jede Kollegin genau, was zu tun ist.</p>
+<div class="scroll"><table>
+  <tr><th>W-Frage</th><th>Auf deiner Folie</th><th>Beispiel aus deinen Planungen</th></tr>
+  <tr><td><b>WER?</b></td><td>1 bzw. 2 PFK / PFA / PP</td><td>„durch die PK“ · „PFK“ · „PP“</td></tr>
+  <tr><td><b>WAS?</b></td><td>Art der Maßnahme</td><td>„zu gelenkschonender Bewegung angeleitet“</td></tr>
+  <tr><td><b>WIE und WOMIT?</b></td><td>Inhalt und <b>Hilfeformen</b></td><td>„mit dem Rollator durch die Wohnung begleitet“</td></tr>
+  <tr><td><b>WANN?</b></td><td>Umfang</td><td>„jeden Morgen“ · „bei der morgendlichen Pflege“</td></tr>
+  <tr><td><b>WIE OFT?</b></td><td>Umfang</td><td>„1x/Woche“ · „1x täglich“ · „bei jedem Pflegebesuch“</td></tr>
+</table></div>
 
-  <div class="merk">
-    <span class="t">Die Logik dahinter — und sie ist zwingend</span>
-    <p>Ein <b>potentielles</b> Problem ist <b>noch nicht eingetreten</b>. Also kann es sich
-      auch <b>noch nicht zeigen</b>. Wer bei „Thrombosegefahr“ Symptome aufschreibt, hat
-      entweder <b>die Symptome der Ursachen</b> notiert (das gehört unter E) oder
-      <b>behauptet, dass die Thrombose schon da ist</b> — dann wäre es kein potentielles
-      Problem mehr.</p>
-    <p><b>Und genau das ist der häufigste Fehler.</b> Das lässt sich an deinem eigenen Fall
-      zeigen — siehe unten <i>Frau Mai, zweimal gelöst</i>.</p>
-    <p class="fr">Un problème potentiel n'est <b>pas encore là</b> : il ne peut donc pas encore
-      se <b>montrer</b>.</p>
-  </div>
+<h3>Die fünf Hilfeformen — nur diese fünf</h3>
+<div class="schema">
+  <p class="titel">So stehen sie auf deinem Blatt — von oben nach unten</p>
+  <div class="k gruen"><b>1 · Beaufsichtigung</b></div><div class="pfeil">↓</div>
+  <div class="k"><b>2 · Anleitung</b></div><div class="pfeil">↓</div>
+  <div class="k"><b>3 · Unterstützung</b></div><div class="pfeil">↓</div>
+  <div class="k"><b>4 · Teilweise Übernahme</b></div><div class="pfeil">↓</div>
+  <div class="k rot"><b>5 · Vollständige Übernahme</b></div>
+  <p class="lesen">Von oben nach unten gibt die Pflegeperson <b>immer mehr</b> Hilfe — der Mensch tut immer weniger selbst. <span class="her">Herleitung</span> — die Folie zählt nur auf, sie erklärt die Reihenfolge nicht.</p>
+</div>
+<div class="hinweis"><b>Wichtig für die Klausur:</b> Die Hilfeformen sind <b>nur diese fünf</b>. <b>„Beratung“ ist keine Hilfeform.</b> In der Planung Thrombosegefahr steht zwar „informiert und beraten“ — das ist dort die <b>Art der Maßnahme</b> (die Antwort auf WAS?), keine Hilfeform. <span class="her">Herleitung</span></div>
+<p>Auch der <b>Erhebungsbogen</b> (Kap. 13) benutzt genau diese fünf — mit Kürzeln: <b>A</b> = Anleitung · <b>B</b> = Beaufsichtigung · <b>U</b> = Unterstützung · <b>TÜ</b> = teilweise Übernahme · <b>VÜ</b> = vollständige Übernahme. Dort sind sie nur nach dem Buchstaben sortiert.</p>
 
-  <h3>Was E bei einem potentiellen Problem stattdessen enthält</h3>
-  <p>Die leere Vorlage sagt es genau. Unter <b>Problemursachen/Etiologie (E)</b> stehen dort
-    drei Stichpunkte:</p>
-  <div class="karten">
-    <div class="karte"><h4>Pflegerelevante Informationen</h4></div>
-    <div class="karte"><h4>Individuelle Risikofaktoren</h4></div>
-    <div class="karte"><h4>Assessment / Gefährdungsgrad</h4></div>
-  </div>
-  <p>Damit ist beantwortet, was viele beim potentiellen Problem nicht wissen: Das <b>E</b> wird
-    dort <b>breiter</b> — es nimmt die <b>Risikofaktoren</b> und das <b>Assessment</b> mit auf,
-    das beim aktuellen Problem unter den Symptomen stünde.</p>
-</section>
+<h3>Eine Maßnahme zerlegen — Beispiel</h3>
+<p>„<b>Frau Mai wird durch die PK 1x/Woche zu gelenkschonender Bewegung angeleitet.</b>“</p>
+<ul>
+  <li><b>Wer?</b> die PK · <b>Was?</b> gelenkschonende Bewegung · <b>Wie?</b> angeleitet → Hilfeform <b>Anleitung</b> · <b>Wie oft?</b> 1x/Woche</li>
+</ul>
+<div class="merke"><b>Merke:</b> Jede Maßnahme: Wer · Was · Wie und womit · Wann · Wie oft. Hilfeformen: Beaufsichtigung · Anleitung · Unterstützung · teilweise · vollständige Übernahme — keine sechste.</div>
+<p class="fr">🇫🇷 Une mesure répond à : qui, quoi, comment et avec quoi (forme d'aide), quand, combien de fois. Les formes d'aide sont seulement cinq : surveillance, guidance, soutien, prise en charge partielle, prise en charge totale. Le « conseil » n'en fait pas partie.</p>
+<p class="quelle">03_ Pflegeplanung.pdf, S. 5 · Pflegeproblem Bewegungseinschränkung, S. 2 · Pflegeproblem Thrombosegefahr, S. 3 · Erhebung ABEDL.pdf, S. 1 (Kopfzeile)</p>
 
-<section id="vorlagen">
-  <h2>Die beiden Originalvorlagen im Vergleich</h2>
+<!-- ============ 8 BEGRUENDUNG ============ -->
+<h2>8 · Die Begründung der Pflegemaßnahmen <span class="stern">★★</span></h2>
+<p>Die vierte Spalte heißt „<b>Begründung der Pflegemaßnahmen</b>“. Hier schreibst du, <b>warum</b> die Maßnahme hilft.</p>
+<div class="hinweis"><b>Was in deinen Unterlagen fehlt:</b> Auf deinem Blatt ist die Spalte Begründung <b>leer</b>. Es gibt dazu keine Anleitung wie für P E (S) R, SMART oder die W-Fragen.</div>
+<div class="def">
+  <span class="t">Der gelbe Kasten auf deiner Folie — wörtlich</span>
+  <p>„<b>Bitte zusätzlich berücksichtigen!</b><br>– Prophylaxen-Expertenstandards<br>– Diagnosen<br>– Medikamentöse Therapie“</p>
+</div>
+<p>Das sind <b>drei Zeilen</b>. Eine gute Begründung stützt sich also auf das, was <b>Standards, Diagnosen und Medikamente</b> verlangen. <span class="her">Herleitung</span> — die Folie sagt nur „berücksichtigen“, nicht, in welcher Spalte. Ob „Prophylaxen-Expertenstandards“ <b>eine</b> Quelle ist oder zwei, steht nirgends — frag deine Dozentin.</p>
+<h3>So sehen Begründungen in deinen Beispielen aus</h3>
+<div class="scroll"><table>
+  <tr><th>Maßnahme</th><th>Begründung (wörtlich aus dem Beispiel)</th></tr>
+  <tr><td>Hautbeobachtung bei jeder Gelegenheit auf Rötung, Schwellung, Erwärmung, Schmerzen</td><td>„Um eine Thrombose frühzeitig zu erkennen, leicht umzusetzen.“</td></tr>
+  <tr><td>Täglich morgens mobilisieren, extra Runde durch die Wohnung</td><td>„Frau Mai gewinnt Sicherheit. Die Muskel-Venen-Pumpe wird aktiviert.“</td></tr>
+  <tr><td>Bei jedem Besuch an die Trinkmenge erinnern</td><td>„Ausreichende Flüssigkeitszufuhr regt den Blutfluss an, Blut bleibt dünnflüssig.“</td></tr>
+  <tr><td>Stolperfallen entfernen</td><td>„Erhöht die Sicherheit, unterstützt die Mobilität.“</td></tr>
+  <tr><td>Schmerzen 1x täglich nach NRS (Schmerzskala mit Zahlen) erfragen, Schmerzmittel ab Wert 5 nach ärztlicher Anordnung</td><td>„Die Schmerzen werden reduziert, Bewegungsbereitschaft wird gefördert.“</td></tr>
+  <tr><td>s. c. Thromboseprophylaxe-Spritze nach ärztlicher Verordnung (Stephan: Flüssigkeit anbieten)</td><td>„Beugt einer Thromboseentstehung vor.“ · Stephan: „… wird der Virchowschen Trias entgegengewirkt.“</td></tr>
+</table></div>
+<p><b>Was eine gute Begründung zeigt:</b> die <b>Wirkung</b> der Maßnahme im Körper oder im Alltag (z. B. Muskel-Venen-Pumpe, Sicherheit). Nur „weil es wichtig ist“ reicht nicht. <span class="her">Herleitung</span> Was die „Virchowsche Trias“ ist, erklärt das Stephan-Blatt nicht.</p>
+<div class="merke"><b>Merke:</b> Begründung = <b>Warum hilft das?</b> Denk an die drei Zeilen: Expertenstandards der Prophylaxen · Diagnosen · Medikamente.</div>
+<p class="fr">🇫🇷 La justification explique pourquoi la mesure aide (son effet). Ta fiche laisse la colonne vide, mais l'encadré jaune dit de tenir compte de trois choses : standards d'experts des préventions, diagnostics, traitement médicamenteux.</p>
+<p class="quelle">03_ Pflegeplanung.pdf, S. 5 (gelber Kasten) · Pflegeproblem Thrombosegefahr, S. 1–4 · Pflegeplanungsbeispiele Stephan, S. 2</p>
 
-  <div class="scroll">
-    <table>
-      <thead><tr><th></th><th>Aktuelle Probleme</th><th>Potentielle Probleme</th></tr></thead>
-      <tbody>
-        <tr><td class="k">P</td>
-          <td>Pflegeproblem / -ausmaß / -ursachen</td><td>Pflegeproblem</td></tr>
-        <tr><td class="k">E</td>
-          <td>Etiologie</td>
-          <td>Problemursachen / Etiologie: <b>pflegerelevante Informationen ·
-            individuelle Risikofaktoren · Assessment/Gefährdungsgrad</b></td></tr>
-        <tr><td class="k">S</td><td><b>Symptome</b></td><td><b>— gibt es nicht —</b></td></tr>
-        <tr><td class="k">R</td><td>Ressourcen</td><td>Ressourcen</td></tr>
-        <tr><td class="k">Danach</td><td colspan="2"><b>Pflegeziele · Pflegemaßnahmen ·
-          Begründungen</b> — in beiden Vorlagen gleich</td></tr>
-      </tbody>
-    </table>
-  </div>
+<!-- ============ 9 FRAU MAI ZWEIMAL ============ -->
+<h2>9 · Frau Mai: ein Fall, zwei Planungen <span class="stern">★★★</span></h2>
+<h3>Der Fall (ambulante Pflege)</h3>
+<p>Frau Mai ist <b>78 Jahre</b> alt. Vor einem Monat hat sie eine <b>Hüft-TEP</b> bekommen (künstliches Hüftgelenk). Nach der Reha lebt sie wieder in ihrer Wohnung im <b>2. Stock</b>. Sie hat <b>Schmerzen</b> und ist <b>stark eingeschränkt</b> in der Bewegung. An den Unterschenkeln hat sie <b>ausgeprägte Varizen</b> (Krampfadern) — das kann auf eine <b>venöse Insuffizienz</b> hinweisen (die Venen bringen das Blut schlecht zurück zum Herzen).</p>
+<p>Sie sagt: „Ich sitze sehr viel auf dem Sofa … so ist es bequemer für mich.“ Mit dem <b>Rollator</b> geht sie <b>unsicher</b>. Du gibst ihr die <b>Heparin-Spritze s. c.</b> und ziehst ihr die <b>Kompressionsstrümpfe</b> an. Positiv: Sie kann ihre Wünsche und Schmerzen <b>klar äußern</b> und hat in der Reha viel gelernt. Aber ihr <b>fehlt der Mut</b>, die Übungen allein zu machen.</p>
+<p><b>Arbeitsauftrag im Kurs:</b> Gemeinsam die Planung zum <b>potentiellen</b> Problem „Thrombosegefahr“, danach jeder allein die Planung zum <b>aktuellen</b> Problem „Bewegungseinschränkung“ — nach PE(S)R, mit Zielen, Maßnahmen und Begründungen.</p>
 
-  <div class="merk">
-    <span class="t">Woher du die Vorlagen bekommst</span>
-    <p>Der Foliensatz verweist auf <b>ILIAS</b>: <i>CE02 UE02 Pflegeproblem Thrombose →
-      Arbeitsaufträge → Pflegeplanung → Pflegeplanung Blanco</i>. Im Drive-Ordner liegen die
-      beiden leeren Vorlagen ebenfalls.</p>
-    <p><b>Druck dir beide aus und leg sie nebeneinander.</b> Der Unterschied springt dann ins
-      Auge — und du schreibst nie wieder Symptome in ein potentielles Problem.</p>
-  </div>
-</section>
+<h3>Planung A — aktuelles Problem: Bewegungseinschränkung</h3>
+<div class="scroll"><table>
+  <tr><th>Pflegeproblem</th><th>Ziel</th><th>Maßnahme</th><th>Begründung</th></tr>
+  <tr><td rowspan="6"><b>P:</b> Bewegungseinschränkung<br><br><b>E:</b> Alter · Angst/Unsicherheit beim Gehen · Hüft-OP/Hüft-TEP · Schmerzen · geringe Aktivität im Alter<br><br><b>S:</b> äußert große Anstrengung beim Gehen · unsicheres Gangbild · sitzt gerne auf dem Sofa · Schmerzen<br><br><b>R:</b> kann mit Rollator gehen · Kompressionsstrümpfe · kognitiv in der Lage, Wünsche zu äußern, mitzuarbeiten · kennt Bewegungsübungen aus der Reha · ist lernfähig</td>
+      <td>kann sich selbstständig in 1–2 Monaten mit Rollator in der Wohnung bewegen</td><td>erhält 2x/Woche Physiotherapie</td><td>um Bewegungsübungen eigenständig zu erlernen und Sicherheit zu fördern</td></tr>
+  <tr><td>Schmerzfreiheit bei Mobilisation innerhalb von zwei Wochen</td><td>Schmerzen 1x/Tag nach NRS erfragt, dokumentiert, Analgesie nach ärztlicher Anordnung</td><td>Schmerzreduktion; ab 5 muss Analgesie gegeben werden, darunter kann. Dokumentation für Übergabe, Verlauf wird sichtbar</td></tr>
+  <tr><td>innerhalb von 3–4 Wochen sicher im Gehen in der Wohnung</td><td>täglich motivierende Gespräche durch PK</td><td>ist motiviert, Tätigkeiten selbstständig durchzuführen</td></tr>
+  <tr><td>soll innerhalb der nächsten 2 Monate eigenständig Bewegungsübungen durchführen</td><td>wird durch die PK 1x/Woche zu gelenkschonender Bewegung angeleitet</td><td>Schonen der Gelenke, schmerzärmeres Mobilisieren</td></tr>
+  <tr><td>ist über Folgeprobleme aufgeklärt und weiß um die Gefahr</td><td>PK überprüft täglich die Wohnung auf Stolperfallen · wird 1x täglich mit dem Rollator durch die Wohnung begleitet</td><td>Sicherheit · Sicherheit im Umgang mit dem Rollator</td></tr>
+  <tr><td>—</td><td>PK führt ein Gespräch und klärt sie über Folgeprobleme auf</td><td>ist informiert und kann eigenständig Entscheidungen treffen und mitarbeiten</td></tr>
+</table></div>
+<p class="lesen">Die Zeilen der Ziele und Maßnahmen stehen im Original nicht immer genau nebeneinander. Ich habe sie so zugeordnet, wie sie auf dem Blatt am nächsten stehen. <span class="her">Herleitung</span></p>
 
-<section id="abedl">
-  <h2>Die ABEDL — und die beiden, auf die du zuerst schauen sollst</h2>
-  <p class="lead">Die dreizehn ABEDL stehen schon auf deiner Seite <b>Pflegeplanung
-    schreiben</b>. Neu ist hier ein Hinweis, der auf dem Foliensatz mit Sternchen markiert
-    ist.</p>
+<h3>Planung B — potentielles Problem: Thrombosegefahr</h3>
+<div class="scroll"><table>
+  <tr><th>Pflegeproblem</th><th>Ziel</th><th>Maßnahme</th><th>Begründung</th></tr>
+  <tr><td rowspan="8"><b>P:</b> Thrombosegefahr<br><br><b>E:</b> höheres Lebensalter · wenig Bewegung, Vermeidung von Bewegung · Bewegungseinschränkungen · Schmerzen durch Hüft-TEP · venöse Insuffizienz · ausgeprägte Varizen<br><br><b>kein S</b><br><br><b>R:</b> Nutzung von Rollator · Bereitschaft, Hilfe anzunehmen · kognitiv in der Lage, Wünsche und Schmerzen zu äußern · kennt Bewegungsübungen aus der Reha · Fähigkeit zur Kommunikation (Bedürfnisse) · Kompressionsstrümpfe</td>
+      <td>Die Thrombose wird vermieden und erkannt. Die Mobilität wird gefördert.</td><td>Hautbeobachtung durch PK bei jeder Gelegenheit auf Rötung, Schwellung, Erwärmung, Schmerzen</td><td>um eine Thrombose frühzeitig zu erkennen; leicht umzusetzen</td></tr>
+  <tr><td>innerhalb von zwei Monaten sicher im Gehen mit dem Rollator</td><td>sichere Umgebung, Stolperfallen entfernen, bei jedem Besuch</td><td>erhöht die Sicherheit, unterstützt die Mobilität</td></tr>
+  <tr><td>reduzierte/keine Schmerzen beim Gehen innerhalb von 2 Wochen</td><td>PK fragt 1x täglich nach Schmerzen (NRS), dokumentiert, Schmerzmittel ab 5 nach ärztlicher Anordnung</td><td>Schmerzen reduziert, Bewegungsbereitschaft gefördert; ab 5 muss reagiert werden, Schmerzmittel auch schon bei geringerer Angabe möglich</td></tr>
+  <tr><td>Der venöse Rückfluss wird ab sofort gefördert. · trägt täglich ihre Kompressionsstrümpfe während der Wachzeit, ab sofort</td><td>Hilfestellung durch PK beim Anziehen von festem Schuhwerk vor jeder Mobilisation</td><td>Sicherheit erlangen</td></tr>
+  <tr><td>macht die Bewegungsübungen 2x täglich selbstständig innerhalb der nächsten 3 Wochen</td><td>PK koordiniert Physiotherapietermine 1x/Woche</td><td>verbesserte Bewegung, Anleitung zum eigenständigen Durchführen</td></tr>
+  <tr><td>soll täglich 2 l Wasser trinken, ab sofort</td><td>wird bei jedem Pflegebesuch auf die Trinkmenge hingewiesen</td><td>ausreichende Flüssigkeitszufuhr regt den Blutfluss an, Blut bleibt dünnflüssig</td></tr>
+  <tr><td>—</td><td>wird 1x/Monat über Thromboseanzeichen und die potenzielle Gefahr informiert und beraten</td><td>ist über die Notwendigkeit aufgeklärt, kann Thromboseanzeichen erkennen</td></tr>
+  <tr><td>—</td><td>jeden Morgen mobilisiert, mit Begleitung extra Runde durch die Wohnung · s. c. Thromboseprophylaxe-Spritze nach ärztlicher Verordnung bei der Morgenpflege</td><td>gewinnt Sicherheit, Muskel-Venen-Pumpe wird aktiviert, erste Bewegung am Morgen · beugt einer Thromboseentstehung vor</td></tr>
+</table></div>
 
-  <div class="gefahr">
-    <span class="t">ABEDL 1 und 2 tragen ein Sternchen</span>
-    <p><b>1. Kommunizieren können*</b> und <b>2. Sich bewegen können*</b> — und die Erklärung
-      dazu auf derselben Folie:</p>
-    <p><b>„*hat einen Einfluss auf alle anderen ABEDLs“</b> und
-      <b>„fokussieren, da sie häufig prioritär verursachend sind für Pflegeprobleme auch in
-      den anderen ABEDLs“</b>.</p>
-    <p><b>Das ist eine Arbeitsanweisung, keine Randnotiz.</b> Wenn du bei einem Fall nicht
-      weißt, wo du anfangen sollst: <b>fang bei Kommunikation und Bewegung an</b> — die beiden
-      verursachen die meisten Probleme in allen anderen Bereichen.</p>
-    <p>Und genau so ist der Fall <b>Frau Mai</b> gebaut: Aus der <b>Bewegungseinschränkung</b>
-      (ABEDL 2) entsteht die <b>Thrombosegefahr</b>. Ein Problem, zwei Planungen.</p>
-    <p class="fr">Tu ne sais pas par où commencer ? Par la <b>communication</b> et le
-      <b>mouvement</b> — ce sont eux qui causent les problèmes ailleurs.</p>
-  </div>
+<h3>Was du am Vergleich sehen kannst <span class="her">Herleitung</span></h3>
+<div class="scroll"><table>
+  <tr><th>Dieselbe Beobachtung …</th><th>… in Planung A (aktuell)</th><th>… in Planung B (potentiell)</th></tr>
+  <tr><td>Sie sitzt viel auf dem Sofa</td><td>steht in <b>S</b> (so zeigt sich das Problem)</td><td>steht in <b>E</b> als „wenig Bewegung, Vermeidung von Bewegung“ (Ursache der Gefahr)</td></tr>
+  <tr><td>Schmerzen</td><td>in <b>E</b> und in <b>S</b></td><td>in <b>E</b>: „Schmerzen durch Hüft-TEP“</td></tr>
+  <tr><td>Die Bewegungseinschränkung selbst</td><td>ist das <b>P</b></td><td>ist eine <b>Ursache</b> in E</td></tr>
+  <tr><td>Varizen, venöse Insuffizienz</td><td>kommen nicht vor</td><td>wichtige <b>Risikofaktoren</b> in E</td></tr>
+</table></div>
+<p>Die Lehre: Eine Beobachtung hat keinen festen Platz. <b>Beim aktuellen Problem ist sie ein Zeichen (S), beim potentiellen Problem wird sie zur Ursache (E).</b></p>
+<div class="hinweis"><b>Kleine Unstimmigkeiten im Beispiel:</b> In Planung A steht als Ziel „Schmerzfreiheit“, in Planung B „reduzierte/keine Schmerzen“. Für Gelenke nach einer OP ist „reduzierte Schmerzen“ vermutlich realistischer (SMART: R). <span class="her">Herleitung</span> Die Abkürzung <b>PK</b> benutzen beide Beispiele; deine Folie kennt nur PFK, PFA und PP.</div>
+<p class="fr">🇫🇷 Même patiente, deux plans : le problème actuel « mobilité réduite » (avec symptômes) et le problème potentiel « risque de thrombose » (sans symptômes). Une même observation (elle reste assise sur le canapé) est un symptôme dans le premier plan et une cause dans le second.</p>
+<p class="quelle">Fallbeispiel Frau Mai ambulante Pflege, S. 1 · 03_ Pflegeplanung.pdf, S. 6 · Pflegeproblem Bewegungseinschränkung, S. 1–3 · Pflegeproblem Thrombosegefahr, S. 1–4</p>
 
-  <p>Die Bedeutung von <b>AEDL</b> steht im Stephan-Dokument ausgeschrieben:
-    <b>A</b>ktivität und <b>e</b>xistenzielle <b>E</b>rfahrungen <b>d</b>es <b>L</b>ebens —
-    nach <b>Dr. Monika Krohwinkel</b>, mit <b>13 grundlegenden Kriterien, die in den Pflegeplan
-    eingearbeitet werden</b>.</p>
+<!-- ============ 10 FRAU MAI KRANKENHAUS ============ -->
+<h2>10 · Frau Mai im Krankenhaus: Thrombose und Thromboseprophylaxe <span class="stern">★★</span></h2>
+<p>Dieselbe Frau Mai — jetzt auf der <b>chirurgisch-orthopädischen Station</b>, <b>vor</b> ihrer Hüft-OP. Sie hat eine <b>Coxarthrose</b> (Verschleiß des Hüftgelenks) und bekommt eine Hüft-TEP rechts.</p>
+<div class="scroll"><table>
+  <tr><th>Was du bei der Aufnahme erfährst</th></tr>
+  <tr><td>78 Jahre · BMI 32 · lebt allein mit Hund im 2. Stock · kein Kontakt zu Angehörigen, nur die Tochter hilft 1x pro Woche im Haushalt</td></tr>
+  <tr><td>raucht täglich ca. 15–20 Zigaretten · trinkt hin und wieder ein Glas Rotwein</td></tr>
+  <tr><td>geht wegen Schmerzen und Bewegungseinschränkung nur noch vor die Tür, wenn es nötig ist</td></tr>
+  <tr><td>Blutdruck 150/85 · Puls 64 · Temperatur 36,6 °C</td></tr>
+  <tr><td>deutliche Varizen an beiden Beinen — „schon ganz lange“, laut Arzt nichts zu tun, solange keine Beschwerden</td></tr>
+</table></div>
+<div class="schema">
+  <p class="titel">Der Verlauf — so wird aus einer Gefahr ein aktuelles Problem</p>
+  <div class="k"><b>Vor der OP</b><small>viele Risikofaktoren → potentielles Problem Thrombosegefahr</small></div><div class="pfeil">↓</div>
+  <div class="k"><b>Tag nach der OP</b><small>beim Mobilisieren an die Bettkante: <b>Rötung und Überwärmung</b> am rechten Unterschenkel · seit der Nacht <b>muskelkaterartige Wadenschmerzen</b></small></div><div class="pfeil">↓</div>
+  <div class="k wichtig"><b>Du handelst richtig</b><small>zurück ins Bett helfen · Praxisanleitung holen · sie informiert den Stationsarzt</small></div><div class="pfeil">↓</div>
+  <div class="k rot"><b>Ultraschall: tiefe Beinvenenthrombose rechts</b><small>Jetzt gibt es Symptome — das Problem ist aktuell.</small></div>
+</div>
+<p><b>Warum zurück ins Bett?</b> Den Grund nennt dein Fallblatt nicht. Es zeigt nur, dass das der richtige Weg war: nicht weiter mobilisieren, sondern Hilfe holen.</p>
 
-  <h3>Der Erhebungsbogen — seit dem 20.09.2026 lesbar, und er ist etwas anderes als gedacht</h3>
+<h3>Der Frowein-TVT-Score — die Tabelle auf Seite 2</h3>
+<p>Mit diesem Score schätzt du das <b>Thromboserisiko</b> ein (das ist das „Assessment / Gefährdungsgrad“ aus der Vorlage). Für jeden Risikofaktor gibt es Punkte. Am Ende zählst du alles zusammen.</p>
+<div class="scroll"><table>
+  <tr><th>Gruppe</th><th>Risikofaktoren (Auswahl mit Punkten)</th></tr>
+  <tr><td>Gefäßwandschädigung</td><td>Varikosis: leicht 1 · stark 4 · frühe Thrombose/Lungenembolie 4 · AVK 2 oder 4 · Alter: 40 = 1 · &gt; 60 = 2 · &gt; 70 = 3</td></tr>
+  <tr><td>Hämodynamik</td><td>Mobilität: teilmobil (bis ca. 12 Std./Tag) 2 · immobil (länger als 72 Std.) 4 · Lähmungen 3 · Frakturen 2/7 · Stützverband 3/7 · Herzinsuffizienz 3/6 · Myokardinfarkt 4 · Schwangerschaft 1 · postpartal 2 · Übergewicht &gt; 15 % (nach Broca) 2</td></tr>
+  <tr><td>Blutzusammensetzung</td><td>schwere Entzündung, Sepsis, maligner Tumor, schwere Verletzungen je 7 · Operation: kleine Eingriffe 1 · Allgemeinchirurgie &gt; 30 Min. 3 · große orthopädische Eingriffe &gt; 30 Min. 7 · orale Kontrazeption 2 · Rauchen 2</td></tr>
+</table></div>
+<div class="scroll"><table>
+  <tr><th>Punkte</th><th>Thromboserisiko</th></tr>
+  <tr class="gruen"><td class="z">0</td><td>keines</td></tr>
+  <tr class="gruen"><td class="z">1–3</td><td>gering</td></tr>
+  <tr class="gelb"><td class="z">4–6</td><td>mittel</td></tr>
+  <tr class="rot"><td class="z">7 – maximal</td><td>hoch</td></tr>
+</table></div>
+<details><summary>Übung: Frau Mais Risiko VOR der OP — mein Lösungsweg <span class="her">Herleitung</span></summary>
+<p>Dein Fallblatt gibt <b>keine Lösung</b>. So kannst du rechnen:</p>
+<ul>
+  <li><b>sicher:</b> Alter 78 → &gt; 70 = <b>3</b> · Rauchen ja = <b>2</b> → schon <b>5 Punkte = mittel</b></li>
+  <li><b>Varizen:</b> „deutliche Varizen an beiden Beinen“ — leicht (1) oder stark (4)? Das entscheidest du. Dann sind es <b>6 (mittel)</b> oder <b>9 (hoch)</b>.</li>
+  <li><b>unklar:</b> Mobilität (sie geht wenig, ist aber nicht „immobil“) · Übergewicht: Der Score rechnet nach <b>Broca</b>, das Fallblatt nennt den <b>BMI 32</b> — das lässt sich mit deinen Unterlagen nicht umrechnen.</li>
+  <li>Die geplante OP zählt hier nicht, weil die Aufgabe nach dem Risiko <b>vor</b> der OP fragt.</li>
+</ul>
+<p><b>Ergebnis:</b> mindestens <b>mittleres</b>, je nach Einschätzung der Varizen <b>hohes</b> Risiko. Frag im Unterricht, welche Lösung erwartet wird.</p></details>
+<h3>Die Aufgaben auf dem Fallblatt</h3>
+<ul>
+  <li>Teil 1: Risikofaktoren VOR der OP <b>nennen</b> · Risiko mit dem Frowein-TVT-Score <b>einschätzen</b> · zwei Beobachtungskriterien in der Thrombosetherapie und drei Pflegemaßnahmen <b>nennen</b>.</li>
+  <li>Teil 2 (Prophylaxe): Frau Mai ist wieder selbstständig mobil, aber ängstlich: „Was kann ich zu Hause tun?“ Sie soll noch einige Wochen selbst <b>Heparin spritzen</b>. Aufgaben: drei Bewegungsübungen für zu Hause <b>beschreiben</b> · zwei Risikofaktoren <b>nennen</b>, an denen sie arbeiten kann · die Schritte einer s. c. Injektion in der richtigen Reihenfolge <b>nennen</b>.</li>
+</ul>
+<div class="hinweis"><b>Was fehlt:</b> Zu diesen Aufgaben gibt es in deinen Dateien <b>keine Lösungen</b>. Die Bewegungsübungen und die Schritte der s. c. Injektion stehen in diesem Kurs nicht. Zwei Risikofaktoren, an denen sie selbst arbeiten kann, findest du im Fall: <b>Rauchen</b> und <b>wenig Bewegung</b>. <span class="her">Herleitung</span></div>
+<p class="fr">🇫🇷 À l'hôpital, avant l'opération, Mme Mai a beaucoup de facteurs de risque (âge, tabac, varices, peu de mouvement, surpoids). Le lendemain, rougeur et chaleur au mollet : thrombose veineuse profonde. Le score de Frowein additionne des points : 4–6 risque moyen, 7 et plus risque élevé.</p>
+<p class="quelle">Fallbeispiel Frau Mai Thrombose und Thromboseprophylaxe, S. 1–3 (Frowein-TVT-Score: Bild auf S. 2)</p>
 
-  <div class="merk">
-    <span class="t">Zwei Korrekturen auf einmal</span>
-    <p>Unten im Abschnitt <a href="#offen">Was fehlt</a> stand: <i>„Der ABEDL-Erhebungsbogen ist
-      ein <b>Scan eines ausgefüllten Formulars</b> und maschinell <b>kaum lesbar</b>.“</i>
-      <b>Beide Hälften waren falsch.</b></p>
-    <p><b>Erstens: Er ist nicht ausgefüllt.</b> Es ist ein <b>Leerformular</b> — kein einziges
-      Kreuz, keine Handschrift, kein Name. Es gibt also nichts zu entziffern und auch keine
-      Patientendaten darin.</p>
-    <p><b>Zweitens: Er ist lesbar.</b> Der Scan liegt <b>quer</b> und hat keine Textebene;
-      gedreht und als Seitenbild gelesen ist er bis in die einzelnen Ankreuzfelder deutlich.
-      <b>Es ist derselbe Fehlschluss wie zweimal vorher an diesem Tag</b> — „kein Text“ wurde
-      mit „nicht lesbar“ verwechselt.</p>
-    <p class="fr">Ce formulaire n'est pas rempli — il est <b>vierge</b> — et il est parfaitement
-      lisible une fois tourné. Les deux affirmations précédentes étaient fausses.</p>
-  </div>
+<!-- ============ 11 STEPHAN SOMMER ============ -->
+<h2>11 · Zwei weitere Beispiele: Stephan und Frau Sommer <span class="stern">★★</span></h2>
+<h3>Stephan (Kind mit Asthma bronchiale, CE 10 / UE 5)</h3>
+<p>Das Blatt ist aus einem <b>anderen</b> Kurs (Kinder mit chronischer Krankheit). Es arbeitet nach den <b>AEDL von Monika Krohwinkel</b> und zeigt zwei Planungen. Den Fall selbst („Stephan will das Bett nicht mehr verlassen“) enthält das Blatt nicht.</p>
+<div class="scroll"><table>
+  <tr><th></th><th>Thromboseprophylaxe (AEDL 2)</th><th>Asthma bronchiale (AEDL 8)</th></tr>
+  <tr><td><b>Art</b></td><td>potentiell</td><td>aktuell</td></tr>
+  <tr><td><b>P</b></td><td>verbringt die meiste Zeit im Bett → Anfälligkeit für Thrombose erhöht</td><td>leidet nachts unter Hustenanfällen, findet keine Ruhe</td></tr>
+  <tr><td><b>E</b></td><td>durch die letzten schweren Asthmaanfälle traumatisiert, hat Angst</td><td>Asthma bronchiale, vermehrte Hustenanfälle nachts → Unruhe im Tagesablauf</td></tr>
+  <tr><td><b>S</b></td><td>„(Potenzielles Pflegeproblem, daher keine Symptome)“</td><td>nächtliche Hustenanfälle seit den letzten schweren Anfällen häufiger</td></tr>
+  <tr><td><b>R</b></td><td>Compliance (Mitarbeit) des Kindes, Übungen im Bett · Eltern wollen unterstützen</td><td>gute Compliance des Kindes, versteht die Therapie · gute Compliance der Eltern</td></tr>
+  <tr><td><b>Ziel</b></td><td>frühzeitiges Erkennen des Risikos und Verhinderung einer Thrombose</td><td>kann die Nacht über gut schlafen und selbst seine Bedarfsmedikation verabreichen</td></tr>
+  <tr><td><b>Maßnahmen</b></td><td>Eltern und Stephan in Bewegungsübungen im Bett schulen (einmalig &amp; b. B.) · an Übungen erinnern (mind. 1x pro Schicht) · Flüssigkeit anbieten und protokollieren (3–5x pro Schicht) · Schulung Essverhalten · Beine über Herzhöhe lagern „in RS mit Ärzten“ (bei langen Ruhezeiten, nachts)</td><td>Inhalationsschulung · Eltern schulen, Symptome zu erkennen · kleine Lichtquelle nachts · Inhalatoren immer am selben Ort · Asthmatagebuch führen</td></tr>
+</table></div>
+<p><b>Gut zu sehen:</b> Fast jede Maßnahme hat in Klammern, <b>wann und wie oft</b> (W-Fragen). Und jede Maßnahme hat eine Begründung — z. B. „Inhalatoren stets am selben Ort“ → „schnelles und vereinfachtes Finden der Bedarfsmedikation“.</p>
+<div class="hinweis"><b>Drei Stellen, die du nicht ungeprüft übernehmen solltest:</b> „<b>Übergesicht</b>“ ist wohl ein Tippfehler für Übergewicht. „<b>einfachgesättigte Fettsäuren</b>“ und „<b>Empfehlung der DGA</b>“ stehen ohne Erklärung und ohne Quelle. Das Blatt hat keinen Verfasser. Frag deine Dozentin, bevor du diese Sätze benutzt. Außerdem haben beide Ziele <b>keinen Zeitpunkt</b> (SMART: T fehlt). <span class="her">Herleitung</span></div>
 
-  <p><b>Was es genau ist:</b> <i>Erhebung nach den AEDL</i>, Formular <b>2132</b> der
-    <b>DAN PRODUKTE Pflegedokumentation GmbH</b>, Siegen, <b>9. veränderte Auflage 2010</b>,
-    urheberrechtlich geschützt. <b>Ein Dokumentationsformular aus der Praxis</b>, kein
-    Unterrichtsblatt — und genau deshalb ist es interessant: So sieht die Informationssammlung
-    aus, wenn sie <b>nicht</b> auf einem Aufgabenblatt steht, sondern in einer Einrichtung
-    benutzt wird.</p>
+<h3>Frau Sommer — aktuelles Problem: Dehydratation</h3>
+<p>„Frau Sommer ist dehydriert“ (sie hat zu wenig Flüssigkeit im Körper). Das Blatt hat <b>nur Maßnahmen</b> — kein P/E/S/R, keine Ziele, keine Begründungen in eigener Spalte. Es ist ein gutes Beispiel für die <b>W-Fragen</b>:</p>
+<div class="scroll"><table>
+  <tr><th>Maßnahme (gekürzt)</th><th>Wer?</th><th>Wie oft / wann?</th></tr>
+  <tr><td>an ausreichende Trinkmenge erinnern (vorher festlegen) · Wasser in Griffweite, bevorzugte Getränke</td><td>PP</td><td>bei jedem Kontakt</td></tr>
+  <tr><td>Vollelektrolytlösung über einen PVK (Venenkatheter) geben</td><td>PFK</td><td>nach ärztlicher Anordnung und Bedarf</td></tr>
+  <tr><td>Trinkmengenbilanzierung anlegen und führen</td><td>PFK legt an, PP führt</td><td>bei jeder Gelegenheit</td></tr>
+  <tr><td>wasserreiche Kost anbieten (z. B. Wassermelone, Gurke)</td><td>PP</td><td>zu den Mahlzeiten</td></tr>
+  <tr><td>Haut beobachten: Turgor (Spannung der Haut), raue oder trockene Stellen</td><td>PP</td><td>bei Pflegesituationen</td></tr>
+  <tr><td>informatives Gespräch mit Patientin und Angehörigen; Angehörige achten auf das Trinken und bringen Lieblingsgetränke</td><td>PFK</td><td>—</td></tr>
+  <tr><td>auffordern, sich bei Veränderungen des Urins zu melden (Geruch, dunkle Farbe, trüb)</td><td>PFK</td><td>„b. j. G.“</td></tr>
+  <tr><td>Blutdruck (RR) und Puls messen, um Tachykardie (schneller Puls) und Hypotonie (niedriger Blutdruck) früh zu erkennen; dokumentieren, bei Auffälligkeiten wiederholen</td><td>PFK</td><td>1x/Schicht</td></tr>
+</table></div>
+<p>Bei der letzten Maßnahme steckt die <b>Begründung schon im Satz</b> („um … frühzeitig zu erkennen“). In deiner Planung gehört sie in die vierte Spalte. <span class="her">Herleitung</span></p>
+<p class="fr">🇫🇷 Stephan : un exemple d'un autre cours, avec un problème potentiel (thrombose, « pas de symptômes ») et un problème actuel (toux la nuit). Mme Sommer : seulement des mesures contre la déshydratation — un bon exercice pour vérifier qui, quoi, quand, combien de fois.</p>
+<p class="quelle">Pflegeplanungsbeispiele am Fallbeispiel Stephan, S. 1–3 · Aktuelles Pflegeproblem Dehydratation Frau Sommer, S. 1–2</p>
 
-  <div class="gefahr">
-    <span class="t">Der wichtigste Fund steht in der Kopfzeile — deine fünf Hilfeformen</span>
-    <p>Über jeder Seite läuft dieselbe Legende:</p>
-    <p><b>A</b> = Anleitung · <b>B</b> = Beaufsichtigung · <b>U</b> = Unterstützung ·
-      <b>TÜ</b> = teilweise Übernahme · <b>VÜ</b> = vollständige Übernahme —
-      <i>„(entsprechende Kürzel in Kästchen <b>Hilfe</b> eintragen)“</i>.</p>
-    <p><b>Das sind genau die <a href="#smart">fünf Hilfeformen</a> deines Foliensatzes</b>, nur
-      als Kürzel. Der Foliensatz sortiert sie <b>von wenig zu viel</b> (Beaufsichtigung →
-      Anleitung → Unterstützung → teilweise → vollständige Übernahme); das Formular sortiert sie
-      <b>alphabetisch nach dem Kürzel</b> (A, B, U, TÜ, VÜ). <b>Dieselben fünf, andere
-      Reihenfolge</b> — lass dich davon nicht verwirren, und behalte für die Klausur die
-      <b>aufsteigende</b> Reihenfolge deiner Dozentin.</p>
-    <p><b>Und das ist der eigentliche Gewinn:</b> Auf dem Foliensatz sind die fünf Hilfeformen
-      eine Liste. Hier siehst du, <b>wo sie im Alltag landen</b> — in einem Kästchen mit der
-      Überschrift <i>Hilfe</i>, hinter jeder einzelnen Tätigkeit. <b>Die Hilfeform ist kein
-      Begriff, sondern ein Eintrag.</b></p>
-  </div>
+<!-- ============ 12 FELDNER ============ -->
+<h2>12 · Frau Feldner kommt zur Aufnahme — ein Fall zum Üben <span class="stern">★★★</span></h2>
+<p>Zu diesem Fall gibt es <b>keine Aufgabenstellung</b> und <b>keine Lösung</b>. Er eignet sich aber sehr gut, um <b>Schritt 1 und 2</b> zu üben: Informationen sammeln und Probleme erkennen.</p>
+<h3>Die Situation</h3>
+<p>Frau Feldner ist <b>74</b>. Sie kommt mit ihrem Sohn in die <b>Seniorenresidenz Sonnenblume</b>. Sie ist zu Hause im Bad <b>gestürzt</b>, lag mit Schmerzen am Boden, bis der Sohn kam. Im Krankenhaus bekam sie eine <b>neue Hüfte</b>, danach 3 Wochen Reha. Allein kommt sie nicht mehr zurecht. Sie sagt: „Ich bin ein <b>ungeduldiger</b> Mensch, es fällt mir schwer, zu warten und <b>Hilfe anzunehmen</b>.“ Die Auszubildende Anne (3. Jahr) übernimmt die Bezugspflege.</p>
+<p><b>Diagnosen:</b> essentielle Hypertonie (Bluthochdruck) · rheumatische Arthritis · Gonarthrose links (Verschleiß im Knie). <b>Medikamente:</b> Ramipril, „Forosemid“, Prednisolon, Ibuprofen.</p>
+<div class="hinweis"><b>So steht es im Text:</b> „Forosemid“. Vermutlich ist Furosemid gemeint — prüfe das. <span class="her">Herleitung</span> Was diese Medikamente für die Pflegeplanung bedeuten (z. B. für das Sturzrisiko), steht in deinen Dateien <b>nicht</b>. Der gelbe Kasten sagt nur: Diagnosen und medikamentöse Therapie <b>berücksichtigen</b>.</div>
 
-  <div class="merk">
-    <span class="t">Das Raster, das hinter fast jeder Tätigkeit steht</span>
-    <p>Vier Spalten, immer dieselben: <b>selbstständig</b> · <b>bedingt selbstständig</b> ·
-      <b>teilweise unselbstständig</b> · <b>unselbstständig</b> — dazu eine Spalte
-      <b>Bemerkungen</b>.</p>
-    <p>Angewandt wird es auf einzelne Tätigkeiten, zum Beispiel bei <b>2. Sich bewegen
-      können</b> auf <i>Gehen · Treppen gehen · Stehen</i> und <i>Aufsuchen/Verlassen der
-      Wohnung · Lagern bei Bettlägerigkeit · Aufsuchen/Verlassen des Bettes</i>; bei
-      <b>4. Sich pflegen können</b> auf <i>Bad/Dusche · Waschen/Teilwaschen · Augenpflege ·
-      Ohrenpflege · Intimpflege</i> und <i>Mundpflege · Zahnpflege · Rasieren/Kämmen ·
-      Nagelpflege</i>.</p>
-    <p><b>Das ist die Informationssammlung — Schritt 1 des Pflegeprozesses</b>, in Tabellenform.
-      Nicht „Frau Mai ist bewegungseingeschränkt“, sondern <b>pro Tätigkeit ein Kreuz</b>. Genau
-      daraus wird nachher das <b>S</b> in P-E-S-R.</p>
-  </div>
+<h3>Die Beobachtungen — nach ABEDL sortiert <span class="her">Herleitung</span></h3>
+<div class="scroll"><table>
+  <tr><th>ABEDL</th><th>Was Anne beobachtet oder hört</th></tr>
+  <tr class="rot"><td>2 · Sich bewegen</td><td>greift nach Annes Hand und <b>greift daneben</b> · sitzt <b>schräg</b> auf der Bettkante, Oberkörper nach links, stützt sich ab · Beine <b>baumeln</b> → aus dem Gleichgewicht · will nicht gehen: „Fahren Sie mich mit dem Rollstuhl. Ich habe keine Kraft.“ · Transfer schwierig, <b>ängstlich und verkrampft</b> · später am Rollator: <b>krallt sich fest</b>, <b>kleine, fast schlurfende Schritte</b>, Knie nicht durchgedrückt, Oberkörper <b>stark nach vorne gebeugt</b></td></tr>
+  <tr><td>1 · Kommunizieren (Sehen)</td><td>Sehkraft lässt nach, übersieht die <b>Teppichkante</b> · hat eine <b>Brille</b>, aber „völlig vergessen“</td></tr>
+  <tr><td>11 · Für Sicherheit sorgen</td><td>großer <b>Teppich</b> im Zimmer · „<b>Der Teppich bleibt.</b> Der schützt mich, wenn ich nochmal falle.“</td></tr>
+  <tr><td>8 · Ruhen und Schlafen</td><td>„Ich habe nicht gut geschlafen.“</td></tr>
+  <tr class="gruen"><td>13 · Existenzielle Erfahrungen</td><td><b>Angst</b> vor dem nächsten Sturz: „Das wäre mein Ende. Dann werde ich bestimmt nur noch im Bett liegen.“ · vermisst ihre Wohnung und den Garten · wirkt bedrückt</td></tr>
+  <tr><td>12 · Soziale Bereiche</td><td>Sohn ist zuverlässig, richtet das Zimmer ein, hilft beim Überzeugen · Sohn fühlt sich schuldig</td></tr>
+  <tr><td>4 · Sich pflegen</td><td>im Bad <b>recht selbständig</b>, äußert ihren Hilfebedarf → <b>Ressource</b></td></tr>
+</table></div>
+<p><b>Spannend:</b> Der Erhebungsbogen (Kap. 13) hat unter AEDL 2 die Gangarten „schlurfend“, „kleinschrittig“, „unsicher“ zum Ankreuzen und als Ergänzung die <b>Sturzrisikoerkennung</b>. Frau Feldners Gang passt genau in diese Kästchen. <span class="her">Herleitung</span></p>
+<div class="merke"><b>Merke:</b> Der Satz „Der Teppich bleibt“ ist eine Grenze: Frau Feldner entscheidet selbst. Deine Planung muss mit ihr arbeiten, nicht gegen sie. <span class="her">Herleitung</span> — wie du damit umgehst, sagen deine Dateien nicht.</div>
+<p class="fr">🇫🇷 Mme Feldner (74 ans) est tombée chez elle, a une nouvelle hanche et entre en résidence. Elle a peur de retomber, marche à petits pas traînants, penchée en avant, oublie ses lunettes et refuse d'enlever le tapis. Aucune consigne n'est donnée : c'est un cas pour s'entraîner à trouver les problèmes.</p>
+<p class="quelle">Frau Feldner kommt zur Aufnahme, S. 1–2 · Erhebung ABEDL.pdf, S. 1 (AEDL 2)</p>
 
-  <h4>Die dreizehn AEDL — mit den Pflegediagnosen, die das Formular selbst vordruckt</h4>
-  <p>Unter jedem Abschnitt steht eine Zeile <b>„Pflegediagnosen:“</b> mit ankreuzbaren
-    Diagnosen. <b>Das ist das Bemerkenswerte an diesem Bogen:</b> Er führt nicht nur die
-    Beobachtung, er schlägt die <b>fertig formulierte Diagnose</b> gleich mit vor.</p>
+<!-- ============ 13 VORLAGEN ============ -->
+<h2>13 · Deine Vorlagen und der Erhebungsbogen <span class="stern">★★</span></h2>
+<div class="scroll"><table>
+  <tr><th>Datei</th><th>Was drauf ist</th><th>Wofür</th></tr>
+  <tr><td><b>aktuelle Pflegeprobleme — Leer-Vorlage</b></td><td>Kopf „Aktuelle Probleme“ · Spalten: P/-ausmaß/-ursachen/Etiologie (E), Symptome (S), Ressourcen (R) · Pflegeziele · Pflegemaßnahmen · Begründungen</td><td>Planung eines aktuellen Problems</td></tr>
+  <tr><td><b>potentielle Pflegeprobleme — Leer-Vorlage</b></td><td>Kopf „Potentielle Probleme“ · P · E mit pflegerelevanten Informationen, individuellen Risikofaktoren, Assessment/Gefährdungsgrad · R · keine Symptome</td><td>Planung eines potentiellen Problems</td></tr>
+  <tr><td><b>PP Vorlage</b></td><td>„Verschriftung eines gedanklichen Problemlösungsprozesses im PESR-System“ · Aktuelle Probleme · PE(S)R Pflegeproblem · Pflegeziele · Pflegemaßnahmen · Begründungen</td><td>eine kürzere Vorlage für aktuelle Probleme</td></tr>
+  <tr><td><b>Pflegeplanung blanco</b></td><td>„Pflegeplanung Herr …“ und „Pflegeplanung Frau …“ · Pflegeproblem · Pflegeziel · Pflegemaßnahme · Begründung der Pflegemaßnahme</td><td>die Vorlage für den Arbeitsauftrag zu Frau Mai</td></tr>
+  <tr><td><b>OMW_Vorlage</b> (PowerPoint)</td><td>„One Minute Wonder“ · TITEL · (TEXT) · Namen</td><td>Wofür sie gedacht ist, erklären deine Dateien nicht.</td></tr>
+  <tr><td><b>Erhebung ABEDL</b> (2 Seiten, Scan)</td><td>Formular „Erhebung nach den AEDL“ Nr. 2132, DAN Produkte Pflegedokumentation, Siegen, 9. veränderte Auflage 2010 · <b>leer</b> (keine Kreuze, keine Patientendaten)</td><td>Schritt 1: Informationen sammeln</td></tr>
+</table></div>
 
-  <div class="scroll">
-    <table>
-      <thead><tr><th>AEDL</th><th>Vorgedruckte Pflegediagnosen im Formular</th></tr></thead>
-      <tbody>
-        <tr><td class="k">1 · Kommunizieren können</td>
-          <td>Beeinträchtigte verbale Kommunikation · beeinträchtigte Hörfähigkeit ·
-            beeinträchtigtes Sehvermögen · beeinträchtigtes Tast- und Berührungsempfinden ·
-            <b>Wahrnehmungsstörung</b> (visuell · auditiv · kinästhetisch · taktil ·
-            <b>Neglect</b>) · Behandlungsempfehlung wird <b>ungenügend gehandhabt</b> bzw.
-            <b>bewusst abgelehnt</b></td></tr>
-        <tr><td class="k">2 · Sich bewegen können</td>
-          <td>Beeinträchtigte Gehfähigkeit · beeinträchtigte Mobilität (körperlich · im Bett ·
-            im Rollstuhl) · <b>Gefahr der Aktivitätsintoleranz</b> · beeinträchtigte
-            Transferfähigkeit · Dysreflexie<br>
-            <i>ergänzend:</i> Dekubitusrisikoerkennung · Wunddokumentation · Bewegungsplan ·
-            <b>Sturzrisikoerkennung</b> · Kontrakturrisikoerfassung</td></tr>
-        <tr><td class="k">3 · Vitale Funktionen aufrechterhalten</td>
-          <td>Veränderte Körpertemperatur (erniedrigt · erhöht · schwankend) ·
-            Durchblutungsstörung (renal · zerebral · kardiopulmonal · gastrointestinal ·
-            peripher) · verminderte Herzleistung<br>
-            <i>ergänzend:</i> Vitalwerte · Atemskala</td></tr>
-        <tr><td class="k">4 · Sich pflegen können</td>
-          <td>Selbstversorgungsdefizit Körperpflege · veränderte Mundschleimhaut ·
-            Gefahr einer Hautschädigung / Hautschädigung</td></tr>
-        <tr><td class="k">5 · Essen und Trinken können</td>
-          <td>Flüssigkeitsüberschuss · <b>Dehydratation</b> (Gefahr / aktiv) ·
-            Stoffwechselstörung · Gefahr eines Flüssigkeitsungleichgewichts · Überernährung und
-            Gefahr der Überernährung · Unterernährung und Gefahr der Unterernährung ·
-            <b>Mangelernährung</b> · Schluckstörung · Selbstversorgungsdefizit Essen ·
-            Übelkeit<br>
-            <i>ergänzend:</i> orale Ernährung · enterale Ernährung · Einfuhrprotokoll ·
-            <b>Screening/Assessment Mangelernährung</b></td></tr>
-        <tr><td class="k">6 · Ausscheiden können</td>
-          <td><b>Obstipation</b> (objektiv · subjektiv · gefährdet) · <b>Diarrhö</b> ·
-            <b>Stuhlinkontinenz</b> · Selbstversorgungsdefizit Toilettenbenutzung ·
-            veränderte Urinausscheidung · <b>Harnverhalt</b> (akut · chronisch) ·
-            <b>Inkontinenz</b>: Stress · Reflex · Drang · funktionell · total<br>
-            <i>ergänzend:</i> Ein-/Ausfuhrprotokoll · Inkontinenzversorgung ·
-            <b>Kontinenztraining</b></td></tr>
-        <tr><td class="k">7 · Sich kleiden können</td>
-          <td>Selbstversorgungsdefizit: sich kleiden</td></tr>
-        <tr><td class="k">8 · Ruhen und schlafen können</td>
-          <td>Schlafstörung — davor ankreuzbar: Einschlafstörung · Durchschlafstörung ·
-            kombinierte Ein- und Durchschlafstörung · Tiefschlafstörung, dazu
-            <b>Gabe von Schlafmittel ja/nein</b> und eine Zeile
-            <b>Einschlafposition</b></td></tr>
-        <tr><td class="k">9 · Sich beschäftigen können</td>
-          <td>Eingeschränkte Beschäftigungsfähigkeit — dazu <b>Therapien</b>: Gym. · KG ·
-            Phys. · Ergo · Musik · Kunst<br>
-            <i>ergänzend:</i> Angebotsnachweis · Therapieblatt</td></tr>
-        <tr><td class="k">10 · Sich als Mann / Frau fühlen können</td>
-          <td>Verändertes Rollenverhalten — dazu die Frage, ob pflegerische Verrichtungen im
-            Intimbereich <b>von gleichgeschlechtlicher Pflegeperson</b>, <b>egal</b> oder
-            <b>selbstständig</b> erfolgen</td></tr>
-        <tr><td class="k">11 · Für Sicherheit sorgen können</td>
-          <td>Infektionsgefahr · Gefahr einer Körperschädigung · Erstickungsgefahr ·
-            Verletzungsgefahr · Aspirationsgefahr · allergische Reaktion auf … ·
-            veränderter Selbstschutz · verändertes Gesundheitsverhalten ·
-            <b>Gefahr der Gewalttätigkeit: gegen sich selbst / gegen andere</b><br>
-            <i>ergänzend:</i> <b>Freiheitsentziehende Maßnahmen</b> · Sturzrisikoerkennung ·
-            Assessment Demenziell</td></tr>
-        <tr><td class="k">12 · Soziale Bereiche des Lebens sichern</td>
-          <td>Soziale Isolation · Vereinsamungsgefahr · beeinträchtigte Anpassung ·
-            <b>Selbstwertgefühl</b>: gestört · chronisch gering · situationsbedingt gering</td></tr>
-        <tr><td class="k">13 · Mit existenziellen Erfahrungen umgehen</td>
-          <td>Keine Diagnoseliste, sondern <b>Schmerz</b>: Schmerzempfindung (stark · sehr
-            stark · verhalten) und <b>Schmerzäußerung</b> (Verdrängung · versteckte Mitteilung ·
-            weinend · neutral · genau beschreibend)<br>
-            <i>ergänzend:</i> Schmerzerfassung · Schmerzprotokoll · <b>„Erhebung erfolgt in der
-            Biografie“</b></td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Wie diese Tabelle gelesen wurde — und was das für dich heißt</span>
-    <p>Sie ist <b>von den Seitenbildern abgeschrieben</b>, nicht aus einer Textebene kopiert.
-      Die Überschriften und die längeren Begriffe sind eindeutig; bei einzelnen kurzen
-      Ankreuzwörtern kann ich mich verlesen haben. <b>Benutz die Liste als Übersicht, nicht als
-      Zitat</b> — und wenn du eine Diagnose in einer Klausur wörtlich brauchst, schau im
-      Formular selbst nach.</p>
-  </div>
-
-  <div class="merk">
-    <span class="t">Warum dieses Leerformular mehr wert ist als ein ausgefülltes</span>
-    <p><b>1 · Es liefert dir die Sprache.</b> „Gefahr der Aktivitätsintoleranz“,
-      „beeinträchtigte Transferfähigkeit“, „veränderter Selbstschutz“ — das sind
-      <b>fertige Problemformulierungen</b> in genau dem Ton, den eine Pflegeplanung verlangt.
-      Wenn dir beim <b>P</b> von P-E-S-R das Wort fehlt, steht es hier.</p>
-    <p><b>2 · Es zeigt die Arbeitsteilung.</b> Die <b>Beobachtung</b> steht im Raster
-      (selbstständig … unselbstständig), die <b>Diagnose</b> in der Zeile darunter. Erst
-      beobachten, dann benennen — <b>Schritt 1 vor Schritt 2</b>, so wie der Pflegeprozess es
-      vorschreibt.</p>
-    <p><b>3 · Es beantwortet eine Frage, die diese Seite offen hatte.</b> Auf der Seite steht,
-      <b>ABEDL 1 und 2 tragen ein Sternchen</b>, weil sie „häufig prioritär verursachend“ sind.
-      Im Formular sieht man es: Unter <b>2 · Sich bewegen können</b> stehen <b>fünf ergänzende
-      Erfassungen</b> — Dekubitus, Wunde, Bewegungsplan, Sturz, Kontraktur. Unter keinem anderen
-      AEDL stehen so viele. <b>Das Formular gewichtet dieselben beiden Bereiche wie deine
-      Dozentin</b>, ohne ein Sternchen zu brauchen.</p>
-    <p><b>4 · Zwei Brücken zu deinen anderen Seiten:</b> <b>Freiheitsentziehende Maßnahmen</b>
-      stehen hier unter <i>Für Sicherheit sorgen</i> — auf deiner Seite <b>„Heraussetzen“ ist
-      keine aktivierende Pflege</b> stehen sie im GODO-Bogen als <b>Sturzrisiko</b>. Und
-      <b>Screening/Assessment Mangelernährung</b> unter <i>Essen und Trinken</i> ist genau der
-      PEMU-Bogen deiner Seite <b>Mangelernährung</b>. <b>Dasselbe Instrument, ein Kästchen im
-      Alltagsformular.</b></p>
-    <p class="fr">Un formulaire vierge vaut parfois plus qu'un rempli : il te donne les
-      <b>mots</b> — des formulations de problèmes toutes faites, dans le ton exact qu'attend une
-      planification.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Und was das Formular <i>nicht</i> ist</span>
-    <p>Es ist <b>kein Material deiner Dozentin</b> und <b>keine Norm</b> — es ist das Produkt
-      eines <b>Verlags für Pflegedokumentation</b>, Stand <b>2010</b>. Andere Einrichtungen
-      benutzen andere Bögen mit anderen Diagnosenlisten. <b>Für die Klausur gilt weiter der
-      Foliensatz CE 02 / UE 2</b> und das Schema <b>P-E-S-R</b>; dieser Bogen ist
-      <b>Anschauungsmaterial</b>, kein Prüfungsstoff.</p>
-  </div>
-</section>
-
-<section id="kasten">
-  <h2>Der gelbe Kasten — eine offene Frage von deiner Seite ist damit beantwortet</h2>
-
-  <div class="merk">
-    <span class="t">Was bisher unsicher war</span>
-    <p>Auf deiner Seite <b>Pflegeplanung in fünf Tagen</b> steht zur <b>Begründungsspalte</b>
-      ausdrücklich, dass die vier genannten Begründungsquellen <b>abgeleitet</b> sind aus dem
-      gelb markierten Kasten <b>„Bitte zusätzlich berücksichtigen!“</b> — und dass das
-      <b>bei der Dozentin zu prüfen</b> sei, weil das Blatt selbst keine Anleitung dazu gibt.</p>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Jetzt liegt der Kasten vor — und er nennt drei Punkte</span>
-    <p>Im Foliensatz <b>CE 02 / UE 2</b> steht unter der ABEDL-Übersicht wörtlich:</p>
-    <p><b>„Bitte zusätzlich berücksichtigen!“</b><br>
-      — <b>Prophylaxen-Expertenstandards</b><br>
-      — <b>Diagnosen</b><br>
-      — <b>Medikamentöse Therapie</b></p>
-    <p><b>Das bestätigt deine Seite im Kern und schärft sie in einem Punkt:</b> Im Kasten stehen
-      <b>drei</b> Zeilen, nicht vier — und <b>„Prophylaxen“ und „Expertenstandards“ stehen in
-      einer Zeile zusammen</b>, durch einen Bindestrich verbunden.</p>
-    <p><b>Ob das eine Quelle ist oder zwei, sagt der Kasten nicht.</b> Ich löse das nicht auf —
-      aber jetzt weißt du wenigstens, <b>worauf sich die Frage genau bezieht</b>, wenn du sie
-      deiner Dozentin stellst.</p>
-    <p class="fr">Le cadre jaune existe et contient <b>trois</b> lignes, pas quatre. La question
-      à poser est donc précise : « Prophylaxen-Expertenstandards », est-ce une source ou deux ?</p>
-  </div>
-
-  <p>Als Quelle des Foliensatzes ist angegeben: <b>I care, Pflegeprozess und Pflegeplanung,
-    Kapitel 10, S. 210 ff.</b></p>
-</section>
-
-<section id="smart">
-  <h2>SMART und die W-Fragen — so, wie dein Kurs sie definiert</h2>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Buchstabe</th><th>Wofür er steht</th><th>Was dein Foliensatz dazu
-        sagt</th></tr></thead>
-      <tbody>
-        <tr><td class="k">S</td><td>spezifisch</td>
-          <td><b>konkret, unmissverständlich</b> — worum geht es, <b>was</b>?</td></tr>
-        <tr><td class="k">M</td><td>messbar</td>
-          <td>so formulieren, dass <b>später erkannt werden kann, ob das Ziel erreicht wurde
-            oder nicht</b></td></tr>
-        <tr><td class="k">A</td><td><b>akzeptabel</b></td>
-          <td><b>positiv und aktiv beschreiben</b>, <b>aktive Verben verwenden</b></td></tr>
-        <tr><td class="k">R</td><td>realistisch</td><td><b>machbar</b></td></tr>
-        <tr><td class="k">T</td><td>terminiert</td><td><b>Zeitpunkt festlegen</b></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p>Dazu die Definition des Ziels selbst: ein <b>Verhalten, Zustand, Wissen, Können oder
-    Wollen</b>, das <b>nach einer bestimmten Zeit erreicht werden soll</b> — unterschieden in
-    <b>Nah- und Fernziele</b>.</p>
-
-  <div class="warnung">
-    <span class="t">Achtung: zwei verschiedene R</span>
-    <p>Im selben Foliensatz steht <b>R</b> zweimal: einmal in <b>SMART = realistisch
-      (machbar)</b> und einmal in <b>PE(S)R = Ressource</b> — dort erklärt als
-      <b>„was kann der Klient noch / inklusive Hilfsmitteln“</b>.</p>
-    <p><b>Verwechsle sie nicht.</b> Das eine prüft das Ziel, das andere beschreibt den
-      Menschen.</p>
-  </div>
-
-  <h3>Die W-Fragen für die Maßnahmen</h3>
-  <div class="scroll">
-    <table>
-      <thead><tr><th>Frage</th><th>Was hineingehört</th></tr></thead>
-      <tbody>
-        <tr><td class="k">WER</td><td><b>1 bzw. 2</b> — <b>PFK</b> (Pflegefachkraft),
-          <b>PFA</b> (Pflegefachassistent) oder <b>PP</b> (Pflegeperson)</td></tr>
-        <tr><td class="k">WAS</td><td>Art der Maßnahme</td></tr>
-        <tr><td class="k">WIE UND WOMIT</td>
-          <td>Inhalt <b>und die Hilfeform</b> — siehe die fünf Stufen unten</td></tr>
-        <tr><td class="k">WANN</td><td>Umfang</td></tr>
-        <tr><td class="k">WIE OFT</td><td>Umfang</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <h3>Die fünf Hilfeformen — von wenig zu viel</h3>
-  <div class="stufen">
-    <div class="stufe"><span class="nr">1</span><div><h4>Beaufsichtigung</h4></div></div>
-    <div class="stufe"><span class="nr">2</span><div><h4>Anleitung</h4></div></div>
-    <div class="stufe"><span class="nr n2">3</span><div><h4>Unterstützung</h4></div></div>
-    <div class="stufe"><span class="nr n2">4</span><div><h4>Teilweise Übernahme</h4></div></div>
-    <div class="stufe"><span class="nr n2">5</span><div><h4>Vollständige Übernahme</h4></div></div>
-  </div>
-  <p><b>Die Reihenfolge ist die Botschaft:</b> Man beginnt bei der geringsten Hilfeform und geht
-    nur so weit wie nötig. Das ist dieselbe Denkfigur wie <b>„aktivierende Pflege“</b> auf
-    deiner Reha-Seite und wie <b>„ressourcenerhaltend formulieren“</b> im Phasenmodell.</p>
-</section>
-
-<section id="mai">
-  <h2>Frau Mai — ein Fall, zwei Planungen, und der Unterschied ist sichtbar</h2>
-
-  <div class="merk">
-    <span class="t">Der Fall, gekürzt</span>
-    <p><b>Frau Mai, 78 Jahre</b>, vor <b>einem Monat Hüft-TEP</b>, zurück in ihrer Wohnung im
-      <b>2. Stock</b> eines Mehrfamilienhauses. Trotz der Operation <b>erhebliche
-      Bewegungseinschränkungen und Schmerzen</b>. Bei einer Routineuntersuchung fallen
-      <b>ausgeprägte Varizen an den Unterschenkeln</b> auf — <b>ein möglicher Hinweis auf eine
-      venöse Insuffizienz</b>.</p>
-    <p>Ihr eigener Satz: <b>„Ach wissen Sie, ich sitze sehr viel auf dem Sofa. Es ist
-      anstrengend, ein paar Schritte am Tag zu machen, und so ist es bequemer für mich.“</b></p>
-    <p>Sie nutzt einen <b>Rollator</b>, wirkt aber <b>unsicher beim Laufen</b>. Sie bekommt die
-      <b>Heparin-Spritze s. c.</b> und <b>Kompressionsstrümpfe</b>. Positiv: Sie ist
-      <b>kognitiv in der Lage, Wünsche und Schmerzen klar zu äußern</b>, und hat in der Reha
-      <b>viel gelernt</b> — <b>„jedoch fehlt ihr der Mut, die Bewegungsübungen eigenständig
-      durchzuführen“</b>.</p>
-  </div>
-
-  <p><b>Der Arbeitsauftrag:</b> Die Planung zum <b>potentiellen</b> Problem
-    <i>Thrombosegefahr</i> wird <b>gemeinsam im Kurs</b> erarbeitet — die zum <b>aktuellen</b>
-    Problem <i>Bewegungseinschränkung</i> <b>jeder in Einzelarbeit</b>. <b>Beide liegen
-    ausgearbeitet im Ordner.</b></p>
-
-  <div class="scroll">
-    <table>
-      <thead><tr><th></th><th>Aktuell: Bewegungseinschränkung</th>
-        <th>Potentiell: Thrombosegefahr</th></tr></thead>
-      <tbody>
-        <tr><td class="k">P</td><td>Bewegungseinschränkung</td><td>Thrombosegefahr</td></tr>
-        <tr><td class="k">E</td>
-          <td>Alter · <b>Angst/Unsicherheit beim Gehen</b> · Hüft-OP/Hüft-TEP · Schmerzen ·
-            geringe Aktivität im Alter</td>
-          <td>Höheres Lebensalter · <b>wenig Bewegung, Vermeidung von Bewegung,
-            Bewegungseinschränkungen</b> · Schmerzen durch Hüft-TEP · <b>venöse
-            Insuffizienz</b> · <b>ausgeprägte Varizen</b></td></tr>
-        <tr><td class="k">S</td>
-          <td><b>Äußert große Anstrengung beim Gehen</b> · <b>unsicheres Gangbild</b> ·
-            <b>sitzt gerne auf dem Sofa</b> · Schmerzen</td>
-          <td><b>— keine —</b></td></tr>
-        <tr><td class="k">R</td>
-          <td>Kann mit Rollator gehen · Kompressionsstrümpfe · kognitiv in der Lage, Wünsche zu
-            äußern und mitzuarbeiten · kennt Bewegungsübungen aus der Reha · <b>ist lernfähig
-            und mitarbeitend</b></td>
-          <td>Nutzung von Rollator · <b>Bereitschaft, Hilfe anzunehmen</b> · kognitiv in der
-            Lage, Wünsche und Schmerzen zu äußern · kennt Bewegungsübungen aus der Reha ·
-            Fähigkeit zur Kommunikation · Kompressionsstrümpfe</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="gefahr">
-    <span class="t">Schau dir an, wohin die Symptome gewandert sind</span>
-    <p>In der <b>aktuellen</b> Planung stehen unter <b>S</b>: <i>äußert große Anstrengung beim
-      Gehen, unsicheres Gangbild, sitzt gerne auf dem Sofa</i>.</p>
-    <p>In der <b>potentiellen</b> Planung gibt es kein S — und dieselben Beobachtungen stehen
-      dort unter <b>E</b>: <i>wenig Bewegung, Vermeidung von Bewegung,
-      Bewegungseinschränkungen</i>.</p>
-    <p><b>Das ist die Regel in Aktion.</b> Was beim aktuellen Problem ein <b>Symptom</b> ist,
-      wird beim potentiellen Problem zum <b>Risikofaktor</b> — also zur <b>Ursache</b>. Dieselbe
-      Beobachtung, eine andere Spalte, weil sich die Frage geändert hat: <i>„Wie zeigt sich das
-      Problem?“</i> gegen <i>„Warum droht es?“</i></p>
-    <p class="fr">La même observation change de colonne : <b>symptôme</b> du problème actuel,
-      <b>facteur de risque</b> du problème potentiel.</p>
-  </div>
-
-  <h3>Was in diesen Planungen gut gemacht ist — zum Abschauen</h3>
-  <div class="karten">
-    <div class="karte"><h4>Ziele mit Zeit und Zahl</h4>
-      <p><b>„innerhalb von zwei Monaten sicher im Gehen mit dem Rollator“</b> ·
-        <b>„reduzierte/keine Schmerzen beim Gehen innerhalb von 2 Wochen“</b> ·
-        <b>„2× täglich selbstständig innerhalb der nächsten 3 Wochen“</b> · <b>„ab sofort“</b>.
-        Das ist das <b>T</b> aus SMART — in jedem einzelnen Ziel.</p></div>
-    <div class="karte"><h4>Maßnahmen mit WER, WIE OFT und WOMIT</h4>
-      <p><b>„PK fragt 1× täglich nach Schmerzen mittels NRS, schätzt es ein, dokumentiert“</b> ·
-        <b>„PK überprüft täglich die Wohnung auf Stolperfallen“</b> ·
-        <b>„Koordination durch PK von Physiotherapieterminen 1×/Woche“</b>.</p></div>
-    <div class="karte"><h4>Begründungen, die eine Kette enthalten</h4>
-      <p><b>„Ausreichende Flüssigkeitszufuhr regt den Blutfluss an, Blut bleibt
-        dünnflüssig“</b> · <b>„Die Muskel-Venen-Pumpe wird aktiviert“</b> ·
-        <b>„Schmerzreduktion → Bewegungsbereitschaft wird gefördert“</b>.</p></div>
-  </div>
-
-  <div class="merk">
-    <span class="t">Eine Formulierung, die du dir merken solltest</span>
-    <p>Bei der Schmerzmessung steht als Begründung: <b>„Ab einem Wert von 5 muss reagiert
-      werden, Schmerzmittel können jedoch auch schon bei geringerer Angabe verabreicht
-      werden.“</b></p>
-    <p><b>Das ist eine saubere Begründung</b>, weil sie die Grenze nennt <b>und</b> den
-      Spielraum darunter — <b>„muss“ gegen „kann“</b>. Genau so unterscheidet man in einer
-      Klausur eine <b>Anordnung</b> von einer <b>Möglichkeit</b>.</p>
-    <p class="fr">À partir de 5, on <b>doit</b> réagir ; en dessous, on <b>peut</b>. Cette
-      distinction vaut des points.</p>
-  </div>
-</section>
-
-<section id="faelle">
-  <h2>Drei weitere Fälle — und was mit ihnen ist</h2>
-
-  <h3>Frau Feldner kommt zur Aufnahme</h3>
-  <p><b>74 Jahre</b>, kommt mit ihrem Sohn in die <b>Seniorenresidenz Sonnenblume</b>. Die
-    Auszubildende <b>Anne</b> im 3. Ausbildungsjahr übernimmt die <b>Bezugspflege</b>.</p>
-  <p>Vorgeschichte: <b>Sturz im Badezimmer</b>, starke Schmerzen, sie konnte sich nicht bewegen
-    und musste <b>auf ihren Sohn warten</b>. <b>Neue Hüfte</b>, <b>3 Wochen Reha</b>, dann die
-    Einsicht: <b>„Ich musste einsehen, dass ich alleine nicht mehr zurechtkomme.“</b> Über sich
-    selbst sagt sie: <b>„Ich muss Sie warnen, ich bin ein ungeduldiger Mensch und es fällt mir
-    schwer zu warten und Hilfe anzunehmen.“</b></p>
-  <p><b>Diagnosen:</b> essentielle Hypertonie · rheumatische Arthritis · <b>Gonarthrose
-    links</b>. <b>Medikamente:</b> Ramipril, <b>Forosemid</b>, Prednisolon, Ibuprofen.</p>
-
-  <div class="gefahr">
-    <span class="t">Was dieser Fall an Beobachtungen liefert — sammle sie</span>
-    <p><b>Beim Sitzen an der Bettkante:</b> Sie <b>greift nach Annes Hand und greift
-      daneben</b> · sie <b>sitzt schräg</b>, der Oberkörper <b>neigt nach links</b>, sie
-      <b>stützt sich mit der linken Hand ab</b> · die <b>Beine baumeln in der Luft</b>, was sie
-      <b>aus dem Gleichgewicht bringt</b>.</p>
-    <p><b>Beim Gehen zwei Wochen später:</b> Sie <b>krallt sich am Rollator regelrecht
-      fest</b> · <b>kleine, fast schlürfende Schritte</b> · <b>Knie nicht durchgedrückt</b> ·
-      <b>Oberkörper stark nach vorne gebeugt</b> · sie <b>übersieht die Teppichkante</b> —
-      und hat <b>ihre Brille vergessen</b>.</p>
-    <p><b>Und der Satz, der die ganze Beratungsaufgabe enthält:</b> <b>„Der Teppich bleibt. Der
-      schützt mich, wenn ich nochmal falle. Hätte ich den im Badezimmer gehabt, hätte ich mir
-      nichts gebrochen.“</b></p>
-    <p class="fr">Le tapis est vécu comme une <b>protection</b>, pas comme un danger. C'est
-      là qu'est tout le travail de conseil.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Zu diesem Fall liegt keine Aufgabenstellung im Ordner</span>
-    <p>Der Text endet nach Zeile 65 ohne Fragen. <b>Ich erfinde keine.</b> Wenn du die
-      Aufgabenstellung hast, schick sie mir.</p>
-    <p><b>Zwei Dinge, die ich trotzdem anmerke:</b></p>
-    <p><b>1.</b> Im Text steht <b>„Forosemid“</b>. Der Wirkstoff heißt <b>Furosemid</b> — ein
-      Tippfehler im Fallbeispiel.</p>
-    <p><b>2.</b> Die <b>Medikamentenliste gehört zur Sturzbeurteilung dazu</b>, und
-      <b>kein Dokument in deinem Ordner wertet sie aus</b>. Ich schreibe dir hier keine
-      Wirkungen und Wechselwirkungen aus dem Gedächtnis hin — aber merk dir die Frage:
-      <b>Welche dieser vier Medikamente können zu einem Sturz beitragen, und warum?</b> Das ist
-      genau die Art Frage, die in einer <b>Beurteilen</b>-Aufgabe gestellt wird. Schlag es in
-      deinem Medikamentenmaterial nach.</p>
-  </div>
-
-  <h3>Stephan — eine Pflegeplanung, die schon ausgearbeitet ist</h3>
-  <p>Aus <b>CE 10 / UE 5</b>, zum Asthma bronchiale (das Thema deiner Asthma-Seite). Zwei
-    vollständige Planungen: eine zur <b>Thromboseprophylaxe (ABEDL 2)</b> und eine
-    <b>zum Asthma (ABEDL 8 — Ruhen und Schlafen)</b>.</p>
-  <div class="merk">
-    <span class="t">Was daran besonders ist</span>
-    <p>Die Maßnahmen tragen <b>durchgehend eine Häufigkeit in Klammern</b>: <b>„(einmalig &amp;
-      b.B.)“</b> · <b>„(Mind. 1× pro Schicht)“</b> · <b>„(3–5× pro Schicht)“</b> ·
-      <b>„(1× im ND und b.B. in der Nacht)“</b>. <b>Genau das verlangt die W-Frage
-      „WIE OFT“.</b></p>
-    <p>Und zwei Begründungen, die eine Fachkette enthalten: <b>„Durch eine höhere
-      Flüssigkeitszufuhr wird der Virchow'schen Trias entgegengewirkt“</b> und
-      <b>„Leichterer Blutrückfluss des venösen Blutes“</b>.</p>
-    <p>Eine Maßnahme ist sehr konkret und deshalb gut: <b>„Sicherstellen, dass Stephan eine
-      kleine Lichtquelle zur Nacht im Zimmer hat, um seine Inhalatoren zu sehen“</b> und
-      <b>„Inhalatoren stets am selben Ort im Zimmer lagern“</b>.</p>
-  </div>
-
-  <div class="warnung">
-    <span class="t">Drei Stellen in diesem Dokument, die ich nicht übernehmen würde</span>
-    <p><b>1.</b> <b>„einfachgesättigte Fettsäuren“</b> — dieses Wort gibt es nicht. Es gibt
-      <b>gesättigte</b>, <b>einfach ungesättigte</b> und <b>mehrfach ungesättigte</b>
-      Fettsäuren. Gemeint ist vermutlich <b>einfach ungesättigt</b>.</p>
-    <p><b>2.</b> <b>„So kann Übergesicht vermieden werden“</b> — vermutlich
-      <b>Übergewicht</b>.</p>
-    <p><b>3.</b> <b>„Empfehlung der DGA“</b> — welche Organisation gemeint ist, steht nicht da.
-      <b>Ich rate nicht.</b> Eine Empfehlung ohne nachprüfbare Quelle gehört nicht in eine
-      Begründungsspalte.</p>
-    <p>Das Dokument nennt <b>keinen Verfasser</b>. Behandle es wie die anderen ausgearbeiteten
-      Beispiele: <b>gut zum Abschauen der Form</b>, aber <b>Fachangaben nachprüfen</b>.</p>
-    <p class="fr">Bonne forme, mais vérifie le contenu : « einfachgesättigt » n'existe pas, et
-      une recommandation sans source ne va pas dans une colonne de justification.</p>
-  </div>
-
-  <h3>Frau Sommer — acht Maßnahmen gegen Dehydratation</h3>
-  <p>Ein kurzes Blatt zum <b>aktuellen Problem „Frau Sommer ist dehydriert“</b> — <b>nur
-    Maßnahmen</b>, ohne P, E, S, R, ohne Ziele und ohne Begründungen.</p>
-  <div class="merk">
-    <span class="t">Trotzdem lehrreich — schau auf die Formulierungen</span>
-    <p><b>„Die Patientin wird bei jedem Kontakt von PP an eine ausreichende Trinkmenge erinnert
-      (muss vorher festgelegt werden).“</b> — Die Klammer ist genau richtig: Eine Trinkmenge zu
-      „erinnern“ geht nur, wenn sie <b>vorher bestimmt</b> wurde.</p>
-    <p><b>„Dazu muss immer Wasser in Griffweite stehen“</b> und <b>„mit von der Patientin
-      bevorzugten Getränken“</b> — <b>Griffweite</b> und <b>Vorlieben</b> sind zwei Details,
-      die eine Maßnahme erst wirksam machen.</p>
-    <p><b>„Zu den Mahlzeiten wird wasserreiche Kost wie z. B. Wassermelone oder Gurke
-      angeboten.“</b> — Flüssigkeit muss nicht getrunken werden.</p>
-    <p><b>„PFK ermittelt 1×/Schicht RR und Puls, um Tachykardie und Hypotonie frühzeitig zu
-      erkennen.“</b> — hier steckt die Begründung schon <b>in</b> der Maßnahme.</p>
-    <p>Und die Angehörigenarbeit: Sie werden gebeten, <b>auf die Flüssigkeitszufuhr zu
-      achten, zum Trinken zu animieren und bevorzugte Getränke mitzubringen</b>.</p>
-  </div>
-  <p><b>Deine Aufgabe damit:</b> Ergänze das Blatt um <b>P, E, S, R</b>, um <b>Ziele</b> und um
-    die <b>Begründungen</b>. Die Maßnahmen sind schon da — der Rest fehlt, und genau der ist
-    das, was geübt werden muss. <b>Schick es mir, ich korrigiere es.</b></p>
-</section>
-
-<section id="offen">
-  <h2>Was fehlt</h2>
-
-  <div class="warnung">
-    <span class="t">Offene Punkte</span>
-    <p><b>1. Zum Fall Frau Feldner gibt es keine Aufgabenstellung</b> im Ordner — und keine
-      Lösung.</p>
-    <p><b>2. Keine Lücke mehr — der ABEDL-Erhebungsbogen.</b> Hier stand, er sei ein
-      <b>Scan eines ausgefüllten Formulars</b> und <b>kaum lesbar</b>, und die Einzelheiten
-      könne ich nicht entziffern. <b>Beides war falsch:</b> Er ist ein <b>Leerformular</b>, und
-      quer gescannt zwar, aber <b>gut lesbar</b>. Er steht jetzt vollständig im Abschnitt
-      <a href="#abedl">ABEDL 1 und 2</a> — mit den vorgedruckten Pflegediagnosen aller
-      dreizehn AEDL und der Kopfzeile, in der <b>deine fünf Hilfeformen als Kürzel</b>
-      wiederkommen. <b>Du musst mir nichts mehr schicken.</b></p>
-    <p><b>3. Die Vorlagen „PP Vorlage.pdf“, „OMW_Vorlage.pptx“ und „Pflegeplanung blanco.pdf“</b>
-      habe ich <b>nicht einzeln ausgewertet</b> — es sind Formulare ohne Inhalt. Die beiden
-      inhaltlich wichtigen leeren Vorlagen (aktuell/potentiell) sind oben verglichen.</p>
-    <p><b>4. Die Frage zum gelben Kasten bleibt offen</b>: Sind „Prophylaxen-Expertenstandards“
-      eine Begründungsquelle oder zwei? Jetzt kannst du sie wenigstens präzise stellen.</p>
-    <p><b>5. Die Musterlösung zu den Durchfallerkrankungen</b> liegt ebenfalls im Ordner, ist
-      aber bereits vollständig auf deiner Seite <b>Das kranke Kind</b> ausgewertet und wird hier
-      nicht wiederholt.</p>
-    <p class="fr">Cinq points ouverts, aucun rempli de mémoire.</p>
-  </div>
-
-  <div class="merk">
-    <span class="t">Die Brücken zu deinen anderen Seiten</span>
-    <p><b>Pflegeplanung schreiben</b> und <b>Pflegeplanung in fünf Tagen</b>: das Verfahren —
-      diese Seite: die Beispiele und die Vorlagen.</p>
-    <p><b>Das kranke Kind:</b> die vollständige Musterlösung deiner Dozentin zu
-      Durchfallerkrankungen — das <b>beste</b> ausgearbeitete Beispiel, das du hast.</p>
-    <p><b>Rehabilitation:</b> <i>„Pflegeziele stets ressourcenerhaltend formulieren“</i> und
-      <i>„Pflegeanamnese unerlässlich“</i> — dieselbe Forderung, aus dem Phasenmodell.</p>
-    <p><b>Pflegehilfsmittel &amp; ambulantes Setting:</b> Frau Mai lebt im <b>2. Stock</b> und
-      wird <b>ambulant</b> versorgt — dort stehen die Hilfsmittel und Leistungen, die zu dieser
-      Planung gehören.</p>
-    <p><b>Asthma bronchiale:</b> Stephan ist der Fall von dieser Seite.</p>
-  </div>
-</section>
-
-<details class="quelle">
-  <summary>Die elf Quellen — jede einzeln genannt</summary>
-  <div class="inh">
+<h3>Was der Erhebungsbogen dir zeigt</h3>
+<ul>
+  <li><b>Oben die Hilfe-Kürzel:</b> A = Anleitung · B = Beaufsichtigung · U = Unterstützung · TÜ = teilweise Übernahme · VÜ = vollständige Übernahme. „Entsprechende Kürzel in Kästchen Hilfe eintragen.“</li>
+  <li><b>Ein Raster</b> hinter jeder Tätigkeit (z. B. Gehen, Treppen gehen, Waschen): <b>selbstständig</b> · <b>bedingt selbstständig</b> · <b>teilweise unselbstständig</b> · <b>unselbstständig</b>.</li>
+  <li><b>Vorgedruckte Pflegediagnosen</b> unter jeder AEDL, zum Ankreuzen. Beispiele:
     <ul>
-      <li><b>03_ Pflegeplanung.pdf</b> — der <b>Foliensatz CE 02 / UE 2</b>. Trägt den
-        Regelteil dieser Seite: Pflegeprozess nach Fiechter und Meier, Definition des
-        Pflegeproblems, <b>die S-Regel</b>, ABEDL mit den Sternchen, <b>der gelbe Kasten</b>,
-        SMART, W-Fragen, die fünf Hilfeformen. Quelle: <b>I care, Pflegeprozess und
-        Pflegeplanung, Kapitel 10, S. 210 ff.</b></li>
-      <li><b>aktuelle Pflegeprobleme-Leer-Vorlage.pdf</b> — die leere Originalvorlage
-        <b>mit</b> Symptom-Spalte.</li>
-      <li><b>potentielle Pflegeprobleme-Leer-Vorlage.pdf</b> — die leere Originalvorlage
-        <b>ohne</b> Symptom-Spalte, dafür mit den drei Stichpunkten unter E.</li>
-      <li><b>Pflegeproblem Bewegungseinschraenkung.pdf</b> — die ausgearbeitete Planung zum
-        <b>aktuellen</b> Problem (CE 02 UE 2, Frau Mai).</li>
-      <li><b>Pflegeproblem Thrombosegefahr.pdf</b> — die ausgearbeitete Planung zum
-        <b>potentiellen</b> Problem (CE 02 UE 2, Frau Mai).</li>
-      <li><b>Fallbeispiel Frau Mai ambulante Pflege Pflegeplanung.pdf</b> — der Fall und der
-        Arbeitsauftrag dazu.</li>
-      <li><b>Fallbeispiel Frau Mai Thrombose und Thromboseprophylaxe.pdf</b> — die zweite
-        Fassung desselben Falls.</li>
-      <li><b>Frau Feldner kommt zur Aufnahme.pdf</b> — ausführliche Situationsbeschreibung,
-        <b>ohne Aufgabenstellung</b>.</li>
-      <li><b>Pflegeplanungsbeispiele am Fallbeispiel Stephan.pdf</b> — zwei ausgearbeitete
-        Planungen aus CE 10 / UE 5, <b>ohne Verfasserangabe</b>, mit drei fachlich
-        fragwürdigen Stellen.</li>
-      <li><b>Aktuelles Pflegeproblem Dehydratation Frau Sommer.pdf</b> — acht Maßnahmen,
-        <b>ohne P/E/S/R, ohne Ziele, ohne Begründungen</b>.</li>
-      <li><b>Erhebung ABEDL.pdf</b> — <b>Leerformular</b> <i>Erhebung nach den AEDL</i>,
-        Nr. <b>2132</b> der <b>DAN PRODUKTE Pflegedokumentation GmbH</b>, Siegen,
-        9. veränderte Auflage 2010. Quer gescannt und ohne Textebene, <b>am 20.09.2026 über
-        die Seitenbilder ausgewertet</b> — Grundlage des Abschnitts
-        <a href="#abedl">Der Erhebungsbogen</a>. Dazu die Formulare <i>PP Vorlage.pdf</i>,
-        <i>Pflegeplanung blanco.pdf</i> und <i>OMW_Vorlage.pptx</i>.</li>
-    </ul>
-    <p>Alle aus deinem Google-Drive-Ordner, geteilt am 18.09.2026.</p>
-    <p><b>Ausdrücklich als meine Arbeit gekennzeichnet:</b> die Zusammenstellung der vier
-      Belege für die S-Regel · die Beobachtung, dass dieselben Angaben in der aktuellen Planung
-      unter <b>S</b> und in der potentiellen unter <b>E</b> stehen · der Hinweis auf die beiden
-      verschiedenen <b>R</b> · die Einordnung der fünf Hilfeformen als aufsteigende Reihe · die
-      Anmerkungen zu „Forosemid“, „einfachgesättigte Fettsäuren“, „Übergesicht“ und „DGA“ ·
-      die Frage nach den Medikamenten im Fall Feldner · und alle Brücken zu deinen anderen
-      Zusammenfassungen.</p>
-    <p><b>Was ich NICHT ergänzt habe:</b> eine Aufgabenstellung für Frau Feldner, den Inhalt des
-      unlesbaren Erhebungsbogens, die Auflösung der Frage „eine Begründungsquelle oder zwei“
-      und eine Auswertung der Medikamentenliste.</p>
-    <p>Die französischen Zeilen sind von mir ergänzt.</p>
-  </div>
-</details>
+      <li>AEDL 1: beeinträchtigte verbale Kommunikation · beeinträchtigte Hör- oder Sehfähigkeit · Wahrnehmungsstörung</li>
+      <li>AEDL 2: beeinträchtigte Mobilität (körperlich, im Bett, im Rollstuhl) · beeinträchtigte Transferfähigkeit · beeinträchtigte Gehfähigkeit · Gefahr der Aktivitätsintoleranz</li>
+      <li>AEDL 5: Dehydratationsgefahr · Dehydratation · Mangelernährung · Schluckstörung · Selbstversorgungsdefizit Essen</li>
+      <li>AEDL 11: Verletzungsgefahr · Aspirationsgefahr · Infektionsgefahr</li>
+    </ul></li>
+  <li><b>„Ergänzend“</b> verweist der Bogen auf weitere Blätter. Unter AEDL 2 stehen <b>fünf</b>: Dekubitusrisikoerkennung · Wunddokumentation · Bewegungsplan · Sturzrisikoerkennung · Kontrakturrisikoerfassung. Unter AEDL 11 u. a. <b>Freiheitsentziehende Maßnahmen</b>, unter AEDL 13 <b>Schmerzerfassung</b> und Schmerzprotokoll.</li>
+</ul>
+<p><b>Warum das nützlich ist:</b> Die vorgedruckten Diagnosen sind <b>fertige Formulierungen für das P</b> (z. B. „Dehydratationsgefahr“ = potentiell, „Dehydratation“ = aktuell). Das Raster ist Schritt 1 (sammeln), die Diagnose darunter ist Schritt 2 (Problem erkennen). Und dass unter AEDL 2 die meisten Ergänzungen stehen, passt zum <b>roten Stern</b> deiner Dozentin. <span class="her">Herleitung</span></p>
+<div class="hinweis"><b>Grenzen:</b> Der Bogen ist <b>Verlagsmaterial von 2010</b> aus der Praxis, kein Unterrichtsblatt und keine Norm. Ich habe ihn von den <b>Seitenbildern</b> abgelesen (er hat keine Textebene); kurze Ankreuzwörter, besonders auf Seite 2, können verlesen sein.</div>
+<p class="fr">🇫🇷 Tes modèles : un pour les problèmes actuels (avec S), un pour les potentiels (sans S), un modèle PESR court, un modèle vierge, et un formulaire de recueil selon les AEDL. Ce formulaire utilise les mêmes cinq formes d'aide (A, B, U, TÜ, VÜ) et propose des diagnostics infirmiers tout prêts pour formuler le P.</p>
+<p class="quelle">aktuelle / potentielle Pflegeprobleme-Leer-Vorlage, je S. 1 · PP Vorlage, S. 1 · Pflegeplanung blanco, S. 1–3 · OMW_Vorlage, Folie 1 · Erhebung ABEDL.pdf, S. 1–2</p>
 
+<!-- ============ 14 METHODE ============ -->
+<h2>14 · So schreibst du eine Pflegeplanung — Schritt für Schritt <span class="stern">★★★</span></h2>
+<p>Alles aus diesem Kurs als Arbeitsweg. Die Reihenfolge ist meine Zusammenstellung. <span class="her">Herleitung</span></p>
+<ol>
+  <li><b>Lies den Fall zweimal.</b> Markiere alles, was der Mensch <b>sagt</b>, was du <b>siehst</b> und was in den <b>Unterlagen</b> steht (Diagnosen, Medikamente).</li>
+  <li><b>Sortiere nach ABEDL.</b> Fang mit <b>1, 2 und 3</b> an (roter Stern), denk an <b>13</b> (grüner Stern).</li>
+  <li><b>Finde die Probleme.</b> Frag: Wirkt sich etwas auf die Selbstständigkeit aus? → aktuell. Droht ein Schaden? → potentiell.</li>
+  <li><b>Nimm die richtige Vorlage</b>: aktuell mit S, potentiell ohne S.</li>
+  <li><b>Schreib P E (S) R</b> — beantworte die vier Fragen der Folie. Beim potentiellen Problem: Risikofaktoren und Gefährdungsgrad in E (z. B. Frowein-Score).</li>
+  <li><b>Vergiss die Ressourcen nicht</b> — die Folie sagt: beachten und <b>nutzen</b>. Benutze sie in den Maßnahmen (z. B. „kennt Übungen aus der Reha“ → Anleitung statt Übernahme).</li>
+  <li><b>Schreib Ziele nach SMART</b>: aktives Verb, der Mensch handelt, mit Zeitangabe. Nah- und Fernziele.</li>
+  <li><b>Schreib Maßnahmen mit allen W-Fragen</b> und einer der <b>fünf Hilfeformen</b>.</li>
+  <li><b>Begründe jede Maßnahme</b>: Was bewirkt sie? Denk an Expertenstandards, Diagnosen, Medikamente.</li>
+  <li><b>Prüfe am Ende</b>: Passt jede Maßnahme zu einem Ziel? Passt jedes Ziel zu P oder E? Stehen bei potentiell keine Symptome?</li>
+</ol>
+<div class="merke"><b>Merke:</b> Sammeln → sortieren (ABEDL) → Problem (aktuell/potentiell) → PE(S)R → SMART-Ziel → W-Fragen-Maßnahme → Begründung → prüfen.</div>
+<p class="fr">🇫🇷 Méthode : lire le cas, trier selon les ABEDL (commencer par 1, 2, 3), trouver les problèmes, choisir le bon modèle, écrire PE(S)R, des objectifs SMART, des mesures avec les questions en W et une forme d'aide, puis justifier chaque mesure.</p>
+<p class="quelle">zusammengestellt aus 03_ Pflegeplanung.pdf, S. 2–5, den beiden Leer-Vorlagen und den Beispielen Frau Mai</p>
+
+<!-- ============ TOP 10 ============ -->
+<h2>Top 10 fürs Examen</h2>
+<ol>
+  <li>Pflegeprozess nach Fiechter und Meier: 6 Schritte, ein Kreislauf, der nie endet</li>
+  <li>Pflegeproblem: Veränderung wirkt auf die Selbstständigkeit (aktuell) oder Gefahr einer Schädigung (potentiell)</li>
+  <li>Aktuell = schon da, mit Symptomen · potentiell = droht, ohne Symptome</li>
+  <li>PE(S)R: Problem · Entstehung/Ursachen · Symptome (nicht bei potentiell) · Ressourcen</li>
+  <li>Potentielle Vorlage: E mit pflegerelevanten Informationen, individuellen Risikofaktoren, Assessment/Gefährdungsgrad</li>
+  <li>ABEDL 1, 2, 3 zuerst (roter Stern) · ABEDL 13 beeinflusst alle anderen (grüner Stern)</li>
+  <li>SMART: spezifisch · messbar · akzeptabel (positiv, aktive Verben) · realistisch · terminiert</li>
+  <li>Zwei R: R in PESR = Ressource · R in SMART = realistisch</li>
+  <li>W-Fragen: Wer · Was · Wie und womit · Wann · Wie oft</li>
+  <li>Fünf Hilfeformen: Beaufsichtigung · Anleitung · Unterstützung · teilweise · vollständige Übernahme — „Beratung“ ist keine</li>
+</ol>
+
+<!-- ============ FRAGEN ============ -->
+<h2>5 Prüfungsfragen — mit Musterantwort</h2>
+<details><summary><span class="op">Nennen</span>Nennen Sie die sechs Schritte des Pflegeprozesses nach Fiechter und Meier.</summary>
+<p>1. Informationssammlung · 2. Erkennen von Problemen · 3. Festlegen der Pflegeziele · 4. Planung der Pflegemaßnahmen · 5. Durchführung der Pflege · 6. Beurteilung der Wirkung der Pflege auf den Patienten.</p></details>
+<details><summary><span class="op">Erklären</span>Erklären Sie das PE(S)R-Schema an einem eigenen Beispiel.</summary>
+<p>PE(S)R ist das Schema für die Spalte Pflegeproblem. <b>P</b> sagt, was das Problem ist. <b>E</b> sagt, warum der Mensch es hat (Ursachen). <b>S</b> sagt, wie es sich zeigt — das schreibt man nur bei aktuellen Problemen. <b>R</b> sagt, was der Mensch noch selbst kann. <i>Beispiel Frau Mai:</i> P Bewegungseinschränkung · E Hüft-TEP, Schmerzen, Angst beim Gehen · S unsicheres Gangbild, sitzt viel auf dem Sofa · R kann mit Rollator gehen, kennt Übungen aus der Reha.</p></details>
+<details><summary><span class="op">Begründen</span>Begründen Sie, warum bei einem potentiellen Pflegeproblem keine Symptome (S) formuliert werden.</summary>
+<p><b>Ursache:</b> Ein potentielles Problem ist eine <b>Gefahr</b> — es ist noch nicht eingetreten. <b>Wirkung:</b> Deshalb gibt es noch keine Zeichen, die man beobachten kann; man kennt nur Risikofaktoren. <b>Gefahr:</b> Wer trotzdem Symptome schreibt, beschreibt ein Problem, das schon da ist. Dann ist es in Wahrheit <b>aktuell</b> und braucht eine andere Planung (bei Frau Mai: Rötung und Überwärmung → tiefe Beinvenenthrombose). <b>Deshalb:</b> Ich lasse das S weg und schreibe ein breiteres E: pflegerelevante Informationen, individuelle Risikofaktoren und den Gefährdungsgrad (z. B. Frowein-TVT-Score). Als Maßnahme plane ich die <b>Beobachtung</b>, damit ich erste Zeichen früh erkenne. <span class="her">Herleitung</span> aus der Folie S. 5, den beiden Vorlagen und dem Stephan-Blatt</p></details>
+<details><summary><span class="op">Beurteilen</span>Beurteilen Sie das Pflegeziel „Die Thrombose wird vermieden und erkannt“ nach der SMART-Regel.</summary>
+<p><b>Einschätzung:</b> Das Ziel ist <b>nicht SMART</b>. <b>S:</b> Es ist klar, worum es geht (Thrombose) — erfüllt. <b>M:</b> Nur teilweise messbar; „erkannt“ ist kein Zustand der Patientin. <b>A:</b> Es ist passiv formuliert; Frau Mai handelt nicht, es gibt kein aktives Verb. <b>R:</b> machbar. <b>T:</b> Es fehlt ein Zeitpunkt. <b>Deshalb</b> besser so: „Frau Mai trägt täglich während der Wachzeit ihre Kompressionsstrümpfe, ab sofort“ oder „Frau Mai kann innerhalb von 3 Wochen zwei Thromboseanzeichen nennen“. <span class="her">Herleitung</span> — beide Vorschläge stützen sich auf Ziele und Maßnahmen deiner Planung Thrombosegefahr.</p></details>
+<details><summary><span class="op">Ableiten</span>Leiten Sie aus der Situation von Frau Feldner ein Pflegeproblem nach PE(S)R ab.</summary>
+<p><i>Eine mögliche Lösung — dein Fallblatt hat keine.</i> <span class="her">Herleitung</span><br><b>P:</b> Frau Feldner ist beim Gehen und beim Transfer unsicher (Bewegungseinschränkung, ABEDL 2). <b>E:</b> Sturz zu Hause mit neuer Hüfte · Angst vor einem neuen Sturz · rheumatische Arthritis, Gonarthrose links · vergessene Brille. <b>S:</b> greift daneben · sitzt schräg auf der Bettkante · ängstlich und verkrampft beim Transfer · krallt sich am Rollator fest · kleine, schlurfende Schritte, Oberkörper nach vorne gebeugt · will lieber im Rollstuhl gefahren werden. <b>R:</b> im Bad recht selbstständig · äußert ihren Hilfebedarf · hat eine Brille · der Sohn unterstützt · sie ist überzeugt, dass sie mobiler werden soll · geht mit Begleitung am Rollator. Daneben gibt es ein <b>potentielles</b> Problem: <b>Sturzgefahr</b> (ohne S; E u. a. der Teppich, den sie behalten will).</p></details>
+
+<!-- ============ SPICKZETTEL ============ -->
+<h2>Spickzettel</h2>
+<ul class="spick">
+  <li>Pflegeprozess = 6 Schritte, Kreislauf (Fiechter und Meier)</li>
+  <li>Planung = Problem · Ziel · Maßnahme · Begründung</li>
+  <li>Aktuell: P E S R · potentiell: P E R</li>
+  <li>P was? · E warum? · S wie zeigt es sich? · R was kann er noch?</li>
+  <li>Potentiell: E = Infos + individuelle Risikofaktoren + Gefährdungsgrad</li>
+  <li>ABEDL 1, 2, 3 zuerst · 13 wirkt auf alle</li>
+  <li>SMART · A = positiv, aktive Verben</li>
+  <li>R ≠ R: Ressource / realistisch</li>
+  <li>Wer · Was · Wie/womit · Wann · Wie oft</li>
+  <li>B · A · U · TÜ · VÜ — keine Beratung</li>
+  <li>Begründung: Standards · Diagnosen · Medikamente</li>
+  <li>Frowein: 4–6 mittel · ab 7 hoch</li>
+</ul>
+
+<h2>Woraus diese Seite gebaut ist</h2>
+<p><b>14 Dateien aus deinem Drive-Ordner</b>, alle Seiten gelesen: 03_ Pflegeplanung (7 S.; Folie 5 ist ein Bild und wurde vom Bild abgelesen) · aktuelle Pflegeprobleme-Leer-Vorlage (1 S.) · potentielle Pflegeprobleme-Leer-Vorlage (1 S.) · Pflegeproblem Bewegungseinschränkung (3 S.) · Pflegeproblem Thrombosegefahr (4 S.) · Fallbeispiel Frau Mai ambulante Pflege (1 S.) · Fallbeispiel Frau Mai Thrombose und Thromboseprophylaxe (3 S.; Frowein-Score als Bild) · Frau Feldner kommt zur Aufnahme (2 S.) · Pflegeplanungsbeispiele am Fallbeispiel Stephan (3 S.) · Aktuelles Pflegeproblem Dehydratation Frau Sommer (2 S.) · Erhebung ABEDL (2 S., Scan ohne Text, vom Bild abgelesen) · PP Vorlage (1 S.) · Pflegeplanung blanco (3 S. laut Datei, Text ohne Seitentrennung gelesen) · OMW_Vorlage (1 Folie).</p>
+<p><b>Bewusst nicht dabei:</b> die Quellenfolie (I care, Kap. 10, S. 210 ff. — das Buch selbst liegt nicht vor) · die volle Liste aller Ankreuzfelder des Erhebungsbogens (nur die Beispiele, die du brauchst). In deinem Drive liegen noch weitere Dateien mit ähnlichem Namen (z. B. „Fallbeispiel Frau Sommer“, „Stephan will das Bett nicht mehr verlassen“, „Pflegeplanung PESR“, neuere „Schriftliche Pflegeplanung“-Vorlagen) — sie gehören nicht zur Quellenliste dieses Kurses und wurden nicht benutzt.</p>
+<p><b>Was fehlt in deinen Unterlagen:</b> eine Anleitung für die Spalte Begründung · was das B in ABEDL bedeutet · was „PK“ und „Virchowsche Trias“ heißen · Lösungen zu den Aufgaben Frau Mai (Krankenhaus) · eine Aufgabe zu Frau Feldner · wofür die OMW-Vorlage dient.</p>
+<p class="fr">🇫🇷 Tout vient de tes quatorze fichiers de cours. Rien d'Internet. Le badge « Herleitung » marque ce que j'ai déduit en reliant deux documents.</p>
 </main>
 
-<footer>
-  <p>Pflegeplanung und Pflegeprozess · CE 02 / UE 2 — die Ergänzung zu deinen beiden
-    Planungs-Seiten.<br>
-    Wo etwas fehlt, aus einer unbezeichneten Arbeit stammt oder von mir ist, steht es oben
-    ausdrücklich dabei.</p>
-</footer>
