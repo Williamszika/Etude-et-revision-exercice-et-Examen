@@ -344,6 +344,21 @@
   .ppfeld label{display:block;margin:0 0 10px;}
   .ppfeld label span{display:block;font-size:13px;color:var(--ink-soft);font-style:italic;}
   .ppfeld textarea,.kopie-text{width:100%;font:inherit;font-size:15px;line-height:1.5;color:var(--ink);background:rgba(255,251,238,.75);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:8px 10px;resize:vertical;margin-top:4px;box-sizing:border-box;}
+  .uhr-box{border:2px solid var(--accent-deep);border-radius:10px;padding:12px 14px;margin:14px 0;}
+  .uhr-zeile{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:6px 0;}
+  .uhr-zeit{font-family:var(--serif-d,inherit);font-size:2rem;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:.02em;min-width:6.5ch;}
+  .uhr-zeit.knapp{color:#a11d12;}
+  .uhr-start,.uhr-neu,.abgabe-knopf{font:inherit;font-weight:700;cursor:pointer;border-radius:999px;padding:9px 16px;border:1px solid var(--accent-deep);background:var(--accent-deep);color:#fff;}
+  .uhr-neu{background:transparent;color:var(--accent-deep);}
+  .abgabe-knopf:disabled{opacity:.6;cursor:wait;}
+  textarea.gesperrt{opacity:.75;background:repeating-linear-gradient(135deg,transparent 0 8px,rgba(0,0,0,.035) 8px 16px);}
+  .abgabe-box{margin:14px 0;}
+  .abgabe-status{font-style:italic;min-height:1em;}
+  .korrektur{border-left:4px solid #a11d12;padding:8px 12px;margin:10px 0;background:rgba(161,29,18,.04);}
+  .note-kopf{display:flex;align-items:center;gap:12px;margin:4px 0 8px;}
+  .note-kopf .note{font-size:2.6rem;font-weight:700;line-height:1;color:#a11d12;min-width:2.2ch;text-align:center;}
+  .korrektur h5{margin:12px 0 4px;font-size:1rem;}
+  .korrektur .mensch{border-top:1px dashed currentColor;margin-top:10px;padding-top:6px;}
   .kopie-knopf,.fertig-knopf{font:inherit;font-weight:700;cursor:pointer;border-radius:999px;padding:9px 16px;border:1px solid var(--accent-deep);background:var(--accent-deep);color:#fff;}
   .fertig-knopf{background:var(--du);border-color:var(--du);}
   .fertig-knopf[aria-pressed="true"]{background:transparent;color:var(--du);}
@@ -394,10 +409,8 @@
     <nav class="reiter" aria-label="Teile des Buches">
       <a href="#inhalt" data-ziel="inhalt">Inhalt</a>
       <a href="#bibliothek" data-ziel="bibliothek">Bibliothek</a>
-      <a href="#schlaganfall" data-ziel="schlaganfall">Schlaganfall</a>
-      <a href="#k14" data-ziel="k14">Prüfung</a>
-      <a href="#k15" data-ziel="k15">Wörter</a>
-      <a href="#k16" data-ziel="k16">Abschluss</a>
+      <a href="#schlaganfall" data-ziel="schlaganfall">Artikel</a>
+      <a href="#alle-fragen" data-ziel="alle-fragen">Alle Fragen</a>
     </nav>
     <span class="knoepfe"><a class="knopf" href="#inhalt" id="lesestand">Inhalt</a><button type="button" class="knopf zu" id="zuklappen" hidden>Schließen ✕</button></span>
   </header>
@@ -1871,7 +1884,8 @@
   const knopf=$('lesestand');
   const zuKnopf=$('zuklappen');
   const reiter=[...A.querySelectorAll('.reiter a')];
-  const ART=Q.querySelector('article');
+  const ARTS=[...Q.querySelectorAll('article')];
+  const NAME={};ARTS.forEach(a=>{NAME[a.id]=((a.querySelector('.artkopf h2')||{}).textContent||a.id).trim();});
   const eckeZur=$('eckeZur'),eckeVor=$('eckeVor');
   const DECKEL={kicker:'Fachartikel · aus deinen Kursen',titel:'Krankheiten verstehen',schrift:'tiefer erklärt'};
 
@@ -1886,11 +1900,14 @@
     e.querySelector('.ez').textContent='0 von '+fids.length+' gewusst';e.querySelector('.ezs').textContent=fids.length+' noch nicht bewertet · '+fids.length+' zum Wiederholen';return e;}
 
   const tpl=id=>document.getElementById(id).content.firstElementChild.cloneNode(true);
-  const kapitel=[...ART.querySelectorAll('section.kap')].map(s=>{
+  /* Kapitel aller Artikel; Schlüssel für den Lesestand: <artikel>-<kapitel> (wie bisher) */
+  const kapitel=[];ARTS.forEach(A_=>A_.querySelectorAll('section.kap').forEach(s=>{
     const h=s.querySelector('h3'), k=h.querySelector('.k');
     const titel=[...h.childNodes].filter(n=>n!==k).map(n=>n.textContent).join('').trim();
-    return {id:s.id,nr:s.dataset.kap,titel,sec:s};
-  });
+    kapitel.push({id:s.id,nr:s.dataset.kap,titel,sec:s,art:A_.id,key:A_.id+'-'+s.dataset.kap});
+  }));
+  const kapVon=a=>kapitel.filter(k=>k.art===a);
+  const ROEM=['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII'];
 
   /* Alle Bausteine des Buches, in Lesereihenfolge */
   function sammle(){
@@ -1912,9 +1929,10 @@
       if(unter){const i=document.createElement('i');i.textContent=unter;a.append(i);}
       li.querySelector('.sz').dataset.fuer=ziel;li.querySelector('.sz').textContent='✓ 000';return li;};
     ol.append(zeile('I','bibliothek','Die Bibliothek','52 Krankheiten aus deiner Liste und deinen Kursen','teil'));
-    ol.append(zeile('II',ART.id,'Der Schlaganfall','Artikel 1 · '+kapitel.length+' Kapitel','teil'));
-    kapitel.forEach(k=>{const li=zeile(k.nr,k.id,k.titel,'','kap');li.dataset.kap=k.nr;ol.append(li);});
-    if(Q.querySelector('article details.frage'))ol.append(zeile('III','alle-fragen','Fragen zu allen Krankheiten','Zum Schluss: alle Prüfungsfragen gemischt','teil'));
+    ARTS.forEach((A_,ai)=>{const ks=kapVon(A_.id);
+      ol.append(zeile(ROEM[ai+1],A_.id,NAME[A_.id],'Artikel '+(ai+1)+' · '+ks.length+' Kapitel','teil'));
+      ks.forEach(k=>{const li=zeile(k.nr,k.id,k.titel,'','kap');li.dataset.kap=k.key;ol.append(li);});});
+    if(Q.querySelector('article details.frage'))ol.append(zeile(ROEM[ARTS.length+1],'alle-fragen','Fragen zu allen Krankheiten','Zum Schluss: alle Prüfungsfragen gemischt','teil'));
     add(ol,{ctx:'toc',lauf:'Inhalt'});
     const leg=Q.querySelector('header.kopf .legende');
     if(leg){const w=document.createElement('div');w.className='zeichen';
@@ -1926,6 +1944,7 @@
     add(bk,{ctx:'bib',neu:true,zier:true,lauf:'Die Bibliothek'});
     bib.querySelectorAll(':scope > .teil').forEach(t=>add(t.cloneNode(true),{ctx:'bib',lauf:'Die Bibliothek'}));
 
+    ARTS.forEach(ART=>{
     const ak=ART.querySelector('.artkopf');
     const o=tpl('t-oeffner');o.id=ART.id;
     o.querySelector('.nr').textContent=ak.querySelector('.nr').textContent;
@@ -1933,23 +1952,29 @@
     o.querySelector('.unter').textContent=ak.querySelector('.unter').textContent;
     const meta=ak.querySelector('.meta').cloneNode(true);const ls=meta.querySelector('.lesestand');if(ls)ls.remove();
     o.querySelector('.meta').replaceWith(meta);
-    const bild=ART.querySelector('#k4 figure.foto img');
+    const bild=ART.querySelector('#k4 figure.foto img')||ART.querySelector('figure.foto img');
     if(bild){const f=o.querySelector('.rund');const im=bild.cloneNode(true);im.removeAttribute('class');im.removeAttribute('style');f.prepend(im);
       const her=bild.closest('figure').querySelector('.bildherkunft');if(her)f.querySelector('.herkunft').innerHTML=her.innerHTML;}
     else o.querySelector('.rund').remove();
-    add(o,{ctx:'oeffner',neu:true,allein:true,lauf:'Der Schlaganfall'});
+    add(o,{ctx:'oeffner',neu:true,allein:true,lauf:NAME[ART.id]});
 
-    kapitel.forEach(k=>{
-      const lauf='Kapitel '+k.nr+' · '+k.titel;
+    kapVon(ART.id).forEach(k=>{
+      const lauf='Kapitel '+k.nr+' · '+k.titel;let uhrDa=false;
       [...k.sec.children].forEach((c,i)=>{const el=c.cloneNode(true);
+        if(!uhrDa&&el.querySelector&&el.querySelector('textarea[data-feld]')){uhrDa=true;add(uhrBox(k.art),{ctx:'kap',lauf});}
         if(i===0){el.id=k.id;el.dataset.kap=k.nr;}
-        add(el,{ctx:'kap',neu:i===0,zier:i===0,lauf});});
+        /* Abschluss-Bausteine wissen, zu welchem Artikel sie gehören */
+        [el,...el.querySelectorAll('*')].forEach(x=>{if(x.matches&&x.matches('.abschluss-stand,.kopie-knopf,.fertig-knopf,.uhr-box,.abgabe-box'))x.dataset.art=k.art;
+          if(x.matches&&x.matches('.fertig-knopf')&&!x.dataset.t)x.dataset.t=x.textContent;});
+        add(el,{ctx:'kap',neu:i===0,zier:i===0,lauf});
+        if(el.querySelector&&el.querySelector('.kopie-knopf'))add(abgabeBox(k.art),{ctx:'kap',lauf});});
       const fr=[...k.sec.querySelectorAll('details.frage')];
       if(fr.length)add(ergebnis(fr.map(d=>d.dataset.fid),'Dein Stand bei diesen Fragen'),{ctx:'kap',lauf});
       const lab=document.createElement('label');lab.className='gelesen';
-      const cb=document.createElement('input');cb.type='checkbox';cb.dataset.kap=k.nr;
+      const cb=document.createElement('input');cb.type='checkbox';cb.dataset.kap=k.key;
       lab.append(cb,document.createTextNode(' Kapitel gelesen'));
       add(lab,{ctx:'kap',lauf});
+    });
     });
 
     /* Teil III: alle Fragen aus allen Artikeln, gemischt — in fester Reihenfolge, damit die Seiten stabil bleiben */
@@ -1958,7 +1983,7 @@
       const kopf=document.createElement('div');kopf.id='alle-fragen';kopf.className='allekopf';
       kopf.innerHTML='<p class="kicker">Teil III · zum Schluss</p><h2>Fragen zu allen Krankheiten</h2>'
         +'<p>Wenn du alles gelesen hast: alle Prüfungsfragen aus allen Artikeln, gemischt. Erst selbst antworten — laut oder schriftlich —, dann aufklappen, dann ehrlich bewerten: <b>✓ gewusst</b> oder <b>✗ noch nicht</b>.</p>'
-        +'<p class="notiz">Im Moment steht nur der Schlaganfall im Buch — deshalb sind es seine Fragen. Kommt eine Krankheit dazu, kommen ihre Fragen hier von selbst hinzu.</p>';
+        +'<p class="notiz">Hier stehen die Fragen aus allen '+ARTS.length+' Artikeln dieses Buches. Kommt eine Krankheit dazu, kommen ihre Fragen von selbst hinzu.</p>';
       add(kopf,{ctx:'kap',neu:true,zier:true,lauf:'Fragen zu allen Krankheiten'});
       let saat=7;const zufall=()=>{saat=(saat*16807)%2147483647;return saat/2147483647;};
       alle.map(d=>[zufall(),d]).sort((a,b)=>a[0]-b[0]).forEach(([,d],i)=>{
@@ -2178,9 +2203,9 @@
 
   function zeigeGelesen(){
     let n=0;
-    kapitel.forEach(k=>{const an=!!gelesen[ART.id+'-'+k.nr];if(an)n++;
-      S.querySelectorAll('input[data-kap="'+k.nr+'"]').forEach(cb=>cb.checked=an);
-      S.querySelectorAll('li.kap[data-kap="'+k.nr+'"]').forEach(li=>li.classList.toggle('gelesen',an));});
+    kapitel.forEach(k=>{const an=!!gelesen[k.key];if(an)n++;
+      S.querySelectorAll('input[data-kap="'+k.key+'"]').forEach(cb=>cb.checked=an);
+      S.querySelectorAll('li.kap[data-kap="'+k.key+'"]').forEach(li=>li.classList.toggle('gelesen',an));});
     knopf.textContent='Inhalt · '+n+'/'+kapitel.length+' ✓';
     zeigeFragen();
     zeigeAbschluss();
@@ -2188,31 +2213,129 @@
   /* Abschluss (seit 04.11.2026): Stand der Kapitel, „abgeschlossen“-Haken, gespeicherte Antworten der Pflegeplanung */
   const AKEY='krankheiten-antworten-v1', FEKEY='krankheiten-fertig-v1';
   let ANTW={},FERTIG={};
+  /* ---- Prüfungsmodus (seit 05.11.2026, ihr Wunsch): Pflegeplanung mit Uhr (1 h 30), abgeben, korrigieren lassen, Note ----
+     Uhr: 'krankheiten-uhr-v1' {art:{start,ab}} · Korrektur: 'krankheiten-korrektur-v1' {art:{r,zeit,min,mensch}}
+     Abgaben liegen zusätzlich in der Datenbank der Seite (abgaben/<nutzer>/plaene/…), damit Claude sie auch im Chat korrigieren kann. */
+  const UKEY='krankheiten-uhr-v1', KKEY='krankheiten-korrektur-v1', DAUER=90*60*1000;
+  let UHR={},KORR={};
+  try{UHR=JSON.parse(lies(UKEY)||'{}')||{};}catch(e){UHR={};}
+  try{KORR=JSON.parse(lies(KKEY)||'{}')||{};}catch(e){KORR={};}
+  const K16={};ARTS.forEach(a=>{const s=a.querySelector('section.kap[data-kap="16"]');K16[a.id]=s?s.textContent.replace(/\s+/g,' ').trim().slice(0,18000):'';});
+  const FELD={pesr:'Pflegeproblem PE(S)R',ziel:'Pflegeziele',mass:'Pflegemaßnahmen',begr:'Begründungen'};
+  const vors=a=>a==='schlaganfall'?'':a+'-';
+  const meineFelder=a=>[...S.querySelectorAll('textarea[data-feld]')].filter(t=>a==='schlaganfall'?/^p\d-/.test(t.dataset.feld):t.dataset.feld.indexOf(a+'-')===0);
+  function planText(a){let t='Pflegeplanung · '+NAME[a]+' (Krankheiten verstehen)\n';const nm=lies('bib-name');if(nm)t+='Name: '+nm+'\n';
+    [1,2,3].forEach(n=>{t+='\nProblem '+n+'\n';Object.keys(FELD).forEach(x=>{t+=FELD[x]+': '+(ANTW[vors(a)+'p'+n+'-'+x]||'—')+'\n';});});return t;}
+  function uhrBox(a){const d=document.createElement('div');d.className='uhr-box';d.dataset.art=a;
+    d.innerHTML='<p class="kicker">Wie in der Prüfung · mit Uhr</p>'
+      +'<p>Schreib deine Pflegeplanung in <b>höchstens 1 Stunde 30 Minuten</b>. Starte die Uhr, wenn du anfängst. Ist die Zeit um, werden die Felder gesperrt — dann gibst du ab und bekommst deine Korrektur mit Note.</p>'
+      +'<div class="uhr-zeile"><span class="uhr-zeit">1:30:00</span><button type="button" class="uhr-start">▶ Uhr starten</button><button type="button" class="uhr-neu" hidden>↺ Neu beginnen</button></div>'
+      +'<p class="uhr-text"></p><p class="fr">🇫🇷 Tu as 1 h 30 maximum. Lance le chrono, écris, puis clique sur « Abgeben » : tu reçois la correction et une note.</p>';return d;}
+  function abgabeBox(a){const d=document.createElement('div');d.className='abgabe-box';d.dataset.art=a;
+    d.innerHTML='<button type="button" class="abgabe-knopf">📤 Abgeben und korrigieren lassen</button><p class="abgabe-status"></p><div class="korrektur" hidden></div>';return d;}
+  const uhrFmt=ms=>{ms=Math.max(0,ms);const t=Math.ceil(ms/1000),h=Math.floor(t/3600),m=Math.floor(t%3600/60),x=t%60;return h+':'+String(m).padStart(2,'0')+':'+String(x).padStart(2,'0');};
+  function zeigeUhr(){
+    S.querySelectorAll('.uhr-box').forEach(b=>{const a=b.dataset.art,u=UHR[a]||{};
+      const z=b.querySelector('.uhr-zeit'),st=b.querySelector('.uhr-start'),nu=b.querySelector('.uhr-neu'),tx=b.querySelector('.uhr-text');
+      let rest=DAUER,txt='';
+      if(u.ab){rest=u.start?DAUER-(u.ab-u.start):DAUER;txt='Abgegeben'+(u.start?' nach '+Math.round((u.ab-u.start)/60000)+' Minuten':'')+'. Deine Korrektur steht unter den Feldern.';}
+      else if(u.start){rest=DAUER-(Date.now()-u.start);txt=rest>0?'Die Uhr läuft. Du kannst die Seite schließen — sie läuft weiter.':'⏰ Die Zeit ist um. Die Felder sind gesperrt — gib jetzt ab.';}
+      z.textContent=uhrFmt(rest);z.classList.toggle('knapp',!!u.start&&!u.ab&&rest<10*60000);
+      st.hidden=!!u.start||!!u.ab;nu.hidden=!(u.start||u.ab);tx.textContent=txt;});
+    ARTS.forEach(A_=>{const u=UHR[A_.id]||{};const zu=!!u.ab||(!!u.start&&Date.now()-u.start>=DAUER);
+      meineFelder(A_.id).forEach(t=>{t.readOnly=zu;t.classList.toggle('gesperrt',zu);});});
+  }
+  setInterval(()=>{if(Object.keys(UHR).some(a=>UHR[a].start&&!UHR[a].ab))zeigeUhr();},1000);
+  const esc=x=>String(x==null?'':x).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  function zeigeKorrektur(){
+    S.querySelectorAll('.abgabe-box').forEach(b=>{const a=b.dataset.art,k=KORR[a],box=b.querySelector('.korrektur');
+      if(!k||(!k.r&&!k.mensch)){box.hidden=true;box.innerHTML='';return;}
+      let h='';const r=k.r;
+      if(r){h+='<div class="note-kopf"><span class="note">'+esc(r.note)+'</span><span><b>Übungsnote</b><br>'+esc(r.punkte)+' von 100 Punkten'+(k.min!=null?' · '+esc(k.min)+' Minuten':'')+'</span></div>';
+        h+='<p>'+esc(r.urteil)+'</p>'+(r.fr?'<p class="fr">🇫🇷 '+esc(r.fr)+'</p>':'');
+        if(Array.isArray(r.kriterien)&&r.kriterien.length){h+='<div class="scroll"><table><tr><th>Bereich</th><th>Punkte</th><th>Kommentar</th></tr>';
+          r.kriterien.forEach(c=>{h+='<tr><td>'+esc(c.name)+'</td><td>'+esc(c.punkte)+(c.max?' / '+esc(c.max):'')+'</td><td>'+esc(c.kommentar)+'</td></tr>';});h+='</table></div>';}
+        (r.probleme||[]).forEach(p=>{h+='<h5>Problem '+esc(p.nr)+'</h5>';if(p.gut)h+='<p><b>Gut:</b> '+esc(p.gut)+'</p>';
+          if(p.fehler&&p.fehler.length)h+='<ul class="fehlerliste">'+p.fehler.map(f=>'<li>'+esc(f)+'</li>').join('')+'</ul>';
+          if(p.besser){h+='<details class="muster"><summary>So wäre es besser</summary><div class="antw">'+Object.keys(FELD).filter(x=>p.besser[x]).map(x=>'<p><b>'+FELD[x]+':</b> '+esc(p.besser[x])+'</p>').join('')+'</div></details>';}});
+        if(r.sprache&&r.sprache.length){h+='<h5>Deutsch</h5><div class="scroll"><table><tr><th>Du hast geschrieben</th><th>Richtig</th><th>Regel</th></tr>'+r.sprache.map(x=>'<tr><td>'+esc(x.falsch)+'</td><td>'+esc(x.richtig)+'</td><td>'+esc(x.regel)+'</td></tr>').join('')+'</table></div>';}
+        h+='<p class="notiz">Die Note gibt Claude nach einem eigenen Raster (100 Punkte → Note 1–6). Das ist keine Schulnote: Wie deine echte Prüfung bewertet wird, steht nicht in deinen Unterlagen.</p>';}
+      if(k.mensch)h+='<div class="mensch"><p class="kicker">Korrektur von Claude im Chat</p><p>'+esc(k.mensch).replace(/\n/g,'<br>')+'</p></div>';
+      box.innerHTML=h;box.hidden=false;});
+  }
+  let CAP=null;
+  function cap(){return CAP||(CAP=(async()=>{if(!window.claude||!claude.use)return {};
+    const [db,user]=await Promise.all([claude.use('db'),claude.use('user')]);let uid=null;try{uid=user?await user.id():null;}catch(e){}
+    return {db,uid};})().catch(()=>({})));}
+  function prompt(a,txt,min){
+    return 'Du bist Lehrerin in der generalistischen Pflegeausbildung in NRW. Du korrigierst die Pflegeplanung einer Auszubildenden im 2. Lehrjahr. Ihre Muttersprache ist Französisch, ihr Deutsch ist B1.\n\n'
+    +'REGELN IHRER SCHULE (nur diese zählen):\n- Pflegeproblem nach PE(S)R: P = Problem, E = Einflussfaktoren/Ursachen, S = Symptome (nur bei aktuellen Problemen), R = Ressourcen. Aktuelle und potentielle Probleme unterscheiden.\n- Ziele nach SMART (spezifisch, messbar, akzeptiert, realistisch, terminiert), Nah- und Fernziel.\n- Maßnahmen mit W-Fragen (Wer? Was? Wann/wie oft? Wie? Womit?) und einer Hilfeform. Erlaubt sind NUR: Beaufsichtigung, Anleitung, Unterstützung, teilweise Übernahme, vollständige Übernahme. „Beratung“ ist keine Hilfeform.\n- Begründung der Maßnahmen: Prophylaxen und Expertenstandards, Diagnosen, medikamentöse Therapie.\n- Prüfe auch: Ist jede Maßnahme im Fall machbar und sicher? Passt das Problem zum Fall?\n\n'
+    +'Beurteile NUR anhand des Falls und der Musterlösung unten. Erfinde keine Fakten über die Patientin.\n\nFALL, AUFGABEN UND MUSTERLÖSUNG AUS DEM BUCH („'+NAME[a]+'“):\n'+K16[a]+'\n\n'
+    +'BEARBEITUNGSZEIT: '+(min!=null?min+' von 90 Minuten':'ohne Uhr')+'\n\nIHRE PFLEGEPLANUNG:\n'+txt+'\n\n'
+    +'Antworte NUR mit JSON in genau dieser Form:\n{"note": 2.5, "punkte": 74, "urteil": "2–3 Sätze Gesamturteil auf Deutsch (B1, einfach)", "fr": "2 phrases en français", '
+    +'"kriterien": [{"name": "PE(S)R", "punkte": 0, "max": 20, "kommentar": "…"}, {"name": "Ziele (SMART)", "punkte": 0, "max": 20, "kommentar": "…"}, {"name": "Maßnahmen (W-Fragen, Hilfeform, machbar)", "punkte": 0, "max": 30, "kommentar": "…"}, {"name": "Begründungen", "punkte": 0, "max": 15, "kommentar": "…"}, {"name": "Fallbezug", "punkte": 0, "max": 15, "kommentar": "…"}], '
+    +'"probleme": [{"nr": 1, "gut": "…", "fehler": ["…"], "besser": {"pesr": "…", "ziel": "…", "mass": "…", "begr": "…"}}], '
+    +'"sprache": [{"falsch": "ihr Satz", "richtig": "korrigiert", "regel": "kurze Regel auf Französisch"}]}\n'
+    +'Note aus den Punkten: 92–100 → 1, 81–91 → 2, 67–80 → 3, 50–66 → 4, 30–49 → 5, unter 30 → 6 (halbe Noten erlaubt). Leere Felder bekommen 0 Punkte. Höchstens 8 Sprachfehler, die wichtigsten zuerst. Sei ehrlich und genau, aber freundlich und ermutigend.';
+  }
+  const SFEHLER={not_granted:'Du hast die Korrektur durch Claude nicht erlaubt. Deine Abgabe ist trotzdem gespeichert — oder kopiere sie und schick sie mir im Chat.',
+    rate_limited:'Gerade zu viele Anfragen. Versuch es in ein paar Minuten noch einmal.'};
+  async function abgeben(b){
+    const a=b.closest('.abgabe-box').dataset.art,st=b.closest('.abgabe-box').querySelector('.abgabe-status');
+    if(!b.dataset.sicher){b.dataset.sicher='1';b.textContent='Wirklich abgeben? Noch einmal tippen';setTimeout(()=>{if(b.dataset.sicher){delete b.dataset.sicher;b.textContent='📤 Abgeben und korrigieren lassen';}},6000);return;}
+    delete b.dataset.sicher;b.disabled=true;b.textContent='📤 Wird abgegeben …';
+    const txt=planText(a),u=UHR[a]||{},ende=Date.now(),min=u.start?Math.round((ende-u.start)/60000):null;
+    UHR[a]=Object.assign({},u,{ab:ende});schreib(UKEY,JSON.stringify(UHR));zeigeUhr();
+    let ref=null;
+    try{const c=await cap();if(c.db&&c.uid){ref=c.db.collection('abgaben/'+c.uid+'/plaene').doc();
+      await ref.set({art:a,krankheit:NAME[a],name:lies('bib-name')||'',text:txt,start:u.start||null,ende,minuten:min});}}catch(e){ref=null;}
+    let sample=null;try{sample=window.claude&&claude.use?await claude.use('sample'):null;}catch(e){sample=null;}
+    if(!sample){st.textContent=(ref?'Gespeichert. ':'')+'Die Korrektur direkt hier geht auf diesem Gerät nicht. Kopiere deine Planung (Knopf oben) und schick sie mir im Chat — ich korrigiere sie.';b.disabled=false;b.textContent='📤 Abgeben und korrigieren lassen';return;}
+    st.textContent='Claude liest und korrigiert … das dauert meist 1–2 Minuten. Du kannst weiterblättern.';
+    try{const r=await sample.json(prompt(a,txt,min),{modelTier:'complex',cache:false});
+      KORR[a]=Object.assign({},KORR[a]||{},{r,zeit:ende,min});delete KORR[a].mensch;schreib(KKEY,JSON.stringify(KORR));
+      st.textContent='Fertig korrigiert'+(ref?' und gespeichert':'')+'. Lies die Korrektur, verbessere — und schreib die Planung noch einmal mit der Uhr.';
+      zeigeKorrektur();
+      if(ref){try{await ref.update({korrektur:r});}catch(e){}}
+    }catch(e){st.textContent=SFEHLER[e&&e.code]||'Die Korrektur hat nicht geklappt'+(ref?' — deine Abgabe ist aber gespeichert':'')+'. Versuch es später noch einmal oder schick sie mir im Chat.';}
+    b.disabled=false;b.textContent='📤 Noch einmal abgeben';
+  }
+  /* Korrekturen, die Claude im Chat in die Datenbank geschrieben hat (Feld „claudeKorrektur“), holen */
+  async function holeKorrekturen(){try{const c=await cap();if(!c.db||!c.uid)return;
+    const q=await c.db.collection('abgaben/'+c.uid+'/plaene').get();let neu=false;
+    const docs=(q.docs||[]).map(d=>d.data()).filter(Boolean).sort((x,y)=>(y.ende||0)-(x.ende||0));
+    ARTS.forEach(A_=>{const d=docs.find(x=>x.art===A_.id);if(d&&d.claudeKorrektur){const k=KORR[A_.id]||{};
+      if(k.mensch!==d.claudeKorrektur){KORR[A_.id]=Object.assign({},k,{mensch:d.claudeKorrektur});neu=true;}}});
+    if(neu){schreib(KKEY,JSON.stringify(KORR));zeigeKorrektur();}}catch(e){}}
   try{ANTW=JSON.parse(lies(AKEY)||'{}')||{};}catch(e){ANTW={};}
   try{FERTIG=JSON.parse(lies(FEKEY)||'{}')||{};}catch(e){FERTIG={};}
   function zeigeAbschluss(){
-    const vorher=kapitel.filter(k=>+k.nr<kapitel.length), gel=vorher.filter(k=>gelesen[ART.id+'-'+k.nr]).length;
-    S.querySelectorAll('.abschluss-stand').forEach(b=>{const alle=gel===vorher.length;b.classList.toggle('offen',!alle);
+    S.querySelectorAll('.abschluss-stand').forEach(b=>{const ks=kapVon(b.dataset.art||'schlaganfall');
+      const vorher=ks.filter(k=>+k.nr<ks.length), gel=vorher.filter(k=>gelesen[k.key]).length;const alle=gel===vorher.length;b.classList.toggle('offen',!alle);
       b.querySelector('.as-zahl').textContent=gel+' von '+vorher.length+' Kapiteln gelesen';
       b.querySelector('.as-text').textContent=alle?'Alles gelesen — jetzt der Fall und deine Pflegeplanung.':'Lies zuerst die übrigen Kapitel (Haken „Kapitel gelesen“ am Ende jedes Kapitels). Du kannst trotzdem schon hineinschauen.';});
     S.querySelectorAll('textarea[data-feld]').forEach(t=>{const v=ANTW[t.dataset.feld]||'';if(t.value!==v)t.value=v;});
-    const fe=FERTIG[ART.id];
-    S.querySelectorAll('.fertig-knopf').forEach(b=>{b.setAttribute('aria-pressed',fe?'true':'false');
-      b.textContent=fe?'✓ Abgeschlossen am '+fe+' — rückgängig machen':'✓ Ich habe den Schlaganfall abgeschlossen';});
-    S.querySelectorAll('.fertig-text').forEach(x=>x.textContent=fe?'Gut gemacht. Schick mir deine Pflegeplanung — dann korrigiere ich sie.':'');
-    S.querySelectorAll('a.buch.fertig[href="#'+ART.id+'"]').forEach(a=>a.classList.toggle('abgeschlossen',!!fe));
+    S.querySelectorAll('.fertig-knopf').forEach(b=>{const fe=FERTIG[b.dataset.art||'schlaganfall'];b.setAttribute('aria-pressed',fe?'true':'false');
+      b.textContent=fe?'✓ Abgeschlossen am '+fe+' — rückgängig machen':(b.dataset.t||'✓ Abgeschlossen');
+      const ft=b.parentNode&&b.parentNode.querySelector('.fertig-text');if(ft)ft.textContent=fe?'Gut gemacht. Schreib jetzt deine Pflegeplanung mit der Uhr und gib sie ab — sie wird korrigiert.':'';});
+    ARTS.forEach(A_=>S.querySelectorAll('a.buch.fertig[href="#'+A_.id+'"]').forEach(a=>a.classList.toggle('abgeschlossen',!!FERTIG[A_.id])));
+    zeigeUhr();zeigeKorrektur();
   }
   S.addEventListener('input',e=>{const t=e.target.closest('textarea[data-feld]');if(!t)return;
     ANTW[t.dataset.feld]=t.value;schreib(AKEY,JSON.stringify(ANTW));
     S.querySelectorAll('textarea[data-feld="'+t.dataset.feld+'"]').forEach(x=>{if(x!==t)x.value=t.value;});});
   S.addEventListener('click',e=>{
     const f=e.target.closest('.fertig-knopf');
-    if(f){if(FERTIG[ART.id])delete FERTIG[ART.id];else{const d=new Date();FERTIG[ART.id]=('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.'+d.getFullYear();}
+    if(f){const fa=f.dataset.art||'schlaganfall';if(FERTIG[fa])delete FERTIG[fa];else{const d=new Date();FERTIG[fa]=('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.'+d.getFullYear();}
       schreib(FEKEY,JSON.stringify(FERTIG));zeigeAbschluss();return;}
+    const us=e.target.closest('.uhr-start');if(us){const a=us.closest('.uhr-box').dataset.art;UHR[a]={start:Date.now()};schreib(UKEY,JSON.stringify(UHR));zeigeUhr();return;}
+    const un=e.target.closest('.uhr-neu');if(un){const a=un.closest('.uhr-box').dataset.art;
+      if(!un.dataset.sicher){un.dataset.sicher='1';un.textContent='Sicher? Noch einmal tippen';setTimeout(()=>{delete un.dataset.sicher;un.textContent='↺ Neu beginnen';},5000);return;}
+      delete un.dataset.sicher;un.textContent='↺ Neu beginnen';delete UHR[a];schreib(UKEY,JSON.stringify(UHR));zeigeUhr();return;}
+    const ab=e.target.closest('.abgabe-knopf');if(ab){abgeben(ab);return;}
     const k=e.target.closest('.kopie-knopf');if(!k)return;
     const namen={pesr:'Pflegeproblem PE(S)R',ziel:'Pflegeziele',mass:'Pflegemaßnahmen',begr:'Begründungen'};
-    let txt='Pflegeplanung Frau M. (Krankheiten verstehen · Schlaganfall)\n';
-    [1,2,3].forEach(n=>{txt+='\nProblem '+n+'\n';Object.keys(namen).forEach(x=>{txt+=namen[x]+': '+(ANTW['p'+n+'-'+x]||'—')+'\n';});});
+    const txt=planText(k.dataset.art||'schlaganfall');
     const box=k.parentNode.querySelector('.kopie-text');box.value=txt;box.hidden=false;
     const ok=()=>{k.textContent='✓ Kopiert — füge es in unseren Chat ein';};
     try{navigator.clipboard.writeText(txt).then(ok,()=>{box.select();});}catch(err){box.select();}
@@ -2229,7 +2352,7 @@
     const id=x.closest('.bewerten').dataset.fid,w=+x.dataset.w;
     if(FR[id]===w)delete FR[id];else FR[id]=w;schreib(FKEY,JSON.stringify(FR));zeigeFragen();});
   S.addEventListener('change',e=>{const cb=e.target.closest('input[data-kap]');if(!cb)return;
-    const id=ART.id+'-'+cb.dataset.kap;if(cb.checked)gelesen[id]=1;else delete gelesen[id];
+    const id=cb.dataset.kap;if(cb.checked)gelesen[id]=1;else delete gelesen[id];
     schreib(KEY,JSON.stringify(gelesen));zeigeGelesen();});
 
   document.addEventListener('click',e=>{
@@ -2278,6 +2401,7 @@
     }
     baue();
     if(Q.parentNode)Q.remove();
+    holeKorrekturen();
     if(document.fonts){const nachladen=()=>{if(!aktiv()){mass='';return;}if(laeuft){setTimeout(nachladen,300);return;}mass='';const n=masse();mass=n;baue();};
       document.fonts.addEventListener('loadingdone',nachladen);}
   }
@@ -2297,9 +2421,9 @@
     if(zuKnopf){zuKnopf.hidden=false;zuKnopf.addEventListener('click',()=>BIB.schliesse());}
     BIB.melde('krankheiten',{
       deckel:DECKEL,
-      info:()=>{const n=kapitel.filter(k=>gelesen[ART.id+'-'+k.nr]).length;
-        const g=Object.keys(FR).filter(k=>FR[k]===1).length;
-        return {zeile:n+' von '+kapitel.length+' Kapiteln gelesen',zweite:[FERTIG[ART.id]?'Schlaganfall ✓ abgeschlossen':'',g?g+' Fragen gewusst':''].filter(Boolean).join(' · '),lesezeichen:!!lies(STELLE)};},
+      info:()=>{const n=kapitel.filter(k=>gelesen[k.key]).length;
+        const g=Object.keys(FR).filter(k=>FR[k]===1).length;const ab=ARTS.filter(a=>FERTIG[a.id]).length;
+        return {zeile:n+' von '+kapitel.length+' Kapiteln gelesen',zweite:[ARTS.length+' Krankheiten',ab?ab+' ✓ abgeschlossen':'',g?g+' Fragen gewusst':''].filter(Boolean).join(' · '),lesezeichen:!!lies(STELLE)};},
       vorbereiten:()=>bereit||(bereit=vorbereiten()),
       ziel:()=>{const n=masse();if(n!==mass)baue();else zeige(cur,true);zeigeNur([]);return deckelRechteck();},
       oeffne:danach=>deckel(1500,danach),

@@ -61,6 +61,18 @@
   /* ===== Buch 2: Meine Kurse (Styles aus zusammenfassungen/index.html, auf #zf eingegrenzt) ===== */
 /*__ZF_CSS__*/
 
+  /* Wer liest? Name und Sync-Stand (seit 05.11.2026) */
+  .leser{max-width:34rem;margin:0 auto 18px;padding:12px 16px;border-radius:12px;background:rgba(255,255,255,.55);border:1px solid rgba(90,60,30,.25);text-align:center;}
+  .leser label{font-weight:600;}
+  .leser .reihe{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:8px;}
+  .leser input{font:inherit;padding:8px 12px;border-radius:999px;border:1px solid rgba(90,60,30,.45);min-width:0;flex:1 1 12rem;max-width:18rem;background:#fffdf7;color:#2a1c0e;}
+  .leser button{font:inherit;font-weight:700;padding:8px 16px;border-radius:999px;border:1px solid #5b1712;background:#5b1712;color:#fff;cursor:pointer;}
+  .leser .wer{font-size:1.05rem;}
+  .leser .wer button{background:transparent;color:#5b1712;padding:2px 8px;font-weight:600;border:none;text-decoration:underline;}
+  .leser .sync{display:block;font-size:.85rem;opacity:.8;margin-top:6px;}
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .leser{background:rgba(0,0,0,.25);border-color:rgba(255,255,255,.2);}}
+  :root[data-theme="dark"] .leser{background:rgba(0,0,0,.25);border-color:rgba(255,255,255,.2);}
+
   /* Die Bücher liegen zu, bis eines aufgeschlagen wird */
   #kh,#zf{display:none;position:fixed;inset:0;z-index:30;}
   #kh.offen,#zf.offen{display:block;}
@@ -77,6 +89,12 @@
     <h1>Meine Bibliothek</h1>
     <p class="schrift">zum Lesen und Lernen</p>
   </header>
+  <div class="leser" id="leser">
+    <form class="frage-name" hidden><label for="leser-name">Wer liest? Schreib deinen Namen.</label>
+      <div class="reihe"><input id="leser-name" maxlength="40" autocomplete="given-name" placeholder="Dein Name"><button type="submit">Los geht's</button></div></form>
+    <p class="wer" hidden>📚 <span class="gruss"></span> <button type="button" class="aendern">Name ändern</button></p>
+    <span class="sync">Dein Stand wird geladen …</span>
+  </div>
   <div class="buecher">
     <button type="button" class="buch" data-buch="kurse" aria-label="Meine Kurse aufschlagen">
       <span class="koerper"><span class="vorderseite zf-farben"></span></span>
@@ -93,6 +111,62 @@
 <div class="buch-huelle" id="kh"><!--__KH_BODY__--></div>
 <div class="buch-huelle" id="zf"><!--__ZF_BODY__--></div>
 
+<script>
+/* Gleicher Stand auf jedem Gerät (ihr Wunsch vom 05.11.2026): alles, was die Bücher im Browser merken
+   (Schlüssel krankheiten-…, zf-…, bib-…), wird zusätzlich im Konto der Leserin bei claude.ai gespeichert
+   (Datenbank der Seite, data/users/<id>/bibliothek — nur sie selbst kann es lesen) und beim Öffnen zurückgeholt.
+   Ohne Anmeldung bei claude.ai bleibt alles wie bisher nur auf diesem Gerät. */
+window.SYNC=(function(){
+  'use strict';
+  const PRE=/^(krankheiten-|zf-|bib-)/, ZK='sync-zeit-v1';
+  let LS=null;try{LS=window.localStorage;LS.getItem('x');}catch(e){LS=null;}
+  const P=window.Storage&&Storage.prototype, setO=P&&P.setItem, remO=P&&P.removeItem, getO=P&&P.getItem;
+  let zeit={};if(LS){try{zeit=JSON.parse(getO.call(LS,ZK)||'{}')||{};}catch(e){zeit={};}}
+  let doc=null,timer=0,schreibt=false,nochmal=false;
+  const status=t=>{const e=document.querySelector('#leser .sync');if(e)e.textContent=t;};
+  const merk=k=>{zeit[k]=Date.now();try{setO.call(LS,ZK,JSON.stringify(zeit));}catch(e){}};
+  if(LS){
+    P.setItem=function(k,v){setO.call(this,k,v);if(this===LS&&PRE.test(k)){merk(k);plane();}};
+    P.removeItem=function(k){remO.call(this,k);if(this===LS&&PRE.test(k)){merk(k);plane();}};
+  }
+  function alle(){const w={};for(let i=0;i<LS.length;i++){const k=LS.key(i);if(PRE.test(k))w[k]={v:getO.call(LS,k),t:zeit[k]||0};}
+    Object.keys(zeit).forEach(k=>{if(PRE.test(k)&&!(k in w))w[k]={v:null,t:zeit[k]};});return w;}
+  function plane(){if(!doc)return;clearTimeout(timer);timer=setTimeout(schiebe,1500);}
+  async function schiebe(){if(!doc)return;if(schreibt){nochmal=true;return;}schreibt=true;
+    try{await doc.set({werte:alle(),zeit:Date.now()});status('☁️ Gespeichert — auf jedem Gerät mit deinem Claude-Konto gleich.');}
+    catch(e){status('⚠️ Speichern im Konto gerade nicht möglich — auf diesem Gerät ist alles da.');}
+    schreibt=false;if(nochmal){nochmal=false;schiebe();}}
+  const OHNE='Dein Stand bleibt nur auf diesem Gerät (keine Anmeldung bei claude.ai erkannt).';
+  const bereit=(async()=>{
+    if(!LS||!window.claude||!claude.use){status(OHNE);return;}
+    const holen=(async()=>{
+      const [db,user]=await Promise.all([claude.use('db'),claude.use('user')]);
+      if(!db||!user){status(OHNE);return;}
+      const id=await user.id();if(!id){status(OHNE);return;}
+      const d=db.doc('data/users/'+id+'/bibliothek');
+      const snap=await d.get();
+      if(snap.exists){const w=(snap.data()||{}).werte||{};
+        Object.keys(w).forEach(k=>{if(!PRE.test(k))return;const r=w[k]||{};
+          if((r.t||0)>(zeit[k]||0)){if(r.v==null)remO.call(LS,k);else setO.call(LS,k,String(r.v));zeit[k]=r.t;}});
+        try{setO.call(LS,ZK,JSON.stringify(zeit));}catch(e){}}
+      doc=d;status('☁️ Verbunden — dein Stand ist auf jedem Gerät gleich, wenn du dort mit demselben Claude-Konto angemeldet bist.');plane();
+    })().catch(()=>status(OHNE));
+    await Promise.race([holen,new Promise(r=>setTimeout(r,8000))]);
+  })();
+  return {bereit,jetzt:()=>schiebe()};
+})();
+
+/* Name der Leserin: steht auf dem Regal und in jeder Abgabe */
+(function(){
+  const box=document.getElementById('leser');if(!box)return;
+  const f=box.querySelector('.frage-name'),wer=box.querySelector('.wer'),inp=box.querySelector('#leser-name');
+  const lies=()=>{try{return localStorage.getItem('bib-name')||'';}catch(e){return '';}};
+  function zeig(){const n=lies();f.hidden=!!n;wer.hidden=!n;if(n)wer.querySelector('.gruss').textContent='Hallo, '+n+'!';}
+  f.addEventListener('submit',e=>{e.preventDefault();const n=inp.value.trim().slice(0,40);if(!n)return;try{localStorage.setItem('bib-name',n);}catch(err){}zeig();});
+  wer.querySelector('.aendern').addEventListener('click',()=>{inp.value=lies();f.hidden=false;wer.hidden=true;inp.focus();});
+  zeig();SYNC.bereit.then(zeig);
+})();
+</script>
 <script>
 /* Das Regal: kennt die beiden Bücher, schlägt sie auf und klappt sie wieder zu. */
 window.BIBLIOTHEK=(function(){
@@ -168,11 +242,20 @@ window.BIBLIOTHEK=(function(){
 })();
 </script>
 <script>
+window.__buchKH=function(){
 /*__KH_JS__*/
+};
 </script>
 <script>
+window.__buchZF=function(){
 /*__ZF_JS__*/
+};
 </script>
 <script>
-(function(){const los=()=>BIBLIOTHEK.zeichne();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(los);los();})();
+/* Die Bücher starten erst, wenn der Stand aus dem Konto geholt ist (höchstens 8 Sekunden) */
+SYNC.bereit.then(()=>{
+  try{__buchKH();}catch(e){console.error(e);}
+  try{__buchZF();}catch(e){console.error(e);}
+  const los=()=>BIBLIOTHEK.zeichne();if(document.fonts&&document.fonts.ready)document.fonts.ready.then(los);los();
+});
 </script>
