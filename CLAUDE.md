@@ -1913,6 +1913,13 @@ Handelsnamen.** Für künftige Artikel dieselben fünf Zeilen.
 (nummeriert, Bibliothekseintrag → „jetzt lesen“); danach `python3 bibliothek/build.py`. Geschrieben von Subagenten nach
 `scratchpad/auftrag-artikel.md`, geprüft nach `auftrag-artikel-pruefung.md` (16–21 Korrekturen je Artikel). Das Buch-Skript kann jetzt
 beliebig viele Artikel (Inhalt mit röm. Teilen, Lesestand `<id>-<kap>`, Abschluss je Artikel). **Weitere Artikel nur nach Freigabe.**
+**Seit 07.11.2026 alle übrigen Krankheiten freigegeben** (*„ecrits les autres maladies restantes . Ecris tout“*) — sie entstehen in Viererpaketen
+(Schreib-Subagent, dann Prüf-Subagent), zuerst die aus ihren Kursen. **Nachladen statt einbetten:** `artikel_einsetzen.py` setzt in
+`krankheiten/index.html` nur noch **Platzhalter** `<article id data-laden="<id>.html">` (Kopf, Kapitelüberschriften, Prüfungsfragen); das Buch
+lädt den ganzen Artikel erst beim Öffnen per `fetch('artikel/<id>.html')` (immer nur einer neben dem Schlaganfall, zuletzt offener in
+`krankheiten-offen-v1`). **Beim Veröffentlichen beider Seiten (Bibliothek und Einzel-Link) jede Datei mitschicken:**
+`files {"artikel/<id>.html": "krankheiten/artikel/<id>.html"}`. Neue Artikel in `REIHE` von `artikel_einsetzen.py` eintragen. Lokal testen:
+`bibliothek/artikel` ist ein Symlink (in `.gitignore`), `python3 -m http.server` im Repo.
 **Prüfungsmodus Pflegeplanung (ihr Wunsch 05.11.2026):** in Kap. 16 jedes Artikels Uhr **1 h 30** (`krankheiten-uhr-v1`), danach Felder
 gesperrt, Knopf „Abgeben und korrigieren lassen“: Abgabe in der Datenbank der Bibliothek (`abgaben/<nutzer>` Kopf mit Name +
 `abgaben/<nutzer>/plaene/<id>`), Korrektur sofort über die Fähigkeit `sample` (ihr eigenes Claude-Konto, Zustimmung beim ersten Mal) als
