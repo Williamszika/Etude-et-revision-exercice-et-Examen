@@ -11,7 +11,9 @@ import os, re
 BASE = os.path.dirname(os.path.abspath(__file__))
 F = os.path.join(BASE, "index.html")
 REIHE = [("diabetes", "Diabetes mellitus Typ 1 und Typ 2"), ("asthma", "Asthma bronchiale"),
-         ("ms", "Multiple Sklerose"), ("hypertonie", "Hypertonie")]
+         ("ms", "Multiple Sklerose"), ("hypertonie", "Hypertonie"),
+         ("depression", "Depression"), ("myokardinfarkt", "Myokard&shy;infarkt"),
+         ("herzinsuffizienz", "Herz&shy;insuffizienz"), ("thrombose", "Thrombose")]
 s = open(F, encoding="utf-8").read()
 A, E = "<!-- ARTIKEL-START -->", "<!-- ARTIKEL-ENDE -->"
 if A in s:
@@ -49,6 +51,6 @@ zahl = 1 + len(da)
 s = re.sub(r'<p class="kicker">Artikel 1 · Der Schlaganfall · 52 Krankheiten in der Bibliothek</p>|<p class="kicker">\d+ Artikel · 52 Krankheiten in der Bibliothek</p>',
            f'<p class="kicker">{zahl} Artikel · 52 Krankheiten in der Bibliothek</p>', s)
 s = re.sub(r'<p><strong>Krankheiten verstehen</strong> · [^<]*?· 52 Krankheiten',
-           '<p><strong>Krankheiten verstehen</strong> · ' + str(zahl) + ' Artikel: Schlaganfall' + ''.join(', ' + t.split(' Typ')[0] for _, t in da) + ' · 52 Krankheiten', s)
+           '<p><strong>Krankheiten verstehen</strong> · ' + str(zahl) + ' Artikel: Schlaganfall' + ''.join(', ' + t.split(' Typ')[0].replace('&shy;', '') for _, t in da) + ' · 52 Krankheiten', s)
 open(F, "w", encoding="utf-8").write(s)
 print("OK  Artikel im Buch:", ["schlaganfall"] + [i for i, _ in da])
