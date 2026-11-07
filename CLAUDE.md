@@ -1907,6 +1907,20 @@ Ruhe/Situation/Hilfe + ABCD; Sturzprotokoll) und sieben Karten **ASS · Clopidog
 Insulin**, je So wirkt es · Nebenwirkungen · Das erwartest du · Gefährlich — du findest ihn so · Sofort tun. Wirkstofffakten blau (Apotheken
 Umschau, Shop Apotheke, abgerufen 04.11.2026), Notfallschritte grün aus Notfälle/Diabetes/Bewegung, Szenarien gelb. **Keine Dosierungen, keine
 Handelsnamen.** Für künftige Artikel dieselben fünf Zeilen.
+**Seit 05./07.11.2026 mehrere Artikel** (ihre Freigabe: *„écrire deux autres maladies … que on a déjà étudié“*, auf Nachfrage gewählt:
+**Diabetes, Asthma, MS, Hypertonie**). Jeder Artikel liegt als Fragment in `krankheiten/artikel/<id>.html` (ids `<id>-k1…16`, Felder
+`<id>-p1-pesr` …, `data-fertig`/`data-art="<id>"`) und wird mit `python3 krankheiten/artikel_einsetzen.py` hinter den Schlaganfall gesetzt
+(nummeriert, Bibliothekseintrag → „jetzt lesen“); danach `python3 bibliothek/build.py`. Geschrieben von Subagenten nach
+`scratchpad/auftrag-artikel.md`, geprüft nach `auftrag-artikel-pruefung.md` (16–21 Korrekturen je Artikel). Das Buch-Skript kann jetzt
+beliebig viele Artikel (Inhalt mit röm. Teilen, Lesestand `<id>-<kap>`, Abschluss je Artikel). **Weitere Artikel nur nach Freigabe.**
+**Prüfungsmodus Pflegeplanung (ihr Wunsch 05.11.2026):** in Kap. 16 jedes Artikels Uhr **1 h 30** (`krankheiten-uhr-v1`), danach Felder
+gesperrt, Knopf „Abgeben und korrigieren lassen“: Abgabe in der Datenbank der Bibliothek (`abgaben/<nutzer>` Kopf mit Name +
+`abgaben/<nutzer>/plaene/<id>`), Korrektur sofort über die Fähigkeit `sample` (ihr eigenes Claude-Konto, Zustimmung beim ersten Mal) als
+JSON mit **Übungsnote nach eigenem Raster** (100 Punkte → 1–6, so auf der Seite gekennzeichnet, keine Schulnote). **Ich kann Abgaben im Chat
+lesen** (`ArtifactData list abgaben`, dann `abgaben/<id>/plaene`) und eine eigene Korrektur ins Feld `claudeKorrektur` schreiben — die Seite
+zeigt sie als „Korrektur von Claude im Chat“. **Name + Stand auf allen Geräten:** `bibliothek/_regal.html` fragt „Wer liest?“
+(`bib-name`) und spiegelt alle Schlüssel `krankheiten-…`, `zf-…`, `bib-…` in `data/users/<id>/bibliothek` (nur mit claude.ai-Anmeldung;
+sonst nur dieses Gerät). Fähigkeiten der Bibliothek: `db` (Regeln abgaben), `user`, `sample`.
 
 ## Meine Bibliothek — EIN Link mit beiden Büchern (seit 03.11.2026)
 

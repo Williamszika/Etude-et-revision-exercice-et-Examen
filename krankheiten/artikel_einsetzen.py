@@ -16,8 +16,10 @@ if A in s:
     s = s[:i] + s[j:]
 da = [(i, t) for i, t in REIHE if os.path.exists(os.path.join(BASE, "artikel", i + ".html"))]
 teile = [A]
-for i, _ in da:
-    teile.append(open(os.path.join(BASE, "artikel", i + ".html"), encoding="utf-8").read().strip())
+for n, (i, _) in enumerate(da, start=2):
+    t = open(os.path.join(BASE, "artikel", i + ".html"), encoding="utf-8").read().strip()
+    t = re.sub(r'(<span class="nr">)Artikel \d+', r'\g<1>Artikel ' + str(n), t, count=1)
+    teile.append(t)
 teile.append(E)
 k = s.index("</article>", s.index('<article id="schlaganfall">')) + len("</article>")
 s = s[:k] + "\n\n" + "\n\n".join(teile) + s[k:]
