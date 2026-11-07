@@ -361,7 +361,7 @@ Pflegerische Bedeutung: zeigt die typischen klinischen Zeichen und Untersuchungs
 - Myokardinfarkt: nein = 0 | ja = 4
 - Schwangerschaft: nein = 0 | ja = 1
 - postpartal: nein = 0 | ja = 2
-- Übergewicht: nein = 0 | >15 % (nach Broca) = 2 | >20 % (nach Broca) = 2
+- Übergewicht: nein = 0 | >15 % (nach Broca) = 2 | >20 % (nach Broca) = *auf der Folie kein Punktwert (Feld leer, Folie 34)* — korrigiert am 07.11.2026, vorher stand hier fälschlich „= 2“
 
 **Blutzusammensetzung:**
 - schwere Entzündung: nein = 0 | ja = 7
