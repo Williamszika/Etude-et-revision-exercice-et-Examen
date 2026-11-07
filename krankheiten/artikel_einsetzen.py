@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Setzt die Artikel aus krankheiten/artikel/<id>.html hinter den Schlaganfall in krankheiten/index.html.
+"""Setzt für jeden Artikel aus krankheiten/artikel/<id>.html einen PLATZHALTER hinter den Schlaganfall in
+krankheiten/index.html (seit 07.11.2026): Kopf, Kapitelüberschriften und Prüfungsfragen — der ganze Artikel wird
+erst geladen, wenn sie ihn öffnet (fetch artikel/<id>.html). So bleibt die Seite unter 16 MB, auch mit 52 Artikeln.
+Beim Veröffentlichen die Dateien mitschicken: files {"artikel/<id>.html": "krankheiten/artikel/<id>.html"}.
 Wiederholbar: alles zwischen den Markierungen ARTIKEL-START/ENDE wird jedes Mal neu geschrieben,
 und die Einträge der Bibliothek werden für jeden vorhandenen Artikel auf „jetzt lesen“ gesetzt.
     python3 krankheiten/artikel_einsetzen.py && python3 bibliothek/build.py
@@ -16,10 +19,24 @@ if A in s:
     s = s[:i] + s[j:]
 da = [(i, t) for i, t in REIHE if os.path.exists(os.path.join(BASE, "artikel", i + ".html"))]
 teile = [A]
+def platzhalter(i, t):
+    kopf = t[t.index('<div class="wrap artkopf">'):t.index('<nav class="inhalt"')].rstrip()
+    kap = re.findall(r'<section class="kap" id="(' + re.escape(i) + r'-k\d+)" data-kap="(\d+)">\s*(<h3>.*?</h3>)', t, re.S)
+    assert len(kap) == 16, (i, len(kap))
+    fr = re.findall(r'<details class="frage".*?</details>', t, re.S)
+    assert all(f.count('<details') == 1 for f in fr), i
+    out = [f'<article id="{i}" data-laden="{i}.html">', '  ' + kopf.strip(), '  <div class="wrap">']
+    out += [f'  <section class="kap" id="{k}" data-kap="{n}">{h}</section>' for k, n, h in kap]
+    out += ['  <div class="nur-fragen" hidden>'] + ['  ' + f for f in fr] + ['  </div>', '  </div>', '</article>']
+    return "\n".join(out), len(fr)
 for n, (i, _) in enumerate(da, start=2):
-    t = open(os.path.join(BASE, "artikel", i + ".html"), encoding="utf-8").read().strip()
-    t = re.sub(r'(<span class="nr">)Artikel \d+', r'\g<1>Artikel ' + str(n), t, count=1)
-    teile.append(t)
+    p = os.path.join(BASE, "artikel", i + ".html")
+    t = open(p, encoding="utf-8").read().strip()
+    t2 = re.sub(r'(<span class="nr">)Artikel \d+', r'\g<1>Artikel ' + str(n), t, count=1)
+    if t2 != t: open(p, "w", encoding="utf-8").write(t2 + "\n")
+    ph, nf = platzhalter(i, t2)
+    teile.append(ph)
+    print(f"  {i}: Platzhalter {len(ph)//1024} KB, {nf} Fragen (Artikel {len(t2)//1024} KB)")
 teile.append(E)
 k = s.index("</article>", s.index('<article id="schlaganfall">')) + len("</article>")
 s = s[:k] + "\n\n" + "\n\n".join(teile) + s[k:]
