@@ -2702,7 +2702,9 @@ window.__buchKH=function(){
     UHR[a]=Object.assign({},u,{ab:ende});schreib(UKEY,JSON.stringify(UHR));zeigeUhr();
     let ref=null;
     try{const c=await cap();if(c.db&&c.uid){ref=c.db.collection('abgaben/'+c.uid+'/plaene').doc();
-      await ref.set({art:a,krankheit:NAME[a],name:lies('bib-name')||'',text:txt,start:u.start||null,ende,minuten:min});}}catch(e){ref=null;}
+      await ref.set({art:a,krankheit:NAME[a],name:lies('bib-name')||'',text:txt,start:u.start||null,ende,minuten:min});
+      /* Kopfzeile je Person, damit Claude die Abgaben im Chat findet */
+      try{await c.db.doc('abgaben/'+c.uid).set({name:lies('bib-name')||'',zuletzt:ende,krankheit:NAME[a]});}catch(e){}}}catch(e){ref=null;}
     let sample=null;try{sample=window.claude&&claude.use?await claude.use('sample'):null;}catch(e){sample=null;}
     if(!sample){st.textContent=(ref?'Gespeichert. ':'')+'Die Korrektur direkt hier geht auf diesem Gerät nicht. Kopiere deine Planung (Knopf oben) und schick sie mir im Chat — ich korrigiere sie.';b.disabled=false;b.textContent='📤 Abgeben und korrigieren lassen';return;}
     st.textContent='Claude liest und korrigiert … das dauert meist 1–2 Minuten. Du kannst weiterblättern.';
