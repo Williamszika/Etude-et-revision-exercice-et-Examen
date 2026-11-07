@@ -13,7 +13,8 @@ F = os.path.join(BASE, "index.html")
 REIHE = [("diabetes", "Diabetes mellitus Typ 1 und Typ 2"), ("asthma", "Asthma bronchiale"),
          ("ms", "Multiple Sklerose"), ("hypertonie", "Hypertonie"),
          ("depression", "Depression"), ("myokardinfarkt", "Myokard&shy;infarkt"),
-         ("herzinsuffizienz", "Herz&shy;insuffizienz"), ("thrombose", "Thrombose")]
+         ("herzinsuffizienz", "Herz&shy;insuffizienz"), ("thrombose", "Thrombose"),
+         ("schizophrenie", "Schizophrenie")]
 s = open(F, encoding="utf-8").read()
 A, E = "<!-- ARTIKEL-START -->", "<!-- ARTIKEL-ENDE -->"
 if A in s:
