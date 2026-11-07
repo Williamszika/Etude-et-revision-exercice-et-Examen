@@ -14,7 +14,8 @@ REIHE = [("diabetes", "Diabetes mellitus Typ 1 und Typ 2"), ("asthma", "Asthma b
          ("ms", "Multiple Sklerose"), ("hypertonie", "Hypertonie"),
          ("depression", "Depression"), ("myokardinfarkt", "Myokard&shy;infarkt"),
          ("herzinsuffizienz", "Herz&shy;insuffizienz"), ("thrombose", "Thrombose"),
-         ("schizophrenie", "Schizophrenie")]
+         ("schizophrenie", "Schizophrenie"),
+         ("demenz", "Demenz")]
 s = open(F, encoding="utf-8").read()
 A, E = "<!-- ARTIKEL-START -->", "<!-- ARTIKEL-ENDE -->"
 if A in s:
