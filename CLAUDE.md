@@ -1920,6 +1920,10 @@ lädt den ganzen Artikel erst beim Öffnen per `fetch('artikel/<id>.html')` (imm
 `krankheiten-offen-v1`). **Beim Veröffentlichen beider Seiten (Bibliothek und Einzel-Link) jede Datei mitschicken:**
 `files {"artikel/<id>.html": "krankheiten/artikel/<id>.html"}`. Neue Artikel in `REIHE` von `artikel_einsetzen.py` eintragen. Lokal testen:
 `bibliothek/artikel` ist ein Symlink (in `.gitignore`), `python3 -m http.server` im Repo.
+**Seit 08.11.2026 wieder gebremst** (*„si tu finis de publier cette leçon, fais la liste des autres restants et on fera une leçon par jour
+lorsque je te dirai“*): nach Osteoporose, Angststörungen und Zwangsstörungen **keinen neuen Artikel von selbst anfangen**. Ab dann **ein
+Artikel pro Tag, nur wenn sie es sagt**. Fallnamen: jeder Abschlussfall bekommt eine Initiale, die in keinem anderen Artikel vorkommt
+(nie „J.“ — das ist ihr echter Patient Herr J.).
 **Prüfungsmodus Pflegeplanung (ihr Wunsch 05.11.2026):** in Kap. 16 jedes Artikels Uhr **1 h 30** (`krankheiten-uhr-v1`), danach Felder
 gesperrt, Knopf „Abgeben und korrigieren lassen“: Abgabe in der Datenbank der Bibliothek (`abgaben/<nutzer>` Kopf mit Name +
 `abgaben/<nutzer>/plaene/<id>`), Korrektur sofort über die Fähigkeit `sample` (ihr eigenes Claude-Konto, Zustimmung beim ersten Mal) als
