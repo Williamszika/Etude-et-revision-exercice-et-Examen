@@ -201,6 +201,31 @@
   @media (hover:none){.ecke{width:26px;height:26px;}}
   @media (prefers-reduced-motion:reduce){.ecke{transition:none;}}
 
+
+  /* Springen (seit 08.11.2026): an jede Stelle, ohne zu blättern */
+  .spr-knopf{cursor:pointer;}
+  .springen{position:absolute;inset:0;z-index:60;background:rgba(30,20,10,.38);display:flex;justify-content:flex-end;}
+  .springen[hidden]{display:none;}
+  .spr-karte{width:min(420px,100%);height:100%;overflow:hidden;background:var(--card);color:var(--ink);box-shadow:-8px 0 30px rgba(0,0,0,.25);
+    padding:14px 16px 24px;display:flex;flex-direction:column;gap:10px;font-family:var(--serif);font-size:16px;box-sizing:border-box;}
+  .spr-kopf{display:flex;justify-content:space-between;align-items:center;font-family:var(--display);font-size:1.45rem;}
+  .spr-kopf button,.spr-los,.spr-back{font:inherit;font-size:15px;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:8px;padding:6px 12px;cursor:pointer;}
+  .spr-back{background:var(--accent-soft);text-align:left;}
+  .spr-seite{display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+  .spr-nr,.spr-suche{font:inherit;font-size:16px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fffdf6;color:var(--ink);}
+  .spr-nr{width:5.5em;}
+  .spr-regler{width:100%;accent-color:var(--accent);}
+  .spr-liste{list-style:none;margin:0;padding:0;flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;}
+  .spr-karte > :not(.spr-liste){flex:0 0 auto;}
+  .spr-liste li{display:flex;gap:8px;justify-content:space-between;align-items:baseline;border-bottom:1px dotted var(--line);}
+  .spr-liste li[hidden]{display:none;}
+  .spr-liste li a{flex:1;min-width:0;padding:8px 2px;color:var(--ink);text-decoration:none;}
+  .spr-liste li.e0 a{font-weight:600;}
+  .spr-liste li.e1 a{padding-left:16px;font-size:.95em;}
+  .spr-liste li.e2 a{padding-left:30px;font-size:.9em;color:var(--ink-soft);}
+  .spr-liste li.hier{background:var(--accent-soft);}
+  .spr-liste .pz{font-size:.8em;color:var(--ink-soft);white-space:nowrap;font-variant-numeric:tabular-nums;}
+  @media (max-width:560px){.spr-wort{display:none;}}
 </style>
 
 <div class="buchansicht" id="zfansicht" lang="de">
@@ -728,6 +753,75 @@ var D = __DATA__;
     if(e.key==='ArrowRight'||e.key==='PageDown'){blaettern(1);e.preventDefault();}
     else if(e.key==='ArrowLeft'||e.key==='PageUp'){blaettern(-1);e.preventDefault();}
     else if(e.key==='Home'){zeige(0);}else if(e.key==='End'){zeige(seiten.length-1);}
+  });
+
+  /* Springen (seit 08.11.2026, ihr Wunsch: „aller sur n'importe quelle page … ou sur n'importe quel thème … sans tout feuilleter“):
+     ein Knopf in der Leiste öffnet eine Liste aller Teile und Kapitel (mit Seitenzahl und Suche), „Seite … Los“,
+     einen Schieberegler und „Zurück zur Stelle vorher“. */
+  function springenEinbauen(o){
+    const kn=document.createElement('button');kn.type='button';kn.className='knopf spr-knopf';kn.setAttribute('aria-haspopup','dialog');
+    kn.innerHTML='☰<span class="spr-wort"> Springen</span>';kn.title='Springen — zu jeder Seite und jedem Thema';
+    A.querySelector('.knoepfe').prepend(kn);
+    const p=document.createElement('div');p.className='springen';p.hidden=true;
+    p.innerHTML='<div class="spr-karte" role="dialog" aria-modal="true" aria-label="Springen">'
+      +'<div class="spr-kopf"><b>Springen</b><button type="button" class="spr-zu" aria-label="Schließen">✕</button></div>'
+      +'<button type="button" class="spr-back" hidden>↩ Zurück zur Stelle vorher</button>'
+      +'<div class="spr-seite"><label>Seite <input type="number" min="1" inputmode="numeric" class="spr-nr"></label><span class="spr-max"></span><button type="button" class="spr-los">Los</button></div>'
+      +'<input type="range" class="spr-regler" min="1" aria-label="Seite wählen">'
+      +'<input type="search" class="spr-suche" placeholder="Thema oder Kapitel suchen …" aria-label="Thema oder Kapitel suchen">'
+      +'<ol class="spr-liste"></ol></div>';
+    A.append(p);
+    const q=s=>p.querySelector(s);const nr=q('.spr-nr'),reg=q('.spr-regler'),su=q('.spr-suche'),ol=q('.spr-liste'),back=q('.spr-back');
+    const verlauf=[];
+    const merke=()=>{const u=ankerVon(cur);if(u!=null){verlauf.push(u);if(verlauf.length>30)verlauf.shift();}};
+    const geheZu=i=>{o.vorher&&o.vorher();zeige(Math.max(0,Math.min(seiten.length-1,i)));};
+    function filter(){const t=su.value.trim().toLowerCase();
+      ol.querySelectorAll('li').forEach(li=>{li.hidden=t?li.dataset.such.indexOf(t)<0:li.classList.contains('zu');});}
+    function liste(){
+      ol.textContent='';
+      o.eintraege().forEach(e=>{const li=document.createElement('li');li.className='e'+(e.ebene||0)+(e.zu?' zu':'');
+        li.dataset.such=(e.t+' '+(e.such||'')).toLowerCase();
+        const a=document.createElement('a');a.href='#'+e.id;a.textContent=e.t;li.append(a);
+        const s=seiteVon(e.id);const z=document.createElement('span');z.className='pz';
+        if(s>=0){z.textContent='S. '+(s+1);li.dataset.s=s;}else if(e.laden)z.textContent='öffnen';
+        li.append(z);ol.append(li);});
+      filter();
+    }
+    function auf(){
+      if(getComputedStyle(A).position==='static')A.style.position='relative';
+      const m=seiten.length;nr.max=m;reg.max=m;nr.value=cur+1;reg.value=cur+1;q('.spr-max').textContent='von '+m;
+      back.hidden=!verlauf.length;su.value='';liste();p.hidden=false;
+      let hier=null;ol.querySelectorAll('li[data-s]').forEach(li=>{if(!li.hidden&&+li.dataset.s<=cur+(doppel?1:0))hier=li;});
+      if(hier){hier.classList.add('hier');hier.scrollIntoView({block:'center'});}
+      su.focus({preventScroll:true});
+    }
+    function zu(){p.hidden=true;}
+    function geh(i){merke();zu();geheZu(i);}
+    kn.addEventListener('click',auf);
+    q('.spr-zu').addEventListener('click',zu);
+    p.addEventListener('click',e=>{if(e.target===p)zu();});
+    q('.spr-los').addEventListener('click',()=>geh((+nr.value||1)-1));
+    nr.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();geh((+nr.value||1)-1);}});
+    reg.addEventListener('input',()=>{nr.value=reg.value;});
+    reg.addEventListener('change',()=>geh(+reg.value-1));
+    su.addEventListener('input',filter);
+    /* Klick auf einen Eintrag: Stelle merken, Liste schließen — den Sprung selbst macht der normale Link-Handler des Buches */
+    ol.addEventListener('click',e=>{if(e.target.closest('a')){merke();zu();}},true);
+    back.addEventListener('click',()=>{const u=verlauf.pop();zu();if(u==null)return;
+      const i=seiten.findIndex(s=>s.querySelector('[data-u="'+u+'"]'));if(i>=0)geheZu(i);});
+    document.addEventListener('keydown',e=>{if(p.hidden||!aktiv())return;
+      if(e.key==='Escape'){e.stopImmediatePropagation();e.preventDefault();zu();return;}
+      if(['ArrowLeft','ArrowRight','PageUp','PageDown','Home','End'].indexOf(e.key)>=0)e.stopImmediatePropagation();},true);
+  }
+
+  springenEinbauen({
+    eintraege:()=>{
+      const E=[{t:'Titelblatt',id:'titel'},{t:'Inhalt',id:'inhalt'}];let h=0;
+      K.forEach((k,i)=>{E.push({t:(i+1)+' · '+k.titel,id:kursId(i),such:[k.untertitel,k.fach,k.dozent,k.worum].join(' ')});
+        if(i===offen&&hatText(k))seiten.forEach(s=>s.querySelectorAll('.zfl h2, .zfl h3').forEach(x=>{
+          const t=x.textContent.replace(/\s+/g,' ').trim();if(!t)return;if(!x.id)x.id='spr-h'+(h++);
+          E.push({t,id:x.id,ebene:x.tagName==='H2'?1:2,such:k.titel});}));});
+      E.push({t:'Weiteres zum Lesen',id:'weiteres'},{t:'Über dieses Buch',id:'ende'});return E;}
   });
   let tx=null,ty=0;
   S.addEventListener('touchstart',e=>{const t=e.touches[0];tx=t.clientX;ty=t.clientY;},{passive:true});

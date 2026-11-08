@@ -1944,6 +1944,10 @@ zu und legt das Buch zurück. Die Stelle merken die Bücher selbst (`krankheiten
 zusammen (Rahmen `#kh`/`#zf`, Styles darauf eingegrenzt, Regal aus `bibliothek/_regal.html`). `zusammenfassungen/build.py` ruft es mit auf;
 **nach jeder Änderung an `krankheiten/index.html` von Hand bauen** und die Bibliothek mitveröffentlichen. Die beiden Einzel-Links bleiben.
 Die Bücher erkennen `window.BIBLIOTHEK` und starten dann nicht selbst (`BIB.melde(...)`).
+**Springen (08.11.2026)**, ihr Wunsch *„aller sur n'importe quelle page … ou sur n'importe quel thème … sans tout feuilleter“*: in beiden
+Büchern ein Knopf **☰ Springen** in der Leiste (auch am Handy) → Liste aller Teile/Artikel/Kapitel bzw. Kurse (bei aufgeschlagener
+Zusammenfassung auch ihre Überschriften) mit Seitenzahl und Suche, „Seite … Los“, Schieberegler, „↩ Zurück zur Stelle vorher“. Code
+`springenEinbauen()` steht in `krankheiten/index.html` **und** `zusammenfassungen/_template.html` — Änderungen in beiden nachziehen.
 **Fragen:** Im Krankheiten-Buch hat jede Prüfungsfrage „✓ gewusst / ✗ noch nicht“ (`krankheiten-fragen-v1`), jedes Fragenkapitel einen Stand,
 und am Ende steht **Teil III „Fragen zu allen Krankheiten“** — alle Fragen aller Artikel gemischt, wächst mit jedem neuen Artikel von selbst.
 Im Moment nur Schlaganfall. Für „Meine Kurse“ gibt es keine Fragen (die Inhalte liegen in den einzelnen Kurs-Seiten, nicht im Buch).
