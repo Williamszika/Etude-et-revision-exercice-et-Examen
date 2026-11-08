@@ -24,7 +24,8 @@ REIHE = [("diabetes", "Diabetes mellitus Typ 1 und Typ 2"), ("asthma", "Asthma b
          ("lungenembolie", "Lungen&shy;embolie"),
          ("parkinson", "Parkinson"),
          ("arthrose", "Arthrose"),
-         ("angststoerungen", "Angst&shy;störungen")]
+         ("angststoerungen", "Angst&shy;störungen"),
+         ("osteoporose", "Osteoporose")]
 s = open(F, encoding="utf-8").read()
 A, E = "<!-- ARTIKEL-START -->", "<!-- ARTIKEL-ENDE -->"
 if A in s:
