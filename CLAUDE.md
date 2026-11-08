@@ -1947,6 +1947,13 @@ Die Bücher erkennen `window.BIBLIOTHEK` und starten dann nicht selbst (`BIB.mel
 **Fragen:** Im Krankheiten-Buch hat jede Prüfungsfrage „✓ gewusst / ✗ noch nicht“ (`krankheiten-fragen-v1`), jedes Fragenkapitel einen Stand,
 und am Ende steht **Teil III „Fragen zu allen Krankheiten“** — alle Fragen aller Artikel gemischt, wächst mit jedem neuen Artikel von selbst.
 Im Moment nur Schlaganfall. Für „Meine Kurse“ gibt es keine Fragen (die Inhalte liegen in den einzelnen Kurs-Seiten, nicht im Buch).
+**08.11.2026 — eigene Website geplant** (ihr Wunsch: *„un lien dont on n'a pas besoin de Claude … n'importe qui peut ouvrir … il rentre son
+nom, son historique reste … tous les exercices qu'il a envoyés pour avoir la correction … il peut revenir … continuer où il s'était arrêté“*).
+Gewählt: **„Site + correction auto“**. Plan: statische Seite auf **GitHub Pages** (Repo ist öffentlich), **Supabase** (Region Frankfurt) für
+Anmeldung mit **Name + geheimem Code** (Supabase Auth, E-Mail-Bestätigung aus), Fortschritt (dieselben Schlüssel `krankheiten-`/`zf-`/`bib-`)
+und Abgaben; Korrektur über eine **Edge Function** mit ihrem **Anthropic-API-Schlüssel** als Supabase-Secret `ANTHROPIC_API_KEY` — **den
+Schlüssel nie im Chat und nie im Repo**; das Supabase-Token nur über das sichere Formular. Die Claude-Bibliothek bleibt bis zur Umstellung.
+Stand: wartet auf ihre Schritte (Supabase-Projekt, URL + anon key, Token, Secret, Pages auf „GitHub Actions“).
 
 ## Schulungen und Klausuren
 
