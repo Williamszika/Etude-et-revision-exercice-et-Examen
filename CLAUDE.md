@@ -1953,7 +1953,7 @@ Gewählt: **„Site + correction auto“**. Plan: statische Seite auf **GitHub P
 Anmeldung mit **Name + geheimem Code** (Supabase Auth, E-Mail-Bestätigung aus), Fortschritt (dieselben Schlüssel `krankheiten-`/`zf-`/`bib-`)
 und Abgaben; Korrektur über eine **Edge Function** mit ihrem **Anthropic-API-Schlüssel** als Supabase-Secret `ANTHROPIC_API_KEY` — **den
 Schlüssel nie im Chat und nie im Repo**; das Supabase-Token nur über das sichere Formular. Die Claude-Bibliothek bleibt bis zur Umstellung.
-Stand: wartet auf ihre Schritte (Supabase-Projekt, URL + anon key, Token, Secret, Pages auf „GitHub Actions“).
+**Noch am selben Tag zurückgenommen:** *„Si n'importe qui peut ouvrir le lien déjà avec Claude sans se connecter … on reste comme ça.“* — **kein eigener Site**, die Claude-Bibliothek bleibt. Ihr wurde gesagt: ohne Claude-Anmeldung bleibt der Stand nur auf dem jeweiligen Gerät, und die automatische Korrektur braucht eine Anmeldung.
 
 ## Schulungen und Klausuren
 
