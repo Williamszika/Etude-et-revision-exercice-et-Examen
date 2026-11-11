@@ -132,11 +132,34 @@ window.SYNC=(function(){
   function alle(){const w={};for(let i=0;i<LS.length;i++){const k=LS.key(i);if(PRE.test(k))w[k]={v:getO.call(LS,k),t:zeit[k]||0};}
     Object.keys(zeit).forEach(k=>{if(PRE.test(k)&&!(k in w))w[k]={v:null,t:zeit[k]};});return w;}
   function plane(){if(!doc)return;clearTimeout(timer);timer=setTimeout(schiebe,1500);}
+  /* Stand aus dem Konto in dieses Gerät übernehmen — je Schlüssel gewinnt der neuere. true = es kam etwas Neues. */
+  function mische(w){let neu=false;
+    Object.keys(w||{}).forEach(k=>{if(!PRE.test(k))return;const r=w[k]||{};
+      if((r.t||0)>(zeit[k]||0)){if(r.v==null)remO.call(LS,k);else setO.call(LS,k,String(r.v));zeit[k]=r.t;neu=true;}});
+    if(neu){try{setO.call(LS,ZK,JSON.stringify(zeit));}catch(e){}}
+    return neu;}
+  async function hole(){if(!doc)return false;const s=await doc.get();return s.exists?mische((s.data()||{}).werte):false;}
+  /* Vor dem Speichern erst holen und mischen: ein Gerät mit altem Stand darf den neueren Stand eines anderen Geräts nicht überschreiben. */
   async function schiebe(){if(!doc)return;if(schreibt){nochmal=true;return;}schreibt=true;
-    try{await doc.set({werte:alle(),zeit:Date.now()});status('☁️ Gespeichert — auf jedem Gerät mit deinem Claude-Konto gleich.');}
+    try{let neu=false;try{neu=await hole();}catch(e){}
+      await doc.set({werte:alle(),zeit:Date.now()});
+      if(neu){veraltet=true;neuLaden();}
+      status('☁️ Gespeichert — auf jedem Gerät mit deinem Claude-Konto gleich.');}
     catch(e){status('⚠️ Speichern im Konto gerade nicht möglich — auf diesem Gerät ist alles da.');}
     schreibt=false;if(nochmal){nochmal=false;schiebe();}}
-  const OHNE='Dein Stand bleibt nur auf diesem Gerät (keine Anmeldung bei claude.ai erkannt).';
+  /* Kam ein neuerer Stand von einem anderen Gerät, während diese Seite schon offen war, wird sie neu geladen —
+     aber nur, wenn gerade kein Buch aufgeschlagen ist (sonst beim Zuklappen). */
+  let veraltet=false;
+  function neuLaden(){if(!veraltet)return;const B=window.BIBLIOTHEK;if(B&&B.offen&&B.offen())return;
+    status('🔄 Neuerer Stand von einem anderen Gerät — wird geladen …');try{location.reload();}catch(e){}}
+  /* Zurück auf die Seite (Tab wieder sichtbar): Stand holen. Seite verlassen: sofort speichern. */
+  document.addEventListener('visibilitychange',async()=>{if(!doc)return;
+    if(document.visibilityState==='hidden'){clearTimeout(timer);schiebe();return;}
+    try{if(await hole())veraltet=true;}catch(e){}neuLaden();});
+  window.addEventListener('pagehide',()=>{if(doc){clearTimeout(timer);schiebe();}});
+  window.addEventListener('pageshow',e=>{if(e.persisted&&doc)hole().then(n=>{if(n){veraltet=true;neuLaden();}}).catch(()=>{});});
+  const OHNE='⚠️ Nicht bei claude.ai angemeldet — dein Stand bleibt nur auf diesem Gerät. Melde dich auf jedem Gerät mit demselben Claude-Konto an, dann geht es überall dort weiter, wo du warst.';
+  let spaet=false;
   const bereit=(async()=>{
     if(!LS||!window.claude||!claude.use){status(OHNE);return;}
     const holen=(async()=>{
@@ -145,15 +168,15 @@ window.SYNC=(function(){
       const id=await user.id();if(!id){status(OHNE);return;}
       const d=db.doc('data/users/'+id+'/bibliothek');
       const snap=await d.get();
-      if(snap.exists){const w=(snap.data()||{}).werte||{};
-        Object.keys(w).forEach(k=>{if(!PRE.test(k))return;const r=w[k]||{};
-          if((r.t||0)>(zeit[k]||0)){if(r.v==null)remO.call(LS,k);else setO.call(LS,k,String(r.v));zeit[k]=r.t;}});
-        try{setO.call(LS,ZK,JSON.stringify(zeit));}catch(e){}}
-      doc=d;status('☁️ Verbunden — dein Stand ist auf jedem Gerät gleich, wenn du dort mit demselben Claude-Konto angemeldet bist.');plane();
+      const neu=snap.exists?mische((snap.data()||{}).werte):false;
+      doc=d;status('☁️ Verbunden — dein Stand ist auf jedem Gerät gleich, wenn du dort mit demselben Claude-Konto angemeldet bist.');
+      if(neu&&spaet){veraltet=true;neuLaden();}
+      plane();
     })().catch(()=>status(OHNE));
     await Promise.race([holen,new Promise(r=>setTimeout(r,8000))]);
+    spaet=true;
   })();
-  return {bereit,jetzt:()=>schiebe()};
+  return {bereit,jetzt:()=>schiebe(),nachZuklappen:()=>neuLaden()};
 })();
 
 /* Name der Leserin: steht auf dem Regal und in jeder Abgabe */
@@ -234,11 +257,12 @@ window.BIBLIOTHEK=(function(){
       await f.fertig;
       b.classList.remove('weg');f.el.remove();
       offen=null;beschaeftigt=false;b.focus({preventScroll:true});
+      if(window.SYNC&&SYNC.nachZuklappen)SYNC.nachZuklappen();
     });
   }
   document.addEventListener('click',e=>{const b=e.target.closest('button.buch[data-buch]');if(b)oeffne(b.dataset.buch);});
   window.addEventListener('resize',masse);
-  return {melde:(n,a)=>{B[n]=a;},schliesse,zeichne};
+  return {melde:(n,a)=>{B[n]=a;},schliesse,zeichne,offen:()=>offen};
 })();
 </script>
 <script>
