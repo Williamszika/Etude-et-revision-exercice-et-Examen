@@ -52,7 +52,12 @@ A, E = "<!-- ARTIKEL-START -->", "<!-- ARTIKEL-ENDE -->"
 if A in s:
     i, j = s.index(A), s.index(E) + len(E)
     s = s[:i] + s[j:]
-da = [(i, t) for i, t in REIHE if os.path.exists(os.path.join(BASE, "artikel", i + ".html"))]
+# Seit 12.11.2026: neue Artikel kommen erst ins Buch, wenn die Prüfung sie freigegeben hat (auftrag/freigegeben.txt)
+_FREI = os.path.join(BASE, "auftrag", "freigegeben.txt")
+FREI = set(open(_FREI, encoding="utf-8").read().split()) if os.path.exists(_FREI) else set()
+NEU_AB = [i for i, _ in REIHE].index("arteriosklerose")
+GEPRUEFT = {i for i, _ in REIHE[:NEU_AB]} | FREI
+da = [(i, t) for i, t in REIHE if i in GEPRUEFT and os.path.exists(os.path.join(BASE, "artikel", i + ".html"))]
 teile = [A]
 def platzhalter(i, t):
     kopf = t[t.index('<div class="wrap artkopf">'):t.index('<nav class="inhalt"')].rstrip()
