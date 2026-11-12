@@ -28,7 +28,25 @@ REIHE = [("diabetes", "Diabetes mellitus Typ 1 und Typ 2"), ("asthma", "Asthma b
          ("osteoporose", "Osteoporose"),
          ("zwangsstoerungen", "Zwangs&shy;störungen"),
          ("niereninsuffizienz", "Chronische Nieren&shy;insuffizienz"),
-         ("copd", "COPD")]
+         ("copd", "COPD"),
+         ("arteriosklerose", "Arterio&shy;sklerose"),
+         ("hyperthyreose", "Hyper&shy;thyreose"),
+         ("lungenkrebs", "Lungenkrebs"),
+         ("tuberkulose", "Tuberkulose"),
+         ("durchfall-kind", "Durchfall&shy;erkrankungen beim Kind"),
+         ("harninkontinenz", "Harn&shy;inkontinenz"),
+         ("neurodermitis-kraetze", "Neuro&shy;dermitis und Krätze"),
+         ("bechterew", "Morbus Bechterew"),
+         ("hypotonie", "Hypotonie"),
+         ("zystitis", "Blasen&shy;entzündung (Zystitis)"),
+         ("bipolare-stoerung", "Bipolare Störung"),
+         ("rheumatoide-arthritis", "Rheumatoide Arthritis"),
+         ("leberzirrhose", "Leberzirrhose"),
+         ("mrsa", "MRSA"),
+         ("hepatitis", "Hepatitis B und C"),
+         ("hiv-aids", "HIV/AIDS"),
+         ("adipositas", "Adipositas"),
+         ("hypothyreose", "Hypo&shy;thyreose")]
 s = open(F, encoding="utf-8").read()
 A, E = "<!-- ARTIKEL-START -->", "<!-- ARTIKEL-ENDE -->"
 if A in s:
