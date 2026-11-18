@@ -5272,6 +5272,17 @@ window.__buchKH=function(){
     }
     if((el.classList.contains('symkarte')||el.classList.contains('medkarte'))&&el.children.length>1)
       return {items:[...el.children].map(x=>[x]),ziel:h=>h,huelle:erst=>{const h=el.cloneNode(false);if(!erst)h.classList.add('fort');return h;}};
+    /* Kasten/Spalte, deren letztes Kind eine lange Liste ist (18.11.2026, Demenz Kap. 16): Kopf bleibt beim ersten Teil, die Punkte wandern weiter */
+    if(el.classList.contains('kasten')||el.classList.contains('pp-spalte')||el.classList.contains('steck')){
+      const k=[...el.children],li=k[k.length-1];
+      if(li&&(li.tagName==='UL'||li.tagName==='OL')&&li.children.length>1){
+        const kopf=k.slice(0,-1);
+        return {items:[...li.children].map(x=>[x]),ziel:h=>h.lastElementChild,huelle:(erst,n)=>{const h=el.cloneNode(false);
+          if(erst)kopf.forEach(x=>h.append(x));else h.classList.add('fort');
+          const l=li.cloneNode(false);l.removeAttribute('id');if(!erst&&li.tagName==='OL')l.setAttribute('start',(+li.getAttribute('start')||1)+n);
+          h.append(l);return h;}};
+      }
+    }
     if((el.classList.contains('steck')||el.classList.contains('kasten'))&&el.children.length>1)
       return {items:[...el.children].map(x=>[x]),ziel:h=>h,huelle:()=>el.cloneNode(false)};
     return null;
