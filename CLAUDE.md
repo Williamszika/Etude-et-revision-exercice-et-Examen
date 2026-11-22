@@ -1934,6 +1934,7 @@ zeigt sie als „Korrektur von Claude im Chat“. **Name + Stand auf allen Gerä
 (`bib-name`) und spiegelt alle Schlüssel `krankheiten-…`, `zf-…`, `bib-…` in `data/users/<id>/bibliothek` (nur mit claude.ai-Anmeldung;
 sonst nur dieses Gerät). Fähigkeiten der Bibliothek: `db` (Regeln abgaben), `user`, `sample`.
 **Sync repariert (11.11.2026)**, ihre Meldung *„sur mon iPad … je suis obligé de reprendre“*: vorher holte die Seite den Stand nur beim ersten Laden, und ein Gerät mit altem Stand überschrieb beim Speichern den neueren im Konto. Jetzt: vor jedem Speichern holen und je Schlüssel mischen (neuerer gewinnt); beim Zurückkehren auf den Tab (`visibilitychange`, `pageshow`) holen und, wenn etwas Neues kam, die Seite neu laden (bei offenem Buch erst nach dem Zuklappen); beim Verlassen sofort speichern. **Gilt nur mit claude.ai-Anmeldung, gleiches Konto auf allen Geräten** — der eingetippte Name ist nur Anzeige, kein Schlüssel. Ohne Anmeldung zeigt das Regal eine Warnung.
+**Sync-Fehler 22.11.2026** (*„je ne vois pas où je me suis arrêté … les chapitres cochés“*): im Konto standen `null`-Einträge (gelesen, Name), die alle Geräte löschten. Jetzt: Löschung nur bei ausdrücklichem `removeItem` (Liste `sync-weg-v1`); JSON-Objekte (gelesen, fragen, fertig …) werden **feldweise zusammengelegt**, ein Haken geht nie mehr verloren; die Bücher löschen keine Felder mehr, sondern setzen 0/''/null. Nur der Bibliothek-Link synchronisiert, nicht der Einzel-Link.
 
 ## Meine Bibliothek — EIN Link mit beiden Büchern (seit 03.11.2026)
 
