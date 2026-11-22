@@ -125,18 +125,36 @@ window.SYNC=(function(){
   let doc=null,timer=0,schreibt=false,nochmal=false;
   const status=t=>{const e=document.querySelector('#leser .sync');if(e)e.textContent=t;};
   const merk=k=>{zeit[k]=Date.now();try{setO.call(LS,ZK,JSON.stringify(zeit));}catch(e){}};
+  /* Ausdrücklich gelöschte Schlüssel (nur dann wird eine Löschung weitergegeben). Seit 22.11.2026: vorher wurde ein
+     Schlüssel, der auf einem Gerät fehlte, als „gelöscht“ ins Konto geschrieben und löschte dort die Haken aller Geräte. */
+  const WK='sync-weg-v1';let weg={};if(LS){try{weg=JSON.parse(getO.call(LS,WK)||'{}')||{};}catch(e){weg={};}}
+  const merkWeg=()=>{try{setO.call(LS,WK,JSON.stringify(weg));}catch(e){}};
   if(LS){
-    P.setItem=function(k,v){setO.call(this,k,v);if(this===LS&&PRE.test(k)){merk(k);plane();}};
-    P.removeItem=function(k){remO.call(this,k);if(this===LS&&PRE.test(k)){merk(k);plane();}};
+    P.setItem=function(k,v){setO.call(this,k,v);if(this===LS&&PRE.test(k)){if(weg[k]){delete weg[k];merkWeg();}merk(k);plane();}};
+    P.removeItem=function(k){remO.call(this,k);if(this===LS&&PRE.test(k)){weg[k]=1;merkWeg();merk(k);plane();}};
   }
   function alle(){const w={};for(let i=0;i<LS.length;i++){const k=LS.key(i);if(PRE.test(k))w[k]={v:getO.call(LS,k),t:zeit[k]||0};}
-    Object.keys(zeit).forEach(k=>{if(PRE.test(k)&&!(k in w))w[k]={v:null,t:zeit[k]};});return w;}
+    Object.keys(weg).forEach(k=>{if(PRE.test(k)&&!(k in w))w[k]={v:null,t:zeit[k]||0};});return w;}
   function plane(){if(!doc)return;clearTimeout(timer);timer=setTimeout(schiebe,1500);}
-  /* Stand aus dem Konto in dieses Gerät übernehmen — je Schlüssel gewinnt der neuere. true = es kam etwas Neues. */
+  const objekt=v=>{if(v==null)return null;try{const o=JSON.parse(v);return o&&typeof o==='object'&&!Array.isArray(o)?o:null;}catch(e){return null;}};
+  /* Stand aus dem Konto übernehmen. Listen wie „gelesen“, „gewusst“, „abgeschlossen“ (JSON-Objekte) werden ZUSAMMENGELEGT —
+     ein Haken von irgendeinem Gerät geht nie mehr verloren; bei gleichem Eintrag gewinnt das neuere Gerät.
+     Einzelwerte (z. B. die Stelle im Buch) übernimmt das neuere Gerät. Löschungen nur, wenn ausdrücklich gelöscht wurde. */
   function mische(w){let neu=false;
-    Object.keys(w||{}).forEach(k=>{if(!PRE.test(k))return;const r=w[k]||{};
-      if((r.t||0)>(zeit[k]||0)){if(r.v==null)remO.call(LS,k);else setO.call(LS,k,String(r.v));zeit[k]=r.t;neu=true;}});
-    if(neu){try{setO.call(LS,ZK,JSON.stringify(zeit));}catch(e){}}
+    Object.keys(w||{}).forEach(k=>{if(!PRE.test(k))return;const r=w[k]||{},rt=r.t||0,lt=zeit[k]||0;
+      const lv=getO.call(LS,k);
+      if(r.v==null){
+        if(rt>lt&&lv!=null&&/^zf-gelesen-/.test(k)){remO.call(LS,k);zeit[k]=rt;neu=true;}
+        return;}
+      const ro=objekt(r.v),lo=objekt(lv);
+      if(ro&&lo){
+        const m=rt>lt?Object.assign({},lo,ro):Object.assign({},ro,lo),ms=JSON.stringify(m);
+        if(ms!==lv){setO.call(LS,k,ms);neu=true;}
+        if(rt>lt)zeit[k]=rt;
+        return;}
+      if(lv==null||rt>lt){if(lv!==String(r.v)){setO.call(LS,k,String(r.v));neu=true;}zeit[k]=Math.max(rt,lt);if(weg[k]){delete weg[k];merkWeg();}}
+    });
+    try{setO.call(LS,ZK,JSON.stringify(zeit));}catch(e){}
     return neu;}
   async function hole(){if(!doc)return false;const s=await doc.get();return s.exists?mische((s.data()||{}).werte):false;}
   /* Vor dem Speichern erst holen und mischen: ein Gerät mit altem Stand darf den neueren Stand eines anderen Geräts nicht überschreiben. */

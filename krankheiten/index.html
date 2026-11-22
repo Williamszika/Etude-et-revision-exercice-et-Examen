@@ -5123,12 +5123,12 @@
     S.querySelectorAll('textarea[data-feld="'+t.dataset.feld+'"]').forEach(x=>{if(x!==t)x.value=t.value;});});
   S.addEventListener('click',e=>{
     const f=e.target.closest('.fertig-knopf');
-    if(f){const fa=f.dataset.art||'schlaganfall';if(FERTIG[fa])delete FERTIG[fa];else{const d=new Date();FERTIG[fa]=('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.'+d.getFullYear();}
+    if(f){const fa=f.dataset.art||'schlaganfall';if(FERTIG[fa])FERTIG[fa]='';else{const d=new Date();FERTIG[fa]=('0'+d.getDate()).slice(-2)+'.'+('0'+(d.getMonth()+1)).slice(-2)+'.'+d.getFullYear();}
       schreib(FEKEY,JSON.stringify(FERTIG));zeigeAbschluss();return;}
     const us=e.target.closest('.uhr-start');if(us){const a=us.closest('.uhr-box').dataset.art;UHR[a]={start:Date.now()};schreib(UKEY,JSON.stringify(UHR));zeigeUhr();return;}
     const un=e.target.closest('.uhr-neu');if(un){const a=un.closest('.uhr-box').dataset.art;
       if(!un.dataset.sicher){un.dataset.sicher='1';un.textContent='Sicher? Noch einmal tippen';setTimeout(()=>{delete un.dataset.sicher;un.textContent='↺ Neu beginnen';},5000);return;}
-      delete un.dataset.sicher;un.textContent='↺ Neu beginnen';delete UHR[a];schreib(UKEY,JSON.stringify(UHR));zeigeUhr();return;}
+      delete un.dataset.sicher;un.textContent='↺ Neu beginnen';UHR[a]={};schreib(UKEY,JSON.stringify(UHR));zeigeUhr();return;}
     const ab=e.target.closest('.abgabe-knopf');if(ab){abgeben(ab);return;}
     const k=e.target.closest('.kopie-knopf');if(!k)return;
     const namen={pesr:'Pflegeproblem PE(S)R',ziel:'Pflegeziele',mass:'Pflegemaßnahmen',begr:'Begründungen'};
@@ -5147,9 +5147,9 @@
   }
   S.addEventListener('click',e=>{const x=e.target.closest('.bewerten button');if(!x)return;
     const id=x.closest('.bewerten').dataset.fid,w=+x.dataset.w;
-    if(FR[id]===w)delete FR[id];else FR[id]=w;schreib(FKEY,JSON.stringify(FR));zeigeFragen();});
+    FR[id]=FR[id]===w?null:w;schreib(FKEY,JSON.stringify(FR));zeigeFragen();});
   S.addEventListener('change',e=>{const cb=e.target.closest('input[data-kap]');if(!cb)return;
-    const id=cb.dataset.kap;if(cb.checked)gelesen[id]=1;else delete gelesen[id];
+    const id=cb.dataset.kap;gelesen[id]=cb.checked?1:0;
     schreib(KEY,JSON.stringify(gelesen));zeigeGelesen();});
 
   document.addEventListener('click',e=>{
