@@ -1965,6 +1965,8 @@ Schlüssel nie im Chat und nie im Repo**; das Supabase-Token nur über das siche
 
 ## Schulungen und Klausuren
 
+**Nächste Klausur: 15.01.2027** — Gesundheitsförderung, Prävention, Beratung + ein Organsystem (ihre Nachricht vom 23.11.2026). Auf Nachfrage gewählt: **„Je dépose les cours dans Drive“** — sie legt die Kurs-PDFs (mit dem Organsystem) in Google Drive; dann lesen, Zusammenfassung + Probeklausur + Lernplan bis 15.01. bauen. Bis dahin nichts erfinden.
+
 - **`zusammenfassungen/`** — **der einzige Schulungs-Link. Nur die zusammengefassten Kurse und
   ihre Erklärungen.** → `https://claude.ai/artifact/7nrNDXtzTUdMquigJJzvZj` (Favicon 📖).
   Auf ihren Wunsch vom 16.09.2026: *„creer un lien uniquement pour les cours résumés et leurs
