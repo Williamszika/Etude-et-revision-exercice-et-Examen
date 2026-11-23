@@ -28,6 +28,13 @@ Pause entre les parties : 30 minutes par défaut ; Williams dit chaque jour s'il
 
 ## Séances
 
+## 2026-11-23 · frei sprechen + 1. Deklination (vocal, ~04:00) · danach Wunsch: Lektion 10
+- Inhalt: Einsatz beendet, Schule (Thema Demenz), Rollenspiel Dozent « Wie war Ihr Einsatz? », Deklination der/den/dem (Akk./Dativ, zum/zur, helfen + Dativ).
+- Stärken: Fachwissen Demenz (vaskulär / Alzheimer, Validation) ; *Ich gebe dem Patienten das Medikament* sofort richtig ; Verb am Ende nach *wie man*.
+- Schwierigkeiten: Dativ fem. *einer Bewohnerin* · *zu das Bett* → *zum Bett* · trennbares Verb am Ende (*mitnehmen*) · Wortwahl (*Stomach* → *Stoma*, *stehlen* → *stellen*, *sehr super*).
+- Offen: L2 Teil 4 + Wörter aus dem Text · L3–L7 Wiederholung · L8, L9. Williams wählt am 23.11.: **mit Lektion 10 weitermachen**.
+- Nächstes Mal: Deklination Teil 2 = Possessivartikel (mein/meinen/meinem/meiner).
+
 **02.11.2026 :** décision de Williams — d'abord finir Teil 3–4 de L1, ensuite L2. Les dates du tableau
 glissent d'autant (une leçon par séance, dans l'ordre).
 
