@@ -145,7 +145,7 @@ def lesen(l):
         w('', f'**Schritt 6 — Konnektoren** ({ko("einleitung")})')
         for i, k in enumerate(ko('aufgaben'), 1):
             w(f'{i}. [{k("typ")}] „{k("satz")}“ — {k("frage")} *{k("hinweis")}* {ans(k("loesung"))}')
-    aufgabe_block(l('erklaeren'), '\nSchritt 7 — Erklären (30 Sekunden laut)')
+    w(''); aufgabe_block(l('erklaeren'), 'Schritt 7 — Erklären (30 Sekunden laut)')
     if l('tipp'): w(f'Tipp: {l("tipp")}')
 
 def aufgabenblock(t, name):
@@ -178,7 +178,11 @@ def leben(l):
 
 def aussprache(a):
     w('## Aussprache'); x = a.o
-    for k in a.o: v = a(k); w(f'**„{v}“**' if k == 'satz' else (f'{k}: {v}' if not isinstance(v, N) else str(list(v))))
+    for k in a.o:
+        v = a(k)
+        if k == 'satz': w(f'**„{v}“**')
+        elif isinstance(v, N): w('Übung: ' + ' · '.join(str(x) for x in v))
+        else: w(f'{k}: {v}')
 
 def diktat(d):
     w(f'## Diktat — {d("titel")}', '*(Frau Weber liest zweimal, langsam, Satz für Satz. Du schreibst im Chat; dann Korrektur.)*', '',
