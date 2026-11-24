@@ -28,6 +28,11 @@ Pause entre les parties : 30 minutes par défaut ; Williams dit chaque jour s'il
 
 ## Séances
 
+## 2026-11-24 · Lektion 10 · Teil 1 Wortschatz begonnen (vocal)
+- Stelle: **Teil 1 (Vokabeln), ab *die Abzweigung*** — dort geht es weiter.
+- Lektion 10 am 24.11. abends noch einmal komplett in den Chat gestellt (`coach/lektion_komplett.py 10 a` / `b`).
+- Offen: L10 Teil 1 Rest · Teil 2–4 · Deklination Stufe 2 (Possessivartikel). Neu seit 24.11.: L12 (`2026-11-24.json`), L11 offen.
+
 ## 2026-11-23 · frei sprechen + 1. Deklination (vocal, ~04:00) · danach Wunsch: Lektion 10
 - Inhalt: Einsatz beendet, Schule (Thema Demenz), Rollenspiel Dozent « Wie war Ihr Einsatz? », Deklination der/den/dem (Akk./Dativ, zum/zur, helfen + Dativ).
 - Stärken: Fachwissen Demenz (vaskulär / Alzheimer, Validation) ; *Ich gebe dem Patienten das Medikament* sofort richtig ; Verb am Ende nach *wie man*.
