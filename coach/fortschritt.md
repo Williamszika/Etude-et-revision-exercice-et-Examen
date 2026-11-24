@@ -28,6 +28,12 @@ Pause entre les parties : 30 minutes par défaut ; Williams dit chaque jour s'il
 
 ## Séances
 
+## 2026-11-24/25 · Lektion 10 · Vorbereitung (vocal, ~23:50–00:04)
+- Wunsch: Lektion in **kleine Teile** schneiden, er bereitet jeden Teil allein vor und kommt dann zum Üben. Für L10 sechs Teile: 1 Wörter 7–17 + *sich auskennen* · 2 Verb des Tages + Modalverben · 3 Text + Fragen · 4 Grammatik + Konnektoren des Textes · 5 Im Leben + Aussprache · 6 Diktat, Übersetzung, Deklination.
+- Stelle: L10 **Teil 1 (Wörter ab *die Abzweigung*)**, er bereitet vor.
+- Schwierigkeiten: Verb am Ende im *dass*-Satz (*dass du mir sagen*) · Subjekt fehlt nach *wenn*-Satz (*rufe dich an*, schon am 02.11. gleich).
+- 25.11., 00:04: tippt « lektion 1 » → Lektion 1 komplett + Analyse geschickt; er will morgen mit Lektion 1 (neu, gründlich) anfangen.
+
 ## 2026-11-24 · Lektion 10 · Teil 1 Wortschatz begonnen (vocal)
 - Stelle: **Teil 1 (Vokabeln), ab *die Abzweigung*** — dort geht es weiter.
 - Lektion 10 am 24.11. abends noch einmal komplett in den Chat gestellt (`coach/lektion_komplett.py 10 a` / `b`).
