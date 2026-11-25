@@ -28,6 +28,13 @@ Pause entre les parties : 30 minutes par défaut ; Williams dit chaque jour s'il
 
 ## Séances
 
+## 2026-11-25 · Lektion 1 komplett ✓ (vocal, ~19:20–22:30, 6 Teile, Pausen 20/20/30/20 Min)
+- Teile: 1 Wörter + *sich anmelden bei* ✓ · 2 *ausfüllen* + Satzklammer + Check ✓ · 3 Text, Nacherzählen, Hauptaussage, 6 Fragen ✓ · 4 Grammatik/Konnektoren + Training 1–8 ✓ · 5 Im Leben (Rollenspiel Empfang) + Aussprache ✓ · 6 Diktat (4 Sätze, buchstabiert), Übersetzung, Deklination Etappe 2 (mein/meinen/meinem/meiner) ✓
+- Stärken: Position 2 nach Zeitangabe meist sofort richtig · Satzklammer mit Modalverb und Perfekt · Ja/Nein- und W-Fragen · *zu* + Infinitiv (*auszufüllen, anzurufen*) neu verstanden, spontan *Ich brauche keine Pause zu machen* · korrigiert sich oft selbst · Geburtsdatum mit Jahreszahl richtig · Aussprache ch (ich/ach) gut nach Hinweis.
+- Schwierigkeiten: Verb auf Position 2 nach *Dann / Deshalb / Am Anfang* in freier Rede · Verb am Ende in Relativsatz · Genus (der Anamnesebogen, ihr Herz, das Schmerzmittel, eine Tachykardie) · *meiner* im Dativ fem. (4 Versuche) · Rechtschreibung *Versichertenkarte*, *verträgt* (Ä) · *schon/schön* · *dürfen/müssen*.
+- Offen: die 5 Sätze aus Teil 1 (Aufgabe) nicht geschickt.
+- Nächstes Mal (sein Wunsch): **Lektion 1 nur Übungen wiederholen**; Deklination Etappe 3 (dein/deinen/deinem). 23:00 tippt er « lektion 2 » → L2 komplett + Analyse geschickt.
+
 ## 2026-11-24/25 · Lektion 10 · Vorbereitung (vocal, ~23:50–00:04)
 - Wunsch: Lektion in **kleine Teile** schneiden, er bereitet jeden Teil allein vor und kommt dann zum Üben. Für L10 sechs Teile: 1 Wörter 7–17 + *sich auskennen* · 2 Verb des Tages + Modalverben · 3 Text + Fragen · 4 Grammatik + Konnektoren des Textes · 5 Im Leben + Aussprache · 6 Diktat, Übersetzung, Deklination.
 - Stelle: L10 **Teil 1 (Wörter ab *die Abzweigung*)**, er bereitet vor.
